@@ -28,7 +28,7 @@ if not is_webhook:
     dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
     dotenv.load(dotenv_path)
 
-telegram_token = os.environ.get("TELEGRAM_TOKEN_BETA")
+telegram_token = os.environ.get("TELEGRAM_TOKEN")
 app_url = os.environ.get("APP_URL")
 dev_tele_id = int(os.environ.get("DEV_TELE_ID"))
 PORT = int(os.environ.get('PORT', '5000'))
