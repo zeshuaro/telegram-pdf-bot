@@ -49,13 +49,13 @@ def start(bot, update):
 def help(bot, update):
     tele_id = update.message.from_user.id
 
-    message = "Below is a list of commands:\n" \
+    message = "Below is a list of commands, the bot will guide you through each job:\n" \
               "/decrypt - decrypt a PDF file with a password\n" \
               "/encrypt - encrypt a PDF file with a password\n" \
               "/merge - merge PDF files into a single PDF file\n" \
               "/rotate - rotate a PDF file\n" \
               "/split - split a PDF file with specified page range\n" \
-              "watermark - add a watermark (in PDF format) to a PDF file"
+              "/watermark - add a watermark (in PDF format) to a PDF file"
 
     bot.sendMessage(tele_id, message)
 
