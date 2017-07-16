@@ -49,8 +49,7 @@ def start(bot, update):
 def help(bot, update):
     tele_id = update.message.from_user.id
 
-    message = "The bot will guide you through each job. If it does not respond to an action, type /cancel to " \
-              "start over. Below is a list of commands:\n" \
+    message = "The bot will guide you through each job. Below is a list of commands:\n" \
               "/decrypt - decrypt a PDF file with a password\n" \
               "/encrypt - encrypt a PDF file with a password\n" \
               "/merge - merge PDF files into a single PDF file\n" \
