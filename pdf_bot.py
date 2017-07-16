@@ -80,13 +80,16 @@ def decrypt_cov_handler():
             RECEIVE_DECRYPT_PW: [MessageHandler(Filters.text, receive_decrypt_pw, pass_user_data=True)]
         },
 
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
     )
 
     return conv_handler
 
 
 # Starts the decrypt conversation
+@run_async
 def decrypt(bot, update):
     update.message.reply_text("Please send me the PDF file that you will like to decrypt or type /cancel to "
                               "cancel this operation.")
@@ -95,6 +98,7 @@ def decrypt(bot, update):
 
 
 # Receives and checks for the source PDF file
+@run_async
 def receive_decrypt_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
@@ -116,6 +120,7 @@ def receive_decrypt_file(bot, update, user_data):
 
 
 # Receives pw and decrypts PDF file with pw
+@run_async
 def receive_decrypt_pw(bot, update, user_data):
     if not user_data["decrypt_file_id"]:
         return ConversationHandler.END
@@ -169,13 +174,16 @@ def encrypt_cov_handler():
             RECEIVE_ENCRYPT_PW: [MessageHandler(Filters.text, receive_encrypt_pw, pass_user_data=True)]
         },
 
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
     )
 
     return conv_handler
 
 
 # Starts the encrypt conversation
+@run_async
 def encrypt(bot, update):
     update.message.reply_text("Please send me the PDF file that you will like to encrypt or type /cancel to "
                               "cancel this operation.")
@@ -183,6 +191,7 @@ def encrypt(bot, update):
 
 
 # Receives and checks for the source PDF file
+@run_async
 def receive_encrypt_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
@@ -205,6 +214,7 @@ def receive_encrypt_file(bot, update, user_data):
 
 
 # Receives pw and encrypts PDF file with pw
+@run_async
 def receive_encrypt_pw(bot, update, user_data):
     if not user_data["encrypt_file_id"]:
         return ConversationHandler.END
@@ -250,13 +260,16 @@ def merge_cov_handler():
                                  RegexHandler("^Done$", merge_file, pass_user_data=True)],
         },
 
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
     )
 
     return conv_handler
 
 
 # Starts the merge conversation
+@run_async
 def merge(bot, update, user_data):
     if "merge_file_ids" in user_data:
         del user_data["merge_file_ids"]
@@ -271,6 +284,7 @@ def merge(bot, update, user_data):
 
 
 # Receives and checks for the source PDF file
+@run_async
 def receive_merge_file(bot, update, user_data):
     pdf_file = update.message.document
     file_id = pdf_file.file_id
@@ -310,6 +324,7 @@ def receive_merge_file(bot, update, user_data):
     return RECEIVE_MERGE_FILE
 
 
+# Sends a list of received filenames
 def send_received_filenames(update, filenames):
     text = "You have sent me the following PDF files:\n"
 
@@ -321,6 +336,7 @@ def send_received_filenames(update, filenames):
 
 
 # Merges PDF file
+@run_async
 def merge_file(bot, update, user_data):
     if not user_data["merge_file_ids"]:
         return ConversationHandler.END
@@ -361,13 +377,16 @@ def rotate_cov_handler():
             ROTATE_FILE: [RegexHandler("^(90|180|270)$", rotate_file, pass_user_data=True)],
         },
 
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
     )
 
     return conv_handler
 
 
 # Starts the rotate conversation
+@run_async
 def rotate(bot, update):
     update.message.reply_text("Please send me the PDF file that you will like to rotate or type /cancel to cancel this "
                               "operation.")
@@ -375,6 +394,7 @@ def rotate(bot, update):
 
 
 # Receives and checks for the PDF file
+@run_async
 def receive_rotate_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
@@ -402,6 +422,7 @@ def receive_rotate_file(bot, update, user_data):
 
 
 # Rotates the PDF file
+@run_async
 def rotate_file(bot, update, user_data):
     if not user_data["rotate_file_id"]:
         return ConversationHandler.END
@@ -446,20 +467,25 @@ def split_cov_handler():
             SPLIT_FILE: [MessageHandler(Filters.text, split_file, pass_user_data=True)],
         },
 
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
     )
 
     return conv_handler
 
 
 # Starts the rotate conversation
+@run_async
 def split(bot, update):
     update.message.reply_text("Please send me the PDF file that you will like to split or type /cancel to cancel this "
                               "operation.")
+
     return RECEIVE_SPLIT_FILE
 
 
 # Receives and checks for the PDF file
+@run_async
 def receive_split_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
@@ -484,6 +510,7 @@ def receive_split_file(bot, update, user_data):
 
 
 # Splits the PDF file
+@run_async
 def split_file(bot, update, user_data):
     if not user_data["split_file_id"]:
         return ConversationHandler.END
@@ -530,13 +557,16 @@ def watermark_cov_handler():
             RECEIVE_WATERMARK_FILE: [MessageHandler(Filters.document, receive_watermark_file, pass_user_data=True)]
         },
 
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
     )
 
     return conv_handler
 
 
 # Starts the watermark conversation
+@run_async
 def watermark(bot, update):
     update.message.reply_text("Please send me the PDF file that you will like to add a watermark or type /cancel to "
                               "cancel this operation.")
@@ -544,6 +574,7 @@ def watermark(bot, update):
 
 
 # Receives and checks for the source PDF file
+@run_async
 def receive_watermark_source_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
@@ -566,6 +597,7 @@ def receive_watermark_source_file(bot, update, user_data):
 
 
 # Receives and checks for the watermark PDF file and watermark the PDF file
+@run_async
 def receive_watermark_file(bot, update, user_data):
     if not user_data["watermark_file_id"]:
         return ConversationHandler.END
@@ -641,13 +673,16 @@ def feedback_cov_handler():
             0: [MessageHandler(Filters.text, receive_feedback)],
         },
 
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
     )
 
     return conv_handler
 
 
 # Sends a feedback message
+@run_async
 def feedback(bot, update):
     update.message.reply_text("Please send me your feedback or type /cancel to cancel this operation. My developer "
                               "can understand English and Chinese.")
@@ -656,6 +691,7 @@ def feedback(bot, update):
 
 
 # Saves a feedback
+@run_async
 def receive_feedback(bot, update):
     feedback_msg = update.message.text
     valid_lang = False
@@ -678,6 +714,7 @@ def receive_feedback(bot, update):
 
 
 # Cancels feedback opteration
+@run_async
 def cancel(bot, update):
     update.message.reply_text("Operation cancelled.", reply_markup=ReplyKeyboardRemove())
     return ConversationHandler.END
