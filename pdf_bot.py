@@ -40,22 +40,24 @@ def start(bot, update):
     tele_id = update.message.chat.id
 
     if update.message.chat.type != "group":
-        message = ""
-
+        message = "Welcome to PDF Bot. Type /help to see what I can do."
         bot.sendMessage(tele_id, message)
 
 
 # Sends help message
 @run_async
 def help(bot, update):
-    player_tele_id = update.message.from_user.id
+    tele_id = update.message.from_user.id
 
-    message = "Add me into a group and type /startgame to start a game. Other players can then type /join to join " \
-              "the game.\n\nYou will not be able to start or join a game if a game has already been set up and " \
-              "running.\n\nYou can only force to stop a game if you are a group admin.\n\nUse /command to get a list " \
-              "of commands to see what I can do."
+    message = "Below is a list of commands:\n" \
+              "/decrypt - decrypt a PDF file with a password\n" \
+              "/encrypt - encrypt a PDF file with a password\n" \
+              "/merge - merge PDF files into a single PDF file\n" \
+              "/rotate - rotate a PDF file\n" \
+              "/split - split a PDF file with specified page range\n" \
+              "watermark - add a watermark (in PDF format) to a PDF file"
 
-    bot.sendMessage(player_tele_id, message)
+    bot.sendMessage(tele_id, message)
 
 
 # Sends donate message
