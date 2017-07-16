@@ -28,7 +28,7 @@ if not is_webhook:
     dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
     dotenv.load(dotenv_path)
 
-telegram_token = os.environ.get("TELEGRAM_TOKEN")
+telegram_token = os.environ.get("TELEGRAM_TOKEN_BETA")
 app_url = os.environ.get("APP_URL")
 dev_tele_id = int(os.environ.get("DEV_TELE_ID"))
 PORT = int(os.environ.get('PORT', '5000'))
@@ -49,7 +49,8 @@ def start(bot, update):
 def help(bot, update):
     tele_id = update.message.from_user.id
 
-    message = "Below is a list of commands, the bot will guide you through each job:\n" \
+    message = "The bot will guide you through each job. If it does not respond to an action, type /cancel to " \
+              "start over. Below is a list of commands, :\n" \
               "/decrypt - decrypt a PDF file with a password\n" \
               "/encrypt - encrypt a PDF file with a password\n" \
               "/merge - merge PDF files into a single PDF file\n" \
@@ -89,6 +90,7 @@ def decrypt_cov_handler():
 def decrypt(bot, update):
     update.message.reply_text("Please send me the PDF file that you will like to decrypt or type /cancel to "
                               "cancel this operation.")
+
     return RECEIVE_DECRYPT_FILE
 
 
@@ -115,6 +117,9 @@ def receive_decrypt_file(bot, update, user_data):
 
 # Receives pw and decrypts PDF file with pw
 def receive_decrypt_pw(bot, update, user_data):
+    if not user_data["decrypt_file_id"]:
+        return ConversationHandler.END
+
     tele_id = update.message.from_user.id
     pw = update.message.text
     update.message.reply_text("Decrypting your PDF file.")
@@ -138,10 +143,8 @@ def receive_decrypt_pw(bot, update, user_data):
 
         return ConversationHandler.END
 
-    num_pages = pdf_reader.getNumPages()
-
-    for page_num in range(num_pages):
-        pdf_writer.addPage(pdf_reader.getPage(page_num))
+    for page in pdf_reader.pages:
+        pdf_writer.addPage(page)
 
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
@@ -203,6 +206,9 @@ def receive_encrypt_file(bot, update, user_data):
 
 # Receives pw and encrypts PDF file with pw
 def receive_encrypt_pw(bot, update, user_data):
+    if not user_data["encrypt_file_id"]:
+        return ConversationHandler.END
+
     tele_id = update.message.from_user.id
     pw = update.message.text
     update.message.reply_text("Encrypting your PDF file.")
@@ -215,10 +221,9 @@ def receive_encrypt_pw(bot, update, user_data):
 
     pdf_writer = PdfFileWriter()
     pdf_reader = PdfFileReader(open(filename, "rb"))
-    num_pages = pdf_reader.getNumPages()
 
-    for page_num in range(num_pages):
-        pdf_writer.addPage(pdf_reader.getPage(page_num))
+    for page in pdf_reader.pages:
+        pdf_writer.addPage(page)
 
     pdf_writer.encrypt(pw)
 
@@ -238,7 +243,7 @@ def receive_encrypt_pw(bot, update, user_data):
 # Creates a merge conversation handler
 def merge_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("merge", merge)],
+        entry_points=[CommandHandler("merge", merge, pass_user_data=True)],
 
         states={
             RECEIVE_MERGE_FILE: [MessageHandler(Filters.document, receive_merge_file, pass_user_data=True),
@@ -252,10 +257,16 @@ def merge_cov_handler():
 
 
 # Starts the merge conversation
-def merge(bot, update):
+def merge(bot, update, user_data):
+    if "merge_file_ids" in user_data:
+        del user_data["merge_file_ids"]
+    if "merge_filenames" in user_data:
+        del user_data["merge_filenames"]
+
     update.message.reply_text("Please send me the first PDF file that you will like to merge or type /cancel to "
                               "cancel this operation. The files will be merged in the order that you send me the "
                               "files.")
+
     return RECEIVE_MERGE_FILE
 
 
@@ -311,6 +322,9 @@ def send_received_filenames(update, filenames):
 
 # Merges PDF file
 def merge_file(bot, update, user_data):
+    if not user_data["merge_file_ids"]:
+        return ConversationHandler.END
+
     tele_id = update.message.from_user.id
     update.message.reply_text("Merging your files.", reply_markup=ReplyKeyboardRemove())
 
@@ -389,6 +403,9 @@ def receive_rotate_file(bot, update, user_data):
 
 # Rotates the PDF file
 def rotate_file(bot, update, user_data):
+    if not user_data["rotate_file_id"]:
+        return ConversationHandler.END
+
     tele_id = update.message.from_user.id
     rotate_degree = int(update.message.text)
     update.message.reply_text("Rotating your PDF file clockwise by %d degrees." % rotate_degree,
@@ -402,10 +419,9 @@ def rotate_file(bot, update, user_data):
 
     pdf_writer = PdfFileWriter()
     pdf_reader = PdfFileReader(open(filename, "rb"))
-    num_pages = pdf_reader.getNumPages()
 
-    for page_num in range(num_pages):
-        pdf_writer.addPage(pdf_reader.getPage(page_num).rotateClockwise(rotate_degree))
+    for page in pdf_reader.pages:
+        pdf_writer.addPage(page.rotateClockwise(rotate_degree))
 
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
@@ -469,6 +485,9 @@ def receive_split_file(bot, update, user_data):
 
 # Splits the PDF file
 def split_file(bot, update, user_data):
+    if not user_data["split_file_id"]:
+        return ConversationHandler.END
+
     tele_id = update.message.from_user.id
     split_range = update.message.text
     update.message.reply_text("Splitting your PDF file.")
@@ -548,6 +567,9 @@ def receive_watermark_source_file(bot, update, user_data):
 
 # Receives and checks for the watermark PDF file and watermark the PDF file
 def receive_watermark_file(bot, update, user_data):
+    if not user_data["watermark_file_id"]:
+        return ConversationHandler.END
+
     tele_id = update.message.from_user.id
     watermark_pdf_file = update.message.document
     watermark_file_id = watermark_pdf_file.file_id
@@ -577,11 +599,9 @@ def receive_watermark_file(bot, update, user_data):
 
     pdf_writer = PdfFileWriter()
     pdf_reader = PdfFileReader(open(source_filename, "rb"))
-    num_pages = pdf_reader.getNumPages()
     watermark_reader = PdfFileReader(open(watermark_filename, "rb"))
 
-    for page_num in range(num_pages):
-        page = pdf_reader.getPage(page_num)
+    for page in pdf_reader.pages:
         page.mergePage(watermark_reader.getPage(0))
         pdf_writer.addPage(page)
 
