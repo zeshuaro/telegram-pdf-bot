@@ -27,8 +27,8 @@ dotenv.load(dotenv_path)
 app_url = os.environ.get("APP_URL")
 port = int(os.environ.get('PORT', '5000'))
 
-telegram_token = os.environ.get("TELEGRAM_TOKEN_BETA")
-is_testing = os.environ.get("IS_TESTING")
+telegram_token = os.environ.get("TELEGRAM_TOKEN_BETA") if os.environ.get("TELEGRAM_TOKEN_BETA") \
+    else os.environ.get("TELEGRAM_TOKEN")
 dev_tele_id = int(os.environ.get("DEV_TELE_ID"))
 dev_email = os.environ.get("DEV_EMAIL") if os.environ.get("DEV_EMAIL") else "sample@email.com"
 dev_email_pw = os.environ.get("DEV_EMAIL_PW")
@@ -717,7 +717,7 @@ def receive_feedback(bot, update):
         server.login(dev_email, dev_email_pw)
 
         text = "Feedback received from %d\n\n%s" % (update.message.from_user.id, update.message.text)
-        message = "Subject: %s\n\n%s" % ("Telegram Big Two Bot Feedback", text)
+        message = "Subject: %s\n\n%s" % ("Telegram PDF Bot Feedback", text)
         server.sendmail(dev_email, dev_email, message)
     else:
         logger.info("Feedback received from %d: %s" % (update.message.from_user.id, update.message.text))
