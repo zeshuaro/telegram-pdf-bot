@@ -458,6 +458,235 @@ def rotate_file(bot, update, user_data):
     return ConversationHandler.END
 
 
+# Creates a scale by conversation handler
+def scale_by_cov_handler():
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler("scaleby", scale)],
+
+        states={
+            RECEIVE_SCALE_FILE: [MessageHandler(Filters.document, receive_scale_by_file, pass_user_data=True)],
+            RECEIVE_SCALE_X: [MessageHandler(Filters.text, receive_scale_by_x, pass_user_data=True)],
+            RECEIVE_SCALE_Y: [MessageHandler(Filters.text, receive_scale_by_y, pass_user_data=True)],
+        },
+
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
+    )
+
+    return conv_handler
+
+
+# Starts the scale by conversation
+@run_async
+def scale(bot, update):
+    update.message.reply_text("Please send me the PDF file that you will like to scale or type /cancel to cancel this "
+                              "operation.")
+
+    return RECEIVE_SCALE_FILE
+
+
+# Receives and checks for the PDF file
+@run_async
+def receive_scale_by_file(bot, update, user_data):
+    pdf_file = update.message.document
+    filename = pdf_file.file_name
+
+    if not filename.endswith("pdf"):
+        update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
+                                  "like to split or type /cancel to cancel this operation.")
+
+        return RECEIVE_SPLIT_FILE
+    elif is_pdf_encrypted(bot, pdf_file.file_id, update.message.from_user.id):
+        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
+                                  "decrypt it first.")
+
+        return ConversationHandler.END
+
+    user_data["scale_by_file_id"] = pdf_file.file_id
+
+    update.message.reply_text("Please send me the scaling factor for the horizontal axis. For example, 2 will double "
+                              "the horizontal axis and 0.5 will half the horizontal axis.")
+
+    return RECEIVE_SCALE_X
+
+
+# Receives and checks for the x scaling factor
+@run_async
+def receive_scale_by_x(bot, update, user_data):
+    scale_x = update.message.text
+
+    try:
+        scale_x = float(scale_x)
+    except ValueError:
+        update.message.reply_text("The scaling factor that you sent me is invalid. Please try again.")
+
+        return RECEIVE_SCALE_X
+
+    user_data["scale_by_x"] = scale_x
+
+    update.message.reply_text("Please send me the scaling factor for the vertical axis. For example, 2 will double "
+                              "the vertical axis and 0.5 will half the vertical axis.")
+
+    return RECEIVE_SCALE_Y
+
+
+# Receives and checks for the y scaling factor
+@run_async
+def receive_scale_by_y(bot, update, user_data):
+    if not user_data["scale_by_file_id"] or not user_data["scale_by_x"]:
+        return ConversationHandler.END
+
+    scale_y = update.message.text
+
+    try:
+        scale_y = float(scale_y)
+    except ValueError:
+        update.message.reply_text("The scaling factor that you sent me is invalid. Please try again.")
+
+        return RECEIVE_SCALE_Y
+
+    scale_x = user_data["scale_by_x"]
+    tele_id = update.message.from_user.id
+    update.message.reply_text("Scaling your PDF file, horizontally by {0:g} and vertically by {0:g}.".
+                              format(scale_x, scale_y))
+
+    file_id = user_data["scale_by_file_id"]
+    filename = "%d_scale_by_source.pdf" % tele_id
+    pdf_file = bot.get_file(file_id)
+    pdf_file.download(custom_path=filename)
+    out_filename = "%d_scaled_by.pdf" % tele_id
+
+    pdf_writer = PdfFileWriter()
+    pdf_reader = PdfFileReader(open(filename, "rb"))
+
+    for page in pdf_reader.pages:
+        page.scale(scale_x, scale_y)
+        pdf_writer.addPage(page)
+
+    with open(out_filename, "wb") as f:
+        pdf_writer.write(f)
+
+    update.message.reply_document(document=open(out_filename, "rb"),
+                                  caption="Here is your scaled PDF file.")
+
+    os.remove(filename)
+    os.remove(out_filename)
+    del user_data["scale_by_file_id"]
+    del user_data["scale_by_x"]
+
+    return ConversationHandler.END
+
+
+# Creates a scale to conversation handler
+def scale_to_cov_handler():
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler("scaleto", scale)],
+
+        states={
+            RECEIVE_SCALE_FILE: [MessageHandler(Filters.document, receive_scale_to_file, pass_user_data=True)],
+            RECEIVE_SCALE_X: [MessageHandler(Filters.text, receive_scale_to_x, pass_user_data=True)],
+            RECEIVE_SCALE_Y: [MessageHandler(Filters.text, receive_scale_to_y, pass_user_data=True)],
+        },
+
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
+    )
+
+    return conv_handler
+
+
+# Receives and checks for the PDF file
+@run_async
+def receive_scale_to_file(bot, update, user_data):
+    pdf_file = update.message.document
+    filename = pdf_file.file_name
+
+    if not filename.endswith("pdf"):
+        update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
+                                  "like to split or type /cancel to cancel this operation.")
+
+        return RECEIVE_SPLIT_FILE
+    elif is_pdf_encrypted(bot, pdf_file.file_id, update.message.from_user.id):
+        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
+                                  "decrypt it first.")
+
+        return ConversationHandler.END
+
+    user_data["scale_to_file_id"] = pdf_file.file_id
+
+    update.message.reply_text("Please send me the new width.")
+
+    return RECEIVE_SCALE_X
+
+
+# Receives and checks for the width
+@run_async
+def receive_scale_to_x(bot, update, user_data):
+    scale_x = update.message.text
+
+    try:
+        scale_x = float(scale_x)
+    except ValueError:
+        update.message.reply_text("The width that you sent me is invalid. Please try again.")
+
+        return RECEIVE_SCALE_X
+
+    user_data["scale_to_x"] = scale_x
+
+    update.message.reply_text("Please send me the new height.")
+
+    return RECEIVE_SCALE_Y
+
+
+# Receives and checks for the height
+@run_async
+def receive_scale_to_y(bot, update, user_data):
+    if not user_data["scale_to_file_id"] or not user_data["scale_to_x"]:
+        return ConversationHandler.END
+
+    scale_y = update.message.text
+
+    try:
+        scale_y = float(scale_y)
+    except ValueError:
+        update.message.reply_text("The height that you sent me is invalid. Please try again.")
+
+        return RECEIVE_SCALE_Y
+
+    scale_x = user_data["scale_to_x"]
+    tele_id = update.message.from_user.id
+    update.message.reply_text("Scaling your PDF file with width of {0:g} and height of {0:g}.".
+                              format(scale_x, scale_y))
+
+    file_id = user_data["scale_to_file_id"]
+    filename = "%d_scale_to_source.pdf" % tele_id
+    pdf_file = bot.get_file(file_id)
+    pdf_file.download(custom_path=filename)
+    out_filename = "%d_scaled_to.pdf" % tele_id
+
+    pdf_writer = PdfFileWriter()
+    pdf_reader = PdfFileReader(open(filename, "rb"))
+
+    for page in pdf_reader.pages:
+        page.scaleTo(scale_x, scale_y)
+        pdf_writer.addPage(page)
+
+    with open(out_filename, "wb") as f:
+        pdf_writer.write(f)
+
+    update.message.reply_document(document=open(out_filename, "rb"),
+                                  caption="Here is your scaled PDF file.")
+
+    os.remove(filename)
+    os.remove(out_filename)
+    del user_data["scale_to_file_id"]
+    del user_data["scale_to_x"]
+
+    return ConversationHandler.END
+
+
 # Creates a split conversation handler
 def split_cov_handler():
     conv_handler = ConversationHandler(
@@ -763,6 +992,8 @@ def main():
     dp.add_handler(encrypt_cov_handler())
     dp.add_handler(merge_cov_handler())
     dp.add_handler(rotate_cov_handler())
+    dp.add_handler(scale_by_cov_handler())
+    dp.add_handler(scale_to_cov_handler())
     dp.add_handler(split_cov_handler())
     dp.add_handler(watermark_cov_handler())
     dp.add_handler(feedback_cov_handler())
