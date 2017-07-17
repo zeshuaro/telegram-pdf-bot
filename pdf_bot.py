@@ -717,7 +717,7 @@ def receive_feedback(bot, update):
         server.login(dev_email, dev_email_pw)
 
         text = "Feedback received from %d\n\n%s" % (update.message.from_user.id, update.message.text)
-        message = "Subject: %s\n\n%s" % ("Telegram Big Two Bot Feedback", text)
+        message = "Subject: %s\n\n%s" % ("Telegram PDF Bot Feedback", text)
         server.sendmail(dev_email, dev_email, message)
     else:
         logger.info("Feedback received from %d: %s" % (update.message.from_user.id, update.message.text))
