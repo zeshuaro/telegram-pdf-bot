@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+import dotenv
 import langdetect
 import logging
 import os
 import shlex
+import smtplib
 
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 from subprocess import Popen, PIPE
@@ -20,18 +22,18 @@ logging.basicConfig(format="[%(asctime)s] [%(levelname)s] %(message)s", datefmt=
                     level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-is_webhook = os.environ.get("IS_WEBHOOK")
-
-if not is_webhook:
-    import dotenv
-
-    dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
-    dotenv.load(dotenv_path)
+dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
+dotenv.load(dotenv_path)
+app_url = os.environ.get("APP_URL")
+port = int(os.environ.get('PORT', '5000'))
 
 telegram_token = os.environ.get("TELEGRAM_TOKEN")
-app_url = os.environ.get("APP_URL")
+is_testing = os.environ.get("IS_TESTING")
 dev_tele_id = int(os.environ.get("DEV_TELE_ID"))
-PORT = int(os.environ.get('PORT', '5000'))
+dev_email = os.environ.get("DEV_EMAIL") if os.environ.get("DEV_EMAIL") else "sample@email.com"
+dev_email_pw = os.environ.get("DEV_EMAIL_PW")
+is_email_feedback = os.environ.get("IS_EMAIL_FEEDBACK")
+smtp_host = os.environ.get("SMTP_HOST")
 
 
 # Sends start message
@@ -64,8 +66,8 @@ def help(bot, update):
 @run_async
 def donate(bot, update):
     player_tele_id = update.message.from_user.id
-    message = "Want to help keep me online? Please donate to margelettob@gmail.com through PayPal.\n\nDonations help " \
-              "me to stay on my server and keep running."
+    message = "Want to help keep me online? Please donate to %s through PayPal.\n\nDonations help " \
+              "me to stay on my server and keep running." % dev_email
     bot.send_message(player_tele_id, message)
 
 
@@ -706,8 +708,19 @@ def receive_feedback(bot, update):
         update.message.reply_text("The feedback you sent is not in English or Chinese. Please try again.")
         return 0
 
-    print("Feedback received from %d: %s" % (update.message.from_user.id, update.message.text))
     update.message.reply_text("Thank you for your feedback, I will let my developer know.")
+
+    if is_email_feedback:
+        server = smtplib.SMTP(smtp_host)
+        server.ehlo()
+        server.starttls()
+        server.login(dev_email, dev_email_pw)
+
+        text = "Feedback received from %d\n\n%s" % (update.message.from_user.id, update.message.text)
+        message = "Subject: %s\n\n%s" % ("Telegram Big Two Bot Feedback", text)
+        server.sendmail(dev_email, dev_email, message)
+    else:
+        logger.info("Feedback received from %d: %s" % (update.message.from_user.id, update.message.text))
 
     return ConversationHandler.END
 
@@ -759,9 +772,9 @@ def main():
     dp.add_error_handler(error)
 
     # Start the Bot
-    if is_webhook:
+    if app_url:
         updater.start_webhook(listen="0.0.0.0",
-                              port=PORT,
+                              port=port,
                               url_path=telegram_token)
         updater.bot.set_webhook(app_url + telegram_token)
     else:
