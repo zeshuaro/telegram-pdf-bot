@@ -56,7 +56,9 @@ def help(bot, update):
               "/encrypt - encrypt a PDF file with a password\n" \
               "/merge - merge PDF files into a single PDF file\n" \
               "/rotate - rotate a PDF file\n" \
-              "/split - split a PDF file with specified page range\n" \
+              "/scaleby - scale a PDF file with specified scaling factors\n" \
+              "/scaleto - scale a PDF file with specified dimensions\n" \
+              "/split - split a PDF file with a specified page range\n" \
               "/watermark - add a watermark (in PDF format) to a PDF file"
 
     bot.sendMessage(tele_id, message)
