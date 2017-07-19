@@ -106,7 +106,7 @@ def receive_decrypt_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
 
-    if not filename.endswith("pdf"):
+    if not filename.endswith(".pdf"):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to encrypt or type /cancel to cancel this operation.")
 
@@ -199,7 +199,7 @@ def receive_encrypt_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
 
-    if not filename.endswith("pdf"):
+    if not filename.endswith(".pdf"):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to encrypt or type /cancel to cancel this operation.")
 
@@ -293,7 +293,7 @@ def receive_merge_file(bot, update, user_data):
     file_id = pdf_file.file_id
     filename = pdf_file.file_name
 
-    if not filename.endswith("pdf"):
+    if not filename.endswith(".pdf"):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to merge or type /cancel to cancel this operation.")
 
@@ -402,7 +402,7 @@ def receive_rotate_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
 
-    if not filename.endswith("pdf"):
+    if not filename.endswith(".pdf"):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to rotate or type /cancel to cancel this operation.")
 
@@ -494,7 +494,7 @@ def receive_scale_by_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
 
-    if not filename.endswith("pdf"):
+    if not filename.endswith(".pdf"):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to split or type /cancel to cancel this operation.")
 
@@ -605,7 +605,7 @@ def receive_scale_to_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
 
-    if not filename.endswith("pdf"):
+    if not filename.endswith(".pdf"):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to split or type /cancel to cancel this operation.")
 
@@ -707,7 +707,7 @@ def split_cov_handler():
     return conv_handler
 
 
-# Starts the rotate conversation
+# Starts the split conversation
 @run_async
 def split(bot, update):
     update.message.reply_text("Please send me the PDF file that you will like to split or type /cancel to cancel this "
@@ -722,7 +722,7 @@ def receive_split_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
 
-    if not filename.endswith("pdf"):
+    if not filename.endswith(".pdf"):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to split or type /cancel to cancel this operation.")
 
@@ -811,7 +811,7 @@ def receive_watermark_source_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
 
-    if not filename.endswith("pdf"):
+    if not filename.endswith(".pdf"):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to add a watermark or type /cancel to cancel this operation.")
 
@@ -839,7 +839,7 @@ def receive_watermark_file(bot, update, user_data):
     watermark_file_id = watermark_pdf_file.file_id
     watermark_filename = watermark_pdf_file.file_name
 
-    if not watermark_filename.endswith("pdf"):
+    if not watermark_filename.endswith(".pdf"):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the watermark PDF file.")
 
         return RECEIVE_WATERMARK_FILE
