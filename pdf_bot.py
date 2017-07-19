@@ -97,7 +97,8 @@ def decrypt_cov_handler():
         entry_points=[CommandHandler("decrypt", decrypt)],
 
         states={
-            RECEIVE_DECRYPT_FILE: [MessageHandler(Filters.document, receive_decrypt_file, pass_user_data=True)],
+            RECEIVE_DECRYPT_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
+                                                  receive_decrypt_file, pass_user_data=True)],
             RECEIVE_DECRYPT_PW: [MessageHandler(Filters.text, receive_decrypt_pw, pass_user_data=True)]
         },
 
@@ -136,7 +137,7 @@ def receive_decrypt_file(bot, update, user_data):
                                   "Sorry that I can't decrypt your PDF file.")
 
         return ConversationHandler.END
-    elif not is_pdf_encrypted(bot, file_id, update.message.from_user.id):
+    elif not is_pdf_encrypted(bot, file_id):
         update.message.reply_text("The PDF file you sent is already decrypted.")
 
         return ConversationHandler.END
@@ -202,7 +203,8 @@ def encrypt_cov_handler():
         entry_points=[CommandHandler("encrypt", encrypt)],
 
         states={
-            RECEIVE_ENCRYPT_FILE: [MessageHandler(Filters.document, receive_encrypt_file, pass_user_data=True)],
+            RECEIVE_ENCRYPT_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
+                                                  receive_encrypt_file, pass_user_data=True)],
             RECEIVE_ENCRYPT_PW: [MessageHandler(Filters.text, receive_encrypt_pw, pass_user_data=True)]
         },
 
@@ -241,7 +243,7 @@ def receive_encrypt_file(bot, update, user_data):
                                   "Sorry that I can't encrypt your PDF file.")
 
         return ConversationHandler.END
-    elif is_pdf_encrypted(bot, file_id, update.message.from_user.id):
+    elif is_pdf_encrypted(bot, file_id):
         update.message.reply_text("The PDF file you sent is already encrypted.")
 
         return ConversationHandler.END
@@ -299,7 +301,8 @@ def merge_cov_handler():
         entry_points=[CommandHandler("merge", merge, pass_user_data=True)],
 
         states={
-            RECEIVE_MERGE_FILE: [MessageHandler(Filters.document, receive_merge_file, pass_user_data=True),
+            RECEIVE_MERGE_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
+                                                receive_merge_file, pass_user_data=True),
                                  RegexHandler("^[Dd]one$", merge_file, pass_user_data=True)],
         },
 
@@ -355,7 +358,7 @@ def receive_merge_file(bot, update, user_data):
             update.message.reply_text(text)
 
             return ConversationHandler.END
-    elif is_pdf_encrypted(bot, file_id, update.message.from_user.id):
+    elif is_pdf_encrypted(bot, file_id):
         text = "The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to decrypt it first."
 
         if "merge_filenames" in user_data and user_data["merge_filenames"]:
@@ -440,7 +443,8 @@ def rotate_cov_handler():
         entry_points=[CommandHandler("rotate", rotate)],
 
         states={
-            RECEIVE_ROTATE_FILE: [MessageHandler(Filters.document, receive_rotate_file, pass_user_data=True)],
+            RECEIVE_ROTATE_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
+                                                 receive_rotate_file, pass_user_data=True)],
             ROTATE_FILE: [RegexHandler("^(90|180|270)$", rotate_file, pass_user_data=True)],
         },
 
@@ -479,7 +483,7 @@ def receive_rotate_file(bot, update, user_data):
                                   "Sorry that I can't rotate your PDF file.")
 
         return ConversationHandler.END
-    elif is_pdf_encrypted(bot, file_id, update.message.from_user.id):
+    elif is_pdf_encrypted(bot, file_id):
         update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
                                   "decrypt it first.")
 
@@ -542,7 +546,8 @@ def scale_by_cov_handler():
         entry_points=[CommandHandler("scaleby", scale)],
 
         states={
-            RECEIVE_SCALE_FILE: [MessageHandler(Filters.document, receive_scale_by_file, pass_user_data=True)],
+            RECEIVE_SCALE_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
+                                                receive_scale_by_file, pass_user_data=True)],
             RECEIVE_SCALE_X: [MessageHandler(Filters.text, receive_scale_by_x, pass_user_data=True)],
             RECEIVE_SCALE_Y: [MessageHandler(Filters.text, receive_scale_by_y, pass_user_data=True)],
         },
@@ -582,7 +587,7 @@ def receive_scale_by_file(bot, update, user_data):
                                   "Sorry that I can't scale your PDF file.")
 
         return ConversationHandler.END
-    elif is_pdf_encrypted(bot, file_id, update.message.from_user.id):
+    elif is_pdf_encrypted(bot, file_id):
         update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
                                   "decrypt it first.")
 
@@ -673,7 +678,8 @@ def scale_to_cov_handler():
         entry_points=[CommandHandler("scaleto", scale)],
 
         states={
-            RECEIVE_SCALE_FILE: [MessageHandler(Filters.document, receive_scale_to_file, pass_user_data=True)],
+            RECEIVE_SCALE_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
+                                                receive_scale_to_file, pass_user_data=True)],
             RECEIVE_SCALE_X: [MessageHandler(Filters.text, receive_scale_to_x, pass_user_data=True)],
             RECEIVE_SCALE_Y: [MessageHandler(Filters.text, receive_scale_to_y, pass_user_data=True)],
         },
@@ -704,7 +710,7 @@ def receive_scale_to_file(bot, update, user_data):
                                   "Sorry that I can't scale your PDF file.")
 
         return ConversationHandler.END
-    elif is_pdf_encrypted(bot, file_id, update.message.from_user.id):
+    elif is_pdf_encrypted(bot, file_id):
         update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
                                   "decrypt it first.")
 
@@ -793,7 +799,8 @@ def split_cov_handler():
         entry_points=[CommandHandler("split", split)],
 
         states={
-            RECEIVE_SPLIT_FILE: [MessageHandler(Filters.document, receive_split_file, pass_user_data=True)],
+            RECEIVE_SPLIT_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
+                                                receive_split_file, pass_user_data=True)],
             SPLIT_FILE: [MessageHandler(Filters.text, split_file, pass_user_data=True)],
         },
 
@@ -832,7 +839,7 @@ def receive_split_file(bot, update, user_data):
                                   "Sorry that I can't split your PDF file.")
 
         return ConversationHandler.END
-    elif is_pdf_encrypted(bot, file_id, update.message.from_user.id):
+    elif is_pdf_encrypted(bot, file_id):
         update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
                                   "decrypt it first.")
 
@@ -893,9 +900,10 @@ def watermark_cov_handler():
         entry_points=[CommandHandler("watermark", watermark)],
 
         states={
-            RECEIVE_WATERMARK_SOURCE_FILE: [MessageHandler(Filters.document, receive_watermark_source_file,
-                                                           pass_user_data=True)],
-            RECEIVE_WATERMARK_FILE: [MessageHandler(Filters.document, receive_watermark_file, pass_user_data=True)]
+            RECEIVE_WATERMARK_SOURCE_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
+                                                           receive_watermark_source_file, pass_user_data=True)],
+            RECEIVE_WATERMARK_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
+                                                    receive_watermark_file, pass_user_data=True)]
         },
 
         fallbacks=[CommandHandler("cancel", cancel)],
@@ -933,7 +941,7 @@ def receive_watermark_source_file(bot, update, user_data):
                                   "Sorry that I can't add a watermark your PDF file.")
 
         return ConversationHandler.END
-    elif is_pdf_encrypted(bot, file_id, update.message.from_user.id):
+    elif is_pdf_encrypted(bot, file_id):
         update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
                                   "decrypt it first.")
 
@@ -966,7 +974,7 @@ def receive_watermark_file(bot, update, user_data):
                                   "Sorry that I can't add the watermark to your PDF file.")
 
         return ConversationHandler.END
-    elif is_pdf_encrypted(bot, watermark_file_id, tele_id):
+    elif is_pdf_encrypted(bot, watermark_file_id):
         update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
                                   "decrypt it first.")
 
@@ -1011,7 +1019,7 @@ def receive_watermark_file(bot, update, user_data):
 
 
 # Checks if PDF file is encrypted
-def is_pdf_encrypted(bot, file_id, tele_id):
+def is_pdf_encrypted(bot, file_id):
     filename = random_string(20)
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
