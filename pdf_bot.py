@@ -847,8 +847,9 @@ def receive_split_file(bot, update, user_data):
 
     user_data["split_file_id"] = file_id
 
-    update.message.reply_text("Please send me the range of pages that you will like to keep. You can refer to "
-                              "http://telegra.ph/Telegram-PDF-Bot-07-16 for some range examples.")
+    update.message.reply_text("Please send me the range of pages that you will like to keep. You can use INSTANT "
+                              "VIEW from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some "
+                              "range examples.", parse_mode="markdown")
 
     return SPLIT_FILE
 
