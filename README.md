@@ -6,6 +6,8 @@ Connect to [Bot](https://t.me/pdf2bot)
 
 Stay tuned for updates and new releases on the [Telegram Channel](https://t.me/pdf2botdev)
 
+Find the bot at [Store Bot](https://storebot.me/bot/pdf2bot)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and 
