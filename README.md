@@ -13,9 +13,16 @@ testing purposes
 
 ### Prerequisites
 
+Run the following command to install the required libraries:
+
 ```
 pip install -r requirements.txt
 ```
+
+Below is a list of the main libraries that are included:
+
+* [Python Telegram Bot](https://github.com/python-telegram-bot/python-telegram-bot)
+* [PyPDF2](https://github.com/mstamy2/PyPDF2)
 
 Make a `.env` file and put your telegram token in there. 
 
