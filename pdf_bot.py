@@ -13,7 +13,7 @@ import random
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 from subprocess import Popen, PIPE
 
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, RegexHandler, Filters
 from telegram.ext.dispatcher import run_async
 
@@ -61,7 +61,10 @@ def help(bot, update):
               "and upload files up to 50 MB in size. If the result files are too large, it will not be able to send " \
               "you the file."
 
-    bot.sendMessage(tele_id, message)
+    keyboard = [[InlineKeyboardButton("Rate me", "https://t.me/storebot?start=pdf2bot")]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    bot.sendMessage(tele_id, message, reply_markup=reply_markup)
 
 
 # Sends list of commands
