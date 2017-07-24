@@ -224,9 +224,11 @@ def send_received_filenames(update, filenames):
 # Merges PDF file
 @run_async
 def merge_file(bot, update, user_data):
-    if not user_data["merge_file_ids"]:
+    if "merge_file_ids" not in user_data:
         return ConversationHandler.END
 
+    file_ids = user_data["merge_file_ids"]
+    filenames = user_data["merge_filenames"]
     tele_id = update.message.from_user.id
     update.message.reply_text("Merging your files.", reply_markup=ReplyKeyboardRemove())
 
@@ -249,9 +251,11 @@ def merge_file(bot, update, user_data):
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your merged PDF file.")
 
+    if user_data["merge_file_ids"] == file_ids:
+        del user_data["merge_file_ids"]
+    if user_data["merge_filenames"] == filenames:
+        del user_data["merge_filenames"]
     os.remove(out_filename)
-    del user_data["merge_file_ids"]
-    del user_data["merge_filenames"]
 
     return ConversationHandler.END
 
@@ -319,7 +323,7 @@ def receive_watermark_source_file(bot, update, user_data):
 # Receives and checks for the watermark PDF file and watermark the PDF file
 @run_async
 def receive_watermark_file(bot, update, user_data):
-    if not user_data["watermark_file_id"]:
+    if "watermark_file_id" not in user_data:
         return ConversationHandler.END
 
     tele_id = update.message.from_user.id
@@ -374,10 +378,11 @@ def receive_watermark_file(bot, update, user_data):
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your watermarked PDF file.")
 
+    if user_data["watermark_file_id"] == source_file_id:
+        del user_data["watermark_file_id"]
     os.remove(source_filename)
     os.remove(watermark_filename)
     os.remove(out_filename)
-    del user_data["watermark_file_id"]
 
     return ConversationHandler.END
 
@@ -478,7 +483,7 @@ def ask_decrypt_pw(bot, update, user_data):
 # Decrypts the PDF file with the given password
 @run_async
 def decrypt_pdf(bot, update, user_data):
-    if not user_data["pdf_id"]:
+    if "pdf_id" not in user_data:
         return ConversationHandler.END
 
     tele_id = update.message.from_user.id
@@ -504,7 +509,6 @@ def decrypt_pdf(bot, update, user_data):
 
         return ConversationHandler.END
 
-    del user_data["pdf_id"]
     pdf_writer = PdfFileWriter()
 
     for page in pdf_reader.pages:
@@ -519,6 +523,8 @@ def decrypt_pdf(bot, update, user_data):
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your decrypted PDF file.")
 
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
     os.remove(filename)
     os.remove(out_filename)
 
@@ -543,7 +549,7 @@ def ask_encrypt_pw(bot, update, user_data):
 # Encrypts the PDF file with the given password
 @run_async
 def encrypt_pdf(bot, update, user_data):
-    if not user_data["pdf_id"]:
+    if "pdf_id" not in user_data:
         return ConversationHandler.END
 
     tele_id = update.message.from_user.id
@@ -551,7 +557,6 @@ def encrypt_pdf(bot, update, user_data):
     update.message.reply_text("Encrypting your PDF file.")
 
     file_id = user_data["pdf_id"]
-    del user_data["pdf_id"]
     filename = "%d_encrypt_source.pdf" % tele_id
     out_filename = "%d_encrypted.pdf" % tele_id
 
@@ -575,6 +580,8 @@ def encrypt_pdf(bot, update, user_data):
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your encrypted PDF file.")
 
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
     os.remove(filename)
     os.remove(out_filename)
 
@@ -596,7 +603,7 @@ def ask_rotate_degree(update):
 # Rotates the PDF file with the given degree
 @run_async
 def rotate_pdf(bot, update, user_data):
-    if not user_data["pdf_id"]:
+    if "pdf_id" not in user_data:
         return ConversationHandler.END
 
     tele_id = update.message.from_user.id
@@ -605,7 +612,6 @@ def rotate_pdf(bot, update, user_data):
                               reply_markup=ReplyKeyboardRemove())
 
     file_id = user_data["pdf_id"]
-    del user_data["pdf_id"]
     filename = "%d_rotate_source.pdf" % tele_id
     out_filename = "%d_rotated.pdf" % tele_id
 
@@ -627,6 +633,8 @@ def rotate_pdf(bot, update, user_data):
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your rotated PDF file.")
 
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
     os.remove(filename)
     os.remove(out_filename)
 
@@ -660,7 +668,7 @@ def ask_scale_by_y(bot, update, user_data):
 
         return WAIT_SCALE_BY_X
 
-    user_data["scale_x"] = scale_x
+    user_data["scale_by_x"] = scale_x
     update.message.reply_text("Please send me the scaling factor for the vertical axis. For example, 2 will double "
                               "the vertical axis and 0.5 will half the vertical axis.")
 
@@ -670,7 +678,7 @@ def ask_scale_by_y(bot, update, user_data):
 # Checks for vertical scaling factor and scale PDF file
 @run_async
 def pdf_scale_by(bot, update, user_data):
-    if not user_data["pdf_id"] or not user_data["scale_x"]:
+    if "pdf_id" not in user_data or "scale_by_x" not in user_data:
         return ConversationHandler.END
 
     scale_y = update.message.text
@@ -682,14 +690,12 @@ def pdf_scale_by(bot, update, user_data):
 
         return WAIT_SCALE_BY_Y
 
-    scale_x = user_data["scale_x"]
-    del user_data["scale_x"]
+    scale_x = user_data["scale_by_x"]
     tele_id = update.message.from_user.id
-    update.message.reply_text("Scaling your PDF file, horizontally by {0:g} and vertically by {0:g}.".
+    update.message.reply_text("Scaling your PDF file, horizontally by {:g} and vertically by {:g}.".
                               format(scale_x, scale_y))
 
     file_id = user_data["pdf_id"]
-    del user_data["pdf_id"]
     filename = "%d_scale_by_source.pdf" % tele_id
     out_filename = "%d_scaled_by.pdf" % tele_id
 
@@ -712,6 +718,10 @@ def pdf_scale_by(bot, update, user_data):
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your scaled PDF file.")
 
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
+    if user_data["scale_by_x"] == scale_x:
+        del user_data["scale_by_x"]
     os.remove(filename)
     os.remove(out_filename)
 
@@ -730,7 +740,7 @@ def ask_scale_to_y(bot, update, user_data):
 
         return WAIT_SCALE_TO_X
 
-    user_data["scale_x"] = scale_x
+    user_data["scale_to_x"] = scale_x
     update.message.reply_text("Please send me the new height.")
 
     return WAIT_SCALE_TO_Y
@@ -739,7 +749,7 @@ def ask_scale_to_y(bot, update, user_data):
 # Checks for height and scale PDF file
 @run_async
 def pdf_scale_to(bot, update, user_data):
-    if not user_data["pdf_id"] or not user_data["scale_x"]:
+    if "pdf_id" not in user_data or "scale_to_x" not in user_data:
         return ConversationHandler.END
 
     scale_y = update.message.text
@@ -751,14 +761,12 @@ def pdf_scale_to(bot, update, user_data):
 
         return WAIT_SCALE_TO_Y
 
-    scale_x = user_data["scale_x"]
-    del user_data["scale_x"]
+    scale_x = user_data["scale_to_x"]
     tele_id = update.message.from_user.id
-    update.message.reply_text("Scaling your PDF file with width of {0:g} and height of {0:g}.".
+    update.message.reply_text("Scaling your PDF file with width of {:g} and height of {:g}.".
                               format(scale_x, scale_y))
 
     file_id = user_data["pdf_id"]
-    del user_data["pdf_id"]
     filename = "%d_scale_to_source.pdf" % tele_id
     out_filename = "%d_scaled_to.pdf" % tele_id
 
@@ -781,6 +789,10 @@ def pdf_scale_to(bot, update, user_data):
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your scaled PDF file.")
 
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
+    if user_data["scale_to_x"] == scale_x:
+        del user_data["scale_to_x"]
     os.remove(filename)
     os.remove(out_filename)
 
@@ -790,8 +802,8 @@ def pdf_scale_to(bot, update, user_data):
 # Asks for split page range
 @run_async
 def ask_split_range(update):
-    update.message.reply_text("Please send me the range of pages that you will like to keep. You can use INSTANT "
-                              "VIEW from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for "
+    update.message.reply_text("Please send me the range of pages that you will like to keep. You can use ⚡ *INSTANT "
+                              "VIEW* from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for "
                               "some range examples.", parse_mode="markdown", reply_markup=ReplyKeyboardRemove())
 
     return WAIT_SPLIT_RANGE
@@ -800,7 +812,7 @@ def ask_split_range(update):
 # Splits the PDF file with the given page range
 @run_async
 def split_pdf(bot, update, user_data):
-    if not user_data["pdf_id"]:
+    if "pdf_id" not in user_data:
         return ConversationHandler.END
 
     tele_id = update.message.from_user.id
@@ -808,7 +820,6 @@ def split_pdf(bot, update, user_data):
     update.message.reply_text("Splitting your PDF file.")
 
     file_id = user_data["pdf_id"]
-    del user_data["pdf_id"]
     filename = "%d_split_source.pdf" % tele_id
     out_filename = "%d_split.pdf" % tele_id
 
@@ -826,12 +837,22 @@ def split_pdf(bot, update, user_data):
 
         return WAIT_SPLIT_RANGE
 
+    reader = PdfFileReader(out_filename)
+    if reader.getNumPages() == 0:
+        os.remove(filename)
+        os.remove(out_filename)
+        update.message.reply_text("The range is invalid. Please send me the range again.")
+
+        return WAIT_SPLIT_RANGE
+
     if os.path.getsize(out_filename) > upload_size_limit:
         update.message.reply_text("The split PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your split PDF file.")
 
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
     os.remove(filename)
     os.remove(out_filename)
 
