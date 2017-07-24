@@ -91,8 +91,8 @@ def start(bot, update):
 def help(bot, update):
     tele_id = update.message.from_user.id
 
-    message = "You can perform most of the tasks simply by sending me a PDF file and I will guide you through each " \
-              "job afterwards.\n\n"
+    message = "You can perform most of the tasks simply by sending me a PDF file. You can then select a task and I " \
+              "will guide you through each of the tasks.\n\n"
     message += "If you want to merge or add watermark to PDF files, you will have to use the /merge or /watermark " \
                "commands respectively.\n\n"
     message += "Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. " \
@@ -115,13 +115,14 @@ def donate(bot, update):
 
 # Creates a merge conversation handler
 def merge_cov_handler():
+    merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
+
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("merge", merge, pass_user_data=True)],
 
         states={
-            RECEIVE_MERGE_FILE: [MessageHandler((Filters.document | (Filters.forwarded & Filters.document)),
-                                                receive_merge_file, pass_user_data=True),
-                                 RegexHandler("^[Dd]one$", merge_file, pass_user_data=True)],
+            WAIT_MERGE_FILE: [MessageHandler(merged_filter, receive_merge_file, pass_user_data=True),
+                              RegexHandler("^[Dd]one$", merge_file, pass_user_data=True)],
         },
 
         fallbacks=[CommandHandler("cancel", cancel)],
@@ -145,7 +146,7 @@ def merge(bot, update, user_data):
     update.message.reply_text("Please send me the first PDF file that you will like to merge or type /cancel to "
                               "cancel this operation. The files will be merged in the order that you send me.")
 
-    return RECEIVE_MERGE_FILE
+    return WAIT_MERGE_FILE
 
 
 # Receives and checks for the source PDF file
@@ -160,7 +161,7 @@ def receive_merge_file(bot, update, user_data):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to merge or type /cancel to cancel this operation.")
 
-        return RECEIVE_MERGE_FILE
+        return WAIT_MERGE_FILE
     elif file_size > download_size_limit:
         text = "The PDF file you sent is too large for me to download. "
 
@@ -170,7 +171,7 @@ def receive_merge_file(bot, update, user_data):
 
             send_received_filenames(update, user_data["merge_filenames"])
 
-            return RECEIVE_MERGE_FILE
+            return WAIT_MERGE_FILE
         else:
             text += "Sorry that I can't merge your PDF files."
             update.message.reply_text(text)
@@ -185,7 +186,7 @@ def receive_merge_file(bot, update, user_data):
 
             send_received_filenames(update, user_data["merge_filenames"])
 
-            return RECEIVE_MERGE_FILE
+            return WAIT_MERGE_FILE
         else:
             update.message.reply_text(text)
 
@@ -206,7 +207,7 @@ def receive_merge_file(bot, update, user_data):
 
     send_received_filenames(update, user_data["merge_filenames"])
 
-    return RECEIVE_MERGE_FILE
+    return WAIT_MERGE_FILE
 
 
 # Sends a list of received filenames
@@ -263,9 +264,9 @@ def watermark_cov_handler():
         entry_points=[CommandHandler("watermark", watermark)],
 
         states={
-            RECEIVE_WATERMARK_SOURCE_FILE: [MessageHandler(merged_filter, receive_watermark_source_file,
-                                                           pass_user_data=True)],
-            RECEIVE_WATERMARK_FILE: [MessageHandler(merged_filter, receive_watermark_file, pass_user_data=True)]
+            WAIT_WATERMARK_SOURCE_FILE: [MessageHandler(merged_filter, receive_watermark_source_file,
+                                                        pass_user_data=True)],
+            WAIT_WATERMARK_FILE: [MessageHandler(merged_filter, receive_watermark_file, pass_user_data=True)]
         },
 
         fallbacks=[CommandHandler("cancel", cancel)],
@@ -282,7 +283,7 @@ def watermark(bot, update):
     update.message.reply_text("Please send me the PDF file that you will like to add a watermark or type /cancel to "
                               "cancel this operation.")
 
-    return RECEIVE_WATERMARK_SOURCE_FILE
+    return WAIT_WATERMARK_SOURCE_FILE
 
 
 # Receives and checks for the source PDF file
@@ -297,7 +298,7 @@ def receive_watermark_source_file(bot, update, user_data):
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
                                   "like to add a watermark or type /cancel to cancel this operation.")
 
-        return RECEIVE_WATERMARK_SOURCE_FILE
+        return WAIT_WATERMARK_SOURCE_FILE
     elif file_size > download_size_limit:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't add a watermark your PDF file.")
@@ -312,7 +313,7 @@ def receive_watermark_source_file(bot, update, user_data):
     user_data["watermark_file_id"] = file_id
     update.message.reply_text("Please send me the watermark in PDF format.")
 
-    return RECEIVE_WATERMARK_FILE
+    return WAIT_WATERMARK_FILE
 
 
 # Receives and checks for the watermark PDF file and watermark the PDF file
@@ -331,7 +332,7 @@ def receive_watermark_file(bot, update, user_data):
         update.message.reply_text("The watermark file you sent is not in PDF format. Please send me the watermark "
                                   "file in PDF format.")
 
-        return RECEIVE_WATERMARK_FILE
+        return WAIT_WATERMARK_FILE
     elif watermark_file_size > download_size_limit:
         update.message.reply_text("The watermark PDF file you sent is too large for me to download. "
                                   "Sorry that I can't add the watermark to your PDF file.")
@@ -389,23 +390,21 @@ def pdf_cov_handler():
         entry_points=[MessageHandler(merged_filter, check_pdf, pass_user_data=True)],
 
         states={
-            RECEIVE_PDF_FILE: [RegexHandler("^[Dd]ecrypt$", ask_decrypt_pw, pass_user_data=True),
-                               RegexHandler("^[Ee]ncrypt$", ask_encrypt_pw, pass_user_data=True),
-                               RegexHandler("^[Rr]otate$", ask_rotate_degree, pass_user_data=True),
-                               RegexHandler("^[Ss]cale [Bb]y$", ask_scale_x, pass_user_data=True),
-                               RegexHandler("^[Ss]cale [Tt]o$", ask_scale_x, pass_user_data=True),
-                               RegexHandler("^[Ss]plit$", ask_split_range, pass_user_data=True),],
-            RECEIVE_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf, pass_user_data=True)],
-            RECEIVE_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf, pass_user_data=True)],
-            RECEIVE_ROTATE_DEGREE: [RegexHandler("^(90|180|270)$", rotate_pdf, pass_user_data=True)],
-            RECEIVE_SCALE_BY_X: [MessageHandler(Filters.text, ask_scale_by_y, pass_user_data=True)],
-            RECEIVE_SCALE_BY_Y: [MessageHandler(Filters.text, pdf_scale_by, pass_user_data=True)],
-            RECEIVE_SCALE_TO_X: [MessageHandler(Filters.text, ask_scale_to_y, pass_user_data=True)],
-            RECEIVE_SCALE_TO_Y: [MessageHandler(Filters.text, pdf_scale_to, pass_user_data=True)],
-            RECEIVE_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf, pass_user_data=True)]
+            WAIT_TASK: [RegexHandler("^[Dd]ecrypt$", ask_decrypt_pw, pass_user_data=True),
+                        RegexHandler("^[Ee]ncrypt$", ask_encrypt_pw, pass_user_data=True),
+                        RegexHandler("^([Rr]otate|[Ss]cale [Bb]y|[Ss]cale [Tt]o|[Ss]plit)$",
+                                     ask_task_parameter, pass_user_data=True)],
+            WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf, pass_user_data=True)],
+            WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf, pass_user_data=True)],
+            WAIT_ROTATE_DEGREE: [RegexHandler("^(90|180|270)$", rotate_pdf, pass_user_data=True)],
+            WAIT_SCALE_BY_X: [MessageHandler(Filters.text, ask_scale_by_y, pass_user_data=True)],
+            WAIT_SCALE_BY_Y: [MessageHandler(Filters.text, pdf_scale_by, pass_user_data=True)],
+            WAIT_SCALE_TO_X: [MessageHandler(Filters.text, ask_scale_to_y, pass_user_data=True)],
+            WAIT_SCALE_TO_Y: [MessageHandler(Filters.text, pdf_scale_to, pass_user_data=True)],
+            WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf, pass_user_data=True)]
         },
 
-        fallbacks=[CommandHandler("cancel", cancel)],
+        fallbacks=[CommandHandler("cancel", cancel), RegexHandler("^[Cc]ancel", cancel)],
 
         allow_reentry=True
     )
@@ -432,13 +431,33 @@ def check_pdf(bot, update, user_data):
     user_data["pdf_id"] = pdf_id
 
     keywords = sorted(["Decrypt", "Encrypt", "Rotate", "Scale By", "Scale To", "Split"])
+    keywords.append("Cancel")
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
     update.message.reply_text("Please select the task that you'll like to perform.",
                               reply_markup=reply_markup)
 
-    return RECEIVE_PDF_FILE
+    return WAIT_TASK
+
+
+# Checks if a PDF file is encrypted and asks for the required parameters to carry out a task
+def ask_task_parameter(bot, update, user_data):
+    if is_pdf_encrypted(bot, user_data["pdf_id"]):
+        del user_data["pdf_id"]
+        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or decrypt it with "
+                                  "me first.", reply_markup=ReplyKeyboardRemove())
+
+        return ConversationHandler.END
+    else:
+        text = update.message.text.lower()
+
+        if text == "rotate":
+            return ask_rotate_degree(update)
+        elif text == "scale by" or text == "scale to":
+            return ask_scale_x(update, text)
+        elif text == "split":
+            return ask_split_range(update)
 
 
 # Asks user for decryption password
@@ -448,7 +467,7 @@ def ask_decrypt_pw(bot, update, user_data):
         update.message.reply_text("Please send me the password to decrypt your PDF file.",
                                   reply_markup=ReplyKeyboardRemove())
 
-        return RECEIVE_DECRYPT_PW
+        return WAIT_DECRYPT_PW
     else:
         del user_data["pdf_id"]
         update.message.reply_text("Your PDF file is already decrypted.", reply_markup=ReplyKeyboardRemove())
@@ -467,25 +486,26 @@ def decrypt_pdf(bot, update, user_data):
     update.message.reply_text("Decrypting your PDF file.")
 
     file_id = user_data["pdf_id"]
-    del user_data["pdf_id"]
     filename = "%d_decrypt_source.pdf" % tele_id
     out_filename = "%d_decrypted.pdf" % tele_id
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
 
-    pdf_writer = PdfFileWriter()
     pdf_reader = PdfFileReader(open(filename, "rb"))
 
     try:
         if pdf_reader.decrypt(pw) == 0:
-            update.message.reply_text("The decryption password is incorrect. Please send the password again.")
+            update.message.reply_text("The decryption password is incorrect. Please send it again.")
 
-            return RECEIVE_DECRYPT_PW
+            return WAIT_DECRYPT_PW
     except NotImplementedError:
         update.message.reply_text("The PDF file is encrypted with a method that I cannot decrypt. Sorry.")
 
         return ConversationHandler.END
+
+    del user_data["pdf_id"]
+    pdf_writer = PdfFileWriter()
 
     for page in pdf_reader.pages:
         pdf_writer.addPage(page)
@@ -517,7 +537,7 @@ def ask_encrypt_pw(bot, update, user_data):
         update.message.reply_text("Please send me the password to encrypt your PDF file.",
                                   reply_markup=ReplyKeyboardRemove())
 
-        return RECEIVE_ENCRYPT_PW
+        return WAIT_ENCRYPT_PW
 
 
 # Encrypts the PDF file with the given password
@@ -563,21 +583,14 @@ def encrypt_pdf(bot, update, user_data):
 
 # Asks user for rotation degree
 @run_async
-def ask_rotate_degree(bot, update, user_data):
-    if is_pdf_encrypted(bot, user_data["pdf_id"]):
-        del user_data["pdf_id"]
-        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
-                                  "decrypt it first.", reply_markup=ReplyKeyboardRemove())
+def ask_rotate_degree(update):
+    keyboard = [["90"], ["180"], ["270"]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
 
-        return ConversationHandler.END
-    else:
-        keyboard = [["90"], ["180"], ["270"]]
-        reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+    update.message.reply_text("Please select the degrees that you'll like to rotate your PDF file in clockwise.",
+                              reply_markup=reply_markup)
 
-        update.message.reply_text("Please select the degrees that you'll like to rotate your PDF file in clockwise.",
-                                  reply_markup=reply_markup)
-
-        return RECEIVE_ROTATE_DEGREE
+    return WAIT_ROTATE_DEGREE
 
 
 # Rotates the PDF file with the given degree
@@ -622,24 +635,17 @@ def rotate_pdf(bot, update, user_data):
 
 # Asks for horizontal scaling factor or new width
 @run_async
-def ask_scale_x(bot, update, user_data):
-    if is_pdf_encrypted(bot, user_data["pdf_id"]):
-        del user_data["pdf_id"]
-        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
-                                  "decrypt it first.", reply_markup=ReplyKeyboardRemove())
+def ask_scale_x(update, text):
+    if text == "scale by":
+        update.message.reply_text("Please send me the scaling factor for the horizontal axis. For example, "
+                                  "2 will double the horizontal axis and 0.5 will half the horizontal axis.",
+                                  reply_markup=ReplyKeyboardRemove())
 
-        return ConversationHandler.END
+        return WAIT_SCALE_BY_X
     else:
-        if update.message.text.lower() == "scale by":
-            update.message.reply_text("Please send me the scaling factor for the horizontal axis. For example, "
-                                      "2 will double the horizontal axis and 0.5 will half the horizontal axis.",
-                                      reply_markup=ReplyKeyboardRemove())
+        update.message.reply_text("Please send me the new width.", reply_markup=ReplyKeyboardRemove())
 
-            return RECEIVE_SCALE_BY_X
-        else:
-            update.message.reply_text("Please send me the new width.", reply_markup=ReplyKeyboardRemove())
-
-            return RECEIVE_SCALE_TO_X
+        return WAIT_SCALE_TO_X
 
 
 # Checks for horizontal scaling factor and asks for vertical scaling factor
@@ -652,13 +658,13 @@ def ask_scale_by_y(bot, update, user_data):
     except ValueError:
         update.message.reply_text("The scaling factor that you sent me is invalid. Please try again.")
 
-        return RECEIVE_SCALE_BY_X
+        return WAIT_SCALE_BY_X
 
     user_data["scale_x"] = scale_x
     update.message.reply_text("Please send me the scaling factor for the vertical axis. For example, 2 will double "
                               "the vertical axis and 0.5 will half the vertical axis.")
 
-    return RECEIVE_SCALE_BY_Y
+    return WAIT_SCALE_BY_Y
 
 
 # Checks for vertical scaling factor and scale PDF file
@@ -674,7 +680,7 @@ def pdf_scale_by(bot, update, user_data):
     except ValueError:
         update.message.reply_text("The scaling factor that you sent me is invalid. Please try again.")
 
-        return RECEIVE_SCALE_BY_Y
+        return WAIT_SCALE_BY_Y
 
     scale_x = user_data["scale_x"]
     del user_data["scale_x"]
@@ -722,12 +728,12 @@ def ask_scale_to_y(bot, update, user_data):
     except ValueError:
         update.message.reply_text("The width that you sent me is invalid. Please try again.")
 
-        return RECEIVE_SCALE_TO_X
+        return WAIT_SCALE_TO_X
 
     user_data["scale_x"] = scale_x
     update.message.reply_text("Please send me the new height.")
 
-    return RECEIVE_SCALE_TO_Y
+    return WAIT_SCALE_TO_Y
 
 
 # Checks for height and scale PDF file
@@ -743,7 +749,7 @@ def pdf_scale_to(bot, update, user_data):
     except ValueError:
         update.message.reply_text("The height that you sent me is invalid. Please try again.")
 
-        return RECEIVE_SCALE_TO_Y
+        return WAIT_SCALE_TO_Y
 
     scale_x = user_data["scale_x"]
     del user_data["scale_x"]
@@ -783,19 +789,12 @@ def pdf_scale_to(bot, update, user_data):
 
 # Asks for split page range
 @run_async
-def ask_split_range(bot, update, user_data):
-    if is_pdf_encrypted(bot, user_data["pdf_id"]):
-        del user_data["pdf_id"]
-        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
-                                  "decrypt it first.", reply_markup=ReplyKeyboardRemove())
+def ask_split_range(update):
+    update.message.reply_text("Please send me the range of pages that you will like to keep. You can use INSTANT "
+                              "VIEW from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for "
+                              "some range examples.", parse_mode="markdown", reply_markup=ReplyKeyboardRemove())
 
-        return ConversationHandler.END
-    else:
-        update.message.reply_text("Please send me the range of pages that you will like to keep. You can use INSTANT "
-                                  "VIEW from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for "
-                                  "some range examples.", parse_mode="markdown", reply_markup=ReplyKeyboardRemove())
-
-        return RECEIVE_SPLIT_RANGE
+    return WAIT_SPLIT_RANGE
 
 
 # Splits the PDF file with the given page range
@@ -825,7 +824,7 @@ def split_pdf(bot, update, user_data):
     if process.returncode != 0 or not os.path.exists(out_filename) or "[Errno" in process_err.decode("utf8").strip():
         update.message.reply_text("The range is invalid. Please send me the range again.")
 
-        return RECEIVE_SPLIT_RANGE
+        return WAIT_SPLIT_RANGE
 
     if os.path.getsize(out_filename) > upload_size_limit:
         update.message.reply_text("The split PDF file is too large for me to send to you. Sorry.")
