@@ -790,8 +790,8 @@ def pdf_scale_to(bot, update, user_data):
 # Asks for split page range
 @run_async
 def ask_split_range(update):
-    update.message.reply_text("Please send me the range of pages that you will like to keep. You can use ⚡ INSTANT "
-                              "VIEW from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for "
+    update.message.reply_text("Please send me the range of pages that you will like to keep. You can use ⚡ *INSTANT "
+                              "VIEW* from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for "
                               "some range examples.", parse_mode="markdown", reply_markup=ReplyKeyboardRemove())
 
     return WAIT_SPLIT_RANGE
