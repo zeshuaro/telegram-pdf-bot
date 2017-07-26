@@ -82,8 +82,8 @@ def start(bot, update):
     tele_id = update.message.chat.id
 
     if update.message.chat.type != "group":
-        message = "Welcome to PDF Bot!\n\nI can decrypt, encrypt, merge, rotate, scale, split and add watermark to a " \
-                  "PDF file.\n\nType /help to see how to use me."
+        message = "Welcome to PDF Bot!\n\nI can compare, decrypt, encrypt, merge, rotate, scale, split and add " \
+                  "watermark to a PDF file.\n\nType /help to see how to use me."
         bot.sendMessage(tele_id, message)
 
 
@@ -94,12 +94,13 @@ def help(bot, update):
 
     message = "You can perform most of the tasks simply by sending me a PDF file. You can then select a task and I " \
               "will guide you through each of the tasks.\n\n"
-    message += "If you want to merge or add watermark to PDF files, you will have to use the /merge or /watermark " \
-               "commands respectively.\n\n"
+    message += "If you want to compare, merge or add watermark to PDF files, you will have to use the /command, " \
+               "/merge or /watermark commands respectively.\n\n"
     message += "Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. " \
-               "If the result files are too large, I will not be able to send you the file."
+               "If the result files are too large, I will not be able to send you the file.\n\n"
 
-    keyboard = [[InlineKeyboardButton("Rate me", "https://t.me/storebot?start=pdf2bot")]]
+    keyboard = [[InlineKeyboardButton("Join Channel", "https://t.me/pdf2botdev"),
+                 InlineKeyboardButton("Rate me", "https://t.me/storebot?start=pdf2bot")]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     bot.sendMessage(tele_id, message, reply_markup=reply_markup)
@@ -150,7 +151,7 @@ def check_first_compare_file(bot, update, user_data):
     filename = pdf_file.file_name
     file_id = pdf_file.file_id
     file_size = pdf_file.file_size
-    result = check_command_pdf(bot, update, filename, file_id, file_size)
+    result = check_pdf(bot, update, filename, file_id, file_size)
 
     if result == 1:
         return WAIT_FIRST_COMPARE_FILE
@@ -173,7 +174,7 @@ def check_second_compare_file(bot, update, user_data):
     second_file_id = second_pdf_file.file_id
     second_filename = second_pdf_file.file_name
     second_file_size = second_pdf_file.file_size
-    result = check_command_pdf(bot, update, second_filename, second_file_id, second_file_size)
+    result = check_pdf(bot, update, second_filename, second_file_id, second_file_size)
 
     if result == 1:
         return WAIT_SECOND_COMPARE_FILE
@@ -239,7 +240,7 @@ def merge_cov_handler():
 
         states={
             WAIT_MERGE_FILE: [MessageHandler(merged_filter, receive_merge_file, pass_user_data=True),
-                              RegexHandler("^[Dd]one$", merge_file, pass_user_data=True)],
+                              RegexHandler("^Done$", merge_pdf, pass_user_data=True)],
         },
 
         fallbacks=[CommandHandler("cancel", cancel)],
@@ -261,7 +262,7 @@ def merge(bot, update, user_data):
         del user_data["merge_filenames"]
 
     update.message.reply_text("Please send me the first PDF file that you will like to merge or type /cancel to "
-                              "cancel this operation. The files will be merged in the order that you send me.")
+                              "cancel this operation.\n\nThe files will be merged in the order that you send me.")
 
     return WAIT_MERGE_FILE
 
@@ -280,7 +281,7 @@ def receive_merge_file(bot, update, user_data):
 
         return WAIT_MERGE_FILE
     elif file_size > download_size_limit:
-        text = "The PDF file you sent is too large for me to download. "
+        text = "The PDF file you sent is too large for me to download.\n\n"
 
         if "merge_filenames" in user_data and user_data["merge_filenames"]:
             text += "You can continue merging with the files that you sent me or type /cancel to cancel this operation."
@@ -290,21 +291,23 @@ def receive_merge_file(bot, update, user_data):
 
             return WAIT_MERGE_FILE
         else:
-            text += "Sorry that I can't merge your PDF files."
+            text += "Sorry that I can't merge your PDF files. Operation cancelled."
             update.message.reply_text(text)
 
             return ConversationHandler.END
     elif is_pdf_encrypted(bot, file_id):
-        text = "The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to decrypt it first."
+        text = "The PDF file you sent is encrypted. Please decrypt it yourself or use decrypt it with me first. "
 
         if "merge_filenames" in user_data and user_data["merge_filenames"]:
-            text += "You can continue merging with the files that you sent me or type /cancel to cancel this operation."
+            text += "\n\nYou can continue merging with the files that you sent me or type /cancel to cancel this " \
+                    "operation."
             update.message.reply_text(text)
 
             send_received_filenames(update, user_data["merge_filenames"])
 
             return WAIT_MERGE_FILE
         else:
+            text += "Operation cancelled."
             update.message.reply_text(text)
 
             return ConversationHandler.END
@@ -320,7 +323,7 @@ def receive_merge_file(bot, update, user_data):
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
 
     update.message.reply_text("Please send me the next PDF file that you will like to merge or say Done if you have "
-                              "sent me all the files that you want to merge.", reply_markup=reply_markup)
+                              "sent me all the PDF files that you want to merge.", reply_markup=reply_markup)
 
     send_received_filenames(update, user_data["merge_filenames"])
 
@@ -328,19 +331,18 @@ def receive_merge_file(bot, update, user_data):
 
 
 # Sends a list of received filenames
+@run_async
 def send_received_filenames(update, filenames):
     text = "You have sent me the following PDF files:\n"
 
     for i, filename in enumerate(filenames):
-        i += 1
-        text += "%d: %s\n" % (i, filename)
+        text += "%d: %s\n" % ((i + 1), filename)
 
     update.message.reply_text(text)
 
 
 # Merges PDF file
-@run_async
-def merge_file(bot, update, user_data):
+def merge_pdf(bot, update, user_data):
     if "merge_file_ids" not in user_data:
         return ConversationHandler.END
 
@@ -414,21 +416,11 @@ def receive_watermark_source_file(bot, update, user_data):
     filename = pdf_file.file_name
     file_id = pdf_file.file_id
     file_size = pdf_file.file_size
+    result = check_pdf(bot, update, filename, file_id, file_size)
 
-    if not filename.endswith(".pdf"):
-        update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
-                                  "like to add a watermark or type /cancel to cancel this operation.")
-
+    if result == 1:
         return WAIT_WATERMARK_SOURCE_FILE
-    elif file_size > download_size_limit:
-        update.message.reply_text("The PDF file you sent is too large for me to download. "
-                                  "Sorry that I can't add a watermark your PDF file.")
-
-        return ConversationHandler.END
-    elif is_pdf_encrypted(bot, file_id):
-        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
-                                  "decrypt it first.")
-
+    elif result != 0:
         return ConversationHandler.END
 
     user_data["watermark_file_id"] = file_id
@@ -443,29 +435,27 @@ def receive_watermark_file(bot, update, user_data):
     if "watermark_file_id" not in user_data:
         return ConversationHandler.END
 
-    tele_id = update.message.from_user.id
     watermark_pdf_file = update.message.document
     watermark_file_id = watermark_pdf_file.file_id
     watermark_filename = watermark_pdf_file.file_name
     watermark_file_size = watermark_pdf_file.file_size
+    result = check_pdf(bot, update, watermark_filename, watermark_file_id, watermark_file_size)
 
-    if not watermark_filename.endswith(".pdf"):
-        update.message.reply_text("The watermark file you sent is not in PDF format. Please send me the watermark "
-                                  "file in PDF format.")
-
+    if result == 1:
         return WAIT_WATERMARK_FILE
-    elif watermark_file_size > download_size_limit:
-        update.message.reply_text("The watermark PDF file you sent is too large for me to download. "
-                                  "Sorry that I can't add the watermark to your PDF file.")
-
+    elif result != 0:
         return ConversationHandler.END
-    elif is_pdf_encrypted(bot, watermark_file_id):
-        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or use /decrypt to "
-                                  "decrypt it first.")
 
+    return add_pdf_watermark(bot, update, user_data, watermark_file_id)
+
+
+# Adds watermark to PDF file
+def add_pdf_watermark(bot, update, user_data, watermark_file_id):
+    if "watermark_file_id" not in user_data:
         return ConversationHandler.END
 
     update.message.reply_text("Adding the watermark to your PDF file.")
+    tele_id = update.message.from_user.id
 
     source_file_id = user_data["watermark_file_id"]
     source_filename = "%d_watermark_source.pdf" % tele_id
@@ -504,8 +494,8 @@ def receive_watermark_file(bot, update, user_data):
     return ConversationHandler.END
 
 
-# Checks PDF files received via command triggered conversations
-def check_command_pdf(bot, update, filename, file_id, file_size):
+# Checks PDF files
+def check_pdf(bot, update, filename, file_id, file_size):
     return_type = 0
 
     if not filename.endswith(".pdf"):
@@ -529,13 +519,15 @@ def pdf_cov_handler():
     merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
 
     conv_handler = ConversationHandler(
-        entry_points=[MessageHandler(merged_filter, check_pdf, pass_user_data=True)],
+        entry_points=[MessageHandler(merged_filter, check_doc, pass_user_data=True)],
 
         states={
-            WAIT_TASK: [RegexHandler("^[Dd]ecrypt$", ask_decrypt_pw, pass_user_data=True),
-                        RegexHandler("^[Ee]ncrypt$", ask_encrypt_pw, pass_user_data=True),
-                        RegexHandler("^([Rr]otate|[Ss]cale [Bb]y|[Ss]cale [Tt]o|[Ss]plit)$",
-                                     ask_task_parameter, pass_user_data=True)],
+            WAIT_TASK: [RegexHandler("^Decrypt$", ask_decrypt_pw),
+                        RegexHandler("^Encrypt$", ask_encrypt_pw),
+                        RegexHandler("^Rotate$", ask_rotate_degree),
+                        RegexHandler("^Scale By$", ask_scale_x),
+                        RegexHandler("^Scale To$", ask_scale_x),
+                        RegexHandler("^Split$", ask_split_range)],
             WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf, pass_user_data=True)],
             WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf, pass_user_data=True)],
             WAIT_ROTATE_DEGREE: [RegexHandler("^(90|180|270)$", rotate_pdf, pass_user_data=True)],
@@ -546,7 +538,7 @@ def pdf_cov_handler():
             WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf, pass_user_data=True)]
         },
 
-        fallbacks=[CommandHandler("cancel", cancel), RegexHandler("^[Cc]ancel", cancel)],
+        fallbacks=[CommandHandler("cancel", cancel), RegexHandler("^Cancel", cancel)],
 
         allow_reentry=True
     )
@@ -556,26 +548,29 @@ def pdf_cov_handler():
 
 # Checks if the document is a PDF file and if it exceeds the download size limit
 @run_async
-def check_pdf(bot, update, user_data):
+def check_doc(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
-    pdf_id = pdf_file.file_id
-    pdf_size = pdf_file.file_size
+    file_id = pdf_file.file_id
+    file_size = pdf_file.file_size
 
     if not filename.endswith(".pdf"):
         return ConversationHandler.END
-    elif filename.endswith(".pdf") and pdf_size > download_size_limit:
+    elif filename.endswith(".pdf") and file_size > download_size_limit:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't perform any tasks on your PDF file.")
 
         return ConversationHandler.END
 
-    user_data["pdf_id"] = pdf_id
+    if is_pdf_encrypted(bot, file_id):
+        keywords = ["Decrypt"]
+    else:
+        keywords = sorted(["Encrypt", "Rotate", "Scale By", "Scale To", "Split"])
 
-    keywords = sorted(["Decrypt", "Encrypt", "Rotate", "Scale By", "Scale To", "Split"])
-    keywords.append("Cancel")
+    user_data["pdf_id"] = file_id
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
+    keyboard.append(["Cancel"])
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
     update.message.reply_text("Please select the task that you'll like to perform.",
                               reply_markup=reply_markup)
@@ -583,38 +578,27 @@ def check_pdf(bot, update, user_data):
     return WAIT_TASK
 
 
-# Checks if a PDF file is encrypted and asks for the required parameters to carry out a task
-def ask_task_parameter(bot, update, user_data):
-    if is_pdf_encrypted(bot, user_data["pdf_id"]):
-        del user_data["pdf_id"]
-        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or decrypt it with "
-                                  "me first.", reply_markup=ReplyKeyboardRemove())
+# Checks if PDF file is encrypted
+def is_pdf_encrypted(bot, file_id):
+    filename = random_string(20)
+    pdf_file = bot.get_file(file_id)
+    pdf_file.download(custom_path=filename)
 
-        return ConversationHandler.END
-    else:
-        text = update.message.text.lower()
+    pdf_reader = PdfFileReader(open(filename, "rb"))
+    encrypted = pdf_reader.isEncrypted
 
-        if text == "rotate":
-            return ask_rotate_degree(update)
-        elif text == "scale by" or text == "scale to":
-            return ask_scale_x(update, text)
-        elif text == "split":
-            return ask_split_range(update)
+    os.remove(filename)
+
+    return encrypted
 
 
 # Asks user for decryption password
 @run_async
-def ask_decrypt_pw(bot, update, user_data):
-    if is_pdf_encrypted(bot, user_data["pdf_id"]):
-        update.message.reply_text("Please send me the password to decrypt your PDF file.",
-                                  reply_markup=ReplyKeyboardRemove())
+def ask_decrypt_pw(bot, update):
+    update.message.reply_text("Please send me the password to decrypt your PDF file.",
+                              reply_markup=ReplyKeyboardRemove())
 
-        return WAIT_DECRYPT_PW
-    else:
-        del user_data["pdf_id"]
-        update.message.reply_text("Your PDF file is already decrypted.", reply_markup=ReplyKeyboardRemove())
-
-        return ConversationHandler.END
+    return WAIT_DECRYPT_PW
 
 
 # Decrypts the PDF file with the given password
@@ -670,17 +654,11 @@ def decrypt_pdf(bot, update, user_data):
 
 # Asks user for encryption password
 @run_async
-def ask_encrypt_pw(bot, update, user_data):
-    if is_pdf_encrypted(bot, user_data["pdf_id"]):
-        del user_data["pdf_id"]
-        update.message.reply_text("Your PDF file is already encrypted.", reply_markup=ReplyKeyboardRemove())
+def ask_encrypt_pw(bot, update):
+    update.message.reply_text("Please send me the password to encrypt your PDF file.",
+                              reply_markup=ReplyKeyboardRemove())
 
-        return ConversationHandler.END
-    else:
-        update.message.reply_text("Please send me the password to encrypt your PDF file.",
-                                  reply_markup=ReplyKeyboardRemove())
-
-        return WAIT_ENCRYPT_PW
+    return WAIT_ENCRYPT_PW
 
 
 # Encrypts the PDF file with the given password
@@ -727,7 +705,7 @@ def encrypt_pdf(bot, update, user_data):
 
 # Asks user for rotation degree
 @run_async
-def ask_rotate_degree(update):
+def ask_rotate_degree(bot, update):
     keyboard = [["90"], ["180"], ["270"]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
 
@@ -780,8 +758,8 @@ def rotate_pdf(bot, update, user_data):
 
 # Asks for horizontal scaling factor or new width
 @run_async
-def ask_scale_x(update, text):
-    if text == "scale by":
+def ask_scale_x(bot, update):
+    if update.message.text == "Scale By":
         update.message.reply_text("Please send me the scaling factor for the horizontal axis. For example, "
                                   "2 will double the horizontal axis and 0.5 will half the horizontal axis.",
                                   reply_markup=ReplyKeyboardRemove())
@@ -938,7 +916,7 @@ def pdf_scale_to(bot, update, user_data):
 
 # Asks for split page range
 @run_async
-def ask_split_range(update):
+def ask_split_range(bot, update):
     update.message.reply_text("Please send me the range of pages that you will like to keep. You can use ⚡ *INSTANT "
                               "VIEW* from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for "
                               "some range examples.", parse_mode="markdown", reply_markup=ReplyKeyboardRemove())
@@ -996,22 +974,9 @@ def split_pdf(bot, update, user_data):
     return ConversationHandler.END
 
 
-# Checks if PDF file is encrypted
-def is_pdf_encrypted(bot, file_id):
-    filename = random_string(20)
-    pdf_file = bot.get_file(file_id)
-    pdf_file.download(custom_path=filename)
-
-    pdf_reader = PdfFileReader(open(filename, "rb"))
-    encrypted = pdf_reader.isEncrypted
-    os.remove(filename)
-
-    return encrypted
-
-
 # Returns random string
 def random_string(length):
-    return "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
+    return "".join(random.choice(string.ascii_letters + string.digits) for _ in range(length))
 
 
 # Creates a feedback conversation handler
