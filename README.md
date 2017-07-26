@@ -25,6 +25,7 @@ Below is a list of the main libraries that are included:
 
 * [Python Telegram Bot](https://github.com/python-telegram-bot/python-telegram-bot)
 * [PyPDF2](https://github.com/mstamy2/PyPDF2)
+* [pdf-diff](https://github.com/JoshData/pdf-diff)
 
 Make a `.env` file and put your telegram token in there. 
 
