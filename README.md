@@ -27,6 +27,10 @@ Below is a list of the main libraries that are included:
 * [PyPDF2](https://github.com/mstamy2/PyPDF2)
 * [pdf-diff](https://github.com/JoshData/pdf-diff)
 
+You will also need to run the following command to install the requirements for `pdf-diff`:
+
+`apt-get install python3-lxml poppler-utils`
+
 Make a `.env` file and put your telegram token in there. 
 
 If you want to use the webhook method to run the bot, also include `APP_URL` and `PORT` in the `.env` file. If you 
