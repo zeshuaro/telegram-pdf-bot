@@ -51,6 +51,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("donate", donate))
+    dp.add_handler(compare_cov_handler())
     dp.add_handler(merge_cov_handler())
     dp.add_handler(watermark_cov_handler())
     dp.add_handler(pdf_cov_handler())
@@ -111,6 +112,122 @@ def donate(bot, update):
     message = "Want to help keep me online? Please donate to %s through PayPal.\n\nDonations help " \
               "me to stay on my server and keep running." % dev_email
     bot.send_message(player_tele_id, message)
+
+
+# Creates a compare conversation handler
+def compare_cov_handler():
+    merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
+
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler("compare", compare)],
+
+        states={
+            WAIT_FIRST_COMPARE_FILE: [MessageHandler(merged_filter, check_first_compare_file, pass_user_data=True)],
+            WAIT_SECOND_COMPARE_FILE: [MessageHandler(merged_filter, check_second_compare_file, pass_user_data=True)],
+        },
+
+        fallbacks=[CommandHandler("cancel", cancel)],
+
+        allow_reentry=True
+    )
+
+    return conv_handler
+
+
+# Starts the compare conversation
+@run_async
+def compare(bot, update):
+    update.message.reply_text("Please send me one of the PDF files that you will like to compare or type /cancel to "
+                              "cancel this operation.\n\nPlease note that I can only look for text differences.")
+
+    return WAIT_FIRST_COMPARE_FILE
+
+
+# Receives and checks for the source PDF file
+@run_async
+def check_first_compare_file(bot, update, user_data):
+    pdf_file = update.message.document
+    filename = pdf_file.file_name
+    file_id = pdf_file.file_id
+    file_size = pdf_file.file_size
+    result = check_command_pdf(bot, update, filename, file_id, file_size)
+
+    if result == 1:
+        return WAIT_FIRST_COMPARE_FILE
+    elif result != 0:
+        return ConversationHandler.END
+
+    user_data["compare_file_id"] = file_id
+    update.message.reply_text("Please send me the other PDF file that you will like to compare.")
+
+    return WAIT_SECOND_COMPARE_FILE
+
+
+# Receives and checks for the watermark PDF file and watermark the PDF file
+@run_async
+def check_second_compare_file(bot, update, user_data):
+    if "compare_file_id" not in user_data:
+        return ConversationHandler.END
+
+    second_pdf_file = update.message.document
+    second_file_id = second_pdf_file.file_id
+    second_filename = second_pdf_file.file_name
+    second_file_size = second_pdf_file.file_size
+    result = check_command_pdf(bot, update, second_filename, second_file_id, second_file_size)
+
+    if result == 1:
+        return WAIT_SECOND_COMPARE_FILE
+    elif result != 0:
+        return ConversationHandler.END
+
+    return compare_pdf(bot, update, user_data, second_file_id)
+
+
+# Compares two PDF files
+def compare_pdf(bot, update, user_data, second_file_id):
+    if "compare_file_id" not in user_data:
+        return ConversationHandler.END
+
+    update.message.reply_text("Comparing your PDF files.")
+    tele_id = update.message.from_user.id
+
+    first_file_id = user_data["compare_file_id"]
+    first_filename = "%d_compare_first.pdf" % tele_id
+    out_filename = "%d_compared.png" % tele_id
+    second_filename = "%d_compare_second.pdf" % tele_id
+
+    source_pdf_file = bot.get_file(first_file_id)
+    source_pdf_file.download(custom_path=first_filename)
+
+    second_pdf_file = bot.get_file(second_file_id)
+    second_pdf_file.download(custom_path=second_filename)
+
+    command = "pdf-diff {first_pdf} {second_pdf}".format(first_pdf=first_filename, second_pdf=second_filename)
+
+    process = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
+    process_out, process_err = process.communicate()
+
+    if process.returncode != 0 or "[Errno" in process_err.decode("utf8").strip():
+        update.message.reply_text("There are no differences between the two PDF files you sent me.")
+
+        return ConversationHandler.END
+
+    with open(out_filename, "wb") as f:
+        f.write(process_out)
+
+    if os.path.getsize(out_filename) > upload_size_limit:
+        update.message.reply_text("The difference result file is too large for me to send to you. Sorry.")
+    else:
+        update.message.reply_document(document=open(out_filename, "rb"),
+                                      caption="Here are the differences between your PDF files.")
+
+    if user_data["compare_file_id"] == first_file_id:
+        del user_data["compare_file_id"]
+    os.remove(first_filename)
+    os.remove(second_filename)
+    os.remove(out_filename)
+
+    return ConversationHandler.END
 
 
 # Creates a merge conversation handler
@@ -385,6 +502,26 @@ def receive_watermark_file(bot, update, user_data):
     os.remove(out_filename)
 
     return ConversationHandler.END
+
+
+# Checks PDF files received via command triggered conversations
+def check_command_pdf(bot, update, filename, file_id, file_size):
+    return_type = 0
+
+    if not filename.endswith(".pdf"):
+        return_type = 1
+        update.message.reply_text("The file you sent is not a PDF file. Please try again and send me a PDF file or "
+                                  "type /cancel to cancel the operation.")
+    elif file_size > download_size_limit:
+        return_type = 2
+        update.message.reply_text("The PDF file you sent is too large for me to download. "
+                                  "Sorry that I can't process your PDF file. Operation cancelled.")
+    elif is_pdf_encrypted(bot, file_id):
+        return_type = 3
+        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or decrypt it with "
+                                  "me first. Operation cancelled.")
+
+    return return_type
 
 
 # Creates a PDF conversation handler
