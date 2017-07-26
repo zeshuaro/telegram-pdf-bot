@@ -209,7 +209,6 @@ def compare_pdf(bot, update, user_data, second_file_id):
     process_out, process_err = process.communicate()
 
     if process.returncode != 0 or "[Errno" in process_err.decode("utf8").strip():
-        print(process_err.decode("utf8").strip())
         update.message.reply_text("There are no differences between the two PDF files you sent me.")
 
         return ConversationHandler.END
