@@ -29,7 +29,9 @@ Below is a list of the main libraries that are included:
 
 You will also need to run the following command to install the requirements for `pdf-diff`:
 
-`apt-get install python3-lxml poppler-utils`
+```
+apt-get install python3-lxml poppler-utils
+```
 
 Make a `.env` file and put your telegram token in there. 
 
