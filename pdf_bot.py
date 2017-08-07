@@ -44,8 +44,6 @@ converter_url = os.environ.get("CONVERTER_URL", ) if os.environ.get("CONVERTER_U
 
 
 def main():
-    download_converter()
-
     # Create the EventHandler and pass it your bot's token.
     updater = Updater(telegram_token)
 
@@ -622,10 +620,11 @@ def convert_to_pdf(bot, update, file_id, file_mime_type):
     process = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
     process_out, process_err = process.communicate()
 
-    if process.returncode != 0 or not os.path.exists(out_filename) or "[Errno" in process_err.decode("utf8").strip():
+    if process.returncode != 0 or not os.path.exists(out_filename) or "[Errno" in process_err.decode("utf8").strip() \
+            or os.path.getsize(out_filename) == 0:
         update.message.reply_text("Something went wrong. Please try again.")
 
-        return
+        return ConversationHandler.END
 
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The converted PDF file is too large for me to send to you. Sorry.")
