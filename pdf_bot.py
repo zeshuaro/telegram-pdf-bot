@@ -165,18 +165,14 @@ def compare(bot, update):
 # Receives and checks for the source PDF file
 @run_async
 def check_first_compare_file(bot, update, user_data):
-    pdf_file = update.message.document
-    filename = pdf_file.file_name
-    file_id = pdf_file.file_id
-    file_size = pdf_file.file_size
-    result = check_pdf(bot, update, filename, file_id, file_size)
+    result = check_pdf(bot, update)
 
     if result == 1:
         return WAIT_FIRST_COMPARE_FILE
     elif result != 0:
         return ConversationHandler.END
 
-    user_data["compare_file_id"] = file_id
+    user_data["compare_file_id"] = update.message.document.file_id
     update.message.reply_text("Please send me the other PDF file that you will like to compare.")
 
     return WAIT_SECOND_COMPARE_FILE
@@ -188,18 +184,14 @@ def check_second_compare_file(bot, update, user_data):
     if "compare_file_id" not in user_data:
         return ConversationHandler.END
 
-    second_pdf_file = update.message.document
-    second_file_id = second_pdf_file.file_id
-    second_filename = second_pdf_file.file_name
-    second_file_size = second_pdf_file.file_size
-    result = check_pdf(bot, update, second_filename, second_file_id, second_file_size)
+    result = check_pdf(bot, update)
 
     if result == 1:
         return WAIT_SECOND_COMPARE_FILE
     elif result != 0:
         return ConversationHandler.END
 
-    return compare_pdf(bot, update, user_data, second_file_id)
+    return compare_pdf(bot, update, user_data, update.message.document.file_id)
 
 
 # Compares two PDF files
@@ -430,18 +422,14 @@ def watermark(bot, update):
 # Receives and checks for the source PDF file
 @run_async
 def receive_watermark_source_file(bot, update, user_data):
-    pdf_file = update.message.document
-    filename = pdf_file.file_name
-    file_id = pdf_file.file_id
-    file_size = pdf_file.file_size
-    result = check_pdf(bot, update, filename, file_id, file_size)
+    result = check_pdf(bot, update)
 
     if result == 1:
         return WAIT_WATERMARK_SOURCE_FILE
     elif result != 0:
         return ConversationHandler.END
 
-    user_data["watermark_file_id"] = file_id
+    user_data["watermark_file_id"] = update.message.document.file_id
     update.message.reply_text("Please send me the watermark in PDF format.")
 
     return WAIT_WATERMARK_FILE
@@ -453,18 +441,14 @@ def receive_watermark_file(bot, update, user_data):
     if "watermark_file_id" not in user_data:
         return ConversationHandler.END
 
-    watermark_pdf_file = update.message.document
-    watermark_file_id = watermark_pdf_file.file_id
-    watermark_filename = watermark_pdf_file.file_name
-    watermark_file_size = watermark_pdf_file.file_size
-    result = check_pdf(bot, update, watermark_filename, watermark_file_id, watermark_file_size)
+    result = check_pdf(bot, update)
 
     if result == 1:
         return WAIT_WATERMARK_FILE
     elif result != 0:
         return ConversationHandler.END
 
-    return add_pdf_watermark(bot, update, user_data, watermark_file_id)
+    return add_pdf_watermark(bot, update, user_data, update.message.document.file_id)
 
 
 # Adds watermark to PDF file
@@ -513,10 +497,14 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
 
 
 # Checks PDF files
-def check_pdf(bot, update, filename, file_id, file_size):
+def check_pdf(bot, update):
     return_type = 0
+    pdf_file = update.message.document
+    mime_type = pdf_file.mime_type
+    file_id = pdf_file.file_id
+    file_size = pdf_file.file_size
 
-    if not filename.endswith(".pdf"):
+    if not mime_type.endswith("pdf"):
         return_type = 1
         update.message.reply_text("The file you sent is not a PDF file. Please try again and send me a PDF file or "
                                   "type /cancel to cancel the operation.")
@@ -569,13 +557,13 @@ def pdf_cov_handler():
 @run_async
 def check_doc(bot, update, user_data):
     pdf_file = update.message.document
-    filename = pdf_file.file_name
+    mime_type = pdf_file.mime_type
     file_id = pdf_file.file_id
     file_size = pdf_file.file_size
 
-    if not filename.endswith(".pdf"):
+    if not mime_type.endswith("pdf"):
         return ConversationHandler.END
-    elif filename.endswith(".pdf") and file_size > MAX_FILESIZE_DOWNLOAD:
+    elif mime_type.endswith("pdf") and file_size > MAX_FILESIZE_DOWNLOAD:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't perform any tasks on your PDF file.")
 
