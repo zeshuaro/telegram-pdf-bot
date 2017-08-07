@@ -6,6 +6,7 @@ import langdetect
 import logging
 import os
 import shlex
+import shutil
 import smtplib
 import string
 import random
@@ -531,6 +532,7 @@ def pdf_cov_handler():
             WAIT_TASK: [RegexHandler("^Cover$", get_pdf_cover_img, pass_user_data=True),
                         RegexHandler("^Decrypt$", ask_decrypt_pw),
                         RegexHandler("^Encrypt$", ask_encrypt_pw),
+                        RegexHandler("^To Images$", pdf_to_img, pass_user_data=True),
                         RegexHandler("^Rotate$", ask_rotate_degree),
                         RegexHandler("^Scale By$", ask_scale_x),
                         RegexHandler("^Scale To$", ask_scale_x),
@@ -572,7 +574,7 @@ def check_doc(bot, update, user_data):
     if is_pdf_encrypted(bot, file_id):
         keywords = ["Decrypt"]
     else:
-        keywords = sorted(["Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover"])
+        keywords = sorted(["Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover", "To Images"])
 
     user_data["pdf_id"] = file_id
     keyboard_size = 3
@@ -600,6 +602,7 @@ def is_pdf_encrypted(bot, file_id):
 
 
 # Gets the PDF cover in jpg format
+@run_async
 def get_pdf_cover_img(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
@@ -744,6 +747,47 @@ def encrypt_pdf(bot, update, user_data):
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your encrypted PDF file.")
+
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
+    os.remove(filename)
+    os.remove(out_filename)
+
+    return ConversationHandler.END
+
+
+# Gets the PDF cover in jpg format
+@run_async
+def pdf_to_img(bot, update, user_data):
+    if "pdf_id" not in user_data:
+        return ConversationHandler.END
+
+    tele_id = update.message.from_user.id
+    update.message.reply_text("Converting your PDF file into images.",
+                              reply_markup=ReplyKeyboardRemove())
+
+    file_id = user_data["pdf_id"]
+    filename = "%d_cover_source.pdf" % tele_id
+    image_dir = "%d_pdf_image" % tele_id
+    image_filename = image_dir + "/%d_image.jpg" % tele_id
+    os.mkdir(image_dir)
+    out_filename = image_dir + ".zip"
+
+    pdf_file = bot.get_file(file_id)
+    pdf_file.download(custom_path=filename)
+
+    with Image(filename=filename, resolution=300) as img:
+        with img.convert("jpg") as converted:
+            converted.save(filename=image_filename)
+
+    shutil.make_archive(image_dir, "zip", image_dir)
+    shutil.rmtree(image_dir)
+
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+        update.message.reply_text("The images of your PDF file are too large for me to send to you. Sorry.")
+    else:
+        update.message.reply_document(document=open(out_filename, "rb"),
+                                      caption="Here is your PDF file images.")
 
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
