@@ -9,11 +9,13 @@ import shlex
 import smtplib
 import string
 import random
+import requests
 
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 from subprocess import Popen, PIPE
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.constants import *
 from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, RegexHandler, Filters
 from telegram.ext.dispatcher import run_async
 
@@ -36,12 +38,13 @@ dev_email = os.environ.get("DEV_EMAIL") if os.environ.get("DEV_EMAIL") else "sam
 dev_email_pw = os.environ.get("DEV_EMAIL_PW")
 is_email_feedback = os.environ.get("IS_EMAIL_FEEDBACK")
 smtp_host = os.environ.get("SMTP_HOST")
-
-download_size_limit = 20000000
-upload_size_limit = 50000000
+converter_url = os.environ.get("CONVERTER_URL", ) if os.environ.get("CONVERTER_URL") else \
+    "https://github.com/yeokm1/docs-to-pdf-converter/releases/download/v1.8/docs-to-pdf-converter-1.8.jar"
 
 
 def main():
+    download_converter()
+
     # Create the EventHandler and pass it your bot's token.
     updater = Updater(telegram_token)
 
@@ -76,43 +79,57 @@ def main():
     updater.idle()
 
 
+def download_converter():
+    if not os.path.exists("docs-to-pdf-converter-1.8.jar"):
+        r = requests.get(converter_url)
+
+        with open("docs-to-pdf-converter-1.8.jar", "wb") as f:
+            f.write(r.content)
+
+
 # Sends start message
 @run_async
 def start(bot, update):
-    tele_id = update.message.chat.id
+    text = "Welcome to PDF Bot!\n\n"
+    text += "I can compare, decrypt, encrypt, merge, rotate, scale, split and add watermark to a PDF file.\n\n"
+    text += "Type /help to see how to use me."
 
-    if update.message.chat.type != "group":
-        message = "Welcome to PDF Bot!\n\nI can compare, decrypt, encrypt, merge, rotate, scale, split and add " \
-                  "watermark to a PDF file.\n\nType /help to see how to use me."
-        bot.sendMessage(tele_id, message)
+    try:
+        bot.sendMessage(update.message.from_user.id, text)
+    except:
+        return
 
 
 # Sends help message
 @run_async
 def help(bot, update):
-    tele_id = update.message.from_user.id
-
-    message = "You can perform most of the tasks simply by sending me a PDF file. You can then select a task and I " \
-              "will guide you through each of the tasks.\n\n"
-    message += "If you want to compare, merge or add watermark to PDF files, you will have to use the /command, " \
-               "/merge or /watermark commands respectively.\n\n"
-    message += "Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. " \
-               "If the result files are too large, I will not be able to send you the file.\n\n"
+    text = "You can perform most of the tasks simply by sending me a PDF file. You can then select a task and I " \
+           "will guide you through each of the tasks.\n\n"
+    text += "If you want to compare, merge or add watermark to PDF files, you will have to use the /command, " \
+            "/merge or /watermark commands respectively.\n\n"
+    text += "Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. " \
+            "If the result files are too large, I will not be able to send you the file.\n\n"
 
     keyboard = [[InlineKeyboardButton("Join Channel", "https://t.me/pdf2botdev"),
                  InlineKeyboardButton("Rate me", "https://t.me/storebot?start=pdf2bot")]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    bot.sendMessage(tele_id, message, reply_markup=reply_markup)
+    try:
+        bot.sendMessage(update.message.from_user.id, text, reply_markup=reply_markup)
+    except:
+        return
 
 
 # Sends donate message
 @run_async
 def donate(bot, update):
-    player_tele_id = update.message.from_user.id
-    message = "Want to help keep me online? Please donate to %s through PayPal.\n\nDonations help " \
-              "me to stay on my server and keep running." % dev_email
-    bot.send_message(player_tele_id, message)
+    text = "Want to help keep me online? Please donate to %s through PayPal.\n\nDonations help me to stay on my " \
+           "server and keep running." % dev_email
+
+    try:
+        bot.send_message(update.message.from_user.id, text)
+    except:
+        return
 
 
 # Creates a compare conversation handler
@@ -216,7 +233,7 @@ def compare_pdf(bot, update, user_data, second_file_id):
     with open(out_filename, "wb") as f:
         f.write(process_out)
 
-    if os.path.getsize(out_filename) > upload_size_limit:
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The difference result file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -280,7 +297,7 @@ def receive_merge_file(bot, update, user_data):
                                   "like to merge or type /cancel to cancel this operation.")
 
         return WAIT_MERGE_FILE
-    elif file_size > download_size_limit:
+    elif file_size > MAX_FILESIZE_DOWNLOAD:
         text = "The PDF file you sent is too large for me to download.\n\n"
 
         if "merge_filenames" in user_data and user_data["merge_filenames"]:
@@ -364,7 +381,7 @@ def merge_pdf(bot, update, user_data):
     with open(out_filename, "wb") as f:
         merger.write(f)
 
-    if os.path.getsize(out_filename) > upload_size_limit:
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The merged PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -479,7 +496,7 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > upload_size_limit:
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The watermarked PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -502,7 +519,7 @@ def check_pdf(bot, update, filename, file_id, file_size):
         return_type = 1
         update.message.reply_text("The file you sent is not a PDF file. Please try again and send me a PDF file or "
                                   "type /cancel to cancel the operation.")
-    elif file_size > download_size_limit:
+    elif file_size > MAX_FILESIZE_DOWNLOAD:
         return_type = 2
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't process your PDF file. Operation cancelled.")
@@ -556,7 +573,7 @@ def check_doc(bot, update, user_data):
 
     if not filename.endswith(".pdf"):
         return ConversationHandler.END
-    elif filename.endswith(".pdf") and file_size > download_size_limit:
+    elif filename.endswith(".pdf") and file_size > MAX_FILESIZE_DOWNLOAD:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't perform any tasks on your PDF file.")
 
@@ -638,7 +655,7 @@ def decrypt_pdf(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > upload_size_limit:
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The decrypted PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -689,7 +706,7 @@ def encrypt_pdf(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > upload_size_limit:
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The encrypted PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -742,7 +759,7 @@ def rotate_pdf(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > upload_size_limit:
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The rotated PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -827,7 +844,7 @@ def pdf_scale_by(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > upload_size_limit:
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -898,7 +915,7 @@ def pdf_scale_to(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > upload_size_limit:
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -960,7 +977,7 @@ def split_pdf(bot, update, user_data):
 
         return WAIT_SPLIT_RANGE
 
-    if os.path.getsize(out_filename) > upload_size_limit:
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The split PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -976,7 +993,7 @@ def split_pdf(bot, update, user_data):
 
 # Returns random string
 def random_string(length):
-    return "".join(random.choice(string.ascii_letters + string.digits) for _ in range(length))
+    return "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
 
 
 # Creates a feedback conversation handler
