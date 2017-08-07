@@ -82,7 +82,9 @@ def main():
 @run_async
 def start(bot, update):
     text = "Welcome to PDF Bot!\n\n"
-    text += "I can compare, decrypt, encrypt, merge, rotate, scale, split and add watermark to a PDF file.\n\n"
+    text += "I can compare, decrypt, encrypt, merge, rotate, scale, split and add watermark to a PDF file.\n\n "
+    text += "I can also convert doc, docx, ppt, pptx and odt files into PDF format and convert a PDF file into " \
+            "images.\n\n"
     text += "Type /help to see how to use me."
 
     try:
@@ -98,6 +100,8 @@ def help(bot, update):
            "will guide you through each of the tasks.\n\n"
     text += "If you want to compare, merge or add watermark to PDF files, you will have to use the /command, " \
             "/merge or /watermark commands respectively.\n\n"
+    text += "If you want to convert a file into PDF format, simply send me one of the supported formats and I'll " \
+            "convert it for you.\n\n"
     text += "Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. " \
             "If the result files are too large, I will not be able to send you the file.\n\n"
 
