@@ -5,12 +5,11 @@ import dotenv
 import langdetect
 import logging
 import os
+import requests
 import shlex
 import shutil
 import smtplib
-import string
-import random
-import requests
+import tempfile
 
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 from subprocess import Popen, PIPE
@@ -79,14 +78,6 @@ def main():
     # SIGTERM or SIGABRT. This should be used most of the time, since
     # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
-
-
-def download_converter():
-    if not os.path.exists("docs-to-pdf-converter-1.8.jar"):
-        r = requests.get(converter_url)
-
-        with open("docs-to-pdf-converter-1.8.jar", "wb") as f:
-            f.write(r.content)
 
 
 # Sends start message
@@ -200,22 +191,21 @@ def compare_pdf(bot, update, user_data, second_file_id):
     if "compare_file_id" not in user_data:
         return ConversationHandler.END
 
-    update.message.reply_text("Comparing your PDF files.")
-    tele_id = update.message.from_user.id
-
     first_file_id = user_data["compare_file_id"]
-    first_filename = "%d_compare_first.pdf" % tele_id
-    out_filename = "%d_compared.png" % tele_id
-    second_filename = "%d_compare_second.pdf" % tele_id
+    update.message.reply_text("Comparing your PDF files.")
+
+    temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
+    temp_files.append(tempfile.NamedTemporaryFile(prefix="Compared_", suffix=".png"))
+    first_filename = temp_files[0].name
+    second_filename = temp_files[1].name
+    out_filename = temp_files[2].name
 
     source_pdf_file = bot.get_file(first_file_id)
     source_pdf_file.download(custom_path=first_filename)
-
     second_pdf_file = bot.get_file(second_file_id)
     second_pdf_file.download(custom_path=second_filename)
 
     command = "pdf-diff {first_pdf} {second_pdf}".format(first_pdf=first_filename, second_pdf=second_filename)
-
     process = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
     process_out, process_err = process.communicate()
 
@@ -235,9 +225,8 @@ def compare_pdf(bot, update, user_data, second_file_id):
 
     if user_data["compare_file_id"] == first_file_id:
         del user_data["compare_file_id"]
-    os.remove(first_filename)
-    os.remove(second_filename)
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
 
@@ -359,18 +348,18 @@ def merge_pdf(bot, update, user_data):
 
     file_ids = user_data["merge_file_ids"]
     filenames = user_data["merge_filenames"]
-    tele_id = update.message.from_user.id
     update.message.reply_text("Merging your files.", reply_markup=ReplyKeyboardRemove())
 
+    temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
+    temp_files.append(tempfile.NamedTemporaryFile(prefix="Merged_", suffix=".pdf"))
+    out_filename = temp_files[-1].name
     merger = PdfFileMerger()
-    out_filename = "%d_merged.pdf" % tele_id
 
-    for file_id in user_data["merge_file_ids"]:
-        filename = "%d_merge_source.pdf" % tele_id
+    for i, file_id in enumerate(file_ids):
+        filename = temp_files[i].name
         pdf_file = bot.get_file(file_id)
         pdf_file.download(custom_path=filename)
         merger.append(open(filename, "rb"))
-        os.remove(filename)
 
     with open(out_filename, "wb") as f:
         merger.write(f)
@@ -385,7 +374,8 @@ def merge_pdf(bot, update, user_data):
         del user_data["merge_file_ids"]
     if user_data["merge_filenames"] == filenames:
         del user_data["merge_filenames"]
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
 
@@ -457,13 +447,14 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
     if "watermark_file_id" not in user_data:
         return ConversationHandler.END
 
-    update.message.reply_text("Adding the watermark to your PDF file.")
-    tele_id = update.message.from_user.id
-
     source_file_id = user_data["watermark_file_id"]
-    source_filename = "%d_watermark_source.pdf" % tele_id
-    out_filename = "%d_watermarked.pdf" % tele_id
-    watermark_filename = "%d_watermark.pdf" % tele_id
+    update.message.reply_text("Adding the watermark to your PDF file.")
+
+    temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
+    temp_files.append(tempfile.NamedTemporaryFile(prefix="Watermarked_", suffix=".pdf"))
+    source_filename = temp_files[0].name
+    watermark_filename = temp_files[1].name
+    out_filename = temp_files[2].name
 
     source_pdf_file = bot.get_file(source_file_id)
     source_pdf_file.download(custom_path=source_filename)
@@ -490,9 +481,8 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
 
     if user_data["watermark_file_id"] == source_file_id:
         del user_data["watermark_file_id"]
-    os.remove(source_filename)
-    os.remove(watermark_filename)
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
 
@@ -558,14 +548,24 @@ def pdf_cov_handler():
 # Checks if the document is a PDF file and if it exceeds the download size limit
 @run_async
 def check_doc(bot, update, user_data):
-    pdf_file = update.message.document
-    mime_type = pdf_file.mime_type
-    file_id = pdf_file.file_id
-    file_size = pdf_file.file_size
+    doc = update.message.document
+    file_mime_type = doc.mime_type
+    file_id = doc.file_id
+    file_size = doc.file_size
+    convert_mime_types = ("msword", "officedocument.wordprocessingml.document", "ms-powerpoint",
+                          "officedocument.presentationml.presentation", "opendocument.text")
 
-    if not mime_type.endswith("pdf"):
+    if file_mime_type.endswith(convert_mime_types):
+        if file_size > MAX_FILESIZE_DOWNLOAD:
+            update.message.reply_text("The file you sent is too large for me to download. "
+                                      "Sorry that I can't convert your file into PDF format.")
+
+            return ConversationHandler.END
+
+        return convert_to_pdf(bot, update, file_id, file_mime_type)
+    elif not file_mime_type.endswith("pdf"):
         return ConversationHandler.END
-    elif mime_type.endswith("pdf") and file_size > MAX_FILESIZE_DOWNLOAD:
+    elif file_mime_type.endswith("pdf") and file_size > MAX_FILESIZE_DOWNLOAD:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't perform any tasks on your PDF file.")
 
@@ -587,16 +587,77 @@ def check_doc(bot, update, user_data):
     return WAIT_TASK
 
 
+# Converts a file into PDF format
+@run_async
+def convert_to_pdf(bot, update, file_id, file_mime_type):
+    update.message.reply_text("Converting your file into PDF format.")
+
+    temp_files = [tempfile.NamedTemporaryFile(prefix="Converted_", suffix=".pdf")]
+    out_filename = temp_files[0].name
+
+    if file_mime_type.endswith("word"):
+        tf = tempfile.NamedTemporaryFile(suffix=".doc")
+        filename = tf.name
+    elif file_mime_type.endswith("document"):
+        tf = tempfile.NamedTemporaryFile(suffix=".docx")
+        filename = tf.name
+    elif file_mime_type.endswith("powerpoint"):
+        tf = tempfile.NamedTemporaryFile(suffix=".ppt")
+        filename = tf.name
+    elif file_mime_type.endswith("presentation"):
+        tf = tempfile.NamedTemporaryFile(suffix=".pptx")
+        filename = tf.name
+    else:
+        tf = tempfile.NamedTemporaryFile(suffix=".odt")
+        filename = tf.name
+
+    temp_files.append(tf)
+    convert_file = bot.get_file(file_id)
+    convert_file.download(custom_path=filename)
+    download_converter()
+
+    command = "java -jar doc-converter.jar -i {in_filename} -o {out_filename}". \
+        format(out_filename=out_filename, in_filename=filename)
+
+    process = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
+    process_out, process_err = process.communicate()
+
+    if process.returncode != 0 or not os.path.exists(out_filename) or "[Errno" in process_err.decode("utf8").strip():
+        update.message.reply_text("Something went wrong. Please try again.")
+
+        return
+
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+        update.message.reply_text("The converted PDF file is too large for me to send to you. Sorry.")
+    else:
+        update.message.reply_document(document=open(out_filename, "rb"),
+                                      caption="Here is your PDF file.")
+
+    for tf in temp_files:
+        tf.close()
+
+    return ConversationHandler.END
+
+
+# Downloads converter
+def download_converter():
+    if not os.path.exists("doc-converter.jar"):
+        r = requests.get(converter_url)
+
+        with open("doc-converter.jar", "wb") as f:
+            f.write(r.content)
+
+
 # Checks if PDF file is encrypted
 def is_pdf_encrypted(bot, file_id):
-    filename = random_string(20)
+    tf = tempfile.NamedTemporaryFile()
+    filename = tf.name
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
 
     pdf_reader = PdfFileReader(open(filename, "rb"))
     encrypted = pdf_reader.isEncrypted
-
-    os.remove(filename)
+    tf.close()
 
     return encrypted
 
@@ -607,14 +668,14 @@ def get_pdf_cover_img(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
-    tele_id = update.message.from_user.id
-    update.message.reply_text("Extracting a cover preview for your PDF file.",
-                              reply_markup=ReplyKeyboardRemove())
-
     file_id = user_data["pdf_id"]
-    filename = "%d_cover_source.pdf" % tele_id
-    tmp_filename = "%d_cover_tmp.pdf" % tele_id
-    out_filename = "%d_cover.jpg" % tele_id
+    update.message.reply_text("Extracting a cover preview for your PDF file.", reply_markup=ReplyKeyboardRemove())
+
+    temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
+    temp_files.append(tempfile.NamedTemporaryFile(prefix="Cover_", suffix=".jpg"))
+    filename = temp_files[0].name
+    tmp_filename = temp_files[1].name
+    out_filename = temp_files[2].name
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
@@ -638,9 +699,8 @@ def get_pdf_cover_img(bot, update, user_data):
 
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
-    os.remove(filename)
-    os.remove(tmp_filename)
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
 
@@ -660,17 +720,16 @@ def decrypt_pdf(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
-    tele_id = update.message.from_user.id
+    file_id = user_data["pdf_id"]
     pw = update.message.text
     update.message.reply_text("Decrypting your PDF file.")
 
-    file_id = user_data["pdf_id"]
-    filename = "%d_decrypt_source.pdf" % tele_id
-    out_filename = "%d_decrypted.pdf" % tele_id
+    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Decrypted_", suffix=".pdf")]
+    filename = temp_files[0].name
+    out_filename = temp_files[1].name
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
-
     pdf_reader = PdfFileReader(open(filename, "rb"))
 
     try:
@@ -699,8 +758,8 @@ def decrypt_pdf(bot, update, user_data):
 
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
-    os.remove(filename)
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
 
@@ -720,13 +779,13 @@ def encrypt_pdf(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
-    tele_id = update.message.from_user.id
+    file_id = user_data["pdf_id"]
     pw = update.message.text
     update.message.reply_text("Encrypting your PDF file.")
 
-    file_id = user_data["pdf_id"]
-    filename = "%d_encrypt_source.pdf" % tele_id
-    out_filename = "%d_encrypted.pdf" % tele_id
+    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Encrypted_", suffix=".pdf")]
+    filename = temp_files[0].name
+    out_filename = temp_files[1].name
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
@@ -750,8 +809,8 @@ def encrypt_pdf(bot, update, user_data):
 
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
-    os.remove(filename)
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
 
@@ -762,15 +821,13 @@ def pdf_to_img(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
-    tele_id = update.message.from_user.id
-    update.message.reply_text("Converting your PDF file into images.",
-                              reply_markup=ReplyKeyboardRemove())
-
     file_id = user_data["pdf_id"]
-    filename = "%d_cover_source.pdf" % tele_id
-    image_dir = "%d_pdf_image" % tele_id
-    image_filename = image_dir + "/%d_image.jpg" % tele_id
-    os.mkdir(image_dir)
+    update.message.reply_text("Converting your PDF file into images.", reply_markup=ReplyKeyboardRemove())
+
+    temp_dir = tempfile.TemporaryDirectory(prefix="PDF_Image_")
+    image_dir = temp_dir.name
+    filename = tempfile.NamedTemporaryFile(dir=image_dir).name
+    image_filename = tempfile.NamedTemporaryFile(dir=image_dir, prefix="PDF_Image_", suffix=".jpg").name
     out_filename = image_dir + ".zip"
 
     pdf_file = bot.get_file(file_id)
@@ -781,17 +838,16 @@ def pdf_to_img(bot, update, user_data):
             converted.save(filename=image_filename)
 
     shutil.make_archive(image_dir, "zip", image_dir)
-    shutil.rmtree(image_dir)
 
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The images of your PDF file are too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your PDF file images.")
+                                      caption="Here are your PDF file images.")
 
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
-    os.remove(filename)
+    temp_dir.cleanup()
     os.remove(out_filename)
 
     return ConversationHandler.END
@@ -815,14 +871,14 @@ def rotate_pdf(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
-    tele_id = update.message.from_user.id
+    file_id = user_data["pdf_id"]
     rotate_degree = int(update.message.text)
     update.message.reply_text("Rotating your PDF file clockwise by %d degrees." % rotate_degree,
                               reply_markup=ReplyKeyboardRemove())
 
-    file_id = user_data["pdf_id"]
-    filename = "%d_rotate_source.pdf" % tele_id
-    out_filename = "%d_rotated.pdf" % tele_id
+    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Rotated_", suffix=".pdf")]
+    filename = temp_files[0].name
+    out_filename = temp_files[1].name
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
@@ -844,8 +900,8 @@ def rotate_pdf(bot, update, user_data):
 
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
-    os.remove(filename)
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
 
@@ -899,14 +955,14 @@ def pdf_scale_by(bot, update, user_data):
 
         return WAIT_SCALE_BY_Y
 
+    file_id = user_data["pdf_id"]
     scale_x = user_data["scale_by_x"]
-    tele_id = update.message.from_user.id
     update.message.reply_text("Scaling your PDF file, horizontally by {:g} and vertically by {:g}.".
                               format(scale_x, scale_y))
 
-    file_id = user_data["pdf_id"]
-    filename = "%d_scale_by_source.pdf" % tele_id
-    out_filename = "%d_scaled_by.pdf" % tele_id
+    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Scaled_By_", suffix=".pdf")]
+    filename = temp_files[0].name
+    out_filename = temp_files[1].name
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
@@ -931,8 +987,8 @@ def pdf_scale_by(bot, update, user_data):
         del user_data["pdf_id"]
     if user_data["scale_by_x"] == scale_x:
         del user_data["scale_by_x"]
-    os.remove(filename)
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
 
@@ -970,14 +1026,14 @@ def pdf_scale_to(bot, update, user_data):
 
         return WAIT_SCALE_TO_Y
 
+    file_id = user_data["pdf_id"]
     scale_x = user_data["scale_to_x"]
-    tele_id = update.message.from_user.id
     update.message.reply_text("Scaling your PDF file with width of {:g} and height of {:g}.".
                               format(scale_x, scale_y))
 
-    file_id = user_data["pdf_id"]
-    filename = "%d_scale_to_source.pdf" % tele_id
-    out_filename = "%d_scaled_to.pdf" % tele_id
+    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Scaled_To_", suffix=".pdf")]
+    filename = temp_files[0].name
+    out_filename = temp_files[1].name
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
@@ -1002,8 +1058,8 @@ def pdf_scale_to(bot, update, user_data):
         del user_data["pdf_id"]
     if user_data["scale_to_x"] == scale_x:
         del user_data["scale_to_x"]
-    os.remove(filename)
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
 
@@ -1024,13 +1080,13 @@ def split_pdf(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
-    tele_id = update.message.from_user.id
+    file_id = user_data["pdf_id"]
     split_range = update.message.text
     update.message.reply_text("Splitting your PDF file.")
 
-    file_id = user_data["pdf_id"]
-    filename = "%d_split_source.pdf" % tele_id
-    out_filename = "%d_split.pdf" % tele_id
+    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Split_", suffix=".pdf")]
+    filename = temp_files[0].name
+    out_filename = temp_files[1].name
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
@@ -1062,15 +1118,10 @@ def split_pdf(bot, update, user_data):
 
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
-    os.remove(filename)
-    os.remove(out_filename)
+    for tf in temp_files:
+        tf.close()
 
     return ConversationHandler.END
-
-
-# Returns random string
-def random_string(length):
-    return "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
 
 
 # Creates a feedback conversation handler
