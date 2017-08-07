@@ -13,6 +13,7 @@ import requests
 
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 from subprocess import Popen, PIPE
+from wand.image import Image
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import *
@@ -539,7 +540,8 @@ def pdf_cov_handler():
         entry_points=[MessageHandler(merged_filter, check_doc, pass_user_data=True)],
 
         states={
-            WAIT_TASK: [RegexHandler("^Decrypt$", ask_decrypt_pw),
+            WAIT_TASK: [RegexHandler("^Cover$", get_pdf_cover_img, pass_user_data=True),
+                        RegexHandler("^Decrypt$", ask_decrypt_pw),
                         RegexHandler("^Encrypt$", ask_encrypt_pw),
                         RegexHandler("^Rotate$", ask_rotate_degree),
                         RegexHandler("^Scale By$", ask_scale_x),
@@ -582,7 +584,7 @@ def check_doc(bot, update, user_data):
     if is_pdf_encrypted(bot, file_id):
         keywords = ["Decrypt"]
     else:
-        keywords = sorted(["Encrypt", "Rotate", "Scale By", "Scale To", "Split"])
+        keywords = sorted(["Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover"])
 
     user_data["pdf_id"] = file_id
     keyboard_size = 3
@@ -607,6 +609,49 @@ def is_pdf_encrypted(bot, file_id):
     os.remove(filename)
 
     return encrypted
+
+
+# Gets the PDF cover in jpg format
+def get_pdf_cover_img(bot, update, user_data):
+    if "pdf_id" not in user_data:
+        return ConversationHandler.END
+
+    tele_id = update.message.from_user.id
+    update.message.reply_text("Extracting a cover preview for your PDF file.",
+                              reply_markup=ReplyKeyboardRemove())
+
+    file_id = user_data["pdf_id"]
+    filename = "%d_cover_source.pdf" % tele_id
+    tmp_filename = "%d_cover_tmp.pdf" % tele_id
+    out_filename = "%d_cover.jpg" % tele_id
+
+    pdf_file = bot.get_file(file_id)
+    pdf_file.download(custom_path=filename)
+
+    pdf_reader = PdfFileReader(open(filename, "rb"))
+    pdf_writer = PdfFileWriter()
+    pdf_writer.addPage(pdf_reader.getPage(0))
+
+    with open(tmp_filename, "wb") as f:
+        pdf_writer.write(f)
+
+    with Image(filename=tmp_filename, resolution=300) as img:
+        with img.convert("jpg") as converted:
+            converted.save(filename=out_filename)
+
+    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+        update.message.reply_text("The cover preview is too large for me to send to you. Sorry.")
+    else:
+        update.message.reply_photo(photo=open(out_filename, "rb"),
+                                   caption="Here is the cover preview of your PDF file.")
+
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
+    os.remove(filename)
+    os.remove(tmp_filename)
+    os.remove(out_filename)
+
+    return ConversationHandler.END
 
 
 # Asks user for decryption password
