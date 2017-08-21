@@ -83,8 +83,9 @@ def main():
 def start(bot, update):
     text = "Welcome to PDF Bot!\n\n"
     text += "I can compare, decrypt, encrypt, merge, rotate, scale, split and add watermark to a PDF file.\n\n "
-    text += "I can also convert doc, docx, ppt, pptx and odt files into PDF format and convert a PDF file into " \
-            "images.\n\n"
+    # text += "I can also convert doc, docx, ppt, pptx and odt files into PDF format and convert a PDF file into " \
+    #         "images.\n\n"
+    text += "I can also convert a PDF file into images.\n\n"
     text += "Type /help to see how to use me."
 
     try:
@@ -100,8 +101,8 @@ def help(bot, update):
            "will guide you through each of the tasks.\n\n"
     text += "If you want to compare, merge or add watermark to PDF files, you will have to use the /command, " \
             "/merge or /watermark commands respectively.\n\n"
-    text += "If you want to convert a file into PDF format, simply send me one of the supported formats and I'll " \
-            "convert it for you.\n\n"
+    # text += "If you want to convert a file into PDF format, simply send me one of the supported formats and I'll " \
+    #         "convert it for you.\n\n"
     text += "Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. " \
             "If the result files are too large, I will not be able to send you the file.\n\n"
 
@@ -554,18 +555,18 @@ def check_doc(bot, update, user_data):
     file_mime_type = doc.mime_type
     file_id = doc.file_id
     file_size = doc.file_size
-    convert_mime_types = ("msword", "officedocument.wordprocessingml.document", "ms-powerpoint",
-                          "officedocument.presentationml.presentation", "opendocument.text")
+    # convert_mime_types = ("msword", "officedocument.wordprocessingml.document", "ms-powerpoint",
+    #                       "officedocument.presentationml.presentation", "opendocument.text")
 
-    if file_mime_type.endswith(convert_mime_types):
-        if file_size > MAX_FILESIZE_DOWNLOAD:
-            update.message.reply_text("The file you sent is too large for me to download. "
-                                      "Sorry that I can't convert your file into PDF format.")
-
-            return ConversationHandler.END
-
-        return convert_to_pdf(bot, update, file_id, file_mime_type)
-    elif not file_mime_type.endswith("pdf"):
+    # if file_mime_type.endswith(convert_mime_types):
+    #     if file_size > MAX_FILESIZE_DOWNLOAD:
+    #         update.message.reply_text("The file you sent is too large for me to download. "
+    #                                   "Sorry that I can't convert your file into PDF format.")
+    #
+    #         return ConversationHandler.END
+    #
+    #     return convert_to_pdf(bot, update, file_id, file_mime_type)
+    if not file_mime_type.endswith("pdf"):
         return ConversationHandler.END
     elif file_mime_type.endswith("pdf") and file_size > MAX_FILESIZE_DOWNLOAD:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
