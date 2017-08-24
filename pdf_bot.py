@@ -12,6 +12,7 @@ import smtplib
 import tempfile
 
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
+from PyPDF2.utils import PdfReadError
 from subprocess import Popen, PIPE
 from wand.image import Image
 
@@ -298,8 +299,13 @@ def receive_merge_file(bot, update, user_data):
             update.message.reply_text(text)
 
             return ConversationHandler.END
-    elif is_pdf_encrypted(bot, file_id):
-        text = "The PDF file you sent is encrypted. Please decrypt it yourself or use decrypt it with me first. "
+
+    is_encrypted = is_pdf_encrypted(bot, file_id)
+    if is_encrypted or is_encrypted is None:
+        if is_encrypted is None:
+            text = "Your PDF file is invalid and I couldn't read it. "
+        else:
+            text = "The PDF file you sent is encrypted. Please decrypt it yourself or use decrypt it with me first. "
 
         if "merge_filenames" in user_data and user_data["merge_filenames"]:
             text += "\n\nYou can continue merging with the files that you sent me or type /cancel to cancel this " \
@@ -506,7 +512,12 @@ def check_pdf(bot, update):
         return_type = 2
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't process your PDF file. Operation cancelled.")
-    elif is_pdf_encrypted(bot, file_id):
+
+    is_encrypted = is_pdf_encrypted(bot, file_id)
+    if is_encrypted is None:
+        return_type = 3
+        update.message.reply_text("Your PDF file is invalid and I couldn't read it. Operation cancelled.")
+    elif is_encrypted:
         return_type = 3
         update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or decrypt it with "
                                   "me first. Operation cancelled.")
@@ -574,7 +585,12 @@ def check_doc(bot, update, user_data):
 
         return ConversationHandler.END
 
-    if is_pdf_encrypted(bot, file_id):
+    is_encrypted = is_pdf_encrypted(bot, file_id)
+    if is_encrypted is None:
+        update.message.reply_text("Your PDF file is invalid and I couldn't read it.")
+
+        return ConversationHandler.END
+    elif is_encrypted:
         keywords = ["Decrypt"]
     else:
         keywords = sorted(["Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover", "To Images"])
@@ -659,7 +675,12 @@ def is_pdf_encrypted(bot, file_id):
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
 
-    pdf_reader = PdfFileReader(open(filename, "rb"))
+    try:
+        pdf_reader = PdfFileReader(open(filename, "rb"))
+    except PdfReadError:
+        tf.close()
+        return None
+
     encrypted = pdf_reader.isEncrypted
     tf.close()
 
