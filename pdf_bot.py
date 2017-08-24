@@ -86,7 +86,7 @@ def start(bot, update):
     text += "I can compare, decrypt, encrypt, merge, rotate, scale, split and add watermark to a PDF file.\n\n "
     # text += "I can also convert doc, docx, ppt, pptx and odt files into PDF format and convert a PDF file into " \
     #         "images.\n\n"
-    text += "I can also convert a PDF file into images.\n\n"
+    text += "I can also extract images in a PDF file and convert a PDF file into images.\n\n"
     text += "Type /help to see how to use me."
 
     try:
