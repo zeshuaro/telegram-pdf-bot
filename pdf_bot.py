@@ -10,11 +10,12 @@ import shlex
 import shutil
 import smtplib
 import tempfile
+import wand.image
 
+from PIL import Image as PillowImage
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 from PyPDF2.utils import PdfReadError
 from subprocess import Popen, PIPE
-from wand.image import Image
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove, ChatAction
 from telegram.constants import *
@@ -33,10 +34,9 @@ dotenv.load(dotenv_path)
 app_url = os.environ.get("APP_URL")
 port = int(os.environ.get('PORT', '5000'))
 
-telegram_token = os.environ.get("TELEGRAM_TOKEN_BETA") if os.environ.get("TELEGRAM_TOKEN_BETA") \
-    else os.environ.get("TELEGRAM_TOKEN")
+telegram_token = os.environ.get("TELEGRAM_TOKEN_BETA", os.environ.get("TELEGRAM_TOKEN"))
 dev_tele_id = int(os.environ.get("DEV_TELE_ID"))
-dev_email = os.environ.get("DEV_EMAIL") if os.environ.get("DEV_EMAIL") else "sample@email.com"
+dev_email = os.environ.get("DEV_EMAIL", "sample@email.com")
 dev_email_pw = os.environ.get("DEV_EMAIL_PW")
 is_email_feedback = os.environ.get("IS_EMAIL_FEEDBACK")
 smtp_host = os.environ.get("SMTP_HOST")
@@ -541,6 +541,7 @@ def pdf_cov_handler():
             WAIT_TASK: [RegexHandler("^Cover$", get_pdf_cover_img, pass_user_data=True),
                         RegexHandler("^Decrypt$", ask_decrypt_pw),
                         RegexHandler("^Encrypt$", ask_encrypt_pw),
+                        RegexHandler("^Extract Images$", get_pdf_img, pass_user_data=True),
                         RegexHandler("^To Images$", pdf_to_img, pass_user_data=True),
                         RegexHandler("^Rotate$", ask_rotate_degree),
                         RegexHandler("^Scale By$", ask_scale_x),
@@ -600,7 +601,8 @@ def check_doc(bot, update, user_data):
     elif is_encrypted:
         keywords = ["Decrypt"]
     else:
-        keywords = sorted(["Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover", "To Images"])
+        keywords = sorted(["Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover", "To Images",
+                           "Extract Images"])
 
     user_data["pdf_id"] = file_id
     keyboard_size = 3
@@ -719,7 +721,7 @@ def get_pdf_cover_img(bot, update, user_data):
     with open(tmp_filename, "wb") as f:
         pdf_writer.write(f)
 
-    with Image(filename=tmp_filename, resolution=300) as img:
+    with wand.image.Image(filename=tmp_filename, resolution=300) as img:
         with img.convert("jpg") as converted:
             converted.save(filename=out_filename)
 
@@ -850,6 +852,77 @@ def encrypt_pdf(bot, update, user_data):
     return ConversationHandler.END
 
 
+# Gets the images in the PDF file
+@run_async
+def get_pdf_img(bot, update, user_data):
+    if "pdf_id" not in user_data:
+        return ConversationHandler.END
+
+    file_id = user_data["pdf_id"]
+    update.message.reply_text("Extracting all the images in your PDF file.", reply_markup=ReplyKeyboardRemove())
+
+    temp_dir = tempfile.TemporaryDirectory(prefix="Images_")
+    image_dir = temp_dir.name
+    tf = tempfile.NamedTemporaryFile()
+    filename = tf.name
+    out_filename = image_dir + ".zip"
+
+    pdf_file = bot.get_file(file_id)
+    pdf_file.download(custom_path=filename)
+    pdf_reader = PdfFileReader(open(filename, "rb"))
+
+    for page in pdf_reader.pages:
+        if "/Resources" in page and "/XObject" in page["/Resources"]:
+            xObject = page["/Resources"]["/XObject"].getObject()
+    
+            for obj in xObject:
+                if xObject[obj]["/Subtype"] == "/Image":
+                    size = (xObject[obj]["/Width"], xObject[obj]["/Height"])
+
+                    try:
+                        data = xObject[obj].getData()
+                    except PdfReadError:
+                        continue
+
+                    if xObject[obj]["/ColorSpace"] == "/DeviceRGB":
+                        mode = "RGB"
+                    else:
+                        mode = "P"
+    
+                    if xObject[obj]["/Filter"] == "/FlateDecode":
+                        try:
+                            img = PillowImage.frombytes(mode, size, data)
+                            img.save(tempfile.NamedTemporaryFile(dir=image_dir, suffix=".png").name)
+                        except TypeError:
+                            pass
+                    elif xObject[obj]["/Filter"] == "/DCTDecode":
+                        with open(tempfile.NamedTemporaryFile(dir=image_dir, suffix=".jpg").name, "wb") as img:
+                            img.write(data)
+                    elif xObject[obj]["/Filter"] == "/JPXDecode":
+                        with open(tempfile.NamedTemporaryFile(dir=image_dir, suffix=".jp2").name, "wb") as img:
+                            img.write(data)
+
+    if not os.listdir(image_dir):
+        update.message.reply_text("I couldn't find any images in your PDF file.")
+    else:
+        shutil.make_archive(image_dir, "zip", image_dir)
+
+        if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The images in your PDF file are too large for me to send to you. Sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_filename, "rb"),
+                                          caption="Here are all the images in your PDF file.")
+
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
+    temp_dir.cleanup()
+    tf.close()
+    os.remove(out_filename)
+
+    return ConversationHandler.END
+
+
 # Gets the PDF cover in jpg format
 @run_async
 def pdf_to_img(bot, update, user_data):
@@ -861,14 +934,15 @@ def pdf_to_img(bot, update, user_data):
 
     temp_dir = tempfile.TemporaryDirectory(prefix="PDF_Image_")
     image_dir = temp_dir.name
-    filename = tempfile.NamedTemporaryFile(dir=image_dir).name
+    tf = tempfile.NamedTemporaryFile()
+    filename = tf.name
     image_filename = tempfile.NamedTemporaryFile(dir=image_dir, prefix="PDF_Image_", suffix=".jpg").name
     out_filename = image_dir + ".zip"
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
 
-    with Image(filename=filename, resolution=300) as img:
+    with wand.image.Image(filename=filename, resolution=300) as img:
         with img.convert("jpg") as converted:
             converted.save(filename=image_filename)
 
@@ -884,6 +958,7 @@ def pdf_to_img(bot, update, user_data):
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     temp_dir.cleanup()
+    tf.close()
     os.remove(out_filename)
 
     return ConversationHandler.END
