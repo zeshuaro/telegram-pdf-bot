@@ -16,7 +16,7 @@ from PyPDF2.utils import PdfReadError
 from subprocess import Popen, PIPE
 from wand.image import Image
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove, ChatAction
 from telegram.constants import *
 from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, RegexHandler, Filters
 from telegram.ext.dispatcher import run_async
@@ -224,6 +224,7 @@ def compare_pdf(bot, update, user_data, second_file_id):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The difference result file is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here are the differences between your PDF files.")
 
@@ -376,6 +377,7 @@ def merge_pdf(bot, update, user_data):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The merged PDF file is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your merged PDF file.")
 
@@ -485,6 +487,7 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The watermarked PDF file is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your watermarked PDF file.")
 
@@ -498,6 +501,8 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
 
 # Checks PDF files
 def check_pdf(bot, update):
+    update.message.chat.send_action(ChatAction.TYPING)
+
     return_type = 0
     pdf_file = update.message.document
     mime_type = pdf_file.mime_type
@@ -562,6 +567,8 @@ def pdf_cov_handler():
 # Checks if the document is a PDF file and if it exceeds the download size limit
 @run_async
 def check_doc(bot, update, user_data):
+    update.message.chat.send_action(ChatAction.TYPING)
+
     doc = update.message.document
     file_mime_type = doc.mime_type
     file_id = doc.file_id
@@ -719,6 +726,7 @@ def get_pdf_cover_img(bot, update, user_data):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The cover preview is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
         update.message.reply_photo(photo=open(out_filename, "rb"),
                                    caption="Here is the cover preview of your PDF file.")
 
@@ -778,6 +786,7 @@ def decrypt_pdf(bot, update, user_data):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The decrypted PDF file is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your decrypted PDF file.")
 
@@ -829,6 +838,7 @@ def encrypt_pdf(bot, update, user_data):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The encrypted PDF file is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your encrypted PDF file.")
 
@@ -867,6 +877,7 @@ def pdf_to_img(bot, update, user_data):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The images of your PDF file are too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here are your PDF file images.")
 
@@ -920,6 +931,7 @@ def rotate_pdf(bot, update, user_data):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The rotated PDF file is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your rotated PDF file.")
 
@@ -1005,6 +1017,7 @@ def pdf_scale_by(bot, update, user_data):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your scaled PDF file.")
 
@@ -1076,6 +1089,7 @@ def pdf_scale_to(bot, update, user_data):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your scaled PDF file.")
 
@@ -1138,6 +1152,7 @@ def split_pdf(bot, update, user_data):
     if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The split PDF file is too large for me to send to you. Sorry.")
     else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here is your split PDF file.")
 
