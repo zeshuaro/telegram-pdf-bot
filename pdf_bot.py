@@ -221,7 +221,7 @@ def compare_pdf(bot, update, user_data, second_file_id):
     with open(out_filename, "wb") as f:
         f.write(process_out)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The difference result file is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -285,7 +285,7 @@ def receive_merge_file(bot, update, user_data):
                                   "like to merge or type /cancel to cancel this operation.")
 
         return WAIT_MERGE_FILE
-    elif file_size > MAX_FILESIZE_DOWNLOAD:
+    elif file_size >= MAX_FILESIZE_DOWNLOAD:
         text = "The PDF file you sent is too large for me to download.\n\n"
 
         if "merge_filenames" in user_data and user_data["merge_filenames"]:
@@ -374,7 +374,7 @@ def merge_pdf(bot, update, user_data):
     with open(out_filename, "wb") as f:
         merger.write(f)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The merged PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -484,7 +484,7 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The watermarked PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -513,7 +513,7 @@ def check_pdf(bot, update):
         return_type = 1
         update.message.reply_text("The file you sent is not a PDF file. Please try again and send me a PDF file or "
                                   "type /cancel to cancel the operation.")
-    elif file_size > MAX_FILESIZE_DOWNLOAD:
+    elif file_size >= MAX_FILESIZE_DOWNLOAD:
         return_type = 2
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't process your PDF file. Operation cancelled.")
@@ -578,7 +578,7 @@ def check_doc(bot, update, user_data):
     #                       "officedocument.presentationml.presentation", "opendocument.text")
 
     # if file_mime_type.endswith(convert_mime_types):
-    #     if file_size > MAX_FILESIZE_DOWNLOAD:
+    #     if file_size >= MAX_FILESIZE_DOWNLOAD:
     #         update.message.reply_text("The file you sent is too large for me to download. "
     #                                   "Sorry that I can't convert your file into PDF format.")
     #
@@ -587,7 +587,7 @@ def check_doc(bot, update, user_data):
     #     return convert_to_pdf(bot, update, file_id, file_mime_type)
     if not file_mime_type.endswith("pdf"):
         return ConversationHandler.END
-    elif file_mime_type.endswith("pdf") and file_size > MAX_FILESIZE_DOWNLOAD:
+    elif file_mime_type.endswith("pdf") and file_size >= MAX_FILESIZE_DOWNLOAD:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't perform any tasks on your PDF file.")
 
@@ -656,7 +656,7 @@ def convert_to_pdf(bot, update, file_id, file_mime_type):
 
         return ConversationHandler.END
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The converted PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.reply_document(document=open(out_filename, "rb"),
@@ -725,7 +725,7 @@ def get_pdf_cover_img(bot, update, user_data):
         with img.convert("jpg") as converted:
             converted.save(filename=out_filename)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The cover preview is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
@@ -785,7 +785,7 @@ def decrypt_pdf(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The decrypted PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -837,7 +837,7 @@ def encrypt_pdf(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The encrypted PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -881,7 +881,7 @@ def get_pdf_img(bot, update, user_data):
 
                     try:
                         data = xObject[obj].getData()
-                    except PdfReadError:
+                    except:
                         continue
 
                     if xObject[obj]["/ColorSpace"] == "/DeviceRGB":
@@ -907,7 +907,7 @@ def get_pdf_img(bot, update, user_data):
     else:
         shutil.make_archive(image_dir, "zip", image_dir)
 
-        if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
             update.message.reply_text("The images in your PDF file are too large for me to send to you. Sorry.")
         else:
             update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -948,7 +948,7 @@ def pdf_to_img(bot, update, user_data):
 
     shutil.make_archive(image_dir, "zip", image_dir)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The images of your PDF file are too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -1003,7 +1003,7 @@ def rotate_pdf(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The rotated PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -1089,7 +1089,7 @@ def pdf_scale_by(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -1161,7 +1161,7 @@ def pdf_scale_to(bot, update, user_data):
     with open(out_filename, "wb") as f:
         pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
@@ -1224,7 +1224,7 @@ def split_pdf(bot, update, user_data):
 
         return WAIT_SPLIT_RANGE
 
-    if os.path.getsize(out_filename) > MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The split PDF file is too large for me to send to you. Sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
