@@ -2,16 +2,15 @@
 # coding: utf-8
 
 import dotenv
-import langdetect
 import logging
 import os
 import requests
 import shlex
 import shutil
-import smtplib
 import tempfile
 import wand.image
 
+from feedback_bot import feedback_cov_handler
 from PIL import Image as PillowImage
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 from PyPDF2.utils import PdfReadError
@@ -30,7 +29,7 @@ logging.basicConfig(format="[%(asctime)s] [%(levelname)s] %(message)s", datefmt=
 logger = logging.getLogger(__name__)
 
 dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
-dotenv.load(dotenv_path)
+dotenv.load_dotenv(dotenv_path)
 app_url = os.environ.get("APP_URL")
 port = int(os.environ.get('PORT', '5000'))
 
@@ -46,14 +45,14 @@ converter_url = os.environ.get("CONVERTER_URL", ) if os.environ.get("CONVERTER_U
 
 def main():
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(telegram_token)
+    updater = Updater(telegram_token, request_kwargs={"connect_timeout": 20, "read_timeout": 20})
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
     # on different commands - answer in Telegram
-    dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("help", help))
-    dp.add_handler(CommandHandler("donate", donate))
+    dp.add_handler(CommandHandler("start", start_msg))
+    dp.add_handler(CommandHandler("help", help_msg))
+    dp.add_handler(CommandHandler("donate", donate_msg))
     dp.add_handler(compare_cov_handler())
     dp.add_handler(merge_cov_handler())
     dp.add_handler(watermark_cov_handler())
@@ -81,23 +80,19 @@ def main():
 
 # Sends start message
 @run_async
-def start(bot, update):
+def start_msg(bot, update):
     text = "Welcome to PDF Bot!\n\n"
     text += "I can compare, decrypt, encrypt, merge, rotate, scale, split and add watermark to a PDF file.\n\n "
     # text += "I can also convert doc, docx, ppt, pptx and odt files into PDF format and convert a PDF file into " \
     #         "images.\n\n"
     text += "I can also extract images in a PDF file and convert a PDF file into images.\n\n"
     text += "Type /help to see how to use me."
-
-    try:
-        bot.sendMessage(update.message.from_user.id, text)
-    except:
-        return
+    update.message.reply_text(text)
 
 
 # Sends help message
 @run_async
-def help(bot, update):
+def help_msg(bot, update):
     text = "You can perform most of the tasks simply by sending me a PDF file. You can then select a task and I " \
            "will guide you through each of the tasks.\n\n"
     text += "If you want to compare, merge or add watermark to PDF files, you will have to use the /command, " \
@@ -110,23 +105,15 @@ def help(bot, update):
     keyboard = [[InlineKeyboardButton("Join Channel", "https://t.me/pdf2botdev"),
                  InlineKeyboardButton("Rate me", "https://t.me/storebot?start=pdf2bot")]]
     reply_markup = InlineKeyboardMarkup(keyboard)
-
-    try:
-        bot.sendMessage(update.message.from_user.id, text, reply_markup=reply_markup)
-    except:
-        return
+    update.message.reply_text(text, reply_markup=reply_markup)
 
 
 # Sends donate message
 @run_async
-def donate(bot, update):
+def donate_msg(bot, update):
     text = "Want to help keep me online? Please donate to %s through PayPal.\n\nDonations help me to stay on my " \
            "server and keep running." % dev_email
-
-    try:
-        bot.send_message(update.message.from_user.id, text)
-    except:
-        return
+    update.message.reply_text(text)
 
 
 # Creates a compare conversation handler
@@ -1235,66 +1222,6 @@ def split_pdf(bot, update, user_data):
         del user_data["pdf_id"]
     for tf in temp_files:
         tf.close()
-
-    return ConversationHandler.END
-
-
-# Creates a feedback conversation handler
-def feedback_cov_handler():
-    conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('feedback', feedback)],
-
-        states={
-            0: [MessageHandler(Filters.text, receive_feedback)],
-        },
-
-        fallbacks=[CommandHandler("cancel", cancel)],
-
-        allow_reentry=True
-    )
-
-    return conv_handler
-
-
-# Sends a feedback message
-@run_async
-def feedback(bot, update):
-    update.message.reply_text("Please send me your feedback or type /cancel to cancel this operation. My developer "
-                              "can understand English and Chinese.")
-
-    return 0
-
-
-# Saves a feedback
-@run_async
-def receive_feedback(bot, update):
-    feedback_msg = update.message.text
-    valid_lang = False
-    langdetect.DetectorFactory.seed = 0
-    langs = langdetect.detect_langs(feedback_msg)
-
-    for lang in langs:
-        if lang.lang in ("en", "zh-tw", "zh-cn"):
-            valid_lang = True
-            break
-
-    if not valid_lang:
-        update.message.reply_text("The feedback you sent is not in English or Chinese. Please try again.")
-        return 0
-
-    update.message.reply_text("Thank you for your feedback, I will let my developer know.")
-
-    if is_email_feedback:
-        server = smtplib.SMTP(smtp_host)
-        server.ehlo()
-        server.starttls()
-        server.login(dev_email, dev_email_pw)
-
-        text = "Feedback received from %d\n\n%s" % (update.message.from_user.id, update.message.text)
-        message = "Subject: %s\n\n%s" % ("Telegram PDF Bot Feedback", text)
-        server.sendmail(dev_email, dev_email, message)
-    else:
-        logger.info("Feedback received from %d: %s" % (update.message.from_user.id, update.message.text))
 
     return ConversationHandler.END
 
