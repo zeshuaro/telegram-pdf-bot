@@ -267,18 +267,13 @@ def merge(bot, update, user_data):
 # Receive and check for the PDF file
 @run_async
 def receive_merge_file(bot, update, user_data):
-    pdf_file = update.message.document
-    filename = pdf_file.file_name
-    mime_type = pdf_file.mime_type
-    file_id = pdf_file.file_id
-    file_size = pdf_file.file_size
-
-    if not mime_type.endswith("pdf"):
+    result = check_pdf(bot, update)
+    if result == PDF_INVALID_FORMAT:
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you'll "
                                   "like to merge or type /cancel to cancel this operation.")
 
         return WAIT_MERGE_FILE
-    elif file_size >= MAX_FILESIZE_DOWNLOAD:
+    elif result == PDF_TOO_LARGE:
         text = "The PDF file you sent is too large for me to download.\n\n"
 
         if "merge_filenames" in user_data and user_data["merge_filenames"]:
@@ -292,6 +287,10 @@ def receive_merge_file(bot, update, user_data):
             update.message.reply_text(text)
 
             return ConversationHandler.END
+
+    pdf_file = update.message.document
+    filename = pdf_file.file_name
+    file_id = pdf_file.file_id
 
     if "merge_file_ids" in user_data and user_data["merge_file_ids"]:
         user_data["merge_file_ids"].append(file_id)
@@ -488,7 +487,6 @@ def check_pdf(bot, update):
     pdf_status = PDF_OK
     pdf_file = update.message.document
     mime_type = pdf_file.mime_type
-    file_id = pdf_file.file_id
     file_size = pdf_file.file_size
 
     if not mime_type.endswith("pdf"):
