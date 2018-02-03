@@ -21,31 +21,31 @@ from telegram.constants import *
 from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, RegexHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_cov_states import *
+from pdf_bot_globals import *
 
 # Enable logging
 logging.basicConfig(format="[%(asctime)s] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %I:%M:%S %p',
                     level=logging.INFO)
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
 dotenv.load_dotenv(dotenv_path)
-app_url = os.environ.get("APP_URL")
-port = int(os.environ.get('PORT', '5000'))
+APP_URL = os.environ.get("APP_URL")
+PORT = int(os.environ.get("PORT", "5000"))
 
-telegram_token = os.environ.get("TELEGRAM_TOKEN_BETA", os.environ.get("TELEGRAM_TOKEN"))
-dev_tele_id = int(os.environ.get("DEV_TELE_ID"))
-dev_email = os.environ.get("DEV_EMAIL", "sample@email.com")
-dev_email_pw = os.environ.get("DEV_EMAIL_PW")
-is_email_feedback = os.environ.get("IS_EMAIL_FEEDBACK")
-smtp_host = os.environ.get("SMTP_HOST")
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN_BETA", os.environ.get("TELEGRAM_TOKEN"))
+DEV_TELE_ID = int(os.environ.get("DEV_TELE_ID"))
+DEV_EMAIL = os.environ.get("DEV_EMAIL", "sample@email.com")
 converter_url = os.environ.get("CONVERTER_URL", ) if os.environ.get("CONVERTER_URL") else \
     "https://github.com/yeokm1/docs-to-pdf-converter/releases/download/v1.8/docs-to-pdf-converter-1.8.jar"
+
+CHANNEL_NAME = "pdf2botdev"  # Channel username
+BOT_NAME = "pdf2bot"  # Bot username
 
 
 def main():
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(telegram_token, request_kwargs={"connect_timeout": 20, "read_timeout": 20})
+    updater = Updater(TELEGRAM_TOKEN, request_kwargs={"connect_timeout": 20, "read_timeout": 20})
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
@@ -64,11 +64,11 @@ def main():
     dp.add_error_handler(error)
 
     # Start the Bot
-    if app_url:
+    if APP_URL:
         updater.start_webhook(listen="0.0.0.0",
-                              port=port,
-                              url_path=telegram_token)
-        updater.bot.set_webhook(app_url + telegram_token)
+                              port=PORT,
+                              url_path=TELEGRAM_TOKEN)
+        updater.bot.set_webhook(APP_URL + TELEGRAM_TOKEN)
     else:
         updater.start_polling()
 
@@ -78,7 +78,7 @@ def main():
     updater.idle()
 
 
-# Sends start message
+# Send start message
 @run_async
 def start_msg(bot, update):
     text = "Welcome to PDF Bot!\n\n"
@@ -87,36 +87,39 @@ def start_msg(bot, update):
     #         "images.\n\n"
     text += "I can also extract images in a PDF file and convert a PDF file into images.\n\n"
     text += "Type /help to see how to use me."
+
     update.message.reply_text(text)
 
 
-# Sends help message
+# Send help message
 @run_async
 def help_msg(bot, update):
     text = "You can perform most of the tasks simply by sending me a PDF file. You can then select a task and I " \
            "will guide you through each of the tasks.\n\n"
-    text += "If you want to compare, merge or add watermark to PDF files, you will have to use the /command, " \
+    text += "If you want to compare, merge or add watermark to PDF files, you will have to use the /compare, " \
             "/merge or /watermark commands respectively.\n\n"
     # text += "If you want to convert a file into PDF format, simply send me one of the supported formats and I'll " \
     #         "convert it for you.\n\n"
     text += "Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. " \
             "If the result files are too large, I will not be able to send you the file.\n\n"
 
-    keyboard = [[InlineKeyboardButton("Join Channel", "https://t.me/pdf2botdev"),
-                 InlineKeyboardButton("Rate me", "https://t.me/storebot?start=pdf2bot")]]
+    keyboard = [[InlineKeyboardButton("Join Channel", f"https://t.me/{CHANNEL_NAME}"),
+                 InlineKeyboardButton("Rate me", f"https://t.me/storebot?start={BOT_NAME}")]]
     reply_markup = InlineKeyboardMarkup(keyboard)
+
     update.message.reply_text(text, reply_markup=reply_markup)
 
 
-# Sends donate message
+# Send donate message
 @run_async
 def donate_msg(bot, update):
-    text = "Want to help keep me online? Please donate to %s through PayPal.\n\nDonations help me to stay on my " \
-           "server and keep running." % dev_email
+    text = f"Want to help keep me online? Please donate to {DEV_EMAIL} through PayPal.\n\n" \
+           f"Donations help me to stay on my server and keep running."
+
     update.message.reply_text(text)
 
 
-# Creates a compare conversation handler
+# Create a compare conversation handler
 def compare_cov_handler():
     merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
 
@@ -136,87 +139,97 @@ def compare_cov_handler():
     return conv_handler
 
 
-# Starts the compare conversation
+# Start the compare conversation
 @run_async
 def compare(bot, update):
     update.message.reply_text("Please send me one of the PDF files that you will like to compare or type /cancel to "
-                              "cancel this operation.\n\nPlease note that I can only look for text differences.")
+                              "cancel this operation\n\nPlease note that I can only look for text differences")
 
     return WAIT_FIRST_COMPARE_FILE
 
 
-# Receives and checks for the source PDF file
+# Receive and check for the first PDF file
 @run_async
 def check_first_compare_file(bot, update, user_data):
     result = check_pdf(bot, update)
-
-    if result == 1:
+    if result == PDF_INVALID_FORMAT:
         return WAIT_FIRST_COMPARE_FILE
-    elif result != 0:
+    elif result != PDF_OK:
         return ConversationHandler.END
 
     user_data["compare_file_id"] = update.message.document.file_id
-    update.message.reply_text("Please send me the other PDF file that you will like to compare.")
+    update.message.reply_text("Please send me the other PDF file that you will like to compare")
 
     return WAIT_SECOND_COMPARE_FILE
 
 
-# Receives and checks for the watermark PDF file and watermark the PDF file
+# Receive and check for the second PDF file
+# If success, compare the two PDF files
 @run_async
 def check_second_compare_file(bot, update, user_data):
     if "compare_file_id" not in user_data:
         return ConversationHandler.END
 
     result = check_pdf(bot, update)
-
-    if result == 1:
+    if result == PDF_INVALID_FORMAT:
         return WAIT_SECOND_COMPARE_FILE
-    elif result != 0:
+    elif result != PDF_OK:
         return ConversationHandler.END
 
     return compare_pdf(bot, update, user_data, update.message.document.file_id)
 
 
-# Compares two PDF files
+# Compare two PDF files
 def compare_pdf(bot, update, user_data, second_file_id):
     if "compare_file_id" not in user_data:
         return ConversationHandler.END
 
     first_file_id = user_data["compare_file_id"]
-    update.message.reply_text("Comparing your PDF files.")
+    update.message.reply_text("Comparing your PDF files")
 
+    # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
     temp_files.append(tempfile.NamedTemporaryFile(prefix="Compared_", suffix=".png"))
     first_filename = temp_files[0].name
     second_filename = temp_files[1].name
-    out_filename = temp_files[2].name
+    diff_filename = temp_files[2].name
 
-    source_pdf_file = bot.get_file(first_file_id)
-    source_pdf_file.download(custom_path=first_filename)
+    # Download PDF files
+    first_pdf_file = bot.get_file(first_file_id)
+    first_pdf_file.download(custom_path=first_filename)
     second_pdf_file = bot.get_file(second_file_id)
     second_pdf_file.download(custom_path=second_filename)
 
+    # Run pdf-diff
     command = "pdf-diff {first_pdf} {second_pdf}".format(first_pdf=first_filename, second_pdf=second_filename)
-    process = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
-    process_out, process_err = process.communicate()
+    proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
+    proc_out, proc_err = proc.communicate()
 
-    if process.returncode != 0 or "[Errno" in process_err.decode("utf8").strip():
-        update.message.reply_text("There are no differences between the two PDF files you sent me.")
+    if proc.returncode != 0:
+        if "there are no text difference" in proc_err.decode("utf8").strip().lower():
+            update.message.reply_text("There are no differences between the two PDF files you sent me")
+        else:
+            LOGGER.error(proc_err.decode("utf8"))
+            update.message.reply_text("Something went wrong, please try again")
 
         return ConversationHandler.END
 
-    with open(out_filename, "wb") as f:
-        f.write(process_out)
+    # Write diff results to file
+    with open(diff_filename, "wb") as f:
+        f.write(proc_out)
 
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The difference result file is too large for me to send to you. Sorry.")
+    # Send results back to user
+    if os.path.getsize(diff_filename) >= MAX_FILESIZE_UPLOAD:
+        update.message.reply_text("The difference result file is too large for me to send to you, sorry")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here are the differences between your PDF files.")
+        update.message.reply_document(document=open(diff_filename, "rb"),
+                                      caption="Here are the differences between your PDF files")
 
+    # Clean up memory and files
     if user_data["compare_file_id"] == first_file_id:
         del user_data["compare_file_id"]
+
     for tf in temp_files:
         tf.close()
 
@@ -490,31 +503,31 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
 def check_pdf(bot, update):
     update.message.chat.send_action(ChatAction.TYPING)
 
-    return_type = 0
+    pdf_status = PDF_OK
     pdf_file = update.message.document
     mime_type = pdf_file.mime_type
     file_id = pdf_file.file_id
     file_size = pdf_file.file_size
 
     if not mime_type.endswith("pdf"):
-        return_type = 1
+        pdf_status = PDF_INVALID_FORMAT
         update.message.reply_text("The file you sent is not a PDF file. Please try again and send me a PDF file or "
                                   "type /cancel to cancel the operation.")
     elif file_size >= MAX_FILESIZE_DOWNLOAD:
-        return_type = 2
+        pdf_status = PDF_TOO_LARGE
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't process your PDF file. Operation cancelled.")
 
-    is_encrypted = is_pdf_encrypted(bot, file_id)
-    if is_encrypted is None:
-        return_type = 3
-        update.message.reply_text("Your PDF file is invalid and I couldn't read it. Operation cancelled.")
-    elif is_encrypted:
-        return_type = 3
-        update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or decrypt it with "
-                                  "me first. Operation cancelled.")
+    # is_encrypted = is_pdf_encrypted(bot, file_id)
+    # if is_encrypted is None:
+    #     pdf_status = 3
+    #     update.message.reply_text("Your PDF file is invalid and I couldn't read it. Operation cancelled.")
+    # elif is_encrypted:
+    #     pdf_status = 3
+    #     update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or decrypt it with "
+    #                               "me first. Operation cancelled.")
 
-    return return_type
+    return pdf_status
 
 
 # Creates a PDF conversation handler
@@ -1235,19 +1248,19 @@ def cancel(bot, update):
 
 # Sends a message to a specified user
 def send(bot, update, args):
-    if update.message.from_user.id == dev_tele_id:
+    if update.message.from_user.id == DEV_TELE_ID:
         tele_id = int(args[0])
         message = " ".join(args[1:])
 
         try:
             bot.send_message(tele_id, message)
         except Exception as e:
-            logger.exception(e)
-            bot.send_message(dev_tele_id, "Failed to send message")
+            LOGGER.exception(e)
+            bot.send_message(DEV_TELE_ID, "Failed to send message")
 
 
 def error(bot, update, error):
-    logger.warning('Update "%s" caused error "%s"' % (update, error))
+    LOGGER.warning('Update "%s" caused error "%s"' % (update, error))
 
 
 if __name__ == '__main__':
