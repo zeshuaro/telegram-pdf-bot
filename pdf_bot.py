@@ -22,6 +22,7 @@ from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHa
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot_globals import *
+from pdf_bot_utils import check_pdf, open_pdf
 
 # Enable logging
 logging.basicConfig(format="[%(asctime)s] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %I:%M:%S %p',
@@ -148,7 +149,7 @@ def compare(bot, update):
 # Receive and check for the first PDF file
 @run_async
 def check_first_compare_file(bot, update, user_data):
-    result = check_pdf(bot, update)
+    result = check_pdf(update)
     if result == PDF_INVALID_FORMAT:
         return WAIT_FIRST_COMPARE_FILE
     elif result != PDF_OK:
@@ -167,7 +168,7 @@ def check_second_compare_file(bot, update, user_data):
     if "compare_file_id" not in user_data:
         return ConversationHandler.END
 
-    result = check_pdf(bot, update)
+    result = check_pdf(update)
     if result == PDF_INVALID_FORMAT:
         return WAIT_SECOND_COMPARE_FILE
     elif result != PDF_OK:
@@ -187,9 +188,7 @@ def compare_pdf(bot, update, user_data, second_file_id):
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
     temp_files.append(tempfile.NamedTemporaryFile(prefix="Compared_", suffix=".png"))
-    first_filename = temp_files[0].name
-    second_filename = temp_files[1].name
-    diff_filename = temp_files[2].name
+    first_filename, second_filename, out_filename = [x.name for x in temp_files]
 
     # Download PDF files
     first_pdf_file = bot.get_file(first_file_id)
@@ -212,15 +211,15 @@ def compare_pdf(bot, update, user_data, second_file_id):
         return ConversationHandler.END
 
     # Write diff results to file
-    with open(diff_filename, "wb") as f:
+    with open(out_filename, "wb") as f:
         f.write(proc_out)
 
     # Send results back to user
-    if os.path.getsize(diff_filename) >= MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The difference result file is too large for me to send to you, sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(diff_filename, "rb"),
+        update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here are the differences between your PDF files.")
 
     # Clean up memory and files
@@ -267,7 +266,7 @@ def merge(bot, update, user_data):
 # Receive and check for the PDF file
 @run_async
 def receive_merge_file(bot, update, user_data):
-    result = check_pdf(bot, update)
+    result = check_pdf(update)
     if result == PDF_INVALID_FORMAT:
         update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you'll "
                                   "like to merge or type /cancel to cancel this operation.")
@@ -402,7 +401,7 @@ def watermark(bot, update):
 # Receive and check for the source PDF file
 @run_async
 def receive_watermark_source_file(bot, update, user_data):
-    result = check_pdf(bot, update)
+    result = check_pdf(update)
     if result == PDF_INVALID_FORMAT:
         return WAIT_WATERMARK_SOURCE_FILE
     elif result != PDF_OK:
@@ -420,7 +419,7 @@ def receive_watermark_file(bot, update, user_data):
     if "watermark_file_id" not in user_data:
         return ConversationHandler.END
 
-    result = check_pdf(bot, update)
+    result = check_pdf(update)
     if result == PDF_INVALID_FORMAT:
         return WAIT_WATERMARK_FILE
     elif result != PDF_OK:
@@ -435,58 +434,38 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
         return ConversationHandler.END
 
     source_file_id = user_data["watermark_file_id"]
-    update.message.reply_text("Adding the watermark to your PDF file.")
+    update.message.reply_text("Adding the watermark to your PDF file...")
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
     temp_files.append(tempfile.NamedTemporaryFile(prefix="Watermarked_", suffix=".pdf"))
-    source_filename = temp_files[0].name
-    watermark_filename = temp_files[1].name
-    out_filename = temp_files[2].name
+    source_filename, watermark_filename, out_filename = [x.name for x in temp_files]
 
     # Download PDF files
     source_pdf_file = bot.get_file(source_file_id)
     source_pdf_file.download(custom_path=source_filename)
     watermark_pdf_file = bot.get_file(watermark_file_id)
     watermark_pdf_file.download(custom_path=watermark_filename)
-    is_read_ok = True
-    pdf_reader = watermark_reader = None
 
-    try:
-        pdf_reader = PdfFileReader(open(source_filename, "rb"))
-    except PdfReadError:
-        is_read_ok = False
-        update.message.reply_text("I could not open and read your source PDF file. Operation cancelled.")
+    pdf_reader = open_pdf(source_filename, update, "source")
+    if pdf_reader:
+        watermark_reader = open_pdf(watermark_filename, update, "watermark")
+        if watermark_reader:
+            # Add watermark
+            pdf_writer = PdfFileWriter()
+            for page in pdf_reader.pages:
+                page.mergePage(watermark_reader.getPage(0))
+                pdf_writer.addPage(page)
 
-    try:
-        watermark_reader = PdfFileReader(open(watermark_filename, "rb"))
-    except PdfReadError:
-        is_read_ok = False
-        update.message.reply_text("I could not open and read your watermark PDF file. Operation cancelled.")
+            with open(out_filename, "wb") as f:
+                pdf_writer.write(f)
 
-    if is_read_ok and (pdf_reader.isEncrypted or watermark_reader.isEncrypted):
-        is_read_ok = False
-        encrypted_file = "source" if pdf_reader.isEncrypted else "watermark"
-        text = f"Your {encrypted_file} PDF file is encrypted. " \
-               f"Please decrypt it yourself or decrypt it with me first. Operation cancelled."
-        update.message.reply_text(text)
-
-    if not is_read_ok:
-        # Add watermark
-        pdf_writer = PdfFileWriter()
-        for page in pdf_reader.pages:
-            page.mergePage(watermark_reader.getPage(0))
-            pdf_writer.addPage(page)
-
-        with open(out_filename, "wb") as f:
-            pdf_writer.write(f)
-
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The watermarked PDF file is too large for me to send to you, sorry.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(out_filename, "rb"),
-                                          caption="Here is your watermarked PDF file.")
+            if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+                update.message.reply_text("The watermarked PDF file is too large for me to send to you, sorry.")
+            else:
+                update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+                update.message.reply_document(document=open(out_filename, "rb"),
+                                              caption="Here is your watermarked PDF file.")
 
     # Clean up memory and files
     if user_data["watermark_file_id"] == source_file_id:
@@ -497,34 +476,12 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
     return ConversationHandler.END
 
 
-# Check PDF files
-def check_pdf(bot, update):
-    update.message.chat.send_action(ChatAction.TYPING)
-
-    pdf_status = PDF_OK
-    pdf_file = update.message.document
-    mime_type = pdf_file.mime_type
-    file_size = pdf_file.file_size
-
-    if not mime_type.endswith("pdf"):
-        pdf_status = PDF_INVALID_FORMAT
-        update.message.reply_text("The file you sent is not a PDF file. Please try again and send me a PDF file or "
-                                  "type /cancel to cancel the operation.")
-    elif file_size >= MAX_FILESIZE_DOWNLOAD:
-        pdf_status = PDF_TOO_LARGE
-        update.message.reply_text("The PDF file you sent is too large for me to download. "
-                                  "Sorry that I can't process your PDF file. Operation cancelled.")
-
-    return pdf_status
-
-
-# Creates a PDF conversation handler
+# Create a PDF conversation handler
 def pdf_cov_handler():
     merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
 
     conv_handler = ConversationHandler(
         entry_points=[MessageHandler(merged_filter, check_doc, pass_user_data=True)],
-
         states={
             WAIT_TASK: [RegexHandler("^Cover$", get_pdf_cover_img, pass_user_data=True),
                         RegexHandler("^Decrypt$", ask_decrypt_pw),
@@ -544,9 +501,7 @@ def pdf_cov_handler():
             WAIT_SCALE_TO_Y: [MessageHandler(Filters.text, pdf_scale_to, pass_user_data=True)],
             WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf, pass_user_data=True)]
         },
-
         fallbacks=[CommandHandler("cancel", cancel), RegexHandler("^Cancel", cancel)],
-
         allow_reentry=True
     )
 
@@ -557,11 +512,8 @@ def pdf_cov_handler():
 @run_async
 def check_doc(bot, update, user_data):
     update.message.chat.send_action(ChatAction.TYPING)
+    result = check_pdf(update)
 
-    doc = update.message.document
-    file_mime_type = doc.mime_type
-    file_id = doc.file_id
-    file_size = doc.file_size
     # convert_mime_types = ("msword", "officedocument.wordprocessingml.document", "ms-powerpoint",
     #                       "officedocument.presentationml.presentation", "opendocument.text")
 
@@ -573,30 +525,25 @@ def check_doc(bot, update, user_data):
     #         return ConversationHandler.END
     #
     #     return convert_to_pdf(bot, update, file_id, file_mime_type)
-    if not file_mime_type.endswith("pdf"):
+    if result == PDF_INVALID_FORMAT:
         return ConversationHandler.END
-    elif file_mime_type.endswith("pdf") and file_size >= MAX_FILESIZE_DOWNLOAD:
+    elif result == PDF_TOO_LARGE:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't perform any tasks on your PDF file.")
 
         return ConversationHandler.END
 
-    is_encrypted = is_pdf_encrypted(bot, file_id)
-    if is_encrypted is None:
-        update.message.reply_text("Your PDF file is invalid and I couldn't read it.")
-
-        return ConversationHandler.END
-    elif is_encrypted:
-        keywords = ["Decrypt"]
-    else:
-        keywords = sorted(["Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover", "To Images",
-                           "Extract Images"])
-
+    doc = update.message.document
+    file_id = doc.file_id
     user_data["pdf_id"] = file_id
+
+    keywords = sorted(["Decrypt", "Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover", "To Images",
+                       "Extract Images"])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append(["Cancel"])
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+
     update.message.reply_text("Please select the task that you'll like to perform.",
                               reply_markup=reply_markup)
 
@@ -665,7 +612,7 @@ def download_converter():
             f.write(r.content)
 
 
-# Checks if PDF file is encrypted
+# Check if PDF file is encrypted
 def is_pdf_encrypted(bot, file_id):
     tf = tempfile.NamedTemporaryFile()
     filename = tf.name
@@ -684,15 +631,16 @@ def is_pdf_encrypted(bot, file_id):
     return encrypted
 
 
-# Gets the PDF cover in jpg format
+# Get the PDF cover in jpg format
 @run_async
 def get_pdf_cover_img(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
     file_id = user_data["pdf_id"]
-    update.message.reply_text("Extracting a cover preview for your PDF file.", reply_markup=ReplyKeyboardRemove())
+    update.message.reply_text("Extracting a cover preview for your PDF file...", reply_markup=ReplyKeyboardRemove())
 
+    # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
     temp_files.append(tempfile.NamedTemporaryFile(prefix="Cover_", suffix=".jpg"))
     filename = temp_files[0].name
@@ -702,23 +650,24 @@ def get_pdf_cover_img(bot, update, user_data):
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
 
-    pdf_reader = PdfFileReader(open(filename, "rb"))
-    pdf_writer = PdfFileWriter()
-    pdf_writer.addPage(pdf_reader.getPage(0))
+    pdf_reader = open_pdf(filename, update)
+    if pdf_reader:
+        pdf_writer = PdfFileWriter()
+        pdf_writer.addPage(pdf_reader.getPage(0))
 
-    with open(tmp_filename, "wb") as f:
-        pdf_writer.write(f)
+        with open(tmp_filename, "wb") as f:
+            pdf_writer.write(f)
 
-    with wand.image.Image(filename=tmp_filename, resolution=300) as img:
-        with img.convert("jpg") as converted:
-            converted.save(filename=out_filename)
+        with wand.image.Image(filename=tmp_filename, resolution=300) as img:
+            with img.convert("jpg") as converted:
+                converted.save(filename=out_filename)
 
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The cover preview is too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
-        update.message.reply_photo(photo=open(out_filename, "rb"),
-                                   caption="Here is the cover preview of your PDF file.")
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The cover preview is too large for me to send to you. Sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
+            update.message.reply_photo(photo=open(out_filename, "rb"),
+                                       caption="Here is the cover preview of your PDF file.")
 
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
@@ -745,7 +694,7 @@ def decrypt_pdf(bot, update, user_data):
 
     file_id = user_data["pdf_id"]
     pw = update.message.text
-    update.message.reply_text("Decrypting your PDF file.")
+    update.message.reply_text("Decrypting your PDF file...")
 
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Decrypted_", suffix=".pdf")]
     filename = temp_files[0].name
