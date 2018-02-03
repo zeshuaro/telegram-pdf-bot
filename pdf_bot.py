@@ -333,7 +333,7 @@ def merge_pdf(bot, update, user_data):
     temp_files.append(tempfile.NamedTemporaryFile(prefix="Merged_", suffix=".pdf"))
     out_filename = temp_files[-1].name
     merger = PdfFileMerger()
-    merge_done = True
+    is_read_ok = True
 
     # Merge PDF files
     for i, file_id in enumerate(file_ids):
@@ -344,12 +344,12 @@ def merge_pdf(bot, update, user_data):
         try:
             merger.append(open(filename, "rb"))
         except PdfReadError:
-            merge_done = False
-            text = f"I could not open '{filenames[i]}'. Please make sure that it is not encrypted. Operation cancelled."
+            is_read_ok = False
+            text = f"I could not open and read '{filenames[i]}'. Please make sure that it is not encrypted. " \
+                   f"Operation cancelled."
             update.message.reply_text(text)
 
-    if merge_done:
-        # Write merged PDF file
+    if is_read_ok:
         with open(out_filename, "wb") as f:
             merger.write(f)
 
@@ -372,28 +372,25 @@ def merge_pdf(bot, update, user_data):
     return ConversationHandler.END
 
 
-# Creates a watermark conversation handler
+# Create a watermark conversation handler
 def watermark_cov_handler():
     merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
 
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("watermark", watermark)],
-
         states={
             WAIT_WATERMARK_SOURCE_FILE: [MessageHandler(merged_filter, receive_watermark_source_file,
                                                         pass_user_data=True)],
             WAIT_WATERMARK_FILE: [MessageHandler(merged_filter, receive_watermark_file, pass_user_data=True)]
         },
-
         fallbacks=[CommandHandler("cancel", cancel)],
-
         allow_reentry=True
     )
 
     return conv_handler
 
 
-# Starts the watermark conversation
+# Start the watermark conversation
 @run_async
 def watermark(bot, update):
     update.message.reply_text("Please send me the PDF file that you will like to add a watermark or type /cancel to "
@@ -402,14 +399,13 @@ def watermark(bot, update):
     return WAIT_WATERMARK_SOURCE_FILE
 
 
-# Receives and checks for the source PDF file
+# Receive and check for the source PDF file
 @run_async
 def receive_watermark_source_file(bot, update, user_data):
     result = check_pdf(bot, update)
-
-    if result == 1:
+    if result == PDF_INVALID_FORMAT:
         return WAIT_WATERMARK_SOURCE_FILE
-    elif result != 0:
+    elif result != PDF_OK:
         return ConversationHandler.END
 
     user_data["watermark_file_id"] = update.message.document.file_id
@@ -418,23 +414,22 @@ def receive_watermark_source_file(bot, update, user_data):
     return WAIT_WATERMARK_FILE
 
 
-# Receives and checks for the watermark PDF file and watermark the PDF file
+# Receive and check for the watermark PDF file and watermark the PDF file
 @run_async
 def receive_watermark_file(bot, update, user_data):
     if "watermark_file_id" not in user_data:
         return ConversationHandler.END
 
     result = check_pdf(bot, update)
-
-    if result == 1:
+    if result == PDF_INVALID_FORMAT:
         return WAIT_WATERMARK_FILE
-    elif result != 0:
+    elif result != PDF_OK:
         return ConversationHandler.END
 
     return add_pdf_watermark(bot, update, user_data, update.message.document.file_id)
 
 
-# Adds watermark to PDF file
+# Add watermark to PDF file
 def add_pdf_watermark(bot, update, user_data, watermark_file_id):
     if "watermark_file_id" not in user_data:
         return ConversationHandler.END
@@ -442,36 +437,58 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
     source_file_id = user_data["watermark_file_id"]
     update.message.reply_text("Adding the watermark to your PDF file.")
 
+    # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
     temp_files.append(tempfile.NamedTemporaryFile(prefix="Watermarked_", suffix=".pdf"))
     source_filename = temp_files[0].name
     watermark_filename = temp_files[1].name
     out_filename = temp_files[2].name
 
+    # Download PDF files
     source_pdf_file = bot.get_file(source_file_id)
     source_pdf_file.download(custom_path=source_filename)
-
     watermark_pdf_file = bot.get_file(watermark_file_id)
     watermark_pdf_file.download(custom_path=watermark_filename)
+    is_read_ok = True
+    pdf_reader = watermark_reader = None
 
-    pdf_writer = PdfFileWriter()
-    pdf_reader = PdfFileReader(open(source_filename, "rb"))
-    watermark_reader = PdfFileReader(open(watermark_filename, "rb"))
+    try:
+        pdf_reader = PdfFileReader(open(source_filename, "rb"))
+    except PdfReadError:
+        is_read_ok = False
+        update.message.reply_text("I could not open and read your source PDF file. Operation cancelled.")
 
-    for page in pdf_reader.pages:
-        page.mergePage(watermark_reader.getPage(0))
-        pdf_writer.addPage(page)
+    try:
+        watermark_reader = PdfFileReader(open(watermark_filename, "rb"))
+    except PdfReadError:
+        is_read_ok = False
+        update.message.reply_text("I could not open and read your watermark PDF file. Operation cancelled.")
 
-    with open(out_filename, "wb") as f:
-        pdf_writer.write(f)
+    if is_read_ok and (pdf_reader.isEncrypted or watermark_reader.isEncrypted):
+        is_read_ok = False
+        encrypted_file = "source" if pdf_reader.isEncrypted else "watermark"
+        text = f"Your {encrypted_file} PDF file is encrypted. " \
+               f"Please decrypt it yourself or decrypt it with me first. Operation cancelled."
+        update.message.reply_text(text)
 
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The watermarked PDF file is too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your watermarked PDF file.")
+    if not is_read_ok:
+        # Add watermark
+        pdf_writer = PdfFileWriter()
+        for page in pdf_reader.pages:
+            page.mergePage(watermark_reader.getPage(0))
+            pdf_writer.addPage(page)
 
+        with open(out_filename, "wb") as f:
+            pdf_writer.write(f)
+
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The watermarked PDF file is too large for me to send to you, sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_filename, "rb"),
+                                          caption="Here is your watermarked PDF file.")
+
+    # Clean up memory and files
     if user_data["watermark_file_id"] == source_file_id:
         del user_data["watermark_file_id"]
     for tf in temp_files:
@@ -480,7 +497,7 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
     return ConversationHandler.END
 
 
-# Checks PDF files
+# Check PDF files
 def check_pdf(bot, update):
     update.message.chat.send_action(ChatAction.TYPING)
 
@@ -497,15 +514,6 @@ def check_pdf(bot, update):
         pdf_status = PDF_TOO_LARGE
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't process your PDF file. Operation cancelled.")
-
-    # is_encrypted = is_pdf_encrypted(bot, file_id)
-    # if is_encrypted is None:
-    #     pdf_status = 3
-    #     update.message.reply_text("Your PDF file is invalid and I couldn't read it. Operation cancelled.")
-    # elif is_encrypted:
-    #     pdf_status = 3
-    #     update.message.reply_text("The PDF file you sent is encrypted. Please decrypt it yourself or decrypt it with "
-    #                               "me first. Operation cancelled.")
 
     return pdf_status
 
