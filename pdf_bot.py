@@ -125,14 +125,11 @@ def compare_cov_handler():
 
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("compare", compare)],
-
         states={
             WAIT_FIRST_COMPARE_FILE: [MessageHandler(merged_filter, check_first_compare_file, pass_user_data=True)],
             WAIT_SECOND_COMPARE_FILE: [MessageHandler(merged_filter, check_second_compare_file, pass_user_data=True)],
         },
-
         fallbacks=[CommandHandler("cancel", cancel)],
-
         allow_reentry=True
     )
 
@@ -143,7 +140,7 @@ def compare_cov_handler():
 @run_async
 def compare(bot, update):
     update.message.reply_text("Please send me one of the PDF files that you will like to compare or type /cancel to "
-                              "cancel this operation\n\nPlease note that I can only look for text differences")
+                              "cancel this operation.\n\nPlease note that I can only look for text differences.")
 
     return WAIT_FIRST_COMPARE_FILE
 
@@ -158,7 +155,7 @@ def check_first_compare_file(bot, update, user_data):
         return ConversationHandler.END
 
     user_data["compare_file_id"] = update.message.document.file_id
-    update.message.reply_text("Please send me the other PDF file that you will like to compare")
+    update.message.reply_text("Please send me the other PDF file that you will like to compare.")
 
     return WAIT_SECOND_COMPARE_FILE
 
@@ -185,7 +182,7 @@ def compare_pdf(bot, update, user_data, second_file_id):
         return ConversationHandler.END
 
     first_file_id = user_data["compare_file_id"]
-    update.message.reply_text("Comparing your PDF files")
+    update.message.reply_text("Comparing your PDF files...")
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
@@ -207,10 +204,10 @@ def compare_pdf(bot, update, user_data, second_file_id):
 
     if proc.returncode != 0:
         if "there are no text difference" in proc_err.decode("utf8").strip().lower():
-            update.message.reply_text("There are no differences between the two PDF files you sent me")
+            update.message.reply_text("There are no differences between the two PDF files you sent me.")
         else:
             LOGGER.error(proc_err.decode("utf8"))
-            update.message.reply_text("Something went wrong, please try again")
+            update.message.reply_text("Something went wrong, please try again.")
 
         return ConversationHandler.END
 
@@ -220,49 +217,44 @@ def compare_pdf(bot, update, user_data, second_file_id):
 
     # Send results back to user
     if os.path.getsize(diff_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The difference result file is too large for me to send to you, sorry")
+        update.message.reply_text("The difference result file is too large for me to send to you, sorry.")
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(diff_filename, "rb"),
-                                      caption="Here are the differences between your PDF files")
+                                      caption="Here are the differences between your PDF files.")
 
     # Clean up memory and files
     if user_data["compare_file_id"] == first_file_id:
         del user_data["compare_file_id"]
-
     for tf in temp_files:
         tf.close()
 
     return ConversationHandler.END
 
 
-# Creates a merge conversation handler
+# Create a merge conversation handler
 def merge_cov_handler():
     merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
 
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("merge", merge, pass_user_data=True)],
-
         states={
             WAIT_MERGE_FILE: [MessageHandler(merged_filter, receive_merge_file, pass_user_data=True),
                               RegexHandler("^Done$", merge_pdf, pass_user_data=True)],
         },
-
         fallbacks=[CommandHandler("cancel", cancel)],
-
         allow_reentry=True
     )
 
     return conv_handler
 
 
-# Starts the merge conversation
+# Start the merge conversation
 @run_async
 def merge(bot, update, user_data):
-    # Clears previous merge info
+    # Clear previous merge info
     if "merge_file_ids" in user_data:
         del user_data["merge_file_ids"]
-
     if "merge_filenames" in user_data:
         del user_data["merge_filenames"]
 
@@ -272,16 +264,17 @@ def merge(bot, update, user_data):
     return WAIT_MERGE_FILE
 
 
-# Receives and checks for the source PDF file
+# Receive and check for the PDF file
 @run_async
 def receive_merge_file(bot, update, user_data):
     pdf_file = update.message.document
     filename = pdf_file.file_name
+    mime_type = pdf_file.mime_type
     file_id = pdf_file.file_id
     file_size = pdf_file.file_size
 
-    if not filename.endswith(".pdf"):
-        update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you will "
+    if not mime_type.endswith("pdf"):
+        update.message.reply_text("The file you sent is not a PDF file. Please send me the PDF file that you'll "
                                   "like to merge or type /cancel to cancel this operation.")
 
         return WAIT_MERGE_FILE
@@ -291,33 +284,11 @@ def receive_merge_file(bot, update, user_data):
         if "merge_filenames" in user_data and user_data["merge_filenames"]:
             text += "You can continue merging with the files that you sent me or type /cancel to cancel this operation."
             update.message.reply_text(text)
-
-            send_received_filenames(update, user_data["merge_filenames"])
+            send_merge_filenames(update, user_data["merge_filenames"])
 
             return WAIT_MERGE_FILE
         else:
             text += "Sorry that I can't merge your PDF files. Operation cancelled."
-            update.message.reply_text(text)
-
-            return ConversationHandler.END
-
-    is_encrypted = is_pdf_encrypted(bot, file_id)
-    if is_encrypted or is_encrypted is None:
-        if is_encrypted is None:
-            text = "Your PDF file is invalid and I couldn't read it. "
-        else:
-            text = "The PDF file you sent is encrypted. Please decrypt it yourself or use decrypt it with me first. "
-
-        if "merge_filenames" in user_data and user_data["merge_filenames"]:
-            text += "\n\nYou can continue merging with the files that you sent me or type /cancel to cancel this " \
-                    "operation."
-            update.message.reply_text(text)
-
-            send_received_filenames(update, user_data["merge_filenames"])
-
-            return WAIT_MERGE_FILE
-        else:
-            text += "Operation cancelled."
             update.message.reply_text(text)
 
             return ConversationHandler.END
@@ -332,55 +303,66 @@ def receive_merge_file(bot, update, user_data):
     keyboard = [["Done"]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
 
-    update.message.reply_text("Please send me the next PDF file that you will like to merge or say Done if you have "
+    update.message.reply_text("Please send me the next PDF file that you will like to merge or send Done if you have "
                               "sent me all the PDF files that you want to merge.", reply_markup=reply_markup)
-
-    send_received_filenames(update, user_data["merge_filenames"])
+    send_merge_filenames(update, user_data["merge_filenames"])
 
     return WAIT_MERGE_FILE
 
 
-# Sends a list of received filenames
+# Send a list of merge filenames
 @run_async
-def send_received_filenames(update, filenames):
+def send_merge_filenames(update, filenames):
     text = "You have sent me the following PDF files:\n"
-
     for i, filename in enumerate(filenames):
-        text += "%d: %s\n" % ((i + 1), filename)
+        text += f"{i + 1}: {filename}\n"
 
     update.message.reply_text(text)
 
 
-# Merges PDF file
+# Merge PDF file
 def merge_pdf(bot, update, user_data):
     if "merge_file_ids" not in user_data:
         return ConversationHandler.END
 
     file_ids = user_data["merge_file_ids"]
     filenames = user_data["merge_filenames"]
-    update.message.reply_text("Merging your files.", reply_markup=ReplyKeyboardRemove())
+    update.message.reply_text("Merging your PDF files...", reply_markup=ReplyKeyboardRemove())
 
+    # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
     temp_files.append(tempfile.NamedTemporaryFile(prefix="Merged_", suffix=".pdf"))
     out_filename = temp_files[-1].name
     merger = PdfFileMerger()
+    merge_done = True
 
+    # Merge PDF files
     for i, file_id in enumerate(file_ids):
         filename = temp_files[i].name
         pdf_file = bot.get_file(file_id)
         pdf_file.download(custom_path=filename)
-        merger.append(open(filename, "rb"))
 
-    with open(out_filename, "wb") as f:
-        merger.write(f)
+        try:
+            merger.append(open(filename, "rb"))
+        except PdfReadError:
+            merge_done = False
+            text = f"I could not open '{filenames[i]}'. Please make sure that it is not encrypted. Operation cancelled."
+            update.message.reply_text(text)
 
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The merged PDF file is too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your merged PDF file.")
+    if merge_done:
+        # Write merged PDF file
+        with open(out_filename, "wb") as f:
+            merger.write(f)
 
+        # Send results to user
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The merged PDF file is too large for me to send to you, sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_filename, "rb"),
+                                          caption="Here is your merged PDF file.")
+
+    # Clean up memory and files
     if user_data["merge_file_ids"] == file_ids:
         del user_data["merge_file_ids"]
     if user_data["merge_filenames"] == filenames:
