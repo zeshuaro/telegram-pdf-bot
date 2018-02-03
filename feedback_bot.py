@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import dotenv
+import logging
 import os
 
 from textblob import TextBlob
@@ -10,11 +11,12 @@ from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 
-dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
-dotenv.load_dotenv(dotenv_path)
+dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
-slack_token = os.environ.get("SLACK_TOKEN")
-bot_name = os.environ.get("BOT_NAME")
+SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
+
+BOT_NAME = "PDF Bot"  # Bot name to be appeared in your Slack Channel
+VALID_LANGS = ("en", "zh-hk", "zh-tw", "zh-cn")
 
 
 # Creates a feedback conversation handler
@@ -41,11 +43,10 @@ def feedback(bot, update):
 # Saves a feedback
 @run_async
 def receive_feedback(bot, update):
-    global bot_name
     tele_username = update.message.chat.username
+    tele_id = update.message.chat.id
     feedback_msg = update.message.text
     feedback_lang = None
-    valid_langs = ("en", "zh-hk", "zh-tw", "zh-cn")
     b = TextBlob(feedback_msg)
 
     try:
@@ -53,19 +54,24 @@ def receive_feedback(bot, update):
     except TranslatorError:
         pass
 
-    if not feedback_lang or feedback_lang.lower() not in valid_langs:
+    if not feedback_lang or feedback_lang.lower() not in VALID_LANGS:
         update.message.reply_text("The feedback you sent is not in English or Chinese. Please try again.")
         return 0
 
-    sc = SlackClient(slack_token)
-    sc.api_call(
-        "chat.postMessage",
-        channel="#bots_feedback",
-        text=f"{bot_name} Feedback",
-        attachments=[{
-            "text": f"Feedback received from @{tele_username}\n\n{feedback_msg}"
-        }]
-    )
+    text = "Feedback received from @{} ({})\n\n{}".format(tele_username, tele_id, feedback_msg)
+    if SLACK_TOKEN:
+        sc = SlackClient(SLACK_TOKEN)
+        sc.api_call(
+            "chat.postMessage",
+            channel="#bots_feedback",
+            text="{} Feedback".format(BOT_NAME),
+            attachments=[{
+                "text": text
+            }]
+        )
+    else:
+        logger = logging.getLogger(__name__)
+        logger.info(text)
 
     update.message.reply_text("Thank you for your feedback, I've already forwarded it to my developer.")
 
