@@ -664,7 +664,7 @@ def encrypt_pdf(bot, update, user_data):
 
     file_id = user_data["pdf_id"]
     pw = update.message.text
-    update.message.reply_text("Encrypting your PDF file.")
+    update.message.reply_text("Encrypting your PDF file...")
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Encrypted_", suffix=".pdf")]
@@ -699,14 +699,14 @@ def encrypt_pdf(bot, update, user_data):
     return ConversationHandler.END
 
 
-# Gets the images in the PDF file
+# Get the images in the PDF file
 @run_async
 def get_pdf_img(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
     file_id = user_data["pdf_id"]
-    update.message.reply_text("Extracting all the images in your PDF file.", reply_markup=ReplyKeyboardRemove())
+    update.message.reply_text("Extracting all the images in your PDF file...", reply_markup=ReplyKeyboardRemove())
 
     temp_dir = tempfile.TemporaryDirectory(prefix="Images_")
     image_dir = temp_dir.name
@@ -716,51 +716,54 @@ def get_pdf_img(bot, update, user_data):
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
-    pdf_reader = PdfFileReader(open(filename, "rb"))
+    pdf_reader = open_pdf(filename, update)
 
-    for page in pdf_reader.pages:
-        if "/Resources" in page and "/XObject" in page["/Resources"]:
-            xObject = page["/Resources"]["/XObject"].getObject()
-    
-            for obj in xObject:
-                if xObject[obj]["/Subtype"] == "/Image":
-                    size = (xObject[obj]["/Width"], xObject[obj]["/Height"])
+    if pdf_reader:
+        # Find and write all images
+        for page in pdf_reader.pages:
+            if "/Resources" in page and "/XObject" in page["/Resources"]:
+                x_object = page["/Resources"]["/XObject"].getObject()
 
-                    try:
-                        data = xObject[obj].getData()
-                    except:
-                        continue
+                for obj in x_object:
+                    if x_object[obj]["/Subtype"] == "/Image":
+                        size = (x_object[obj]["/Width"], x_object[obj]["/Height"])
 
-                    if xObject[obj]["/ColorSpace"] == "/DeviceRGB":
-                        mode = "RGB"
-                    else:
-                        mode = "P"
-    
-                    if xObject[obj]["/Filter"] == "/FlateDecode":
                         try:
-                            img = PillowImage.frombytes(mode, size, data)
-                            img.save(tempfile.NamedTemporaryFile(dir=image_dir, suffix=".png").name)
-                        except TypeError:
-                            pass
-                    elif xObject[obj]["/Filter"] == "/DCTDecode":
-                        with open(tempfile.NamedTemporaryFile(dir=image_dir, suffix=".jpg").name, "wb") as img:
-                            img.write(data)
-                    elif xObject[obj]["/Filter"] == "/JPXDecode":
-                        with open(tempfile.NamedTemporaryFile(dir=image_dir, suffix=".jp2").name, "wb") as img:
-                            img.write(data)
+                            data = x_object[obj].getData()
+                        except:
+                            continue
 
-    if not os.listdir(image_dir):
-        update.message.reply_text("I couldn't find any images in your PDF file.")
-    else:
-        shutil.make_archive(image_dir, "zip", image_dir)
+                        if x_object[obj]["/ColorSpace"] == "/DeviceRGB":
+                            mode = "RGB"
+                        else:
+                            mode = "P"
 
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The images in your PDF file are too large for me to send to you. Sorry.")
+                        if x_object[obj]["/Filter"] == "/FlateDecode":
+                            try:
+                                img = PillowImage.frombytes(mode, size, data)
+                                img.save(tempfile.NamedTemporaryFile(dir=image_dir, suffix=".png").name)
+                            except TypeError:
+                                pass
+                        elif x_object[obj]["/Filter"] == "/DCTDecode":
+                            with open(tempfile.NamedTemporaryFile(dir=image_dir, suffix=".jpg").name, "wb") as img:
+                                img.write(data)
+                        elif x_object[obj]["/Filter"] == "/JPXDecode":
+                            with open(tempfile.NamedTemporaryFile(dir=image_dir, suffix=".jp2").name, "wb") as img:
+                                img.write(data)
+
+        if not os.listdir(image_dir):
+            update.message.reply_text("I couldn't find any images in your PDF file.")
         else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(out_filename, "rb"),
-                                          caption="Here are all the images in your PDF file.")
+            shutil.make_archive(image_dir, "zip", image_dir)
 
+            if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+                update.message.reply_text("The images in your PDF file are too large for me to send to you. Sorry.")
+            else:
+                update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+                update.message.reply_document(document=open(out_filename, "rb"),
+                                              caption="Here are all the images in your PDF file.")
+
+    # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     temp_dir.cleanup()
