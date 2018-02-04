@@ -15,7 +15,7 @@ testing purposes
 
 ### Prerequisites
 
-Run the following command to install the required libraries:
+Run the following command to install the required packages:
 
 ```
 pip install -r requirements.txt
@@ -26,12 +26,11 @@ Below is a list of the main libraries that are included:
 * [Python Telegram Bot](https://github.com/python-telegram-bot/python-telegram-bot)
 * [PyPDF2](https://github.com/mstamy2/PyPDF2)
 * [pdf-diff](https://github.com/JoshData/pdf-diff)
+* [noteshrink](https://github.com/mzucker/noteshrink)
 
-You will also need to run the following command to install the requirements for `pdf-diff`:
+You will also need to follow the instructions [here](https://github.com/JoshData/pdf-diff#requirements) to install the requirements for `pdf-diff`:
 
-```
-apt-get install python3-lxml poppler-utils
-```
+### Setup Your Environment Variables
 
 Make a `.env` file and put your telegram token in there. 
 
