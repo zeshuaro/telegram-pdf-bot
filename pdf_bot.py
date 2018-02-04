@@ -96,7 +96,8 @@ def help_msg(bot, update):
            "will guide you through each of the tasks.\n\n"
     text += "If you want to compare, merge or add watermark to PDF files, you will have to use the /compare, " \
             "/merge or /watermark commands respectively.\n\n"
-    text += "If you want to beautify and convert photos into PDF format, use the /photo command.\n\n"
+    text += "If you want to beautify and convert photos into PDF format, simply send me a photo or " \
+            "use the /photo command to deal with multiple photos.\n\n"
     text += "Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. " \
             "If the result files are too large, I will not be able to send you the file.\n\n"
 
@@ -118,13 +119,12 @@ def donate_msg(bot, update):
 
 # Create a compare conversation handler
 def compare_cov_handler():
-    merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
-
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("compare", compare)],
         states={
-            WAIT_FIRST_COMPARE_FILE: [MessageHandler(merged_filter, check_first_compare_file, pass_user_data=True)],
-            WAIT_SECOND_COMPARE_FILE: [MessageHandler(merged_filter, check_second_compare_file, pass_user_data=True)],
+            WAIT_FIRST_COMPARE_FILE: [MessageHandler(Filters.document, check_first_compare_file, pass_user_data=True)],
+            WAIT_SECOND_COMPARE_FILE: [MessageHandler(Filters.document, check_second_compare_file,
+                                                      pass_user_data=True)],
         },
         fallbacks=[CommandHandler("cancel", cancel)],
         allow_reentry=True
@@ -226,12 +226,10 @@ def compare_pdf(bot, update, user_data, second_file_id):
 
 # Create a merge conversation handler
 def merge_cov_handler():
-    merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
-
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("merge", merge, pass_user_data=True)],
         states={
-            WAIT_MERGE_FILE: [MessageHandler(merged_filter, receive_merge_file, pass_user_data=True),
+            WAIT_MERGE_FILE: [MessageHandler(Filters.document, receive_merge_file, pass_user_data=True),
                               RegexHandler("^Done$", merge_pdf, pass_user_data=True)],
         },
         fallbacks=[CommandHandler("cancel", cancel)],
@@ -359,15 +357,13 @@ def merge_pdf(bot, update, user_data):
 
 # Create a photo converting conversation handler
 def photo_cov_handler():
-    merged_filter = (Filters.document | Filters.photo) & (Filters.forwarded | ~Filters.forwarded)
-
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("photo", photo, pass_user_data=True)],
         states={
-            WAIT_PHOTO: [MessageHandler(merged_filter, receive_photo, pass_user_data=True),
-                         RegexHandler("^Done$", batch_convert_photo, pass_user_data=True)],
+            WAIT_PHOTO: [MessageHandler(Filters.document | Filters.photo, receive_photo, pass_user_data=True),
+                         RegexHandler("^(Beautify|Convert)$", batch_convert_photo, pass_user_data=True)],
         },
-        fallbacks=[CommandHandler("cancel", cancel)],
+        fallbacks=[CommandHandler("cancel", cancel), RegexHandler("^Cancel$", cancel)],
         allow_reentry=True
     )
 
@@ -383,7 +379,7 @@ def photo(bot, update, user_data):
     if "photo_names" in user_data:
         del user_data["photo_names"]
 
-    update.message.reply_text("Please send me the first photo that you'll like to beautify and convert into PDF format "
+    update.message.reply_text("Please send me the first photo that you'll like to beautify or convert into PDF format "
                               "or type /cancel to cancel this operation.\n\n"
                               "The photos will be beautified and converted in the order that you send me.")
 
@@ -397,7 +393,7 @@ def receive_photo(bot, update, user_data):
         photo_file = update.message.document
         if not photo_file.mime_type.startswith("image"):
             update.message.reply_text("The file you sent is not a photo. Please send me the photo that you'll "
-                                      "like to beautify and convert or type /cancel to cancel this operation.")
+                                      "like to beautify and convert.")
 
             return WAIT_PHOTO
     else:
@@ -432,11 +428,11 @@ def receive_photo(bot, update, user_data):
         user_data["photo_ids"] = [file_id]
         user_data["photo_names"] = [filename]
 
-    keyboard = [["Done"]]
+    keyboard = [["Beautify", "Convert"], ["Cancel"]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
 
-    update.message.reply_text("Please send me the next photo that you'll like to beautify and convert or "
-                              "send Done if you have sent me all the photos.\n\n"
+    update.message.reply_text("Please send me the next photo that you'll like to beautify or convert. "
+                              "Select the task from below if you have sent me all the photos.\n\n"
                               "Be aware that I only have access to the filename if you sent your photo as a document.",
                               reply_markup=reply_markup)
     send_filenames(update, user_data["photo_names"], "photos")
@@ -451,8 +447,11 @@ def batch_convert_photo(bot, update, user_data):
 
     file_ids = user_data["photo_ids"]
     filenames = user_data["photo_names"]
-    update.message.reply_text("Beautifying and converting your photos...", reply_markup=ReplyKeyboardRemove())
-    convert_photo(bot, update, file_ids)
+
+    if update.message.text.lower() == "beautify":
+        convert_photo(bot, update, file_ids, is_beautify=True)
+    else:
+        convert_photo(bot, update, file_ids, is_beautify=False)
 
     # Clean up memory and files
     if user_data["photo_ids"] == file_ids:
@@ -464,23 +463,36 @@ def batch_convert_photo(bot, update, user_data):
 
 
 # Convert photo
-def convert_photo(bot, update, file_ids):
+def convert_photo(bot, update, file_ids, is_beautify):
+    if is_beautify:
+        update.message.reply_text("Beautifying and converting your photos...", reply_markup=ReplyKeyboardRemove())
+    else:
+        update.message.reply_text("Converting your photos...", reply_markup=ReplyKeyboardRemove())
+
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
-    temp_files.append(tempfile.NamedTemporaryFile(prefix="Beautified_", suffix=".pdf"))
+    if is_beautify:
+        temp_files.append(tempfile.NamedTemporaryFile(prefix="Beautified_", suffix=".pdf"))
+    else:
+        temp_files.append(tempfile.NamedTemporaryFile(prefix="Converted_", suffix=".pdf"))
+
     out_filename = temp_files[-1].name
     temp_dir = tempfile.TemporaryDirectory()
     base_name = temp_dir.name
     photo_files = []
 
-    # Beautify and convert photos
+    # Download all photos
     for i, file_id in enumerate(file_ids):
         filename = temp_files[i].name
         photo_file = bot.get_file(file_id)
         photo_file.download(custom_path=filename)
         photo_files.append(filename)
 
-    command = f"noteshrink -b {base_name}/page -o {out_filename} " + " ".join(photo_files)
+    if is_beautify:
+        command = "noteshrink -b {}/page -o {} {}".format(base_name, out_filename, " ".join(photo_files))
+    else:
+        command = "convert {} {}".format(" ".join(photo_files), out_filename)
+
     proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
     proc_out, proc_err = proc.communicate()
 
@@ -488,7 +500,10 @@ def convert_photo(bot, update, file_ids):
         LOGGER.error(proc_err.decode("utf8"))
         update.message.reply_text("Something went wrong, please try again.")
     else:
-        send_result(update, out_filename, "beautified and converted")
+        if is_beautify:
+            send_result(update, out_filename, "beautified")
+        else:
+            send_result(update, out_filename, "converted")
 
     for tf in temp_files:
         tf.close()
@@ -497,14 +512,12 @@ def convert_photo(bot, update, file_ids):
 
 # Create a watermark conversation handler
 def watermark_cov_handler():
-    merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
-
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("watermark", watermark)],
         states={
-            WAIT_WATERMARK_SOURCE_FILE: [MessageHandler(merged_filter, receive_watermark_source_file,
+            WAIT_WATERMARK_SOURCE_FILE: [MessageHandler(Filters.document, receive_watermark_source_file,
                                                         pass_user_data=True)],
-            WAIT_WATERMARK_FILE: [MessageHandler(merged_filter, receive_watermark_file, pass_user_data=True)]
+            WAIT_WATERMARK_FILE: [MessageHandler(Filters.document, receive_watermark_file, pass_user_data=True)]
         },
         fallbacks=[CommandHandler("cancel", cancel)],
         allow_reentry=True
@@ -597,12 +610,9 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
 
 # Create a PDF conversation handler
 def doc_cov_handler():
-    doc_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
-    photo_filter = Filters.photo & (Filters.forwarded | ~Filters.forwarded)
-
     conv_handler = ConversationHandler(
-        entry_points=[MessageHandler(doc_filter, check_doc, pass_user_data=True),
-                      MessageHandler(photo_filter, check_photo)],
+        entry_points=[MessageHandler(Filters.document, check_doc, pass_user_data=True),
+                      MessageHandler(Filters.photo, check_photo, pass_user_data=True)],
         states={
             WAIT_TASK: [RegexHandler("^Cover$", get_pdf_cover_img, pass_user_data=True),
                         RegexHandler("^Decrypt$", ask_decrypt_pw),
@@ -612,7 +622,8 @@ def doc_cov_handler():
                         RegexHandler("^Rotate$", ask_rotate_degree),
                         RegexHandler("^Scale By$", ask_scale_x),
                         RegexHandler("^Scale To$", ask_scale_x),
-                        RegexHandler("^Split$", ask_split_range)],
+                        RegexHandler("^Split$", ask_split_range),
+                        RegexHandler("^(Beautify|Convert)$", receive_photo_task, pass_user_data=True)],
             WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf, pass_user_data=True)],
             WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf, pass_user_data=True)],
             WAIT_ROTATE_DEGREE: [RegexHandler("^(90|180|270)$", rotate_pdf, pass_user_data=True)],
@@ -622,7 +633,7 @@ def doc_cov_handler():
             WAIT_SCALE_TO_Y: [MessageHandler(Filters.text, pdf_scale_to, pass_user_data=True)],
             WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf, pass_user_data=True)]
         },
-        fallbacks=[CommandHandler("cancel", cancel), RegexHandler("^Cancel", cancel)],
+        fallbacks=[CommandHandler("cancel", cancel), RegexHandler("^Cancel$", cancel)],
         allow_reentry=True
     )
 
@@ -636,7 +647,7 @@ def check_doc(bot, update, user_data):
     mime_type = doc.mime_type
 
     if mime_type.startswith("image"):
-        check_photo(bot, update, doc)
+        return check_photo(bot, update, user_data, doc)
     if not mime_type.endswith("pdf"):
         return ConversationHandler.END
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
@@ -662,16 +673,38 @@ def check_doc(bot, update, user_data):
 
 # Check for photo
 @run_async
-def check_photo(bot, update, photo_file=None):
+def check_photo(bot, update, user_data, photo_file=None):
     if photo_file is None:
         photo_file = update.message.photo[-1]
 
     if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         update.message.reply_text("The photo you sent is too large for me to download. "
                                   "Sorry that I can't beautify and convert your photo.")
+
+        return ConversationHandler.END
+
+    user_data["photo_id"] = photo_file.file_id
+    keyboard = [["Beautify", "Convert"], ["Cancel"]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+
+    update.message.reply_text("Please select the task that you'll like to perform.",
+                              reply_markup=reply_markup)
+
+    return WAIT_TASK
+
+
+def receive_photo_task(bot, update, user_data):
+    if "photo_id" not in user_data:
+        return ConversationHandler.END
+
+    file_id = user_data["photo_id"]
+    if update.message.text.lower() == "beautify":
+        convert_photo(bot, update, [file_id], is_beautify=True)
     else:
-        update.message.reply_text("Beautifying and converting your photo...", reply_markup=ReplyKeyboardRemove())
-        convert_photo(bot, update, [photo_file.file_id])
+        convert_photo(bot, update, [file_id], is_beautify=False)
+
+    if user_data["photo_id"] == file_id:
+        del user_data["photo_id"]
 
     return ConversationHandler.END
 
