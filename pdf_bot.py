@@ -871,7 +871,7 @@ def rotate_pdf(bot, update, user_data):
     return ConversationHandler.END
 
 
-# Asks for horizontal scaling factor or new width
+# Ask for horizontal scaling factor or new width
 @run_async
 def ask_scale_x(bot, update):
     if update.message.text == "Scale By":
@@ -886,7 +886,7 @@ def ask_scale_x(bot, update):
         return WAIT_SCALE_TO_X
 
 
-# Checks for horizontal scaling factor and asks for vertical scaling factor
+# Check for horizontal scaling factor and ask for vertical scaling factor
 @run_async
 def ask_scale_by_y(bot, update, user_data):
     scale_x = update.message.text
@@ -905,7 +905,7 @@ def ask_scale_by_y(bot, update, user_data):
     return WAIT_SCALE_BY_Y
 
 
-# Checks for vertical scaling factor and scale PDF file
+# Check for vertical scaling factor and scale PDF file
 @run_async
 def pdf_scale_by(bot, update, user_data):
     if "pdf_id" not in user_data or "scale_by_x" not in user_data:
@@ -922,33 +922,34 @@ def pdf_scale_by(bot, update, user_data):
 
     file_id = user_data["pdf_id"]
     scale_x = user_data["scale_by_x"]
-    update.message.reply_text("Scaling your PDF file, horizontally by {:g} and vertically by {:g}.".
+    update.message.reply_text("Scaling your PDF file, horizontally by {:g} and vertically by {:g}...".
                               format(scale_x, scale_y))
 
+    # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Scaled_By_", suffix=".pdf")]
-    filename = temp_files[0].name
-    out_filename = temp_files[1].name
+    filename, out_filename = [x.name for x in temp_files]
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
+    pdf_reader = open_pdf(filename, update)
 
-    pdf_writer = PdfFileWriter()
-    pdf_reader = PdfFileReader(open(filename, "rb"))
+    if pdf_reader:
+        pdf_writer = PdfFileWriter()
+        for page in pdf_reader.pages:
+            page.scale(scale_x, scale_y)
+            pdf_writer.addPage(page)
 
-    for page in pdf_reader.pages:
-        page.scale(scale_x, scale_y)
-        pdf_writer.addPage(page)
+        with open(out_filename, "wb") as f:
+            pdf_writer.write(f)
 
-    with open(out_filename, "wb") as f:
-        pdf_writer.write(f)
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_filename, "rb"),
+                                          caption="Here is your scaled PDF file.")
 
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your scaled PDF file.")
-
+    # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     if user_data["scale_by_x"] == scale_x:
@@ -994,33 +995,34 @@ def pdf_scale_to(bot, update, user_data):
 
     file_id = user_data["pdf_id"]
     scale_x = user_data["scale_to_x"]
-    update.message.reply_text("Scaling your PDF file with width of {:g} and height of {:g}.".
+    update.message.reply_text("Scaling your PDF file with width of {:g} and height of {:g}...".
                               format(scale_x, scale_y))
 
+    # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Scaled_To_", suffix=".pdf")]
-    filename = temp_files[0].name
-    out_filename = temp_files[1].name
+    filename, out_filename = [x.name for x in temp_files]
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
+    pdf_reader = open_pdf(filename, update)
 
-    pdf_writer = PdfFileWriter()
-    pdf_reader = PdfFileReader(open(filename, "rb"))
+    if pdf_reader:
+        pdf_writer = PdfFileWriter()
+        for page in pdf_reader.pages:
+            page.scaleTo(scale_x, scale_y)
+            pdf_writer.addPage(page)
 
-    for page in pdf_reader.pages:
-        page.scaleTo(scale_x, scale_y)
-        pdf_writer.addPage(page)
+        with open(out_filename, "wb") as f:
+            pdf_writer.write(f)
 
-    with open(out_filename, "wb") as f:
-        pdf_writer.write(f)
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_filename, "rb"),
+                                          caption="Here is your scaled PDF file.")
 
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your scaled PDF file.")
-
+    # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     if user_data["scale_to_x"] == scale_x:
