@@ -773,15 +773,16 @@ def get_pdf_img(bot, update, user_data):
     return ConversationHandler.END
 
 
-# Gets the PDF cover in jpg format
+# Get the PDF file in jpg format
 @run_async
 def pdf_to_img(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
     file_id = user_data["pdf_id"]
-    update.message.reply_text("Converting your PDF file into images.", reply_markup=ReplyKeyboardRemove())
+    update.message.reply_text("Converting your PDF file into images...", reply_markup=ReplyKeyboardRemove())
 
+    # Setup temporary files
     temp_dir = tempfile.TemporaryDirectory(prefix="PDF_Image_")
     image_dir = temp_dir.name
     tf = tempfile.NamedTemporaryFile()
@@ -805,6 +806,7 @@ def pdf_to_img(bot, update, user_data):
         update.message.reply_document(document=open(out_filename, "rb"),
                                       caption="Here are your PDF file images.")
 
+    # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     temp_dir.cleanup()
