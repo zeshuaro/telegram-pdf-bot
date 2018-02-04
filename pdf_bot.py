@@ -55,7 +55,7 @@ def main():
     dp.add_handler(merge_cov_handler())
     dp.add_handler(photo_cov_handler())
     dp.add_handler(watermark_cov_handler())
-    dp.add_handler(pdf_cov_handler())
+    dp.add_handler(doc_cov_handler())
     dp.add_handler(feedback_cov_handler())
     dp.add_handler(CommandHandler("send", send, Filters.user(DEV_TELE_ID), pass_args=True))
 
@@ -367,7 +367,7 @@ def photo_cov_handler():
         entry_points=[CommandHandler("photo", photo, pass_user_data=True)],
         states={
             WAIT_PHOTO: [MessageHandler(merged_filter, receive_photo, pass_user_data=True),
-                         RegexHandler("^Done$", convert_photo, pass_user_data=True)],
+                         RegexHandler("^Done$", batch_convert_photo, pass_user_data=True)],
         },
         fallbacks=[CommandHandler("cancel", cancel)],
         allow_reentry=True
@@ -446,8 +446,8 @@ def receive_photo(bot, update, user_data):
     return WAIT_MERGE_FILE
 
 
-# Merge PDF file
-def convert_photo(bot, update, user_data):
+# Convert photos
+def batch_convert_photo(bot, update, user_data):
     if "photo_ids" not in user_data:
         return ConversationHandler.END
 
@@ -593,7 +593,7 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
 
 
 # Create a PDF conversation handler
-def pdf_cov_handler():
+def doc_cov_handler():
     merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
 
     conv_handler = ConversationHandler(
@@ -627,18 +627,17 @@ def pdf_cov_handler():
 # Checks if the document is a PDF file and if it exceeds the download size limit
 @run_async
 def check_doc(bot, update, user_data):
-    result = check_pdf(update)
-    if result == PDF_INVALID_FORMAT:
+    doc = update.message.document
+
+    if not doc.mime_type.endswith("pdf"):
         return ConversationHandler.END
-    elif result == PDF_TOO_LARGE:
+    elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't perform any tasks on your PDF file.")
 
         return ConversationHandler.END
 
-    doc = update.message.document
-    file_id = doc.file_id
-    user_data["pdf_id"] = file_id
+    user_data["pdf_id"] = doc.file_id
 
     keywords = sorted(["Decrypt", "Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover", "To Images",
                        "Extract Images"])
