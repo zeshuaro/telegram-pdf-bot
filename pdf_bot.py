@@ -21,7 +21,7 @@ from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHa
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot_globals import *
-from pdf_bot_utils import check_pdf, open_pdf
+from pdf_bot_utils import check_pdf, open_pdf, work_on_pdf, send_result
 
 # Enable logging
 logging.basicConfig(format="[%(asctime)s] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %I:%M:%S %p',
@@ -203,21 +203,20 @@ def compare_pdf(bot, update, user_data, second_file_id):
             update.message.reply_text("There are no differences between the two PDF files you sent me.")
         else:
             LOGGER.error(proc_err.decode("utf8"))
-            update.message.reply_text("Something went wrong, please try again.")
+            update.message.reply_text("Something went wrong, please try again. "
+                                      "Please make sure that the PDF files are not encrypted.")
 
         return ConversationHandler.END
 
-    # Write diff results to file
     with open(out_filename, "wb") as f:
         f.write(proc_out)
 
-    # Send results back to user
     if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
         update.message.reply_text("The difference result file is too large for me to send to you, sorry.")
     else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here are the differences between your PDF files.")
+        update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
+        update.message.reply_photo(photo=open(out_filename, "rb"),
+                                   caption="Here are the differences between your PDF files.")
 
     # Clean up memory and files
     if user_data["compare_file_id"] == first_file_id:
@@ -341,21 +340,14 @@ def merge_pdf(bot, update, user_data):
             merger.append(open(filename, "rb"))
         except PdfReadError:
             is_read_ok = False
-            text = f"I could not open and read '{filenames[i]}'. Please make sure that it is not encrypted. " \
-                   f"Operation cancelled."
-            update.message.reply_text(text)
+            update.message.reply_text(f"I could not open and read '{filenames[i]}'. "
+                                      f"Please make sure that it is not encrypted. Operation cancelled.")
 
     if is_read_ok:
         with open(out_filename, "wb") as f:
             merger.write(f)
 
-        # Send results to user
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The merged PDF file is too large for me to send to you, sorry.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(out_filename, "rb"),
-                                          caption="Here is your merged PDF file.")
+        send_result(update, out_filename, "merged")
 
     # Clean up memory and files
     if user_data["merge_file_ids"] == file_ids:
@@ -457,12 +449,7 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
             with open(out_filename, "wb") as f:
                 pdf_writer.write(f)
 
-            if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-                update.message.reply_text("The watermarked PDF file is too large for me to send to you, sorry.")
-            else:
-                update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-                update.message.reply_document(document=open(out_filename, "rb"),
-                                              caption="Here is your watermarked PDF file.")
+            send_result(update, out_filename, "watermarked")
 
     # Clean up memory and files
     if user_data["watermark_file_id"] == source_file_id:
@@ -563,12 +550,7 @@ def get_pdf_cover_img(bot, update, user_data):
             with img.convert("jpg") as converted:
                 converted.save(filename=out_filename)
 
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The cover preview is too large for me to send to you. Sorry.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
-            update.message.reply_photo(photo=open(out_filename, "rb"),
-                                       caption="Here is the cover preview of your PDF file.")
+        send_result(update, out_filename, "cover preview")
 
     # Clean up memory and files
     if user_data["pdf_id"] == file_id:
@@ -631,12 +613,7 @@ def decrypt_pdf(bot, update, user_data):
         with open(out_filename, "wb") as f:
             pdf_writer.write(f)
 
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The decrypted PDF file is too large for me to send to you. Sorry.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(out_filename, "rb"),
-                                          caption="Here is your decrypted PDF file.")
+        send_result(update, out_filename, "decrypted")
 
     # Clean up memory and files
     if user_data["pdf_id"] == file_id:
@@ -662,39 +639,8 @@ def encrypt_pdf(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
-    file_id = user_data["pdf_id"]
-    pw = update.message.text
     update.message.reply_text("Encrypting your PDF file...")
-
-    # Setup temporary files
-    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Encrypted_", suffix=".pdf")]
-    filename, out_filename = [x.name for x in temp_files]
-
-    pdf_file = bot.get_file(file_id)
-    pdf_file.download(custom_path=filename)
-    pdf_reader = open_pdf(filename, update)
-
-    if pdf_reader:
-        pdf_writer = PdfFileWriter()
-        for page in pdf_reader.pages:
-            pdf_writer.addPage(page)
-
-        pdf_writer.encrypt(pw)
-        with open(out_filename, "wb") as f:
-            pdf_writer.write(f)
-
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The encrypted PDF file is too large for me to send to you. Sorry.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(out_filename, "rb"),
-                                          caption="Here is your encrypted PDF file.")
-
-    # Clean up memory and files
-    if user_data["pdf_id"] == file_id:
-        del user_data["pdf_id"]
-    for tf in temp_files:
-        tf.close()
+    work_on_pdf(bot, update, user_data, "encrypted", encrypt_pw=update.message.text)
 
     return ConversationHandler.END
 
@@ -755,13 +701,7 @@ def get_pdf_img(bot, update, user_data):
             update.message.reply_text("I couldn't find any images in your PDF file.")
         else:
             shutil.make_archive(image_dir, "zip", image_dir)
-
-            if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-                update.message.reply_text("The images in your PDF file are too large for me to send to you. Sorry.")
-            else:
-                update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-                update.message.reply_document(document=open(out_filename, "rb"),
-                                              caption="Here are all the images in your PDF file.")
+            send_result(update, out_filename, "images in your", "Here are all the images in your PDF file.")
 
     # Clean up memory and files
     if user_data["pdf_id"] == file_id:
@@ -798,13 +738,7 @@ def pdf_to_img(bot, update, user_data):
             converted.save(filename=image_filename)
 
     shutil.make_archive(image_dir, "zip", image_dir)
-
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The images of your PDF file are too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here are your PDF file images.")
+    send_result(update, out_filename, "images of your", "Here are the images of your PDF file.")
 
     # Clean up memory and files
     if user_data["pdf_id"] == file_id:
@@ -834,39 +768,10 @@ def rotate_pdf(bot, update, user_data):
     if "pdf_id" not in user_data:
         return ConversationHandler.END
 
-    file_id = user_data["pdf_id"]
-    rotate_degree = int(update.message.text)
-    update.message.reply_text("Rotating your PDF file clockwise by %d degrees..." % rotate_degree,
+    degree = int(update.message.text)
+    update.message.reply_text(f"Rotating your PDF file clockwise by {degree} degrees...",
                               reply_markup=ReplyKeyboardRemove())
-
-    # Setup temporary files
-    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Rotated_", suffix=".pdf")]
-    filename, out_filename = [x.name for x in temp_files]
-
-    pdf_file = bot.get_file(file_id)
-    pdf_file.download(custom_path=filename)
-    pdf_reader = open_pdf(filename, update)
-
-    if pdf_reader:
-        pdf_writer = PdfFileWriter()
-        for page in pdf_reader.pages:
-            pdf_writer.addPage(page.rotateClockwise(rotate_degree))
-
-        with open(out_filename, "wb") as f:
-            pdf_writer.write(f)
-
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The rotated PDF file is too large for me to send to you. Sorry.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(out_filename, "rb"),
-                                          caption="Here is your rotated PDF file.")
-
-    # Clean up memory and files
-    if user_data["pdf_id"] == file_id:
-        del user_data["pdf_id"]
-    for tf in temp_files:
-        tf.close()
+    work_on_pdf(bot, update, user_data, "rotated", rotate_degree=degree)
 
     return ConversationHandler.END
 
@@ -912,7 +817,6 @@ def pdf_scale_by(bot, update, user_data):
         return ConversationHandler.END
 
     scale_y = update.message.text
-
     try:
         scale_y = float(scale_y)
     except ValueError:
@@ -920,42 +824,12 @@ def pdf_scale_by(bot, update, user_data):
 
         return WAIT_SCALE_BY_Y
 
-    file_id = user_data["pdf_id"]
     scale_x = user_data["scale_by_x"]
-    update.message.reply_text("Scaling your PDF file, horizontally by {:g} and vertically by {:g}...".
-                              format(scale_x, scale_y))
+    update.message.reply_text(f"Scaling your PDF file, horizontally by {scale_x} and vertically by {scale_y}...")
+    work_on_pdf(bot, update, user_data, "scaled", scale_by=(scale_x, scale_y))
 
-    # Setup temporary files
-    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Scaled_By_", suffix=".pdf")]
-    filename, out_filename = [x.name for x in temp_files]
-
-    pdf_file = bot.get_file(file_id)
-    pdf_file.download(custom_path=filename)
-    pdf_reader = open_pdf(filename, update)
-
-    if pdf_reader:
-        pdf_writer = PdfFileWriter()
-        for page in pdf_reader.pages:
-            page.scale(scale_x, scale_y)
-            pdf_writer.addPage(page)
-
-        with open(out_filename, "wb") as f:
-            pdf_writer.write(f)
-
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(out_filename, "rb"),
-                                          caption="Here is your scaled PDF file.")
-
-    # Clean up memory and files
-    if user_data["pdf_id"] == file_id:
-        del user_data["pdf_id"]
     if user_data["scale_by_x"] == scale_x:
         del user_data["scale_by_x"]
-    for tf in temp_files:
-        tf.close()
 
     return ConversationHandler.END
 
@@ -993,42 +867,12 @@ def pdf_scale_to(bot, update, user_data):
 
         return WAIT_SCALE_TO_Y
 
-    file_id = user_data["pdf_id"]
     scale_x = user_data["scale_to_x"]
-    update.message.reply_text("Scaling your PDF file with width of {:g} and height of {:g}...".
-                              format(scale_x, scale_y))
+    update.message.reply_text(f"Scaling your PDF file with width of {scale_x} and height of {scale_y}...")
+    work_on_pdf(bot, update, user_data, "scaled", scale_to=(scale_x, scale_y))
 
-    # Setup temporary files
-    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Scaled_To_", suffix=".pdf")]
-    filename, out_filename = [x.name for x in temp_files]
-
-    pdf_file = bot.get_file(file_id)
-    pdf_file.download(custom_path=filename)
-    pdf_reader = open_pdf(filename, update)
-
-    if pdf_reader:
-        pdf_writer = PdfFileWriter()
-        for page in pdf_reader.pages:
-            page.scaleTo(scale_x, scale_y)
-            pdf_writer.addPage(page)
-
-        with open(out_filename, "wb") as f:
-            pdf_writer.write(f)
-
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The scaled PDF file is too large for me to send to you. Sorry.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(out_filename, "rb"),
-                                          caption="Here is your scaled PDF file.")
-
-    # Clean up memory and files
-    if user_data["pdf_id"] == file_id:
-        del user_data["pdf_id"]
     if user_data["scale_to_x"] == scale_x:
         del user_data["scale_to_x"]
-    for tf in temp_files:
-        tf.close()
 
     return ConversationHandler.END
 
@@ -1082,12 +926,7 @@ def split_pdf(bot, update, user_data):
 
             return WAIT_SPLIT_RANGE
 
-        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text("The split PDF file is too large for me to send to you. Sorry.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(out_filename, "rb"),
-                                          caption="Here is your split PDF file.")
+        send_result(update, out_filename, "split")
 
     # Clean up memory and files
     if user_data["pdf_id"] == file_id:

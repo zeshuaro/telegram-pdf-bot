@@ -1,4 +1,7 @@
-from PyPDF2 import PdfFileReader
+import os
+import tempfile
+
+from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError
 from telegram import ChatAction
 from telegram.constants import *
@@ -8,8 +11,6 @@ from pdf_bot_globals import *
 
 # Check PDF file
 def check_pdf(update):
-    update.message.chat.send_action(ChatAction.TYPING)
-
     pdf_status = PDF_OK
     pdf_file = update.message.document
     mime_type = pdf_file.mime_type
@@ -48,3 +49,56 @@ def open_pdf(filename, update, file_type=None):
         update.message.reply_text(text)
 
     return pdf_reader
+
+
+# Master function for different PDF file manipulations
+def work_on_pdf(bot, update, user_data, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None, scale_to=None):
+    prefix = f"{file_type.title()}_"
+    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix=prefix, suffix=".pdf")]
+    filename, out_filename = [x.name for x in temp_files]
+
+    file_id = user_data["pdf_id"]
+    pdf_file = bot.get_file(file_id)
+    pdf_file.download(custom_path=filename)
+    pdf_reader = open_pdf(filename, update)
+
+    if pdf_reader:
+        pdf_writer = PdfFileWriter()
+        for page in pdf_reader.pages:
+            if rotate_degree:
+                pdf_writer.addPage(page.rotateClockwise(rotate_degree))
+            elif scale_by:
+                page.scale(scale_by[0], scale_by[1])
+                pdf_writer.addPage(page)
+            elif scale_to:
+                page.scaleTo(scale_to[0], scale_to[1])
+                pdf_writer.addPage(page)
+            else:
+                pdf_writer.addPage(page)
+
+        if encrypt_pw:
+            pdf_writer.encrypt(encrypt_pw)
+
+        with open(out_filename, "wb") as f:
+            pdf_writer.write(f)
+
+        send_result(update, out_filename, file_type)
+
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
+    for tf in temp_files:
+        tf.close()
+
+
+# Send result file to user
+def send_result(update, filename, file_type, caption=None):
+    if os.path.getsize(filename) >= MAX_FILESIZE_UPLOAD:
+        update.message.reply_text(f"The {file_type} PDF file is too large for me to send to you, sorry.")
+    else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+        if caption:
+            update.message.reply_document(document=open(filename, "rb"),
+                                          caption=caption)
+        else:
+            update.message.reply_document(document=open(filename, "rb"),
+                                          caption=f"Here is your {file_type} PDF file.")
