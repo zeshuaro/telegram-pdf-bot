@@ -4,7 +4,6 @@
 import dotenv
 import logging
 import os
-import requests
 import shlex
 import shutil
 import tempfile
@@ -37,8 +36,6 @@ PORT = int(os.environ.get("PORT", "5000"))
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN_BETA", os.environ.get("TELEGRAM_TOKEN"))
 DEV_TELE_ID = int(os.environ.get("DEV_TELE_ID"))
 DEV_EMAIL = os.environ.get("DEV_EMAIL", "sample@email.com")
-converter_url = os.environ.get("CONVERTER_URL", ) if os.environ.get("CONVERTER_URL") else \
-    "https://github.com/yeokm1/docs-to-pdf-converter/releases/download/v1.8/docs-to-pdf-converter-1.8.jar"
 
 CHANNEL_NAME = "pdf2botdev"  # Channel username
 BOT_NAME = "pdf2bot"  # Bot username
@@ -511,20 +508,7 @@ def pdf_cov_handler():
 # Checks if the document is a PDF file and if it exceeds the download size limit
 @run_async
 def check_doc(bot, update, user_data):
-    update.message.chat.send_action(ChatAction.TYPING)
     result = check_pdf(update)
-
-    # convert_mime_types = ("msword", "officedocument.wordprocessingml.document", "ms-powerpoint",
-    #                       "officedocument.presentationml.presentation", "opendocument.text")
-
-    # if file_mime_type.endswith(convert_mime_types):
-    #     if file_size >= MAX_FILESIZE_DOWNLOAD:
-    #         update.message.reply_text("The file you sent is too large for me to download. "
-    #                                   "Sorry that I can't convert your file into PDF format.")
-    #
-    #         return ConversationHandler.END
-    #
-    #     return convert_to_pdf(bot, update, file_id, file_mime_type)
     if result == PDF_INVALID_FORMAT:
         return ConversationHandler.END
     elif result == PDF_TOO_LARGE:
@@ -548,68 +532,6 @@ def check_doc(bot, update, user_data):
                               reply_markup=reply_markup)
 
     return WAIT_TASK
-
-
-# Converts a file into PDF format
-@run_async
-def convert_to_pdf(bot, update, file_id, file_mime_type):
-    update.message.reply_text("Converting your file into PDF format.")
-
-    temp_files = [tempfile.NamedTemporaryFile(prefix="Converted_", suffix=".pdf")]
-    out_filename = temp_files[0].name
-
-    if file_mime_type.endswith("word"):
-        tf = tempfile.NamedTemporaryFile(suffix=".doc")
-        filename = tf.name
-    elif file_mime_type.endswith("document"):
-        tf = tempfile.NamedTemporaryFile(suffix=".docx")
-        filename = tf.name
-    elif file_mime_type.endswith("powerpoint"):
-        tf = tempfile.NamedTemporaryFile(suffix=".ppt")
-        filename = tf.name
-    elif file_mime_type.endswith("presentation"):
-        tf = tempfile.NamedTemporaryFile(suffix=".pptx")
-        filename = tf.name
-    else:
-        tf = tempfile.NamedTemporaryFile(suffix=".odt")
-        filename = tf.name
-
-    temp_files.append(tf)
-    convert_file = bot.get_file(file_id)
-    convert_file.download(custom_path=filename)
-    download_converter()
-
-    command = "java -jar doc-converter.jar -i {in_filename} -o {out_filename}". \
-        format(out_filename=out_filename, in_filename=filename)
-
-    process = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
-    process_out, process_err = process.communicate()
-
-    if process.returncode != 0 or not os.path.exists(out_filename) or "[Errno" in process_err.decode("utf8").strip() \
-            or os.path.getsize(out_filename) == 0:
-        update.message.reply_text("Something went wrong. Please try again.")
-
-        return ConversationHandler.END
-
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The converted PDF file is too large for me to send to you. Sorry.")
-    else:
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your PDF file.")
-
-    for tf in temp_files:
-        tf.close()
-
-    return ConversationHandler.END
-
-
-# Downloads converter
-def download_converter():
-    if not os.path.exists("doc-converter.jar"):
-        r = requests.get(converter_url)
-
-        with open("doc-converter.jar", "wb") as f:
-            f.write(r.content)
 
 
 # Check if PDF file is encrypted
