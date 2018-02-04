@@ -534,25 +534,6 @@ def check_doc(bot, update, user_data):
     return WAIT_TASK
 
 
-# Check if PDF file is encrypted
-def is_pdf_encrypted(bot, file_id):
-    tf = tempfile.NamedTemporaryFile()
-    filename = tf.name
-    pdf_file = bot.get_file(file_id)
-    pdf_file.download(custom_path=filename)
-
-    try:
-        pdf_reader = PdfFileReader(open(filename, "rb"))
-    except PdfReadError:
-        tf.close()
-        return None
-
-    encrypted = pdf_reader.isEncrypted
-    tf.close()
-
-    return encrypted
-
-
 # Get the PDF cover in jpg format
 @run_async
 def get_pdf_cover_img(bot, update, user_data):
@@ -565,9 +546,7 @@ def get_pdf_cover_img(bot, update, user_data):
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
     temp_files.append(tempfile.NamedTemporaryFile(prefix="Cover_", suffix=".jpg"))
-    filename = temp_files[0].name
-    tmp_filename = temp_files[1].name
-    out_filename = temp_files[2].name
+    filename, tmp_filename, out_filename = [x.name for x in temp_files]
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
@@ -591,6 +570,7 @@ def get_pdf_cover_img(bot, update, user_data):
             update.message.reply_photo(photo=open(out_filename, "rb"),
                                        caption="Here is the cover preview of your PDF file.")
 
+    # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     for tf in temp_files:
@@ -619,38 +599,46 @@ def decrypt_pdf(bot, update, user_data):
     update.message.reply_text("Decrypting your PDF file...")
 
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Decrypted_", suffix=".pdf")]
-    filename = temp_files[0].name
-    out_filename = temp_files[1].name
+    filename, out_filename = [x.name for x in temp_files]
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
-    pdf_reader = PdfFileReader(open(filename, "rb"))
+    pdf_reader = None
 
     try:
-        if pdf_reader.decrypt(pw) == 0:
-            update.message.reply_text("The decryption password is incorrect. Please send it again.")
+        pdf_reader = PdfFileReader(open(filename, "rb"))
+    except PdfReadError:
+        text = "Your PDF file seems to be invalid and I couldn't open and read it. Operation cancelled."
+        update.message.reply_text(text)
 
-            return WAIT_DECRYPT_PW
-    except NotImplementedError:
-        update.message.reply_text("The PDF file is encrypted with a method that I cannot decrypt. Sorry.")
+    if pdf_reader and not pdf_reader.isEncrypted:
+        update.message.reply_text("Your PDF file is not encrypted. Operation cancelled.")
+    elif pdf_reader:
+        try:
+            if pdf_reader.decrypt(pw) == 0:
+                update.message.reply_text("The decryption password is incorrect. Please send it again.")
 
-        return ConversationHandler.END
+                return WAIT_DECRYPT_PW
+        except NotImplementedError:
+            update.message.reply_text("The PDF file is encrypted with a method that I cannot decrypt. Sorry.")
 
-    pdf_writer = PdfFileWriter()
+            return ConversationHandler.END
 
-    for page in pdf_reader.pages:
-        pdf_writer.addPage(page)
+        pdf_writer = PdfFileWriter()
+        for page in pdf_reader.pages:
+            pdf_writer.addPage(page)
 
-    with open(out_filename, "wb") as f:
-        pdf_writer.write(f)
+        with open(out_filename, "wb") as f:
+            pdf_writer.write(f)
 
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The decrypted PDF file is too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your decrypted PDF file.")
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The decrypted PDF file is too large for me to send to you. Sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_filename, "rb"),
+                                          caption="Here is your decrypted PDF file.")
 
+    # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     for tf in temp_files:
