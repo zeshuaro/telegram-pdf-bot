@@ -446,7 +446,7 @@ def receive_photo(bot, update, user_data):
     return WAIT_MERGE_FILE
 
 
-# Convert photos
+# Batch convert photos
 def batch_convert_photo(bot, update, user_data):
     if "photo_ids" not in user_data:
         return ConversationHandler.END
@@ -454,7 +454,19 @@ def batch_convert_photo(bot, update, user_data):
     file_ids = user_data["photo_ids"]
     filenames = user_data["photo_names"]
     update.message.reply_text("Beautifying and converting your photos...", reply_markup=ReplyKeyboardRemove())
+    convert_photo(bot, update, file_ids)
 
+    # Clean up memory and files
+    if user_data["photo_ids"] == file_ids:
+        del user_data["photo_ids"]
+    if user_data["photo_names"] == filenames:
+        del user_data["photo_names"]
+
+    return ConversationHandler.END
+
+
+# Convert photo
+def convert_photo(bot, update, file_ids):
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
     temp_files.append(tempfile.NamedTemporaryFile(prefix="Beautified_", suffix=".pdf"))
@@ -480,16 +492,9 @@ def batch_convert_photo(bot, update, user_data):
     else:
         send_result(update, out_filename, "beautified and converted")
 
-    # Clean up memory and files
-    if user_data["photo_ids"] == file_ids:
-        del user_data["photo_ids"]
-    if user_data["photo_names"] == filenames:
-        del user_data["photo_names"]
     for tf in temp_files:
         tf.close()
     temp_dir.cleanup()
-
-    return ConversationHandler.END
 
 
 # Create a watermark conversation handler
@@ -594,10 +599,12 @@ def add_pdf_watermark(bot, update, user_data, watermark_file_id):
 
 # Create a PDF conversation handler
 def doc_cov_handler():
-    merged_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
+    doc_filter = Filters.document & (Filters.forwarded | ~Filters.forwarded)
+    photo_filter = Filters.photo & (Filters.forwarded | ~Filters.forwarded)
 
     conv_handler = ConversationHandler(
-        entry_points=[MessageHandler(merged_filter, check_doc, pass_user_data=True)],
+        entry_points=[MessageHandler(doc_filter, check_doc, pass_user_data=True),
+                      MessageHandler(photo_filter, check_photo)],
         states={
             WAIT_TASK: [RegexHandler("^Cover$", get_pdf_cover_img, pass_user_data=True),
                         RegexHandler("^Decrypt$", ask_decrypt_pw),
@@ -624,12 +631,15 @@ def doc_cov_handler():
     return conv_handler
 
 
-# Checks if the document is a PDF file and if it exceeds the download size limit
+# Check if the document is a photo or PDF file and if it exceeds the download size limit
 @run_async
 def check_doc(bot, update, user_data):
     doc = update.message.document
+    mime_type = doc.mime_type
 
-    if not doc.mime_type.endswith("pdf"):
+    if mime_type.startswith("image"):
+        check_photo(bot, update, doc)
+    if not mime_type.endswith("pdf"):
         return ConversationHandler.END
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
         update.message.reply_text("The PDF file you sent is too large for me to download. "
@@ -650,6 +660,22 @@ def check_doc(bot, update, user_data):
                               reply_markup=reply_markup)
 
     return WAIT_TASK
+
+
+# Check for photo
+@run_async
+def check_photo(bot, update, photo_file=None):
+    if photo_file is None:
+        photo_file = update.message.photo[-1]
+
+    if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
+        update.message.reply_text("The photo you sent is too large for me to download. "
+                                  "Sorry that I can't beautify and convert your photo.")
+    else:
+        update.message.reply_text("Beautifying and converting your photo...", reply_markup=ReplyKeyboardRemove())
+        convert_photo(bot, update, [photo_file.file_id])
+
+    return ConversationHandler.END
 
 
 # Get the PDF cover in jpg format
