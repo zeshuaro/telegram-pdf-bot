@@ -56,7 +56,7 @@ def main():
     dp.add_handler(watermark_cov_handler())
     dp.add_handler(pdf_cov_handler())
     dp.add_handler(feedback_cov_handler())
-    dp.add_handler(CommandHandler("send", send, pass_args=True))
+    dp.add_handler(CommandHandler("send", send, Filters.user(DEV_TELE_ID), pass_args=True))
 
     # log all errors
     dp.add_error_handler(error)
@@ -1107,15 +1107,14 @@ def cancel(bot, update):
 
 # Sends a message to a specified user
 def send(bot, update, args):
-    if update.message.from_user.id == DEV_TELE_ID:
-        tele_id = int(args[0])
-        message = " ".join(args[1:])
+    tele_id = int(args[0])
+    message = " ".join(args[1:])
 
-        try:
-            bot.send_message(tele_id, message)
-        except Exception as e:
-            LOGGER.exception(e)
-            bot.send_message(DEV_TELE_ID, "Failed to send message")
+    try:
+        bot.send_message(tele_id, message)
+    except Exception as e:
+        LOGGER.exception(e)
+        bot.send_message(DEV_TELE_ID, "Failed to send message")
 
 
 def error(bot, update, error):
