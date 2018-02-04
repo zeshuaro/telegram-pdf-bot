@@ -1051,41 +1051,45 @@ def split_pdf(bot, update, user_data):
 
     file_id = user_data["pdf_id"]
     split_range = update.message.text
-    update.message.reply_text("Splitting your PDF file.")
+    update.message.reply_text("Splitting your PDF file...")
 
+    # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Split_", suffix=".pdf")]
-    filename = temp_files[0].name
-    out_filename = temp_files[1].name
+    filename, out_filename = [x.name for x in temp_files]
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
+    pdf_reader = open_pdf(filename, update)
 
-    command = "python3 pdfcat.py -o {out_filename} {in_filename} {split_range}". \
-        format(out_filename=out_filename, in_filename=filename, split_range=split_range)
+    if pdf_reader:
+        command = "python3 pdfcat.py -o {out_filename} {in_filename} {split_range}". \
+            format(out_filename=out_filename, in_filename=filename, split_range=split_range)
 
-    process = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
-    process_out, process_err = process.communicate()
+        proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
+        proc_out, proc_err = proc.communicate()
 
-    if process.returncode != 0 or not os.path.exists(out_filename) or "[Errno" in process_err.decode("utf8").strip():
-        update.message.reply_text("The range is invalid. Please send me the range again.")
+        if proc.returncode != 0 or not os.path.exists(out_filename):
+            LOGGER.error(proc_err.decode("utf8"))
+            update.message.reply_text("Something went wrong, please try again.")
 
-        return WAIT_SPLIT_RANGE
+            return ConversationHandler.END
 
-    reader = PdfFileReader(out_filename)
-    if reader.getNumPages() == 0:
-        os.remove(filename)
-        os.remove(out_filename)
-        update.message.reply_text("The range is invalid. Please send me the range again.")
+        reader = PdfFileReader(out_filename)
+        if reader.getNumPages() == 0:
+            for tf in temp_files:
+                tf.close()
+            update.message.reply_text("The range is invalid. Please send me the range again.")
 
-        return WAIT_SPLIT_RANGE
+            return WAIT_SPLIT_RANGE
 
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The split PDF file is too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your split PDF file.")
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The split PDF file is too large for me to send to you. Sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_filename, "rb"),
+                                          caption="Here is your split PDF file.")
 
+    # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     for tf in temp_files:
