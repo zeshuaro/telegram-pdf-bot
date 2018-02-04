@@ -579,7 +579,7 @@ def get_pdf_cover_img(bot, update, user_data):
     return ConversationHandler.END
 
 
-# Asks user for decryption password
+# Ask user for decryption password
 @run_async
 def ask_decrypt_pw(bot, update):
     update.message.reply_text("Please send me the password to decrypt your PDF file.",
@@ -588,7 +588,7 @@ def ask_decrypt_pw(bot, update):
     return WAIT_DECRYPT_PW
 
 
-# Decrypts the PDF file with the given password
+# Decrypt the PDF file with the given password
 @run_async
 def decrypt_pdf(bot, update, user_data):
     if "pdf_id" not in user_data:
@@ -647,7 +647,7 @@ def decrypt_pdf(bot, update, user_data):
     return ConversationHandler.END
 
 
-# Asks user for encryption password
+# Ask user for encryption password
 @run_async
 def ask_encrypt_pw(bot, update):
     update.message.reply_text("Please send me the password to encrypt your PDF file.",
@@ -656,7 +656,7 @@ def ask_encrypt_pw(bot, update):
     return WAIT_ENCRYPT_PW
 
 
-# Encrypts the PDF file with the given password
+# Encrypt the PDF file with the given password
 @run_async
 def encrypt_pdf(bot, update, user_data):
     if "pdf_id" not in user_data:
@@ -666,31 +666,31 @@ def encrypt_pdf(bot, update, user_data):
     pw = update.message.text
     update.message.reply_text("Encrypting your PDF file.")
 
+    # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Encrypted_", suffix=".pdf")]
-    filename = temp_files[0].name
-    out_filename = temp_files[1].name
+    filename, out_filename = [x.name for x in temp_files]
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
+    pdf_reader = open_pdf(filename, update)
 
-    pdf_writer = PdfFileWriter()
-    pdf_reader = PdfFileReader(open(filename, "rb"))
+    if pdf_reader:
+        pdf_writer = PdfFileWriter()
+        for page in pdf_reader.pages:
+            pdf_writer.addPage(page)
 
-    for page in pdf_reader.pages:
-        pdf_writer.addPage(page)
+        pdf_writer.encrypt(pw)
+        with open(out_filename, "wb") as f:
+            pdf_writer.write(f)
 
-    pdf_writer.encrypt(pw)
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The encrypted PDF file is too large for me to send to you. Sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_filename, "rb"),
+                                          caption="Here is your encrypted PDF file.")
 
-    with open(out_filename, "wb") as f:
-        pdf_writer.write(f)
-
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The encrypted PDF file is too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your encrypted PDF file.")
-
+    # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     for tf in temp_files:
