@@ -859,13 +859,13 @@ def get_pdf_img(bot, update, user_data):
         else:
             shutil.make_archive(image_dir, "zip", image_dir)
             send_result(update, out_filename, "images in your", "Here are all the images in your PDF file.")
+            os.remove(out_filename)
 
     # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     temp_dir.cleanup()
     tf.close()
-    os.remove(out_filename)
 
     return ConversationHandler.END
 
