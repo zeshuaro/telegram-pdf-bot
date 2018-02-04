@@ -6,7 +6,7 @@ from telegram.constants import *
 from pdf_bot_globals import *
 
 
-# Check PDF files
+# Check PDF file
 def check_pdf(update):
     update.message.chat.send_action(ChatAction.TYPING)
 
@@ -27,6 +27,7 @@ def check_pdf(update):
     return pdf_status
 
 
+# Open PDF file, check if is is valid and encrypted
 def open_pdf(filename, update, file_type=None):
     pdf_reader = None
 
@@ -34,7 +35,7 @@ def open_pdf(filename, update, file_type=None):
         pdf_reader = PdfFileReader(open(filename, "rb"))
         if pdf_reader.isEncrypted:
             if file_type:
-                text = f"Your {file_type}PDF file is encrypted. " \
+                text = f"Your {file_type} PDF file is encrypted. " \
                        f"Please decrypt it yourself or decrypt it with me first. Operation cancelled."
             else:
                 text = "Your PDF file is encrypted. Please decrypt it yourself or decrypt it with me first. " \
