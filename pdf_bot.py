@@ -82,9 +82,8 @@ def main():
 def start_msg(bot, update):
     text = "Welcome to PDF Bot!\n\n"
     text += "I can compare, decrypt, encrypt, merge, rotate, scale, split and add watermark to a PDF file.\n\n "
-    # text += "I can also convert doc, docx, ppt, pptx and odt files into PDF format and convert a PDF file into " \
-    #         "images.\n\n"
     text += "I can also extract images in a PDF file and convert a PDF file into images.\n\n"
+    text += "I can also also beautify and convert photos into PDF format.\n\n"
     text += "Type /help to see how to use me."
 
     update.message.reply_text(text)
@@ -97,8 +96,7 @@ def help_msg(bot, update):
            "will guide you through each of the tasks.\n\n"
     text += "If you want to compare, merge or add watermark to PDF files, you will have to use the /compare, " \
             "/merge or /watermark commands respectively.\n\n"
-    # text += "If you want to convert a file into PDF format, simply send me one of the supported formats and I'll " \
-    #         "convert it for you.\n\n"
+    text += "If you want to beautify and convert photos into PDF format, use the /photo command.\n\n"
     text += "Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. " \
             "If the result files are too large, I will not be able to send you the file.\n\n"
 
