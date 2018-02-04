@@ -13,14 +13,12 @@ from pdf_bot_globals import *
 def check_pdf(update):
     pdf_status = PDF_OK
     pdf_file = update.message.document
-    mime_type = pdf_file.mime_type
-    file_size = pdf_file.file_size
 
-    if not mime_type.endswith("pdf"):
+    if not pdf_file.mime_type.endswith("pdf"):
         pdf_status = PDF_INVALID_FORMAT
         update.message.reply_text("The file you sent is not a PDF file. Please try again and send me a PDF file or "
                                   "type /cancel to cancel the operation.")
-    elif file_size >= MAX_FILESIZE_DOWNLOAD:
+    elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         pdf_status = PDF_TOO_LARGE
         update.message.reply_text("The PDF file you sent is too large for me to download. "
                                   "Sorry that I can't process your PDF file. Operation cancelled.")

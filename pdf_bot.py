@@ -53,6 +53,7 @@ def main():
     dp.add_handler(CommandHandler("donate", donate_msg))
     dp.add_handler(compare_cov_handler())
     dp.add_handler(merge_cov_handler())
+    dp.add_handler(photo_cov_handler())
     dp.add_handler(watermark_cov_handler())
     dp.add_handler(pdf_cov_handler())
     dp.add_handler(feedback_cov_handler())
@@ -194,7 +195,7 @@ def compare_pdf(bot, update, user_data, second_file_id):
     second_pdf_file.download(custom_path=second_filename)
 
     # Run pdf-diff
-    command = "pdf-diff {first_pdf} {second_pdf}".format(first_pdf=first_filename, second_pdf=second_filename)
+    command = f"pdf-diff {first_filename} {second_filename}"
     proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
     proc_out, proc_err = proc.communicate()
 
@@ -205,18 +206,16 @@ def compare_pdf(bot, update, user_data, second_file_id):
             LOGGER.error(proc_err.decode("utf8"))
             update.message.reply_text("Something went wrong, please try again. "
                                       "Please make sure that the PDF files are not encrypted.")
-
-        return ConversationHandler.END
-
-    with open(out_filename, "wb") as f:
-        f.write(proc_out)
-
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The difference result file is too large for me to send to you, sorry.")
     else:
-        update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
-        update.message.reply_photo(photo=open(out_filename, "rb"),
-                                   caption="Here are the differences between your PDF files.")
+        with open(out_filename, "wb") as f:
+            f.write(proc_out)
+
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The difference result file is too large for me to send to you, sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
+            update.message.reply_photo(photo=open(out_filename, "rb"),
+                                       caption="Here are the differences between your PDF files.")
 
     # Clean up memory and files
     if user_data["compare_file_id"] == first_file_id:
@@ -274,7 +273,7 @@ def receive_merge_file(bot, update, user_data):
         if "merge_filenames" in user_data and user_data["merge_filenames"]:
             text += "You can continue merging with the files that you sent me or type /cancel to cancel this operation."
             update.message.reply_text(text)
-            send_merge_filenames(update, user_data["merge_filenames"])
+            send_filenames(update, user_data["merge_filenames"], "PDF files")
 
             return WAIT_MERGE_FILE
         else:
@@ -297,17 +296,17 @@ def receive_merge_file(bot, update, user_data):
     keyboard = [["Done"]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
 
-    update.message.reply_text("Please send me the next PDF file that you will like to merge or send Done if you have "
-                              "sent me all the PDF files that you want to merge.", reply_markup=reply_markup)
-    send_merge_filenames(update, user_data["merge_filenames"])
+    update.message.reply_text("Please send me the next PDF file that you'll like to merge or send Done if you have "
+                              "sent me all the PDF files.", reply_markup=reply_markup)
+    send_filenames(update, user_data["merge_filenames"], "PDF files")
 
     return WAIT_MERGE_FILE
 
 
-# Send a list of merge filenames
+# Send a list of filenames
 @run_async
-def send_merge_filenames(update, filenames):
-    text = "You have sent me the following PDF files:\n"
+def send_filenames(update, filenames, file_type):
+    text = f"You have sent me the following {file_type}:\n"
     for i, filename in enumerate(filenames):
         text += f"{i + 1}: {filename}\n"
 
@@ -356,6 +355,139 @@ def merge_pdf(bot, update, user_data):
         del user_data["merge_filenames"]
     for tf in temp_files:
         tf.close()
+
+    return ConversationHandler.END
+
+
+# Create a photo converting conversation handler
+def photo_cov_handler():
+    merged_filter = (Filters.document | Filters.photo) & (Filters.forwarded | ~Filters.forwarded)
+
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler("photo", photo, pass_user_data=True)],
+        states={
+            WAIT_PHOTO: [MessageHandler(merged_filter, receive_photo, pass_user_data=True),
+                         RegexHandler("^Done$", convert_photo, pass_user_data=True)],
+        },
+        fallbacks=[CommandHandler("cancel", cancel)],
+        allow_reentry=True
+    )
+
+    return conv_handler
+
+
+# Start the photo converting conversation
+@run_async
+def photo(bot, update, user_data):
+    # Clear previous photo info
+    if "photo_ids" in user_data:
+        del user_data["photo_ids"]
+    if "photo_names" in user_data:
+        del user_data["photo_names"]
+
+    update.message.reply_text("Please send me the first photo that you'll like to beautify and convert into PDF format "
+                              "or type /cancel to cancel this operation.\n\n"
+                              "The photos will be beautified and converted in the order that you send me.")
+
+    return WAIT_PHOTO
+
+
+# Receive and check for the photo
+@run_async
+def receive_photo(bot, update, user_data):
+    if update.message.document:
+        photo_file = update.message.document
+        if not photo_file.mime_type.startswith("image"):
+            update.message.reply_text("The file you sent is not a photo. Please send me the photo that you'll "
+                                      "like to beautify and convert or type /cancel to cancel this operation.")
+
+            return WAIT_PHOTO
+    else:
+        photo_file = update.message.photo[-1]
+
+    if photo_file.file_size > MAX_FILESIZE_DOWNLOAD:
+        text = "The photo you sent is too large for me to download.\n\n"
+
+        if "photo_names" in user_data and user_data["photo_names"]:
+            text += "You can continue beautifying and converting with the files that you sent me or " \
+                    "type /cancel to cancel this operation."
+            update.message.reply_text(text)
+            send_filenames(update, user_data["photo_names"], "photos")
+
+            return WAIT_MERGE_FILE
+        else:
+            text += "Sorry that I can't convert your photos. Operation cancelled."
+            update.message.reply_text(text)
+
+            return ConversationHandler.END
+
+    try:
+        filename = photo_file.file_name
+    except AttributeError:
+        filename = "File name unavailable"
+    file_id = photo_file.file_id
+
+    if "photo_ids" in user_data and user_data["photo_ids"]:
+        user_data["photo_ids"].append(file_id)
+        user_data["photo_names"].append(filename)
+    else:
+        user_data["photo_ids"] = [file_id]
+        user_data["photo_names"] = [filename]
+
+    keyboard = [["Done"]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+
+    update.message.reply_text("Please send me the next photo that you'll like to beautify and convert or "
+                              "send Done if you have sent me all the photos.\n\n"
+                              "Be aware that I only have access to the filename if you sent your photo as a document.",
+                              reply_markup=reply_markup)
+    send_filenames(update, user_data["photo_names"], "photos")
+
+    return WAIT_MERGE_FILE
+
+
+# Merge PDF file
+def convert_photo(bot, update, user_data):
+    if "photo_ids" not in user_data:
+        return ConversationHandler.END
+
+    file_ids = user_data["photo_ids"]
+    filenames = user_data["photo_names"]
+    update.message.reply_text("Beautifying and converting your photos...", reply_markup=ReplyKeyboardRemove())
+
+    # Setup temporary files
+    temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
+    temp_files.append(tempfile.NamedTemporaryFile(prefix="Beautified_", suffix=".pdf"))
+    out_filename = temp_files[-1].name
+    temp_dir = tempfile.TemporaryDirectory()
+    base_name = temp_dir.name
+    photo_files = []
+
+    # Beautify and convert photos
+    for i, file_id in enumerate(file_ids):
+        filename = temp_files[i].name
+        photo_file = bot.get_file(file_id)
+        photo_file.download(custom_path=filename)
+        photo_files.append(filename)
+
+    command = f"noteshrink -b {base_name}/page -o {out_filename} " + " ".join(photo_files)
+    proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
+    proc_out, proc_err = proc.communicate()
+
+    if proc.returncode != 0:
+        LOGGER.error(proc_err.decode("utf8"))
+        update.message.reply_text("Something went wrong, please try again.")
+    else:
+        send_result(update, out_filename, "beautified and converted")
+
+    # Clean up memory and files
+    if user_data["photo_ids"] == file_ids:
+        del user_data["photo_ids"]
+    if user_data["photo_names"] == filenames:
+        del user_data["photo_names"]
+    for tf in temp_files:
+        tf.close()
+    temp_dir.cleanup()
 
     return ConversationHandler.END
 
