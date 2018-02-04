@@ -816,7 +816,7 @@ def pdf_to_img(bot, update, user_data):
     return ConversationHandler.END
 
 
-# Asks user for rotation degree
+# Ask user for rotation degree
 @run_async
 def ask_rotate_degree(bot, update):
     keyboard = [["90"], ["180"], ["270"]]
@@ -828,7 +828,7 @@ def ask_rotate_degree(bot, update):
     return WAIT_ROTATE_DEGREE
 
 
-# Rotates the PDF file with the given degree
+# Rotate the PDF file with the given degree
 @run_async
 def rotate_pdf(bot, update, user_data):
     if "pdf_id" not in user_data:
@@ -836,32 +836,33 @@ def rotate_pdf(bot, update, user_data):
 
     file_id = user_data["pdf_id"]
     rotate_degree = int(update.message.text)
-    update.message.reply_text("Rotating your PDF file clockwise by %d degrees." % rotate_degree,
+    update.message.reply_text("Rotating your PDF file clockwise by %d degrees..." % rotate_degree,
                               reply_markup=ReplyKeyboardRemove())
 
+    # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix="Rotated_", suffix=".pdf")]
-    filename = temp_files[0].name
-    out_filename = temp_files[1].name
+    filename, out_filename = [x.name for x in temp_files]
 
     pdf_file = bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
+    pdf_reader = open_pdf(filename, update)
 
-    pdf_writer = PdfFileWriter()
-    pdf_reader = PdfFileReader(open(filename, "rb"))
+    if pdf_reader:
+        pdf_writer = PdfFileWriter()
+        for page in pdf_reader.pages:
+            pdf_writer.addPage(page.rotateClockwise(rotate_degree))
 
-    for page in pdf_reader.pages:
-        pdf_writer.addPage(page.rotateClockwise(rotate_degree))
+        with open(out_filename, "wb") as f:
+            pdf_writer.write(f)
 
-    with open(out_filename, "wb") as f:
-        pdf_writer.write(f)
+        if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text("The rotated PDF file is too large for me to send to you. Sorry.")
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_filename, "rb"),
+                                          caption="Here is your rotated PDF file.")
 
-    if os.path.getsize(out_filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text("The rotated PDF file is too large for me to send to you. Sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_filename, "rb"),
-                                      caption="Here is your rotated PDF file.")
-
+    # Clean up memory and files
     if user_data["pdf_id"] == file_id:
         del user_data["pdf_id"]
     for tf in temp_files:
