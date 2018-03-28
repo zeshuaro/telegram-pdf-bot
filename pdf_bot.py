@@ -4,6 +4,7 @@
 import dotenv
 import logging
 import os
+import re
 import shlex
 import shutil
 import tempfile
@@ -623,7 +624,8 @@ def doc_cov_handler():
                         RegexHandler("^Scale By$", ask_scale_x),
                         RegexHandler("^Scale To$", ask_scale_x),
                         RegexHandler("^Split$", ask_split_range),
-                        RegexHandler("^(Beautify|Convert)$", receive_photo_task, pass_user_data=True)],
+                        RegexHandler("^(Beautify|Convert)$", receive_photo_task, pass_user_data=True),
+                        RegexHandler("^Rename$", ask_pdf_new_name)],
             WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf, pass_user_data=True)],
             WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf, pass_user_data=True)],
             WAIT_ROTATE_DEGREE: [RegexHandler("^(90|180|270)$", rotate_pdf, pass_user_data=True)],
@@ -631,7 +633,8 @@ def doc_cov_handler():
             WAIT_SCALE_BY_Y: [MessageHandler(Filters.text, pdf_scale_by, pass_user_data=True)],
             WAIT_SCALE_TO_X: [MessageHandler(Filters.text, ask_scale_to_y, pass_user_data=True)],
             WAIT_SCALE_TO_Y: [MessageHandler(Filters.text, pdf_scale_to, pass_user_data=True)],
-            WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf, pass_user_data=True)]
+            WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf, pass_user_data=True)],
+            WAIT_FILENAME: [MessageHandler(Filters.text, rename_pdf, pass_user_data=True)]
         },
         fallbacks=[CommandHandler("cancel", cancel), RegexHandler("^Cancel$", cancel)],
         allow_reentry=True
@@ -659,7 +662,7 @@ def check_doc(bot, update, user_data):
     user_data["pdf_id"] = doc.file_id
 
     keywords = sorted(["Decrypt", "Encrypt", "Rotate", "Scale By", "Scale To", "Split", "Cover", "To Images",
-                       "Extract Images"])
+                       "Extract Images", "Rename"])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append(["Cancel"])
@@ -934,6 +937,58 @@ def pdf_to_img(bot, update, user_data):
     temp_dir.cleanup()
     tf.close()
     os.remove(out_filename)
+
+    return ConversationHandler.END
+
+
+# Ask user for new filename
+@run_async
+def ask_pdf_new_name(bot, update):
+    update.message.reply_text("Please send me the filename that you'll like to rename your PDF file into.",
+                              reply_markup=ReplyKeyboardRemove())
+
+    return WAIT_FILENAME
+
+
+# Rename the PDF file with the new filename
+@run_async
+def rename_pdf(bot, update, user_data):
+    if "pdf_id" not in user_data:
+        return ConversationHandler.END
+
+    text = re.sub("\.pdf$", "", update.message.text)
+    invalid_chars = '\/*?:"<>|'
+    if set(text) & set(invalid_chars):
+        update.message.reply_text("Filenames can't contain any of the following characters:\n{}\n"
+                                  "Please try again.".format(invalid_chars))
+
+        return WAIT_FILENAME
+
+    file_id = user_data["pdf_id"]
+    new_name = "{}.pdf".format(text)
+    update.message.reply_text("Renaming your PDF file into *{}*...".format(new_name), parse_mode="Markdown")
+
+    # Setup temp files
+    temp_file = tempfile.NamedTemporaryFile()
+    temp_dir = tempfile.TemporaryDirectory()
+    filename = temp_file.name
+
+    # Download PDF file
+    pdf_file = bot.get_file(file_id)
+    pdf_file.download(custom_path=filename)
+
+    new_filename = "{}/{}".format(temp_dir.name, new_name)
+    shutil.move(filename, new_filename)
+    send_result(update, new_filename, "renamed")
+
+    # Clean up memory and files
+    if user_data["pdf_id"] == file_id:
+        del user_data["pdf_id"]
+    temp_dir.cleanup()
+    try:
+        temp_file.close()
+    except FileNotFoundError:
+        pass
 
     return ConversationHandler.END
 
