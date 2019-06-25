@@ -145,9 +145,9 @@ def process_all_photos(update, context, user_data):
     file_names = user_data[PHOTO_NAMES]
 
     if update.message.text.lower() == 'beautify':
-        process_photo(context.bot, update, file_ids, is_beautify=True)
+        process_photo(update, context, file_ids, is_beautify=True)
     else:
-        process_photo(context.bot, update, file_ids, is_beautify=False)
+        process_photo(update, context, file_ids, is_beautify=False)
 
     # Clean up memory
     if user_data[PHOTO_IDS] == file_ids:
@@ -158,12 +158,12 @@ def process_all_photos(update, context, user_data):
     return ConversationHandler.END
 
 
-def process_photo(bot, update, file_ids, is_beautify):
+def process_photo(update, context, file_ids, is_beautify):
     """
     Beautify or convert the photos
     Args:
-        bot: the bot object
         update: the update object
+        context: the context object
         file_ids: the list of file IDs
         is_beautify: the bool indicating if it is to beautify or convert the photos
 
@@ -190,7 +190,7 @@ def process_photo(bot, update, file_ids, is_beautify):
     # Download all photos
     for i, file_id in enumerate(file_ids):
         file_name = temp_files[i].name
-        photo_file = bot.get_file(file_id)
+        photo_file = context.bot.get_file(file_id)
         photo_file.download(custom_path=file_name)
         photo_files.append(file_name)
 

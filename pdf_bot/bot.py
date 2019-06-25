@@ -160,7 +160,7 @@ def send(bot, update, args):
 
 def error_callback(update, context):
     log = Logger()
-    log.warn(f'Update "{update}" caused error "{context.error}"')
+    log.error(f'Update "{update}" caused error "{context.error}"')
 
 
 if __name__ == '__main__':
