@@ -61,13 +61,14 @@ def open_pdf(filename, update, file_type=None):
 
 
 # Master function for different PDF file manipulations
-def work_on_pdf(bot, update, user_data, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None, scale_to=None):
+def work_on_pdf(update, context, user_data, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None,
+                scale_to=None):
     prefix = f"{file_type.title()}_"
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix=prefix, suffix=".pdf")]
     filename, out_filename = [x.name for x in temp_files]
 
     file_id = user_data["pdf_id"]
-    pdf_file = bot.get_file(file_id)
+    pdf_file = context.bot.get_file(file_id)
     pdf_file.download(custom_path=filename)
     pdf_reader = open_pdf(filename, update)
 
