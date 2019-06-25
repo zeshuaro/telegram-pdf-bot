@@ -4,9 +4,20 @@ import tempfile
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError
 from telegram import ChatAction
+from telegram import ReplyKeyboardRemove
 from telegram.constants import *
+from telegram.ext import ConversationHandler
+from telegram.ext.dispatcher import run_async
 
 from constants import *
+
+
+# Cancels feedback opteration
+@run_async
+def cancel(bot, update):
+    update.message.reply_text('Operation cancelled.', reply_markup=ReplyKeyboardRemove())
+
+    return ConversationHandler.END
 
 
 # Check PDF file
