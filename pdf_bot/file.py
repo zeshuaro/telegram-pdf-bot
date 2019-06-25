@@ -1,12 +1,14 @@
 import os
 import re
+import shlex
 import shutil
 import tempfile
 import wand.image
 
 from logbook import Logger
 from PIL import Image as PillowImage
-from PyPDF2 import PdfFileWriter
+from PyPDF2 import PdfFileWriter, PdfFileReader
+from subprocess import Popen, PIPE
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
@@ -442,9 +444,17 @@ def rotate_pdf(update, context, user_data):
     return ConversationHandler.END
 
 
-# Asks for split page range
 @run_async
-def ask_split_range(update, context):
+def ask_split_range(update, _):
+    """
+    Ask and wait for the split page range
+    Args:
+        update: the update object
+        _: unused variable
+
+    Returns:
+        The variable indicating to wait for the split page range
+    """
     update.message.reply_text('Please send me the range of pages that you will like to keep. You can use ⚡ *INSTANT '
                               'VIEW* from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for '
                               'some range examples.', parse_mode='markdown', reply_markup=ReplyKeyboardRemove())
@@ -452,9 +462,18 @@ def ask_split_range(update, context):
     return WAIT_SPLIT_RANGE
 
 
-# Splits the PDF file with the given page range
 @run_async
 def split_pdf(update, context, user_data):
+    """
+    Split the PDF file with the given split page range
+    Args:
+        update: the update object
+        context: the context object
+        user_data: the dict of user data
+
+    Returns:
+        The variable indicating to wait for the split page range or the conversation has ended
+    """
     if PDF_ID not in user_data:
         return ConversationHandler.END
 
@@ -466,7 +485,7 @@ def split_pdf(update, context, user_data):
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix='Split_', suffix='.pdf')]
     file_name, out_file_name = [x.name for x in temp_files]
 
-    pdf_file = bot.get_file(file_id)
+    pdf_file = context.bot.get_file(file_id)
     pdf_file.download(custom_path=file_name)
     pdf_reader = open_pdf(file_name, update)
 
@@ -478,7 +497,8 @@ def split_pdf(update, context, user_data):
         proc_out, proc_err = proc.communicate()
 
         if proc.returncode != 0 or not os.path.exists(out_file_name):
-            LOGGER.error(proc_err.decode('utf8'))
+            log = Logger()
+            log.error(proc_err.decode('utf8'))
             update.message.reply_text('Something went wrong, please try again.')
 
             return ConversationHandler.END
