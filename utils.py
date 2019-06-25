@@ -6,7 +6,7 @@ from PyPDF2.utils import PdfReadError
 from telegram import ChatAction
 from telegram.constants import *
 
-from pdf_bot_globals import *
+from constants import *
 
 
 # Check PDF file

@@ -21,8 +21,8 @@ from telegram.constants import *
 from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, RegexHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot_globals import *
-from pdf_bot_utils import check_pdf, open_pdf, work_on_pdf, send_result
+from constants import *
+from utils import check_pdf, open_pdf, work_on_pdf, send_result
 
 # Enable logging
 logging.basicConfig(format="[%(asctime)s] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %I:%M:%S %p',
