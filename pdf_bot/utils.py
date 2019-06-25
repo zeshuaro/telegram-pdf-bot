@@ -99,6 +99,16 @@ def work_on_pdf(bot, update, user_data, file_type, encrypt_pw=None, rotate_degre
         tf.close()
 
 
+# Send a list of filenames
+@run_async
+def send_filenames(update, filenames, file_type):
+    text = f'You have sent me the following {file_type}:\n'
+    for i, filename in enumerate(filenames):
+        text += f'{i + 1}: {filename}\n'
+
+    update.message.reply_text(text)
+
+
 # Send result file to user
 def send_result(update, filename, file_type, caption=None):
     if os.path.getsize(filename) >= MAX_FILESIZE_UPLOAD:

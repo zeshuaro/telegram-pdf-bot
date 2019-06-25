@@ -22,13 +22,14 @@ from telegram.ext.dispatcher import run_async
 
 from constants import *
 from utils import check_pdf, open_pdf, work_on_pdf, send_result
+from merge import merge_cov_handler
 
 load_dotenv()
 HOST = '.appspot.com/'
 APP_URL = f'{os.environ.get("GAE_APPLICATION", "")}{HOST}'
 PORT = int(os.environ.get('PORT', '8443'))
-TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN_BETA', os.environ.get('TELEGRAM_TOKEN'))
-DEV_TELE_ID = int(os.environ.get('DEV_TELEGRAM_ID'))
+TELE_TOKEN = os.environ.get('TELE_TOKEN_BETA', os.environ.get('TELE_TOKEN'))
+DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
 
 CHANNEL_NAME = 'pdf2botdev'
@@ -45,7 +46,7 @@ def main():
 
     # Create the EventHandler and pass it your bot's token.
     updater = Updater(
-        TELEGRAM_TOKEN, use_context=True, request_kwargs={'connect_timeout': TIMEOUT, 'read_timeout': TIMEOUT})
+        TELE_TOKEN, use_context=True, request_kwargs={'connect_timeout': TIMEOUT, 'read_timeout': TIMEOUT})
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
@@ -66,8 +67,8 @@ def main():
 
     # Start the Bot
     if APP_URL != HOST:
-        updater.start_webhook(listen='0.0.0.0',port=PORT, url_path=TELEGRAM_TOKEN)
-        updater.bot.set_webhook(APP_URL + TELEGRAM_TOKEN)
+        updater.start_webhook(listen='0.0.0.0', port=PORT, url_path=TELE_TOKEN)
+        updater.bot.set_webhook(APP_URL + TELE_TOKEN)
         log.notice('Bot started webhook')
     else:
         updater.start_polling()
@@ -99,7 +100,6 @@ def start_msg(update, _):
     update.message.reply_text(text)
 
 
-# Send help message
 @run_async
 def help_msg(update, _):
     """
@@ -127,7 +127,6 @@ def help_msg(update, _):
     update.message.reply_text(text, reply_markup=reply_markup)
 
 
-# Send donate message
 @run_async
 def donate_msg(update, _):
     """
@@ -143,137 +142,6 @@ def donate_msg(update, _):
            f'Donations help me to stay on my server and keep running.'
 
     update.message.reply_text(text)
-
-
-# Create a merge conversation handler
-def merge_cov_handler():
-    conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('merge', merge, pass_user_data=True)],
-        states={
-            WAIT_MERGE_FILE: [MessageHandler(Filters.document, receive_merge_file, pass_user_data=True),
-                              RegexHandler('^Done$', merge_pdf, pass_user_data=True)],
-        },
-        fallbacks=[CommandHandler('cancel', cancel)],
-        allow_reentry=True
-    )
-
-    return conv_handler
-
-
-# Start the merge conversation
-@run_async
-def merge(bot, update, user_data):
-    # Clear previous merge info
-    if 'merge_file_ids' in user_data:
-        del user_data['merge_file_ids']
-    if 'merge_filenames' in user_data:
-        del user_data['merge_filenames']
-
-    update.message.reply_text('Please send me the first PDF file that you will like to merge or type /cancel to '
-                              'cancel this operation.\n\nThe files will be merged in the order that you send me.')
-
-    return WAIT_MERGE_FILE
-
-
-# Receive and check for the PDF file
-@run_async
-def receive_merge_file(bot, update, user_data):
-    result = check_pdf(update)
-    if result == PDF_INVALID_FORMAT:
-        update.message.reply_text('The file you sent is not a PDF file. Please send me the PDF file that you\'ll '
-                                  'like to merge or type /cancel to cancel this operation.')
-
-        return WAIT_MERGE_FILE
-    elif result == PDF_TOO_LARGE:
-        text = 'The PDF file you sent is too large for me to download.\n\n'
-
-        if 'merge_filenames' in user_data and user_data['merge_filenames']:
-            text += 'You can continue merging with the files that you sent me or type /cancel to cancel this operation.'
-            update.message.reply_text(text)
-            send_filenames(update, user_data['merge_filenames'], 'PDF files')
-
-            return WAIT_MERGE_FILE
-        else:
-            text += 'Sorry that I can\'t merge your PDF files. Operation cancelled.'
-            update.message.reply_text(text)
-
-            return ConversationHandler.END
-
-    pdf_file = update.message.document
-    filename = pdf_file.file_name
-    file_id = pdf_file.file_id
-
-    if 'merge_file_ids' in user_data and user_data['merge_file_ids']:
-        user_data['merge_file_ids'].append(file_id)
-        user_data['merge_filenames'].append(filename)
-    else:
-        user_data['merge_file_ids'] = [file_id]
-        user_data['merge_filenames'] = [filename]
-
-    keyboard = [['Done']]
-    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
-
-    update.message.reply_text('Please send me the next PDF file that you\'ll like to merge or send Done if you have '
-                              'sent me all the PDF files.', reply_markup=reply_markup)
-    send_filenames(update, user_data['merge_filenames'], 'PDF files')
-
-    return WAIT_MERGE_FILE
-
-
-# Send a list of filenames
-@run_async
-def send_filenames(update, filenames, file_type):
-    text = f'You have sent me the following {file_type}:\n'
-    for i, filename in enumerate(filenames):
-        text += f'{i + 1}: {filename}\n'
-
-    update.message.reply_text(text)
-
-
-# Merge PDF file
-def merge_pdf(bot, update, user_data):
-    if 'merge_file_ids' not in user_data:
-        return ConversationHandler.END
-
-    file_ids = user_data['merge_file_ids']
-    filenames = user_data['merge_filenames']
-    update.message.reply_text('Merging your PDF files...', reply_markup=ReplyKeyboardRemove())
-
-    # Setup temporary files
-    temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
-    temp_files.append(tempfile.NamedTemporaryFile(prefix='Merged_', suffix='.pdf'))
-    out_filename = temp_files[-1].name
-    merger = PdfFileMerger()
-    is_read_ok = True
-
-    # Merge PDF files
-    for i, file_id in enumerate(file_ids):
-        filename = temp_files[i].name
-        pdf_file = bot.get_file(file_id)
-        pdf_file.download(custom_path=filename)
-
-        try:
-            merger.append(open(filename, 'rb'))
-        except PdfReadError:
-            is_read_ok = False
-            update.message.reply_text(f'I could not open and read "{filenames[i]}". '
-                                      f'Please make sure that it is not encrypted. Operation cancelled.')
-
-    if is_read_ok:
-        with open(out_filename, 'wb') as f:
-            merger.write(f)
-
-        send_result(update, out_filename, 'merged')
-
-    # Clean up memory and files
-    if user_data['merge_file_ids'] == file_ids:
-        del user_data['merge_file_ids']
-    if user_data['merge_filenames'] == filenames:
-        del user_data['merge_filenames']
-    for tf in temp_files:
-        tf.close()
-
-    return ConversationHandler.END
 
 
 # Create a photo converting conversation handler

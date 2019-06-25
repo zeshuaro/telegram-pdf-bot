@@ -1,3 +1,4 @@
+import os
 import shlex
 import tempfile
 
@@ -8,7 +9,7 @@ from telegram.constants import MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from constants import *
+from constants import WAIT_FIRST_COMPARE_FILE, WAIT_SECOND_COMPARE_FILE, PDF_INVALID_FORMAT, PDF_OK
 from utils import check_pdf, cancel
 
 
