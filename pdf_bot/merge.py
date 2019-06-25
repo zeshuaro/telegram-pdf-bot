@@ -17,7 +17,7 @@ def merge_cov_handler():
     """
     Create the merge conversation handler
     Returns:
-        The conversation handler
+        The conversation handler object
     """
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('merge', merge, pass_user_data=True)],
@@ -59,7 +59,7 @@ def merge(update, _, user_data):
 @run_async
 def receive_merge_file(update, _, user_data):
     """
-    Receive and check for the file
+    Validate the file and wait for the next action
     Args:
         update: the update object
         _: unused variable
@@ -91,16 +91,16 @@ def receive_merge_file(update, _, user_data):
             return ConversationHandler.END
 
     pdf_file = update.message.document
-    filename = pdf_file.file_name
+    file_name = pdf_file.file_name
     file_id = pdf_file.file_id
 
     # Check if user has already sent through some PDF files
     if MERGE_IDS in user_data and user_data[MERGE_IDS]:
         user_data[MERGE_IDS].append(file_id)
-        user_data[MERGE_NAMES].append(filename)
+        user_data[MERGE_NAMES].append(file_name)
     else:
         user_data[MERGE_IDS] = [file_id]
-        user_data[MERGE_NAMES] = [filename]
+        user_data[MERGE_NAMES] = [file_name]
 
     reply_markup = ReplyKeyboardMarkup([['Done']], one_time_keyboard=True)
     update.message.reply_text('Please send me the next PDF file that you\'ll like to merge or send Done if you have '
@@ -137,12 +137,12 @@ def merge_pdf(update, context, user_data):
 
     # Merge PDF files
     for i, file_id in enumerate(file_ids):
-        filename = temp_files[i].name
+        file_name = temp_files[i].name
         pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=filename)
+        pdf_file.download(custom_path=file_name)
 
         try:
-            merger.append(open(filename, 'rb'))
+            merger.append(open(file_name, 'rb'))
         except PdfReadError:
             read_ok = False
             update.message.reply_text(f'I could not open and read "{filenames[i]}". '
