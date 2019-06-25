@@ -1,27 +1,16 @@
 import logbook
 import os
-import re
-import shlex
-import shutil
 import sys
-import tempfile
-import wand.image
 
 from dotenv import load_dotenv
 from feedback_bot import feedback_cov_handler
 from logbook import Logger, StreamHandler
-from PIL import Image as PillowImage
-from PyPDF2 import PdfFileWriter, PdfFileReader
-from PyPDF2.utils import PdfReadError
-from subprocess import Popen, PIPE
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
-from telegram.constants import *
-from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, RegexHandler, Filters
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Updater, CommandHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from constants import *
-from utils import open_pdf, process_pdf, send_result
+from file import file_cov_handler
 from merge import merge_cov_handler
 from photo import photo_cov_handler
 from watermark import watermark_cov_handler
@@ -60,7 +49,7 @@ def main():
     dispatcher.add_handler(merge_cov_handler())
     dispatcher.add_handler(photo_cov_handler())
     dispatcher.add_handler(watermark_cov_handler())
-    dispatcher.add_handler(doc_cov_handler())
+    dispatcher.add_handler(file_cov_handler())
     dispatcher.add_handler(feedback_cov_handler())
     dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID), pass_args=True))
 
