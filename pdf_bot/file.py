@@ -14,9 +14,10 @@ from telegram.ext.dispatcher import run_async
 
 from constants import WAIT_TASK, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, WAIT_ROTATE_DEGREE, WAIT_SCALE_BY_X, \
     WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME
-from utils import cancel, open_pdf, send_result
+from utils import cancel, open_pdf, send_result, process_pdf
 from crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from photo import process_photo
+from scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
 
 PDF_ID = 'pdf_id'
 PHOTO_ID = 'photo_id'
@@ -333,7 +334,7 @@ def pdf_to_img(update, context, user_data):
 @run_async
 def ask_pdf_new_name(update, _):
     """
-    Ask for the new file name
+    Ask and wait for the new file name
     Args:
         update: the update object
         _: unused variable
@@ -399,129 +400,44 @@ def rename_pdf(update, context, user_data):
     return ConversationHandler.END
 
 
-# Ask user for rotation degree
 @run_async
-def ask_rotate_degree(update, context):
+def ask_rotate_degree(update, _):
+    """
+    Ask and wait for the rotation degree
+    Args:
+        update: the update object
+        _: unused variable
+
+    Returns:
+        The variable indicating to wait for the rotation degree
+    """
     keyboard = [['90'], ['180'], ['270']]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
-
     update.message.reply_text('Please select the degrees that you\'ll like to rotate your PDF file in clockwise.',
                               reply_markup=reply_markup)
 
     return WAIT_ROTATE_DEGREE
 
 
-# Rotate the PDF file with the given degree
 @run_async
 def rotate_pdf(update, context, user_data):
+    """
+    Rotate the PDF file with the given rotation degree
+    Args:
+        update: the update object
+        context: the context object
+        user_data: the dict of user data
+
+    Returns:
+        The vairable indicating the conversation has ended
+    """
     if PDF_ID not in user_data:
         return ConversationHandler.END
 
     degree = int(update.message.text)
-    update.message.reply_text(f'Rotating your PDF file clockwise by {degree} degrees...',
+    update.message.reply_text(f'Rotating your PDF file clockwise by {degree} degrees',
                               reply_markup=ReplyKeyboardRemove())
-    work_on_pdf(update, context, user_data, 'rotated', rotate_degree=degree)
-
-    return ConversationHandler.END
-
-
-# Ask for horizontal scaling factor or new width
-@run_async
-def ask_scale_x(update, context):
-    if update.message.text == 'Scale By':
-        update.message.reply_text('Please send me the scaling factor for the horizontal axis. For example, '
-                                  '2 will double the horizontal axis and 0.5 will half the horizontal axis.',
-                                  reply_markup=ReplyKeyboardRemove())
-
-        return WAIT_SCALE_BY_X
-    else:
-        update.message.reply_text('Please send me the new width.', reply_markup=ReplyKeyboardRemove())
-
-        return WAIT_SCALE_TO_X
-
-
-# Check for horizontal scaling factor and ask for vertical scaling factor
-@run_async
-def ask_scale_by_y(update, context, user_data):
-    scale_x = update.message.text
-
-    try:
-        scale_x = float(scale_x)
-    except ValueError:
-        update.message.reply_text('The scaling factor that you sent me is invalid. Please try again.')
-
-        return WAIT_SCALE_BY_X
-
-    user_data['scale_by_x'] = scale_x
-    update.message.reply_text('Please send me the scaling factor for the vertical axis. For example, 2 will double '
-                              'the vertical axis and 0.5 will half the vertical axis.')
-
-    return WAIT_SCALE_BY_Y
-
-
-# Check for vertical scaling factor and scale PDF file
-@run_async
-def pdf_scale_by(update, context, user_data):
-    if PDF_ID not in user_data or 'scale_by_x' not in user_data:
-        return ConversationHandler.END
-
-    scale_y = update.message.text
-    try:
-        scale_y = float(scale_y)
-    except ValueError:
-        update.message.reply_text('The scaling factor that you sent me is invalid. Please try again.')
-
-        return WAIT_SCALE_BY_Y
-
-    scale_x = user_data['scale_by_x']
-    update.message.reply_text(f'Scaling your PDF file, horizontally by {scale_x} and vertically by {scale_y}...')
-    work_on_pdf(update, context, user_data, 'scaled', scale_by=(scale_x, scale_y))
-
-    if user_data['scale_by_x'] == scale_x:
-        del user_data['scale_by_x']
-
-    return ConversationHandler.END
-
-
-# Checks for width and asks for height
-@run_async
-def ask_scale_to_y(update, context, user_data):
-    scale_x = update.message.text
-
-    try:
-        scale_x = float(scale_x)
-    except ValueError:
-        update.message.reply_text('The width that you sent me is invalid. Please try again.')
-
-        return WAIT_SCALE_TO_X
-
-    user_data['scale_to_x'] = scale_x
-    update.message.reply_text('Please send me the new height.')
-
-    return WAIT_SCALE_TO_Y
-
-
-# Checks for height and scale PDF file
-@run_async
-def pdf_scale_to(update, context, user_data):
-    if PDF_ID not in user_data or 'scale_to_x' not in user_data:
-        return ConversationHandler.END
-
-    scale_y = update.message.text
-
-    try:
-        scale_y = float(scale_y)
-    except ValueError:
-        update.message.reply_text('The height that you sent me is invalid. Please try again.')
-
-        return WAIT_SCALE_TO_Y
-
-    scale_x = user_data['scale_to_x']
-    update.message.reply_text(f'Scaling your PDF file with width of {scale_x} and height of {scale_y}...')
-    work_on_pdf(update, context, user_data, 'scaled', scale_to=(scale_x, scale_y))
-
-    if user_data['scale_to_x'] == scale_x:
-        del user_data['scale_to_x']
+    process_pdf(update, context, user_data, 'rotated', rotate_degree=degree)
 
     return ConversationHandler.END
 

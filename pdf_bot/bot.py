@@ -21,7 +21,7 @@ from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHa
 from telegram.ext.dispatcher import run_async
 
 from constants import *
-from utils import open_pdf, work_on_pdf, send_result
+from utils import open_pdf, process_pdf, send_result
 from merge import merge_cov_handler
 from photo import photo_cov_handler
 from watermark import watermark_cov_handler

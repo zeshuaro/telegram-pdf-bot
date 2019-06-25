@@ -7,14 +7,14 @@ from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
 from constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW
-from utils import send_result, work_on_pdf
+from utils import send_result, process_pdf
 from file import PDF_ID
 
 
 @run_async
 def ask_decrypt_pw(update, _):
     """
-    Ask for the decryption password
+    Ask and wait for the decryption password
     Args:
         update: the update object
         _: unused variable
@@ -95,7 +95,7 @@ def decrypt_pdf(update, context, user_data):
 @run_async
 def ask_encrypt_pw(update, _):
     """
-    Ask for the encryption password
+    Ask and wait for the encryption password
     Args:
         update: the update object
         _: unused variable
@@ -125,6 +125,6 @@ def encrypt_pdf(update, context, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Encrypting your PDF file...')
-    work_on_pdf(update, context, user_data, 'encrypted', encrypt_pw=update.message.text)
+    process_pdf(update, context, user_data, 'encrypted', encrypt_pw=update.message.text)
 
     return ConversationHandler.END
