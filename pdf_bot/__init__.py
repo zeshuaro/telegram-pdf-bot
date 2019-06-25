@@ -1,0 +1,1 @@
+from pdf_bot.bot import main

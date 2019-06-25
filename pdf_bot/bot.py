@@ -1,16 +1,15 @@
-#!/usr/bin/env python3
-# coding: utf-8
-
-import logging
+import logbook
 import os
 import re
 import shlex
 import shutil
+import sys
 import tempfile
 import wand.image
 
 from dotenv import load_dotenv
 from feedback_bot import feedback_cov_handler
+from logbook import Logger, StreamHandler
 from PIL import Image as PillowImage
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 from PyPDF2.utils import PdfReadError
@@ -24,53 +23,57 @@ from telegram.ext.dispatcher import run_async
 from constants import *
 from utils import check_pdf, open_pdf, work_on_pdf, send_result
 
-# Enable logging
-logging.basicConfig(format='[%(asctime)s] [%(levelname)s] %(message)s', datefmt='%Y-%m-%d %I:%M:%S %p',
-                    level=logging.INFO)
-LOGGER = logging.getLogger(__name__)
-
 load_dotenv()
-HOST = 'appspot.com'
-APP_URL = f'{os.environ.get("GAE_APPLICATION", "")}.{HOST}'
+HOST = '.appspot.com/'
+APP_URL = f'{os.environ.get("GAE_APPLICATION", "")}{HOST}'
 PORT = int(os.environ.get('PORT', '8443'))
-
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN_BETA', os.environ.get('TELEGRAM_TOKEN'))
-DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
+DEV_TELE_ID = int(os.environ.get('DEV_TELEGRAM_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
 
-CHANNEL_NAME = 'pdf2botdev'  # Channel username
-BOT_NAME = 'pdf2bot'  # Bot username
+CHANNEL_NAME = 'pdf2botdev'
+BOT_NAME = 'pdf2bot'
+TIMEOUT = 20
 
 
 def main():
+    # Setup logging
+    logbook.set_datetime_format('local')
+    format_string = '[{record.time:%Y-%m-%d %H:%M:%S}] {record.level_name}: {record.message}'
+    StreamHandler(sys.stdout, format_string=format_string).push_application()
+    log = Logger()
+
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(TELEGRAM_TOKEN, request_kwargs={'connect_timeout': 20, 'read_timeout': 20})
+    updater = Updater(
+        TELEGRAM_TOKEN, use_context=True, request_kwargs={'connect_timeout': TIMEOUT, 'read_timeout': TIMEOUT})
 
     # Get the dispatcher to register handlers
-    dp = updater.dispatcher
+    dispatcher = updater.dispatcher
     # on different commands - answer in Telegram
-    dp.add_handler(CommandHandler('start', start_msg))
-    dp.add_handler(CommandHandler('help', help_msg))
-    dp.add_handler(CommandHandler('donate', donate_msg))
-    dp.add_handler(compare_cov_handler())
-    dp.add_handler(merge_cov_handler())
-    dp.add_handler(photo_cov_handler())
-    dp.add_handler(watermark_cov_handler())
-    dp.add_handler(doc_cov_handler())
-    dp.add_handler(feedback_cov_handler())
-    dp.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID), pass_args=True))
+    dispatcher.add_handler(CommandHandler('start', start_msg))
+    dispatcher.add_handler(CommandHandler('help', help_msg))
+    dispatcher.add_handler(CommandHandler('donate', donate_msg))
+    dispatcher.add_handler(compare_cov_handler())
+    dispatcher.add_handler(merge_cov_handler())
+    dispatcher.add_handler(photo_cov_handler())
+    dispatcher.add_handler(watermark_cov_handler())
+    dispatcher.add_handler(doc_cov_handler())
+    dispatcher.add_handler(feedback_cov_handler())
+    dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID), pass_args=True))
 
     # log all errors
-    dp.add_error_handler(error)
+    dispatcher.add_error_handler(error_callback)
 
     # Start the Bot
-    if APP_URL:
+    if APP_URL != HOST:
         updater.start_webhook(listen='0.0.0.0',
                               port=PORT,
                               url_path=TELEGRAM_TOKEN)
         updater.bot.set_webhook(APP_URL + TELEGRAM_TOKEN)
+        log.notice('Bot started webhook')
     else:
         updater.start_polling()
+        log.notice('Bot started polling')
 
     # Run the bot until the you presses Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
@@ -78,9 +81,17 @@ def main():
     updater.idle()
 
 
-# Send start message
 @run_async
-def start_msg(bot, update):
+def start_msg(update, _):
+    """
+    Send start message
+    Args:
+        update: the update object
+        _: unused variable
+
+    Returns:
+        None
+    """
     text = 'Welcome to PDF Bot!\n\n'
     text += 'I can compare, decrypt, encrypt, merge, rotate, scale, split and add watermark to a PDF file.\n\n '
     text += 'I can also extract images in a PDF file and convert a PDF file into images.\n\n'
@@ -92,7 +103,16 @@ def start_msg(bot, update):
 
 # Send help message
 @run_async
-def help_msg(bot, update):
+def help_msg(update, _):
+    """
+    Send help message
+    Args:
+        update: the update object
+        _: unused variable
+
+    Returns:
+        None
+    """
     text = 'You can perform most of the tasks simply by sending me a PDF file. You can then select a task and I ' \
            'will guide you through each of the tasks.\n\n'
     text += 'If you want to compare, merge or add watermark to PDF files, you will have to use the /compare, ' \
@@ -111,7 +131,16 @@ def help_msg(bot, update):
 
 # Send donate message
 @run_async
-def donate_msg(bot, update):
+def donate_msg(update, _):
+    """
+    Send donate message
+    Args:
+        update: the update object
+        _: unused variable
+
+    Returns:
+        None
+    """
     text = f'Want to help keep me online? Please donate to {DEV_EMAIL} through PayPal.\n\n' \
            f'Donations help me to stay on my server and keep running.'
 
@@ -1199,8 +1228,9 @@ def send(bot, update, args):
         bot.send_message(DEV_TELE_ID, 'Failed to send message')
 
 
-def error(bot, update, error):
-    LOGGER.warning('Update \'%s\' caused error \'%s\'' % (update, error))
+def error_callback(_, update, error):
+    log = Logger()
+    log.warn('Update \'%s\' caused error \'%s\'' % (update, error))
 
 
 if __name__ == '__main__':

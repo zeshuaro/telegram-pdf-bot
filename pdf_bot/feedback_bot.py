@@ -3,10 +3,10 @@
 import dotenv
 import logging
 import os
+import slack
 
 from textblob import TextBlob
 from textblob.exceptions import TranslatorError
-from slackclient import SlackClient
 from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
@@ -60,7 +60,7 @@ def receive_feedback(bot, update):
 
     text = "Feedback received from @{} ({})\n\n{}".format(tele_username, tele_id, feedback_msg)
     if SLACK_TOKEN:
-        sc = SlackClient(SLACK_TOKEN)
+        sc = slack.WebClient(SLACK_TOKEN)
         sc.api_call(
             "chat.postMessage",
             channel="#bots_feedback",
