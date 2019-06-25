@@ -11,18 +11,20 @@ from dotenv import load_dotenv
 from feedback_bot import feedback_cov_handler
 from logbook import Logger, StreamHandler
 from PIL import Image as PillowImage
-from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
+from PyPDF2 import PdfFileWriter, PdfFileReader
 from PyPDF2.utils import PdfReadError
 from subprocess import Popen, PIPE
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove, ChatAction
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import *
 from telegram.ext import Updater, CommandHandler, ConversationHandler, MessageHandler, RegexHandler, Filters
 from telegram.ext.dispatcher import run_async
 
 from constants import *
-from utils import check_pdf, open_pdf, work_on_pdf, send_result
+from utils import open_pdf, work_on_pdf, send_result
 from merge import merge_cov_handler
+from photo import photo_cov_handler
+from watermark import watermark_cov_handler
 
 load_dotenv()
 HOST = '.appspot.com/'
@@ -142,104 +144,6 @@ def donate_msg(update, _):
            f'Donations help me to stay on my server and keep running.'
 
     update.message.reply_text(text)
-
-
-# Create a watermark conversation handler
-def watermark_cov_handler():
-    conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('watermark', watermark)],
-        states={
-            WAIT_WATERMARK_SOURCE_FILE: [MessageHandler(Filters.document, receive_watermark_source_file,
-                                                        pass_user_data=True)],
-            WAIT_WATERMARK_FILE: [MessageHandler(Filters.document, receive_watermark_file, pass_user_data=True)]
-        },
-        fallbacks=[CommandHandler('cancel', cancel)],
-        allow_reentry=True
-    )
-
-    return conv_handler
-
-
-# Start the watermark conversation
-@run_async
-def watermark(bot, update):
-    update.message.reply_text('Please send me the PDF file that you will like to add a watermark or type /cancel to '
-                              'cancel this operation.')
-
-    return WAIT_WATERMARK_SOURCE_FILE
-
-
-# Receive and check for the source PDF file
-@run_async
-def receive_watermark_source_file(bot, update, user_data):
-    result = check_pdf(update)
-    if result == PDF_INVALID_FORMAT:
-        return WAIT_WATERMARK_SOURCE_FILE
-    elif result != PDF_OK:
-        return ConversationHandler.END
-
-    user_data['watermark_file_id'] = update.message.document.file_id
-    update.message.reply_text('Please send me the watermark in PDF format.')
-
-    return WAIT_WATERMARK_FILE
-
-
-# Receive and check for the watermark PDF file and watermark the PDF file
-@run_async
-def receive_watermark_file(bot, update, user_data):
-    if 'watermark_file_id' not in user_data:
-        return ConversationHandler.END
-
-    result = check_pdf(update)
-    if result == PDF_INVALID_FORMAT:
-        return WAIT_WATERMARK_FILE
-    elif result != PDF_OK:
-        return ConversationHandler.END
-
-    return add_pdf_watermark(bot, update, user_data, update.message.document.file_id)
-
-
-# Add watermark to PDF file
-def add_pdf_watermark(bot, update, user_data, watermark_file_id):
-    if 'watermark_file_id' not in user_data:
-        return ConversationHandler.END
-
-    source_file_id = user_data['watermark_file_id']
-    update.message.reply_text('Adding the watermark to your PDF file...')
-
-    # Setup temporary files
-    temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
-    temp_files.append(tempfile.NamedTemporaryFile(prefix='Watermarked_', suffix='.pdf'))
-    source_filename, watermark_filename, out_filename = [x.name for x in temp_files]
-
-    # Download PDF files
-    source_pdf_file = bot.get_file(source_file_id)
-    source_pdf_file.download(custom_path=source_filename)
-    watermark_pdf_file = bot.get_file(watermark_file_id)
-    watermark_pdf_file.download(custom_path=watermark_filename)
-
-    pdf_reader = open_pdf(source_filename, update, 'source')
-    if pdf_reader:
-        watermark_reader = open_pdf(watermark_filename, update, 'watermark')
-        if watermark_reader:
-            # Add watermark
-            pdf_writer = PdfFileWriter()
-            for page in pdf_reader.pages:
-                page.mergePage(watermark_reader.getPage(0))
-                pdf_writer.addPage(page)
-
-            with open(out_filename, 'wb') as f:
-                pdf_writer.write(f)
-
-            send_result(update, out_filename, 'watermarked')
-
-    # Clean up memory and files
-    if user_data['watermark_file_id'] == source_file_id:
-        del user_data['watermark_file_id']
-    for tf in temp_files:
-        tf.close()
-
-    return ConversationHandler.END
 
 
 # Create a PDF conversation handler

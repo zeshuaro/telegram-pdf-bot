@@ -7,7 +7,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from constants import WAIT_MERGE_FILE, PDF_INVALID_FORMAT, PDF_TOO_LARGE
-from utils import check_pdf, cancel, send_result, send_filenames
+from utils import check_pdf, cancel, send_result, send_file_names
 
 MERGE_IDS = 'merge_ids'
 MERGE_NAMES = 'merge_names'
@@ -15,14 +15,14 @@ MERGE_NAMES = 'merge_names'
 
 def merge_cov_handler():
     """
-    Create the merge conversation handler
+    Create the merge conversation handler object
     Returns:
         The conversation handler object
     """
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('merge', merge, pass_user_data=True)],
         states={
-            WAIT_MERGE_FILE: [MessageHandler(Filters.document, receive_merge_file, pass_user_data=True),
+            WAIT_MERGE_FILE: [MessageHandler(Filters.document, receive_file, pass_user_data=True),
                               MessageHandler(Filters.regex('^Done$'), merge_pdf, pass_user_data=True)],
         },
         fallbacks=[CommandHandler('cancel', cancel)],
@@ -57,7 +57,7 @@ def merge(update, _, user_data):
 
 
 @run_async
-def receive_merge_file(update, _, user_data):
+def receive_file(update, _, user_data):
     """
     Validate the file and wait for the next action
     Args:
@@ -66,7 +66,7 @@ def receive_merge_file(update, _, user_data):
         user_data: the dict of user data
 
     Returns:
-        The variable indicating to wait for a file
+        The variable indicating to wait for a file or the conversation has ended
     """
     result = check_pdf(update)
     if result == PDF_INVALID_FORMAT:
@@ -81,7 +81,7 @@ def receive_merge_file(update, _, user_data):
         if MERGE_NAMES in user_data and user_data[MERGE_NAMES]:
             text += 'You can continue merging with the files that you sent me or type /cancel to cancel this operation.'
             update.message.reply_text(text)
-            send_filenames(update, user_data[MERGE_NAMES], 'PDF files')
+            send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
 
             return WAIT_MERGE_FILE
         else:
@@ -105,7 +105,7 @@ def receive_merge_file(update, _, user_data):
     reply_markup = ReplyKeyboardMarkup([['Done']], one_time_keyboard=True)
     update.message.reply_text('Please send me the next PDF file that you\'ll like to merge or send Done if you have '
                               'sent me all the PDF files.', reply_markup=reply_markup)
-    send_filenames(update, user_data[MERGE_NAMES], 'PDF files')
+    send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
 
     return WAIT_MERGE_FILE
 
@@ -125,7 +125,7 @@ def merge_pdf(update, context, user_data):
         return ConversationHandler.END
 
     file_ids = user_data[MERGE_IDS]
-    filenames = user_data[MERGE_NAMES]
+    file_names = user_data[MERGE_NAMES]
     update.message.reply_text('Merging your PDF files', reply_markup=ReplyKeyboardRemove())
 
     # Setup temporary files
@@ -145,7 +145,7 @@ def merge_pdf(update, context, user_data):
             merger.append(open(file_name, 'rb'))
         except PdfReadError:
             read_ok = False
-            update.message.reply_text(f'I could not open and read "{filenames[i]}". '
+            update.message.reply_text(f'I could not open and read "{file_names[i]}". '
                                       f'Please make sure that it is not encrypted. Operation cancelled.')
 
             break
@@ -159,7 +159,7 @@ def merge_pdf(update, context, user_data):
     # Clean up memory and files
     if user_data[MERGE_IDS] == file_ids:
         del user_data[MERGE_IDS]
-    if user_data[MERGE_NAMES] == filenames:
+    if user_data[MERGE_NAMES] == file_names:
         del user_data[MERGE_NAMES]
     for tf in temp_files:
         tf.close()

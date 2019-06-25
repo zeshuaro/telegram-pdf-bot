@@ -9,7 +9,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from constants import WAIT_PHOTO
-from utils import cancel, send_filenames, send_result
+from utils import cancel, send_file_names, send_result
 
 PHOTO_IDS = 'photo_ids'
 PHOTO_NAMES = 'photo_names'
@@ -17,7 +17,7 @@ PHOTO_NAMES = 'photo_names'
 
 def photo_cov_handler():
     """
-    Create the photo converting conversation handler
+    Create the photo converting conversation handler object
     Returns:
         The conversation handler object
     """
@@ -71,7 +71,7 @@ def receive_photo(update, _, user_data):
         user_data: the dict of user data
 
     Returns:
-        The variable indicating to wait for a file
+        The variable indicating to wait for a file or the conversation has ended
     """
     # Check if the photo has been sent as a document or photo
     if update.message.document:
@@ -92,7 +92,7 @@ def receive_photo(update, _, user_data):
             text += 'You can continue to beautify or convert with the files that you sent me, ' \
                     'or type /cancel to cancel this operation.'
             update.message.reply_text(text)
-            send_filenames(update, user_data[PHOTO_NAMES], 'photos')
+            send_file_names(update, user_data[PHOTO_NAMES], 'photos')
 
             return WAIT_PHOTO
         else:
@@ -122,7 +122,7 @@ def receive_photo(update, _, user_data):
                               'Select the task from below if you have sent me all the photos.\n\n'
                               'Be aware that I only have access to the file name if you sent your photo as a document.',
                               reply_markup=reply_markup)
-    send_filenames(update, user_data[PHOTO_NAMES], 'photos')
+    send_file_names(update, user_data[PHOTO_NAMES], 'photos')
 
     return WAIT_PHOTO
 
@@ -142,7 +142,7 @@ def process_all_photos(update, context, user_data):
         return ConversationHandler.END
 
     file_ids = user_data[PHOTO_IDS]
-    filenames = user_data[PHOTO_NAMES]
+    file_names = user_data[PHOTO_NAMES]
 
     if update.message.text.lower() == 'beautify':
         process_photo(context.bot, update, file_ids, is_beautify=True)
@@ -152,7 +152,7 @@ def process_all_photos(update, context, user_data):
     # Clean up memory
     if user_data[PHOTO_IDS] == file_ids:
         del user_data[PHOTO_IDS]
-    if user_data[PHOTO_NAMES] == filenames:
+    if user_data[PHOTO_NAMES] == file_names:
         del user_data[PHOTO_NAMES]
 
     return ConversationHandler.END

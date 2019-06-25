@@ -101,7 +101,7 @@ def work_on_pdf(bot, update, user_data, file_type, encrypt_pw=None, rotate_degre
 
 # Send a list of filenames
 @run_async
-def send_filenames(update, filenames, file_type):
+def send_file_names(update, filenames, file_type):
     text = f'You have sent me the following {file_type}:\n'
     for i, filename in enumerate(filenames):
         text += f'{i + 1}: {filename}\n'
