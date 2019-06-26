@@ -22,11 +22,12 @@ def photo_cov_handler():
         The conversation handler object
     """
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('photo', photo, pass_user_data=True)],
+        entry_points=[CommandHandler('photo', photo)],
         states={
-            WAIT_PHOTO: [MessageHandler(Filters.document | Filters.photo, receive_photo, pass_user_data=True),
-                         MessageHandler(Filters.regex('^(Beautify|Convert)$'), process_all_photos,
-                                        pass_user_data=True)],
+            WAIT_PHOTO: [
+                MessageHandler(Filters.document | Filters.photo, receive_photo),
+                MessageHandler(Filters.regex('^(Beautify|Convert)$'), process_all_photos)
+            ]
         },
         fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex('^Cancel$'), cancel)],
         allow_reentry=True
@@ -36,18 +37,18 @@ def photo_cov_handler():
 
 
 @run_async
-def photo(update, _, user_data):
+def photo(update, context):
     """
     Start the photo converting conversation
     Args:
         update: the update object
-        _: unused variable
-        user_data: the dict of user data
+        context: the context object
 
     Returns:
         The variable indicating to wait for a photo
     """
     # Clear previous photo info
+    user_data = context.user_data
     if PHOTO_IDS in user_data:
         del user_data[PHOTO_IDS]
     if PHOTO_NAMES in user_data:
@@ -62,13 +63,12 @@ def photo(update, _, user_data):
 
 # Receive and check for the photo
 @run_async
-def receive_photo(update, _, user_data):
+def receive_photo(update, context):
     """
     Validate the file and wait for the next action
     Args:
         update: the update object
-        _: unused variable
-        user_data: the dict of user data
+        context: the context object
 
     Returns:
         The variable indicating to wait for a file or the conversation has ended
@@ -84,6 +84,7 @@ def receive_photo(update, _, user_data):
     else:
         photo_file = update.message.photo[-1]
 
+    user_data = context.user_data
     if photo_file.file_size > MAX_FILESIZE_DOWNLOAD:
         text = 'The photo you sent is too large for me to download.\n\n'
 
@@ -92,7 +93,7 @@ def receive_photo(update, _, user_data):
             text += 'You can continue to beautify or convert with the files that you sent me, ' \
                     'or type /cancel to cancel this operation.'
             update.message.reply_text(text)
-            send_file_names(update, user_data[PHOTO_NAMES], 'photos')
+            send_file_names(update[PHOTO_NAMES], 'photos')
 
             return WAIT_PHOTO
         else:
@@ -122,22 +123,22 @@ def receive_photo(update, _, user_data):
                               'Select the task from below if you have sent me all the photos.\n\n'
                               'Be aware that I only have access to the file name if you sent your photo as a document.',
                               reply_markup=reply_markup)
-    send_file_names(update, user_data[PHOTO_NAMES], 'photos')
+    send_file_names(update[PHOTO_NAMES], 'photos')
 
     return WAIT_PHOTO
 
 
-def process_all_photos(update, context, user_data):
+def process_all_photos(update, context):
     """
     Process all photos
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating the conversation has ended
     """
+    user_data = context.user_data
     if PHOTO_IDS not in user_data:
         return ConversationHandler.END
 
