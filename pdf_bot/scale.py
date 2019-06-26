@@ -2,9 +2,8 @@ from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from constants import WAIT_SCALE_BY_X, WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y
+from constants import WAIT_SCALE_BY_X, WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, PDF_ID
 from utils import process_pdf
-from file import PDF_ID
 
 SCALE_BY = 'scale_by'
 SCALE_TO = 'scale_to'

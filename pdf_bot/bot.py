@@ -16,8 +16,7 @@ from photo import photo_cov_handler
 from watermark import watermark_cov_handler
 
 load_dotenv()
-HOST = '.appspot.com/'
-APP_URL = f'{os.environ.get("GAE_APPLICATION", "")}{HOST}'
+APP_URL = os.environ.get("APP_URL")
 PORT = int(os.environ.get('PORT', '8443'))
 TELE_TOKEN = os.environ.get('TELE_TOKEN_BETA', os.environ.get('TELE_TOKEN'))
 DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
@@ -57,8 +56,9 @@ def main():
     dispatcher.add_error_handler(error_callback)
 
     # Start the Bot
-    if APP_URL != HOST:
+    if APP_URL is not None:
         updater.start_webhook(listen='0.0.0.0', port=PORT, url_path=TELE_TOKEN)
+        print(APP_URL, TELE_TOKEN)
         updater.bot.set_webhook(APP_URL + TELE_TOKEN)
         log.notice('Bot started webhook')
     else:
@@ -71,7 +71,7 @@ def main():
     updater.idle()
 
 
-@run_async
+# @run_async
 def start_msg(update, _):
     """
     Send start message

@@ -15,13 +15,12 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from constants import WAIT_TASK, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, WAIT_ROTATE_DEGREE, WAIT_SCALE_BY_X, \
-    WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME
+    WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME, PDF_ID
 from utils import cancel, open_pdf, send_result, process_pdf
 from crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from photo import process_photo
 from scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
 
-PDF_ID = 'pdf_id'
 PHOTO_ID = 'photo_id'
 
 
@@ -48,7 +47,7 @@ def file_cov_handler():
                         MessageHandler(Filters.regex('^Rename$'), ask_pdf_new_name)],
             WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf, pass_user_data=True)],
             WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf, pass_user_data=True)],
-            WAIT_ROTATE_DEGREE: [MessageHandler('^(90|180|270)$', rotate_pdf, pass_user_data=True)],
+            WAIT_ROTATE_DEGREE: [MessageHandler(Filters.regex('^(90|180|270)$'), rotate_pdf, pass_user_data=True)],
             WAIT_SCALE_BY_X: [MessageHandler(Filters.text, ask_scale_by_y, pass_user_data=True)],
             WAIT_SCALE_BY_Y: [MessageHandler(Filters.text, pdf_scale_by, pass_user_data=True)],
             WAIT_SCALE_TO_X: [MessageHandler(Filters.text, ask_scale_to_y, pass_user_data=True)],
@@ -56,7 +55,7 @@ def file_cov_handler():
             WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf, pass_user_data=True)],
             WAIT_FILE_NAME: [MessageHandler(Filters.text, rename_pdf, pass_user_data=True)]
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler('^Cancel$', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex('^Cancel$'), cancel)],
         allow_reentry=True
     )
 
