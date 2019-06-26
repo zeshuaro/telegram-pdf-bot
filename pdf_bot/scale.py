@@ -33,13 +33,12 @@ def ask_scale_x(update, _):
 
 
 @run_async
-def ask_scale_by_y(update, _, user_data):
+def ask_scale_by_y(update, context):
     """
     Validate the horizontal scaling factor, and ask and wait for the vertical scaling factor
     Args:
         update: the update object
-        _: unused variable
-        user_data: the dict of user data
+        context: the context object
 
     Returns:
         The variable indicating to wait for the horizontal or vertical scaling factor
@@ -53,7 +52,7 @@ def ask_scale_by_y(update, _, user_data):
 
         return WAIT_SCALE_BY_X
 
-    user_data[SCALE_BY] = scale_x
+    context.user_data[SCALE_BY] = scale_x
     update.message.reply_text('Please send me the scaling factor for the vertical axis. For example, 2 will double '
                               'the vertical axis and 0.5 will half the vertical axis.')
 
@@ -61,17 +60,17 @@ def ask_scale_by_y(update, _, user_data):
 
 
 @run_async
-def pdf_scale_by(update, context, user_data):
+def pdf_scale_by(update, context):
     """
     Validate the vertical scaling factor and scale the PDF file
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating to wait for the vertical scaling factor or the conversation has ended
     """
+    user_data = context.user_data
     if PDF_ID not in user_data or SCALE_BY not in user_data:
         return ConversationHandler.END
 
@@ -85,7 +84,7 @@ def pdf_scale_by(update, context, user_data):
 
     scale_x = user_data[SCALE_BY]
     update.message.reply_text(f'Scaling your PDF file, horizontally by {scale_x} and vertically by {scale_y}')
-    process_pdf(update, context, user_data, 'scaled', scale_by=(scale_x, scale_y))
+    process_pdf(update, context, 'scaled', scale_by=(scale_x, scale_y))
 
     # Clean up memory
     if user_data[SCALE_BY] == scale_x:
@@ -95,13 +94,12 @@ def pdf_scale_by(update, context, user_data):
 
 
 @run_async
-def ask_scale_to_y(update, _, user_data):
+def ask_scale_to_y(update, context):
     """
     Validate the width, and ask and wait for the height
     Args:
         update: the update object
-        _: unused variable
-        user_data: the dict of user data
+        context: the context object
 
     Returns:
         The variable indicating to wait for the width or the height
@@ -115,7 +113,7 @@ def ask_scale_to_y(update, _, user_data):
 
         return WAIT_SCALE_TO_X
 
-    user_data[SCALE_TO] = scale_x
+    context.user_data[SCALE_TO] = scale_x
     update.message.reply_text('Please send me the new height.')
 
     return WAIT_SCALE_TO_Y
@@ -123,17 +121,17 @@ def ask_scale_to_y(update, _, user_data):
 
 # Checks for height and scale PDF file
 @run_async
-def pdf_scale_to(update, context, user_data):
+def pdf_scale_to(update, context):
     """
     Validate the height and scale the PDF file
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating to wait for the height or the conversation has ended
     """
+    user_data = context.user_data
     if PDF_ID not in user_data or SCALE_TO not in user_data:
         return ConversationHandler.END
 
@@ -147,7 +145,7 @@ def pdf_scale_to(update, context, user_data):
 
     scale_x = user_data[SCALE_TO]
     update.message.reply_text(f'Scaling your PDF file with width of {scale_x} and height of {scale_y}')
-    process_pdf(update, context, user_data, 'scaled', scale_to=(scale_x, scale_y))
+    process_pdf(update, context, 'scaled', scale_to=(scale_x, scale_y))
 
     # Clean up memory
     if user_data[SCALE_TO] == scale_x:

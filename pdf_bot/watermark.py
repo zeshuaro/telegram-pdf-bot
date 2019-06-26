@@ -21,7 +21,7 @@ def watermark_cov_handler():
         states={
             WAIT_WATERMARK_SOURCE_FILE: [MessageHandler(Filters.document, receive_source_file,
                                                         pass_user_data=True)],
-            WAIT_WATERMARK_FILE: [MessageHandler(Filters.document, receive_watermark_file, pass_user_data=True)]
+            WAIT_WATERMARK_FILE: [MessageHandler(Filters.document, receive_watermark_file)]
         },
         fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
@@ -31,12 +31,12 @@ def watermark_cov_handler():
 
 
 @run_async
-def watermark(update, _):
+def watermark(update, context):
     """
     Start the watermark conversation
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the source PDF file
@@ -48,12 +48,12 @@ def watermark(update, _):
 
 
 @run_async
-def receive_source_file(update, _, user_data):
+def receive_source_file(update, context):
     """
     Validate the file and wait for the watermark file
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
         user_data: the dict of user data
 
     Returns:
@@ -73,7 +73,7 @@ def receive_source_file(update, _, user_data):
 
 # Receive and check for the watermark PDF file and watermark the PDF file
 @run_async
-def receive_watermark_file(update, context, user_data):
+def receive_watermark_file(update, context):
     """
     Validate the file and add the watermark onto the source PDF file
     Args:
@@ -93,10 +93,10 @@ def receive_watermark_file(update, context, user_data):
     elif result != PDF_OK:
         return ConversationHandler.END
 
-    return add_pdf_watermark(context.bot, update, user_data, update.message.document.file_id)
+    return add_pdf_watermark(context.bot, update, update.message.document.file_id)
 
 
-def add_pdf_watermark(bot, update, user_data, watermark_file_id):
+def add_pdf_watermark(bot, update, watermark_file_id):
     """
     Add watermark onto the PDF file
     Args:
