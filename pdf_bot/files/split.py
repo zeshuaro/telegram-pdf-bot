@@ -1,6 +1,6 @@
 import tempfile
 
-from PyPDF2 import PdfFileReader, PdfFileMerger, parse_filename_page_ranges
+from PyPDF2 import PdfFileMerger
 from PyPDF2.pagerange import PageRange
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
