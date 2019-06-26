@@ -12,9 +12,9 @@ from telegram.ext.dispatcher import run_async
 from constants import *
 
 
-# Cancels feedback opteration
+# Cancels feedback operation
 @run_async
-def cancel(bot, update):
+def cancel(update, _):
     update.message.reply_text('Operation cancelled.', reply_markup=ReplyKeyboardRemove())
 
     return ConversationHandler.END
@@ -67,6 +67,7 @@ def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None,
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix=prefix, suffix=".pdf")]
     filename, out_filename = [x.name for x in temp_files]
 
+    user_data = context.user_data
     file_id = user_data["pdf_id"]
     pdf_file = context.bot.get_file(file_id)
     pdf_file.download(custom_path=filename)

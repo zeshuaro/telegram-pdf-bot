@@ -31,12 +31,12 @@ def watermark_cov_handler():
 
 
 @run_async
-def watermark(update, context):
+def watermark(update, _):
     """
     Start the watermark conversation
     Args:
         update: the update object
-        context: the context object
+        _: unused variable
 
     Returns:
         The variable indicating to wait for the source PDF file
@@ -54,7 +54,6 @@ def receive_source_file(update, context):
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating to wait for the watermark file or the conversation has ended
@@ -65,7 +64,7 @@ def receive_source_file(update, context):
     elif result != PDF_OK:
         return ConversationHandler.END
 
-    user_data[WATERMARK_ID] = update.message.document.file_id
+    context.user_data[WATERMARK_ID] = update.message.document.file_id
     update.message.reply_text('Please send me the watermark in PDF format.')
 
     return WAIT_WATERMARK_FILE
@@ -79,12 +78,11 @@ def receive_watermark_file(update, context):
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating to wait for the watermark file or the conversation has ended
     """
-    if WATERMARK_ID not in user_data:
+    if WATERMARK_ID not in context.user_data:
         return ConversationHandler.END
 
     result = check_pdf(update)
@@ -93,21 +91,20 @@ def receive_watermark_file(update, context):
     elif result != PDF_OK:
         return ConversationHandler.END
 
-    return add_pdf_watermark(context.bot, update, update.message.document.file_id)
+    return add_pdf_watermark(update, context)
 
 
-def add_pdf_watermark(bot, update, watermark_file_id):
+def add_pdf_watermark(update, context):
     """
     Add watermark onto the PDF file
     Args:
-        bot: the bot object
         update: the update object
-        user_data: the dict of user data
-        watermark_file_id: the watermark file ID
+        context: the context object
 
     Returns:
         None
     """
+    user_data = context.user_data
     if WATERMARK_ID not in user_data:
         return ConversationHandler.END
 
@@ -120,9 +117,9 @@ def add_pdf_watermark(bot, update, watermark_file_id):
     source_file_name, watermark_file_name, out_file_name = [x.name for x in temp_files]
 
     # Download PDF files
-    source_file = bot.get_file(source_file_id)
+    source_file = context.bot.get_file(source_file_id)
     source_file.download(custom_path=source_file_name)
-    watermark_file = bot.get_file(watermark_file_id)
+    watermark_file = context.bot.get_file(update.message.document.file_id)
     watermark_file.download(custom_path=watermark_file_name)
 
     source_reader = open_pdf(source_file_name, update, 'source')
