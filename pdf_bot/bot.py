@@ -12,7 +12,7 @@ from telegram.ext.dispatcher import run_async
 
 from file import file_cov_handler
 from merge import merge_cov_handler
-from photo import photo_cov_handler
+from photo_to_pdf import photo_cov_handler
 from watermark import watermark_cov_handler
 
 load_dotenv()

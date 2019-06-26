@@ -1,12 +1,7 @@
-import os
 import re
 import shutil
 import tempfile
-import wand.image
 
-from logbook import Logger
-from PIL import Image as PillowImage
-from PyPDF2 import PdfFileWriter
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
@@ -14,9 +9,10 @@ from telegram.ext.dispatcher import run_async
 
 from constants import WAIT_TASK, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, WAIT_ROTATE_DEGREE, WAIT_SCALE_BY_X, \
     WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME, PDF_ID
-from utils import cancel, open_pdf, send_result, process_pdf
+from utils import cancel, send_result, process_pdf
 from crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
-from photo import process_photo
+from pdf_to_photo import get_pdf_cover, get_pdf_photos, pdf_to_photos
+from photo_to_pdf import process_photo
 from scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
 from split import ask_split_range, split_pdf
 
@@ -36,8 +32,8 @@ def file_cov_handler():
                 MessageHandler(Filters.regex(r'^Cover$'), get_pdf_cover),
                 MessageHandler(Filters.regex(r'^Decrypt$'), ask_decrypt_pw),
                 MessageHandler(Filters.regex(r'^Encrypt$'), ask_encrypt_pw),
-                MessageHandler(Filters.regex(r'^Extract Images$'), get_pdf_img),
-                MessageHandler(Filters.regex(r'^To Images$'), pdf_to_img),
+                MessageHandler(Filters.regex(r'^Extract Images$'), get_pdf_photos),
+                MessageHandler(Filters.regex(r'^To Images$'), pdf_to_photos),
                 MessageHandler(Filters.regex(r'^Rotate$'), ask_rotate_degree),
                 MessageHandler(Filters.regex(r'^Scale By$'), ask_scale_x),
                 MessageHandler(Filters.regex(r'^Scale To$'), ask_scale_x),
@@ -150,182 +146,6 @@ def receive_photo_task(update, context):
 
     if user_data[PHOTO_ID] == file_id:
         del user_data[PHOTO_ID]
-
-    return ConversationHandler.END
-
-
-@run_async
-def get_pdf_cover(update, context):
-    """
-    Get the PDF cover page in JPEG format
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating the conversation has ended
-    """
-    user_data = context.user_data
-    if PDF_ID not in user_data:
-        return ConversationHandler.END
-
-    file_id = user_data[PDF_ID]
-    update.message.reply_text('Extracting a cover preview for your PDF file', reply_markup=ReplyKeyboardRemove())
-
-    # Setup temporary files
-    temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
-    temp_files.append(tempfile.NamedTemporaryFile(prefix='Cover_', suffix='.jpg'))
-    file_name, tmp_file_name, out_file_name = [x.name for x in temp_files]
-
-    pdf_file = context.bot.get_file(file_id)
-    pdf_file.download(custom_path=file_name)
-
-    pdf_reader = open_pdf(file_name, update)
-    if pdf_reader:
-        pdf_writer = PdfFileWriter()
-        pdf_writer.addPage(pdf_reader.getPage(0))
-
-        with open(tmp_file_name, 'wb') as f:
-            pdf_writer.write(f)
-
-        with wand.image.Image(filename=tmp_file_name, resolution=300) as img:
-            with img.convert('jpg') as converted:
-                converted.save(filename=out_file_name)
-
-        send_result(update, out_file_name, 'cover preview')
-
-    # Clean up memory and files
-    if user_data[PDF_ID] == file_id:
-        del user_data[PDF_ID]
-    for tf in temp_files:
-        tf.close()
-
-    return ConversationHandler.END
-
-
-@run_async
-def get_pdf_img(update, context):
-    """
-    Get all the images in the PDF file
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating the conversation has ended
-    """
-    user_data = context.user_data
-    if PDF_ID not in user_data:
-        return ConversationHandler.END
-
-    file_id = user_data[PDF_ID]
-    update.message.reply_text('Extracting all the images in your PDF file', reply_markup=ReplyKeyboardRemove())
-
-    # Setup temporary directory and file
-    temp_dir = tempfile.TemporaryDirectory(prefix='Images_')
-    image_dir = temp_dir.name
-    tf = tempfile.NamedTemporaryFile()
-    file_name = tf.name
-    out_file_name = image_dir + '.zip'
-
-    pdf_file = context.bot.get_file(file_id)
-    pdf_file.download(custom_path=file_name)
-    pdf_reader = open_pdf(file_name, update)
-
-    if pdf_reader is not None:
-        # Find and store all images
-        log = Logger()
-        for page in pdf_reader.pages:
-            if '/Resources' in page and '/XObject' in page['/Resources']:
-                x_object = page['/Resources']['/XObject'].getObject()
-
-                for obj in x_object:
-                    if x_object[obj]['/Subtype'] == '/Image':
-                        size = (x_object[obj]['/Width'], x_object[obj]['/Height'])
-                        try:
-                            data = x_object[obj].getData()
-                        except Exception:
-                            log.error(Exception)
-
-                            continue
-
-                        if x_object[obj]['/ColorSpace'] == '/DeviceRGB':
-                            mode = 'RGB'
-                        else:
-                            mode = 'P'
-
-                        if x_object[obj]['/Filter'] == '/FlateDecode':
-                            try:
-                                img = PillowImage.frombytes(mode, size, data)
-                                img.save(tempfile.NamedTemporaryFile(dir=image_dir, suffix='.png').name)
-                            except TypeError:
-                                pass
-                        elif x_object[obj]['/Filter'] == '/DCTDecode':
-                            with open(tempfile.NamedTemporaryFile(dir=image_dir, suffix='.jpg').name, 'wb') as img:
-                                img.write(data)
-                        elif x_object[obj]['/Filter'] == '/JPXDecode':
-                            with open(tempfile.NamedTemporaryFile(dir=image_dir, suffix='.jp2').name, 'wb') as img:
-                                img.write(data)
-
-        if not os.listdir(image_dir):
-            update.message.reply_text('I couldn\'t find any images in your PDF file.')
-        else:
-            shutil.make_archive(image_dir, 'zip', image_dir)
-            send_result(update, out_file_name, 'images in your', 'Here are all the images in your PDF file.')
-            os.remove(out_file_name)
-
-    # Clean up memory and files
-    if user_data[PDF_ID] == file_id:
-        del user_data[PDF_ID]
-    temp_dir.cleanup()
-    tf.close()
-
-    return ConversationHandler.END
-
-
-@run_async
-def pdf_to_img(update, context):
-    """
-    Convert the PDF file into JPEG photos
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating the conversation has ended
-    """
-    user_data = context.user_data
-    if PDF_ID not in user_data:
-        return ConversationHandler.END
-
-    file_id = user_data[PDF_ID]
-    update.message.reply_text('Converting your PDF file into photos', reply_markup=ReplyKeyboardRemove())
-
-    # Setup temporary directory and files
-    temp_dir = tempfile.TemporaryDirectory(prefix='PDF_Image_')
-    image_dir = temp_dir.name
-    tf = tempfile.NamedTemporaryFile()
-    file_name = tf.name
-    image_file_name = tempfile.NamedTemporaryFile(dir=image_dir, prefix='PDF_Image_', suffix='.jpg').name
-    out_file_name = image_dir + '.zip'
-
-    pdf_file = context.bot.get_file(file_id)
-    pdf_file.download(custom_path=file_name)
-
-    # Convert the PDF file
-    with wand.image.Image(filename=file_name, resolution=300) as img:
-        with img.convert('jpg') as converted:
-            converted.save(filename=image_file_name)
-
-    shutil.make_archive(image_dir, 'zip', image_dir)
-    send_result(update, out_file_name, 'images of your', 'Here are the images of your PDF file.')
-
-    # Clean up memory and files
-    if user_data[PDF_ID] == file_id:
-        del user_data[PDF_ID]
-    temp_dir.cleanup()
-    tf.close()
-    os.remove(out_file_name)
 
     return ConversationHandler.END
 
