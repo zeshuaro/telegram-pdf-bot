@@ -28,17 +28,17 @@ def ask_decrypt_pw(update, _):
 
 
 @run_async
-def decrypt_pdf(update, context, user_data):
+def decrypt_pdf(update, context):
     """
     Decrypt the PDF file with the given password
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating the conversation has ended
     """
+    user_data = context.user_data
     if PDF_ID not in user_data:
         return ConversationHandler.END
 
@@ -109,21 +109,20 @@ def ask_encrypt_pw(update, _):
 
 
 @run_async
-def encrypt_pdf(update, context, user_data):
+def encrypt_pdf(update, context):
     """
     Encrypt the PDF file with the given password
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating the conversation has ended
     """
-    if PDF_ID not in user_data:
+    if PDF_ID not in context.user_data:
         return ConversationHandler.END
 
     update.message.reply_text('Encrypting your PDF file...')
-    process_pdf(update, context, user_data, 'encrypted', encrypt_pw=update.message.text)
+    process_pdf(update, context, 'encrypted', encrypt_pw=update.message.text)
 
     return ConversationHandler.END
