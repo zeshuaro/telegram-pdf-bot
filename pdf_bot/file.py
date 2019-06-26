@@ -31,29 +31,30 @@ def file_cov_handler():
         The conversation handler object
     """
     conv_handler = ConversationHandler(
-        entry_points=[MessageHandler(Filters.document, check_doc, pass_user_data=True),
-                      MessageHandler(Filters.photo, check_photo, pass_user_data=True)],
+        entry_points=[MessageHandler(Filters.document, check_doc), MessageHandler(Filters.photo, check_photo)],
         states={
-            WAIT_TASK: [MessageHandler(Filters.regex('^Cover$'), get_pdf_cover, pass_user_data=True),
-                        MessageHandler(Filters.regex('^Decrypt$'), ask_decrypt_pw),
-                        MessageHandler(Filters.regex('^Encrypt$'), ask_encrypt_pw),
-                        MessageHandler(Filters.regex('^Extract Images$'), get_pdf_img, pass_user_data=True),
-                        MessageHandler(Filters.regex('^To Images$'), pdf_to_img, pass_user_data=True),
-                        MessageHandler(Filters.regex('^Rotate$'), ask_rotate_degree),
-                        MessageHandler(Filters.regex('^Scale By$'), ask_scale_x),
-                        MessageHandler(Filters.regex('^Scale To$'), ask_scale_x),
-                        MessageHandler(Filters.regex('^Split$'), ask_split_range),
-                        MessageHandler(Filters.regex('^(Beautify|Convert)$'), receive_photo_task, pass_user_data=True),
-                        MessageHandler(Filters.regex('^Rename$'), ask_pdf_new_name)],
-            WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf, pass_user_data=True)],
-            WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf, pass_user_data=True)],
-            WAIT_ROTATE_DEGREE: [MessageHandler(Filters.regex('^(90|180|270)$'), rotate_pdf, pass_user_data=True)],
-            WAIT_SCALE_BY_X: [MessageHandler(Filters.text, ask_scale_by_y, pass_user_data=True)],
-            WAIT_SCALE_BY_Y: [MessageHandler(Filters.text, pdf_scale_by, pass_user_data=True)],
-            WAIT_SCALE_TO_X: [MessageHandler(Filters.text, ask_scale_to_y, pass_user_data=True)],
-            WAIT_SCALE_TO_Y: [MessageHandler(Filters.text, pdf_scale_to, pass_user_data=True)],
-            WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf, pass_user_data=True)],
-            WAIT_FILE_NAME: [MessageHandler(Filters.text, rename_pdf, pass_user_data=True)]
+            WAIT_TASK: [
+                MessageHandler(Filters.regex('^Cover$'), get_pdf_cover),
+                MessageHandler(Filters.regex('^Decrypt$'), ask_decrypt_pw),
+                MessageHandler(Filters.regex('^Encrypt$'), ask_encrypt_pw),
+                MessageHandler(Filters.regex('^Extract Images$'), get_pdf_img),
+                MessageHandler(Filters.regex('^To Images$'), pdf_to_img),
+                MessageHandler(Filters.regex('^Rotate$'), ask_rotate_degree),
+                MessageHandler(Filters.regex('^Scale By$'), ask_scale_x),
+                MessageHandler(Filters.regex('^Scale To$'), ask_scale_x),
+                MessageHandler(Filters.regex('^Split$'), ask_split_range),
+                MessageHandler(Filters.regex('^(Beautify|Convert)$'), receive_photo_task),
+                MessageHandler(Filters.regex('^Rename$'), ask_pdf_new_name)
+            ],
+            WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf)],
+            WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf)],
+            WAIT_ROTATE_DEGREE: [MessageHandler(Filters.regex('^(90|180|270)$'), rotate_pdf)],
+            WAIT_SCALE_BY_X: [MessageHandler(Filters.text, ask_scale_by_y)],
+            WAIT_SCALE_BY_Y: [MessageHandler(Filters.text, pdf_scale_by)],
+            WAIT_SCALE_TO_X: [MessageHandler(Filters.text, ask_scale_to_y)],
+            WAIT_SCALE_TO_Y: [MessageHandler(Filters.text, pdf_scale_to)],
+            WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf)],
+            WAIT_FILE_NAME: [MessageHandler(Filters.text, rename_pdf)]
         },
         fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex('^Cancel$'), cancel)],
         allow_reentry=True
@@ -63,13 +64,12 @@ def file_cov_handler():
 
 
 @run_async
-def check_doc(update, _, user_data):
+def check_doc(update, context):
     """
     Validate the document and wait for the next action
     Args:
         update: the update object
-        _: unused variable
-        user_data: the dict of user data
+        context: the context object
 
     Returns:
         The variable indicating to wait for the next action or the conversation has ended
@@ -78,7 +78,7 @@ def check_doc(update, _, user_data):
     mime_type = doc.mime_type
 
     if mime_type.startswith('image'):
-        return check_photo(update, _, user_data, doc)
+        return check_photo(update, context, doc)
     elif not mime_type.endswith('pdf'):
         return ConversationHandler.END
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
@@ -87,7 +87,7 @@ def check_doc(update, _, user_data):
 
         return ConversationHandler.END
 
-    user_data[PDF_ID] = doc.file_id
+    context.user_data[PDF_ID] = doc.file_id
     keywords = sorted(['Decrypt', 'Encrypt', 'Rotate', 'Scale By', 'Scale To', 'Split', 'Cover', 'To Images',
                        'Extract Images', 'Rename'])
     keyboard_size = 3
@@ -100,13 +100,12 @@ def check_doc(update, _, user_data):
 
 
 @run_async
-def check_photo(update, _, user_data, photo_file=None):
+def check_photo(update, context, photo_file=None):
     """
     Validate the photo and wait for the next action
     Args:
         update: the update object
-        _: unused variable
-        user_data: the dict of user data
+        context: the context object
         photo_file: the photo file object
 
     Returns:
@@ -121,7 +120,7 @@ def check_photo(update, _, user_data, photo_file=None):
 
         return ConversationHandler.END
 
-    user_data[PHOTO_ID] = photo_file.file_id
+    context.user_data[PHOTO_ID] = photo_file.file_id
     keyboard = [['Beautify', 'Convert'], ['Cancel']]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
     update.message.reply_text('Please select the task that you\'ll like to perform.', reply_markup=reply_markup)
@@ -130,17 +129,17 @@ def check_photo(update, _, user_data, photo_file=None):
 
 
 @run_async
-def receive_photo_task(update, context, user_data):
+def receive_photo_task(update, context):
     """
     Receive the task and perform the task on the photo
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating the conversation has ended
     """
+    user_data = context.user_data
     if PHOTO_ID not in user_data:
         return ConversationHandler.END
 
@@ -157,17 +156,17 @@ def receive_photo_task(update, context, user_data):
 
 
 @run_async
-def get_pdf_cover(update, context, user_data):
+def get_pdf_cover(update, context):
     """
     Get the PDF cover page in JPEG format
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating the conversation has ended
     """
+    user_data = context.user_data
     if PDF_ID not in user_data:
         return ConversationHandler.END
 
@@ -206,17 +205,17 @@ def get_pdf_cover(update, context, user_data):
 
 
 @run_async
-def get_pdf_img(update, context, user_data):
+def get_pdf_img(update, context):
     """
     Get all the images in the PDF file
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating the conversation has ended
     """
+    user_data = context.user_data
     if PDF_ID not in user_data:
         return ConversationHandler.END
 
@@ -248,7 +247,7 @@ def get_pdf_img(update, context, user_data):
                             data = x_object[obj].getData()
                         except Exception:
                             log.error(Exception)
-                            
+
                             continue
 
                         if x_object[obj]['/ColorSpace'] == '/DeviceRGB':
@@ -286,17 +285,17 @@ def get_pdf_img(update, context, user_data):
 
 
 @run_async
-def pdf_to_img(update, context, user_data):
+def pdf_to_img(update, context):
     """
     Convert the PDF file into JPEG photos
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating the conversation has ended
     """
+    user_data = context.user_data
     if PDF_ID not in user_data:
         return ConversationHandler.END
 
@@ -350,17 +349,17 @@ def ask_pdf_new_name(update, _):
 
 
 @run_async
-def rename_pdf(update, context, user_data):
+def rename_pdf(update, context):
     """
     Rename the PDF file with the given file name
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating to wait for the file name or the conversation has ended
     """
+    user_data = context.user_data
     if PDF_ID not in user_data:
         return ConversationHandler.END
 
@@ -421,24 +420,23 @@ def ask_rotate_degree(update, _):
 
 
 @run_async
-def rotate_pdf(update, context, user_data):
+def rotate_pdf(update, context):
     """
     Rotate the PDF file with the given rotation degree
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The vairable indicating the conversation has ended
     """
-    if PDF_ID not in user_data:
+    if PDF_ID not in context.user_data:
         return ConversationHandler.END
 
     degree = int(update.message.text)
     update.message.reply_text(f'Rotating your PDF file clockwise by {degree} degrees',
                               reply_markup=ReplyKeyboardRemove())
-    process_pdf(update, context, user_data, 'rotated', rotate_degree=degree)
+    process_pdf(update, context, 'rotated', rotate_degree=degree)
 
     return ConversationHandler.END
 
@@ -462,17 +460,17 @@ def ask_split_range(update, _):
 
 
 @run_async
-def split_pdf(update, context, user_data):
+def split_pdf(update, context):
     """
     Split the PDF file with the given split page range
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating to wait for the split page range or the conversation has ended
     """
+    user_data = context.user_data
     if PDF_ID not in user_data:
         return ConversationHandler.END
 
