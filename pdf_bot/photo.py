@@ -1,9 +1,7 @@
+import img2pdf
 import noteshrink
-import shlex
 import tempfile
 
-from logbook import Logger
-from subprocess import Popen, PIPE
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
@@ -200,17 +198,10 @@ def process_photo(update, context, file_ids, is_beautify):
         noteshrink.notescan_main(photo_files, basename=f'{base_name}/page', pdfname=out_file_name)
         send_result(update, out_file_name, 'beautified')
     else:
-        command = 'convert {} {}'.format(' '.join(photo_files), out_file_name)
+        with open(out_file_name, 'wb') as f:
+            f.write(img2pdf.convert(photo_files))
 
-        proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
-        proc_out, proc_err = proc.communicate()
-
-        if proc.returncode != 0:
-            log = Logger
-            log.error(proc_err.decode('utf8'))
-            update.message.reply_text('Something went wrong, please try again.')
-        else:
-            send_result(update, out_file_name, 'converted')
+        send_result(update, out_file_name, 'converted')
 
     # Clean up files
     for tf in temp_files:
