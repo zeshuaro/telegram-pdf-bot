@@ -20,10 +20,12 @@ def merge_cov_handler():
         The conversation handler object
     """
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('merge', merge, pass_user_data=True)],
+        entry_points=[CommandHandler('merge', merge)],
         states={
-            WAIT_MERGE_FILE: [MessageHandler(Filters.document, receive_file, pass_user_data=True),
-                              MessageHandler(Filters.regex('^Done$'), merge_pdf, pass_user_data=True)],
+            WAIT_MERGE_FILE: [
+                MessageHandler(Filters.document, receive_file),
+                MessageHandler(Filters.regex('^Done$'), merge_pdf)
+            ]
         },
         fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
@@ -33,18 +35,18 @@ def merge_cov_handler():
 
 
 @run_async
-def merge(update, _, user_data):
+def merge(update, context):
     """
     Start the merge conversation
     Args:
         update: the update object
-        _: unused variable
-        user_data: the dict of user data
+        context: the context object
 
     Returns:
         The variable indicating to wait for a file
     """
     # Clear previous merge info
+    user_data = context.user_data
     if MERGE_IDS in user_data:
         del user_data[MERGE_IDS]
     if MERGE_NAMES in user_data:
@@ -57,18 +59,19 @@ def merge(update, _, user_data):
 
 
 @run_async
-def receive_file(update, _, user_data):
+def receive_file(update, context):
     """
     Validate the file and wait for the next action
     Args:
         update: the update object
-        _: unused variable
-        user_data: the dict of user data
+        context: the context object
 
     Returns:
         The variable indicating to wait for a file or the conversation has ended
     """
+    user_data = context.user_data
     result = check_pdf(update)
+
     if result == PDF_INVALID_FORMAT:
         update.message.reply_text('The file you sent is not a PDF file. Please send me the PDF file that you\'ll '
                                   'like to merge or type /cancel to cancel this operation.')
@@ -81,7 +84,7 @@ def receive_file(update, _, user_data):
         if MERGE_NAMES in user_data and user_data[MERGE_NAMES]:
             text += 'You can continue merging with the files that you sent me or type /cancel to cancel this operation.'
             update.message.reply_text(text)
-            send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
+            send_file_names(update[MERGE_NAMES], 'PDF files')
 
             return WAIT_MERGE_FILE
         else:
@@ -105,22 +108,22 @@ def receive_file(update, _, user_data):
     reply_markup = ReplyKeyboardMarkup([['Done']], one_time_keyboard=True)
     update.message.reply_text('Please send me the next PDF file that you\'ll like to merge or send Done if you have '
                               'sent me all the PDF files.', reply_markup=reply_markup)
-    send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
+    send_file_names(update[MERGE_NAMES], 'PDF files')
 
     return WAIT_MERGE_FILE
 
 
-def merge_pdf(update, context, user_data):
+def merge_pdf(update, context):
     """
     Merge PDF files
     Args:
         update: the update object
         context: the context object
-        user_data: the dict of user data
 
     Returns:
         The variable indicating the conversation has ended
     """
+    user_data = context.user_data
     if MERGE_IDS not in user_data:
         return ConversationHandler.END
 
