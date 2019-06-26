@@ -1,3 +1,4 @@
+import noteshrink
 import shlex
 import tempfile
 
@@ -26,7 +27,7 @@ def photo_cov_handler():
         states={
             WAIT_PHOTO: [
                 MessageHandler(Filters.document | Filters.photo, receive_photo),
-                MessageHandler(Filters.regex('^(Beautify|Convert)$'), process_all_photos)
+                MessageHandler(Filters.regex(r'^(Beautify|Convert)$'), process_all_photos)
             ]
         },
         fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex('^Cancel$'), cancel)],
@@ -183,7 +184,7 @@ def process_photo(update, context, file_ids, is_beautify):
     else:
         temp_files.append(tempfile.NamedTemporaryFile(prefix='Converted_', suffix='.pdf'))
 
-    out_filename = temp_files[-1].name
+    out_file_name = temp_files[-1].name
     temp_dir = tempfile.TemporaryDirectory()
     base_name = temp_dir.name
     photo_files = []
@@ -196,22 +197,20 @@ def process_photo(update, context, file_ids, is_beautify):
         photo_files.append(file_name)
 
     if is_beautify:
-        command = 'noteshrink -b {}/page -o {} {}'.format(base_name, out_filename, ' '.join(photo_files))
+        noteshrink.notescan_main(photo_files, basename=f'{base_name}/page', pdfname=out_file_name)
+        send_result(update, out_file_name, 'beautified')
     else:
-        command = 'convert {} {}'.format(' '.join(photo_files), out_filename)
+        command = 'convert {} {}'.format(' '.join(photo_files), out_file_name)
 
-    proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
-    proc_out, proc_err = proc.communicate()
+        proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE)
+        proc_out, proc_err = proc.communicate()
 
-    if proc.returncode != 0:
-        log = Logger
-        log.error(proc_err.decode('utf8'))
-        update.message.reply_text('Something went wrong, please try again.')
-    else:
-        if is_beautify:
-            send_result(update, out_filename, 'beautified')
+        if proc.returncode != 0:
+            log = Logger
+            log.error(proc_err.decode('utf8'))
+            update.message.reply_text('Something went wrong, please try again.')
         else:
-            send_result(update, out_filename, 'converted')
+            send_result(update, out_file_name, 'converted')
 
     # Clean up files
     for tf in temp_files:
