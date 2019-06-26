@@ -61,7 +61,7 @@ def open_pdf(filename, update, file_type=None):
 
 
 # Master function for different PDF file manipulations
-def process_pdf(update, context, user_data, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None,
+def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None,
                 scale_to=None):
     prefix = f"{file_type.title()}_"
     temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix=prefix, suffix=".pdf")]
