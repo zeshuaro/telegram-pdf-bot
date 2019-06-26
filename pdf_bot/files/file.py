@@ -11,10 +11,9 @@ from constants import WAIT_TASK, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, WAIT_ROTATE_D
     WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME, PDF_ID
 from utils import cancel, send_result, process_pdf
 from files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
-from photos.pdf_to_photo import get_pdf_cover, get_pdf_photos, pdf_to_photos
-from photos.photo_to_pdf import process_photo
 from files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
 from files.split import ask_split_range, split_pdf
+from photos import get_pdf_cover, get_pdf_photos, pdf_to_photos, process_photo
 
 PHOTO_ID = 'photo_id'
 

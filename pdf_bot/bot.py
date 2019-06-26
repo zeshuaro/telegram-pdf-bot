@@ -5,15 +5,13 @@ import sys
 from dotenv import load_dotenv
 from feedback_bot import feedback_cov_handler
 from logbook import Logger, StreamHandler
-
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from files.file import file_cov_handler
-from commands.merge import merge_cov_handler
-from photos.photo_to_pdf import photo_cov_handler
-from commands.watermark import watermark_cov_handler
+from commands import merge_cov_handler, watermark_cov_handler
+from files import file_cov_handler
+from photos import photo_cov_handler
 
 load_dotenv()
 APP_URL = os.environ.get("APP_URL")
