@@ -9,7 +9,7 @@ from telegram.constants import *
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from constants import *
+from pdf_bot.constants import *
 
 
 # Cancels feedback operation

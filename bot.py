@@ -3,13 +3,12 @@ import os
 import sys
 
 from dotenv import load_dotenv
-from feedback_bot import feedback_cov_handler
 from logbook import Logger, StreamHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot import merge_cov_handler, watermark_cov_handler, file_cov_handler, photo_cov_handler
+from pdf_bot import compare_cov_handler, merge_cov_handler, watermark_cov_handler, file_cov_handler, photo_cov_handler
 
 load_dotenv()
 APP_URL = os.environ.get("APP_URL")
@@ -40,12 +39,12 @@ def main():
     dispatcher.add_handler(CommandHandler('start', start_msg))
     dispatcher.add_handler(CommandHandler('help', help_msg))
     dispatcher.add_handler(CommandHandler('donate', donate_msg))
-    # dispatcher.add_handler(compare_cov_handler())
+    dispatcher.add_handler(compare_cov_handler())
     dispatcher.add_handler(merge_cov_handler())
     dispatcher.add_handler(photo_cov_handler())
     dispatcher.add_handler(watermark_cov_handler())
     dispatcher.add_handler(file_cov_handler())
-    dispatcher.add_handler(feedback_cov_handler())
+    # dispatcher.add_handler(feedback_cov_handler())
     dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID), pass_args=True))
 
     # log all errors
@@ -54,7 +53,6 @@ def main():
     # Start the Bot
     if APP_URL is not None:
         updater.start_webhook(listen='0.0.0.0', port=PORT, url_path=TELE_TOKEN)
-        print(APP_URL, TELE_TOKEN)
         updater.bot.set_webhook(APP_URL + TELE_TOKEN)
         log.notice('Bot started webhook')
     else:

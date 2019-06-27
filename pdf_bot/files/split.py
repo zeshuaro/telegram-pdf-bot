@@ -6,8 +6,8 @@ from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from constants import WAIT_SPLIT_RANGE, PDF_ID
-from utils import open_pdf, send_result
+from pdf_bot.constants import WAIT_SPLIT_RANGE, PDF_ID
+from pdf_bot.utils import open_pdf, send_result
 
 
 @run_async

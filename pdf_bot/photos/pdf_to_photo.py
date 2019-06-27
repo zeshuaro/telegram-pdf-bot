@@ -11,8 +11,8 @@ from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 
-from constants import PDF_ID
-from utils import open_pdf, send_result
+from pdf_bot.constants import PDF_ID
+from pdf_bot.utils import open_pdf, send_result
 
 
 @run_async

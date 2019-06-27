@@ -6,8 +6,8 @@ from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_ID
-from utils import send_result, process_pdf
+from pdf_bot.constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_ID
+from pdf_bot.utils import send_result, process_pdf
 
 
 @run_async
