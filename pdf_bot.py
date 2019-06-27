@@ -10,7 +10,7 @@ import shutil
 import tempfile
 import wand.image
 
-from feedback_bot import feedback_cov_handler
+# from feedback_bot import feedback_cov_handler
 from PIL import Image as PillowImage
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
 from PyPDF2.utils import PdfReadError
@@ -57,7 +57,7 @@ def main():
     dp.add_handler(photo_cov_handler())
     dp.add_handler(watermark_cov_handler())
     dp.add_handler(doc_cov_handler())
-    dp.add_handler(feedback_cov_handler())
+    # dp.add_handler(feedback_cov_handler())
     dp.add_handler(CommandHandler("send", send, Filters.user(DEV_TELE_ID), pass_args=True))
 
     # log all errors
