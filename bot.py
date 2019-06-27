@@ -9,9 +9,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from commands import merge_cov_handler, watermark_cov_handler
-from files import file_cov_handler
-from photos import photo_cov_handler
+from pdf_bot import merge_cov_handler, watermark_cov_handler, file_cov_handler, photo_cov_handler
 
 load_dotenv()
 APP_URL = os.environ.get("APP_URL")
