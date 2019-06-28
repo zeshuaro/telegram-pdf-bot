@@ -7,7 +7,7 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_MERGE_FILE, PDF_INVALID_FORMAT, PDF_TOO_LARGE
+from pdf_bot.constants import WAIT_MERGE, PDF_INVALID_FORMAT, PDF_TOO_LARGE
 from pdf_bot.utils import check_pdf, cancel, send_result, send_file_names
 
 MERGE_IDS = 'merge_ids'
@@ -23,7 +23,7 @@ def merge_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('merge', merge)],
         states={
-            WAIT_MERGE_FILE: [
+            WAIT_MERGE: [
                 MessageHandler(Filters.document, receive_doc),
                 MessageHandler(Filters.regex('^Done$'), merge_pdf)
             ]
@@ -56,7 +56,7 @@ def merge(update, context):
     update.message.reply_text('Send me the PDF file that you\'ll like to merge or type /cancel to '
                               'cancel this operation.\n\nThe files will be merged in the order that you send me.')
 
-    return WAIT_MERGE_FILE
+    return WAIT_MERGE
 
 
 @run_async
@@ -77,7 +77,7 @@ def receive_doc(update, context):
         update.message.reply_text('The file you sent is not a PDF file. Send me the PDF file that you\'ll '
                                   'like to merge or type /cancel to cancel this operation.')
 
-        return WAIT_MERGE_FILE
+        return WAIT_MERGE
     elif result == PDF_TOO_LARGE:
         text = 'The PDF file you sent is too large for me to download.\n\n'
 
@@ -87,7 +87,7 @@ def receive_doc(update, context):
             update.message.reply_text(text)
             send_file_names(update[MERGE_NAMES], 'PDF files')
 
-            return WAIT_MERGE_FILE
+            return WAIT_MERGE
         else:
             text += 'I can\'t merge your PDF files.'
             update.message.reply_text(text)
@@ -110,7 +110,7 @@ def receive_doc(update, context):
                               'sent me all the PDF files.', reply_markup=reply_markup)
     send_file_names(update[MERGE_NAMES], 'PDF files')
 
-    return WAIT_MERGE_FILE
+    return WAIT_MERGE
 
 
 def merge_pdf(update, context):
