@@ -1,15 +1,16 @@
+import os
 import re
 import shutil
 import tempfile
 
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
-from telegram.constants import MAX_FILESIZE_DOWNLOAD
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, ChatAction
+from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_TASK, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, WAIT_ROTATE_DEGREE, WAIT_SCALE_BY_X, \
     WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME, PDF_INFO
-from pdf_bot.utils import cancel, send_result, process_pdf
+from pdf_bot.utils import cancel, process_pdf
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
 from pdf_bot.files.split import ask_split_range, split_pdf
@@ -76,19 +77,19 @@ def check_doc(update, context):
     elif not mime_type.endswith('pdf'):
         return ConversationHandler.END
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
-        update.message.reply_text('The PDF file you sent is too large for me to download. '
-                                  'Sorry that I can\'t perform any tasks on your PDF file.')
+        update.message.reply_text('Your PDF file you sent is too large for me to download. '
+                                  'I can\'t perform any tasks on it.')
 
         return ConversationHandler.END
 
-    context.user_data[PDF_INFO] = doc.file_id
+    context.user_data[PDF_INFO] = doc.file_id, doc.file_name
     keywords = sorted(['Decrypt', 'Encrypt', 'Rotate', 'Scale By', 'Scale To', 'Split', 'Cover', 'To Images',
                        'Extract Images', 'Rename'])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append(['Cancel'])
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
-    update.message.reply_text('Please select the task that you\'ll like to perform.', reply_markup=reply_markup)
+    update.message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
 
     return WAIT_TASK
 
@@ -109,15 +110,15 @@ def check_photo(update, context, photo_file=None):
         photo_file = update.message.photo[-1]
 
     if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
-        update.message.reply_text('The photo you sent is too large for me to download. '
-                                  'Sorry that I can\'t beautify and convert your photo.')
+        update.message.reply_text('Your photo is too large for me to download. '
+                                  'I can\'t beautify or convert your photo.')
 
         return ConversationHandler.END
 
     context.user_data[PHOTO_ID] = photo_file.file_id
     keyboard = [['Beautify', 'Convert'], ['Cancel']]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
-    update.message.reply_text('Please select the task that you\'ll like to perform.', reply_markup=reply_markup)
+    update.message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
 
     return WAIT_TASK
 
@@ -160,7 +161,7 @@ def ask_pdf_new_name(update, _):
     Returns:
         The variable indicating to wait for the file name
     """
-    update.message.reply_text('Please send me the file name that you\'ll like to rename your PDF file into.',
+    update.message.reply_text('Send me the file name that you\'ll like to rename your PDF file into.',
                               reply_markup=ReplyKeyboardRemove())
 
     return WAIT_FILE_NAME
@@ -185,33 +186,35 @@ def rename_pdf(update, context):
     invalid_chars = r'\/*?:\'<>|'
     if set(text) & set(invalid_chars):
         update.message.reply_text(f'File names can\'t contain any of the following characters:\n{invalid_chars}\n'
-                                  f'Please try again.')
+                                  f'Send me another file name.')
 
         return WAIT_FILE_NAME
 
-    file_id = user_data[PDF_INFO]
-    new_name = '{}.pdf'.format(text)
-    update.message.reply_text(f'Renaming your PDF file into *{new_name}*...', parse_mode='Markdown')
-
-    # Setup temporary directory and file
-    temp_file = tempfile.NamedTemporaryFile()
-    temp_dir = tempfile.TemporaryDirectory()
-    file_name = temp_file.name
+    new_fn = '{}.pdf'.format(text)
+    update.message.reply_text(f'Renaming your PDF file into *{new_fn}*', parse_mode='Markdown')
+    tf = tempfile.NamedTemporaryFile()
 
     # Download PDF file
+    file_id, _ = user_data[PDF_INFO]
     pdf_file = context.bot.get_file(file_id)
-    pdf_file.download(custom_path=file_name)
+    pdf_file.download(custom_path=tf.name)
 
-    new_file_name = '{}/{}'.format(temp_dir.name, new_name)
-    shutil.move(file_name, new_file_name)
-    send_result(update, new_file_name, 'renamed')
+    with tempfile.TemporaryDirectory() as dir_name:
+        out_fn = os.path.join(dir_name, new_fn)
+        shutil.move(tf.name, out_fn)
+
+        if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text('The PDF file is too large for me to send to you.')
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(new_fn, "rb"),
+                                          caption=f"Here is your renamed PDF file.")
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:
         del user_data[PDF_INFO]
-    temp_dir.cleanup()
     try:
-        temp_file.close()
+        tf.close()
     except FileNotFoundError:
         pass
 
@@ -231,7 +234,7 @@ def ask_rotate_degree(update, _):
     """
     keyboard = [['90'], ['180'], ['270']]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
-    update.message.reply_text('Please select the degrees that you\'ll like to rotate your PDF file in clockwise.',
+    update.message.reply_text('Select the degrees that you\'ll like to rotate your PDF file in clockwise.',
                               reply_markup=reply_markup)
 
     return WAIT_ROTATE_DEGREE
