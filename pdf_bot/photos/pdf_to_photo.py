@@ -11,7 +11,7 @@ from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 
-from pdf_bot.constants import PDF_ID
+from pdf_bot.constants import PDF_INFO
 from pdf_bot.utils import open_pdf, send_result
 
 
@@ -27,10 +27,10 @@ def get_pdf_cover(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_ID not in user_data:
+    if PDF_INFO not in user_data:
         return ConversationHandler.END
 
-    file_id = user_data[PDF_ID]
+    file_id = user_data[PDF_INFO]
     update.message.reply_text('Extracting a cover preview for your PDF file', reply_markup=ReplyKeyboardRemove())
 
     # Setup temporary files
@@ -54,8 +54,8 @@ def get_pdf_cover(update, context):
         send_result(update, out_file_name, 'cover preview')
 
     # Clean up memory and files
-    if user_data[PDF_ID] == file_id:
-        del user_data[PDF_ID]
+    if user_data[PDF_INFO] == file_id:
+        del user_data[PDF_INFO]
     for tf in temp_files:
         tf.close()
 
@@ -74,10 +74,10 @@ def pdf_to_photos(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_ID not in user_data:
+    if PDF_INFO not in user_data:
         return ConversationHandler.END
 
-    file_id = user_data[PDF_ID]
+    file_id = user_data[PDF_INFO]
     update.message.reply_text('Converting your PDF file into photos', reply_markup=ReplyKeyboardRemove())
 
     # Setup temporary directory and files
@@ -97,8 +97,8 @@ def pdf_to_photos(update, context):
     send_result(update, out_file_name, 'photos of your', 'Here are the photos of your PDF file.')
 
     # Clean up memory and files
-    if user_data[PDF_ID] == file_id:
-        del user_data[PDF_ID]
+    if user_data[PDF_INFO] == file_id:
+        del user_data[PDF_INFO]
     temp_dir.cleanup()
     tf.close()
     os.remove(out_file_name)
@@ -134,10 +134,10 @@ def get_pdf_photos(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_ID not in user_data:
+    if PDF_INFO not in user_data:
         return ConversationHandler.END
 
-    file_id = user_data[PDF_ID]
+    file_id = user_data[PDF_INFO]
     update.message.reply_text('Extracting all the photos in your PDF file', reply_markup=ReplyKeyboardRemove())
 
     # Setup temporary directory and file
@@ -194,8 +194,8 @@ def get_pdf_photos(update, context):
             os.remove(out_file_name)
 
     # Clean up memory and files
-    if user_data[PDF_ID] == file_id:
-        del user_data[PDF_ID]
+    if user_data[PDF_INFO] == file_id:
+        del user_data[PDF_INFO]
     temp_dir.cleanup()
     tf.close()
 

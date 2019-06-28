@@ -8,7 +8,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_TASK, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, WAIT_ROTATE_DEGREE, WAIT_SCALE_BY_X, \
-    WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME, PDF_ID
+    WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME, PDF_INFO
 from pdf_bot.utils import cancel, send_result, process_pdf
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
@@ -81,7 +81,7 @@ def check_doc(update, context):
 
         return ConversationHandler.END
 
-    context.user_data[PDF_ID] = doc.file_id
+    context.user_data[PDF_INFO] = doc.file_id
     keywords = sorted(['Decrypt', 'Encrypt', 'Rotate', 'Scale By', 'Scale To', 'Split', 'Cover', 'To Images',
                        'Extract Images', 'Rename'])
     keyboard_size = 3
@@ -178,7 +178,7 @@ def rename_pdf(update, context):
         The variable indicating to wait for the file name or the conversation has ended
     """
     user_data = context.user_data
-    if PDF_ID not in user_data:
+    if PDF_INFO not in user_data:
         return ConversationHandler.END
 
     text = re.sub(r'\.pdf$', '', update.message.text)
@@ -189,7 +189,7 @@ def rename_pdf(update, context):
 
         return WAIT_FILE_NAME
 
-    file_id = user_data[PDF_ID]
+    file_id = user_data[PDF_INFO]
     new_name = '{}.pdf'.format(text)
     update.message.reply_text(f'Renaming your PDF file into *{new_name}*...', parse_mode='Markdown')
 
@@ -207,8 +207,8 @@ def rename_pdf(update, context):
     send_result(update, new_file_name, 'renamed')
 
     # Clean up memory and files
-    if user_data[PDF_ID] == file_id:
-        del user_data[PDF_ID]
+    if user_data[PDF_INFO] == file_id:
+        del user_data[PDF_INFO]
     temp_dir.cleanup()
     try:
         temp_file.close()
@@ -248,7 +248,7 @@ def rotate_pdf(update, context):
     Returns:
         The vairable indicating the conversation has ended
     """
-    if PDF_ID not in context.user_data:
+    if PDF_INFO not in context.user_data:
         return ConversationHandler.END
 
     degree = int(update.message.text)

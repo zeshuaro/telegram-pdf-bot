@@ -60,45 +60,51 @@ def open_pdf(filename, update, file_type=None):
     return pdf_reader
 
 
-# Master function for different PDF file manipulations
-def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None,
-                scale_to=None):
-    prefix = f"{file_type.title()}_"
-    temp_files = [tempfile.NamedTemporaryFile(), tempfile.NamedTemporaryFile(prefix=prefix, suffix=".pdf")]
-    filename, out_filename = [x.name for x in temp_files]
+def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None, scale_to=None):
+    """
+    Process different PDF file manipulations
+    Args:
+        update: the update object
+        context: the context object
+        file_type: the string of file type
+        encrypt_pw: the string of encryption password
+        rotate_degree: the int of rotation degree
+        scale_by: the tuple of scale by values
+        scale_to: the tuple of scale to values
 
-    user_data = context.user_data
-    file_id = user_data["pdf_id"]
-    pdf_file = context.bot.get_file(file_id)
-    pdf_file.download(custom_path=filename)
-    pdf_reader = open_pdf(filename, update)
+    Returns:
+        None
+    """
+    with tempfile.NamedTemporaryFile()as tf:
+        user_data = context.user_data
+        file_id, file_name = user_data[PDF_INFO]
+        pdf_file = context.bot.get_file(file_id)
+        pdf_file.download(custom_path=tf.name)
+        pdf_reader = open_pdf(tf.name, update)
 
-    if pdf_reader:
-        pdf_writer = PdfFileWriter()
-        for page in pdf_reader.pages:
-            if rotate_degree:
-                pdf_writer.addPage(page.rotateClockwise(rotate_degree))
-            elif scale_by:
-                page.scale(scale_by[0], scale_by[1])
-                pdf_writer.addPage(page)
-            elif scale_to:
-                page.scaleTo(scale_to[0], scale_to[1])
-                pdf_writer.addPage(page)
-            else:
-                pdf_writer.addPage(page)
+        if pdf_reader is not None:
+            pdf_writer = PdfFileWriter()
+            for page in pdf_reader.pages:
+                if rotate_degree is not None:
+                    pdf_writer.addPage(page.rotateClockwise(rotate_degree))
+                elif scale_by is not None:
+                    page.scale(scale_by[0], scale_by[1])
+                    pdf_writer.addPage(page)
+                elif scale_to is not None:
+                    page.scaleTo(scale_to[0], scale_to[1])
+                    pdf_writer.addPage(page)
+                else:
+                    pdf_writer.addPage(page)
 
-        if encrypt_pw:
-            pdf_writer.encrypt(encrypt_pw)
+            if encrypt_pw is not None:
+                pdf_writer.encrypt(encrypt_pw)
 
-        with open(out_filename, "wb") as f:
-            pdf_writer.write(f)
+            # Send result file
+            send_result(update, pdf_writer, file_name, file_type)
 
-        send_result(update, out_filename, file_type)
-
-    if user_data["pdf_id"] == file_id:
-        del user_data["pdf_id"]
-    for tf in temp_files:
-        tf.close()
+    # Clean up memory
+    if user_data[PDF_INFO] == file_id:
+        del user_data[PDF_INFO]
 
 
 # Send a list of filenames
@@ -125,7 +131,9 @@ def send_result(update, pdf_writer, file_name, file_type, caption=None):
         None
     """
     with tempfile.TemporaryDirectory() as dir_name:
-        out_fn = os.path.join(dir_name, file_name)
+        new_fn = f'{file_type.title()}_{file_name}'
+        out_fn = os.path.join(dir_name, new_fn)
+
         with open(out_fn, 'wb') as f:
             pdf_writer.write(f)
 
@@ -134,7 +142,7 @@ def send_result(update, pdf_writer, file_name, file_type, caption=None):
         else:
             update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
             if caption is not None:
-                update.message.reply_document(document=open(file_name, "rb"), caption=caption)
+                update.message.reply_document(document=open(new_fn, "rb"), caption=caption)
             else:
-                update.message.reply_document(document=open(file_name, "rb"),
+                update.message.reply_document(document=open(new_fn, "rb"),
                                               caption=f"Here is your {file_type} PDF file.")

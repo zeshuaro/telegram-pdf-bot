@@ -23,4 +23,4 @@ PDF_OK = 0
 PDF_INVALID_FORMAT = 1
 PDF_TOO_LARGE = 2
 
-PDF_ID = 'pdf_id'
+PDF_INFO = 'pdf_info'

@@ -6,7 +6,7 @@ from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_SPLIT_RANGE, PDF_ID
+from pdf_bot.constants import WAIT_SPLIT_RANGE, PDF_INFO
 from pdf_bot.utils import open_pdf, send_result
 
 
@@ -40,7 +40,7 @@ def split_pdf(update, context):
         The variable indicating to wait for the split page range or the conversation has ended
     """
     user_data = context.user_data
-    if PDF_ID not in user_data:
+    if PDF_INFO not in user_data:
         return ConversationHandler.END
 
     split_range = update.message.text
@@ -56,7 +56,7 @@ def split_pdf(update, context):
     file_name, out_file_name = [x.name for x in temp_files]
 
     # Download PDF file
-    file_id = user_data[PDF_ID]
+    file_id = user_data[PDF_INFO]
     pdf_file = context.bot.get_file(file_id)
     pdf_file.download(custom_path=file_name)
     pdf_reader = open_pdf(file_name, update)
@@ -68,8 +68,8 @@ def split_pdf(update, context):
         send_result(update, out_file_name, 'split')
 
     # Clean up memory and files
-    if user_data[PDF_ID] == file_id:
-        del user_data[PDF_ID]
+    if user_data[PDF_INFO] == file_id:
+        del user_data[PDF_INFO]
     for tf in temp_files:
         tf.close()
 
