@@ -21,13 +21,13 @@ def ask_scale_x(update, _):
         The variable indicating to wait for the horizontal scaling factor or the new width
     """
     if update.message.text == 'Scale By':
-        update.message.reply_text('Please send me the scaling factor for the horizontal axis. For example, '
-                                  '2 will double the horizontal axis and 0.5 will half the horizontal axis.',
-                                  reply_markup=ReplyKeyboardRemove())
+        update.message.reply_text('Send me the scaling factor for the horizontal axis. '
+                                  'For example, 2 will double the horizontal axis and '
+                                  '0.5 will half the horizontal axis.', reply_markup=ReplyKeyboardRemove())
 
         return WAIT_SCALE_BY_X
     else:
-        update.message.reply_text('Please send me the new width.', reply_markup=ReplyKeyboardRemove())
+        update.message.reply_text('Send me the new width.', reply_markup=ReplyKeyboardRemove())
 
         return WAIT_SCALE_TO_X
 
@@ -44,17 +44,16 @@ def ask_scale_by_y(update, context):
         The variable indicating to wait for the horizontal or vertical scaling factor
     """
     scale_x = update.message.text
-
     try:
         scale_x = float(scale_x)
     except ValueError:
-        update.message.reply_text(f'The scaling factor "{scale_x}" is invalid. Please try again.')
+        update.message.reply_text(f'The scaling factor "{scale_x}" is invalid. Try again.')
 
         return WAIT_SCALE_BY_X
 
     context.user_data[SCALE_BY] = scale_x
-    update.message.reply_text('Please send me the scaling factor for the vertical axis. For example, 2 will double '
-                              'the vertical axis and 0.5 will half the vertical axis.')
+    update.message.reply_text('Send me the scaling factor for the vertical axis. '
+                              'For example, 2 will double the vertical axis and 0.5 will half the vertical axis.')
 
     return WAIT_SCALE_BY_Y
 
@@ -78,7 +77,7 @@ def pdf_scale_by(update, context):
     try:
         scale_y = float(scale_y)
     except ValueError:
-        update.message.reply_text(f'The scaling factor "{scale_y}" is invalid. Please try again.')
+        update.message.reply_text(f'The scaling factor "{scale_y}" is invalid. Try again.')
 
         return WAIT_SCALE_BY_Y
 
@@ -109,12 +108,12 @@ def ask_scale_to_y(update, context):
     try:
         scale_x = float(scale_x)
     except ValueError:
-        update.message.reply_text(f'The width "{scale_x}" is invalid. Please try again.')
+        update.message.reply_text(f'The width "{scale_x}" is invalid. Try again.')
 
         return WAIT_SCALE_TO_X
 
     context.user_data[SCALE_TO] = scale_x
-    update.message.reply_text('Please send me the new height.')
+    update.message.reply_text('Send me the new height.')
 
     return WAIT_SCALE_TO_Y
 
@@ -139,7 +138,7 @@ def pdf_scale_to(update, context):
     try:
         scale_y = float(scale_y)
     except ValueError:
-        update.message.reply_text(f'The height "{scale_y}" is invalid. Please try again.')
+        update.message.reply_text(f'The height "{scale_y}" is invalid. Try again.')
 
         return WAIT_SCALE_TO_Y
 
