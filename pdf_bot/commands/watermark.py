@@ -1,4 +1,3 @@
-import os
 import tempfile
 
 from PyPDF2 import PdfFileWriter
@@ -131,12 +130,8 @@ def add_pdf_watermark(update, context):
                 page.mergePage(watermark_reader.getPage(0))
                 pdf_writer.addPage(page)
 
-            with tempfile.TemporaryDirectory() as dir_name:
-                out_fn = os.path.join(dir_name, 'Watermarked_file.pdf')
-                with open(out_fn, 'wb') as f:
-                    pdf_writer.write(f)
-
-                send_result(update, out_fn, 'watermarked')
+            # Send result file
+            send_result(update, pdf_writer, 'Watermarked_file.pdf', 'watermarked')
 
     # Clean up memory and files
     if user_data[WATERMARK_ID] == source_file_id:

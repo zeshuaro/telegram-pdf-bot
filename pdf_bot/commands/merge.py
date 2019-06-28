@@ -1,4 +1,3 @@
-import os
 import tempfile
 
 from PyPDF2 import PdfFileMerger
@@ -150,12 +149,8 @@ def merge_pdf(update, context):
 
             return ConversationHandler.END
 
-    with tempfile.TemporaryDirectory() as dir_name:
-        out_fn = os.path.join(dir_name, 'Merged_files.pdf')
-        with open(out_fn, 'wb') as f:
-            merger.write(f)
-
-        send_result(update, out_fn, 'merged')
+    # Send result file
+    send_result(update, merger, 'Merged_files.pdf', 'merged')
 
     # Clean up memory and files
     if user_data[MERGE_IDS] == file_ids:

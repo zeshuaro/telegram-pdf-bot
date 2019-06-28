@@ -111,15 +111,30 @@ def send_file_names(update, filenames, file_type):
     update.message.reply_text(text)
 
 
-# Send result file to user
-def send_result(update, filename, file_type, caption=None):
-    if os.path.getsize(filename) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text(f"The {file_type} PDF file is too large for me to send to you, sorry.")
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        if caption:
-            update.message.reply_document(document=open(filename, "rb"),
-                                          caption=caption)
+def send_result(update, pdf_writer, file_name, file_type, caption=None):
+    """
+    Send result file to user
+    Args:
+        update: the update object
+        pdf_writer: the PdfFileWriter object
+        file_name: the file name
+        file_type: the file type
+        caption: the caption of the message
+
+    Returns:
+        None
+    """
+    with tempfile.TemporaryDirectory() as dir_name:
+        out_fn = os.path.join(dir_name, file_name)
+        with open(out_fn, 'wb') as f:
+            pdf_writer.write(f)
+
+        if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
+            update.message.reply_text(f"The {file_type} PDF file is too large for me to send to you.")
         else:
-            update.message.reply_document(document=open(filename, "rb"),
-                                          caption=f"Here is your {file_type} PDF file.")
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            if caption is not None:
+                update.message.reply_document(document=open(file_name, "rb"), caption=caption)
+            else:
+                update.message.reply_document(document=open(file_name, "rb"),
+                                              caption=f"Here is your {file_type} PDF file.")
