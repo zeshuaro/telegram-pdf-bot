@@ -24,8 +24,8 @@ def compare_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('compare', compare)],
         states={
-            WAIT_COMPARE_FIRST: [MessageHandler(Filters.document, receive_first_file)],
-            WAIT_COMPARE_SECOND: [MessageHandler(Filters.document, receive_second_file)],
+            WAIT_COMPARE_FIRST: [MessageHandler(Filters.document, receive_first_doc)],
+            WAIT_COMPARE_SECOND: [MessageHandler(Filters.document, receive_second_doc)],
         },
         fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
@@ -52,7 +52,7 @@ def compare(update, _):
 
 
 @run_async
-def receive_first_file(update, context):
+def receive_first_doc(update, context):
     """
     Validate the file and wait for the next action
     Args:
@@ -75,7 +75,7 @@ def receive_first_file(update, context):
 
 
 @run_async
-def receive_second_file(update, context):
+def receive_second_doc(update, context):
     """
     Validate the file and compare the files
     Args:

@@ -1,3 +1,4 @@
+import os
 import tempfile
 
 from PyPDF2 import PdfFileMerger
@@ -23,7 +24,7 @@ def merge_cov_handler():
         entry_points=[CommandHandler('merge', merge)],
         states={
             WAIT_MERGE_FILE: [
-                MessageHandler(Filters.document, receive_file),
+                MessageHandler(Filters.document, receive_doc),
                 MessageHandler(Filters.regex('^Done$'), merge_pdf)
             ]
         },
@@ -52,14 +53,14 @@ def merge(update, context):
     if MERGE_NAMES in user_data:
         del user_data[MERGE_NAMES]
 
-    update.message.reply_text('Please send me the first PDF file that you will like to merge or type /cancel to '
+    update.message.reply_text('Send me the PDF file that you\'ll like to merge or type /cancel to '
                               'cancel this operation.\n\nThe files will be merged in the order that you send me.')
 
     return WAIT_MERGE_FILE
 
 
 @run_async
-def receive_file(update, context):
+def receive_doc(update, context):
     """
     Validate the file and wait for the next action
     Args:
@@ -73,7 +74,7 @@ def receive_file(update, context):
     result = check_pdf(update)
 
     if result == PDF_INVALID_FORMAT:
-        update.message.reply_text('The file you sent is not a PDF file. Please send me the PDF file that you\'ll '
+        update.message.reply_text('The file you sent is not a PDF file. Send me the PDF file that you\'ll '
                                   'like to merge or type /cancel to cancel this operation.')
 
         return WAIT_MERGE_FILE
@@ -88,14 +89,13 @@ def receive_file(update, context):
 
             return WAIT_MERGE_FILE
         else:
-            text += 'Sorry that I can\'t merge your PDF files. Operation cancelled.'
+            text += 'I can\'t merge your PDF files.'
             update.message.reply_text(text)
 
             return ConversationHandler.END
 
-    pdf_file = update.message.document
-    file_name = pdf_file.file_name
-    file_id = pdf_file.file_id
+    file_name = update.message.document.file_name
+    file_id = update.message.document.file_id
 
     # Check if user has already sent through some PDF files
     if MERGE_IDS in user_data and user_data[MERGE_IDS]:
@@ -106,7 +106,7 @@ def receive_file(update, context):
         user_data[MERGE_NAMES] = [file_name]
 
     reply_markup = ReplyKeyboardMarkup([['Done']], one_time_keyboard=True)
-    update.message.reply_text('Please send me the next PDF file that you\'ll like to merge or send Done if you have '
+    update.message.reply_text('Send me the next PDF file that you\'ll like to merge or send Done if you have '
                               'sent me all the PDF files.', reply_markup=reply_markup)
     send_file_names(update[MERGE_NAMES], 'PDF files')
 
@@ -127,37 +127,35 @@ def merge_pdf(update, context):
     if MERGE_IDS not in user_data:
         return ConversationHandler.END
 
+    update.message.reply_text('Merging your PDF files', reply_markup=ReplyKeyboardRemove())
     file_ids = user_data[MERGE_IDS]
     file_names = user_data[MERGE_NAMES]
-    update.message.reply_text('Merging your PDF files', reply_markup=ReplyKeyboardRemove())
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
-    temp_files.append(tempfile.NamedTemporaryFile(prefix='Merged_', suffix='.pdf'))
-    out_filename = temp_files[-1].name
     merger = PdfFileMerger()
-    read_ok = True
 
     # Merge PDF files
     for i, file_id in enumerate(file_ids):
         file_name = temp_files[i].name
-        pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=file_name)
+        file = context.bot.get_file(file_id)
+        file.download(custom_path=file_name)
 
         try:
             merger.append(open(file_name, 'rb'))
         except PdfReadError:
-            read_ok = False
-            update.message.reply_text(f'I could not open and read "{file_names[i]}". '
-                                      f'Please make sure that it is not encrypted. Operation cancelled.')
+            update.message.reply_text(f'I failed to merge your PDF files as '
+                                      f'I could not open and read "{file_names[i]}". '
+                                      f'Make sure that it is not encrypted.')
 
-            break
+            return ConversationHandler.END
 
-    if read_ok:
-        with open(out_filename, 'wb') as f:
+    with tempfile.TemporaryDirectory() as dir_name:
+        out_fn = os.path.join(dir_name, 'Merged_files.pdf')
+        with open(out_fn, 'wb') as f:
             merger.write(f)
 
-        send_result(update, out_filename, 'merged')
+        send_result(update, out_fn, 'merged')
 
     # Clean up memory and files
     if user_data[MERGE_IDS] == file_ids:
