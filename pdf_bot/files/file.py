@@ -3,8 +3,8 @@ import re
 import shutil
 import tempfile
 
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, ChatAction
-from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 

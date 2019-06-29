@@ -147,8 +147,8 @@ def get_pdf_photos(update, context):
                                 size = (x_object[obj]['/Width'], x_object[obj]['/Height'])
                                 try:
                                     data = x_object[obj].getData()
-                                except Exception:
-                                    log.error(Exception)
+                                except Exception as e:
+                                    log.error(e)
 
                                     continue
 
