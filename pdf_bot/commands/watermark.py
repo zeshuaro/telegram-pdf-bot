@@ -131,7 +131,7 @@ def add_pdf_watermark(update, context):
                 pdf_writer.addPage(page)
 
             # Send result file
-            write_send_pdf(update, pdf_writer, 'Watermarked_file.pdf', 'watermarked')
+            write_send_pdf(update, pdf_writer, 'file.pdf', 'watermarked')
 
     # Clean up memory and files
     if user_data[WATERMARK_ID] == source_file_id:
