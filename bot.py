@@ -45,7 +45,7 @@ def main():
     dispatcher.add_handler(watermark_cov_handler())
     dispatcher.add_handler(file_cov_handler())
     # dispatcher.add_handler(feedback_cov_handler())
-    dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID), pass_args=True))
+    dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID)))
 
     # log all errors
     dispatcher.add_error_handler(error_callback)
@@ -129,16 +129,25 @@ def donate_msg(update, _):
     update.message.reply_text(text)
 
 
-# Sends a message to a specified user
-def send(bot, update, args):
-    tele_id = int(args[0])
-    message = ' '.join(args[1:])
+def send(update, context):
+    """
+    Send a message to a user
+    Args:
+        update: the update object
+        context: the context object
+
+    Returns:
+        None
+    """
+    tele_id = int(context.args[0])
+    message = ' '.join(context.args[1:])
 
     try:
-        bot.send_message(tele_id, message)
+        context.bot.send_message(tele_id, message)
     except Exception as e:
-        LOGGER.exception(e)
-        bot.send_message(DEV_TELE_ID, 'Failed to send message')
+        log = Logger()
+        log.error(e)
+        update.message.reply_text(DEV_TELE_ID, 'Failed to send message')
 
 
 def error_callback(update, context):
