@@ -34,7 +34,7 @@ def rotate_pdf(update, context):
         context: the context object
 
     Returns:
-        The vairable indicating the conversation has ended
+        The variable indicating the conversation has ended
     """
     if PDF_INFO not in context.user_data:
         return ConversationHandler.END
