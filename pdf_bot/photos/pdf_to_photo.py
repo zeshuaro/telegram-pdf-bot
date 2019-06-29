@@ -49,7 +49,7 @@ def get_pdf_cover(update, context):
 
                 with tempfile.TemporaryDirectory() as dir_name:
                     # Convert cover preview to JPEG
-                    out_fn = os.path.join(dir_name, f'Cover_{os.path.splitext(file_name)[0]}.png')
+                    out_fn = os.path.join(dir_name, f'Cover-{os.path.splitext(file_name)[0]}.png')
                     imgs = pdf2image.convert_from_path(tf2.name, fmt='png')
                     imgs[0].save(out_fn)
 

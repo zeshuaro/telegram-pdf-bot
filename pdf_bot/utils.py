@@ -144,7 +144,7 @@ def write_send_pdf(update, pdf_writer, file_name, file_type):
         None
     """
     with tempfile.TemporaryDirectory() as dir_name:
-        new_fn = f'{file_type.title()}_{file_name}'
+        new_fn = f'{file_type.title()}-{file_name}'
         out_fn = os.path.join(dir_name, new_fn)
 
         with open(out_fn, 'wb') as f:

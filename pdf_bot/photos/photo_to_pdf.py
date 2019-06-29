@@ -1,5 +1,6 @@
 import img2pdf
 import noteshrink
+import os
 import tempfile
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
@@ -8,7 +9,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_PHOTO
-from pdf_bot.utils import cancel, send_file_names, write_send_pdf
+from pdf_bot.utils import cancel, send_file_names, send_result_file
 
 PHOTO_IDS = 'photo_ids'
 PHOTO_NAMES = 'photo_names'
@@ -122,7 +123,7 @@ def receive_photo(update, context):
                               'Select the task from below if you have sent me all the photos.\n\n'
                               'Be aware that I only have access to the file name if you sent your photo as a document.',
                               reply_markup=reply_markup)
-    send_file_names(update[PHOTO_NAMES], 'photos')
+    send_file_names(update, user_data[PHOTO_NAMES], 'photos')
 
     return WAIT_PHOTO
 
@@ -177,14 +178,6 @@ def process_photo(update, context, file_ids, is_beautify):
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
-    if is_beautify:
-        temp_files.append(tempfile.NamedTemporaryFile(prefix='Beautified_', suffix='.pdf'))
-    else:
-        temp_files.append(tempfile.NamedTemporaryFile(prefix='Converted_', suffix='.pdf'))
-
-    out_file_name = temp_files[-1].name
-    temp_dir = tempfile.TemporaryDirectory()
-    base_name = temp_dir.name
     photo_files = []
 
     # Download all photos
@@ -194,16 +187,18 @@ def process_photo(update, context, file_ids, is_beautify):
         photo_file.download(custom_path=file_name)
         photo_files.append(file_name)
 
-    if is_beautify:
-        noteshrink.notescan_main(photo_files, basename=f'{base_name}/page', pdfname=out_file_name)
-        write_send_pdf(update, out_file_name, 'beautified')
-    else:
-        with open(out_file_name, 'wb') as f:
-            f.write(img2pdf.convert(photo_files))
+    with tempfile.TemporaryDirectory() as dir_name:
+        if is_beautify:
+            out_fn = os.path.join(dir_name, 'Beautified.pdf')
+            noteshrink.notescan_main(photo_files, basename=f'{dir_name}/page', pdfname=out_fn)
+            send_result_file(update, out_fn)
+        else:
+            out_fn = os.path.join(dir_name, 'Converted.pdf')
+            with open(out_fn, 'wb') as f:
+                f.write(img2pdf.convert(photo_files))
 
-        write_send_pdf(update, out_file_name, 'converted')
+            send_result_file(update, out_fn)
 
     # Clean up files
     for tf in temp_files:
         tf.close()
-    temp_dir.cleanup()
