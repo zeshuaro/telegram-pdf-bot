@@ -37,29 +37,6 @@ def check_pdf(update):
     return pdf_status
 
 
-# Open PDF file, check if is is valid and encrypted
-def open_pdf(filename, update, file_type=None):
-    pdf_reader = None
-
-    try:
-        pdf_reader = PdfFileReader(open(filename, "rb"))
-        if pdf_reader.isEncrypted:
-            if file_type:
-                text = f"Your {file_type} PDF file is encrypted. " \
-                       f"Please decrypt it yourself or decrypt it with me first. Operation cancelled."
-            else:
-                text = "Your PDF file is encrypted. Please decrypt it yourself or decrypt it with me first. " \
-                       "Operation cancelled."
-
-            pdf_reader = None
-            update.message.reply_text(text)
-    except PdfReadError:
-        text = "Your PDF file seems to be invalid and I couldn't open and read it. Operation cancelled."
-        update.message.reply_text(text)
-
-    return pdf_reader
-
-
 def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None, scale_to=None):
     """
     Process different PDF file manipulations
@@ -80,7 +57,11 @@ def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None,
         file_id, file_name = user_data[PDF_INFO]
         pdf_file = context.bot.get_file(file_id)
         pdf_file.download(custom_path=tf.name)
-        pdf_reader = open_pdf(tf.name, update)
+
+        if encrypt_pw is None:
+            pdf_reader = open_pdf(tf.name, update)
+        else:
+            pdf_reader = open_pdf(tf.name, update, file_type)
 
         if pdf_reader is not None:
             pdf_writer = PdfFileWriter()
@@ -105,6 +86,39 @@ def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None,
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
         del user_data[PDF_INFO]
+
+
+def open_pdf(file_name, update, file_type=None):
+    """
+    Open and validate PDF file
+    Args:
+        file_name: the string of the file name
+        update: the update object
+        file_type: the string of the file type
+
+    Returns:
+        The PdfFileReader object or None
+    """
+    pdf_reader = None
+    try:
+        pdf_reader = PdfFileReader(open(file_name, 'rb'))
+        if pdf_reader.isEncrypted:
+            if file_type:
+                if file_type == 'encrypted':
+                    text = 'Your PDF file is already encrypted.'
+                else:
+                    text = f'Your {file_type} PDF file is encrypted and you\'ll have to decrypt it first. ' \
+                        f'Operation cancelled.'
+            else:
+                text = 'Your PDF file is encrypted and you\'ll have to decrypt it first. Operation cancelled.'
+
+            pdf_reader = None
+            update.message.reply_text(text)
+    except PdfReadError:
+        text = 'Your PDF file seems to be invalid and I couldn\'t open and read it. Operation cancelled.'
+        update.message.reply_text(text)
+
+    return pdf_reader
 
 
 # Send a list of filenames
