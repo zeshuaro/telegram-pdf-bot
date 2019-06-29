@@ -193,16 +193,16 @@ def rename_pdf(update, context):
     new_fn = '{}.pdf'.format(text)
     update.message.reply_text(f'Renaming your PDF file into *{new_fn}*', parse_mode='Markdown')
 
-    with tempfile.NamedTemporaryFile() as tf:
-        # Download PDF file
-        file_id, _ = user_data[PDF_INFO]
-        pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=tf.name)
+    # Download PDF file
+    file_id, _ = user_data[PDF_INFO]
+    tf = tempfile.NamedTemporaryFile()
+    pdf_file = context.bot.get_file(file_id)
+    pdf_file.download(custom_path=tf.name)
 
-        with tempfile.TemporaryDirectory() as dir_name:
-            out_fn = os.path.join(dir_name, new_fn)
-            shutil.move(tf.name, out_fn)
-            send_result_file(update, out_fn)
+    with tempfile.TemporaryDirectory() as dir_name:
+        out_fn = os.path.join(dir_name, new_fn)
+        shutil.move(tf.name, out_fn)
+        send_result_file(update, out_fn)
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:
