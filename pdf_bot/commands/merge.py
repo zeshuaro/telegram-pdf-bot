@@ -84,7 +84,7 @@ def receive_doc(update, context):
         if MERGE_NAMES in user_data and user_data[MERGE_NAMES]:
             text += 'You can continue merging with the files that you sent me or type /cancel to cancel this operation.'
             update.message.reply_text(text)
-            send_file_names(update[MERGE_NAMES], 'PDF files')
+            send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
 
             return WAIT_MERGE
         else:
@@ -107,7 +107,7 @@ def receive_doc(update, context):
     reply_markup = ReplyKeyboardMarkup([['Done']], one_time_keyboard=True)
     update.message.reply_text('Send me the next PDF file that you\'ll like to merge or send Done if you have '
                               'sent me all the PDF files.', reply_markup=reply_markup)
-    send_file_names(update[MERGE_NAMES], 'PDF files')
+    send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
 
     return WAIT_MERGE
 
@@ -150,7 +150,7 @@ def merge_pdf(update, context):
             return ConversationHandler.END
 
     # Send result file
-    write_send_pdf(update, merger, 'Merged_files.pdf', 'merged')
+    write_send_pdf(update, merger, 'files.pdf', 'merged')
 
     # Clean up memory and files
     if user_data[MERGE_IDS] == file_ids:

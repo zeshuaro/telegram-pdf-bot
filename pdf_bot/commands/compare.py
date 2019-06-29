@@ -67,8 +67,7 @@ def receive_first_doc(update, context):
         return ConversationHandler.END
 
     context.user_data[COMPARE_ID] = update.message.document.file_id
-    update.message.reply_text('Send me the other PDF file that you\'ll like to compare or type /cancel to '
-                              'cancel this operation.')
+    update.message.reply_text('Send me the other PDF file that you\'ll like to compare.')
 
     return WAIT_COMPARE_SECOND
 
