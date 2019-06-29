@@ -10,7 +10,7 @@ from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_TASK, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, WAIT_ROTATE_DEGREE, WAIT_SCALE_BY_X, \
     WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME, PDF_INFO
-from pdf_bot.utils import cancel, process_pdf
+from pdf_bot.utils import cancel, process_pdf, send_result_file
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
 from pdf_bot.files.split import ask_split_range, split_pdf
@@ -192,23 +192,17 @@ def rename_pdf(update, context):
 
     new_fn = '{}.pdf'.format(text)
     update.message.reply_text(f'Renaming your PDF file into *{new_fn}*', parse_mode='Markdown')
-    tf = tempfile.NamedTemporaryFile()
 
-    # Download PDF file
-    file_id, _ = user_data[PDF_INFO]
-    pdf_file = context.bot.get_file(file_id)
-    pdf_file.download(custom_path=tf.name)
+    with tempfile.NamedTemporaryFile() as tf:
+        # Download PDF file
+        file_id, _ = user_data[PDF_INFO]
+        pdf_file = context.bot.get_file(file_id)
+        pdf_file.download(custom_path=tf.name)
 
-    with tempfile.TemporaryDirectory() as dir_name:
-        out_fn = os.path.join(dir_name, new_fn)
-        shutil.move(tf.name, out_fn)
-
-        if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text('The PDF file is too large for me to send to you.')
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            update.message.reply_document(document=open(new_fn, "rb"),
-                                          caption=f"Here is your renamed PDF file.")
+        with tempfile.TemporaryDirectory() as dir_name:
+            out_fn = os.path.join(dir_name, new_fn)
+            shutil.move(tf.name, out_fn)
+            send_result_file(update, out_fn)
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:
