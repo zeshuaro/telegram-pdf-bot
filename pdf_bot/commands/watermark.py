@@ -5,7 +5,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_WATERMARK_SOURCE, WAIT_WATERMARK, PDF_INVALID_FORMAT, PDF_OK
-from pdf_bot.utils import cancel, check_pdf, open_pdf, send_result
+from pdf_bot.utils import cancel, check_pdf, open_pdf, write_send_pdf
 
 WATERMARK_ID = 'watermark_id'
 
@@ -131,7 +131,7 @@ def add_pdf_watermark(update, context):
                 pdf_writer.addPage(page)
 
             # Send result file
-            send_result(update, pdf_writer, 'Watermarked_file.pdf', 'watermarked')
+            write_send_pdf(update, pdf_writer, 'Watermarked_file.pdf', 'watermarked')
 
     # Clean up memory and files
     if user_data[WATERMARK_ID] == source_file_id:

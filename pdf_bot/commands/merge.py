@@ -7,7 +7,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_MERGE, PDF_INVALID_FORMAT, PDF_TOO_LARGE
-from pdf_bot.utils import check_pdf, cancel, send_result, send_file_names
+from pdf_bot.utils import check_pdf, cancel, write_send_pdf, send_file_names
 
 MERGE_IDS = 'merge_ids'
 MERGE_NAMES = 'merge_names'
@@ -150,7 +150,7 @@ def merge_pdf(update, context):
             return ConversationHandler.END
 
     # Send result file
-    send_result(update, merger, 'Merged_files.pdf', 'merged')
+    write_send_pdf(update, merger, 'Merged_files.pdf', 'merged')
 
     # Clean up memory and files
     if user_data[MERGE_IDS] == file_ids:

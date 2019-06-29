@@ -7,7 +7,7 @@ from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_SPLIT_RANGE, PDF_INFO
-from pdf_bot.utils import open_pdf, send_result
+from pdf_bot.utils import open_pdf, write_send_pdf
 
 
 @run_async
@@ -52,7 +52,7 @@ def split_pdf(update, context):
 
     update.message.reply_text('Splitting your PDF file')
 
-    with tempfile.NamedTemporaryFile()  as tf:
+    with tempfile.NamedTemporaryFile() as tf:
         # Download PDF file
         file_id, file_name = user_data[PDF_INFO]
         pdf_file = context.bot.get_file(file_id)
@@ -62,7 +62,7 @@ def split_pdf(update, context):
         if pdf_reader is not None:
             merger = PdfFileMerger()
             merger.append(pdf_reader, pages=PageRange(split_range))
-            send_result(update, merger, file_name, 'split')
+            write_send_pdf(update, merger, file_name, 'split')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:

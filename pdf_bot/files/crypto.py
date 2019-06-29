@@ -7,7 +7,7 @@ from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_INFO
-from pdf_bot.utils import send_result, process_pdf
+from pdf_bot.utils import write_send_pdf, process_pdf
 
 
 @run_async
@@ -69,7 +69,7 @@ def decrypt_pdf(update, context):
                     for page in pdf_reader.pages:
                         pdf_writer.addPage(page)
 
-                    send_result(update, pdf_writer, file_name, 'decrypted')
+                    write_send_pdf(update, pdf_writer, file_name, 'decrypted')
                 except NotImplementedError:
                     update.message.reply_text('Your PDF file is encrypted with a method that I cannot decrypt.')
 

@@ -8,7 +8,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_PHOTO
-from pdf_bot.utils import cancel, send_file_names, send_result
+from pdf_bot.utils import cancel, send_file_names, write_send_pdf
 
 PHOTO_IDS = 'photo_ids'
 PHOTO_NAMES = 'photo_names'
@@ -196,12 +196,12 @@ def process_photo(update, context, file_ids, is_beautify):
 
     if is_beautify:
         noteshrink.notescan_main(photo_files, basename=f'{base_name}/page', pdfname=out_file_name)
-        send_result(update, out_file_name, 'beautified')
+        write_send_pdf(update, out_file_name, 'beautified')
     else:
         with open(out_file_name, 'wb') as f:
             f.write(img2pdf.convert(photo_files))
 
-        send_result(update, out_file_name, 'converted')
+        write_send_pdf(update, out_file_name, 'converted')
 
     # Clean up files
     for tf in temp_files:

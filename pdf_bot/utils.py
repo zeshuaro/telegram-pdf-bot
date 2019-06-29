@@ -100,7 +100,7 @@ def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None,
                 pdf_writer.encrypt(encrypt_pw)
 
             # Send result file
-            send_result(update, pdf_writer, file_name, file_type)
+            write_send_pdf(update, pdf_writer, file_name, file_type)
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -117,15 +117,14 @@ def send_file_names(update, filenames, file_type):
     update.message.reply_text(text)
 
 
-def send_result(update, pdf_writer, file_name, file_type, caption=None):
+def write_send_pdf(update, pdf_writer, file_name, file_type):
     """
-    Send result file to user
+    Write and send result PDF file to user
     Args:
         update: the update object
         pdf_writer: the PdfFileWriter object
         file_name: the file name
         file_type: the file type
-        caption: the caption of the message
 
     Returns:
         None
@@ -137,12 +136,21 @@ def send_result(update, pdf_writer, file_name, file_type, caption=None):
         with open(out_fn, 'wb') as f:
             pdf_writer.write(f)
 
-        if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
-            update.message.reply_text(f"The {file_type} PDF file is too large for me to send to you.")
-        else:
-            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            if caption is not None:
-                update.message.reply_document(document=open(new_fn, "rb"), caption=caption)
-            else:
-                update.message.reply_document(document=open(new_fn, "rb"),
-                                              caption=f"Here is your {file_type} PDF file.")
+        send_result_file(update, out_fn)
+
+
+def send_result_file(update, out_fn):
+    """
+    Send result file to user
+    Args:
+        update: the update object
+        out_fn: the output file name
+
+    Returns:
+        None
+    """
+    if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
+        update.message.reply_text(f"The result file is too large for me to send to you.")
+    else:
+        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+        update.message.reply_document(document=open(out_fn, "rb"), caption=f"Here is your result file.")
