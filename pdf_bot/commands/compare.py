@@ -3,13 +3,11 @@ import pdf_diff
 import tempfile
 
 from pdf_diff import NoDifferenceError
-from telegram import ChatAction
-from telegram.constants import MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_COMPARE_FIRST, WAIT_COMPARE_SECOND, PDF_INVALID_FORMAT, PDF_OK
-from pdf_bot.utils import check_pdf, cancel
+from pdf_bot.utils import check_pdf, cancel, send_result_file
 
 COMPARE_ID = 'compare_id'
 
@@ -69,7 +67,8 @@ def receive_first_doc(update, context):
         return ConversationHandler.END
 
     context.user_data[COMPARE_ID] = update.message.document.file_id
-    update.message.reply_text('Send me the other PDF file that you\'ll like to compare.')
+    update.message.reply_text('Send me the other PDF file that you\'ll like to compare or type /cancel to '
+                              'cancel this operation.')
 
     return WAIT_COMPARE_SECOND
 
@@ -116,18 +115,15 @@ def compare_pdf(update, context):
     second_file = context.bot.get_file(update.message.document.file_id)
     second_file.download(custom_path=second_fn)
 
-    # Run pdf-diff
     try:
         with tempfile.TemporaryDirectory() as dir_name:
             out_fn = os.path.join(dir_name, 'Differences.png')
+
+            # Run pdf-diff
             pdf_diff.main(files=[first_fn, second_fn], out_file=out_fn)
 
-            if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
-                update.message.reply_text('The differences file is too large for me to send to you.')
-            else:
-                update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
-                update.message.reply_photo(photo=open(out_fn, 'rb'),
-                                           caption='Here are the differences between your PDF files.')
+            # Send result file
+            send_result_file(update, out_fn)
     except NoDifferenceError:
         update.message.reply_text('There are no differences between your PDF files.')
 
