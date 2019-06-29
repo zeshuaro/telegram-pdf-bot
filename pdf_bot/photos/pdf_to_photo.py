@@ -1,6 +1,5 @@
-import ghostscript
-import locale
 import os
+import pdf2image
 import shutil
 import tempfile
 
@@ -43,17 +42,19 @@ def get_pdf_cover(update, context):
             pdf_writer = PdfFileWriter()
             pdf_writer.addPage(pdf_reader.getPage(0))
 
-            with tempfile.NamedTemporaryFile() as tf2, open(tf2.name, 'wb') as f, \
-                    tempfile.TemporaryDirectory() as dir_name:
+            with tempfile.NamedTemporaryFile() as tf2:
                 # Write cover preview PDF file
-                pdf_writer.write(f)
+                with open(tf2.name, 'wb') as f:
+                    pdf_writer.write(f)
 
-                # Convert cover preview to JPEG
-                out_fn = os.path.join(dir_name, f'Cover_{os.path.splitext(file_name)[0]}.jpg')
-                run_ghostscript(tf2.name, out_fn)
+                with tempfile.TemporaryDirectory() as dir_name:
+                    # Convert cover preview to JPEG
+                    out_fn = os.path.join(dir_name, f'Cover_{os.path.splitext(file_name)[0]}.png')
+                    imgs = pdf2image.convert_from_path(tf2.name, fmt='png')
+                    imgs[0].save(out_fn)
 
-                # Send result file
-                send_result_file(update, out_fn)
+                    # Send result file
+                    send_result_file(update, out_fn)
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:
@@ -83,38 +84,26 @@ def pdf_to_photos(update, context):
         pdf_file = context.bot.get_file(file_id)
         pdf_file.download(custom_path=tf.name)
 
-        with tempfile.TemporaryDirectory() as tmp_dir_name, \
-                tempfile.TemporaryDirectory(
-                    dir=tmp_dir_name, prefix=f'PDF_Photos_{os.path.splitext(file_name)[0]}') as dir_name:
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            # Setup the directory for the images
+            dir_name = os.path.join(tmp_dir_name, 'PDF-Images')
+            os.mkdir(dir_name)
 
-            # Convert the PDF file into photos
-            run_ghostscript(tf.name, dir_name)
+            # Convert the PDF file into images
+            pdf2image.convert_from_path(tf.name, output_folder=dir_name, output_file=os.path.splitext(file_name)[0],
+                                        fmt='png')
+
+            # Compress the images
             shutil.make_archive(dir_name, 'zip', dir_name)
 
             # Send result file
-            send_result_file(update, f'{dir_name}.sip')
+            send_result_file(update, f'{dir_name}.zip')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
         del user_data[PDF_INFO]
 
     return ConversationHandler.END
-
-
-def run_ghostscript(in_fn, out_fn):
-    """
-    Run Ghostscript
-    Args:
-        in_fn: the string of the input file name
-        out_fn: the string of the output file name
-
-    Returns:
-        None
-    """
-    args = ['pdf2png', '-dSAFER', '-sDEVICE=jpeg', '-o', out_fn, '-r300', in_fn]
-    encoding = locale.getpreferredencoding()
-    args = [a.encode(encoding) for a in args]
-    ghostscript.Ghostscript(*args)
 
 
 @run_async
@@ -140,11 +129,15 @@ def get_pdf_photos(update, context):
         pdf_reader = open_pdf(tf.name, update)
 
         if pdf_reader is not None:
-            with tempfile.TemporaryDirectory() as tmp_dir_name, \
-                    tempfile.TemporaryDirectory(
-                        dir=tmp_dir_name, prefix=f'Photos_{os.path.splitext(file_name)[0]}') as dir_name:
-                # Find and store all photos
+            with tempfile.TemporaryDirectory() as tmp_dir_name:
+                # Setup the directory for the images
+                dir_name = os.path.join(tmp_dir_name, 'Images-In-PDF')
+                os.mkdir(dir_name)
+                root_file_name = os.path.splitext(file_name)[0]
+                i = 0
                 log = Logger()
+
+                # Find and store all photos
                 for page in pdf_reader.pages:
                     if '/Resources' in page and '/XObject' in page['/Resources']:
                         x_object = page['/Resources']['/XObject'].getObject()
@@ -159,25 +152,26 @@ def get_pdf_photos(update, context):
 
                                     continue
 
-                                if x_object[obj]['/ColorSpace'] == '/DeviceRGB':
-                                    mode = 'RGB'
-                                else:
-                                    mode = 'P'
-
                                 if x_object[obj]['/Filter'] == '/FlateDecode':
+                                    if x_object[obj]['/ColorSpace'] == '/DeviceRGB':
+                                        mode = 'RGB'
+                                    else:
+                                        mode = 'P'
+
                                     try:
                                         img = Image.frombytes(mode, size, data)
-                                        img.save(tempfile.NamedTemporaryFile(dir=dir_name, suffix='.png').name)
+                                        img.save(os.path.join(dir_name, f'{root_file_name}-{i}.png'))
+                                        i += 1
                                     except TypeError:
                                         pass
                                 elif x_object[obj]['/Filter'] == '/DCTDecode':
-                                    with open(tempfile.NamedTemporaryFile(
-                                            dir=dir_name, suffix='.jpg').name, 'wb') as img:
+                                    with open(os.path.join(dir_name, f'{root_file_name}-{i}.jpg'), 'wb') as img:
                                         img.write(data)
+                                        i += 1
                                 elif x_object[obj]['/Filter'] == '/JPXDecode':
-                                    with open(tempfile.NamedTemporaryFile(
-                                            dir=dir_name, suffix='.jp2').name, 'wb') as img:
+                                    with open(os.path.join(dir_name, f'{root_file_name}-{i}.jp2'), 'wb') as img:
                                         img.write(data)
+                                        i += 1
 
                 if not os.listdir(dir_name):
                     update.message.reply_text('I couldn\'t find any photos in your PDF file.')
