@@ -85,15 +85,15 @@ def pdf_to_photos(update, context):
         pdf_file.download(custom_path=tf.name)
 
         with tempfile.TemporaryDirectory() as tmp_dir_name:
-            # Setup the directory for the images
-            dir_name = os.path.join(tmp_dir_name, 'PDF-Images')
+            # Setup the directory for the photos
+            dir_name = os.path.join(tmp_dir_name, 'PDF-Photos')
             os.mkdir(dir_name)
 
-            # Convert the PDF file into images
+            # Convert the PDF file into photos
             pdf2image.convert_from_path(tf.name, output_folder=dir_name, output_file=os.path.splitext(file_name)[0],
                                         fmt='png')
 
-            # Compress the images
+            # Compress the directory of photos
             shutil.make_archive(dir_name, 'zip', dir_name)
 
             # Send result file
@@ -130,8 +130,8 @@ def get_pdf_photos(update, context):
 
         if pdf_reader is not None:
             with tempfile.TemporaryDirectory() as tmp_dir_name:
-                # Setup the directory for the images
-                dir_name = os.path.join(tmp_dir_name, 'Images-In-PDF')
+                # Setup the directory for the photos
+                dir_name = os.path.join(tmp_dir_name, 'Photos-In-PDF')
                 os.mkdir(dir_name)
                 root_file_name = os.path.splitext(file_name)[0]
                 i = 0
