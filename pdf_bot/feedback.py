@@ -1,20 +1,17 @@
-#!/usr/bin/env python3
-
-import dotenv
-import logging
 import os
-import slack
 
+from dotenv import load_dotenv
+from logbook import Logger
+from slack import WebClient
 from textblob import TextBlob
 from textblob.exceptions import TranslatorError
 from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
+from pdf_bot.utils import cancel
 
-dotenv.load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
-
+load_dotenv()
 SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
-
 BOT_NAME = "PDF Bot"  # Bot name to be appeared in your Slack Channel
 VALID_LANGS = ("en", "zh-hk", "zh-tw", "zh-cn")
 
@@ -24,15 +21,23 @@ def feedback_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('feedback', feedback)],
         states={0: [MessageHandler(Filters.text, receive_feedback)]},
-        fallbacks=[CommandHandler("cancel", cancel_feedback)]
+        fallbacks=[CommandHandler("cancel", cancel)]
     )
 
     return conv_handler
 
 
-# Sends a feedback message
 @run_async
-def feedback(bot, update):
+def feedback(update, _):
+    """
+    Start the feedback conversation
+    Args:
+        update: the update object
+        _: unused variable
+
+    Returns:
+        The variable indicating to wait for feedback
+    """
     text = "Please send me your feedback or type /cancel to cancel this operation. " \
            "My developer can understand English and Chinese."
     update.message.reply_text(text)
@@ -42,7 +47,16 @@ def feedback(bot, update):
 
 # Saves a feedback
 @run_async
-def receive_feedback(bot, update):
+def receive_feedback(update, _):
+    """
+    Log the feedback on Slack
+    Args:
+        update: the update object
+        _: unused variable
+
+    Returns:
+        The variable indicating the conversation has ended
+    """
     tele_username = update.message.chat.username
     tele_id = update.message.chat.id
     feedback_msg = update.message.text
@@ -55,31 +69,28 @@ def receive_feedback(bot, update):
         pass
 
     if not feedback_lang or feedback_lang.lower() not in VALID_LANGS:
-        update.message.reply_text("The feedback you sent is not in English or Chinese. Please try again.")
+        update.message.reply_text("The feedback is not in English or Chinese. Please try again.")
+
         return 0
 
     text = "Feedback received from @{} ({})\n\n{}".format(tele_username, tele_id, feedback_msg)
-    if SLACK_TOKEN:
-        sc = slack.WebClient(SLACK_TOKEN)
-        sc.api_call(
-            "chat.postMessage",
+    success = False
+
+    if SLACK_TOKEN is not None:
+        client = WebClient(token=SLACK_TOKEN)
+        response = client.chat_postMessage(
             channel="#bots_feedback",
             text="{} Feedback".format(BOT_NAME),
-            attachments=[{
-                "text": text
-            }]
+            attachments=[{"text": text}]
         )
-    else:
-        logger = logging.getLogger(__name__)
-        logger.info(text)
+
+        if response['ok']:
+            success = True
+
+    if not success:
+        log = Logger()
+        log.notice(text)
 
     update.message.reply_text("Thank you for your feedback, I've already forwarded it to my developer.")
 
-    return ConversationHandler.END
-
-
-# Cancels feedback operation
-@run_async
-def cancel_feedback(bot, update):
-    update.message.reply_text("Feedback operation cancelled.")
     return ConversationHandler.END
