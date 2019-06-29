@@ -97,17 +97,13 @@ def help_msg(update, _):
     Returns:
         None
     """
-    text = 'You can perform most of the tasks simply by sending me a PDF file. You can then select a task and I ' \
-           'will guide you through each of the tasks.\n\n'
-    text += 'If you want to compare, merge or add watermark to PDF files, you will have to use the /compare, ' \
-            '/merge or /watermark commands respectively.\n\n'
-    text += 'If you want to beautify and convert photos into PDF format, simply send me a photo or ' \
-            'use the /photo command to deal with multiple photos.\n\n'
-    text += 'Please note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. ' \
+    text = 'You can perform most of the tasks simply by sending me a PDF file or photo. ' \
+           'You can then select a task and I\'ll guide you through each of the tasks.\n\n'
+    text += 'The rest of the tasks can be performed by using the commands /compare, /merge, /watermark or /photo.\n\n'
+    text += 'Note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. ' \
             'If the result files are too large, I will not be able to send you the file.\n\n'
 
-    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
-                 InlineKeyboardButton('Rate me', f'https://t.me/storebot?start={BOT_NAME}')]]
+    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(text, reply_markup=reply_markup)
@@ -124,7 +120,7 @@ def donate_msg(update, _):
     Returns:
         None
     """
-    text = f'Want to help keep me online? Please donate to {DEV_EMAIL} through PayPal.\n\n' \
+    text = f'Want to help keep me online? Donate to {DEV_EMAIL} through PayPal.\n\n' \
            f'Donations help me to stay on my server and keep running.'
 
     update.message.reply_text(text)

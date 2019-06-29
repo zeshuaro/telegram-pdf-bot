@@ -69,7 +69,7 @@ def receive_feedback(update, _):
         pass
 
     if not feedback_lang or feedback_lang.lower() not in VALID_LANGS:
-        update.message.reply_text("The feedback is not in English or Chinese. Please try again.")
+        update.message.reply_text("The feedback is not in English or Chinese. Try again.")
 
         return 0
 

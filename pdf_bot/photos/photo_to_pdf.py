@@ -53,7 +53,7 @@ def photo(update, context):
     if PHOTO_NAMES in user_data:
         del user_data[PHOTO_NAMES]
 
-    update.message.reply_text('Please send me the first photo that you\'ll like to beautify or convert into PDF format '
+    update.message.reply_text('Send me the first photo that you\'ll like to beautify or convert into PDF format '
                               'or type /cancel to cancel this operation.\n\n'
                               'The photos will be beautified and converted in the order that you send me.')
 
@@ -76,7 +76,7 @@ def receive_photo(update, context):
     if update.message.document:
         photo_file = update.message.document
         if not photo_file.mime_type.startswith('image'):
-            update.message.reply_text('The file you sent is not a photo. Please send me the photo that you\'ll '
+            update.message.reply_text('The file you sent is not a photo. Send me the photo that you\'ll '
                                       'like to beautify and convert.')
 
             return WAIT_PHOTO
@@ -118,7 +118,7 @@ def receive_photo(update, context):
     keyboard = [['Beautify', 'Convert'], ['Cancel']]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
 
-    update.message.reply_text('Please send me the next photo that you\'ll like to beautify or convert. '
+    update.message.reply_text('Send me the next photo that you\'ll like to beautify or convert. '
                               'Select the task from below if you have sent me all the photos.\n\n'
                               'Be aware that I only have access to the file name if you sent your photo as a document.',
                               reply_markup=reply_markup)

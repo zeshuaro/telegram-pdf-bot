@@ -27,7 +27,7 @@ def check_pdf(update):
 
     if not pdf_file.mime_type.endswith("pdf"):
         pdf_status = PDF_INVALID_FORMAT
-        update.message.reply_text("The file you sent is not a PDF file. Please try again and send me a PDF file or "
+        update.message.reply_text("The file you sent is not a PDF file. Try again and send me a PDF file or "
                                   "type /cancel to cancel the operation.")
     elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         pdf_status = PDF_TOO_LARGE
