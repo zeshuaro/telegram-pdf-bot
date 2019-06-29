@@ -38,7 +38,7 @@ def feedback(update, _):
     Returns:
         The variable indicating to wait for feedback
     """
-    text = "Please send me your feedback or type /cancel to cancel this operation. " \
+    text = "Send me your feedback or type /cancel to cancel this operation. " \
            "My developer can understand English and Chinese."
     update.message.reply_text(text)
 
@@ -73,18 +73,14 @@ def receive_feedback(update, _):
 
         return 0
 
-    text = "Feedback received from @{} ({})\n\n{}".format(tele_username, tele_id, feedback_msg)
+    text = "Feedback received from @{} ({}):\n\n{}".format(tele_username, tele_id, feedback_msg)
     success = False
 
     if SLACK_TOKEN is not None:
         client = WebClient(token=SLACK_TOKEN)
-        response = client.chat_postMessage(
-            channel="#bots_feedback",
-            text="{} Feedback".format(BOT_NAME),
-            attachments=[{"text": text}]
-        )
+        response = client.chat_postMessage(channel="#pdf-bot-feedback", text=text)
 
-        if response['ok']:
+        if response['ok'] and response['message']['text'] == text:
             success = True
 
     if not success:
