@@ -4,12 +4,12 @@ import sys
 
 from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, Filters
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
+from telegram.ext import Updater, CommandHandler, Filters, MessageHandler
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot import compare_cov_handler, merge_cov_handler, watermark_cov_handler, file_cov_handler, \
-    photo_cov_handler, feedback_cov_handler
+    photo_cov_handler, feedback_cov_handler, url_to_pdf
 
 load_dotenv()
 APP_URL = os.environ.get("APP_URL")
@@ -40,6 +40,7 @@ def main():
     dispatcher.add_handler(CommandHandler('start', start_msg))
     dispatcher.add_handler(CommandHandler('help', help_msg))
     dispatcher.add_handler(CommandHandler('donate', donate_msg))
+    dispatcher.add_handler(MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf))
     dispatcher.add_handler(compare_cov_handler())
     dispatcher.add_handler(merge_cov_handler())
     dispatcher.add_handler(photo_cov_handler())
