@@ -7,6 +7,7 @@ from logbook import Logger, StreamHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler
 from telegram.ext.dispatcher import run_async
+from telegram.parsemode import ParseMode
 
 from pdf_bot import compare_cov_handler, merge_cov_handler, watermark_cov_handler, file_cov_handler, \
     photo_cov_handler, feedback_cov_handler, url_to_pdf
@@ -85,7 +86,7 @@ def start_msg(update, _):
            '- Convert a web page into a PDF file\n\n' \
            'Type /help to see how to use PDF Bot.'
 
-    update.message.reply_text(text)
+    update.message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
 
 
 @run_async
