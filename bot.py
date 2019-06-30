@@ -12,8 +12,8 @@ from telegram.parsemode import ParseMode
 
 from pdf_bot import compare_cov_handler, merge_cov_handler, watermark_cov_handler, file_cov_handler, \
     photo_cov_handler, feedback_cov_handler, url_to_pdf, send_payment_options, payment_callback, \
-    successful_payment_callback, precheckout_callback, PAYMENT, PAYMENT_THANKS, PAYMENT_COFFEE, PAYMENT_BEER, \
-    PAYMENT_MEAL, PAYMENT_CUSTOM
+    successful_payment_callback, precheckout_callback, payment_cov_handler, PAYMENT, PAYMENT_THANKS, PAYMENT_COFFEE, \
+    PAYMENT_BEER, PAYMENT_MEAL, PAYMENT_CUSTOM
 
 load_dotenv()
 APP_URL = os.environ.get("APP_URL")
@@ -48,6 +48,7 @@ def main():
     dispatcher.add_handler(MessageHandler(Filters.regex(
         rf'^({re.escape(PAYMENT_THANKS)}|{re.escape(PAYMENT_COFFEE)}|{re.escape(PAYMENT_BEER)}|'
         rf'{re.escape(PAYMENT_MEAL)})$'), payment_callback))
+    dispatcher.add_handler(payment_cov_handler())
     dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_callback))
     dispatcher.add_handler(MessageHandler(Filters.successful_payment, successful_payment_callback))
     dispatcher.add_handler(MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf))

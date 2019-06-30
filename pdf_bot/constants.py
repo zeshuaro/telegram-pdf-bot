@@ -37,6 +37,7 @@ PAYMENT_THANKS = 'Say Thanks ($1)'
 PAYMENT_COFFEE = 'A Coffee ☕ ($3)'
 PAYMENT_BEER = 'A Beer 🍺 ($5)'
 PAYMENT_MEAL = 'A Meal 🍲 ($10)'
-PAYMENT_CUSTOM = 'Generous (Custom)'
+PAYMENT_CUSTOM = 'Feeling Generous (Custom)'
+WAIT_PAYMENT = 0
 
 PAYMENT_DICT = {PAYMENT_THANKS: 1, PAYMENT_COFFEE: 3, PAYMENT_BEER: 5, PAYMENT_MEAL: 10}
