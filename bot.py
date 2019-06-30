@@ -78,11 +78,12 @@ def start_msg(update, _):
     Returns:
         None
     """
-    text = 'Welcome to PDF Bot!\n\n'
-    text += 'I can compare, decrypt, encrypt, merge, rotate, scale, split and add watermark to a PDF file.\n\n '
-    text += 'I can also extract images in a PDF file and convert a PDF file into images.\n\n'
-    text += 'I can also also beautify and convert photos into PDF format.\n\n'
-    text += 'Type /help to see how to use me.'
+    text = 'Welcome to PDF Bot!\n\n*Features*\n' \
+           '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n' \
+           '- Extract images in a PDF file and convert a PDF file into images\n' \
+           '- Beautify and convert photos into PDF format\n' \
+           '- Convert a web page into a PDF file\n\n' \
+           'Type /help to see how to use PDF Bot.'
 
     update.message.reply_text(text)
 
@@ -98,13 +99,13 @@ def help_msg(update, _):
     Returns:
         None
     """
-    text = 'You can perform most of the tasks simply by sending me a PDF file or photo. ' \
+    text = 'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page. ' \
            'You can then select a task and I\'ll guide you through each of the tasks.\n\n'
-    text += 'The rest of the tasks can be performed by using the commands /compare, /merge, /watermark or /photo.\n\n'
+    text += 'The other tasks can be performed by using the commands /compare, /merge, /watermark or /photo.\n\n'
     text += 'Note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. ' \
             'If the result files are too large, I will not be able to send you the file.\n\n'
 
-    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}')]]
+    keyboard = [[InlineKeyboardButton('Join Channel')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(text, reply_markup=reply_markup)
