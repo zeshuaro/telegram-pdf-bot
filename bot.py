@@ -1,16 +1,19 @@
 import logbook
 import os
+import re
 import sys
 
 from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
-from telegram.ext import Updater, CommandHandler, Filters, MessageHandler
+from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, PreCheckoutQueryHandler
 from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot import compare_cov_handler, merge_cov_handler, watermark_cov_handler, file_cov_handler, \
-    photo_cov_handler, feedback_cov_handler, url_to_pdf
+    photo_cov_handler, feedback_cov_handler, url_to_pdf, send_payment_options, payment_callback, \
+    successful_payment_callback, precheckout_callback, PAYMENT, PAYMENT_THANKS, PAYMENT_COFFEE, PAYMENT_BEER, \
+    PAYMENT_MEAL, PAYMENT_CUSTOM
 
 load_dotenv()
 APP_URL = os.environ.get("APP_URL")
@@ -41,6 +44,12 @@ def main():
     dispatcher.add_handler(CommandHandler('start', start_msg))
     dispatcher.add_handler(CommandHandler('help', help_msg))
     dispatcher.add_handler(CommandHandler('donate', donate_msg))
+    dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
+    dispatcher.add_handler(MessageHandler(Filters.regex(
+        rf'^({re.escape(PAYMENT_THANKS)}|{re.escape(PAYMENT_COFFEE)}|{re.escape(PAYMENT_BEER)}|'
+        rf'{re.escape(PAYMENT_MEAL)})$'), payment_callback))
+    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_callback))
+    dispatcher.add_handler(MessageHandler(Filters.successful_payment, successful_payment_callback))
     dispatcher.add_handler(MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf))
     dispatcher.add_handler(compare_cov_handler())
     dispatcher.add_handler(merge_cov_handler())
@@ -106,7 +115,8 @@ def help_msg(update, _):
     text += 'Note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. ' \
             'If the result files are too large, I will not be able to send you the file.\n\n'
 
-    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}')]]
+    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
+                 InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(text, reply_markup=reply_markup)
@@ -127,6 +137,13 @@ def donate_msg(update, _):
            f'Donations help me to stay on my server and keep running.'
 
     update.message.reply_text(text)
+
+
+@run_async
+def process_callback_query(update, context):
+    query = update.callback_query
+    if query.data == PAYMENT:
+        send_payment_options(update, context, query.from_user.id)
 
 
 def send(update, context):

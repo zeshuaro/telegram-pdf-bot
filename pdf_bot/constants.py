@@ -26,4 +26,17 @@ PDF_OK = 0
 PDF_INVALID_FORMAT = 1
 PDF_TOO_LARGE = 2
 
+CANCEL = 'cancel'
 PDF_INFO = 'pdf_info'
+
+PAYMENT = 'payment'
+PAYMENT_PAYLOAD = 'payment_payload'
+PAYMENT_CURRENCY = 'USD'
+PAYMENT_PARA = 'payment_para'
+PAYMENT_THANKS = 'Say Thanks ($1)'
+PAYMENT_COFFEE = 'A Coffee ☕ ($3)'
+PAYMENT_BEER = 'A Beer 🍺 ($5)'
+PAYMENT_MEAL = 'A Meal 🍲 ($10)'
+PAYMENT_CUSTOM = 'Generous (Custom)'
+
+PAYMENT_DICT = {PAYMENT_THANKS: 1, PAYMENT_COFFEE: 3, PAYMENT_BEER: 5, PAYMENT_MEAL: 10}
