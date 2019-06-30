@@ -106,7 +106,7 @@ def help_msg(update, _):
     text += 'Note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. ' \
             'If the result files are too large, I will not be able to send you the file.\n\n'
 
-    keyboard = [[InlineKeyboardButton('Join Channel')]]
+    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(text, reply_markup=reply_markup)
