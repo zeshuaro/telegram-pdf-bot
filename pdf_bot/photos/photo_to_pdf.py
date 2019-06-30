@@ -93,7 +93,7 @@ def receive_photo(update, context):
             text += 'You can continue to beautify or convert with the files that you sent me, ' \
                     'or type /cancel to cancel this operation.'
             update.message.reply_text(text)
-            send_file_names(update[PHOTO_NAMES], 'photos')
+            send_file_names(update, user_data[PHOTO_NAMES], 'photos')
 
             return WAIT_PHOTO
         else:
