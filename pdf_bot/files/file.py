@@ -4,8 +4,10 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_TASK, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, WAIT_ROTATE_DEGREE, WAIT_SCALE_BY_X, \
-    WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME, PDF_INFO
+    WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, WAIT_SPLIT_RANGE, WAIT_FILE_NAME, WAIT_CROP_TYPE, \
+    WAIT_CROP_PERCENT, WAIT_CROP_OFFSET, PDF_INFO
 from pdf_bot.utils import cancel
+from pdf_bot.files.crop import ask_crop_type, ask_crop_value, receive_crop_percent, receive_crop_size
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, rotate_pdf
@@ -36,7 +38,8 @@ def file_cov_handler():
                 MessageHandler(Filters.regex(r'^Scale To$'), ask_scale_x),
                 MessageHandler(Filters.regex(r'^Split$'), ask_split_range),
                 MessageHandler(Filters.regex(r'^(Beautify|Convert)$'), receive_photo_task),
-                MessageHandler(Filters.regex(r'^Rename$'), ask_pdf_new_name)
+                MessageHandler(Filters.regex(r'^Rename$'), ask_pdf_new_name),
+                MessageHandler(Filters.regex(r'^Crop$'), ask_crop_type)
             ],
             WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf)],
             WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf)],
@@ -46,7 +49,13 @@ def file_cov_handler():
             WAIT_SCALE_TO_X: [MessageHandler(Filters.text, ask_scale_to_y)],
             WAIT_SCALE_TO_Y: [MessageHandler(Filters.text, pdf_scale_to)],
             WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf)],
-            WAIT_FILE_NAME: [MessageHandler(Filters.text, rename_pdf)]
+            WAIT_FILE_NAME: [MessageHandler(Filters.text, rename_pdf)],
+            WAIT_CROP_TYPE: [
+                MessageHandler(Filters.regex(r'^(By Percentage|By Margin Size)$'), ask_crop_value),
+                MessageHandler(Filters.regex(r'^Back$'), send_doc_tasks)
+            ],
+            WAIT_CROP_PERCENT: [MessageHandler(Filters.text, receive_crop_percent)],
+            WAIT_CROP_OFFSET: [MessageHandler(Filters.text, receive_crop_size)]
         },
         fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex('^Cancel$'), cancel)],
         allow_reentry=True
@@ -80,15 +89,19 @@ def check_doc(update, context):
         return ConversationHandler.END
 
     context.user_data[PDF_INFO] = doc.file_id, doc.file_name
+    send_doc_tasks(update, context)
+
+    return WAIT_TASK
+
+
+def send_doc_tasks(update, _):
     keywords = sorted(['Decrypt', 'Encrypt', 'Rotate', 'Scale By', 'Scale To', 'Split', 'Cover', 'To Images',
-                       'Extract Images', 'Rename'])
+                       'Extract Images', 'Rename', 'Crop'])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append(['Cancel'])
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
     update.message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
-
-    return WAIT_TASK
 
 
 @run_async
