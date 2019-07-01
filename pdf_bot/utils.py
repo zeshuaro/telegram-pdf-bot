@@ -13,29 +13,66 @@ from telegram.ext.dispatcher import run_async
 from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT
 
 
-# Cancels feedback operation
 @run_async
 def cancel(update, _):
+    """
+    Cancel operation for conversation fallback
+    Args:
+        update: the update object
+        _:
+
+    Returns:
+        The variable indicating the conversation has ended
+    """
     update.message.reply_text('Operation cancelled.', reply_markup=ReplyKeyboardRemove())
 
     return ConversationHandler.END
 
 
-# Check PDF file
-def check_pdf(update):
+def check_pdf(update, send_msg=True):
+    """
+    Validate the PDF file
+    Args:
+        update: the update object
+        send_msg: the bool indicating to send a message or not
+
+    Returns:
+        The variable indicating the validation result
+    """
     pdf_status = PDF_OK
     pdf_file = update.message.document
 
     if not pdf_file.mime_type.endswith("pdf"):
         pdf_status = PDF_INVALID_FORMAT
-        update.message.reply_text("The file you sent is not a PDF file. Try again and send me a PDF file or "
-                                  "type /cancel to cancel the operation.")
+        if send_msg:
+            update.message.reply_text("The file you sent is not a PDF file. Try again and send me a PDF file or "
+                                      "type /cancel to cancel the operation.")
     elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         pdf_status = PDF_TOO_LARGE
-        update.message.reply_text("The PDF file you sent is too large for me to download. "
-                                  "Sorry that I can't process your PDF file. Operation cancelled.")
+        if send_msg:
+            update.message.reply_text("The PDF file you sent is too large for me to download. "
+                                      "I can't process your PDF file. Operation cancelled.")
 
     return pdf_status
+
+
+def check_user_data(update, key, user_data):
+    """
+    Check if the specified key exists in user_data
+    Args:
+        update: the update object
+        key: the string of key
+        user_data: the dict of user data
+
+    Returns:
+        The boolean indicating if the key exists or not
+    """
+    data_ok = True
+    if key not in user_data:
+        data_ok = False
+        update.message.reply_text('Something went wrong, start over again.')
+
+    return data_ok
 
 
 def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None, scale_to=None):
@@ -122,11 +159,20 @@ def open_pdf(file_name, update, file_type=None):
     return pdf_reader
 
 
-# Send a list of filenames
 @run_async
-def send_file_names(update, filenames, file_type):
+def send_file_names(update, file_names, file_type):
+    """
+    Send a list of file names to user
+    Args:
+        update: the update object
+        file_names: the list of file names
+        file_type: the string of file type
+
+    Returns:
+        None
+    """
     text = f'You have sent me the following {file_type}:\n'
-    for i, filename in enumerate(filenames):
+    for i, filename in enumerate(file_names):
         text += f'{i + 1}: {filename}\n'
 
     update.message.reply_text(text)
@@ -145,7 +191,7 @@ def write_send_pdf(update, pdf_writer, file_name, file_type):
         None
     """
     with tempfile.TemporaryDirectory() as dir_name:
-        new_fn = f'{file_type.title()}-{file_name}'
+        new_fn = f'{file_type.title()}_{file_name}'
         out_fn = os.path.join(dir_name, new_fn)
 
         with open(out_fn, 'wb') as f:

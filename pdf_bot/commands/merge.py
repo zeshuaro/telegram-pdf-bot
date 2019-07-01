@@ -6,8 +6,8 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_MERGE, PDF_INVALID_FORMAT, PDF_TOO_LARGE
-from pdf_bot.utils import check_pdf, cancel, write_send_pdf, send_file_names
+from pdf_bot.constants import WAIT_MERGE, PDF_INVALID_FORMAT, PDF_TOO_LARGE, CANCEL, DONE
+from pdf_bot.utils import check_pdf, cancel, write_send_pdf, send_file_names, check_user_data
 
 MERGE_IDS = 'merge_ids'
 MERGE_NAMES = 'merge_names'
@@ -24,10 +24,10 @@ def merge_cov_handler():
         states={
             WAIT_MERGE: [
                 MessageHandler(Filters.document, receive_doc),
-                MessageHandler(Filters.regex('^Done$'), merge_pdf)
+                MessageHandler(Filters.regex(f'^{DONE}$'), merge_pdf)
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
         allow_reentry=True
     )
 
@@ -52,8 +52,8 @@ def merge(update, context):
     if MERGE_NAMES in user_data:
         del user_data[MERGE_NAMES]
 
-    update.message.reply_text('Send me the PDF file that you\'ll like to merge or type /cancel to '
-                              'cancel this operation.\n\nThe files will be merged in the order that you send me.')
+    update.message.reply_text('Send me the PDF file that you\'ll like to merge or /cancel this operation.\n\n'
+                              'The files will be merged in the order that you send me.')
 
     return WAIT_MERGE
 
@@ -70,11 +70,11 @@ def receive_doc(update, context):
         The variable indicating to wait for a file or the conversation has ended
     """
     user_data = context.user_data
-    result = check_pdf(update)
+    result = check_pdf(update, send_msg=False)
 
     if result == PDF_INVALID_FORMAT:
         update.message.reply_text('The file you sent is not a PDF file. Send me the PDF file that you\'ll '
-                                  'like to merge or type /cancel to cancel this operation.')
+                                  'like to merge or /cancel this operation.')
 
         return WAIT_MERGE
     elif result == PDF_TOO_LARGE:
@@ -82,7 +82,7 @@ def receive_doc(update, context):
 
         # Check if user has already sent through some PDF files
         if MERGE_NAMES in user_data and user_data[MERGE_NAMES]:
-            text += 'You can continue merging with the files that you sent me or type /cancel to cancel this operation.'
+            text += 'You can continue merging with the files that you sent me or /cancel this operation.'
             update.message.reply_text(text)
             send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
 
@@ -93,8 +93,8 @@ def receive_doc(update, context):
 
             return ConversationHandler.END
 
-    file_name = update.message.document.file_name
     file_id = update.message.document.file_id
+    file_name = update.message.document.file_name
 
     # Check if user has already sent through some PDF files
     if MERGE_IDS in user_data and user_data[MERGE_IDS]:
@@ -104,8 +104,8 @@ def receive_doc(update, context):
         user_data[MERGE_IDS] = [file_id]
         user_data[MERGE_NAMES] = [file_name]
 
-    reply_markup = ReplyKeyboardMarkup([['Done']], one_time_keyboard=True)
-    update.message.reply_text('Send me the next PDF file that you\'ll like to merge or send Done if you have '
+    reply_markup = ReplyKeyboardMarkup([['Done'], ['Cancel']], resize_keyboard=True, one_time_keyboard=True)
+    update.message.reply_text('Send me the next PDF file that you\'ll like to merge or press Done if you have '
                               'sent me all the PDF files.', reply_markup=reply_markup)
     send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
 
@@ -123,7 +123,7 @@ def merge_pdf(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if MERGE_IDS not in user_data:
+    if not check_user_data(update, MERGE_IDS, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Merging your PDF files', reply_markup=ReplyKeyboardRemove())
@@ -143,9 +143,8 @@ def merge_pdf(update, context):
         try:
             merger.append(open(file_name, 'rb'))
         except PdfReadError:
-            update.message.reply_text(f'I failed to merge your PDF files as '
-                                      f'I could not open and read "{file_names[i]}". '
-                                      f'Make sure that it is not encrypted.')
+            update.message.reply_text(f'I can\'t merge your PDF files as I couldn\'t open and read "{file_names[i]}". '
+                                      f'Ensure that it is not encrypted.')
 
             return ConversationHandler.END
 

@@ -21,9 +21,9 @@ def payment_cov_handler():
         The conversation handler object
     """
     conv_handler = ConversationHandler(
-        entry_points=[MessageHandler(Filters.regex(rf'^{re.escape(PAYMENT_CUSTOM)}$'), custom_payment_callback)],
+        entry_points=[MessageHandler(Filters.regex(rf'^{re.escape(PAYMENT_CUSTOM)}$'), custom_amount)],
         states={
-            WAIT_PAYMENT: [MessageHandler(Filters.text, custom_amount_callback)]
+            WAIT_PAYMENT: [MessageHandler(Filters.text, receive_custom_amount)]
         },
         fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
@@ -33,7 +33,7 @@ def payment_cov_handler():
 
 
 @run_async
-def custom_payment_callback(update, _):
+def custom_amount(update, _):
     update.message.reply_text('Send me the amount that you\'ll like to support PDF Bot or /cancel this.',
                               reply_markup=ReplyKeyboardRemove())
 
@@ -41,15 +41,17 @@ def custom_payment_callback(update, _):
 
 
 @run_async
-def custom_amount_callback(update, context):
+def receive_custom_amount(update, context):
     try:
         amount = round(float(update.message.text))
+        if amount <= 0:
+            raise ValueError
     except ValueError:
-        update.message.reply_text('The amount you sent me is invalid, try again.')
+        update.message.reply_text('The amount you sent is invalid, try again.')
 
         return WAIT_PAYMENT
 
-    return payment_callback(update, context, amount)
+    return send_payment_invoice(update, context, amount)
 
 
 @run_async
@@ -65,7 +67,7 @@ def send_payment_options(update, context, user_id=None):
 
 
 @run_async
-def payment_callback(update, context, amount=None):
+def send_payment_invoice(update, context, amount=None):
     chat_id = update.message.chat_id
     title = "Support PDF Bot"
     description = "Say thanks to PDF Bot and help keep it running"
@@ -87,7 +89,7 @@ def payment_callback(update, context, amount=None):
 
 
 @run_async
-def precheckout_callback(update, _):
+def precheckout_check(update, _):
     query = update.pre_checkout_query
     if query.invoice_payload != PAYMENT_PAYLOAD:
         query.answer(ok=False, error_message="Something went wrong")
@@ -95,5 +97,5 @@ def precheckout_callback(update, _):
         query.answer(ok=True)
 
 
-def successful_payment_callback(update, _):
+def successful_payment(update, _):
     update.message.reply_text('Thank you for your support!', reply_markup=ReplyKeyboardRemove())

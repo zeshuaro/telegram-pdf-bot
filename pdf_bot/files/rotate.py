@@ -2,8 +2,8 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_ROTATE_DEGREE, PDF_INFO
-from pdf_bot.utils import process_pdf
+from pdf_bot.constants import WAIT_ROTATE_DEGREE, PDF_INFO, ROTATE_90, ROTATE_180, ROTATE_270
+from pdf_bot.utils import process_pdf, check_user_data
 
 
 @run_async
@@ -17,8 +17,8 @@ def ask_rotate_degree(update, _):
     Returns:
         The variable indicating to wait for the rotation degree
     """
-    keyboard = [['90'], ['180'], ['270']]
-    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+    keyboard = [[ROTATE_90], [ROTATE_180], [ROTATE_270]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
     update.message.reply_text('Select the degrees that you\'ll like to rotate your PDF file in clockwise.',
                               reply_markup=reply_markup)
 
@@ -36,7 +36,7 @@ def rotate_pdf(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    if PDF_INFO not in context.user_data:
+    if not check_user_data(update, PDF_INFO, context.user_data):
         return ConversationHandler.END
 
     degree = int(update.message.text)

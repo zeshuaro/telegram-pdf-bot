@@ -11,7 +11,7 @@ from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 
 from pdf_bot.constants import PDF_INFO
-from pdf_bot.utils import open_pdf, send_result_file
+from pdf_bot.utils import open_pdf, send_result_file, check_user_data
 
 
 @run_async
@@ -26,7 +26,7 @@ def get_pdf_cover(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_INFO not in user_data:
+    if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Extracting a cover preview for your PDF file', reply_markup=ReplyKeyboardRemove())
@@ -49,7 +49,7 @@ def get_pdf_cover(update, context):
 
                 with tempfile.TemporaryDirectory() as dir_name:
                     # Convert cover preview to JPEG
-                    out_fn = os.path.join(dir_name, f'Cover-{os.path.splitext(file_name)[0]}.png')
+                    out_fn = os.path.join(dir_name, f'Cover_{os.path.splitext(file_name)[0]}.png')
                     imgs = pdf2image.convert_from_path(tf2.name, fmt='png')
                     imgs[0].save(out_fn)
 
@@ -75,7 +75,7 @@ def pdf_to_photos(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_INFO not in user_data:
+    if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Converting your PDF file into photos', reply_markup=ReplyKeyboardRemove())
@@ -86,7 +86,7 @@ def pdf_to_photos(update, context):
 
         with tempfile.TemporaryDirectory() as tmp_dir_name:
             # Setup the directory for the photos
-            dir_name = os.path.join(tmp_dir_name, 'PDF-Photos')
+            dir_name = os.path.join(tmp_dir_name, 'PDF_Photos')
             os.mkdir(dir_name)
 
             # Convert the PDF file into photos
@@ -118,7 +118,7 @@ def get_pdf_photos(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_INFO not in user_data:
+    if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Extracting all the photos in your PDF file', reply_markup=ReplyKeyboardRemove())
@@ -131,7 +131,7 @@ def get_pdf_photos(update, context):
         if pdf_reader is not None:
             with tempfile.TemporaryDirectory() as tmp_dir_name:
                 # Setup the directory for the photos
-                dir_name = os.path.join(tmp_dir_name, 'Photos-In-PDF')
+                dir_name = os.path.join(tmp_dir_name, 'Photos_In_PDF')
                 os.mkdir(dir_name)
                 root_file_name = os.path.splitext(file_name)[0]
                 i = 0

@@ -4,8 +4,8 @@ from PyPDF2 import PdfFileWriter
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_WATERMARK_SOURCE, WAIT_WATERMARK, PDF_INVALID_FORMAT, PDF_OK
-from pdf_bot.utils import cancel, check_pdf, open_pdf, write_send_pdf
+from pdf_bot.constants import WAIT_WATERMARK_SOURCE, WAIT_WATERMARK, PDF_INVALID_FORMAT, PDF_OK, CANCEL
+from pdf_bot.utils import cancel, check_pdf, open_pdf, write_send_pdf, check_user_data
 
 WATERMARK_ID = 'watermark_id'
 
@@ -22,7 +22,7 @@ def watermark_cov_handler():
             WAIT_WATERMARK_SOURCE: [MessageHandler(Filters.document, receive_source_doc)],
             WAIT_WATERMARK: [MessageHandler(Filters.document, receive_watermark_doc)]
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
         allow_reentry=True
     )
 
@@ -40,8 +40,7 @@ def watermark(update, _):
     Returns:
         The variable indicating to wait for the source PDF file
     """
-    update.message.reply_text('Send me the PDF file that you\'ll like to add a watermark or type /cancel to '
-                              'cancel this operation.')
+    update.message.reply_text('Send me the PDF file that you\'ll like to add a watermark or /cancel this operation.')
 
     return WAIT_WATERMARK_SOURCE
 
@@ -81,7 +80,7 @@ def receive_watermark_doc(update, context):
     Returns:
         The variable indicating to wait for the watermark file or the conversation has ended
     """
-    if WATERMARK_ID not in context.user_data:
+    if not check_user_data(update, WATERMARK_ID, context.user_data):
         return ConversationHandler.END
 
     result = check_pdf(update)
@@ -104,7 +103,7 @@ def add_pdf_watermark(update, context):
         None
     """
     user_data = context.user_data
-    if WATERMARK_ID not in user_data:
+    if not check_user_data(update, WATERMARK_ID, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Adding the watermark onto your PDF file')

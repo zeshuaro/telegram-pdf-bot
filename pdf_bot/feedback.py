@@ -12,7 +12,6 @@ from pdf_bot.utils import cancel
 
 load_dotenv()
 SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
-BOT_NAME = "PDF Bot"  # Bot name to be appeared in your Slack Channel
 VALID_LANGS = ("en", "zh-hk", "zh-tw", "zh-cn")
 
 
@@ -38,9 +37,8 @@ def feedback(update, _):
     Returns:
         The variable indicating to wait for feedback
     """
-    text = "Send me your feedback or type /cancel to cancel this operation. " \
-           "My developer can understand English and Chinese."
-    update.message.reply_text(text)
+    update.message.reply_text("Send me your feedback or /cancel this operation. "
+                              "My developer can understand English and Chinese.")
 
     return 0
 
@@ -69,7 +67,7 @@ def receive_feedback(update, _):
         pass
 
     if not feedback_lang or feedback_lang.lower() not in VALID_LANGS:
-        update.message.reply_text("The feedback is not in English or Chinese. Try again.")
+        update.message.reply_text("The feedback is not in English or Chinese, try again.")
 
         return 0
 

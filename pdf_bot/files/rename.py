@@ -6,9 +6,10 @@ import tempfile
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
+from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import WAIT_FILE_NAME, PDF_INFO
-from pdf_bot.utils import send_result_file
+from pdf_bot.utils import send_result_file, check_user_data
 
 
 @run_async
@@ -40,7 +41,7 @@ def rename_pdf(update, context):
         The variable indicating to wait for the file name or the conversation has ended
     """
     user_data = context.user_data
-    if PDF_INFO not in user_data:
+    if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
     text = re.sub(r'\.pdf$', '', update.message.text)
@@ -52,7 +53,7 @@ def rename_pdf(update, context):
         return WAIT_FILE_NAME
 
     new_fn = '{}.pdf'.format(text)
-    update.message.reply_text(f'Renaming your PDF file into *{new_fn}*', parse_mode='Markdown')
+    update.message.reply_text(f'Renaming your PDF file into *{new_fn}*', parse_mode=ParseMode.MARKDOWN)
 
     # Download PDF file
     file_id, _ = user_data[PDF_INFO]

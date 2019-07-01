@@ -6,13 +6,12 @@ from pdf_diff import NoDifferenceError
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_COMPARE_FIRST, WAIT_COMPARE_SECOND, PDF_INVALID_FORMAT, PDF_OK
-from pdf_bot.utils import check_pdf, cancel, send_result_file
+from pdf_bot.constants import WAIT_COMPARE_FIRST, WAIT_COMPARE_SECOND, PDF_INVALID_FORMAT, PDF_OK, CANCEL
+from pdf_bot.utils import check_pdf, cancel, send_result_file, check_user_data
 
 COMPARE_ID = 'compare_id'
 
 
-# Create a compare conversation handler
 def compare_cov_handler():
     """
     Create a compare conversation handler object
@@ -25,7 +24,7 @@ def compare_cov_handler():
             WAIT_COMPARE_FIRST: [MessageHandler(Filters.document, receive_first_doc)],
             WAIT_COMPARE_SECOND: [MessageHandler(Filters.document, receive_second_doc)],
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
         allow_reentry=True
     )
 
@@ -43,8 +42,8 @@ def compare(update, _):
     Returns:
         The variable indicating to wait for the file
     """
-    update.message.reply_text('Send me one of the PDF files that you\'ll like to compare or type /cancel to '
-                              'cancel this operation.\n\nNote that I can only look for text differences.')
+    update.message.reply_text('Send me one of the PDF files that you\'ll like to compare or /cancel this operation.\n\n'
+                              'Note that I can only look for text differences.')
 
     return WAIT_COMPARE_FIRST
 
@@ -83,7 +82,7 @@ def receive_second_doc(update, context):
     Returns:
         The variable indicating to wait for the file or the conversation has ended
     """
-    if COMPARE_ID not in context.user_data:
+    if not check_user_data(update, COMPARE_ID, context.user_data):
         return ConversationHandler.END
 
     result = check_pdf(update)
@@ -95,41 +94,43 @@ def receive_second_doc(update, context):
     return compare_pdf(update, context)
 
 
-# Compare two PDF files
 def compare_pdf(update, context):
+    """
+    Compare two PDF files
+    Args:
+        update: the update object
+        context: the context object
+
+    Returns:
+        The variable indicating the conversation has ended
+    """
     user_data = context.user_data
-    if COMPARE_ID not in user_data:
+    if not check_user_data(update, COMPARE_ID, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Comparing your PDF files')
+    with tempfile.NamedTemporaryFile() as tf1, tempfile.NamedTemporaryFile() as tf2:
+        # Download PDF files
+        first_file_id = user_data[COMPARE_ID]
+        first_file = context.bot.get_file(first_file_id)
+        first_file.download(custom_path=tf1.name)
+        second_file = context.bot.get_file(update.message.document.file_id)
+        second_file.download(custom_path=tf2.name)
 
-    # Setup temporary files
-    temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
-    first_fn, second_fn = [x.name for x in temp_files]
+        try:
+            with tempfile.TemporaryDirectory() as dir_name:
+                out_fn = os.path.join(dir_name, 'Differences.png')
 
-    # Download PDF files
-    first_file_id = user_data[COMPARE_ID]
-    first_file = context.bot.get_file(first_file_id)
-    first_file.download(custom_path=first_fn)
-    second_file = context.bot.get_file(update.message.document.file_id)
-    second_file.download(custom_path=second_fn)
+                # Run pdf-diff
+                pdf_diff.main(files=[tf1.name, tf2.name], out_file=out_fn)
 
-    try:
-        with tempfile.TemporaryDirectory() as dir_name:
-            out_fn = os.path.join(dir_name, 'Differences.png')
-
-            # Run pdf-diff
-            pdf_diff.main(files=[first_fn, second_fn], out_file=out_fn)
-
-            # Send result file
-            send_result_file(update, out_fn)
-    except NoDifferenceError:
-        update.message.reply_text('There are no differences between your PDF files.')
+                # Send result file
+                send_result_file(update, out_fn)
+        except NoDifferenceError:
+            update.message.reply_text('There are no differences between your PDF files.')
 
     # Clean up memory and files
     if user_data[COMPARE_ID] == first_file_id:
         del user_data[COMPARE_ID]
-    for tf in temp_files:
-        tf.close()
 
     return ConversationHandler.END
