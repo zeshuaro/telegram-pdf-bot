@@ -53,6 +53,25 @@ def check_pdf(update):
     return pdf_status
 
 
+def check_user_data(update, key, user_data):
+    """
+    Check if the specified key exists in user_data
+    Args:
+        update: the update object
+        key: the string of key
+        user_data: the dict of user data
+
+    Returns:
+        The boolean indicating if the key exists or not
+    """
+    data_ok = True
+    if key not in user_data:
+        data_ok = False
+        update.message.reply_text('Something went wrong, start over again.')
+
+    return data_ok
+
+
 def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None, scale_to=None):
     """
     Process different PDF file manipulations
