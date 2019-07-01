@@ -13,16 +13,31 @@ from telegram.ext.dispatcher import run_async
 from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT
 
 
-# Cancels feedback operation
 @run_async
 def cancel(update, _):
+    """
+    Cancel operation for conversation fallback
+    Args:
+        update: the update object
+        _:
+
+    Returns:
+        The variable indicating the conversation has ended
+    """
     update.message.reply_text('Operation cancelled.', reply_markup=ReplyKeyboardRemove())
 
     return ConversationHandler.END
 
 
-# Check PDF file
 def check_pdf(update):
+    """
+    Validate the PDF file
+    Args:
+        update: the update object
+
+    Returns:
+        The variable indicating the validation result
+    """
     pdf_status = PDF_OK
     pdf_file = update.message.document
 
@@ -122,11 +137,20 @@ def open_pdf(file_name, update, file_type=None):
     return pdf_reader
 
 
-# Send a list of filenames
 @run_async
-def send_file_names(update, filenames, file_type):
+def send_file_names(update, file_names, file_type):
+    """
+    Send a list of file names to user
+    Args:
+        update: the update object
+        file_names: the list of file names
+        file_type: the string of file type
+
+    Returns:
+        None
+    """
     text = f'You have sent me the following {file_type}:\n'
-    for i, filename in enumerate(filenames):
+    for i, filename in enumerate(file_names):
         text += f'{i + 1}: {filename}\n'
 
     update.message.reply_text(text)
