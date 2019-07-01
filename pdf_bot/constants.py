@@ -1,3 +1,6 @@
+BOT_NAME = 'pdf2bot'
+CHANNEL_NAME = 'pdf2botdev'
+
 WAIT_TASK = 0
 WAIT_DECRYPT_PW = 1
 WAIT_ENCRYPT_PW = 2

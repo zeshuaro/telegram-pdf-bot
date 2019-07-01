@@ -12,8 +12,8 @@ from telegram.parsemode import ParseMode
 
 from pdf_bot import compare_cov_handler, merge_cov_handler, watermark_cov_handler, file_cov_handler, \
     photo_cov_handler, feedback_cov_handler, url_to_pdf, send_payment_options, payment_callback, \
-    successful_payment_callback, precheckout_callback, payment_cov_handler, PAYMENT, PAYMENT_THANKS, PAYMENT_COFFEE, \
-    PAYMENT_BEER, PAYMENT_MEAL
+    successful_payment_callback, precheckout_callback, payment_cov_handler
+from pdf_bot import PAYMENT, PAYMENT_THANKS, PAYMENT_COFFEE, PAYMENT_BEER, PAYMENT_MEAL, CHANNEL_NAME
 
 load_dotenv()
 APP_URL = os.environ.get("APP_URL")
@@ -22,8 +22,6 @@ TELE_TOKEN = os.environ.get('TELE_TOKEN_BETA', os.environ.get('TELE_TOKEN'))
 DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
 
-CHANNEL_NAME = 'pdf2botdev'
-BOT_NAME = 'pdf2bot'
 TIMEOUT = 20
 
 
