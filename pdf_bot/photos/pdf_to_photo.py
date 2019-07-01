@@ -11,7 +11,7 @@ from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 
 from pdf_bot.constants import PDF_INFO
-from pdf_bot.utils import open_pdf, send_result_file
+from pdf_bot.utils import open_pdf, send_result_file, check_user_data
 
 
 @run_async
@@ -26,7 +26,7 @@ def get_pdf_cover(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_INFO not in user_data:
+    if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Extracting a cover preview for your PDF file', reply_markup=ReplyKeyboardRemove())
@@ -75,7 +75,7 @@ def pdf_to_photos(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_INFO not in user_data:
+    if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Converting your PDF file into photos', reply_markup=ReplyKeyboardRemove())
@@ -118,7 +118,7 @@ def get_pdf_photos(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_INFO not in user_data:
+    if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Extracting all the photos in your PDF file', reply_markup=ReplyKeyboardRemove())

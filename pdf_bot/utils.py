@@ -51,7 +51,7 @@ def check_pdf(update, send_msg=True):
         pdf_status = PDF_TOO_LARGE
         if send_msg:
             update.message.reply_text("The PDF file you sent is too large for me to download. "
-                                      "Sorry that I can't process your PDF file. Operation cancelled.")
+                                      "I can't process your PDF file. Operation cancelled.")
 
     return pdf_status
 

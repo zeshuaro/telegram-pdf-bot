@@ -8,8 +8,8 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_PHOTO
-from pdf_bot.utils import cancel, send_file_names, send_result_file
+from pdf_bot.constants import WAIT_PHOTO, CANCEL, BEAUTIFY, CONVERT
+from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data
 
 PHOTO_IDS = 'photo_ids'
 PHOTO_NAMES = 'photo_names'
@@ -26,10 +26,10 @@ def photo_cov_handler():
         states={
             WAIT_PHOTO: [
                 MessageHandler(Filters.document | Filters.photo, receive_photo),
-                MessageHandler(Filters.regex(r'^(Beautify|Convert)$'), process_all_photos)
+                MessageHandler(Filters.regex(rf'^({BEAUTIFY}|{CONVERT})$'), process_all_photos)
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex('^Cancel$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
         allow_reentry=True
     )
 
@@ -55,7 +55,7 @@ def photo(update, context):
         del user_data[PHOTO_NAMES]
 
     update.message.reply_text('Send me the first photo that you\'ll like to beautify or convert into PDF format '
-                              'or type /cancel to cancel this operation.\n\n'
+                              'or /cancel this operation.\n\n'
                               'The photos will be beautified and converted in the order that you send me.')
 
     return WAIT_PHOTO
@@ -91,13 +91,13 @@ def receive_photo(update, context):
         # Check if the user has already sent through some photos
         if PHOTO_NAMES in user_data and user_data[PHOTO_NAMES]:
             text += 'You can continue to beautify or convert with the files that you sent me, ' \
-                    'or type /cancel to cancel this operation.'
+                    'or /cancel this operation.'
             update.message.reply_text(text)
             send_file_names(update, user_data[PHOTO_NAMES], 'photos')
 
             return WAIT_PHOTO
         else:
-            text += 'Sorry that I can\'t convert your photos. Operation cancelled.'
+            text += 'I can\'t convert your photos. Operation cancelled.'
             update.message.reply_text(text)
 
             return ConversationHandler.END
@@ -116,12 +116,12 @@ def receive_photo(update, context):
         user_data[PHOTO_IDS] = [file_id]
         user_data[PHOTO_NAMES] = [file_name]
 
-    keyboard = [['Beautify', 'Convert'], ['Cancel']]
-    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+    keyboard = [[BEAUTIFY, CONVERT], [CANCEL]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
 
     update.message.reply_text('Send me the next photo that you\'ll like to beautify or convert. '
                               'Select the task from below if you have sent me all the photos.\n\n'
-                              'Be aware that I only have access to the file name if you sent your photo as a document.',
+                              'Note that I only have access to the file name if you sent your photo as a document.',
                               reply_markup=reply_markup)
     send_file_names(update, user_data[PHOTO_NAMES], 'photos')
 
@@ -139,13 +139,13 @@ def process_all_photos(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PHOTO_IDS not in user_data:
+    if not check_user_data(update, PHOTO_IDS, user_data):
         return ConversationHandler.END
 
     file_ids = user_data[PHOTO_IDS]
     file_names = user_data[PHOTO_NAMES]
 
-    if update.message.text.lower() == 'beautify':
+    if update.message.text == BEAUTIFY:
         process_photo(update, context, file_ids, is_beautify=True)
     else:
         process_photo(update, context, file_ids, is_beautify=False)
