@@ -1,12 +1,15 @@
 # Telegram PDF Bot
 
-PDF utility bot on Telegram
+[![Telegram Bot](https://img.shields.io/badge/Telegram-Bot-blue.svg)](https://t.me/pdf2bot)
+[![Telegram Channel](https://img.shields.io/badge/Telegram-Channel-blue.svg)](https://t.me/pdf2botdev)
+[![MIT License](https://img.shields.io/badge/license-MIT%20License-lightgrey.svg)](https://github.com/zeshuaro/telegram-pdf-bot/blob/master/LICENSE)
 
-Connect to [Bot](https://t.me/pdf2bot)
+A PDF utility bot on Telegram that can:
 
-Stay tuned for updates and new releases on the [Telegram Channel](https://t.me/pdf2botdev)
-
-Find the bot at [Store Bot](https://storebot.me/bot/pdf2bot)
+- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file
+- Extract images in a PDF file and convert a PDF file into images
+- Beautify and convert photos into PDF format
+- Convert a web page into a PDF file
 
 ## Getting Started
 
@@ -15,30 +18,38 @@ testing purposes
 
 ### Prerequisites
 
+#### OS Requirements
+
+Ubuntu
+
+```bash
+apt-get install poppler-utils libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+```
+
+macOS
+```bash
+brew install libxml2 libxslt poppler cairo pango gdk-pixbuf libffi
+```
+
+#### Bot Requirements
 Run the following command to install the required packages:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
-Below is a list of the main libraries that are included:
-
-* [Python Telegram Bot](https://github.com/python-telegram-bot/python-telegram-bot)
-* [PyPDF2](https://github.com/mstamy2/PyPDF2)
-* [pdf-diff](https://github.com/JoshData/pdf-diff)
-* [noteshrink](https://github.com/mzucker/noteshrink)
-
-You will also need to follow the instructions [here](https://github.com/JoshData/pdf-diff#requirements) to install the requirements for `pdf-diff`:
-
 ### Setup Your Environment Variables
 
-Make a `.env` file and put your telegram token in there. 
+Make a `.env` file and put your telegram token in there. Below is an example:
 
-If you want to use the webhook method to run the bot, also include `APP_URL` and `PORT` in the `.env` file. If you 
-want to use polling instead, do not include `APP_URL` in your `.env` file.
-
-Below is an example:
-
+```dotenv
+TELE_TOKEN=<telegram_token>
 ```
-TELEGRAM_TOKEN=<telegram_token>
+
+### Running The Bot
+
+You can then start the bot with the following command:
+
+```bash
+python bot.py
 ```
