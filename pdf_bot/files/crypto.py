@@ -7,7 +7,7 @@ from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_INFO
-from pdf_bot.utils import write_send_pdf, process_pdf
+from pdf_bot.utils import write_send_pdf, process_pdf, check_user_data
 
 
 @run_async
@@ -38,7 +38,7 @@ def decrypt_pdf(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if PDF_INFO not in user_data:
+    if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Decrypting your PDF file')
@@ -61,7 +61,7 @@ def decrypt_pdf(update, context):
             else:
                 try:
                     if pdf_reader.decrypt(update.message.text) == 0:
-                        update.message.reply_text('The decryption password is incorrect. Try to send it again.')
+                        update.message.reply_text('The decryption password is incorrect, try to send it again.')
 
                         return WAIT_DECRYPT_PW
 
@@ -107,7 +107,7 @@ def encrypt_pdf(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    if PDF_INFO not in context.user_data:
+    if not check_user_data(update, PDF_INFO, context.user_data):
         return ConversationHandler.END
 
     update.message.reply_text('Encrypting your PDF file')
