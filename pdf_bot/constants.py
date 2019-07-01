@@ -1,3 +1,6 @@
+BOT_NAME = 'pdf2bot'
+CHANNEL_NAME = 'pdf2botdev'
+
 WAIT_TASK = 0
 WAIT_DECRYPT_PW = 1
 WAIT_ENCRYPT_PW = 2
@@ -26,4 +29,18 @@ PDF_OK = 0
 PDF_INVALID_FORMAT = 1
 PDF_TOO_LARGE = 2
 
+CANCEL = 'cancel'
 PDF_INFO = 'pdf_info'
+
+PAYMENT = 'payment'
+PAYMENT_PAYLOAD = 'payment_payload'
+PAYMENT_CURRENCY = 'USD'
+PAYMENT_PARA = 'payment_para'
+PAYMENT_THANKS = 'Say Thanks 😁 ($1)'
+PAYMENT_COFFEE = 'Coffee ☕ ($3)'
+PAYMENT_BEER = 'Beer 🍺 ($5)'
+PAYMENT_MEAL = 'Meal 🍲 ($10)'
+PAYMENT_CUSTOM = 'Say Awesome 🤩 (Custom)'
+WAIT_PAYMENT = 0
+
+PAYMENT_DICT = {PAYMENT_THANKS: 1, PAYMENT_COFFEE: 3, PAYMENT_BEER: 5, PAYMENT_MEAL: 10}

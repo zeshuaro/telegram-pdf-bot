@@ -1,15 +1,16 @@
 import os
+import random
 import tempfile
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError
 from telegram import ChatAction
-from telegram import ReplyKeyboardRemove
-from telegram.constants import *
+from telegram import ReplyKeyboardRemove, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import *
+from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT
 
 
 # Cancels feedback operation
@@ -163,8 +164,16 @@ def send_result_file(update, out_fn):
     Returns:
         None
     """
+    if random.randint(0, 1):
+        keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
+                     InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+    else:
+        reply_markup = None
+
     if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text(f"The result file is too large for me to send to you.")
+        update.message.reply_text(f"The result file is too large for me to send to you.", reply_markup=reply_markup)
     else:
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_fn, "rb"), caption=f"Here is your result file.")
+        update.message.reply_document(document=open(out_fn, "rb"), caption=f"Here is your result file.",
+                                      reply_markup=reply_markup)

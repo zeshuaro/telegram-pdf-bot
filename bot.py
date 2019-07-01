@@ -1,16 +1,19 @@
 import logbook
 import os
+import re
 import sys
 
 from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
-from telegram.ext import Updater, CommandHandler, Filters, MessageHandler
+from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, PreCheckoutQueryHandler
 from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot import compare_cov_handler, merge_cov_handler, watermark_cov_handler, file_cov_handler, \
-    photo_cov_handler, feedback_cov_handler, url_to_pdf
+    photo_cov_handler, feedback_cov_handler, url_to_pdf, send_payment_options, payment_callback, \
+    successful_payment_callback, precheckout_callback, payment_cov_handler
+from pdf_bot import PAYMENT, PAYMENT_THANKS, PAYMENT_COFFEE, PAYMENT_BEER, PAYMENT_MEAL, CHANNEL_NAME
 
 load_dotenv()
 APP_URL = os.environ.get("APP_URL")
@@ -19,8 +22,6 @@ TELE_TOKEN = os.environ.get('TELE_TOKEN_BETA', os.environ.get('TELE_TOKEN'))
 DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
 
-CHANNEL_NAME = 'pdf2botdev'
-BOT_NAME = 'pdf2bot'
 TIMEOUT = 20
 
 
@@ -37,18 +38,38 @@ def main():
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
-    # on different commands - answer in Telegram
+
+    # General commands handlers
     dispatcher.add_handler(CommandHandler('start', start_msg))
     dispatcher.add_handler(CommandHandler('help', help_msg))
-    dispatcher.add_handler(CommandHandler('donate', donate_msg))
+    dispatcher.add_handler(CommandHandler('donate', send_payment_options))
+    dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID)))
+
+    # Callback query handler
+    dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
+
+    # Payment handlers
+    dispatcher.add_handler(MessageHandler(Filters.regex(
+        rf'^({re.escape(PAYMENT_THANKS)}|{re.escape(PAYMENT_COFFEE)}|{re.escape(PAYMENT_BEER)}|'
+        rf'{re.escape(PAYMENT_MEAL)})$'), payment_callback))
+    dispatcher.add_handler(payment_cov_handler())
+    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_callback))
+    dispatcher.add_handler(MessageHandler(Filters.successful_payment, successful_payment_callback))
+
+    # URL handler
     dispatcher.add_handler(MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf))
+
+    # PDF commands handlers
     dispatcher.add_handler(compare_cov_handler())
     dispatcher.add_handler(merge_cov_handler())
     dispatcher.add_handler(photo_cov_handler())
     dispatcher.add_handler(watermark_cov_handler())
+
+    # PDF file handler
     dispatcher.add_handler(file_cov_handler())
+
+    # Feedback handler
     dispatcher.add_handler(feedback_cov_handler())
-    dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID)))
 
     # log all errors
     dispatcher.add_error_handler(error_callback)
@@ -100,33 +121,23 @@ def help_msg(update, _):
     Returns:
         None
     """
-    text = 'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page. ' \
-           'You can then select a task and I\'ll guide you through each of the tasks.\n\n'
-    text += 'The other tasks can be performed by using the commands /compare, /merge, /watermark or /photo.\n\n'
+    text = 'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n'
+    text += 'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.\n\n'
     text += 'Note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. ' \
-            'If the result files are too large, I will not be able to send you the file.\n\n'
+            'If the result file is too large, I will not be able to send you the file.\n\n'
 
-    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}')]]
+    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
+                 InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.message.reply_text(text, reply_markup=reply_markup)
 
 
 @run_async
-def donate_msg(update, _):
-    """
-    Send donate message
-    Args:
-        update: the update object
-        _: unused variable
-
-    Returns:
-        None
-    """
-    text = f'Want to help keep me online? Donate to {DEV_EMAIL} through PayPal.\n\n' \
-           f'Donations help me to stay on my server and keep running.'
-
-    update.message.reply_text(text)
+def process_callback_query(update, context):
+    query = update.callback_query
+    if query.data == PAYMENT:
+        send_payment_options(update, context, query.from_user.id)
 
 
 def send(update, context):
