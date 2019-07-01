@@ -24,7 +24,7 @@ def compare_cov_handler():
             WAIT_COMPARE_FIRST: [MessageHandler(Filters.document, receive_first_doc)],
             WAIT_COMPARE_SECOND: [MessageHandler(Filters.document, receive_second_doc)],
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(f'^{CANCEL}$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
         allow_reentry=True
     )
 

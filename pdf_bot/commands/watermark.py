@@ -22,7 +22,7 @@ def watermark_cov_handler():
             WAIT_WATERMARK_SOURCE: [MessageHandler(Filters.document, receive_source_doc)],
             WAIT_WATERMARK: [MessageHandler(Filters.document, receive_watermark_doc)]
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(f'^{CANCEL}$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
         allow_reentry=True
     )
 

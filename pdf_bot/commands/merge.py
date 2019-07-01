@@ -27,7 +27,7 @@ def merge_cov_handler():
                 MessageHandler(Filters.regex(f'^{DONE}$'), merge_pdf)
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(f'^{CANCEL}$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
         allow_reentry=True
     )
 
