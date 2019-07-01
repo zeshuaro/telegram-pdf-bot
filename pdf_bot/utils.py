@@ -1,5 +1,5 @@
 import os
-import random
+import secrets
 import tempfile
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
@@ -164,7 +164,7 @@ def send_result_file(update, out_fn):
     Returns:
         None
     """
-    if random.randint(0, 1):
+    if secrets.randbelow(2):
         keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
                      InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]
         reply_markup = InlineKeyboardMarkup(keyboard)
