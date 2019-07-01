@@ -49,7 +49,7 @@ def get_pdf_cover(update, context):
 
                 with tempfile.TemporaryDirectory() as dir_name:
                     # Convert cover preview to JPEG
-                    out_fn = os.path.join(dir_name, f'Cover-{os.path.splitext(file_name)[0]}.png')
+                    out_fn = os.path.join(dir_name, f'Cover_{os.path.splitext(file_name)[0]}.png')
                     imgs = pdf2image.convert_from_path(tf2.name, fmt='png')
                     imgs[0].save(out_fn)
 
@@ -86,7 +86,7 @@ def pdf_to_photos(update, context):
 
         with tempfile.TemporaryDirectory() as tmp_dir_name:
             # Setup the directory for the photos
-            dir_name = os.path.join(tmp_dir_name, 'PDF-Photos')
+            dir_name = os.path.join(tmp_dir_name, 'PDF_Photos')
             os.mkdir(dir_name)
 
             # Convert the PDF file into photos
@@ -131,7 +131,7 @@ def get_pdf_photos(update, context):
         if pdf_reader is not None:
             with tempfile.TemporaryDirectory() as tmp_dir_name:
                 # Setup the directory for the photos
-                dir_name = os.path.join(tmp_dir_name, 'Photos-In-PDF')
+                dir_name = os.path.join(tmp_dir_name, 'Photos_In_PDF')
                 os.mkdir(dir_name)
                 root_file_name = os.path.splitext(file_name)[0]
                 i = 0
