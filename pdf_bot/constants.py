@@ -39,6 +39,9 @@ PDF_TOO_LARGE = 2
 # Keyboard Constants
 CANCEL = 'Cancel'
 DONE = 'Done'
+BACK = 'Back'
+CROP_PERCENT = 'By Percentage'
+CROP_SIZE = 'By Margin Size'
 
 # User data constants
 PDF_INFO = 'pdf_info'
