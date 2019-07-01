@@ -27,7 +27,7 @@ def merge_cov_handler():
                 MessageHandler(Filters.regex('^Done$'), merge_pdf)
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex('^Cancel$'), cancel)],
         allow_reentry=True
     )
 
@@ -52,8 +52,8 @@ def merge(update, context):
     if MERGE_NAMES in user_data:
         del user_data[MERGE_NAMES]
 
-    update.message.reply_text('Send me the PDF file that you\'ll like to merge or type /cancel to '
-                              'cancel this operation.\n\nThe files will be merged in the order that you send me.')
+    update.message.reply_text('Send me the PDF file that you\'ll like to merge or /cancel this operation.\n\n'
+                              'The files will be merged in the order that you send me.')
 
     return WAIT_MERGE
 
@@ -74,7 +74,7 @@ def receive_doc(update, context):
 
     if result == PDF_INVALID_FORMAT:
         update.message.reply_text('The file you sent is not a PDF file. Send me the PDF file that you\'ll '
-                                  'like to merge or type /cancel to cancel this operation.')
+                                  'like to merge or /cancel this operation.')
 
         return WAIT_MERGE
     elif result == PDF_TOO_LARGE:
@@ -82,7 +82,7 @@ def receive_doc(update, context):
 
         # Check if user has already sent through some PDF files
         if MERGE_NAMES in user_data and user_data[MERGE_NAMES]:
-            text += 'You can continue merging with the files that you sent me or type /cancel to cancel this operation.'
+            text += 'You can continue merging with the files that you sent me or /cancel this operation.'
             update.message.reply_text(text)
             send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
 
@@ -104,7 +104,7 @@ def receive_doc(update, context):
         user_data[MERGE_IDS] = [file_id]
         user_data[MERGE_NAMES] = [file_name]
 
-    reply_markup = ReplyKeyboardMarkup([['Done']], one_time_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup([['Done'], ['Cancel']], resize_keyboard=True, one_time_keyboard=True)
     update.message.reply_text('Send me the next PDF file that you\'ll like to merge or send Done if you have '
                               'sent me all the PDF files.', reply_markup=reply_markup)
     send_file_names(update, user_data[MERGE_NAMES], 'PDF files')

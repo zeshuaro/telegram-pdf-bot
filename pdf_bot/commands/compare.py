@@ -12,7 +12,6 @@ from pdf_bot.utils import check_pdf, cancel, send_result_file
 COMPARE_ID = 'compare_id'
 
 
-# Create a compare conversation handler
 def compare_cov_handler():
     """
     Create a compare conversation handler object
@@ -25,7 +24,7 @@ def compare_cov_handler():
             WAIT_COMPARE_FIRST: [MessageHandler(Filters.document, receive_first_doc)],
             WAIT_COMPARE_SECOND: [MessageHandler(Filters.document, receive_second_doc)],
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex('^Cancel$'), cancel)],
         allow_reentry=True
     )
 
@@ -43,8 +42,8 @@ def compare(update, _):
     Returns:
         The variable indicating to wait for the file
     """
-    update.message.reply_text('Send me one of the PDF files that you\'ll like to compare or type /cancel to '
-                              'cancel this operation.\n\nNote that I can only look for text differences.')
+    update.message.reply_text('Send me one of the PDF files that you\'ll like to compare or /cancel this operation.\n\n'
+                              'Note that I can only look for text differences.')
 
     return WAIT_COMPARE_FIRST
 
@@ -95,8 +94,16 @@ def receive_second_doc(update, context):
     return compare_pdf(update, context)
 
 
-# Compare two PDF files
 def compare_pdf(update, context):
+    """
+    Compare two PDF files
+    Args:
+        update: the update object
+        context: the context object
+
+    Returns:
+        The variable indicating the conversation has ended
+    """
     user_data = context.user_data
     if COMPARE_ID not in user_data:
         return ConversationHandler.END
