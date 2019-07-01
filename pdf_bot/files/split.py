@@ -5,6 +5,7 @@ from PyPDF2.pagerange import PageRange
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
+from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import WAIT_SPLIT_RANGE, PDF_INFO
 from pdf_bot.utils import open_pdf, write_send_pdf
@@ -24,7 +25,7 @@ def ask_split_range(update, _):
     update.message.reply_text('Send me the range of pages that you\'ll like to keep. '
                               'You can use ⚡ *INSTANT VIEW* from below or '
                               'refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples.',
-                              parse_mode='markdown', reply_markup=ReplyKeyboardRemove())
+                              parse_mode=ParseMode.MARKDOWN, reply_markup=ReplyKeyboardRemove())
 
     return WAIT_SPLIT_RANGE
 
