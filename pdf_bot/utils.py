@@ -29,11 +29,12 @@ def cancel(update, _):
     return ConversationHandler.END
 
 
-def check_pdf(update):
+def check_pdf(update, send_msg=True):
     """
     Validate the PDF file
     Args:
         update: the update object
+        send_msg: the bool indicating to send a message or not
 
     Returns:
         The variable indicating the validation result
@@ -43,12 +44,14 @@ def check_pdf(update):
 
     if not pdf_file.mime_type.endswith("pdf"):
         pdf_status = PDF_INVALID_FORMAT
-        update.message.reply_text("The file you sent is not a PDF file. Try again and send me a PDF file or "
-                                  "type /cancel to cancel the operation.")
+        if send_msg:
+            update.message.reply_text("The file you sent is not a PDF file. Try again and send me a PDF file or "
+                                      "type /cancel to cancel the operation.")
     elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         pdf_status = PDF_TOO_LARGE
-        update.message.reply_text("The PDF file you sent is too large for me to download. "
-                                  "Sorry that I can't process your PDF file. Operation cancelled.")
+        if send_msg:
+            update.message.reply_text("The PDF file you sent is too large for me to download. "
+                                      "Sorry that I can't process your PDF file. Operation cancelled.")
 
     return pdf_status
 

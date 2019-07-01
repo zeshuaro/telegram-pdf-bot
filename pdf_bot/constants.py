@@ -37,7 +37,8 @@ PDF_INVALID_FORMAT = 1
 PDF_TOO_LARGE = 2
 
 # Keyboard Constants
-CANCEL = 'cancel'
+CANCEL = 'Cancel'
+DONE = 'Done'
 
 # User data constants
 PDF_INFO = 'pdf_info'
