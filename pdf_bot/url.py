@@ -1,3 +1,4 @@
+import logging
 import os
 import tempfile
 
@@ -8,6 +9,7 @@ from weasyprint import HTML
 from pdf_bot.utils import send_result_file
 
 URLS = 'urls'
+logging.getLogger('weasyprint').setLevel(100)
 
 
 @run_async
