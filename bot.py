@@ -10,10 +10,7 @@ from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, Callb
 from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
 
-from pdf_bot import compare_cov_handler, merge_cov_handler, watermark_cov_handler, file_cov_handler, \
-    photo_cov_handler, feedback_cov_handler, url_to_pdf, send_payment_options, payment_callback, \
-    successful_payment_callback, precheckout_callback, payment_cov_handler
-from pdf_bot import PAYMENT, PAYMENT_THANKS, PAYMENT_COFFEE, PAYMENT_BEER, PAYMENT_MEAL, CHANNEL_NAME
+from pdf_bot import *
 
 load_dotenv()
 APP_URL = os.environ.get("APP_URL")
@@ -51,10 +48,10 @@ def main():
     # Payment handlers
     dispatcher.add_handler(MessageHandler(Filters.regex(
         rf'^({re.escape(PAYMENT_THANKS)}|{re.escape(PAYMENT_COFFEE)}|{re.escape(PAYMENT_BEER)}|'
-        rf'{re.escape(PAYMENT_MEAL)})$'), payment_callback))
+        rf'{re.escape(PAYMENT_MEAL)})$'), send_payment_invoice))
     dispatcher.add_handler(payment_cov_handler())
-    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_callback))
-    dispatcher.add_handler(MessageHandler(Filters.successful_payment, successful_payment_callback))
+    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check))
+    dispatcher.add_handler(MessageHandler(Filters.successful_payment, successful_payment))
 
     # URL handler
     dispatcher.add_handler(MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf))
