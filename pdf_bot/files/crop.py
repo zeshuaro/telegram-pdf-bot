@@ -8,8 +8,7 @@ from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_CROP_TYPE, WAIT_CROP_PERCENT, WAIT_CROP_OFFSET, PDF_INFO, CROP_PERCENT, CROP_SIZE, \
-    BACK
+from pdf_bot.constants import *
 from pdf_bot.utils import send_result_file
 
 MIN_PERCENT = 0
