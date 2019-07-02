@@ -104,7 +104,7 @@ def receive_doc(update, context):
         user_data[MERGE_IDS] = [file_id]
         user_data[MERGE_NAMES] = [file_name]
 
-    reply_markup = ReplyKeyboardMarkup([['Done'], ['Cancel']], resize_keyboard=True, one_time_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup([[DONE], [CANCEL]], resize_keyboard=True, one_time_keyboard=True)
     update.message.reply_text('Send me the next PDF file that you\'ll like to merge or press Done if you have '
                               'sent me all the PDF files.', reply_markup=reply_markup)
     send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
