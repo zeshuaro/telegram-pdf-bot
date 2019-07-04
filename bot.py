@@ -4,6 +4,7 @@ import re
 import sys
 
 from dotenv import load_dotenv
+from google.cloud import datastore
 from logbook import Logger, StreamHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, PreCheckoutQueryHandler
@@ -18,8 +19,12 @@ PORT = int(os.environ.get('PORT', '8443'))
 TELE_TOKEN = os.environ.get('TELE_TOKEN_BETA', os.environ.get('TELE_TOKEN'))
 DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
+GCP_KEY_FILE = os.environ.get('GCP_KEY_FILE')
+GCP_CRED = os.environ.get('GCP_CRED')
 
-TIMEOUT = 20
+if GCP_CRED is not None:
+    with open(GCP_KEY_FILE, 'w') as f:
+        f.write(GCP_CRED)
 
 
 def main():
@@ -41,6 +46,7 @@ def main():
     dispatcher.add_handler(CommandHandler('help', help_msg))
     dispatcher.add_handler(CommandHandler('donate', send_payment_options))
     dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID)))
+    dispatcher.add_handler(CommandHandler('stats', stats, Filters.user(DEV_TELE_ID)))
 
     # Callback query handler
     dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
@@ -97,14 +103,18 @@ def start_msg(update, _):
     Returns:
         None
     """
-    text = 'Welcome to PDF Bot!\n\n*Features*\n' \
-           '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n' \
-           '- Extract images in a PDF file and convert a PDF file into images\n' \
-           '- Beautify and convert photos into PDF format\n' \
-           '- Convert a web page into a PDF file\n\n' \
-           'Type /help to see how to use PDF Bot.'
+    update.message.reply_text(
+        'Welcome to PDF Bot!\n\n*Features*\n'
+        '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n'
+        '- Extract images in a PDF file and convert a PDF file into images\n'
+        '- Beautify and convert photos into PDF format\n'
+        '- Convert a web page into a PDF file\n\n'
+        'Type /help to see how to use PDF Bot.', parse_mode=ParseMode.MARKDOWN)
 
-    update.message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
+    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
+    user_key = client.key(USER, update.message.from_user.id)
+    user = datastore.Entity(key=user_key)
+    client.put(user)
 
 
 @run_async
@@ -156,6 +166,18 @@ def send(update, context):
         log = Logger()
         log.error(e)
         update.message.reply_text(DEV_TELE_ID, 'Failed to send message')
+
+
+def stats(update, _):
+    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
+    query = client.query(kind=USER)
+    num_users = num_tasks = 0
+
+    for user in query.fetch():
+        num_users += 1
+        num_tasks += user[COUNT]
+
+    update.message.reply_text(f'Total users: {num_users}\nTotal tasks: {num_tasks}')
 
 
 def error_callback(update, context):
