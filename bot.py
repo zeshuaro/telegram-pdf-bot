@@ -111,10 +111,7 @@ def start_msg(update, _):
         '- Convert a web page into a PDF file\n\n'
         'Type /help to see how to use PDF Bot.', parse_mode=ParseMode.MARKDOWN)
 
-    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
-    user_key = client.key(USER, update.message.from_user.id)
-    user = datastore.Entity(key=user_key)
-    client.put(user)
+    update_stats(update, GCP_KEY_FILE, add_count=False)
 
 
 @run_async
