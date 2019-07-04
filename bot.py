@@ -46,6 +46,7 @@ def main():
     dispatcher.add_handler(CommandHandler('help', help_msg))
     dispatcher.add_handler(CommandHandler('donate', send_payment_options))
     dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID)))
+    dispatcher.add_handler(CommandHandler('stats', stats, Filters.user(DEV_TELE_ID)))
 
     # Callback query handler
     dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
@@ -165,6 +166,18 @@ def send(update, context):
         log = Logger()
         log.error(e)
         update.message.reply_text(DEV_TELE_ID, 'Failed to send message')
+
+
+def stats(update, _):
+    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
+    query = client.query(kind=USER)
+    num_users = num_tasks = 0
+
+    for user in query.fetch():
+        num_users += 1
+        num_tasks += user[COUNT]
+
+    update.message.reply_text(f'Total users: {num_users}\nTotal tasks: {num_tasks}')
 
 
 def error_callback(update, context):
