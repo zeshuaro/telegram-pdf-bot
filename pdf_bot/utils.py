@@ -2,6 +2,8 @@ import os
 import secrets
 import tempfile
 
+from dotenv import load_dotenv
+from google.cloud import datastore
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError
 from telegram import ChatAction
@@ -10,7 +12,10 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT
+from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT, USER, COUNT
+
+load_dotenv()
+GCP_KEY_FILE = os.environ.get('GCP_KEY_FILE')
 
 
 @run_async
@@ -223,3 +228,14 @@ def send_result_file(update, out_fn):
         update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
         update.message.reply_document(document=open(out_fn, "rb"), caption=f"Here is your result file.",
                                       reply_markup=reply_markup)
+
+    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
+    user_key = client.key(USER, update.message.from_user.id)
+    user = datastore.Entity(key=user_key)
+
+    if COUNT in user:
+        user[COUNT] += 1
+    else:
+        user[COUNT] = 1
+
+    client.put(user)

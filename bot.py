@@ -4,6 +4,7 @@ import re
 import sys
 
 from dotenv import load_dotenv
+from google.cloud import datastore
 from logbook import Logger, StreamHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, PreCheckoutQueryHandler
@@ -18,8 +19,12 @@ PORT = int(os.environ.get('PORT', '8443'))
 TELE_TOKEN = os.environ.get('TELE_TOKEN_BETA', os.environ.get('TELE_TOKEN'))
 DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
+GCP_KEY_FILE = os.environ.get('GCP_KEY_FILE')
+GCP_CRED = os.environ.get('GCP_CRED')
 
-TIMEOUT = 20
+if GCP_CRED is not None:
+    with open(GCP_KEY_FILE, 'w') as f:
+        f.write(GCP_CRED)
 
 
 def main():
@@ -97,14 +102,18 @@ def start_msg(update, _):
     Returns:
         None
     """
-    text = 'Welcome to PDF Bot!\n\n*Features*\n' \
-           '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n' \
-           '- Extract images in a PDF file and convert a PDF file into images\n' \
-           '- Beautify and convert photos into PDF format\n' \
-           '- Convert a web page into a PDF file\n\n' \
-           'Type /help to see how to use PDF Bot.'
+    update.message.reply_text(
+        'Welcome to PDF Bot!\n\n*Features*\n'
+        '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n'
+        '- Extract images in a PDF file and convert a PDF file into images\n'
+        '- Beautify and convert photos into PDF format\n'
+        '- Convert a web page into a PDF file\n\n'
+        'Type /help to see how to use PDF Bot.', parse_mode=ParseMode.MARKDOWN)
 
-    update.message.reply_text(text, parse_mode=ParseMode.MARKDOWN)
+    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
+    user_key = client.key(USER, update.message.from_user.id)
+    user = datastore.Entity(key=user_key)
+    client.put(user)
 
 
 @run_async

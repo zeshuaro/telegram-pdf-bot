@@ -1,6 +1,7 @@
-# Bot information
+# Bot constants
 BOT_NAME = 'pdf2bot'
 CHANNEL_NAME = 'pdf2botdev'
+TIMEOUT = 20
 
 # Compare constants
 WAIT_COMPARE_FIRST = 0
@@ -74,3 +75,7 @@ PAYMENT_MEAL = 'Meal 🍲 ($10)'
 PAYMENT_CUSTOM = 'Say Awesome 🤩 (Custom)'
 PAYMENT_DICT = {PAYMENT_THANKS: 1, PAYMENT_COFFEE: 3, PAYMENT_BEER: 5, PAYMENT_MEAL: 10}
 WAIT_PAYMENT = 0
+
+# GCP constants
+USER = 'User'
+COUNT = 'count'
