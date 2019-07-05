@@ -12,7 +12,7 @@ from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
-from pdf_bot.constants import PDF_INFO, PHOTOS, ZIPPED, BACK, WAIT_PHOTO_TYPE, MAX_MEDIA_GROUP
+from pdf_bot.constants import *
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
 
 
@@ -76,15 +76,20 @@ def ask_photo_results_type(update, _):
     Returns:
         The variable indicating to wait for the file type
     """
+    text = f'Select the result file format to be sent back to you.\n\n' \
+        f'Note that selecting the *{PHOTOS}* option will only send you the first {MAX_MESSAGES_PER_SECOND} '
+    if update.message.text == EXTRACT_IMG:
+        text += 'extracted photos in your PDF file.'
+        return_type = WAIT_EXTRACT_PHOTO_TYPE
+    else:
+        text += 'pages of your PDF file.'
+        return_type = WAIT_TO_PHOTO_TYPE
+
     keyboard = [[PHOTOS, ZIPPED], [BACK]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.message.reply_text(
-        f'Select the result file format to be sent back to you.\n\n'
-        f'Note that selecting the *{PHOTOS}* option will only convert '
-        f'the first {MAX_MESSAGES_PER_SECOND} pages of your PDF file.',
-        reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
+    update.message.reply_text(text, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
-    return WAIT_PHOTO_TYPE
+    return return_type
 
 
 @run_async
@@ -103,8 +108,6 @@ def pdf_to_photos(update, context):
         return ConversationHandler.END
 
     update.message.reply_text('Converting your PDF file into photos', reply_markup=ReplyKeyboardRemove())
-    result_type = update.message.text
-
     with tempfile.NamedTemporaryFile() as tf:
         file_id, file_name = user_data[PDF_INFO]
         pdf_file = context.bot.get_file(file_id)
@@ -119,25 +122,8 @@ def pdf_to_photos(update, context):
             pdf2image.convert_from_path(tf.name, output_folder=dir_name, output_file=os.path.splitext(file_name)[0],
                                         fmt='png')
 
-            if result_type == PHOTOS:
-                photos = []
-                for photo_name in sorted(os.listdir(dir_name))[:MAX_MESSAGES_PER_SECOND]:
-                    if len(photos) != 0 and len(photos) % MAX_MEDIA_GROUP == 0:
-                        update.message.reply_media_group(photos)
-                        del photos[:]
-
-                    photos.append(InputMediaPhoto(open(os.path.join(dir_name, photo_name), 'rb')))
-
-                if photos:
-                    update.message.reply_media_group(photos)
-
-                update.message.reply_text('See above for all your photos', reply_markup=get_support_markup())
-            else:
-                # Compress the directory of photos
-                shutil.make_archive(dir_name, 'zip', dir_name)
-
-                # Send result file
-                send_result_file(update, f'{dir_name}.zip')
+            # Handle the result photos
+            handle_result_photos(update, dir_name)
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -216,11 +202,41 @@ def get_pdf_photos(update, context):
                 if not os.listdir(dir_name):
                     update.message.reply_text('I couldn\'t find any photos in your PDF file.')
                 else:
-                    shutil.make_archive(dir_name, 'zip', dir_name)
-                    send_result_file(update, f'{dir_name}.zip')
+                    handle_result_photos(update, dir_name)
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
         del user_data[PDF_INFO]
 
     return ConversationHandler.END
+
+
+def handle_result_photos(update, dir_name):
+    """
+    Handle the result photos
+    Args:
+        update: the update object
+        dir_name: the string of directory name containing the photos
+
+    Returns:
+        None
+    """
+    if update.message.text == PHOTOS:
+        photos = []
+        for photo_name in sorted(os.listdir(dir_name))[:MAX_MESSAGES_PER_SECOND]:
+            if len(photos) != 0 and len(photos) % MAX_MEDIA_GROUP == 0:
+                update.message.reply_media_group(photos)
+                del photos[:]
+
+            photos.append(InputMediaPhoto(open(os.path.join(dir_name, photo_name), 'rb')))
+
+        if photos:
+            update.message.reply_media_group(photos)
+
+        update.message.reply_text('See above for all your photos', reply_markup=get_support_markup())
+    else:
+        # Compress the directory of photos
+        shutil.make_archive(dir_name, 'zip', dir_name)
+
+        # Send result file
+        send_result_file(update, f'{dir_name}.zip')

@@ -29,8 +29,7 @@ def file_cov_handler():
                 MessageHandler(Filters.regex(rf'^{COVER}$'), get_pdf_cover),
                 MessageHandler(Filters.regex(rf'^{DECRYPT}$'), ask_decrypt_pw),
                 MessageHandler(Filters.regex(rf'^{ENCRYPT}$'), ask_encrypt_pw),
-                MessageHandler(Filters.regex(rf'^{EXTRACT_IMG}$'), get_pdf_photos),
-                MessageHandler(Filters.regex(rf'^{TO_IMG}$'), ask_photo_results_type),
+                MessageHandler(Filters.regex(rf'^({EXTRACT_IMG}|{TO_IMG})$'), ask_photo_results_type),
                 MessageHandler(Filters.regex(rf'^{ROTATE}$'), ask_rotate_degree),
                 MessageHandler(Filters.regex(rf'^{SCALE_BY}$'), ask_scale_x),
                 MessageHandler(Filters.regex(rf'^{SCALE_TO}$'), ask_scale_x),
@@ -55,7 +54,11 @@ def file_cov_handler():
             ],
             WAIT_CROP_PERCENT: [MessageHandler(Filters.text, receive_crop_percent)],
             WAIT_CROP_OFFSET: [MessageHandler(Filters.text, receive_crop_size)],
-            WAIT_PHOTO_TYPE: [
+            WAIT_EXTRACT_PHOTO_TYPE: [
+                MessageHandler(Filters.regex(rf'({PHOTOS}|{ZIPPED})'), get_pdf_photos),
+                MessageHandler(Filters.regex(rf'^{BACK}$'), send_doc_tasks)
+            ],
+            WAIT_TO_PHOTO_TYPE: [
                 MessageHandler(Filters.regex(rf'({PHOTOS}|{ZIPPED})'), pdf_to_photos),
                 MessageHandler(Filters.regex(rf'^{BACK}$'), send_doc_tasks)
             ]
@@ -92,18 +95,28 @@ def check_doc(update, context):
         return ConversationHandler.END
 
     context.user_data[PDF_INFO] = doc.file_id, doc.file_name
-    send_doc_tasks(update, context)
 
-    return WAIT_TASK
+    return send_doc_tasks(update, context)
 
 
 def send_doc_tasks(update, _):
+    """
+    Send the message of tasks that can be performed on the PDF file
+    Args:
+        update: the update object
+        _: unused variable
+
+    Returns:
+        The variable indicating to wait for the next aciton
+    """
     keywords = sorted([DECRYPT, ENCRYPT, ROTATE, SCALE_BY, SCALE_TO, SPLIT, COVER, TO_IMG, EXTRACT_IMG, RENAME, CROP])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append([CANCEL])
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
     update.message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
+
+    return WAIT_TASK
 
 
 @run_async
