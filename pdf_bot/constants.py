@@ -2,6 +2,7 @@
 BOT_NAME = 'pdf2bot'
 CHANNEL_NAME = 'pdf2botdev'
 TIMEOUT = 20
+MAX_MEDIA_GROUP = 10
 
 # Compare constants
 WAIT_COMPARE_FIRST = 0
@@ -28,6 +29,8 @@ WAIT_FILE_NAME = 9
 WAIT_CROP_TYPE = 10
 WAIT_CROP_PERCENT = 11
 WAIT_CROP_OFFSET = 12
+WAIT_EXTRACT_PHOTO_TYPE = 13
+WAIT_TO_PHOTO_TYPE = 14
 
 # Photo constants
 WAIT_PHOTO = 0
@@ -59,6 +62,8 @@ CROP = 'Crop'
 ROTATE_90 = '90'
 ROTATE_180 = '180'
 ROTATE_270 = '270'
+ZIPPED = 'Zipped'
+PHOTOS = 'Photos'
 
 # User data constants
 PDF_INFO = 'pdf_info'

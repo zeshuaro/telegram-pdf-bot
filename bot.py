@@ -178,6 +178,7 @@ def stats(update, _):
 
 
 def error_callback(update, context):
+    print('error')
     log = Logger()
     log.error(f'Update "{update}" caused error "{context.error}"')
 
