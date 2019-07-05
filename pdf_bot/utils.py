@@ -232,6 +232,11 @@ def send_result_file(update, out_fn):
 
 
 def get_support_markup():
+    """
+    Create the reply markup
+    Returns:
+        The reply markup object
+    """
     if secrets.randbelow(2):
         keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
                      InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]

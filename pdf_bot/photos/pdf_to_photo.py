@@ -6,12 +6,14 @@ import tempfile
 from logbook import Logger
 from PIL import Image
 from PyPDF2 import PdfFileWriter
-from telegram import ReplyKeyboardRemove
+from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto
+from telegram.constants import MAX_MESSAGES_PER_SECOND
 from telegram.ext import ConversationHandler
 from telegram.ext import run_async
+from telegram.parsemode import ParseMode
 
-from pdf_bot.constants import PDF_INFO
-from pdf_bot.utils import open_pdf, send_result_file, check_user_data
+from pdf_bot.constants import PDF_INFO, PHOTOS, ZIPPED, BACK, WAIT_PHOTO_TYPE, MAX_MEDIA_GROUP
+from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
 
 
 @run_async
@@ -64,6 +66,28 @@ def get_pdf_cover(update, context):
 
 
 @run_async
+def ask_photo_results_type(update, _):
+    """
+    Ask for the photo results file type
+    Args:
+        update: the update object
+        _: unused variable
+
+    Returns:
+        The variable indicating to wait for the file type
+    """
+    keyboard = [[PHOTOS, ZIPPED], [BACK]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
+    update.message.reply_text(
+        f'Select the result file format to be sent back to you.\n\n'
+        f'Note that selecting the *{PHOTOS}* option will only convert '
+        f'the first {MAX_MESSAGES_PER_SECOND} pages of your PDF file.',
+        reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
+
+    return WAIT_PHOTO_TYPE
+
+
+@run_async
 def pdf_to_photos(update, context):
     """
     Convert the PDF file into JPEG photos
@@ -79,6 +103,8 @@ def pdf_to_photos(update, context):
         return ConversationHandler.END
 
     update.message.reply_text('Converting your PDF file into photos', reply_markup=ReplyKeyboardRemove())
+    result_type = update.message.text
+
     with tempfile.NamedTemporaryFile() as tf:
         file_id, file_name = user_data[PDF_INFO]
         pdf_file = context.bot.get_file(file_id)
@@ -93,11 +119,25 @@ def pdf_to_photos(update, context):
             pdf2image.convert_from_path(tf.name, output_folder=dir_name, output_file=os.path.splitext(file_name)[0],
                                         fmt='png')
 
-            # Compress the directory of photos
-            shutil.make_archive(dir_name, 'zip', dir_name)
+            if result_type == PHOTOS:
+                photos = []
+                for photo_name in sorted(os.listdir(dir_name))[:MAX_MESSAGES_PER_SECOND]:
+                    if len(photos) != 0 and len(photos) % MAX_MEDIA_GROUP == 0:
+                        update.message.reply_media_group(photos)
+                        del photos[:]
 
-            # Send result file
-            send_result_file(update, f'{dir_name}.zip')
+                    photos.append(InputMediaPhoto(open(os.path.join(dir_name, photo_name), 'rb')))
+
+                if photos:
+                    update.message.reply_media_group(photos)
+
+                update.message.reply_text('See above for all your photos', reply_markup=get_support_markup())
+            else:
+                # Compress the directory of photos
+                shutil.make_archive(dir_name, 'zip', dir_name)
+
+                # Send result file
+                send_result_file(update, f'{dir_name}.zip')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
