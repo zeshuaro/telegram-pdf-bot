@@ -215,6 +215,23 @@ def send_result_file(update, out_fn):
     Returns:
         None
     """
+    reply_markup = get_support_markup()
+    if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
+        update.message.reply_text(f"The result file is too large for me to send to you.", reply_markup=reply_markup)
+    else:
+        if out_fn.endswith('.png'):
+            update.message.chat.send_action(ChatAction.UPLOAD_PHOTO)
+            update.message.reply_photo(open(out_fn, "rb"), caption=f"Here is your result file.",
+                                       reply_markup=reply_markup)
+        else:
+            update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+            update.message.reply_document(document=open(out_fn, "rb"), caption=f"Here is your result file.",
+                                          reply_markup=reply_markup)
+
+    update_stats(update, GCP_KEY_FILE)
+
+
+def get_support_markup():
     if secrets.randbelow(2):
         keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
                      InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]
@@ -222,11 +239,4 @@ def send_result_file(update, out_fn):
     else:
         reply_markup = None
 
-    if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
-        update.message.reply_text(f"The result file is too large for me to send to you.", reply_markup=reply_markup)
-    else:
-        update.message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-        update.message.reply_document(document=open(out_fn, "rb"), caption=f"Here is your result file.",
-                                      reply_markup=reply_markup)
-
-    update_stats(update, GCP_KEY_FILE)
+    return reply_markup
