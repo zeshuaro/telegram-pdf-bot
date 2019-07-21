@@ -6,6 +6,7 @@ import sys
 from dotenv import load_dotenv
 from google.cloud import datastore
 from logbook import Logger, StreamHandler
+from logbook.compat import redirect_logging
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, PreCheckoutQueryHandler
 from telegram.ext.dispatcher import run_async
@@ -29,6 +30,7 @@ if GCP_CRED is not None:
 
 def main():
     # Setup logging
+    redirect_logging()
     logbook.set_datetime_format('local')
     format_string = '[{record.time:%Y-%m-%d %H:%M:%S}] {record.level_name}: {record.message}'
     StreamHandler(sys.stdout, format_string=format_string).push_application()
