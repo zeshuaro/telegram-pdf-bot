@@ -1,10 +1,23 @@
+import arrow
+import os
+
+from dotenv import load_dotenv
 from google.cloud import datastore
 
 from pdf_bot.constants import USER, COUNT
 
 
-def update_stats(update, gcp_key_file, add_count=True):
-    client = datastore.Client.from_service_account_json(gcp_key_file)
+load_dotenv()
+GCP_KEY_FILE = os.environ.get('GCP_KEY_FILE')
+GCP_CRED = os.environ.get('GCP_CRED')
+
+if GCP_CRED is not None:
+    with open(GCP_KEY_FILE, 'w') as f:
+        f.write(GCP_CRED)
+
+
+def update_stats(update, add_count=True):
+    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
     user_key = client.key(USER, update.message.from_user.id)
     user = client.get(key=user_key)
 
@@ -16,3 +29,24 @@ def update_stats(update, gcp_key_file, add_count=True):
             user[COUNT] += 1
 
     client.put(user)
+
+
+def get_stats(update, _):
+    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
+    query = client.query(kind=USER)
+    num_users = num_tasks = 0
+
+    for user in query.fetch():
+        num_users += 1
+        num_tasks += user[COUNT]
+
+    launch_date = arrow.Arrow(2017, 7, 1)
+    stats_date = arrow.Arrow(2019, 7, 1)
+    curr_date = arrow.utcnow()
+
+    launch_diff = (curr_date - launch_date).days
+    stats_diff = (curr_date - stats_date).days
+    est_num_tasks = int(num_tasks / stats_diff * launch_diff)
+
+    update.message.reply_text(
+        f'Total users: {num_users}\nTotal tasks: {num_tasks}\nEstimated total tasks: {est_num_tasks}')

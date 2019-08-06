@@ -4,7 +4,6 @@ import re
 import sys
 
 from dotenv import load_dotenv
-from google.cloud import datastore
 from logbook import Logger, StreamHandler
 from logbook.compat import redirect_logging
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
@@ -20,12 +19,6 @@ PORT = int(os.environ.get('PORT', '8443'))
 TELE_TOKEN = os.environ.get('TELE_TOKEN_BETA', os.environ.get('TELE_TOKEN'))
 DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
-GCP_KEY_FILE = os.environ.get('GCP_KEY_FILE')
-GCP_CRED = os.environ.get('GCP_CRED')
-
-if GCP_CRED is not None:
-    with open(GCP_KEY_FILE, 'w') as f:
-        f.write(GCP_CRED)
 
 
 def main():
@@ -47,8 +40,8 @@ def main():
     dispatcher.add_handler(CommandHandler('start', start_msg))
     dispatcher.add_handler(CommandHandler('help', help_msg))
     dispatcher.add_handler(CommandHandler('donate', send_payment_options))
-    dispatcher.add_handler(CommandHandler('send', send, Filters.user(DEV_TELE_ID)))
-    dispatcher.add_handler(CommandHandler('stats', stats, Filters.user(DEV_TELE_ID)))
+    dispatcher.add_handler(CommandHandler('send', send_msg, Filters.user(DEV_TELE_ID)))
+    dispatcher.add_handler(CommandHandler('stats', get_stats, Filters.user(DEV_TELE_ID)))
 
     # Callback query handler
     dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
@@ -113,7 +106,7 @@ def start_msg(update, _):
         '- Convert a web page into a PDF file\n\n'
         'Type /help to see how to use PDF Bot.', parse_mode=ParseMode.MARKDOWN)
 
-    update_stats(update, GCP_KEY_FILE, add_count=False)
+    update_stats(update, add_count=False)
 
 
 @run_async
@@ -146,7 +139,7 @@ def process_callback_query(update, context):
         send_payment_options(update, context, query.from_user.id)
 
 
-def send(update, context):
+def send_msg(update, context):
     """
     Send a message to a user
     Args:
@@ -165,18 +158,6 @@ def send(update, context):
         log = Logger()
         log.error(e)
         update.message.reply_text(DEV_TELE_ID, 'Failed to send message')
-
-
-def stats(update, _):
-    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
-    query = client.query(kind=USER)
-    num_users = num_tasks = 0
-
-    for user in query.fetch():
-        num_users += 1
-        num_tasks += user[COUNT]
-
-    update.message.reply_text(f'Total users: {num_users}\nTotal tasks: {num_tasks}')
 
 
 def error_callback(update, context):

@@ -3,7 +3,6 @@ import pdf2image
 import shutil
 import tempfile
 
-from dotenv import load_dotenv
 from logbook import Logger
 from PIL import Image
 from PyPDF2 import PdfFileWriter
@@ -16,9 +15,6 @@ from telegram.parsemode import ParseMode
 from pdf_bot.constants import *
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
 from pdf_bot.stats import update_stats
-
-load_dotenv()
-GCP_KEY_FILE = os.environ.get('GCP_KEY_FILE')
 
 
 @run_async
@@ -239,7 +235,7 @@ def handle_result_photos(update, dir_name):
             update.message.reply_media_group(photos)
 
         update.message.reply_text('See above for all your photos', reply_markup=get_support_markup())
-        update_stats(update, GCP_KEY_FILE)
+        update_stats(update)
     else:
         # Compress the directory of photos
         shutil.make_archive(dir_name, 'zip', dir_name)
