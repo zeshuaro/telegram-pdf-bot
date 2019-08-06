@@ -2,7 +2,6 @@ import os
 import secrets
 import tempfile
 
-from dotenv import load_dotenv
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError
 from telegram import ChatAction
@@ -13,9 +12,6 @@ from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT
 from pdf_bot.stats import update_stats
-
-load_dotenv()
-GCP_KEY_FILE = os.environ.get('GCP_KEY_FILE')
 
 
 @run_async
@@ -228,7 +224,7 @@ def send_result_file(update, out_fn):
             update.message.reply_document(document=open(out_fn, "rb"), caption=f"Here is your result file.",
                                           reply_markup=reply_markup)
 
-    update_stats(update, GCP_KEY_FILE)
+    update_stats(update)
 
 
 def get_support_markup():
