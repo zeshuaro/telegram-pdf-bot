@@ -1,6 +1,6 @@
-import arrow
 import os
 
+from datetime import date
 from dotenv import load_dotenv
 from google.cloud import datastore
 
@@ -40,9 +40,9 @@ def get_stats(update, _):
         num_users += 1
         num_tasks += user[COUNT]
 
-    launch_date = arrow.Arrow(2017, 7, 1)
-    stats_date = arrow.Arrow(2019, 7, 1)
-    curr_date = arrow.utcnow()
+    launch_date = date(2017, 7, 1)
+    stats_date = date(2019, 7, 1)
+    curr_date = date.today()
 
     launch_diff = (curr_date - launch_date).days
     stats_diff = (curr_date - stats_date).days
