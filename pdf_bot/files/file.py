@@ -11,7 +11,7 @@ from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, rotate_pdf
 from pdf_bot.files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
 from pdf_bot.files.split import ask_split_range, split_pdf
-from pdf_bot.photos import get_pdf_cover, get_pdf_photos, pdf_to_photos, process_photo, ask_photo_results_type
+from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, process_photo, ask_photo_results_type
 
 PHOTO_ID = 'photo_id'
 
@@ -26,7 +26,7 @@ def file_cov_handler():
         entry_points=[MessageHandler(Filters.document, check_doc), MessageHandler(Filters.photo, check_photo)],
         states={
             WAIT_TASK: [
-                MessageHandler(Filters.regex(rf'^{COVER}$'), get_pdf_cover),
+                MessageHandler(Filters.regex(rf'^{PREVIEW}$'), get_pdf_preview),
                 MessageHandler(Filters.regex(rf'^{DECRYPT}$'), ask_decrypt_pw),
                 MessageHandler(Filters.regex(rf'^{ENCRYPT}$'), ask_encrypt_pw),
                 MessageHandler(Filters.regex(rf'^({EXTRACT_IMG}|{TO_IMG})$'), ask_photo_results_type),
@@ -109,7 +109,7 @@ def send_doc_tasks(update, _):
     Returns:
         The variable indicating to wait for the next aciton
     """
-    keywords = sorted([DECRYPT, ENCRYPT, ROTATE, SCALE_BY, SCALE_TO, SPLIT, COVER, TO_IMG, EXTRACT_IMG, RENAME, CROP])
+    keywords = sorted([DECRYPT, ENCRYPT, ROTATE, SCALE_BY, SCALE_TO, SPLIT, PREVIEW, TO_IMG, EXTRACT_IMG, RENAME, CROP])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append([CANCEL])
