@@ -120,16 +120,14 @@ def help_msg(update, _):
     Returns:
         None
     """
-    text = 'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n'
-    text += 'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.\n\n'
-    text += 'Note that I can only download files up to 20 MB in size and upload files up to 50 MB in size. ' \
-            'If the result file is too large, I will not be able to send you the file.\n\n'
-
     keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
                  InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text(text, reply_markup=reply_markup)
+    update.message.reply_text(
+        'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n'
+        'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.',
+        reply_markup=reply_markup)
 
 
 @run_async

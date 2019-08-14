@@ -46,7 +46,7 @@ def get_stats(update, _):
 
     launch_diff = (curr_date - launch_date).days
     stats_diff = (curr_date - stats_date).days
-    est_num_tasks = int(num_tasks / stats_diff * launch_diff)
+    est_num_tasks = int(num_tasks / stats_diff * launch_diff * 0.8)
 
     update.message.reply_text(
         f'Total users: {num_users}\nTotal tasks: {num_tasks}\nEstimated total tasks: {est_num_tasks}')

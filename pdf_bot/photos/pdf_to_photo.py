@@ -18,9 +18,9 @@ from pdf_bot.stats import update_stats
 
 
 @run_async
-def get_pdf_cover(update, context):
+def get_pdf_preview(update, context):
     """
-    Get the PDF cover page in JPEG format
+    Get the PDF preview in JPEG format
     Args:
         update: the update object
         context: the context object
@@ -32,7 +32,7 @@ def get_pdf_cover(update, context):
     if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
-    update.message.reply_text('Extracting a cover preview for your PDF file', reply_markup=ReplyKeyboardRemove())
+    update.message.reply_text('Extracting a preview for your PDF file', reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf1:
         file_id, file_name = user_data[PDF_INFO]
@@ -52,7 +52,7 @@ def get_pdf_cover(update, context):
 
                 with tempfile.TemporaryDirectory() as dir_name:
                     # Convert cover preview to JPEG
-                    out_fn = os.path.join(dir_name, f'Cover_{os.path.splitext(file_name)[0]}.png')
+                    out_fn = os.path.join(dir_name, f'Preview_{os.path.splitext(file_name)[0]}.png')
                     imgs = pdf2image.convert_from_path(tf2.name, fmt='png')
                     imgs[0].save(out_fn)
 
