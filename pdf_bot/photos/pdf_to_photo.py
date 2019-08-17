@@ -7,7 +7,6 @@ from logbook import Logger
 from PIL import Image
 from PyPDF2 import PdfFileWriter
 from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto
-from telegram.constants import MAX_MESSAGES_PER_SECOND
 from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 from telegram.parsemode import ParseMode
@@ -77,18 +76,15 @@ def ask_photo_results_type(update, _):
     Returns:
         The variable indicating to wait for the file type
     """
-    text = f'Select the result file format to be sent back to you.\n\n' \
-        f'Note that selecting the *{PHOTOS}* option will only send you the first {MAX_MESSAGES_PER_SECOND} '
     if update.message.text == EXTRACT_IMG:
-        text += 'extracted photos in your PDF file.'
         return_type = WAIT_EXTRACT_PHOTO_TYPE
     else:
-        text += 'pages of your PDF file.'
         return_type = WAIT_TO_PHOTO_TYPE
 
     keyboard = [[PHOTOS, ZIPPED], [BACK]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.message.reply_text(text, reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
+    update.message.reply_text('Select the result file format to be sent back to you.',
+                              reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
     return return_type
 
@@ -224,7 +220,7 @@ def handle_result_photos(update, dir_name):
     """
     if update.message.text == PHOTOS:
         photos = []
-        for photo_name in sorted(os.listdir(dir_name))[:MAX_MESSAGES_PER_SECOND]:
+        for photo_name in sorted(os.listdir(dir_name)):
             if len(photos) != 0 and len(photos) % MAX_MEDIA_GROUP == 0:
                 update.message.reply_media_group(photos)
                 del photos[:]
