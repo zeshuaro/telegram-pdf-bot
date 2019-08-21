@@ -19,16 +19,17 @@ if GCP_CRED is not None:
 def update_stats(update, add_count=True):
     client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
     user_key = client.key(USER, update.message.from_user.id)
-    user = client.get(key=user_key)
 
-    if user is None:
-        user = datastore.Entity(user_key)
-        user[COUNT] = 1
-    else:
-        if add_count:
-            user[COUNT] += 1
+    with client.transaction():
+        user = client.get(key=user_key)
+        if user is None:
+            user = datastore.Entity(user_key)
+            user[COUNT] = 1
+        else:
+            if add_count:
+                user[COUNT] += 1
 
-    client.put(user)
+        client.put(user)
 
 
 def get_stats(update, _):
