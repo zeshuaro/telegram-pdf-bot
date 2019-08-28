@@ -15,11 +15,11 @@ if GCP_CRED is not None:
     with open(GCP_KEY_FILE, 'w') as f:
         f.write(GCP_CRED)
 
+client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
+
 
 def update_stats(update, add_count=True):
-    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
     user_key = client.key(USER, update.message.from_user.id)
-
     with client.transaction():
         user = client.get(key=user_key)
         if user is None:
@@ -33,7 +33,6 @@ def update_stats(update, add_count=True):
 
 
 def get_stats(update, _):
-    client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
     query = client.query(kind=USER)
     num_users = num_tasks = 0
 
