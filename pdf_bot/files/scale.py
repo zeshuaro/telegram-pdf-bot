@@ -110,7 +110,7 @@ def ask_scale_to_y(update, context):
     """
     message = update.effective_message
     scale_x = message.text
-    
+
     try:
         scale_x = float(scale_x)
     except ValueError:
