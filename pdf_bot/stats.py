@@ -19,7 +19,7 @@ client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
 
 
 def update_stats(update, add_count=True):
-    user_key = client.key(USER, update.message.from_user.id)
+    user_key = client.key(USER, update.effective_message.from_user.id)
     with client.transaction():
         user = client.get(key=user_key)
         if user is None:
@@ -48,5 +48,5 @@ def get_stats(update, _):
     stats_diff = (curr_date - stats_date).days
     est_num_tasks = int(num_tasks / stats_diff * launch_diff * 0.8)
 
-    update.message.reply_text(
+    update.effective_message.reply_text(
         f'Total users: {num_users}\nTotal tasks: {num_tasks}\nEstimated total tasks: {est_num_tasks}')

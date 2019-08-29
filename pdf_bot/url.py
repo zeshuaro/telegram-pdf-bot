@@ -15,13 +15,14 @@ logging.getLogger('weasyprint').setLevel(100)
 
 @run_async
 def url_to_pdf(update, context):
-    url = update.message.text
+    message = update.effective_message
+    url = message.text
     user_data = context.user_data
 
     if URLS in user_data and url in user_data[URLS]:
-        update.message.reply_text('You\'ve sent me this web page already and I\'m still converting it.')
+        message.reply_text('You\'ve sent me this web page already and I\'m still converting it.')
     else:
-        update.message.reply_text('Converting your web page into a PDF file.')
+        message.reply_text('Converting your web page into a PDF file.')
         if URLS in user_data:
             user_data[URLS].add(url)
         else:
@@ -33,6 +34,6 @@ def url_to_pdf(update, context):
                 HTML(url=url).write_pdf(out_fn)
                 send_result_file(update, out_fn)
             except URLFetchingError:
-                update.message.reply_text('Unable to reach your web page.')
+                message.reply_text('Unable to reach your web page.')
 
         user_data[URLS].remove(url)

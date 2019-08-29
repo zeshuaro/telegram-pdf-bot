@@ -19,8 +19,8 @@ def ask_rotate_degree(update, _):
     """
     keyboard = [[ROTATE_90], [ROTATE_180], [ROTATE_270]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.message.reply_text('Select the degrees that you\'ll like to rotate your PDF file in clockwise.',
-                              reply_markup=reply_markup)
+    update.effective_message.reply_text('Select the degrees that you\'ll like to rotate your PDF file in clockwise.',
+                                        reply_markup=reply_markup)
 
     return WAIT_ROTATE_DEGREE
 
@@ -39,9 +39,9 @@ def rotate_pdf(update, context):
     if not check_user_data(update, PDF_INFO, context.user_data):
         return ConversationHandler.END
 
-    degree = int(update.message.text)
-    update.message.reply_text(f'Rotating your PDF file clockwise by {degree} degrees',
-                              reply_markup=ReplyKeyboardRemove())
+    degree = int(update.effective_message.text)
+    update.effective_message.reply_text(f'Rotating your PDF file clockwise by {degree} degrees',
+                                        reply_markup=ReplyKeyboardRemove())
     process_pdf(update, context, 'rotated', rotate_degree=degree)
 
     return ConversationHandler.END

@@ -21,7 +21,8 @@ def ask_decrypt_pw(update, _):
     Returns:
         The variable indicating to wait for the decryption password
     """
-    update.message.reply_text('Send me the password to decrypt your PDF file.', reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text('Send me the password to decrypt your PDF file.',
+                                        reply_markup=ReplyKeyboardRemove())
 
     return WAIT_DECRYPT_PW
 
@@ -41,7 +42,9 @@ def decrypt_pdf(update, context):
     if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
-    update.message.reply_text('Decrypting your PDF file')
+    message = update.effective_message
+    message.reply_text('Decrypting your PDF file')
+
     with tempfile.NamedTemporaryFile() as tf:
         # Download file
         file_id, file_name = user_data[PDF_INFO]
@@ -53,15 +56,15 @@ def decrypt_pdf(update, context):
             pdf_reader = PdfFileReader(open(tf.name, 'rb'))
         except PdfReadError:
             text = 'I couldn\'t open and read your PDF file as it looks invalid.'
-            update.message.reply_text(text)
+            message.reply_text(text)
 
         if pdf_reader is not None:
             if not pdf_reader.isEncrypted:
-                update.message.reply_text('Your PDF file is not encrypted.')
+                message.reply_text('Your PDF file is not encrypted.')
             else:
                 try:
-                    if pdf_reader.decrypt(update.message.text) == 0:
-                        update.message.reply_text('The decryption password is incorrect, try to send it again.')
+                    if pdf_reader.decrypt(message.text) == 0:
+                        message.reply_text('The decryption password is incorrect, try to send it again.')
 
                         return WAIT_DECRYPT_PW
 
@@ -71,7 +74,7 @@ def decrypt_pdf(update, context):
 
                     write_send_pdf(update, pdf_writer, file_name, 'decrypted')
                 except NotImplementedError:
-                    update.message.reply_text('Your PDF file is encrypted with a method that I cannot decrypt.')
+                    message.reply_text('Your PDF file is encrypted with a method that I cannot decrypt.')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -91,7 +94,8 @@ def ask_encrypt_pw(update, _):
     Returns:
         The variable indicating to wait for the encryption password
     """
-    update.message.reply_text('Send me the password to encrypt your PDF file.', reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text('Send me the password to encrypt your PDF file.',
+                                        reply_markup=ReplyKeyboardRemove())
 
     return WAIT_ENCRYPT_PW
 
@@ -110,7 +114,7 @@ def encrypt_pdf(update, context):
     if not check_user_data(update, PDF_INFO, context.user_data):
         return ConversationHandler.END
 
-    update.message.reply_text('Encrypting your PDF file')
-    process_pdf(update, context, 'encrypted', encrypt_pw=update.message.text)
+    update.effective_message.reply_text('Encrypting your PDF file')
+    process_pdf(update, context, 'encrypted', encrypt_pw=update.effective_message.text)
 
     return ConversationHandler.END
