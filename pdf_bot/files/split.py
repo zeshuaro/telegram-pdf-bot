@@ -48,7 +48,7 @@ def split_pdf(update, context):
 
     message = update.effective_message
     split_range = message.text
-    
+
     if not PageRange.valid(split_range):
         message.reply_text('The range is invalid. Try again.')
 

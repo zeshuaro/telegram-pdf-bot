@@ -47,7 +47,7 @@ def rename_pdf(update, context):
     message = update.effective_message
     text = re.sub(r'\.pdf$', '', message.text)
     invalid_chars = r'\/*?:\'<>|'
-    
+
     if set(text) & set(invalid_chars):
         message.reply_text(
             f'File names can\'t contain any of the following characters:\n{invalid_chars}\n'

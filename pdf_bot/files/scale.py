@@ -142,7 +142,7 @@ def pdf_scale_to(update, context):
 
     message = update.effective_message
     scale_y = message.text
-    
+
     try:
         scale_y = float(scale_y)
     except ValueError:

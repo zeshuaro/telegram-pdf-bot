@@ -21,7 +21,7 @@ def ask_decrypt_pw(update, _):
     Returns:
         The variable indicating to wait for the decryption password
     """
-    update.effective_message.reply_text('Send me the password to decrypt your PDF file.', 
+    update.effective_message.reply_text('Send me the password to decrypt your PDF file.',
                                         reply_markup=ReplyKeyboardRemove())
 
     return WAIT_DECRYPT_PW
@@ -44,7 +44,7 @@ def decrypt_pdf(update, context):
 
     message = update.effective_message
     message.reply_text('Decrypting your PDF file')
-    
+
     with tempfile.NamedTemporaryFile() as tf:
         # Download file
         file_id, file_name = user_data[PDF_INFO]

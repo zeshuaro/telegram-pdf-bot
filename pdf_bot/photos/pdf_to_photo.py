@@ -144,7 +144,7 @@ def get_pdf_photos(update, context):
     if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
-    update.effective_message.reply_text('Extracting all the photos in your PDF file', 
+    update.effective_message.reply_text('Extracting all the photos in your PDF file',
                                         reply_markup=ReplyKeyboardRemove())
     with tempfile.NamedTemporaryFile() as tf:
         file_id, file_name = user_data[PDF_INFO]
