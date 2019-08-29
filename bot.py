@@ -98,7 +98,7 @@ def start_msg(update, _):
     Returns:
         None
     """
-    update.message.reply_text(
+    update.effective_message.reply_text(
         'Welcome to PDF Bot!\n\n*Features*\n'
         '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n'
         '- Extract images in a PDF file and convert a PDF file into images\n'
@@ -124,7 +124,7 @@ def help_msg(update, _):
                  InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text(
+    update.effective_message.reply_text(
         'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n'
         'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.',
         reply_markup=reply_markup)
@@ -155,11 +155,10 @@ def send_msg(update, context):
     except Exception as e:
         log = Logger()
         log.error(e)
-        update.message.reply_text(DEV_TELE_ID, 'Failed to send message')
+        update.effective_message.reply_text(DEV_TELE_ID, 'Failed to send message')
 
 
 def error_callback(update, context):
-    print('error')
     log = Logger()
     log.error(f'Update "{update}" caused error "{context.error}"')
 

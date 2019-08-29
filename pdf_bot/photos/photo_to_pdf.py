@@ -54,7 +54,7 @@ def photo(update, context):
     if PHOTO_NAMES in user_data:
         del user_data[PHOTO_NAMES]
 
-    update.message.reply_text('Send me the first photo that you\'ll like to beautify or convert into PDF format '
+    update.effective_message.reply_text('Send me the first photo that you\'ll like to beautify or convert into PDF format '
                               'or /cancel this operation.\n\n'
                               'The photos will be beautified and converted in the order that you send me.')
 
@@ -74,15 +74,15 @@ def receive_photo(update, context):
         The variable indicating to wait for a file or the conversation has ended
     """
     # Check if the photo has been sent as a document or photo
-    if update.message.document:
-        photo_file = update.message.document
+    if update.effective_message.document:
+        photo_file = update.effective_message.document
         if not photo_file.mime_type.startswith('image'):
-            update.message.reply_text('The file you sent is not a photo. Send me the photo that you\'ll '
+            update.effective_message.reply_text('The file you sent is not a photo. Send me the photo that you\'ll '
                                       'like to beautify and convert.')
 
             return WAIT_PHOTO
     else:
-        photo_file = update.message.photo[-1]
+        photo_file = update.effective_message.photo[-1]
 
     user_data = context.user_data
     if photo_file.file_size > MAX_FILESIZE_DOWNLOAD:
@@ -92,13 +92,13 @@ def receive_photo(update, context):
         if PHOTO_NAMES in user_data and user_data[PHOTO_NAMES]:
             text += 'You can continue to beautify or convert with the files that you sent me, ' \
                     'or /cancel this operation.'
-            update.message.reply_text(text)
+            update.effective_message.reply_text(text)
             send_file_names(update, user_data[PHOTO_NAMES], 'photos')
 
             return WAIT_PHOTO
         else:
             text += 'I can\'t convert your photos. Operation cancelled.'
-            update.message.reply_text(text)
+            update.effective_message.reply_text(text)
 
             return ConversationHandler.END
 
@@ -119,7 +119,7 @@ def receive_photo(update, context):
     keyboard = [[BEAUTIFY, CONVERT], [CANCEL]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
 
-    update.message.reply_text('Send me the next photo that you\'ll like to beautify or convert. '
+    update.effective_message.reply_text('Send me the next photo that you\'ll like to beautify or convert. '
                               'Select the task from below if you have sent me all the photos.\n\n'
                               'Note that I only have access to the file name if you sent your photo as a document.',
                               reply_markup=reply_markup)
@@ -145,7 +145,7 @@ def process_all_photos(update, context):
     file_ids = user_data[PHOTO_IDS]
     file_names = user_data[PHOTO_NAMES]
 
-    if update.message.text == BEAUTIFY:
+    if update.effective_message.text == BEAUTIFY:
         process_photo(update, context, file_ids, is_beautify=True)
     else:
         process_photo(update, context, file_ids, is_beautify=False)
@@ -172,9 +172,9 @@ def process_photo(update, context, file_ids, is_beautify):
         None
     """
     if is_beautify:
-        update.message.reply_text('Beautifying and converting your photos', reply_markup=ReplyKeyboardRemove())
+        update.effective_message.reply_text('Beautifying and converting your photos', reply_markup=ReplyKeyboardRemove())
     else:
-        update.message.reply_text('Converting your photos', reply_markup=ReplyKeyboardRemove())
+        update.effective_message.reply_text('Converting your photos', reply_markup=ReplyKeyboardRemove())
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]

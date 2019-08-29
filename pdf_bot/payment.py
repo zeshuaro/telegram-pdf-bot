@@ -34,8 +34,8 @@ def payment_cov_handler():
 
 @run_async
 def custom_amount(update, _):
-    update.message.reply_text('Send me the amount that you\'ll like to support PDF Bot or /cancel this.',
-                              reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text('Send me the amount that you\'ll like to support PDF Bot or /cancel this.',
+                                        reply_markup=ReplyKeyboardRemove())
 
     return WAIT_PAYMENT
 
@@ -43,11 +43,11 @@ def custom_amount(update, _):
 @run_async
 def receive_custom_amount(update, context):
     try:
-        amount = round(float(update.message.text))
+        amount = round(float(update.effective_message.text))
         if amount <= 0:
             raise ValueError
     except ValueError:
-        update.message.reply_text('The amount you sent is invalid, try again.')
+        update.effective_message.reply_text('The amount you sent is invalid, try again.')
 
         return WAIT_PAYMENT
 
@@ -61,31 +61,29 @@ def send_payment_options(update, context, user_id=None):
     text = 'Select how you want to support PDF Bot'
 
     if user_id is None:
-        update.message.reply_text(text, reply_markup=reply_markup)
+        update.effective_message.reply_text(text, reply_markup=reply_markup)
     else:
         context.bot.send_message(user_id, text, reply_markup=reply_markup)
 
 
 @run_async
 def send_payment_invoice(update, context, amount=None):
-    chat_id = update.message.chat_id
+    message = update.effective_message
+    chat_id = message.chat_id
     title = "Support PDF Bot"
     description = "Say thanks to PDF Bot and help keep it running"
-    payload = PAYMENT_PAYLOAD
-    provider_token = STRIPE_TOKEN
-    start_parameter = PAYMENT_PARA
-    currency = PAYMENT_CURRENCY
 
     if amount is None:
-        label = update.message.text
-        price = PAYMENT_DICT[update.message.text]
+        label = message.text
+        price = PAYMENT_DICT[message.text]
     else:
         label = PAYMENT_CUSTOM
         price = amount
 
     prices = [LabeledPrice(re.sub(r'\s\(.*', '', label), price * 100)]
 
-    context.bot.send_invoice(chat_id, title, description, payload, provider_token, start_parameter, currency, prices)
+    context.bot.send_invoice(chat_id, title, description, PAYMENT_PAYLOAD, STRIPE_TOKEN, PAYMENT_PARA, PAYMENT_CURRENCY,
+                             prices)
 
 
 @run_async
@@ -98,4 +96,4 @@ def precheckout_check(update, _):
 
 
 def successful_payment(update, _):
-    update.message.reply_text('Thank you for your support!', reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text('Thank you for your support!', reply_markup=ReplyKeyboardRemove())

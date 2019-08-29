@@ -22,10 +22,11 @@ def ask_split_range(update, _):
     Returns:
         The variable indicating to wait for the split page range
     """
-    update.message.reply_text('Send me the range of pages that you\'ll like to keep. '
-                              'You can use ⚡ *INSTANT VIEW* from below or '
-                              'refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples.',
-                              parse_mode=ParseMode.MARKDOWN, reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(
+        'Send me the range of pages that you\'ll like to keep. '
+        'You can use ⚡ *INSTANT VIEW* from below or '
+        'refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples.',
+        parse_mode=ParseMode.MARKDOWN, reply_markup=ReplyKeyboardRemove())
 
     return WAIT_SPLIT_RANGE
 
@@ -45,13 +46,15 @@ def split_pdf(update, context):
     if PDF_INFO not in user_data:
         return ConversationHandler.END
 
-    split_range = update.message.text
+    message = update.effective_message
+    split_range = message.text
+    
     if not PageRange.valid(split_range):
-        update.message.reply_text('The range is invalid. Try again.')
+        message.reply_text('The range is invalid. Try again.')
 
         return WAIT_SPLIT_RANGE
 
-    update.message.reply_text('Splitting your PDF file')
+    message.reply_text('Splitting your PDF file')
 
     with tempfile.NamedTemporaryFile() as tf:
         # Download PDF file

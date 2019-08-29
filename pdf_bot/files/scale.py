@@ -20,14 +20,15 @@ def ask_scale_x(update, _):
     Returns:
         The variable indicating to wait for the horizontal scaling factor or the new width
     """
-    if update.message.text == SCALE_BY:
-        update.message.reply_text('Send me the scaling factor for the horizontal axis. '
-                                  'For example, 2 will double the horizontal axis and '
-                                  '0.5 will half the horizontal axis.', reply_markup=ReplyKeyboardRemove())
+    message = update.effective_message
+    if message.text == SCALE_BY:
+        message.reply_text('Send me the scaling factor for the horizontal axis. '
+                           'For example, 2 will double the horizontal axis and '
+                           '0.5 will half the horizontal axis.', reply_markup=ReplyKeyboardRemove())
 
         return WAIT_SCALE_BY_X
     else:
-        update.message.reply_text('Send me the new width.', reply_markup=ReplyKeyboardRemove())
+        message.reply_text('Send me the new width.', reply_markup=ReplyKeyboardRemove())
 
         return WAIT_SCALE_TO_X
 
@@ -43,17 +44,19 @@ def ask_scale_by_y(update, context):
     Returns:
         The variable indicating to wait for the horizontal or vertical scaling factor
     """
-    scale_x = update.message.text
+    message = update.effective_message
+    scale_x = message.text
+
     try:
         scale_x = float(scale_x)
     except ValueError:
-        update.message.reply_text(f'The scaling factor "{scale_x}" is invalid. Try again.')
+        message.reply_text(f'The scaling factor "{scale_x}" is invalid. Try again.')
 
         return WAIT_SCALE_BY_X
 
     context.user_data[SCALE_BY_KEY] = scale_x
-    update.message.reply_text('Send me the scaling factor for the vertical axis. '
-                              'For example, 2 will double the vertical axis and 0.5 will half the vertical axis.')
+    message.reply_text('Send me the scaling factor for the vertical axis. '
+                       'For example, 2 will double the vertical axis and 0.5 will half the vertical axis.')
 
     return WAIT_SCALE_BY_Y
 
@@ -73,16 +76,18 @@ def pdf_scale_by(update, context):
     if not check_user_data(update, PDF_INFO, user_data) or not check_user_data(update, SCALE_BY_KEY, user_data):
         return ConversationHandler.END
 
-    scale_y = update.message.text
+    message = update.effective_message
+    scale_y = message.text
+    
     try:
         scale_y = float(scale_y)
     except ValueError:
-        update.message.reply_text(f'The scaling factor "{scale_y}" is invalid. Try again.')
+        message.reply_text(f'The scaling factor "{scale_y}" is invalid. Try again.')
 
         return WAIT_SCALE_BY_Y
 
     scale_x = user_data[SCALE_BY_KEY]
-    update.message.reply_text(f'Scaling your PDF file, horizontally by {scale_x} and vertically by {scale_y}')
+    message.reply_text(f'Scaling your PDF file, horizontally by {scale_x} and vertically by {scale_y}')
     process_pdf(update, context, 'scaled', scale_by=(scale_x, scale_y))
 
     # Clean up memory
@@ -103,16 +108,18 @@ def ask_scale_to_y(update, context):
     Returns:
         The variable indicating to wait for the width or the height
     """
-    scale_x = update.message.text
+    message = update.effective_message
+    scale_x = message.text
+    
     try:
         scale_x = float(scale_x)
     except ValueError:
-        update.message.reply_text(f'The width "{scale_x}" is invalid. Try again.')
+        message.reply_text(f'The width "{scale_x}" is invalid. Try again.')
 
         return WAIT_SCALE_TO_X
 
     context.user_data[SCALE_TO_KEY] = scale_x
-    update.message.reply_text('Send me the new height.')
+    message.reply_text('Send me the new height.')
 
     return WAIT_SCALE_TO_Y
 
@@ -133,16 +140,18 @@ def pdf_scale_to(update, context):
     if not check_user_data(update, PDF_INFO, user_data) or not check_user_data(update, SCALE_TO_KEY, user_data):
         return ConversationHandler.END
 
-    scale_y = update.message.text
+    message = update.effective_message
+    scale_y = message.text
+    
     try:
         scale_y = float(scale_y)
     except ValueError:
-        update.message.reply_text(f'The height "{scale_y}" is invalid. Try again.')
+        message.reply_text(f'The height "{scale_y}" is invalid. Try again.')
 
         return WAIT_SCALE_TO_Y
 
     scale_x = user_data[SCALE_TO_KEY]
-    update.message.reply_text(f'Scaling your PDF file with width of {scale_x} and height of {scale_y}')
+    message.reply_text(f'Scaling your PDF file with width of {scale_x} and height of {scale_y}')
     process_pdf(update, context, 'scaled', scale_to=(scale_x, scale_y))
 
     # Clean up memory

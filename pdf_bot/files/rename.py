@@ -23,8 +23,8 @@ def ask_pdf_new_name(update, _):
     Returns:
         The variable indicating to wait for the file name
     """
-    update.message.reply_text('Send me the file name that you\'ll like to rename your PDF file into.',
-                              reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text('Send me the file name that you\'ll like to rename your PDF file into.',
+                                        reply_markup=ReplyKeyboardRemove())
 
     return WAIT_FILE_NAME
 
@@ -44,16 +44,19 @@ def rename_pdf(update, context):
     if not check_user_data(update, PDF_INFO, user_data):
         return ConversationHandler.END
 
-    text = re.sub(r'\.pdf$', '', update.message.text)
+    message = update.effective_message
+    text = re.sub(r'\.pdf$', '', message.text)
     invalid_chars = r'\/*?:\'<>|'
+    
     if set(text) & set(invalid_chars):
-        update.message.reply_text(f'File names can\'t contain any of the following characters:\n{invalid_chars}\n'
-                                  f'Send me another file name.')
+        message.reply_text(
+            f'File names can\'t contain any of the following characters:\n{invalid_chars}\n'
+            f'Send me another file name.')
 
         return WAIT_FILE_NAME
 
     new_fn = '{}.pdf'.format(text)
-    update.message.reply_text(f'Renaming your PDF file into *{new_fn}*', parse_mode=ParseMode.MARKDOWN)
+    message.reply_text(f'Renaming your PDF file into *{new_fn}*', parse_mode=ParseMode.MARKDOWN)
 
     # Download PDF file
     file_id, _ = user_data[PDF_INFO]

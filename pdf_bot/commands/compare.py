@@ -42,8 +42,9 @@ def compare(update, _):
     Returns:
         The variable indicating to wait for the file
     """
-    update.message.reply_text('Send me one of the PDF files that you\'ll like to compare or /cancel this operation.\n\n'
-                              'Note that I can only look for text differences.')
+    update.effective_message.reply_text(
+        'Send me one of the PDF files that you\'ll like to compare or /cancel this operation.\n\n'
+        'Note that I can only look for text differences.')
 
     return WAIT_COMPARE_FIRST
 
@@ -65,8 +66,8 @@ def receive_first_doc(update, context):
     elif result != PDF_OK:
         return ConversationHandler.END
 
-    context.user_data[COMPARE_ID] = update.message.document.file_id
-    update.message.reply_text('Send me the other PDF file that you\'ll like to compare.')
+    context.user_data[COMPARE_ID] = update.effective_message.document.file_id
+    update.effective_message.reply_text('Send me the other PDF file that you\'ll like to compare.')
 
     return WAIT_COMPARE_SECOND
 
@@ -108,13 +109,15 @@ def compare_pdf(update, context):
     if not check_user_data(update, COMPARE_ID, user_data):
         return ConversationHandler.END
 
-    update.message.reply_text('Comparing your PDF files')
+    message = update.effective_message
+    message.reply_text('Comparing your PDF files')
+
     with tempfile.NamedTemporaryFile() as tf1, tempfile.NamedTemporaryFile() as tf2:
         # Download PDF files
         first_file_id = user_data[COMPARE_ID]
         first_file = context.bot.get_file(first_file_id)
         first_file.download(custom_path=tf1.name)
-        second_file = context.bot.get_file(update.message.document.file_id)
+        second_file = context.bot.get_file(message.document.file_id)
         second_file.download(custom_path=tf2.name)
 
         try:
@@ -127,7 +130,7 @@ def compare_pdf(update, context):
                 # Send result file
                 send_result_file(update, out_fn)
         except NoDifferenceError:
-            update.message.reply_text('There are no differences between your PDF files.')
+            message.reply_text('There are no differences between your PDF files.')
 
     # Clean up memory and files
     if user_data[COMPARE_ID] == first_file_id:

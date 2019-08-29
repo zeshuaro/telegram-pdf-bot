@@ -37,8 +37,8 @@ def feedback(update, _):
     Returns:
         The variable indicating to wait for feedback
     """
-    update.message.reply_text("Send me your feedback or /cancel this operation. "
-                              "My developer can understand English and Chinese.")
+    update.effective_message.reply_text("Send me your feedback or /cancel this operation. "
+                                        "My developer can understand English and Chinese.")
 
     return 0
 
@@ -55,9 +55,10 @@ def receive_feedback(update, _):
     Returns:
         The variable indicating the conversation has ended
     """
-    tele_username = update.message.chat.username
-    tele_id = update.message.chat.id
-    feedback_msg = update.message.text
+    message = update.effective_message
+    tele_username = message.chat.username
+    tele_id = message.chat.id
+    feedback_msg = message.text
     feedback_lang = None
     b = TextBlob(feedback_msg)
 
@@ -67,7 +68,7 @@ def receive_feedback(update, _):
         pass
 
     if not feedback_lang or feedback_lang.lower() not in VALID_LANGS:
-        update.message.reply_text("The feedback is not in English or Chinese, try again.")
+        message.reply_text("The feedback is not in English or Chinese, try again.")
 
         return 0
 
@@ -85,6 +86,6 @@ def receive_feedback(update, _):
         log = Logger()
         log.notice(text)
 
-    update.message.reply_text("Thank you for your feedback, I've already forwarded it to my developer.")
+    message.reply_text("Thank you for your feedback, I've already forwarded it to my developer.")
 
     return ConversationHandler.END

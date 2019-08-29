@@ -40,7 +40,8 @@ def watermark(update, _):
     Returns:
         The variable indicating to wait for the source PDF file
     """
-    update.message.reply_text('Send me the PDF file that you\'ll like to add a watermark or /cancel this operation.')
+    update.effective_message.reply_text(
+        'Send me the PDF file that you\'ll like to add a watermark or /cancel this operation.')
 
     return WAIT_WATERMARK_SOURCE
 
@@ -62,8 +63,8 @@ def receive_source_doc(update, context):
     elif result != PDF_OK:
         return ConversationHandler.END
 
-    context.user_data[WATERMARK_ID] = update.message.document.file_id
-    update.message.reply_text('Send me the watermark PDF file.')
+    context.user_data[WATERMARK_ID] = update.effective_message.document.file_id
+    update.effective_message.reply_text('Send me the watermark PDF file.')
 
     return WAIT_WATERMARK
 
@@ -106,7 +107,7 @@ def add_pdf_watermark(update, context):
     if not check_user_data(update, WATERMARK_ID, user_data):
         return ConversationHandler.END
 
-    update.message.reply_text('Adding the watermark onto your PDF file')
+    update.effective_message.reply_text('Adding the watermark onto your PDF file')
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
@@ -116,7 +117,7 @@ def add_pdf_watermark(update, context):
     source_file_id = user_data[WATERMARK_ID]
     source_file = context.bot.get_file(source_file_id)
     source_file.download(custom_path=source_fn)
-    watermark_file = context.bot.get_file(update.message.document.file_id)
+    watermark_file = context.bot.get_file(update.effective_message.document.file_id)
     watermark_file.download(custom_path=watermark_fn)
 
     source_reader = open_pdf(source_fn, update, 'source')

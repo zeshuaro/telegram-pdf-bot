@@ -81,7 +81,7 @@ def check_doc(update, context):
     Returns:
         The variable indicating to wait for the next action or the conversation has ended
     """
-    doc = update.message.document
+    doc = update.effective_message.document
     mime_type = doc.mime_type
 
     if mime_type.startswith('image'):
@@ -89,8 +89,8 @@ def check_doc(update, context):
     elif not mime_type.endswith('pdf'):
         return ConversationHandler.END
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
-        update.message.reply_text('Your PDF file you sent is too large for me to download. '
-                                  'I can\'t perform any tasks on it.')
+        update.effective_message.reply_text('Your PDF file you sent is too large for me to download. '
+                                            'I can\'t perform any tasks on it.')
 
         return ConversationHandler.END
 
@@ -114,7 +114,7 @@ def send_doc_tasks(update, _):
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append([CANCEL])
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
+    update.effective_message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
 
     return WAIT_TASK
 
@@ -131,19 +131,19 @@ def check_photo(update, context, photo_file=None):
     Returns:
         The variable indicating to wait for the next action or the conversation has ended
     """
+    message = update.effective_message
     if photo_file is None:
-        photo_file = update.message.photo[-1]
+        photo_file = message.photo[-1]
 
     if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
-        update.message.reply_text('Your photo is too large for me to download. '
-                                  'I can\'t beautify or convert your photo.')
+        message.reply_text('Your photo is too large for me to download. I can\'t beautify or convert your photo.')
 
         return ConversationHandler.END
 
     context.user_data[PHOTO_ID] = photo_file.file_id
     keyboard = [[BEAUTIFY, CONVERT], [CANCEL]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
+    message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
 
     return WAIT_TASK
 
@@ -164,7 +164,7 @@ def receive_photo_task(update, context):
         return ConversationHandler.END
 
     file_id = user_data[PHOTO_ID]
-    if update.message.text == BEAUTIFY:
+    if update.effective_message.text == BEAUTIFY:
         process_photo(update, context, [file_id], is_beautify=True)
     else:
         process_photo(update, context, [file_id], is_beautify=False)
