@@ -7,7 +7,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_MERGE, PDF_INVALID_FORMAT, PDF_TOO_LARGE, CANCEL, DONE
-from pdf_bot.utils import check_pdf, cancel, write_send_pdf, send_file_names, check_user_data
+from pdf_bot.utils import check_pdf, cancel, write_send_pdf, send_file_names, check_user_data, get_lang
 
 MERGE_IDS = 'merge_ids'
 MERGE_NAMES = 'merge_names'
@@ -52,9 +52,10 @@ def merge(update, context):
     if MERGE_NAMES in user_data:
         del user_data[MERGE_NAMES]
 
-    update.effective_message.reply_text(
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_(
         'Send me the PDF file that you\'ll like to merge or /cancel this operation.\n\n'
-        'The files will be merged in the order that you send me.')
+        'The files will be merged in the order that you send me.'))
 
     return WAIT_MERGE
 
@@ -74,24 +75,25 @@ def receive_doc(update, context):
     result = check_pdf(update, send_msg=False)
     message = update.effective_message
 
+    _ = get_lang(update, context)
     if result == PDF_INVALID_FORMAT:
-        message.reply_text(
+        message.reply_text(_(
             'The file you sent is not a PDF file. '
-            'Send me the PDF file that you\'ll like to merge or /cancel this operation.')
+            'Send me the PDF file that you\'ll like to merge or /cancel this operation.'))
 
         return WAIT_MERGE
     elif result == PDF_TOO_LARGE:
-        text = 'The PDF file you sent is too large for me to download.\n\n'
+        text = _('The PDF file you sent is too large for me to download.\n\n')
 
         # Check if user has already sent through some PDF files
         if MERGE_NAMES in user_data and user_data[MERGE_NAMES]:
-            text += 'You can continue merging with the files that you sent me or /cancel this operation.'
+            text += _('You can continue merging with the files that you sent me or /cancel this operation.')
             message.reply_text(text)
-            send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
+            send_file_names(update, user_data[MERGE_NAMES], _('PDF files'))
 
             return WAIT_MERGE
         else:
-            text += 'I can\'t merge your PDF files.'
+            text += _('I can\'t merge your PDF files.')
             message.reply_text(text)
 
             return ConversationHandler.END
@@ -108,10 +110,10 @@ def receive_doc(update, context):
         user_data[MERGE_NAMES] = [file_name]
 
     reply_markup = ReplyKeyboardMarkup([[DONE], [CANCEL]], resize_keyboard=True, one_time_keyboard=True)
-    message.reply_text(
+    message.reply_text(_(
         'Send me the next PDF file that you\'ll like to merge or press Done if you have '
-        'sent me all the PDF files.', reply_markup=reply_markup)
-    send_file_names(update, user_data[MERGE_NAMES], 'PDF files')
+        'sent me all the PDF files.'), reply_markup=reply_markup)
+    send_file_names(update, user_data[MERGE_NAMES], _('PDF files'))
 
     return WAIT_MERGE
 
@@ -130,7 +132,8 @@ def merge_pdf(update, context):
     if not check_user_data(update, MERGE_IDS, user_data):
         return ConversationHandler.END
 
-    update.effective_message.reply_text('Merging your PDF files', reply_markup=ReplyKeyboardRemove())
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_('Merging your PDF files'), reply_markup=ReplyKeyboardRemove())
     file_ids = user_data[MERGE_IDS]
     file_names = user_data[MERGE_NAMES]
 
@@ -147,9 +150,9 @@ def merge_pdf(update, context):
         try:
             merger.append(open(file_name, 'rb'))
         except PdfReadError:
-            update.effective_message.reply_text(
-                f'I can\'t merge your PDF files as I couldn\'t open and read "{file_names[i]}". '
-                f'Ensure that it is not encrypted.')
+            update.effective_message.reply_text(_(
+                'I can\'t merge your PDF files as I couldn\'t open and read "{}". '
+                'Ensure that it is not encrypted.').format(file_names[i]))
 
             return ConversationHandler.END
 

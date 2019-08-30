@@ -5,7 +5,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_WATERMARK_SOURCE, WAIT_WATERMARK, PDF_INVALID_FORMAT, PDF_OK, CANCEL
-from pdf_bot.utils import cancel, check_pdf, open_pdf, write_send_pdf, check_user_data
+from pdf_bot.utils import cancel, check_pdf, open_pdf, write_send_pdf, check_user_data, get_lang
 
 WATERMARK_ID = 'watermark_id'
 
@@ -40,8 +40,9 @@ def watermark(update, context):
     Returns:
         The variable indicating to wait for the source PDF file
     """
-    update.effective_message.reply_text(
-        'Send me the PDF file that you\'ll like to add a watermark or /cancel this operation.')
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_(
+        'Send me the PDF file that you\'ll like to add a watermark or /cancel this operation.'))
 
     return WAIT_WATERMARK_SOURCE
 
@@ -63,8 +64,9 @@ def receive_source_doc(update, context):
     elif result != PDF_OK:
         return ConversationHandler.END
 
+    _ = get_lang(update, context)
     context.user_data[WATERMARK_ID] = update.effective_message.document.file_id
-    update.effective_message.reply_text('Send me the watermark PDF file.')
+    update.effective_message.reply_text(_('Send me the watermark PDF file.'))
 
     return WAIT_WATERMARK
 
@@ -107,7 +109,8 @@ def add_pdf_watermark(update, context):
     if not check_user_data(update, WATERMARK_ID, user_data):
         return ConversationHandler.END
 
-    update.effective_message.reply_text('Adding the watermark onto your PDF file')
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_('Adding the watermark onto your PDF file'))
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
