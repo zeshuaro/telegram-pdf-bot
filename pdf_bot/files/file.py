@@ -4,7 +4,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import *
-from pdf_bot.utils import cancel, check_user_data
+from pdf_bot.utils import cancel, check_user_data, get_lang
 from pdf_bot.files.crop import ask_crop_type, ask_crop_value, receive_crop_percent, receive_crop_size
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
@@ -89,8 +89,9 @@ def check_doc(update, context):
     elif not mime_type.endswith('pdf'):
         return ConversationHandler.END
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
-        update.effective_message.reply_text('Your PDF file you sent is too large for me to download. '
-                                            'I can\'t perform any tasks on it.')
+        _ = get_lang(update, context)
+        update.effective_message.reply_text(_(
+            'Your PDF file you sent is too large for me to download. I can\'t perform any tasks on it.'))
 
         return ConversationHandler.END
 
@@ -109,12 +110,13 @@ def send_doc_tasks(update, context):
     Returns:
         The variable indicating to wait for the next aciton
     """
+    _ = get_lang(update, context)
     keywords = sorted([DECRYPT, ENCRYPT, ROTATE, SCALE_BY, SCALE_TO, SPLIT, PREVIEW, TO_IMG, EXTRACT_IMG, RENAME, CROP])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append([CANCEL])
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
+    update.effective_message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
 
     return WAIT_TASK
 
@@ -131,19 +133,21 @@ def check_photo(update, context, photo_file=None):
     Returns:
         The variable indicating to wait for the next action or the conversation has ended
     """
+    _ = get_lang(update, context)
     message = update.effective_message
+
     if photo_file is None:
         photo_file = message.photo[-1]
 
     if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
-        message.reply_text('Your photo is too large for me to download. I can\'t beautify or convert your photo.')
+        message.reply_text(_('Your photo is too large for me to download. I can\'t beautify or convert your photo.'))
 
         return ConversationHandler.END
 
     context.user_data[PHOTO_ID] = photo_file.file_id
     keyboard = [[BEAUTIFY, CONVERT], [CANCEL]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    message.reply_text('Select the task that you\'ll like to perform.', reply_markup=reply_markup)
+    message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
 
     return WAIT_TASK
 
