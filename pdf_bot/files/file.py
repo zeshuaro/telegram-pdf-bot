@@ -99,12 +99,12 @@ def check_doc(update, context):
     return send_doc_tasks(update, context)
 
 
-def send_doc_tasks(update, _):
+def send_doc_tasks(update, context):
     """
     Send the message of tasks that can be performed on the PDF file
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the next aciton

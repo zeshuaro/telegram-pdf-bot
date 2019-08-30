@@ -30,12 +30,12 @@ def watermark_cov_handler():
 
 
 @run_async
-def watermark(update, _):
+def watermark(update, context):
     """
     Start the watermark conversation
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the source PDF file

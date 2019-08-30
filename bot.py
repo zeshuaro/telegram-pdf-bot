@@ -88,12 +88,12 @@ def main():
 
 
 # @run_async
-def start_msg(update, _):
+def start_msg(update, context):
     """
     Send start message
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         None
@@ -110,12 +110,12 @@ def start_msg(update, _):
 
 
 @run_async
-def help_msg(update, _):
+def help_msg(update, context):
     """
     Send help message
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         None

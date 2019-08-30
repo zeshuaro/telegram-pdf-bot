@@ -11,12 +11,12 @@ from pdf_bot.utils import write_send_pdf, process_pdf, check_user_data
 
 
 @run_async
-def ask_decrypt_pw(update, _):
+def ask_decrypt_pw(update, context):
     """
     Ask and wait for the decryption password
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the decryption password
@@ -84,12 +84,12 @@ def decrypt_pdf(update, context):
 
 
 @run_async
-def ask_encrypt_pw(update, _):
+def ask_encrypt_pw(update, context):
     """
     Ask and wait for the encryption password
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the encryption password

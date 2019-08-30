@@ -15,7 +15,7 @@ from pdf_bot.stats import update_stats
 
 
 @run_async
-def cancel(update, _):
+def cancel(update, context):
     """
     Cancel operation for conversation fallback
     Args:

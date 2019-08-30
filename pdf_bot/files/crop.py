@@ -16,12 +16,12 @@ MAX_PERCENT = 100
 
 
 @run_async
-def ask_crop_type(update, _):
+def ask_crop_type(update, context):
     """
     Ask and wait for the crop type
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the crop type
@@ -34,7 +34,7 @@ def ask_crop_type(update, _):
 
 
 @run_async
-def ask_crop_value(update, _):
+def ask_crop_value(update, context):
     message = update.effective_message
     if message.text == CROP_PERCENT:
         message.reply_text(f'Send me a number between {MIN_PERCENT} and {MAX_PERCENT}. '

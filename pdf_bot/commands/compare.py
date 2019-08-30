@@ -32,12 +32,12 @@ def compare_cov_handler():
 
 
 @run_async
-def compare(update, _):
+def compare(update, context):
     """
     Start the compare conversation
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the file

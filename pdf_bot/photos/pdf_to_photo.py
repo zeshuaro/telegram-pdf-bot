@@ -66,12 +66,12 @@ def get_pdf_preview(update, context):
 
 
 @run_async
-def ask_photo_results_type(update, _):
+def ask_photo_results_type(update, context):
     """
     Ask for the photo results file type
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the file type

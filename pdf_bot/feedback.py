@@ -27,12 +27,12 @@ def feedback_cov_handler():
 
 
 @run_async
-def feedback(update, _):
+def feedback(update, context):
     """
     Start the feedback conversation
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for feedback
@@ -45,12 +45,12 @@ def feedback(update, _):
 
 # Saves a feedback
 @run_async
-def receive_feedback(update, _):
+def receive_feedback(update, context):
     """
     Log the feedback on Slack
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating the conversation has ended

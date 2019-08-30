@@ -7,12 +7,12 @@ from pdf_bot.utils import process_pdf, check_user_data
 
 
 @run_async
-def ask_rotate_degree(update, _):
+def ask_rotate_degree(update, context):
     """
     Ask and wait for the rotation degree
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the rotation degree

@@ -13,12 +13,12 @@ from pdf_bot.utils import send_result_file, check_user_data
 
 
 @run_async
-def ask_pdf_new_name(update, _):
+def ask_pdf_new_name(update, context):
     """
     Ask and wait for the new file name
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the file name

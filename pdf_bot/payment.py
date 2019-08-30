@@ -33,7 +33,7 @@ def payment_cov_handler():
 
 
 @run_async
-def custom_amount(update, _):
+def custom_amount(update, context):
     update.effective_message.reply_text('Send me the amount that you\'ll like to support PDF Bot or /cancel this.',
                                         reply_markup=ReplyKeyboardRemove())
 
@@ -87,7 +87,7 @@ def send_payment_invoice(update, context, amount=None):
 
 
 @run_async
-def precheckout_check(update, _):
+def precheckout_check(update, context):
     query = update.pre_checkout_query
     if query.invoice_payload != PAYMENT_PAYLOAD:
         query.answer(ok=False, error_message="Something went wrong")
@@ -95,5 +95,5 @@ def precheckout_check(update, _):
         query.answer(ok=True)
 
 
-def successful_payment(update, _):
+def successful_payment(update, context):
     update.effective_message.reply_text('Thank you for your support!', reply_markup=ReplyKeyboardRemove())

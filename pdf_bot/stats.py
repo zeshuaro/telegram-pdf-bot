@@ -32,7 +32,7 @@ def update_stats(update, add_count=True):
         client.put(user)
 
 
-def get_stats(update, _):
+def get_stats(update, context):
     query = client.query(kind=USER)
     num_users = num_tasks = 0
 

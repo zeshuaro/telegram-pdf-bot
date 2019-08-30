@@ -12,12 +12,12 @@ from pdf_bot.utils import open_pdf, write_send_pdf
 
 
 @run_async
-def ask_split_range(update, _):
+def ask_split_range(update, context):
     """
     Ask and wait for the split page range
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the split page range
