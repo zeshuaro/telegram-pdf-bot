@@ -19,7 +19,7 @@ def url_to_pdf(update, context):
     url = message.text
     user_data = context.user_data
 
-    if URLS in user_data and url in user_data[URLS]:
+    if user_data is not None and URLS in user_data and url in user_data[URLS]:
         message.reply_text('You\'ve sent me this web page already and I\'m still converting it.')
     else:
         message.reply_text('Converting your web page into a PDF file.')
