@@ -13,7 +13,7 @@ from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import *
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
-from pdf_bot.stats import update_stats
+from pdf_bot.store import update_stats
 
 
 @run_async

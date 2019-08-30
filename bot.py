@@ -69,7 +69,7 @@ def main():
     # Feedback handler
     dispatcher.add_handler(feedback_cov_handler())
 
-    # log all errors
+    # Log all errors
     dispatcher.add_error_handler(error_callback)
 
     # Start the Bot
@@ -87,46 +87,31 @@ def main():
     updater.idle()
 
 
-# @run_async
+@run_async
 def start_msg(update, context):
-    """
-    Send start message
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        None
-    """
-    update.effective_message.reply_text(
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_(
         'Welcome to PDF Bot!\n\n*Features*\n'
         '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n'
         '- Extract images in a PDF file and convert a PDF file into images\n'
         '- Beautify and convert photos into PDF format\n'
         '- Convert a web page into a PDF file\n\n'
-        'Type /help to see how to use PDF Bot.', parse_mode=ParseMode.MARKDOWN)
+        'Type /help to see how to use PDF Bot.'), parse_mode=ParseMode.MARKDOWN)
 
-    update_stats(update, add_count=False)
+    # Create the user entity in Datastore
+    create_user(update.effective_message.from_user.id)
 
 
 @run_async
 def help_msg(update, context):
-    """
-    Send help message
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        None
-    """
-    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
-                 InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]
+    _ = get_lang(update, context)
+    keyboard = [[InlineKeyboardButton(_('Join Channel'), f'https://t.me/{CHANNEL_NAME}'),
+                 InlineKeyboardButton(_('Support PDF Bot'), callback_data=PAYMENT)]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.effective_message.reply_text(
+    update.effective_message.reply_text(_(
         'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n'
-        'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.',
+        'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.'),
         reply_markup=reply_markup)
 
 
@@ -138,15 +123,6 @@ def process_callback_query(update, context):
 
 
 def send_msg(update, context):
-    """
-    Send a message to a user
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        None
-    """
     tele_id = int(context.args[0])
     message = ' '.join(context.args[1:])
 

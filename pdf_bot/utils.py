@@ -1,3 +1,4 @@
+import gettext
 import os
 import secrets
 import tempfile
@@ -10,21 +11,12 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT
-from pdf_bot.stats import update_stats
+from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT, LANGUAGE, USER
+from pdf_bot.store import update_stats, client
 
 
 @run_async
 def cancel(update, context):
-    """
-    Cancel operation for conversation fallback
-    Args:
-        update: the update object
-        _:
-
-    Returns:
-        The variable indicating the conversation has ended
-    """
     update.effective_message.reply_text('Operation cancelled.', reply_markup=ReplyKeyboardRemove())
 
     return ConversationHandler.END
@@ -246,3 +238,21 @@ def get_support_markup():
         reply_markup = None
 
     return reply_markup
+
+
+def get_lang(update, context):
+    if LANGUAGE in context.user_data:
+        lang = context.user_data[LANGUAGE]
+    else:
+        user_key = client.key(USER, update.effective_message.from_user.id)
+        user = client.get(key=user_key)
+
+        if user is None or LANGUAGE not in user:
+            lang = 'en'
+        else:
+            lang = user[LANGUAGE]
+            context.user_data[LANGUAGE] = lang
+
+    t = gettext.translation('text', localedir='locale', languages=[lang])
+
+    return t.gettext

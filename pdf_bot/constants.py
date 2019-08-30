@@ -81,6 +81,7 @@ PAYMENT_CUSTOM = 'Say Awesome 🤩 (Custom)'
 PAYMENT_DICT = {PAYMENT_THANKS: 1, PAYMENT_COFFEE: 3, PAYMENT_BEER: 5, PAYMENT_MEAL: 10}
 WAIT_PAYMENT = 0
 
-# GCP constants
+# Datastore constants
 USER = 'User'
 COUNT = 'count'
+LANGUAGE = 'language'
