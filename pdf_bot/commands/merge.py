@@ -72,7 +72,7 @@ def receive_doc(update, context):
         The variable indicating to wait for a file or the conversation has ended
     """
     user_data = context.user_data
-    result = check_pdf(update, send_msg=False)
+    result = check_pdf(update, context, send_msg=False)
     message = update.effective_message
 
     _ = get_lang(update, context)
@@ -89,7 +89,7 @@ def receive_doc(update, context):
         if MERGE_NAMES in user_data and user_data[MERGE_NAMES]:
             text += _('You can continue merging with the files that you sent me or /cancel this operation.')
             message.reply_text(text)
-            send_file_names(update, user_data[MERGE_NAMES], _('PDF files'))
+            send_file_names(update, context, user_data[MERGE_NAMES], _('PDF files'))
 
             return WAIT_MERGE
         else:
@@ -113,7 +113,7 @@ def receive_doc(update, context):
     message.reply_text(_(
         'Send me the next PDF file that you\'ll like to merge or press Done if you have '
         'sent me all the PDF files.'), reply_markup=reply_markup)
-    send_file_names(update, user_data[MERGE_NAMES], _('PDF files'))
+    send_file_names(update, context, user_data[MERGE_NAMES], _('PDF files'))
 
     return WAIT_MERGE
 
@@ -129,7 +129,7 @@ def merge_pdf(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if not check_user_data(update, MERGE_IDS, user_data):
+    if not check_user_data(update, context, MERGE_IDS):
         return ConversationHandler.END
 
     _ = get_lang(update, context)
@@ -157,7 +157,7 @@ def merge_pdf(update, context):
             return ConversationHandler.END
 
     # Send result file
-    write_send_pdf(update, merger, 'files.pdf', 'merged')
+    write_send_pdf(update, context, merger, 'files.pdf', 'merged')
 
     # Clean up memory and files
     if user_data[MERGE_IDS] == file_ids:

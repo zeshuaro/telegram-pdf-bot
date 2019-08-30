@@ -61,7 +61,7 @@ def receive_first_doc(update, context):
     Returns:
         The variable indicating to wait for the file or the conversation has ended
     """
-    result = check_pdf(update)
+    result = check_pdf(update, context)
     if result == PDF_INVALID_FORMAT:
         return WAIT_COMPARE_FIRST
     elif result != PDF_OK:
@@ -85,10 +85,10 @@ def receive_second_doc(update, context):
     Returns:
         The variable indicating to wait for the file or the conversation has ended
     """
-    if not check_user_data(update, COMPARE_ID, context.user_data):
+    if not check_user_data(update, context, COMPARE_ID):
         return ConversationHandler.END
 
-    result = check_pdf(update)
+    result = check_pdf(update, context)
     if result == PDF_INVALID_FORMAT:
         return WAIT_COMPARE_SECOND
     elif result != PDF_OK:
@@ -108,7 +108,7 @@ def compare_pdf(update, context):
         The variable indicating the conversation has ended
     """
     user_data = context.user_data
-    if not check_user_data(update, COMPARE_ID, user_data):
+    if not check_user_data(update, context, COMPARE_ID):
         return ConversationHandler.END
 
     _ = get_lang(update, context)
@@ -131,7 +131,7 @@ def compare_pdf(update, context):
                 pdf_diff.main(files=[tf1.name, tf2.name], out_file=out_fn)
 
                 # Send result file
-                send_result_file(update, out_fn)
+                send_result_file(update, context, out_fn)
         except NoDifferenceError:
             message.reply_text(_('There are no differences between your PDF files.'))
 

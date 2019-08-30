@@ -159,11 +159,12 @@ def receive_photo_task(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    user_data = context.user_data
-    if not check_user_data(update, PHOTO_ID, user_data):
+    if not check_user_data(update, context, PHOTO_ID):
         return ConversationHandler.END
 
+    user_data = context.user_data
     file_id = user_data[PHOTO_ID]
+
     if update.effective_message.text == BEAUTIFY:
         process_photo(update, context, [file_id], is_beautify=True)
     else:

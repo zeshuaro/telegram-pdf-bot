@@ -111,7 +111,7 @@ def crop_pdf(update, context, percent=None, offset=None):
                 log.error(f'Stdout:\n{out.decode("utf-8")}\n\nStderr:\n{err.decode("utf-8")}')
                 update.effective_message.reply_text('Something went wrong, try again.')
             else:
-                send_result_file(update, out_fn)
+                send_result_file(update, context, out_fn)
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:

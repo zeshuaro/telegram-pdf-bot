@@ -36,7 +36,7 @@ def rotate_pdf(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    if not check_user_data(update, PDF_INFO, context.user_data):
+    if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
     degree = int(update.effective_message.text)

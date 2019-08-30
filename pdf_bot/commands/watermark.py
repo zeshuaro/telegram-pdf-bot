@@ -58,7 +58,7 @@ def receive_source_doc(update, context):
     Returns:
         The variable indicating to wait for the watermark file or the conversation has ended
     """
-    result = check_pdf(update)
+    result = check_pdf(update, context)
     if result == PDF_INVALID_FORMAT:
         return WAIT_WATERMARK_SOURCE
     elif result != PDF_OK:
@@ -83,10 +83,10 @@ def receive_watermark_doc(update, context):
     Returns:
         The variable indicating to wait for the watermark file or the conversation has ended
     """
-    if not check_user_data(update, WATERMARK_ID, context.user_data):
+    if not check_user_data(update, context, WATERMARK_ID):
         return ConversationHandler.END
 
-    result = check_pdf(update)
+    result = check_pdf(update, context)
     if result == PDF_INVALID_FORMAT:
         return WAIT_WATERMARK
     elif result != PDF_OK:
@@ -106,7 +106,7 @@ def add_pdf_watermark(update, context):
         None
     """
     user_data = context.user_data
-    if not check_user_data(update, WATERMARK_ID, user_data):
+    if not check_user_data(update, context, WATERMARK_ID):
         return ConversationHandler.END
 
     _ = get_lang(update, context)
@@ -123,9 +123,9 @@ def add_pdf_watermark(update, context):
     watermark_file = context.bot.get_file(update.effective_message.document.file_id)
     watermark_file.download(custom_path=watermark_fn)
 
-    source_reader = open_pdf(source_fn, update, 'source')
+    source_reader = open_pdf(update, context, source_fn, 'source')
     if source_reader is not None:
-        watermark_reader = open_pdf(watermark_fn, update, 'watermark')
+        watermark_reader = open_pdf(update, context, watermark_fn, 'watermark')
         if watermark_reader is not None:
             # Add watermark
             pdf_writer = PdfFileWriter()
@@ -134,7 +134,7 @@ def add_pdf_watermark(update, context):
                 pdf_writer.addPage(page)
 
             # Send result file
-            write_send_pdf(update, pdf_writer, 'file.pdf', 'watermarked')
+            write_send_pdf(update, context, pdf_writer, 'file.pdf', 'watermarked')
 
     # Clean up memory and files
     if user_data[WATERMARK_ID] == source_file_id:

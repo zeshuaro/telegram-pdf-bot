@@ -72,8 +72,7 @@ def pdf_scale_by(update, context):
     Returns:
         The variable indicating to wait for the vertical scaling factor or the conversation has ended
     """
-    user_data = context.user_data
-    if not check_user_data(update, PDF_INFO, user_data) or not check_user_data(update, SCALE_BY_KEY, user_data):
+    if not check_user_data(update, context, PDF_INFO) or not check_user_data(update, context, SCALE_BY_KEY):
         return ConversationHandler.END
 
     message = update.effective_message
@@ -86,6 +85,7 @@ def pdf_scale_by(update, context):
 
         return WAIT_SCALE_BY_Y
 
+    user_data = context.user_data
     scale_x = user_data[SCALE_BY_KEY]
     message.reply_text(f'Scaling your PDF file, horizontally by {scale_x} and vertically by {scale_y}')
     process_pdf(update, context, 'scaled', scale_by=(scale_x, scale_y))
@@ -137,7 +137,7 @@ def pdf_scale_to(update, context):
         The variable indicating to wait for the height or the conversation has ended
     """
     user_data = context.user_data
-    if not check_user_data(update, PDF_INFO, user_data) or not check_user_data(update, SCALE_TO_KEY, user_data):
+    if not check_user_data(update, context, PDF_INFO) or not check_user_data(update, context, SCALE_TO_KEY):
         return ConversationHandler.END
 
     message = update.effective_message

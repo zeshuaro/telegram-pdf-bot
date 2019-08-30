@@ -40,8 +40,7 @@ def rename_pdf(update, context):
     Returns:
         The variable indicating to wait for the file name or the conversation has ended
     """
-    user_data = context.user_data
-    if not check_user_data(update, PDF_INFO, user_data):
+    if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
     message = update.effective_message
@@ -59,6 +58,7 @@ def rename_pdf(update, context):
     message.reply_text(f'Renaming your PDF file into *{new_fn}*', parse_mode=ParseMode.MARKDOWN)
 
     # Download PDF file
+    user_data = context.user_data
     file_id, _ = user_data[PDF_INFO]
     tf = tempfile.NamedTemporaryFile()
     pdf_file = context.bot.get_file(file_id)
@@ -67,7 +67,7 @@ def rename_pdf(update, context):
     with tempfile.TemporaryDirectory() as dir_name:
         out_fn = os.path.join(dir_name, new_fn)
         shutil.move(tf.name, out_fn)
-        send_result_file(update, out_fn)
+        send_result_file(update, context, out_fn)
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:

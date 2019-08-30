@@ -38,8 +38,7 @@ def decrypt_pdf(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    user_data = context.user_data
-    if not check_user_data(update, PDF_INFO, user_data):
+    if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
     message = update.effective_message
@@ -47,6 +46,7 @@ def decrypt_pdf(update, context):
 
     with tempfile.NamedTemporaryFile() as tf:
         # Download file
+        user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
         pdf_file = context.bot.get_file(file_id)
         pdf_file.download(custom_path=tf.name)
@@ -72,7 +72,7 @@ def decrypt_pdf(update, context):
                     for page in pdf_reader.pages:
                         pdf_writer.addPage(page)
 
-                    write_send_pdf(update, pdf_writer, file_name, 'decrypted')
+                    write_send_pdf(update, context, pdf_writer, file_name, 'decrypted')
                 except NotImplementedError:
                     message.reply_text('Your PDF file is encrypted with a method that I cannot decrypt.')
 
@@ -111,7 +111,7 @@ def encrypt_pdf(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    if not check_user_data(update, PDF_INFO, context.user_data):
+    if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
     update.effective_message.reply_text('Encrypting your PDF file')

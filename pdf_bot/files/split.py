@@ -61,12 +61,12 @@ def split_pdf(update, context):
         file_id, file_name = user_data[PDF_INFO]
         pdf_file = context.bot.get_file(file_id)
         pdf_file.download(custom_path=tf.name)
-        pdf_reader = open_pdf(tf.name, update)
+        pdf_reader = open_pdf(update, context, tf.name)
 
         if pdf_reader is not None:
             merger = PdfFileMerger()
             merger.append(pdf_reader, pages=PageRange(split_range))
-            write_send_pdf(update, merger, file_name, 'split')
+            write_send_pdf(update, context, merger, file_name, 'split')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
