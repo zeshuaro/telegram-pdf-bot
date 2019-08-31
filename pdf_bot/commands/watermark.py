@@ -4,9 +4,11 @@ from PyPDF2 import PdfFileWriter
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_WATERMARK_SOURCE, WAIT_WATERMARK, PDF_INVALID_FORMAT, PDF_OK, CANCEL
+from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL
 from pdf_bot.utils import cancel, check_pdf, open_pdf, write_send_pdf, check_user_data, get_lang
 
+WAIT_WATERMARK_SOURCE = 0
+WAIT_WATERMARK = 1
 WATERMARK_ID = 'watermark_id'
 
 

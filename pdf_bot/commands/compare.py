@@ -6,9 +6,11 @@ from pdf_diff import NoDifferenceError
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_COMPARE_FIRST, WAIT_COMPARE_SECOND, PDF_INVALID_FORMAT, PDF_OK, CANCEL
+from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL
 from pdf_bot.utils import check_pdf, cancel, send_result_file, check_user_data, get_lang
 
+WAIT_COMPARE_FIRST = 0
+WAIT_COMPARE_SECOND = 1
 COMPARE_ID = 'compare_id'
 
 

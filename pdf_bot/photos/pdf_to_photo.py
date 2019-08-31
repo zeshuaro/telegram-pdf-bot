@@ -15,6 +15,8 @@ from pdf_bot.constants import *
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup, get_lang
 from pdf_bot.store import update_stats
 
+MAX_MEDIA_GROUP = 10
+
 
 @run_async
 def get_pdf_preview(update, context):

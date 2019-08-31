@@ -1,21 +1,12 @@
 # Bot constants
-BOT_NAME = 'pdf2bot'
 CHANNEL_NAME = 'pdf2botdev'
-TIMEOUT = 20
-MAX_MEDIA_GROUP = 10
 
-# Compare constants
-WAIT_COMPARE_FIRST = 0
-WAIT_COMPARE_SECOND = 1
+# PDF file validation constants
+PDF_OK = 0
+PDF_INVALID_FORMAT = 1
+PDF_TOO_LARGE = 2
 
-# Merge constants
-WAIT_MERGE = 0
-
-# Watermark constants
-WAIT_WATERMARK_SOURCE = 0
-WAIT_WATERMARK = 1
-
-# File constants
+# PDF file constants
 WAIT_TASK = 0
 WAIT_DECRYPT_PW = 1
 WAIT_ENCRYPT_PW = 2
@@ -32,15 +23,7 @@ WAIT_CROP_OFFSET = 12
 WAIT_EXTRACT_PHOTO_TYPE = 13
 WAIT_TO_PHOTO_TYPE = 14
 
-# Photo constants
-WAIT_PHOTO = 0
-
-# PDF file validation constants
-PDF_OK = 0
-PDF_INVALID_FORMAT = 1
-PDF_TOO_LARGE = 2
-
-# Keyboard Constants
+# Keyboard constants
 CANCEL = 'Cancel'
 DONE = 'Done'
 BACK = 'Back'
