@@ -6,7 +6,7 @@ from pdf_diff import NoDifferenceError
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL
+from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK
 from pdf_bot.utils import check_pdf, cancel, send_result_file, check_user_data, get_lang
 
 WAIT_COMPARE_FIRST = 0
@@ -26,7 +26,7 @@ def compare_cov_handler():
             WAIT_COMPARE_FIRST: [MessageHandler(Filters.document, receive_first_doc)],
             WAIT_COMPARE_SECOND: [MessageHandler(Filters.document, receive_second_doc)],
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
     )
 
@@ -71,7 +71,8 @@ def receive_first_doc(update, context):
 
     _ = get_lang(update, context)
     context.user_data[COMPARE_ID] = update.effective_message.document.file_id
-    update.effective_message.reply_text(_('Send me the other PDF file that you\'ll like to compare.'))
+    update.effective_message.reply_text(_(
+        'Send me the other PDF file that you\'ll like to compare or /cancel this operation.'))
 
     return WAIT_COMPARE_SECOND
 

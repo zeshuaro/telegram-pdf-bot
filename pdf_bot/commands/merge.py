@@ -2,7 +2,7 @@ import tempfile
 
 from PyPDF2 import PdfFileMerger
 from PyPDF2.utils import PdfReadError
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, ParseMode
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
@@ -25,10 +25,10 @@ def merge_cov_handler():
         states={
             WAIT_MERGE: [
                 MessageHandler(Filters.document, receive_doc),
-                MessageHandler(Filters.regex(f'^{DONE}$'), merge_pdf)
+                MessageHandler(Filters.text, check_text)
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
     )
 
@@ -110,13 +110,24 @@ def receive_doc(update, context):
         user_data[MERGE_IDS] = [file_id]
         user_data[MERGE_NAMES] = [file_name]
 
-    reply_markup = ReplyKeyboardMarkup([[DONE], [CANCEL]], resize_keyboard=True, one_time_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup([[_(DONE)], [_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
     message.reply_text(_(
-        'Send me the next PDF file that you\'ll like to merge or press Done if you have '
-        'sent me all the PDF files.'), reply_markup=reply_markup)
+        'Send me the next PDF file that you\'ll like to merge or send *Done* if you have '
+        'sent me all the PDF files.'), reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
     send_file_names(update, context, user_data[MERGE_NAMES], _('PDF files'))
 
     return WAIT_MERGE
+
+
+@run_async
+def check_text(update, context):
+    _ = get_lang(update, context)
+    text = update.effective_message.text
+
+    if text == _(DONE):
+        return merge_pdf(update, context)
+    elif text == _(CANCEL):
+        return cancel(update, context)
 
 
 def merge_pdf(update, context):
