@@ -23,30 +23,10 @@ WAIT_CROP_OFFSET = 12
 WAIT_EXTRACT_PHOTO_TYPE = 13
 WAIT_TO_PHOTO_TYPE = 14
 
-# Keyboard constants
-CANCEL = 'Cancel'
-DONE = 'Done'
-BACK = 'Back'
-CROP_PERCENT = 'By Percentage'
-CROP_SIZE = 'By Margin Size'
-PREVIEW = 'Preview'
-DECRYPT = 'Decrypt'
-ENCRYPT = 'Encrypt'
-EXTRACT_IMG = 'Extract Photos'
-TO_IMG = 'To Photos'
-ROTATE = 'Rotate'
-SCALE_BY = 'Scale By'
-SCALE_TO = 'Scale To'
-SPLIT = 'Split'
-BEAUTIFY = 'Beautify'
-CONVERT = 'Convert'
-RENAME = 'Rename'
-CROP = 'Crop'
+# Rotate constants
 ROTATE_90 = '90'
 ROTATE_180 = '180'
 ROTATE_270 = '270'
-ZIPPED = 'Zipped'
-PHOTOS = 'Photos'
 
 # User data constants
 PDF_INFO = 'pdf_info'

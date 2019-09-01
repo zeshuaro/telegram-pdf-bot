@@ -11,9 +11,10 @@ from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
-from pdf_bot.constants import *
+from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup, get_lang
 from pdf_bot.store import update_stats
+from pdf_bot.files.file import BACK, PHOTOS, ZIPPED, EXTRACT_IMG
 
 MAX_MEDIA_GROUP = 10
 
@@ -85,7 +86,7 @@ def ask_photo_results_type(update, context):
         return_type = WAIT_TO_PHOTO_TYPE
 
     _ = get_lang(update, context)
-    keyboard = [[PHOTOS, ZIPPED], [BACK]]
+    keyboard = [[_(PHOTOS), _(ZIPPED)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(_('Select the result file format to be sent back to you.'),
                                         reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
