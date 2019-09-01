@@ -1,3 +1,5 @@
+import gettext
+
 from telegram import ReplyKeyboardMarkup
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
@@ -13,7 +15,36 @@ from pdf_bot.files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf
 from pdf_bot.files.split import ask_split_range, split_pdf
 from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, process_photo, ask_photo_results_type
 
+# User data constant
 PHOTO_ID = 'photo_id'
+
+t = gettext.translation('text', localedir='locale', languages=['en'])
+_ = t.gettext
+
+# Keyboard constants
+CANCEL = _('Cancel')
+DONE = _('Done')
+BACK = _('Back')
+CROP_PERCENT = _('By Percentage')
+CROP_SIZE = _('By Margin Size')
+PREVIEW = _('Preview')
+DECRYPT = _('Decrypt')
+ENCRYPT = _('Encrypt')
+EXTRACT_IMG = _('Extract Photos')
+TO_IMG = _('To Photos')
+ROTATE = _('Rotate')
+SCALE_BY = _('Scale By')
+SCALE_TO = _('Scale To')
+SPLIT = _('Split')
+BEAUTIFY = _('Beautify')
+CONVERT = _('Convert')
+RENAME = _('Rename')
+CROP = _('Crop')
+ROTATE_90 = _('90')
+ROTATE_180 = _('180')
+ROTATE_270 = _('270')
+ZIPPED = _('Zipped')
+PHOTOS = _('Photos')
 
 
 def file_cov_handler():
@@ -25,19 +56,7 @@ def file_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[MessageHandler(Filters.document, check_doc), MessageHandler(Filters.photo, check_photo)],
         states={
-            WAIT_TASK: [
-                MessageHandler(Filters.regex(rf'^{PREVIEW}$'), get_pdf_preview),
-                MessageHandler(Filters.regex(rf'^{DECRYPT}$'), ask_decrypt_pw),
-                MessageHandler(Filters.regex(rf'^{ENCRYPT}$'), ask_encrypt_pw),
-                MessageHandler(Filters.regex(rf'^({EXTRACT_IMG}|{TO_IMG})$'), ask_photo_results_type),
-                MessageHandler(Filters.regex(rf'^{ROTATE}$'), ask_rotate_degree),
-                MessageHandler(Filters.regex(rf'^{SCALE_BY}$'), ask_scale_x),
-                MessageHandler(Filters.regex(rf'^{SCALE_TO}$'), ask_scale_x),
-                MessageHandler(Filters.regex(rf'^{SPLIT}$'), ask_split_range),
-                MessageHandler(Filters.regex(rf'^({BEAUTIFY}|{CONVERT})$'), receive_photo_task),
-                MessageHandler(Filters.regex(rf'^{RENAME}$'), ask_pdf_new_name),
-                MessageHandler(Filters.regex(rf'^{CROP}$'), ask_crop_type)
-            ],
+            WAIT_TASK: [MessageHandler(Filters.text, check_task)],
             WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf)],
             WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf)],
             WAIT_ROTATE_DEGREE: [MessageHandler(
@@ -111,7 +130,8 @@ def send_doc_tasks(update, context):
         The variable indicating to wait for the next aciton
     """
     _ = get_lang(update, context)
-    keywords = sorted([DECRYPT, ENCRYPT, ROTATE, SCALE_BY, SCALE_TO, SPLIT, PREVIEW, TO_IMG, EXTRACT_IMG, RENAME, CROP])
+    keywords = sorted([_(DECRYPT), _(ENCRYPT), _(ROTATE), _(SCALE_BY), _(SCALE_TO), _(SPLIT), _(PREVIEW), _(TO_IMG),
+                       _(EXTRACT_IMG), _(RENAME), _(CROP)])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append([CANCEL])
@@ -119,6 +139,33 @@ def send_doc_tasks(update, context):
     update.effective_message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
 
     return WAIT_TASK
+
+
+@run_async
+def check_task(update, context):
+    _ = get_lang(update, context)
+    text = update.effective_message.text
+
+    if text == _(CROP):
+        return ask_crop_type(update, context)
+    elif text == _(DECRYPT):
+        return ask_decrypt_pw(update, context)
+    elif text == _(ENCRYPT):
+        return ask_encrypt_pw(update, context)
+    elif text in [_(EXTRACT_IMG), _(TO_IMG)]:
+        return ask_photo_results_type(update, context)
+    elif text == _(PREVIEW):
+        return get_pdf_preview(update, context)
+    elif text == _(RENAME):
+        return ask_pdf_new_name(update, context)
+    elif text == _(ROTATE):
+        return ask_rotate_degree(update, context)
+    elif text in [_(SCALE_BY), _(SCALE_TO)]:
+        return ask_scale_x(update, context)
+    elif text == _(SPLIT):
+        return ask_split_range(update, context)
+    elif text in [_(BEAUTIFY), _(CONVERT)]:
+        return receive_photo_task(update, context)
 
 
 @run_async
