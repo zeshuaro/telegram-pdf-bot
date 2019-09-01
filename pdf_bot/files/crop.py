@@ -27,7 +27,7 @@ def ask_crop_type(update, context):
         The variable indicating to wait for the crop type
     """
     _ = get_lang(update, context)
-    keyboard = [[CROP_PERCENT, CROP_SIZE], [BACK]]
+    keyboard = [[_(CROP_PERCENT), _(CROP_SIZE)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
     update.effective_message.reply_text(_('Select the crop type that you\'ll like to perform.'),
                                         reply_markup=reply_markup)
