@@ -44,6 +44,7 @@ def rename_pdf(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
+    _ = get_lang(update, context)
     message = update.effective_message
     text = re.sub(r'\.pdf$', '', message.text)
     invalid_chars = r'\/*?:\'<>|'

@@ -59,8 +59,7 @@ def file_cov_handler():
             WAIT_TASK: [MessageHandler(Filters.text, check_file_task)],
             WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf)],
             WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf)],
-            WAIT_ROTATE_DEGREE: [MessageHandler(
-                Filters.regex(rf'^({ROTATE_90}|{ROTATE_180}|{ROTATE_270})$'), rotate_pdf)],
+            WAIT_ROTATE_DEGREE: [MessageHandler(Filters.text, check_rotate_task)],
             WAIT_SCALE_BY_X: [MessageHandler(Filters.text, ask_scale_by_y)],
             WAIT_SCALE_BY_Y: [MessageHandler(Filters.text, pdf_scale_by)],
             WAIT_SCALE_TO_X: [MessageHandler(Filters.text, ask_scale_to_y)],
@@ -203,6 +202,17 @@ def check_crop_task(update, context):
 
     if text in [_(CROP_PERCENT), _(CROP_SIZE)]:
         return ask_crop_value(update, context)
+    elif text == _(BACK):
+        return ask_doc_task(update, context)
+
+
+@run_async
+def check_rotate_task(update, context):
+    _ = get_lang(update, context)
+    text = update.effective_message.text
+
+    if text in [_(ROTATE_90), _(ROTATE_180), _(ROTATE_270)]:
+        return rotate_pdf(update, context)
     elif text == _(BACK):
         return ask_doc_task(update, context)
 
