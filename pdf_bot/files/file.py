@@ -69,16 +69,10 @@ def file_cov_handler():
             WAIT_CROP_TYPE: [MessageHandler(Filters.text, check_crop_task)],
             WAIT_CROP_PERCENT: [MessageHandler(Filters.text, receive_crop_percent)],
             WAIT_CROP_OFFSET: [MessageHandler(Filters.text, receive_crop_size)],
-            WAIT_EXTRACT_PHOTO_TYPE: [
-                MessageHandler(Filters.regex(rf'({PHOTOS}|{ZIPPED})'), get_pdf_photos),
-                MessageHandler(Filters.regex(rf'^{BACK}$'), ask_doc_task)
-            ],
-            WAIT_TO_PHOTO_TYPE: [
-                MessageHandler(Filters.regex(rf'({PHOTOS}|{ZIPPED})'), pdf_to_photos),
-                MessageHandler(Filters.regex(rf'^{BACK}$'), ask_doc_task)
-            ]
+            WAIT_EXTRACT_PHOTO_TYPE: [MessageHandler(Filters.text, check_get_photos_task)],
+            WAIT_TO_PHOTO_TYPE: [MessageHandler(Filters.text, check_to_photos_task)]
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
     )
 
@@ -213,6 +207,28 @@ def check_rotate_task(update, context):
 
     if text in [_(ROTATE_90), _(ROTATE_180), _(ROTATE_270)]:
         return rotate_pdf(update, context)
+    elif text == _(BACK):
+        return ask_doc_task(update, context)
+
+
+@run_async
+def check_get_photos_task(update, context):
+    _ = get_lang(update, context)
+    text = update.effective_message.text
+
+    if text in [_(PHOTOS), _(ZIPPED)]:
+        return get_pdf_photos(update, context)
+    elif text == _(BACK):
+        return ask_doc_task(update, context)
+
+
+@run_async
+def check_to_photos_task(update, context):
+    _ = get_lang(update, context)
+    text = update.effective_message.text
+
+    if text in [_(PHOTOS), _(ZIPPED)]:
+        return pdf_to_photos(update, context)
     elif text == _(BACK):
         return ask_doc_task(update, context)
 
