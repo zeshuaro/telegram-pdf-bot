@@ -4,7 +4,7 @@ from PyPDF2 import PdfFileWriter
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL
+from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK
 from pdf_bot.utils import cancel, check_pdf, open_pdf, write_send_pdf, check_user_data, get_lang
 
 WAIT_WATERMARK_SOURCE = 0
@@ -24,7 +24,7 @@ def watermark_cov_handler():
             WAIT_WATERMARK_SOURCE: [MessageHandler(Filters.document, receive_source_doc)],
             WAIT_WATERMARK: [MessageHandler(Filters.document, receive_watermark_doc)]
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
     )
 
