@@ -28,10 +28,10 @@ def photo_cov_handler():
         states={
             WAIT_PHOTO: [
                 MessageHandler(Filters.document | Filters.photo, receive_photo),
-                MessageHandler(Filters.regex(rf'^({BEAUTIFY}|{CONVERT})$'), process_all_photos)
+                MessageHandler(Filters.text, check_photo_task)
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
     )
 
@@ -121,7 +121,7 @@ def receive_photo(update, context):
         user_data[PHOTO_IDS] = [file_id]
         user_data[PHOTO_NAMES] = [file_name]
 
-    keyboard = [[BEAUTIFY, CONVERT], [CANCEL]]
+    keyboard = [[_(BEAUTIFY), _(CONVERT)], [_(CANCEL)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
 
     update.effective_message.reply_text(_(
@@ -132,6 +132,17 @@ def receive_photo(update, context):
     send_file_names(update, context, user_data[PHOTO_NAMES], _('photos'))
 
     return WAIT_PHOTO
+
+
+@run_async
+def check_photo_task(update, context):
+    _ = get_lang(update, context)
+    text = update.effective_message.text
+
+    if text in [_(BEAUTIFY), _(CONVERT)]:
+        return process_all_photos(update, context)
+    elif text == _(CANCEL):
+        return cancel(update, context)
 
 
 def process_all_photos(update, context):
