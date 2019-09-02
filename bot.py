@@ -1,12 +1,11 @@
 import logbook
 import os
-import re
 import sys
 
 from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
 from logbook.compat import redirect_logging
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, ForceReply
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, PreCheckoutQueryHandler
 from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
@@ -19,6 +18,8 @@ PORT = int(os.environ.get('PORT', '8443'))
 TELE_TOKEN = os.environ.get('TELE_TOKEN_BETA', os.environ.get('TELE_TOKEN'))
 DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
+
+TIMEOUT = 20
 
 
 def main():
@@ -47,10 +48,7 @@ def main():
     dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
 
     # Payment handlers
-    dispatcher.add_handler(MessageHandler(Filters.regex(
-        rf'^({re.escape(PAYMENT_THANKS)}|{re.escape(PAYMENT_COFFEE)}|{re.escape(PAYMENT_BEER)}|'
-        rf'{re.escape(PAYMENT_MEAL)})$'), send_payment_invoice))
-    dispatcher.add_handler(payment_cov_handler())
+    dispatcher.add_handler(MessageHandler(Filters.reply & Filters.text, receive_custom_amount))
     dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check))
     dispatcher.add_handler(MessageHandler(Filters.successful_payment, successful_payment))
 
@@ -69,7 +67,7 @@ def main():
     # Feedback handler
     dispatcher.add_handler(feedback_cov_handler())
 
-    # log all errors
+    # Log all errors
     dispatcher.add_error_handler(error_callback)
 
     # Start the Bot
@@ -87,66 +85,49 @@ def main():
     updater.idle()
 
 
-# @run_async
-def start_msg(update, _):
-    """
-    Send start message
-    Args:
-        update: the update object
-        _: unused variable
-
-    Returns:
-        None
-    """
-    update.effective_message.reply_text(
+@run_async
+def start_msg(update, context):
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_(
         'Welcome to PDF Bot!\n\n*Features*\n'
         '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n'
         '- Extract images in a PDF file and convert a PDF file into images\n'
         '- Beautify and convert photos into PDF format\n'
         '- Convert a web page into a PDF file\n\n'
-        'Type /help to see how to use PDF Bot.', parse_mode=ParseMode.MARKDOWN)
+        'Type /help to see how to use PDF Bot.'), parse_mode=ParseMode.MARKDOWN)
 
-    update_stats(update, add_count=False)
+    # Create the user entity in Datastore
+    create_user(update.effective_message.from_user.id)
 
 
 @run_async
-def help_msg(update, _):
-    """
-    Send help message
-    Args:
-        update: the update object
-        _: unused variable
-
-    Returns:
-        None
-    """
-    keyboard = [[InlineKeyboardButton('Join Channel', f'https://t.me/{CHANNEL_NAME}'),
-                 InlineKeyboardButton('Support PDF Bot', callback_data=PAYMENT)]]
+def help_msg(update, context):
+    _ = get_lang(update, context)
+    keyboard = [[InlineKeyboardButton(_('Join Channel'), f'https://t.me/{CHANNEL_NAME}'),
+                 InlineKeyboardButton(_('Support PDF Bot'), callback_data=PAYMENT)]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.effective_message.reply_text(
+    update.effective_message.reply_text(_(
         'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n'
-        'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.',
+        'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.'),
         reply_markup=reply_markup)
 
 
 @run_async
 def process_callback_query(update, context):
+    _ = get_lang(update, context)
     query = update.callback_query
+
     if query.data == PAYMENT:
         send_payment_options(update, context, query.from_user.id)
+    elif query.data in [THANKS, COFFEE, BEER, MEAL]:
+        send_payment_invoice(update, context, query=query)
+    elif query.data == CUSTOM:
+        context.bot.send_message(
+            query.from_user.id, _('Send me the amount that you\'ll like to support PDF Bot'), reply_markup=ForceReply())
 
 
 def send_msg(update, context):
-    """
-    Send a message to a user
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        None
-    """
     tele_id = int(context.args[0])
     message = ' '.join(context.args[1:])
 

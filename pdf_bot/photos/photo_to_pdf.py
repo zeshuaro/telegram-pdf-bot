@@ -8,9 +8,11 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_PHOTO, CANCEL, BEAUTIFY, CONVERT
-from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data
+from pdf_bot.constants import CANCEL, BEAUTIFY, CONVERT, WAIT_PHOTO_TASK
+from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data, get_lang
 
+WAIT_PHOTO = 0
+PHOTO_ID = 'photo_id'
 PHOTO_IDS = 'photo_ids'
 PHOTO_NAMES = 'photo_names'
 
@@ -26,10 +28,10 @@ def photo_cov_handler():
         states={
             WAIT_PHOTO: [
                 MessageHandler(Filters.document | Filters.photo, receive_photo),
-                MessageHandler(Filters.regex(rf'^({BEAUTIFY}|{CONVERT})$'), process_all_photos)
+                MessageHandler(Filters.text, check_photo_task)
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.regex(rf'^{CANCEL}$'), cancel)],
+        fallbacks=[CommandHandler('cancel', cancel)],
         allow_reentry=True
     )
 
@@ -54,9 +56,10 @@ def photo(update, context):
     if PHOTO_NAMES in user_data:
         del user_data[PHOTO_NAMES]
 
-    update.effective_message.reply_text('Send me the first photo that you\'ll like to beautify or convert into PDF format '
-                              'or /cancel this operation.\n\n'
-                              'The photos will be beautified and converted in the order that you send me.')
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_(
+        'Send me the first photo that you\'ll like to beautify or convert into PDF format or '
+        '/cancel this operation.\n\nThe photos will be beautified and converted in the order that you send me.'))
 
     return WAIT_PHOTO
 
@@ -73,12 +76,14 @@ def receive_photo(update, context):
     Returns:
         The variable indicating to wait for a file or the conversation has ended
     """
+    _ = get_lang(update, context)
+
     # Check if the photo has been sent as a document or photo
     if update.effective_message.document:
         photo_file = update.effective_message.document
         if not photo_file.mime_type.startswith('image'):
-            update.effective_message.reply_text('The file you sent is not a photo. Send me the photo that you\'ll '
-                                      'like to beautify and convert.')
+            update.effective_message.reply_text(_(
+                'The file you sent is not a photo. Send me the photo that you\'ll like to beautify and convert.'))
 
             return WAIT_PHOTO
     else:
@@ -86,18 +91,18 @@ def receive_photo(update, context):
 
     user_data = context.user_data
     if photo_file.file_size > MAX_FILESIZE_DOWNLOAD:
-        text = 'The photo you sent is too large for me to download.\n\n'
+        text = _('The photo you sent is too large for me to download.\n\n')
 
         # Check if the user has already sent through some photos
         if PHOTO_NAMES in user_data and user_data[PHOTO_NAMES]:
-            text += 'You can continue to beautify or convert with the files that you sent me, ' \
-                    'or /cancel this operation.'
+            text += _('You can continue to beautify or convert with the files that you sent me, '
+                      'or /cancel this operation.')
             update.effective_message.reply_text(text)
-            send_file_names(update, user_data[PHOTO_NAMES], 'photos')
+            send_file_names(update, context, user_data[PHOTO_NAMES], _('photos'))
 
             return WAIT_PHOTO
         else:
-            text += 'I can\'t convert your photos. Operation cancelled.'
+            text += _('I can\'t convert your photos. Operation cancelled.')
             update.effective_message.reply_text(text)
 
             return ConversationHandler.END
@@ -106,7 +111,7 @@ def receive_photo(update, context):
     try:
         file_name = photo_file.file_name
     except AttributeError:
-        file_name = 'File name unavailable'
+        file_name = _('File name unavailable')
 
     # Check if the user has already sent through some photos
     if PHOTO_IDS in user_data and user_data[PHOTO_IDS]:
@@ -116,16 +121,28 @@ def receive_photo(update, context):
         user_data[PHOTO_IDS] = [file_id]
         user_data[PHOTO_NAMES] = [file_name]
 
-    keyboard = [[BEAUTIFY, CONVERT], [CANCEL]]
+    keyboard = [[_(BEAUTIFY), _(CONVERT)], [_(CANCEL)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
 
-    update.effective_message.reply_text('Send me the next photo that you\'ll like to beautify or convert. '
-                              'Select the task from below if you have sent me all the photos.\n\n'
-                              'Note that I only have access to the file name if you sent your photo as a document.',
-                              reply_markup=reply_markup)
-    send_file_names(update, user_data[PHOTO_NAMES], 'photos')
+    update.effective_message.reply_text(_(
+        'Send me the next photo that you\'ll like to beautify or convert. '
+        'Select the task from below if you have sent me all the photos.\n\n'
+        'Note that I only have access to the file name if you sent your photo as a document.'),
+        reply_markup=reply_markup)
+    send_file_names(update, context, user_data[PHOTO_NAMES], _('photos'))
 
     return WAIT_PHOTO
+
+
+@run_async
+def check_photo_task(update, context):
+    _ = get_lang(update, context)
+    text = update.effective_message.text
+
+    if text in [_(BEAUTIFY), _(CONVERT)]:
+        return process_all_photos(update, context)
+    elif text == _(CANCEL):
+        return cancel(update, context)
 
 
 def process_all_photos(update, context):
@@ -138,10 +155,10 @@ def process_all_photos(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    user_data = context.user_data
-    if not check_user_data(update, PHOTO_IDS, user_data):
+    if not check_user_data(update, context, PHOTO_IDS):
         return ConversationHandler.END
 
+    user_data = context.user_data
     file_ids = user_data[PHOTO_IDS]
     file_names = user_data[PHOTO_NAMES]
 
@@ -171,10 +188,12 @@ def process_photo(update, context, file_ids, is_beautify):
     Returns:
         None
     """
+    _ = get_lang(update, context)
     if is_beautify:
-        update.effective_message.reply_text('Beautifying and converting your photos', reply_markup=ReplyKeyboardRemove())
+        update.effective_message.reply_text(_('Beautifying and converting your photos'),
+                                            reply_markup=ReplyKeyboardRemove())
     else:
-        update.effective_message.reply_text('Converting your photos', reply_markup=ReplyKeyboardRemove())
+        update.effective_message.reply_text(_('Converting your photos'), reply_markup=ReplyKeyboardRemove())
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
@@ -191,14 +210,58 @@ def process_photo(update, context, file_ids, is_beautify):
         if is_beautify:
             out_fn = os.path.join(dir_name, 'Beautified.pdf')
             noteshrink.notescan_main(photo_files, basename=f'{dir_name}/page', pdfname=out_fn)
-            send_result_file(update, out_fn)
+            send_result_file(update, context, out_fn)
         else:
             out_fn = os.path.join(dir_name, 'Converted.pdf')
             with open(out_fn, 'wb') as f:
                 f.write(img2pdf.convert(photo_files))
 
-            send_result_file(update, out_fn)
+            send_result_file(update, context, out_fn)
 
     # Clean up files
     for tf in temp_files:
         tf.close()
+
+
+def ask_photo_task(update, context, photo_file):
+    _ = get_lang(update, context)
+    message = update.effective_message
+
+    if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
+        message.reply_text(_('Your photo is too large for me to download. I can\'t beautify or convert your photo.'))
+
+        return ConversationHandler.END
+
+    context.user_data[PHOTO_ID] = photo_file.file_id
+    keyboard = [[_(BEAUTIFY), _(CONVERT)], [_(CANCEL)]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
+    message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
+
+    return WAIT_PHOTO_TASK
+
+
+def process_photo_task(update, context):
+    """
+    Receive the task and perform the task on the photo
+    Args:
+        update: the update object
+        context: the context object
+
+    Returns:
+        The variable indicating the conversation has ended
+    """
+    if not check_user_data(update, context, PHOTO_ID):
+        return ConversationHandler.END
+
+    user_data = context.user_data
+    file_id = user_data[PHOTO_ID]
+
+    if update.effective_message.text == BEAUTIFY:
+        process_photo(update, context, [file_id], is_beautify=True)
+    else:
+        process_photo(update, context, [file_id], is_beautify=False)
+
+    if user_data[PHOTO_ID] == file_id:
+        del user_data[PHOTO_ID]
+
+    return ConversationHandler.END

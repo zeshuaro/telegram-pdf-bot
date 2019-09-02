@@ -6,17 +6,18 @@ import tempfile
 from logbook import Logger
 from PIL import Image
 from PyPDF2 import PdfFileWriter
-from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto
+from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto, ChatAction
 from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
-from pdf_bot.constants import *
-from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
-from pdf_bot.stats import update_stats
+from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, EXTRACT_IMG, PHOTOS, ZIPPED
+from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup, get_lang
+from pdf_bot.store import update_stats
+
+MAX_MEDIA_GROUP = 10
 
 
-@run_async
 def get_pdf_preview(update, context):
     """
     Get the PDF preview in JPEG format
@@ -27,18 +28,19 @@ def get_pdf_preview(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    user_data = context.user_data
-    if not check_user_data(update, PDF_INFO, user_data):
+    if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    update.effective_message.reply_text('Extracting a preview for your PDF file', reply_markup=ReplyKeyboardRemove())
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_('Extracting a preview for your PDF file'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf1:
+        user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
         pdf_file = context.bot.get_file(file_id)
         pdf_file.download(custom_path=tf1.name)
 
-        pdf_reader = open_pdf(tf1.name, update)
+        pdf_reader = open_pdf(update, context, tf1.name)
         if pdf_reader:
             # Get first page of PDF file
             pdf_writer = PdfFileWriter()
@@ -56,7 +58,7 @@ def get_pdf_preview(update, context):
                     imgs[0].save(out_fn)
 
                     # Send result file
-                    send_result_file(update, out_fn)
+                    send_result_file(update, context, out_fn)
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:
@@ -65,13 +67,12 @@ def get_pdf_preview(update, context):
     return ConversationHandler.END
 
 
-@run_async
-def ask_photo_results_type(update, _):
+def ask_photo_results_type(update, context):
     """
     Ask for the photo results file type
     Args:
         update: the update object
-        _: unused variable
+        context: the context object
 
     Returns:
         The variable indicating to wait for the file type
@@ -81,9 +82,10 @@ def ask_photo_results_type(update, _):
     else:
         return_type = WAIT_TO_PHOTO_TYPE
 
-    keyboard = [[PHOTOS, ZIPPED], [BACK]]
+    _ = get_lang(update, context)
+    keyboard = [[_(PHOTOS), _(ZIPPED)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text('Select the result file format to be sent back to you.',
+    update.effective_message.reply_text(_('Select the result file format to be sent back to you.'),
                                         reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
     return return_type
@@ -100,12 +102,14 @@ def pdf_to_photos(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    user_data = context.user_data
-    if not check_user_data(update, PDF_INFO, user_data):
+    if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    update.effective_message.reply_text('Converting your PDF file into photos', reply_markup=ReplyKeyboardRemove())
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_('Converting your PDF file into photos'), reply_markup=ReplyKeyboardRemove())
+
     with tempfile.NamedTemporaryFile() as tf:
+        user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
         pdf_file = context.bot.get_file(file_id)
         pdf_file.download(custom_path=tf.name)
@@ -120,7 +124,7 @@ def pdf_to_photos(update, context):
                                         fmt='png')
 
             # Handle the result photos
-            handle_result_photos(update, dir_name)
+            handle_result_photos(update, context, dir_name)
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -140,17 +144,19 @@ def get_pdf_photos(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    user_data = context.user_data
-    if not check_user_data(update, PDF_INFO, user_data):
+    if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    update.effective_message.reply_text('Extracting all the photos in your PDF file',
+    _ = get_lang(update, context)
+    update.effective_message.reply_text(_('Extracting all the photos in your PDF file'),
                                         reply_markup=ReplyKeyboardRemove())
+
     with tempfile.NamedTemporaryFile() as tf:
+        user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
         pdf_file = context.bot.get_file(file_id)
         pdf_file.download(custom_path=tf.name)
-        pdf_reader = open_pdf(tf.name, update)
+        pdf_reader = open_pdf(update, context, tf.name)
 
         if pdf_reader is not None:
             with tempfile.TemporaryDirectory() as tmp_dir_name:
@@ -198,9 +204,9 @@ def get_pdf_photos(update, context):
                                         i += 1
 
                 if not os.listdir(dir_name):
-                    update.effective_message.reply_text('I couldn\'t find any photos in your PDF file.')
+                    update.effective_message.reply_text(_('I couldn\'t find any photos in your PDF file.'))
                 else:
-                    handle_result_photos(update, dir_name)
+                    handle_result_photos(update, context, dir_name)
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -209,11 +215,12 @@ def get_pdf_photos(update, context):
     return ConversationHandler.END
 
 
-def handle_result_photos(update, dir_name):
+def handle_result_photos(update, context, dir_name):
     """
     Handle the result photos
     Args:
         update: the update object
+        context: the context object
         dir_name: the string of directory name containing the photos
 
     Returns:
@@ -224,6 +231,7 @@ def handle_result_photos(update, dir_name):
         photos = []
         for photo_name in sorted(os.listdir(dir_name)):
             if len(photos) != 0 and len(photos) % MAX_MEDIA_GROUP == 0:
+                message.chat.send_action(ChatAction.UPLOAD_PHOTO)
                 message.reply_media_group(photos)
                 del photos[:]
 
@@ -232,11 +240,12 @@ def handle_result_photos(update, dir_name):
         if photos:
             message.reply_media_group(photos)
 
-        message.reply_text('See above for all your photos', reply_markup=get_support_markup())
+        _ = get_lang(update, context)
+        message.reply_text(_('See above for all your photos'), reply_markup=get_support_markup(update, context))
         update_stats(update)
     else:
         # Compress the directory of photos
         shutil.make_archive(dir_name, 'zip', dir_name)
 
         # Send result file
-        send_result_file(update, f'{dir_name}.zip')
+        send_result_file(update, context, f'{dir_name}.zip')

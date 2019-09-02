@@ -4,7 +4,7 @@ from datetime import date
 from dotenv import load_dotenv
 from google.cloud import datastore
 
-from pdf_bot.constants import USER, COUNT
+from pdf_bot.constants import USER, COUNT, LANGUAGE
 
 
 load_dotenv()
@@ -16,6 +16,18 @@ if GCP_CRED is not None:
         f.write(GCP_CRED)
 
 client = datastore.Client.from_service_account_json(GCP_KEY_FILE)
+
+
+def create_user(user_id):
+    user_key = client.key(USER, user_id)
+    with client.transaction():
+        user = client.get(key=user_key)
+        if user is None:
+            user = datastore.Entity(user_key)
+            user[COUNT] = 0
+            user[LANGUAGE] = 'en'
+
+        client.put(user)
 
 
 def update_stats(update, add_count=True):
@@ -32,7 +44,7 @@ def update_stats(update, add_count=True):
         client.put(user)
 
 
-def get_stats(update, _):
+def get_stats(update, context):
     query = client.query(kind=USER)
     num_users = num_tasks = 0
 
