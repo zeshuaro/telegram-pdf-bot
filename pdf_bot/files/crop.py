@@ -15,18 +15,16 @@ MIN_PERCENT = 0
 MAX_PERCENT = 100
 
 
-@run_async
 def ask_crop_type(update, context):
     _ = get_lang(update, context)
     keyboard = [[_(CROP_PERCENT), _(CROP_SIZE)], [_(BACK)]]
-    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True)
     update.effective_message.reply_text(_('Select the crop type that you\'ll like to perform.'),
                                         reply_markup=reply_markup)
 
     return WAIT_CROP_TYPE
 
 
-@run_async
 def ask_crop_value(update, context):
     _ = get_lang(update, context)
     message = update.effective_message

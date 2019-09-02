@@ -11,7 +11,6 @@ from pdf_bot.constants import WAIT_SPLIT_RANGE, PDF_INFO
 from pdf_bot.utils import open_pdf, write_send_pdf, get_lang
 
 
-@run_async
 def ask_split_range(update, context):
     """
     Ask and wait for the split page range
@@ -25,8 +24,7 @@ def ask_split_range(update, context):
     _ = get_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the range of pages that you\'ll like to keep. '
-        'You can use ⚡ *INSTANT VIEW* from below or '
-        'refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples.'),
+        'Use ⚡ *INSTANT VIEW* from below for some range examples.'),
         parse_mode=ParseMode.MARKDOWN, reply_markup=ReplyKeyboardRemove())
 
     return WAIT_SPLIT_RANGE

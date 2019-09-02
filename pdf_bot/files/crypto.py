@@ -10,7 +10,6 @@ from pdf_bot.constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_INFO
 from pdf_bot.utils import write_send_pdf, process_pdf, check_user_data, get_lang
 
 
-@run_async
 def ask_decrypt_pw(update, context):
     """
     Ask and wait for the decryption password
@@ -84,7 +83,6 @@ def decrypt_pdf(update, context):
     return ConversationHandler.END
 
 
-@run_async
 def ask_encrypt_pw(update, context):
     """
     Ask and wait for the encryption password

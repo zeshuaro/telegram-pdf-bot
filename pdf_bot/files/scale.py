@@ -10,7 +10,6 @@ SCALE_BY_KEY = 'scale_by'
 SCALE_TO_KEY = 'scale_to'
 
 
-@run_async
 def ask_scale_x(update, context):
     """
     Ask and wait for the horizontal scaling factor or the new width

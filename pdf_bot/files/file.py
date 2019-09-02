@@ -64,7 +64,7 @@ def check_doc(update, context):
     mime_type = doc.mime_type
 
     if mime_type.startswith('image'):
-        return check_photo(update, context, doc)
+        return ask_photo_task(update, context, doc)
     elif not mime_type.endswith('pdf'):
         return ConversationHandler.END
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
@@ -102,22 +102,13 @@ def ask_doc_task(update, context):
 
 
 @run_async
-def check_photo(update, context, photo_file=None):
-    """
-    Validate the photo and wait for the next action
-    Args:
-        update: the update object
-        context: the context object
-        photo_file: the photo file object
+def check_photo(update, context):
+    return ask_photo_task(update, context, update.effective_message.photo[-1])
 
-    Returns:
-        The variable indicating to wait for the next action or the conversation has ended
-    """
+
+def ask_photo_task(update, context, photo_file):
     _ = get_lang(update, context)
     message = update.effective_message
-
-    if photo_file is None:
-        photo_file = message.photo[-1]
 
     if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         message.reply_text(_('Your photo is too large for me to download. I can\'t beautify or convert your photo.'))
@@ -125,7 +116,7 @@ def check_photo(update, context, photo_file=None):
         return ConversationHandler.END
 
     context.user_data[PHOTO_ID] = photo_file.file_id
-    keyboard = [[BEAUTIFY, CONVERT], [CANCEL]]
+    keyboard = [[_(BEAUTIFY), _(CONVERT)], [_(CANCEL)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
     message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
 
@@ -203,7 +194,6 @@ def check_to_photos_task(update, context):
         return ask_doc_task(update, context)
 
 
-@run_async
 def receive_photo_task(update, context):
     """
     Receive the task and perform the task on the photo

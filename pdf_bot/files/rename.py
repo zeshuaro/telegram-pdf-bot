@@ -12,7 +12,6 @@ from pdf_bot.constants import WAIT_FILE_NAME, PDF_INFO
 from pdf_bot.utils import send_result_file, check_user_data, get_lang
 
 
-@run_async
 def ask_pdf_new_name(update, context):
     """
     Ask and wait for the new file name

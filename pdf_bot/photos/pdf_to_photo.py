@@ -18,7 +18,6 @@ from pdf_bot.store import update_stats
 MAX_MEDIA_GROUP = 10
 
 
-@run_async
 def get_pdf_preview(update, context):
     """
     Get the PDF preview in JPEG format
@@ -68,7 +67,6 @@ def get_pdf_preview(update, context):
     return ConversationHandler.END
 
 
-@run_async
 def ask_photo_results_type(update, context):
     """
     Ask for the photo results file type
