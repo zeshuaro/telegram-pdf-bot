@@ -11,7 +11,8 @@ from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, rotate_pdf
 from pdf_bot.files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
 from pdf_bot.files.split import ask_split_range, split_pdf
-from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, ask_photo_results_type, process_photo_task
+from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, ask_photo_results_type, process_photo_task, \
+    ask_photo_task
 
 
 def file_cov_handler():
@@ -23,7 +24,8 @@ def file_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[MessageHandler(Filters.document, check_doc), MessageHandler(Filters.photo, check_photo)],
         states={
-            WAIT_TASK: [MessageHandler(Filters.text, check_file_task)],
+            WAIT_DOC_TASK: [MessageHandler(Filters.text, check_doc_task)],
+            WAIT_PHOTO_TASK: [MessageHandler(Filters.text, check_photo_task)],
             WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf)],
             WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf)],
             WAIT_ROTATE_DEGREE: [MessageHandler(Filters.text, check_rotate_task)],
@@ -95,7 +97,7 @@ def ask_doc_task(update, context):
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
 
-    return WAIT_TASK
+    return WAIT_DOC_TASK
 
 
 @run_async
@@ -103,25 +105,8 @@ def check_photo(update, context):
     return ask_photo_task(update, context, update.effective_message.photo[-1])
 
 
-def ask_photo_task(update, context, photo_file):
-    _ = get_lang(update, context)
-    message = update.effective_message
-
-    if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
-        message.reply_text(_('Your photo is too large for me to download. I can\'t beautify or convert your photo.'))
-
-        return ConversationHandler.END
-
-    context.user_data[PHOTO_ID] = photo_file.file_id
-    keyboard = [[_(BEAUTIFY), _(CONVERT)], [_(CANCEL)]]
-    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
-
-    return WAIT_TASK
-
-
 @run_async
-def check_file_task(update, context):
+def check_doc_task(update, context):
     _ = get_lang(update, context)
     text = update.effective_message.text
 
@@ -143,8 +128,19 @@ def check_file_task(update, context):
         return ask_scale_x(update, context)
     elif text == _(SPLIT):
         return ask_split_range(update, context)
-    elif text in [_(BEAUTIFY), _(CONVERT)]:
+    elif text == _(CANCEL):
+        return cancel(update, context)
+
+
+@run_async
+def check_photo_task(update, context):
+    _ = get_lang(update, context)
+    text = update.effective_message.text
+
+    if text in [_(BEAUTIFY), _(CONVERT)]:
         return process_photo_task(update, context)
+    elif text == _(CANCEL):
+        return cancel(update, context)
 
 
 @run_async

@@ -8,7 +8,7 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import CANCEL, BEAUTIFY, CONVERT
+from pdf_bot.constants import CANCEL, BEAUTIFY, CONVERT, WAIT_PHOTO_TASK
 from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data, get_lang
 
 WAIT_PHOTO = 0
@@ -210,6 +210,23 @@ def process_photo(update, context, file_ids, is_beautify):
     # Clean up files
     for tf in temp_files:
         tf.close()
+
+
+def ask_photo_task(update, context, photo_file):
+    _ = get_lang(update, context)
+    message = update.effective_message
+
+    if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
+        message.reply_text(_('Your photo is too large for me to download. I can\'t beautify or convert your photo.'))
+
+        return ConversationHandler.END
+
+    context.user_data[PHOTO_ID] = photo_file.file_id
+    keyboard = [[_(BEAUTIFY), _(CONVERT)], [_(CANCEL)]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
+    message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
+
+    return WAIT_PHOTO_TASK
 
 
 def process_photo_task(update, context):
