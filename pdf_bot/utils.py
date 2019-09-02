@@ -263,8 +263,9 @@ def get_lang(update, context):
             lang = 'en'
         else:
             lang = user[LANGUAGE]
-            context.user_data[LANGUAGE] = lang
 
-    t = gettext.translation('text', localedir='locale', languages=[lang])
+        context.user_data[LANGUAGE] = lang
+
+    t = gettext.translation('pdf_bot', localedir='locale', languages=[lang])
 
     return t.gettext

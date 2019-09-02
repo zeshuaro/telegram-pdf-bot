@@ -1,6 +1,6 @@
 import gettext
 
-t = gettext.translation('text', localedir='locale', languages=['en'])
+t = gettext.translation('pdf_bot', localedir='locale', languages=['en'])
 _ = t.gettext
 
 # Bot constants
