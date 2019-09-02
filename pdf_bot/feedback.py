@@ -39,7 +39,7 @@ def feedback(update, context):
     """
     _ = get_lang(update, context)
     update.effective_message.reply_text(_(
-        'Send me your feedback or /cancel this operation. My developer can understand English and Chinese.'))
+        'Send me your feedback or /cancel this action. My developer can understand English and Chinese.'))
 
     return 0
 

@@ -55,7 +55,7 @@ def merge(update, context):
 
     _ = get_lang(update, context)
     update.effective_message.reply_text(_(
-        'Send me the PDF file that you\'ll like to merge or /cancel this operation.\n\n'
+        'Send me the PDF file that you\'ll like to merge or /cancel this action.\n\n'
         'The files will be merged in the order that you send me.'))
 
     return WAIT_MERGE
@@ -80,7 +80,7 @@ def receive_doc(update, context):
     if result == PDF_INVALID_FORMAT:
         message.reply_text(_(
             'The file you sent is not a PDF file. '
-            'Send me the PDF file that you\'ll like to merge or /cancel this operation.'))
+            'Send me the PDF file that you\'ll like to merge or /cancel this action.'))
 
         return WAIT_MERGE
     elif result == PDF_TOO_LARGE:
@@ -88,7 +88,7 @@ def receive_doc(update, context):
 
         # Check if user has already sent through some PDF files
         if MERGE_NAMES in user_data and user_data[MERGE_NAMES]:
-            text += _('You can continue merging with the files that you sent me or /cancel this operation.')
+            text += _('You can continue merging with the files that you sent me or /cancel this action.')
             message.reply_text(text)
             send_file_names(update, context, user_data[MERGE_NAMES], _('PDF files'))
 

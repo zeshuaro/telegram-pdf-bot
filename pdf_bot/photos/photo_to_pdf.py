@@ -59,7 +59,7 @@ def photo(update, context):
     _ = get_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the first photo that you\'ll like to beautify or convert into PDF format or '
-        '/cancel this operation.\n\nThe photos will be beautified and converted in the order that you send me.'))
+        '/cancel this action.\n\nThe photos will be beautified and converted in the order that you send me.'))
 
     return WAIT_PHOTO
 
@@ -96,13 +96,13 @@ def receive_photo(update, context):
         # Check if the user has already sent through some photos
         if PHOTO_NAMES in user_data and user_data[PHOTO_NAMES]:
             text += _('You can continue to beautify or convert with the files that you sent me, '
-                      'or /cancel this operation.')
+                      'or /cancel this action.')
             update.effective_message.reply_text(text)
             send_file_names(update, context, user_data[PHOTO_NAMES], _('photos'))
 
             return WAIT_PHOTO
         else:
-            text += _('I can\'t convert your photos. Operation cancelled.')
+            text += _('I can\'t convert your photos. Action cancelled.')
             update.effective_message.reply_text(text)
 
             return ConversationHandler.END

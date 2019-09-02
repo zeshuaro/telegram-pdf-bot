@@ -11,14 +11,14 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT, LANGUAGE, USER
+from pdf_bot.constants import *
 from pdf_bot.store import update_stats, client
 
 
 @run_async
 def cancel(update, context):
     _ = get_lang(update, context)
-    update.effective_message.reply_text(_('Operation cancelled.'), reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(_('Action cancelled'), reply_markup=ReplyKeyboardRemove())
 
     return ConversationHandler.END
 
@@ -43,14 +43,13 @@ def check_pdf(update, context, send_msg=True):
         pdf_status = PDF_INVALID_FORMAT
         if send_msg:
             message.reply_text(_(
-                'The file you sent is not a PDF file. Try again and send me a PDF file or '
-                'type /cancel to cancel the operation.'))
+                'The file you sent is not a PDF file. Try again and send me a PDF file or /cancel this action.'))
     elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         pdf_status = PDF_TOO_LARGE
         if send_msg:
             message.reply_text(_(
                 'The PDF file you sent is too large for me to download. '
-                'I can\'t process your PDF file. Operation cancelled.'))
+                'I can\'t process your PDF file. Action cancelled.'))
 
     return pdf_status
 
@@ -149,14 +148,14 @@ def open_pdf(update, context, file_name, file_type=None):
                     text = _('Your PDF file is already encrypted.')
                 else:
                     text = _('Your {} PDF file is encrypted and you\'ll have to decrypt it first. '
-                             'Operation cancelled.').format(file_type)
+                             'Action cancelled.').format(file_type)
             else:
-                text = _('Your PDF file is encrypted and you\'ll have to decrypt it first. Operation cancelled.')
+                text = _('Your PDF file is encrypted and you\'ll have to decrypt it first. Action cancelled.')
 
             pdf_reader = None
             update.effective_message.reply_text(text)
     except PdfReadError:
-        text = _('Your PDF file seems to be invalid and I couldn\'t open and read it. Operation cancelled.')
+        text = _('Your PDF file seems to be invalid and I couldn\'t open and read it. Action cancelled.')
         update.effective_message.reply_text(text)
 
     return pdf_reader

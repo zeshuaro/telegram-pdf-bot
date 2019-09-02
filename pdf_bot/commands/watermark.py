@@ -44,7 +44,7 @@ def watermark(update, context):
     """
     _ = get_lang(update, context)
     update.effective_message.reply_text(_(
-        'Send me the PDF file that you\'ll like to add a watermark or /cancel this operation.'))
+        'Send me the PDF file that you\'ll like to add a watermark or /cancel this action.'))
 
     return WAIT_WATERMARK_SOURCE
 
