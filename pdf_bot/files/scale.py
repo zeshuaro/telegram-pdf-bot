@@ -4,7 +4,6 @@ from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_SCALE_BY_X, WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, PDF_INFO, SCALE_BY
 from pdf_bot.utils import process_pdf, check_user_data, get_lang
-from pdf_bot.files.file import SCALE_BY
 
 SCALE_BY_KEY = 'scale_by'
 SCALE_TO_KEY = 'scale_to'
