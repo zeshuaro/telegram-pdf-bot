@@ -4,17 +4,14 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import *
-from pdf_bot.utils import cancel, check_user_data, get_lang
+from pdf_bot.utils import cancel, get_lang
 from pdf_bot.files.crop import ask_crop_type, ask_crop_value, receive_crop_percent, receive_crop_size
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, rotate_pdf
 from pdf_bot.files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, pdf_scale_to
 from pdf_bot.files.split import ask_split_range, split_pdf
-from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, process_photo, ask_photo_results_type
-
-# User data constant
-PHOTO_ID = 'photo_id'
+from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, ask_photo_results_type, process_photo_task
 
 
 def file_cov_handler():
@@ -147,7 +144,7 @@ def check_file_task(update, context):
     elif text == _(SPLIT):
         return ask_split_range(update, context)
     elif text in [_(BEAUTIFY), _(CONVERT)]:
-        return receive_photo_task(update, context)
+        return process_photo_task(update, context)
 
 
 @run_async
@@ -192,30 +189,3 @@ def check_to_photos_task(update, context):
         return pdf_to_photos(update, context)
     elif text == _(BACK):
         return ask_doc_task(update, context)
-
-
-def receive_photo_task(update, context):
-    """
-    Receive the task and perform the task on the photo
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating the conversation has ended
-    """
-    if not check_user_data(update, context, PHOTO_ID):
-        return ConversationHandler.END
-
-    user_data = context.user_data
-    file_id = user_data[PHOTO_ID]
-
-    if update.effective_message.text == BEAUTIFY:
-        process_photo(update, context, [file_id], is_beautify=True)
-    else:
-        process_photo(update, context, [file_id], is_beautify=False)
-
-    if user_data[PHOTO_ID] == file_id:
-        del user_data[PHOTO_ID]
-
-    return ConversationHandler.END

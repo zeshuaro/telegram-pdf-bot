@@ -6,7 +6,7 @@ import tempfile
 from logbook import Logger
 from PIL import Image
 from PyPDF2 import PdfFileWriter
-from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto
+from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto, ChatAction
 from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 from telegram.parsemode import ParseMode
@@ -231,6 +231,7 @@ def handle_result_photos(update, context, dir_name):
         photos = []
         for photo_name in sorted(os.listdir(dir_name)):
             if len(photos) != 0 and len(photos) % MAX_MEDIA_GROUP == 0:
+                message.chat.send_action(ChatAction.UPLOAD_PHOTO)
                 message.reply_media_group(photos)
                 del photos[:]
 

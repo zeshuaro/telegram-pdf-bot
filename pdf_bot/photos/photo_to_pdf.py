@@ -12,6 +12,7 @@ from pdf_bot.constants import CANCEL, BEAUTIFY, CONVERT
 from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data, get_lang
 
 WAIT_PHOTO = 0
+PHOTO_ID = 'photo_id'
 PHOTO_IDS = 'photo_ids'
 PHOTO_NAMES = 'photo_names'
 
@@ -209,3 +210,30 @@ def process_photo(update, context, file_ids, is_beautify):
     # Clean up files
     for tf in temp_files:
         tf.close()
+
+
+def process_photo_task(update, context):
+    """
+    Receive the task and perform the task on the photo
+    Args:
+        update: the update object
+        context: the context object
+
+    Returns:
+        The variable indicating the conversation has ended
+    """
+    if not check_user_data(update, context, PHOTO_ID):
+        return ConversationHandler.END
+
+    user_data = context.user_data
+    file_id = user_data[PHOTO_ID]
+
+    if update.effective_message.text == BEAUTIFY:
+        process_photo(update, context, [file_id], is_beautify=True)
+    else:
+        process_photo(update, context, [file_id], is_beautify=False)
+
+    if user_data[PHOTO_ID] == file_id:
+        del user_data[PHOTO_ID]
+
+    return ConversationHandler.END
