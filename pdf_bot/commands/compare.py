@@ -109,7 +109,7 @@ def compare_pdf(update, context):
                 pdf_diff.main(files=[tf1.name, tf2.name], out_file=out_fn)
                 send_result_file(update, context, out_fn)
         except NoDifferenceError:
-            message.reply_text(_('There are no differences in text between your PDF files'))
+            message.reply_text(_('There are no differences in text between your PDF files')))
 
     # Clean up memory and files
     if user_data[COMPARE_ID] == first_file_id:
