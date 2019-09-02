@@ -5,7 +5,7 @@ import sys
 from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
 from logbook.compat import redirect_logging
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, ForceReply
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, PreCheckoutQueryHandler
 from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
@@ -48,7 +48,7 @@ def main():
     dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
 
     # Payment handlers
-    dispatcher.add_handler(payment_cov_handler())
+    dispatcher.add_handler(MessageHandler(Filters.reply & Filters.text, receive_custom_amount))
     dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check))
     dispatcher.add_handler(MessageHandler(Filters.successful_payment, successful_payment))
 
@@ -115,11 +115,16 @@ def help_msg(update, context):
 
 @run_async
 def process_callback_query(update, context):
+    _ = get_lang(update, context)
     query = update.callback_query
+
     if query.data == PAYMENT:
         send_payment_options(update, context, query.from_user.id)
-    elif query.data in [PAYMENT_THANKS, PAYMENT_COFFEE, PAYMENT_BEER, PAYMENT_MEAL]:
+    elif query.data in [THANKS, COFFEE, BEER, MEAL]:
         send_payment_invoice(update, context, query=query)
+    elif query.data == CUSTOM:
+        context.bot.send_message(
+            query.from_user.id, _('Send me the amount that you\'ll like to support PDF Bot'), reply_markup=ForceReply())
 
 
 def send_msg(update, context):
