@@ -1,6 +1,5 @@
 import logbook
 import os
-import re
 import sys
 
 from dotenv import load_dotenv
@@ -49,9 +48,6 @@ def main():
     dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
 
     # Payment handlers
-    dispatcher.add_handler(MessageHandler(Filters.regex(
-        rf'^({re.escape(PAYMENT_THANKS)}|{re.escape(PAYMENT_COFFEE)}|{re.escape(PAYMENT_BEER)}|'
-        rf'{re.escape(PAYMENT_MEAL)})$'), send_payment_invoice))
     dispatcher.add_handler(payment_cov_handler())
     dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check))
     dispatcher.add_handler(MessageHandler(Filters.successful_payment, successful_payment))
@@ -122,6 +118,8 @@ def process_callback_query(update, context):
     query = update.callback_query
     if query.data == PAYMENT:
         send_payment_options(update, context, query.from_user.id)
+    elif query.data in [PAYMENT_THANKS, PAYMENT_COFFEE, PAYMENT_BEER, PAYMENT_MEAL]:
+        send_payment_invoice(update, context, query=query)
 
 
 def send_msg(update, context):

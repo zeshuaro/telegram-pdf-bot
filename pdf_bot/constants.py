@@ -64,11 +64,11 @@ PAYMENT = 'payment'
 PAYMENT_PAYLOAD = 'payment_payload'
 PAYMENT_CURRENCY = 'USD'
 PAYMENT_PARA = 'payment_para'
-PAYMENT_THANKS = 'Say Thanks 😁 ($1)'
-PAYMENT_COFFEE = 'Coffee ☕ ($3)'
-PAYMENT_BEER = 'Beer 🍺 ($5)'
-PAYMENT_MEAL = 'Meal 🍲 ($10)'
-PAYMENT_CUSTOM = 'Say Awesome 🤩 (Custom)'
+PAYMENT_THANKS = _('Say Thanks 😁 ($1)')
+PAYMENT_COFFEE = _('Coffee ☕ ($3)')
+PAYMENT_BEER = _('Beer 🍺 ($5)')
+PAYMENT_MEAL = _('Meal 🍲 ($10)')
+PAYMENT_CUSTOM = _('Say Awesome 🤩 (Custom)')
 PAYMENT_DICT = {PAYMENT_THANKS: 1, PAYMENT_COFFEE: 3, PAYMENT_BEER: 5, PAYMENT_MEAL: 10}
 WAIT_PAYMENT = 0
 

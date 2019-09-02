@@ -2,7 +2,7 @@ import os
 import re
 
 from dotenv import load_dotenv
-from telegram import LabeledPrice, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telegram import LabeledPrice, ReplyKeyboardRemove, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ConversationHandler, MessageHandler, CommandHandler, Filters
 from telegram.ext.dispatcher import run_async
 
@@ -59,8 +59,12 @@ def receive_custom_amount(update, context):
 @run_async
 def send_payment_options(update, context, user_id=None):
     _ = get_lang(update, context)
-    keyboard = [[PAYMENT_THANKS, PAYMENT_COFFEE, PAYMENT_BEER], [PAYMENT_MEAL, PAYMENT_CUSTOM]]
-    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
+    keyboard = [[InlineKeyboardButton(_(PAYMENT_THANKS), callback_data=PAYMENT_THANKS),
+                 InlineKeyboardButton(_(PAYMENT_COFFEE), callback_data=PAYMENT_COFFEE)],
+                [InlineKeyboardButton(_(PAYMENT_BEER), callback_data=PAYMENT_BEER),
+                 InlineKeyboardButton(_(PAYMENT_MEAL), callback_data=PAYMENT_MEAL)],
+                [InlineKeyboardButton(_(PAYMENT_CUSTOM), callback_data=PAYMENT_CUSTOM)]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
     text = _('Select how you want to support PDF Bot')
 
     if user_id is None:
@@ -69,17 +73,21 @@ def send_payment_options(update, context, user_id=None):
         context.bot.send_message(user_id, text, reply_markup=reply_markup)
 
 
-@run_async
-def send_payment_invoice(update, context, amount=None):
+def send_payment_invoice(update, context, query=None, amount=None):
+    if query is None:
+        message = update.effective_message
+        label = message.text
+    else:
+        message = query.message
+        label = query.data
+
     _ = get_lang(update, context)
-    message = update.effective_message
     chat_id = message.chat_id
     title = _('Support PDF Bot')
     description = _('Say thanks to PDF Bot and help keep it running')
 
     if amount is None:
-        label = message.text
-        price = PAYMENT_DICT[message.text]
+        price = PAYMENT_DICT[label]
     else:
         label = PAYMENT_CUSTOM
         price = amount
