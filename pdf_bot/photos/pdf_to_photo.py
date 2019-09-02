@@ -11,10 +11,9 @@ from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
-from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE
+from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, EXTRACT_IMG, PHOTOS, ZIPPED
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup, get_lang
 from pdf_bot.store import update_stats
-from pdf_bot.files.file import BACK, PHOTOS, ZIPPED, EXTRACT_IMG
 
 MAX_MEDIA_GROUP = 10
 

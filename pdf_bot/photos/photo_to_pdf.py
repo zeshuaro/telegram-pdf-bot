@@ -8,8 +8,8 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
+from pdf_bot.constants import CANCEL, BEAUTIFY, CONVERT
 from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data, get_lang
-from pdf_bot.files.file import CANCEL, BEAUTIFY, CONVERT
 
 WAIT_PHOTO = 0
 PHOTO_IDS = 'photo_ids'

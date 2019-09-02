@@ -6,9 +6,8 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, ParseMode
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_TOO_LARGE
+from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_TOO_LARGE, CANCEL, DONE
 from pdf_bot.utils import check_pdf, cancel, write_send_pdf, send_file_names, check_user_data, get_lang
-from pdf_bot.files.file import CANCEL, DONE
 
 WAIT_MERGE = 0
 MERGE_IDS = 'merge_ids'

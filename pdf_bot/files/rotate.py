@@ -2,9 +2,8 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_ROTATE_DEGREE, PDF_INFO, ROTATE_90, ROTATE_180, ROTATE_270
+from pdf_bot.constants import WAIT_ROTATE_DEGREE, PDF_INFO, ROTATE_90, ROTATE_180, ROTATE_270, BACK
 from pdf_bot.utils import process_pdf, check_user_data, get_lang
-from pdf_bot.files.file import BACK
 
 
 @run_async
@@ -19,7 +18,7 @@ def ask_rotate_degree(update, context):
         The variable indicating to wait for the rotation degree
     """
     _ = get_lang(update, context)
-    keyboard = [[_(ROTATE_90)], [_(ROTATE_180)], [_(ROTATE_270)], [_(BACK)]]
+    keyboard = [[ROTATE_90], [ROTATE_180], [ROTATE_270], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(_('Select the degrees that you\'ll like to rotate your PDF file in clockwise.'),
                                         reply_markup=reply_markup)

@@ -1,3 +1,8 @@
+import gettext
+
+t = gettext.translation('text', localedir='locale', languages=['en'])
+_ = t.gettext
+
 # Bot constants
 CHANNEL_NAME = 'pdf2botdev'
 
@@ -23,7 +28,29 @@ WAIT_CROP_OFFSET = 12
 WAIT_EXTRACT_PHOTO_TYPE = 13
 WAIT_TO_PHOTO_TYPE = 14
 
-# Rotate constants
+# Keyboard constants
+CANCEL = _('Cancel')
+DONE = _('Done')
+BACK = _('Back')
+CROP_PERCENT = _('By Percentage')
+CROP_SIZE = _('By Margin Size')
+PREVIEW = _('Preview')
+DECRYPT = _('Decrypt')
+ENCRYPT = _('Encrypt')
+EXTRACT_IMG = _('Extract Photos')
+TO_IMG = _('To Photos')
+ROTATE = _('Rotate')
+SCALE_BY = _('Scale By')
+SCALE_TO = _('Scale To')
+SPLIT = _('Split')
+BEAUTIFY = _('Beautify')
+CONVERT = _('Convert')
+RENAME = _('Rename')
+CROP = _('Crop')
+ZIPPED = _('Zipped')
+PHOTOS = _('Photos')
+
+# Rotation constants
 ROTATE_90 = '90'
 ROTATE_180 = '180'
 ROTATE_270 = '270'

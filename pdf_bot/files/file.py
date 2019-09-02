@@ -1,5 +1,3 @@
-import gettext
-
 from telegram import ReplyKeyboardMarkup
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
@@ -17,31 +15,6 @@ from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, proce
 
 # User data constant
 PHOTO_ID = 'photo_id'
-
-t = gettext.translation('text', localedir='locale', languages=['en'])
-_ = t.gettext
-
-# Keyboard constants
-CANCEL = _('Cancel')
-DONE = _('Done')
-BACK = _('Back')
-CROP_PERCENT = _('By Percentage')
-CROP_SIZE = _('By Margin Size')
-PREVIEW = _('Preview')
-DECRYPT = _('Decrypt')
-ENCRYPT = _('Encrypt')
-EXTRACT_IMG = _('Extract Photos')
-TO_IMG = _('To Photos')
-ROTATE = _('Rotate')
-SCALE_BY = _('Scale By')
-SCALE_TO = _('Scale To')
-SPLIT = _('Split')
-BEAUTIFY = _('Beautify')
-CONVERT = _('Convert')
-RENAME = _('Rename')
-CROP = _('Crop')
-ZIPPED = _('Zipped')
-PHOTOS = _('Photos')
 
 
 def file_cov_handler():

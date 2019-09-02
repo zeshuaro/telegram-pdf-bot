@@ -8,9 +8,8 @@ from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_CROP_TYPE, WAIT_CROP_OFFSET, WAIT_CROP_PERCENT, PDF_INFO
+from pdf_bot.constants import *
 from pdf_bot.utils import send_result_file, get_lang
-from pdf_bot.files.file import CROP_PERCENT, CROP_SIZE, BACK
 
 MIN_PERCENT = 0
 MAX_PERCENT = 100
@@ -18,15 +17,6 @@ MAX_PERCENT = 100
 
 @run_async
 def ask_crop_type(update, context):
-    """
-    Ask and wait for the crop type
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating to wait for the crop type
-    """
     _ = get_lang(update, context)
     keyboard = [[_(CROP_PERCENT), _(CROP_SIZE)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
