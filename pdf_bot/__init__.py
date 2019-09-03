@@ -6,5 +6,6 @@ from pdf_bot.payment import send_payment_options, send_payment_invoice, successf
     receive_custom_amount
 from pdf_bot.feedback import feedback_cov_handler
 from pdf_bot.constants import *
-from pdf_bot.store import update_stats, get_stats, create_user
+from pdf_bot.store import create_user
 from pdf_bot.utils import get_lang
+from pdf_bot.stats import get_stats

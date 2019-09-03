@@ -13,7 +13,7 @@ from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, EXTRACT_IMG, PHOTOS, ZIPPED
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup, get_lang
-from pdf_bot.store import update_stats
+from pdf_bot.stats import update_stats
 
 MAX_MEDIA_GROUP = 10
 
@@ -58,7 +58,7 @@ def get_pdf_preview(update, context):
                     imgs[0].save(out_fn)
 
                     # Send result file
-                    send_result_file(update, context, out_fn)
+                    send_result_file(update, context, out_fn, 'preview')
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:
@@ -124,7 +124,7 @@ def pdf_to_photos(update, context):
                                         fmt='png')
 
             # Handle the result photos
-            handle_result_photos(update, context, dir_name)
+            handle_result_photos(update, context, dir_name, 'to_photos')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -206,7 +206,7 @@ def get_pdf_photos(update, context):
                 if not os.listdir(dir_name):
                     update.effective_message.reply_text(_('I couldn\'t find any photos in your PDF file.'))
                 else:
-                    handle_result_photos(update, context, dir_name)
+                    handle_result_photos(update, context, dir_name, 'get_photos')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -215,13 +215,14 @@ def get_pdf_photos(update, context):
     return ConversationHandler.END
 
 
-def handle_result_photos(update, context, dir_name):
+def handle_result_photos(update, context, dir_name, task):
     """
     Handle the result photos
     Args:
         update: the update object
         context: the context object
         dir_name: the string of directory name containing the photos
+        task: the string of the task
 
     Returns:
         None
@@ -242,10 +243,10 @@ def handle_result_photos(update, context, dir_name):
 
         _ = get_lang(update, context)
         message.reply_text(_('See above for all your photos'), reply_markup=get_support_markup(update, context))
-        update_stats(update)
+        update_stats(update, task)
     else:
         # Compress the directory of photos
         shutil.make_archive(dir_name, 'zip', dir_name)
 
         # Send result file
-        send_result_file(update, context, f'{dir_name}.zip')
+        send_result_file(update, context, f'{dir_name}.zip', task)
