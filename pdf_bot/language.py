@@ -6,8 +6,8 @@ from pdf_bot.constants import USER, LANGUAGE, LANGUAGES
 from pdf_bot.store import client
 
 
-def send_lang(update, context):
-    lang = get_lang(update, context)
+def send_lang(update, context, query=None):
+    lang = get_lang(update, context, query)
     langs = [InlineKeyboardButton(key, callback_data=key) for key, value in LANGUAGES.items() if value != lang]
     keyboard_size = 2
     keyboard = [langs[i:i + keyboard_size] for i in range(0, len(langs), keyboard_size)]
@@ -16,11 +16,16 @@ def send_lang(update, context):
     update.effective_message.reply_text('Select your language', reply_markup=reply_markup)
 
 
-def get_lang(update, context):
+def get_lang(update, context, query=None):
     if LANGUAGE in context.user_data:
         lang = context.user_data[LANGUAGE]
     else:
-        user_key = client.key(USER, update.effective_message.from_user.id)
+        if query is None:
+            user_id = update.effective_message.from_user.id
+        else:
+            user_id = query.from_user.id
+
+        user_key = client.key(USER, user_id)
         user = client.get(key=user_key)
 
         if user is None or LANGUAGE not in user:
@@ -46,8 +51,8 @@ def store_lang(update, context, query):
     query.message.edit_text(_('Your language has been set to {}').format(query.data))
 
 
-def set_lang(update, context):
-    lang = get_lang(update, context)
+def set_lang(update, context, query=None):
+    lang = get_lang(update, context, query)
     t = gettext.translation('pdf_bot', localedir='locale', languages=[lang])
 
     return t.gettext

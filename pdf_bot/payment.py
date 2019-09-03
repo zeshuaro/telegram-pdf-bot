@@ -29,8 +29,8 @@ def receive_custom_amount(update, context):
 
 
 @run_async
-def send_payment_options(update, context, user_id=None):
-    _ = set_lang(update, context)
+def send_payment_options(update, context, query=None):
+    _ = set_lang(update, context, query)
     keyboard = [[InlineKeyboardButton(_(THANKS), callback_data=THANKS),
                  InlineKeyboardButton(_(COFFEE), callback_data=COFFEE)],
                 [InlineKeyboardButton(_(BEER), callback_data=BEER),
@@ -39,10 +39,12 @@ def send_payment_options(update, context, user_id=None):
     reply_markup = InlineKeyboardMarkup(keyboard)
     text = _('Select how you want to support PDF Bot')
 
-    if user_id is None:
-        update.effective_message.reply_text(text, reply_markup=reply_markup)
+    if query is None:
+        user_id = update.effective_message.from_user.id
     else:
-        context.bot.send_message(user_id, text, reply_markup=reply_markup)
+        user_id = query.from_user.id
+
+    context.bot.send_message(user_id, text, reply_markup=reply_markup)
 
 
 def send_payment_invoice(update, context, query=None, amount=None):

@@ -121,13 +121,13 @@ def process_callback_query(update, context):
     query = update.callback_query
 
     if query.data == SET_LANG:
-        send_lang(update, context)
+        send_lang(update, context, query)
     elif query.data in LANGUAGES:
         store_lang(update, context, query)
     if query.data == PAYMENT:
-        send_payment_options(update, context, query.from_user.id)
+        send_payment_options(update, context, query)
     elif query.data in [THANKS, COFFEE, BEER, MEAL]:
-        send_payment_invoice(update, context, query=query)
+        send_payment_invoice(update, context, query)
     elif query.data == CUSTOM:
         context.bot.send_message(
             query.from_user.id, _('Send me the amount that you\'ll like to support PDF Bot'), reply_markup=ForceReply())
