@@ -80,4 +80,4 @@ COUNT = 'count'
 LANGUAGE = 'language'
 
 # Language constants
-LANGUAGES = {'🇬🇧 English': 'en', '🇮🇹 Italian': 'it', '🇪🇸 Spanish': 'es'}
+LANGUAGES = {'🇬🇧 English': 'en-UK', '🇮🇹 Italian': 'it-IT', '🇪🇸 Spanish': 'es-ES'}
