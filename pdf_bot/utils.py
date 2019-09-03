@@ -260,7 +260,7 @@ def get_lang(update, context):
         user = client.get(key=user_key)
 
         if user is None or LANGUAGE not in user:
-            lang = 'en'
+            lang = 'en-UK'
         else:
             lang = user[LANGUAGE]
 
