@@ -24,7 +24,7 @@ def ask_pdf_new_name(update, context):
         The variable indicating to wait for the file name
     """
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Send me the file name that you\'ll like to rename your PDF file into.'),
+    update.effective_message.reply_text(_('Send me the file name that you\'ll like to rename your PDF file into'),
                                         reply_markup=ReplyKeyboardRemove())
 
     return WAIT_FILE_NAME
@@ -51,7 +51,7 @@ def rename_pdf(update, context):
 
     if set(text) & set(invalid_chars):
         message.reply_text(_(
-            'File names can\'t contain any of the following characters:\n{}\nSend me another file name.')).\
+            'File names can\'t contain any of the following characters:\n{}\nSend me another file name')).\
             format(invalid_chars)
 
         return WAIT_FILE_NAME

@@ -47,8 +47,8 @@ def compare(update, context):
     """
     _ = set_lang(update, context)
     update.effective_message.reply_text(_(
-        'Send me one of the PDF files that you\'ll like to compare or /cancel this operation.\n\n'
-        'Note that I can only look for text differences.'))
+        'Send me one of the PDF files that you\'ll like to compare or /cancel this operation\n\n'
+        'Note that I can only look for text differences'))
 
     return WAIT_COMPARE_FIRST
 
@@ -73,7 +73,7 @@ def receive_first_doc(update, context):
     _ = set_lang(update, context)
     context.user_data[COMPARE_ID] = update.effective_message.document.file_id
     update.effective_message.reply_text(_(
-        'Send me the other PDF file that you\'ll like to compare or /cancel this operation.'))
+        'Send me the other PDF file that you\'ll like to compare or /cancel this operation'))
 
     return WAIT_COMPARE_SECOND
 
@@ -137,7 +137,7 @@ def compare_pdf(update, context):
                 # Send result file
                 send_result_file(update, context, out_fn)
         except NoDifferenceError:
-            message.reply_text(_('There are no differences between your PDF files.'))
+            message.reply_text(_('There are no differences between your PDF files'))
 
     # Clean up memory and files
     if user_data[COMPARE_ID] == first_file_id:

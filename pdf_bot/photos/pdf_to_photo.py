@@ -86,7 +86,7 @@ def ask_photo_results_type(update, context):
     _ = set_lang(update, context)
     keyboard = [[_(PHOTOS), _(ZIPPED)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_('Select the result file format to be sent back to you.'),
+    update.effective_message.reply_text(_('Select the result file format to be sent back to you'),
                                         reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
     return return_type
@@ -205,7 +205,7 @@ def get_pdf_photos(update, context):
                                         i += 1
 
                 if not os.listdir(dir_name):
-                    update.effective_message.reply_text(_('I couldn\'t find any photos in your PDF file.'))
+                    update.effective_message.reply_text(_('I couldn\'t find any photos in your PDF file'))
                 else:
                     handle_result_photos(update, context, dir_name)
 

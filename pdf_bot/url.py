@@ -22,9 +22,9 @@ def url_to_pdf(update, context):
     user_data = context.user_data
 
     if user_data is not None and URLS in user_data and url in user_data[URLS]:
-        message.reply_text(_('You\'ve sent me this web page already and I\'m still converting it.'))
+        message.reply_text(_('You\'ve sent me this web page already and I\'m still converting it'))
     else:
-        message.reply_text(_('Converting your web page into a PDF file.'))
+        message.reply_text(_('Converting your web page into a PDF file'))
         if URLS in user_data:
             user_data[URLS].add(url)
         else:
@@ -36,6 +36,6 @@ def url_to_pdf(update, context):
                 HTML(url=url).write_pdf(out_fn)
                 send_result_file(update, context, out_fn)
             except URLFetchingError:
-                message.reply_text(_('Unable to reach your web page.'))
+                message.reply_text(_('Unable to reach your web page'))
 
         user_data[URLS].remove(url)

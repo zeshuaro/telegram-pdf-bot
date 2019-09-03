@@ -40,7 +40,7 @@ def feedback(update, context):
     """
     _ = set_lang(update, context)
     update.effective_message.reply_text(_(
-        'Send me your feedback or /cancel this operation. My developer can understand English and Chinese.'))
+        'Send me your feedback or /cancel this operation. My developer can understand English and Chinese'))
 
     return 0
 
@@ -71,7 +71,7 @@ def receive_feedback(update, context):
 
     _ = set_lang(update, context)
     if not feedback_lang or feedback_lang.lower() not in VALID_LANGS:
-        message.reply_text(_('The feedback is not in English or Chinese, try again.'))
+        message.reply_text(_('The feedback is not in English or Chinese, try again'))
 
         return 0
 
@@ -89,6 +89,6 @@ def receive_feedback(update, context):
         log = Logger()
         log.notice(text)
 
-    message.reply_text(_('Thank you for your feedback, I\'ve already forwarded it to my developer.'))
+    message.reply_text(_('Thank you for your feedback, I\'ve already forwarded it to my developer'))
 
     return ConversationHandler.END

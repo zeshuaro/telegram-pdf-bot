@@ -70,7 +70,7 @@ def check_doc(update, context):
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
         _ = set_lang(update, context)
         update.effective_message.reply_text(_(
-            'Your PDF file you sent is too large for me to download. I can\'t perform any tasks on it.'))
+            'Your PDF file you sent is too large for me to download. I can\'t perform any tasks on it'))
 
         return ConversationHandler.END
 
@@ -96,7 +96,7 @@ def ask_doc_task(update, context):
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append([CANCEL])
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
+    update.effective_message.reply_text(_('Select the task that you\'ll like to perform'), reply_markup=reply_markup)
 
     return WAIT_DOC_TASK
 

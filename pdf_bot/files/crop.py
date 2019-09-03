@@ -20,7 +20,7 @@ def ask_crop_type(update, context):
     _ = set_lang(update, context)
     keyboard = [[_(CROP_PERCENT), _(CROP_SIZE)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True)
-    update.effective_message.reply_text(_('Select the crop type that you\'ll like to perform.'),
+    update.effective_message.reply_text(_('Select the crop type that you\'ll like to perform'),
                                         reply_markup=reply_markup)
 
     return WAIT_CROP_TYPE
@@ -33,14 +33,14 @@ def ask_crop_value(update, context):
     if message.text == CROP_PERCENT:
         message.reply_text(_(
             'Send me a number between {} and {}. This is the percentage of margin space to retain between '
-            'the content in your PDF file and the page.').format(MIN_PERCENT, MAX_PERCENT),
+            'the content in your PDF file and the page').format(MIN_PERCENT, MAX_PERCENT),
             reply_markup=ReplyKeyboardRemove())
 
         return WAIT_CROP_PERCENT
     else:
         message.reply_text(_(
             'Send me a number that you\'ll like to adjust the margin size. Positive numbers will decrease the '
-            'margin size and negative numbers will increase it.'), reply_markup=ReplyKeyboardRemove())
+            'margin size and negative numbers will increase it'), reply_markup=ReplyKeyboardRemove())
 
         return WAIT_CROP_OFFSET
 
@@ -52,7 +52,7 @@ def receive_crop_percent(update, context):
     except ValueError:
         _ = set_lang(update, context)
         update.effective_message.reply_text(_(
-            'The number must be between {} and {}, try again.').format(MIN_PERCENT, MAX_PERCENT))
+            'The number must be between {} and {}, try again').format(MIN_PERCENT, MAX_PERCENT))
 
         return WAIT_CROP_PERCENT
 
@@ -65,7 +65,7 @@ def receive_crop_size(update, context):
         offset = float(update.effective_message.text)
     except ValueError:
         _ = set_lang(update, context)
-        update.effective_message.reply_text(_('The number is invalid, try again.'))
+        update.effective_message.reply_text(_('The number is invalid, try again'))
 
         return WAIT_CROP_OFFSET
 
@@ -107,7 +107,7 @@ def crop_pdf(update, context, percent=None, offset=None):
             if proc.returncode != 0:
                 log = Logger()
                 log.error(f'Stdout:\n{out.decode("utf-8")}\n\nStderr:\n{err.decode("utf-8")}')
-                update.effective_message.reply_text(_('Something went wrong, try again.'))
+                update.effective_message.reply_text(_('Something went wrong, try again'))
             else:
                 send_result_file(update, context, out_fn)
 

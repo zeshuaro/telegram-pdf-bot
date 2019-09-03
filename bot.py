@@ -95,7 +95,7 @@ def start_msg(update, context):
         '- Extract images in a PDF file and convert a PDF file into images\n'
         '- Beautify and convert photos into PDF format\n'
         '- Convert a web page into a PDF file\n\n'
-        'Type /help to see how to use PDF Bot.'), parse_mode=ParseMode.MARKDOWN)
+        'Type /help to see how to use PDF Bot'), parse_mode=ParseMode.MARKDOWN)
 
     # Create the user entity in Datastore
     create_user(update.effective_message.from_user.id)
@@ -111,7 +111,7 @@ def help_msg(update, context):
 
     update.effective_message.reply_text(_(
         'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n'
-        'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.'),
+        'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo'),
         reply_markup=reply_markup)
 
 

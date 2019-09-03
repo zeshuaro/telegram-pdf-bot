@@ -19,7 +19,7 @@ from pdf_bot.language import set_lang
 @run_async
 def cancel(update, context):
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Operation cancelled.'), reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(_('Operation cancelled'), reply_markup=ReplyKeyboardRemove())
 
     return ConversationHandler.END
 
@@ -45,13 +45,13 @@ def check_pdf(update, context, send_msg=True):
         if send_msg:
             message.reply_text(_(
                 'The file you sent is not a PDF file. Try again and send me a PDF file or '
-                'type /cancel to cancel the operation.'))
+                'type /cancel to cancel the operation'))
     elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         pdf_status = PDF_TOO_LARGE
         if send_msg:
             message.reply_text(_(
                 'The PDF file you sent is too large for me to download. '
-                'I can\'t process your PDF file. Operation cancelled.'))
+                'I can\'t process your PDF file. Operation cancelled'))
 
     return pdf_status
 
@@ -71,7 +71,7 @@ def check_user_data(update, context, key):
     if key not in context.user_data:
         data_ok = False
         _ = set_lang(update, context)
-        update.effective_message.reply_text(_('Something went wrong, start over again.'))
+        update.effective_message.reply_text(_('Something went wrong, start over again'))
 
     return data_ok
 
@@ -147,17 +147,17 @@ def open_pdf(update, context, file_name, file_type=None):
         if pdf_reader.isEncrypted:
             if file_type:
                 if file_type == 'encrypted':
-                    text = _('Your PDF file is already encrypted.')
+                    text = _('Your PDF file is already encrypted')
                 else:
                     text = _('Your {} PDF file is encrypted and you\'ll have to decrypt it first. '
-                             'Operation cancelled.').format(file_type)
+                             'Operation cancelled').format(file_type)
             else:
-                text = _('Your PDF file is encrypted and you\'ll have to decrypt it first. Operation cancelled.')
+                text = _('Your PDF file is encrypted and you\'ll have to decrypt it first. Operation cancelled')
 
             pdf_reader = None
             update.effective_message.reply_text(text)
     except PdfReadError:
-        text = _('Your PDF file seems to be invalid and I couldn\'t open and read it. Operation cancelled.')
+        text = _('Your PDF file seems to be invalid and I couldn\'t open and read it. Operation cancelled')
         update.effective_message.reply_text(text)
 
     return pdf_reader
@@ -223,14 +223,14 @@ def send_result_file(update, context, out_fn):
     reply_markup = get_support_markup(update, context)
 
     if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
-        message.reply_text(_('The result file is too large for me to send to you.'), reply_markup=reply_markup)
+        message.reply_text(_('The result file is too large for me to send to you'), reply_markup=reply_markup)
     else:
         if out_fn.endswith('.png'):
             message.chat.send_action(ChatAction.UPLOAD_PHOTO)
-            message.reply_photo(open(out_fn, 'rb'), caption=_('Here is your result file.'), reply_markup=reply_markup)
+            message.reply_photo(open(out_fn, 'rb'), caption=_('Here is your result file'), reply_markup=reply_markup)
         else:
             message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            message.reply_document(document=open(out_fn, 'rb'), caption=_('Here is your result file.'),
+            message.reply_document(document=open(out_fn, 'rb'), caption=_('Here is your result file'),
                                    reply_markup=reply_markup)
 
     update_stats(update)

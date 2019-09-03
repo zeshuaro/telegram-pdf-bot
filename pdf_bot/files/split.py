@@ -25,7 +25,7 @@ def ask_split_range(update, context):
     _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the range of pages that you\'ll like to keep. '
-        'Use ⚡ *INSTANT VIEW* from below for some range examples.'),
+        'Use ⚡ *INSTANT VIEW* from below for some range examples'),
         parse_mode=ParseMode.MARKDOWN, reply_markup=ReplyKeyboardRemove())
 
     return WAIT_SPLIT_RANGE
@@ -51,7 +51,7 @@ def split_pdf(update, context):
     split_range = message.text
 
     if not PageRange.valid(split_range):
-        message.reply_text(_('The range is invalid. Try again.'))
+        message.reply_text(_('The range is invalid. Try again'))
 
         return WAIT_SPLIT_RANGE
 

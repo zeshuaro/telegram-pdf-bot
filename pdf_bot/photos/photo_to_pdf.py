@@ -60,7 +60,7 @@ def photo(update, context):
     _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the first photo that you\'ll like to beautify or convert into PDF format or '
-        '/cancel this operation.\n\nThe photos will be beautified and converted in the order that you send me.'))
+        '/cancel this operation.\n\nThe photos will be beautified and converted in the order that you send me'))
 
     return WAIT_PHOTO
 
@@ -84,7 +84,7 @@ def receive_photo(update, context):
         photo_file = update.effective_message.document
         if not photo_file.mime_type.startswith('image'):
             update.effective_message.reply_text(_(
-                'The file you sent is not a photo. Send me the photo that you\'ll like to beautify and convert.'))
+                'The file you sent is not a photo. Send me the photo that you\'ll like to beautify and convert'))
 
             return WAIT_PHOTO
     else:
@@ -97,13 +97,13 @@ def receive_photo(update, context):
         # Check if the user has already sent through some photos
         if PHOTO_NAMES in user_data and user_data[PHOTO_NAMES]:
             text += _('You can continue to beautify or convert with the files that you sent me, '
-                      'or /cancel this operation.')
+                      'or /cancel this operation')
             update.effective_message.reply_text(text)
             send_file_names(update, context, user_data[PHOTO_NAMES], _('photos'))
 
             return WAIT_PHOTO
         else:
-            text += _('I can\'t convert your photos. Operation cancelled.')
+            text += _('I can\'t convert your photos. Operation cancelled')
             update.effective_message.reply_text(text)
 
             return ConversationHandler.END
@@ -128,7 +128,7 @@ def receive_photo(update, context):
     update.effective_message.reply_text(_(
         'Send me the next photo that you\'ll like to beautify or convert. '
         'Select the task from below if you have sent me all the photos.\n\n'
-        'Note that I only have access to the file name if you sent your photo as a document.'),
+        'Note that I only have access to the file name if you sent your photo as a document'),
         reply_markup=reply_markup)
     send_file_names(update, context, user_data[PHOTO_NAMES], _('photos'))
 
@@ -229,14 +229,14 @@ def ask_photo_task(update, context, photo_file):
     message = update.effective_message
 
     if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
-        message.reply_text(_('Your photo is too large for me to download. I can\'t beautify or convert your photo.'))
+        message.reply_text(_('Your photo is too large for me to download. I can\'t beautify or convert your photo'))
 
         return ConversationHandler.END
 
     context.user_data[PHOTO_ID] = photo_file.file_id
     keyboard = [[_(BEAUTIFY), _(CONVERT)], [_(CANCEL)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
+    message.reply_text(_('Select the task that you\'ll like to perform'), reply_markup=reply_markup)
 
     return WAIT_PHOTO_TASK
 

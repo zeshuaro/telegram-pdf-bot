@@ -22,7 +22,7 @@ def ask_decrypt_pw(update, context):
         The variable indicating to wait for the decryption password
     """
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Send me the password to decrypt your PDF file.'),
+    update.effective_message.reply_text(_('Send me the password to decrypt your PDF file'),
                                         reply_markup=ReplyKeyboardRemove())
 
     return WAIT_DECRYPT_PW
@@ -57,15 +57,15 @@ def decrypt_pdf(update, context):
         try:
             pdf_reader = PdfFileReader(open(tf.name, 'rb'))
         except PdfReadError:
-            message.reply_text(_('I couldn\'t open and read your PDF file as it looks invalid.'))
+            message.reply_text(_('I couldn\'t open and read your PDF file as it looks invalid'))
 
         if pdf_reader is not None:
             if not pdf_reader.isEncrypted:
-                message.reply_text(_('Your PDF file is not encrypted.'))
+                message.reply_text(_('Your PDF file is not encrypted'))
             else:
                 try:
                     if pdf_reader.decrypt(message.text) == 0:
-                        message.reply_text(_('The decryption password is incorrect, try to send it again.'))
+                        message.reply_text(_('The decryption password is incorrect, try to send it again'))
 
                         return WAIT_DECRYPT_PW
 
@@ -75,7 +75,7 @@ def decrypt_pdf(update, context):
 
                     write_send_pdf(update, context, pdf_writer, file_name, 'decrypted')
                 except NotImplementedError:
-                    message.reply_text(_('Your PDF file is encrypted with a method that I cannot decrypt.'))
+                    message.reply_text(_('Your PDF file is encrypted with a method that I cannot decrypt'))
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -95,7 +95,7 @@ def ask_encrypt_pw(update, context):
         The variable indicating to wait for the encryption password
     """
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Send me the password to encrypt your PDF file.'),
+    update.effective_message.reply_text(_('Send me the password to encrypt your PDF file'),
                                         reply_markup=ReplyKeyboardRemove())
 
     return WAIT_ENCRYPT_PW
