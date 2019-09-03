@@ -75,5 +75,4 @@ WAIT_PAYMENT = 0
 
 # Datastore constants
 USER = 'User'
-COUNT = 'count'
 LANGUAGE = 'language'

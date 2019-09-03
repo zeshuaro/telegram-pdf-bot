@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from google.cloud import datastore
 
-from pdf_bot.constants import USER, COUNT, LANGUAGE
+from pdf_bot.constants import USER, LANGUAGE
 
 
 load_dotenv()
@@ -23,7 +23,6 @@ def create_user(user_id):
         user = client.get(key=user_key)
         if user is None:
             user = datastore.Entity(user_key)
-            user[COUNT] = 0
             user[LANGUAGE] = 'en'
 
         client.put(user)
