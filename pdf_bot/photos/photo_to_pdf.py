@@ -9,7 +9,8 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import CANCEL, BEAUTIFY, CONVERT, WAIT_PHOTO_TASK
-from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data, get_lang
+from pdf_bot.utils import cancel_with_async, send_file_names, send_result_file, check_user_data, get_lang, \
+    cancel_without_async
 
 WAIT_PHOTO = 0
 PHOTO_ID = 'photo_id'
@@ -31,7 +32,7 @@ def photo_cov_handler():
                 MessageHandler(Filters.text, check_photo_task)
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel_with_async)],
         allow_reentry=True
     )
 
@@ -142,7 +143,7 @@ def check_photo_task(update, context):
     if text in [_(BEAUTIFY), _(CONVERT)]:
         return process_all_photos(update, context)
     elif text == _(CANCEL):
-        return cancel(update, context)
+        return cancel_without_async(update, context)
 
 
 def process_all_photos(update, context):

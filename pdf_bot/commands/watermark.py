@@ -5,7 +5,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK
-from pdf_bot.utils import cancel, check_pdf, open_pdf, write_send_pdf, check_user_data, get_lang
+from pdf_bot.utils import cancel_with_async, check_pdf, open_pdf, write_send_pdf, check_user_data, get_lang
 
 WAIT_WATERMARK_SOURCE = 0
 WAIT_WATERMARK = 1
@@ -24,7 +24,7 @@ def watermark_cov_handler():
             WAIT_WATERMARK_SOURCE: [MessageHandler(Filters.document, receive_source_doc)],
             WAIT_WATERMARK: [MessageHandler(Filters.document, receive_watermark_doc)]
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel_with_async)],
         allow_reentry=True
     )
 

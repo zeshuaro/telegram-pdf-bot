@@ -11,12 +11,16 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import *
+from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT, USER, LANGUAGE
 from pdf_bot.store import update_stats, client
 
 
 @run_async
-def cancel(update, context):
+def cancel_with_async(update, context):
+    return cancel_without_async(update, context)
+
+
+def cancel_without_async(update, context):
     _ = get_lang(update, context)
     update.effective_message.reply_text(_('Action cancelled'), reply_markup=ReplyKeyboardRemove())
 
@@ -161,7 +165,6 @@ def open_pdf(update, context, file_name, file_type=None):
     return pdf_reader
 
 
-@run_async
 def send_file_names(update, context, file_names, file_type):
     """
     Send a list of file names to user
@@ -175,7 +178,7 @@ def send_file_names(update, context, file_names, file_type):
         None
     """
     _ = get_lang(update, context)
-    text = _('You have sent me the following {}:\n').format(file_type)
+    text = _('You\'ve sent me these {} so far:\n').format(file_type)
     for i, filename in enumerate(file_names):
         text += f'{i + 1}: {filename}\n'
 

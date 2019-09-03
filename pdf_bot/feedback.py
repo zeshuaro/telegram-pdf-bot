@@ -8,7 +8,7 @@ from textblob.exceptions import TranslatorError
 from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.utils import cancel, get_lang
+from pdf_bot.utils import cancel_with_async, get_lang
 
 load_dotenv()
 SLACK_TOKEN = os.environ.get('SLACK_TOKEN')
@@ -20,7 +20,7 @@ def feedback_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('feedback', feedback)],
         states={0: [MessageHandler(Filters.text, receive_feedback)]},
-        fallbacks=[CommandHandler('cancel', cancel)]
+        fallbacks=[CommandHandler('cancel', cancel_with_async)]
     )
 
     return conv_handler

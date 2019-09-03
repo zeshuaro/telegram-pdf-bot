@@ -8,7 +8,8 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK
-from pdf_bot.utils import check_pdf, cancel, send_result_file, check_user_data, get_lang
+from pdf_bot.utils import check_pdf, cancel_with_async, send_result_file, check_user_data, get_lang, \
+    cancel_without_async
 
 WAIT_FIRST = 0
 WAIT_SECOND = 1
@@ -22,7 +23,7 @@ def compare_cov_handler():
             WAIT_FIRST: [MessageHandler(Filters.document, check_first_doc)],
             WAIT_SECOND: [MessageHandler(Filters.document, check_second_doc)],
         },
-        fallbacks=[CommandHandler('cancel', cancel), MessageHandler(Filters.text, check_text)],
+        fallbacks=[CommandHandler('cancel', cancel_with_async), MessageHandler(Filters.text, check_text)],
         allow_reentry=True
     )
 
@@ -52,9 +53,7 @@ def check_text(update, context):
     if text == _(BACK):
         return ask_first_doc(update, context)
     elif text == _(CANCEL):
-        update.effective_message.reply_text(_('Action cancelled'), reply_markup=ReplyKeyboardRemove())
-
-        return ConversationHandler.END
+        return cancel_without_async(update, context)
 
 
 @run_async
@@ -109,7 +108,7 @@ def compare_pdf(update, context):
                 pdf_diff.main(files=[tf1.name, tf2.name], out_file=out_fn)
                 send_result_file(update, context, out_fn)
         except NoDifferenceError:
-            message.reply_text(_('There are no differences in text between your PDF files')))
+            message.reply_text(_('There are no differences in text between your PDF files'))
 
     # Clean up memory and files
     if user_data[COMPARE_ID] == first_file_id:
