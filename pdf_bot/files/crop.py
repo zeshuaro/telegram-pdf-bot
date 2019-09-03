@@ -9,14 +9,15 @@ from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import *
-from pdf_bot.utils import send_result_file, get_lang
+from pdf_bot.utils import send_result_file
+from pdf_bot.language import set_lang
 
 MIN_PERCENT = 0
 MAX_PERCENT = 100
 
 
 def ask_crop_type(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     keyboard = [[_(CROP_PERCENT), _(CROP_SIZE)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True)
     update.effective_message.reply_text(_('Select the crop type that you\'ll like to perform.'),
@@ -26,7 +27,7 @@ def ask_crop_type(update, context):
 
 
 def ask_crop_value(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
 
     if message.text == CROP_PERCENT:
@@ -49,7 +50,7 @@ def receive_crop_percent(update, context):
     try:
         percent = float(update.effective_message.text)
     except ValueError:
-        _ = get_lang(update, context)
+        _ = set_lang(update, context)
         update.effective_message.reply_text(_(
             'The number must be between {} and {}, try again.').format(MIN_PERCENT, MAX_PERCENT))
 
@@ -63,7 +64,7 @@ def receive_crop_size(update, context):
     try:
         offset = float(update.effective_message.text)
     except ValueError:
-        _ = get_lang(update, context)
+        _ = set_lang(update, context)
         update.effective_message.reply_text(_('The number is invalid, try again.'))
 
         return WAIT_CROP_OFFSET
@@ -84,7 +85,7 @@ def crop_pdf(update, context, percent=None, offset=None):
     Returns:
         The variable indicating the conversation has ended
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Cropping your PDF file'))
     user_data = context.user_data
 

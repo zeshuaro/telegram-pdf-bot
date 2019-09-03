@@ -7,7 +7,8 @@ from urllib.parse import urlparse
 from weasyprint import HTML
 from weasyprint.urls import URLFetchingError
 
-from pdf_bot.utils import send_result_file, get_lang
+from pdf_bot.utils import send_result_file
+from pdf_bot.language import set_lang
 
 URLS = 'urls'
 logging.getLogger('weasyprint').setLevel(100)
@@ -15,7 +16,7 @@ logging.getLogger('weasyprint').setLevel(100)
 
 @run_async
 def url_to_pdf(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     url = message.text
     user_data = context.user_data

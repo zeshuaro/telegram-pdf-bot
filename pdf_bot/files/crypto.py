@@ -7,7 +7,8 @@ from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_INFO
-from pdf_bot.utils import write_send_pdf, process_pdf, check_user_data, get_lang
+from pdf_bot.utils import write_send_pdf, process_pdf, check_user_data
+from pdf_bot.language import set_lang
 
 
 def ask_decrypt_pw(update, context):
@@ -20,7 +21,7 @@ def ask_decrypt_pw(update, context):
     Returns:
         The variable indicating to wait for the decryption password
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Send me the password to decrypt your PDF file.'),
                                         reply_markup=ReplyKeyboardRemove())
 
@@ -41,7 +42,7 @@ def decrypt_pdf(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     message.reply_text(_('Decrypting your PDF file'))
 
@@ -93,7 +94,7 @@ def ask_encrypt_pw(update, context):
     Returns:
         The variable indicating to wait for the encryption password
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Send me the password to encrypt your PDF file.'),
                                         reply_markup=ReplyKeyboardRemove())
 
@@ -114,7 +115,7 @@ def encrypt_pdf(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Encrypting your PDF file'))
     process_pdf(update, context, 'encrypted', encrypt_pw=update.effective_message.text)
 

@@ -12,8 +12,9 @@ from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, EXTRACT_IMG, PHOTOS, ZIPPED
-from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup, get_lang
+from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
 from pdf_bot.store import update_stats
+from pdf_bot.language import set_lang
 
 MAX_MEDIA_GROUP = 10
 
@@ -31,7 +32,7 @@ def get_pdf_preview(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Extracting a preview for your PDF file'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf1:
@@ -82,7 +83,7 @@ def ask_photo_results_type(update, context):
     else:
         return_type = WAIT_TO_PHOTO_TYPE
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     keyboard = [[_(PHOTOS), _(ZIPPED)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(_('Select the result file format to be sent back to you.'),
@@ -105,7 +106,7 @@ def pdf_to_photos(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Converting your PDF file into photos'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf:
@@ -147,7 +148,7 @@ def get_pdf_photos(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Extracting all the photos in your PDF file'),
                                         reply_markup=ReplyKeyboardRemove())
 
@@ -240,7 +241,7 @@ def handle_result_photos(update, context, dir_name):
         if photos:
             message.reply_media_group(photos)
 
-        _ = get_lang(update, context)
+        _ = set_lang(update, context)
         message.reply_text(_('See above for all your photos'), reply_markup=get_support_markup(update, context))
         update_stats(update)
     else:

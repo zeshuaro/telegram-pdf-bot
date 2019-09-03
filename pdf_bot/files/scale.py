@@ -3,7 +3,8 @@ from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_SCALE_BY_X, WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, PDF_INFO, SCALE_BY
-from pdf_bot.utils import process_pdf, check_user_data, get_lang
+from pdf_bot.utils import process_pdf, check_user_data
+from pdf_bot.language import set_lang
 
 SCALE_BY_KEY = 'scale_by'
 SCALE_TO_KEY = 'scale_to'
@@ -19,7 +20,7 @@ def ask_scale_x(update, context):
     Returns:
         The variable indicating to wait for the horizontal scaling factor or the new width
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
 
     if message.text == SCALE_BY:
@@ -45,7 +46,7 @@ def ask_scale_by_y(update, context):
     Returns:
         The variable indicating to wait for the horizontal or vertical scaling factor
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     scale_x = message.text
 
@@ -78,7 +79,7 @@ def pdf_scale_by(update, context):
     if not check_user_data(update, context, PDF_INFO) or not check_user_data(update, context, SCALE_BY_KEY):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     scale_y = message.text
     
@@ -112,7 +113,7 @@ def ask_scale_to_y(update, context):
     Returns:
         The variable indicating to wait for the width or the height
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     scale_x = message.text
 
@@ -144,7 +145,7 @@ def pdf_scale_to(update, context):
     if not check_user_data(update, context, PDF_INFO) or not check_user_data(update, context, SCALE_TO_KEY):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     scale_y = message.text
 

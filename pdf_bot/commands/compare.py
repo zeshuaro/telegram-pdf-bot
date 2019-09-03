@@ -7,7 +7,8 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK
-from pdf_bot.utils import check_pdf, cancel, send_result_file, check_user_data, get_lang
+from pdf_bot.utils import check_pdf, cancel, send_result_file, check_user_data
+from pdf_bot.language import set_lang
 
 WAIT_COMPARE_FIRST = 0
 WAIT_COMPARE_SECOND = 1
@@ -44,7 +45,7 @@ def compare(update, context):
     Returns:
         The variable indicating to wait for the file
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me one of the PDF files that you\'ll like to compare or /cancel this operation.\n\n'
         'Note that I can only look for text differences.'))
@@ -69,7 +70,7 @@ def receive_first_doc(update, context):
     elif result != PDF_OK:
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     context.user_data[COMPARE_ID] = update.effective_message.document.file_id
     update.effective_message.reply_text(_(
         'Send me the other PDF file that you\'ll like to compare or /cancel this operation.'))
@@ -114,7 +115,7 @@ def compare_pdf(update, context):
     if not check_user_data(update, context, COMPARE_ID):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     message.reply_text(_('Comparing your PDF files'))
 

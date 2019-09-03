@@ -40,6 +40,7 @@ def main():
     # General commands handlers
     dispatcher.add_handler(CommandHandler('start', start_msg))
     dispatcher.add_handler(CommandHandler('help', help_msg))
+    dispatcher.add_handler(CommandHandler('setlang', send_lang))
     dispatcher.add_handler(CommandHandler('donate', send_payment_options))
     dispatcher.add_handler(CommandHandler('send', send_msg, Filters.user(DEV_TELE_ID)))
     dispatcher.add_handler(CommandHandler('stats', get_stats, Filters.user(DEV_TELE_ID)))
@@ -87,7 +88,7 @@ def main():
 
 @run_async
 def start_msg(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Welcome to PDF Bot!\n\n*Features*\n'
         '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n'
@@ -102,8 +103,9 @@ def start_msg(update, context):
 
 @run_async
 def help_msg(update, context):
-    _ = get_lang(update, context)
-    keyboard = [[InlineKeyboardButton(_('Join Channel'), f'https://t.me/{CHANNEL_NAME}'),
+    _ = set_lang(update, context)
+    keyboard = [[InlineKeyboardButton(_('Set Language'), callback_data=SET_LANG)],
+                [InlineKeyboardButton(_('Join Channel'), f'https://t.me/{CHANNEL_NAME}'),
                  InlineKeyboardButton(_('Support PDF Bot'), callback_data=PAYMENT)]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -115,9 +117,13 @@ def help_msg(update, context):
 
 @run_async
 def process_callback_query(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     query = update.callback_query
 
+    if query.data == SET_LANG:
+        send_lang(update, context)
+    elif query.data in LANGUAGES:
+        store_lang(update, context, query)
     if query.data == PAYMENT:
         send_payment_options(update, context, query.from_user.id)
     elif query.data in [THANKS, COFFEE, BEER, MEAL]:
