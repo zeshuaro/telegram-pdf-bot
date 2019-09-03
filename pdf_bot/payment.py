@@ -6,7 +6,7 @@ from telegram import LabeledPrice, ReplyKeyboardRemove, InlineKeyboardButton, In
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import *
-from pdf_bot.utils import get_lang
+from pdf_bot.language import set_lang
 
 load_dotenv()
 STRIPE_TOKEN = os.environ.get('STRIPE_TOKEN', os.environ.get('STRIPE_TOKEN_BETA'))
@@ -14,7 +14,7 @@ STRIPE_TOKEN = os.environ.get('STRIPE_TOKEN', os.environ.get('STRIPE_TOKEN_BETA'
 
 @run_async
 def receive_custom_amount(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     if _(CUSTOM_MSG) in update.effective_message.reply_to_message.text:
         try:
             amount = round(float(update.effective_message.text))
@@ -23,14 +23,14 @@ def receive_custom_amount(update, context):
 
             send_payment_invoice(update, context, amount=amount)
         except ValueError:
-            _ = get_lang(update, context)
+            _ = set_lang(update, context)
             update.effective_message.reply_text(_(
                 'The amount you sent is invalid, try again. {}').format(_(CUSTOM_MSG)), reply_markup=ForceReply())
 
 
 @run_async
-def send_payment_options(update, context, user_id=None):
-    _ = get_lang(update, context)
+def send_payment_options(update, context, query=None):
+    _ = set_lang(update, context, query)
     keyboard = [[InlineKeyboardButton(_(THANKS), callback_data=THANKS),
                  InlineKeyboardButton(_(COFFEE), callback_data=COFFEE)],
                 [InlineKeyboardButton(_(BEER), callback_data=BEER),
@@ -39,10 +39,12 @@ def send_payment_options(update, context, user_id=None):
     reply_markup = InlineKeyboardMarkup(keyboard)
     text = _('Select how you want to support PDF Bot')
 
-    if user_id is None:
-        update.effective_message.reply_text(text, reply_markup=reply_markup)
+    if query is None:
+        user_id = update.effective_message.from_user.id
     else:
-        context.bot.send_message(user_id, text, reply_markup=reply_markup)
+        user_id = query.from_user.id
+
+    context.bot.send_message(user_id, text, reply_markup=reply_markup)
 
 
 def send_payment_invoice(update, context, query=None, amount=None):
@@ -53,7 +55,7 @@ def send_payment_invoice(update, context, query=None, amount=None):
         message = query.message
         label = query.data
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     chat_id = message.chat_id
     title = _('Support PDF Bot')
     description = _('Say thanks to PDF Bot and help keep it running')
@@ -72,7 +74,7 @@ def send_payment_invoice(update, context, query=None, amount=None):
 
 @run_async
 def precheckout_check(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     query = update.pre_checkout_query
 
     if query.invoice_payload != PAYMENT_PAYLOAD:
@@ -82,5 +84,5 @@ def precheckout_check(update, context):
 
 
 def successful_payment(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Thank you for your support!'), reply_markup=ReplyKeyboardRemove())

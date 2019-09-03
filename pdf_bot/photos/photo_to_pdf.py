@@ -9,7 +9,8 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import CANCEL, BEAUTIFY, CONVERT, WAIT_PHOTO_TASK
-from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data, get_lang
+from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data
+from pdf_bot.language import set_lang
 
 WAIT_PHOTO = 0
 PHOTO_ID = 'photo_id'
@@ -56,7 +57,7 @@ def photo(update, context):
     if PHOTO_NAMES in user_data:
         del user_data[PHOTO_NAMES]
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the first photo that you\'ll like to beautify or convert into PDF format or '
         '/cancel this operation.\n\nThe photos will be beautified and converted in the order that you send me.'))
@@ -76,7 +77,7 @@ def receive_photo(update, context):
     Returns:
         The variable indicating to wait for a file or the conversation has ended
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
 
     # Check if the photo has been sent as a document or photo
     if update.effective_message.document:
@@ -136,7 +137,7 @@ def receive_photo(update, context):
 
 @run_async
 def check_photo_task(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text in [_(BEAUTIFY), _(CONVERT)]:
@@ -188,7 +189,7 @@ def process_photo(update, context, file_ids, is_beautify):
     Returns:
         None
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     if is_beautify:
         update.effective_message.reply_text(_('Beautifying and converting your photos'),
                                             reply_markup=ReplyKeyboardRemove())
@@ -224,7 +225,7 @@ def process_photo(update, context, file_ids, is_beautify):
 
 
 def ask_photo_task(update, context, photo_file):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
 
     if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:

@@ -8,7 +8,8 @@ from textblob.exceptions import TranslatorError
 from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.utils import cancel, get_lang
+from pdf_bot.utils import cancel
+from pdf_bot.language import set_lang
 
 load_dotenv()
 SLACK_TOKEN = os.environ.get('SLACK_TOKEN')
@@ -37,7 +38,7 @@ def feedback(update, context):
     Returns:
         The variable indicating to wait for feedback
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me your feedback or /cancel this operation. My developer can understand English and Chinese.'))
 
@@ -68,7 +69,7 @@ def receive_feedback(update, context):
     except TranslatorError:
         pass
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     if not feedback_lang or feedback_lang.lower() not in VALID_LANGS:
         message.reply_text(_('The feedback is not in English or Chinese, try again.'))
 

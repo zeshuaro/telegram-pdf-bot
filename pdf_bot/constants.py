@@ -5,6 +5,7 @@ _ = t.gettext
 
 # Bot constants
 CHANNEL_NAME = 'pdf2botdev'
+SET_LANG = 'set_lang'
 
 # PDF file validation constants
 PDF_OK = 0
@@ -77,3 +78,6 @@ WAIT_PAYMENT = 0
 USER = 'User'
 COUNT = 'count'
 LANGUAGE = 'language'
+
+# Language constants
+LANGUAGES = {'🇬🇧 English': 'en-UK', '🇮🇹 Italian': 'it-IT', '🇪🇸 Spanish': 'es-ES'}

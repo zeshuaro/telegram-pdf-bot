@@ -7,7 +7,8 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_TOO_LARGE, CANCEL, DONE
-from pdf_bot.utils import check_pdf, cancel, write_send_pdf, send_file_names, check_user_data, get_lang
+from pdf_bot.utils import check_pdf, cancel, write_send_pdf, send_file_names, check_user_data
+from pdf_bot.language import set_lang
 
 WAIT_MERGE = 0
 MERGE_IDS = 'merge_ids'
@@ -53,7 +54,7 @@ def merge(update, context):
     if MERGE_NAMES in user_data:
         del user_data[MERGE_NAMES]
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the PDF file that you\'ll like to merge or /cancel this operation.\n\n'
         'The files will be merged in the order that you send me.'))
@@ -76,7 +77,7 @@ def receive_doc(update, context):
     result = check_pdf(update, context, send_msg=False)
     message = update.effective_message
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     if result == PDF_INVALID_FORMAT:
         message.reply_text(_(
             'The file you sent is not a PDF file. '
@@ -121,7 +122,7 @@ def receive_doc(update, context):
 
 @run_async
 def check_text(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text == _(DONE):
@@ -144,7 +145,7 @@ def merge_pdf(update, context):
     if not check_user_data(update, context, MERGE_IDS):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Merging your PDF files'), reply_markup=ReplyKeyboardRemove())
     file_ids = user_data[MERGE_IDS]
     file_names = user_data[MERGE_NAMES]
