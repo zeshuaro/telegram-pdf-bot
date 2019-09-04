@@ -1,4 +1,3 @@
-import gettext
 import os
 import secrets
 import tempfile

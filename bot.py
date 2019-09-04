@@ -42,7 +42,7 @@ def main():
     dispatcher.add_handler(CommandHandler('start', start_msg))
     dispatcher.add_handler(CommandHandler('help', help_msg))
     dispatcher.add_handler(CommandHandler('setlang', send_lang))
-    dispatcher.add_handler(CommandHandler('donate', send_payment_options))
+    dispatcher.add_handler(CommandHandler('support', send_support_options_with_async))
     dispatcher.add_handler(CommandHandler('send', send_msg, Filters.user(DEV_TELE_ID)))
     dispatcher.add_handler(CommandHandler('stats', get_stats, Filters.user(DEV_TELE_ID)))
 
@@ -132,14 +132,14 @@ def process_callback_query(update, context):
         elif data in LANGUAGES:
             store_lang(update, context, query)
         if data == PAYMENT:
-            send_payment_options(update, context, query)
+            send_support_options_without_async(update, context, query)
         elif data in [THANKS, COFFEE, BEER, MEAL]:
             send_payment_invoice(update, context, query)
         elif data == CUSTOM:
             context.bot.send_message(
-                query.from_user.id, _('Send me the amount that you\'ll like to support PDF Bot'), 
+                query.from_user.id, _('Send me the amount that you\'ll like to support PDF Bot'),
                 reply_markup=ForceReply())
-            
+
         context.user_data[CALLBACK_DATA].remove(data)
 
 

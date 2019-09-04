@@ -28,14 +28,14 @@ def receive_custom_amount(update, context):
                 'The amount you sent is invalid, try again. {}').format(_(CUSTOM_MSG)), reply_markup=ForceReply())
 
 
-@run_async
-def send_payment_options(update, context, query=None):
+def send_support_options_without_async(update, context, query=None):
     _ = set_lang(update, context, query)
     keyboard = [[InlineKeyboardButton(_(THANKS), callback_data=THANKS),
                  InlineKeyboardButton(_(COFFEE), callback_data=COFFEE)],
                 [InlineKeyboardButton(_(BEER), callback_data=BEER),
                  InlineKeyboardButton(_(MEAL), callback_data=MEAL)],
-                [InlineKeyboardButton(_(CUSTOM), callback_data=CUSTOM)]]
+                [InlineKeyboardButton(_(CUSTOM), callback_data=CUSTOM)],
+                [InlineKeyboardButton(_('Help translate PDF Bot'), 'https://crwd.in/telegram-pdf-bot')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     text = _('Select how you want to support PDF Bot')
 
@@ -45,6 +45,11 @@ def send_payment_options(update, context, query=None):
         user_id = query.from_user.id
 
     context.bot.send_message(user_id, text, reply_markup=reply_markup)
+
+
+@run_async
+def send_support_options_with_async(update, context, query=None):
+    send_support_options_without_async(update, context, query)
 
 
 def send_payment_invoice(update, context, query=None, amount=None):
