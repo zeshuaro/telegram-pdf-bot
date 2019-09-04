@@ -79,4 +79,4 @@ USER = 'User'
 LANGUAGE = 'language'
 
 # Language constants
-LANGUAGES = {'🇬🇧 English': 'en_UK', '🇭🇰 廣東話': 'zh_HK', '🇹🇼 繁體中文': 'zh_TW', '🇨🇳 简体中文': 'zh_CN'}
+LANGUAGES = {'🇬🇧 English': 'en', '🇭🇰 廣東話': 'zh_HK', '🇹🇼 繁體中文': 'zh_TW', '🇨🇳 简体中文': 'zh_CN'}

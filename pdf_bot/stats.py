@@ -2,14 +2,19 @@ import matplotlib
 matplotlib.use('Agg')
 
 import matplotlib.pyplot as plt
+import os
 import tempfile
 
 from collections import defaultdict
 from datetime import date
+from dotenv import load_dotenv
 from google.cloud import datastore
 
 from pdf_bot.store import client
 from pdf_bot.constants import USER, LANGUAGE
+
+load_dotenv()
+DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 
 
 def update_stats(update, task):
@@ -34,12 +39,13 @@ def get_stats(update, context):
     counts = defaultdict(int)
 
     for user in query.fetch():
-        num_users += 1
-        for key in user.keys():
-            if key != LANGUAGE:
-                num_tasks += user[key]
-                if key != 'count':
-                    counts[key] += user[key]
+        if user.key.id != DEV_TELE_ID:
+            num_users += 1
+            for key in user.keys():
+                if key != LANGUAGE:
+                    num_tasks += user[key]
+                    if key != 'count':
+                        counts[key] += user[key]
 
     launch_date = date(2017, 7, 1)
     stats_date = date(2019, 7, 1)
@@ -64,9 +70,10 @@ def send_plot(update, counts):
 
     ax.bar(x_pos, nums, align='center')
     ax.set_xticks(x_pos)
-    ax.set_xticklabels(tasks)
+    ax.set_xticklabels(tasks, rotation=45)
     ax.set_xlabel('Tasks')
     ax.set_ylabel('Counts')
+    plt.tight_layout()
 
     with tempfile.NamedTemporaryFile(suffix='.png') as tf:
         plt.savefig(tf.name)
