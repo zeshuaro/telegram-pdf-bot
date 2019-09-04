@@ -20,6 +20,7 @@ DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
 
 TIMEOUT = 20
+CALLBACK_DATA = 'callback_data'
 
 
 def main():
@@ -119,18 +120,27 @@ def help_msg(update, context):
 def process_callback_query(update, context):
     _ = set_lang(update, context)
     query = update.callback_query
+    data = query.data
+    
+    if CALLBACK_DATA not in context.user_data:
+        context.user_data[CALLBACK_DATA] = set()
 
-    if query.data == SET_LANG:
-        send_lang(update, context, query)
-    elif query.data in LANGUAGES:
-        store_lang(update, context, query)
-    if query.data == PAYMENT:
-        send_payment_options(update, context, query)
-    elif query.data in [THANKS, COFFEE, BEER, MEAL]:
-        send_payment_invoice(update, context, query)
-    elif query.data == CUSTOM:
-        context.bot.send_message(
-            query.from_user.id, _('Send me the amount that you\'ll like to support PDF Bot'), reply_markup=ForceReply())
+    if data not in context.user_data[CALLBACK_DATA]:
+        context.user_data[CALLBACK_DATA].add(data)
+        if data == SET_LANG:
+            send_lang(update, context, query)
+        elif data in LANGUAGES:
+            store_lang(update, context, query)
+        if data == PAYMENT:
+            send_payment_options(update, context, query)
+        elif data in [THANKS, COFFEE, BEER, MEAL]:
+            send_payment_invoice(update, context, query)
+        elif data == CUSTOM:
+            context.bot.send_message(
+                query.from_user.id, _('Send me the amount that you\'ll like to support PDF Bot'), 
+                reply_markup=ForceReply())
+            
+        context.user_data[CALLBACK_DATA].remove(data)
 
 
 def send_msg(update, context):

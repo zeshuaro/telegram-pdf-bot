@@ -1,6 +1,6 @@
 import gettext
 
-t = gettext.translation('pdf_bot', localedir='locale', languages=['en-UK'])
+t = gettext.translation('pdf_bot', localedir='locale', languages=['en_UK'])
 _ = t.gettext
 
 # Bot constants
@@ -80,4 +80,4 @@ COUNT = 'count'
 LANGUAGE = 'language'
 
 # Language constants
-LANGUAGES = {'🇬🇧 English': 'en-UK', '🇭🇰 廣東話': 'zh-HK', '🇹🇼 繁體中文': 'zh-TW', '🇨🇳 简体中文': 'zh-CN'}
+LANGUAGES = {'🇬🇧 English': 'en_UK', '🇭🇰 廣東話': 'zh_HK', '🇹🇼 繁體中文': 'zh_TW', '🇨🇳 简体中文': 'zh_CN'}
