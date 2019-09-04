@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2019-09-03 23:35+1000\n"
-"PO-Revision-Date: 2019-09-04 02:56\n"
+"POT-Creation-Date: 2019-09-04 13:07+1000\n"
+"PO-Revision-Date: 2019-09-04 03:15\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
 "MIME-Version: 1.0\n"
@@ -386,105 +386,103 @@ msgstr "你嘅PDF檔案太大啦，我下載唔到。我亦都處理唔到任何
 
 #: pdf_bot/files/file.py:99 pdf_bot/photos/photo_to_pdf.py:239
 msgid "Select the task that you'll like to perform"
-msgstr ""
+msgstr "揀你想執行嘅操作"
 
 #: pdf_bot/files/rename.py:27
 msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr ""
+msgstr "發送你想要嘅PDF檔案名畀我"
 
 #: pdf_bot/files/rename.py:53
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
-msgstr ""
+msgstr "檔案名唔可以有呢啲符號：\n"
+"{}\n"
+"發送另一個檔案名畀我"
 
 #: pdf_bot/files/rename.py:60
 msgid "Renaming your PDF file into *{}*"
-msgstr ""
+msgstr "改緊你個PDF檔案做*{}*"
 
 #: pdf_bot/files/rotate.py:23
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr ""
+msgstr "揀你想順時針旋轉你嘅PDF檔案嘅度數"
 
 #: pdf_bot/files/rotate.py:45
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr ""
+msgstr "順時針旋轉緊{}度去你個PDF檔案"
 
 #: pdf_bot/files/scale.py:27
 msgid "Send me the scaling factor for the horizontal axis. For example, 2 will double the horizontal axis and 0.5 will half the horizontal axis"
-msgstr ""
+msgstr "發送你想打橫縮放嘅百分比畀我。2嘅話就會放大一倍，0.5嘅話就會縮細一半"
 
 #: pdf_bot/files/scale.py:33
 msgid "Send me the new width"
-msgstr ""
+msgstr "發送新嘅寬度畀我"
 
-#: pdf_bot/files/scale.py:56
+#: pdf_bot/files/scale.py:56 pdf_bot/files/scale.py:89
 msgid "The scaling factor \"{}\" is invalid. Try again"
-msgstr ""
+msgstr "縮放百分比“{}”無效。試多次"
 
 #: pdf_bot/files/scale.py:61
 msgid "Send me the scaling factor for the vertical axis. For example, 2 will double the vertical axis and 0.5 will half the vertical axis"
-msgstr ""
-
-#: pdf_bot/files/scale.py:89
-msgid "The scaling factor \"{scale_y}\" is invalid. Try again"
-msgstr ""
+msgstr "發送你想打棟縮放嘅百分比畀我。2嘅話就會放大一倍，0.5嘅話就會縮細一半"
 
 #: pdf_bot/files/scale.py:95
 msgid "Scaling your PDF file, horizontally by {} and vertically by {}"
-msgstr ""
+msgstr "縮放緊你嘅PDF檔案，打橫縮放{}同打棟縮放{}"
 
 #: pdf_bot/files/scale.py:123
 msgid "The width \"{}\" is invalid. Try again"
-msgstr ""
+msgstr "寬度“{}”無效。 試多次"
 
 #: pdf_bot/files/scale.py:128
 msgid "Send me the new height"
-msgstr ""
+msgstr "發送新嘅高度畀我"
 
 #: pdf_bot/files/scale.py:155
 msgid "The height \"{}\" is invalid. Try again"
-msgstr ""
+msgstr "高度“{}”無效。 試多次"
 
 #: pdf_bot/files/scale.py:161
 msgid "Scaling your PDF file with width of {} and height of {}"
-msgstr ""
+msgstr "縮放緊你嘅PDF檔案，寬度為{}，高度為{}"
 
 #: pdf_bot/files/split.py:26
 msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below for some range examples"
-msgstr ""
+msgstr "發送你想要保留嘅頁數。你可以用下面嘅⚡* INSTANT VIEW *睇下啲例子"
 
 #: pdf_bot/files/split.py:54
 msgid "The range is invalid. Try again"
-msgstr ""
+msgstr "頁數無效，試多次"
 
 #: pdf_bot/files/split.py:58
 msgid "Splitting your PDF file"
-msgstr ""
+msgstr "分割緊你嘅PDF檔案"
 
 #: pdf_bot/photos/pdf_to_photo.py:36
 msgid "Extracting a preview for your PDF file"
-msgstr ""
+msgstr "攞緊你PDF檔案嘅預覽"
 
 #: pdf_bot/photos/pdf_to_photo.py:89
 msgid "Select the result file format to be sent back to you"
-msgstr ""
+msgstr "揀你想要嘅檔案格式"
 
 #: pdf_bot/photos/pdf_to_photo.py:110
 msgid "Converting your PDF file into photos"
-msgstr ""
+msgstr "轉換緊你嘅PDF檔案做圖片"
 
 #: pdf_bot/photos/pdf_to_photo.py:152
 msgid "Extracting all the photos in your PDF file"
-msgstr ""
+msgstr "攞緊你PDF檔案入面嘅圖片出來"
 
 #: pdf_bot/photos/pdf_to_photo.py:208
 msgid "I couldn't find any photos in your PDF file"
-msgstr ""
+msgstr "我係你嘅PDF檔案到搵唔到任何圖片"
 
 #: pdf_bot/photos/pdf_to_photo.py:245
 msgid "See above for all your photos"
-msgstr ""
+msgstr "呢啲就係你嘅圖片"
 
 #: pdf_bot/photos/photo_to_pdf.py:61
 msgid "Send me the first photo that you'll like to beautify or convert into PDF format or /cancel this operation.\n\n"
