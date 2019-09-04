@@ -9,7 +9,8 @@ from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import WAIT_FILE_NAME, PDF_INFO
-from pdf_bot.utils import send_result_file, check_user_data, get_lang
+from pdf_bot.utils import send_result_file, check_user_data
+from pdf_bot.language import set_lang
 
 
 def ask_pdf_new_name(update, context):
@@ -22,8 +23,8 @@ def ask_pdf_new_name(update, context):
     Returns:
         The variable indicating to wait for the file name
     """
-    _ = get_lang(update, context)
-    update.effective_message.reply_text(_('Send me the file name that you\'ll like to rename your PDF file into.'),
+    _ = set_lang(update, context)
+    update.effective_message.reply_text(_('Send me the file name that you\'ll like to rename your PDF file into'),
                                         reply_markup=ReplyKeyboardRemove())
 
     return WAIT_FILE_NAME
@@ -43,14 +44,14 @@ def rename_pdf(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     text = re.sub(r'\.pdf$', '', message.text)
     invalid_chars = r'\/*?:\'<>|'
 
     if set(text) & set(invalid_chars):
         message.reply_text(_(
-            'File names can\'t contain any of the following characters:\n{}\nSend me another file name.')).\
+            'File names can\'t contain any of the following characters:\n{}\nSend me another file name')).\
             format(invalid_chars)
 
         return WAIT_FILE_NAME

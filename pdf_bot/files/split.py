@@ -8,7 +8,8 @@ from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import WAIT_SPLIT_RANGE, PDF_INFO
-from pdf_bot.utils import open_pdf, write_send_pdf, get_lang
+from pdf_bot.utils import open_pdf, write_send_pdf
+from pdf_bot.language import set_lang
 
 
 def ask_split_range(update, context):
@@ -21,10 +22,11 @@ def ask_split_range(update, context):
     Returns:
         The variable indicating to wait for the split page range
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the range of pages that you\'ll like to keep. '
-        'Use ⚡ *INSTANT VIEW* from below for some range examples.'),
+        'Use ⚡ *INSTANT VIEW* from below for some range examples or '
+        'refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples.'),
         parse_mode=ParseMode.MARKDOWN, reply_markup=ReplyKeyboardRemove())
 
     return WAIT_SPLIT_RANGE
@@ -45,12 +47,12 @@ def split_pdf(update, context):
     if PDF_INFO not in user_data:
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     split_range = message.text
 
     if not PageRange.valid(split_range):
-        message.reply_text(_('The range is invalid. Try again.'))
+        message.reply_text(_('The range is invalid. Try again'))
 
         return WAIT_SPLIT_RANGE
 

@@ -12,8 +12,9 @@ from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, EXTRACT_IMG, PHOTOS, ZIPPED
-from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup, get_lang
+from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
 from pdf_bot.store import update_stats
+from pdf_bot.language import set_lang
 
 MAX_MEDIA_GROUP = 10
 
@@ -31,7 +32,7 @@ def get_pdf_preview(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Extracting a preview for your PDF file'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf1:
@@ -77,15 +78,15 @@ def ask_photo_results_type(update, context):
     Returns:
         The variable indicating to wait for the file type
     """
-    if update.effective_message.text == EXTRACT_IMG:
+    _ = set_lang(update, context)
+    if update.effective_message.text == _(EXTRACT_IMG):
         return_type = WAIT_EXTRACT_PHOTO_TYPE
     else:
         return_type = WAIT_TO_PHOTO_TYPE
 
-    _ = get_lang(update, context)
     keyboard = [[_(PHOTOS), _(ZIPPED)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_('Select the result file format to be sent back to you.'),
+    update.effective_message.reply_text(_('Select the result file format to be sent back to you'),
                                         reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
     return return_type
@@ -105,7 +106,7 @@ def pdf_to_photos(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Converting your PDF file into photos'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf:
@@ -147,7 +148,7 @@ def get_pdf_photos(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Extracting all the photos in your PDF file'),
                                         reply_markup=ReplyKeyboardRemove())
 
@@ -204,7 +205,7 @@ def get_pdf_photos(update, context):
                                         i += 1
 
                 if not os.listdir(dir_name):
-                    update.effective_message.reply_text(_('I couldn\'t find any photos in your PDF file.'))
+                    update.effective_message.reply_text(_('I couldn\'t find any photos in your PDF file'))
                 else:
                     handle_result_photos(update, context, dir_name)
 
@@ -226,8 +227,10 @@ def handle_result_photos(update, context, dir_name):
     Returns:
         None
     """
+    _ = set_lang(update, context)
     message = update.effective_message
-    if message.text == PHOTOS:
+
+    if message.text == _(PHOTOS):
         photos = []
         for photo_name in sorted(os.listdir(dir_name)):
             if len(photos) != 0 and len(photos) % MAX_MEDIA_GROUP == 0:
@@ -240,7 +243,6 @@ def handle_result_photos(update, context, dir_name):
         if photos:
             message.reply_media_group(photos)
 
-        _ = get_lang(update, context)
         message.reply_text(_('See above for all your photos'), reply_markup=get_support_markup(update, context))
         update_stats(update)
     else:

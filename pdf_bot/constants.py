@@ -1,10 +1,11 @@
 import gettext
 
-t = gettext.translation('pdf_bot', localedir='locale', languages=['en'])
+t = gettext.translation('pdf_bot', localedir='locale', languages=['en_UK'])
 _ = t.gettext
 
 # Bot constants
 CHANNEL_NAME = 'pdf2botdev'
+SET_LANG = 'set_lang'
 
 # PDF file validation constants
 PDF_OK = 0
@@ -77,3 +78,6 @@ WAIT_PAYMENT = 0
 USER = 'User'
 COUNT = 'count'
 LANGUAGE = 'language'
+
+# Language constants
+LANGUAGES = {'🇬🇧 English': 'en_UK', '🇭🇰 廣東話': 'zh_HK', '🇹🇼 繁體中文': 'zh_TW', '🇨🇳 简体中文': 'zh_CN'}
