@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2019-09-04 13:07+1000\n"
-"PO-Revision-Date: 2019-09-04 03:15\n"
+"PO-Revision-Date: 2019-09-04 03:21\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
 "MIME-Version: 1.0\n"
@@ -33,10 +33,10 @@ msgid "Welcome to PDF Bot!\n\n"
 msgstr "歡迎嚟到PDF Bot！\n\n"
 "*功能*\n"
 "- 比較，裁剪，解密，加密，合併，旋轉，縮放，分割同加水印去PDF檔案\n"
-"- 攞PDF檔案入面嘅圖片同將PDF檔案轉做圖片\n"
+"- 攞PDF檔案入面嘅圖片出嚟同將PDF檔案轉做圖片\n"
 "- 美化同將照片轉做PDF檔案\n"
 "- 將網頁轉做PDF檔案\n\n"
-"打/help嚟睇下點用PDF Bot"
+"用/help嚟睇下點用PDF Bot"
 
 #: bot.py:107
 msgid "Set Language"
@@ -487,15 +487,16 @@ msgstr "呢啲就係你嘅圖片"
 #: pdf_bot/photos/photo_to_pdf.py:61
 msgid "Send me the first photo that you'll like to beautify or convert into PDF format or /cancel this operation.\n\n"
 "The photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "發送你想美化或轉換嘅圖片畀我或者用/cancel嚟取消呢個操作。\n\n"
+"留意返啲圖片會根據你發送畀我嘅順序嚟美化同轉換"
 
 #: pdf_bot/photos/photo_to_pdf.py:86
 msgid "The file you sent is not a photo. Send me the photo that you'll like to beautify and convert"
-msgstr ""
+msgstr "你發送嘅唔係圖片。 發給你想美化同轉換嘅圖片"
 
 #: pdf_bot/photos/photo_to_pdf.py:95
 msgid "The photo you sent is too large for me to download.\n\n"
-msgstr ""
+msgstr "您發送嘅圖片太大啦，我下載唔到\n\n"
 
 #: pdf_bot/photos/photo_to_pdf.py:99
 msgid "You can continue to beautify or convert with the files that you sent me, or /cancel this operation"
