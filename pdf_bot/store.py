@@ -23,6 +23,6 @@ def create_user(user_id):
         user = client.get(key=user_key)
         if user is None:
             user = datastore.Entity(user_key)
-            user[LANGUAGE] = 'en'
+            user[LANGUAGE] = 'en_UK'
 
         client.put(user)

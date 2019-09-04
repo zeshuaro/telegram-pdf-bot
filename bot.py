@@ -20,6 +20,7 @@ DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
 DEV_EMAIL = os.environ.get('DEV_EMAIL', 'sample@email.com')
 
 TIMEOUT = 20
+CALLBACK_DATA = 'callback_data'
 
 
 def main():
@@ -40,7 +41,8 @@ def main():
     # General commands handlers
     dispatcher.add_handler(CommandHandler('start', start_msg))
     dispatcher.add_handler(CommandHandler('help', help_msg))
-    dispatcher.add_handler(CommandHandler('donate', send_payment_options))
+    dispatcher.add_handler(CommandHandler('setlang', send_lang))
+    dispatcher.add_handler(CommandHandler('support', send_support_options_with_async))
     dispatcher.add_handler(CommandHandler('send', send_msg, Filters.user(DEV_TELE_ID)))
     dispatcher.add_handler(CommandHandler('stats', get_stats, Filters.user(DEV_TELE_ID)))
 
@@ -87,14 +89,14 @@ def main():
 
 @run_async
 def start_msg(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Welcome to PDF Bot!\n\n*Features*\n'
         '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n'
         '- Extract images in a PDF file and convert a PDF file into images\n'
         '- Beautify and convert photos into PDF format\n'
         '- Convert a web page into a PDF file\n\n'
-        'Type /help to see how to use PDF Bot.'), parse_mode=ParseMode.MARKDOWN)
+        'Type /help to see how to use PDF Bot'), parse_mode=ParseMode.MARKDOWN)
 
     # Create the user entity in Datastore
     create_user(update.effective_message.from_user.id)
@@ -102,29 +104,43 @@ def start_msg(update, context):
 
 @run_async
 def help_msg(update, context):
-    _ = get_lang(update, context)
-    keyboard = [[InlineKeyboardButton(_('Join Channel'), f'https://t.me/{CHANNEL_NAME}'),
+    _ = set_lang(update, context)
+    keyboard = [[InlineKeyboardButton(_('Set Language'), callback_data=SET_LANG)],
+                [InlineKeyboardButton(_('Join Channel'), f'https://t.me/{CHANNEL_NAME}'),
                  InlineKeyboardButton(_('Support PDF Bot'), callback_data=PAYMENT)]]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.effective_message.reply_text(_(
         'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n'
-        'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo.'),
+        'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo'),
         reply_markup=reply_markup)
 
 
 @run_async
 def process_callback_query(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     query = update.callback_query
+    data = query.data
+    
+    if CALLBACK_DATA not in context.user_data:
+        context.user_data[CALLBACK_DATA] = set()
 
-    if query.data == PAYMENT:
-        send_payment_options(update, context, query.from_user.id)
-    elif query.data in [THANKS, COFFEE, BEER, MEAL]:
-        send_payment_invoice(update, context, query=query)
-    elif query.data == CUSTOM:
-        context.bot.send_message(
-            query.from_user.id, _('Send me the amount that you\'ll like to support PDF Bot'), reply_markup=ForceReply())
+    if data not in context.user_data[CALLBACK_DATA]:
+        context.user_data[CALLBACK_DATA].add(data)
+        if data == SET_LANG:
+            send_lang(update, context, query)
+        elif data in LANGUAGES:
+            store_lang(update, context, query)
+        if data == PAYMENT:
+            send_support_options_without_async(update, context, query)
+        elif data in [THANKS, COFFEE, BEER, MEAL]:
+            send_payment_invoice(update, context, query)
+        elif data == CUSTOM:
+            context.bot.send_message(
+                query.from_user.id, _('Send me the amount that you\'ll like to support PDF Bot'),
+                reply_markup=ForceReply())
+
+        context.user_data[CALLBACK_DATA].remove(data)
 
 
 def send_msg(update, context):

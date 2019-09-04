@@ -4,7 +4,8 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import *
-from pdf_bot.utils import cancel, get_lang
+from pdf_bot.utils import cancel
+from pdf_bot.language import set_lang
 from pdf_bot.files.crop import ask_crop_type, ask_crop_value, receive_crop_percent, receive_crop_size
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
@@ -67,9 +68,9 @@ def check_doc(update, context):
     elif not mime_type.endswith('pdf'):
         return ConversationHandler.END
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
-        _ = get_lang(update, context)
+        _ = set_lang(update, context)
         update.effective_message.reply_text(_(
-            'Your PDF file you sent is too large for me to download. I can\'t perform any tasks on it.'))
+            'Your PDF file you sent is too large for me to download. I can\'t perform any tasks on it'))
 
         return ConversationHandler.END
 
@@ -88,14 +89,14 @@ def ask_doc_task(update, context):
     Returns:
         The variable indicating to wait for the next aciton
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     keywords = sorted([_(DECRYPT), _(ENCRYPT), _(ROTATE), _(SCALE_BY), _(SCALE_TO), _(SPLIT), _(PREVIEW), _(TO_IMG),
                        _(EXTRACT_IMG), _(RENAME), _(CROP)])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append([CANCEL])
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
+    update.effective_message.reply_text(_('Select the task that you\'ll like to perform'), reply_markup=reply_markup)
 
     return WAIT_DOC_TASK
 
@@ -107,7 +108,7 @@ def check_photo(update, context):
 
 @run_async
 def check_doc_task(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text == _(CROP):
@@ -134,7 +135,7 @@ def check_doc_task(update, context):
 
 @run_async
 def check_photo_task(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text in [_(BEAUTIFY), _(CONVERT)]:
@@ -145,7 +146,7 @@ def check_photo_task(update, context):
 
 @run_async
 def check_crop_task(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text in [_(CROP_PERCENT), _(CROP_SIZE)]:
@@ -156,7 +157,7 @@ def check_crop_task(update, context):
 
 @run_async
 def check_rotate_task(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text in [_(ROTATE_90), _(ROTATE_180), _(ROTATE_270)]:
@@ -167,7 +168,7 @@ def check_rotate_task(update, context):
 
 @run_async
 def check_get_photos_task(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text in [_(PHOTOS), _(ZIPPED)]:
@@ -178,7 +179,7 @@ def check_get_photos_task(update, context):
 
 @run_async
 def check_to_photos_task(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text in [_(PHOTOS), _(ZIPPED)]:
