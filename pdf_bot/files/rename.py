@@ -69,7 +69,7 @@ def rename_pdf(update, context):
     with tempfile.TemporaryDirectory() as dir_name:
         out_fn = os.path.join(dir_name, new_fn)
         shutil.move(tf.name, out_fn)
-        send_result_file(update, context, out_fn)
+        send_result_file(update, context, out_fn, 'rename')
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:

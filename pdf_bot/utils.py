@@ -10,9 +10,9 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT
-from pdf_bot.store import update_stats
+from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT, LANGUAGE, USER
 from pdf_bot.language import set_lang
+from pdf_bot.stats import update_stats
 
 
 @run_async
@@ -183,36 +183,37 @@ def send_file_names(update, context, file_names, file_type):
     update.effective_message.reply_text(text)
 
 
-def write_send_pdf(update, context, pdf_writer, file_name, file_type):
+def write_send_pdf(update, context, pdf_writer, file_name, task):
     """
     Write and send result PDF file to user
     Args:
         update: the update object
         context: the context object
         pdf_writer: the PdfFileWriter object
-        file_name: the file name
-        file_type: the file type
+        file_name: the string of the file name
+        task: the string of the task
 
     Returns:
         None
     """
     with tempfile.TemporaryDirectory() as dir_name:
-        new_fn = f'{file_type.title()}_{file_name}'
+        new_fn = f'{task.title()}_{file_name}'
         out_fn = os.path.join(dir_name, new_fn)
 
         with open(out_fn, 'wb') as f:
             pdf_writer.write(f)
 
-        send_result_file(update, context, out_fn)
+        send_result_file(update, context, out_fn, task)
 
 
-def send_result_file(update, context, out_fn):
+def send_result_file(update, context, out_fn, task):
     """
     Send result file to user
     Args:
         update: the update object
         context: the context object
-        out_fn: the output file name
+        out_fn: the string of the output file name
+        task: the string of the task
 
     Returns:
         None
@@ -232,7 +233,7 @@ def send_result_file(update, context, out_fn):
             message.reply_document(document=open(out_fn, 'rb'), caption=_('Here is your result file'),
                                    reply_markup=reply_markup)
 
-    update_stats(update)
+    update_stats(update, task)
 
 
 def get_support_markup(update, context):

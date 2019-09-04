@@ -34,7 +34,7 @@ def url_to_pdf(update, context):
             out_fn = os.path.join(dir_name, f'{urlparse(url).netloc}.pdf')
             try:
                 HTML(url=url).write_pdf(out_fn)
-                send_result_file(update, context, out_fn)
+                send_result_file(update, context, out_fn, 'url')
             except URLFetchingError:
                 message.reply_text(_('Unable to reach your web page'))
 

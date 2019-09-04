@@ -211,13 +211,13 @@ def process_photo(update, context, file_ids, is_beautify):
         if is_beautify:
             out_fn = os.path.join(dir_name, 'Beautified.pdf')
             noteshrink.notescan_main(photo_files, basename=f'{dir_name}/page', pdfname=out_fn)
-            send_result_file(update, context, out_fn)
+            send_result_file(update, context, out_fn, 'beautify')
         else:
             out_fn = os.path.join(dir_name, 'Converted.pdf')
             with open(out_fn, 'wb') as f:
                 f.write(img2pdf.convert(photo_files))
 
-            send_result_file(update, context, out_fn)
+            send_result_file(update, context, out_fn, 'convert')
 
     # Clean up files
     for tf in temp_files:
