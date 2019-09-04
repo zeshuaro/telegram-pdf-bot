@@ -30,13 +30,13 @@ def get_lang(update, context, query=None):
         user = client.get(key=user_key)
 
         if user is None or LANGUAGE not in user:
-            lang = 'en_UK'
+            lang = 'en'
         else:
             lang = user[LANGUAGE]
 
             # TODO: backwards compatibility
-            if lang == 'en':
-                lang = 'en_UK'
+            if lang == 'en_UK':
+                lang = 'en'
 
         context.user_data[LANGUAGE] = lang
 
