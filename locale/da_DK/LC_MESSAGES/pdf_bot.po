@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2019-09-04 13:07+1000\n"
-"PO-Revision-Date: 2019-09-04 11:17\n"
+"POT-Creation-Date: 2019-09-04 22:22+1000\n"
+"PO-Revision-Date: 2019-09-04 12:55\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Danish\n"
 "MIME-Version: 1.0\n"
@@ -19,10 +19,10 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Language: da\n"
-"X-Crowdin-File: /translation/locale/en-UK/LC_MESSAGES/pdf_bot.po\n"
+"X-Crowdin-File: /translation/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "Language: da_DK\n"
 
-#: bot.py:92
+#: bot.py:93
 msgid "Welcome to PDF Bot!\n\n"
 "*Features*\n"
 "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
@@ -32,24 +32,24 @@ msgid "Welcome to PDF Bot!\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr ""
 
-#: bot.py:107
+#: bot.py:108
 msgid "Set Language"
 msgstr ""
 
-#: bot.py:108 pdf_bot/utils.py:247
+#: bot.py:109 pdf_bot/utils.py:246
 msgid "Join Channel"
 msgstr ""
 
-#: bot.py:109 pdf_bot/payment.py:60 pdf_bot/utils.py:248
+#: bot.py:110 pdf_bot/payment.py:65 pdf_bot/utils.py:247
 msgid "Support PDF Bot"
 msgstr ""
 
-#: bot.py:112
+#: bot.py:113
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr ""
 
-#: bot.py:133 pdf_bot/constants.py:74
+#: bot.py:140 pdf_bot/constants.py:74
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr ""
 
@@ -165,7 +165,7 @@ msgstr ""
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr ""
 
-#: pdf_bot/language.py:51
+#: pdf_bot/language.py:52
 msgid "Your language has been set to {}"
 msgstr ""
 
@@ -173,19 +173,23 @@ msgstr ""
 msgid "The amount you sent is invalid, try again. {}"
 msgstr ""
 
+#: pdf_bot/payment.py:38
+msgid "Help translate PDF Bot"
+msgstr ""
+
 #: pdf_bot/payment.py:40
 msgid "Select how you want to support PDF Bot"
 msgstr ""
 
-#: pdf_bot/payment.py:61
+#: pdf_bot/payment.py:66
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr ""
 
-#: pdf_bot/payment.py:81
+#: pdf_bot/payment.py:86
 msgid "Something went wrong"
 msgstr ""
 
-#: pdf_bot/payment.py:88
+#: pdf_bot/payment.py:93
 msgid "Thank you for your support!"
 msgstr ""
 
@@ -201,47 +205,47 @@ msgstr ""
 msgid "Unable to reach your web page"
 msgstr ""
 
-#: pdf_bot/utils.py:22
+#: pdf_bot/utils.py:21
 msgid "Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:46
+#: pdf_bot/utils.py:45
 msgid "The file you sent is not a PDF file. Try again and send me a PDF file or type /cancel to cancel the operation"
 msgstr ""
 
-#: pdf_bot/utils.py:52
+#: pdf_bot/utils.py:51
 msgid "The PDF file you sent is too large for me to download. I can't process your PDF file. Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:74
+#: pdf_bot/utils.py:73
 msgid "Something went wrong, start over again"
 msgstr ""
 
-#: pdf_bot/utils.py:150
+#: pdf_bot/utils.py:149
 msgid "Your PDF file is already encrypted"
 msgstr ""
 
-#: pdf_bot/utils.py:152
+#: pdf_bot/utils.py:151
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first. Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:155
+#: pdf_bot/utils.py:154
 msgid "Your PDF file is encrypted and you'll have to decrypt it first. Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:160
+#: pdf_bot/utils.py:159
 msgid "Your PDF file seems to be invalid and I couldn't open and read it. Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:180
+#: pdf_bot/utils.py:179
 msgid "You have sent me the following {}:\n"
 msgstr ""
 
-#: pdf_bot/utils.py:226
+#: pdf_bot/utils.py:225
 msgid "The result file is too large for me to send to you"
 msgstr ""
 
-#: pdf_bot/utils.py:230 pdf_bot/utils.py:233
+#: pdf_bot/utils.py:229 pdf_bot/utils.py:232
 msgid "Here is your result file"
 msgstr ""
 
@@ -438,14 +442,14 @@ msgid "Scaling your PDF file with width of {} and height of {}"
 msgstr ""
 
 #: pdf_bot/files/split.py:26
-msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below for some range examples"
+msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below for some range examples or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
 msgstr ""
 
-#: pdf_bot/files/split.py:54
+#: pdf_bot/files/split.py:55
 msgid "The range is invalid. Try again"
 msgstr ""
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:59
 msgid "Splitting your PDF file"
 msgstr ""
 
@@ -469,7 +473,7 @@ msgstr ""
 msgid "I couldn't find any photos in your PDF file"
 msgstr ""
 
-#: pdf_bot/photos/pdf_to_photo.py:245
+#: pdf_bot/photos/pdf_to_photo.py:246
 msgid "See above for all your photos"
 msgstr ""
 
