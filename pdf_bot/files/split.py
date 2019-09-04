@@ -25,7 +25,8 @@ def ask_split_range(update, context):
     _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the range of pages that you\'ll like to keep. '
-        'Use ⚡ *INSTANT VIEW* from below for some range examples'),
+        'Use ⚡ *INSTANT VIEW* from below for some range examples or '
+        'refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples.'),
         parse_mode=ParseMode.MARKDOWN, reply_markup=ReplyKeyboardRemove())
 
     return WAIT_SPLIT_RANGE

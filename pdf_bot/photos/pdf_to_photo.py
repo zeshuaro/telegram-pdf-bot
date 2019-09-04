@@ -78,12 +78,12 @@ def ask_photo_results_type(update, context):
     Returns:
         The variable indicating to wait for the file type
     """
-    if update.effective_message.text == EXTRACT_IMG:
+    _ = set_lang(update, context)
+    if update.effective_message.text == _(EXTRACT_IMG):
         return_type = WAIT_EXTRACT_PHOTO_TYPE
     else:
         return_type = WAIT_TO_PHOTO_TYPE
 
-    _ = set_lang(update, context)
     keyboard = [[_(PHOTOS), _(ZIPPED)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(_('Select the result file format to be sent back to you'),
@@ -227,8 +227,10 @@ def handle_result_photos(update, context, dir_name):
     Returns:
         None
     """
+    _ = set_lang(update, context)
     message = update.effective_message
-    if message.text == PHOTOS:
+
+    if message.text == _(PHOTOS):
         photos = []
         for photo_name in sorted(os.listdir(dir_name)):
             if len(photos) != 0 and len(photos) % MAX_MEDIA_GROUP == 0:
@@ -241,7 +243,6 @@ def handle_result_photos(update, context, dir_name):
         if photos:
             message.reply_media_group(photos)
 
-        _ = set_lang(update, context)
         message.reply_text(_('See above for all your photos'), reply_markup=get_support_markup(update, context))
         update_stats(update)
     else:

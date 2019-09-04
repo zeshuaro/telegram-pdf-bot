@@ -254,10 +254,11 @@ def process_photo_task(update, context):
     if not check_user_data(update, context, PHOTO_ID):
         return ConversationHandler.END
 
+    _ = set_lang(update, context)
     user_data = context.user_data
     file_id = user_data[PHOTO_ID]
 
-    if update.effective_message.text == BEAUTIFY:
+    if update.effective_message.text == _(BEAUTIFY):
         process_photo(update, context, [file_id], is_beautify=True)
     else:
         process_photo(update, context, [file_id], is_beautify=False)

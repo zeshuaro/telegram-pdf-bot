@@ -23,7 +23,7 @@ def ask_scale_x(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
 
-    if message.text == SCALE_BY:
+    if message.text == _(SCALE_BY):
         message.reply_text(_(
             'Send me the scaling factor for the horizontal axis. For example, 2 will double the horizontal axis and '
             '0.5 will half the horizontal axis'), reply_markup=ReplyKeyboardRemove())
