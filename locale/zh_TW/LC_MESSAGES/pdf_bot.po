@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2019-09-04 22:22+1000\n"
-"PO-Revision-Date: 2019-09-04 12:56\n"
+"PO-Revision-Date: 2019-09-04 13:04\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "支持PDF Bot"
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr "你只需向我發送PDF檔案，圖片或網頁鏈接就可以使用大部分的功能\n\n"
-"有些功能要用/compare，/merge，/watermark或/photo才可以使用"
+"有些功能要用 /compare，/merge，/watermark 或 /photo 才可以使用"
 
 #: bot.py:140 pdf_bot/constants.py:74
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -162,7 +162,7 @@ msgstr "說真棒🤩（自訂金額）"
 
 #: pdf_bot/feedback.py:42
 msgid "Send me your feedback or /cancel this operation. My developer can understand English and Chinese"
-msgstr "向我發送你的反饋或者用/cancel來取消此操作。我的開發人員可以理解英文和中文"
+msgstr "向我發送你的反饋或者用 /cancel 來取消此操作。我的開發人員可以理解英文和中文"
 
 #: pdf_bot/feedback.py:74
 msgid "The feedback is not in English or Chinese, try again"
@@ -182,7 +182,7 @@ msgstr "你發送的金額無效，再試一次。{}"
 
 #: pdf_bot/payment.py:38
 msgid "Help translate PDF Bot"
-msgstr ""
+msgstr "幫助翻譯PDF Bot"
 
 #: pdf_bot/payment.py:40
 msgid "Select how you want to support PDF Bot"
@@ -218,7 +218,7 @@ msgstr "操作取消"
 
 #: pdf_bot/utils.py:45
 msgid "The file you sent is not a PDF file. Try again and send me a PDF file or type /cancel to cancel the operation"
-msgstr "你發送的不是PDF檔案。 請再試一次並發送PDF檔案或者用/cancel來取消操作"
+msgstr "你發送的不是PDF檔案。 請再試一次並發送PDF檔案或者用 /cancel 來取消操作"
 
 #: pdf_bot/utils.py:51
 msgid "The PDF file you sent is too large for me to download. I can't process your PDF file. Operation cancelled"
@@ -259,12 +259,12 @@ msgstr "你的輸出檔案"
 #: pdf_bot/commands/compare.py:49
 msgid "Send me one of the PDF files that you'll like to compare or /cancel this operation\n\n"
 "Note that I can only look for text differences"
-msgstr "發給我一個你想要用來比較的PDF檔案或者用/cancel來取消此操作\n\n"
+msgstr "發給我一個你想要用來比較的PDF檔案或者用 /cancel 來取消此操作\n\n"
 "注意！我只能比較檔案裡面的文字"
 
 #: pdf_bot/commands/compare.py:75
 msgid "Send me the other PDF file that you'll like to compare or /cancel this operation"
-msgstr "向我發送另一個你想要用來比較的PDF檔案或者用/cancel來取消此操作"
+msgstr "向我發送另一個你想要用來比較的PDF檔案或者用 /cancel 來取消此操作"
 
 #: pdf_bot/commands/compare.py:120
 msgid "Comparing your PDF files"
@@ -277,12 +277,12 @@ msgstr "你的PDF檔案之間沒有任何區別"
 #: pdf_bot/commands/merge.py:58
 msgid "Send me the PDF file that you'll like to merge or /cancel this operation\n\n"
 "The files will be merged in the order that you send me"
-msgstr "向我發送你想要合併的PDF檔案或者用/cancel來取消此操作\n\n"
+msgstr "向我發送你想要合併的PDF檔案或者用 /cancel 來取消此操作\n\n"
 "我會根據你發送給我的順序來合併你的檔案"
 
 #: pdf_bot/commands/merge.py:82
 msgid "The file you sent is not a PDF file. Send me the PDF file that you'll like to merge or /cancel this operation"
-msgstr "你發送的不是PDF檔案。 向我發送你想要合併的PDF檔案或者用/cancel來取消此操作"
+msgstr "你發送的不是PDF檔案。 向我發送你想要合併的PDF檔案或者用 /cancel 來取消此操作"
 
 #: pdf_bot/commands/merge.py:88
 msgid "The PDF file you sent is too large for me to download\n\n"
@@ -290,7 +290,7 @@ msgstr "你發送的PDF檔案太大了，我無法下載\n\n"
 
 #: pdf_bot/commands/merge.py:92
 msgid "You can continue merging with the files that you sent me or /cancel this operation"
-msgstr "你可以繼續合併你已經發送給我的PDF檔案，或者用/cancel來取消此操作"
+msgstr "你可以繼續合併你已經發送給我的PDF檔案，或者用 /cancel 來取消此操作"
 
 #: pdf_bot/commands/merge.py:94 pdf_bot/commands/merge.py:118
 msgid "PDF files"
@@ -314,7 +314,7 @@ msgstr "我無法合併你的PDF檔案，因為我無法打開“{}”。 確保
 
 #: pdf_bot/commands/watermark.py:47
 msgid "Send me the PDF file that you'll like to add a watermark or /cancel this operation"
-msgstr "向我發送你想要添加水印的PDF檔案或者用/cancel來取消此操作"
+msgstr "向我發送你想要添加水印的PDF檔案或者用 /cancel 來取消此操作"
 
 #: pdf_bot/commands/watermark.py:72
 msgid "Send me the watermark PDF file"
@@ -454,7 +454,7 @@ msgstr "正在縮放你的PDF檔案，寬度為{}，高度為{}"
 
 #: pdf_bot/files/split.py:26
 msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below for some range examples or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
-msgstr ""
+msgstr "向我發送你想要保留的頁面範圍。你可以使用下面的⚡*INSTANT VIEW*來看一些例子或者在[這裡](http://telegra.ph/Telegram-PDF-Bot-07-16)看"
 
 #: pdf_bot/files/split.py:55
 msgid "The range is invalid. Try again"
@@ -491,7 +491,7 @@ msgstr "這些就是你的圖片"
 #: pdf_bot/photos/photo_to_pdf.py:61
 msgid "Send me the first photo that you'll like to beautify or convert into PDF format or /cancel this operation.\n\n"
 "The photos will be beautified and converted in the order that you send me"
-msgstr "向我發送你想要美化或轉換為PDF檔案格式的圖片或者用/cancel來取消此操作。\n\n"
+msgstr "向我發送你想要美化或轉換為PDF檔案格式的圖片或者用 /cancel 來取消此操作。\n\n"
 "圖片將按照你發送給我的順序進行美化和轉換"
 
 #: pdf_bot/photos/photo_to_pdf.py:86
@@ -504,7 +504,7 @@ msgstr "你發送的圖片太大了，我無法下載。\n\n"
 
 #: pdf_bot/photos/photo_to_pdf.py:99
 msgid "You can continue to beautify or convert with the files that you sent me, or /cancel this operation"
-msgstr "你可以繼續美化或轉換你已經發送給我的圖片，或者用/cancel來取消此操作"
+msgstr "你可以繼續美化或轉換你已經發送給我的圖片，或者用 /cancel 來取消此操作"
 
 #: pdf_bot/photos/photo_to_pdf.py:102 pdf_bot/photos/photo_to_pdf.py:133
 msgid "photos"
