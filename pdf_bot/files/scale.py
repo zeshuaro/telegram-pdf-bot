@@ -86,7 +86,7 @@ def pdf_scale_by(update, context):
     try:
         scale_y = float(scale_y)
     except ValueError:
-        message.reply_text(_('The scaling factor "{scale_y}" is invalid. Try again'))
+        message.reply_text(_('The scaling factor "{}" is invalid. Try again').format(scale_y))
 
         return WAIT_SCALE_BY_Y
 
