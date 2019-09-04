@@ -8,7 +8,8 @@ from pdf_bot.store import client
 
 def send_lang(update, context, query=None):
     lang = get_lang(update, context, query)
-    langs = [InlineKeyboardButton(key, callback_data=key) for key, value in LANGUAGES.items() if value != lang]
+    langs = sorted([InlineKeyboardButton(key, callback_data=key) for key, value in LANGUAGES.items() if value != lang],
+                   key=lambda x: x.text)
     keyboard_size = 2
     keyboard = [langs[i:i + keyboard_size] for i in range(0, len(langs), keyboard_size)]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -29,7 +30,7 @@ def get_lang(update, context, query=None):
         user = client.get(key=user_key)
 
         if user is None or LANGUAGE not in user:
-            lang = 'en'
+            lang = 'en-UK'
         else:
             lang = user[LANGUAGE]
 
