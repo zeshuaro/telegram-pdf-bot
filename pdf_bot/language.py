@@ -34,6 +34,10 @@ def get_lang(update, context, query=None):
         else:
             lang = user[LANGUAGE]
 
+            # TODO: backwards compatibility
+            if lang == 'en':
+                lang = 'en_UK'
+
         context.user_data[LANGUAGE] = lang
 
     return lang
