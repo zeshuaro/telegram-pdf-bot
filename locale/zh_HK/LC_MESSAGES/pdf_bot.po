@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2019-09-04 13:07+1000\n"
-"PO-Revision-Date: 2019-09-04 11:17\n"
+"POT-Creation-Date: 2019-09-04 22:22+1000\n"
+"PO-Revision-Date: 2019-09-04 12:55\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
 "MIME-Version: 1.0\n"
@@ -19,10 +19,10 @@ msgstr ""
 "X-Generator: crowdin.com\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Language: zh-HK\n"
-"X-Crowdin-File: /translation/locale/en-UK/LC_MESSAGES/pdf_bot.po\n"
+"X-Crowdin-File: /translation/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "Language: zh_HK\n"
 
-#: bot.py:92
+#: bot.py:93
 msgid "Welcome to PDF Bot!\n\n"
 "*Features*\n"
 "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
@@ -38,25 +38,25 @@ msgstr "歡迎嚟到PDF Bot！\n\n"
 "- 將網頁轉做PDF檔案\n\n"
 "用/help嚟睇下點用PDF Bot"
 
-#: bot.py:107
+#: bot.py:108
 msgid "Set Language"
 msgstr "設置語言"
 
-#: bot.py:108 pdf_bot/utils.py:247
+#: bot.py:109 pdf_bot/utils.py:246
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: bot.py:109 pdf_bot/payment.py:60 pdf_bot/utils.py:248
+#: bot.py:110 pdf_bot/payment.py:65 pdf_bot/utils.py:247
 msgid "Support PDF Bot"
 msgstr "支持PDF Bot"
 
-#: bot.py:112
+#: bot.py:113
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr "Send PDF檔案，圖片或者網頁鏈接俾我就可以用到大部分嘅功能\n\n"
 "有啲功能要用呢啲指令先至用到/compare，/merge，/watermark或/photo"
 
-#: bot.py:133 pdf_bot/constants.py:74
+#: bot.py:140 pdf_bot/constants.py:74
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "話我知你想贊助幾多俾PDF Bot"
 
@@ -172,7 +172,7 @@ msgstr "你畀嘅意見唔係英文亦都唔係中文，試多次"
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr "多謝你嘅意見，我已經話咗俾我嘅開發人員知"
 
-#: pdf_bot/language.py:51
+#: pdf_bot/language.py:52
 msgid "Your language has been set to {}"
 msgstr "你嘅語言設定咗做{}"
 
@@ -180,19 +180,23 @@ msgstr "你嘅語言設定咗做{}"
 msgid "The amount you sent is invalid, try again. {}"
 msgstr "你send嘅金額無效，試多次。{}"
 
+#: pdf_bot/payment.py:38
+msgid "Help translate PDF Bot"
+msgstr ""
+
 #: pdf_bot/payment.py:40
 msgid "Select how you want to support PDF Bot"
 msgstr "揀你想點支持PDF Bot"
 
-#: pdf_bot/payment.py:61
+#: pdf_bot/payment.py:66
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "同PDF Bot講多謝同埋幫佢繼續運行"
 
-#: pdf_bot/payment.py:81
+#: pdf_bot/payment.py:86
 msgid "Something went wrong"
 msgstr "發生咗未知嘅錯誤"
 
-#: pdf_bot/payment.py:88
+#: pdf_bot/payment.py:93
 msgid "Thank you for your support!"
 msgstr "多謝你嘅支持！"
 
@@ -208,47 +212,47 @@ msgstr "轉緊你嘅網頁做PDF檔案"
 msgid "Unable to reach your web page"
 msgstr "無法訪問你嘅網頁"
 
-#: pdf_bot/utils.py:22
+#: pdf_bot/utils.py:21
 msgid "Operation cancelled"
 msgstr "取消咗操作啦"
 
-#: pdf_bot/utils.py:46
+#: pdf_bot/utils.py:45
 msgid "The file you sent is not a PDF file. Try again and send me a PDF file or type /cancel to cancel the operation"
 msgstr "你send嘅檔案唔係PDF檔案。Send多次個PDF檔案畀我或者用/cancel嚟取消呢個操作"
 
-#: pdf_bot/utils.py:52
+#: pdf_bot/utils.py:51
 msgid "The PDF file you sent is too large for me to download. I can't process your PDF file. Operation cancelled"
 msgstr "你send嘅PDF檔案太大喇，我下載唔到。我處理唔到你嘅PDF檔案。取消咗操作啦"
 
-#: pdf_bot/utils.py:74
+#: pdf_bot/utils.py:73
 msgid "Something went wrong, start over again"
 msgstr "發生咗未知嘅錯誤，試多次"
 
-#: pdf_bot/utils.py:150
+#: pdf_bot/utils.py:149
 msgid "Your PDF file is already encrypted"
 msgstr "你嘅PDF檔案本身已經加密咗"
 
-#: pdf_bot/utils.py:152
+#: pdf_bot/utils.py:151
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first. Operation cancelled"
 msgstr "你嘅{} PDF檔案加密咗，你要將佢解密咗先。取消咗操作啦"
 
-#: pdf_bot/utils.py:155
+#: pdf_bot/utils.py:154
 msgid "Your PDF file is encrypted and you'll have to decrypt it first. Operation cancelled"
 msgstr "你嘅PDF檔案加密咗，你要將佢解密咗先。取消咗操作啦"
 
-#: pdf_bot/utils.py:160
+#: pdf_bot/utils.py:159
 msgid "Your PDF file seems to be invalid and I couldn't open and read it. Operation cancelled"
 msgstr "你嘅PDF檔案好似壞咗，我開唔到佢。取消咗操作啦"
 
-#: pdf_bot/utils.py:180
+#: pdf_bot/utils.py:179
 msgid "You have sent me the following {}:\n"
 msgstr "你send咗呢啲{}畀我：\n"
 
-#: pdf_bot/utils.py:226
+#: pdf_bot/utils.py:225
 msgid "The result file is too large for me to send to you"
 msgstr "個檔案太大啦，我send唔到俾你"
 
-#: pdf_bot/utils.py:230 pdf_bot/utils.py:233
+#: pdf_bot/utils.py:229 pdf_bot/utils.py:232
 msgid "Here is your result file"
 msgstr "你嘅檔案"
 
@@ -449,14 +453,14 @@ msgid "Scaling your PDF file with width of {} and height of {}"
 msgstr "縮放緊你嘅PDF檔案，寬度為{}，高度為{}"
 
 #: pdf_bot/files/split.py:26
-msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below for some range examples"
-msgstr "Send你想保留嘅頁數畀我。你可以用下面嘅⚡*INSTANT VIEW*睇下啲例子"
+msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below for some range examples or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
+msgstr ""
 
-#: pdf_bot/files/split.py:54
+#: pdf_bot/files/split.py:55
 msgid "The range is invalid. Try again"
 msgstr "頁數無效，試多次"
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:59
 msgid "Splitting your PDF file"
 msgstr "分割緊你嘅PDF檔案"
 
@@ -480,7 +484,7 @@ msgstr "攞緊你PDF檔案入面嘅圖片出嚟"
 msgid "I couldn't find any photos in your PDF file"
 msgstr "我係你嘅PDF檔案入面乜嘢圖片搵唔到"
 
-#: pdf_bot/photos/pdf_to_photo.py:245
+#: pdf_bot/photos/pdf_to_photo.py:246
 msgid "See above for all your photos"
 msgstr "呢啲就係你嘅圖片"
 
