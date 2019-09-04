@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2019-09-04 22:22+1000\n"
-"PO-Revision-Date: 2019-09-04 22:37\n"
+"PO-Revision-Date: 2019-09-04 23:35\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -32,9 +32,9 @@ msgid "Welcome to PDF Bot!\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr "Benvenuto/a su PDF Bot!\n\n"
 "*Cosa può fare questo bot?*\n"
-"- Confrontare, ritagliare, decrittare, crittografare, unire, ruotare, ridimensionare, dividere ed aggiungere un watermark in un PDF;\n"
+"- Confrontare, ritagliare, decifrare, cifrare, unire, ruotare, ridimensionare, dividere ed aggiungere un watermark in un PDF;\n"
 "- Estrarre immagini da un PDF e convertire un PDF in un'immagine\n"
-"- Migliorare e convertire foto in PDF\n"
+"- Ottimizzare e convertire foto in PDF\n"
 "- Convertire pagine web in PDF\n\n"
 "Scrivi /help per vedere come usare PDF Bot"
 
@@ -53,12 +53,12 @@ msgstr "Supporta PDF Bot"
 #: bot.py:113
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
-msgstr "Puoi eseguire la maggior parte delle attività semplicemente inviandomi un file PDF, una foto o un link a una pagina web.\n\n"
-"Alcune attività possono essere eseguite utilizzando i comandi /compara, /unisci, /watermark o /foto"
+msgstr "Puoi eseguire la maggior parte delle attività semplicemente inviandomi un file PDF, una foto o un link ad una pagina web.\n\n"
+"Alcune attività possono essere eseguite utilizzando i comandi /compare, /merge, /watermark o /photo"
 
 #: bot.py:140 pdf_bot/constants.py:74
 msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "Inviami l'importo che vorresti per sostenere PDF Bot"
+msgstr "Scrivi l'importo che vorresti inviare per sostenere PDF Bot"
 
 #: pdf_bot/constants.py:34
 msgid "Cancel"
@@ -86,11 +86,11 @@ msgstr "Anteprima"
 
 #: pdf_bot/constants.py:40
 msgid "Decrypt"
-msgstr "Decritta"
+msgstr "Decifra"
 
 #: pdf_bot/constants.py:41
 msgid "Encrypt"
-msgstr "Crittografa"
+msgstr "Cifra"
 
 #: pdf_bot/constants.py:42
 msgid "Extract Photos"
@@ -238,207 +238,211 @@ msgstr "Il file PDF {} è criptato e dovrai prima decrittarlo. Operazione annull
 
 #: pdf_bot/utils.py:154
 msgid "Your PDF file is encrypted and you'll have to decrypt it first. Operation cancelled"
-msgstr ""
+msgstr "Il PDF {} è cifrato e dovrai prima decifrarlo. Operazione annullata"
 
 #: pdf_bot/utils.py:159
 msgid "Your PDF file seems to be invalid and I couldn't open and read it. Operation cancelled"
-msgstr ""
+msgstr "Il PDF sembra non valido, non ho potuto aprirlo e leggerlo. Operazione annullata"
 
 #: pdf_bot/utils.py:179
 msgid "You have sent me the following {}:\n"
-msgstr ""
+msgstr "Mi hai inviato il seguente {}:\n"
 
 #: pdf_bot/utils.py:225
 msgid "The result file is too large for me to send to you"
-msgstr ""
+msgstr "Il file ottenuto è troppo grande per poterlo inviare"
 
 #: pdf_bot/utils.py:229 pdf_bot/utils.py:232
 msgid "Here is your result file"
-msgstr ""
+msgstr "Ecco il tuo file completato"
 
 #: pdf_bot/commands/compare.py:49
 msgid "Send me one of the PDF files that you'll like to compare or /cancel this operation\n\n"
 "Note that I can only look for text differences"
-msgstr ""
+msgstr "Inviami uno dei file PDF che vorresti confrontare o /cancel questa operazione\n\n"
+"Ricorda che posso cercare solo le differenze nel testo"
 
 #: pdf_bot/commands/compare.py:75
 msgid "Send me the other PDF file that you'll like to compare or /cancel this operation"
-msgstr ""
+msgstr "Inviami l'altro PDF che vuoi confrontare o /cancel questa operazione"
 
 #: pdf_bot/commands/compare.py:120
 msgid "Comparing your PDF files"
-msgstr ""
+msgstr "Sto confrontando i tuoi PDF"
 
 #: pdf_bot/commands/compare.py:140
 msgid "There are no differences between your PDF files"
-msgstr ""
+msgstr "Non ci sono differenze tra i file PDF"
 
 #: pdf_bot/commands/merge.py:58
 msgid "Send me the PDF file that you'll like to merge or /cancel this operation\n\n"
 "The files will be merged in the order that you send me"
-msgstr ""
+msgstr "Inviami il file PDF che vorresti unire o /cancel questa operazione\n\n"
+"I file saranno uniti secondo l'ordine in cui li hai inviati"
 
 #: pdf_bot/commands/merge.py:82
 msgid "The file you sent is not a PDF file. Send me the PDF file that you'll like to merge or /cancel this operation"
-msgstr ""
+msgstr "Il file che hai inviato non è un file PDF. Inviami il file PDF che vorresti unire o /cancel questa operazione"
 
 #: pdf_bot/commands/merge.py:88
 msgid "The PDF file you sent is too large for me to download\n\n"
-msgstr ""
+msgstr "Il file PDF che hai inviato è troppo grande per essere scaricato\n\n"
 
 #: pdf_bot/commands/merge.py:92
 msgid "You can continue merging with the files that you sent me or /cancel this operation"
-msgstr ""
+msgstr "Puoi continuare ad unire i file che mi hai inviato o /cancel questa operazione"
 
 #: pdf_bot/commands/merge.py:94 pdf_bot/commands/merge.py:118
 msgid "PDF files"
-msgstr ""
+msgstr "File PDF"
 
 #: pdf_bot/commands/merge.py:98
 msgid "I can't merge your PDF files"
-msgstr ""
+msgstr "Non posso unire i file PDF"
 
 #: pdf_bot/commands/merge.py:115
 msgid "Send me the next PDF file that you'll like to merge or send *Done* if you have sent me all the PDF files"
-msgstr ""
+msgstr "Inviami il prossimo file PDF che vorresti unire o invia *Fatto* se hai inviato tutti i file PDF"
 
 #: pdf_bot/commands/merge.py:149
 msgid "Merging your PDF files"
-msgstr ""
+msgstr "Sto unendo i tuoi PDF"
 
 #: pdf_bot/commands/merge.py:166
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
-msgstr ""
+msgstr "Non posso unire i file PDF perché non ho potuto aprirli e leggerli \"{}\". Assicurati che non sia cifrato"
 
 #: pdf_bot/commands/watermark.py:47
 msgid "Send me the PDF file that you'll like to add a watermark or /cancel this operation"
-msgstr ""
+msgstr "Inviami il file PDF al quale vorresti aggiungere un watermark o /cancel questa operazione"
 
 #: pdf_bot/commands/watermark.py:72
 msgid "Send me the watermark PDF file"
-msgstr ""
+msgstr "Inviami il watermark in PDF"
 
 #: pdf_bot/commands/watermark.py:116
 msgid "Adding the watermark onto your PDF file"
-msgstr ""
+msgstr "Sto aggiungendo il watermark al tuo PDF"
 
 #: pdf_bot/files/crop.py:23
 msgid "Select the crop type that you'll like to perform"
-msgstr ""
+msgstr "Seleziona il tipo di ritaglio che vorresti eseguire"
 
 #: pdf_bot/files/crop.py:34
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr ""
+msgstr "Inviami un numero compreso tra {} e {}. Questa è la percentuale di spazio al margine da mantenere nel contenuto del file e pagina PDF"
 
 #: pdf_bot/files/crop.py:41
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr ""
+msgstr "Inviami un numero per adeguare la dimensione del margine. I numeri positivi diminuiranno la dimensione del margine mentre quelli negativi lo aumenteranno"
 
 #: pdf_bot/files/crop.py:54
 msgid "The number must be between {} and {}, try again"
-msgstr ""
+msgstr "Il numero deve essere compreso tra {} e {}, riprova"
 
 #: pdf_bot/files/crop.py:68
 msgid "The number is invalid, try again"
-msgstr ""
+msgstr "Il numero non è valido, riprova"
 
 #: pdf_bot/files/crop.py:89
 msgid "Cropping your PDF file"
-msgstr ""
+msgstr "Sto dividendo il PDF"
 
 #: pdf_bot/files/crop.py:110
 msgid "Something went wrong, try again"
-msgstr ""
+msgstr "Qualcosa è andato storto, riprova"
 
 #: pdf_bot/files/crypto.py:25
 msgid "Send me the password to decrypt your PDF file"
-msgstr ""
+msgstr "Inviami la password per decifrare il file PDF"
 
 #: pdf_bot/files/crypto.py:47
 msgid "Decrypting your PDF file"
-msgstr ""
+msgstr "Sto decifrando il PDF"
 
 #: pdf_bot/files/crypto.py:60
 msgid "I couldn't open and read your PDF file as it looks invalid"
-msgstr ""
+msgstr "Non ho potuto aprire e leggere il file PDF perché sembra non valido"
 
 #: pdf_bot/files/crypto.py:64
 msgid "Your PDF file is not encrypted"
-msgstr ""
+msgstr "Il file PDF non è cifrato"
 
 #: pdf_bot/files/crypto.py:68
 msgid "The decryption password is incorrect, try to send it again"
-msgstr ""
+msgstr "La password di decifrazione non è corretta, prova ad inviarla di nuovo"
 
 #: pdf_bot/files/crypto.py:78
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
-msgstr ""
+msgstr "Il file PDF è cifrato con un metodo che non posso decifrare"
 
 #: pdf_bot/files/crypto.py:98
 msgid "Send me the password to encrypt your PDF file"
-msgstr ""
+msgstr "Inviami la password per cifrare il file PDF"
 
 #: pdf_bot/files/crypto.py:119
 msgid "Encrypting your PDF file"
-msgstr ""
+msgstr "Sto cifrando il tuo PDF"
 
 #: pdf_bot/files/file.py:72
 msgid "Your PDF file you sent is too large for me to download. I can't perform any tasks on it"
-msgstr ""
+msgstr "Il PDF inviato è troppo grande per essere scaricato. Non posso eseguire alcuna attività su di essso"
 
 #: pdf_bot/files/file.py:99 pdf_bot/photos/photo_to_pdf.py:239
 msgid "Select the task that you'll like to perform"
-msgstr ""
+msgstr "Seleziona l'operazione che vuoi eseguire"
 
 #: pdf_bot/files/rename.py:27
 msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr ""
+msgstr "Inviami il nome in cui vuoi rinominare il file PDF"
 
 #: pdf_bot/files/rename.py:53
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
-msgstr ""
+msgstr "I nomi dei file non possono contenere nessuno dei seguenti caratteri:\n"
+"{}\n"
+"Inviami un altro nome per il file"
 
 #: pdf_bot/files/rename.py:60
 msgid "Renaming your PDF file into *{}*"
-msgstr ""
+msgstr "Sto rinominando il tuo PDF in *{}*"
 
 #: pdf_bot/files/rotate.py:23
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr ""
+msgstr "Seleziona di quanti gradi, in senso orario, vorresti ruotare il PDF"
 
 #: pdf_bot/files/rotate.py:45
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr ""
+msgstr "Sto ruotando il PDF in senso orario di {} gradi"
 
 #: pdf_bot/files/scale.py:27
 msgid "Send me the scaling factor for the horizontal axis. For example, 2 will double the horizontal axis and 0.5 will half the horizontal axis"
-msgstr ""
+msgstr "Inviami il fattore di scala per l'asse orizzontale. Ad esempio, 2 raddoppierà l'asse orizzontale mentre 0.5 lo dimezzerà"
 
 #: pdf_bot/files/scale.py:33
 msgid "Send me the new width"
-msgstr ""
+msgstr "Inviami la nuova larghezza"
 
 #: pdf_bot/files/scale.py:56 pdf_bot/files/scale.py:89
 msgid "The scaling factor \"{}\" is invalid. Try again"
-msgstr ""
+msgstr "Il fattore di scala \"{}\" non è valido. Riprova"
 
 #: pdf_bot/files/scale.py:61
 msgid "Send me the scaling factor for the vertical axis. For example, 2 will double the vertical axis and 0.5 will half the vertical axis"
-msgstr ""
+msgstr "Inviami il fattore di scala per l'asse verticale. Ad esempio, 2 raddoppierà l'asse verticale mentre 0.5 lo dimezzerà"
 
 #: pdf_bot/files/scale.py:95
 msgid "Scaling your PDF file, horizontally by {} and vertically by {}"
-msgstr ""
+msgstr "Sto riscalando il file PDF, orizzontalmente di {} e verticalmente di {}"
 
 #: pdf_bot/files/scale.py:123
 msgid "The width \"{}\" is invalid. Try again"
-msgstr ""
+msgstr "La larghezza \"{}\" non è valida. Riprova"
 
 #: pdf_bot/files/scale.py:128
 msgid "Send me the new height"
-msgstr ""
+msgstr "Inviami la nuova altezza"
 
 #: pdf_bot/files/scale.py:155
 msgid "The height \"{}\" is invalid. Try again"
@@ -517,17 +521,18 @@ msgstr "Nome file non disponibile"
 #: pdf_bot/photos/photo_to_pdf.py:128
 msgid "Send me the next photo that you'll like to beautify or convert. Select the task from below if you have sent me all the photos.\n\n"
 "Note that I only have access to the file name if you sent your photo as a document"
-msgstr ""
+msgstr "Inviami la prossima foto che vorresti ottimizzare o convertire. Seleziona da qui sotto cosa fare se hai inviato tutte le foto.\n\n"
+"Ricorda che ho accesso solo al nome del file se hai inviato la tua foto come documento"
 
 #: pdf_bot/photos/photo_to_pdf.py:194
 msgid "Beautifying and converting your photos"
-msgstr ""
+msgstr "Sto ottimizzando e convertendo le tue foto"
 
 #: pdf_bot/photos/photo_to_pdf.py:197
 msgid "Converting your photos"
-msgstr ""
+msgstr "Sto convertendo le tue foto"
 
 #: pdf_bot/photos/photo_to_pdf.py:232
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
-msgstr ""
+msgstr "La tua foto è troppo grande per il download. Non posso ottimizzare o convertire la tua foto"
 
