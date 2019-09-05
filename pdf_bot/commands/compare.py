@@ -69,6 +69,7 @@ def check_first_doc(update, context):
 
     _ = set_lang(update, context)
     context.user_data[COMPARE_ID] = update.effective_message.document.file_id
+
     reply_markup = ReplyKeyboardMarkup(
         [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(
