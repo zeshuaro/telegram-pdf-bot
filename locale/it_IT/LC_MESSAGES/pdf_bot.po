@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2019-09-05 13:04+1000\n"
-"PO-Revision-Date: 2019-09-05 03:09\n"
+"POT-Creation-Date: 2019-09-05 21:36+1000\n"
+"PO-Revision-Date: 2019-09-05 11:47\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgid "You can perform most of the tasks simply by sending me a PDF file, a phot
 msgstr "Puoi eseguire la maggior parte delle attività semplicemente inviandomi un file PDF, una foto o un link ad una pagina web.\n\n"
 "Alcune attività possono essere eseguite utilizzando i comandi /compare, /merge, /watermark o /photo"
 
-#: bot.py:143 pdf_bot/constants.py:74
+#: bot.py:143 pdf_bot/constants.py:75
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "Scrivi l'importo che vorresti inviare per sostenere PDF Bot"
 
@@ -140,29 +140,33 @@ msgstr "Comprimi"
 msgid "Photos"
 msgstr "Foto"
 
-#: pdf_bot/constants.py:68
+#: pdf_bot/constants.py:54
+msgid "Remove Last File"
+msgstr ""
+
+#: pdf_bot/constants.py:69
 msgid "Say Thanks 😁 ($1)"
 msgstr "Ringrazia 😁 ($1)"
 
-#: pdf_bot/constants.py:69
+#: pdf_bot/constants.py:70
 msgid "Coffee ☕ ($3)"
 msgstr "Caffè ☕ ($3)"
 
-#: pdf_bot/constants.py:70
+#: pdf_bot/constants.py:71
 msgid "Beer 🍺 ($5)"
 msgstr "Birra 🍺 ($5)"
 
-#: pdf_bot/constants.py:71
+#: pdf_bot/constants.py:72
 msgid "Meal 🍲 ($10)"
 msgstr "Un pasto 🍲 ($10)"
 
-#: pdf_bot/constants.py:72
+#: pdf_bot/constants.py:73
 msgid "Say Awesome 🤩 (Custom)"
 msgstr "Fantastico 🤩 (Personalizzato)"
 
 #: pdf_bot/feedback.py:42
-msgid "Send me your feedback or /cancel this operation. My developer can understand English and Chinese"
-msgstr "Invia un feedback o scrivi /cancel per annullare l'operazione. Il mio sviluppatore parla inglese e cinese"
+msgid "Send me your feedback or /cancel this action. My developer can understand English and Chinese"
+msgstr ""
 
 #: pdf_bot/feedback.py:75
 msgid "The feedback is not in English or Chinese, try again"
@@ -212,41 +216,41 @@ msgstr "Sto convertendo la pagina web in PDF"
 msgid "Unable to reach your web page"
 msgstr "Impossibile raggiungere la pagina web"
 
-#: pdf_bot/utils.py:22
-msgid "Operation cancelled"
-msgstr "Operazione annullata"
+#: pdf_bot/utils.py:26
+msgid "Action cancelled"
+msgstr ""
 
-#: pdf_bot/utils.py:47
-msgid "The file you sent is not a PDF file. Try again and send me a PDF file or type /cancel to cancel the operation"
-msgstr "Il file inviato non è un file PDF. Riprova e inviami un file PDF o scrivi /cancel per annullare l'operazione"
+#: pdf_bot/utils.py:51
+msgid "The file you sent is not a PDF file. Try again and send me a PDF file or /cancel this action."
+msgstr ""
 
-#: pdf_bot/utils.py:53
-msgid "The PDF file you sent is too large for me to download. I can't process your PDF file. Operation cancelled"
-msgstr "Il PDF che hai inviato è troppo grande per il download. Non posso elaborare il file PDF. Operazione annullata"
+#: pdf_bot/utils.py:56
+msgid "The PDF file you sent is too large for me to download. I can't process your PDF file. Action cancelled"
+msgstr ""
 
-#: pdf_bot/utils.py:75
+#: pdf_bot/utils.py:78
 msgid "Something went wrong, start over again"
 msgstr "Qualcosa è andato storto, riprova"
 
-#: pdf_bot/utils.py:152
+#: pdf_bot/utils.py:155
 msgid "Your PDF file is already encrypted"
 msgstr "Il PDF è già criptato"
 
-#: pdf_bot/utils.py:154
-msgid "Your {} PDF file is encrypted and you'll have to decrypt it first. Operation cancelled"
-msgstr "Il file PDF {} è criptato e dovrai prima decrittarlo. Operazione annullata"
-
 #: pdf_bot/utils.py:157
-msgid "Your PDF file is encrypted and you'll have to decrypt it first. Operation cancelled"
-msgstr "Il PDF {} è cifrato e dovrai prima decifrarlo. Operazione annullata"
+msgid "Your {} PDF file is encrypted and you'll have to decrypt it first. Action cancelled"
+msgstr ""
 
-#: pdf_bot/utils.py:163
-msgid "Your PDF file seems to be invalid and I couldn't open and read it. Operation cancelled"
-msgstr "Il PDF sembra non valido, non ho potuto aprirlo e leggerlo. Operazione annullata"
+#: pdf_bot/utils.py:160
+msgid "Your PDF file is encrypted and you'll have to decrypt it first. Action cancelled."
+msgstr ""
+
+#: pdf_bot/utils.py:165
+msgid "Your PDF file seems to be invalid and I couldn't open and read it. Action cancelled."
+msgstr ""
 
 #: pdf_bot/utils.py:184
-msgid "You have sent me the following {}:\n"
-msgstr "Mi hai inviato il seguente {}:\n"
+msgid "You've sent me these {} so far:\n"
+msgstr ""
 
 #: pdf_bot/utils.py:231
 msgid "The result file is too large for me to send to you"
@@ -256,71 +260,73 @@ msgstr "Il file ottenuto è troppo grande per poterlo inviare"
 msgid "Here is your result file"
 msgstr "Ecco il tuo file completato"
 
-#: pdf_bot/commands/compare.py:49
-msgid "Send me one of the PDF files that you'll like to compare or /cancel this operation\n\n"
-"Note that I can only look for text differences"
-msgstr "Inviami uno dei file PDF che vorresti confrontare o /cancel questa operazione\n\n"
-"Ricorda che posso cercare solo le differenze nel testo"
+#: pdf_bot/commands/compare.py:44
+msgid "Send me one of the PDF files that you'll like to compare\n\n"
+"Note that I can only look for differences in text"
+msgstr ""
 
-#: pdf_bot/commands/compare.py:75
-msgid "Send me the other PDF file that you'll like to compare or /cancel this operation"
-msgstr "Inviami l'altro PDF che vuoi confrontare o /cancel questa operazione"
+#: pdf_bot/commands/compare.py:76
+msgid "Send me the other PDF file that you'll like to compare"
+msgstr ""
 
-#: pdf_bot/commands/compare.py:120
+#: pdf_bot/commands/compare.py:98
 msgid "Comparing your PDF files"
 msgstr "Sto confrontando i tuoi PDF"
 
-#: pdf_bot/commands/compare.py:140
-msgid "There are no differences between your PDF files"
-msgstr "Non ci sono differenze tra i file PDF"
+#: pdf_bot/commands/compare.py:115
+msgid "There are no differences in text between your PDF files"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:58
-msgid "Send me the PDF file that you'll like to merge or /cancel this operation\n\n"
-"The files will be merged in the order that you send me"
-msgstr "Inviami il file PDF che vorresti unire o /cancel questa operazione\n\n"
-"I file saranno uniti secondo l'ordine in cui li hai inviati"
+#: pdf_bot/commands/merge.py:47
+msgid "Send me the first PDF file that you'll like to merge\n\n"
+"Note that the files will be merged in the order that you send me"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:82
-msgid "The file you sent is not a PDF file. Send me the PDF file that you'll like to merge or /cancel this operation"
-msgstr "Il file che hai inviato non è un file PDF. Inviami il file PDF che vorresti unire o /cancel questa operazione"
+#: pdf_bot/commands/merge.py:71
+msgid "The file you've sent is not a PDF file"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:88
-msgid "The PDF file you sent is too large for me to download\n\n"
-msgstr "Il file PDF che hai inviato è troppo grande per essere scaricato\n\n"
+#: pdf_bot/commands/merge.py:73
+msgid "The PDF file you've sent is too large for me to download"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:92
-msgid "You can continue merging with the files that you sent me or /cancel this operation"
-msgstr "Puoi continuare ad unire i file che mi hai inviato o /cancel questa operazione"
+#: pdf_bot/commands/merge.py:86
+msgid "Send me the next PDF file that you'll like to merge or press *Done* if you've sent me all the PDF files"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:95 pdf_bot/commands/merge.py:120
+#: pdf_bot/commands/merge.py:89
 msgid "PDF files"
 msgstr "File PDF"
 
-#: pdf_bot/commands/merge.py:99
-msgid "I can't merge your PDF files"
-msgstr "Non posso unire i file PDF"
-
 #: pdf_bot/commands/merge.py:117
-msgid "Send me the next PDF file that you'll like to merge or send *Done* if you have sent me all the PDF files"
-msgstr "Inviami il prossimo file PDF che vorresti unire o invia *Fatto* se hai inviato tutti i file PDF"
+msgid "*{}* has been removed for merging"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:151
+#: pdf_bot/commands/merge.py:134
+msgid "You haven't sent me any PDF files"
+msgstr ""
+
+#: pdf_bot/commands/merge.py:138
+msgid "You've only sent me one PDF file."
+msgstr ""
+
+#: pdf_bot/commands/merge.py:147
 msgid "Merging your PDF files"
 msgstr "Sto unendo i tuoi PDF"
 
-#: pdf_bot/commands/merge.py:169
+#: pdf_bot/commands/merge.py:166
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "Non posso unire i file PDF perché non ho potuto aprirli e leggerli \"{}\". Assicurati che non sia cifrato"
 
-#: pdf_bot/commands/watermark.py:47
-msgid "Send me the PDF file that you'll like to add a watermark or /cancel this operation"
-msgstr "Inviami il file PDF al quale vorresti aggiungere un watermark o /cancel questa operazione"
+#: pdf_bot/commands/watermark.py:42
+msgid "Send me the PDF file that you'll like to add a watermark"
+msgstr ""
 
 #: pdf_bot/commands/watermark.py:72
 msgid "Send me the watermark PDF file"
 msgstr "Inviami il watermark in PDF"
 
-#: pdf_bot/commands/watermark.py:116
+#: pdf_bot/commands/watermark.py:97
 msgid "Adding the watermark onto your PDF file"
 msgstr "Sto aggiungendo il watermark al tuo PDF"
 
@@ -388,7 +394,7 @@ msgstr "Sto cifrando il tuo PDF"
 msgid "Your PDF file you sent is too large for me to download. I can't perform any tasks on it"
 msgstr "Il PDF inviato è troppo grande per essere scaricato. Non posso eseguire alcuna attività su di essso"
 
-#: pdf_bot/files/file.py:103 pdf_bot/photos/photo_to_pdf.py:243
+#: pdf_bot/files/file.py:103 pdf_bot/photos/photo_to_pdf.py:244
 msgid "Select the task that you'll like to perform"
 msgstr "Seleziona l'operazione che vuoi eseguire"
 
@@ -488,51 +494,50 @@ msgstr "Non sono riuscito a trovare foto estraibili dal tuo PDF"
 msgid "See above for all your photos"
 msgstr "Vedi sopra tutte le foto"
 
-#: pdf_bot/photos/photo_to_pdf.py:61
-msgid "Send me the first photo that you'll like to beautify or convert into PDF format or /cancel this operation.\n\n"
+#: pdf_bot/photos/photo_to_pdf.py:62
+msgid "Send me the first photo that you'll like to beautify or convert into PDF format or /cancel this action.\n\n"
 "The photos will be beautified and converted in the order that you send me"
-msgstr "Inviami la prima foto che vuoi ottimizzare o convertire in formato PDF o /cancel questa operazione.\n\n"
-"Le foto saranno ottimizzate e convertite secondo l'ordine in cui le hai inviate"
+msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:87
+#: pdf_bot/photos/photo_to_pdf.py:88
 msgid "The file you sent is not a photo. Send me the photo that you'll like to beautify and convert"
 msgstr "Il file inviato non è una foto. Inviami una foto che vuoi ottimizzare e convertire"
 
-#: pdf_bot/photos/photo_to_pdf.py:97
+#: pdf_bot/photos/photo_to_pdf.py:98
 msgid "The photo you sent is too large for me to download.\n\n"
 msgstr "La foto inviata è troppo grande per essere scaricata.\n\n"
 
-#: pdf_bot/photos/photo_to_pdf.py:101
-msgid "You can continue to beautify or convert with the files that you sent me, or /cancel this operation"
-msgstr "Puoi continuare ad ottimizzare o convertire i file che hai inviato, o invia /cancel per annullare questa operazione"
+#: pdf_bot/photos/photo_to_pdf.py:102
+msgid "You can continue to beautify or convert with the files that you sent me, or /cancel this action."
+msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:104 pdf_bot/photos/photo_to_pdf.py:135
+#: pdf_bot/photos/photo_to_pdf.py:105 pdf_bot/photos/photo_to_pdf.py:136
 msgid "photos"
 msgstr "foto"
 
-#: pdf_bot/photos/photo_to_pdf.py:108
-msgid "I can't convert your photos. Operation cancelled"
-msgstr "Non posso convertire le tue foto. Operazione annullata"
+#: pdf_bot/photos/photo_to_pdf.py:109
+msgid "I can't convert your photos. Action cancelled"
+msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:117
+#: pdf_bot/photos/photo_to_pdf.py:118
 msgid "File name unavailable"
 msgstr "Nome file non disponibile"
 
-#: pdf_bot/photos/photo_to_pdf.py:130
+#: pdf_bot/photos/photo_to_pdf.py:131
 msgid "Send me the next photo that you'll like to beautify or convert. Select the task from below if you have sent me all the photos.\n\n"
 "Note that I only have access to the file name if you sent your photo as a document"
 msgstr "Inviami la prossima foto che vorresti ottimizzare o convertire. Seleziona da qui sotto cosa fare se hai inviato tutte le foto.\n\n"
 "Ricorda che ho accesso solo al nome del file se hai inviato la tua foto come documento"
 
-#: pdf_bot/photos/photo_to_pdf.py:196
+#: pdf_bot/photos/photo_to_pdf.py:197
 msgid "Beautifying and converting your photos"
 msgstr "Sto ottimizzando e convertendo le tue foto"
 
-#: pdf_bot/photos/photo_to_pdf.py:199
+#: pdf_bot/photos/photo_to_pdf.py:200
 msgid "Converting your photos"
 msgstr "Sto convertendo le tue foto"
 
-#: pdf_bot/photos/photo_to_pdf.py:235
+#: pdf_bot/photos/photo_to_pdf.py:236
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "La tua foto è troppo grande per il download. Non posso ottimizzare o convertire la tua foto"
 
