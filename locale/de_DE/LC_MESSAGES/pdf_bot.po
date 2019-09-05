@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2019-09-04 22:22+1000\n"
-"PO-Revision-Date: 2019-09-05 01:28\n"
+"POT-Creation-Date: 2019-09-05 13:04+1000\n"
+"PO-Revision-Date: 2019-09-05 03:09\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "Language: de_DE\n"
 
-#: bot.py:93
+#: bot.py:94
 msgid "Welcome to PDF Bot!\n\n"
 "*Features*\n"
 "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
@@ -32,24 +32,24 @@ msgid "Welcome to PDF Bot!\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr ""
 
-#: bot.py:108
+#: bot.py:110
 msgid "Set Language"
 msgstr ""
 
-#: bot.py:109 pdf_bot/utils.py:246
+#: bot.py:111 pdf_bot/utils.py:255
 msgid "Join Channel"
 msgstr ""
 
-#: bot.py:110 pdf_bot/payment.py:65 pdf_bot/utils.py:247
+#: bot.py:112 pdf_bot/payment.py:68 pdf_bot/utils.py:256
 msgid "Support PDF Bot"
 msgstr ""
 
-#: bot.py:113
+#: bot.py:115
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr ""
 
-#: bot.py:140 pdf_bot/constants.py:74
+#: bot.py:143 pdf_bot/constants.py:74
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr ""
 
@@ -157,39 +157,39 @@ msgstr ""
 msgid "Send me your feedback or /cancel this operation. My developer can understand English and Chinese"
 msgstr ""
 
-#: pdf_bot/feedback.py:74
+#: pdf_bot/feedback.py:75
 msgid "The feedback is not in English or Chinese, try again"
 msgstr ""
 
-#: pdf_bot/feedback.py:92
+#: pdf_bot/feedback.py:93
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr ""
 
-#: pdf_bot/language.py:52
+#: pdf_bot/language.py:56
 msgid "Your language has been set to {}"
 msgstr ""
 
-#: pdf_bot/payment.py:27
+#: pdf_bot/payment.py:28
 msgid "The amount you sent is invalid, try again. {}"
 msgstr ""
 
-#: pdf_bot/payment.py:38
+#: pdf_bot/payment.py:40
 msgid "Help translate PDF Bot"
 msgstr ""
 
-#: pdf_bot/payment.py:40
+#: pdf_bot/payment.py:43
 msgid "Select how you want to support PDF Bot"
 msgstr ""
 
-#: pdf_bot/payment.py:66
+#: pdf_bot/payment.py:69
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr ""
 
-#: pdf_bot/payment.py:86
+#: pdf_bot/payment.py:89
 msgid "Something went wrong"
 msgstr ""
 
-#: pdf_bot/payment.py:93
+#: pdf_bot/payment.py:96
 msgid "Thank you for your support!"
 msgstr ""
 
@@ -205,47 +205,47 @@ msgstr ""
 msgid "Unable to reach your web page"
 msgstr ""
 
-#: pdf_bot/utils.py:21
+#: pdf_bot/utils.py:22
 msgid "Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:45
+#: pdf_bot/utils.py:47
 msgid "The file you sent is not a PDF file. Try again and send me a PDF file or type /cancel to cancel the operation"
 msgstr ""
 
-#: pdf_bot/utils.py:51
+#: pdf_bot/utils.py:53
 msgid "The PDF file you sent is too large for me to download. I can't process your PDF file. Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:73
+#: pdf_bot/utils.py:75
 msgid "Something went wrong, start over again"
 msgstr ""
 
-#: pdf_bot/utils.py:149
+#: pdf_bot/utils.py:152
 msgid "Your PDF file is already encrypted"
 msgstr ""
 
-#: pdf_bot/utils.py:151
+#: pdf_bot/utils.py:154
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first. Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:154
+#: pdf_bot/utils.py:157
 msgid "Your PDF file is encrypted and you'll have to decrypt it first. Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:159
+#: pdf_bot/utils.py:163
 msgid "Your PDF file seems to be invalid and I couldn't open and read it. Operation cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:179
+#: pdf_bot/utils.py:184
 msgid "You have sent me the following {}:\n"
 msgstr ""
 
-#: pdf_bot/utils.py:225
+#: pdf_bot/utils.py:231
 msgid "The result file is too large for me to send to you"
 msgstr ""
 
-#: pdf_bot/utils.py:229 pdf_bot/utils.py:232
+#: pdf_bot/utils.py:236 pdf_bot/utils.py:241
 msgid "Here is your result file"
 msgstr ""
 
@@ -283,23 +283,23 @@ msgstr ""
 msgid "You can continue merging with the files that you sent me or /cancel this operation"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:94 pdf_bot/commands/merge.py:118
+#: pdf_bot/commands/merge.py:95 pdf_bot/commands/merge.py:120
 msgid "PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:98
+#: pdf_bot/commands/merge.py:99
 msgid "I can't merge your PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:115
+#: pdf_bot/commands/merge.py:117
 msgid "Send me the next PDF file that you'll like to merge or send *Done* if you have sent me all the PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:149
+#: pdf_bot/commands/merge.py:151
 msgid "Merging your PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:166
+#: pdf_bot/commands/merge.py:169
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr ""
 
@@ -323,23 +323,23 @@ msgstr ""
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr ""
 
-#: pdf_bot/files/crop.py:41
+#: pdf_bot/files/crop.py:42
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr ""
 
-#: pdf_bot/files/crop.py:54
+#: pdf_bot/files/crop.py:56
 msgid "The number must be between {} and {}, try again"
 msgstr ""
 
-#: pdf_bot/files/crop.py:68
+#: pdf_bot/files/crop.py:70
 msgid "The number is invalid, try again"
 msgstr ""
 
-#: pdf_bot/files/crop.py:89
+#: pdf_bot/files/crop.py:91
 msgid "Cropping your PDF file"
 msgstr ""
 
-#: pdf_bot/files/crop.py:110
+#: pdf_bot/files/crop.py:112
 msgid "Something went wrong, try again"
 msgstr ""
 
@@ -363,23 +363,23 @@ msgstr ""
 msgid "The decryption password is incorrect, try to send it again"
 msgstr ""
 
-#: pdf_bot/files/crypto.py:78
+#: pdf_bot/files/crypto.py:79
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
 msgstr ""
 
-#: pdf_bot/files/crypto.py:98
+#: pdf_bot/files/crypto.py:100
 msgid "Send me the password to encrypt your PDF file"
 msgstr ""
 
-#: pdf_bot/files/crypto.py:119
+#: pdf_bot/files/crypto.py:121
 msgid "Encrypting your PDF file"
 msgstr ""
 
-#: pdf_bot/files/file.py:72
+#: pdf_bot/files/file.py:75
 msgid "Your PDF file you sent is too large for me to download. I can't perform any tasks on it"
 msgstr ""
 
-#: pdf_bot/files/file.py:99 pdf_bot/photos/photo_to_pdf.py:239
+#: pdf_bot/files/file.py:103 pdf_bot/photos/photo_to_pdf.py:243
 msgid "Select the task that you'll like to perform"
 msgstr ""
 
@@ -387,13 +387,13 @@ msgstr ""
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr ""
 
-#: pdf_bot/files/rename.py:53
+#: pdf_bot/files/rename.py:54
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
 msgstr ""
 
-#: pdf_bot/files/rename.py:60
+#: pdf_bot/files/rename.py:61
 msgid "Renaming your PDF file into *{}*"
 msgstr ""
 
@@ -401,43 +401,43 @@ msgstr ""
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr ""
 
-#: pdf_bot/files/rotate.py:45
+#: pdf_bot/files/rotate.py:46
 msgid "Rotating your PDF file clockwise by {} degrees"
 msgstr ""
 
-#: pdf_bot/files/scale.py:27
+#: pdf_bot/files/scale.py:28
 msgid "Send me the scaling factor for the horizontal axis. For example, 2 will double the horizontal axis and 0.5 will half the horizontal axis"
 msgstr ""
 
-#: pdf_bot/files/scale.py:33
+#: pdf_bot/files/scale.py:35
 msgid "Send me the new width"
 msgstr ""
 
-#: pdf_bot/files/scale.py:56 pdf_bot/files/scale.py:89
+#: pdf_bot/files/scale.py:58 pdf_bot/files/scale.py:93
 msgid "The scaling factor \"{}\" is invalid. Try again"
 msgstr ""
 
-#: pdf_bot/files/scale.py:61
+#: pdf_bot/files/scale.py:63
 msgid "Send me the scaling factor for the vertical axis. For example, 2 will double the vertical axis and 0.5 will half the vertical axis"
 msgstr ""
 
-#: pdf_bot/files/scale.py:95
+#: pdf_bot/files/scale.py:99
 msgid "Scaling your PDF file, horizontally by {} and vertically by {}"
 msgstr ""
 
-#: pdf_bot/files/scale.py:123
+#: pdf_bot/files/scale.py:128
 msgid "The width \"{}\" is invalid. Try again"
 msgstr ""
 
-#: pdf_bot/files/scale.py:128
+#: pdf_bot/files/scale.py:133
 msgid "Send me the new height"
 msgstr ""
 
-#: pdf_bot/files/scale.py:155
+#: pdf_bot/files/scale.py:161
 msgid "The height \"{}\" is invalid. Try again"
 msgstr ""
 
-#: pdf_bot/files/scale.py:161
+#: pdf_bot/files/scale.py:167
 msgid "Scaling your PDF file with width of {} and height of {}"
 msgstr ""
 
@@ -453,27 +453,27 @@ msgstr ""
 msgid "Splitting your PDF file"
 msgstr ""
 
-#: pdf_bot/photos/pdf_to_photo.py:36
+#: pdf_bot/photos/pdf_to_photo.py:37
 msgid "Extracting a preview for your PDF file"
 msgstr ""
 
-#: pdf_bot/photos/pdf_to_photo.py:89
+#: pdf_bot/photos/pdf_to_photo.py:91
 msgid "Select the result file format to be sent back to you"
 msgstr ""
 
-#: pdf_bot/photos/pdf_to_photo.py:110
+#: pdf_bot/photos/pdf_to_photo.py:112
 msgid "Converting your PDF file into photos"
 msgstr ""
 
-#: pdf_bot/photos/pdf_to_photo.py:152
+#: pdf_bot/photos/pdf_to_photo.py:156
 msgid "Extracting all the photos in your PDF file"
 msgstr ""
 
-#: pdf_bot/photos/pdf_to_photo.py:208
+#: pdf_bot/photos/pdf_to_photo.py:215
 msgid "I couldn't find any photos in your PDF file"
 msgstr ""
 
-#: pdf_bot/photos/pdf_to_photo.py:246
+#: pdf_bot/photos/pdf_to_photo.py:255
 msgid "See above for all your photos"
 msgstr ""
 
@@ -482,44 +482,44 @@ msgid "Send me the first photo that you'll like to beautify or convert into PDF 
 "The photos will be beautified and converted in the order that you send me"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:86
+#: pdf_bot/photos/photo_to_pdf.py:87
 msgid "The file you sent is not a photo. Send me the photo that you'll like to beautify and convert"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:95
+#: pdf_bot/photos/photo_to_pdf.py:97
 msgid "The photo you sent is too large for me to download.\n\n"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:99
+#: pdf_bot/photos/photo_to_pdf.py:101
 msgid "You can continue to beautify or convert with the files that you sent me, or /cancel this operation"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:102 pdf_bot/photos/photo_to_pdf.py:133
+#: pdf_bot/photos/photo_to_pdf.py:104 pdf_bot/photos/photo_to_pdf.py:135
 msgid "photos"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:106
+#: pdf_bot/photos/photo_to_pdf.py:108
 msgid "I can't convert your photos. Operation cancelled"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:115
+#: pdf_bot/photos/photo_to_pdf.py:117
 msgid "File name unavailable"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:128
+#: pdf_bot/photos/photo_to_pdf.py:130
 msgid "Send me the next photo that you'll like to beautify or convert. Select the task from below if you have sent me all the photos.\n\n"
 "Note that I only have access to the file name if you sent your photo as a document"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:194
+#: pdf_bot/photos/photo_to_pdf.py:196
 msgid "Beautifying and converting your photos"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:197
+#: pdf_bot/photos/photo_to_pdf.py:199
 msgid "Converting your photos"
 msgstr ""
 
-#: pdf_bot/photos/photo_to_pdf.py:232
+#: pdf_bot/photos/photo_to_pdf.py:235
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr ""
 
