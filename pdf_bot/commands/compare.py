@@ -8,8 +8,9 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK
-from pdf_bot.utils import check_pdf, cancel_with_async, send_result_file, check_user_data, get_lang, \
+from pdf_bot.utils import check_pdf, cancel_with_async, send_result_file, check_user_data, \
     cancel_without_async
+from pdf_bot.language import set_lang
 
 WAIT_FIRST = 0
 WAIT_SECOND = 1
@@ -36,7 +37,7 @@ def compare(update, context):
 
 
 def ask_first_doc(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     reply_markup = ReplyKeyboardMarkup([[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(_(
         'Send me one of the PDF files that you\'ll like to compare\n\n'
@@ -64,7 +65,7 @@ def check_first_doc(update, context):
     elif result != PDF_OK:
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     context.user_data[COMPARE_ID] = update.effective_message.document.file_id
 
     reply_markup = ReplyKeyboardMarkup([[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
@@ -89,7 +90,7 @@ def check_second_doc(update, context):
 
 
 def compare_pdf(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     message.reply_text(_('Comparing your PDF files'), reply_markup=ReplyKeyboardRemove())
 
@@ -106,7 +107,7 @@ def compare_pdf(update, context):
             with tempfile.TemporaryDirectory() as dir_name:
                 out_fn = os.path.join(dir_name, 'Differences.png')
                 pdf_diff.main(files=[tf1.name, tf2.name], out_file=out_fn)
-                send_result_file(update, context, out_fn)
+                send_result_file(update, context, out_fn, 'compare')
         except NoDifferenceError:
             message.reply_text(_('There are no differences in text between your PDF files'))
 

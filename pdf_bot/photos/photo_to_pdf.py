@@ -9,8 +9,9 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import CANCEL, BEAUTIFY, CONVERT, WAIT_PHOTO_TASK
-from pdf_bot.utils import cancel_with_async, send_file_names, send_result_file, check_user_data, get_lang, \
+from pdf_bot.utils import cancel_with_async, send_file_names, send_result_file, check_user_data, \
     cancel_without_async
+from pdf_bot.language import set_lang
 
 WAIT_PHOTO = 0
 PHOTO_ID = 'photo_id'
@@ -57,10 +58,11 @@ def photo(update, context):
     if PHOTO_NAMES in user_data:
         del user_data[PHOTO_NAMES]
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the first photo that you\'ll like to beautify or convert into PDF format or '
-        '/cancel this action.\n\nThe photos will be beautified and converted in the order that you send me.'))
+        '/cancel this action.\n\n'
+        'The photos will be beautified and converted in the order that you send me'))
 
     return WAIT_PHOTO
 
@@ -77,14 +79,15 @@ def receive_photo(update, context):
     Returns:
         The variable indicating to wait for a file or the conversation has ended
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
 
     # Check if the photo has been sent as a document or photo
     if update.effective_message.document:
         photo_file = update.effective_message.document
         if not photo_file.mime_type.startswith('image'):
             update.effective_message.reply_text(_(
-                'The file you sent is not a photo. Send me the photo that you\'ll like to beautify and convert.'))
+                'The file you sent is not a photo. '
+                'Send me the photo that you\'ll like to beautify and convert'))
 
             return WAIT_PHOTO
     else:
@@ -103,7 +106,7 @@ def receive_photo(update, context):
 
             return WAIT_PHOTO
         else:
-            text += _('I can\'t convert your photos. Action cancelled.')
+            text += _('I can\'t convert your photos. Action cancelled')
             update.effective_message.reply_text(text)
 
             return ConversationHandler.END
@@ -128,7 +131,7 @@ def receive_photo(update, context):
     update.effective_message.reply_text(_(
         'Send me the next photo that you\'ll like to beautify or convert. '
         'Select the task from below if you have sent me all the photos.\n\n'
-        'Note that I only have access to the file name if you sent your photo as a document.'),
+        'Note that I only have access to the file name if you sent your photo as a document'),
         reply_markup=reply_markup)
     send_file_names(update, context, user_data[PHOTO_NAMES], _('photos'))
 
@@ -137,7 +140,7 @@ def receive_photo(update, context):
 
 @run_async
 def check_photo_task(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text in [_(BEAUTIFY), _(CONVERT)]:
@@ -189,12 +192,13 @@ def process_photo(update, context, file_ids, is_beautify):
     Returns:
         None
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     if is_beautify:
         update.effective_message.reply_text(_('Beautifying and converting your photos'),
                                             reply_markup=ReplyKeyboardRemove())
     else:
-        update.effective_message.reply_text(_('Converting your photos'), reply_markup=ReplyKeyboardRemove())
+        update.effective_message.reply_text(_('Converting your photos'),
+                                            reply_markup=ReplyKeyboardRemove())
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
@@ -211,13 +215,13 @@ def process_photo(update, context, file_ids, is_beautify):
         if is_beautify:
             out_fn = os.path.join(dir_name, 'Beautified.pdf')
             noteshrink.notescan_main(photo_files, basename=f'{dir_name}/page', pdfname=out_fn)
-            send_result_file(update, context, out_fn)
+            send_result_file(update, context, out_fn, 'beautify')
         else:
             out_fn = os.path.join(dir_name, 'Converted.pdf')
             with open(out_fn, 'wb') as f:
                 f.write(img2pdf.convert(photo_files))
 
-            send_result_file(update, context, out_fn)
+            send_result_file(update, context, out_fn, 'convert')
 
     # Clean up files
     for tf in temp_files:
@@ -225,18 +229,19 @@ def process_photo(update, context, file_ids, is_beautify):
 
 
 def ask_photo_task(update, context, photo_file):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
 
     if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
-        message.reply_text(_('Your photo is too large for me to download. I can\'t beautify or convert your photo.'))
+        message.reply_text(_('Your photo is too large for me to download. '
+                             'I can\'t beautify or convert your photo'))
 
         return ConversationHandler.END
 
     context.user_data[PHOTO_ID] = photo_file.file_id
     keyboard = [[_(BEAUTIFY), _(CONVERT)], [_(CANCEL)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    message.reply_text(_('Select the task that you\'ll like to perform.'), reply_markup=reply_markup)
+    message.reply_text(_('Select the task that you\'ll like to perform'), reply_markup=reply_markup)
 
     return WAIT_PHOTO_TASK
 
@@ -254,10 +259,11 @@ def process_photo_task(update, context):
     if not check_user_data(update, context, PHOTO_ID):
         return ConversationHandler.END
 
+    _ = set_lang(update, context)
     user_data = context.user_data
     file_id = user_data[PHOTO_ID]
 
-    if update.effective_message.text == BEAUTIFY:
+    if update.effective_message.text == _(BEAUTIFY):
         process_photo(update, context, [file_id], is_beautify=True)
     else:
         process_photo(update, context, [file_id], is_beautify=False)

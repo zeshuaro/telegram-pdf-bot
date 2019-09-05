@@ -7,8 +7,9 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_TOO_LARGE, CANCEL, DONE
-from pdf_bot.utils import check_pdf, cancel_with_async, write_send_pdf, send_file_names, check_user_data, get_lang, \
-    cancel_without_async
+from pdf_bot.utils import check_pdf, cancel_with_async, write_send_pdf, send_file_names, \
+    check_user_data, cancel_without_async
+from pdf_bot.language import set_lang
 
 WAIT_MERGE = 0
 MERGE_IDS = 'merge_ids'
@@ -35,7 +36,7 @@ def merge(update, context):
     user_data[MERGE_IDS] = []
     user_data[MERGE_NAMES] = []
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     reply_markup = ReplyKeyboardMarkup([[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(_(
         'Send me the PDF file that you\'ll like to merge\n\n'
@@ -76,17 +77,18 @@ def check_doc(update, context):
         user_data[MERGE_IDS] = [file_id]
         user_data[MERGE_NAMES] = [file_name]
 
-    reply_markup = ReplyKeyboardMarkup([[_(DONE)], [_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup([[_(DONE)], [_(CANCEL)]], resize_keyboard=True,
+                                       one_time_keyboard=True)
     message.reply_text(_(
         'Send me the next PDF file that you\'ll like to merge or send *Done* if you have '
-        'sent me all the PDF files.'), reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
+        'sent me all the PDF files'), reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
     send_file_names(update, context, user_data[MERGE_NAMES], _('PDF files'))
 
     return WAIT_MERGE
 
 
 def handle_invalid_pdf(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
     result = check_pdf(update, context, send_msg=False)
 
@@ -111,8 +113,9 @@ def merge_pdf(update, context):
     if not check_user_data(update, context, MERGE_IDS):
         return ConversationHandler.END
 
-    _ = get_lang(update, context)
-    update.effective_message.reply_text(_('Merging your PDF files'), reply_markup=ReplyKeyboardRemove())
+    _ = set_lang(update, context)
+    update.effective_message.reply_text(_('Merging your PDF files'),
+                                        reply_markup=ReplyKeyboardRemove())
     user_data = context.user_data
     file_ids = user_data[MERGE_IDS]
     file_names = user_data[MERGE_NAMES]
@@ -132,7 +135,7 @@ def merge_pdf(update, context):
         except PdfReadError:
             update.effective_message.reply_text(_(
                 'I can\'t merge your PDF files as I couldn\'t open and read "{}". '
-                'Ensure that it is not encrypted.').format(file_names[i]))
+                'Ensure that it is not encrypted').format(file_names[i]))
 
             return ConversationHandler.END
 

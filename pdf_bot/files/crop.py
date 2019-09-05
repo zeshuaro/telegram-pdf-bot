@@ -9,37 +9,40 @@ from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import *
-from pdf_bot.utils import send_result_file, get_lang
+from pdf_bot.utils import send_result_file
+from pdf_bot.language import set_lang
 
 MIN_PERCENT = 0
 MAX_PERCENT = 100
 
 
 def ask_crop_type(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     keyboard = [[_(CROP_PERCENT), _(CROP_SIZE)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True)
-    update.effective_message.reply_text(_('Select the crop type that you\'ll like to perform.'),
+    update.effective_message.reply_text(_('Select the crop type that you\'ll like to perform'),
                                         reply_markup=reply_markup)
 
     return WAIT_CROP_TYPE
 
 
 def ask_crop_value(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     message = update.effective_message
 
     if message.text == CROP_PERCENT:
         message.reply_text(_(
-            'Send me a number between {} and {}. This is the percentage of margin space to retain between '
-            'the content in your PDF file and the page.').format(MIN_PERCENT, MAX_PERCENT),
+            'Send me a number between {} and {}. This is the percentage of margin space to '
+            'retain between the content in your PDF file and the page').format(
+            MIN_PERCENT, MAX_PERCENT),
             reply_markup=ReplyKeyboardRemove())
 
         return WAIT_CROP_PERCENT
     else:
         message.reply_text(_(
-            'Send me a number that you\'ll like to adjust the margin size. Positive numbers will decrease the '
-            'margin size and negative numbers will increase it.'), reply_markup=ReplyKeyboardRemove())
+            'Send me a number that you\'ll like to adjust the margin size. '
+            'Positive numbers will decrease the margin size and negative numbers will increase it'),
+            reply_markup=ReplyKeyboardRemove())
 
         return WAIT_CROP_OFFSET
 
@@ -49,9 +52,9 @@ def receive_crop_percent(update, context):
     try:
         percent = float(update.effective_message.text)
     except ValueError:
-        _ = get_lang(update, context)
+        _ = set_lang(update, context)
         update.effective_message.reply_text(_(
-            'The number must be between {} and {}, try again.').format(MIN_PERCENT, MAX_PERCENT))
+            'The number must be between {} and {}, try again').format(MIN_PERCENT, MAX_PERCENT))
 
         return WAIT_CROP_PERCENT
 
@@ -63,8 +66,8 @@ def receive_crop_size(update, context):
     try:
         offset = float(update.effective_message.text)
     except ValueError:
-        _ = get_lang(update, context)
-        update.effective_message.reply_text(_('The number is invalid, try again.'))
+        _ = set_lang(update, context)
+        update.effective_message.reply_text(_('The number is invalid, try again'))
 
         return WAIT_CROP_OFFSET
 
@@ -84,7 +87,7 @@ def crop_pdf(update, context, percent=None, offset=None):
     Returns:
         The variable indicating the conversation has ended
     """
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     update.effective_message.reply_text(_('Cropping your PDF file'))
     user_data = context.user_data
 
@@ -106,9 +109,9 @@ def crop_pdf(update, context, percent=None, offset=None):
             if proc.returncode != 0:
                 log = Logger()
                 log.error(f'Stdout:\n{out.decode("utf-8")}\n\nStderr:\n{err.decode("utf-8")}')
-                update.effective_message.reply_text(_('Something went wrong, try again.'))
+                update.effective_message.reply_text(_('Something went wrong, try again'))
             else:
-                send_result_file(update, context, out_fn)
+                send_result_file(update, context, out_fn, 'crop')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
