@@ -2,7 +2,8 @@ import os
 import re
 
 from dotenv import load_dotenv
-from telegram import LabeledPrice, ReplyKeyboardRemove, InlineKeyboardButton, InlineKeyboardMarkup, ForceReply
+from telegram import LabeledPrice, ReplyKeyboardRemove, InlineKeyboardButton, \
+    InlineKeyboardMarkup, ForceReply
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import *
@@ -25,7 +26,8 @@ def receive_custom_amount(update, context):
         except ValueError:
             _ = set_lang(update, context)
             update.effective_message.reply_text(_(
-                'The amount you sent is invalid, try again. {}').format(_(CUSTOM_MSG)), reply_markup=ForceReply())
+                'The amount you sent is invalid, try again. {}').format(_(CUSTOM_MSG)),
+                reply_markup=ForceReply())
 
 
 def send_support_options_without_async(update, context, query=None):
@@ -35,7 +37,8 @@ def send_support_options_without_async(update, context, query=None):
                 [InlineKeyboardButton(_(BEER), callback_data=BEER),
                  InlineKeyboardButton(_(MEAL), callback_data=MEAL)],
                 [InlineKeyboardButton(_(CUSTOM), callback_data=CUSTOM)],
-                [InlineKeyboardButton(_('Help translate PDF Bot'), 'https://crwd.in/telegram-pdf-bot')]]
+                [InlineKeyboardButton(_('Help translate PDF Bot'),
+                                      'https://crwd.in/telegram-pdf-bot')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     text = _('Select how you want to support PDF Bot')
 
@@ -90,4 +93,5 @@ def precheckout_check(update, context):
 
 def successful_payment(update, context):
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Thank you for your support!'), reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(_('Thank you for your support!'),
+                                        reply_markup=ReplyKeyboardRemove())

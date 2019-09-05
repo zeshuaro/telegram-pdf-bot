@@ -89,7 +89,8 @@ def receive_doc(update, context):
 
         # Check if user has already sent through some PDF files
         if MERGE_NAMES in user_data and user_data[MERGE_NAMES]:
-            text += _('You can continue merging with the files that you sent me or /cancel this operation')
+            text += _('You can continue merging with the files that you sent me or '
+                      '/cancel this operation')
             message.reply_text(text)
             send_file_names(update, context, user_data[MERGE_NAMES], _('PDF files'))
 
@@ -111,7 +112,8 @@ def receive_doc(update, context):
         user_data[MERGE_IDS] = [file_id]
         user_data[MERGE_NAMES] = [file_name]
 
-    reply_markup = ReplyKeyboardMarkup([[_(DONE)], [_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup([[_(DONE)], [_(CANCEL)]], resize_keyboard=True,
+                                       one_time_keyboard=True)
     message.reply_text(_(
         'Send me the next PDF file that you\'ll like to merge or send *Done* if you have '
         'sent me all the PDF files'), reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
@@ -146,7 +148,8 @@ def merge_pdf(update, context):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Merging your PDF files'), reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(_('Merging your PDF files'),
+                                        reply_markup=ReplyKeyboardRemove())
     file_ids = user_data[MERGE_IDS]
     file_names = user_data[MERGE_NAMES]
 

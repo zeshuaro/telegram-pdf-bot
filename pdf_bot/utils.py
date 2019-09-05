@@ -10,7 +10,8 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, PAYMENT, LANGUAGE, USER
+from pdf_bot.constants import PDF_OK, PDF_INVALID_FORMAT, PDF_TOO_LARGE, PDF_INFO, CHANNEL_NAME, \
+    PAYMENT
 from pdf_bot.language import set_lang
 from pdf_bot.stats import update_stats
 
@@ -18,7 +19,8 @@ from pdf_bot.stats import update_stats
 @run_async
 def cancel(update, context):
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Operation cancelled'), reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(_('Operation cancelled'),
+                                        reply_markup=ReplyKeyboardRemove())
 
     return ConversationHandler.END
 
@@ -75,7 +77,8 @@ def check_user_data(update, context, key):
     return data_ok
 
 
-def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None, scale_to=None):
+def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None, scale_by=None,
+                scale_to=None):
     """
     Process different PDF file manipulations
     Args:
@@ -151,12 +154,14 @@ def open_pdf(update, context, file_name, file_type=None):
                     text = _('Your {} PDF file is encrypted and you\'ll have to decrypt it first. '
                              'Operation cancelled').format(file_type)
             else:
-                text = _('Your PDF file is encrypted and you\'ll have to decrypt it first. Operation cancelled')
+                text = _('Your PDF file is encrypted and you\'ll have to decrypt it first. '
+                         'Operation cancelled')
 
             pdf_reader = None
             update.effective_message.reply_text(text)
     except PdfReadError:
-        text = _('Your PDF file seems to be invalid and I couldn\'t open and read it. Operation cancelled')
+        text = _('Your PDF file seems to be invalid and I couldn\'t open and read it. '
+                 'Operation cancelled')
         update.effective_message.reply_text(text)
 
     return pdf_reader
@@ -223,15 +228,18 @@ def send_result_file(update, context, out_fn, task):
     reply_markup = get_support_markup(update, context)
 
     if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
-        message.reply_text(_('The result file is too large for me to send to you'), reply_markup=reply_markup)
+        message.reply_text(_('The result file is too large for me to send to you'),
+                           reply_markup=reply_markup)
     else:
         if out_fn.endswith('.png'):
             message.chat.send_action(ChatAction.UPLOAD_PHOTO)
-            message.reply_photo(open(out_fn, 'rb'), caption=_('Here is your result file'), reply_markup=reply_markup)
+            message.reply_photo(open(out_fn, 'rb'), caption=_('Here is your result file'),
+                                reply_markup=reply_markup)
         else:
             message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-            message.reply_document(document=open(out_fn, 'rb'), caption=_('Here is your result file'),
-                                   reply_markup=reply_markup)
+            message.reply_document(
+                document=open(out_fn, 'rb'), caption=_('Here is your result file'),
+                reply_markup=reply_markup)
 
     update_stats(update, task)
 

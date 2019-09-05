@@ -2,7 +2,7 @@ language: generic
 
 branches:
   only:
-  - master
+  - production
 
 before_deploy: pip install --user babel && pybabel compile -d locale -D pdf_bot
 

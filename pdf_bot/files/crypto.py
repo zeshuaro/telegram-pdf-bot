@@ -65,7 +65,8 @@ def decrypt_pdf(update, context):
             else:
                 try:
                     if pdf_reader.decrypt(message.text) == 0:
-                        message.reply_text(_('The decryption password is incorrect, try to send it again'))
+                        message.reply_text(_('The decryption password is incorrect, '
+                                             'try to send it again'))
 
                         return WAIT_DECRYPT_PW
 
@@ -75,7 +76,8 @@ def decrypt_pdf(update, context):
 
                     write_send_pdf(update, context, pdf_writer, file_name, 'decrypted')
                 except NotImplementedError:
-                    message.reply_text(_('Your PDF file is encrypted with a method that I cannot decrypt'))
+                    message.reply_text(_('Your PDF file is encrypted with a method '
+                                         'that I cannot decrypt'))
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:

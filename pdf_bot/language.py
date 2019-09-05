@@ -8,8 +8,8 @@ from pdf_bot.store import client
 
 def send_lang(update, context, query=None):
     lang = get_lang(update, context, query)
-    langs = sorted([InlineKeyboardButton(key, callback_data=key) for key, value in LANGUAGES.items() if value != lang],
-                   key=lambda x: x.text)
+    langs = sorted([InlineKeyboardButton(key, callback_data=key)
+                    for key, value in LANGUAGES.items() if value != lang], key=lambda x: x.text)
     keyboard_size = 3
     keyboard = [langs[i:i + keyboard_size] for i in range(0, len(langs), keyboard_size)]
     reply_markup = InlineKeyboardMarkup(keyboard)

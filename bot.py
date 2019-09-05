@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
 from logbook.compat import redirect_logging
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, ForceReply
-from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, PreCheckoutQueryHandler
+from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, \
+    PreCheckoutQueryHandler
 from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
 
@@ -32,8 +33,8 @@ def main():
     log = Logger()
 
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(
-        TELE_TOKEN, use_context=True, request_kwargs={'connect_timeout': TIMEOUT, 'read_timeout': TIMEOUT})
+    updater = Updater(TELE_TOKEN, use_context=True,
+                      request_kwargs={'connect_timeout': TIMEOUT, 'read_timeout': TIMEOUT})
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
@@ -92,7 +93,8 @@ def start_msg(update, context):
     _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Welcome to PDF Bot!\n\n*Features*\n'
-        '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n'
+        '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and '
+        'add a watermark to a PDF file\n'
         '- Extract images in a PDF file and convert a PDF file into images\n'
         '- Beautify and convert photos into PDF format\n'
         '- Convert a web page into a PDF file\n\n'
@@ -111,7 +113,8 @@ def help_msg(update, context):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.effective_message.reply_text(_(
-        'You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n'
+        'You can perform most of the tasks simply by sending me a PDF file, a photo or '
+        'a link to a web page.\n\n'
         'Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo'),
         reply_markup=reply_markup)
 
