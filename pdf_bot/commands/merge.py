@@ -49,44 +49,19 @@ def merge(update, context):
 
 
 @run_async
-def check_text(update, context):
-    _ = set_lang(update, context)
-    text = update.effective_message.text
-
-    if text == _(DONE):
-        return merge_pdf(update, context)
-    elif text == _(CANCEL):
-        return cancel_without_async(update, context)
-
-
-@run_async
 def check_doc(update, context):
     result = check_pdf(update, context, send_msg=False)
-    message = update.effective_message
-
-    _ = set_lang(update, context)
     if result in [PDF_INVALID_FORMAT, PDF_TOO_LARGE]:
-        return handle_invalid_pdf(update, context)
-
-    file_id = message.document.file_id
-    file_name = message.document.file_name
+        return process_invalid_pdf(update, context)
 
     # Append the file details
-    user_data = context.user_data
-    user_data[MERGE_IDS].append(file_id)
-    user_data[MERGE_NAMES].append(file_name)
+    context.user_data[MERGE_IDS].append(update.effective_message.document.file_id)
+    context.user_data[MERGE_NAMES].append(update.effective_message.document.file_name)
 
-    reply_markup = ReplyKeyboardMarkup(
-        [[_(DONE)], [_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
-    message.reply_text(_(
-        'Send me the next PDF file that you\'ll like to merge or press *Done* if you\'ve '
-        'sent me all the PDF files'), reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
-    send_file_names(update, context, user_data[MERGE_NAMES], _('PDF files'))
-
-    return WAIT_MERGE
+    return ask_next_doc(update, context)
 
 
-def handle_invalid_pdf(update, context):
+def process_invalid_pdf(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
     result = check_pdf(update, context, send_msg=False)
@@ -108,16 +83,45 @@ def handle_invalid_pdf(update, context):
     return WAIT_MERGE
 
 
+def ask_next_doc(update, context):
+    _ = set_lang(update, context)
+    reply_markup = ReplyKeyboardMarkup(
+        [[_(DONE)], [_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
+    update.effective_message.reply_text(_(
+        'Send me the next PDF file that you\'ll like to merge or press *Done* if you\'ve '
+        'sent me all the PDF files'), reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
+    send_file_names(update, context, context.user_data[MERGE_NAMES], _('PDF files'))
+
+    return WAIT_MERGE
+
+
+@run_async
+def check_text(update, context):
+    _ = set_lang(update, context)
+    text = update.effective_message.text
+
+    if text == _(DONE):
+        return merge_pdf(update, context)
+    elif text == _(CANCEL):
+        return cancel_without_async(update, context)
+
+
 def merge_pdf(update, context):
     if not check_user_data(update, context, MERGE_IDS):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Merging your PDF files'),
-                                        reply_markup=ReplyKeyboardRemove())
     user_data = context.user_data
     file_ids = user_data[MERGE_IDS]
     file_names = user_data[MERGE_NAMES]
+
+    if len(file_ids) == 1:
+        update.effective_message.reply_text(_('You\'ve only sent me one PDF file.'))
+
+        return ask_next_doc(update, context)
+
+    update.effective_message.reply_text(_('Merging your PDF files'),
+                                        reply_markup=ReplyKeyboardRemove())
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
