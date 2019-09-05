@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2019-09-05 21:36+1000\n"
-"PO-Revision-Date: 2019-09-05 11:47\n"
+"PO-Revision-Date: 2019-09-05 12:50\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgstr "圖片"
 
 #: pdf_bot/constants.py:54
 msgid "Remove Last File"
-msgstr ""
+msgstr "移除上一個檔案"
 
 #: pdf_bot/constants.py:69
 msgid "Say Thanks 😁 ($1)"
@@ -166,7 +166,7 @@ msgstr "說真棒🤩（自訂金額）"
 
 #: pdf_bot/feedback.py:42
 msgid "Send me your feedback or /cancel this action. My developer can understand English and Chinese"
-msgstr ""
+msgstr "向我發送你的反饋或者用 /cancel 來取消此操作。我的開發人員可以理解英文和中文"
 
 #: pdf_bot/feedback.py:75
 msgid "The feedback is not in English or Chinese, try again"
@@ -218,15 +218,15 @@ msgstr "無法訪問你的網頁"
 
 #: pdf_bot/utils.py:26
 msgid "Action cancelled"
-msgstr ""
+msgstr "操作取消"
 
 #: pdf_bot/utils.py:51
 msgid "The file you sent is not a PDF file. Try again and send me a PDF file or /cancel this action."
-msgstr ""
+msgstr "你發送的不是PDF檔案。 請再試一次並發送PDF檔案或者用 /cancel 來取消操作."
 
 #: pdf_bot/utils.py:56
 msgid "The PDF file you sent is too large for me to download. I can't process your PDF file. Action cancelled"
-msgstr ""
+msgstr "你發送的PDF檔案太大了，我無法下載。 我無法處理你的PDF檔案。 操作取消"
 
 #: pdf_bot/utils.py:78
 msgid "Something went wrong, start over again"
@@ -238,19 +238,19 @@ msgstr "你的PDF檔案本身就已經加密了"
 
 #: pdf_bot/utils.py:157
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first. Action cancelled"
-msgstr ""
+msgstr "你的{} PDF檔案加密了，你必須先解密。 操作取消"
 
 #: pdf_bot/utils.py:160
 msgid "Your PDF file is encrypted and you'll have to decrypt it first. Action cancelled."
-msgstr ""
+msgstr "你的PDF檔案加密了，你必須先解密。 操作取消."
 
 #: pdf_bot/utils.py:165
 msgid "Your PDF file seems to be invalid and I couldn't open and read it. Action cancelled."
-msgstr ""
+msgstr "你的PDF檔案似乎無效，我無法打開它。 操作取消."
 
 #: pdf_bot/utils.py:184
 msgid "You've sent me these {} so far:\n"
-msgstr ""
+msgstr "你發了以下的{}給我：\n"
 
 #: pdf_bot/utils.py:231
 msgid "The result file is too large for me to send to you"
@@ -263,11 +263,12 @@ msgstr "你的輸出檔案"
 #: pdf_bot/commands/compare.py:44
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
-msgstr ""
+msgstr "發給我其中一個你想要用來比較的PDF檔案\n\n"
+"注意，我只能比較檔案裡面的文字"
 
 #: pdf_bot/commands/compare.py:76
 msgid "Send me the other PDF file that you'll like to compare"
-msgstr ""
+msgstr "發給我另一個你想要比較的PDF檔案"
 
 #: pdf_bot/commands/compare.py:98
 msgid "Comparing your PDF files"
@@ -275,24 +276,25 @@ msgstr "正在比較你的PDF檔案"
 
 #: pdf_bot/commands/compare.py:115
 msgid "There are no differences in text between your PDF files"
-msgstr ""
+msgstr "你的PDF檔案之間沒有任何區別"
 
 #: pdf_bot/commands/merge.py:47
 msgid "Send me the first PDF file that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "向我發送第一個你想要合併的PDF檔案\n\n"
+"注意，我會根據你發送給我的順序來合併你的檔案"
 
 #: pdf_bot/commands/merge.py:71
 msgid "The file you've sent is not a PDF file"
-msgstr ""
+msgstr "你發送的不是PDF檔案"
 
 #: pdf_bot/commands/merge.py:73
 msgid "The PDF file you've sent is too large for me to download"
-msgstr ""
+msgstr "你發送的PDF檔案太大了，我無法下載"
 
 #: pdf_bot/commands/merge.py:86
 msgid "Send me the next PDF file that you'll like to merge or press *Done* if you've sent me all the PDF files"
-msgstr ""
+msgstr "把你要合併的下一個PDF檔案發送給我，如果你已經將所有PDF檔案發送給我，按*完成*"
 
 #: pdf_bot/commands/merge.py:89
 msgid "PDF files"
@@ -300,15 +302,15 @@ msgstr "PDF檔案"
 
 #: pdf_bot/commands/merge.py:117
 msgid "*{}* has been removed for merging"
-msgstr ""
+msgstr "移除了*{}*，這個檔案不會用來合併"
 
 #: pdf_bot/commands/merge.py:134
 msgid "You haven't sent me any PDF files"
-msgstr ""
+msgstr "你還沒有向我發送任何PDF檔案"
 
 #: pdf_bot/commands/merge.py:138
 msgid "You've only sent me one PDF file."
-msgstr ""
+msgstr "你只給我發了一個PDF檔案"
 
 #: pdf_bot/commands/merge.py:147
 msgid "Merging your PDF files"
@@ -320,7 +322,7 @@ msgstr "我無法合併你的PDF檔案，因為我無法打開“{}”。 確保
 
 #: pdf_bot/commands/watermark.py:42
 msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr ""
+msgstr "向我發送你想要添加水印的PDF檔案"
 
 #: pdf_bot/commands/watermark.py:72
 msgid "Send me the watermark PDF file"
@@ -497,7 +499,8 @@ msgstr "這些就是你的圖片"
 #: pdf_bot/photos/photo_to_pdf.py:62
 msgid "Send me the first photo that you'll like to beautify or convert into PDF format or /cancel this action.\n\n"
 "The photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "向我發送第一張你想要美化或轉換為PDF檔案格式的圖片或者用 /cancel 來取消此操作。\n\n"
+"圖片將按照你發送給我的順序進行美化和轉換"
 
 #: pdf_bot/photos/photo_to_pdf.py:88
 msgid "The file you sent is not a photo. Send me the photo that you'll like to beautify and convert"
@@ -509,7 +512,7 @@ msgstr "你發送的圖片太大了，我無法下載。\n\n"
 
 #: pdf_bot/photos/photo_to_pdf.py:102
 msgid "You can continue to beautify or convert with the files that you sent me, or /cancel this action."
-msgstr ""
+msgstr "你可以繼續美化或轉換你已經發送給我的圖片，或者用 /cancel 來取消此操作"
 
 #: pdf_bot/photos/photo_to_pdf.py:105 pdf_bot/photos/photo_to_pdf.py:136
 msgid "photos"
@@ -517,7 +520,7 @@ msgstr "圖片"
 
 #: pdf_bot/photos/photo_to_pdf.py:109
 msgid "I can't convert your photos. Action cancelled"
-msgstr ""
+msgstr "我無法轉換你的圖片。 操作取消"
 
 #: pdf_bot/photos/photo_to_pdf.py:118
 msgid "File name unavailable"
