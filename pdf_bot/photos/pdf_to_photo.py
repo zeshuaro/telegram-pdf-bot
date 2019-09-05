@@ -11,7 +11,8 @@ from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
-from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, EXTRACT_IMG, PHOTOS, ZIPPED
+from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, \
+    EXTRACT_IMG, PHOTOS, ZIPPED
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
 from pdf_bot.stats import update_stats
 from pdf_bot.language import set_lang
@@ -33,7 +34,8 @@ def get_pdf_preview(update, context):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Extracting a preview for your PDF file'), reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(_('Extracting a preview for your PDF file'),
+                                        reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf1:
         user_data = context.user_data
@@ -107,7 +109,8 @@ def pdf_to_photos(update, context):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Converting your PDF file into photos'), reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(_('Converting your PDF file into photos'),
+                                        reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf:
         user_data = context.user_data
@@ -121,8 +124,9 @@ def pdf_to_photos(update, context):
             os.mkdir(dir_name)
 
             # Convert the PDF file into photos
-            pdf2image.convert_from_path(tf.name, output_folder=dir_name, output_file=os.path.splitext(file_name)[0],
-                                        fmt='png')
+            pdf2image.convert_from_path(
+                tf.name, output_folder=dir_name, output_file=os.path.splitext(file_name)[0],
+                fmt='png')
 
             # Handle the result photos
             handle_result_photos(update, context, dir_name, 'to_photos')
@@ -191,21 +195,25 @@ def get_pdf_photos(update, context):
 
                                     try:
                                         img = Image.frombytes(mode, size, data)
-                                        img.save(os.path.join(dir_name, f'{root_file_name}-{i}.png'))
+                                        img.save(os.path.join(
+                                            dir_name, f'{root_file_name}-{i}.png'))
                                         i += 1
                                     except TypeError:
                                         pass
                                 elif x_object[obj]['/Filter'] == '/DCTDecode':
-                                    with open(os.path.join(dir_name, f'{root_file_name}-{i}.jpg'), 'wb') as img:
+                                    with open(os.path.join(
+                                            dir_name, f'{root_file_name}-{i}.jpg'), 'wb') as img:
                                         img.write(data)
                                         i += 1
                                 elif x_object[obj]['/Filter'] == '/JPXDecode':
-                                    with open(os.path.join(dir_name, f'{root_file_name}-{i}.jp2'), 'wb') as img:
+                                    with open(os.path.join(
+                                            dir_name, f'{root_file_name}-{i}.jp2'), 'wb') as img:
                                         img.write(data)
                                         i += 1
 
                 if not os.listdir(dir_name):
-                    update.effective_message.reply_text(_('I couldn\'t find any photos in your PDF file'))
+                    update.effective_message.reply_text(_(
+                        'I couldn\'t find any photos in your PDF file'))
                 else:
                     handle_result_photos(update, context, dir_name, 'get_photos')
 
@@ -244,7 +252,8 @@ def handle_result_photos(update, context, dir_name, task):
         if photos:
             message.reply_media_group(photos)
 
-        message.reply_text(_('See above for all your photos'), reply_markup=get_support_markup(update, context))
+        message.reply_text(_('See above for all your photos'),
+                           reply_markup=get_support_markup(update, context))
         update_stats(update, task)
     else:
         # Compress the directory of photos

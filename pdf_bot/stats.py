@@ -56,7 +56,8 @@ def get_stats(update, context):
     est_num_tasks = int(num_tasks / stats_diff * launch_diff * 0.8)
 
     update.effective_message.reply_text(
-        f'Total users: {num_users}\nTotal tasks: {num_tasks}\nEstimated total tasks: {est_num_tasks}')
+        f'Total users: {num_users}\nTotal tasks: {num_tasks}\n'
+        f'Estimated total tasks: {est_num_tasks}')
     send_plot(update, counts)
 
 

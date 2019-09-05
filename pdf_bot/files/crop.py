@@ -32,15 +32,17 @@ def ask_crop_value(update, context):
 
     if message.text == CROP_PERCENT:
         message.reply_text(_(
-            'Send me a number between {} and {}. This is the percentage of margin space to retain between '
-            'the content in your PDF file and the page').format(MIN_PERCENT, MAX_PERCENT),
+            'Send me a number between {} and {}. This is the percentage of margin space to '
+            'retain between the content in your PDF file and the page').format(
+            MIN_PERCENT, MAX_PERCENT),
             reply_markup=ReplyKeyboardRemove())
 
         return WAIT_CROP_PERCENT
     else:
         message.reply_text(_(
-            'Send me a number that you\'ll like to adjust the margin size. Positive numbers will decrease the '
-            'margin size and negative numbers will increase it'), reply_markup=ReplyKeyboardRemove())
+            'Send me a number that you\'ll like to adjust the margin size. '
+            'Positive numbers will decrease the margin size and negative numbers will increase it'),
+            reply_markup=ReplyKeyboardRemove())
 
         return WAIT_CROP_OFFSET
 
