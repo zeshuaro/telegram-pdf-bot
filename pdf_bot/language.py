@@ -18,7 +18,7 @@ def send_lang(update, context, query=None):
 
 
 def get_lang(update, context, query=None):
-    if LANGUAGE in context.user_data:
+    if context.user_data is not None and LANGUAGE in context.user_data:
         lang = context.user_data[LANGUAGE]
     else:
         if query is None:
