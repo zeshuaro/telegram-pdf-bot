@@ -4,7 +4,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import *
-from pdf_bot.utils import cancel
+from pdf_bot.utils import cancel_with_async, cancel_without_async
 from pdf_bot.language import set_lang
 from pdf_bot.files.crop import ask_crop_type, ask_crop_value, receive_crop_percent, \
     receive_crop_size
@@ -45,7 +45,7 @@ def file_cov_handler():
             WAIT_EXTRACT_PHOTO_TYPE: [MessageHandler(Filters.text, check_get_photos_task)],
             WAIT_TO_PHOTO_TYPE: [MessageHandler(Filters.text, check_to_photos_task)]
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel_with_async)],
         allow_reentry=True
     )
 
@@ -135,7 +135,7 @@ def check_doc_task(update, context):
     elif text == _(SPLIT):
         return ask_split_range(update, context)
     elif text == _(CANCEL):
-        return cancel(update, context)
+        return cancel_without_async(update, context)
 
 
 @run_async
@@ -146,7 +146,7 @@ def check_photo_task(update, context):
     if text in [_(BEAUTIFY), _(CONVERT)]:
         return process_photo_task(update, context)
     elif text == _(CANCEL):
-        return cancel(update, context)
+        return cancel_without_async(update, context)
 
 
 @run_async

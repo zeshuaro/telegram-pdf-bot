@@ -51,6 +51,7 @@ RENAME = _('Rename')
 CROP = _('Crop')
 ZIPPED = _('Zipped')
 PHOTOS = _('Photos')
+REMOVE_LAST = _('Remove Last File')
 
 # Rotation constants
 ROTATE_90 = '90'

@@ -8,7 +8,7 @@ from textblob.exceptions import TranslatorError
 from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.utils import cancel
+from pdf_bot.utils import cancel_with_async
 from pdf_bot.language import set_lang
 
 load_dotenv()
@@ -21,7 +21,7 @@ def feedback_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('feedback', feedback)],
         states={0: [MessageHandler(Filters.text, receive_feedback)]},
-        fallbacks=[CommandHandler('cancel', cancel)]
+        fallbacks=[CommandHandler('cancel', cancel_with_async)]
     )
 
     return conv_handler
@@ -40,7 +40,7 @@ def feedback(update, context):
     """
     _ = set_lang(update, context)
     update.effective_message.reply_text(_(
-        'Send me your feedback or /cancel this operation. '
+        'Send me your feedback or /cancel this action. '
         'My developer can understand English and Chinese'))
 
     return 0

@@ -9,7 +9,8 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import CANCEL, BEAUTIFY, CONVERT, WAIT_PHOTO_TASK
-from pdf_bot.utils import cancel, send_file_names, send_result_file, check_user_data
+from pdf_bot.utils import cancel_with_async, send_file_names, send_result_file, check_user_data, \
+    cancel_without_async
 from pdf_bot.language import set_lang
 
 WAIT_PHOTO = 0
@@ -32,7 +33,7 @@ def photo_cov_handler():
                 MessageHandler(Filters.text, check_photo_task)
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel)],
+        fallbacks=[CommandHandler('cancel', cancel_with_async)],
         allow_reentry=True
     )
 
@@ -60,7 +61,7 @@ def photo(update, context):
     _ = set_lang(update, context)
     update.effective_message.reply_text(_(
         'Send me the first photo that you\'ll like to beautify or convert into PDF format or '
-        '/cancel this operation.\n\n'
+        '/cancel this action.\n\n'
         'The photos will be beautified and converted in the order that you send me'))
 
     return WAIT_PHOTO
@@ -99,13 +100,13 @@ def receive_photo(update, context):
         # Check if the user has already sent through some photos
         if PHOTO_NAMES in user_data and user_data[PHOTO_NAMES]:
             text += _('You can continue to beautify or convert with the files that you sent me, '
-                      'or /cancel this operation')
+                      'or /cancel this action.')
             update.effective_message.reply_text(text)
             send_file_names(update, context, user_data[PHOTO_NAMES], _('photos'))
 
             return WAIT_PHOTO
         else:
-            text += _('I can\'t convert your photos. Operation cancelled')
+            text += _('I can\'t convert your photos. Action cancelled')
             update.effective_message.reply_text(text)
 
             return ConversationHandler.END
@@ -145,7 +146,7 @@ def check_photo_task(update, context):
     if text in [_(BEAUTIFY), _(CONVERT)]:
         return process_all_photos(update, context)
     elif text == _(CANCEL):
-        return cancel(update, context)
+        return cancel_without_async(update, context)
 
 
 def process_all_photos(update, context):
