@@ -6,7 +6,7 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, ParseMode
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_TOO_LARGE, CANCEL, DONE
+from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_TOO_LARGE, CANCEL, DONE, REMOVE_LAST
 from pdf_bot.utils import check_pdf, cancel_with_async, write_send_pdf, send_file_names, \
     check_user_data, cancel_without_async
 from pdf_bot.language import set_lang
@@ -82,7 +82,7 @@ def process_invalid_pdf(update, context, result):
 def ask_next_doc(update, context):
     _ = set_lang(update, context)
     reply_markup = ReplyKeyboardMarkup(
-        [[_(DONE)], [_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
+        [[_(DONE)], [_(REMOVE_LAST), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(_(
         'Send me the next PDF file that you\'ll like to merge or press *Done* if you\'ve '
         'sent me all the PDF files'), reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
@@ -94,26 +94,52 @@ def ask_next_doc(update, context):
 @run_async
 def check_text(update, context):
     _ = set_lang(update, context)
-    message = update.effective_message
-    text = message.text
+    text = update.effective_message.text
 
-    if text == _(DONE):
-        if not check_user_data(update, context, MERGE_IDS):
-            return ConversationHandler.END
-
-        num_files = len(context.user_data[MERGE_IDS])
-        if num_files == 0:
-            message.reply_text(_('You haven\'t sent me any PDF files'))
-
-            return ask_first_doc(update, context)
-        elif num_files == 1:
-            message.reply_text(_('You\'ve only sent me one PDF file.'))
-
-            return ask_next_doc(update, context)
-        else:
-            return merge_pdf(update, context)
+    if text == _(REMOVE_LAST):
+        return remove_doc(update, context)
+    elif text == _(DONE):
+        return preprocess_merge_pdf(update, context)
     elif text == _(CANCEL):
         return cancel_without_async(update, context)
+
+
+def remove_doc(update, context):
+    if not check_user_data(update, context, MERGE_IDS):
+        return ConversationHandler.END
+
+    _ = set_lang(update, context)
+    file_ids = context.user_data[MERGE_IDS]
+    file_names = context.user_data[MERGE_NAMES]
+    file_ids.pop()
+    file_name = file_names.pop()
+
+    update.effective_message.reply_text(_(
+        '*{}* has been removed for merging').format(file_name), parse_mode=ParseMode.MARKDOWN)
+
+    if len(file_ids) == 0:
+        return ask_first_doc(update, context)
+    else:
+        return ask_next_doc(update, context)
+
+
+def preprocess_merge_pdf(update, context):
+    if not check_user_data(update, context, MERGE_IDS):
+        return ConversationHandler.END
+
+    _ = set_lang(update, context)
+    num_files = len(context.user_data[MERGE_IDS])
+
+    if num_files == 0:
+        update.effective_message.reply_text(_('You haven\'t sent me any PDF files'))
+
+        return ask_first_doc(update, context)
+    elif num_files == 1:
+        update.effective_message.reply_text(_('You\'ve only sent me one PDF file.'))
+
+        return ask_next_doc(update, context)
+    else:
+        return merge_pdf(update, context)
 
 
 def merge_pdf(update, context):
