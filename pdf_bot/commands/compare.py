@@ -24,7 +24,9 @@ def compare_cov_handler():
             WAIT_FIRST: [MessageHandler(Filters.document, check_first_doc)],
             WAIT_SECOND: [MessageHandler(Filters.document, check_second_doc)],
         },
-        fallbacks=[CommandHandler('cancel', cancel_with_async), MessageHandler(Filters.text, check_text)],
+        fallbacks=[
+            CommandHandler('cancel', cancel_with_async),
+            MessageHandler(Filters.text, check_text)],
         allow_reentry=True
     )
 
@@ -48,7 +50,7 @@ def ask_first_doc(update, context):
 
 @run_async
 def check_text(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text == _(BACK):
@@ -67,10 +69,10 @@ def check_first_doc(update, context):
 
     _ = set_lang(update, context)
     context.user_data[COMPARE_ID] = update.effective_message.document.file_id
-
-    reply_markup = ReplyKeyboardMarkup([[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_('Send me the other PDF file that you\'ll like to compare'),
-                                        reply_markup=reply_markup)
+    reply_markup = ReplyKeyboardMarkup(
+        [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
+    update.effective_message.reply_text(
+        _('Send me the other PDF file that you\'ll like to compare'), reply_markup=reply_markup)
 
     return WAIT_SECOND
 
