@@ -20,7 +20,9 @@ def merge_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('merge', merge)],
         states={
-            WAIT_MERGE: [MessageHandler(Filters.document, check_doc), MessageHandler(Filters.text, check_text)]
+            WAIT_MERGE: [
+                MessageHandler(Filters.document, check_doc),
+                MessageHandler(Filters.text, check_text)]
         },
         fallbacks=[CommandHandler('cancel', cancel_with_async)],
         allow_reentry=True
@@ -40,14 +42,15 @@ def merge(update, context):
     reply_markup = ReplyKeyboardMarkup([[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
     update.effective_message.reply_text(_(
         'Send me the PDF file that you\'ll like to merge\n\n'
-        'Note that the files will be merged in the order that you send me'), reply_markup=reply_markup)
+        'Note that the files will be merged in the order that you send me'),
+        reply_markup=reply_markup)
 
     return WAIT_MERGE
 
 
 @run_async
 def check_text(update, context):
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text == _(DONE):
@@ -58,29 +61,25 @@ def check_text(update, context):
 
 @run_async
 def check_doc(update, context):
-    user_data = context.user_data
     result = check_pdf(update, context, send_msg=False)
     message = update.effective_message
 
-    _ = get_lang(update, context)
+    _ = set_lang(update, context)
     if result in [PDF_INVALID_FORMAT, PDF_TOO_LARGE]:
         return handle_invalid_pdf(update, context)
 
     file_id = message.document.file_id
     file_name = message.document.file_name
 
-    # Check if user has already sent through some PDF files
-    if MERGE_IDS in user_data and user_data[MERGE_IDS]:
-        user_data[MERGE_IDS].append(file_id)
-        user_data[MERGE_NAMES].append(file_name)
-    else:
-        user_data[MERGE_IDS] = [file_id]
-        user_data[MERGE_NAMES] = [file_name]
+    # Append the file details
+    user_data = context.user_data
+    user_data[MERGE_IDS].append(file_id)
+    user_data[MERGE_NAMES].append(file_name)
 
-    reply_markup = ReplyKeyboardMarkup([[_(DONE)], [_(CANCEL)]], resize_keyboard=True,
-                                       one_time_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup(
+        [[_(DONE)], [_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
     message.reply_text(_(
-        'Send me the next PDF file that you\'ll like to merge or send *Done* if you have '
+        'Send me the next PDF file that you\'ll like to merge or press *Done* if you\'ve '
         'sent me all the PDF files'), reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
     send_file_names(update, context, user_data[MERGE_NAMES], _('PDF files'))
 
