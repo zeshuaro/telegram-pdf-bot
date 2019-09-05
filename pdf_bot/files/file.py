@@ -6,7 +6,7 @@ from telegram.ext.dispatcher import run_async
 from pdf_bot.constants import *
 from pdf_bot.utils import cancel_with_async, cancel_without_async
 from pdf_bot.language import set_lang
-from pdf_bot.files.crop import ask_crop_type, ask_crop_value, receive_crop_percent, \
+from pdf_bot.files.crop import ask_crop_type, ask_crop_value, check_crop_percent, \
     receive_crop_size
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
@@ -19,14 +19,10 @@ from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, ask_p
 
 
 def file_cov_handler():
-    """
-    Create the file conversation handler object
-    Returns:
-        The conversation handler object
-    """
     conv_handler = ConversationHandler(
-        entry_points=[MessageHandler(Filters.document, check_doc),
-                      MessageHandler(Filters.photo, check_photo)],
+        entry_points=[
+            MessageHandler(Filters.document, check_doc),
+            MessageHandler(Filters.photo, check_photo)],
         states={
             WAIT_DOC_TASK: [MessageHandler(Filters.text, check_doc_task)],
             WAIT_PHOTO_TASK: [MessageHandler(Filters.text, check_photo_task)],
@@ -40,7 +36,7 @@ def file_cov_handler():
             WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf)],
             WAIT_FILE_NAME: [MessageHandler(Filters.text, rename_pdf)],
             WAIT_CROP_TYPE: [MessageHandler(Filters.text, check_crop_task)],
-            WAIT_CROP_PERCENT: [MessageHandler(Filters.text, receive_crop_percent)],
+            WAIT_CROP_PERCENT: [MessageHandler(Filters.text, check_crop_percent)],
             WAIT_CROP_OFFSET: [MessageHandler(Filters.text, receive_crop_size)],
             WAIT_EXTRACT_PHOTO_TYPE: [MessageHandler(Filters.text, check_get_photos_task)],
             WAIT_TO_PHOTO_TYPE: [MessageHandler(Filters.text, check_to_photos_task)]
@@ -54,27 +50,15 @@ def file_cov_handler():
 
 @run_async
 def check_doc(update, context):
-    """
-    Validate the document and wait for the next action
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating to wait for the next action or the conversation has ended
-    """
     doc = update.effective_message.document
-    mime_type = doc.mime_type
-
-    if mime_type.startswith('image'):
+    if doc.mime_type.startswith('image'):
         return ask_photo_task(update, context, doc)
-    elif not mime_type.endswith('pdf'):
+    elif not doc.mime_type.endswith('pdf'):
         return ConversationHandler.END
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
         _ = set_lang(update, context)
         update.effective_message.reply_text(_(
-            'Your PDF file you sent is too large for me to download. '
-            'I can\'t perform any tasks on it'))
+            'Your PDF file is too large for me to download. I can\'t perform any tasks on it'))
 
         return ConversationHandler.END
 
@@ -84,15 +68,6 @@ def check_doc(update, context):
 
 
 def ask_doc_task(update, context):
-    """
-    Send the message of tasks that can be performed on the PDF file
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating to wait for the next aciton
-    """
     _ = set_lang(update, context)
     keywords = sorted([_(DECRYPT), _(ENCRYPT), _(ROTATE), _(SCALE_BY), _(SCALE_TO), _(SPLIT),
                        _(PREVIEW), _(TO_IMG), _(EXTRACT_IMG), _(RENAME), _(CROP)])
@@ -100,8 +75,8 @@ def ask_doc_task(update, context):
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append([CANCEL])
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_('Select the task that you\'ll like to perform'),
-                                        reply_markup=reply_markup)
+    update.effective_message.reply_text(_(
+        'Select the task that you\'ll like to perform'), reply_markup=reply_markup)
 
     return WAIT_DOC_TASK
 
