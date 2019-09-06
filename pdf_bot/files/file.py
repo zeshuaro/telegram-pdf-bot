@@ -9,7 +9,7 @@ from pdf_bot.files.crop import ask_crop_type, ask_crop_value, check_crop_percent
     check_crop_size
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
-from pdf_bot.files.rotate import ask_rotate_degree, rotate_pdf
+from pdf_bot.files.rotate import ask_rotate_degree, check_rotate_degree
 from pdf_bot.files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf_scale_by, \
     pdf_scale_to
 from pdf_bot.files.split import ask_split_range, split_pdf
@@ -28,7 +28,7 @@ def file_cov_handler():
             WAIT_PHOTO_TASK: [MessageHandler(Filters.text, check_photo_task)],
             WAIT_DECRYPT_PW: [MessageHandler(Filters.text, decrypt_pdf)],
             WAIT_ENCRYPT_PW: [MessageHandler(Filters.text, encrypt_pdf)],
-            WAIT_ROTATE_DEGREE: [MessageHandler(Filters.text, check_rotate_task)],
+            WAIT_ROTATE_DEGREE: [MessageHandler(Filters.text, check_rotate_degree)],
             WAIT_SCALE_BY_X: [MessageHandler(Filters.text, ask_scale_by_y)],
             WAIT_SCALE_BY_Y: [MessageHandler(Filters.text, pdf_scale_by)],
             WAIT_SCALE_TO_X: [MessageHandler(Filters.text, ask_scale_to_y)],
@@ -117,17 +117,6 @@ def check_crop_task(update, context):
 
     if text in [_(CROP_PERCENT), _(CROP_SIZE)]:
         return ask_crop_value(update, context)
-    elif text == _(BACK):
-        return ask_doc_task(update, context)
-
-
-@run_async
-def check_rotate_task(update, context):
-    _ = set_lang(update, context)
-    text = update.effective_message.text
-
-    if text in [_(ROTATE_90), _(ROTATE_180), _(ROTATE_270)]:
-        return rotate_pdf(update, context)
     elif text == _(BACK):
         return ask_doc_task(update, context)
 
