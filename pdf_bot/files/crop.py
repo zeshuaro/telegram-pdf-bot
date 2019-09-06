@@ -8,7 +8,7 @@ from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import CROP_PERCENT, CROP_SIZE, BACK, WAIT_CROP_TYPE, WAIT_CROP_PERCENT, \
+from pdf_bot.constants import BY_PERCENT, BY_SIZE, BACK, WAIT_CROP_TYPE, WAIT_CROP_PERCENT, \
     WAIT_CROP_OFFSET, PDF_INFO
 from pdf_bot.utils import send_result_file
 from pdf_bot.language import set_lang
@@ -19,7 +19,7 @@ MAX_PERCENT = 100
 
 def ask_crop_type(update, context):
     _ = set_lang(update, context)
-    keyboard = [[_(CROP_PERCENT), _(CROP_SIZE)], [_(BACK)]]
+    keyboard = [[_(BY_PERCENT), _(BY_SIZE)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True)
     update.effective_message.reply_text(_(
         'Select the crop type that you\'ll like to perform'), reply_markup=reply_markup)
@@ -32,7 +32,7 @@ def ask_crop_value(update, context):
     message = update.effective_message
     reply_markup = ReplyKeyboardMarkup([[_(BACK)]], one_time_keyboard=True, resize_keyboard=True)
 
-    if message.text == _(CROP_PERCENT):
+    if message.text == _(BY_PERCENT):
         message.reply_text(_(
             'Send me a number between {} and {}. This is the percentage of margin space to '
             'retain between the content in your PDF file and the page').format(

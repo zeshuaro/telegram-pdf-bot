@@ -1,175 +1,98 @@
-from telegram import ReplyKeyboardRemove
+from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, ParseMode
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_SCALE_BY_X, WAIT_SCALE_BY_Y, WAIT_SCALE_TO_X, WAIT_SCALE_TO_Y, \
-    PDF_INFO, SCALE_BY
-from pdf_bot.utils import process_pdf, check_user_data
+from pdf_bot.constants import BY_PERCENT, TO_DIMENSIONS, BACK, WAIT_SCALE_TYPE, \
+    WAIT_SCALE_PERCENT, WAIT_SCALE_DIMENSION
+from pdf_bot.utils import process_pdf
 from pdf_bot.language import set_lang
-
-SCALE_BY_KEY = 'scale_by'
-SCALE_TO_KEY = 'scale_to'
+from pdf_bot.files.utils import get_back_markup
 
 
-def ask_scale_x(update, context):
-    """
-    Ask and wait for the horizontal scaling factor or the new width
-    Args:
-        update: the update object
-        context: the context object
+def ask_scale_type(update, context):
+    _ = set_lang(update, context)
+    keyboard = [[_(BY_PERCENT), _(TO_DIMENSIONS)], [_(BACK)]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True)
+    update.effective_message.reply_text(_(
+        'Select the scale type that you\'ll like to perform'), reply_markup=reply_markup)
 
-    Returns:
-        The variable indicating to wait for the horizontal scaling factor or the new width
-    """
+    return WAIT_SCALE_TYPE
+
+
+def ask_scale_value(update, context, ask_percent=True):
     _ = set_lang(update, context)
     message = update.effective_message
+    reply_markup = get_back_markup(update, context)
 
-    if message.text == _(SCALE_BY):
+    if message.text == _(BY_PERCENT) or ask_percent:
         message.reply_text(_(
-            'Send me the scaling factor for the horizontal axis. '
-            'For example, 2 will double the horizontal axis and 0.5 will half the horizontal axis'),
-            reply_markup=ReplyKeyboardRemove())
+            'Send me the scaling factors for the horizontal and vertical axes\n\n'
+            '2 will double the axis and 0.5 will halve the axis\n\n'
+            '*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis'),
+            reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
-        return WAIT_SCALE_BY_X
+        return WAIT_SCALE_PERCENT
     else:
-        message.reply_text(_('Send me the new width'), reply_markup=ReplyKeyboardRemove())
+        message.reply_text(_(
+            'Send me the width and height\n\n'
+            '*Example: 150 200* (this will set the width to 150 and height to 200)'),
+            reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
-        return WAIT_SCALE_TO_X
-
-
-@run_async
-def ask_scale_by_y(update, context):
-    """
-    Validate the horizontal scaling factor, and ask and wait for the vertical scaling factor
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating to wait for the horizontal or vertical scaling factor
-    """
-    _ = set_lang(update, context)
-    message = update.effective_message
-    scale_x = message.text
-
-    try:
-        scale_x = float(scale_x)
-    except ValueError:
-        message.reply_text(_('The scaling factor "{}" is invalid. Try again').format(scale_x))
-
-        return WAIT_SCALE_BY_X
-
-    context.user_data[SCALE_BY_KEY] = scale_x
-    message.reply_text(_(
-        'Send me the scaling factor for the vertical axis. '
-        'For example, 2 will double the vertical axis and 0.5 will half the vertical axis'))
-
-    return WAIT_SCALE_BY_Y
+        return WAIT_SCALE_DIMENSION
 
 
 @run_async
-def pdf_scale_by(update, context):
-    """
-    Validate the vertical scaling factor and scale the PDF file
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating to wait for the vertical scaling factor or
-        the conversation has ended
-    """
-    if not check_user_data(update, context, PDF_INFO) or \
-            not check_user_data(update, context, SCALE_BY_KEY):
-        return ConversationHandler.END
-
+def check_scale_percent(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
-    scale_y = message.text
-    
+    text = message.text
+
+    if text == _(BACK):
+        return ask_scale_type(update, context)
+
     try:
-        scale_y = float(scale_y)
+        x, y = map(float, text.split())
     except ValueError:
-        message.reply_text(_('The scaling factor "{}" is invalid. Try again').format(scale_y))
+        message.reply_text(_(
+            'The scaling factors *{}* are invalid, try again').format(text),
+            parse_mode=ParseMode.MARKDOWN)
+        return ask_scale_value(update, context)
 
-        return WAIT_SCALE_BY_Y
-
-    user_data = context.user_data
-    scale_x = user_data[SCALE_BY_KEY]
-    message.reply_text(_(
-        'Scaling your PDF file, horizontally by {} and vertically by {}').format(scale_x, scale_y))
-    process_pdf(update, context, 'scaled', scale_by=(scale_x, scale_y))
-
-    # Clean up memory
-    if user_data[SCALE_BY_KEY] == scale_x:
-        del user_data[SCALE_BY_KEY]
-
-    return ConversationHandler.END
+    return scale_pdf(update, context, percent=(x, y))
 
 
 @run_async
-def ask_scale_to_y(update, context):
-    """
-    Validate the width, and ask and wait for the height
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating to wait for the width or the height
-    """
+def check_scale_dimension(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
-    scale_x = message.text
+    text = message.text
+
+    if text == _(BACK):
+        return ask_scale_type(update, context)
 
     try:
-        scale_x = float(scale_x)
+        x, y = map(float, text.split())
     except ValueError:
-        message.reply_text(_('The width "{}" is invalid. Try again').format(scale_x))
+        message.reply_text(_(
+            'The dimensions *{}* are invalid, try again').format(text),
+            parse_mode=ParseMode.MARKDOWN)
+        return ask_scale_value(update, context, ask_percent=False)
 
-        return WAIT_SCALE_TO_X
-
-    context.user_data[SCALE_TO_KEY] = scale_x
-    message.reply_text(_('Send me the new height'))
-
-    return WAIT_SCALE_TO_Y
+    return scale_pdf(update, context, dim=(x, y))
 
 
-# Checks for height and scale PDF file
-@run_async
-def pdf_scale_to(update, context):
-    """
-    Validate the height and scale the PDF file
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating to wait for the height or the conversation has ended
-    """
-    if not check_user_data(update, context, PDF_INFO) or \
-            not check_user_data(update, context, SCALE_TO_KEY):
-        return ConversationHandler.END
-
+def scale_pdf(update, context, percent=None, dim=None):
     _ = set_lang(update, context)
-    message = update.effective_message
-    scale_y = message.text
-
-    try:
-        scale_y = float(scale_y)
-    except ValueError:
-        message.reply_text(_('The height "{}" is invalid. Try again').format(scale_y))
-
-        return WAIT_SCALE_TO_Y
-
-    user_data = context.user_data
-    scale_x = user_data[SCALE_TO_KEY]
-    message.reply_text(_(
-        'Scaling your PDF file with width of {} and height of {}').format(scale_x, scale_y))
-    process_pdf(update, context, 'scaled', scale_to=(scale_x, scale_y))
-
-    # Clean up memory
-    if user_data[SCALE_TO_KEY] == scale_x:
-        del user_data[SCALE_TO_KEY]
+    if percent is not None:
+        update.effective_message.reply_text(_(
+            'Scaling your PDF file, horizontally by *{}* and vertically by *{}*').format(
+            percent[0], percent[1]), reply_markup=ReplyKeyboardRemove(),
+            parse_mode=ParseMode.MARKDOWN)
+        process_pdf(update, context, 'scaled', scale_by=percent)
+    else:
+        update.effective_message.reply_text(_(
+            'Scaling your PDF file with width of *{}* and height of *{}*').format(dim[0], dim[1]),
+            reply_markup=ReplyKeyboardRemove(), parse_mode=ParseMode.MARKDOWN)
+        process_pdf(update, context, 'scaled', scale_to=dim)
 
     return ConversationHandler.END

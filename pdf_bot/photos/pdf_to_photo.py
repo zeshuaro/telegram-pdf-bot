@@ -12,7 +12,7 @@ from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, \
-    EXTRACT_IMG, PHOTOS, ZIPPED
+    EXTRACT_PHOTO, PHOTOS, ZIPPED
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
 from pdf_bot.stats import update_stats
 from pdf_bot.language import set_lang
@@ -81,7 +81,7 @@ def ask_photo_results_type(update, context):
         The variable indicating to wait for the file type
     """
     _ = set_lang(update, context)
-    if update.effective_message.text == _(EXTRACT_IMG):
+    if update.effective_message.text == _(EXTRACT_PHOTO):
         return_type = WAIT_EXTRACT_PHOTO_TYPE
     else:
         return_type = WAIT_TO_PHOTO_TYPE

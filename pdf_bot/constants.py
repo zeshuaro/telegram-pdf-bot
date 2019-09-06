@@ -14,36 +14,34 @@ PDF_TOO_LARGE = 2
 
 # PDF file constants
 WAIT_DOC_TASK = 0
-WAIT_DECRYPT_PW = 1
-WAIT_ENCRYPT_PW = 2
-WAIT_ROTATE_DEGREE = 3
-WAIT_SCALE_BY_X = 4
-WAIT_SCALE_BY_Y = 5
-WAIT_SCALE_TO_X = 6
-WAIT_SCALE_TO_Y = 7
-WAIT_SPLIT_RANGE = 8
-WAIT_FILE_NAME = 9
-WAIT_CROP_TYPE = 10
-WAIT_CROP_PERCENT = 11
-WAIT_CROP_OFFSET = 12
+WAIT_PHOTO_TASK = 1
+WAIT_CROP_TYPE = 2
+WAIT_CROP_PERCENT = 3
+WAIT_CROP_OFFSET = 4
+WAIT_DECRYPT_PW = 5
+WAIT_ENCRYPT_PW = 6
+WAIT_FILE_NAME = 7
+WAIT_ROTATE_DEGREE = 8
+WAIT_SPLIT_RANGE = 9
+WAIT_SCALE_TYPE = 10
+WAIT_SCALE_PERCENT = 11
+WAIT_SCALE_DIMENSION = 12
 WAIT_EXTRACT_PHOTO_TYPE = 13
 WAIT_TO_PHOTO_TYPE = 14
-WAIT_PHOTO_TASK = 15
 
 # Keyboard constants
 CANCEL = _('Cancel')
 DONE = _('Done')
 BACK = _('Back')
-CROP_PERCENT = _('By Percentage')
-CROP_SIZE = _('By Margin Size')
+BY_PERCENT = _('By Percentage')
+BY_SIZE = _('By Margin Size')
 PREVIEW = _('Preview')
 DECRYPT = _('Decrypt')
 ENCRYPT = _('Encrypt')
-EXTRACT_IMG = _('Extract Photos')
-TO_IMG = _('To Photos')
+EXTRACT_PHOTO = _('Extract Photos')
+TO_PHOTO = _('To Photos')
 ROTATE = _('Rotate')
-SCALE_BY = _('Scale By')
-SCALE_TO = _('Scale To')
+SCALE = _('Scale')
 SPLIT = _('Split')
 BEAUTIFY = _('Beautify')
 CONVERT = _('Convert')
@@ -52,6 +50,7 @@ CROP = _('Crop')
 ZIPPED = _('Zipped')
 PHOTOS = _('Photos')
 REMOVE_LAST = _('Remove Last File')
+TO_DIMENSIONS = _('To Dimensions')
 
 # Rotation constants
 ROTATE_90 = '90'
