@@ -6,7 +6,7 @@ from pdf_bot.constants import *
 from pdf_bot.utils import cancel_with_async, cancel_without_async
 from pdf_bot.language import set_lang
 from pdf_bot.files.crop import ask_crop_type, ask_crop_value, check_crop_percent, \
-    receive_crop_size
+    check_crop_size
 from pdf_bot.files.crypto import ask_decrypt_pw, ask_encrypt_pw, decrypt_pdf, encrypt_pdf
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, rotate_pdf
@@ -37,7 +37,7 @@ def file_cov_handler():
             WAIT_FILE_NAME: [MessageHandler(Filters.text, rename_pdf)],
             WAIT_CROP_TYPE: [MessageHandler(Filters.text, check_crop_task)],
             WAIT_CROP_PERCENT: [MessageHandler(Filters.text, check_crop_percent)],
-            WAIT_CROP_OFFSET: [MessageHandler(Filters.text, receive_crop_size)],
+            WAIT_CROP_OFFSET: [MessageHandler(Filters.text, check_crop_size)],
             WAIT_EXTRACT_PHOTO_TYPE: [MessageHandler(Filters.text, check_get_photos_task)],
             WAIT_TO_PHOTO_TYPE: [MessageHandler(Filters.text, check_to_photos_task)]
         },

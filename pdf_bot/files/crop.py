@@ -68,7 +68,7 @@ def check_crop_percent(update, context):
 
 
 @run_async
-def receive_crop_size(update, context):
+def check_crop_size(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
 

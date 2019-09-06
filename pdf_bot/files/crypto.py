@@ -2,35 +2,33 @@ import tempfile
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError
-from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup
+from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_INFO, BACK
-from pdf_bot.utils import write_send_pdf, process_pdf, check_user_data
+from pdf_bot.constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_INFO
+from pdf_bot.utils import write_send_pdf, process_pdf
 from pdf_bot.language import set_lang
-from pdf_bot.files.document import ask_doc_task
+from pdf_bot.files.utils import get_back_markup, check_back_user_data
 
 
 def ask_decrypt_pw(update, context):
     _ = set_lang(update, context)
-    reply_markup = ReplyKeyboardMarkup([[_(BACK)]], one_time_keyboard=True, resize_keyboard=True)
     update.effective_message.reply_text(_(
-        'Send me the password to decrypt your PDF file'), reply_markup=reply_markup)
+        'Send me the password to decrypt your PDF file'),
+        reply_markup=get_back_markup(update, context))
 
     return WAIT_DECRYPT_PW
 
 
 @run_async
 def decrypt_pdf(update, context):
+    result = check_back_user_data(update, context)
+    if result is not None:
+        return result
+
     _ = set_lang(update, context)
     message = update.effective_message
-
-    if message.text == _(BACK):
-        return ask_doc_task(update, context)
-    elif not check_user_data(update, context, PDF_INFO):
-        return ConversationHandler.END
-
     message.reply_text(_('Decrypting your PDF file'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf:
@@ -76,24 +74,22 @@ def decrypt_pdf(update, context):
 
 def ask_encrypt_pw(update, context):
     _ = set_lang(update, context)
-    reply_markup = ReplyKeyboardMarkup([[_(BACK)]], one_time_keyboard=True, resize_keyboard=True)
     update.effective_message.reply_text(_(
-        'Send me the password to encrypt your PDF file'), reply_markup=reply_markup)
+        'Send me the password to encrypt your PDF file'),
+        reply_markup=get_back_markup(update, context))
 
     return WAIT_ENCRYPT_PW
 
 
 @run_async
 def encrypt_pdf(update, context):
+    result = check_back_user_data(update, context)
+    if result is not None:
+        return result
+
     _ = set_lang(update, context)
-    message = update.effective_message
-
-    if message.text == _(BACK):
-        return ask_doc_task(update, context)
-    elif not check_user_data(update, context, PDF_INFO):
-        return ConversationHandler.END
-
-    message.reply_text(_('Encrypting your PDF file'), reply_markup=ReplyKeyboardRemove())
-    process_pdf(update, context, 'encrypted', encrypt_pw=message.text)
+    update.effective_message.reply_text(_(
+        'Encrypting your PDF file'), reply_markup=ReplyKeyboardRemove())
+    process_pdf(update, context, 'encrypted', encrypt_pw=update.effective_message.text)
 
     return ConversationHandler.END
