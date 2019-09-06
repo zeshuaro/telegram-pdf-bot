@@ -27,7 +27,6 @@ CALLBACK_DATA = 'callback_data'
 def main():
     # Setup logging
     redirect_logging()
-    logbook.set_datetime_format('local')
     format_string = '{record.level_name}: {record.message}'
     StreamHandler(sys.stdout, format_string=format_string, level='INFO').push_application()
     log = Logger()

@@ -1,4 +1,3 @@
-from telegram import ReplyKeyboardMarkup
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
@@ -16,6 +15,7 @@ from pdf_bot.files.scale import ask_scale_x, ask_scale_by_y, ask_scale_to_y, pdf
 from pdf_bot.files.split import ask_split_range, split_pdf
 from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, ask_photo_results_type, \
     process_photo_task, ask_photo_task
+from pdf_bot.files.document import ask_doc_task
 
 
 def file_cov_handler():
@@ -65,20 +65,6 @@ def check_doc(update, context):
     context.user_data[PDF_INFO] = doc.file_id, doc.file_name
 
     return ask_doc_task(update, context)
-
-
-def ask_doc_task(update, context):
-    _ = set_lang(update, context)
-    keywords = sorted([_(DECRYPT), _(ENCRYPT), _(ROTATE), _(SCALE_BY), _(SCALE_TO), _(SPLIT),
-                       _(PREVIEW), _(TO_IMG), _(EXTRACT_IMG), _(RENAME), _(CROP)])
-    keyboard_size = 3
-    keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
-    keyboard.append([CANCEL])
-    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_(
-        'Select the task that you\'ll like to perform'), reply_markup=reply_markup)
-
-    return WAIT_DOC_TASK
 
 
 @run_async
