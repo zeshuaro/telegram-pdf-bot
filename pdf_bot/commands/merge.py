@@ -33,10 +33,8 @@ def merge_cov_handler():
 
 @run_async
 def merge(update, context):
-    # Create clean merge info
-    user_data = context.user_data
-    user_data[MERGE_IDS] = []
-    user_data[MERGE_NAMES] = []
+    context.user_data[MERGE_IDS] = []
+    context.user_data[MERGE_NAMES] = []
 
     return ask_first_doc(update, context)
 
@@ -58,7 +56,6 @@ def check_doc(update, context):
     if result in [PDF_INVALID_FORMAT, PDF_TOO_LARGE]:
         return process_invalid_pdf(update, context, result)
 
-    # Append the file details
     context.user_data[MERGE_IDS].append(update.effective_message.document.file_id)
     context.user_data[MERGE_NAMES].append(update.effective_message.document.file_name)
 

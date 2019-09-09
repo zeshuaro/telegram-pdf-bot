@@ -5,18 +5,10 @@ from telegram.ext.dispatcher import run_async
 from pdf_bot.constants import WAIT_ROTATE_DEGREE, PDF_INFO, ROTATE_90, ROTATE_180, ROTATE_270, BACK
 from pdf_bot.utils import process_pdf, check_user_data
 from pdf_bot.language import set_lang
+from pdf_bot.files.document import ask_doc_task
 
 
 def ask_rotate_degree(update, context):
-    """
-    Ask and wait for the rotation degree
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating to wait for the rotation degree
-    """
     _ = set_lang(update, context)
     keyboard = [[ROTATE_90, ROTATE_180], [ROTATE_270, _(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
@@ -28,16 +20,18 @@ def ask_rotate_degree(update, context):
 
 
 @run_async
-def rotate_pdf(update, context):
-    """
-    Rotate the PDF file with the given rotation degree
-    Args:
-        update: the update object
-        context: the context object
+def check_rotate_degree(update, context):
+    _ = set_lang(update, context)
+    text = update.effective_message.text
 
-    Returns:
-        The variable indicating the conversation has ended
-    """
+    if text in [_(ROTATE_90), _(ROTATE_180), _(ROTATE_270)]:
+        return rotate_pdf(update, context)
+    elif text == _(BACK):
+        return ask_doc_task(update, context)
+
+
+@run_async
+def rotate_pdf(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
