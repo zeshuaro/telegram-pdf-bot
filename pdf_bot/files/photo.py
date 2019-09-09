@@ -3,6 +3,7 @@ import pdf2image
 import shutil
 import tempfile
 
+from logbook import Logger
 from PIL import Image
 from PyPDF2 import PdfFileWriter
 from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto, ChatAction
@@ -197,6 +198,7 @@ def get_pdf_photos(update, context):
 
 
 def write_photos_in_pdf(pdf_reader, dir_name, file_name):
+    log = Logger()
     root_file_name = os.path.splitext(file_name)[0]
     i = 0
 
@@ -207,7 +209,8 @@ def write_photos_in_pdf(pdf_reader, dir_name, file_name):
                 if x_object[obj]['/Subtype'] == '/Image':
                     try:
                         data = x_object[obj].getData()
-                    except Exception:
+                    except Exception as e:
+                        log.error(e)
                         continue
 
                     if x_object[obj]['/Filter'] == '/FlateDecode':

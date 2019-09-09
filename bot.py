@@ -1,4 +1,3 @@
-import logbook
 import os
 import sys
 
@@ -123,7 +122,7 @@ def process_callback_query(update, context):
     _ = set_lang(update, context)
     query = update.callback_query
     data = query.data
-    
+
     if CALLBACK_DATA not in context.user_data:
         context.user_data[CALLBACK_DATA] = set()
 
