@@ -13,8 +13,8 @@ from pdf_bot.files.rotate import ask_rotate_degree, check_rotate_degree
 from pdf_bot.files.scale import ask_scale_type, ask_scale_value, check_scale_percent, \
     check_scale_dimension
 from pdf_bot.files.split import ask_split_range, split_pdf
-from pdf_bot.photos import get_pdf_preview, get_pdf_photos, pdf_to_photos, ask_photo_results_type, \
-    process_photo_task, ask_photo_task
+from pdf_bot.files.photo import get_pdf_preview, get_pdf_photos, pdf_to_photos, \
+    ask_photo_results_type, process_photo_task, ask_photo_task
 from pdf_bot.files.document import ask_doc_task
 
 
@@ -108,7 +108,7 @@ def check_photo_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
 
-    if text in [_(BEAUTIFY), _(CONVERT)]:
+    if text in [_(BEAUTIFY), _(TO_PDF)]:
         return process_photo_task(update, context)
     elif text == _(CANCEL):
         return cancel_without_async(update, context)
@@ -141,7 +141,7 @@ def check_get_photos_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
 
-    if text in [_(PHOTOS), _(ZIPPED)]:
+    if text in [_(PHOTOS), _(COMPRESSED)]:
         return get_pdf_photos(update, context)
     elif text == _(BACK):
         return ask_doc_task(update, context)
@@ -152,7 +152,7 @@ def check_to_photos_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
 
-    if text in [_(PHOTOS), _(ZIPPED)]:
+    if text in [_(PHOTOS), _(COMPRESSED)]:
         return pdf_to_photos(update, context)
     elif text == _(BACK):
         return ask_doc_task(update, context)

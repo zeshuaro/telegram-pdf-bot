@@ -3,26 +3,47 @@ import pdf2image
 import shutil
 import tempfile
 
-from logbook import Logger
 from PIL import Image
 from PyPDF2 import PdfFileWriter
 from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto, ChatAction
+from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler
 from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, \
-    EXTRACT_PHOTO, PHOTOS, ZIPPED
+    EXTRACT_PHOTO, PHOTOS, COMPRESSED, BEAUTIFY, TO_PDF, CANCEL, WAIT_PHOTO_TASK
 from pdf_bot.utils import open_pdf, send_result_file, check_user_data, get_support_markup
 from pdf_bot.stats import update_stats
 from pdf_bot.language import set_lang
+from pdf_bot.files.utils import check_back_user_data
+from pdf_bot.commands import process_photo
 
+PHOTO_ID = 'photo_id'
 MAX_MEDIA_GROUP = 10
 
 
-def get_pdf_preview(update, context):
+def ask_photo_task(update, context, photo_file):
+    _ = set_lang(update, context)
+    message = update.effective_message
+
+    if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
+        message.reply_text(_('Your photo is too large for me to download. '
+                             'I can\'t beautify or convert your photo'))
+
+        return ConversationHandler.END
+
+    context.user_data[PHOTO_ID] = photo_file.file_id
+    keyboard = [[_(BEAUTIFY), _(TO_PDF)], [_(CANCEL)]]
+    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
+    message.reply_text(_('Select the task that you\'ll like to perform'), reply_markup=reply_markup)
+
+    return WAIT_PHOTO_TASK
+
+
+def process_photo_task(update, context):
     """
-    Get the PDF preview in JPEG format
+    Receive the task and perform the task on the photo
     Args:
         update: the update object
         context: the context object
@@ -30,12 +51,32 @@ def get_pdf_preview(update, context):
     Returns:
         The variable indicating the conversation has ended
     """
-    if not check_user_data(update, context, PDF_INFO):
+    if not check_user_data(update, context, PHOTO_ID):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Extracting a preview for your PDF file'),
-                                        reply_markup=ReplyKeyboardRemove())
+    user_data = context.user_data
+    file_id = user_data[PHOTO_ID]
+
+    if update.effective_message.text == _(BEAUTIFY):
+        process_photo(update, context, [file_id], is_beautify=True)
+    else:
+        process_photo(update, context, [file_id], is_beautify=False)
+
+    if user_data[PHOTO_ID] == file_id:
+        del user_data[PHOTO_ID]
+
+    return ConversationHandler.END
+
+
+def get_pdf_preview(update, context):
+    result = check_back_user_data(update, context)
+    if result is not None:
+        return result
+
+    _ = set_lang(update, context)
+    update.effective_message.reply_text(_(
+        'Extracting a preview for your PDF file'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf1:
         user_data = context.user_data
@@ -71,46 +112,28 @@ def get_pdf_preview(update, context):
 
 
 def ask_photo_results_type(update, context):
-    """
-    Ask for the photo results file type
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating to wait for the file type
-    """
     _ = set_lang(update, context)
     if update.effective_message.text == _(EXTRACT_PHOTO):
         return_type = WAIT_EXTRACT_PHOTO_TYPE
     else:
         return_type = WAIT_TO_PHOTO_TYPE
 
-    keyboard = [[_(PHOTOS), _(ZIPPED)], [_(BACK)]]
+    keyboard = [[_(PHOTOS), _(COMPRESSED)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_('Select the result file format to be sent back to you'),
-                                        reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_text(_(
+        'Select the result file format'), reply_markup=reply_markup,
+        parse_mode=ParseMode.MARKDOWN)
 
     return return_type
 
 
-@run_async
 def pdf_to_photos(update, context):
-    """
-    Convert the PDF file into JPEG photos
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating the conversation has ended
-    """
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Converting your PDF file into photos'),
-                                        reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(_(
+        'Converting your PDF file into photos'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf:
         user_data = context.user_data
@@ -129,7 +152,7 @@ def pdf_to_photos(update, context):
                 fmt='png')
 
             # Handle the result photos
-            handle_result_photos(update, context, dir_name, 'to_photos')
+            send_result_photos(update, context, dir_name, 'to_photos')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -140,21 +163,12 @@ def pdf_to_photos(update, context):
 
 @run_async
 def get_pdf_photos(update, context):
-    """
-    Get all the photos in the PDF file
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating the conversation has ended
-    """
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Extracting all the photos in your PDF file'),
-                                        reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(_(
+        'Extracting all the photos in your PDF file'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf:
         user_data = context.user_data
@@ -165,57 +179,15 @@ def get_pdf_photos(update, context):
 
         if pdf_reader is not None:
             with tempfile.TemporaryDirectory() as tmp_dir_name:
-                # Setup the directory for the photos
                 dir_name = os.path.join(tmp_dir_name, 'Photos_In_PDF')
                 os.mkdir(dir_name)
-                root_file_name = os.path.splitext(file_name)[0]
-                i = 0
-                log = Logger()
-
-                # Find and store all photos
-                for page in pdf_reader.pages:
-                    if '/Resources' in page and '/XObject' in page['/Resources']:
-                        x_object = page['/Resources']['/XObject'].getObject()
-
-                        for obj in x_object:
-                            if x_object[obj]['/Subtype'] == '/Image':
-                                size = (x_object[obj]['/Width'], x_object[obj]['/Height'])
-                                try:
-                                    data = x_object[obj].getData()
-                                except Exception as e:
-                                    log.error(e)
-
-                                    continue
-
-                                if x_object[obj]['/Filter'] == '/FlateDecode':
-                                    if x_object[obj]['/ColorSpace'] == '/DeviceRGB':
-                                        mode = 'RGB'
-                                    else:
-                                        mode = 'P'
-
-                                    try:
-                                        img = Image.frombytes(mode, size, data)
-                                        img.save(os.path.join(
-                                            dir_name, f'{root_file_name}-{i}.png'))
-                                        i += 1
-                                    except TypeError:
-                                        pass
-                                elif x_object[obj]['/Filter'] == '/DCTDecode':
-                                    with open(os.path.join(
-                                            dir_name, f'{root_file_name}-{i}.jpg'), 'wb') as img:
-                                        img.write(data)
-                                        i += 1
-                                elif x_object[obj]['/Filter'] == '/JPXDecode':
-                                    with open(os.path.join(
-                                            dir_name, f'{root_file_name}-{i}.jp2'), 'wb') as img:
-                                        img.write(data)
-                                        i += 1
+                write_photos_in_pdf(pdf_reader, dir_name, file_name)
 
                 if not os.listdir(dir_name):
                     update.effective_message.reply_text(_(
                         'I couldn\'t find any photos in your PDF file'))
                 else:
-                    handle_result_photos(update, context, dir_name, 'get_photos')
+                    send_result_photos(update, context, dir_name, 'get_photos')
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -224,18 +196,47 @@ def get_pdf_photos(update, context):
     return ConversationHandler.END
 
 
-def handle_result_photos(update, context, dir_name, task):
-    """
-    Handle the result photos
-    Args:
-        update: the update object
-        context: the context object
-        dir_name: the string of directory name containing the photos
-        task: the string of the task
+def write_photos_in_pdf(pdf_reader, dir_name, file_name):
+    root_file_name = os.path.splitext(file_name)[0]
+    i = 0
 
-    Returns:
-        None
-    """
+    for page in pdf_reader.pages:
+        if '/Resources' in page and '/XObject' in page['/Resources']:
+            x_object = page['/Resources']['/XObject'].getObject()
+            for obj in x_object:
+                if x_object[obj]['/Subtype'] == '/Image':
+                    try:
+                        data = x_object[obj].getData()
+                    except Exception:
+                        continue
+
+                    if x_object[obj]['/Filter'] == '/FlateDecode':
+                        if x_object[obj]['/ColorSpace'] == '/DeviceRGB':
+                            mode = 'RGB'
+                        else:
+                            mode = 'P'
+
+                        try:
+                            size = (x_object[obj]['/Width'], x_object[obj]['/Height'])
+                            img = Image.frombytes(mode, size, data)
+                            img.save(os.path.join(
+                                dir_name, f'{root_file_name}-{i}.png'))
+                            i += 1
+                        except TypeError:
+                            continue
+                    elif x_object[obj]['/Filter'] == '/DCTDecode':
+                        with open(os.path.join(
+                                dir_name, f'{root_file_name}-{i}.jpg'), 'wb') as img:
+                            img.write(data)
+                            i += 1
+                    elif x_object[obj]['/Filter'] == '/JPXDecode':
+                        with open(os.path.join(
+                                dir_name, f'{root_file_name}-{i}.jp2'), 'wb') as img:
+                            img.write(data)
+                            i += 1
+
+
+def send_result_photos(update, context, dir_name, task):
     _ = set_lang(update, context)
     message = update.effective_message
 
