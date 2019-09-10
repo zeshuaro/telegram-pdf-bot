@@ -9,3 +9,4 @@ from pdf_bot.constants import *
 from pdf_bot.language import set_lang, send_lang, store_lang
 from pdf_bot.store import create_user
 from pdf_bot.stats import get_stats
+from pdf_bot.mq_bot import MQBot

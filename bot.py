@@ -1,14 +1,18 @@
+import logging
 import os
 import sys
 
 from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
 from logbook.compat import redirect_logging
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, ForceReply
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, ForceReply, \
+    ParseMode
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, \
     PreCheckoutQueryHandler
+from telegram.ext import messagequeue as mq
 from telegram.ext.dispatcher import run_async
-from telegram.parsemode import ParseMode
+from telegram.utils.request import Request
+
 
 from pdf_bot import *
 
@@ -25,13 +29,18 @@ CALLBACK_DATA = 'callback_data'
 
 def main():
     # Setup logging
+    logging.getLogger('pdfminer').setLevel(logging.WARNING)
     redirect_logging()
     format_string = '{record.level_name}: {record.message}'
     StreamHandler(sys.stdout, format_string=format_string, level='INFO').push_application()
     log = Logger()
 
+    q = mq.MessageQueue(all_burst_limit=3, all_time_limit_ms=3000)
+    request = Request(con_pool_size=8)
+    pdf_bot = MQBot(TELE_TOKEN, request=request, mqueue=q)
+
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(TELE_TOKEN, use_context=True,
+    updater = Updater(bot=pdf_bot, use_context=True,
                       request_kwargs={'connect_timeout': TIMEOUT, 'read_timeout': TIMEOUT})
 
     # Get the dispatcher to register handlers
@@ -93,7 +102,7 @@ def start_msg(update, context):
         'Welcome to PDF Bot!\n\n*Features*\n'
         '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and '
         'add a watermark to a PDF file\n'
-        '- Extract images in a PDF file and convert a PDF file into images\n'
+        '- Extract text and photos in a PDF file and convert a PDF file into photos\n'
         '- Beautify and convert photos into PDF format\n'
         '- Convert a web page into a PDF file\n\n'
         'Type /help to see how to use PDF Bot'), parse_mode=ParseMode.MARKDOWN)
