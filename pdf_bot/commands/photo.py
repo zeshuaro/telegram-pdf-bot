@@ -194,7 +194,7 @@ def process_photo(update, context, file_ids, is_beautify):
             with open(out_fn, 'wb') as f:
                 f.write(img2pdf.convert(photo_files))
 
-            send_result_file(update, context, out_fn, 'convert')
+            send_result_file(update, context, out_fn, 'to_pdf')
 
     # Clean up files
     for tf in temp_files:
