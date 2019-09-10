@@ -28,7 +28,7 @@ def ask_scale_value(update, context, ask_percent=True):
         message.reply_text(_(
             'Send me the scaling factors for the horizontal and vertical axes\n\n'
             '2 will double the axis and 0.5 will halve the axis\n\n'
-            '*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis'),
+            '*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis)'),
             reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN)
 
         return WAIT_SCALE_PERCENT
