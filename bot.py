@@ -102,7 +102,7 @@ def start_msg(update, context):
         'Welcome to PDF Bot!\n\n*Features*\n'
         '- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and '
         'add a watermark to a PDF file\n'
-        '- Extract images in a PDF file and convert a PDF file into images\n'
+        '- Extract text and photos in a PDF file and convert a PDF file into photos\n'
         '- Beautify and convert photos into PDF format\n'
         '- Convert a web page into a PDF file\n\n'
         'Type /help to see how to use PDF Bot'), parse_mode=ParseMode.MARKDOWN)
