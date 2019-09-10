@@ -42,8 +42,8 @@ def get_pdf_text(update, context, is_file):
                 extract_text_to_fp(f, tmp_text)
 
             tmp_text.seek(0)
-            pdf_texts = textwrap.wrap(tmp_text.read().decode('utf-8'))
-            out_fn = os.path.join(dir_name, f'Text_{os.path.splitext(file_name)[0]}.txt')
+            pdf_texts = textwrap.wrap(tmp_text.read().decode('utf-8').strip())
+            out_fn = os.path.join(dir_name, f'{os.path.splitext(file_name)[0]}.txt')
             send_pdf_text(update, context, pdf_texts, is_file, out_fn)
 
     # Clean up memory
@@ -55,6 +55,8 @@ def get_pdf_text(update, context, is_file):
 
 def send_pdf_text(update, context, pdf_texts, is_file, out_fn):
     _ = set_lang(update, context)
+    message = update.effective_message
+
     if pdf_texts:
         if is_file:
             with open(out_fn, 'w') as f:
@@ -65,16 +67,16 @@ def send_pdf_text(update, context, pdf_texts, is_file, out_fn):
             msg_text = ''
             for pdf_text in pdf_texts:
                 if len(msg_text) + len(pdf_text) + 1 > MAX_MESSAGE_LENGTH:
-                    update.effective_message.reply_text(msg_text.strip())
+                    message.reply_text(msg_text.strip())
                     msg_text = ''
 
                 msg_text += f' {pdf_text}'
 
             if msg_text:
-                update.effective_message.reply_text(msg_text.strip())
+                message.reply_text(msg_text.strip())
 
-            update.effective_message.reply_text(_(
+            message.reply_text(_(
                 '*See above for all the text in your PDF file*'),
                 parse_mode=ParseMode.MARKDOWN)
     else:
-        update.effective_message.reply_text(_('I couldn\'t find any text in your PDF file'))
+        message.reply_text(_('I couldn\'t find any text in your PDF file'))
