@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2019-09-05 21:36+1000\n"
-"PO-Revision-Date: 2019-09-05 12:50\n"
+"POT-Creation-Date: 2019-09-10 12:06+1000\n"
+"PO-Revision-Date: 2019-09-10 02:38\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "Language: zh_TW\n"
 
-#: bot.py:94
+#: bot.py:92
 msgid "Welcome to PDF Bot!\n\n"
 "*Features*\n"
 "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
@@ -38,129 +38,129 @@ msgstr "歡迎來到PDF Bot！\n\n"
 "- 將網頁轉換為PDF檔案\n\n"
 "用/help以了解如何使用PDF Bot"
 
-#: bot.py:110
+#: bot.py:108
 msgid "Set Language"
 msgstr "設定語言"
 
-#: bot.py:111 pdf_bot/utils.py:255
+#: bot.py:109 pdf_bot/utils.py:260
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: bot.py:112 pdf_bot/payment.py:68 pdf_bot/utils.py:256
+#: bot.py:110 pdf_bot/payment.py:68 pdf_bot/utils.py:261
 msgid "Support PDF Bot"
 msgstr "支持PDF Bot"
 
-#: bot.py:115
+#: bot.py:113
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr "你只需向我發送PDF檔案，圖片或網頁鏈接就可以使用大部分的功能\n\n"
 "有些功能要用 /compare，/merge，/watermark 或 /photo 才可以使用"
 
-#: bot.py:143 pdf_bot/constants.py:75
+#: bot.py:141 pdf_bot/constants.py:74
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "向我發送你想支持PDF Bot的金額"
 
-#: pdf_bot/constants.py:34
+#: pdf_bot/constants.py:33
 msgid "Cancel"
 msgstr "取消"
 
-#: pdf_bot/constants.py:35
+#: pdf_bot/constants.py:34
 msgid "Done"
 msgstr "完成"
 
-#: pdf_bot/constants.py:36
+#: pdf_bot/constants.py:35
 msgid "Back"
 msgstr "返回"
 
-#: pdf_bot/constants.py:37
+#: pdf_bot/constants.py:36
 msgid "By Percentage"
 msgstr "按百分比"
 
-#: pdf_bot/constants.py:38
+#: pdf_bot/constants.py:37
 msgid "By Margin Size"
 msgstr "按邊界大小"
 
-#: pdf_bot/constants.py:39
+#: pdf_bot/constants.py:38
 msgid "Preview"
 msgstr "預覽"
 
-#: pdf_bot/constants.py:40
+#: pdf_bot/constants.py:39
 msgid "Decrypt"
 msgstr "解密"
 
-#: pdf_bot/constants.py:41
+#: pdf_bot/constants.py:40
 msgid "Encrypt"
 msgstr "加密"
 
-#: pdf_bot/constants.py:42
+#: pdf_bot/constants.py:41
 msgid "Extract Photos"
 msgstr "提取圖片"
 
-#: pdf_bot/constants.py:43
+#: pdf_bot/constants.py:42
 msgid "To Photos"
 msgstr "轉換到圖片"
 
-#: pdf_bot/constants.py:44
+#: pdf_bot/constants.py:43
 msgid "Rotate"
 msgstr "旋轉"
 
+#: pdf_bot/constants.py:44
+msgid "Scale"
+msgstr "縮放"
+
 #: pdf_bot/constants.py:45
-msgid "Scale By"
-msgstr "按百分比縮放"
-
-#: pdf_bot/constants.py:46
-msgid "Scale To"
-msgstr "縮放到自訂大小"
-
-#: pdf_bot/constants.py:47
 msgid "Split"
 msgstr "分割"
 
-#: pdf_bot/constants.py:48
+#: pdf_bot/constants.py:46
 msgid "Beautify"
 msgstr "美化"
 
-#: pdf_bot/constants.py:49
-msgid "Convert"
+#: pdf_bot/constants.py:47
+msgid "To PDF"
 msgstr "轉換到PDF檔案"
 
-#: pdf_bot/constants.py:50
+#: pdf_bot/constants.py:48
 msgid "Rename"
 msgstr "重新命名"
 
-#: pdf_bot/constants.py:51
+#: pdf_bot/constants.py:49
 msgid "Crop"
 msgstr "裁剪"
 
-#: pdf_bot/constants.py:52
-msgid "Zipped"
+#: pdf_bot/constants.py:50
+msgid "Compressed"
 msgstr "壓縮檔"
 
-#: pdf_bot/constants.py:53
+#: pdf_bot/constants.py:51
 msgid "Photos"
 msgstr "圖片"
 
-#: pdf_bot/constants.py:54
+#: pdf_bot/constants.py:52
 msgid "Remove Last File"
 msgstr "移除上一個檔案"
 
-#: pdf_bot/constants.py:69
+#: pdf_bot/constants.py:53
+msgid "To Dimensions"
+msgstr "自訂尺寸"
+
+#: pdf_bot/constants.py:68
 msgid "Say Thanks 😁 ($1)"
 msgstr "說謝謝😁（$1）"
 
-#: pdf_bot/constants.py:70
+#: pdf_bot/constants.py:69
 msgid "Coffee ☕ ($3)"
 msgstr "咖啡☕（$3）"
 
-#: pdf_bot/constants.py:71
+#: pdf_bot/constants.py:70
 msgid "Beer 🍺 ($5)"
 msgstr "啤酒🍺（$5）"
 
-#: pdf_bot/constants.py:72
+#: pdf_bot/constants.py:71
 msgid "Meal 🍲 ($10)"
 msgstr "一頓飯🍲（$10）"
 
-#: pdf_bot/constants.py:73
+#: pdf_bot/constants.py:72
 msgid "Say Awesome 🤩 (Custom)"
 msgstr "說真棒🤩（自訂金額）"
 
@@ -221,42 +221,50 @@ msgid "Action cancelled"
 msgstr "操作取消"
 
 #: pdf_bot/utils.py:51
-msgid "The file you sent is not a PDF file. Try again and send me a PDF file or /cancel this action."
-msgstr "你發送的不是PDF檔案。 請再試一次並發送PDF檔案或者用 /cancel 來取消操作."
+msgid "The file you sent is not a PDF file, try again"
+msgstr "你發送的不是PDF檔案，再試一次"
 
-#: pdf_bot/utils.py:56
-msgid "The PDF file you sent is too large for me to download. I can't process your PDF file. Action cancelled"
-msgstr "你發送的PDF檔案太大了，我無法下載。 我無法處理你的PDF檔案。 操作取消"
+#: pdf_bot/utils.py:55
+msgid "The PDF file you sent is too large for me to download\n\n"
+"I've cancelled your action"
+msgstr "你發送的PDF檔案太大了，我無法下載\n\n"
+"我取消了你的操作"
 
-#: pdf_bot/utils.py:78
+#: pdf_bot/utils.py:77
 msgid "Something went wrong, start over again"
 msgstr "出了點問題，再試一次"
 
-#: pdf_bot/utils.py:155
+#: pdf_bot/utils.py:153
+msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
+"I've cancelled your action"
+msgstr "你的PDF檔案似乎無效，我無法打開它\n\n"
+"我取消了你的操作"
+
+#: pdf_bot/utils.py:160
 msgid "Your PDF file is already encrypted"
 msgstr "你的PDF檔案本身就已經加密了"
 
-#: pdf_bot/utils.py:157
-msgid "Your {} PDF file is encrypted and you'll have to decrypt it first. Action cancelled"
-msgstr "你的{} PDF檔案加密了，你必須先解密。 操作取消"
+#: pdf_bot/utils.py:162
+msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
+"I've cancelled your action"
+msgstr "你的{} PDF檔案加密了，你必須先解密\n\n"
+"我取消了你的操作"
 
-#: pdf_bot/utils.py:160
-msgid "Your PDF file is encrypted and you'll have to decrypt it first. Action cancelled."
-msgstr "你的PDF檔案加密了，你必須先解密。 操作取消."
+#: pdf_bot/utils.py:166
+msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
+"I've cancelled your action"
+msgstr "你的PDF檔案加密了，你必須先解密\n\n"
+"我取消了你的操作"
 
-#: pdf_bot/utils.py:165
-msgid "Your PDF file seems to be invalid and I couldn't open and read it. Action cancelled."
-msgstr "你的PDF檔案似乎無效，我無法打開它。 操作取消."
-
-#: pdf_bot/utils.py:184
+#: pdf_bot/utils.py:189
 msgid "You've sent me these {} so far:\n"
 msgstr "你發了以下的{}給我：\n"
 
-#: pdf_bot/utils.py:231
+#: pdf_bot/utils.py:236
 msgid "The result file is too large for me to send to you"
 msgstr "輸出檔案太大了，我無法發送給你"
 
-#: pdf_bot/utils.py:236 pdf_bot/utils.py:241
+#: pdf_bot/utils.py:241 pdf_bot/utils.py:246
 msgid "Here is your result file"
 msgstr "你的輸出檔案"
 
@@ -278,47 +286,87 @@ msgstr "正在比較你的PDF檔案"
 msgid "There are no differences in text between your PDF files"
 msgstr "你的PDF檔案之間沒有任何區別"
 
-#: pdf_bot/commands/merge.py:47
+#: pdf_bot/commands/merge.py:45
 msgid "Send me the first PDF file that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr "向我發送第一個你想要合併的PDF檔案\n\n"
 "注意，我會根據你發送給我的順序來合併你的檔案"
 
-#: pdf_bot/commands/merge.py:71
+#: pdf_bot/commands/merge.py:68
 msgid "The file you've sent is not a PDF file"
 msgstr "你發送的不是PDF檔案"
 
-#: pdf_bot/commands/merge.py:73
+#: pdf_bot/commands/merge.py:70
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "你發送的PDF檔案太大了，我無法下載"
 
-#: pdf_bot/commands/merge.py:86
+#: pdf_bot/commands/merge.py:83
 msgid "Send me the next PDF file that you'll like to merge or press *Done* if you've sent me all the PDF files"
 msgstr "把你要合併的下一個PDF檔案發送給我，如果你已經將所有PDF檔案發送給我，按*完成*"
 
-#: pdf_bot/commands/merge.py:89
+#: pdf_bot/commands/merge.py:86
 msgid "PDF files"
 msgstr "PDF檔案"
 
-#: pdf_bot/commands/merge.py:117
+#: pdf_bot/commands/merge.py:114
 msgid "*{}* has been removed for merging"
 msgstr "移除了*{}*，這個檔案不會用來合併"
 
-#: pdf_bot/commands/merge.py:134
+#: pdf_bot/commands/merge.py:131
 msgid "You haven't sent me any PDF files"
 msgstr "你還沒有向我發送任何PDF檔案"
 
-#: pdf_bot/commands/merge.py:138
+#: pdf_bot/commands/merge.py:135
 msgid "You've only sent me one PDF file."
 msgstr "你只給我發了一個PDF檔案"
 
-#: pdf_bot/commands/merge.py:147
+#: pdf_bot/commands/merge.py:144
 msgid "Merging your PDF files"
 msgstr "正在合併你的PDF檔案"
 
-#: pdf_bot/commands/merge.py:166
+#: pdf_bot/commands/merge.py:163
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "我無法合併你的PDF檔案，因為我無法打開“{}”。 確保它並沒有加密"
+
+#: pdf_bot/commands/photo.py:48
+msgid "Send me the first photo that you'll like to beautify or convert into PDF\n\n"
+"Note that the photos will be beautified and converted in the order that you send me"
+msgstr "向我發送第一張你想要美化或轉換為PDF檔案格式的圖片\n\n"
+"注意，圖片將按照你發送給我的順序進行美化和轉換"
+
+#: pdf_bot/commands/photo.py:70
+msgid "File name unavailable"
+msgstr "沒有檔案名稱"
+
+#: pdf_bot/commands/photo.py:86
+msgid "The file you've sent is not a photo"
+msgstr "你發送的不是圖片"
+
+#: pdf_bot/commands/photo.py:93
+msgid "The photo you've sent is too large for me to download"
+msgstr "你發送的圖片太大了，我無法下載"
+
+#: pdf_bot/commands/photo.py:103
+msgid "Send me the next photo that you'll like to beautify or convert to PDF\n\n"
+"Select the task from below if you have sent me all the photos"
+msgstr "發給我下一張你要美化或轉換成PDF的圖片\n\n"
+"如果你已經將所有圖片發送給我，從下面選擇你想做什麼"
+
+#: pdf_bot/commands/photo.py:107
+msgid "photos"
+msgstr "圖片"
+
+#: pdf_bot/commands/photo.py:135
+msgid "*{}* has been removed for beautifying or converting"
+msgstr "移除了*{}*，這個檔案不會用來美化或轉換"
+
+#: pdf_bot/commands/photo.py:170
+msgid "Beautifying and converting your photos"
+msgstr "正在美化和轉換你的圖片"
+
+#: pdf_bot/commands/photo.py:173
+msgid "Converting your photos into PDF"
+msgstr "正在轉換你的圖片成PDF"
 
 #: pdf_bot/commands/watermark.py:42
 msgid "Send me the PDF file that you'll like to add a watermark"
@@ -332,23 +380,27 @@ msgstr "發給我水印PDF檔案"
 msgid "Adding the watermark onto your PDF file"
 msgstr "正在添加水印到你的PDF檔案中"
 
-#: pdf_bot/files/crop.py:23
+#: pdf_bot/commands/watermark.py:110
+msgid "watermark"
+msgstr "水印"
+
+#: pdf_bot/files/crop.py:24
 msgid "Select the crop type that you'll like to perform"
 msgstr "選擇你要怎樣裁剪"
 
-#: pdf_bot/files/crop.py:34
+#: pdf_bot/files/crop.py:36
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "給我一個{}和{}之間的數字。 這是你想保留邊界空間的百分比"
 
-#: pdf_bot/files/crop.py:42
+#: pdf_bot/files/crop.py:43
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "發給我一個你想調整邊界大小的數字。正數會減小邊界空間，負數會增加邊界空間"
 
-#: pdf_bot/files/crop.py:56
+#: pdf_bot/files/crop.py:62
 msgid "The number must be between {} and {}, try again"
 msgstr "該數字必須介於{}和{}之間，再試一次"
 
-#: pdf_bot/files/crop.py:70
+#: pdf_bot/files/crop.py:82
 msgid "The number is invalid, try again"
 msgstr "該數字無效，再試一次"
 
@@ -356,55 +408,85 @@ msgstr "該數字無效，再試一次"
 msgid "Cropping your PDF file"
 msgstr "正在裁剪你的PDF檔案"
 
-#: pdf_bot/files/crop.py:112
+#: pdf_bot/files/crop.py:113
 msgid "Something went wrong, try again"
 msgstr "出了點問題，再試一次"
 
-#: pdf_bot/files/crypto.py:25
+#: pdf_bot/files/crypto.py:17
 msgid "Send me the password to decrypt your PDF file"
 msgstr "把密碼發給我來解密你的PDF檔案"
 
-#: pdf_bot/files/crypto.py:47
+#: pdf_bot/files/crypto.py:32
 msgid "Decrypting your PDF file"
 msgstr "正在解密你的PDF檔案"
 
-#: pdf_bot/files/crypto.py:60
-msgid "I couldn't open and read your PDF file as it looks invalid"
-msgstr "我無法打開你的PDF檔案，因為它看起來無效"
+#: pdf_bot/files/crypto.py:45
+msgid "Your PDF file seems to be invalid and I couldn't open and read it"
+msgstr "你的PDF檔案似乎無效，我無法打開它"
 
-#: pdf_bot/files/crypto.py:64
+#: pdf_bot/files/crypto.py:50
 msgid "Your PDF file is not encrypted"
 msgstr "你的PDF檔案並沒有加密"
 
-#: pdf_bot/files/crypto.py:68
+#: pdf_bot/files/crypto.py:54
 msgid "The decryption password is incorrect, try to send it again"
 msgstr "解密密碼不正確，再試一次"
 
-#: pdf_bot/files/crypto.py:79
+#: pdf_bot/files/crypto.py:65
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
 msgstr "你的PDF檔案使用了我無法解密的加密方法"
 
-#: pdf_bot/files/crypto.py:100
+#: pdf_bot/files/crypto.py:77
 msgid "Send me the password to encrypt your PDF file"
 msgstr "把密碼發給我來加密你的PDF檔案"
 
-#: pdf_bot/files/crypto.py:121
+#: pdf_bot/files/crypto.py:91
 msgid "Encrypting your PDF file"
 msgstr "正在加密你的PDF檔案"
 
-#: pdf_bot/files/file.py:75
-msgid "Your PDF file you sent is too large for me to download. I can't perform any tasks on it"
-msgstr "你發送的PDF檔案太大了，我無法下載。我無法處理任何功能"
-
-#: pdf_bot/files/file.py:103 pdf_bot/photos/photo_to_pdf.py:244
+#: pdf_bot/files/document.py:16 pdf_bot/files/photo.py:40
 msgid "Select the task that you'll like to perform"
 msgstr "選擇你想要做什麼"
 
-#: pdf_bot/files/rename.py:27
+#: pdf_bot/files/file.py:64
+msgid "Your PDF file is too big for me to download\n\n"
+"I can't perform any tasks on it"
+msgstr "你發送的PDF檔案太大了，我無法下載\n\n"
+"我無法處理任何操作"
+
+#: pdf_bot/files/photo.py:32
+msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
+msgstr "你的圖片太大了，我無法下載。我無法美化或轉換你的圖片"
+
+#: pdf_bot/files/photo.py:79
+msgid "Extracting a preview for your PDF file"
+msgstr "正在提取你的PDF檔案的預覽"
+
+#: pdf_bot/files/photo.py:122
+msgid "Select the result file format"
+msgstr "選擇檔案格式"
+
+#: pdf_bot/files/photo.py:134
+msgid "Converting your PDF file into photos"
+msgstr "正在轉換你的PDF檔案為照片"
+
+#: pdf_bot/files/photo.py:169
+msgid "Extracting all the photos in your PDF file"
+msgstr "正在提取你的PDF檔案中的所有圖片"
+
+#: pdf_bot/files/photo.py:184
+msgid "I couldn't find any photos in your PDF file"
+msgstr "我在你的PDF檔案中找不到任何圖片"
+
+#: pdf_bot/files/photo.py:255
+msgid "See above for all your photos"
+msgstr "這些就是你的圖片"
+
+#: pdf_bot/files/rename.py:19
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "向我發送你想要用來命名的PDF檔案名稱"
 
-#: pdf_bot/files/rename.py:54
+#: pdf_bot/files/rename.py:38
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
@@ -412,135 +494,61 @@ msgstr "檔案名稱不能包含以下任何字符：\n"
 "{}\n"
 "發給我另一個檔案名稱"
 
-#: pdf_bot/files/rename.py:61
+#: pdf_bot/files/rename.py:45
 msgid "Renaming your PDF file into *{}*"
 msgstr "正在將你的PDF檔案重新命名為*{}*"
 
-#: pdf_bot/files/rotate.py:23
+#: pdf_bot/files/rotate.py:15
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "選擇你想要順時針旋轉你PDF檔案的度數"
 
-#: pdf_bot/files/rotate.py:46
+#: pdf_bot/files/rotate.py:40
 msgid "Rotating your PDF file clockwise by {} degrees"
 msgstr "正在順時針旋轉{}度去你的PDF檔案"
 
+#: pdf_bot/files/scale.py:16
+msgid "Select the scale type that you'll like to perform"
+msgstr "選擇你要怎樣縮放"
+
 #: pdf_bot/files/scale.py:28
-msgid "Send me the scaling factor for the horizontal axis. For example, 2 will double the horizontal axis and 0.5 will half the horizontal axis"
-msgstr "向我發送你想要打橫縮放的百分比給我。2會放大一倍，而0.5就會縮小一半，如此類推"
+msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
+"2 will double the axis and 0.5 will halve the axis\n\n"
+"*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis)"
+msgstr "向我發送你想要打橫和打直縮放的百分比給我\n\n"
+"2會放大一倍，而0.5就會縮小一半\n\n"
+"*例子：2 0.5*（這樣會打橫放大一倍和打直縮小一半）"
 
-#: pdf_bot/files/scale.py:35
-msgid "Send me the new width"
-msgstr "發給我新的寬度"
+#: pdf_bot/files/scale.py:36
+msgid "Send me the width and height\n\n"
+"*Example: 150 200* (this will set the width to 150 and height to 200)"
+msgstr "發給我新的寬度和高度\n\n"
+"*例子：150 200* (這樣會縮放寬度成150和高度成200)"
 
-#: pdf_bot/files/scale.py:58 pdf_bot/files/scale.py:93
-msgid "The scaling factor \"{}\" is invalid. Try again"
-msgstr "縮放百分比“{}”無效。再試一次"
+#: pdf_bot/files/scale.py:56
+msgid "The scaling factors *{}* are invalid, try again"
+msgstr "縮放百分比*{}*無效，再試一次"
 
-#: pdf_bot/files/scale.py:63
-msgid "Send me the scaling factor for the vertical axis. For example, 2 will double the vertical axis and 0.5 will half the vertical axis"
-msgstr "向我發送你想要打直縮放的百分比給我。2會放大一倍，而0.5就會縮小一半，如此類推"
+#: pdf_bot/files/scale.py:76
+msgid "The dimensions *{}* are invalid, try again"
+msgstr "尺寸*{}*無效，再試一次"
 
-#: pdf_bot/files/scale.py:99
-msgid "Scaling your PDF file, horizontally by {} and vertically by {}"
-msgstr "正在縮放你的PDF檔案，打橫縮放{}同打直縮放{}"
+#: pdf_bot/files/scale.py:87
+msgid "Scaling your PDF file, horizontally by *{}* and vertically by *{}*"
+msgstr "正在縮放你的PDF檔案，打橫縮放*{}*同打直縮放*{}*"
 
-#: pdf_bot/files/scale.py:128
-msgid "The width \"{}\" is invalid. Try again"
-msgstr "寬度“{}”無效。 再試一次"
+#: pdf_bot/files/scale.py:93
+msgid "Scaling your PDF file with width of *{}* and height of *{}*"
+msgstr "正在縮放你的PDF檔案，寬度為*{}*，高度為*{}*"
 
-#: pdf_bot/files/scale.py:133
-msgid "Send me the new height"
-msgstr "發給我新的高度"
+#: pdf_bot/files/split.py:18
+msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
+msgstr "向我發送你想要保留的頁面範圍。你可以使用下面的⚡*INSTANT VIEW*或者在[這裡](http://telegra.ph/Telegram-PDF-Bot-07-16)來看一些例子"
 
-#: pdf_bot/files/scale.py:161
-msgid "The height \"{}\" is invalid. Try again"
-msgstr "高度“{}”無效。 再試一次"
-
-#: pdf_bot/files/scale.py:167
-msgid "Scaling your PDF file with width of {} and height of {}"
-msgstr "正在縮放你的PDF檔案，寬度為{}，高度為{}"
-
-#: pdf_bot/files/split.py:26
-msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below for some range examples or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
-msgstr "向我發送你想要保留的頁面範圍。你可以使用下面的⚡*INSTANT VIEW*來看一些例子或者在[這裡](http://telegra.ph/Telegram-PDF-Bot-07-16)看"
-
-#: pdf_bot/files/split.py:55
+#: pdf_bot/files/split.py:39
 msgid "The range is invalid. Try again"
 msgstr "頁面範圍無效。 再試一次"
 
-#: pdf_bot/files/split.py:59
+#: pdf_bot/files/split.py:43
 msgid "Splitting your PDF file"
 msgstr "正在分割你的PDF檔案"
-
-#: pdf_bot/photos/pdf_to_photo.py:37
-msgid "Extracting a preview for your PDF file"
-msgstr "正在提取你的PDF檔案的預覽"
-
-#: pdf_bot/photos/pdf_to_photo.py:91
-msgid "Select the result file format to be sent back to you"
-msgstr "選擇你的檔案格式"
-
-#: pdf_bot/photos/pdf_to_photo.py:112
-msgid "Converting your PDF file into photos"
-msgstr "正在轉換你的PDF檔案為照片"
-
-#: pdf_bot/photos/pdf_to_photo.py:156
-msgid "Extracting all the photos in your PDF file"
-msgstr "正在提取你的PDF檔案中的所有圖片"
-
-#: pdf_bot/photos/pdf_to_photo.py:215
-msgid "I couldn't find any photos in your PDF file"
-msgstr "我在你的PDF檔案中找不到任何圖片"
-
-#: pdf_bot/photos/pdf_to_photo.py:255
-msgid "See above for all your photos"
-msgstr "這些就是你的圖片"
-
-#: pdf_bot/photos/photo_to_pdf.py:62
-msgid "Send me the first photo that you'll like to beautify or convert into PDF format or /cancel this action.\n\n"
-"The photos will be beautified and converted in the order that you send me"
-msgstr "向我發送第一張你想要美化或轉換為PDF檔案格式的圖片或者用 /cancel 來取消此操作。\n\n"
-"圖片將按照你發送給我的順序進行美化和轉換"
-
-#: pdf_bot/photos/photo_to_pdf.py:88
-msgid "The file you sent is not a photo. Send me the photo that you'll like to beautify and convert"
-msgstr "你發送的不是圖片。 發給我你想要美化和轉換的圖片"
-
-#: pdf_bot/photos/photo_to_pdf.py:98
-msgid "The photo you sent is too large for me to download.\n\n"
-msgstr "你發送的圖片太大了，我無法下載。\n\n"
-
-#: pdf_bot/photos/photo_to_pdf.py:102
-msgid "You can continue to beautify or convert with the files that you sent me, or /cancel this action."
-msgstr "你可以繼續美化或轉換你已經發送給我的圖片，或者用 /cancel 來取消此操作"
-
-#: pdf_bot/photos/photo_to_pdf.py:105 pdf_bot/photos/photo_to_pdf.py:136
-msgid "photos"
-msgstr "圖片"
-
-#: pdf_bot/photos/photo_to_pdf.py:109
-msgid "I can't convert your photos. Action cancelled"
-msgstr "我無法轉換你的圖片。 操作取消"
-
-#: pdf_bot/photos/photo_to_pdf.py:118
-msgid "File name unavailable"
-msgstr "沒有檔案名稱"
-
-#: pdf_bot/photos/photo_to_pdf.py:131
-msgid "Send me the next photo that you'll like to beautify or convert. Select the task from below if you have sent me all the photos.\n\n"
-"Note that I only have access to the file name if you sent your photo as a document"
-msgstr "發給我下一張你要美化或轉換的的片。 如果你已經將所有圖片發送給我，從下面選擇你想做什麼\n\n"
-"注意，你要將圖片作為檔案發送我才能知道檔案名稱"
-
-#: pdf_bot/photos/photo_to_pdf.py:197
-msgid "Beautifying and converting your photos"
-msgstr "正在美化和轉換你的圖片"
-
-#: pdf_bot/photos/photo_to_pdf.py:200
-msgid "Converting your photos"
-msgstr "正在轉換你的圖片"
-
-#: pdf_bot/photos/photo_to_pdf.py:236
-msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
-msgstr "你的圖片太大了，我無法下載。我無法美化或轉換你的圖片"
 
