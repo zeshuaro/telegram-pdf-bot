@@ -82,7 +82,7 @@ def check_photo_file(update, context):
             photo_file = None
             message.reply_text(_(
                 'The file you\'ve sent is not a photo. '
-                'Send me the photo that you\'ll like to beautify and convert'))
+                'Send me the photo that you\'ll like to beautify and convert to PDF'))
     else:
         photo_file = message.photo[-1]
 
@@ -99,7 +99,7 @@ def ask_next_photo(update, context):
         [[_(BEAUTIFY), _(TO_PDF)], [_(REMOVE_LAST), _(CANCEL)]], resize_keyboard=True,
         one_time_keyboard=True)
     update.effective_message.reply_text(_(
-        'Send me the next photo that you\'ll like to beautify\n\n'
+        'Send me the next photo that you\'ll like to beautify or convert to PDF\n\n'
         'Select the task from below if you have sent me all the photos'),
         reply_markup=reply_markup)
     send_file_names(update, context, context.user_data[PHOTO_NAMES], _('photos'))
