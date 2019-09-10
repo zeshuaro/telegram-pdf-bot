@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2019-09-09 21:52+1000\n"
-"PO-Revision-Date: 2019-09-09 11:58\n"
+"POT-Creation-Date: 2019-09-10 11:39+1000\n"
+"PO-Revision-Date: 2019-09-10 01:44\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "Language: vi_VN\n"
 
-#: bot.py:93
+#: bot.py:92
 msgid "Welcome to PDF Bot!\n\n"
 "*Features*\n"
 "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
@@ -32,24 +32,24 @@ msgid "Welcome to PDF Bot!\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr ""
 
-#: bot.py:109
+#: bot.py:108
 msgid "Set Language"
 msgstr ""
 
-#: bot.py:110 pdf_bot/utils.py:255
+#: bot.py:109 pdf_bot/utils.py:260
 msgid "Join Channel"
 msgstr ""
 
-#: bot.py:111 pdf_bot/payment.py:68 pdf_bot/utils.py:256
+#: bot.py:110 pdf_bot/payment.py:68 pdf_bot/utils.py:261
 msgid "Support PDF Bot"
 msgstr ""
 
-#: bot.py:114
+#: bot.py:113
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr ""
 
-#: bot.py:142 pdf_bot/constants.py:74
+#: bot.py:141 pdf_bot/constants.py:74
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr ""
 
@@ -214,42 +214,46 @@ msgid "Action cancelled"
 msgstr ""
 
 #: pdf_bot/utils.py:51
-msgid "The file you sent is not a PDF file. Try again and send me a PDF file or /cancel this action."
+msgid "The file you sent is not a PDF file, try again"
 msgstr ""
 
-#: pdf_bot/utils.py:56
-msgid "The PDF file you sent is too large for me to download. I can't process your PDF file. Action cancelled"
+#: pdf_bot/utils.py:55
+msgid "The PDF file you sent is too large for me to download\n\n"
+"I've cancelled your action"
 msgstr ""
 
-#: pdf_bot/utils.py:78
+#: pdf_bot/utils.py:77
 msgid "Something went wrong, start over again"
 msgstr ""
 
-#: pdf_bot/utils.py:155
-msgid "Your PDF file is already encrypted"
-msgstr ""
-
-#: pdf_bot/utils.py:157
-msgid "Your {} PDF file is encrypted and you'll have to decrypt it first. Action cancelled"
+#: pdf_bot/utils.py:153
+msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
+"I've cancelled your action"
 msgstr ""
 
 #: pdf_bot/utils.py:160
-msgid "Your PDF file is encrypted and you'll have to decrypt it first. Action cancelled."
+msgid "Your PDF file is already encrypted"
 msgstr ""
 
-#: pdf_bot/utils.py:165
-msgid "Your PDF file seems to be invalid and I couldn't open and read it. Action cancelled."
+#: pdf_bot/utils.py:162
+msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
+"I've cancelled your action"
 msgstr ""
 
-#: pdf_bot/utils.py:184
+#: pdf_bot/utils.py:166
+msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
+"I've cancelled your action"
+msgstr ""
+
+#: pdf_bot/utils.py:189
 msgid "You've sent me these {} so far:\n"
 msgstr ""
 
-#: pdf_bot/utils.py:231
+#: pdf_bot/utils.py:236
 msgid "The result file is too large for me to send to you"
 msgstr ""
 
-#: pdf_bot/utils.py:236 pdf_bot/utils.py:241
+#: pdf_bot/utils.py:241 pdf_bot/utils.py:246
 msgid "Here is your result file"
 msgstr ""
 
@@ -421,7 +425,7 @@ msgstr ""
 msgid "Encrypting your PDF file"
 msgstr ""
 
-#: pdf_bot/files/document.py:16 pdf_bot/files/photo.py:39
+#: pdf_bot/files/document.py:16 pdf_bot/files/photo.py:40
 msgid "Select the task that you'll like to perform"
 msgstr ""
 
@@ -429,31 +433,31 @@ msgstr ""
 msgid "Your PDF file is too large for me to download. I can't perform any tasks on it"
 msgstr ""
 
-#: pdf_bot/files/photo.py:31
+#: pdf_bot/files/photo.py:32
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr ""
 
-#: pdf_bot/files/photo.py:78
+#: pdf_bot/files/photo.py:79
 msgid "Extracting a preview for your PDF file"
 msgstr ""
 
-#: pdf_bot/files/photo.py:123
+#: pdf_bot/files/photo.py:122
 msgid "Select the result file format"
 msgstr ""
 
-#: pdf_bot/files/photo.py:135
+#: pdf_bot/files/photo.py:134
 msgid "Converting your PDF file into photos"
 msgstr ""
 
-#: pdf_bot/files/photo.py:170
+#: pdf_bot/files/photo.py:169
 msgid "Extracting all the photos in your PDF file"
 msgstr ""
 
-#: pdf_bot/files/photo.py:187
+#: pdf_bot/files/photo.py:184
 msgid "I couldn't find any photos in your PDF file"
 msgstr ""
 
-#: pdf_bot/files/photo.py:256
+#: pdf_bot/files/photo.py:255
 msgid "See above for all your photos"
 msgstr ""
 
