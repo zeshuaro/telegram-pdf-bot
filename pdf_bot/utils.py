@@ -99,13 +99,11 @@ def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None,
     with tempfile.NamedTemporaryFile()as tf:
         user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
-        pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=tf.name)
 
-        if encrypt_pw is None:
-            pdf_reader = open_pdf(update, context, tf.name)
+        if encrypt_pw is not None:
+            pdf_reader = open_pdf(update, context, file_id, tf.name, file_type)
         else:
-            pdf_reader = open_pdf(update, context, tf.name, file_type)
+            pdf_reader = open_pdf(update, context, file_id, tf.name)
 
         if pdf_reader is not None:
             pdf_writer = PdfFileWriter()
@@ -132,12 +130,13 @@ def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None,
         del user_data[PDF_INFO]
 
 
-def open_pdf(update, context, file_name, file_type=None):
+def open_pdf(update, context, file_id, file_name, file_type=None):
     """
-    Open and validate PDF file
+    Download, open and validate PDF file
     Args:
         update: the update object
         context: the context object
+        file_id: the string of the file ID
         file_name: the string of the file name
         file_type: the string of the file type
 
@@ -145,24 +144,31 @@ def open_pdf(update, context, file_name, file_type=None):
         The PdfFileReader object or None
     """
     _ = set_lang(update, context)
+    pdf_file = context.bot.get_file(file_id)
+    pdf_file.download(custom_path=file_name)
     pdf_reader = None
 
     try:
         pdf_reader = PdfFileReader(open(file_name, 'rb'))
-        if pdf_reader.isEncrypted:
-            if file_type:
-                if file_type == 'encrypted':
-                    text = _('Your PDF file is already encrypted')
-                else:
-                    text = _('Your {} PDF file is encrypted and you\'ll have to decrypt it first. '
-                             'Action cancelled').format(file_type)
-            else:
-                text = _('Your PDF file is encrypted and you\'ll have to decrypt it first. Action cancelled.')
-
-            pdf_reader = None
-            update.effective_message.reply_text(text)
     except PdfReadError:
-        text = _('Your PDF file seems to be invalid and I couldn\'t open and read it. Action cancelled.')
+        update.effective_message.reply_text(_(
+            'Your PDF file seems to be invalid and I couldn\'t open and read it\n\n'
+            'I\'ve cancelled your action'))
+
+    if pdf_reader is not None and pdf_reader.isEncrypted:
+        if file_type is not None:
+            if file_type == 'encrypted':
+                text = _('Your PDF file is already encrypted')
+            else:
+                text = _(
+                    'Your {} PDF file is encrypted and you\'ll have to decrypt it first\n\n'
+                    'I\'ve cancelled your action').format(file_type)
+        else:
+            text = _(
+                'Your PDF file is encrypted and you\'ll have to decrypt it first\n\n'
+                'I\'ve cancelled your action')
+
+        pdf_reader = None
         update.effective_message.reply_text(text)
 
     return pdf_reader

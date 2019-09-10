@@ -101,17 +101,13 @@ def add_wmk(update, context):
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
     src_fn, wmk_fn = [x.name for x in temp_files]
 
-    # Download PDF files
     user_data = context.user_data
     src_file_id = user_data[WMK_ID]
-    src_file = context.bot.get_file(src_file_id)
-    src_file.download(custom_path=src_fn)
-    wmk_file = update.effective_message.document.get_file()
-    wmk_file.download(custom_path=wmk_fn)
+    wmk_file_id = update.effective_message.document.file_id
+    src_reader = open_pdf(update, context, src_file_id, src_fn, 'source')
 
-    src_reader = open_pdf(update, context, src_fn, 'source')
     if src_reader is not None:
-        wmk_reader = open_pdf(update, context, wmk_fn, 'watermark')
+        wmk_reader = open_pdf(update, context, wmk_file_id, wmk_fn, 'watermark')
         if wmk_reader is not None:
             # Add watermark
             pdf_writer = PdfFileWriter()
