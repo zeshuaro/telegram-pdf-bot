@@ -4,11 +4,8 @@ branches:
   only:
   - production
 
-before_deploy: pip install --user babel && pybabel compile -d locale -D pdf_bot
-
 deploy:
   provider: heroku
   api_key:
     secure: IJczG0g5moghXb74FN6k66vm2valRtCUgYwRBzo5x6Wm5YQ/d+Mx2lqRmQbWcq4gt+or0FtmhtaskDJ7th49XOlXaRWD2+BLOo7bwBVwOBXGJ93Bpn1I/ZrZe/jGADs3OhkTocf529jo6v0oaIlAVgefgv0E8Hbl4QD/QnLMeorbghMAYt6edaIQBzMYT7AY4uLWUmusD76w5rfImA6W0I+hAvKeC0c57XSo2AaRpNiqSKl46raYKBUV7gaD3tRVCgAElSrIVcYfd3DZn56HyQmncl8SrpetNSo8kiU7su9BkDRkUQCSa3doyzaOTvurDKzw8mhYrTW/by3iSwXt3qmgaE9XRsXE6P+xMlI6/4mza2DkMdBx5w+iyV9EzKjFO8z8awrfq8rnVMHDrv+YnGYrEkhXZxnhdZKTXC2z7YRh1spcNqQk5ppsux7WQco/gi6s6xBveecQA742oEjoNCnHnKRi2ogGPDt02hXhjx8M4fA0ucOnp5w7tD00zK6rcS/6dgFfG0FFau7E9BcpYk5+cjSGrBPBCQdrampT3S0W3xDOxwOBUhO5K84IbBYHtbd+qrcISTpE6shA6C87uJ2rp8Y6WQg2/W0LJ+PpXvyVFGPKPbrV8EUJj0B4oygc3l23MT/u9BLR+bmKZ7O4sZALD0cqcZ54TA/S3hpD6vo=
   on: production
-  skip_cleanup: true
