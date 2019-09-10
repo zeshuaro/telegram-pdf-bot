@@ -3,6 +3,7 @@ import pdf2image
 import shutil
 import tempfile
 
+from logbook import Logger
 from PIL import Image
 from PyPDF2 import PdfFileWriter
 from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto, ChatAction
@@ -81,10 +82,8 @@ def get_pdf_preview(update, context):
     with tempfile.NamedTemporaryFile() as tf1:
         user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
-        pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=tf1.name)
+        pdf_reader = open_pdf(update, context, file_id, tf1.name)
 
-        pdf_reader = open_pdf(update, context, tf1.name)
         if pdf_reader:
             # Get first page of PDF file
             pdf_writer = PdfFileWriter()
@@ -173,9 +172,7 @@ def get_pdf_photos(update, context):
     with tempfile.NamedTemporaryFile() as tf:
         user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
-        pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=tf.name)
-        pdf_reader = open_pdf(update, context, tf.name)
+        pdf_reader = open_pdf(update, context, file_id, tf.name)
 
         if pdf_reader is not None:
             with tempfile.TemporaryDirectory() as tmp_dir_name:
@@ -197,6 +194,7 @@ def get_pdf_photos(update, context):
 
 
 def write_photos_in_pdf(pdf_reader, dir_name, file_name):
+    log = Logger()
     root_file_name = os.path.splitext(file_name)[0]
     i = 0
 
@@ -207,7 +205,8 @@ def write_photos_in_pdf(pdf_reader, dir_name, file_name):
                 if x_object[obj]['/Subtype'] == '/Image':
                     try:
                         data = x_object[obj].getData()
-                    except Exception:
+                    except Exception as e:
+                        log.error(e)
                         continue
 
                     if x_object[obj]['/Filter'] == '/FlateDecode':

@@ -43,12 +43,9 @@ def split_pdf(update, context):
     message.reply_text(_('Splitting your PDF file'), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf:
-        # Download PDF file
         user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
-        pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=tf.name)
-        pdf_reader = open_pdf(update, context, tf.name)
+        pdf_reader = open_pdf(update, context, file_id, tf.name)
 
         if pdf_reader is not None:
             merger = PdfFileMerger()
