@@ -5,11 +5,14 @@ import sys
 from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
 from logbook.compat import redirect_logging
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, ForceReply
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, ForceReply, \
+    ParseMode
 from telegram.ext import Updater, CommandHandler, Filters, MessageHandler, CallbackQueryHandler, \
     PreCheckoutQueryHandler
+from telegram.ext import messagequeue as mq
 from telegram.ext.dispatcher import run_async
-from telegram.parsemode import ParseMode
+from telegram.utils.request import Request
+
 
 from pdf_bot import *
 
@@ -32,8 +35,12 @@ def main():
     StreamHandler(sys.stdout, format_string=format_string, level='INFO').push_application()
     log = Logger()
 
+    q = mq.MessageQueue(all_burst_limit=3, all_time_limit_ms=3000)
+    request = Request(con_pool_size=8)
+    pdf_bot = MQBot(TELE_TOKEN, request=request, mqueue=q)
+
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(TELE_TOKEN, use_context=True,
+    updater = Updater(bot=pdf_bot, use_context=True,
                       request_kwargs={'connect_timeout': TIMEOUT, 'read_timeout': TIMEOUT})
 
     # Get the dispatcher to register handlers
