@@ -104,10 +104,10 @@ def add_wmk(update, context):
     user_data = context.user_data
     src_file_id = user_data[WMK_ID]
     wmk_file_id = update.effective_message.document.file_id
-    src_reader = open_pdf(update, context, src_file_id, src_fn, 'source')
+    src_reader = open_pdf(update, context, src_file_id, src_fn)
 
     if src_reader is not None:
-        wmk_reader = open_pdf(update, context, wmk_file_id, wmk_fn, 'watermark')
+        wmk_reader = open_pdf(update, context, wmk_file_id, wmk_fn, _('watermark'))
         if wmk_reader is not None:
             # Add watermark
             pdf_writer = PdfFileWriter()
