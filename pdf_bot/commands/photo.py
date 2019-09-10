@@ -59,7 +59,10 @@ def check_photo(update, context):
     photo_file = check_photo_file(update, context)
 
     if photo_file is None:
-        return ask_first_photo(update, context)
+        if not context.user_data[PHOTO_IDS]:
+            return ask_first_photo(update, context)
+        else:
+            return ask_next_photo(update, context)
 
     try:
         file_name = photo_file.file_name
@@ -81,8 +84,7 @@ def check_photo_file(update, context):
         if not photo_file.mime_type.startswith('image'):
             photo_file = None
             message.reply_text(_(
-                'The file you\'ve sent is not a photo. '
-                'Send me the photo that you\'ll like to beautify and convert to PDF'))
+                'The file you\'ve sent is not a photo'))
     else:
         photo_file = message.photo[-1]
 
