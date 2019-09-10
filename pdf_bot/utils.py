@@ -48,14 +48,13 @@ def check_pdf(update, context, send_msg=True):
     if not pdf_file.mime_type.endswith('pdf'):
         pdf_status = PDF_INVALID_FORMAT
         if send_msg:
-            message.reply_text(_(
-                'The file you sent is not a PDF file. Try again and send me a PDF file or /cancel this action.'))
+            message.reply_text(_('The file you sent is not a PDF file, try again'))
     elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         pdf_status = PDF_TOO_LARGE
         if send_msg:
             message.reply_text(_(
-                'The PDF file you sent is too large for me to download. '
-                'I can\'t process your PDF file. Action cancelled'))
+                'The PDF file you sent is too large for me to download\n\n'
+                'I\'ve cancelled your action'))
 
     return pdf_status
 
