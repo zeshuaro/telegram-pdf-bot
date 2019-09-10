@@ -1,7 +1,10 @@
-FROM python:3.7
+FROM python:3.7.4
 
-RUN apt-get update && apt-get install -y poppler-utils libcairo2 libpango-1.0-0 \
-    libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    poppler-utils=0.71.* libcairo2=1.16.* libpango-1.0-0=1.42.* \
+    libpangocairo-1.0-0=1.42.* libgdk-pixbuf2.0-0=2.38.* libffi-dev=3.2.* shared-mime-info=1.10-* \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /bot
 COPY . /bot
