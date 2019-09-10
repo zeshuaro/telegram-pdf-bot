@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2019-09-10 12:06+1000\n"
-"PO-Revision-Date: 2019-09-10 02:07\n"
+"PO-Revision-Date: 2019-09-10 02:38\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr "Ruotare"
 
 #: pdf_bot/constants.py:44
 msgid "Scale"
-msgstr ""
+msgstr "Ridimensiona"
 
 #: pdf_bot/constants.py:45
 msgid "Split"
@@ -130,7 +130,7 @@ msgstr "Ritaglia"
 
 #: pdf_bot/constants.py:50
 msgid "Compressed"
-msgstr ""
+msgstr "Comprimi"
 
 #: pdf_bot/constants.py:51
 msgid "Photos"
@@ -222,7 +222,7 @@ msgstr "Azione annullata"
 
 #: pdf_bot/utils.py:51
 msgid "The file you sent is not a PDF file, try again"
-msgstr ""
+msgstr "Il file che hai inviato non è un file PDF"
 
 #: pdf_bot/utils.py:55
 msgid "The PDF file you sent is too large for me to download\n\n"
@@ -272,7 +272,7 @@ msgstr "Inviami uno dei file PDF che vorresti confrontare\n\n"
 
 #: pdf_bot/commands/compare.py:76
 msgid "Send me the other PDF file that you'll like to compare"
-msgstr ""
+msgstr "Inviami l'altro PDF che vuoi confrontare"
 
 #: pdf_bot/commands/compare.py:98
 msgid "Comparing your PDF files"
@@ -290,7 +290,7 @@ msgstr "Inviami il file PDF che vorresti unire\n\n"
 
 #: pdf_bot/commands/merge.py:68
 msgid "The file you've sent is not a PDF file"
-msgstr ""
+msgstr "Il file che hai inviato non è un file PDF"
 
 #: pdf_bot/commands/merge.py:70
 msgid "The PDF file you've sent is too large for me to download"
@@ -335,11 +335,11 @@ msgstr "Nome file non disponibile"
 
 #: pdf_bot/commands/photo.py:86
 msgid "The file you've sent is not a photo"
-msgstr ""
+msgstr "Il file inviato non è una foto"
 
 #: pdf_bot/commands/photo.py:93
 msgid "The photo you've sent is too large for me to download"
-msgstr ""
+msgstr "La tua foto è troppo grande per il download"
 
 #: pdf_bot/commands/photo.py:103
 msgid "Send me the next photo that you'll like to beautify or convert to PDF\n\n"
@@ -364,7 +364,7 @@ msgstr ""
 
 #: pdf_bot/commands/watermark.py:42
 msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr ""
+msgstr "Inviami il file PDF al quale vorresti aggiungere un watermark"
 
 #: pdf_bot/commands/watermark.py:72
 msgid "Send me the watermark PDF file"
@@ -376,7 +376,7 @@ msgstr "Sto aggiungendo il watermark al tuo PDF"
 
 #: pdf_bot/commands/watermark.py:110
 msgid "watermark"
-msgstr ""
+msgstr "watermark"
 
 #: pdf_bot/files/crop.py:24
 msgid "Select the crop type that you'll like to perform"
@@ -416,7 +416,7 @@ msgstr "Sto decifrando il PDF"
 
 #: pdf_bot/files/crypto.py:45
 msgid "Your PDF file seems to be invalid and I couldn't open and read it"
-msgstr ""
+msgstr "Il PDF sembra non valido, non ho potuto aprirlo e leggerlo"
 
 #: pdf_bot/files/crypto.py:50
 msgid "Your PDF file is not encrypted"
@@ -516,7 +516,7 @@ msgstr ""
 
 #: pdf_bot/files/scale.py:56
 msgid "The scaling factors *{}* are invalid, try again"
-msgstr ""
+msgstr "Il fattore di scala *{}* non è valido, riprova"
 
 #: pdf_bot/files/scale.py:76
 msgid "The dimensions *{}* are invalid, try again"
@@ -524,11 +524,11 @@ msgstr ""
 
 #: pdf_bot/files/scale.py:87
 msgid "Scaling your PDF file, horizontally by *{}* and vertically by *{}*"
-msgstr ""
+msgstr "Sto riscalando il file PDF, orizzontalmente di *{}* e verticalmente di *{}*"
 
 #: pdf_bot/files/scale.py:93
 msgid "Scaling your PDF file with width of *{}* and height of *{}*"
-msgstr ""
+msgstr "Trasformando il file PDF con larghezza di *{}* e altezza di *{}*"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
