@@ -28,6 +28,7 @@ WAIT_SCALE_PERCENT = 11
 WAIT_SCALE_DIMENSION = 12
 WAIT_EXTRACT_PHOTO_TYPE = 13
 WAIT_TO_PHOTO_TYPE = 14
+WAIT_TEXT_TYPE = 15
 
 # Keyboard constants
 CANCEL = _('Cancel')
@@ -51,6 +52,9 @@ COMPRESSED = _('Compressed')
 PHOTOS = _('Photos')
 REMOVE_LAST = _('Remove Last File')
 TO_DIMENSIONS = _('To Dimensions')
+EXTRACT_TEXT = _('Extract Text')
+TEXT_MESSAGE = _('Text Message')
+TEXT_FILE = _('Text File')
 
 # Rotation constants
 ROTATE_90 = '90'

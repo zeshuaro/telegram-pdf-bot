@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 
@@ -25,6 +26,7 @@ CALLBACK_DATA = 'callback_data'
 
 def main():
     # Setup logging
+    logging.getLogger('pdfminer').setLevel(logging.WARNING)
     redirect_logging()
     format_string = '{record.level_name}: {record.message}'
     StreamHandler(sys.stdout, format_string=format_string, level='INFO').push_application()

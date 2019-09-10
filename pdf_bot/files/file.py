@@ -16,6 +16,7 @@ from pdf_bot.files.split import ask_split_range, split_pdf
 from pdf_bot.files.photo import get_pdf_preview, get_pdf_photos, pdf_to_photos, \
     ask_photo_results_type, process_photo_task, ask_photo_task
 from pdf_bot.files.document import ask_doc_task
+from pdf_bot.files.text import ask_text_type, get_pdf_text
 
 
 def file_cov_handler():
@@ -37,6 +38,7 @@ def file_cov_handler():
             WAIT_FILE_NAME: [MessageHandler(Filters.text, rename_pdf)],
             WAIT_ROTATE_DEGREE: [MessageHandler(Filters.text, check_rotate_degree)],
             WAIT_SPLIT_RANGE: [MessageHandler(Filters.text, split_pdf)],
+            WAIT_TEXT_TYPE: [MessageHandler(Filters.text, check_text_task)],
 
             WAIT_SCALE_TYPE: [MessageHandler(Filters.text, check_scale_task)],
             WAIT_SCALE_PERCENT: [MessageHandler(Filters.text, check_scale_percent)],
@@ -99,6 +101,8 @@ def check_doc_task(update, context):
         return ask_scale_type(update, context)
     elif text == _(SPLIT):
         return ask_split_range(update, context)
+    elif text == _(EXTRACT_TEXT):
+        return ask_text_type(update, context)
     elif text == _(CANCEL):
         return cancel_without_async(update, context)
 
@@ -132,6 +136,19 @@ def check_scale_task(update, context):
 
     if text in [_(BY_PERCENT), _(TO_DIMENSIONS)]:
         return ask_scale_value(update, context)
+    elif text == _(BACK):
+        return ask_doc_task(update, context)
+
+
+@run_async
+def check_text_task(update, context):
+    _ = set_lang(update, context)
+    text = update.effective_message.text
+
+    if text == _(TEXT_MESSAGE):
+        return get_pdf_text(update, context, is_file=False)
+    elif text == _(TEXT_FILE):
+        return get_pdf_text(update, context, is_file=True)
     elif text == _(BACK):
         return ask_doc_task(update, context)
 
