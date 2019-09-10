@@ -81,7 +81,7 @@ def check_photo_file(update, context):
         if not photo_file.mime_type.startswith('image'):
             photo_file = None
             message.reply_text(_(
-                'The file\'ve you sent is not a photo. '
+                'The file you\'ve sent is not a photo. '
                 'Send me the photo that you\'ll like to beautify and convert'))
     else:
         photo_file = message.photo[-1]
