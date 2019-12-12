@@ -17,6 +17,7 @@ from pdf_bot.files.photo import get_pdf_preview, get_pdf_photos, pdf_to_photos, 
     ask_photo_results_type, process_photo_task, ask_photo_task
 from pdf_bot.files.document import ask_doc_task
 from pdf_bot.files.text import ask_text_type, get_pdf_text
+from pdf_bot.files.ocr import add_ocr_to_pdf
 
 
 def file_cov_handler():
@@ -103,6 +104,8 @@ def check_doc_task(update, context):
         return ask_split_range(update, context)
     elif text == _(EXTRACT_TEXT):
         return ask_text_type(update, context)
+    elif text == OCR:
+        return add_ocr_to_pdf(update, context)
     elif text == _(CANCEL):
         return cancel_without_async(update, context)
 

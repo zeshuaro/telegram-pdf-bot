@@ -1,7 +1,7 @@
 from telegram import ReplyKeyboardMarkup
 
 from pdf_bot.constants import DECRYPT, ENCRYPT, ROTATE, SCALE, SPLIT, PREVIEW, \
-    TO_PHOTO, EXTRACT_PHOTO, RENAME, CROP, CANCEL, WAIT_DOC_TASK, EXTRACT_TEXT
+    TO_PHOTO, EXTRACT_PHOTO, RENAME, CROP, CANCEL, WAIT_DOC_TASK, EXTRACT_TEXT, OCR
 from pdf_bot.utils import set_lang
 
 
@@ -9,7 +9,7 @@ def ask_doc_task(update, context):
     _ = set_lang(update, context)
     keywords = sorted([
         _(DECRYPT), _(ENCRYPT), _(ROTATE), _(SCALE), _(SPLIT), _(PREVIEW), _(TO_PHOTO),
-        _(EXTRACT_PHOTO), _(RENAME), _(CROP), _(EXTRACT_TEXT)])
+        _(EXTRACT_PHOTO), _(RENAME), _(CROP), _(EXTRACT_TEXT), OCR])
     keyboard_size = 3
     keyboard = [keywords[i:i + keyboard_size] for i in range(0, len(keywords), keyboard_size)]
     keyboard.append([CANCEL])
