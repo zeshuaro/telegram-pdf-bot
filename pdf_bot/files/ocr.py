@@ -1,15 +1,14 @@
-import logging
-import ocrmypdf
 import os
 import tempfile
 
+import ocrmypdf
 from ocrmypdf.exceptions import PriorOcrFoundError
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
 from pdf_bot.constants import PDF_INFO
-from pdf_bot.utils import check_user_data, send_result_file
 from pdf_bot.language import set_lang
+from pdf_bot.utils import check_user_data, send_result_file
 
 
 def add_ocr_to_pdf(update, context):
