@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2019-09-10 12:06+1000\n"
-"PO-Revision-Date: 2019-09-10 02:07\n"
+"POT-Creation-Date: 2019-09-10 22:09+1000\n"
+"PO-Revision-Date: 2019-09-10 12:46\n"
 "Last-Translator: zeshuaro\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -22,138 +22,150 @@ msgstr ""
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "Language: de_DE\n"
 
-#: bot.py:92
+#: bot.py:101
 msgid "Welcome to PDF Bot!\n\n"
 "*Features*\n"
 "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
-"- Extract images in a PDF file and convert a PDF file into images\n"
+"- Extract text and photos in a PDF file and convert a PDF file into photos\n"
 "- Beautify and convert photos into PDF format\n"
 "- Convert a web page into a PDF file\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr ""
 
-#: bot.py:108
+#: bot.py:117
 msgid "Set Language"
 msgstr ""
 
-#: bot.py:109 pdf_bot/utils.py:260
+#: bot.py:118 pdf_bot/utils.py:260
 msgid "Join Channel"
 msgstr ""
 
-#: bot.py:110 pdf_bot/payment.py:68 pdf_bot/utils.py:261
+#: bot.py:119 pdf_bot/payment.py:68 pdf_bot/utils.py:261
 msgid "Support PDF Bot"
 msgstr ""
 
-#: bot.py:113
+#: bot.py:122
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr ""
 
-#: bot.py:141 pdf_bot/constants.py:74
+#: bot.py:150 pdf_bot/constants.py:78
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr ""
 
-#: pdf_bot/constants.py:33
+#: pdf_bot/constants.py:34
 msgid "Cancel"
 msgstr ""
 
-#: pdf_bot/constants.py:34
+#: pdf_bot/constants.py:35
 msgid "Done"
 msgstr ""
 
-#: pdf_bot/constants.py:35
+#: pdf_bot/constants.py:36
 msgid "Back"
 msgstr ""
 
-#: pdf_bot/constants.py:36
+#: pdf_bot/constants.py:37
 msgid "By Percentage"
 msgstr ""
 
-#: pdf_bot/constants.py:37
+#: pdf_bot/constants.py:38
 msgid "By Margin Size"
 msgstr ""
 
-#: pdf_bot/constants.py:38
+#: pdf_bot/constants.py:39
 msgid "Preview"
 msgstr ""
 
-#: pdf_bot/constants.py:39
+#: pdf_bot/constants.py:40
 msgid "Decrypt"
 msgstr ""
 
-#: pdf_bot/constants.py:40
+#: pdf_bot/constants.py:41
 msgid "Encrypt"
 msgstr ""
 
-#: pdf_bot/constants.py:41
+#: pdf_bot/constants.py:42
 msgid "Extract Photos"
 msgstr ""
 
-#: pdf_bot/constants.py:42
+#: pdf_bot/constants.py:43
 msgid "To Photos"
 msgstr ""
 
-#: pdf_bot/constants.py:43
+#: pdf_bot/constants.py:44
 msgid "Rotate"
 msgstr ""
 
-#: pdf_bot/constants.py:44
+#: pdf_bot/constants.py:45
 msgid "Scale"
 msgstr ""
 
-#: pdf_bot/constants.py:45
+#: pdf_bot/constants.py:46
 msgid "Split"
 msgstr ""
 
-#: pdf_bot/constants.py:46
+#: pdf_bot/constants.py:47
 msgid "Beautify"
 msgstr ""
 
-#: pdf_bot/constants.py:47
+#: pdf_bot/constants.py:48
 msgid "To PDF"
 msgstr ""
 
-#: pdf_bot/constants.py:48
+#: pdf_bot/constants.py:49
 msgid "Rename"
 msgstr ""
 
-#: pdf_bot/constants.py:49
+#: pdf_bot/constants.py:50
 msgid "Crop"
 msgstr ""
 
-#: pdf_bot/constants.py:50
+#: pdf_bot/constants.py:51
 msgid "Compressed"
 msgstr ""
 
-#: pdf_bot/constants.py:51
+#: pdf_bot/constants.py:52
 msgid "Photos"
 msgstr ""
 
-#: pdf_bot/constants.py:52
+#: pdf_bot/constants.py:53
 msgid "Remove Last File"
 msgstr ""
 
-#: pdf_bot/constants.py:53
+#: pdf_bot/constants.py:54
 msgid "To Dimensions"
 msgstr ""
 
-#: pdf_bot/constants.py:68
-msgid "Say Thanks 😁 ($1)"
+#: pdf_bot/constants.py:55
+msgid "Extract Text"
 msgstr ""
 
-#: pdf_bot/constants.py:69
-msgid "Coffee ☕ ($3)"
+#: pdf_bot/constants.py:56
+msgid "Text Message"
 msgstr ""
 
-#: pdf_bot/constants.py:70
-msgid "Beer 🍺 ($5)"
-msgstr ""
-
-#: pdf_bot/constants.py:71
-msgid "Meal 🍲 ($10)"
+#: pdf_bot/constants.py:57
+msgid "Text File"
 msgstr ""
 
 #: pdf_bot/constants.py:72
+msgid "Say Thanks 😁 ($1)"
+msgstr ""
+
+#: pdf_bot/constants.py:73
+msgid "Coffee ☕ ($3)"
+msgstr ""
+
+#: pdf_bot/constants.py:74
+msgid "Beer 🍺 ($5)"
+msgstr ""
+
+#: pdf_bot/constants.py:75
+msgid "Meal 🍲 ($10)"
+msgstr ""
+
+#: pdf_bot/constants.py:76
 msgid "Say Awesome 🤩 (Custom)"
 msgstr ""
 
@@ -429,11 +441,11 @@ msgstr ""
 msgid "Encrypting your PDF file"
 msgstr ""
 
-#: pdf_bot/files/document.py:16 pdf_bot/files/photo.py:40
+#: pdf_bot/files/document.py:18 pdf_bot/files/photo.py:40
 msgid "Select the task that you'll like to perform"
 msgstr ""
 
-#: pdf_bot/files/file.py:64
+#: pdf_bot/files/file.py:66
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr ""
@@ -529,5 +541,21 @@ msgstr ""
 
 #: pdf_bot/files/split.py:43
 msgid "Splitting your PDF file"
+msgstr ""
+
+#: pdf_bot/files/text.py:19
+msgid "Select how you'll like me to send the text to you"
+msgstr ""
+
+#: pdf_bot/files/text.py:30
+msgid "Extracting text from your PDF file"
+msgstr ""
+
+#: pdf_bot/files/text.py:78
+msgid "*See above for all the text in your PDF file*"
+msgstr ""
+
+#: pdf_bot/files/text.py:82
+msgid "I couldn't find any text in your PDF file"
 msgstr ""
 
