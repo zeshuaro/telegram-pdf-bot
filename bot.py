@@ -1,5 +1,4 @@
 import logging
-import ocrmypdf
 import os
 import sys
 
@@ -24,7 +23,6 @@ from telegram.ext import (
 from telegram.ext import messagequeue as mq
 from telegram.ext.dispatcher import run_async
 from telegram.utils.request import Request
-
 
 from pdf_bot import *
 
