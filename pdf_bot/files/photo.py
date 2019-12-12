@@ -9,7 +9,6 @@ from PyPDF2 import PdfFileWriter
 from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, InputMediaPhoto, ChatAction
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler
-from telegram.ext import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import PDF_INFO, WAIT_EXTRACT_PHOTO_TYPE, WAIT_TO_PHOTO_TYPE, BACK, \
@@ -160,7 +159,6 @@ def pdf_to_photos(update, context):
     return ConversationHandler.END
 
 
-@run_async
 def get_pdf_photos(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
