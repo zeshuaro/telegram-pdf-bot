@@ -7,22 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2019-09-10 22:09+1000\n"
-"PO-Revision-Date: 2019-09-10 12:46\n"
-"Last-Translator: zeshuaro\n"
+"POT-Creation-Date: 2019-12-12 23:18+1100\n"
+"PO-Revision-Date: 2019-12-12 12:31\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Serbian (Cyrillic)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Language: sr\n"
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "Language: sr_SP\n"
 
-#: bot.py:101
+#: bot.py:128
 msgid "Welcome to PDF Bot!\n\n"
 "*Features*\n"
 "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
@@ -32,24 +31,24 @@ msgid "Welcome to PDF Bot!\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr ""
 
-#: bot.py:117
+#: bot.py:148
 msgid "Set Language"
 msgstr ""
 
-#: bot.py:118 pdf_bot/utils.py:260
+#: bot.py:150 pdf_bot/utils.py:260
 msgid "Join Channel"
 msgstr ""
 
-#: bot.py:119 pdf_bot/payment.py:68 pdf_bot/utils.py:261
+#: bot.py:151 pdf_bot/payment.py:68 pdf_bot/utils.py:261
 msgid "Support PDF Bot"
 msgstr ""
 
-#: bot.py:122
+#: bot.py:157
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr ""
 
-#: bot.py:150 pdf_bot/constants.py:78
+#: bot.py:188 pdf_bot/constants.py:79
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr ""
 
@@ -149,23 +148,23 @@ msgstr ""
 msgid "Text File"
 msgstr ""
 
-#: pdf_bot/constants.py:72
+#: pdf_bot/constants.py:73
 msgid "Say Thanks 😁 ($1)"
 msgstr ""
 
-#: pdf_bot/constants.py:73
+#: pdf_bot/constants.py:74
 msgid "Coffee ☕ ($3)"
 msgstr ""
 
-#: pdf_bot/constants.py:74
+#: pdf_bot/constants.py:75
 msgid "Beer 🍺 ($5)"
 msgstr ""
 
-#: pdf_bot/constants.py:75
+#: pdf_bot/constants.py:76
 msgid "Meal 🍲 ($10)"
 msgstr ""
 
-#: pdf_bot/constants.py:76
+#: pdf_bot/constants.py:77
 msgid "Say Awesome 🤩 (Custom)"
 msgstr ""
 
@@ -441,40 +440,48 @@ msgstr ""
 msgid "Encrypting your PDF file"
 msgstr ""
 
-#: pdf_bot/files/document.py:18 pdf_bot/files/photo.py:40
+#: pdf_bot/files/document.py:18 pdf_bot/files/photo.py:39
 msgid "Select the task that you'll like to perform"
 msgstr ""
 
-#: pdf_bot/files/file.py:66
+#: pdf_bot/files/file.py:67
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr ""
 
-#: pdf_bot/files/photo.py:32
+#: pdf_bot/files/ocr.py:21
+msgid "Adding an OCR text layer to your PDF file"
+msgstr ""
+
+#: pdf_bot/files/ocr.py:39
+msgid "Your PDF file already has a text layer"
+msgstr ""
+
+#: pdf_bot/files/photo.py:31
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr ""
 
-#: pdf_bot/files/photo.py:79
+#: pdf_bot/files/photo.py:78
 msgid "Extracting a preview for your PDF file"
 msgstr ""
 
-#: pdf_bot/files/photo.py:122
+#: pdf_bot/files/photo.py:121
 msgid "Select the result file format"
 msgstr ""
 
-#: pdf_bot/files/photo.py:134
+#: pdf_bot/files/photo.py:133
 msgid "Converting your PDF file into photos"
 msgstr ""
 
-#: pdf_bot/files/photo.py:169
+#: pdf_bot/files/photo.py:167
 msgid "Extracting all the photos in your PDF file"
 msgstr ""
 
-#: pdf_bot/files/photo.py:184
+#: pdf_bot/files/photo.py:182
 msgid "I couldn't find any photos in your PDF file"
 msgstr ""
 
-#: pdf_bot/files/photo.py:255
+#: pdf_bot/files/photo.py:253
 msgid "See above for all your photos"
 msgstr ""
 
