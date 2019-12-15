@@ -1,11 +1,11 @@
 import gettext
 
-t = gettext.translation('pdf_bot', localedir='locale', languages=['en'])
+t = gettext.translation("pdf_bot", localedir="locale", languages=["en"])
 _ = t.gettext
 
 # Bot constants
-CHANNEL_NAME = 'pdf2botdev'
-SET_LANG = 'set_lang'
+CHANNEL_NAME = "pdf2botdev"
+SET_LANG = "set_lang"
 
 # PDF file validation constants
 PDF_OK = 0
@@ -31,58 +31,66 @@ WAIT_TO_PHOTO_TYPE = 14
 WAIT_TEXT_TYPE = 15
 
 # Keyboard constants
-CANCEL = _('Cancel')
-DONE = _('Done')
-BACK = _('Back')
-BY_PERCENT = _('By Percentage')
-BY_SIZE = _('By Margin Size')
-PREVIEW = _('Preview')
-DECRYPT = _('Decrypt')
-ENCRYPT = _('Encrypt')
-EXTRACT_PHOTO = _('Extract Photos')
-TO_PHOTO = _('To Photos')
-ROTATE = _('Rotate')
-SCALE = _('Scale')
-SPLIT = _('Split')
-BEAUTIFY = _('Beautify')
-TO_PDF = _('To PDF')
-RENAME = _('Rename')
-CROP = _('Crop')
-COMPRESSED = _('Compressed')
-PHOTOS = _('Photos')
-REMOVE_LAST = _('Remove Last File')
-TO_DIMENSIONS = _('To Dimensions')
-EXTRACT_TEXT = _('Extract Text')
-TEXT_MESSAGE = _('Text Message')
-TEXT_FILE = _('Text File')
-OCR = 'OCR'
+CANCEL = _("Cancel")
+DONE = _("Done")
+BACK = _("Back")
+BY_PERCENT = _("By Percentage")
+BY_SIZE = _("By Margin Size")
+PREVIEW = _("Preview")
+DECRYPT = _("Decrypt")
+ENCRYPT = _("Encrypt")
+EXTRACT_PHOTO = _("Extract Photos")
+TO_PHOTO = _("To Photos")
+ROTATE = _("Rotate")
+SCALE = _("Scale")
+SPLIT = _("Split")
+BEAUTIFY = _("Beautify")
+TO_PDF = _("To PDF")
+RENAME = _("Rename")
+CROP = _("Crop")
+COMPRESSED = _("Compressed")
+PHOTOS = _("Photos")
+REMOVE_LAST = _("Remove Last File")
+TO_DIMENSIONS = _("To Dimensions")
+EXTRACT_TEXT = _("Extract Text")
+TEXT_MESSAGE = _("Text Message")
+TEXT_FILE = _("Text File")
+OCR = "OCR"
 
 # Rotation constants
-ROTATE_90 = '90'
-ROTATE_180 = '180'
-ROTATE_270 = '270'
+ROTATE_90 = "90"
+ROTATE_180 = "180"
+ROTATE_270 = "270"
 
 # User data constants
-PDF_INFO = 'pdf_info'
+PDF_INFO = "pdf_info"
 
 # Payment Constants
-PAYMENT = 'payment'
-PAYMENT_PAYLOAD = 'payment_payload'
-CURRENCY = 'USD'
-PAYMENT_PARA = 'payment_para'
-THANKS = _('Say Thanks 😁 ($1)')
-COFFEE = _('Coffee ☕ ($3)')
-BEER = _('Beer 🍺 ($5)')
-MEAL = _('Meal 🍲 ($10)')
-CUSTOM = _('Say Awesome 🤩 (Custom)')
+PAYMENT = "payment"
+PAYMENT_PAYLOAD = "payment_payload"
+CURRENCY = "USD"
+PAYMENT_PARA = "payment_para"
+THANKS = _("Say Thanks 😁 ($1)")
+COFFEE = _("Coffee ☕ ($3)")
+BEER = _("Beer 🍺 ($5)")
+MEAL = _("Meal 🍲 ($10)")
+CUSTOM = _("Say Awesome 🤩 (Custom)")
 PAYMENT_DICT = {THANKS: 1, COFFEE: 3, BEER: 5, MEAL: 10}
-CUSTOM_MSG = _('Send me the amount that you\'ll like to support PDF Bot')
+CUSTOM_MSG = _("Send me the amount that you'll like to support PDF Bot")
 WAIT_PAYMENT = 0
 
 # Datastore constants
-USER = 'User'
-LANGUAGE = 'language'
+USER = "User"
+LANGUAGE = "language"
 
 # Language constants
-LANGUAGES = {'🇬🇧 English': 'en', '🇭🇰 廣東話': 'zh_HK', '🇹🇼 繁體中文': 'zh_TW',
-             '🇨🇳 简体中文': 'zh_CN', '🇮🇹 Italiano': 'it_IT'}
+LANGUAGES = {
+    "🇬🇧 English": "en",
+    "🇭🇰 廣東話": "zh_HK",
+    "🇹🇼 繁體中文": "zh_TW",
+    "🇨🇳 简体中文": "zh_CN",
+    "🇮🇹 Italiano": "it_IT",
+    "🇦🇪 ٱلْعَرَبِيَّة‎": "ar_SA",
+    "🇳🇱 Nederlands": "nl_NL",
+    "🇧🇷 Português do Brasil": "pt_BR",
+}
