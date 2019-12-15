@@ -67,7 +67,7 @@ def send_plot(update, counts):
     x_pos = list(range(len(tasks)))
 
     plt.rcdefaults()
-    fig, ax = plt.subplots()
+    _, ax = plt.subplots()
 
     ax.bar(x_pos, nums, align='center')
     ax.set_xticks(x_pos)

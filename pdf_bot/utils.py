@@ -17,9 +17,13 @@ from pdf_bot.stats import update_stats
 
 
 @run_async
-def cancel(update, context):
+def cancel_with_async(update, context):
+    return cancel_without_async(update, context)
+
+
+def cancel_without_async(update, context):
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_('Operation cancelled'),
+    update.effective_message.reply_text(_('Action cancelled'),
                                         reply_markup=ReplyKeyboardRemove())
 
     return ConversationHandler.END
@@ -44,15 +48,13 @@ def check_pdf(update, context, send_msg=True):
     if not pdf_file.mime_type.endswith('pdf'):
         pdf_status = PDF_INVALID_FORMAT
         if send_msg:
-            message.reply_text(_(
-                'The file you sent is not a PDF file. Try again and send me a PDF file or '
-                'type /cancel to cancel the operation'))
+            message.reply_text(_('The file you sent is not a PDF file, try again'))
     elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         pdf_status = PDF_TOO_LARGE
         if send_msg:
             message.reply_text(_(
-                'The PDF file you sent is too large for me to download. '
-                'I can\'t process your PDF file. Operation cancelled'))
+                'The PDF file you sent is too large for me to download\n\n'
+                'I\'ve cancelled your action'))
 
     return pdf_status
 
@@ -96,13 +98,11 @@ def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None,
     with tempfile.NamedTemporaryFile()as tf:
         user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
-        pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=tf.name)
 
-        if encrypt_pw is None:
-            pdf_reader = open_pdf(update, context, tf.name)
+        if encrypt_pw is not None:
+            pdf_reader = open_pdf(update, context, file_id, tf.name, file_type)
         else:
-            pdf_reader = open_pdf(update, context, tf.name, file_type)
+            pdf_reader = open_pdf(update, context, file_id, tf.name)
 
         if pdf_reader is not None:
             pdf_writer = PdfFileWriter()
@@ -129,12 +129,13 @@ def process_pdf(update, context, file_type, encrypt_pw=None, rotate_degree=None,
         del user_data[PDF_INFO]
 
 
-def open_pdf(update, context, file_name, file_type=None):
+def open_pdf(update, context, file_id, file_name, file_type=None):
     """
-    Open and validate PDF file
+    Download, open and validate PDF file
     Args:
         update: the update object
         context: the context object
+        file_id: the string of the file ID
         file_name: the string of the file name
         file_type: the string of the file type
 
@@ -142,32 +143,36 @@ def open_pdf(update, context, file_name, file_type=None):
         The PdfFileReader object or None
     """
     _ = set_lang(update, context)
+    pdf_file = context.bot.get_file(file_id)
+    pdf_file.download(custom_path=file_name)
     pdf_reader = None
 
     try:
         pdf_reader = PdfFileReader(open(file_name, 'rb'))
-        if pdf_reader.isEncrypted:
-            if file_type:
-                if file_type == 'encrypted':
-                    text = _('Your PDF file is already encrypted')
-                else:
-                    text = _('Your {} PDF file is encrypted and you\'ll have to decrypt it first. '
-                             'Operation cancelled').format(file_type)
-            else:
-                text = _('Your PDF file is encrypted and you\'ll have to decrypt it first. '
-                         'Operation cancelled')
-
-            pdf_reader = None
-            update.effective_message.reply_text(text)
     except PdfReadError:
-        text = _('Your PDF file seems to be invalid and I couldn\'t open and read it. '
-                 'Operation cancelled')
+        update.effective_message.reply_text(_(
+            'Your PDF file seems to be invalid and I couldn\'t open and read it\n\n'
+            'I\'ve cancelled your action'))
+
+    if pdf_reader is not None and pdf_reader.isEncrypted:
+        if file_type is not None:
+            if file_type == 'encrypted':
+                text = _('Your PDF file is already encrypted')
+            else:
+                text = _(
+                    'Your {} PDF file is encrypted and you\'ll have to decrypt it first\n\n'
+                    'I\'ve cancelled your action').format(file_type)
+        else:
+            text = _(
+                'Your PDF file is encrypted and you\'ll have to decrypt it first\n\n'
+                'I\'ve cancelled your action')
+
+        pdf_reader = None
         update.effective_message.reply_text(text)
 
     return pdf_reader
 
 
-@run_async
 def send_file_names(update, context, file_names, file_type):
     """
     Send a list of file names to user
@@ -181,7 +186,7 @@ def send_file_names(update, context, file_names, file_type):
         None
     """
     _ = set_lang(update, context)
-    text = _('You have sent me the following {}:\n').format(file_type)
+    text = _('You\'ve sent me these {} so far:\n').format(file_type)
     for i, filename in enumerate(file_names):
         text += f'{i + 1}: {filename}\n'
 
