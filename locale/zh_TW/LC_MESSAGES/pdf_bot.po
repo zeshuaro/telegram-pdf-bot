@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2019-12-12 23:18+1100\n"
-"PO-Revision-Date: 2019-12-12 12:31\n"
+"PO-Revision-Date: 2019-12-15 07:59\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,13 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify and convert photos into PDF format\n"
 "- Convert a web page into a PDF file\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "歡迎來到PDF Bot！\n\n"
+"*功能*\n"
+"- 比較，裁剪，解密，加密，合併，旋轉，縮放，分割和添加水印到PDF檔案\n"
+"- 提取PDF檔案中的文字和圖片，和將PDF檔案轉換為圖片格式\n"
+"- 美化和將圖片轉換為PDF檔案\n"
+"- 將網頁轉換為PDF檔案\n\n"
+"用/help以了解如何使用PDF Bot"
 
 #: bot.py:148
 msgid "Set Language"
@@ -139,15 +145,15 @@ msgstr "自訂尺寸"
 
 #: pdf_bot/constants.py:55
 msgid "Extract Text"
-msgstr ""
+msgstr "提取文字"
 
 #: pdf_bot/constants.py:56
 msgid "Text Message"
-msgstr ""
+msgstr "訊息"
 
 #: pdf_bot/constants.py:57
 msgid "Text File"
-msgstr ""
+msgstr "文字檔案"
 
 #: pdf_bot/constants.py:73
 msgid "Say Thanks 😁 ($1)"
@@ -461,11 +467,11 @@ msgstr "你發送的PDF檔案太大了，我無法下載\n\n"
 
 #: pdf_bot/files/ocr.py:21
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "正在添加文字OCR到你的PDF檔案中"
 
 #: pdf_bot/files/ocr.py:39
 msgid "Your PDF file already has a text layer"
-msgstr ""
+msgstr "你的PDF檔案已經有一層文字"
 
 #: pdf_bot/files/photo.py:31
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
@@ -567,17 +573,17 @@ msgstr "正在分割你的PDF檔案"
 
 #: pdf_bot/files/text.py:19
 msgid "Select how you'll like me to send the text to you"
-msgstr ""
+msgstr "選擇你想我怎麼把文字發給你"
 
 #: pdf_bot/files/text.py:30
 msgid "Extracting text from your PDF file"
-msgstr ""
+msgstr "正在提取你的PDF檔案的文字"
 
 #: pdf_bot/files/text.py:78
 msgid "*See above for all the text in your PDF file*"
-msgstr ""
+msgstr "上面就是你PDF檔案裡面的所有文字"
 
 #: pdf_bot/files/text.py:82
 msgid "I couldn't find any text in your PDF file"
-msgstr ""
+msgstr "我在你的PDF檔案中找不到任何文字"
 
