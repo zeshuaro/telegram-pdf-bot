@@ -93,10 +93,14 @@ def main():
     dispatcher.add_handler(compare_cov_handler())
     dispatcher.add_handler(merge_cov_handler())
     dispatcher.add_handler(photo_cov_handler())
+    dispatcher.add_handler(text_cov_handler())
     dispatcher.add_handler(watermark_cov_handler())
 
     # PDF file handler
     dispatcher.add_handler(file_cov_handler())
+
+    # PDF text handler
+    dispatcher.add_handler(MessageHandler(Filters.text, text_to_pdf))
 
     # Feedback handler
     dispatcher.add_handler(feedback_cov_handler())
