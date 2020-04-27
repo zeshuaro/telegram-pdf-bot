@@ -64,8 +64,13 @@ def check_text(update, context):
 def text_to_pdf(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
+    text = message.text
+
+    if text == _(CANCEL):
+        return cancel_without_async(update, context)
+
     message.reply_text(_("Creating your PDF file"), reply_markup=ReplyKeyboardRemove())
-    html = HTML(string=BASE_HTML.format(message.text.replace("\n", "<br/>")))
+    html = HTML(string=BASE_HTML.format(text.replace("\n", "<br/>")))
 
     with tempfile.TemporaryDirectory() as dir_name:
         out_fn = os.path.join(dir_name, "Text.pdf")
