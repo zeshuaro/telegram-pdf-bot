@@ -6,26 +6,33 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK
-from pdf_bot.utils import cancel_with_async, check_pdf, open_pdf, write_send_pdf, check_user_data, \
-    cancel_without_async
+from pdf_bot.utils import (
+    cancel_with_async,
+    check_pdf,
+    open_pdf,
+    write_send_pdf,
+    check_user_data,
+    cancel_without_async,
+)
 from pdf_bot.language import set_lang
 
 WAIT_SRC = 0
 WAIT_WMK = 1
-WMK_ID = 'watermark_id'
+WMK_ID = "watermark_id"
 
 
 def watermark_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('watermark', watermark)],
+        entry_points=[CommandHandler("watermark", watermark)],
         states={
             WAIT_SRC: [MessageHandler(Filters.document, check_src_doc)],
-            WAIT_WMK: [MessageHandler(Filters.document, check_wmk_doc)]
+            WAIT_WMK: [MessageHandler(Filters.document, check_wmk_doc)],
         },
         fallbacks=[
-            CommandHandler('cancel', cancel_with_async),
-            MessageHandler(Filters.text, check_text)],
-        allow_reentry=True
+            CommandHandler("cancel", cancel_with_async),
+            MessageHandler(Filters.text, check_text),
+        ],
+        allow_reentry=True,
     )
 
     return conv_handler
@@ -38,9 +45,13 @@ def watermark(update, context):
 
 def ask_src_doc(update, context):
     _ = set_lang(update, context)
-    reply_markup = ReplyKeyboardMarkup([[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_(
-        'Send me the PDF file that you\'ll like to add a watermark'), reply_markup=reply_markup)
+    reply_markup = ReplyKeyboardMarkup(
+        [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
+    )
+    update.effective_message.reply_text(
+        _("Send me the PDF file that you'll like to add a watermark"),
+        reply_markup=reply_markup,
+    )
 
     return WAIT_SRC
 
@@ -68,9 +79,11 @@ def check_src_doc(update, context):
     context.user_data[WMK_ID] = update.effective_message.document.file_id
 
     reply_markup = ReplyKeyboardMarkup(
-        [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_(
-        'Send me the watermark PDF file'), reply_markup=reply_markup)
+        [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
+    )
+    update.effective_message.reply_text(
+        _("Send me the watermark PDF file"), reply_markup=reply_markup
+    )
 
     return WAIT_WMK
 
@@ -94,8 +107,9 @@ def add_wmk(update, context):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_(
-        'Adding the watermark onto your PDF file'), reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(
+        _("Adding the watermark onto your PDF file"), reply_markup=ReplyKeyboardRemove()
+    )
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(2)]
@@ -107,7 +121,7 @@ def add_wmk(update, context):
     src_reader = open_pdf(update, context, src_file_id, src_fn)
 
     if src_reader is not None:
-        wmk_reader = open_pdf(update, context, wmk_file_id, wmk_fn, _('watermark'))
+        wmk_reader = open_pdf(update, context, wmk_file_id, wmk_fn, _("watermark"))
         if wmk_reader is not None:
             # Add watermark
             pdf_writer = PdfFileWriter()
@@ -116,7 +130,7 @@ def add_wmk(update, context):
                 pdf_writer.addPage(page)
 
             # Send result file
-            write_send_pdf(update, context, pdf_writer, 'file.pdf', 'watermarked')
+            write_send_pdf(update, context, pdf_writer, "file.pdf", "watermarked")
 
     # Clean up memory and files
     if user_data[WMK_ID] == src_file_id:

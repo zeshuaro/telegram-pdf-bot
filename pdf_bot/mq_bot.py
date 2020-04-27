@@ -5,6 +5,7 @@ from telegram.ext import messagequeue as mq
 
 class MQBot(telegram.bot.Bot):
     """A subclass of Bot which delegates send method handling to MQ"""
+
     def __init__(self, *args, is_queued_def=True, mqueue=None, **kwargs):
         super(MQBot, self).__init__(*args, **kwargs)
         # below 2 attributes should be provided for decorator usage

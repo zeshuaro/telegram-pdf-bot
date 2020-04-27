@@ -1,5 +1,6 @@
 import matplotlib
-matplotlib.use('Agg')
+
+matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 import os
@@ -14,7 +15,7 @@ from pdf_bot.store import client
 from pdf_bot.constants import USER, LANGUAGE
 
 load_dotenv()
-DEV_TELE_ID = int(os.environ.get('DEV_TELE_ID'))
+DEV_TELE_ID = int(os.environ.get("DEV_TELE_ID"))
 
 
 def update_stats(update, task):
@@ -44,7 +45,7 @@ def get_stats(update, context):
             for key in user.keys():
                 if key != LANGUAGE:
                     num_tasks += user[key]
-                    if key != 'count':
+                    if key != "count":
                         counts[key] += user[key]
 
     launch_date = date(2017, 7, 1)
@@ -56,8 +57,9 @@ def get_stats(update, context):
     est_num_tasks = int(num_tasks / stats_diff * launch_diff * 0.8)
 
     update.effective_message.reply_text(
-        f'Total users: {num_users}\nTotal tasks: {num_tasks}\n'
-        f'Estimated total tasks: {est_num_tasks}')
+        f"Total users: {num_users}\nTotal tasks: {num_tasks}\n"
+        f"Estimated total tasks: {est_num_tasks}"
+    )
     send_plot(update, counts)
 
 
@@ -69,13 +71,13 @@ def send_plot(update, counts):
     plt.rcdefaults()
     _, ax = plt.subplots()
 
-    ax.bar(x_pos, nums, align='center')
+    ax.bar(x_pos, nums, align="center")
     ax.set_xticks(x_pos)
     ax.set_xticklabels(tasks, rotation=45)
-    ax.set_xlabel('Tasks')
-    ax.set_ylabel('Counts')
+    ax.set_xlabel("Tasks")
+    ax.set_ylabel("Counts")
     plt.tight_layout()
 
-    with tempfile.NamedTemporaryFile(suffix='.png') as tf:
+    with tempfile.NamedTemporaryFile(suffix=".png") as tf:
         plt.savefig(tf.name)
-        update.effective_message.reply_photo(open(tf.name, 'rb'))
+        update.effective_message.reply_photo(open(tf.name, "rb"))

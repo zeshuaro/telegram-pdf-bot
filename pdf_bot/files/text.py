@@ -15,9 +15,13 @@ from pdf_bot.language import set_lang
 def ask_text_type(update, context):
     _ = set_lang(update, context)
     keyboard = [[_(TEXT_MESSAGE), _(TEXT_FILE)], [_(BACK)]]
-    reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True, resize_keyboard=True)
-    update.effective_message.reply_text(_(
-        'Select how you\'ll like me to send the text to you'), reply_markup=reply_markup)
+    reply_markup = ReplyKeyboardMarkup(
+        keyboard, one_time_keyboard=True, resize_keyboard=True
+    )
+    update.effective_message.reply_text(
+        _("Select how you'll like me to send the text to you"),
+        reply_markup=reply_markup,
+    )
 
     return WAIT_TEXT_TYPE
 
@@ -27,8 +31,9 @@ def get_pdf_text(update, context, is_file):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_(
-        'Extracting text from your PDF file'), reply_markup=ReplyKeyboardRemove())
+    update.effective_message.reply_text(
+        _("Extracting text from your PDF file"), reply_markup=ReplyKeyboardRemove()
+    )
 
     with tempfile.NamedTemporaryFile() as tf:
         user_data = context.user_data
@@ -38,12 +43,12 @@ def get_pdf_text(update, context, is_file):
 
         with tempfile.TemporaryDirectory() as dir_name:
             tmp_text = tempfile.TemporaryFile()
-            with open(tf.name, 'rb') as f:
+            with open(tf.name, "rb") as f:
                 extract_text_to_fp(f, tmp_text)
 
             tmp_text.seek(0)
-            pdf_texts = textwrap.wrap(tmp_text.read().decode('utf-8').strip())
-            out_fn = os.path.join(dir_name, f'{os.path.splitext(file_name)[0]}.txt')
+            pdf_texts = textwrap.wrap(tmp_text.read().decode("utf-8").strip())
+            out_fn = os.path.join(dir_name, f"{os.path.splitext(file_name)[0]}.txt")
             send_pdf_text(update, context, pdf_texts, is_file, out_fn)
 
     # Clean up memory
@@ -59,24 +64,25 @@ def send_pdf_text(update, context, pdf_texts, is_file, out_fn):
 
     if pdf_texts:
         if is_file:
-            with open(out_fn, 'w') as f:
-                f.write('\n'.join(pdf_texts))
+            with open(out_fn, "w") as f:
+                f.write("\n".join(pdf_texts))
 
-            send_result_file(update, context, out_fn, 'get_text')
+            send_result_file(update, context, out_fn, "get_text")
         else:
-            msg_text = ''
+            msg_text = ""
             for pdf_text in pdf_texts:
                 if len(msg_text) + len(pdf_text) + 1 > MAX_MESSAGE_LENGTH:
                     message.reply_text(msg_text.strip())
-                    msg_text = ''
+                    msg_text = ""
 
-                msg_text += f' {pdf_text}'
+                msg_text += f" {pdf_text}"
 
             if msg_text:
                 message.reply_text(msg_text.strip())
 
-            message.reply_text(_(
-                '*See above for all the text in your PDF file*'),
-                parse_mode=ParseMode.MARKDOWN)
+            message.reply_text(
+                _("*See above for all the text in your PDF file*"),
+                parse_mode=ParseMode.MARKDOWN,
+            )
     else:
-        message.reply_text(_('I couldn\'t find any text in your PDF file'))
+        message.reply_text(_("I couldn't find any text in your PDF file"))
