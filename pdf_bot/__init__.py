@@ -3,6 +3,8 @@ from pdf_bot.commands import (
     merge_cov_handler,
     watermark_cov_handler,
     photo_cov_handler,
+    text_cov_handler,
+    text_to_pdf,
 )
 from pdf_bot.files import file_cov_handler
 from pdf_bot.url import url_to_pdf
