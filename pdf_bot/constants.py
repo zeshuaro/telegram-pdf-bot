@@ -93,4 +93,5 @@ LANGUAGES = {
     "🇦🇪 ٱلْعَرَبِيَّة‎": "ar_SA",
     "🇳🇱 Nederlands": "nl_NL",
     "🇧🇷 Português do Brasil": "pt_BR",
+    "🇪🇸 español": "es_ES",
 }
