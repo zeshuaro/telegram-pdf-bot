@@ -15,11 +15,15 @@ from pdf_bot.files.utils import get_back_markup, check_back_user_data
 
 def ask_split_range(update, context):
     _ = set_lang(update, context)
-    update.effective_message.reply_text(_(
-        'Send me the range of pages that you\'ll like to keep. '
-        'Use ⚡ *INSTANT VIEW* from below or refer to '
-        '[here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples.'),
-        parse_mode=ParseMode.MARKDOWN, reply_markup=get_back_markup(update, context))
+    update.effective_message.reply_text(
+        _(
+            "Send me the range of pages that you'll like to keep. "
+            "Use ⚡ *INSTANT VIEW* from below or refer to "
+            "[here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
+        ),
+        parse_mode=ParseMode.MARKDOWN,
+        reply_markup=get_back_markup(update, context),
+    )
 
     return WAIT_SPLIT_RANGE
 
@@ -35,12 +39,16 @@ def split_pdf(update, context):
     split_range = message.text
 
     if not PageRange.valid(split_range):
-        message.reply_text(_(
-            'The range is invalid. Try again', reply_markup=get_back_markup(update, context)))
+        message.reply_text(
+            _(
+                "The range is invalid. Try again",
+                reply_markup=get_back_markup(update, context),
+            )
+        )
 
         return WAIT_SPLIT_RANGE
 
-    message.reply_text(_('Splitting your PDF file'), reply_markup=ReplyKeyboardRemove())
+    message.reply_text(_("Splitting your PDF file"), reply_markup=ReplyKeyboardRemove())
 
     with tempfile.NamedTemporaryFile() as tf:
         user_data = context.user_data
@@ -50,7 +58,7 @@ def split_pdf(update, context):
         if pdf_reader is not None:
             merger = PdfFileMerger()
             merger.append(pdf_reader, pages=PageRange(split_range))
-            write_send_pdf(update, context, merger, file_name, 'split')
+            write_send_pdf(update, context, merger, file_name, "split")
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:

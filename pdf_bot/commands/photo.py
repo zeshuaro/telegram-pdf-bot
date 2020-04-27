@@ -9,26 +9,31 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import CANCEL, BEAUTIFY, TO_PDF, REMOVE_LAST
-from pdf_bot.utils import cancel_with_async, send_file_names, send_result_file, check_user_data, \
-    cancel_without_async
+from pdf_bot.utils import (
+    cancel_with_async,
+    send_file_names,
+    send_result_file,
+    check_user_data,
+    cancel_without_async,
+)
 from pdf_bot.language import set_lang
 
 WAIT_PHOTO = 0
-PHOTO_IDS = 'photo_ids'
-PHOTO_NAMES = 'photo_names'
+PHOTO_IDS = "photo_ids"
+PHOTO_NAMES = "photo_names"
 
 
 def photo_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('photo', photo)],
+        entry_points=[CommandHandler("photo", photo)],
         states={
             WAIT_PHOTO: [
                 MessageHandler(Filters.document | Filters.photo, check_photo),
-                MessageHandler(Filters.text, check_text)
+                MessageHandler(Filters.text, check_text),
             ]
         },
-        fallbacks=[CommandHandler('cancel', cancel_with_async)],
-        allow_reentry=True
+        fallbacks=[CommandHandler("cancel", cancel_with_async)],
+        allow_reentry=True,
     )
 
     return conv_handler
@@ -44,12 +49,17 @@ def photo(update, context):
 
 def ask_first_photo(update, context):
     _ = set_lang(update, context)
-    reply_markup = ReplyKeyboardMarkup([[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True)
-    update.effective_message.reply_text(_(
-        'Send me the first photo that you\'ll like to beautify or convert into PDF\n\n'
-        'Note that the photos will be beautified and converted in the order that you send me'),
-        reply_markup=reply_markup)
-    
+    reply_markup = ReplyKeyboardMarkup(
+        [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
+    )
+    update.effective_message.reply_text(
+        _(
+            "Send me the first photo that you'll like to beautify or convert into PDF\n\n"
+            "Note that the photos will be beautified and converted in the order that you send me"
+        ),
+        reply_markup=reply_markup,
+    )
+
     return WAIT_PHOTO
 
 
@@ -67,7 +77,7 @@ def check_photo(update, context):
     try:
         file_name = photo_file.file_name
     except AttributeError:
-        file_name = _('File name unavailable')
+        file_name = _("File name unavailable")
 
     context.user_data[PHOTO_IDS].append(photo_file.file_id)
     context.user_data[PHOTO_NAMES].append(file_name)
@@ -78,19 +88,18 @@ def check_photo(update, context):
 def check_photo_file(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
-    
+
     if message.document:
         photo_file = message.document
-        if not photo_file.mime_type.startswith('image'):
+        if not photo_file.mime_type.startswith("image"):
             photo_file = None
-            message.reply_text(_(
-                'The file you\'ve sent is not a photo'))
+            message.reply_text(_("The file you've sent is not a photo"))
     else:
         photo_file = message.photo[-1]
 
     if photo_file is not None and photo_file.file_size > MAX_FILESIZE_DOWNLOAD:
         photo_file = None
-        message.reply_text(_('The photo you\'ve sent is too large for me to download'))
+        message.reply_text(_("The photo you've sent is too large for me to download"))
 
     return photo_file
 
@@ -98,13 +107,18 @@ def check_photo_file(update, context):
 def ask_next_photo(update, context):
     _ = set_lang(update, context)
     reply_markup = ReplyKeyboardMarkup(
-        [[_(BEAUTIFY), _(TO_PDF)], [_(REMOVE_LAST), _(CANCEL)]], resize_keyboard=True,
-        one_time_keyboard=True)
-    update.effective_message.reply_text(_(
-        'Send me the next photo that you\'ll like to beautify or convert to PDF\n\n'
-        'Select the task from below if you have sent me all the photos'),
-        reply_markup=reply_markup)
-    send_file_names(update, context, context.user_data[PHOTO_NAMES], _('photos'))
+        [[_(BEAUTIFY), _(TO_PDF)], [_(REMOVE_LAST), _(CANCEL)]],
+        resize_keyboard=True,
+        one_time_keyboard=True,
+    )
+    update.effective_message.reply_text(
+        _(
+            "Send me the next photo that you'll like to beautify or convert to PDF\n\n"
+            "Select the task from below if you have sent me all the photos"
+        ),
+        reply_markup=reply_markup,
+    )
+    send_file_names(update, context, context.user_data[PHOTO_NAMES], _("photos"))
 
     return WAIT_PHOTO
 
@@ -132,9 +146,10 @@ def remove_photo(update, context):
     file_ids.pop()
     file_name = file_names.pop()
 
-    update.effective_message.reply_text(_(
-        '*{}* has been removed for beautifying or converting').format(file_name),
-        parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_text(
+        _("*{}* has been removed for beautifying or converting").format(file_name),
+        parse_mode=ParseMode.MARKDOWN,
+    )
 
     if len(file_ids) == 0:
         return ask_first_photo(update, context)
@@ -167,11 +182,14 @@ def process_all_photos(update, context):
 def process_photo(update, context, file_ids, is_beautify):
     _ = set_lang(update, context)
     if is_beautify:
-        update.effective_message.reply_text(_(
-            'Beautifying and converting your photos'), reply_markup=ReplyKeyboardRemove())
+        update.effective_message.reply_text(
+            _("Beautifying and converting your photos"),
+            reply_markup=ReplyKeyboardRemove(),
+        )
     else:
-        update.effective_message.reply_text(_(
-            'Converting your photos into PDF'), reply_markup=ReplyKeyboardRemove())
+        update.effective_message.reply_text(
+            _("Converting your photos into PDF"), reply_markup=ReplyKeyboardRemove()
+        )
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
@@ -186,15 +204,17 @@ def process_photo(update, context, file_ids, is_beautify):
 
     with tempfile.TemporaryDirectory() as dir_name:
         if is_beautify:
-            out_fn = os.path.join(dir_name, 'Beautified.pdf')
-            noteshrink.notescan_main(photo_files, basename=f'{dir_name}/page', pdfname=out_fn)
-            send_result_file(update, context, out_fn, 'beautify')
+            out_fn = os.path.join(dir_name, "Beautified.pdf")
+            noteshrink.notescan_main(
+                photo_files, basename=f"{dir_name}/page", pdfname=out_fn
+            )
+            send_result_file(update, context, out_fn, "beautify")
         else:
-            out_fn = os.path.join(dir_name, 'Converted.pdf')
-            with open(out_fn, 'wb') as f:
+            out_fn = os.path.join(dir_name, "Converted.pdf")
+            with open(out_fn, "wb") as f:
                 f.write(img2pdf.convert(photo_files))
 
-            send_result_file(update, context, out_fn, 'to_pdf')
+            send_result_file(update, context, out_fn, "to_pdf")
 
     # Clean up files
     for tf in temp_files:

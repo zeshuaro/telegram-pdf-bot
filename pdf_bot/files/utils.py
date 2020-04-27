@@ -8,7 +8,9 @@ from pdf_bot.files.document import ask_doc_task
 
 def get_back_markup(update, context):
     _ = set_lang(update, context)
-    reply_markup = ReplyKeyboardMarkup([[_(BACK)]], one_time_keyboard=True, resize_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup(
+        [[_(BACK)]], one_time_keyboard=True, resize_keyboard=True
+    )
 
     return reply_markup
 
