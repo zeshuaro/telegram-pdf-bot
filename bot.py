@@ -102,9 +102,6 @@ def main():
     # Feedback handler
     dispatcher.add_handler(feedback_cov_handler())
 
-    # PDF text handler
-    dispatcher.add_handler(MessageHandler(Filters.text, text_to_pdf))
-
     # Log all errors
     dispatcher.add_error_handler(error_callback)
 
