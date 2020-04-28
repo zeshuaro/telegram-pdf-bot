@@ -57,8 +57,8 @@ def get_stats(update, context):
     est_num_tasks = int(num_tasks / stats_diff * launch_diff * 0.8)
 
     update.effective_message.reply_text(
-        f"Total users: {num_users}\nTotal tasks: {num_tasks}\n"
-        f"Estimated total tasks: {est_num_tasks}"
+        f"Total users: {num_users:,}\nTotal tasks: {num_tasks:,}\n"
+        f"Estimated total tasks: {est_num_tasks:,}"
     )
     send_plot(update, counts)
 
@@ -73,9 +73,12 @@ def send_plot(update, counts):
 
     ax.bar(x_pos, nums, align="center")
     ax.set_xticks(x_pos)
-    ax.set_xticklabels(tasks, rotation=45)
+    ax.set_xticklabels(tasks, rotation=90)
     ax.set_xlabel("Tasks")
     ax.set_ylabel("Counts")
+    ax.get_yaxis().set_major_formatter(
+        matplotlib.ticker.FuncFormatter(lambda x, _: f"{int(x):,}")
+    )
     plt.tight_layout()
 
     with tempfile.NamedTemporaryFile(suffix=".png") as tf:
