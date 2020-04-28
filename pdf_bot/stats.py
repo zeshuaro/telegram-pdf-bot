@@ -66,17 +66,19 @@ def get_stats(update, context):
 def send_plot(update, counts):
     tasks = sorted(counts.keys())
     nums = [counts[x] for x in tasks]
-    x_pos = list(range(len(tasks)))
+    y_pos = list(range(len(tasks)))
 
     plt.rcdefaults()
     _, ax = plt.subplots()
 
-    ax.bar(x_pos, nums, align="center")
-    ax.set_xticks(x_pos)
-    ax.set_xticklabels(tasks, rotation=90)
-    ax.set_xlabel("Tasks")
-    ax.set_ylabel("Counts")
-    ax.get_yaxis().set_major_formatter(
+    ax.barh(y_pos, nums, align="center")
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(tasks)
+    ax.set_xlabel("Counts")
+    ax.set_ylabel("Tasks")
+    ax.invert_yaxis()
+    ax.set_title("PDF Bot Statistics")
+    ax.get_xaxis().set_major_formatter(
         matplotlib.ticker.FuncFormatter(lambda x, _: f"{int(x):,}")
     )
     plt.tight_layout()
