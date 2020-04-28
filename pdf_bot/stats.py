@@ -57,8 +57,8 @@ def get_stats(update, context):
     est_num_tasks = int(num_tasks / stats_diff * launch_diff * 0.8)
 
     update.effective_message.reply_text(
-        f"Total users: {num_users}\nTotal tasks: {num_tasks}\n"
-        f"Estimated total tasks: {est_num_tasks}"
+        f"Total users: {num_users:,}\nTotal tasks: {num_tasks:,}\n"
+        f"Estimated total tasks: {est_num_tasks:,}"
     )
     send_plot(update, counts)
 
@@ -66,16 +66,21 @@ def get_stats(update, context):
 def send_plot(update, counts):
     tasks = sorted(counts.keys())
     nums = [counts[x] for x in tasks]
-    x_pos = list(range(len(tasks)))
+    y_pos = list(range(len(tasks)))
 
     plt.rcdefaults()
     _, ax = plt.subplots()
 
-    ax.bar(x_pos, nums, align="center")
-    ax.set_xticks(x_pos)
-    ax.set_xticklabels(tasks, rotation=45)
-    ax.set_xlabel("Tasks")
-    ax.set_ylabel("Counts")
+    ax.barh(y_pos, nums, align="center")
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(tasks)
+    ax.set_xlabel("Counts")
+    ax.set_ylabel("Tasks")
+    ax.invert_yaxis()
+    ax.set_title("PDF Bot Statistics")
+    ax.get_xaxis().set_major_formatter(
+        matplotlib.ticker.FuncFormatter(lambda x, _: f"{int(x):,}")
+    )
     plt.tight_layout()
 
     with tempfile.NamedTemporaryFile(suffix=".png") as tf:
