@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 from google.cloud import datastore
 
 from pdf_bot.store import client
-from pdf_bot.constants import USER, LANGUAGE
+from pdf_bot.constants import USER, LANGUAGE, LANGUAGES
 
 load_dotenv()
 DEV_TELE_ID = int(os.environ.get("DEV_TELE_ID"))
@@ -38,6 +38,7 @@ def get_stats(update, context):
     query = client.query(kind=USER)
     num_users = num_tasks = 0
     counts = defaultdict(int)
+    langs = defaultdict(int)
 
     for user in query.fetch():
         if user.key.id != DEV_TELE_ID:
@@ -47,6 +48,8 @@ def get_stats(update, context):
                     num_tasks += user[key]
                     if key != "count":
                         counts[key] += user[key]
+                elif key == LANGUAGE:
+                    langs[user[key]] += 1
 
     launch_date = date(2017, 7, 1)
     stats_date = date(2019, 7, 1)
@@ -60,6 +63,13 @@ def get_stats(update, context):
         f"Total users: {num_users:,}\nTotal tasks: {num_tasks:,}\n"
         f"Estimated total tasks: {est_num_tasks:,}"
     )
+
+    text = "Language stats:\n"
+    for key, value in LANGUAGES.items():
+        if value in langs:
+            text += f"{key}: {langs[value]}\n"
+
+    update.effective_message.reply_text(text)
     send_plot(update, counts)
 
 

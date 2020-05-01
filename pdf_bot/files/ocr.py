@@ -28,7 +28,7 @@ def add_ocr_to_pdf(update, context):
         pdf_file.download(custom_path=tf.name)
 
         with tempfile.TemporaryDirectory() as dir_name:
-            out_fn = os.path.join(dir_name, f"OCR_{os.path.splitext(file_name)}")
+            out_fn = os.path.join(dir_name, f"OCR_{os.path.splitext(file_name)[0]}.pdf")
             try:
                 # logging.getLogger("ocrmypdf").setLevel(logging.WARNING)
                 ocrmypdf.ocr(tf.name, out_fn, deskew=True, progress_bar=False)
