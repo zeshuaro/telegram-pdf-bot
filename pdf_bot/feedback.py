@@ -20,7 +20,7 @@ VALID_LANGS = ("en", "zh-hk", "zh-tw", "zh-cn")
 def feedback_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("feedback", feedback)],
-        states={0: [MessageHandler(Filters.text, receive_feedback)]},
+        states={0: [MessageHandler(Filters.text & ~Filters.command, receive_feedback)]},
         fallbacks=[CommandHandler("cancel", cancel_with_async)],
     )
 
