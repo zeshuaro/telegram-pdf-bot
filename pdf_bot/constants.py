@@ -94,5 +94,6 @@ LANGUAGES = {
     "🇳🇱 Nederlands": "nl_NL",
     "🇧🇷 Português do Brasil": "pt_BR",
     "🇪🇸 español": "es_ES",
+    "🇹🇷 Türkçe": "tr_TR",
     "🇮🇱 עברית": "he_IL",
 }
