@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2020-04-28 00:09+1000\n"
-"PO-Revision-Date: 2020-05-03 06:51\n"
+"PO-Revision-Date: 2020-05-07 07:12\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -238,214 +238,221 @@ msgstr "Gönderdiğiniz dosya bir PDF dosyası değil, tekrar deneyin"
 #: pdf_bot/utils.py:63
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "Gönderdiğiniz PDF dosyası indirilemeyecek kadar büyük Eyleminizi iptal ettim"
 
 #: pdf_bot/utils.py:87
 msgid "Something went wrong, start over again"
-msgstr ""
+msgstr "Bir şeyler ters gitti, yeniden başla"
 
 #: pdf_bot/utils.py:171
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "PDF dosyanız geçersiz görünüyor ve açamıyorum\n"
+"Eylemini iptal ettim"
 
 #: pdf_bot/utils.py:180
 msgid "Your PDF file is already encrypted"
-msgstr ""
+msgstr "PDF dosyanız zaten şifreli"
 
 #: pdf_bot/utils.py:182
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "{} PDF dosyanız şifreli ve önce şifresini çözmeniz gerekecek\n"
+"Eylemini iptal ettim"
 
 #: pdf_bot/utils.py:187
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "PDF dosyanız şifreli ve önce şifresini çözmeniz gerekecek\n"
+"Eylemini iptal ettim"
 
 #: pdf_bot/utils.py:211
 msgid "You've sent me these {} so far:\n"
-msgstr ""
+msgstr "You've sent me these {} so far:\n"
 
 #: pdf_bot/utils.py:259
 msgid "The result file is too large for me to send to you"
-msgstr ""
+msgstr "Sonuç dosyası size gönderilemeyecek kadar büyük"
 
 #: pdf_bot/utils.py:267 pdf_bot/utils.py:274
 msgid "Here is your result file"
-msgstr ""
+msgstr "İşte sonuç dosyanız"
 
 #: pdf_bot/commands/compare.py:53
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
-msgstr ""
+msgstr "Karşılaştırmak istediğiniz PDF dosyalarından birini bana gönderin\n"
+"Yalnızca metin farklılıkları arayabileceğimi unutmayın"
 
 #: pdf_bot/commands/compare.py:89
 msgid "Send me the other PDF file that you'll like to compare"
-msgstr ""
+msgstr "Karşılaştırmak istediğiniz diğer PDF dosyasını bana gönderin"
 
 #: pdf_bot/commands/compare.py:114
 msgid "Comparing your PDF files"
-msgstr ""
+msgstr "PDF dosyalarınızı karşılaştırma"
 
 #: pdf_bot/commands/compare.py:133
 msgid "There are no differences in text between your PDF files"
-msgstr ""
+msgstr "PDF dosyalarınız arasında metin farkı yok"
 
 #: pdf_bot/commands/merge.py:61
 msgid "Send me the first PDF file that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "Bana birleştirmek istediğiniz ilk PDF dosyasını gönderin\n\n"
+"Dosyaların bana gönderdiğiniz sırayla birleştirileceğini unutmayın"
 
 #: pdf_bot/commands/merge.py:86
 msgid "The file you've sent is not a PDF file"
-msgstr ""
+msgstr "Gönderdiğiniz dosya bir PDF dosyası değil"
 
 #: pdf_bot/commands/merge.py:88
 msgid "The PDF file you've sent is too large for me to download"
-msgstr ""
+msgstr "Gönderdiğiniz PDF dosyası indiremeyecek kadar büyük"
 
 #: pdf_bot/commands/merge.py:105
 msgid "Send me the next PDF file that you'll like to merge or press *Done* if you've sent me all the PDF files"
-msgstr ""
+msgstr "Bana birleştirmek istediğiniz bir sonraki PDF dosyasını gönderin veya bana tüm PDF dosyalarını gönderdiyseniz * Bitti * 'ye basın"
 
 #: pdf_bot/commands/merge.py:112
 msgid "PDF files"
-msgstr ""
+msgstr "PDF dosyaları"
 
 #: pdf_bot/commands/merge.py:141
 msgid "*{}* has been removed for merging"
-msgstr ""
+msgstr "* {} * birleştirilmek üzere kaldırıldı"
 
 #: pdf_bot/commands/merge.py:159
 msgid "You haven't sent me any PDF files"
-msgstr ""
+msgstr "Bana hiç PDF dosyası göndermedin"
 
 #: pdf_bot/commands/merge.py:163
 msgid "You've only sent me one PDF file."
-msgstr ""
+msgstr "Bana sadece bir PDF dosyası gönderdiniz."
 
 #: pdf_bot/commands/merge.py:173
 msgid "Merging your PDF files"
-msgstr ""
+msgstr "PDF dosyalarınızı birleştirme"
 
 #: pdf_bot/commands/merge.py:193
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
-msgstr ""
+msgstr "\"{}\" Dosyasını açıp okuyamadığım için PDF dosyalarınızı birleştiremiyorum. Şifrelenmeiğinden emin olun"
 
 #: pdf_bot/commands/photo.py:56
 msgid "Send me the first photo that you'll like to beautify or convert into PDF\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Güzelleştirmek veya PDF'ye dönüştürmek istediğiniz ilk fotoğrafı bana gönderin\n\n"
+" Fotoğrafların bana gönderdiğiniz sırayla güzelleştirileceğini ve dönüştürüleceğini unutmayın"
 
 #: pdf_bot/commands/photo.py:80
 msgid "File name unavailable"
-msgstr ""
+msgstr "Dosya adı mevcut değil"
 
 #: pdf_bot/commands/photo.py:96
 msgid "The file you've sent is not a photo"
-msgstr ""
+msgstr "Gönderdiğiniz dosya bir fotoğraf değil"
 
 #: pdf_bot/commands/photo.py:102
 msgid "The photo you've sent is too large for me to download"
-msgstr ""
+msgstr "Gönderdiğiniz fotoğraf indiremeyecek kadar büyük"
 
 #: pdf_bot/commands/photo.py:115
 msgid "Send me the next photo that you'll like to beautify or convert to PDF\n\n"
 "Select the task from below if you have sent me all the photos"
-msgstr ""
+msgstr "Güzelleştirmek veya PDF'ye dönüştürmek istediğiniz bir sonraki fotoğrafı bana gönderin\n\n"
+" Bana tüm fotoğrafları gönderdiyseniz görevi aşağıdan seçin"
 
 #: pdf_bot/commands/photo.py:121
 msgid "photos"
-msgstr ""
+msgstr "fotoğraflar"
 
 #: pdf_bot/commands/photo.py:150
 msgid "*{}* has been removed for beautifying or converting"
-msgstr ""
+msgstr "* {} * güzelleştirmek veya dönüştürmek için kaldırıldı"
 
 #: pdf_bot/commands/photo.py:186
 msgid "Beautifying and converting your photos"
-msgstr ""
+msgstr "Fotoğraflarınızı güzelleştirme ve dönüştürme"
 
 #: pdf_bot/commands/photo.py:191
 msgid "Converting your photos into PDF"
-msgstr ""
+msgstr "Fotoğraflarınızı PDF'ye dönüştürme"
 
 #: pdf_bot/commands/text.py:47
 msgid "Send me the text that you'll like to write into your PDF file"
-msgstr ""
+msgstr "PDF dosyanıza yazmak isteyeceğiniz metni bana gönderin"
 
 #: pdf_bot/commands/text.py:67
 msgid "Creating your PDF file"
-msgstr ""
+msgstr "PDF dosyanızı oluşturma"
 
 #: pdf_bot/commands/watermark.py:52
 msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr ""
+msgstr "Filigran eklemek isteyeceğiniz PDF dosyasını bana gönderin"
 
 #: pdf_bot/commands/watermark.py:85
 msgid "Send me the watermark PDF file"
-msgstr ""
+msgstr "Bana filigran PDF dosyasını gönder"
 
 #: pdf_bot/commands/watermark.py:111
 msgid "Adding the watermark onto your PDF file"
-msgstr ""
+msgstr "PDF dosyanıza filigran ekleme"
 
 #: pdf_bot/commands/watermark.py:124
 msgid "watermark"
-msgstr ""
+msgstr "filigran"
 
 #: pdf_bot/files/crop.py:34
 msgid "Select the crop type that you'll like to perform"
-msgstr ""
+msgstr "Gerçekleştirmek istediğiniz kırpma türünü seçin"
 
 #: pdf_bot/files/crop.py:49
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr ""
+msgstr "Bana {} ve {} arasında bir numara gönderin. Bu,PDF dosyanızdaki içerik ile sayfa arasında kalacak boşluk payı yüzdesidir."
 
 #: pdf_bot/files/crop.py:59
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr ""
+msgstr "Kenar boşluğu boyutunu ayarlamak istediğiniz bir numara gönderin. Pozitif sayılar kenar boşluğu boyutunu, negatif sayılar ise büyütür"
 
 #: pdf_bot/files/crop.py:81
 msgid "The number must be between {} and {}, try again"
-msgstr ""
+msgstr "Sayı {} ve {} arasında olmalıdır, tekrar deneyin"
 
 #: pdf_bot/files/crop.py:103
 msgid "The number is invalid, try again"
-msgstr ""
+msgstr "Numara geçersiz, tekrar deneyin"
 
 #: pdf_bot/files/crop.py:113
 msgid "Cropping your PDF file"
-msgstr ""
+msgstr "PDF dosyanızı kırpma"
 
 #: pdf_bot/files/crop.py:138
 msgid "Something went wrong, try again"
-msgstr ""
+msgstr "Bir şeyler ters gitti, tekrar deneyin"
 
 #: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
-msgstr ""
+msgstr "PDF dosyanızın şifresini çözmek için bana şifreyi gönderin"
 
 #: pdf_bot/files/crypto.py:34
 msgid "Decrypting your PDF file"
-msgstr ""
+msgstr "PDF dosyanızın şifresini çözme"
 
 #: pdf_bot/files/crypto.py:49
 msgid "Your PDF file seems to be invalid and I couldn't open and read it"
-msgstr ""
+msgstr "PDF dosyanız geçersiz görünüyor ve açamıyorum"
 
 #: pdf_bot/files/crypto.py:54
 msgid "Your PDF file is not encrypted"
-msgstr ""
+msgstr "PDF dosyanız şifrelenmemiş"
 
 #: pdf_bot/files/crypto.py:59
 msgid "The decryption password is incorrect, try to send it again"
-msgstr ""
+msgstr "Şifre çözme şifresi yanlış, tekrar göndermeyi deneyin"
 
 #: pdf_bot/files/crypto.py:73
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
-msgstr ""
+msgstr "PDF dosyanız şifresini çözemediğim bir yöntemle şifrelenmiş"
 
 #: pdf_bot/files/crypto.py:88
 msgid "Send me the password to encrypt your PDF file"
@@ -467,11 +474,11 @@ msgstr "PDF dosyanız indirmek için çok büyük\n\n"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "PDF dosyanıza OCR metin katmanı ekleme"
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
-msgstr ""
+msgstr "PDF dosyanızın zaten bir metin katmanı var"
 
 #: pdf_bot/files/photo.py:53
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
@@ -499,29 +506,31 @@ msgstr ""
 
 #: pdf_bot/files/photo.py:302
 msgid "See above for all your photos"
-msgstr ""
+msgstr "Tüm fotoğraflarınız için yukarıya bakın"
 
 #: pdf_bot/files/rename.py:20
 msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr ""
+msgstr "PDF dosyanızı yeniden adlandırmak istediğiniz dosya adını bana gönderin"
 
 #: pdf_bot/files/rename.py:40
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
-msgstr ""
+msgstr "Dosya adları aşağıdaki karakterlerden hiçbirini içeremez:\n"
+"{}\n"
+"Bana başka bir dosya adı gönder"
 
 #: pdf_bot/files/rename.py:50
 msgid "Renaming your PDF file into *{}*"
-msgstr ""
+msgstr "PDF dosyanızı * {} * olarak yeniden adlandırma"
 
 #: pdf_bot/files/rotate.py:25
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr ""
+msgstr "Select the degrees that you'll like to rotate your PDF file in clockwise"
 
 #: pdf_bot/files/rotate.py:51
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr ""
+msgstr "PDF dosyanızı {} derece saat yönünde döndürme"
 
 #: pdf_bot/files/scale.py:25
 msgid "Select the scale type that you'll like to perform"
@@ -531,48 +540,51 @@ msgstr ""
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "2 will double the axis and 0.5 will halve the axis\n\n"
 "*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "Bana yatay ve dikey eksenler için ölçeklendirme faktörlerini gönder\n\n"
+" 2 ekseni ikiye katlar ve 0.5 ekseni yarıya indirir\n\n"
+" * Örnek: 2 0.5 * (bu yatay ekseni iki katına çıkaracak ve dikey ekseni yarıya indirecektir)"
 
 #: pdf_bot/files/scale.py:51
 msgid "Send me the width and height\n\n"
 "*Example: 150 200* (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "Bana genişliği ve yüksekliği gönder\n\n"
+" * Örnek: 150 200 * (bu, genişliği 150'ye ve yüksekliği 200'e ayarlar)"
 
 #: pdf_bot/files/scale.py:75
 msgid "The scaling factors *{}* are invalid, try again"
-msgstr ""
+msgstr "Ölçeklendirme faktörleri * {} * geçersiz, tekrar deneyin"
 
 #: pdf_bot/files/scale.py:96
 msgid "The dimensions *{}* are invalid, try again"
-msgstr ""
+msgstr "* {} * Boyutları geçersiz, tekrar deneyin"
 
 #: pdf_bot/files/scale.py:108
 msgid "Scaling your PDF file, horizontally by *{}* and vertically by *{}*"
-msgstr ""
+msgstr "PDF dosyanızı yatay olarak * {} * ve dikey olarak * {} * ölçeklendirme"
 
 #: pdf_bot/files/scale.py:117
 msgid "Scaling your PDF file with width of *{}* and height of *{}*"
-msgstr ""
+msgstr "PDF dosyanızı * {} * genişliği ve * {} * yüksekliği ile ölçeklendirme"
 
 #: pdf_bot/files/split.py:19
 msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
-msgstr ""
+msgstr "Saklamak isteyeceğiniz sayfa aralığını bana gönderin. Aşağıdan ⚡ * ANLIK GÖRÜNÜM * kullanın veya bazı aralık örnekleri için [buraya] .(http://telegra.ph/Telegram-PDF-Bot-07-16) bakın"
 
 #: pdf_bot/files/split.py:45
 msgid "The range is invalid. Try again"
-msgstr ""
+msgstr "Aralık geçersiz. Tekrar deneyin"
 
 #: pdf_bot/files/split.py:51
 msgid "Splitting your PDF file"
-msgstr ""
+msgstr "PDF dosyanızı bölme"
 
 #: pdf_bot/files/text.py:22
 msgid "Select how you'll like me to send the text to you"
-msgstr ""
+msgstr "Metni size nasıl göndermemi isteyeceğinizi seçin"
 
 #: pdf_bot/files/text.py:35
 msgid "Extracting text from your PDF file"
-msgstr ""
+msgstr "PDF dosyanızdan metin çıkarma"
 
 #: pdf_bot/files/text.py:84
 msgid "*See above for all the text in your PDF file*"
