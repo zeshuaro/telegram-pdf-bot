@@ -246,7 +246,7 @@ def write_photos_in_pdf(input_fn, dir_name, file_name):
     image_prefix = os.path.join(dir_name, root_file_name)
 
     cmd = f"pdfimages -png {input_fn} {image_prefix}"
-    proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE)
+    proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE, shell=False)
     out, err = proc.communicate()
 
     if proc.returncode != 0:

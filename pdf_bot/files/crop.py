@@ -126,7 +126,7 @@ def crop_pdf(update, context, percent=None, offset=None):
             else:
                 cmd = f"pdf-crop-margins -a {offset} -o {out_fn} {tf.name}"
 
-            proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE)
+            proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE, shell=False)
             out, err = proc.communicate()
 
             if proc.returncode != 0:
