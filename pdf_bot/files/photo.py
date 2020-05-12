@@ -1,4 +1,5 @@
 import os
+import shlex
 import shutil
 import tempfile
 
@@ -6,13 +7,15 @@ import pdf2image
 from PIL import Image
 from PyPDF2 import PdfFileWriter
 from logbook import Logger
+from subprocess import Popen, PIPE
 from telegram import (
     ReplyKeyboardRemove,
     ReplyKeyboardMarkup,
     InputMediaPhoto,
     ChatAction,
 )
-from telegram.constants import MAX_FILESIZE_DOWNLOAD
+from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
+from telegram.error import BadRequest
 from telegram.ext import ConversationHandler
 from telegram.parsemode import ParseMode
 
@@ -212,14 +215,17 @@ def get_pdf_photos(update, context):
     with tempfile.NamedTemporaryFile() as tf:
         user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
-        pdf_reader = open_pdf(update, context, file_id, tf.name)
+        pdf_file = context.bot.get_file(file_id)
+        pdf_file.download(custom_path=tf.name)
 
-        if pdf_reader is not None:
-            with tempfile.TemporaryDirectory() as tmp_dir_name:
-                dir_name = os.path.join(tmp_dir_name, "Photos_In_PDF")
-                os.mkdir(dir_name)
-                write_photos_in_pdf(pdf_reader, dir_name, file_name)
-
+        with tempfile.TemporaryDirectory() as tmp_dir_name:
+            dir_name = os.path.join(tmp_dir_name, "Photos_In_PDF")
+            os.mkdir(dir_name)
+            if not write_photos_in_pdf(tf.name, dir_name, file_name):
+                update.effective_message.reply_text(
+                    _("Something went wrong, try again")
+                )
+            else:
                 if not os.listdir(dir_name):
                     update.effective_message.reply_text(
                         _("I couldn't find any photos in your PDF file")
@@ -234,49 +240,21 @@ def get_pdf_photos(update, context):
     return ConversationHandler.END
 
 
-def write_photos_in_pdf(pdf_reader, dir_name, file_name):
-    log = Logger()
+def write_photos_in_pdf(input_fn, dir_name, file_name):
+    is_success = True
     root_file_name = os.path.splitext(file_name)[0]
-    i = 0
+    image_prefix = os.path.join(dir_name, root_file_name)
 
-    for page in pdf_reader.pages:
-        if "/Resources" in page and "/XObject" in page["/Resources"]:
-            x_object = page["/Resources"]["/XObject"].getObject()
-            for obj in x_object:
-                if x_object[obj]["/Subtype"] == "/Image":
-                    try:
-                        data = x_object[obj].getData()
-                    except Exception as e:
-                        log.error(e)
-                        continue
+    cmd = f"pdfimages -png {input_fn} {image_prefix}"
+    proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE, shell=False)
+    out, err = proc.communicate()
 
-                    if x_object[obj]["/Filter"] == "/FlateDecode":
-                        if x_object[obj]["/ColorSpace"] == "/DeviceRGB":
-                            mode = "RGB"
-                        else:
-                            mode = "P"
+    if proc.returncode != 0:
+        is_success = False
+        log = Logger()
+        log.error(f'Stdout:\n{out.decode("utf-8")}\n\nStderr:\n{err.decode("utf-8")}')
 
-                        try:
-                            size = (x_object[obj]["/Width"], x_object[obj]["/Height"])
-                            img = Image.frombytes(mode, size, data)
-                            img.save(
-                                os.path.join(dir_name, f"{root_file_name}-{i}.png")
-                            )
-                            i += 1
-                        except TypeError:
-                            continue
-                    elif x_object[obj]["/Filter"] == "/DCTDecode":
-                        with open(
-                            os.path.join(dir_name, f"{root_file_name}-{i}.jpg"), "wb"
-                        ) as img:
-                            img.write(data)
-                            i += 1
-                    elif x_object[obj]["/Filter"] == "/JPXDecode":
-                        with open(
-                            os.path.join(dir_name, f"{root_file_name}-{i}.jp2"), "wb"
-                        ) as img:
-                            img.write(data)
-                            i += 1
+    return is_success
 
 
 def send_result_photos(update, context, dir_name, task):
@@ -284,19 +262,15 @@ def send_result_photos(update, context, dir_name, task):
     message = update.effective_message
 
     if message.text == _(PHOTOS):
-        photos = []
         for photo_name in sorted(os.listdir(dir_name)):
-            if len(photos) != 0 and len(photos) % MAX_MEDIA_GROUP == 0:
-                message.chat.send_action(ChatAction.UPLOAD_PHOTO)
-                message.reply_media_group(photos)
-                del photos[:]
-
-            photos.append(
-                InputMediaPhoto(open(os.path.join(dir_name, photo_name), "rb"))
-            )
-
-        if photos:
-            message.reply_media_group(photos)
+            photo_path = os.path.join(dir_name, photo_name)
+            if os.path.getsize(photo_path) <= MAX_FILESIZE_UPLOAD:
+                try:
+                    message.chat.send_action(ChatAction.UPLOAD_PHOTO)
+                    message.reply_photo(open(photo_path, "rb"))
+                except BadRequest:
+                    message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
+                    message.reply_document(open(photo_path, "rb"))
 
         message.reply_text(
             _("See above for all your photos"),
