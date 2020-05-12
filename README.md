@@ -17,37 +17,56 @@ A PDF utility bot on Telegram that can:
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and 
-testing purposes
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes
 
-### Prerequisites
+### Setup Database
 
-#### OS Requirements
+The bot uses [Datastore](https://cloud.google.com/datastore) on Google Cloud Platform (GCP). Create a new project on GCP and enabble Datastore in the project. Install the [gcloud CLI](https://cloud.google.com/sdk/) and run `gcloud init` to initialise it with your project.
+
+### OS Requirements
 
 Ubuntu
 
-```bash
+```sh
 apt-get install poppler-utils libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
 ```
 
 macOS
-```bash
+```sh
 brew install libxml2 libxslt poppler cairo pango gdk-pixbuf libffi
 ```
 
-#### Bot Requirements
+### Setup Virtual Environment
+
+Create a virtual environment with the following command:
+
+```sh
+virtualenv venv
+source venv/bin/activate
+```
+
+### Bot Requirements
+
 Run the following command to install the required packages:
 
-```bash
+```sh
 pip install -r requirements.txt
+```
+
+### Compile the translation files
+
+Run the following command to compile all the translation files:
+
+```sh
+pybabel compile -D pdf_bot -d locale/
 ```
 
 ### Setup Your Environment Variables
 
-Make a `.env` file and put your telegram token in there. Below is an example:
+Copy the `.env` example file and edit the variables within the file:
 
-```dotenv
-TELE_TOKEN=<telegram_token>
+```sh
+cp .env.example .env
 ```
 
 ### Running The Bot
