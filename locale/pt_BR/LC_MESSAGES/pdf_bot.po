@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2020-04-28 00:09+1000\n"
-"PO-Revision-Date: 2020-05-03 06:51\n"
+"POT-Creation-Date: 2020-05-13 16:04+1000\n"
+"PO-Revision-Date: 2020-05-13 06:06\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "Language: pt_BR\n"
 
-#: bot.py:130
+#: bot.py:126
 msgid "Welcome to PDF Bot!\n\n"
 "*Features*\n"
 "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
@@ -37,25 +37,25 @@ msgstr "Bem-vindo ao PDF Bot!\n\n"
 "- Converter uma página da web em um arquivo PDF\n\n"
 "Digite /help para ver como usar o PDF Bot"
 
-#: bot.py:150
+#: bot.py:146
 msgid "Set Language"
 msgstr "Definir Idioma"
 
-#: bot.py:152 pdf_bot/utils.py:291
+#: bot.py:148 pdf_bot/utils.py:291
 msgid "Join Channel"
 msgstr "Entrar no Canal"
 
-#: bot.py:153 pdf_bot/payment.py:68 pdf_bot/utils.py:292
+#: bot.py:149 pdf_bot/payment.py:68 pdf_bot/utils.py:292
 msgid "Support PDF Bot"
 msgstr "Ajude o PDF Bot"
 
-#: bot.py:159
+#: bot.py:155
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr "Você pode executar a maioria das tarefas simplesmente enviando-me um arquivo PDF, uma foto ou um link para uma página da web.\n\n"
 "Algumas tarefas podem ser realizadas usando os comandos /compare, /merge, /watermark ou /photo"
 
-#: bot.py:190 pdf_bot/constants.py:79
+#: bot.py:186 pdf_bot/constants.py:79
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "Envie-me o valor que gostaria de doar para o PDF Bot"
 
@@ -383,7 +383,7 @@ msgstr "Convertendo suas fotos em PDF"
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr ""
 
-#: pdf_bot/commands/text.py:67
+#: pdf_bot/commands/text.py:72
 msgid "Creating your PDF file"
 msgstr ""
 
@@ -427,7 +427,7 @@ msgstr "O número é inválido, tente novamente"
 msgid "Cropping your PDF file"
 msgstr "Cortando o seu arquivo PDF"
 
-#: pdf_bot/files/crop.py:138
+#: pdf_bot/files/crop.py:138 pdf_bot/files/photo.py:226
 msgid "Something went wrong, try again"
 msgstr "Algo deu errado, tente novamente"
 
@@ -463,7 +463,7 @@ msgstr "Envie-me a senha para criptografar seu arquivo PDF"
 msgid "Encrypting your PDF file"
 msgstr "Criptografando seu arquivo PDF"
 
-#: pdf_bot/files/document.py:50 pdf_bot/files/photo.py:67
+#: pdf_bot/files/document.py:50 pdf_bot/files/photo.py:70
 msgid "Select the task that you'll like to perform"
 msgstr "Selecione a tarefa que você deseja executar"
 
@@ -481,31 +481,31 @@ msgstr ""
 msgid "Your PDF file already has a text layer"
 msgstr ""
 
-#: pdf_bot/files/photo.py:53
+#: pdf_bot/files/photo.py:56
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "Sua foto é muito grande para eu baixar. Eu não posso embelezar ou converter sua foto"
 
-#: pdf_bot/files/photo.py:108
+#: pdf_bot/files/photo.py:111
 msgid "Extracting a preview for your PDF file"
 msgstr "Extraindo uma visualização para o seu arquivo PDF"
 
-#: pdf_bot/files/photo.py:156
+#: pdf_bot/files/photo.py:159
 msgid "Select the result file format"
 msgstr "Selecione o formato do arquivo final"
 
-#: pdf_bot/files/photo.py:170
+#: pdf_bot/files/photo.py:173
 msgid "Converting your PDF file into photos"
 msgstr "Convertendo seu arquivo PDF em fotos"
 
-#: pdf_bot/files/photo.py:208
+#: pdf_bot/files/photo.py:211
 msgid "Extracting all the photos in your PDF file"
 msgstr "Extraindo todas as fotos em seu arquivo PDF"
 
-#: pdf_bot/files/photo.py:225
+#: pdf_bot/files/photo.py:231
 msgid "I couldn't find any photos in your PDF file"
 msgstr "Não consegui encontrar nenhuma foto no seu arquivo PDF"
 
-#: pdf_bot/files/photo.py:302
+#: pdf_bot/files/photo.py:276
 msgid "See above for all your photos"
 msgstr "Veja acima todas as suas fotos"
 
@@ -538,18 +538,18 @@ msgid "Select the scale type that you'll like to perform"
 msgstr "Selecione o tipo de escala que você gostaria de executar"
 
 #: pdf_bot/files/scale.py:39
+msgid "Send me the width and height\n\n"
+"*Example: 150 200* (this will set the width to 150 and height to 200)"
+msgstr "Envie-me a largura e a altura\n\n"
+"*Exemplo: 150 200* (isto irá definir a largura para 150 e altura para 200)"
+
+#: pdf_bot/files/scale.py:50
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "2 will double the axis and 0.5 will halve the axis\n\n"
 "*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis)"
 msgstr "Envie-me os fatores de escala para os eixos horizontais e verticais\n\n"
 "2 irão duplicar o eixo e 0.5 irá reduzir para metade o eixo\n\n"
 "*Exemplo: 2 0.5* (isto irá duplicar o eixo horizontal e reduzir para metade o eixo vertical)"
-
-#: pdf_bot/files/scale.py:51
-msgid "Send me the width and height\n\n"
-"*Example: 150 200* (this will set the width to 150 and height to 200)"
-msgstr "Envie-me a largura e a altura\n\n"
-"*Exemplo: 150 200* (isto irá definir a largura para 150 e altura para 200)"
 
 #: pdf_bot/files/scale.py:75
 msgid "The scaling factors *{}* are invalid, try again"
