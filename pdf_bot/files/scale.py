@@ -34,7 +34,18 @@ def ask_scale_value(update, context, ask_percent=True):
     message = update.effective_message
     reply_markup = get_back_markup(update, context)
 
-    if message.text == _(BY_PERCENT) or ask_percent:
+    if message.text == _(TO_DIMENSIONS) or not ask_percent:
+        message.reply_text(
+            _(
+                "Send me the width and height\n\n"
+                "*Example: 150 200* (this will set the width to 150 and height to 200)"
+            ),
+            reply_markup=reply_markup,
+            parse_mode=ParseMode.MARKDOWN,
+        )
+
+        return WAIT_SCALE_DIMENSION
+    else:
         message.reply_text(
             _(
                 "Send me the scaling factors for the horizontal and vertical axes\n\n"
@@ -46,17 +57,6 @@ def ask_scale_value(update, context, ask_percent=True):
         )
 
         return WAIT_SCALE_PERCENT
-    else:
-        message.reply_text(
-            _(
-                "Send me the width and height\n\n"
-                "*Example: 150 200* (this will set the width to 150 and height to 200)"
-            ),
-            reply_markup=reply_markup,
-            parse_mode=ParseMode.MARKDOWN,
-        )
-
-        return WAIT_SCALE_DIMENSION
 
 
 @run_async
