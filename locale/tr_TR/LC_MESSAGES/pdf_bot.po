@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2020-04-28 00:09+1000\n"
-"PO-Revision-Date: 2020-05-07 07:12\n"
+"POT-Creation-Date: 2020-05-13 16:04+1000\n"
+"PO-Revision-Date: 2020-05-13 06:06\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "Language: tr_TR\n"
 
-#: bot.py:130
+#: bot.py:126
 msgid "Welcome to PDF Bot!\n\n"
 "*Features*\n"
 "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
@@ -37,25 +37,25 @@ msgstr "PDF Bot'a Hoş Geldiniz!\n\n"
 "- Bir web sayfasını PDF dosyasına dönüştürme\n\n"
 "PDF Bot'un nasıl kullanılacağını görmek için /help yazın"
 
-#: bot.py:150
+#: bot.py:146
 msgid "Set Language"
 msgstr "Dili ayarla"
 
-#: bot.py:152 pdf_bot/utils.py:291
+#: bot.py:148 pdf_bot/utils.py:291
 msgid "Join Channel"
 msgstr "Kanala Katıl"
 
-#: bot.py:153 pdf_bot/payment.py:68 pdf_bot/utils.py:292
+#: bot.py:149 pdf_bot/payment.py:68 pdf_bot/utils.py:292
 msgid "Support PDF Bot"
 msgstr "PDF Bot'u Destekle"
 
-#: bot.py:159
+#: bot.py:155
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr "Görevlerin çoğunu, bana bir PDF dosyası, fotoğraf veya web sayfasına link göndererek gerçekleştirebilirsiniz.\n\n"
 "Bazı görevler /compare, /merge, /watermark veya /photo komutlarını kullanarak gerçekleştirilebilir"
 
-#: bot.py:190 pdf_bot/constants.py:79
+#: bot.py:186 pdf_bot/constants.py:79
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "Bana PDF Bot'u desteklemek istediğiniz miktarı gönderin"
 
@@ -382,7 +382,7 @@ msgstr "Fotoğraflarınızı PDF'ye dönüştürme"
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "PDF dosyanıza yazmak isteyeceğiniz metni bana gönderin"
 
-#: pdf_bot/commands/text.py:67
+#: pdf_bot/commands/text.py:72
 msgid "Creating your PDF file"
 msgstr "PDF dosyanızı oluşturma"
 
@@ -426,7 +426,7 @@ msgstr "Numara geçersiz, tekrar deneyin"
 msgid "Cropping your PDF file"
 msgstr "PDF dosyanızı kırpma"
 
-#: pdf_bot/files/crop.py:138
+#: pdf_bot/files/crop.py:138 pdf_bot/files/photo.py:226
 msgid "Something went wrong, try again"
 msgstr "Bir şeyler ters gitti, tekrar deneyin"
 
@@ -462,7 +462,7 @@ msgstr ""
 msgid "Encrypting your PDF file"
 msgstr "PDF dosyanızı şifrelemek"
 
-#: pdf_bot/files/document.py:50 pdf_bot/files/photo.py:67
+#: pdf_bot/files/document.py:50 pdf_bot/files/photo.py:70
 msgid "Select the task that you'll like to perform"
 msgstr "Gerçekleştirmek istediğiniz eylemleri seçin"
 
@@ -480,31 +480,31 @@ msgstr "PDF dosyanıza OCR metin katmanı ekleme"
 msgid "Your PDF file already has a text layer"
 msgstr "PDF dosyanızın zaten bir metin katmanı var"
 
-#: pdf_bot/files/photo.py:53
+#: pdf_bot/files/photo.py:56
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "Fotoğrafınız indirmem için çok büyük. Fotoğrafını güzelleştiremiyorum veya dönüştüremiyorum"
 
-#: pdf_bot/files/photo.py:108
+#: pdf_bot/files/photo.py:111
 msgid "Extracting a preview for your PDF file"
 msgstr "PDF dosyanız için bir önizlemenin çıkartılması"
 
-#: pdf_bot/files/photo.py:156
+#: pdf_bot/files/photo.py:159
 msgid "Select the result file format"
 msgstr "Çıkış formatını seçin"
 
-#: pdf_bot/files/photo.py:170
+#: pdf_bot/files/photo.py:173
 msgid "Converting your PDF file into photos"
 msgstr "PDF dosyanızı fotoğraflara dönüştürme"
 
-#: pdf_bot/files/photo.py:208
+#: pdf_bot/files/photo.py:211
 msgid "Extracting all the photos in your PDF file"
 msgstr "PDF dosyanızdaki tüm fotoğrafları çıkarma"
 
-#: pdf_bot/files/photo.py:225
+#: pdf_bot/files/photo.py:231
 msgid "I couldn't find any photos in your PDF file"
 msgstr ""
 
-#: pdf_bot/files/photo.py:302
+#: pdf_bot/files/photo.py:276
 msgid "See above for all your photos"
 msgstr "Tüm fotoğraflarınız için yukarıya bakın"
 
@@ -537,18 +537,18 @@ msgid "Select the scale type that you'll like to perform"
 msgstr ""
 
 #: pdf_bot/files/scale.py:39
+msgid "Send me the width and height\n\n"
+"*Example: 150 200* (this will set the width to 150 and height to 200)"
+msgstr "Bana genişliği ve yüksekliği gönder\n\n"
+" * Örnek: 150 200 * (bu, genişliği 150'ye ve yüksekliği 200'e ayarlar)"
+
+#: pdf_bot/files/scale.py:50
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "2 will double the axis and 0.5 will halve the axis\n\n"
 "*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis)"
 msgstr "Bana yatay ve dikey eksenler için ölçeklendirme faktörlerini gönder\n\n"
 " 2 ekseni ikiye katlar ve 0.5 ekseni yarıya indirir\n\n"
 " * Örnek: 2 0.5 * (bu yatay ekseni iki katına çıkaracak ve dikey ekseni yarıya indirecektir)"
-
-#: pdf_bot/files/scale.py:51
-msgid "Send me the width and height\n\n"
-"*Example: 150 200* (this will set the width to 150 and height to 200)"
-msgstr "Bana genişliği ve yüksekliği gönder\n\n"
-" * Örnek: 150 200 * (bu, genişliği 150'ye ve yüksekliği 200'e ayarlar)"
 
 #: pdf_bot/files/scale.py:75
 msgid "The scaling factors *{}* are invalid, try again"
