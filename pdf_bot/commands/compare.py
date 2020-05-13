@@ -7,7 +7,7 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK
+from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK, TEXT_FILTER
 from pdf_bot.utils import (
     check_pdf,
     cancel_with_async,
@@ -31,7 +31,7 @@ def compare_cov_handler():
         },
         fallbacks=[
             CommandHandler("cancel", cancel_with_async),
-            MessageHandler(Filters.text, check_text),
+            MessageHandler(TEXT_FILTER, check_text),
         ],
         allow_reentry=True,
     )

@@ -12,6 +12,7 @@ from pdf_bot.constants import (
     CANCEL,
     DONE,
     REMOVE_LAST,
+    TEXT_FILTER,
 )
 from pdf_bot.utils import (
     check_pdf,
@@ -34,7 +35,7 @@ def merge_cov_handler():
         states={
             WAIT_MERGE: [
                 MessageHandler(Filters.document, check_doc),
-                MessageHandler(Filters.text, check_text),
+                MessageHandler(TEXT_FILTER, check_text),
             ]
         },
         fallbacks=[CommandHandler("cancel", cancel_with_async)],

@@ -6,7 +6,7 @@ from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Fi
 from telegram.ext.dispatcher import run_async
 from weasyprint import HTML
 
-from pdf_bot.constants import CANCEL
+from pdf_bot.constants import CANCEL, TEXT_FILTER
 from pdf_bot.utils import (
     cancel_with_async,
     send_result_file,
@@ -26,10 +26,10 @@ BASE_HTML = """<!DOCTYPE html>
 def text_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("text", ask_text)],
-        states={WAIT_TEXT: [MessageHandler(Filters.text, text_to_pdf)]},
+        states={WAIT_TEXT: [MessageHandler(TEXT_FILTER, text_to_pdf)]},
         fallbacks=[
             CommandHandler("cancel", cancel_with_async),
-            MessageHandler(Filters.text, check_text),
+            MessageHandler(TEXT_FILTER, check_text),
         ],
         allow_reentry=True,
     )

@@ -76,7 +76,7 @@ def main():
 
     # Payment handlers
     dispatcher.add_handler(
-        MessageHandler(Filters.reply & Filters.text, receive_custom_amount)
+        MessageHandler(Filters.reply & TEXT_FILTER, receive_custom_amount)
     )
     dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check))
     dispatcher.add_handler(
