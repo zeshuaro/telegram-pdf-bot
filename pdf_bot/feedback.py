@@ -8,6 +8,7 @@ from textblob.exceptions import TranslatorError
 from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
+from pdf_bot.constants import TEXT_FILTER
 from pdf_bot.utils import cancel_with_async
 from pdf_bot.language import set_lang
 
@@ -20,7 +21,7 @@ VALID_LANGS = ("en", "zh-hk", "zh-tw", "zh-cn")
 def feedback_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("feedback", feedback)],
-        states={0: [MessageHandler(Filters.text & ~Filters.command, receive_feedback)]},
+        states={0: [MessageHandler(TEXT_FILTER, receive_feedback)]},
         fallbacks=[CommandHandler("cancel", cancel_with_async)],
     )
 

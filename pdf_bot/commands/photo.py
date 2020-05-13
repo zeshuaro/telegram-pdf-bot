@@ -8,7 +8,7 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
 
-from pdf_bot.constants import CANCEL, BEAUTIFY, TO_PDF, REMOVE_LAST
+from pdf_bot.constants import CANCEL, BEAUTIFY, TO_PDF, REMOVE_LAST, TEXT_FILTER
 from pdf_bot.utils import (
     cancel_with_async,
     send_file_names,
@@ -29,7 +29,7 @@ def photo_cov_handler():
         states={
             WAIT_PHOTO: [
                 MessageHandler(Filters.document | Filters.photo, check_photo),
-                MessageHandler(Filters.text, check_text),
+                MessageHandler(TEXT_FILTER, check_text),
             ]
         },
         fallbacks=[CommandHandler("cancel", cancel_with_async)],
