@@ -10,7 +10,12 @@
 
 A PDF utility bot on Telegram that can:
 
-- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file
+- Crop, decrypt, encrypt, merge, preview, rename, rotate, scale and split a PDF file
+- Compare text differences of two PDF files
+- Create a PDF file from text messages
+- Add watermark to a PDF file
+- Add a text layer to a PDF file to make it searchable
+- Extract text from a PDF file
 - Extract images in a PDF file and convert a PDF file into images
 - Beautify and convert photos into PDF format
 - Convert a web page into a PDF file
