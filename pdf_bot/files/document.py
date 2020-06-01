@@ -15,6 +15,7 @@ from pdf_bot.constants import (
     WAIT_DOC_TASK,
     EXTRACT_TEXT,
     OCR,
+    COMPRESS,
 )
 from pdf_bot.utils import set_lang
 
@@ -35,13 +36,14 @@ def ask_doc_task(update, context):
             _(CROP),
             _(EXTRACT_TEXT),
             OCR,
+            _(COMPRESS),
         ]
     )
+    keywords.append(CANCEL)
     keyboard_size = 3
     keyboard = [
         keywords[i : i + keyboard_size] for i in range(0, len(keywords), keyboard_size)
     ]
-    keyboard.append([CANCEL])
 
     reply_markup = ReplyKeyboardMarkup(
         keyboard, resize_keyboard=True, one_time_keyboard=True
