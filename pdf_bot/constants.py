@@ -101,4 +101,5 @@ LANGUAGES = {
     "🇪🇸 español": "es_ES",
     "🇹🇷 Türkçe": "tr_TR",
     "🇮🇱 עברית": "he_IL",
+    "🇷🇺 русский язык": "ru_RU",
 }
