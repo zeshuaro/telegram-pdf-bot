@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2020-05-13 21:23+1000\n"
-"PO-Revision-Date: 2020-05-13 11:26\n"
+"POT-Creation-Date: 2020-06-01 12:18+1000\n"
+"PO-Revision-Date: 2020-06-01 02:31\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgid "You can perform most of the tasks simply by sending me a PDF file, a phot
 msgstr "Send PDF檔案，圖片或者網頁鏈接俾我就可以用到大部分嘅功能\n\n"
 "有啲功能要用呢啲指令先至用到 /compare，/merge，/watermark 或 /photo"
 
-#: bot.py:186 pdf_bot/constants.py:83
+#: bot.py:186 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "話我知你想贊助幾多俾PDF Bot"
 
@@ -155,23 +155,27 @@ msgstr "訊息"
 msgid "Text File"
 msgstr "文字檔"
 
-#: pdf_bot/constants.py:77
+#: pdf_bot/constants.py:63
+msgid "Compress"
+msgstr "壓縮"
+
+#: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
 msgstr "講多謝😁（$1）"
 
-#: pdf_bot/constants.py:78
+#: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
 msgstr "咖啡☕（$3）"
 
-#: pdf_bot/constants.py:79
+#: pdf_bot/constants.py:80
 msgid "Beer 🍺 ($5)"
 msgstr "啤酒🍺（$5）"
 
-#: pdf_bot/constants.py:80
+#: pdf_bot/constants.py:81
 msgid "Meal 🍲 ($10)"
 msgstr "一餐飯🍲（$10）"
 
-#: pdf_bot/constants.py:81
+#: pdf_bot/constants.py:82
 msgid "Say Awesome 🤩 (Custom)"
 msgstr "講好犀利🤩（自訂金額）"
 
@@ -403,6 +407,19 @@ msgstr "加緊水印去你個PDF檔案"
 msgid "watermark"
 msgstr "水印"
 
+#: pdf_bot/files/compress.py:22
+msgid "Compressing your PDF file"
+msgstr "壓縮緊你嘅PDF檔案"
+
+#: pdf_bot/files/compress.py:48 pdf_bot/files/crop.py:138
+#: pdf_bot/files/photo.py:226
+msgid "Something went wrong, try again"
+msgstr "發生咗未知嘅錯誤，試多次"
+
+#: pdf_bot/files/compress.py:58
+msgid "File size reduced by *{:.0%}*, from *{}* to *{}*"
+msgstr "檔案大小細咗*{:.0%}*，由 *{}* 壓縮到 *{}*"
+
 #: pdf_bot/files/crop.py:34
 msgid "Select the crop type that you'll like to perform"
 msgstr "揀你想點樣裁剪"
@@ -426,10 +443,6 @@ msgstr "個數字無效，試多次"
 #: pdf_bot/files/crop.py:113
 msgid "Cropping your PDF file"
 msgstr "裁剪緊你嘅PDF檔案"
-
-#: pdf_bot/files/crop.py:138 pdf_bot/files/photo.py:226
-msgid "Something went wrong, try again"
-msgstr "發生咗未知嘅錯誤，試多次"
 
 #: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
@@ -463,11 +476,11 @@ msgstr "Send加密密碼畀我嚟加密你嘅PDF檔案"
 msgid "Encrypting your PDF file"
 msgstr "加密緊你嘅PDF檔案"
 
-#: pdf_bot/files/document.py:50 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
 msgid "Select the task that you'll like to perform"
 msgstr "揀你想做啲乜"
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:86
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "你嘅PDF檔案太大啦，我下載唔到\n\n"
