@@ -60,6 +60,7 @@ EXTRACT_TEXT = _("Extract Text")
 TEXT_MESSAGE = _("Text Message")
 TEXT_FILE = _("Text File")
 OCR = "OCR"
+COMPRESS = _("Compress")
 
 # Rotation constants
 ROTATE_90 = "90"

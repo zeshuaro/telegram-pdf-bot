@@ -35,6 +35,7 @@ from pdf_bot.files.scale import (
 )
 from pdf_bot.files.split import ask_split_range, split_pdf
 from pdf_bot.files.text import ask_text_type, get_pdf_text
+from pdf_bot.files.compress import compress_pdf
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel_with_async, cancel_without_async
 
@@ -126,6 +127,8 @@ def check_doc_task(update, context):
         return ask_text_type(update, context)
     elif text == OCR:
         return add_ocr_to_pdf(update, context)
+    elif text == COMPRESS:
+        return compress_pdf(update, context)
     elif text == _(CANCEL):
         return cancel_without_async(update, context)
 
