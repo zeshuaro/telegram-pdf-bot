@@ -1,10 +1,11 @@
+import humanize
 import os
 import shlex
 import tempfile
 
 from logbook import Logger
 from subprocess import Popen, PIPE
-from telegram import ReplyKeyboardRemove
+from telegram import ReplyKeyboardRemove, ParseMode
 from telegram.ext import ConversationHandler
 
 from pdf_bot.constants import PDF_INFO
@@ -47,6 +48,18 @@ def compress_pdf(update, context):
                     _("Something went wrong, try again")
                 )
             else:
+                old_size = os.path.getsize(tf.name)
+                new_size = os.path.getsize(out_fn)
+                update.effective_message.reply_text(
+                    _(
+                        "File size reduced by *{:.0%}*, from *{}* to *{}*".format(
+                            (1 - new_size / old_size),
+                            humanize.naturalsize(old_size),
+                            humanize.naturalsize(new_size),
+                        )
+                    ),
+                    parse_mode=ParseMode.MARKDOWN,
+                )
                 send_result_file(update, context, out_fn, "compress")
 
     # Clean up memory
