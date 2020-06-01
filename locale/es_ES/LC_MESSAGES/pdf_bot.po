@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2020-05-13 21:23+1000\n"
-"PO-Revision-Date: 2020-05-13 11:26\n"
+"POT-Creation-Date: 2020-06-01 12:18+1000\n"
+"PO-Revision-Date: 2020-06-01 02:31\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgid "You can perform most of the tasks simply by sending me a PDF file, a phot
 msgstr "Puedes realizar la mayoría de las tareas simplemente enviándome un archivo PDF, una foto o un enlace a un página web.\n\n"
 "Algunas tareas se pueden realizar usando los comandos /compare, /merge, /watermark o /photo"
 
-#: bot.py:186 pdf_bot/constants.py:83
+#: bot.py:186 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "Envíame la cantidad con la que quieras apoyar a PDF Bot"
 
@@ -155,23 +155,27 @@ msgstr "Mensaje de texto"
 msgid "Text File"
 msgstr "Archivo de texto"
 
-#: pdf_bot/constants.py:77
+#: pdf_bot/constants.py:63
+msgid "Compress"
+msgstr ""
+
+#: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
 msgstr "Agradecer 😁 ($1)"
 
-#: pdf_bot/constants.py:78
+#: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
 msgstr "Café ☕ ($3)"
 
-#: pdf_bot/constants.py:79
+#: pdf_bot/constants.py:80
 msgid "Beer 🍺 ($5)"
 msgstr "Cerveza 🍺 ($5)"
 
-#: pdf_bot/constants.py:80
+#: pdf_bot/constants.py:81
 msgid "Meal 🍲 ($10)"
 msgstr "Comida 🍲 ($10)"
 
-#: pdf_bot/constants.py:81
+#: pdf_bot/constants.py:82
 msgid "Say Awesome 🤩 (Custom)"
 msgstr "Di \"impresionante\" 🤩 (Personalizado)"
 
@@ -403,6 +407,19 @@ msgstr "Añadiendo la marca de agua a tu archivo PDF"
 msgid "watermark"
 msgstr "marca de agua"
 
+#: pdf_bot/files/compress.py:22
+msgid "Compressing your PDF file"
+msgstr ""
+
+#: pdf_bot/files/compress.py:48 pdf_bot/files/crop.py:138
+#: pdf_bot/files/photo.py:226
+msgid "Something went wrong, try again"
+msgstr "Algo salió mal, inténtalo de nuevo"
+
+#: pdf_bot/files/compress.py:58
+msgid "File size reduced by *{:.0%}*, from *{}* to *{}*"
+msgstr ""
+
 #: pdf_bot/files/crop.py:34
 msgid "Select the crop type that you'll like to perform"
 msgstr "Selecciona el tipo de recorte que te gustaría realizar"
@@ -426,10 +443,6 @@ msgstr "El número no es válido, inténtelo de nuevo"
 #: pdf_bot/files/crop.py:113
 msgid "Cropping your PDF file"
 msgstr "Recortando tu archivo PDF"
-
-#: pdf_bot/files/crop.py:138 pdf_bot/files/photo.py:226
-msgid "Something went wrong, try again"
-msgstr "Algo salió mal, inténtalo de nuevo"
 
 #: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
@@ -463,11 +476,11 @@ msgstr "Envíame la contraseña para cifrar tu archivo PDF"
 msgid "Encrypting your PDF file"
 msgstr "Cifrando tu archivo PDF"
 
-#: pdf_bot/files/document.py:50 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
 msgid "Select the task that you'll like to perform"
 msgstr "Elegir la tarea a realizar"
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:86
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "Tu archivo PDF es demasiado grande para descargar\n\n"
