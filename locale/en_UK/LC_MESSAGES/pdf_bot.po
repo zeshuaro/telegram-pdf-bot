@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot VERSION\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2020-05-13 21:23+1000\n"
+"POT-Creation-Date: 2020-06-01 12:18+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgid ""
 "/watermark or /photo"
 msgstr ""
 
-#: bot.py:186 pdf_bot/constants.py:83
+#: bot.py:186 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr ""
 
@@ -152,23 +152,27 @@ msgstr ""
 msgid "Text File"
 msgstr ""
 
-#: pdf_bot/constants.py:77
-msgid "Say Thanks 😁 ($1)"
+#: pdf_bot/constants.py:63
+msgid "Compress"
 msgstr ""
 
 #: pdf_bot/constants.py:78
-msgid "Coffee ☕ ($3)"
+msgid "Say Thanks 😁 ($1)"
 msgstr ""
 
 #: pdf_bot/constants.py:79
-msgid "Beer 🍺 ($5)"
+msgid "Coffee ☕ ($3)"
 msgstr ""
 
 #: pdf_bot/constants.py:80
-msgid "Meal 🍲 ($10)"
+msgid "Beer 🍺 ($5)"
 msgstr ""
 
 #: pdf_bot/constants.py:81
+msgid "Meal 🍲 ($10)"
+msgstr ""
+
+#: pdf_bot/constants.py:82
 msgid "Say Awesome 🤩 (Custom)"
 msgstr ""
 
@@ -415,6 +419,19 @@ msgstr ""
 msgid "watermark"
 msgstr ""
 
+#: pdf_bot/files/compress.py:22
+msgid "Compressing your PDF file"
+msgstr ""
+
+#: pdf_bot/files/compress.py:48 pdf_bot/files/crop.py:138
+#: pdf_bot/files/photo.py:226
+msgid "Something went wrong, try again"
+msgstr ""
+
+#: pdf_bot/files/compress.py:58
+msgid "File size reduced by *{:.0%}*, from *{}* to *{}*"
+msgstr ""
+
 #: pdf_bot/files/crop.py:34
 msgid "Select the crop type that you'll like to perform"
 msgstr ""
@@ -442,10 +459,6 @@ msgstr ""
 
 #: pdf_bot/files/crop.py:113
 msgid "Cropping your PDF file"
-msgstr ""
-
-#: pdf_bot/files/crop.py:138 pdf_bot/files/photo.py:226
-msgid "Something went wrong, try again"
 msgstr ""
 
 #: pdf_bot/files/crypto.py:18
@@ -480,11 +493,11 @@ msgstr ""
 msgid "Encrypting your PDF file"
 msgstr ""
 
-#: pdf_bot/files/document.py:50 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
 msgid "Select the task that you'll like to perform"
 msgstr ""
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:86
 msgid ""
 "Your PDF file is too big for me to download\n"
 "\n"
