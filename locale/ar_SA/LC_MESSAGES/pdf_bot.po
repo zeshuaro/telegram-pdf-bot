@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2020-05-13 21:23+1000\n"
-"PO-Revision-Date: 2020-05-13 11:26\n"
+"POT-Creation-Date: 2020-06-01 12:18+1000\n"
+"PO-Revision-Date: 2020-06-01 02:31\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgid "You can perform most of the tasks simply by sending me a PDF file, a phot
 msgstr "تستطيع عمل اغلب المهمات ببساطة عن طريق ارسال ملف ال PDF، او صورة، او رابط لصفحة انترنت.\n\n"
 "بعض المهام تُنفذ بواسطة بعض الاومار ك /compare ، /merge ، /watermark ، او/photo"
 
-#: bot.py:186 pdf_bot/constants.py:83
+#: bot.py:186 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "أرسل لي الكمية التي تريدها لكي تدعم PDF Bot"
 
@@ -155,23 +155,27 @@ msgstr "رسالة نصية"
 msgid "Text File"
 msgstr "ملف نصي"
 
-#: pdf_bot/constants.py:77
+#: pdf_bot/constants.py:63
+msgid "Compress"
+msgstr ""
+
+#: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
 msgstr "قل شكرا 😊 (1$)"
 
-#: pdf_bot/constants.py:78
+#: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
 msgstr "قهوة ☕ (3$)"
 
-#: pdf_bot/constants.py:79
+#: pdf_bot/constants.py:80
 msgid "Beer 🍺 ($5)"
 msgstr "كاس بيرة 🍺 (5$)"
 
-#: pdf_bot/constants.py:80
+#: pdf_bot/constants.py:81
 msgid "Meal 🍲 ($10)"
 msgstr "وجبة 🍲 (10$)"
 
-#: pdf_bot/constants.py:81
+#: pdf_bot/constants.py:82
 msgid "Say Awesome 🤩 (Custom)"
 msgstr "قل شي مميزا 😍 (مخصص)"
 
@@ -405,6 +409,19 @@ msgstr "جاري اضافة العلامة المائية"
 msgid "watermark"
 msgstr "علامة مائية"
 
+#: pdf_bot/files/compress.py:22
+msgid "Compressing your PDF file"
+msgstr ""
+
+#: pdf_bot/files/compress.py:48 pdf_bot/files/crop.py:138
+#: pdf_bot/files/photo.py:226
+msgid "Something went wrong, try again"
+msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى"
+
+#: pdf_bot/files/compress.py:58
+msgid "File size reduced by *{:.0%}*, from *{}* to *{}*"
+msgstr ""
+
 #: pdf_bot/files/crop.py:34
 msgid "Select the crop type that you'll like to perform"
 msgstr "حدد نوع القص الذي تريد تنفيذه"
@@ -429,10 +446,6 @@ msgstr "لقد ارسلت رقم غير صحيح ، حاول مجددا"
 #: pdf_bot/files/crop.py:113
 msgid "Cropping your PDF file"
 msgstr "جاري قص الملف"
-
-#: pdf_bot/files/crop.py:138 pdf_bot/files/photo.py:226
-msgid "Something went wrong, try again"
-msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى"
 
 #: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
@@ -466,11 +479,11 @@ msgstr "أرسل كلمة السر ل تشفير الملف"
 msgid "Encrypting your PDF file"
 msgstr "جاري تشفير الملف"
 
-#: pdf_bot/files/document.py:50 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
 msgid "Select the task that you'll like to perform"
 msgstr "حدد نوع المهمة التي تريد تنفيذها"
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:86
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "ملفك كبير للغاية\n"
