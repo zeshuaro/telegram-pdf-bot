@@ -14,7 +14,6 @@ from pdf_bot.language import set_lang
 
 load_dotenv()
 SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
-VALID_LANGS = ("en", "zh-hk", "zh-tw", "zh-cn")
 
 
 # Creates a feedback conversation handler
@@ -43,7 +42,7 @@ def feedback(update, context):
     update.effective_message.reply_text(
         _(
             "Send me your feedback or /cancel this action. "
-            "My developer can understand English and Chinese"
+            "Note that only English feedback will be forwarded to my developer."
         )
     )
 
@@ -75,8 +74,8 @@ def receive_feedback(update, context):
         pass
 
     _ = set_lang(update, context)
-    if not feedback_lang or feedback_lang.lower() not in VALID_LANGS:
-        message.reply_text(_("The feedback is not in English or Chinese, try again"))
+    if not feedback_lang or feedback_lang.lower() != "en":
+        message.reply_text(_("The feedback is not in English, try again"))
 
         return 0
 
