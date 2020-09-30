@@ -1,6 +1,6 @@
 import gettext
 
-from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
+from telegram.ext import Filters
 
 t = gettext.translation("pdf_bot", localedir="locale", languages=["en"])
 _ = t.gettext
@@ -103,4 +103,5 @@ LANGUAGES = {
     "🇮🇱 עברית": "he_IL",
     "🇷🇺 русский язык": "ru_RU",
     "🇫🇷 français": "fr_FR",
+    "🇱🇰 සිංහල": "si_LK",
 }
