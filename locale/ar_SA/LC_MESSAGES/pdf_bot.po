@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2020-06-12 20:43+1000\n"
-"PO-Revision-Date: 2020-10-01 09:15\n"
+"PO-Revision-Date: 2020-10-01 09:23\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
@@ -45,25 +45,25 @@ msgstr "تعيين اللّغة"
 
 #: bot.py:148 pdf_bot/utils.py:291
 msgid "Join Channel"
-msgstr "إنضم إلي القناة"
+msgstr "انضم إلى القناة"
 
 #: bot.py:149 pdf_bot/payment.py:68 pdf_bot/utils.py:292
 msgid "Support PDF Bot"
-msgstr "ادعم PDF بوت"
+msgstr "ادعم بوت ال PDF"
 
 #: bot.py:155
 msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
 "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
 msgstr "تستطيع عمل اغلب المهمات ببساطة عن طريق ارسال ملف ال PDF، او صورة، او رابط لصفحة انترنت.\n\n"
-"بعض المهام تُنفذ بواسطة بعض الاومار ك /compare ، /merge ، /watermark ، او/photo"
+"بعض المهام تُنفّذ بواسطة بعض الأوامر ك /compare, /merge, /watermark or /photo"
 
 #: bot.py:186 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "أرسل لي الكمية التي تريدها لكي تدعم PDF Bot"
+msgstr "أرسل لي المبلغ الذي تريد أن تدعم PDF Bot"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
-msgstr "الغاء"
+msgstr "إلغاء"
 
 #: pdf_bot/constants.py:39
 msgid "Done"
@@ -75,7 +75,7 @@ msgstr "رجوع"
 
 #: pdf_bot/constants.py:41
 msgid "By Percentage"
-msgstr "بنسبة مؤية"
+msgstr "بنسبة مئويّة"
 
 #: pdf_bot/constants.py:42
 msgid "By Margin Size"
@@ -91,7 +91,7 @@ msgstr "فُكَّ التشفير"
 
 #: pdf_bot/constants.py:45
 msgid "Encrypt"
-msgstr "فك التشفير"
+msgstr "تشفير"
 
 #: pdf_bot/constants.py:46
 msgid "Extract Photos"
@@ -183,11 +183,11 @@ msgstr "قل شي مميزا 😍 (مخصص)"
 
 #: pdf_bot/feedback.py:43
 msgid "Send me your feedback or /cancel this action. Note that only English feedback will be forwarded to my developer."
-msgstr ""
+msgstr "أرسل لنا انطباعك أو \\ألغِ هذا الأمر . ملاحظة : فقط المراجعة باللغة الإنكليزية سوف تحول لمطور البوت ."
 
 #: pdf_bot/feedback.py:78
 msgid "The feedback is not in English, try again"
-msgstr ""
+msgstr "هذه المراجعة ليست باللغة الإنكليزية ، حاول مجدداً "
 
 #: pdf_bot/feedback.py:99
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
@@ -388,11 +388,11 @@ msgstr "تحويل صورك الا PDF"
 
 #: pdf_bot/commands/text.py:47
 msgid "Send me the text that you'll like to write into your PDF file"
-msgstr ""
+msgstr "أرسل لي النص الذي تريد أن تكتبه في ملفك ال بي دي اف"
 
 #: pdf_bot/commands/text.py:72
 msgid "Creating your PDF file"
-msgstr ""
+msgstr "أنشئ ملفك ال بي دي اف"
 
 #: pdf_bot/commands/watermark.py:52
 msgid "Send me the PDF file that you'll like to add a watermark"
@@ -412,7 +412,7 @@ msgstr "علامة مائية"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
-msgstr ""
+msgstr "اضغط ملفك ال بي دي اف"
 
 #: pdf_bot/files/compress.py:48 pdf_bot/files/crop.py:138
 #: pdf_bot/files/photo.py:226
@@ -421,7 +421,7 @@ msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى"
 
 #: pdf_bot/files/compress.py:58
 msgid "File size reduced by *{:.0%}*, from *{}* to *{}*"
-msgstr ""
+msgstr "حجم الملف حُدّد ب  *{:.0%}* ، من *{}* إلى *{}*"
 
 #: pdf_bot/files/crop.py:34
 msgid "Select the crop type that you'll like to perform"
@@ -548,7 +548,7 @@ msgstr "حدد الدرجة التي تريد تدوير الملف بهاحسب
 
 #: pdf_bot/files/rotate.py:51
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr ""
+msgstr "دور ملفك البي دي اف مع عقارب الساعة ب {} درجة "
 
 #: pdf_bot/files/scale.py:25
 msgid "Select the scale type that you'll like to perform"
