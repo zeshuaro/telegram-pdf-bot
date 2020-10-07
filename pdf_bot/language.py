@@ -19,8 +19,9 @@ def send_lang(update, context, query=None):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
+    _ = set_lang(update, context)
     update.effective_message.reply_text(
-        "Select your language", reply_markup=reply_markup
+        _("Select your language"), reply_markup=reply_markup
     )
 
 
