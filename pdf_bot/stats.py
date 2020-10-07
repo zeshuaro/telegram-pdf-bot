@@ -67,7 +67,7 @@ def get_stats(update, context):
     text = "Language stats:\n"
     for key, value in LANGUAGES.items():
         if value in langs:
-            text += f"{key}: {langs[value]}\n"
+            text += f"{key}: {langs[value]:,}\n"
 
     update.effective_message.reply_text(text)
     send_plot(update, counts)
