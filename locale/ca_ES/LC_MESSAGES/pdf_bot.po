@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2020-10-07 12:02+1100\n"
-"PO-Revision-Date: 2020-11-02 23:36\n"
+"PO-Revision-Date: 2020-11-17 12:32\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -239,34 +239,35 @@ msgstr "No es pot accedir a la teva pàgina web"
 
 #: pdf_bot/utils.py:33
 msgid "Action cancelled"
-msgstr ""
+msgstr "Acció cancelada"
 
 #: pdf_bot/utils.py:58
 msgid "The file you sent is not a PDF file, try again"
-msgstr ""
+msgstr "L’arxiu que has enviat no es un arxiu PEF, prova-ho de nou"
 
 #: pdf_bot/utils.py:63
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "L’arxiu PDF que has enviat és molt gran per descarregar-me’l"
 
 #: pdf_bot/utils.py:87
 msgid "Something went wrong, start over again"
-msgstr ""
+msgstr "Alguna cosa funciona malament, comença de nou"
 
 #: pdf_bot/utils.py:171
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "El teu arxiu PDF sembla ser que és invalid i no es pot ni obrir ni llegir"
 
 #: pdf_bot/utils.py:180
 msgid "Your PDF file is already encrypted"
-msgstr ""
+msgstr "El teu arxiu PEF està encriptat"
 
 #: pdf_bot/utils.py:182
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "El teu arxiu {} PDF està encriptat i l’hauràs de desencriptar abans.\n"
+"He cancelat l’acció"
 
 #: pdf_bot/utils.py:187
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
@@ -321,7 +322,7 @@ msgstr ""
 
 #: pdf_bot/commands/merge.py:113
 msgid "PDF files"
-msgstr ""
+msgstr "Arxius PDF"
 
 #: pdf_bot/commands/merge.py:142
 msgid "*{}* has been removed for merging"
@@ -329,15 +330,15 @@ msgstr ""
 
 #: pdf_bot/commands/merge.py:160
 msgid "You haven't sent me any PDF files"
-msgstr ""
+msgstr "No has enviat cap arxiu PDF"
 
 #: pdf_bot/commands/merge.py:164
 msgid "You've only sent me one PDF file."
-msgstr ""
+msgstr "Has enviat tan sols un arxiu PDF."
 
 #: pdf_bot/commands/merge.py:174
 msgid "Merging your PDF files"
-msgstr ""
+msgstr "Unint els teus arxius PDF"
 
 #: pdf_bot/commands/merge.py:194
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
@@ -346,19 +347,20 @@ msgstr ""
 #: pdf_bot/commands/photo.py:56
 msgid "Send me the first photo that you'll like to beautify or convert into PDF\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Envia les fotos que més t’agradin per convertir a un PDF\n\n"
+"Tingues en compte que les fotos més maques seran convertides en l’ordre que les enviis"
 
 #: pdf_bot/commands/photo.py:80
 msgid "File name unavailable"
-msgstr ""
+msgstr "Nom de l’arxiu invàlid"
 
 #: pdf_bot/commands/photo.py:96
 msgid "The file you've sent is not a photo"
-msgstr ""
+msgstr "L’arxiu que enviies no és una foto"
 
 #: pdf_bot/commands/photo.py:102
 msgid "The photo you've sent is too large for me to download"
-msgstr ""
+msgstr "La foto que has enviat és molt gran per descarregar"
 
 #: pdf_bot/commands/photo.py:115
 msgid "Send me the next photo that you'll like to beautify or convert to PDF\n\n"
