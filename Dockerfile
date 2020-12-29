@@ -1,4 +1,4 @@
-FROM python:3.8.0
+FROM python:3.7.9
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils=0.71.* libcairo2=1.16.* libpango-1.0-0=1.42.* \
@@ -7,9 +7,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /bot
-COPY requirements.txt /bot/requirements.txt
-RUN pip install -r requirements.txt
 COPY . /bot
+RUN pip install -U pip
+RUN pip install pipenv
+RUN pipenv install --system
 
 RUN pybabel compile -D pdf_bot -d locale
 
