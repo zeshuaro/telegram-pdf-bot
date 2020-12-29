@@ -8,8 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /bot
 COPY . /bot
-RUN pip install -U pip
-RUN pip install pipenv
+RUN pip install pipenv==2020.11.15
 RUN pipenv install --system
 
 RUN pybabel compile -D pdf_bot -d locale
