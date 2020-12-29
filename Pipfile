@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+google-cloud-datastore = ">=1.8.0"
+humanize = ">=2.4.0"
+img2pdf = ">=0.3.3"
+matplotlib = ">=3.1.1"
+ocrmypdf = ">=9.0.3"
+pdf2image = ">=1.5.4"
+"pdfminer.six" = ">=20181108"
+python-dotenv = ">=0.10.3"
+python-telegram-bot = ">=12.0.0"
+slackclient = ">=2.0.1"
+textblob = ">=0.15.3"
+noteshrink = {git = "https://github.com/zeshuaro/noteshrink.git"}
+pdf-diff = {git = "https://github.com/zeshuaro/pdf-diff"}
+Babel = ">=2.7.0"
+Logbook = ">=1.4.3"
+pdfCropMargins = ">=0.1.4"
+Pillow = ">=6.0.0"
+PyPDF2 = ">=1.26.0"
+WeasyPrint = ">=47"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
