@@ -8,9 +8,8 @@ from weasyprint import HTML
 
 from pdf_bot.constants import CANCEL, TEXT_FILTER
 from pdf_bot.utils import (
-    cancel_with_async,
     send_result_file,
-    cancel_without_async,
+    cancel,
 )
 from pdf_bot.language import set_lang
 
@@ -25,11 +24,11 @@ BASE_HTML = """<!DOCTYPE html>
 
 def text_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("text", ask_text)],
-        states={WAIT_TEXT: [MessageHandler(TEXT_FILTER, text_to_pdf)]},
+        entry_points=[CommandHandler("text", ask_text, run_async=True)],
+        states={WAIT_TEXT: [MessageHandler(TEXT_FILTER, text_to_pdf, run_async=True)]},
         fallbacks=[
-            CommandHandler("cancel", cancel_with_async),
-            MessageHandler(TEXT_FILTER, check_text),
+            CommandHandler("cancel", cancel, run_async=True),
+            MessageHandler(TEXT_FILTER, check_text, run_async=True),
         ],
         allow_reentry=True,
     )
@@ -37,7 +36,6 @@ def text_cov_handler():
     return conv_handler
 
 
-@run_async
 def ask_text(update, context):
     _ = set_lang(update, context)
     reply_markup = ReplyKeyboardMarkup(
@@ -51,23 +49,21 @@ def ask_text(update, context):
     return WAIT_TEXT
 
 
-@run_async
 def check_text(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text == _(CANCEL):
-        return cancel_without_async(update, context)
+        return cancel(update, context)
 
 
-@run_async
 def text_to_pdf(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
     text = message.text
 
     if text == _(CANCEL):
-        return cancel_without_async(update, context)
+        return cancel(update, context)
 
     message.reply_text(_("Creating your PDF file"), reply_markup=ReplyKeyboardRemove())
     html = HTML(string=BASE_HTML.format(text.replace("\n", "<br/>")))

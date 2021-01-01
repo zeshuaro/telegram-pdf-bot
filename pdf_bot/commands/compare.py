@@ -10,10 +10,9 @@ from telegram.ext.dispatcher import run_async
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK, TEXT_FILTER
 from pdf_bot.utils import (
     check_pdf,
-    cancel_with_async,
     send_result_file,
     check_user_data,
-    cancel_without_async,
+    cancel,
 )
 from pdf_bot.language import set_lang
 
@@ -24,14 +23,18 @@ COMPARE_ID = "compare_id"
 
 def compare_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("compare", compare)],
+        entry_points=[CommandHandler("compare", compare, run_async=True)],
         states={
-            WAIT_FIRST: [MessageHandler(Filters.document, check_first_doc)],
-            WAIT_SECOND: [MessageHandler(Filters.document, check_second_doc)],
+            WAIT_FIRST: [
+                MessageHandler(Filters.document, check_first_doc, run_async=True)
+            ],
+            WAIT_SECOND: [
+                MessageHandler(Filters.document, check_second_doc, run_async=True)
+            ],
         },
         fallbacks=[
-            CommandHandler("cancel", cancel_with_async),
-            MessageHandler(TEXT_FILTER, check_text),
+            CommandHandler("cancel", cancel, run_async=True),
+            MessageHandler(TEXT_FILTER, check_text, run_async=True),
         ],
         allow_reentry=True,
     )
@@ -39,7 +42,6 @@ def compare_cov_handler():
     return conv_handler
 
 
-@run_async
 def compare(update, context):
     return ask_first_doc(update, context)
 
@@ -60,7 +62,6 @@ def ask_first_doc(update, context):
     return WAIT_FIRST
 
 
-@run_async
 def check_text(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -68,10 +69,9 @@ def check_text(update, context):
     if text == _(BACK):
         return ask_first_doc(update, context)
     elif text == _(CANCEL):
-        return cancel_without_async(update, context)
+        return cancel(update, context)
 
 
-@run_async
 def check_first_doc(update, context):
     result = check_pdf(update, context)
     if result == PDF_INVALID_FORMAT:
@@ -93,7 +93,6 @@ def check_first_doc(update, context):
     return WAIT_SECOND
 
 
-@run_async
 def check_second_doc(update, context):
     if not check_user_data(update, context, COMPARE_ID):
         return ConversationHandler.END

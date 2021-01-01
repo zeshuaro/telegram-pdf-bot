@@ -4,7 +4,7 @@ from PyPDF2 import PdfFileMerger
 from PyPDF2.utils import PdfReadError
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, ParseMode
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
-from telegram.ext.dispatcher import run_async
+
 
 from pdf_bot.constants import (
     PDF_INVALID_FORMAT,
@@ -16,11 +16,10 @@ from pdf_bot.constants import (
 )
 from pdf_bot.utils import (
     check_pdf,
-    cancel_with_async,
     write_send_pdf,
     send_file_names,
     check_user_data,
-    cancel_without_async,
+    cancel,
 )
 from pdf_bot.language import set_lang
 
@@ -31,21 +30,20 @@ MERGE_NAMES = "merge_names"
 
 def merge_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("merge", merge)],
+        entry_points=[CommandHandler("merge", merge, run_async=True)],
         states={
             WAIT_MERGE: [
-                MessageHandler(Filters.document, check_doc),
-                MessageHandler(TEXT_FILTER, check_text),
+                MessageHandler(Filters.document, check_doc, run_async=True),
+                MessageHandler(TEXT_FILTER, check_text, run_async=True),
             ]
         },
-        fallbacks=[CommandHandler("cancel", cancel_with_async)],
+        fallbacks=[CommandHandler("cancel", cancel, run_async=True)],
         allow_reentry=True,
     )
 
     return conv_handler
 
 
-@run_async
 def merge(update, context):
     context.user_data[MERGE_IDS] = []
     context.user_data[MERGE_NAMES] = []
@@ -69,7 +67,6 @@ def ask_first_doc(update, context):
     return WAIT_MERGE
 
 
-@run_async
 def check_doc(update, context):
     result = check_pdf(update, context, send_msg=False)
     if result in [PDF_INVALID_FORMAT, PDF_TOO_LARGE]:
@@ -115,7 +112,6 @@ def ask_next_doc(update, context):
     return WAIT_MERGE
 
 
-@run_async
 def check_text(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -125,7 +121,7 @@ def check_text(update, context):
     elif text == _(DONE):
         return preprocess_merge_pdf(update, context)
     elif text == _(CANCEL):
-        return cancel_without_async(update, context)
+        return cancel(update, context)
 
 
 def remove_doc(update, context):

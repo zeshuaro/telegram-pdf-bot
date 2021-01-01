@@ -7,12 +7,11 @@ from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK, TEXT_FILTER
 from pdf_bot.utils import (
-    cancel_with_async,
     check_pdf,
     open_pdf,
     write_send_pdf,
     check_user_data,
-    cancel_without_async,
+    cancel,
 )
 from pdf_bot.language import set_lang
 
@@ -23,14 +22,14 @@ WMK_ID = "watermark_id"
 
 def watermark_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("watermark", watermark)],
+        entry_points=[CommandHandler("watermark", watermark, run_async=True)],
         states={
-            WAIT_SRC: [MessageHandler(Filters.document, check_src_doc)],
-            WAIT_WMK: [MessageHandler(Filters.document, check_wmk_doc)],
+            WAIT_SRC: [MessageHandler(Filters.document, check_src_doc, run_async=True)],
+            WAIT_WMK: [MessageHandler(Filters.document, check_wmk_doc, run_async=True)],
         },
         fallbacks=[
-            CommandHandler("cancel", cancel_with_async),
-            MessageHandler(TEXT_FILTER, check_text),
+            CommandHandler("cancel", cancel, run_async=True),
+            MessageHandler(TEXT_FILTER, check_text, run_async=True),
         ],
         allow_reentry=True,
     )
@@ -38,7 +37,6 @@ def watermark_cov_handler():
     return conv_handler
 
 
-@run_async
 def watermark(update, context):
     return ask_src_doc(update, context)
 
@@ -56,7 +54,6 @@ def ask_src_doc(update, context):
     return WAIT_SRC
 
 
-@run_async
 def check_text(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -64,10 +61,9 @@ def check_text(update, context):
     if text == _(BACK):
         return ask_src_doc(update, context)
     elif text == _(CANCEL):
-        return cancel_without_async(update, context)
+        return cancel(update, context)
 
 
-@run_async
 def check_src_doc(update, context):
     result = check_pdf(update, context)
     if result == PDF_INVALID_FORMAT:
@@ -88,7 +84,6 @@ def check_src_doc(update, context):
     return WAIT_WMK
 
 
-@run_async
 def check_wmk_doc(update, context):
     if not check_user_data(update, context, WMK_ID):
         return ConversationHandler.END

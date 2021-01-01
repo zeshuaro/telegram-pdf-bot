@@ -1,6 +1,5 @@
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
-from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import *
 from pdf_bot.files.crop import (
@@ -37,43 +36,64 @@ from pdf_bot.files.split import ask_split_range, split_pdf
 from pdf_bot.files.text import ask_text_type, get_pdf_text
 from pdf_bot.files.compress import compress_pdf
 from pdf_bot.language import set_lang
-from pdf_bot.utils import cancel_with_async, cancel_without_async
+from pdf_bot.utils import cancel
 
 
 def file_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[
-            MessageHandler(Filters.document, check_doc),
-            MessageHandler(Filters.photo, check_photo),
+            MessageHandler(Filters.document, check_doc, run_async=True),
+            MessageHandler(Filters.photo, check_photo, run_async=True),
         ],
         states={
-            WAIT_DOC_TASK: [MessageHandler(TEXT_FILTER, check_doc_task)],
-            WAIT_PHOTO_TASK: [MessageHandler(TEXT_FILTER, check_photo_task)],
-            WAIT_CROP_TYPE: [MessageHandler(TEXT_FILTER, check_crop_task)],
-            WAIT_CROP_PERCENT: [MessageHandler(TEXT_FILTER, check_crop_percent)],
-            WAIT_CROP_OFFSET: [MessageHandler(TEXT_FILTER, check_crop_size)],
-            WAIT_DECRYPT_PW: [MessageHandler(TEXT_FILTER, decrypt_pdf)],
-            WAIT_ENCRYPT_PW: [MessageHandler(TEXT_FILTER, encrypt_pdf)],
-            WAIT_FILE_NAME: [MessageHandler(TEXT_FILTER, rename_pdf)],
-            WAIT_ROTATE_DEGREE: [MessageHandler(TEXT_FILTER, check_rotate_degree)],
-            WAIT_SPLIT_RANGE: [MessageHandler(TEXT_FILTER, split_pdf)],
-            WAIT_TEXT_TYPE: [MessageHandler(TEXT_FILTER, check_text_task)],
-            WAIT_SCALE_TYPE: [MessageHandler(TEXT_FILTER, check_scale_task)],
-            WAIT_SCALE_PERCENT: [MessageHandler(TEXT_FILTER, check_scale_percent)],
-            WAIT_SCALE_DIMENSION: [MessageHandler(TEXT_FILTER, check_scale_dimension)],
-            WAIT_EXTRACT_PHOTO_TYPE: [
-                MessageHandler(TEXT_FILTER, check_get_photos_task)
+            WAIT_DOC_TASK: [
+                MessageHandler(TEXT_FILTER, check_doc_task, run_async=True)
             ],
-            WAIT_TO_PHOTO_TYPE: [MessageHandler(TEXT_FILTER, check_to_photos_task)],
+            WAIT_PHOTO_TASK: [
+                MessageHandler(TEXT_FILTER, check_photo_task, run_async=True)
+            ],
+            WAIT_CROP_TYPE: [
+                MessageHandler(TEXT_FILTER, check_crop_task, run_async=True)
+            ],
+            WAIT_CROP_PERCENT: [
+                MessageHandler(TEXT_FILTER, check_crop_percent, run_async=True)
+            ],
+            WAIT_CROP_OFFSET: [
+                MessageHandler(TEXT_FILTER, check_crop_size, run_async=True)
+            ],
+            WAIT_DECRYPT_PW: [MessageHandler(TEXT_FILTER, decrypt_pdf, run_async=True)],
+            WAIT_ENCRYPT_PW: [MessageHandler(TEXT_FILTER, encrypt_pdf, run_async=True)],
+            WAIT_FILE_NAME: [MessageHandler(TEXT_FILTER, rename_pdf, run_async=True)],
+            WAIT_ROTATE_DEGREE: [
+                MessageHandler(TEXT_FILTER, check_rotate_degree, run_async=True)
+            ],
+            WAIT_SPLIT_RANGE: [MessageHandler(TEXT_FILTER, split_pdf, run_async=True)],
+            WAIT_TEXT_TYPE: [
+                MessageHandler(TEXT_FILTER, check_text_task, run_async=True)
+            ],
+            WAIT_SCALE_TYPE: [
+                MessageHandler(TEXT_FILTER, check_scale_task, run_async=True)
+            ],
+            WAIT_SCALE_PERCENT: [
+                MessageHandler(TEXT_FILTER, check_scale_percent, run_async=True)
+            ],
+            WAIT_SCALE_DIMENSION: [
+                MessageHandler(TEXT_FILTER, check_scale_dimension, run_async=True)
+            ],
+            WAIT_EXTRACT_PHOTO_TYPE: [
+                MessageHandler(TEXT_FILTER, check_get_photos_task, run_async=True)
+            ],
+            WAIT_TO_PHOTO_TYPE: [
+                MessageHandler(TEXT_FILTER, check_to_photos_task, run_async=True)
+            ],
         },
-        fallbacks=[CommandHandler("cancel", cancel_with_async)],
+        fallbacks=[CommandHandler("cancel", cancel, run_async=True)],
         allow_reentry=True,
     )
 
     return conv_handler
 
 
-@run_async
 def check_doc(update, context):
     doc = update.effective_message.document
     if doc.mime_type.startswith("image"):
@@ -95,12 +115,10 @@ def check_doc(update, context):
     return ask_doc_task(update, context)
 
 
-@run_async
 def check_photo(update, context):
     return ask_photo_task(update, context, update.effective_message.photo[-1])
 
 
-@run_async
 def check_doc_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -130,10 +148,9 @@ def check_doc_task(update, context):
     elif text == COMPRESS:
         return compress_pdf(update, context)
     elif text == _(CANCEL):
-        return cancel_without_async(update, context)
+        return cancel(update, context)
 
 
-@run_async
 def check_photo_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -141,10 +158,9 @@ def check_photo_task(update, context):
     if text in [_(BEAUTIFY), _(TO_PDF)]:
         return process_photo_task(update, context)
     elif text == _(CANCEL):
-        return cancel_without_async(update, context)
+        return cancel(update, context)
 
 
-@run_async
 def check_crop_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -155,7 +171,6 @@ def check_crop_task(update, context):
         return ask_doc_task(update, context)
 
 
-@run_async
 def check_scale_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -166,7 +181,6 @@ def check_scale_task(update, context):
         return ask_doc_task(update, context)
 
 
-@run_async
 def check_text_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -179,7 +193,6 @@ def check_text_task(update, context):
         return ask_doc_task(update, context)
 
 
-@run_async
 def check_get_photos_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -190,7 +203,6 @@ def check_get_photos_task(update, context):
         return ask_doc_task(update, context)
 
 
-@run_async
 def check_to_photos_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text

@@ -6,10 +6,9 @@ from slack import WebClient
 from textblob import TextBlob
 from textblob.exceptions import TranslatorError
 from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, Filters
-from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import TEXT_FILTER
-from pdf_bot.utils import cancel_with_async
+from pdf_bot.utils import cancel
 from pdf_bot.language import set_lang
 
 load_dotenv()
@@ -19,15 +18,14 @@ SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
 # Creates a feedback conversation handler
 def feedback_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("feedback", feedback)],
-        states={0: [MessageHandler(TEXT_FILTER, receive_feedback)]},
-        fallbacks=[CommandHandler("cancel", cancel_with_async)],
+        entry_points=[CommandHandler("feedback", feedback, run_async=True)],
+        states={0: [MessageHandler(TEXT_FILTER, receive_feedback, run_async=True)]},
+        fallbacks=[CommandHandler("cancel", cancel, run_async=True)],
     )
 
     return conv_handler
 
 
-@run_async
 def feedback(update, context):
     """
     Start the feedback conversation
@@ -50,7 +48,6 @@ def feedback(update, context):
 
 
 # Saves a feedback
-@run_async
 def receive_feedback(update, context):
     """
     Log the feedback on Slack
