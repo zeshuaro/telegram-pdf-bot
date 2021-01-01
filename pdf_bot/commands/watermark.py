@@ -3,7 +3,6 @@ import tempfile
 from PyPDF2 import PdfFileWriter
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
-from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK, TEXT_FILTER
 from pdf_bot.utils import (

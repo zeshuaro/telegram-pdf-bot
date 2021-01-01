@@ -1,5 +1,4 @@
 import os
-import secrets
 import tempfile
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
@@ -8,7 +7,6 @@ from telegram import ChatAction
 from telegram import ReplyKeyboardRemove, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
-from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import (
     PDF_OK,
@@ -279,16 +277,13 @@ def get_support_markup(update, context):
     Returns:
         The reply markup object
     """
-    if secrets.randbelow(2):
-        _ = set_lang(update, context)
-        keyboard = [
-            [
-                InlineKeyboardButton(_("Join Channel"), f"https://t.me/{CHANNEL_NAME}"),
-                InlineKeyboardButton(_("Support PDF Bot"), callback_data=PAYMENT),
-            ]
+    _ = set_lang(update, context)
+    keyboard = [
+        [
+            InlineKeyboardButton(_("Join Channel"), f"https://t.me/{CHANNEL_NAME}"),
+            InlineKeyboardButton(_("Support PDF Bot"), callback_data=PAYMENT),
         ]
-        reply_markup = InlineKeyboardMarkup(keyboard)
-    else:
-        reply_markup = None
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
 
     return reply_markup
