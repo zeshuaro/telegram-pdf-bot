@@ -22,12 +22,7 @@ from pdf_bot.language import set_lang
 from pdf_bot.stats import update_stats
 
 
-@run_async
-def cancel_with_async(update, context):
-    return cancel_without_async(update, context)
-
-
-def cancel_without_async(update, context):
+def cancel(update, context):
     _ = set_lang(update, context)
     update.effective_message.reply_text(
         _("Action cancelled"), reply_markup=ReplyKeyboardRemove()

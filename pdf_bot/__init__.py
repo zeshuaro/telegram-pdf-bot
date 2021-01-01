@@ -9,8 +9,7 @@ from pdf_bot.commands import (
 from pdf_bot.files import file_cov_handler
 from pdf_bot.url import url_to_pdf
 from pdf_bot.payment import (
-    send_support_options_without_async,
-    send_support_options_with_async,
+    send_support_options,
     send_payment_invoice,
     successful_payment,
     precheckout_check,

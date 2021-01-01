@@ -6,7 +6,6 @@ from logbook import Logger
 from subprocess import Popen, PIPE
 from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup
 from telegram.ext import ConversationHandler
-from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import (
     BY_PERCENT,
@@ -66,7 +65,6 @@ def ask_crop_value(update, context):
         return WAIT_CROP_OFFSET
 
 
-@run_async
 def check_crop_percent(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
@@ -88,7 +86,6 @@ def check_crop_percent(update, context):
     return crop_pdf(update, context, percent=percent)
 
 
-@run_async
 def check_crop_size(update, context):
     _ = set_lang(update, context)
     message = update.effective_message

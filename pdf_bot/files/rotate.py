@@ -1,6 +1,5 @@
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
-from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import (
     WAIT_ROTATE_DEGREE,
@@ -29,7 +28,6 @@ def ask_rotate_degree(update, context):
     return WAIT_ROTATE_DEGREE
 
 
-@run_async
 def check_rotate_degree(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -40,7 +38,6 @@ def check_rotate_degree(update, context):
         return ask_doc_task(update, context)
 
 
-@run_async
 def rotate_pdf(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END

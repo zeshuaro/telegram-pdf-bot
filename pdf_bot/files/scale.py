@@ -1,6 +1,5 @@
 from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, ParseMode
 from telegram.ext import ConversationHandler
-from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import (
     BY_PERCENT,
@@ -59,7 +58,6 @@ def ask_scale_value(update, context, ask_percent=True):
         return WAIT_SCALE_PERCENT
 
 
-@run_async
 def check_scale_percent(update, context):
     _ = set_lang(update, context)
     message = update.effective_message
@@ -80,7 +78,6 @@ def check_scale_percent(update, context):
     return scale_pdf(update, context, percent=(x, y))
 
 
-@run_async
 def check_scale_dimension(update, context):
     _ = set_lang(update, context)
     message = update.effective_message

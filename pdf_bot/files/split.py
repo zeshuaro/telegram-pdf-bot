@@ -4,7 +4,6 @@ from PyPDF2 import PdfFileMerger
 from PyPDF2.pagerange import PageRange
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
-from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import WAIT_SPLIT_RANGE, PDF_INFO
@@ -28,7 +27,6 @@ def ask_split_range(update, context):
     return WAIT_SPLIT_RANGE
 
 
-@run_async
 def split_pdf(update, context):
     result = check_back_user_data(update, context)
     if result is not None:

@@ -4,7 +4,6 @@ from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
-from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_INFO
 from pdf_bot.utils import write_send_pdf, process_pdf
@@ -22,7 +21,6 @@ def ask_decrypt_pw(update, context):
     return WAIT_DECRYPT_PW
 
 
-@run_async
 def decrypt_pdf(update, context):
     result = check_back_user_data(update, context)
     if result is not None:
@@ -92,7 +90,6 @@ def ask_encrypt_pw(update, context):
     return WAIT_ENCRYPT_PW
 
 
-@run_async
 def encrypt_pdf(update, context):
     result = check_back_user_data(update, context)
     if result is not None:

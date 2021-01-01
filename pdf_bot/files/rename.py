@@ -5,7 +5,6 @@ import tempfile
 
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
-from telegram.ext.dispatcher import run_async
 from telegram.parsemode import ParseMode
 
 from pdf_bot.constants import WAIT_FILE_NAME, PDF_INFO
@@ -24,7 +23,6 @@ def ask_pdf_new_name(update, context):
     return WAIT_FILE_NAME
 
 
-@run_async
 def rename_pdf(update, context):
     result = check_back_user_data(update, context)
     if result is not None:

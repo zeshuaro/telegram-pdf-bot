@@ -21,7 +21,6 @@ from telegram.ext import (
     PreCheckoutQueryHandler,
 )
 from telegram.ext import messagequeue as mq
-from telegram.ext.dispatcher import run_async
 from telegram.utils.request import Request
 
 from pdf_bot import *
@@ -62,30 +61,34 @@ def main():
     dispatcher = updater.dispatcher
 
     # General commands handlers
-    dispatcher.add_handler(CommandHandler("start", start_msg))
-    dispatcher.add_handler(CommandHandler("help", help_msg))
-    dispatcher.add_handler(CommandHandler("setlang", send_lang))
-    dispatcher.add_handler(CommandHandler("support", send_support_options_with_async))
+    dispatcher.add_handler(CommandHandler("start", start_msg, run_async=True))
+    dispatcher.add_handler(CommandHandler("help", help_msg, run_async=True))
+    dispatcher.add_handler(CommandHandler("setlang", send_lang, run_async=True))
+    dispatcher.add_handler(
+        CommandHandler("support", send_support_options, run_async=True)
+    )
     dispatcher.add_handler(CommandHandler("send", send_msg, Filters.user(DEV_TELE_ID)))
     dispatcher.add_handler(
         CommandHandler("stats", get_stats, Filters.user(DEV_TELE_ID))
     )
 
     # Callback query handler
-    dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
+    dispatcher.add_handler(CallbackQueryHandler(process_callback_query, run_async=True))
 
     # Payment handlers
     dispatcher.add_handler(
-        MessageHandler(Filters.reply & TEXT_FILTER, receive_custom_amount)
+        MessageHandler(
+            Filters.reply & TEXT_FILTER, receive_custom_amount, run_async=True
+        )
     )
-    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check))
+    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check, run_async=True))
     dispatcher.add_handler(
-        MessageHandler(Filters.successful_payment, successful_payment)
+        MessageHandler(Filters.successful_payment, successful_payment, run_async=True)
     )
 
     # URL handler
     dispatcher.add_handler(
-        MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf)
+        MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf, run_async=True)
     )
 
     # PDF commands handlers
@@ -119,7 +122,6 @@ def main():
     updater.idle()
 
 
-@run_async
 def start_msg(update, context):
     _ = set_lang(update, context)
     update.effective_message.reply_text(
@@ -139,7 +141,6 @@ def start_msg(update, context):
     create_user(update.effective_message.from_user.id)
 
 
-@run_async
 def help_msg(update, context):
     _ = set_lang(update, context)
     keyboard = [
@@ -161,7 +162,6 @@ def help_msg(update, context):
     )
 
 
-@run_async
 def process_callback_query(update, context):
     _ = set_lang(update, context)
     query = update.callback_query
@@ -177,7 +177,7 @@ def process_callback_query(update, context):
         elif data in LANGUAGES:
             store_lang(update, context, query)
         if data == PAYMENT:
-            send_support_options_without_async(update, context, query)
+            send_support_options(update, context, query)
         elif data in [THANKS, COFFEE, BEER, MEAL]:
             send_payment_invoice(update, context, query)
         elif data == CUSTOM:

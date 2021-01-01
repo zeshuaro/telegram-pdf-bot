@@ -6,15 +6,13 @@ import tempfile
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, ParseMode
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
-from telegram.ext.dispatcher import run_async
 
 from pdf_bot.constants import CANCEL, BEAUTIFY, TO_PDF, REMOVE_LAST, TEXT_FILTER
 from pdf_bot.utils import (
-    cancel_with_async,
     send_file_names,
     send_result_file,
     check_user_data,
-    cancel_without_async,
+    cancel,
 )
 from pdf_bot.language import set_lang
 
@@ -25,21 +23,22 @@ PHOTO_NAMES = "photo_names"
 
 def photo_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("photo", photo)],
+        entry_points=[CommandHandler("photo", photo, run_async=True)],
         states={
             WAIT_PHOTO: [
-                MessageHandler(Filters.document | Filters.photo, check_photo),
-                MessageHandler(TEXT_FILTER, check_text),
+                MessageHandler(
+                    Filters.document | Filters.photo, check_photo, run_async=True
+                ),
+                MessageHandler(TEXT_FILTER, check_text, run_async=True),
             ]
         },
-        fallbacks=[CommandHandler("cancel", cancel_with_async)],
+        fallbacks=[CommandHandler("cancel", cancel, run_async=True)],
         allow_reentry=True,
     )
 
     return conv_handler
 
 
-@run_async
 def photo(update, context):
     context.user_data[PHOTO_IDS] = []
     context.user_data[PHOTO_NAMES] = []
@@ -63,7 +62,6 @@ def ask_first_photo(update, context):
     return WAIT_PHOTO
 
 
-@run_async
 def check_photo(update, context):
     _ = set_lang(update, context)
     photo_file = check_photo_file(update, context)
@@ -123,7 +121,6 @@ def ask_next_photo(update, context):
     return WAIT_PHOTO
 
 
-@run_async
 def check_text(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
@@ -133,7 +130,7 @@ def check_text(update, context):
     if text in [_(BEAUTIFY), _(TO_PDF)]:
         return process_all_photos(update, context)
     elif text == _(CANCEL):
-        return cancel_without_async(update, context)
+        return cancel(update, context)
 
 
 def remove_photo(update, context):
