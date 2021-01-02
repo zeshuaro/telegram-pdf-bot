@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-02 12:36+1100\n"
-"PO-Revision-Date: 2021-01-02 01:38\n"
+"POT-Creation-Date: 2021-01-03 00:29+1100\n"
+"PO-Revision-Date: 2021-01-02 13:58\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "MIME-Version: 1.0\n"
@@ -37,11 +37,11 @@ msgstr ""
 msgid "Set Language"
 msgstr ""
 
-#: bot.py:149 pdf_bot/utils.py:283
+#: bot.py:149 pdf_bot/utils.py:297
 msgid "Join Channel"
 msgstr ""
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:284
+#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:298
 msgid "Support PDF Bot"
 msgstr ""
 
@@ -230,51 +230,51 @@ msgstr ""
 msgid "Unable to reach your web page"
 msgstr ""
 
-#: pdf_bot/utils.py:26
+#: pdf_bot/utils.py:32
 msgid "Action cancelled"
 msgstr ""
 
-#: pdf_bot/utils.py:51
+#: pdf_bot/utils.py:57
 msgid "The file you sent is not a PDF file, try again"
 msgstr ""
 
-#: pdf_bot/utils.py:56
+#: pdf_bot/utils.py:62
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
 msgstr ""
 
-#: pdf_bot/utils.py:80
+#: pdf_bot/utils.py:91
 msgid "Something went wrong, start over again"
 msgstr ""
 
-#: pdf_bot/utils.py:164
+#: pdf_bot/utils.py:178
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
 msgstr ""
 
-#: pdf_bot/utils.py:173
+#: pdf_bot/utils.py:187
 msgid "Your PDF file is already encrypted"
 msgstr ""
 
-#: pdf_bot/utils.py:175
+#: pdf_bot/utils.py:189
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr ""
 
-#: pdf_bot/utils.py:180
+#: pdf_bot/utils.py:194
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr ""
 
-#: pdf_bot/utils.py:204
+#: pdf_bot/utils.py:218
 msgid "You've sent me these {} so far:\n"
 msgstr ""
 
-#: pdf_bot/utils.py:252
+#: pdf_bot/utils.py:266
 msgid "The result file is too large for me to send to you"
 msgstr ""
 
-#: pdf_bot/utils.py:260 pdf_bot/utils.py:267
+#: pdf_bot/utils.py:274 pdf_bot/utils.py:281
 msgid "Here is your result file"
 msgstr ""
 
@@ -295,44 +295,44 @@ msgstr ""
 msgid "There are no differences in text between your PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:60
-msgid "Send me the first PDF file that you'll like to merge\n\n"
+#: pdf_bot/commands/merge.py:80
+msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:84
+#: pdf_bot/commands/merge.py:113
 msgid "The file you've sent is not a PDF file"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:86
+#: pdf_bot/commands/merge.py:115
 msgid "The PDF file you've sent is too large for me to download"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:103
-msgid "Send me the next PDF file that you'll like to merge or press *Done* if you've sent me all the PDF files"
-msgstr ""
-
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:133
 msgid "PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:138
+#: pdf_bot/commands/merge.py:140
+msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgstr ""
+
+#: pdf_bot/commands/merge.py:181
 msgid "*{}* has been removed for merging"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:156
+#: pdf_bot/commands/merge.py:201
 msgid "You haven't sent me any PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:160
+#: pdf_bot/commands/merge.py:205
 msgid "You've only sent me one PDF file."
 msgstr ""
 
-#: pdf_bot/commands/merge.py:170
+#: pdf_bot/commands/merge.py:219
 msgid "Merging your PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:190
+#: pdf_bot/commands/merge.py:239
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr ""
 
