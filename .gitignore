@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/macos,visualstudiocode,python
-# Edit at https://www.gitignore.io/?templates=macos,visualstudiocode,python
+# Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,python
 
 ### macOS ###
 # General
@@ -10,6 +10,7 @@
 
 # Icon must end with two \r
 Icon
+
 
 # Thumbnails
 ._*
@@ -80,21 +81,41 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
+*.py,cover
 .hypothesis/
 .pytest_cache/
+pytestdebug.log
 
 # Translations
 *.mo
 *.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
 
 # Scrapy stuff:
 .scrapy
 
 # Sphinx documentation
 docs/_build/
+doc/_build/
 
 # PyBuilder
 target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
 
 # pyenv
 .python-version
@@ -106,11 +127,25 @@ target/
 #   install all needed dependencies.
 #Pipfile.lock
 
-# celery beat schedule file
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
 celerybeat-schedule
+celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
 
 # Spyder project settings
 .spyderproject
@@ -118,11 +153,6 @@ celerybeat-schedule
 
 # Rope project settings
 .ropeproject
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
 
 # mkdocs documentation
 /site
@@ -135,21 +165,24 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# pytype static type analyzer
+.pytype/
+
+# profiling data
+.prof
+
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-!.vscode/extensions.json
+*.code-workspace
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+.ionide
 
-# End of https://www.gitignore.io/api/macos,visualstudiocode,python
+# End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python
 
-venv/
-.env
-doc*.pdf
-note*.jpg
+demo_files/
 keyfile.json
