@@ -130,8 +130,8 @@ def ask_next_doc(update: Update, context: CallbackContext) -> int:
     )
     update.effective_message.reply_text(
         _(
-            "Send me the other PDF files that you'll like to merge or "
-            "press *Done* if you've sent me all the files"
+            "Press *Done* if you've sent me all the PDF files that "
+            "you'll like to merge or keep sending me the PDF files"
         ),
         reply_markup=reply_markup,
         parse_mode=ParseMode.MARKDOWN,
