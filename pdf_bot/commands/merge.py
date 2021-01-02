@@ -123,6 +123,7 @@ def process_invalid_pdf(
 
 def ask_next_doc(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
+    send_file_names(update, context, context.user_data[MERGE_NAMES], _("PDF files"))
     reply_markup = ReplyKeyboardMarkup(
         [[_(DONE)], [_(REMOVE_LAST), _(CANCEL)]],
         resize_keyboard=True,
@@ -136,7 +137,6 @@ def ask_next_doc(update: Update, context: CallbackContext) -> int:
         reply_markup=reply_markup,
         parse_mode=ParseMode.MARKDOWN,
     )
-    send_file_names(update, context, context.user_data[MERGE_NAMES], _("PDF files"))
 
     return WAIT_MERGE
 
