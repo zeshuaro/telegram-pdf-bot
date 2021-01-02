@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-02 12:36+1100\n"
-"PO-Revision-Date: 2021-01-02 01:38\n"
+"POT-Creation-Date: 2021-01-03 00:29+1100\n"
+"PO-Revision-Date: 2021-01-02 13:57\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "MIME-Version: 1.0\n"
@@ -43,11 +43,11 @@ msgstr "歡迎來到PDF Bot！\n\n"
 msgid "Set Language"
 msgstr "設定語言"
 
-#: bot.py:149 pdf_bot/utils.py:283
+#: bot.py:149 pdf_bot/utils.py:297
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:284
+#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:298
 msgid "Support PDF Bot"
 msgstr "支持PDF Bot"
 
@@ -237,55 +237,55 @@ msgstr "正在轉換你的網頁為PDF檔案"
 msgid "Unable to reach your web page"
 msgstr "無法訪問你的網頁"
 
-#: pdf_bot/utils.py:26
+#: pdf_bot/utils.py:32
 msgid "Action cancelled"
 msgstr "操作取消"
 
-#: pdf_bot/utils.py:51
+#: pdf_bot/utils.py:57
 msgid "The file you sent is not a PDF file, try again"
 msgstr "你發送的不是PDF檔案，再試一次"
 
-#: pdf_bot/utils.py:56
+#: pdf_bot/utils.py:62
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
 msgstr "你發送的PDF檔案太大了，我無法下載\n\n"
 "我取消了你的操作"
 
-#: pdf_bot/utils.py:80
+#: pdf_bot/utils.py:91
 msgid "Something went wrong, start over again"
 msgstr "出了點問題，再試一次"
 
-#: pdf_bot/utils.py:164
+#: pdf_bot/utils.py:178
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
 msgstr "你的PDF檔案似乎無效，我無法打開它\n\n"
 "我取消了你的操作"
 
-#: pdf_bot/utils.py:173
+#: pdf_bot/utils.py:187
 msgid "Your PDF file is already encrypted"
 msgstr "你的PDF檔案本身就已經加密了"
 
-#: pdf_bot/utils.py:175
+#: pdf_bot/utils.py:189
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "你的{} PDF檔案加密了，你必須先解密\n\n"
 "我取消了你的操作"
 
-#: pdf_bot/utils.py:180
+#: pdf_bot/utils.py:194
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "你的PDF檔案加密了，你必須先解密\n\n"
 "我取消了你的操作"
 
-#: pdf_bot/utils.py:204
+#: pdf_bot/utils.py:218
 msgid "You've sent me these {} so far:\n"
 msgstr "你發了以下的{}給我：\n"
 
-#: pdf_bot/utils.py:252
+#: pdf_bot/utils.py:266
 msgid "The result file is too large for me to send to you"
 msgstr "輸出檔案太大了，我無法發送給你"
 
-#: pdf_bot/utils.py:260 pdf_bot/utils.py:267
+#: pdf_bot/utils.py:274 pdf_bot/utils.py:281
 msgid "Here is your result file"
 msgstr "你的輸出檔案"
 
@@ -307,45 +307,44 @@ msgstr "正在比較你的PDF檔案"
 msgid "There are no differences in text between your PDF files"
 msgstr "你的PDF檔案之間沒有任何區別"
 
-#: pdf_bot/commands/merge.py:60
-msgid "Send me the first PDF file that you'll like to merge\n\n"
+#: pdf_bot/commands/merge.py:80
+msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr "向我發送第一個你想要合併的PDF檔案\n\n"
-"注意，我會根據你發送給我的順序來合併你的檔案"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:84
+#: pdf_bot/commands/merge.py:113
 msgid "The file you've sent is not a PDF file"
 msgstr "你發送的不是PDF檔案"
 
-#: pdf_bot/commands/merge.py:86
+#: pdf_bot/commands/merge.py:115
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "你發送的PDF檔案太大了，我無法下載"
 
-#: pdf_bot/commands/merge.py:103
-msgid "Send me the next PDF file that you'll like to merge or press *Done* if you've sent me all the PDF files"
-msgstr "把你要合併的下一個PDF檔案發送給我，如果你已經將所有PDF檔案發送給我，按*完成*"
-
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:133
 msgid "PDF files"
 msgstr "PDF檔案"
 
-#: pdf_bot/commands/merge.py:138
+#: pdf_bot/commands/merge.py:140
+msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgstr ""
+
+#: pdf_bot/commands/merge.py:181
 msgid "*{}* has been removed for merging"
 msgstr "移除了*{}*，這個檔案不會用來合併"
 
-#: pdf_bot/commands/merge.py:156
+#: pdf_bot/commands/merge.py:201
 msgid "You haven't sent me any PDF files"
 msgstr "你還沒有向我發送任何PDF檔案"
 
-#: pdf_bot/commands/merge.py:160
+#: pdf_bot/commands/merge.py:205
 msgid "You've only sent me one PDF file."
 msgstr "你只給我發了一個PDF檔案"
 
-#: pdf_bot/commands/merge.py:170
+#: pdf_bot/commands/merge.py:219
 msgid "Merging your PDF files"
 msgstr "正在合併你的PDF檔案"
 
-#: pdf_bot/commands/merge.py:190
+#: pdf_bot/commands/merge.py:239
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "我無法合併你的PDF檔案，因為我無法打開“{}”。 確保它並沒有加密"
 
