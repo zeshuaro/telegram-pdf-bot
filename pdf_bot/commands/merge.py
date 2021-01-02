@@ -20,7 +20,13 @@ from pdf_bot.utils import (
 )
 from PyPDF2 import PdfFileMerger
 from PyPDF2.utils import PdfReadError
-from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram import (
+    ParseMode,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    Update,
+    ChatAction,
+)
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
@@ -55,6 +61,7 @@ def merge_cov_handler() -> ConversationHandler:
 
 
 def merge(update: Update, context: CallbackContext) -> int:
+    update.effective_message.chat.send_action(ChatAction.TYPING)
     user_id = update.effective_message.from_user.id
     merge_locks[user_id].acquire()
     context.user_data[MERGE_IDS] = []
@@ -81,11 +88,13 @@ def ask_first_doc(update: Update, context: CallbackContext) -> int:
 
 
 def check_doc(update: Update, context: CallbackContext) -> int:
+    message = update.effective_message
+    message.chat.send_action(ChatAction.TYPING)
     result = check_pdf(update, context, send_msg=False)
+
     if result in [PDF_INVALID_FORMAT, PDF_TOO_LARGE]:
         return process_invalid_pdf(update, context, result)
 
-    message = update.effective_message
     user_id = message.from_user.id
     merge_locks[user_id].acquire()
     context.user_data[MERGE_IDS].append(message.document.file_id)
@@ -140,11 +149,13 @@ def ask_next_doc(update: Update, context: CallbackContext) -> int:
 
 
 def check_text(update: Update, context: CallbackContext) -> int:
+    message = update.effective_message
+    message.chat.send_action(ChatAction.TYPING)
     _ = set_lang(update, context)
-    text = update.effective_message.text
+    text = message.text
 
     if text in [_(REMOVE_LAST), _(DONE)]:
-        user_id = update.effective_message.from_user.id
+        user_id = message.from_user.id
         lock = merge_locks[user_id]
 
         if not check_user_data(update, context, MERGE_IDS, lock):
