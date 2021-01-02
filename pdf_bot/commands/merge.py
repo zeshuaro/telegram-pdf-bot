@@ -1,41 +1,57 @@
 import tempfile
-
-from PyPDF2 import PdfFileMerger
-from PyPDF2.utils import PdfReadError
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, ParseMode
-from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
-
+from collections import defaultdict
+from threading import Lock
 
 from pdf_bot.constants import (
-    PDF_INVALID_FORMAT,
-    PDF_TOO_LARGE,
     CANCEL,
     DONE,
+    PDF_INVALID_FORMAT,
+    PDF_TOO_LARGE,
     REMOVE_LAST,
     TEXT_FILTER,
 )
-from pdf_bot.utils import (
-    check_pdf,
-    write_send_pdf,
-    send_file_names,
-    check_user_data,
-    cancel,
-)
 from pdf_bot.language import set_lang
+from pdf_bot.utils import (
+    cancel,
+    check_pdf,
+    check_user_data,
+    send_file_names,
+    write_send_pdf,
+)
+from PyPDF2 import PdfFileMerger
+from PyPDF2.utils import PdfReadError
+from telegram import (
+    ParseMode,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    Update,
+    ChatAction,
+)
+from telegram.ext import (
+    CallbackContext,
+    CommandHandler,
+    ConversationHandler,
+    Filters,
+    MessageHandler,
+)
 
 WAIT_MERGE = 0
 MERGE_IDS = "merge_ids"
 MERGE_NAMES = "merge_names"
 
+merge_locks = defaultdict(Lock)
 
-def merge_cov_handler():
+
+def merge_cov_handler() -> ConversationHandler:
+    handlers = [
+        MessageHandler(Filters.document, check_doc, run_async=True),
+        MessageHandler(TEXT_FILTER, check_text, run_async=True),
+    ]
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("merge", merge, run_async=True)],
         states={
-            WAIT_MERGE: [
-                MessageHandler(Filters.document, check_doc, run_async=True),
-                MessageHandler(TEXT_FILTER, check_text, run_async=True),
-            ]
+            WAIT_MERGE: handlers,
+            ConversationHandler.WAITING: handlers,
         },
         fallbacks=[CommandHandler("cancel", cancel, run_async=True)],
         allow_reentry=True,
@@ -44,21 +60,25 @@ def merge_cov_handler():
     return conv_handler
 
 
-def merge(update, context):
+def merge(update: Update, context: CallbackContext) -> int:
+    update.effective_message.chat.send_action(ChatAction.TYPING)
+    user_id = update.effective_message.from_user.id
+    merge_locks[user_id].acquire()
     context.user_data[MERGE_IDS] = []
     context.user_data[MERGE_NAMES] = []
+    merge_locks[user_id].release()
 
     return ask_first_doc(update, context)
 
 
-def ask_first_doc(update, context):
+def ask_first_doc(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
     reply_markup = ReplyKeyboardMarkup(
         [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
     )
     update.effective_message.reply_text(
         _(
-            "Send me the first PDF file that you'll like to merge\n\n"
+            "Send me the PDF files that you'll like to merge\n\n"
             "Note that the files will be merged in the order that you send me"
         ),
         reply_markup=reply_markup,
@@ -67,33 +87,50 @@ def ask_first_doc(update, context):
     return WAIT_MERGE
 
 
-def check_doc(update, context):
+def check_doc(update: Update, context: CallbackContext) -> int:
+    message = update.effective_message
+    message.chat.send_action(ChatAction.TYPING)
     result = check_pdf(update, context, send_msg=False)
+
     if result in [PDF_INVALID_FORMAT, PDF_TOO_LARGE]:
         return process_invalid_pdf(update, context, result)
 
-    context.user_data[MERGE_IDS].append(update.effective_message.document.file_id)
-    context.user_data[MERGE_NAMES].append(update.effective_message.document.file_name)
+    user_id = message.from_user.id
+    merge_locks[user_id].acquire()
+    context.user_data[MERGE_IDS].append(message.document.file_id)
+    context.user_data[MERGE_NAMES].append(message.document.file_name)
+    result = ask_next_doc(update, context)
+    merge_locks[user_id].release()
 
-    return ask_next_doc(update, context)
+    return result
 
 
-def process_invalid_pdf(update, context, result):
+def process_invalid_pdf(
+    update: Update, context: CallbackContext, pdf_result: int
+) -> int:
     _ = set_lang(update, context)
-    if result == PDF_INVALID_FORMAT:
+    if pdf_result == PDF_INVALID_FORMAT:
         text = _("The file you've sent is not a PDF file")
     else:
         text = _("The PDF file you've sent is too large for me to download")
 
     update.effective_message.reply_text(text)
+    user_id = update.effective_message.from_user.id
+    merge_locks[user_id].acquire()
+
     if not context.user_data[MERGE_NAMES]:
-        return ask_first_doc(update, context)
+        result = ask_first_doc(update, context)
     else:
-        return ask_next_doc(update, context)
+        result = ask_next_doc(update, context)
+
+    merge_locks[user_id].release()
+
+    return result
 
 
-def ask_next_doc(update, context):
+def ask_next_doc(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
+    send_file_names(update, context, context.user_data[MERGE_NAMES], _("PDF files"))
     reply_markup = ReplyKeyboardMarkup(
         [[_(DONE)], [_(REMOVE_LAST), _(CANCEL)]],
         resize_keyboard=True,
@@ -101,34 +138,40 @@ def ask_next_doc(update, context):
     )
     update.effective_message.reply_text(
         _(
-            "Send me the next PDF file that you'll like to merge or press *Done* if you've "
-            "sent me all the PDF files"
+            "Press *Done* if you've sent me all the PDF files that "
+            "you'll like to merge or keep sending me the PDF files"
         ),
         reply_markup=reply_markup,
         parse_mode=ParseMode.MARKDOWN,
     )
-    send_file_names(update, context, context.user_data[MERGE_NAMES], _("PDF files"))
 
     return WAIT_MERGE
 
 
-def check_text(update, context):
+def check_text(update: Update, context: CallbackContext) -> int:
+    message = update.effective_message
+    message.chat.send_action(ChatAction.TYPING)
     _ = set_lang(update, context)
-    text = update.effective_message.text
+    text = message.text
 
-    if text == _(REMOVE_LAST):
-        return remove_doc(update, context)
-    elif text == _(DONE):
-        return preprocess_merge_pdf(update, context)
+    if text in [_(REMOVE_LAST), _(DONE)]:
+        user_id = message.from_user.id
+        lock = merge_locks[user_id]
+
+        if not check_user_data(update, context, MERGE_IDS, lock):
+            return ConversationHandler.END
+
+        if text == _(REMOVE_LAST):
+            return remove_doc(update, context, lock)
+        elif text == _(DONE):
+            return preprocess_merge_pdf(update, context, lock)
     elif text == _(CANCEL):
         return cancel(update, context)
 
 
-def remove_doc(update, context):
-    if not check_user_data(update, context, MERGE_IDS):
-        return ConversationHandler.END
-
+def remove_doc(update: Update, context: CallbackContext, lock: Lock) -> int:
     _ = set_lang(update, context)
+    lock.acquire()
     file_ids = context.user_data[MERGE_IDS]
     file_names = context.user_data[MERGE_NAMES]
     file_ids.pop()
@@ -140,31 +183,37 @@ def remove_doc(update, context):
     )
 
     if len(file_ids) == 0:
-        return ask_first_doc(update, context)
+        result = ask_first_doc(update, context)
     else:
-        return ask_next_doc(update, context)
+        result = ask_next_doc(update, context)
+
+    lock.release()
+
+    return result
 
 
-def preprocess_merge_pdf(update, context):
-    if not check_user_data(update, context, MERGE_IDS):
-        return ConversationHandler.END
-
+def preprocess_merge_pdf(update: Update, context: CallbackContext, lock: Lock) -> int:
     _ = set_lang(update, context)
+    lock.acquire()
     num_files = len(context.user_data[MERGE_IDS])
 
     if num_files == 0:
         update.effective_message.reply_text(_("You haven't sent me any PDF files"))
 
-        return ask_first_doc(update, context)
+        result = ask_first_doc(update, context)
     elif num_files == 1:
         update.effective_message.reply_text(_("You've only sent me one PDF file."))
 
-        return ask_next_doc(update, context)
+        result = ask_next_doc(update, context)
     else:
-        return merge_pdf(update, context)
+        result = merge_pdf(update, context)
+
+    lock.release()
+
+    return result
 
 
-def merge_pdf(update, context):
+def merge_pdf(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
     update.effective_message.reply_text(
         _("Merging your PDF files"), reply_markup=ReplyKeyboardRemove()
