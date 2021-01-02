@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-02 12:36+1100\n"
-"PO-Revision-Date: 2021-01-02 01:38\n"
+"POT-Creation-Date: 2021-01-03 00:29+1100\n"
+"PO-Revision-Date: 2021-01-02 13:57\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -43,11 +43,11 @@ msgstr "Welkom bij PDF Bot!\n\n"
 msgid "Set Language"
 msgstr "Taal instellen"
 
-#: bot.py:149 pdf_bot/utils.py:283
+#: bot.py:149 pdf_bot/utils.py:297
 msgid "Join Channel"
 msgstr "Abonneer op het kanaal"
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:284
+#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:298
 msgid "Support PDF Bot"
 msgstr "PDF Bot ondersteunen"
 
@@ -237,55 +237,55 @@ msgstr "Webpagina converteren naar een PDF bestand"
 msgid "Unable to reach your web page"
 msgstr "Kan uw webpagina niet bereiken"
 
-#: pdf_bot/utils.py:26
+#: pdf_bot/utils.py:32
 msgid "Action cancelled"
 msgstr "Actie geannuleerd"
 
-#: pdf_bot/utils.py:51
+#: pdf_bot/utils.py:57
 msgid "The file you sent is not a PDF file, try again"
 msgstr "Het bestand dat u heeft verzonden is geen PDF bestand, probeer het opnieuw"
 
-#: pdf_bot/utils.py:56
+#: pdf_bot/utils.py:62
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
 msgstr "Het PDF bestand dat u hebt verzonden is te groot voor mij om te downloaden\n\n"
 "Ik heb de taak geannuleerd"
 
-#: pdf_bot/utils.py:80
+#: pdf_bot/utils.py:91
 msgid "Something went wrong, start over again"
 msgstr "Er is iets fout gegaan, begin opnieuw"
 
-#: pdf_bot/utils.py:164
+#: pdf_bot/utils.py:178
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
 msgstr "Uw PDF bestand lijkt ongeldig te zijn, ik kon het niet openen en lezen\n\n"
 "Ik heb de taak geannuleerd"
 
-#: pdf_bot/utils.py:173
+#: pdf_bot/utils.py:187
 msgid "Your PDF file is already encrypted"
 msgstr "Uw PDF bestand is al versleuteld"
 
-#: pdf_bot/utils.py:175
+#: pdf_bot/utils.py:189
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "Uw {} PDF bestand is versleuteld en u zult het eerst moeten decoderen\n\n"
 "Ik heb de taak geannuleerd"
 
-#: pdf_bot/utils.py:180
+#: pdf_bot/utils.py:194
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "Uw PDF bestand is versleuteld en u zult het eerst moeten decoderen\n\n"
 "Ik heb de taak geannuleerd"
 
-#: pdf_bot/utils.py:204
+#: pdf_bot/utils.py:218
 msgid "You've sent me these {} so far:\n"
 msgstr "Je hebt me tot nu toe deze {} gestuurd:\n"
 
-#: pdf_bot/utils.py:252
+#: pdf_bot/utils.py:266
 msgid "The result file is too large for me to send to you"
 msgstr "Het bestand is te groot voor mij om naar u te verzenden"
 
-#: pdf_bot/utils.py:260 pdf_bot/utils.py:267
+#: pdf_bot/utils.py:274 pdf_bot/utils.py:281
 msgid "Here is your result file"
 msgstr "Hier is het bestand"
 
@@ -307,44 +307,44 @@ msgstr "Vergelijk je PDF bestanden"
 msgid "There are no differences in text between your PDF files"
 msgstr "Er zijn geen verschillen in tekst tussen uw PDF bestanden"
 
-#: pdf_bot/commands/merge.py:60
-msgid "Send me the first PDF file that you'll like to merge\n\n"
+#: pdf_bot/commands/merge.py:80
+msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr "Stuur me het eerste PDF bestand dat u wilt samenvoegen. Hou de volgorde aan om ze ook zo samen te voegen"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:84
+#: pdf_bot/commands/merge.py:113
 msgid "The file you've sent is not a PDF file"
 msgstr "Het bestand dat u heeft verzonden is geen PDF bestand"
 
-#: pdf_bot/commands/merge.py:86
+#: pdf_bot/commands/merge.py:115
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "Het PDF bestand dat u heeft verzonden is te groot voor mij om te downloaden"
 
-#: pdf_bot/commands/merge.py:103
-msgid "Send me the next PDF file that you'll like to merge or press *Done* if you've sent me all the PDF files"
-msgstr "Stuur me het volgende PDF bestand dat u wilt samenvoegen of druk op *Klaar* als u mij alle PDF bestanden heeft gestuurd"
-
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:133
 msgid "PDF files"
 msgstr "PDF bestanden"
 
-#: pdf_bot/commands/merge.py:138
+#: pdf_bot/commands/merge.py:140
+msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgstr ""
+
+#: pdf_bot/commands/merge.py:181
 msgid "*{}* has been removed for merging"
 msgstr "*{}* is verwijderd voor samenvoegen"
 
-#: pdf_bot/commands/merge.py:156
+#: pdf_bot/commands/merge.py:201
 msgid "You haven't sent me any PDF files"
 msgstr "U heeft mij nog geen PDF bestanden gestuurd"
 
-#: pdf_bot/commands/merge.py:160
+#: pdf_bot/commands/merge.py:205
 msgid "You've only sent me one PDF file."
 msgstr "U heeft mij maar één PDF-bestand gestuurd."
 
-#: pdf_bot/commands/merge.py:170
+#: pdf_bot/commands/merge.py:219
 msgid "Merging your PDF files"
 msgstr "PDF bestanden aan het samenvoegen"
 
-#: pdf_bot/commands/merge.py:190
+#: pdf_bot/commands/merge.py:239
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "Ik kan uw PDF bestanden niet samenvoegen omdat ik \"{}\" niet kon openen en/of lezen. Zorg ervoor dat het niet versleuteld is"
 
