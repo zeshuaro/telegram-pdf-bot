@@ -1,35 +1,33 @@
 import tempfile
-
 from collections import defaultdict
-from PyPDF2 import PdfFileMerger
-from PyPDF2.utils import PdfReadError
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, ParseMode, Update
-from telegram.ext import (
-    ConversationHandler,
-    CommandHandler,
-    MessageHandler,
-    Filters,
-    CallbackContext,
-)
 from threading import Lock
 
-
 from pdf_bot.constants import (
-    PDF_INVALID_FORMAT,
-    PDF_TOO_LARGE,
     CANCEL,
     DONE,
+    PDF_INVALID_FORMAT,
+    PDF_TOO_LARGE,
     REMOVE_LAST,
     TEXT_FILTER,
 )
-from pdf_bot.utils import (
-    check_pdf,
-    write_send_pdf,
-    send_file_names,
-    check_user_data,
-    cancel,
-)
 from pdf_bot.language import set_lang
+from pdf_bot.utils import (
+    cancel,
+    check_pdf,
+    check_user_data,
+    send_file_names,
+    write_send_pdf,
+)
+from PyPDF2 import PdfFileMerger
+from PyPDF2.utils import PdfReadError
+from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram.ext import (
+    CallbackContext,
+    CommandHandler,
+    ConversationHandler,
+    Filters,
+    MessageHandler,
+)
 
 WAIT_MERGE = 0
 MERGE_IDS = "merge_ids"
