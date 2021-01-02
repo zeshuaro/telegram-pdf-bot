@@ -145,21 +145,22 @@ def check_text(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
     text = update.effective_message.text
 
-    if text == _(REMOVE_LAST):
-        return remove_doc(update, context)
-    elif text == _(DONE):
-        return preprocess_merge_pdf(update, context)
+    if text in [_(REMOVE_LAST), _(DONE)]:
+        user_id = update.effective_message.from_user.id
+        lock = merge_locks[user_id]
+
+        if not check_user_data(update, context, MERGE_IDS, lock):
+            return ConversationHandler.END
+
+        if text == _(REMOVE_LAST):
+            return remove_doc(update, context, lock)
+        elif text == _(DONE):
+            return preprocess_merge_pdf(update, context, lock)
     elif text == _(CANCEL):
         return cancel(update, context)
 
 
-def remove_doc(update: Update, context: CallbackContext) -> int:
-    user_id = update.effective_message.from_user.id
-    lock = merge_locks[user_id]
-
-    if not check_user_data(update, context, MERGE_IDS, lock):
-        return ConversationHandler.END
-
+def remove_doc(update: Update, context: CallbackContext, lock: Lock) -> int:
     _ = set_lang(update, context)
     lock.acquire()
     file_ids = context.user_data[MERGE_IDS]
@@ -182,12 +183,7 @@ def remove_doc(update: Update, context: CallbackContext) -> int:
     return result
 
 
-def preprocess_merge_pdf(update: Update, context: CallbackContext) -> int:
-    user_id = update.effective_message.from_user.id
-    lock = merge_locks[user_id]
-    if not check_user_data(update, context, MERGE_IDS, lock):
-        return ConversationHandler.END
-
+def preprocess_merge_pdf(update: Update, context: CallbackContext, lock: Lock) -> int:
     _ = set_lang(update, context)
     lock.acquire()
     num_files = len(context.user_data[MERGE_IDS])
