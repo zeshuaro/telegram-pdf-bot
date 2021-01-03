@@ -135,8 +135,8 @@ def ask_next_photo(update: Update, context: CallbackContext) -> int:
     )
     update.effective_message.reply_text(
         _(
-            "Select the task from below if you've sent me all the photos, or "
-            "send me the next photo that you'll like to beautify or convert\n\n"
+            "Select the task from below if you've sent me all the photos, "
+            "or keep sending me the photos"
         ),
         reply_markup=reply_markup,
     )
