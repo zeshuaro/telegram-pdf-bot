@@ -1,4 +1,4 @@
-# Translations template for telegram-pdf-bot.
+# locale translations for telegram-pdf-bot.
 # Copyright (C) 2021 zeshuaro
 # This file is distributed under the same license as the telegram-pdf-bot
 # project.
@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-03 00:29+1100\n"
-"PO-Revision-Date: 2021-01-02 13:57\n"
+"POT-Creation-Date: 2021-01-03 10:21+0000\n"
+"PO-Revision-Date: 2021-01-03 10:37\n"
 "Last-Translator: \n"
+"Language: zh\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,6 @@ msgstr ""
 "X-Crowdin-Language: zh-CN\n"
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-"Language: zh_CN\n"
 
 #: bot.py:128
 msgid "Welcome to PDF Bot!\n\n"
@@ -43,11 +43,11 @@ msgstr "欢迎来到 PDF Bot！\n\n"
 msgid "Set Language"
 msgstr "设置语言"
 
-#: bot.py:149 pdf_bot/utils.py:297
+#: bot.py:149 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:298
+#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "支持 PDF Bot"
 
@@ -237,55 +237,55 @@ msgstr "正在转换你的网页为PDF档案"
 msgid "Unable to reach your web page"
 msgstr "无法访问你的网页"
 
-#: pdf_bot/utils.py:32
+#: pdf_bot/utils.py:34
 msgid "Action cancelled"
 msgstr "操作取消"
 
-#: pdf_bot/utils.py:57
+#: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
 msgstr "你发送的不是PDF档案，再试一次"
 
-#: pdf_bot/utils.py:62
+#: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
 msgstr "你发送的PDF档案太大了，我无法下载\n\n"
 "我取消了你的操作"
 
-#: pdf_bot/utils.py:91
+#: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
 msgstr "出了点问题，再试一次"
 
-#: pdf_bot/utils.py:178
+#: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
 msgstr "你的PDF档案似乎无效，我无法打开它\n\n"
 "我取消了你的操作"
 
-#: pdf_bot/utils.py:187
+#: pdf_bot/utils.py:197
 msgid "Your PDF file is already encrypted"
 msgstr "你的PDF档案本来就已经加密了"
 
-#: pdf_bot/utils.py:189
+#: pdf_bot/utils.py:199
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "你的{} PDF档案加密了，你必须先解密\n\n"
 "我取消了你的操作"
 
-#: pdf_bot/utils.py:194
+#: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "你的PDF档案加密了，你必须先解密\n\n"
 "我取消了你的操作"
 
-#: pdf_bot/utils.py:218
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
 msgstr "你发了以下的{}给我：\n"
 
-#: pdf_bot/utils.py:266
+#: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
 msgstr "输出档案太大了，我无法发送给你"
 
-#: pdf_bot/utils.py:274 pdf_bot/utils.py:281
+#: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
 msgstr "你的输出档案"
 
@@ -307,84 +307,81 @@ msgstr "正在比较你的PDF档案"
 msgid "There are no differences in text between your PDF files"
 msgstr "你的PDF档案之间没有任何区别"
 
-#: pdf_bot/commands/merge.py:80
+#: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:113
+#: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
 msgstr "你发送的不是PDF档案"
 
-#: pdf_bot/commands/merge.py:115
+#: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "你发送的PDF档案太大了，我无法下载"
 
-#: pdf_bot/commands/merge.py:133
+#: pdf_bot/commands/merge.py:130
 msgid "PDF files"
 msgstr "PDF档案"
 
-#: pdf_bot/commands/merge.py:140
+#: pdf_bot/commands/merge.py:137
 msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:181
+#: pdf_bot/commands/merge.py:178
 msgid "*{}* has been removed for merging"
 msgstr "移除了*{}*，这个档案不会用来合并"
 
-#: pdf_bot/commands/merge.py:201
+#: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
 msgstr "你还没有向我发送任何PDF档案"
 
-#: pdf_bot/commands/merge.py:205
+#: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
 msgstr "你只给我发了一个PDF档案"
 
-#: pdf_bot/commands/merge.py:219
+#: pdf_bot/commands/merge.py:216
 msgid "Merging your PDF files"
 msgstr "正在合并你的PDF档案"
 
-#: pdf_bot/commands/merge.py:239
+#: pdf_bot/commands/merge.py:236
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "我无法合并你的PDF档案，因为我无法打开“{}”。确保它并没有加密"
 
-#: pdf_bot/commands/photo.py:55
-msgid "Send me the first photo that you'll like to beautify or convert into PDF\n\n"
+#: pdf_bot/commands/photo.py:72
+msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "向我发送第一张你想要美化或转换为PDF档案格式的图片\n\n"
-"注意，图片将按照你发送给我的顺序进行美化和转换"
+msgstr ""
 
-#: pdf_bot/commands/photo.py:78
+#: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
 msgstr "没有档案名称"
 
-#: pdf_bot/commands/photo.py:94
+#: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
 msgstr "你发送的不是图片"
 
-#: pdf_bot/commands/photo.py:100
+#: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
 msgstr "你发送的图片太大了，我无法下载"
 
-#: pdf_bot/commands/photo.py:113
-msgid "Send me the next photo that you'll like to beautify or convert to PDF\n\n"
-"Select the task from below if you have sent me all the photos"
-msgstr "发给我下一张你要美化或转换成PDF的图片\n\n"
-"如果你已经将所有图片发送给我，从下面选择你想做什么"
-
-#: pdf_bot/commands/photo.py:119
+#: pdf_bot/commands/photo.py:131
 msgid "photos"
 msgstr "图片"
 
-#: pdf_bot/commands/photo.py:147
+#: pdf_bot/commands/photo.py:138
+msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
+msgstr ""
+
+#: pdf_bot/commands/photo.py:182
 msgid "*{}* has been removed for beautifying or converting"
 msgstr "移除了*{}*，这个档案不会用来美化或转换"
 
-#: pdf_bot/commands/photo.py:183
+#: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
 msgstr "正在美化和转换你的图片"
 
-#: pdf_bot/commands/photo.py:188
+#: pdf_bot/commands/photo.py:222
 msgid "Converting your photos into PDF"
 msgstr "正在转换你的图片成PDF"
 
@@ -612,4 +609,20 @@ msgstr "上面就是你PDF档案里面的所有文字"
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
 msgstr "我在你的PDF档案中找不到任何文字"
+
+#~ msgid ""
+#~ "Send me the first photo that "
+#~ "you'll like to beautify or convert "
+#~ "into PDF\n"
+#~ "\n"
+#~ "Note that the photos will be "
+#~ "beautified and converted in the order"
+#~ " that you send me"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the next photo that you'll like to beautify or convert to PDF\n"
+#~ "\n"
+#~ "Select the task from below if you have sent me all the photos"
+#~ msgstr ""
 
