@@ -1,35 +1,29 @@
-import img2pdf
-import noteshrink
 import os
 import tempfile
-
 from collections import defaultdict
-from telegram import (
-    ReplyKeyboardMarkup,
-    ReplyKeyboardRemove,
-    ParseMode,
-    Update,
-    ChatAction,
-)
-from telegram.constants import MAX_FILESIZE_DOWNLOAD
-from telegram.ext import (
-    ConversationHandler,
-    CommandHandler,
-    MessageHandler,
-    Filters,
-    CallbackContext,
-)
 from threading import Lock
 from typing import List
 
-from pdf_bot.constants import CANCEL, BEAUTIFY, TO_PDF, REMOVE_LAST, TEXT_FILTER
-from pdf_bot.utils import (
-    send_file_names,
-    send_result_file,
-    check_user_data,
-    cancel,
-)
+import img2pdf
+import noteshrink
+from pdf_bot.constants import BEAUTIFY, CANCEL, REMOVE_LAST, TEXT_FILTER, TO_PDF
 from pdf_bot.language import set_lang
+from pdf_bot.utils import cancel, check_user_data, send_file_names, send_result_file
+from telegram import (
+    ChatAction,
+    ParseMode,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    Update,
+)
+from telegram.constants import MAX_FILESIZE_DOWNLOAD
+from telegram.ext import (
+    CallbackContext,
+    CommandHandler,
+    ConversationHandler,
+    Filters,
+    MessageHandler,
+)
 
 WAIT_PHOTO = 0
 PHOTO_IDS = "photo_ids"
