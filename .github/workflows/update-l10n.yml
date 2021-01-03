@@ -18,6 +18,14 @@ jobs:
         with:
           python-version: "3.7"
 
+      - name: Restore pip cache 💾
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install Babel 🌐
         run: |
           pip3 install -U pip
