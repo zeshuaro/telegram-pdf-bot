@@ -6,6 +6,7 @@ from PyPDF2.utils import PdfReadError
 from telegram import (
     ChatAction,
     Update,
+    ReplyKeyboardMarkup,
     ReplyKeyboardRemove,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -15,6 +16,7 @@ from telegram.ext import ConversationHandler, CallbackContext
 from threading import Lock
 
 from pdf_bot.constants import (
+    CANCEL,
     PDF_OK,
     PDF_INVALID_FORMAT,
     PDF_TOO_LARGE,
@@ -33,6 +35,14 @@ def cancel(update, context):
     )
 
     return ConversationHandler.END
+
+
+def reply_with_cancel_btn(update: Update, context: CallbackContext, text: str):
+    _ = set_lang(update, context)
+    reply_markup = ReplyKeyboardMarkup(
+        [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
+    )
+    update.effective_message.reply_text(text, reply_markup=reply_markup)
 
 
 def check_pdf(update, context, send_msg=True):

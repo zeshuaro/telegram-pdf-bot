@@ -17,6 +17,7 @@ from pdf_bot.utils import (
     check_user_data,
     send_file_names,
     write_send_pdf,
+    reply_with_cancel_btn,
 )
 from PyPDF2 import PdfFileMerger
 from PyPDF2.utils import PdfReadError
@@ -73,16 +74,12 @@ def merge(update: Update, context: CallbackContext) -> int:
 
 def ask_first_doc(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
-    reply_markup = ReplyKeyboardMarkup(
-        [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
+    text = _(
+        "Send me the PDF files that you'll like to merge\n\n"
+        "Note that the files will be merged in the order that you send me"
     )
-    update.effective_message.reply_text(
-        _(
-            "Send me the PDF files that you'll like to merge\n\n"
-            "Note that the files will be merged in the order that you send me"
-        ),
-        reply_markup=reply_markup,
-    )
+
+    reply_with_cancel_btn(update, context, text)
 
     return WAIT_MERGE
 
