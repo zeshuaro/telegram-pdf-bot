@@ -1,0 +1,36 @@
+name: Update-l10n
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  update-l10n:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Setup Python 🐍
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.7"
+
+      - name: Install Babel 🌐
+        run: |
+          pip3 install -U pip
+          pip3 install Babel==2.9.0
+
+      - name: Update localization source file 📄
+        run: |
+          pybabel extract bot.py pdf_bot/ -o locale/pdf_bot.pot
+          pybabel update -l locale -i locale/pdf_bot.pot -o locale/en_UK/LC_MESSAGES/pdf_bot.po
+
+      - name: Create Pull Request 🆕
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Update localization source file
+          branch: update/l10n-source-file
+          title: Update localization source file
