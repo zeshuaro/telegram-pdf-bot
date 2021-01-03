@@ -8,7 +8,13 @@ import img2pdf
 import noteshrink
 from pdf_bot.constants import BEAUTIFY, CANCEL, REMOVE_LAST, TEXT_FILTER, TO_PDF
 from pdf_bot.language import set_lang
-from pdf_bot.utils import cancel, check_user_data, send_file_names, send_result_file
+from pdf_bot.utils import (
+    cancel,
+    check_user_data,
+    send_file_names,
+    send_result_file,
+    reply_with_cancel_btn,
+)
 from telegram import (
     ChatAction,
     ParseMode,
@@ -63,17 +69,12 @@ def photo(update: Update, context: CallbackContext) -> int:
 
 def ask_first_photo(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
-    reply_markup = ReplyKeyboardMarkup(
-        [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
+    text = _(
+        "Send me the photos that you'll like to beautify or "
+        "convert into a PDF file\n\nNote that the photos will be beautified and "
+        "converted in the order that you send me"
     )
-    update.effective_message.reply_text(
-        _(
-            "Send me the photos that you'll like to beautify or "
-            "convert into a PDF file\n\nNote that the photos will be beautified and "
-            "converted in the order that you send me"
-        ),
-        reply_markup=reply_markup,
-    )
+    reply_with_cancel_btn(update, context, text)
 
     return WAIT_PHOTO
 
