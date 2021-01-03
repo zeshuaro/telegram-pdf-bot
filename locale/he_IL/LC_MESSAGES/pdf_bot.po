@@ -1,4 +1,4 @@
-# Translations template for telegram-pdf-bot.
+# locale translations for telegram-pdf-bot.
 # Copyright (C) 2021 zeshuaro
 # This file is distributed under the same license as the telegram-pdf-bot
 # project.
@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-03 00:29+1100\n"
-"PO-Revision-Date: 2021-01-02 13:58\n"
+"POT-Creation-Date: 2021-01-03 10:21+0000\n"
+"PO-Revision-Date: 2021-01-03 10:37\n"
 "Last-Translator: \n"
+"Language: he\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,6 @@ msgstr ""
 "X-Crowdin-Language: he\n"
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-"Language: he_IL\n"
 
 #: bot.py:128
 msgid "Welcome to PDF Bot!\n\n"
@@ -43,11 +43,11 @@ msgstr "ברוך הבא לבוט PDF!\n\n"
 msgid "Set Language"
 msgstr "הגדר שפה"
 
-#: bot.py:149 pdf_bot/utils.py:297
+#: bot.py:149 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "הצטרף לערוץ"
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:298
+#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "תמיכה PDF Bot"
 
@@ -236,52 +236,52 @@ msgstr "ממיר את דף האינטרנט שלך לקובץ PDF"
 msgid "Unable to reach your web page"
 msgstr "לא ניתן להגיע לדף האינטרנט שלך"
 
-#: pdf_bot/utils.py:32
+#: pdf_bot/utils.py:34
 msgid "Action cancelled"
 msgstr "הפעולה בוטלה"
 
-#: pdf_bot/utils.py:57
+#: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
 msgstr "הקובץ ששלחת אינו קובץ PDF, נסה שוב"
 
-#: pdf_bot/utils.py:62
+#: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
 msgstr "קובץ ה- PDF ששלחת גדול מכדי להוריד אותו, ביטלתי את הפעולה שלך"
 
-#: pdf_bot/utils.py:91
+#: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
 msgstr "משהו השתבש, התחל מחדש"
 
-#: pdf_bot/utils.py:178
+#: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
 msgstr "נראה כי קובץ ה- PDF שלך אינו תקף ולא יכולתי לפתוח ולקרוא אותו\n\n"
 " ביטלתי את הפעולה שלך"
 
-#: pdf_bot/utils.py:187
+#: pdf_bot/utils.py:197
 msgid "Your PDF file is already encrypted"
 msgstr "הקובץ PDF שלך כבר מוצפן"
 
-#: pdf_bot/utils.py:189
+#: pdf_bot/utils.py:199
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "הקובץ שלך {} מוצפן ותצטרך לפענח אותו תחילה, ביטלתי את הפעולה שלך"
 
-#: pdf_bot/utils.py:194
+#: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "קובץ ה- PDF שלך מוצפן ותצטרך לפענח אותו ביטלתי את הפעולה שלך"
 
-#: pdf_bot/utils.py:218
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
 msgstr "שלחת לי {} עד עכשיו:\n"
 
-#: pdf_bot/utils.py:266
+#: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
 msgstr "הקובץ גדול מכדי שאוכל לשלוח אליך"
 
-#: pdf_bot/utils.py:274 pdf_bot/utils.py:281
+#: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
 msgstr "כאן הקובץ הסופי שלך"
 
@@ -302,83 +302,81 @@ msgstr "השוואה בין קבצי PDF שלך"
 msgid "There are no differences in text between your PDF files"
 msgstr "אין שום הבדל בטקסט בין הקבצים שלך."
 
-#: pdf_bot/commands/merge.py:80
+#: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:113
+#: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
 msgstr "הקובץ ששלחת לי הוא לא קובץ PDF"
 
-#: pdf_bot/commands/merge.py:115
+#: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "קובץ ה- PDF ששלחת גדול מכדי להוריד אותו"
 
-#: pdf_bot/commands/merge.py:133
+#: pdf_bot/commands/merge.py:130
 msgid "PDF files"
 msgstr "קבצי PDF"
 
-#: pdf_bot/commands/merge.py:140
+#: pdf_bot/commands/merge.py:137
 msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:181
+#: pdf_bot/commands/merge.py:178
 msgid "*{}* has been removed for merging"
 msgstr "*{}* הוסר בגלל מיזוג"
 
-#: pdf_bot/commands/merge.py:201
+#: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
 msgstr "לא שלחת לי שום קבצי PDF"
 
-#: pdf_bot/commands/merge.py:205
+#: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
 msgstr "שלחת לי רק קובץ PDF 1."
 
-#: pdf_bot/commands/merge.py:219
+#: pdf_bot/commands/merge.py:216
 msgid "Merging your PDF files"
 msgstr "מזג את קבצי ה-PDF שלך"
 
-#: pdf_bot/commands/merge.py:239
+#: pdf_bot/commands/merge.py:236
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "אני לא יכול למזג את קבצי ה- PDF שלך מכיוון שלא יכולתי לפתוח ולקרוא \"{}\".  ודא שהוא לא מוצפן"
 
-#: pdf_bot/commands/photo.py:55
-msgid "Send me the first photo that you'll like to beautify or convert into PDF\n\n"
+#: pdf_bot/commands/photo.py:72
+msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "שלחו לי את התצלום הראשון שתרצו לייפות או להמיר ל- PDF שימו לב שהתמונות יופרו והומרו בסדר שתשלחו לי."
+msgstr ""
 
-#: pdf_bot/commands/photo.py:78
+#: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
 msgstr "שם קובץ לא זמין"
 
-#: pdf_bot/commands/photo.py:94
+#: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
 msgstr "הקובץ ששלחת לי הוא לא תמונה"
 
-#: pdf_bot/commands/photo.py:100
+#: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
 msgstr "התמונה ששלחת לי גדולה מכדי להוריד אותה"
 
-#: pdf_bot/commands/photo.py:113
-msgid "Send me the next photo that you'll like to beautify or convert to PDF\n\n"
-"Select the task from below if you have sent me all the photos"
-msgstr "שלח לי את הצילום הבא שתרצה לייפות או להמיר ל- PDF\n\n"
-" בחר את המשימה מלמטה אם שלחת לי את כל התמונות"
-
-#: pdf_bot/commands/photo.py:119
+#: pdf_bot/commands/photo.py:131
 msgid "photos"
 msgstr "תמונות"
 
-#: pdf_bot/commands/photo.py:147
+#: pdf_bot/commands/photo.py:138
+msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
+msgstr ""
+
+#: pdf_bot/commands/photo.py:182
 msgid "*{}* has been removed for beautifying or converting"
 msgstr "*{}* הוסר לצורך יופי או המרה"
 
-#: pdf_bot/commands/photo.py:183
+#: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
 msgstr "מייפה וממיר את התמונות שלך"
 
-#: pdf_bot/commands/photo.py:188
+#: pdf_bot/commands/photo.py:222
 msgid "Converting your photos into PDF"
 msgstr "ממיר את התמונות שלך לתוך ה PDF"
 
@@ -604,4 +602,20 @@ msgstr "* ראה לעיל עבור כל הטקסט בקובץ ה- PDF שלך *"
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
 msgstr "אני לא מצליח למצוא שום טקסט בקובץ ה PDF הזה"
+
+#~ msgid ""
+#~ "Send me the first photo that "
+#~ "you'll like to beautify or convert "
+#~ "into PDF\n"
+#~ "\n"
+#~ "Note that the photos will be "
+#~ "beautified and converted in the order"
+#~ " that you send me"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the next photo that you'll like to beautify or convert to PDF\n"
+#~ "\n"
+#~ "Select the task from below if you have sent me all the photos"
+#~ msgstr ""
 

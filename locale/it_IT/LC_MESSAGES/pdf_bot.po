@@ -1,4 +1,4 @@
-# Translations template for telegram-pdf-bot.
+# locale translations for telegram-pdf-bot.
 # Copyright (C) 2021 zeshuaro
 # This file is distributed under the same license as the telegram-pdf-bot
 # project.
@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-03 00:29+1100\n"
-"PO-Revision-Date: 2021-01-02 13:58\n"
+"POT-Creation-Date: 2021-01-03 10:21+0000\n"
+"PO-Revision-Date: 2021-01-03 10:37\n"
 "Last-Translator: \n"
+"Language: it\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,6 @@ msgstr ""
 "X-Crowdin-Language: it\n"
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-"Language: it_IT\n"
 
 #: bot.py:128
 msgid "Welcome to PDF Bot!\n\n"
@@ -43,11 +43,11 @@ msgstr "Benvenuto su PDF Bot!\n\n"
 msgid "Set Language"
 msgstr "Imposta lingua"
 
-#: bot.py:149 pdf_bot/utils.py:297
+#: bot.py:149 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "Unisciti al canale"
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:298
+#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "Supporta PDF Bot"
 
@@ -237,55 +237,55 @@ msgstr "Sto convertendo la pagina web in PDF"
 msgid "Unable to reach your web page"
 msgstr "Impossibile raggiungere la pagina web"
 
-#: pdf_bot/utils.py:32
+#: pdf_bot/utils.py:34
 msgid "Action cancelled"
 msgstr "Azione annullata"
 
-#: pdf_bot/utils.py:57
+#: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
 msgstr "Il file che hai inviato non è un file PDF"
 
-#: pdf_bot/utils.py:62
+#: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
 msgstr "Il file PDF che hai inviato è troppo grande per essere scaricato\n\n"
 "Ho annullato la tua azione"
 
-#: pdf_bot/utils.py:91
+#: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
 msgstr "Qualcosa è andato storto, riprova"
 
-#: pdf_bot/utils.py:178
+#: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
 msgstr "Il PDF non sembra valido e non ho potuto aprirlo e leggerlo. \n\n"
 "Ho annullato la tua azione"
 
-#: pdf_bot/utils.py:187
+#: pdf_bot/utils.py:197
 msgid "Your PDF file is already encrypted"
 msgstr "Il PDF è già criptato"
 
-#: pdf_bot/utils.py:189
+#: pdf_bot/utils.py:199
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "Il tuo file PDF {} è criptato e dovrai prima decriptarlo\n\n"
 "Ho annullato la tua azione"
 
-#: pdf_bot/utils.py:194
+#: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "Il tuo file PDF è criptato e dovrai prima decriptarlo\n\n"
 "Ho annullato la tua azione"
 
-#: pdf_bot/utils.py:218
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
 msgstr "Fino ad ora mi hai inviato questi {}:\n"
 
-#: pdf_bot/utils.py:266
+#: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
 msgstr "Il file ottenuto è troppo grande per poterlo inviare"
 
-#: pdf_bot/utils.py:274 pdf_bot/utils.py:281
+#: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
 msgstr "Ecco il tuo file completato"
 
@@ -307,84 +307,81 @@ msgstr "Sto confrontando i tuoi PDF"
 msgid "There are no differences in text between your PDF files"
 msgstr "Non ci sono differenze tra i file PDF"
 
-#: pdf_bot/commands/merge.py:80
+#: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:113
+#: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
 msgstr "Il file che hai inviato non è un file PDF"
 
-#: pdf_bot/commands/merge.py:115
+#: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "Il file PDF che hai inviato è troppo grande per essere scaricato"
 
-#: pdf_bot/commands/merge.py:133
+#: pdf_bot/commands/merge.py:130
 msgid "PDF files"
 msgstr "File PDF"
 
-#: pdf_bot/commands/merge.py:140
+#: pdf_bot/commands/merge.py:137
 msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:181
+#: pdf_bot/commands/merge.py:178
 msgid "*{}* has been removed for merging"
 msgstr "*{}* è stato rimosso per l'unione"
 
-#: pdf_bot/commands/merge.py:201
+#: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
 msgstr "Non mi hai inviato alcun file PDF"
 
-#: pdf_bot/commands/merge.py:205
+#: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
 msgstr "Mi hai inviato solo un file PDF."
 
-#: pdf_bot/commands/merge.py:219
+#: pdf_bot/commands/merge.py:216
 msgid "Merging your PDF files"
 msgstr "Sto unendo i tuoi PDF"
 
-#: pdf_bot/commands/merge.py:239
+#: pdf_bot/commands/merge.py:236
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "Non posso unire i file PDF perché non ho potuto aprirli e leggerli \"{}\". Assicurati che non sia cifrato"
 
-#: pdf_bot/commands/photo.py:55
-msgid "Send me the first photo that you'll like to beautify or convert into PDF\n\n"
+#: pdf_bot/commands/photo.py:72
+msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Inviami la prima foto che vorresti personalizzare o convertire in PDF\n\n"
-"Le foto saranno ottimizzate e convertite nell'ordine con cui me le invii"
+msgstr ""
 
-#: pdf_bot/commands/photo.py:78
+#: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
 msgstr "Nome file non disponibile"
 
-#: pdf_bot/commands/photo.py:94
+#: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
 msgstr "Il file inviato non è una foto"
 
-#: pdf_bot/commands/photo.py:100
+#: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
 msgstr "La tua foto è troppo grande per il download"
 
-#: pdf_bot/commands/photo.py:113
-msgid "Send me the next photo that you'll like to beautify or convert to PDF\n\n"
-"Select the task from below if you have sent me all the photos"
-msgstr "Inviami la prossima foto che vorresti personalizzare o convertire in PDF\n\n"
-"Seleziona l'attività da qui sotto se mi hai inviato tutte le foto"
-
-#: pdf_bot/commands/photo.py:119
+#: pdf_bot/commands/photo.py:131
 msgid "photos"
 msgstr "foto"
 
-#: pdf_bot/commands/photo.py:147
+#: pdf_bot/commands/photo.py:138
+msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
+msgstr ""
+
+#: pdf_bot/commands/photo.py:182
 msgid "*{}* has been removed for beautifying or converting"
 msgstr "*{}* è stato rimosso per l'ottimizzazione o la conversione"
 
-#: pdf_bot/commands/photo.py:183
+#: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
 msgstr "Sto ottimizzando e convertendo le tue foto"
 
-#: pdf_bot/commands/photo.py:188
+#: pdf_bot/commands/photo.py:222
 msgid "Converting your photos into PDF"
 msgstr "Conversione delle tue foto in PDF"
 
@@ -612,4 +609,20 @@ msgstr "*Guarda sopra per tutto il testo nel tuo file PDF*"
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
 msgstr "Non sono riuscito a trovare testo estraibile dal tuo PDF"
+
+#~ msgid ""
+#~ "Send me the first photo that "
+#~ "you'll like to beautify or convert "
+#~ "into PDF\n"
+#~ "\n"
+#~ "Note that the photos will be "
+#~ "beautified and converted in the order"
+#~ " that you send me"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the next photo that you'll like to beautify or convert to PDF\n"
+#~ "\n"
+#~ "Select the task from below if you have sent me all the photos"
+#~ msgstr ""
 

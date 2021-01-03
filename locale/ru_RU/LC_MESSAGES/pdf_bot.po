@@ -1,4 +1,4 @@
-# Translations template for telegram-pdf-bot.
+# locale translations for telegram-pdf-bot.
 # Copyright (C) 2021 zeshuaro
 # This file is distributed under the same license as the telegram-pdf-bot
 # project.
@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-03 00:29+1100\n"
-"PO-Revision-Date: 2021-01-02 13:57\n"
+"POT-Creation-Date: 2021-01-03 10:21+0000\n"
+"PO-Revision-Date: 2021-01-03 10:36\n"
 "Last-Translator: \n"
+"Language: ru\n"
 "Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,6 @@ msgstr ""
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-"Language: ru_RU\n"
 
 #: bot.py:128
 msgid "Welcome to PDF Bot!\n\n"
@@ -43,11 +43,11 @@ msgstr "Добро пожаловать в PDF Bot!\n\n"
 msgid "Set Language"
 msgstr "Установить язык"
 
-#: bot.py:149 pdf_bot/utils.py:297
+#: bot.py:149 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "Присоединиться к каналу"
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:298
+#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "Поддержать PDF Bot"
 
@@ -237,52 +237,52 @@ msgstr "Преобразование вашей веб-страницы в PDF �
 msgid "Unable to reach your web page"
 msgstr "Невозможно добраться до вашей веб-страницы"
 
-#: pdf_bot/utils.py:32
+#: pdf_bot/utils.py:34
 msgid "Action cancelled"
 msgstr "Действие отменено"
 
-#: pdf_bot/utils.py:57
+#: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
 msgstr "Отправленный файл не является файлом PDF, попробуйте еще раз"
 
-#: pdf_bot/utils.py:62
+#: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
 msgstr "Отправленный вами файл PDF слишком велик для меня"
 
-#: pdf_bot/utils.py:91
+#: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
 msgstr "Что-то пошло не так, начните сначала"
 
-#: pdf_bot/utils.py:178
+#: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
 msgstr "Ваш PDF-файл выглядит неправильным, и я не смог его открыть и прочитать"
 
-#: pdf_bot/utils.py:187
+#: pdf_bot/utils.py:197
 msgid "Your PDF file is already encrypted"
 msgstr "Ваш PDF-файл уже зашифрован"
 
-#: pdf_bot/utils.py:189
+#: pdf_bot/utils.py:199
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "Ваш {} PDF-файл зашифрован, и вам придется сначала его расшифровать"
 
-#: pdf_bot/utils.py:194
+#: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "Ваш PDF-файл зашифрован, и вам придется сначала его расшифровать\n\n"
 "Я отменил ваше действие"
 
-#: pdf_bot/utils.py:218
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
 msgstr "Пока что вы прислали мне это {}:\n"
 
-#: pdf_bot/utils.py:266
+#: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
 msgstr "Итоговый файл слишком велик, чтобы я мог отправить его вам"
 
-#: pdf_bot/utils.py:274 pdf_bot/utils.py:281
+#: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
 msgstr "Вот ваш итоговый файл"
 
@@ -304,84 +304,81 @@ msgstr "Сравнение ваших PDF-файлов"
 msgid "There are no differences in text between your PDF files"
 msgstr "Нет никаких различий в тексте между вашими PDF-файлами"
 
-#: pdf_bot/commands/merge.py:80
+#: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:113
+#: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
 msgstr "Отправленный вами файл не является файлом PDF"
 
-#: pdf_bot/commands/merge.py:115
+#: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "Отправленный вами файл PDF слишком велик для меня"
 
-#: pdf_bot/commands/merge.py:133
+#: pdf_bot/commands/merge.py:130
 msgid "PDF files"
 msgstr "PDF-файлы"
 
-#: pdf_bot/commands/merge.py:140
+#: pdf_bot/commands/merge.py:137
 msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:181
+#: pdf_bot/commands/merge.py:178
 msgid "*{}* has been removed for merging"
 msgstr "*{}* был удален для слияния"
 
-#: pdf_bot/commands/merge.py:201
+#: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
 msgstr "Вы не присылали мне никаких PDF-файлов"
 
-#: pdf_bot/commands/merge.py:205
+#: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
 msgstr "Вы прислали мне только один PDF-файл."
 
-#: pdf_bot/commands/merge.py:219
+#: pdf_bot/commands/merge.py:216
 msgid "Merging your PDF files"
 msgstr "Слияние ваших PDF-файлов"
 
-#: pdf_bot/commands/merge.py:239
+#: pdf_bot/commands/merge.py:236
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "Я не могу объединить ваши PDF-файлы, так как не могу открыть и прочитать \"{}\". Убедитесь, что он не зашифрован"
 
-#: pdf_bot/commands/photo.py:55
-msgid "Send me the first photo that you'll like to beautify or convert into PDF\n\n"
+#: pdf_bot/commands/photo.py:72
+msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Пришлите мне первое фото которое вам нужно улучшить или преобразовать в PDF\n\n"
-"Обратите внимание, что фото будут улучшены и преобразованы в том порядке, в котором вы их пришлете"
+msgstr ""
 
-#: pdf_bot/commands/photo.py:78
+#: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
 msgstr "Имя файла недоступно"
 
-#: pdf_bot/commands/photo.py:94
+#: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
 msgstr "Отправленный вами файл не является фото"
 
-#: pdf_bot/commands/photo.py:100
+#: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
 msgstr "Отправленнре вами фото слишком велико для меня"
 
-#: pdf_bot/commands/photo.py:113
-msgid "Send me the next photo that you'll like to beautify or convert to PDF\n\n"
-"Select the task from below if you have sent me all the photos"
-msgstr "Пришлите мне следующее фото, которое вам нужно улучшить или преобразовать в PDF\n\n"
-"Выберите задачу ниже, если вы прислали мне все фото"
-
-#: pdf_bot/commands/photo.py:119
+#: pdf_bot/commands/photo.py:131
 msgid "photos"
 msgstr "фото"
 
-#: pdf_bot/commands/photo.py:147
+#: pdf_bot/commands/photo.py:138
+msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
+msgstr ""
+
+#: pdf_bot/commands/photo.py:182
 msgid "*{}* has been removed for beautifying or converting"
 msgstr "*{}* был удален для улучшения или преобразования"
 
-#: pdf_bot/commands/photo.py:183
+#: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
 msgstr "Улучшение и преобразование ваших фото"
 
-#: pdf_bot/commands/photo.py:188
+#: pdf_bot/commands/photo.py:222
 msgid "Converting your photos into PDF"
 msgstr "Преобразование ваших фото в PDF"
 
@@ -608,4 +605,20 @@ msgstr "*См. выше текст в вашем PDF-файле.*"
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
 msgstr "Я не смог найти текст в вашем PDF-файле"
+
+#~ msgid ""
+#~ "Send me the first photo that "
+#~ "you'll like to beautify or convert "
+#~ "into PDF\n"
+#~ "\n"
+#~ "Note that the photos will be "
+#~ "beautified and converted in the order"
+#~ " that you send me"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the next photo that you'll like to beautify or convert to PDF\n"
+#~ "\n"
+#~ "Select the task from below if you have sent me all the photos"
+#~ msgstr ""
 
