@@ -11,6 +11,7 @@ from telegram import (
     MessageEntity,
     ForceReply,
     ParseMode,
+    Update,
 )
 from telegram.ext import (
     Updater,
@@ -19,6 +20,7 @@ from telegram.ext import (
     MessageHandler,
     CallbackQueryHandler,
     PreCheckoutQueryHandler,
+    CallbackContext,
 )
 from telegram.ext import messagequeue as mq
 from telegram.utils.request import Request
@@ -169,7 +171,7 @@ def help_msg(update, context):
     )
 
 
-def process_callback_query(update, context):
+def process_callback_query(update: Update, context: CallbackContext):
     _ = set_lang(update, context)
     query = update.callback_query
     data = query.data
@@ -195,6 +197,8 @@ def process_callback_query(update, context):
             )
 
         context.user_data[CALLBACK_DATA].remove(data)
+
+    query.answer()
 
 
 def send_msg(update, context):
