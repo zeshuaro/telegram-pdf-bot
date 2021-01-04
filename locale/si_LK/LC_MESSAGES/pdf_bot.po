@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-04 02:21+0000\n"
-"PO-Revision-Date: 2021-01-04 02:27\n"
+"POT-Creation-Date: 2021-01-04 04:50+0000\n"
+"PO-Revision-Date: 2021-01-04 04:57\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -25,14 +25,14 @@ msgstr ""
 
 #: bot.py:128
 msgid "Welcome to PDF Bot!\n\n"
-"*Key features:*\n"
+"<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
 "- Create PDF files from text messages\n"
 "- Extract images and text from PDF files\n"
 "- Convert PDF files into images\n"
 "- Convert webpages and images into PDF files\n"
 "- Beautify handwritten notes images into PDF files\n"
-"- _And more..._\n\n"
+"- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr ""
 
@@ -54,14 +54,14 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- Photos\n"
 "- Webpage links\n\n"
 "The rest of the tasks can be performed by using the commands below:\n"
-"- /compare _PDF files_\n"
-"- /merge _PDF files_\n"
-"- /photo _convert and combine multiple photos into PDF files_\n"
-"- /text _create PDF files from text messages_\n"
-"- /watermark _add watermark to PDF files_"
+"/compare - compare PDF files\n"
+"/merge - merge PDF files\n"
+"/photo - convert and combine multiple photos into PDF files\n"
+"/text - create PDF files from text messages\n"
+"/watermark - add watermark to PDF files"
 msgstr ""
 
-#: bot.py:194 pdf_bot/constants.py:84
+#: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "ඔබ PDF බොට් සඳහා සහය දැක්වීමට කැමති මුදල මා හට එවන්න"
 
@@ -329,12 +329,12 @@ msgid "PDF files"
 msgstr "PDF ගොනු"
 
 #: pdf_bot/commands/merge.py:137
-msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr ""
 
 #: pdf_bot/commands/merge.py:178
-msgid "*{}* has been removed for merging"
-msgstr "එකතු කිරීම සඳහා *{}* ඉවත් කර ඇත"
+msgid "<b>{}</b> has been removed for merging"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -378,8 +378,8 @@ msgid "Select the task from below if you've sent me all the photos, or keep send
 msgstr ""
 
 #: pdf_bot/commands/photo.py:182
-msgid "*{}* has been removed for beautifying or converting"
-msgstr "අලංකාර කිරීම හෝ පරිවර්තනය කිරීම සඳහා *{}* ඉවත් කර ඇත"
+msgid "<b>{}</b> has been removed for beautifying or converting"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -417,14 +417,14 @@ msgstr "වෝටර් මාර්ක්"
 msgid "Compressing your PDF file"
 msgstr "ඔබේ PDF ගොනුව සකසමින් පවතී"
 
-#: pdf_bot/files/compress.py:48 pdf_bot/files/crop.py:135
-#: pdf_bot/files/photo.py:226
+#: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
+#: pdf_bot/files/photo.py:224
 msgid "Something went wrong, try again"
 msgstr "යම් වැරැද්දක් සිදු වී ඇත, නැවත උත්සාහ කරන්න"
 
-#: pdf_bot/files/compress.py:58
-msgid "File size reduced by *{:.0%}*, from *{}* to *{}*"
-msgstr "ගොනු ප්‍රමාණය *{:.0%}*, *{}* සිට *{}* තෙක් අඩු කර ඇත"
+#: pdf_bot/files/compress.py:60
+msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
+msgstr ""
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -512,19 +512,19 @@ msgstr "ඔබගේ PDF ගොනුව සඳහා පෙරදසුනක�
 msgid "Select the result file format"
 msgstr "ප්‍රතිදාන ගොනුවේ ආකෘතිය තෝරන්න"
 
-#: pdf_bot/files/photo.py:173
+#: pdf_bot/files/photo.py:171
 msgid "Converting your PDF file into photos"
 msgstr "ඔබගේ PDF ගොනුව ඡායාරූප බවට පරිවර්තනය කරමින් පවතී"
 
-#: pdf_bot/files/photo.py:211
+#: pdf_bot/files/photo.py:209
 msgid "Extracting all the photos in your PDF file"
 msgstr "ඔබගේ PDF ගොනුවේ ඇති සියලුම ඡායාරූප උපුටා ගනිමින් පවතී"
 
-#: pdf_bot/files/photo.py:231
+#: pdf_bot/files/photo.py:229
 msgid "I couldn't find any photos in your PDF file"
 msgstr "ඔබගේ PDF ගොනුවේ කිසිදු ඡායාරූපයක් මට සොයාගත නොහැක"
 
-#: pdf_bot/files/photo.py:276
+#: pdf_bot/files/photo.py:274
 msgid "See above for all your photos"
 msgstr "ඔබගේ සියලු ඡායාරූප සඳහා ඉහත බලන්න"
 
@@ -541,8 +541,8 @@ msgstr "ගොනු නාමවල පහත දැක්වෙන අක්�
 "මට වෙනත් ගොනු නාමයක් එවන්න"
 
 #: pdf_bot/files/rename.py:48
-msgid "Renaming your PDF file into *{}*"
-msgstr "ඔබගේ PDF ගොනුවෙහි නාමය *{}* ලෙස වෙනස් කරමින් පවතී"
+msgid "Renaming your PDF file into <b>{}</b>"
+msgstr ""
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -558,37 +558,33 @@ msgstr "ඔබ වෙනස් කිරීමට කැමති පරිම�
 
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
-"*Example: 150 200* (this will set the width to 150 and height to 200)"
-msgstr "පළල සහ උස මට එවන්න\n\n"
-"*උදාහරණ ලෙස: 150 200* (මෙහි පළල 150 දක්වාත් උස 200 දක්වාත් සකසනු ලැබේ)"
+"<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
+msgstr ""
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
-"2 will double the axis and 0.5 will halve the axis\n\n"
-"*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis)"
-msgstr "තිරස් හා සිරස් අක්ෂ සඳහා අදාළ පරිමාණය මට එවන්න\n\n"
-"2 මගින් අක්ෂය දෙගුණයක් වන අතර, 0.5 මගින් අක්ෂය අර්ධයක් බවට පත් කරයි\n\n"
-"*උදාහරණ ලෙස: 2 0.5* (මෙහි තිරස් අක්ෂය දෙගුණයක් වන අතර සිරස් අක්ෂය අර්ධයකින් අඩු කරයි)"
+"<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
+msgstr ""
 
 #: pdf_bot/files/scale.py:73
-msgid "The scaling factors *{}* are invalid, try again"
-msgstr "*{}* පරිමාණය වලංගු එකක් නොවේ, නැවත උත්සාහ කරන්න"
+msgid "The scaling factors <b>{}</b> are invalid, try again"
+msgstr ""
 
 #: pdf_bot/files/scale.py:93
-msgid "The dimensions *{}* are invalid, try again"
-msgstr "*{}* පරිමාණය වලංගු එකක් නොවේ, නැවත උත්සාහ කරන්න"
+msgid "The dimensions <b>{}</b> are invalid, try again"
+msgstr ""
 
 #: pdf_bot/files/scale.py:105
-msgid "Scaling your PDF file, horizontally by *{}* and vertically by *{}*"
-msgstr "ඔබේ PDF ගොනුව තිරස් අතට *{}* ක් සහ සිරස් අතට *{}* ක් ලෙස පරිමාණය කරමින් පවතී"
+msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
+msgstr ""
 
-#: pdf_bot/files/scale.py:114
-msgid "Scaling your PDF file with width of *{}* and height of *{}*"
-msgstr "ඔබේ PDF ගොනුව පළල *{}* ක් ලෙස සහ උස *{}* ක් ලෙස පරිමාණය කරමින් පවතී"
+#: pdf_bot/files/scale.py:115
+msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
+msgstr ""
 
 #: pdf_bot/files/split.py:18
-msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
-msgstr "ඔබ තබා ගැනීමට කැමති පිටු පරාසය මට එවන්න. පරාස සදහා උදාහරණ ලබා ගැනීමට පහළ ඇති ⚡ *ක්ෂණික දර්ශනය* හෝ [here](http://telegra.ph/Telegram-PDF-Bot-07-16) භාවිතා කරන්න."
+msgid "Send me the range of pages that you'll like to keep. Use ⚡ <b>INSTANT VIEW</b> from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
+msgstr ""
 
 #: pdf_bot/files/split.py:43
 msgid "The range is invalid. Try again"
@@ -607,8 +603,8 @@ msgid "Extracting text from your PDF file"
 msgstr "ඔබගේ PDF ගොනුවෙන් අකුරු උපුටා ගනිමින් පවතී"
 
 #: pdf_bot/files/text.py:84
-msgid "*See above for all the text in your PDF file*"
-msgstr "*ඔබේ PDF ගොනුවේ ඇති සියලුම අකුරු සඳහා ඉහත බලන්න*"
+msgid "<b>See above for all the text in your PDF file</b>"
+msgstr ""
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
@@ -669,5 +665,96 @@ msgstr "ඔබගේ PDF ගොනුවේ කිසිදු අකුරක�
 #~ "performed by using the commands "
 #~ "/compare, /merge, /photo, /text or "
 #~ "/watermark"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Welcome to PDF Bot!\n"
+#~ "\n"
+#~ "*Key features:*\n"
+#~ "- Compress, merge, preview, rename, "
+#~ "split and add watermark to PDF "
+#~ "files\n"
+#~ "- Create PDF files from text messages\n"
+#~ "- Extract images and text from PDF files\n"
+#~ "- Convert PDF files into images\n"
+#~ "- Convert webpages and images into PDF files\n"
+#~ "- Beautify handwritten notes images into PDF files\n"
+#~ "- _And more..._\n"
+#~ "\n"
+#~ "Type /help to see how to use PDF Bot"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can perform most of the tasks"
+#~ " by sending me one of the "
+#~ "followings:\n"
+#~ "- PDF files\n"
+#~ "- Photos\n"
+#~ "- Webpage links\n"
+#~ "\n"
+#~ "The rest of the tasks can be performed by using the commands below:\n"
+#~ "- /compare _PDF files_\n"
+#~ "- /merge _PDF files_\n"
+#~ "- /photo _convert and combine multiple photos into PDF files_\n"
+#~ "- /text _create PDF files from text messages_\n"
+#~ "- /watermark _add watermark to PDF files_"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Press *Done* if you've sent me all"
+#~ " the PDF files that you'll like "
+#~ "to merge or keep sending me the"
+#~ " PDF files"
+#~ msgstr ""
+
+#~ msgid "*{}* has been removed for merging"
+#~ msgstr ""
+
+#~ msgid "*{}* has been removed for beautifying or converting"
+#~ msgstr ""
+
+#~ msgid "File size reduced by *{:.0%}*, from *{}* to *{}*"
+#~ msgstr ""
+
+#~ msgid "Renaming your PDF file into *{}*"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the width and height\n"
+#~ "\n"
+#~ "*Example: 150 200* (this will set the width to 150 and height to 200)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the scaling factors for the horizontal and vertical axes\n"
+#~ "\n"
+#~ "2 will double the axis and 0.5 will halve the axis\n"
+#~ "\n"
+#~ "*Example: 2 0.5* (this will double "
+#~ "the horizontal axis and halve the "
+#~ "vertical axis)"
+#~ msgstr ""
+
+#~ msgid "The scaling factors *{}* are invalid, try again"
+#~ msgstr ""
+
+#~ msgid "The dimensions *{}* are invalid, try again"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file, horizontally by *{}* and vertically by *{}*"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file with width of *{}* and height of *{}*"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the range of pages that"
+#~ " you'll like to keep. Use ⚡ "
+#~ "*INSTANT VIEW* from below or refer "
+#~ "to [here](http://telegra.ph/Telegram-PDF-Bot-07-16)"
+#~ " for some range examples."
+#~ msgstr ""
+
+#~ msgid "*See above for all the text in your PDF file*"
 #~ msgstr ""
 
