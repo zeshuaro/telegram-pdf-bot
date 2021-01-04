@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-03 10:21+0000\n"
-"PO-Revision-Date: 2021-01-03 10:37\n"
+"POT-Creation-Date: 2021-01-04 01:10+0000\n"
+"PO-Revision-Date: 2021-01-04 01:18\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -25,32 +25,38 @@ msgstr ""
 
 #: bot.py:128
 msgid "Welcome to PDF Bot!\n\n"
-"*Features*\n"
-"- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
-"- Extract text and photos in a PDF file and convert a PDF file into photos\n"
-"- Beautify and convert photos into PDF format\n"
-"- Convert a web page into a PDF file\n\n"
+"*Key features:*\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- _And more..._\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr ""
 
-#: bot.py:147
+#: bot.py:149
 msgid "Set Language"
 msgstr ""
 
-#: bot.py:149 pdf_bot/utils.py:307
+#: bot.py:151 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr ""
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:152 pdf_bot/payment.py:78 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr ""
 
-#: bot.py:156
-msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
-"Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
+#: bot.py:158
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands /compare, /merge, /photo, /text or /watermark"
 msgstr ""
 
-#: bot.py:186 pdf_bot/constants.py:84
+#: bot.py:189 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr ""
 
@@ -606,5 +612,32 @@ msgstr ""
 #~ "Send me the next photo that you'll like to beautify or convert to PDF\n"
 #~ "\n"
 #~ "Select the task from below if you have sent me all the photos"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Welcome to PDF Bot!\n"
+#~ "\n"
+#~ "*Features*\n"
+#~ "- Compare, crop, decrypt, encrypt, "
+#~ "merge, rotate, scale, split and add "
+#~ "a watermark to a PDF file\n"
+#~ "- Extract text and photos in a "
+#~ "PDF file and convert a PDF file"
+#~ " into photos\n"
+#~ "- Beautify and convert photos into PDF format\n"
+#~ "- Convert a web page into a PDF file\n"
+#~ "\n"
+#~ "Type /help to see how to use PDF Bot"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can perform most of the tasks"
+#~ " simply by sending me a PDF "
+#~ "file, a photo or a link to a"
+#~ " web page.\n"
+#~ "\n"
+#~ "Some tasks can be performed by "
+#~ "using the commands /compare, /merge, "
+#~ "/watermark or /photo"
 #~ msgstr ""
 
