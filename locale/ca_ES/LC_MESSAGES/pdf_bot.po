@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 10:32\n"
+"PO-Revision-Date: 2021-01-04 10:45\n"
 "Last-Translator: \n"
 "Language: ca\n"
 "Language-Team: Catalan\n"
@@ -42,8 +42,8 @@ msgstr "Benvinguts a PDF Bot!\n\n"
 "- Convertir arxius PDF en imatges\n"
 "- Convertir pàgines web i imatges en arxius PDF\n"
 "- Embellir imatges de notes manuscrites en arxius PDF\n"
-"- <b><i>I més ...</i></b>\n\n"
-"Tipus / ajuda per veure com utilitzar PDF Bot"
+"- <b><i>I més...</i></b>\n\n"
+"Tipus /help per veure com utilitzar PDF Bot"
 
 #: bot.py:149
 msgid "Set Language"
@@ -73,11 +73,11 @@ msgstr "Podeu realitzar la major part de les tasques enviant-me una de les segü
 "- Fotos\n"
 "- Enllaços de pàgines web\n\n"
 "La resta de tasques es poden realitzar utilitzant les ordres següents:\n"
-"/comparar - comparar arxius PDF\n"
-"/ merge - fusionar arxius PDF\n"
-"/ foto - convertir i combinar diverses fotos en arxius PDF\n"
-"/ text - crear arxius PDF a partir de missatges de text\n"
-"/ filigrana - afegir filigrana als arxius PDF"
+"/compare - comparar arxius PDF\n"
+"/merge - fusionar arxius PDF\n"
+"/photo - convertir i combinar diverses fotos en arxius PDF\n"
+"/text - crear arxius PDF a partir de missatges de text\n"
+"/watermark - afegir filigrana als arxius PDF"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -294,11 +294,12 @@ msgstr "El teu arxiu {} PDF està encriptat i l’hauràs de desencriptar abans.
 #: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr "He cancelat la teva acció"
+msgstr "El seu arxiu pdf està encriptat i haurà de desxifrar primer\n\n"
+"que he cancel·lat la seva acció"
 
 #: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
-msgstr "Tu estàs enviant-me això molt lluny:\n"
+msgstr "M'has enviat aquests {} fins ara:\n"
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
@@ -311,7 +312,7 @@ msgstr "Aquest és l’arxiu resultant"
 #: pdf_bot/commands/compare.py:54
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
-msgstr "Envia’m un dels arxius PDF que volguis comparar\n"
+msgstr "Envia’m un dels arxius PDF que volguis comparar\n\n"
 "Tingues en compte que tan sols puc veure les diferències en el text"
 
 #: pdf_bot/commands/compare.py:88
