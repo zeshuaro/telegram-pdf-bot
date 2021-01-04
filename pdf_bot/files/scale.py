@@ -36,11 +36,11 @@ def ask_scale_value(update, context, ask_percent=True):
     if message.text == _(TO_DIMENSIONS) or not ask_percent:
         message.reply_text(
             _(
-                "Send me the width and height\n\n"
-                "*Example: 150 200* (this will set the width to 150 and height to 200)"
+                "Send me the width and height\n\n<b>Example: 150 200</b> "
+                "(this will set the width to 150 and height to 200)"
             ),
             reply_markup=reply_markup,
-            parse_mode=ParseMode.MARKDOWN,
+            parse_mode=ParseMode.HTML,
         )
 
         return WAIT_SCALE_DIMENSION
@@ -48,11 +48,11 @@ def ask_scale_value(update, context, ask_percent=True):
         message.reply_text(
             _(
                 "Send me the scaling factors for the horizontal and vertical axes\n\n"
-                "2 will double the axis and 0.5 will halve the axis\n\n"
-                "*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis)"
+                "<b>Example: 2 0.5</b> (this will double the horizontal axis and "
+                "halve the vertical axis)"
             ),
             reply_markup=reply_markup,
-            parse_mode=ParseMode.MARKDOWN,
+            parse_mode=ParseMode.HTML,
         )
 
         return WAIT_SCALE_PERCENT
@@ -70,8 +70,8 @@ def check_scale_percent(update, context):
         x, y = map(float, text.split())
     except ValueError:
         message.reply_text(
-            _("The scaling factors *{}* are invalid, try again").format(text),
-            parse_mode=ParseMode.MARKDOWN,
+            _("The scaling factors <b>{}</b> are invalid, try again").format(text),
+            parse_mode=ParseMode.HTML,
         )
         return ask_scale_value(update, context)
 
@@ -90,8 +90,8 @@ def check_scale_dimension(update, context):
         x, y = map(float, text.split())
     except ValueError:
         message.reply_text(
-            _("The dimensions *{}* are invalid, try again").format(text),
-            parse_mode=ParseMode.MARKDOWN,
+            _("The dimensions <b>{}</b> are invalid, try again").format(text),
+            parse_mode=ParseMode.HTML,
         )
         return ask_scale_value(update, context, ask_percent=False)
 
@@ -103,19 +103,20 @@ def scale_pdf(update, context, percent=None, dim=None):
     if percent is not None:
         update.effective_message.reply_text(
             _(
-                "Scaling your PDF file, horizontally by *{}* and vertically by *{}*"
+                "Scaling your PDF file, horizontally by <b>{}</b> and "
+                "vertically by <b>{}</b>"
             ).format(percent[0], percent[1]),
             reply_markup=ReplyKeyboardRemove(),
-            parse_mode=ParseMode.MARKDOWN,
+            parse_mode=ParseMode.HTML,
         )
         process_pdf(update, context, "scaled", scale_by=percent)
     else:
         update.effective_message.reply_text(
-            _("Scaling your PDF file with width of *{}* and height of *{}*").format(
-                dim[0], dim[1]
-            ),
+            _(
+                "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
+            ).format(dim[0], dim[1]),
             reply_markup=ReplyKeyboardRemove(),
-            parse_mode=ParseMode.MARKDOWN,
+            parse_mode=ParseMode.HTML,
         )
         process_pdf(update, context, "scaled", scale_to=dim)
 
