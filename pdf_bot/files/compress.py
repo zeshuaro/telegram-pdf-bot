@@ -19,7 +19,8 @@ def compress_pdf(update, context):
 
     _ = set_lang(update, context)
     update.effective_message.reply_text(
-        _("Compressing your PDF file"), reply_markup=ReplyKeyboardRemove(),
+        _("Compressing your PDF file"),
+        reply_markup=ReplyKeyboardRemove(),
     )
 
     with tempfile.NamedTemporaryFile() as tf:
@@ -52,13 +53,14 @@ def compress_pdf(update, context):
                 new_size = os.path.getsize(out_fn)
                 update.effective_message.reply_text(
                     _(
-                        "File size reduced by *{:.0%}*, from *{}* to *{}*".format(
+                        "File size reduced by <b>{:.0%}</b>, "
+                        "from <b>{}</b> to <b>{}</b>".format(
                             (1 - new_size / old_size),
                             humanize.naturalsize(old_size),
                             humanize.naturalsize(new_size),
                         )
                     ),
-                    parse_mode=ParseMode.MARKDOWN,
+                    parse_mode=ParseMode.HTML,
                 )
                 send_result_file(update, context, out_fn, "compress")
 

@@ -135,11 +135,11 @@ def ask_next_doc(update: Update, context: CallbackContext) -> int:
     )
     update.effective_message.reply_text(
         _(
-            "Press *Done* if you've sent me all the PDF files that "
+            "Press <b>Done</b> if you've sent me all the PDF files that "
             "you'll like to merge or keep sending me the PDF files"
         ),
         reply_markup=reply_markup,
-        parse_mode=ParseMode.MARKDOWN,
+        parse_mode=ParseMode.HTML,
     )
 
     return WAIT_MERGE
@@ -175,8 +175,8 @@ def remove_doc(update: Update, context: CallbackContext, lock: Lock) -> int:
     file_name = file_names.pop()
 
     update.effective_message.reply_text(
-        _("*{}* has been removed for merging").format(file_name),
-        parse_mode=ParseMode.MARKDOWN,
+        _("<b>{}</b> has been removed for merging").format(file_name),
+        parse_mode=ParseMode.HTML,
     )
 
     if len(file_ids) == 0:
