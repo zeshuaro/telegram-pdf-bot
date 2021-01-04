@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 01:10+0000\n"
-"PO-Revision-Date: 2021-01-04 01:18\n"
+"PO-Revision-Date: 2021-01-04 02:06\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -34,7 +34,16 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- _And more..._\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "歡迎嚟到PDF Bot！\n\n"
+"*主要功能：*\n"
+"－ 比較，合併，預覽，重新命名，分割同加水印去PDF檔案\n"
+"－ 用文字訊息嚟創建PDF檔案\n"
+"－ 將PDF檔案入面嘅圖片同文字攞出嚟\n"
+"－ 將PDF檔案轉做圖片\n"
+"－ 將網頁同圖片轉做PDF檔案\n"
+"－ 美化手寫筆記同轉做PDF檔案\n"
+"－_仲有更多功能..._\n\n"
+"用/help嚟睇下點用PDF Bot"
 
 #: bot.py:149
 msgid "Set Language"
@@ -54,7 +63,11 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- Photos\n"
 "- Webpage links\n\n"
 "The rest of the tasks can be performed by using the commands /compare, /merge, /photo, /text or /watermark"
-msgstr ""
+msgstr "Send以下其中一樣俾我就可以用到大部分嘅功能：\n"
+"－ PDF檔案\n"
+"－ 圖片\n"
+"－ 網頁連結\n\n"
+"靜低嘅功能就要用呢啲指令 /compare, /merge, /photo, /text 或 /watermark"
 
 #: bot.py:189 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -309,7 +322,8 @@ msgstr "你嘅PDF檔案冇分別喎"
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "Send你想合併嘅PDF檔案畀我\n\n"
+"我會根據你send畀我嘅順序嚟合併你啲檔案"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -325,7 +339,7 @@ msgstr "PDF檔案"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "如果你已經send晒你想合併嘅PDF檔案畀我就噤*搞掂*，唔係嘅話就可以繼續send啲檔案畀我"
 
 #: pdf_bot/commands/merge.py:178
 msgid "*{}* has been removed for merging"
@@ -350,7 +364,8 @@ msgstr "我合併唔到你嘅PDF檔案，因為我開唔到\"{}\"。你睇下個
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Send你想美化或者轉換做PDF檔案嘅圖片畀我\n\n"
+"留意返，啲圖片會根據你send畀我嘅順序嚟美化同轉換"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -370,7 +385,7 @@ msgstr "圖片"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "如果你已經send晒啲圖片畀我就係下面揀你想做嘅嘢，唔係嘅話就可以繼續send圖片畀我"
 
 #: pdf_bot/commands/photo.py:182
 msgid "*{}* has been removed for beautifying or converting"
