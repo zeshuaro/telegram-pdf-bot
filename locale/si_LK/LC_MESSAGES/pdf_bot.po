@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 05:37\n"
+"PO-Revision-Date: 2021-01-04 07:59\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -334,7 +334,7 @@ msgstr ""
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "එකතු කිරීම සඳහා <b>{}</b> ඉවත් කර ඇත"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -379,7 +379,7 @@ msgstr ""
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "අලංකාර කිරීම හෝ පරිවර්තනය කිරීම සඳහා <b>{}</b> ඉවත් කර ඇත"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -542,7 +542,7 @@ msgstr "ගොනු නාමවල පහත දැක්වෙන අක්�
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "ඔබගේ PDF ගොනුවෙහි නාමය <b>{}</b> ලෙස වෙනස් කරමින් පවතී"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -559,28 +559,30 @@ msgstr "ඔබ වෙනස් කිරීමට කැමති පරිම�
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "පළල සහ උස මට එවන්න\n\n"
+"<b>උදාහරණ ලෙස: 150 200</b> (මෙහි පළල 150 දක්වාත් උස 200 දක්වාත් සකසනු ලැබේ)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "තිරස් හා සිරස් අක්ෂ සඳහා අදාළ පරිමාණය මට එවන්න\n\n"
+"<b>උදාහරණ ලෙස: 2 0.5</b> (මෙහි තිරස් අක්ෂය දෙගුණයක් වන අතර සිරස් අක්ෂය අර්ධයකින් අඩු කරයි)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "<b>{}</b> පරිමාණය වලංගු එකක් නොවේ, නැවත උත්සාහ කරන්න"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "<b>{}</b> පරිමාණය වලංගු එකක් නොවේ, නැවත උත්සාහ කරන්න"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "ඔබේ PDF ගොනුව තිරස් අතට <b>{}</b> ක් සහ සිරස් අතට <b>{}</b> ක් ලෙස පරිමාණය කරමින් පවතී"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "ඔබේ PDF ගොනුව පළල <b>{}</b> ක් ලෙස සහ උස <b>{}</b> ක් ලෙස පරිමාණය කරමින් පවතී"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"
@@ -621,7 +623,7 @@ msgstr "ඔබගේ PDF ගොනුවෙන් අකුරු උපුට�
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>ඔබේ PDF ගොනුවේ ඇති සියලුම අකුරු සඳහා ඉහත බලන්න</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
