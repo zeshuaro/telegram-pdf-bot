@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 05:38\n"
+"PO-Revision-Date: 2021-01-04 07:39\n"
 "Last-Translator: \n"
 "Language: he\n"
 "Language-Team: Hebrew\n"
@@ -34,7 +34,16 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "ברוכים הבאים ל-PDF Bot!\n\n"
+"<b>עיקריות:</b>\n"
+"- לדחוס, מיזוג, תצוגה מקדימה, שינוי שם, פיצול והוספת סימן מים לקובצי PDF\n"
+"- יצירת קבצי PDF מהודעות טקסט\n"
+"- לחלץ תמונות וטקסט מקובצי PDF\n"
+"- המרת קבצי PDF לתמונות\n"
+"- המרת דפי אינטרנט ותמונות לקובצי PDF\n"
+"- לייפות תמונות הערות בכתב יד לתוך קבצי PDF\n"
+"- <b><i>ועוד...</i></b>\n\n"
+"סוג /help כדי לראות כיצד להשתמש PDF Bot"
 
 #: bot.py:149
 msgid "Set Language"
@@ -59,7 +68,16 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr ""
+msgstr "באפשרותך לבצע את רוב המשימות על-ידי שליחת אחת מהפעולות הבאות:\n"
+"- קבצי PDF\n"
+"- תמונות\n"
+"- קישורי דף אינטרנט\n\n"
+"ניתן לבצע את שאר המשימות באמצעות הפקודות שלהלן:\n"
+"/compare - השוואת קבצי PDF\n"
+"/merge - מיזוג קבצי PDF\n"
+"/photo - להמיר ולשלב תמונות מרובות לתוך קבצי PDF\n"
+"/text - ליצור קבצי PDF מהודעות טקסט\n"
+"/watermark - להוסיף סימן מים לקובצי PDF"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -163,7 +181,7 @@ msgstr "קובץ טקסט"
 
 #: pdf_bot/constants.py:63
 msgid "Compress"
-msgstr ""
+msgstr "לדחוס"
 
 #: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
@@ -187,11 +205,11 @@ msgstr "תגיד תודה (מותאם אישית)"
 
 #: pdf_bot/feedback.py:41
 msgid "Send me your feedback or /cancel this action. Note that only English feedback will be forwarded to my developer."
-msgstr ""
+msgstr "שלח לי את המשוב שלך או /cancel פעולה זו. שים לב שרק משוב באנגלית יועבר למפתח שלי."
 
 #: pdf_bot/feedback.py:75
 msgid "The feedback is not in English, try again"
-msgstr ""
+msgstr "המשוב אינו באנגלית, נסה שוב"
 
 #: pdf_bot/feedback.py:96
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
@@ -199,7 +217,7 @@ msgstr "תודה על המשוב שלך!, כבר העברתי אותו למפת�
 
 #: pdf_bot/language.py:24
 msgid "Select your language"
-msgstr ""
+msgstr "בחר את השפה שלך"
 
 #: pdf_bot/language.py:64
 msgid "Your language has been set to {}"
@@ -310,7 +328,8 @@ msgstr "אין שום הבדל בטקסט בין הקבצים שלך."
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "שלח לי את קבצי PDF שאתה רוצה\n\n"
+"שים לב שהקבצים ימוזגו בסדר שאתה שולח לי"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -326,11 +345,11 @@ msgstr "קבצי PDF"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "לחץ <b>עשה</b> אם שלחת לי את כל קבצי PDF שאתה רוצה למזג או להמשיך לשלוח לי את קבצי PDF"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "<b>{}</b> הוסר בגלל מיזוג"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -351,7 +370,8 @@ msgstr "אני לא יכול למזג את קבצי ה- PDF שלך מכיוון 
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "שלח לי את התמונות שאתה רוצה לייפות או להמיר לקובץ PDF\n\n"
+"שים לב שהתמונות יהיו יפה ויהיו מומרות בסדר שאתה שולח לי"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -371,11 +391,11 @@ msgstr "תמונות"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "בחר את המשימה מלמטה אם שלחת לי את כל התמונות, או המשך לשלוח לי את התמונות"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "<b>{}</b> הוסר לצורך יופי או המרה"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -411,7 +431,7 @@ msgstr "סימן-מים"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
-msgstr ""
+msgstr "דחיסת קובץ PDF"
 
 #: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
 #: pdf_bot/files/photo.py:224
@@ -420,7 +440,7 @@ msgstr "משהו השתבש, נסה שוב"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr ""
+msgstr "גודל הקובץ הופחת <b>{:.0%}</b>, מ- <b>{}</b> ל- <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -536,7 +556,7 @@ msgstr "שמות קבצים אינם יכולים להכיל אחת מהתווי
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "משנה את שם הקובץ PDF שלך ל-<b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -553,28 +573,30 @@ msgstr "בחר את סוג הסקאלה שתרצה לבצע"
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "שלח לי את הרוחב והגובה\n\n"
+"<b>לדוגמא: 150 200</b> (זה יקבע את הרוחב ל 150 ואת הגובה ל 200)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "שלח לי את גורמי קנה המידה עבור הצירים האופקיים והאנכיים\n\n"
+"<b>דוגמה: 2 0.5</b> (אפשרות זו תכפיל את הציר האופקי ותחצה את הציר האנכי)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "גורמי המידה <b> {} </b> אינם תקפים, נסה שוב"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "הממדים <b>{}</b> אינם תקפים, נסה שוב"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "קנה מידה של קובץ ה- PDF שלך, אופקית על ידי <b>{}</b> ואנכי על ידי <b>{}</b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "קנה מידה של קובץ ה- PDF ברוחב <b>{}</b> וגובהו <b>{}</b>"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"
@@ -615,7 +637,7 @@ msgstr "מחלץ טקסט מקובץ ה PDF שלך"
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>ראה לעיל עבור כל הטקסט בקובץ ה- PDF שלך</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
