@@ -158,10 +158,15 @@ def help_msg(update, context):
         _(
             "You can perform most of the tasks by sending me one of the followings:\n"
             "- PDF files\n- Photos\n- Webpage links\n\n"
-            "The rest of the tasks can be performed by using the commands /compare, "
-            "/merge, /photo, /text or /watermark"
+            "The rest of the tasks can be performed by using the commands below:\n"
+            "- /compare _PDF files_\n"
+            "- /merge _PDF files_\n"
+            "- /photo _convert and combine multiple photos into PDF files_\n"
+            "- /text _create PDF files from text messages_\n"
+            "- /watermark _add watermark to PDF files_"
         ),
         reply_markup=reply_markup,
+        parse_mode=ParseMode.MARKDOWN,
     )
 
 
