@@ -156,9 +156,7 @@ def ask_photo_results_type(update, context):
         keyboard, resize_keyboard=True, one_time_keyboard=True
     )
     update.effective_message.reply_text(
-        _("Select the result file format"),
-        reply_markup=reply_markup,
-        parse_mode=ParseMode.MARKDOWN,
+        _("Select the result file format"), reply_markup=reply_markup
     )
 
     return return_type

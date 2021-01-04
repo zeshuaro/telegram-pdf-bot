@@ -126,15 +126,17 @@ def start_msg(update, context):
     _ = set_lang(update, context)
     update.effective_message.reply_text(
         _(
-            "Welcome to PDF Bot!\n\n*Features*\n"
-            "- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and "
-            "add a watermark to a PDF file\n"
-            "- Extract text and photos in a PDF file and convert a PDF file into photos\n"
-            "- Beautify and convert photos into PDF format\n"
-            "- Convert a web page into a PDF file\n\n"
+            "Welcome to PDF Bot!\n\n<b>Key features:</b>\n"
+            "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+            "- Create PDF files from text messages\n"
+            "- Extract images and text from PDF files\n"
+            "- Convert PDF files into images\n"
+            "- Convert webpages and images into PDF files\n"
+            "- Beautify handwritten notes images into PDF files\n"
+            "- <b><i>And more...</i></b>\n\n"
             "Type /help to see how to use PDF Bot"
         ),
-        parse_mode=ParseMode.MARKDOWN,
+        parse_mode=ParseMode.HTML,
     )
 
     # Create the user entity in Datastore
@@ -154,9 +156,14 @@ def help_msg(update, context):
 
     update.effective_message.reply_text(
         _(
-            "You can perform most of the tasks simply by sending me a PDF file, a photo or "
-            "a link to a web page.\n\n"
-            "Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
+            "You can perform most of the tasks by sending me one of the followings:\n"
+            "- PDF files\n- Photos\n- Webpage links\n\n"
+            "The rest of the tasks can be performed by using the commands below:\n"
+            "/compare - compare PDF files\n"
+            "/merge - merge PDF files\n"
+            "/photo - convert and combine multiple photos into PDF files\n"
+            "/text - create PDF files from text messages\n"
+            "/watermark - add watermark to PDF files"
         ),
         reply_markup=reply_markup,
     )

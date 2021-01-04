@@ -18,6 +18,14 @@ jobs:
         with:
           python-version: "3.7"
 
+      - name: Restore pip cache 💾
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install Babel 🌐
         run: |
           pip3 install -U pip
@@ -27,8 +35,10 @@ jobs:
         run: |
           pybabel extract bot.py pdf_bot/ -o locale/pdf_bot.pot
           pybabel update -l locale -i locale/pdf_bot.pot -o locale/en_UK/LC_MESSAGES/pdf_bot.po
+          echo NUM_DIFFS=$(git diff --shortstat | egrep -o '[0-9]+ i' | egrep -o '[0-9]+') >> $GITHUB_ENV
 
       - name: Create Pull Request 🆕
+        if: env.NUM_DIFFS > 1
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: Update localization source file

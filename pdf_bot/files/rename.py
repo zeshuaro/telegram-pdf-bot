@@ -45,8 +45,8 @@ def rename_pdf(update, context):
 
     new_fn = "{}.pdf".format(text)
     message.reply_text(
-        _("Renaming your PDF file into *{}*").format(new_fn),
-        parse_mode=ParseMode.MARKDOWN,
+        _("Renaming your PDF file into <b>{}</b>").format(new_fn),
+        parse_mode=ParseMode.HTML,
         reply_markup=ReplyKeyboardRemove(),
     )
 

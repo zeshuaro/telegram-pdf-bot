@@ -8,17 +8,17 @@
 [![Crowdin](https://badges.crowdin.net/telegram-pdf-bot/localized.svg)](https://crowdin.com/project/telegram-pdf-bot)
 [![Telegram Channel](https://img.shields.io/badge/Telegram-Channel-blue.svg)](https://t.me/pdf2botdev)
 
-A PDF utility bot on Telegram that can:
+A Telegram bot that can:
 
-- Crop, decrypt, encrypt, merge, preview, rename, rotate, scale and split a PDF file
-- Compare text differences of two PDF files
-- Create a PDF file from text messages
-- Add watermark to a PDF file
-- Add a text layer to a PDF file to make it searchable
-- Extract text from a PDF file
-- Extract images in a PDF file and convert a PDF file into images
-- Beautify and convert photos into PDF format
-- Convert a web page into a PDF file
+- Compress, crop, decrypt, encrypt, merge, preview, rename, rotate, scale and split PDF files
+- Compare text differences between two PDF files
+- Create PDF files from text messages
+- Add watermark to PDF files
+- Add text layers to PDF files to make them searchable with text
+- Extract images and text from PDF files
+- Convert PDF files into images
+- Beautify handwritten notes images into PDF files
+- Convert webpages and images into PDF files
 
 ## Getting Started
 
