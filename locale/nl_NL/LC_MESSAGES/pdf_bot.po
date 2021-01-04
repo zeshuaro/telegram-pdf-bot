@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 07:18\n"
+"PO-Revision-Date: 2021-01-04 07:28\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -73,11 +73,11 @@ msgstr "U de meeste taken uitvoeren door mij een van de volgende handelingen te 
 "- Foto's\n"
 "- Webpaginakoppelingen\n\n"
 "De rest van de taken kan worden uitgevoerd met behulp van de onderstaande opdrachten:\n"
-"/vergelijken - VERGELIJK PDF-bestanden\n"
+"/compare - VERGELIJK PDF-bestanden\n"
 "/merge - voeg PDF-bestanden\n"
-"/foto samen - converteer en combineer meerdere foto's in PDF-bestanden\n"
-"/tekst - MAAK PDF-bestanden uit tekstberichten\n"
-"/watermerk - voeg watermerk toe aan PDF-bestanden"
+"/photo - converteer en combineer meerdere foto's in PDF-bestanden\n"
+"/text - MAAK PDF-bestanden uit tekstberichten\n"
+"/watermark - voeg watermerk toe aan PDF-bestanden"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -563,7 +563,7 @@ msgstr "Bestandsnamen mogen geen van de volgende tekens bevatten:\n"
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "PDF bestand aan het hernoemen naar <b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -580,28 +580,30 @@ msgstr "Selecteer het type verkleining dat je wilt gebruiken"
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "Stuur me de breedte en hoogte\n\n"
+"<b>Voorbeeld: 150 200</b> (dit zal de breedte instellen op 150 en hoogte naar 200)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "Stuur me de schaalfactoren voor de horizontale en verticale assen\n\n"
+"<b>Voorbeeld: 2 0.5</b> (dit zal de horizontale as verdubbelen en de verticale as halveren)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "De schaalfactoren <b>{}</b> zijn ongeldig, probeer het opnieuw"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "De dimensies <b>{}</b> zijn ongeldig, probeer het opnieuw"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "Schalen van uw PDF bestand, horizontaal met <b>{}</b> en verticaal <b>{}</b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "Schalen van uw PDF bestand met breedte <b>{}</b> en hoogte van <b>{}</b>"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"
@@ -622,7 +624,24 @@ msgid "Send me the range of pages that you'll like to keep\n\n"
 "<code>::-1   all pages in reversed order</code>\n"
 "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
 "<code>2::-1  pages 2 1 0</code>"
-msgstr ""
+msgstr "Stuur mij het bereik van de pagina's die u wilt houden\n\n"
+"<b>algemeen gebruik</b>\n"
+"<code>:      alle pagina's</code>\n"
+"<code>22     alleen de 23e pagina</code>\n"
+"<code>0:3    de eerste drie pagina's</code>\n"
+"<code>:3     de eerste drie pagina's</code>\n"
+"<code>5:     vanaf de 6e pagina</code>\n"
+"<code>-1     laatste pagina alleen</code>\n"
+"<code>:-1    alle pagina's, maar de laatste pagina</code>\n"
+"<code>-2     voorlaatste pagina alleen</code>\n"
+"<code>-2:    laatste twee pagina's</code>\n"
+"<code>-3:-1  derde en een voorlaatste pagina's alleen</code>\n\n"
+"<b>Geavanceerd gebruik</b>\n"
+"<code>::2    pagina's 0 2 4 ... tot eind</code>\n"
+"<code>1:10:2 pagina's 1 3 5 7 9</code>\n"
+"<code>::-1   alle pagina's in omgekeerde volgorde</code>\n"
+"<code>3:0:-1 pagina's 3 2 1 maar niet 0</code>\n"
+"<code>2::-1  pagina's 2 1 0</code>"
 
 #: pdf_bot/files/split.py:58
 msgid "The range is invalid. Try again"
@@ -642,7 +661,7 @@ msgstr "Het extraheren van tekst uit uw PDF bestand"
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>Bekijk hierboven voor alle tekst uituw PDF bestand</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
