@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 05:38\n"
+"PO-Revision-Date: 2021-01-04 07:39\n"
 "Last-Translator: \n"
 "Language: it\n"
 "Language-Team: Italian\n"
@@ -34,7 +34,16 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "Benvenuti in PDF Bot!\n\n"
+"<b>caratteristiche chiave:</b>\n"
+"- Comprimi, unire, visualizzare in anteprima, rinominare, dividere e aggiungere filigrana ai file PDF\n"
+"- Creare file PDF da messaggi di testo\n"
+"- Estrarre immagini e testo da file PDF\n"
+"- Convertire file PDF in immagini\n"
+"- Convertire pagine Web e immagini in file PDF\n"
+"- Abbellire le immagini note scritte a mano in file PDF\n"
+"- <b><i>E altro ancora...</i></b>\n\n"
+"Tipo /help per vedere come utilizzare PDF Bot"
 
 #: bot.py:149
 msgid "Set Language"
@@ -59,7 +68,16 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr ""
+msgstr "È possibile eseguire la maggior parte delle attività inviandomi una delle seguenti operazioni:\n"
+"- FILE PDF\n"
+"- Foto\n"
+"- Collegamenti pagina Web\n\n"
+"Il resto delle attività può essere eseguito utilizzando i comandi seguenti:\n"
+"/compare - confronta file PDF\n"
+"/merge - unisci file PDF\n"
+"/photo - converti e combina più foto in file PDF\n"
+"/text - crea file PDF da messaggi di testo\n"
+"/watermark - aggiungi filigrana ai file PDF"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -314,7 +332,8 @@ msgstr "Non ci sono differenze tra i file PDF"
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "Inviami i file PDF che ti piacerà unire\n\n"
+"Nota che i file verranno uniti nell'ordine in cui mi invii"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -330,11 +349,11 @@ msgstr "File PDF"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "Premi <b>Fatto</b> se mi hai inviato tutti i file PDF che ti piacerà unire o continua a inviarmi i file PDF"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "<b>{}</b> è stato rimosso per l'unione"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -355,7 +374,8 @@ msgstr "Non posso unire i file PDF perché non ho potuto aprirli e leggerli \"{}
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Inviami le foto che ti piacerà abbellire o convertire in un file PDF\n\n"
+"Nota che le foto saranno abbellite e convertite nell'ordine che mi invii"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -375,11 +395,11 @@ msgstr "foto"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "Seleziona l'attività qui sotto se mi hai inviato tutte le foto o continua a inviarmi le foto"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "<b>{}</b> è stato rimosso per l'ottimizzazione o la conversione"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -424,7 +444,7 @@ msgstr "Qualcosa è andato storto, riprova"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr ""
+msgstr "Dimensioni del file ridotte <b>{:.0%}</b>, da <b>{}</b> a <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -542,7 +562,7 @@ msgstr "I nomi dei file non possono contenere nessuno dei seguenti caratteri:\n"
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "Sto rinominando il tuo PDF in <b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -559,16 +579,18 @@ msgstr "Seleziona il tipo di scala che vorresti eseguire"
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "Inviami la larghezza e l'altezza\n\n"
+"<b>Esempio: 150 200</b> (questo imposta la larghezza a 150 e l'altezza a 200)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "Inviami i fattori di scala per gli assi orizzontali e verticali\n\n"
+"<b>Esempio: 2 0.5</b> (questo raddoppierà l'asse orizzontale e dimezzerà l'asse verticale)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "Il fattore di scala <b>{}</b> non è valido, riprova"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
