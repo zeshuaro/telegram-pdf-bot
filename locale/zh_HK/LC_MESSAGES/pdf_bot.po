@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 04:50+0000\n"
-"PO-Revision-Date: 2021-01-04 04:57\n"
+"PO-Revision-Date: 2021-01-04 05:18\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -34,7 +34,16 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "歡迎嚟到PDF Bot！\n\n"
+"<b>主要功能：</b>\n"
+"－ 比較，合併，預覽，重新命名，分割同加水印去PDF檔案\n"
+"－ 用文字訊息嚟創建PDF檔案\n"
+"－ 將PDF檔案入面嘅圖片同文字攞出嚟\n"
+"－ 將PDF檔案轉做圖片\n"
+"－ 將網頁同圖片轉做PDF檔案\n"
+"－ 美化手寫筆記同轉做PDF檔案\n"
+"－<b><i>仲有更多功能...</i></b>\n\n"
+"用/help嚟睇下點用PDF Bot"
 
 #: bot.py:149
 msgid "Set Language"
@@ -59,7 +68,16 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr ""
+msgstr "Send以下其中一樣畀我就可以用到大部分嘅功能：\n"
+"－ PDF檔案\n"
+"－ 圖片\n"
+"－ 網頁連結\n\n"
+"靜低嘅功能就要用以下呢啲嘅指令：\n"
+"/compare - 比較PDF檔案\n"
+"/merge - 合併PDF檔案\n"
+"/photo - 將幾張圖片轉換同合併做PDF檔案\n"
+"/text - 用文字訊息嚟創建PDF檔案\n"
+"/watermark - 加水印去PDF檔案"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -331,11 +349,11 @@ msgstr "PDF檔案"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "如果你已經send晒你想合併嘅PDF檔案畀我就噤<b>搞掂</b>，唔係嘅話就可以繼續send啲檔案畀我"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "Del咗<b>{}</b>啦，呢個檔案唔會攞嚟合併"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -381,7 +399,7 @@ msgstr "如果你已經send晒啲圖片畀我就係下面揀你想做嘅嘢，�
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "Del咗<b>{}</b>啦，呢個檔案唔會攞嚟美化同轉換"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -426,7 +444,7 @@ msgstr "發生咗未知嘅錯誤，試多次"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr ""
+msgstr "檔案size細咗<b>{:.0%}</b>，由 <b>{}</b> 壓縮到 <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -544,7 +562,7 @@ msgstr "檔案名唔可以有呢啲符號：\n"
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "改緊你個PDF檔案名做<b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -561,32 +579,34 @@ msgstr "揀你想點樣縮放"
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "Send新嘅寬度同高度畀我\n\n"
+"<b>例子: 150 200</b>（咁樣會縮放個寬度去150同個高度去200）"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "Send你想打橫同打棟縮放嘅百分比畀我\n\n"
+"<b>例子：2 0.5</b>（咁樣會打橫放大一倍同打棟縮細一半）"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "縮放百分比<b>{}</b>無效，試多次"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "尺寸<b>{}</b>無效，試多次"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "縮放緊你嘅PDF檔案，打橫縮放<b>{}</b>同打棟縮放<b>{}</b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "縮放緊你嘅PDF檔案，寬度為<b>{}</b>，高度為<b>{}</b>"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep. Use ⚡ <b>INSTANT VIEW</b> from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
-msgstr ""
+msgstr "Send你想保留嘅頁數畀我。你可以用下面嘅⚡<b>INSTANT VIEW</b>或者去[呢度](http://telegra.ph/Telegram-PDF-Bot-07-16)嚟睇下啲例子"
 
 #: pdf_bot/files/split.py:43
 msgid "The range is invalid. Try again"
@@ -606,7 +626,7 @@ msgstr "攞緊你PDF檔案嘅文字"
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>上面係你PDF檔案入面嘅文字</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
