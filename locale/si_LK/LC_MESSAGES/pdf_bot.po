@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-03 10:21+0000\n"
-"PO-Revision-Date: 2021-01-03 10:37\n"
+"POT-Creation-Date: 2021-01-04 01:10+0000\n"
+"PO-Revision-Date: 2021-01-04 01:18\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -25,39 +25,38 @@ msgstr ""
 
 #: bot.py:128
 msgid "Welcome to PDF Bot!\n\n"
-"*Features*\n"
-"- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
-"- Extract text and photos in a PDF file and convert a PDF file into photos\n"
-"- Beautify and convert photos into PDF format\n"
-"- Convert a web page into a PDF file\n\n"
+"*Key features:*\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- _And more..._\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr "PDF බොට් වෙත සාදරයෙන් පිළිගනිමු!\n\n"
-"*කාර්යයන්*\n"
-"- එකිනෙක සංසන්දනය කිරීම, අනවශ්‍ය කොටස් කපා දැමීම, විකේතනය කිරීම, ආකේතනය කිරීම, එකතු කිරීම, කරකැවීම, පරිමාණනය කිරීම, කොටස්වලට කැඩීම සහ PDF ගොනුවකට වෝටර් මාර්ක් එකක් එක් කිරීම.\n"
-"- පෙළ සහ ඡායාරූප PDF වෙත උපුටා ගැනීම සහ PDF ඡායාරූප බවට පරිවර්තනය කිරීම\n"
-"- ඡායාරූප වැඩි දියුණු කර PDF බවට පරිවර්තනය කිරීම\n"
-"- වෙබ් පිටුව PDF ගොනුවක් බවට පරිවර්තනය කිරීම\n\n"
-"PDF බොට් භාවිතා කරන්නේ කෙසේදැයි බැලීමට /help යන්න එවන්න"
+msgstr ""
 
-#: bot.py:147
+#: bot.py:149
 msgid "Set Language"
 msgstr "භාෂාව සකසන්න"
 
-#: bot.py:149 pdf_bot/utils.py:307
+#: bot.py:151 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "නාලිකාවට සම්බන්ධ වන්න"
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:152 pdf_bot/payment.py:78 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "PDF බොට් සදහා උදව් කරන්න"
 
-#: bot.py:156
-msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
-"Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
-msgstr "PDF ගොනුවක්, ඡායාරූපයක් හෝ වෙබ් පිටුවකට සබැඳියක් එවීමෙන් ඔබට මගෙන් බොහෝ කාර්යයන් කළ හැකිය.\n\n"
-"සමහර කාර්යයන් සදහා /compare, /merge, /watermark හෝ /photo යන විධාන භාවිතා කිරීමෙන් සිදු කළ හැකිය"
+#: bot.py:158
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands /compare, /merge, /photo, /text or /watermark"
+msgstr ""
 
-#: bot.py:186 pdf_bot/constants.py:84
+#: bot.py:189 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
 msgstr "ඔබ PDF බොට් සඳහා සහය දැක්වීමට කැමති මුදල මා හට එවන්න"
 
@@ -624,5 +623,32 @@ msgstr "ඔබගේ PDF ගොනුවේ කිසිදු අකුරක�
 #~ "Send me the next photo that you'll like to beautify or convert to PDF\n"
 #~ "\n"
 #~ "Select the task from below if you have sent me all the photos"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Welcome to PDF Bot!\n"
+#~ "\n"
+#~ "*Features*\n"
+#~ "- Compare, crop, decrypt, encrypt, "
+#~ "merge, rotate, scale, split and add "
+#~ "a watermark to a PDF file\n"
+#~ "- Extract text and photos in a "
+#~ "PDF file and convert a PDF file"
+#~ " into photos\n"
+#~ "- Beautify and convert photos into PDF format\n"
+#~ "- Convert a web page into a PDF file\n"
+#~ "\n"
+#~ "Type /help to see how to use PDF Bot"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can perform most of the tasks"
+#~ " simply by sending me a PDF "
+#~ "file, a photo or a link to a"
+#~ " web page.\n"
+#~ "\n"
+#~ "Some tasks can be performed by "
+#~ "using the commands /compare, /merge, "
+#~ "/watermark or /photo"
 #~ msgstr ""
 
