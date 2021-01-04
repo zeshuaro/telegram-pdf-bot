@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 07:59\n"
+"PO-Revision-Date: 2021-01-04 08:09\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -68,7 +68,16 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr ""
+msgstr "Puede realizar la mayoría de las tareas enviándome una de las siguientes:\n"
+"- Archivos PDF\n"
+"- Fotos\n"
+"- Enlaces a páginas web\n\n"
+"El resto de las tareas se pueden realizar mediante los siguientes comandos:\n"
+"/compare - comparar archivos PDF\n"
+"/merge - combinar archivos PDF\n"
+"/photo - convertir y combinar múltiples fotos en archivos PDF\n"
+"/text - crear archivos PDF a partir de mensajes de texto\n"
+"/watermark - añadir marca de agua a archivos PDF"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -323,7 +332,8 @@ msgstr "No hay diferencias de texto entre tus archivos PDF"
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "Envíame los archivos PDF que te gusta fusionar\n\n"
+"Tenga en cuenta que los archivos se fusionarán en el orden en que me envíe"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -339,11 +349,11 @@ msgstr "Archivos PDF"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "Pulse <b>Hecho</b> si me ha enviado todos los archivos PDF que le gustaría fusionar o seguir enviándome los archivos PDF"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "<b>{}</b> ha sido eliminado de la fusión"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -364,7 +374,8 @@ msgstr "No puedo combinar tus archivos PDF porque no pude abrir y leer \"{}\". A
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Envíame las fotos que te gustará embellecer o convertir en un archivo PDF\n\n"
+"Tenga en cuenta que las fotos serán embellecidas y convertidas en el orden en que me envíe"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -384,11 +395,11 @@ msgstr "fotos"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "Seleccione la tarea desde abajo si me ha enviado todas las fotos, o seguir enviándome las fotos"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "<b>{}</b> ha sido eliminado para embellecer o convertir"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -433,7 +444,7 @@ msgstr "Algo salió mal, inténtalo de nuevo"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr ""
+msgstr "Tamaño del archivo reducido en <b>{:.0%}</b>, de <b>{}</b> a <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -551,7 +562,7 @@ msgstr "Los nombres de archivo no pueden contener ninguno de los siguientes cara
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "Cambiar el nombre de su archivo PDF en <b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -568,28 +579,30 @@ msgstr "Seleccione el tipo de escala que le gustaría realizar"
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "Envíame el ancho y la altura\n\n"
+"<b>Ejemplo: 150 200</b> (esto establecerá el ancho a 150 y la altura a 200)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "Envíame los factores de escalado para los ejes horizontales y verticales\n\n"
+"<b>Ejemplo: 2 0.5</b> (esto doblará el eje horizontal y reducirá a la mitad el eje vertical)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "Los factores de escala <b>{}</b> no son válidos, inténtalo de nuevo"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "Las dimensiones <b>{}</b> no son válidas, inténtalo de nuevo"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "Escalando tu archivo PDF, horizontalmente por <b>{}</b> y verticalmente por <b>{}</b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "Escalando tu archivo PDF con ancho de <b>{}</b> y altura de <b>{}</b>"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"
@@ -610,7 +623,24 @@ msgid "Send me the range of pages that you'll like to keep\n\n"
 "<code>::-1   all pages in reversed order</code>\n"
 "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
 "<code>2::-1  pages 2 1 0</code>"
-msgstr ""
+msgstr "Envíeme el rango de páginas que le gustará mantener\n\n"
+"<b>Uso general</b>\n"
+"<code>:      todas las páginas</code>\n"
+"<code>22     sólo la página 23</code>\n"
+"<code>0:3    las tres primeras páginas</code>\n"
+"<code>:3     el las tres primeras páginas</code>\n"
+"<code>5:     desde la 6a página en adelante</code>\n"
+"<code>-1     última página sólo</code>\n"
+"<code>:-1    todas las páginas, pero la última página</code>\n"
+"<code>-2     segunda última página sólo</code>\n"
+"<code>-2:    las dos últimas páginas</code>\n"
+"<code>-3:-1  tercera y segunda últimas páginas sólo</code>\n\n"
+"<b>Uso avanzado</b>\n"
+"<code>::2    páginas 0 2 4 ... a finales</code>\n"
+"<code>1:10:2 páginas 1 3 5 7 9</code>\n"
+"<code>::-1   todas las páginas en orden invertido</code>\n"
+"<code>3:0:-1 páginas 3 2 1 pero no 0</code>\n"
+"<code>2::-1  páginas 2 1 0</code>"
 
 #: pdf_bot/files/split.py:58
 msgid "The range is invalid. Try again"
@@ -630,7 +660,7 @@ msgstr "Extrayendo texto de tu archivo PDF"
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>Ver arriba para todo el texto en tu archivo PDF</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
