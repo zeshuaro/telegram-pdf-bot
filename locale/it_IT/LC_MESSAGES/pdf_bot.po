@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 07:39\n"
+"PO-Revision-Date: 2021-01-04 07:49\n"
 "Last-Translator: \n"
 "Language: it\n"
 "Language-Team: Italian\n"
@@ -594,15 +594,15 @@ msgstr "Il fattore di scala <b>{}</b> non è valido, riprova"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "Le dimensioni <b>{}</b> non sono valide, riprova"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "Sto riscalando il file PDF, orizzontalmente di <b>{}</b> e verticalmente di <b>{}</b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "Trasformando il file PDF con larghezza di <b>{}</b> e altezza di <b>{}</b>"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"
@@ -623,7 +623,24 @@ msgid "Send me the range of pages that you'll like to keep\n\n"
 "<code>::-1   all pages in reversed order</code>\n"
 "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
 "<code>2::-1  pages 2 1 0</code>"
-msgstr ""
+msgstr "Inviami l'intervallo di pagine che ti piacerà mantenere\n\n"
+"<b>Uso generale</b>\n"
+"<code>:      tutte le pagine</code>\n"
+"<code>22     solo la 23a pagina</code>\n"
+"<code>0:3    le prime tre pagine</code>\n"
+"<code>:3     il prime tre pagine</code>\n"
+"<code>5:     dalla 6a pagina in poi</code>\n"
+"<code>-1     ultima pagina solo</code>\n"
+"<code>:-1    tutte le pagine tranne l'ultima pagina</code>\n"
+"<code>-2     seconda pagina solo</code>\n"
+"<code>-2:    ultime due pagine</code>\n"
+"<code>-3:-1  terza e seconda ultima pagina solo</code>\n\n"
+"<b>Utilizzo avanzato</b>\n"
+"<code>::2    pagine 0 2 4 ... alla fine</code>\n"
+"<code>1:10:2 pagine 1 3 5 7 9</code>\n"
+"<code>::-1   tutte le pagine in ordine invertito</code>\n"
+"<code>3:0:-1 pagine 3 2 1 ma non 0</code>\n"
+"<code>2::-1  pagine 2 1 0</code>"
 
 #: pdf_bot/files/split.py:58
 msgid "The range is invalid. Try again"
@@ -643,7 +660,7 @@ msgstr "Estrazione del testo dal file PDF"
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>Guarda sopra per tutto il testo nel tuo file PDF</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
