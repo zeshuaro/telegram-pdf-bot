@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-03 10:21+0000\n"
-"PO-Revision-Date: 2021-01-03 10:37\n"
+"POT-Creation-Date: 2021-01-04 12:31+0000\n"
+"PO-Revision-Date: 2021-01-04 12:39\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -23,574 +23,648 @@ msgstr ""
 "X-Crowdin-File: /master/locale/en_UK/LC_MESSAGES/pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: bot.py:128
+#: bot.py:130
 msgid "Welcome to PDF Bot!\n\n"
-"*Features*\n"
-"- Compare, crop, decrypt, encrypt, merge, rotate, scale, split and add a watermark to a PDF file\n"
-"- Extract text and photos in a PDF file and convert a PDF file into photos\n"
-"- Beautify and convert photos into PDF format\n"
-"- Convert a web page into a PDF file\n\n"
+"<b>Key features:</b>\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "Chào mừng bạn đến với PDF Bot!\n\n"
+"<b>các tính năng chính:</b>\n"
+"- Nén, hợp nhất, xem trước, đổi tên, chia và thêm hình mờ vào tệp PDF\n"
+"- Tạo tệp PDF từ tin nhắn văn bản\n"
+"- Trích xuất hình ảnh và văn bản từ tệp PDF\n"
+"- Chuyển đổi tệp PDF thành hình ảnh\n"
+"- Chuyển đổi trang web và hình ảnh thành tệp PDF\n"
+"- Làm đẹp hình ảnh ghi chú viết tay thành tệp PDF\n"
+"- <b><i>Và hơn thế nữa...</i></b>\n\n"
+"Loại /help xem cách sử dụng PDF Bot"
 
-#: bot.py:147
+#: bot.py:151
 msgid "Set Language"
-msgstr ""
+msgstr "Đặt Ngôn ngữ"
 
-#: bot.py:149 pdf_bot/utils.py:307
+#: bot.py:153 pdf_bot/utils.py:307
 msgid "Join Channel"
-msgstr ""
+msgstr "Tham gia Kênh"
 
-#: bot.py:150 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:154 pdf_bot/payment.py:78 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
-msgstr ""
+msgstr "Hỗ trợ PDF Bot"
 
-#: bot.py:156
-msgid "You can perform most of the tasks simply by sending me a PDF file, a photo or a link to a web page.\n\n"
-"Some tasks can be performed by using the commands /compare, /merge, /watermark or /photo"
-msgstr ""
+#: bot.py:160
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands below:\n"
+"/compare - compare PDF files\n"
+"/merge - merge PDF files\n"
+"/photo - convert and combine multiple photos into PDF files\n"
+"/text - create PDF files from text messages\n"
+"/watermark - add watermark to PDF files"
+msgstr "Bạn có thể thực hiện hầu hết các nhiệm vụ bằng cách gửi cho tôi một trong những điều sau đây:\n"
+"- File PDF\n"
+"- Ảnh\n"
+"- Liên kết trang web\n\n"
+"Phần còn lại của nhiệm vụ có thể được thực hiện bằng cách sử dụng các lệnh dưới đây:\n"
+"/compare - so sánh các tệp PDF\n"
+"/merge - hợp nhất các tệp PDF\n"
+"/photo - chuyển đổi và kết hợp nhiều ảnh thành các tệp PDF\n"
+"/text - tạo các tệp PDF từ tin nhắn văn bản\n"
+"/watermark - thêm hình mờ vào tệp PDF"
 
-#: bot.py:186 pdf_bot/constants.py:84
+#: bot.py:195 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr ""
+msgstr "Gửi cho tôi số tiền bạn muốn hỗ trợ PDF Bot"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
-msgstr ""
+msgstr "Hủy bỏ"
 
 #: pdf_bot/constants.py:39
 msgid "Done"
-msgstr ""
+msgstr "Thực hiện"
 
 #: pdf_bot/constants.py:40
 msgid "Back"
-msgstr ""
+msgstr "Trở lại"
 
 #: pdf_bot/constants.py:41
 msgid "By Percentage"
-msgstr ""
+msgstr "Theo tỷ lệ phần trăm"
 
 #: pdf_bot/constants.py:42
 msgid "By Margin Size"
-msgstr ""
+msgstr "Theo Kích cỡ Lề"
 
 #: pdf_bot/constants.py:43
 msgid "Preview"
-msgstr ""
+msgstr "Download"
 
 #: pdf_bot/constants.py:44
 msgid "Decrypt"
-msgstr ""
+msgstr "Decrypt"
 
 #: pdf_bot/constants.py:45
 msgid "Encrypt"
-msgstr ""
+msgstr "Mã hóa"
 
 #: pdf_bot/constants.py:46
 msgid "Extract Photos"
-msgstr ""
+msgstr "Trích xuất ảnh"
 
 #: pdf_bot/constants.py:47
 msgid "To Photos"
-msgstr ""
+msgstr "Để hình ảnh"
 
 #: pdf_bot/constants.py:48
 msgid "Rotate"
-msgstr ""
+msgstr "Xoay"
 
 #: pdf_bot/constants.py:49
 msgid "Scale"
-msgstr ""
+msgstr "Quy mô"
 
 #: pdf_bot/constants.py:50
 msgid "Split"
-msgstr ""
+msgstr "Split"
 
 #: pdf_bot/constants.py:51
 msgid "Beautify"
-msgstr ""
+msgstr "Làm đẹp"
 
 #: pdf_bot/constants.py:52
 msgid "To PDF"
-msgstr ""
+msgstr "Sang PDF"
 
 #: pdf_bot/constants.py:53
 msgid "Rename"
-msgstr ""
+msgstr "Rename"
 
 #: pdf_bot/constants.py:54
 msgid "Crop"
-msgstr ""
+msgstr "Cây trồng"
 
 #: pdf_bot/constants.py:55
 msgid "Compressed"
-msgstr ""
+msgstr "Nén"
 
 #: pdf_bot/constants.py:56
 msgid "Photos"
-msgstr ""
+msgstr "Hình ảnh"
 
 #: pdf_bot/constants.py:57
 msgid "Remove Last File"
-msgstr ""
+msgstr "Loại bỏ Tệp Cuối cùng"
 
 #: pdf_bot/constants.py:58
 msgid "To Dimensions"
-msgstr ""
+msgstr "Theo kích thước"
 
 #: pdf_bot/constants.py:59
 msgid "Extract Text"
-msgstr ""
+msgstr "Trích xuất Văn bản"
 
 #: pdf_bot/constants.py:60
 msgid "Text Message"
-msgstr ""
+msgstr "Tin nhắn Văn bản"
 
 #: pdf_bot/constants.py:61
 msgid "Text File"
-msgstr ""
+msgstr "Tệp Văn bản"
 
 #: pdf_bot/constants.py:63
 msgid "Compress"
-msgstr ""
+msgstr "Nén"
 
 #: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
-msgstr ""
+msgstr "Say Thanks 😁 ($ 1)"
 
 #: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
-msgstr ""
+msgstr "Cà ☕ ($3)"
 
 #: pdf_bot/constants.py:80
 msgid "Beer 🍺 ($5)"
-msgstr ""
+msgstr "Bia 🍺 ($5)"
 
 #: pdf_bot/constants.py:81
 msgid "Meal 🍲 ($10)"
-msgstr ""
+msgstr "Bữa 🍲 ($10)"
 
 #: pdf_bot/constants.py:82
 msgid "Say Awesome 🤩 (Custom)"
-msgstr ""
+msgstr "Nói awesome 🤩 (Custom)"
 
 #: pdf_bot/feedback.py:41
 msgid "Send me your feedback or /cancel this action. Note that only English feedback will be forwarded to my developer."
-msgstr ""
+msgstr "Gửi cho tôi phản hồi của bạn hoặc /cancel bỏ hành động này. Lưu ý rằng chỉ có phản hồi bằng tiếng Anh mới được chuyển tiếp đến nhà phát triển của tôi."
 
 #: pdf_bot/feedback.py:75
 msgid "The feedback is not in English, try again"
-msgstr ""
+msgstr "Phản hồi không phải bằng tiếng Anh, hãy thử lại"
 
 #: pdf_bot/feedback.py:96
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
-msgstr ""
+msgstr "Cảm ơn bạn đã phản hồi của bạn, tôi đã chuyển tiếp nó đến nhà phát triển của tôi"
 
 #: pdf_bot/language.py:24
 msgid "Select your language"
-msgstr ""
+msgstr "Chọn ngôn ngữ của bạn"
 
 #: pdf_bot/language.py:64
 msgid "Your language has been set to {}"
-msgstr ""
+msgstr "Ngôn ngữ của bạn đã được đặt thành {}"
 
 #: pdf_bot/payment.py:32
 msgid "The amount you sent is invalid, try again. {}"
-msgstr ""
+msgstr "Số tiền bạn đã gửi không hợp lệ, hãy thử lại. {}"
 
 #: pdf_bot/payment.py:53
 msgid "Help translate PDF Bot"
-msgstr ""
+msgstr "Trợ giúp dịch PDF Bot"
 
 #: pdf_bot/payment.py:58
 msgid "Select how you want to support PDF Bot"
-msgstr ""
+msgstr "Chọn cách bạn muốn hỗ trợ PDF Bot"
 
 #: pdf_bot/payment.py:79
 msgid "Say thanks to PDF Bot and help keep it running"
-msgstr ""
+msgstr "Nói lời cảm ơn đến PDF Bot và giúp giữ cho nó chạy"
 
 #: pdf_bot/payment.py:106
 msgid "Something went wrong"
-msgstr ""
+msgstr "Đã xảy ra sự cố"
 
 #: pdf_bot/payment.py:114
 msgid "Thank you for your support!"
-msgstr ""
+msgstr "Cảm ơn bạn đã hỗ trợ của bạn!"
 
 #: pdf_bot/url.py:24
 msgid "You've sent me this web page already and I'm still converting it"
-msgstr ""
+msgstr "Bạn đã gửi cho tôi trang web này và tôi vẫn đang chuyển đổi nó"
 
 #: pdf_bot/url.py:27
 msgid "Converting your web page into a PDF file"
-msgstr ""
+msgstr "Chuyển đổi trang web của bạn thành tệp PDF"
 
 #: pdf_bot/url.py:39
 msgid "Unable to reach your web page"
-msgstr ""
+msgstr "Không thể truy cập trang web của bạn"
 
 #: pdf_bot/utils.py:34
 msgid "Action cancelled"
-msgstr ""
+msgstr "Hành động bị hủy bỏ"
 
 #: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
-msgstr ""
+msgstr "Tệp bạn đã gửi không phải là tệp PDF, hãy thử lại"
 
 #: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "Tệp PDF bạn đã gửi quá lớn để tôi có thể tải xuống\n\n"
+"đã hủy hành động của bạn"
 
 #: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
-msgstr ""
+msgstr "Có gì đó không ổn, hãy bắt đầu lại từ đầu"
 
 #: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "Tệp PDF của bạn dường như không hợp lệ và tôi không thể mở và đọc nó\n\n"
+"đã hủy hành động của bạn"
 
 #: pdf_bot/utils.py:197
 msgid "Your PDF file is already encrypted"
-msgstr ""
+msgstr "Tệp PDF của bạn đã được mã hóa"
 
 #: pdf_bot/utils.py:199
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "Tệp PDF {} của bạn được mã hóa và bạn sẽ phải giải mã nó trước\n\n"
+"đã hủy hành động của bạn"
 
 #: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "Tệp PDF của bạn được mã hóa và bạn sẽ phải giải mã nó trước khi\n\n"
+"hủy bỏ hành động của bạn"
 
 #: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
-msgstr ""
+msgstr "Anh đã gửi cho tôi những {} này cho đến nay:\n"
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
-msgstr ""
+msgstr "Tệp kết quả quá lớn để tôi gửi cho bạn"
 
 #: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
-msgstr ""
+msgstr "Đây là tệp kết quả của bạn"
 
 #: pdf_bot/commands/compare.py:54
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
-msgstr ""
+msgstr "Gửi cho tôi một trong các tệp PDF mà bạn sẽ muốn so sánh với\n\n"
+"rằng tôi chỉ có thể tìm kiếm sự khác biệt trong văn bản"
 
 #: pdf_bot/commands/compare.py:88
 msgid "Send me the other PDF file that you'll like to compare"
-msgstr ""
+msgstr "Gửi cho tôi các tập tin PDF khác mà bạn sẽ muốn so sánh"
 
 #: pdf_bot/commands/compare.py:112
 msgid "Comparing your PDF files"
-msgstr ""
+msgstr "So sánh các tệp PDF của bạn"
 
 #: pdf_bot/commands/compare.py:131
 msgid "There are no differences in text between your PDF files"
-msgstr ""
+msgstr "Không có sự khác biệt về văn bản giữa các tệp PDF của bạn"
 
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "Gửi cho tôi các tập tin PDF mà bạn sẽ muốn hợp nhất\n\n"
+"Lưu ý rằng các tập tin sẽ được sáp nhập theo thứ tự mà bạn gửi cho tôi"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
-msgstr ""
+msgstr "Tệp bạn đã gửi không phải là tệp PDF"
 
 #: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
-msgstr ""
+msgstr "Tệp PDF bạn đã gửi quá lớn để tôi tải xuống"
 
 #: pdf_bot/commands/merge.py:130
 msgid "PDF files"
-msgstr ""
+msgstr "Tệp PDF"
 
 #: pdf_bot/commands/merge.py:137
-msgid "Press *Done* if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgstr "Nhấn <b>Xong</b> nếu bạn đã gửi cho tôi tất cả các tệp PDF mà bạn sẽ muốn hợp nhất hoặc tiếp tục gửi cho tôi các tệp PDF"
 
 #: pdf_bot/commands/merge.py:178
-msgid "*{}* has been removed for merging"
-msgstr ""
+msgid "<b>{}</b> has been removed for merging"
+msgstr "<b>{}</b> đã bị xóa để sáp nhập"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
-msgstr ""
+msgstr "Bạn chưa gửi cho tôi bất kỳ tệp PDF nào"
 
 #: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
-msgstr ""
+msgstr "Bạn chỉ gửi cho tôi một tập tin PDF."
 
 #: pdf_bot/commands/merge.py:216
 msgid "Merging your PDF files"
-msgstr ""
+msgstr "Hợp nhất các tệp PDF của bạn"
 
 #: pdf_bot/commands/merge.py:236
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
-msgstr ""
+msgstr "Tôi không thể hợp nhất các tệp PDF của bạn vì tôi không thể mở và đọc \"{}\". Đảm bảo rằng nó không được mã hóa"
 
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Gửi cho tôi những bức ảnh mà bạn sẽ muốn làm đẹp hoặc chuyển đổi thành một tập tin PDF\n\n"
+"Lưu ý rằng các bức ảnh sẽ được làm đẹp và chuyển đổi theo thứ tự mà bạn gửi cho tôi"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
-msgstr ""
+msgstr "Tên tệp không sẵn dùng"
 
 #: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
-msgstr ""
+msgstr "Tệp bạn đã gửi không phải là ảnh"
 
 #: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
-msgstr ""
+msgstr "Ảnh bạn đã gửi quá lớn để tôi tải xuống"
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr ""
+msgstr "Hình ảnh"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "Chọn nhiệm vụ từ bên dưới nếu bạn đã gửi cho tôi tất cả các bức ảnh hoặc tiếp tục gửi cho tôi các bức ảnh"
 
 #: pdf_bot/commands/photo.py:182
-msgid "*{}* has been removed for beautifying or converting"
-msgstr ""
+msgid "<b>{}</b> has been removed for beautifying or converting"
+msgstr "<b>{}</b> đã bị xóa để làm đẹp hoặc chuyển đổi"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
-msgstr ""
+msgstr "Làm đẹp và chuyển đổi ảnh của bạn"
 
 #: pdf_bot/commands/photo.py:222
 msgid "Converting your photos into PDF"
-msgstr ""
+msgstr "Chuyển đổi ảnh của bạn thành PDF"
 
 #: pdf_bot/commands/text.py:45
 msgid "Send me the text that you'll like to write into your PDF file"
-msgstr ""
+msgstr "Gửi cho tôi văn bản bạn muốn viết vào tệp PDF của mình"
 
 #: pdf_bot/commands/text.py:68
 msgid "Creating your PDF file"
-msgstr ""
+msgstr "Tạo tệp PDF của bạn"
 
 #: pdf_bot/commands/watermark.py:49
 msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr ""
+msgstr "Gửi cho tôi tệp PDF mà bạn muốn thêm hình nền mờ"
 
 #: pdf_bot/commands/watermark.py:80
 msgid "Send me the watermark PDF file"
-msgstr ""
+msgstr "Gửi cho tôi tệp PDF hình mờ"
 
 #: pdf_bot/commands/watermark.py:105
 msgid "Adding the watermark onto your PDF file"
-msgstr ""
+msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr ""
+msgstr "Watermark"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
-msgstr ""
+msgstr "Nén tệp PDF của bạn"
 
-#: pdf_bot/files/compress.py:48 pdf_bot/files/crop.py:135
-#: pdf_bot/files/photo.py:226
+#: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
+#: pdf_bot/files/photo.py:224
 msgid "Something went wrong, try again"
-msgstr ""
+msgstr "Đã xảy ra sự cố, hãy thử lại"
 
-#: pdf_bot/files/compress.py:58
-msgid "File size reduced by *{:.0%}*, from *{}* to *{}*"
-msgstr ""
+#: pdf_bot/files/compress.py:60
+msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
+msgstr "Kích cỡ tệp giảm <b>{:.0%}</b>, từ <b>{}</b> xuống <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
-msgstr ""
+msgstr "Chọn loại xén bạn muốn thực hiện"
 
 #: pdf_bot/files/crop.py:48
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr ""
+msgstr "Gửi cho tôi một số giữa {} và {}. Đây là tỷ lệ phần trăm không gian ký quỹ để giữ lại giữa nội dung trong tệp PDF của bạn và trang"
 
 #: pdf_bot/files/crop.py:58
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr ""
+msgstr "Gửi cho tôi một số mà bạn sẽ muốn điều chỉnh kích thước lề. Số dương sẽ giảm kích thước ký quỹ và số âm sẽ tăng nó"
 
 #: pdf_bot/files/crop.py:79
 msgid "The number must be between {} and {}, try again"
-msgstr ""
+msgstr "Số phải nằm giữa {} và {}, thử lại"
 
 #: pdf_bot/files/crop.py:100
 msgid "The number is invalid, try again"
-msgstr ""
+msgstr "Số không hợp lệ, hãy thử lại"
 
 #: pdf_bot/files/crop.py:110
 msgid "Cropping your PDF file"
-msgstr ""
+msgstr "Cắt xén tệp PDF của bạn"
 
 #: pdf_bot/files/crypto.py:17
 msgid "Send me the password to decrypt your PDF file"
-msgstr ""
+msgstr "Gửi cho tôi mật khẩu để giải mã tệp PDF của bạn"
 
 #: pdf_bot/files/crypto.py:32
 msgid "Decrypting your PDF file"
-msgstr ""
+msgstr "Giải mã tệp PDF của bạn"
 
 #: pdf_bot/files/crypto.py:47
 msgid "Your PDF file seems to be invalid and I couldn't open and read it"
-msgstr ""
+msgstr "Tệp PDF của bạn dường như không hợp lệ và tôi không thể mở và đọc nó"
 
 #: pdf_bot/files/crypto.py:52
 msgid "Your PDF file is not encrypted"
-msgstr ""
+msgstr "Tệp PDF của bạn không được mã hóa"
 
 #: pdf_bot/files/crypto.py:57
 msgid "The decryption password is incorrect, try to send it again"
-msgstr ""
+msgstr "Mật khẩu giải mã không chính xác, hãy thử gửi lại"
 
 #: pdf_bot/files/crypto.py:71
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
-msgstr ""
+msgstr "Tệp PDF của bạn được mã hóa bằng một phương pháp mà tôi không thể giải mã"
 
 #: pdf_bot/files/crypto.py:86
 msgid "Send me the password to encrypt your PDF file"
-msgstr ""
+msgstr "Gửi cho tôi mật khẩu để mã hóa tệp PDF của bạn"
 
 #: pdf_bot/files/crypto.py:100
 msgid "Encrypting your PDF file"
-msgstr ""
+msgstr "Mã hóa tệp PDF của bạn"
 
 #: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
 msgid "Select the task that you'll like to perform"
-msgstr ""
+msgstr "Chọn nhiệm vụ bạn muốn thực hiện"
 
 #: pdf_bot/files/file.py:106
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
-msgstr ""
+msgstr "Tệp PDF của bạn quá lớn để tôi có thể tải xuống\n\n"
+"không thể thực hiện bất kỳ tác vụ nào trên đó"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "Thêm lớp văn bản OCR vào tệp PDF của bạn"
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
-msgstr ""
+msgstr "Tệp PDF của bạn đã có một lớp văn bản"
 
 #: pdf_bot/files/photo.py:56
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
-msgstr ""
+msgstr "Hình ảnh của bạn là quá lớn đối với tôi để tải về. Tôi không thể làm đẹp hoặc chuyển đổi ảnh của bạn"
 
 #: pdf_bot/files/photo.py:111
 msgid "Extracting a preview for your PDF file"
-msgstr ""
+msgstr "Trích xuất bản xem trước cho tệp PDF của bạn"
 
 #: pdf_bot/files/photo.py:159
 msgid "Select the result file format"
-msgstr ""
+msgstr "Chọn định dạng tệp kết quả"
 
-#: pdf_bot/files/photo.py:173
+#: pdf_bot/files/photo.py:171
 msgid "Converting your PDF file into photos"
-msgstr ""
+msgstr "Chuyển đổi tệp PDF của bạn thành ảnh"
 
-#: pdf_bot/files/photo.py:211
+#: pdf_bot/files/photo.py:209
 msgid "Extracting all the photos in your PDF file"
-msgstr ""
+msgstr "Trích xuất tất cả các bức ảnh trong tập tin PDF của bạn"
 
-#: pdf_bot/files/photo.py:231
+#: pdf_bot/files/photo.py:229
 msgid "I couldn't find any photos in your PDF file"
-msgstr ""
+msgstr "Tôi không thể tìm thấy bất kỳ ảnh nào trong tệp PDF của bạn"
 
-#: pdf_bot/files/photo.py:276
+#: pdf_bot/files/photo.py:274
 msgid "See above for all your photos"
-msgstr ""
+msgstr "Xem ở trên cho tất cả các bức ảnh của bạn"
 
 #: pdf_bot/files/rename.py:19
 msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr ""
+msgstr "Gửi cho tôi tên tệp mà bạn muốn đổi tên tệp PDF của mình thành"
 
 #: pdf_bot/files/rename.py:38
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
-msgstr ""
+msgstr "Tên tệp không thể chứa bất kỳ ký tự nào sau đây:\n"
+"{}\n"
+"cho tôi tên tệp khác"
 
 #: pdf_bot/files/rename.py:48
-msgid "Renaming your PDF file into *{}*"
-msgstr ""
+msgid "Renaming your PDF file into <b>{}</b>"
+msgstr "Đổi tên tệp PDF của bạn thành <b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr ""
+msgstr "Chọn độ bạn muốn xoay tệp PDF theo chiều kim đồng hồ"
 
 #: pdf_bot/files/rotate.py:48
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr ""
+msgstr "Xoay tệp PDF theo chiều kim đồng hồ theo {} độ"
 
 #: pdf_bot/files/scale.py:24
 msgid "Select the scale type that you'll like to perform"
-msgstr ""
+msgstr "Chọn loại tỷ lệ bạn muốn thực hiện"
 
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
-"*Example: 150 200* (this will set the width to 150 and height to 200)"
-msgstr ""
+"<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
+msgstr "Gửi cho tôi chiều rộng và chiều\n\n"
+"<b>Ví dụ: 150 200</b> (điều này sẽ đặt chiều rộng thành 150 và chiều cao thành 200)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
-"2 will double the axis and 0.5 will halve the axis\n\n"
-"*Example: 2 0.5* (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+"<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
+msgstr "Gửi cho tôi các yếu tố tỷ lệ cho các trục ngang và dọc\n\n"
+"<b>Ví dụ: 2 0,5</b> (điều này sẽ tăng gấp đôi trục ngang và giảm một nửa trục dọc)"
 
 #: pdf_bot/files/scale.py:73
-msgid "The scaling factors *{}* are invalid, try again"
-msgstr ""
+msgid "The scaling factors <b>{}</b> are invalid, try again"
+msgstr "Các yếu tố thay đổi <b>{}</b> không hợp lệ, hãy thử lại"
 
 #: pdf_bot/files/scale.py:93
-msgid "The dimensions *{}* are invalid, try again"
-msgstr ""
+msgid "The dimensions <b>{}</b> are invalid, try again"
+msgstr "Kích thước <b>{}</b> hợp lệ, hãy thử lại"
 
 #: pdf_bot/files/scale.py:105
-msgid "Scaling your PDF file, horizontally by *{}* and vertically by *{}*"
-msgstr ""
+msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
+msgstr "Thay đổi quy mô tệp PDF của bạn, theo chiều <b>{}</b> và theo chiều dọc <b>{}</b>"
 
-#: pdf_bot/files/scale.py:114
-msgid "Scaling your PDF file with width of *{}* and height of *{}*"
-msgstr ""
+#: pdf_bot/files/scale.py:115
+msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
+msgstr "Mở rộng tệp PDF của bạn với chiều rộng <b>{}</b> và chiều cao <b>{}</b>"
 
 #: pdf_bot/files/split.py:18
-msgid "Send me the range of pages that you'll like to keep. Use ⚡ *INSTANT VIEW* from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
-msgstr ""
+msgid "Send me the range of pages that you'll like to keep\n\n"
+"<b>General usage</b>\n"
+"<code>:      all pages</code>\n"
+"<code>22     just the 23rd page</code>\n"
+"<code>0:3    the first three pages</code>\n"
+"<code>:3     the first three pages</code>\n"
+"<code>5:     from the 6th page onwards</code>\n"
+"<code>-1     last page only</code>\n"
+"<code>:-1    all pages but the last page</code>\n"
+"<code>-2     second last page only</code>\n"
+"<code>-2:    last two pages</code>\n"
+"<code>-3:-1  third and second last pages only</code>\n\n"
+"<b>Advanced usage</b>\n"
+"<code>::2    pages 0 2 4 ... to the end</code>\n"
+"<code>1:10:2 pages 1 3 5 7 9</code>\n"
+"<code>::-1   all pages in reversed order</code>\n"
+"<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
+"<code>2::-1  pages 2 1 0</code>"
+msgstr "Gửi cho tôi phạm vi của các trang mà bạn sẽ muốn giữ\n\n"
+"<b>Sử dụng chung</b>\n"
+"<code>: tất cả các trang</code>\n"
+"<code>22 chỉ là trang thứ 23</code>\n"
+"<code>0:3 ba trang đầu tiên</code>\n"
+"<code>: 3 các đầu tiên ba</code>\n"
+"<code>5: từ trang thứ 6 trở đi</code>\n"
+"<code>-1 trang cuối cùng chỉ</code>\n"
+"<code>:-1 tất cả các trang nhưng trang cuối cùng</code>\n"
+"<code>-2 trang cuối cùng thứ hai chỉ</code>\n"
+"<code>-2 : hai trang cuối</code>\n"
+"<code>-3:-1 trang cuối cùng thứ ba và thứ hai chỉ</code>\n\n"
+"<b>sử dụng nâng cao</b>\n"
+"<code>::2 trang 0 2 4 ... đến cuối</code>\n"
+"<code>1:10:2 trang 1 3 5 7 9</code>\n"
+"<code>::-1 tất cả các trang theo thứ tự đảo ngược</code>\n"
+"<code>3:0:-1 trang 3 2 1 nhưng không phải 0</code>\n"
+"<code>2::-1 trang 2 1 0</code>"
 
-#: pdf_bot/files/split.py:43
+#: pdf_bot/files/split.py:58
 msgid "The range is invalid. Try again"
-msgstr ""
+msgstr "Phạm vi không hợp lệ. Thử lại"
 
-#: pdf_bot/files/split.py:49
+#: pdf_bot/files/split.py:64
 msgid "Splitting your PDF file"
-msgstr ""
+msgstr "Tách tệp PDF của bạn"
 
 #: pdf_bot/files/text.py:22
 msgid "Select how you'll like me to send the text to you"
-msgstr ""
+msgstr "Chọn cách bạn muốn tôi gửi văn bản cho bạn"
 
 #: pdf_bot/files/text.py:35
 msgid "Extracting text from your PDF file"
-msgstr ""
+msgstr "Trích xuất văn bản từ tệp PDF của bạn"
 
 #: pdf_bot/files/text.py:84
-msgid "*See above for all the text in your PDF file*"
-msgstr ""
+msgid "<b>See above for all the text in your PDF file</b>"
+msgstr "<b>xem ở trên cho tất cả các văn bản trong tập tin PDF của bạn</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
-msgstr ""
+msgstr "Tôi không thể tìm thấy bất kỳ văn bản nào trong tệp PDF của bạn"
 
 #~ msgid ""
 #~ "Send me the first photo that "
@@ -606,5 +680,145 @@ msgstr ""
 #~ "Send me the next photo that you'll like to beautify or convert to PDF\n"
 #~ "\n"
 #~ "Select the task from below if you have sent me all the photos"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Welcome to PDF Bot!\n"
+#~ "\n"
+#~ "*Features*\n"
+#~ "- Compare, crop, decrypt, encrypt, "
+#~ "merge, rotate, scale, split and add "
+#~ "a watermark to a PDF file\n"
+#~ "- Extract text and photos in a "
+#~ "PDF file and convert a PDF file"
+#~ " into photos\n"
+#~ "- Beautify and convert photos into PDF format\n"
+#~ "- Convert a web page into a PDF file\n"
+#~ "\n"
+#~ "Type /help to see how to use PDF Bot"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can perform most of the tasks"
+#~ " simply by sending me a PDF "
+#~ "file, a photo or a link to a"
+#~ " web page.\n"
+#~ "\n"
+#~ "Some tasks can be performed by "
+#~ "using the commands /compare, /merge, "
+#~ "/watermark or /photo"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can perform most of the tasks"
+#~ " by sending me one of the "
+#~ "followings:\n"
+#~ "- PDF files\n"
+#~ "- Photos\n"
+#~ "- Webpage links\n"
+#~ "\n"
+#~ "The rest of the tasks can be "
+#~ "performed by using the commands "
+#~ "/compare, /merge, /photo, /text or "
+#~ "/watermark"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Welcome to PDF Bot!\n"
+#~ "\n"
+#~ "*Key features:*\n"
+#~ "- Compress, merge, preview, rename, "
+#~ "split and add watermark to PDF "
+#~ "files\n"
+#~ "- Create PDF files from text messages\n"
+#~ "- Extract images and text from PDF files\n"
+#~ "- Convert PDF files into images\n"
+#~ "- Convert webpages and images into PDF files\n"
+#~ "- Beautify handwritten notes images into PDF files\n"
+#~ "- _And more..._\n"
+#~ "\n"
+#~ "Type /help to see how to use PDF Bot"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can perform most of the tasks"
+#~ " by sending me one of the "
+#~ "followings:\n"
+#~ "- PDF files\n"
+#~ "- Photos\n"
+#~ "- Webpage links\n"
+#~ "\n"
+#~ "The rest of the tasks can be performed by using the commands below:\n"
+#~ "- /compare _PDF files_\n"
+#~ "- /merge _PDF files_\n"
+#~ "- /photo _convert and combine multiple photos into PDF files_\n"
+#~ "- /text _create PDF files from text messages_\n"
+#~ "- /watermark _add watermark to PDF files_"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Press *Done* if you've sent me all"
+#~ " the PDF files that you'll like "
+#~ "to merge or keep sending me the"
+#~ " PDF files"
+#~ msgstr ""
+
+#~ msgid "*{}* has been removed for merging"
+#~ msgstr ""
+
+#~ msgid "*{}* has been removed for beautifying or converting"
+#~ msgstr ""
+
+#~ msgid "File size reduced by *{:.0%}*, from *{}* to *{}*"
+#~ msgstr ""
+
+#~ msgid "Renaming your PDF file into *{}*"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the width and height\n"
+#~ "\n"
+#~ "*Example: 150 200* (this will set the width to 150 and height to 200)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the scaling factors for the horizontal and vertical axes\n"
+#~ "\n"
+#~ "2 will double the axis and 0.5 will halve the axis\n"
+#~ "\n"
+#~ "*Example: 2 0.5* (this will double "
+#~ "the horizontal axis and halve the "
+#~ "vertical axis)"
+#~ msgstr ""
+
+#~ msgid "The scaling factors *{}* are invalid, try again"
+#~ msgstr ""
+
+#~ msgid "The dimensions *{}* are invalid, try again"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file, horizontally by *{}* and vertically by *{}*"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file with width of *{}* and height of *{}*"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the range of pages that"
+#~ " you'll like to keep. Use ⚡ "
+#~ "*INSTANT VIEW* from below or refer "
+#~ "to [here](http://telegra.ph/Telegram-PDF-Bot-07-16)"
+#~ " for some range examples."
+#~ msgstr ""
+
+#~ msgid "*See above for all the text in your PDF file*"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the range of pages that"
+#~ " you'll like to keep. Use ⚡ "
+#~ "<b>INSTANT VIEW</b> from below or refer"
+#~ " to [here](http://telegra.ph/Telegram-PDF-"
+#~ "Bot-07-16) for some range examples."
 #~ msgstr ""
 
