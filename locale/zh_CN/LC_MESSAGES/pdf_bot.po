@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 05:38\n"
+"PO-Revision-Date: 2021-01-04 06:18\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -34,7 +34,16 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "欢迎来到PDF Bot！\n\n"
+"<b>主要功能：</b>\n"
+"－ 比较，合并，预览，重新命名，分割和加水印到PDF档案\n"
+"－ 用文字讯息来创建PDF档案\n"
+"－ 将PDF档案里面的图片和文字提出来\n"
+"－ 将PDF档案转成图片\n"
+"－ 将网页和图片转成PDF档案\n"
+"－ 美化手写笔记和传做PDF档案\n"
+"－<b><i>还有更多功能...</i></b>\n\n"
+"用/help来了解如何使用PDF Bot"
 
 #: bot.py:149
 msgid "Set Language"
@@ -59,7 +68,16 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr ""
+msgstr "你可以向我发送以下其中一项来使用大部分的功能：\n"
+"－ PDF 档案\n"
+"－ 图片\n"
+"－ 网页连结\n\n"
+"你可以使用以下指令来使用其他的功能：\n"
+"/compare － 比较PDF档案\n"
+"/merge － 合并PDF档案\n"
+"/photo － 转换和合并多张照片成PDF档案\n"
+"/text － 用文本信息来创建PDF档案\n"
+"/watermark － 添加水印到PDF档案"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -314,7 +332,8 @@ msgstr "你的PDF档案之间没有任何区别"
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "向我发送你想要合并的PDF档案\n\n"
+"注意，我会根据你发送给我的顺序来合并你的档案"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -330,11 +349,11 @@ msgstr "PDF档案"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "如果你已经将所有要合并的 PDF 档案发送给我就按下 <b>完成</b>，不然就可以继续将 PDF 档案发送给我"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "移除了<b>{}</b>，这个档案不会用来合并"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -355,7 +374,8 @@ msgstr "我无法合并你的PDF档案，因为我无法打开“{}”。确保�
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "向我发送你想要美化或转换为 PDF 档案的图片\n\n"
+"注意，图片将按照你发送给我的顺序进行美化和转换"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -375,11 +395,11 @@ msgstr "图片"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "如果你已经将所有图片发送给我，请从下面选择你想要的功能，不然就可以继续将图片发送给我"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "移除了<b>{}</b>，这个档案不会用来美化或转换"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -424,7 +444,7 @@ msgstr "出了点问题，再试一次"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr ""
+msgstr "档案大小减了<b>{:.0%}</b>，由 <b>{}</b> 压缩到 <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -542,7 +562,7 @@ msgstr "档案名称不能包含以下任何字符：\n"
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "正在将你的PDF档案重新命名为<b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -559,28 +579,30 @@ msgstr "选择你要怎样缩放"
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "发给我新的宽度和高度\n\n"
+"<b>例子：150 200</b> (这样会缩放宽度为150和高度为200)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "向我发送你想要打横和打直缩放的百分比给我\n\n"
+"<b>例子：2 0.5</b>（这样会打横放大一倍和打直缩小一半）"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "缩放百分比<b>{}</b>无效，再试一次"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "尺寸<b>{}</b>无效，再试一次"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "正在缩放你的 PDF 档案，打横缩放<b>{}</b>和打直缩放<b>{}</b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "正在缩放你的 PDF 档案，宽度为<b>{}</b>，高度为<b>{}</b>"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"
@@ -601,7 +623,24 @@ msgid "Send me the range of pages that you'll like to keep\n\n"
 "<code>::-1   all pages in reversed order</code>\n"
 "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
 "<code>2::-1  pages 2 1 0</code>"
-msgstr ""
+msgstr "向我发送你想要保留的页面范围\n\n"
+"<b>基本用法</b>\n"
+"<code>: 所有页面</code>\n"
+"<code>22 只是第 23 页</code>\n"
+"<code>0:3 前 3 页</code>\n"
+"<code>:3 前 3 页</code>\n"
+"<code>5: 从第 6 页开始保留</code>\n"
+"<code>-1 只是最后一页</code>\n"
+"<code>:-1 所有页面， 除了最后一页</code>\n"
+"<code>-2 只是倒数第二页</code>\n"
+"<code>-2: 最后两页</code>\n"
+"<code>-3:-1 倒数第三和二页</code>\n\n"
+"<b>进阶用法</b>\n"
+"<code>::2 页面 0 2 4 ... 到最后</code>\n"
+"<code>1:10:2 页面 1 3 5 7 9</code>\n"
+"<code>::-1 所有页面按反转顺序</code>\n"
+"<code>3:0:-1 页面 3 2 1 除了 0</code>\n"
+"<code>2::-1 页面 2 1 0</code>"
 
 #: pdf_bot/files/split.py:58
 msgid "The range is invalid. Try again"
@@ -621,7 +660,7 @@ msgstr "正在提取你的PDF档案的文字"
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>以上就是你 PDF 档案里面的所有文字</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
