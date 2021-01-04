@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 05:38\n"
+"PO-Revision-Date: 2021-01-04 08:10\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -34,7 +34,16 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "PDF Bot'a hoş geldiniz!\n\n"
+"<b>Temel özellikleri:</b>\n"
+"- Sıkıştırma, birleştirme, önizleme, yeniden adlandırma, bölme ve PDF dosyalarına filigran ekleyin\n"
+"- Metin iletilerinden PDF dosyaları oluşturma\n"
+"- PDF dosyalarından resim ve metin çıkarma\n"
+"- PDF dosyalarını\n"
+"görüntülere dönüştürün - Web sayfalarını ve görüntüleri PDF dosyalarına dönüştürün - El yazısı notları görüntüleri\n"
+"PDF dosyalarına dönüştürün\n"
+"- <b><i>Ve daha fazlası...</i></b>\n\n"
+"PDF Bot'u nasıl kullanacağınızı görmek için /help yazın"
 
 #: bot.py:149
 msgid "Set Language"
@@ -59,7 +68,16 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr ""
+msgstr "Görevlerin çoğunu bana aşağıdakilerden birini göndererek gerçekleştirebilirsiniz:\n"
+"- PDF dosyaları\n"
+"- Fotoğraflar\n"
+"- Web sayfası bağlantıları\n\n"
+"Görevlerin geri kalanı aşağıdaki komutları kullanarak gerçekleştirilebilir:\n"
+"/compare - PDF dosyalarını karşılaştırın\n"
+"/merge - PDF dosyalarını\n"
+"/photo - birden fazla fotoğrafı PDF dosyalarına dönüştürün ve birleştirin\n"
+"/text - metin mesajlarından PDF dosyaları\n"
+"/watermark - PDF dosyalarına filigran ekleyin"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -199,7 +217,7 @@ msgstr "Geri bildirim için teşekkürler, mesajını geliştiriciye çoktan yol
 
 #: pdf_bot/language.py:24
 msgid "Select your language"
-msgstr ""
+msgstr "Dilinizi seçin"
 
 #: pdf_bot/language.py:64
 msgid "Your language has been set to {}"
@@ -313,7 +331,8 @@ msgstr "PDF dosyalarınız arasında metin farkı yok"
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "Birleştirmek istediğiniz PDF dosyalarını bana gönderin\n\n"
+"Dosyaların bana gönderdiğiniz sırayla birleştirileceğini unutmayın"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -329,11 +348,11 @@ msgstr "PDF dosyaları"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "<b>Bitti</b> 'a basın, birleştirmek istediğiniz tüm PDF dosyalarını gönderdiyseniz veya PDF dosyalarını bana göndermeye devam edin"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "<b>{}</b> birleştirilmek üzere kaldırıldı"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -354,7 +373,8 @@ msgstr "\"{}\" Dosyasını açıp okuyamadığım için PDF dosyalarınızı bir
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Güzelleştirmek veya PDF dosyasına dönüştürmek istediğiniz fotoğrafları bana gönderin\n\n"
+"Fotoğrafların bana gönderdiğiniz sırayla güzelleştirilip dönüştürüleceğini unutmayın"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -374,11 +394,11 @@ msgstr "fotoğraflar"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "Bana tüm fotoğrafları gönderdiyseniz aşağıdan görevi seçin veya fotoğrafları göndermeye devam edin"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "<b>{}</b> güzelleştirmek veya dönüştürmek için kaldırıldı"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -423,7 +443,7 @@ msgstr "Bir şeyler ters gitti, tekrar deneyin"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr ""
+msgstr "Dosya boyutu <b>{:.0%}</b>, <b>{}</b> <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -541,7 +561,7 @@ msgstr "Dosya adları aşağıdaki karakterlerden hiçbirini içeremez:\n"
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "PDF dosyanızı <b>{}</b> olarak yeniden adlandırma"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -558,28 +578,30 @@ msgstr "Uygulamak istediğiniz ebatlandırma şeklini seçin"
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "Bana genişliği ve yüksekliği gönder\n\n"
+" <b>Örnek: 150 200</b> (bu, genişliği 150'ye ve yüksekliği 200'e ayarlar)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "Bana yatay ve dikey eksenler için ölçeklendirme faktörlerini gönder\n\n"
+" <b>Örnek: 2 0.5</b> (bu yatay ekseni iki katına çıkaracak ve dikey ekseni yarıya indirecektir)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "Ölçeklendirme faktörleri <b>{}</b> geçersiz, tekrar deneyin"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "<b>{}</b> Boyutları geçersiz, tekrar deneyin"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "PDF dosyanızı yatay olarak <b>{}</b> ve dikey olarak <b>{}</b> ölçeklendirme"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "PDF dosyanızı <b>{}</b> genişliği ve <b>{}</b> yüksekliği ile ölçeklendirme"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"
