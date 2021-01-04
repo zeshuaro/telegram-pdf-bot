@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 05:38\n"
+"PO-Revision-Date: 2021-01-04 07:18\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -34,7 +34,16 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "Welkom bij PDF Bot!\n\n"
+"<b>belangrijkste kenmerken:</b>\n"
+"- Comprimeren, samenvoegen, bekijken, hernoemen, splitsen en watermerk toevoegen aan PDF-bestanden\n"
+"- PDF-bestanden maken uit tekstberichten\n"
+"- Afbeeldingen en tekst uit PDF-bestanden\n"
+"- PDF-bestanden omzetten in afbeeldingen\n"
+"- Webpagina's en afbeeldingen converteren naar PDF-bestanden\n"
+"- Handgeschreven notities afbeeldingen verfraaien in PDF-bestanden\n"
+"- <b><i>En meer...</i></b>\n\n"
+"Type /help om te zien hoe PDF Bot"
 
 #: bot.py:149
 msgid "Set Language"
@@ -59,7 +68,16 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr ""
+msgstr "U de meeste taken uitvoeren door mij een van de volgende handelingen te sturen:\n"
+"- PDF-bestanden\n"
+"- Foto's\n"
+"- Webpaginakoppelingen\n\n"
+"De rest van de taken kan worden uitgevoerd met behulp van de onderstaande opdrachten:\n"
+"/vergelijken - VERGELIJK PDF-bestanden\n"
+"/merge - voeg PDF-bestanden\n"
+"/foto samen - converteer en combineer meerdere foto's in PDF-bestanden\n"
+"/tekst - MAAK PDF-bestanden uit tekstberichten\n"
+"/watermerk - voeg watermerk toe aan PDF-bestanden"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -163,7 +181,7 @@ msgstr "Tekst bestand"
 
 #: pdf_bot/constants.py:63
 msgid "Compress"
-msgstr ""
+msgstr "Comprimeren"
 
 #: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
@@ -187,11 +205,11 @@ msgstr "Zeg Awesome 🤩 (Custom)"
 
 #: pdf_bot/feedback.py:41
 msgid "Send me your feedback or /cancel this action. Note that only English feedback will be forwarded to my developer."
-msgstr ""
+msgstr "Stuur mij uw feedback of /cancel deze actie. Houd er rekening mee dat alleen Engelse feedback wordt doorgestuurd naar mijn ontwikkelaar."
 
 #: pdf_bot/feedback.py:75
 msgid "The feedback is not in English, try again"
-msgstr ""
+msgstr "De feedback is niet in het Engels, probeer het opnieuw"
 
 #: pdf_bot/feedback.py:96
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
@@ -199,7 +217,7 @@ msgstr "Bedankt voor je feedback, ik heb het al doorgestuurd naar mijn ontwikkel
 
 #: pdf_bot/language.py:24
 msgid "Select your language"
-msgstr ""
+msgstr "Uw taal selecteren"
 
 #: pdf_bot/language.py:64
 msgid "Your language has been set to {}"
@@ -314,7 +332,8 @@ msgstr "Er zijn geen verschillen in tekst tussen uw PDF bestanden"
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "Stuur mij de PDF-bestanden die u wilt samenvoegen\n\n"
+"Opmerking dat de bestanden worden samengevoegd in de volgorde waarin u mij stuurt"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -330,11 +349,11 @@ msgstr "PDF bestanden"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "Druk op <b>Klaar</b> als je me alle PDF-bestanden hebt gestuurd die je wilt samenvoegen of me de PDF-bestanden wilt blijven sturen"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "<b>{}</b> is verwijderd voor samenvoegen"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -355,7 +374,8 @@ msgstr "Ik kan uw PDF bestanden niet samenvoegen omdat ik \"{}\" niet kon openen
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Stuur mij de foto's die u wilt verfraaien of converteren naar een PDF-bestand\n\n"
+"Opmerking dat de foto's worden verfraaid en geconverteerd in de volgorde waarin u mij stuurt"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -375,11 +395,11 @@ msgstr "afbeeldingen"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "Selecteer de taak hieronder als je me alle foto's hebt gestuurd, of blijf me de foto's sturen"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "<b>{}</b> is verwijderd van verfraaien of converteren"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -391,11 +411,11 @@ msgstr "Uw foto's worden omgezet naar PDF"
 
 #: pdf_bot/commands/text.py:45
 msgid "Send me the text that you'll like to write into your PDF file"
-msgstr ""
+msgstr "Stuur mij de tekst die u wilt schrijven in uw PDF-bestand"
 
 #: pdf_bot/commands/text.py:68
 msgid "Creating your PDF file"
-msgstr ""
+msgstr "Uw PDF-bestand maken"
 
 #: pdf_bot/commands/watermark.py:49
 msgid "Send me the PDF file that you'll like to add a watermark"
@@ -415,7 +435,7 @@ msgstr "watermerk"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
-msgstr ""
+msgstr "Uw PDF-bestand comprimeren"
 
 #: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
 #: pdf_bot/files/photo.py:224
@@ -424,7 +444,7 @@ msgstr "Er is iets fout gegaan, probeer het opnieuw"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr ""
+msgstr "Bestandsgrootte verminderd met <b>{:.0%}</b>, van <b>{}</b> tot <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -495,11 +515,11 @@ msgstr "Uw PDF-bestand is te groot voor mij om te downloaden\n\n"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "Een OCR-tekstlaag toevoegen aan uw PDF-bestand"
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
-msgstr ""
+msgstr "Uw PDF-bestand heeft al een tekstlaag"
 
 #: pdf_bot/files/photo.py:56
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
