@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-04 05:36+0000\n"
-"PO-Revision-Date: 2021-01-04 05:38\n"
+"PO-Revision-Date: 2021-01-04 07:18\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: Arabic\n"
@@ -34,7 +34,16 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "مرحبا بكم في قوات الدفاع الشعبي بوت!\n\n"
+"<b>الميزات الرئيسية:</b>\n"
+"- ضغط، دمج ومعاينة وإعادة تسمية وتقسيم وإضافة علامة مائية إلى ملفات PDF\n"
+"- إنشاء ملفات PDF من الرسائل النصية\n"
+"- استخراج الصور والنصوص من ملفات PDF\n"
+"- تحويل ملفات PDF إلى صور\n"
+"- تحويل صفحات الويب والصور إلى ملفات PDF\n"
+"- تجميل صور الملاحظات المكتوبة بخط اليد إلى ملفات PDF\n"
+"- <b><i>وأكثر...</i></b>\n\n"
+"نوع /help لمعرفة كيفية استخدام PDF Bot"
 
 #: bot.py:149
 msgid "Set Language"
@@ -59,7 +68,16 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr ""
+msgstr "يمكنك تنفيذ معظم المهام عن طريق إرسال واحدة من ما يلي:\n"
+"- ملفات PDF\n"
+"- صور\n"
+"- روابط صفحة الويب\n\n"
+"يمكن تنفيذ باقي المهام باستخدام الأوامر أدناه:\n"
+"/compare - مقارنة ملفات PDF\n"
+"/merge - دمج ملفات PDF\n"
+"/photo - تحويل ودمج صور متعددة في ملفات PDF\n"
+"/text - إنشاء ملفات PDF من الرسائل النصية\n"
+"/watermark - إضافة علامة مائية إلى ملفات PDF"
 
 #: bot.py:193 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -314,7 +332,8 @@ msgstr "لايوجد أي اختلاف في النص بين هذين الملف�
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "أرسل لي ملفات PDF التي ترغب في دمجها\n\n"
+"لاحظ أنه سيتم دمج الملفات بالترتيب الذي ترسله لي"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -330,11 +349,11 @@ msgstr "ملفات PDF"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "اضغط <b>تم</b> إذا كنت قد أرسلت لي جميع ملفات PDF التي سوف ترغب في دمج أو الاستمرار في إرسال ملفات PDF لي"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "<b>{}</b> قد تم حذفه من الدمج"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -356,7 +375,8 @@ msgstr "لا استطيع دمج الملفات لانني لااستطيع قر
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "أرسل لي الصور التي ستحب تجميلها أو تحويلها إلى ملف PDF\n\n"
+"لاحظ أنه سيتم تجميل الصور وتحويلها بالترتيب الذي ترسله لي"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -376,11 +396,11 @@ msgstr "صور"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "حدد المهمة من الأسفل إذا كنت قد أرسلت لي جميع الصور، أو استمر في إرسال الصور لي"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "<b>*{}</b> قد تم حذفه للتجميل او التحويل"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -425,7 +445,7 @@ msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr ""
+msgstr "حجم الملف الذي تم تقليله بمقدار <b>{:.0%}</b>، من <b>{}</b> إلى <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -544,7 +564,7 @@ msgstr "لا يمكن أن يحتوي اسم الملف على أي من الم�
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "اعادة تسمية ملفك ل <b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -561,28 +581,30 @@ msgstr "حدد نوع المقياس الذي تريد تنفيذه"
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "ارسل الطول والعرض \n"
+"<b>مثال: 150 200</b> (هذا سوف يقوم بجعل العرض 150 والطول 200)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "أرسل لي عوامل القياس للمحورين الأفقي والرأسي\n\n"
+"<b>المثال: 2 0.5</b> (سيؤدي هذا إلى مضاعفة المحور الأفقي وخفض المحور الرأسي إلى النصف)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "ان عوامل المقياس <b>{}</b> غير صالحة، حاول مجددا"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "ان الابعاد <b>{}</b> غير صالحة، حاول مجددا"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "اعادة تعيين حجم الملف عموديا <b>{}</b> و افقيا <b>{}</b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "تحويل الملف للابعاد التالية <b>{}</b> للعرض و <b>{}</b> للطول"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"
@@ -603,7 +625,24 @@ msgid "Send me the range of pages that you'll like to keep\n\n"
 "<code>::-1   all pages in reversed order</code>\n"
 "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
 "<code>2::-1  pages 2 1 0</code>"
-msgstr ""
+msgstr "أرسل لي مجموعة من الصفحات التي سوف ترغب في الاحتفاظ\n\n"
+"<b>الاستخدام العام</b>\n"
+"<code>: جميع الصفحات</code>\n"
+"<code>22 فقط في 23 صفحة</code>\n"
+"<code>0:3 أول ثلاث صفحات</code>\n"
+"<code>:3 الصفحات الثلاث الأولى</code>\n"
+"<code>5: من الصفحة السادسة وما بعدها</code>\n"
+"<code>-1 الصفحة الأخيرة</code>\n"
+"<code>فقط:-1 جميع الصفحات ولكن الصفحة الأخيرة</code>\n"
+"<code>-2 الثانية الصفحة الأخيرة فقط</code>\n"
+"<code>-2 : آخر صفحتين</code>\n"
+"<code>-3:-1 الثالث والثانية الماضي الصفحات فقط</code>\n\n"
+"<b>الاستخدام المتقدم</b>\n"
+"<code>:: 2 صفحات 0 2 4 ... حتى النهاية</code>\n"
+"<code>1:10:2 صفحات 1 3 5 7 9</code>\n"
+"<code>:: -1 جميع الصفحات في ترتيب عكسي</code>\n"
+"<code>3:0-1 صفحات 3 2 1 ولكن ليس 0</code>\n"
+"<code>2::-1 صفحات 2 1 0</code>"
 
 #: pdf_bot/files/split.py:58
 msgid "The range is invalid. Try again"
@@ -623,7 +662,7 @@ msgstr "استخراج النص من الملف"
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>انظر للاعلى لترى النص من ملفك</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
