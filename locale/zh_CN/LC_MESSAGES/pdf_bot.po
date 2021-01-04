@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-04 04:50+0000\n"
-"PO-Revision-Date: 2021-01-04 04:58\n"
+"POT-Creation-Date: 2021-01-04 05:36+0000\n"
+"PO-Revision-Date: 2021-01-04 05:38\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -583,14 +583,31 @@ msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr ""
 
 #: pdf_bot/files/split.py:18
-msgid "Send me the range of pages that you'll like to keep. Use ⚡ <b>INSTANT VIEW</b> from below or refer to [here](http://telegra.ph/Telegram-PDF-Bot-07-16) for some range examples."
+msgid "Send me the range of pages that you'll like to keep\n\n"
+"<b>General usage</b>\n"
+"<code>:      all pages</code>\n"
+"<code>22     just the 23rd page</code>\n"
+"<code>0:3    the first three pages</code>\n"
+"<code>:3     the first three pages</code>\n"
+"<code>5:     from the 6th page onwards</code>\n"
+"<code>-1     last page only</code>\n"
+"<code>:-1    all pages but the last page</code>\n"
+"<code>-2     second last page only</code>\n"
+"<code>-2:    last two pages</code>\n"
+"<code>-3:-1  third and second last pages only</code>\n\n"
+"<b>Advanced usage</b>\n"
+"<code>::2    pages 0 2 4 ... to the end</code>\n"
+"<code>1:10:2 pages 1 3 5 7 9</code>\n"
+"<code>::-1   all pages in reversed order</code>\n"
+"<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
+"<code>2::-1  pages 2 1 0</code>"
 msgstr ""
 
-#: pdf_bot/files/split.py:43
+#: pdf_bot/files/split.py:58
 msgid "The range is invalid. Try again"
 msgstr "页面范围无效。再试一次"
 
-#: pdf_bot/files/split.py:49
+#: pdf_bot/files/split.py:64
 msgid "Splitting your PDF file"
 msgstr "正在分割你的PDF档案"
 
@@ -756,5 +773,13 @@ msgstr "我在你的PDF档案中找不到任何文字"
 #~ msgstr ""
 
 #~ msgid "*See above for all the text in your PDF file*"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the range of pages that"
+#~ " you'll like to keep. Use ⚡ "
+#~ "<b>INSTANT VIEW</b> from below or refer"
+#~ " to [here](http://telegra.ph/Telegram-PDF-"
+#~ "Bot-07-16) for some range examples."
 #~ msgstr ""
 
