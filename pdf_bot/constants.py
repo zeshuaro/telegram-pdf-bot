@@ -119,7 +119,7 @@ LANGUAGES = {
     "🇵🇱 polski": "pl_PL",
     "🇵🇹 português": "pt_PT",
     "🇷🇴 Daco-Romanian": "ro_RO",
-    "🇷🇸 српски језик": "ro_SR",
+    # "🇷🇸 српски језик": "sr_SP",
     "🇸🇪 svenska": "sv_SE",
     "🇺🇦 українська мова": "uk_UA",
     "🇻🇳 Tiếng Việt": "vi_VN",
