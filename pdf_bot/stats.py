@@ -49,7 +49,11 @@ def get_stats(update, context):
                     if key != "count":
                         counts[key] += user[key]
                 elif key == LANGUAGE:
-                    langs[user[key]] += 1
+                    lang = user[key]
+                    if lang == "en":
+                        lang = "en_GB"
+
+                    langs[lang] += 1
 
     launch_date = date(2017, 7, 1)
     stats_date = date(2019, 7, 1)
