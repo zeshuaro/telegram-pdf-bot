@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 01:24\n"
+"POT-Creation-Date: 2021-01-05 13:07+0000\n"
+"PO-Revision-Date: 2021-01-05 13:10\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -604,49 +604,75 @@ msgstr "pdf 파일 의 배율 조정, <b>{}</b> 및 <b>{}</b>의해 세로로 �
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "<b>{}</b> 너비와 <b>{} 높이로 PDF 파일 확장</b>"
 
-#: pdf_bot/files/split.py:18
-msgid "Send me the range of pages that you'll like to keep\n\n"
-"<b>General usage</b>\n"
-"<code>:      all pages</code>\n"
-"<code>22     just the 23rd page</code>\n"
-"<code>0:3    the first three pages</code>\n"
-"<code>:3     the first three pages</code>\n"
-"<code>5:     from the 6th page onwards</code>\n"
-"<code>-1     last page only</code>\n"
-"<code>:-1    all pages but the last page</code>\n"
-"<code>-2     second last page only</code>\n"
-"<code>-2:    last two pages</code>\n"
-"<code>-3:-1  third and second last pages only</code>\n\n"
-"<b>Advanced usage</b>\n"
-"<code>::2    pages 0 2 4 ... to the end</code>\n"
-"<code>1:10:2 pages 1 3 5 7 9</code>\n"
-"<code>::-1   all pages in reversed order</code>\n"
-"<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
-"<code>2::-1  pages 2 1 0</code>"
-msgstr "</b>\n"
-"<code>일반 사용을\n\n"
-"<b>유지하려는 페이지의 범위를 보내 : 모든 페이지</code>\n"
-"<code>22 단지 23 페이지</code>\n"
-"<code>처음 세 페이지</code>\n"
-"<code>: 3 처음 세 페이지</code>\n"
-"<code>5 : 6 페이지부터</code>\n"
-"<code>-1 마지막 페이지만</code>\n"
-"<code>:-1 마지막 페이지만    :-1 마지막 페이지만    :-1 마지막 페이지만</code>\n"
-"<code>-2 두 번째 마지막 페이지만</code>\n"
-"<code>-2 초 : 지난 두 페이지</code>\n"
-"<code>-3:-1 세 번째 및 두 번째 마지막 페이지만 고급 사용</b>\n"
-"<code></code>\n\n"
-"<b>::2 페이지 0 2 4 ... 끝으로</code>\n"
-"<code>1:10:2 페이지 1 3 5 7 9</code>\n"
-"<code>:-1 반전 순서의 모든 페이지</code>\n"
-"<code>3:0:-1 페이지 3 2 2 1하지만 0</code>\n"
-"<code>2:-1 페이지 2 1 0</code>"
+#: pdf_bot/files/split.py:36
+msgid "Send me the range of pages that you'll like to keep"
+msgstr ""
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:37
+msgid "General usage"
+msgstr ""
+
+#: pdf_bot/files/split.py:38
+msgid "all pages"
+msgstr ""
+
+#: pdf_bot/files/split.py:39
+msgid "page 8 only"
+msgstr ""
+
+#: pdf_bot/files/split.py:40
+msgid "first three pages"
+msgstr ""
+
+#: pdf_bot/files/split.py:41
+msgid "from page 8 onward"
+msgstr ""
+
+#: pdf_bot/files/split.py:42
+msgid "last page only"
+msgstr ""
+
+#: pdf_bot/files/split.py:43
+msgid "all pages except the last page"
+msgstr ""
+
+#: pdf_bot/files/split.py:44
+msgid "second last page only"
+msgstr ""
+
+#: pdf_bot/files/split.py:45
+msgid "last two pages"
+msgstr ""
+
+#: pdf_bot/files/split.py:46
+msgid "third and second last pages"
+msgstr ""
+
+#: pdf_bot/files/split.py:47
+msgid "Advanced usage"
+msgstr ""
+
+#: pdf_bot/files/split.py:48
+msgid "pages"
+msgstr ""
+
+#: pdf_bot/files/split.py:49
+msgid "to the end"
+msgstr ""
+
+#: pdf_bot/files/split.py:50
+msgid "all pages in reversed order"
+msgstr ""
+
+#: pdf_bot/files/split.py:51
+msgid "except"
+msgstr ""
+
+#: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
 msgstr "범위가 잘못되었습니다. 다시 한 번 시도해 보세요"
 
-#: pdf_bot/files/split.py:64
+#: pdf_bot/files/split.py:81
 msgid "Splitting your PDF file"
 msgstr "PDF 파일 분할"
 
@@ -833,5 +859,28 @@ msgstr "PDF 파일에서 텍스트를 찾을 수 없습니다."
 #~ "Send me your feedback, note that "
 #~ "only English feedback will be forwarded"
 #~ " to my developer"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the range of pages that you'll like to keep\n"
+#~ "\n"
+#~ "<b>General usage</b>\n"
+#~ "<code>:      all pages</code>\n"
+#~ "<code>22     just the 23rd page</code>\n"
+#~ "<code>0:3    the first three pages</code>\n"
+#~ "<code>:3     the first three pages</code>\n"
+#~ "<code>5:     from the 6th page onwards</code>\n"
+#~ "<code>-1     last page only</code>\n"
+#~ "<code>:-1    all pages but the last page</code>\n"
+#~ "<code>-2     second last page only</code>\n"
+#~ "<code>-2:    last two pages</code>\n"
+#~ "<code>-3:-1  third and second last pages only</code>\n"
+#~ "\n"
+#~ "<b>Advanced usage</b>\n"
+#~ "<code>::2    pages 0 2 4 ... to the end</code>\n"
+#~ "<code>1:10:2 pages 1 3 5 7 9</code>\n"
+#~ "<code>::-1   all pages in reversed order</code>\n"
+#~ "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
+#~ "<code>2::-1  pages 2 1 0</code>"
 #~ msgstr ""
 
