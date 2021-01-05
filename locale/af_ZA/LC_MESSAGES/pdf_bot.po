@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-05 13:07+0000\n"
-"PO-Revision-Date: 2021-01-05 13:09\n"
+"PO-Revision-Date: 2021-01-05 13:51\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -153,7 +153,7 @@ msgstr "Gewas"
 
 #: pdf_bot/constants.py:55
 msgid "Compressed"
-msgstr "Gekompakteerde"
+msgstr "Saamgepers"
 
 #: pdf_bot/constants.py:56
 msgid "Photos"
@@ -173,7 +173,7 @@ msgstr "Uittreksel teks"
 
 #: pdf_bot/constants.py:60
 msgid "Text Message"
-msgstr "SMS-boodskap"
+msgstr "Teksboodskap"
 
 #: pdf_bot/constants.py:61
 msgid "Text File"
@@ -181,7 +181,7 @@ msgstr "Tekslêer"
 
 #: pdf_bot/constants.py:63
 msgid "Compress"
-msgstr "Kompakteer"
+msgstr "Saamdruk"
 
 #: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
@@ -201,7 +201,7 @@ msgstr "Ete 🍲 ($10)"
 
 #: pdf_bot/constants.py:82
 msgid "Say Awesome 🤩 (Custom)"
-msgstr "Sê awesome 🤩 (Custom)"
+msgstr "Sê Awesome 🤩 (aangepas)"
 
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
@@ -237,7 +237,7 @@ msgstr "Kies hoe jy PDF Bot wil ondersteun"
 
 #: pdf_bot/payment.py:79
 msgid "Say thanks to PDF Bot and help keep it running"
-msgstr "Sê danksy PDF Bot en help om dit aan die gang te hou"
+msgstr "Sê dankie aan PDF Bot en help om dit aan die gang te hou"
 
 #: pdf_bot/payment.py:106
 msgid "Something went wrong"
@@ -305,11 +305,11 @@ msgstr "U het dit tot dusver vir my gestuur:\n"
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
-msgstr "Die resultaatlêer is te groot vir my om aan jou te stuur"
+msgstr "Die resultaatlêer is te groot vir my om na u te stuur"
 
 #: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
-msgstr "Hier is jou resultaatlêer"
+msgstr "Hier is u resultaatlêer"
 
 #: pdf_bot/commands/compare.py:54
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
@@ -435,7 +435,7 @@ msgstr "watermerk"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
-msgstr "Kompakteer jou PDF-lêer"
+msgstr "Druk u PDF-lêer saam"
 
 #: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
 #: pdf_bot/files/photo.py:224
@@ -448,15 +448,15 @@ msgstr "Lêergrootte verminder met <b>{:.0%}</b>, van <b>{}</b> tot <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
-msgstr "Kies die gewastipe wat jy wil uitvoer"
+msgstr "Kies die tipe gewas wat u wil uitvoer"
 
 #: pdf_bot/files/crop.py:48
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Stuur vir my 'n nommer tussen {} en {}. Dit is die persentasie margespasie om tussen die inhoud in jou PDF-lêer en die bladsy te behou"
+msgstr "Stuur vir my 'n nommer tussen {} en {}. Dit is die persentasie spasie om tussen die inhoud in u PDF-lêer en die bladsy te behou"
 
 #: pdf_bot/files/crop.py:58
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Stuur vir my 'n nommer wat jy wil die marge grootte aan te pas. Positiewe getalle sal die margegrootte verminder en negatiewe getalle sal dit verhoog"
+msgstr "Stuur vir my 'n nommer waarmee u die kantlyngrootte wil aanpas. Positiewe getalle sal die kantlyngrootte verminder en negatiewe getalle verhoog dit"
 
 #: pdf_bot/files/crop.py:79
 msgid "The number must be between {} and {}, try again"
@@ -488,7 +488,7 @@ msgstr "Jou PDF-lêer is nie geënkripteer nie"
 
 #: pdf_bot/files/crypto.py:57
 msgid "The decryption password is incorrect, try to send it again"
-msgstr "Die dekripsiewagwoord is verkeerd, probeer dit weer stuur"
+msgstr "Die ontsyferingswagwoord is verkeerd, probeer dit weer stuur"
 
 #: pdf_bot/files/crypto.py:71
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
@@ -514,11 +514,11 @@ msgstr "Jou PDF-lêer is te groot vir my om af\n\n"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
-msgstr "Voeg 'n OCR-tekslaag by jou PDF-lêer"
+msgstr "Voeg 'n OCR-tekslaag by u PDF-lêer"
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
-msgstr "Jou PDF-lêer het reeds 'n tekslaag"
+msgstr "U PDF-lêer het reeds 'n tekslaag"
 
 #: pdf_bot/files/photo.py:56
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
@@ -530,7 +530,7 @@ msgstr "Onttrek 'n voorskou vir jou PDF-lêer"
 
 #: pdf_bot/files/photo.py:159
 msgid "Select the result file format"
-msgstr "Kies die resultaatlêerformaat"
+msgstr "Kies die resultaat lêer formaat"
 
 #: pdf_bot/files/photo.py:171
 msgid "Converting your PDF file into photos"
@@ -570,11 +570,11 @@ msgstr "Kies die grade wat jy jou PDF-lêer in kloksgewys wil draai"
 
 #: pdf_bot/files/rotate.py:48
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr "Draai jou PDF-lêerkloksgewys deur {} grade"
+msgstr "Draai u PDF-lêer met {} grade kloksgewys"
 
 #: pdf_bot/files/scale.py:24
 msgid "Select the scale type that you'll like to perform"
-msgstr "Kies die skaaltipe wat jy wil uitvoer"
+msgstr "Kies die skaal wat u wil uitvoer"
 
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
@@ -585,12 +585,12 @@ msgstr "Stuur vir my die breedte en hoogte\n\n"
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr "Stuur vir my die skaalfaktore vir die horisontale en vertikale asse\n\n"
-"<b>Voorbeeld: 2 0.5</b> (dit sal die horisontale as verdubbel en die vertikale as halveer)"
+msgstr "Stuur vir my die skaalfaktore vir die horisontale en vertikale as\n\n"
+"<b> Voorbeeld: 2 0,5 </b> (dit sal die horisontale as verdubbel en die vertikale as halveer)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr "Die skaalfaktore van <b>{}</b> is ongeldig, probeer weer"
+msgstr "Die skaalfaktore <b> {} </b> is ongeldig, probeer weer"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
@@ -606,67 +606,67 @@ msgstr "Skaal jou PDF-lêer met breedte <b>{}</b> en hoogte van <b>{}</b>"
 
 #: pdf_bot/files/split.py:36
 msgid "Send me the range of pages that you'll like to keep"
-msgstr ""
+msgstr "Stuur vir my die reeks bladsye wat jy wil hou"
 
 #: pdf_bot/files/split.py:37
 msgid "General usage"
-msgstr ""
+msgstr "Algemene gebruik"
 
 #: pdf_bot/files/split.py:38
 msgid "all pages"
-msgstr ""
+msgstr "alle bladsye"
 
 #: pdf_bot/files/split.py:39
 msgid "page 8 only"
-msgstr ""
+msgstr "slegs bladsy 8"
 
 #: pdf_bot/files/split.py:40
 msgid "first three pages"
-msgstr ""
+msgstr "eerste drie bladsye"
 
 #: pdf_bot/files/split.py:41
 msgid "from page 8 onward"
-msgstr ""
+msgstr "vanaf bladsy 8"
 
 #: pdf_bot/files/split.py:42
 msgid "last page only"
-msgstr ""
+msgstr "slegs laaste bladsy"
 
 #: pdf_bot/files/split.py:43
 msgid "all pages except the last page"
-msgstr ""
+msgstr "alle bladsye behalwe die laaste bladsy"
 
 #: pdf_bot/files/split.py:44
 msgid "second last page only"
-msgstr ""
+msgstr "slegs tweede laaste bladsy"
 
 #: pdf_bot/files/split.py:45
 msgid "last two pages"
-msgstr ""
+msgstr "laaste twee bladsye"
 
 #: pdf_bot/files/split.py:46
 msgid "third and second last pages"
-msgstr ""
+msgstr "derde en tweede laaste bladsye"
 
 #: pdf_bot/files/split.py:47
 msgid "Advanced usage"
-msgstr ""
+msgstr "Gevorderde gebruik"
 
 #: pdf_bot/files/split.py:48
 msgid "pages"
-msgstr ""
+msgstr "bladsye"
 
 #: pdf_bot/files/split.py:49
 msgid "to the end"
-msgstr ""
+msgstr "tot die einde"
 
 #: pdf_bot/files/split.py:50
 msgid "all pages in reversed order"
-msgstr ""
+msgstr "alle bladsye in omgekeerde volgorde"
 
 #: pdf_bot/files/split.py:51
 msgid "except"
-msgstr ""
+msgstr "behalwe"
 
 #: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
