@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 01:23\n"
+"PO-Revision-Date: 2021-01-05 12:32\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -42,7 +42,7 @@ msgstr "Vítejte na PDF Bot!\n\n"
 "- Převod souborů PDF do obrazů\n"
 "- Převod webových stránek a obrázků do souborů PDF\n"
 "- Zkrášlení ručně psaných obrázků do souborů PDF\n"
-"- <b><i>A další ...</i></b>\n\n"
+"- <b><i>A další...</i></b>\n\n"
 "Typ /help zjistit, jak používat PDF Bot"
 
 #: bot.py:151
@@ -241,7 +241,7 @@ msgstr "Řekněte díky PDF Bot a pomozte udržet ho v chodu"
 
 #: pdf_bot/payment.py:106
 msgid "Something went wrong"
-msgstr "Něco se pokazilo."
+msgstr "Něco se pokazilo"
 
 #: pdf_bot/payment.py:114
 msgid "Thank you for your support!"
@@ -249,7 +249,7 @@ msgstr "Děkujeme vám za vaši podporu!"
 
 #: pdf_bot/url.py:24
 msgid "You've sent me this web page already and I'm still converting it"
-msgstr "Už jsi mi poslal tuhle webovou stránku a já ji pořád převádím."
+msgstr "Už jsi mi poslal tuhle webovou stránku a já ji pořád převádím"
 
 #: pdf_bot/url.py:27
 msgid "Converting your web page into a PDF file"
@@ -257,11 +257,11 @@ msgstr "Převedení webové stránky na soubor PDF"
 
 #: pdf_bot/url.py:39
 msgid "Unable to reach your web page"
-msgstr "Nelze se dostat na webovou stránku."
+msgstr "Nelze se dostat na webovou stránku"
 
 #: pdf_bot/utils.py:34
 msgid "Action cancelled"
-msgstr "Akce byla zrušena."
+msgstr "Akce byla zrušena"
 
 #: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
@@ -271,11 +271,11 @@ msgstr "Soubor, který jste odeslali, není soubor PDF, zkuste to znovu"
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
 msgstr "Soubor PDF, který jste poslali, je příliš velký na to, abych si mohl stáhnout\n\n"
-"zrušil jsem vaši akci."
+"zrušil jsem vaši akci"
 
 #: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
-msgstr "Něco se pokazilo, začít znovu."
+msgstr "Něco se pokazilo, začít znovu"
 
 #: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
@@ -297,7 +297,7 @@ msgstr "Váš soubor PDF {} je zašifrován a budete ho muset nejprve dešifrova
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
 msgstr "Soubor PDF je zašifrován a budete ho muset nejprve dešifrovat\n\n"
-"zruším vaši akci."
+"zruším vaši akci"
 
 #: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
@@ -305,7 +305,7 @@ msgstr "Zatím jste mi zaslali tyto {}:\n"
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
-msgstr "Výsledný soubor je příliš velký na to, abych vám ho mohl poslat."
+msgstr "Výsledný soubor je příliš velký na to, abych vám ho mohl poslat"
 
 #: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
@@ -337,11 +337,11 @@ msgstr "Pošlete mi soubory PDF, které budete chtít sloučit\n\n"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
-msgstr "Soubor, který jste odeslali, není soubor PDF."
+msgstr "Soubor, který jste odeslali, není soubor PDF"
 
 #: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
-msgstr "Soubor PDF, který jste odeslali, je příliš velký na to, abych jej mohl stáhnout."
+msgstr "Soubor PDF, který jste odeslali, je příliš velký na to, abych jej mohl stáhnout"
 
 #: pdf_bot/commands/merge.py:130
 msgid "PDF files"
@@ -353,11 +353,11 @@ msgstr "Stiskněte <b>Done</b> pokud jste mi poslal všechny soubory PDF, které
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr "<b>{}</b> bylo odebráno pro sloučení."
+msgstr "<b>{}</b> bylo odebráno pro sloučení"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
-msgstr "Neposlal jsi mi žádné soubory PDF."
+msgstr "Neposlal jsi mi žádné soubory PDF"
 
 #: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
@@ -379,19 +379,19 @@ msgstr "Pošlete mi fotky, které budete chtít zkrášlit nebo převést do sou
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
-msgstr "Název souboru není k dispozici."
+msgstr "Název souboru není k dispozici"
 
 #: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
-msgstr "Soubor, který jste odeslali, není fotka."
+msgstr "Soubor, který jste odeslali, není fotka"
 
 #: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
-msgstr "Fotka, kterou jste poslali, je příliš velká na to, abych ji mohl stáhnout."
+msgstr "Fotka, kterou jste poslali, je příliš velká na to, abych ji mohl stáhnout"
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr "Fotografie"
+msgstr "fotografie"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
@@ -431,7 +431,7 @@ msgstr "Přidání vodoznaku do souboru PDF"
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr "Vodoznak"
+msgstr "vodoznak"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
@@ -448,23 +448,23 @@ msgstr "Velikost souboru snížena o <b>{:.0%}</b>, z <b>{}</b> na <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
-msgstr "Vyberte typ oříznutí, který chcete provést."
+msgstr "Vyberte typ oříznutí, který chcete provést"
 
 #: pdf_bot/files/crop.py:48
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Pošlete mi číslo mezi {} a {}. Toto je procento místa okraje, které se má zachovat mezi obsahem v souboru PDF a stránkou."
+msgstr "Pošlete mi číslo mezi {} a {}. Toto je procento místa okraje, které se má zachovat mezi obsahem v souboru PDF a stránkou"
 
 #: pdf_bot/files/crop.py:58
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Pošlete mi číslo, které budete chtít upravit velikost okraje. Kladná čísla sníží velikost marže a záporná čísla ji zvýší."
+msgstr "Pošlete mi číslo, které budete chtít upravit velikost okraje. Kladná čísla sníží velikost marže a záporná čísla ji zvýší"
 
 #: pdf_bot/files/crop.py:79
 msgid "The number must be between {} and {}, try again"
-msgstr "Číslo musí být mezi {} a {}, zkuste to znovu."
+msgstr "Číslo musí být mezi {} a {}, zkuste to znovu"
 
 #: pdf_bot/files/crop.py:100
 msgid "The number is invalid, try again"
-msgstr "Číslo je neplatné, zkuste to znovu."
+msgstr "Číslo je neplatné, zkuste to znovu"
 
 #: pdf_bot/files/crop.py:110
 msgid "Cropping your PDF file"
@@ -504,13 +504,13 @@ msgstr "Šifrování souboru PDF"
 
 #: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
 msgid "Select the task that you'll like to perform"
-msgstr "Vyberte úkol, který chcete provést."
+msgstr "Vyberte úkol, který chcete provést"
 
 #: pdf_bot/files/file.py:106
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
-msgstr "Soubor PDF je příliš velký na to, abych si mohl stáhnout\n\n"
-", že na něm nemohu provádět žádné úkoly"
+msgstr "Váš PDF soubor je pro mě příliš velký ke stažení\n\n"
+"Nemohu provádět žádné úkoly"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
@@ -518,7 +518,7 @@ msgstr "Přidání textové vrstvy OCR do souboru PDF"
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
-msgstr "Soubor PDF už má textovou vrstvu."
+msgstr "Soubor PDF už má textovou vrstvu"
 
 #: pdf_bot/files/photo.py:56
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
@@ -550,7 +550,7 @@ msgstr "Viz výše pro všechny vaše fotografie"
 
 #: pdf_bot/files/rename.py:19
 msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "Pošlete mi název souboru, do kterého chcete soubor PDF přejmenovat."
+msgstr "Pošlete mi název souboru, do kterého chcete soubor PDF přejmenovat"
 
 #: pdf_bot/files/rename.py:38
 msgid "File names can't contain any of the following characters:\n"
@@ -566,7 +566,7 @@ msgstr "Přejmenování souboru PDF na <b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "Vyberte stupně, které chcete otočit soubor PDF ve směru hodinových ručiček."
+msgstr "Vyberte stupně, které chcete otočit soubor PDF ve směru hodinových ručiček"
 
 #: pdf_bot/files/rotate.py:48
 msgid "Rotating your PDF file clockwise by {} degrees"
@@ -590,11 +590,11 @@ msgstr "Pošlete mi faktory měřítka pro vodorovné a svislé osy\n\n"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr "Faktory změny měřítka <b>{}</b> jsou neplatné, zkuste to znovu."
+msgstr "Faktory změny měřítka <b>{}</b> jsou neplatné, zkuste to znovu"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr "Dimenze <b>{}</b> jsou neplatné, zkuste to znovu."
+msgstr "Dimenze <b>{}</b> jsou neplatné, zkuste to znovu"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
@@ -652,7 +652,7 @@ msgstr "Rozdělení souboru PDF"
 
 #: pdf_bot/files/text.py:22
 msgid "Select how you'll like me to send the text to you"
-msgstr "Vyberte, jak vám mám text poslat."
+msgstr "Vyberte, jak vám mám text poslat"
 
 #: pdf_bot/files/text.py:35
 msgid "Extracting text from your PDF file"
@@ -664,7 +664,7 @@ msgstr "<b>Viz výše pro veškerý text v souboru PDF</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
-msgstr "V souboru PDF nebyl nenalezl(a) žádný text"
+msgstr "Nemohu najít žádný text ve vašem PDF souboru"
 
 #~ msgid ""
 #~ "Send me the first photo that "
