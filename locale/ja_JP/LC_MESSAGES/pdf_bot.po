@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 01:24\n"
+"PO-Revision-Date: 2021-01-05 12:33\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -301,7 +301,7 @@ msgstr "あなたのPDFファイルは暗号化されており、私はあなた
 
 #: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
-msgstr "あなたは今まで私にこれらの{}を送ってくれた:\n"
+msgstr "これまでにこれらの{}を送ってくれました：\n"
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
@@ -332,8 +332,8 @@ msgstr "PDF ファイル間のテキストの違いはありません。"
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr "\n\n"
-"をマージしたいPDFファイルを送信してください。"
+msgstr "マージしたいPDFファイルを送ってください\n\n"
+"あなたが私に送った順序でファイルがマージされることに注意してください"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -353,7 +353,7 @@ msgstr "[ <b>完了]</b> を押すと、PDF ファイルをマージまたは送
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr "マージ用に削除された</b> が<b>{}"
+msgstr "<b> {} </b>はマージのために削除されました"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -444,7 +444,7 @@ msgstr "何かが間違っていた、もう一度やり直す"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr "ファイル サイズが <b>{:.0%}</b>によって縮小され、</b> が <b>{} から <b>{}</b>に減少しました"
+msgstr "ファイルサイズが<b> {:.0%} </b>減少して<b> {} </b>から<b> {} </b>になりました"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -460,7 +460,7 @@ msgstr "余白のサイズを調整したい番号を送ってください。正
 
 #: pdf_bot/files/crop.py:79
 msgid "The number must be between {} and {}, try again"
-msgstr "番号は {} と {}の間にする必要があります。"
+msgstr "番号は {} から {} の間でなければなりません。再試行してください"
 
 #: pdf_bot/files/crop.py:100
 msgid "The number is invalid, try again"
@@ -585,16 +585,16 @@ msgstr "幅と高さを送信\n\n"
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr "例\n\n"
-"<b>水平軸と垂直軸のスケーリング係数を送ってください:2 0.5</b> (これは水平軸を2倍にし、垂直軸を半分にします)"
+msgstr "横軸と縦軸の倍率を送ってください\n\n"
+"<b>例：2 0.5 </b>（これにより、横軸が2倍になり、縦軸が半分になります）"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr "{}</b> <b>スケーリング係数が無効です。"
+msgstr "倍率<b> {} </b>が無効です。再試行してください"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr "{}</b> <b>ディメンションが無効です。"
+msgstr "寸法<b> {} </b>が無効です。再試行してください"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
@@ -602,7 +602,7 @@ msgstr "PDF ファイルをスケールし、 <b>{}</b> を水平方向に、 <b
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr "幅が {}</b> で、高さが {} <b>の PDF ファイル <b>スケーリング</b>"
+msgstr "幅<b> {} </b>および高さ<b> {} </b>でPDFファイルをスケーリングする"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"
@@ -623,24 +623,24 @@ msgid "Send me the range of pages that you'll like to keep\n\n"
 "<code>::-1   all pages in reversed order</code>\n"
 "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
 "<code>2::-1  pages 2 1 0</code>"
-msgstr "一般的な使用</b>\n"
-"<code>を\n\n"
-"<b>したいページの範囲を私に送ってください : 23ページ</code>\n"
-"<code>23ページだけ</code>\n"
-"<code>最初</code>\n"
-"<code>の3ページ  :3ページ</code>\n"
-"<code>最初の3ページ  5:3:6</code>\n"
-"<code>ページから-1最後のページは</code>\n"
-"<code>:-1ページのみ  し、最後のページは -2秒</code>\n"
-"<code>最後のページだけ</code>\n"
-"<code>-2: 最後の2ページ</code>\n"
-"<code>-3:-1 最後のページのみ</code>\n\n"
+msgstr "残しておきたいページの範囲を送ってください\n\n"
+"<b>一般的な使用法</b>\n"
+"<code>:      すべてのページ</code>\n"
+"<code>22     23ページ目</code>\n"
+"<code>0:3    最初の3ページ</code>\n"
+"<code>:3     最初の3ページ</code>\n"
+"<code>5:     6ページ目以降</code>\n"
+"<code>-1     最後の1ページのみ</code>\n"
+"<code>:-1    -最後のページを除くすべてのページ</code>\n"
+"<code>-2     最後から2番目のページのみ</code>\n"
+"<code>-2:    最後の2ページ</code>\n"
+"<code>-3:-1  最後から3番目と2番目のページのみ</code>\n\n"
 "<b>高度な使用法</b>\n"
-"<code>::2 ページ 0 2 4 ..終わりまで</code>\n"
-"<code>1:10:2 ページ 1 3 5 7 9</code>\n"
-"<code>::-1 すべてのページ</code>\n"
-"<code>逆順    3:0:-1 ページ 3 2 1 が 0</code>\n"
-"<code>2:-1 ページ 2 1 0</code>"
+"<code>::2    ページ0 2 4 ... 最後まで</code>\n"
+"<code>1:10:2 ページ1 3 5 7 9 </code>\n"
+"<code>::-1   すべてのページを逆の順序で</code>\n"
+"<code>3:0:-1 ページ3 2 1、ただし0ではない</code>\n"
+"<code>2::-1  ページ2 1 0 </code>"
 
 #: pdf_bot/files/split.py:58
 msgid "The range is invalid. Try again"

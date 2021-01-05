@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 02:27\n"
+"PO-Revision-Date: 2021-01-05 12:33\n"
 "Last-Translator: \n"
 "Language: de\n"
 "Language-Team: German\n"
@@ -81,7 +81,7 @@ msgstr "Sie können die meisten Aufgaben ausführen, indem Sie mir eine der folg
 
 #: bot.py:195 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "Senden Sie mir den Betrag, den Sie pdf Bot unterstützen möchten"
+msgstr "Senden Sie mir den Betrag, den Sie als PDF-Bot unterstützen möchten"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -89,7 +89,7 @@ msgstr "Abbrechen"
 
 #: pdf_bot/constants.py:39
 msgid "Done"
-msgstr "fertig"
+msgstr "Fertig"
 
 #: pdf_bot/constants.py:40
 msgid "Back"
@@ -101,7 +101,7 @@ msgstr "Nach Prozent"
 
 #: pdf_bot/constants.py:42
 msgid "By Margin Size"
-msgstr "Nach Margin-Größe"
+msgstr "Nach Randgröße"
 
 #: pdf_bot/constants.py:43
 msgid "Preview"
@@ -133,7 +133,7 @@ msgstr "Skala"
 
 #: pdf_bot/constants.py:50
 msgid "Split"
-msgstr "trennen"
+msgstr "Trennen"
 
 #: pdf_bot/constants.py:51
 msgid "Beautify"
@@ -185,7 +185,7 @@ msgstr "Komprimieren"
 
 #: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
-msgstr "Sagen Sie Danke 😁 (Nr. 1)"
+msgstr "Sagen Sie Danke 😁 ($1)"
 
 #: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
@@ -265,7 +265,7 @@ msgstr "Aktion abgebrochen"
 
 #: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
-msgstr "Die datei, die Sie gesendet haben, ist keine PDF-Datei, versuchen Sie es erneut"
+msgstr "Die von Ihnen gesendete Datei ist keine PDF-Datei. Versuchen Sie es erneut"
 
 #: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
@@ -305,7 +305,7 @@ msgstr "Du hast mir bisher folgende \" gesendet:\n"
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
-msgstr "Die Ergebnisdatei ist zu groß, als dass ich sie an Sie senden könnte."
+msgstr "Die Ergebnisdatei ist zu groß, als dass ich sie an Sie senden könnte"
 
 #: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
@@ -341,7 +341,7 @@ msgstr "Die von Ihnen gesendete Datei ist keine PDF-Datei"
 
 #: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
-msgstr "Die PDF-Datei, die Sie gesendet haben, ist zu groß, als dass ich sie herunterladen könnte."
+msgstr "Die PDF-Datei, die Sie gesendet haben, ist zu groß, als dass ich sie herunterladen könnte"
 
 #: pdf_bot/commands/merge.py:130
 msgid "PDF files"
@@ -353,7 +353,7 @@ msgstr "Drücken Sie <b>Fertig</b> wenn Sie mir alle PDF-Dateien gesendet haben,
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr "<b></b> wurde zum Zusammenführen entfernt."
+msgstr "<b>{}</b> wurde zum Zusammenführen entfernt"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
@@ -391,7 +391,7 @@ msgstr "Das Foto, das Sie gesendet haben, ist zu groß für mich zum Herunterlad
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr "Fotos"
+msgstr "fotos"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
@@ -431,7 +431,7 @@ msgstr "Hinzufügen des Wasserzeichens zu Ihrer PDF-Datei"
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr "Wasserzeichen"
+msgstr "wasserzeichen"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
@@ -444,23 +444,23 @@ msgstr "Etwas ist schief gelaufen, versuchen Sie es erneut"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr "Die Dateigröße wurde um <b></b>von <b></b> auf <b></b>reduziert."
+msgstr "Dateigröße um <b>{:.0%}</b> von <b>{}</b> auf <b>{}</b> reduziert"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
-msgstr "Wählen Sie den Zuschneidetyp aus, den Sie ausführen möchten."
+msgstr "Wählen Sie den Zuschneidetyp aus, den Sie ausführen möchten"
 
 #: pdf_bot/files/crop.py:48
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Senden Sie mir eine Nummer zwischen den Beiden. Dies ist der Prozentsatz des Abstands, der zwischen dem Inhalt in Der PDF-Datei und der Seite beibehalten werden soll."
+msgstr "Schicken Sie mir eine Nummer zwischen {} und {}. Dies ist der Prozentsatz des Randbereichs, der zwischen dem Inhalt Ihrer PDF-Datei und der Seite beibehalten werden soll"
 
 #: pdf_bot/files/crop.py:58
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Senden Sie mir eine Zahl, mit der Sie die Randgröße anpassen möchten. Positive Zahlen verringern die Margengröße und negative Zahlen werden sie erhöhen"
+msgstr "Senden Sie mir eine Nummer, mit der Sie die Randgröße anpassen möchten. Positive Zahlen verringern die Randgröße und negative Zahlen erhöhen sie"
 
 #: pdf_bot/files/crop.py:79
 msgid "The number must be between {} and {}, try again"
-msgstr "Die Zahl muss zwischen den Beiden liegen, versuchen Sie es erneut."
+msgstr "Die Nummer muss zwischen {} und {} liegen. Versuchen Sie es erneut"
 
 #: pdf_bot/files/crop.py:100
 msgid "The number is invalid, try again"
@@ -488,7 +488,7 @@ msgstr "Ihre PDF-Datei ist nicht verschlüsselt"
 
 #: pdf_bot/files/crypto.py:57
 msgid "The decryption password is incorrect, try to send it again"
-msgstr "Das Entschlüsselungskennwort ist falsch, versuchen Sie es erneut zu senden"
+msgstr "Das Entschlüsselungskennwort ist falsch. Versuchen Sie erneut, es zu senden"
 
 #: pdf_bot/files/crypto.py:71
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
@@ -504,7 +504,7 @@ msgstr "Verschlüsseln Ihrer PDF-Datei"
 
 #: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
 msgid "Select the task that you'll like to perform"
-msgstr "Wählen Sie die Aufgabe aus, die Sie ausführen möchten."
+msgstr "Wählen Sie die Aufgabe aus, die Sie ausführen möchten"
 
 #: pdf_bot/files/file.py:106
 msgid "Your PDF file is too big for me to download\n\n"
@@ -573,7 +573,7 @@ msgstr "Drehen Ihrer PDF-Datei im Uhrzeigersinn um die Grade"
 
 #: pdf_bot/files/scale.py:24
 msgid "Select the scale type that you'll like to perform"
-msgstr "Wählen Sie den Skalierungstyp aus, den Sie ausführen möchten."
+msgstr "Wählen Sie den Skalentyp aus, den Sie ausführen möchten"
 
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
@@ -584,24 +584,24 @@ msgstr "Senden Sie mir die Breite und Höhe\n\n"
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr "Senden Sie mir die Skalierungsfaktoren für die horizontalen und vertikalen Achsen\n\n"
-"<b>Beispiel: 2 0,5</b> (dies verdoppelt die horizontale Achse und halbiert die vertikale Achse)"
+msgstr "Senden Sie mir die Skalierungsfaktoren für die horizontale und vertikale Achse\n\n"
+"<b> Beispiel: 2 0,5 </b> (dies verdoppelt die horizontale Achse und halbiert die vertikale Achse)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr "Die Skalierungsfaktoren <b></b> ungültig sind, versuchen Sie es erneut."
+msgstr "Die Skalierungsfaktoren <b>{}</b> sind ungültig. Versuchen Sie es erneut"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr "Die Dimensionen <b></b> sind ungültig, versuchen Sie es erneut."
+msgstr "Die Dimensionen <b>{}</b> sind ungültig. Versuchen Sie es erneut"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr "Skalieren Sie Ihre PDF-Datei horizontal, indem Sie</b> <b>und vertikal durch <b></b>"
+msgstr "Skalieren Sie Ihre PDF-Datei horizontal nach <b>{}</b> und vertikal nach <b>{}</b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr "Skalieren Sie Ihre PDF-Datei mit einer Breite von <b></b> und höhe von <b></b>"
+msgstr "Skalieren Sie Ihre PDF-Datei mit einer Breite von <b>{}</b> und einer Höhe von <b>{}</b>"
 
 #: pdf_bot/files/split.py:18
 msgid "Send me the range of pages that you'll like to keep\n\n"

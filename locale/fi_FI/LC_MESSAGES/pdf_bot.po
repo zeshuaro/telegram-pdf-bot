@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 01:23\n"
+"PO-Revision-Date: 2021-01-05 12:33\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -189,15 +189,15 @@ msgstr "Sano kiitos 😁 ($1)"
 
 #: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
-msgstr "Kahvi ☕ (3 dollaria)"
+msgstr "Kahvi ☕ ($3)"
 
 #: pdf_bot/constants.py:80
 msgid "Beer 🍺 ($5)"
-msgstr "Olut 🍺 (5 dollaria)"
+msgstr "Olut 🍺 ($5)"
 
 #: pdf_bot/constants.py:81
 msgid "Meal 🍲 ($10)"
-msgstr "Ateria 🍲 (10 dollaria)"
+msgstr "Ateria 🍲 ($10)"
 
 #: pdf_bot/constants.py:82
 msgid "Say Awesome 🤩 (Custom)"
@@ -241,7 +241,7 @@ msgstr "Kiitä PDF Botia ja auta pitämään se käynnissä"
 
 #: pdf_bot/payment.py:106
 msgid "Something went wrong"
-msgstr "Jokin meni vikaan."
+msgstr "Jokin meni vikaan"
 
 #: pdf_bot/payment.py:114
 msgid "Thank you for your support!"
@@ -249,7 +249,7 @@ msgstr "Kiitos tuestanne!"
 
 #: pdf_bot/url.py:24
 msgid "You've sent me this web page already and I'm still converting it"
-msgstr "Olet jo lähettänyt minulle tämän verkkosivun, ja muunnan sitä yhä."
+msgstr "Olet jo lähettänyt minulle tämän verkkosivun, ja muunnan sitä yhä"
 
 #: pdf_bot/url.py:27
 msgid "Converting your web page into a PDF file"
@@ -275,7 +275,7 @@ msgstr "Lähettämäsi PDF-tiedosto on liian suuri ladattavaksi\n\n"
 
 #: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
-msgstr "Jokin meni pieleen, aloita alusta."
+msgstr "Jokin meni pieleen, aloita alusta"
 
 #: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
@@ -305,7 +305,7 @@ msgstr "Olet lähettänyt minulle nämä tähän mennessä:\n"
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
-msgstr "Tulostiedosto on liian suuri lähetettäväksi sinulle."
+msgstr "Tulostiedosto on liian suuri lähetettäväksi sinulle"
 
 #: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
@@ -357,7 +357,7 @@ msgstr "<b>{}</b> on poistettu yhdistämistä"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
-msgstr "Et ole lähettänyt minulle PDF-tiedostoja."
+msgstr "Et ole lähettänyt minulle PDF-tiedostoja"
 
 #: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
@@ -387,11 +387,11 @@ msgstr "Lähettämäsi tiedosto ei ole valokuva"
 
 #: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
-msgstr "Lähettämäsi kuva on liian suuri ladattavaksi."
+msgstr "Lähettämäsi kuva on liian suuri ladattavaksi"
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr "Valokuvat"
+msgstr "valokuvat"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
@@ -431,7 +431,7 @@ msgstr "Vesileiman lisääminen PDF-tiedostoon"
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr "Vesileima"
+msgstr "vesileima"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
@@ -440,7 +440,7 @@ msgstr "PDF-tiedoston pakkaaminen"
 #: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
 #: pdf_bot/files/photo.py:224
 msgid "Something went wrong, try again"
-msgstr "Jokin meni vikaan, yritä uudelleen."
+msgstr "Jokin meni vikaan, yritä uudelleen"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
@@ -522,7 +522,7 @@ msgstr "PDF-tiedostossa on jo tekstikerros"
 
 #: pdf_bot/files/photo.py:56
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
-msgstr "Kuvasi on liian suuri ladattavaksi. En voi kaunistaa tai muuntaa valokuvaasi."
+msgstr "Kuvasi on liian suuri ladattavaksi. En voi kaunistaa tai muuntaa valokuvaasi"
 
 #: pdf_bot/files/photo.py:111
 msgid "Extracting a preview for your PDF file"
