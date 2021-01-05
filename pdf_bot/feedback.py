@@ -3,30 +3,35 @@ import os
 from dotenv import load_dotenv
 from logbook import Logger
 from slack import WebClient
+from telegram import Update, ChatAction
+from telegram.ext import (
+    CommandHandler,
+    ConversationHandler,
+    MessageHandler,
+    CallbackContext,
+)
 from textblob import TextBlob
 from textblob.exceptions import TranslatorError
-from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, Filters
 
-from pdf_bot.constants import TEXT_FILTER
-from pdf_bot.utils import cancel
+from pdf_bot.constants import TEXT_FILTER, CANCEL
 from pdf_bot.language import set_lang
+from pdf_bot.utils import cancel, reply_with_cancel_btn
 
 load_dotenv()
 SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
 
 
-# Creates a feedback conversation handler
-def feedback_cov_handler():
+def feedback_cov_handler() -> ConversationHandler:
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("feedback", feedback, run_async=True)],
-        states={0: [MessageHandler(TEXT_FILTER, receive_feedback, run_async=True)]},
+        states={0: [MessageHandler(TEXT_FILTER, check_text, run_async=True)]},
         fallbacks=[CommandHandler("cancel", cancel, run_async=True)],
     )
 
     return conv_handler
 
 
-def feedback(update, context):
+def feedback(update: Update, context: CallbackContext) -> int:
     """
     Start the feedback conversation
     Args:
@@ -36,28 +41,27 @@ def feedback(update, context):
     Returns:
         The variable indicating to wait for feedback
     """
+    update.effective_message.chat.send_action(ChatAction.TYPING)
     _ = set_lang(update, context)
-    update.effective_message.reply_text(
-        _(
-            "Send me your feedback or /cancel this action. "
-            "Note that only English feedback will be forwarded to my developer."
-        )
+    text = _(
+        "Send me your feedback, note that only English feedback "
+        "will be forwarded to my developer"
     )
+    reply_with_cancel_btn(update, context, text)
 
     return 0
 
 
-# Saves a feedback
-def receive_feedback(update, context):
-    """
-    Log the feedback on Slack
-    Args:
-        update: the update object
-        context: the context object
+def check_text(update: Update, context: CallbackContext) -> int:
+    update.effective_message.chat.send_action(ChatAction.TYPING)
+    _ = set_lang(update, context)
+    if update.effective_message.text == _(CANCEL):
+        return cancel(update, context)
+    else:
+        return receive_feedback(update, context)
 
-    Returns:
-        The variable indicating the conversation has ended
-    """
+
+def receive_feedback(update: Update, context: CallbackContext) -> int:
     message = update.effective_message
     tele_username = message.chat.username
     tele_id = message.chat.id
@@ -71,9 +75,8 @@ def receive_feedback(update, context):
         pass
 
     _ = set_lang(update, context)
-    if not feedback_lang or feedback_lang.lower() != "en":
+    if feedback_lang is None or feedback_lang.lower() != "en":
         message.reply_text(_("The feedback is not in English, try again"))
-
         return 0
 
     text = "Feedback received from @{} ({}):\n\n{}".format(
