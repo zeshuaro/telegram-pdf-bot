@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 12:33\n"
+"POT-Creation-Date: 2021-01-05 13:07+0000\n"
+"PO-Revision-Date: 2021-01-05 13:52\n"
 "Last-Translator: \n"
 "Language: he\n"
 "Language-Team: Hebrew\n"
@@ -598,49 +598,75 @@ msgstr "קנה מידה של קובץ ה- PDF שלך, אופקית על ידי <
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "קנה מידה של קובץ ה- PDF ברוחב <b>{}</b> וגובהו <b>{}</b>"
 
-#: pdf_bot/files/split.py:18
-msgid "Send me the range of pages that you'll like to keep\n\n"
-"<b>General usage</b>\n"
-"<code>:      all pages</code>\n"
-"<code>22     just the 23rd page</code>\n"
-"<code>0:3    the first three pages</code>\n"
-"<code>:3     the first three pages</code>\n"
-"<code>5:     from the 6th page onwards</code>\n"
-"<code>-1     last page only</code>\n"
-"<code>:-1    all pages but the last page</code>\n"
-"<code>-2     second last page only</code>\n"
-"<code>-2:    last two pages</code>\n"
-"<code>-3:-1  third and second last pages only</code>\n\n"
-"<b>Advanced usage</b>\n"
-"<code>::2    pages 0 2 4 ... to the end</code>\n"
-"<code>1:10:2 pages 1 3 5 7 9</code>\n"
-"<code>::-1   all pages in reversed order</code>\n"
-"<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
-"<code>2::-1  pages 2 1 0</code>"
-msgstr "שלח לי את טווח העמודים שאתה רוצה לשמור\n\n"
-"<b>שימוש כללי</b>\n"
-"<code>:      כל הדפים</code>\n"
-"<code>22     רק העמוד ה -23</code>\n"
-"<code>0:3    את שלושת העמודים הראשונים</code>\n"
-"<code>:3     הראשון שלושה</code>\n"
-"<code>5:     מהעמוד ה-6 ואילך</code>\n"
-"<code>-1     עמוד אחרון בלבד</code>\n"
-"<code>:-1    כל העמודים מלבד העמוד האחרון</code>\n"
-"<code>-2     שניות עמוד אחרון רק</code>\n"
-"<code>-2:    שני העמודים האחרונים</code>\n"
-"<code>-3:-1  דפים האחרונים השלישי והשני רק</code>\n\n"
-"<b>שימוש מתקדם</b>\n"
-"<code>::2    עמודים 0 2 4 ... עד הסוף</code>\n"
-"<code>1:10:2 עמודים 1 3 5 7 9</code>\n"
-"<code>::-1   כל העמודים בסדר הפוך</code>\n"
-"<code>3:0:-1 עמודים 3 2 1 אבל לא 0</code>\n"
-"<code>2::-1  עמודים 2 1 0</code>"
+#: pdf_bot/files/split.py:36
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "שלח לי את טווח הדפים שאתה רוצה לשמור"
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:37
+msgid "General usage"
+msgstr "שימוש כללי"
+
+#: pdf_bot/files/split.py:38
+msgid "all pages"
+msgstr "כל העמודים"
+
+#: pdf_bot/files/split.py:39
+msgid "page 8 only"
+msgstr "עמוד 8 בלבד"
+
+#: pdf_bot/files/split.py:40
+msgid "first three pages"
+msgstr "שלושת העמודים הראשונים"
+
+#: pdf_bot/files/split.py:41
+msgid "from page 8 onward"
+msgstr "מעמוד 8 ואילך"
+
+#: pdf_bot/files/split.py:42
+msgid "last page only"
+msgstr "עמוד אחרון בלבד"
+
+#: pdf_bot/files/split.py:43
+msgid "all pages except the last page"
+msgstr "כל העמודים פרט לעמוד האחרון"
+
+#: pdf_bot/files/split.py:44
+msgid "second last page only"
+msgstr "עמוד שני אחרון בלבד"
+
+#: pdf_bot/files/split.py:45
+msgid "last two pages"
+msgstr "שני העמודים האחרונים"
+
+#: pdf_bot/files/split.py:46
+msgid "third and second last pages"
+msgstr "עמודים אחרון שלישי ושני"
+
+#: pdf_bot/files/split.py:47
+msgid "Advanced usage"
+msgstr "שימוש מתקדם"
+
+#: pdf_bot/files/split.py:48
+msgid "pages"
+msgstr "דפי"
+
+#: pdf_bot/files/split.py:49
+msgid "to the end"
+msgstr "עד הסוף"
+
+#: pdf_bot/files/split.py:50
+msgid "all pages in reversed order"
+msgstr "כל העמודים בסדר הפוך"
+
+#: pdf_bot/files/split.py:51
+msgid "except"
+msgstr "מלבד"
+
+#: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
 msgstr "טווח המרחק לא תקין, נסה שנית"
 
-#: pdf_bot/files/split.py:64
+#: pdf_bot/files/split.py:81
 msgid "Splitting your PDF file"
 msgstr "מפצל את קובץ ה PDF שלך"
 
@@ -827,5 +853,28 @@ msgstr "אני לא מצליח למצוא שום טקסט בקובץ ה PDF הז
 #~ "Send me your feedback, note that "
 #~ "only English feedback will be forwarded"
 #~ " to my developer"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the range of pages that you'll like to keep\n"
+#~ "\n"
+#~ "<b>General usage</b>\n"
+#~ "<code>:      all pages</code>\n"
+#~ "<code>22     just the 23rd page</code>\n"
+#~ "<code>0:3    the first three pages</code>\n"
+#~ "<code>:3     the first three pages</code>\n"
+#~ "<code>5:     from the 6th page onwards</code>\n"
+#~ "<code>-1     last page only</code>\n"
+#~ "<code>:-1    all pages but the last page</code>\n"
+#~ "<code>-2     second last page only</code>\n"
+#~ "<code>-2:    last two pages</code>\n"
+#~ "<code>-3:-1  third and second last pages only</code>\n"
+#~ "\n"
+#~ "<b>Advanced usage</b>\n"
+#~ "<code>::2    pages 0 2 4 ... to the end</code>\n"
+#~ "<code>1:10:2 pages 1 3 5 7 9</code>\n"
+#~ "<code>::-1   all pages in reversed order</code>\n"
+#~ "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
+#~ "<code>2::-1  pages 2 1 0</code>"
 #~ msgstr ""
 

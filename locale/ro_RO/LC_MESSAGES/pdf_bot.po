@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 01:23\n"
+"POT-Creation-Date: 2021-01-05 13:07+0000\n"
+"PO-Revision-Date: 2021-01-05 13:51\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -391,7 +391,7 @@ msgstr "Fotografia pe care ai trimis-o este prea mare pentru a fi descărcată"
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr "Fotografii"
+msgstr "fotografii"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
@@ -431,7 +431,7 @@ msgstr "Adăugarea filigranului în fișierul PDF"
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr "Filigran"
+msgstr "filigran"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
@@ -604,49 +604,75 @@ msgstr "Scalarea fișierului PDF, orizontal cu <b>{}</b> și vertical cu <b>{}</
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "Scalarea fișierului PDF cu lățimea <b>{}</b> și înălțimea <b>{}</b>"
 
-#: pdf_bot/files/split.py:18
-msgid "Send me the range of pages that you'll like to keep\n\n"
-"<b>General usage</b>\n"
-"<code>:      all pages</code>\n"
-"<code>22     just the 23rd page</code>\n"
-"<code>0:3    the first three pages</code>\n"
-"<code>:3     the first three pages</code>\n"
-"<code>5:     from the 6th page onwards</code>\n"
-"<code>-1     last page only</code>\n"
-"<code>:-1    all pages but the last page</code>\n"
-"<code>-2     second last page only</code>\n"
-"<code>-2:    last two pages</code>\n"
-"<code>-3:-1  third and second last pages only</code>\n\n"
-"<b>Advanced usage</b>\n"
-"<code>::2    pages 0 2 4 ... to the end</code>\n"
-"<code>1:10:2 pages 1 3 5 7 9</code>\n"
-"<code>::-1   all pages in reversed order</code>\n"
-"<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
-"<code>2::-1  pages 2 1 0</code>"
-msgstr "Trimite-mi gama de pagini pe care veți dori să păstreze\n\n"
-"<b></b>\n"
-"<code>de utilizare generală: toate paginile</code>\n"
-"<code>22 doar pagina 23</code>\n"
-"<code>0:3 primele trei pagini</code>\n"
-"<code>:3 primele trei pagini</code>\n"
-"<code>5: de la pagina a 6-a începând</code>\n"
-"<code>-1 ultima pagină numai</code>\n"
-"<code>:-1 toate paginile, dar ultima pagină</code>\n"
-"<code>-2 a doua ultima pagină numai</code>\n"
-"<code>-2 : ultimele două pagini</code>\n"
-"<code>-3:-1 a treia și a doua ultima pagină numai</code>\n\n"
-"<b></b>\n"
-"<code>de utilizare avansată ::2 pagini 0 2 4 ... la sfârșitul</code>\n"
-"<code>1:10:2 pagini 1 3 5 7 9</code>\n"
-"<code>::-1 toate paginile în ordine inversată</code>\n"
-"<code>3:0:-1 pagini 3 2 1, dar nu 0</code>\n"
-"<code>2::-1 pagini 2 1 0</code>"
+#: pdf_bot/files/split.py:36
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "Trimite-mi gama de pagini pe care vei dori să le păstrezi"
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:37
+msgid "General usage"
+msgstr "Utilizare generală"
+
+#: pdf_bot/files/split.py:38
+msgid "all pages"
+msgstr "toate paginile"
+
+#: pdf_bot/files/split.py:39
+msgid "page 8 only"
+msgstr "numai pagina 8"
+
+#: pdf_bot/files/split.py:40
+msgid "first three pages"
+msgstr "primele trei pagini"
+
+#: pdf_bot/files/split.py:41
+msgid "from page 8 onward"
+msgstr "de la pagina 8 mai departe"
+
+#: pdf_bot/files/split.py:42
+msgid "last page only"
+msgstr "numai ultima pagină"
+
+#: pdf_bot/files/split.py:43
+msgid "all pages except the last page"
+msgstr "toate paginile, cu excepția ultimei pagini"
+
+#: pdf_bot/files/split.py:44
+msgid "second last page only"
+msgstr "numai a doua ultima pagină"
+
+#: pdf_bot/files/split.py:45
+msgid "last two pages"
+msgstr "ultimele două pagini"
+
+#: pdf_bot/files/split.py:46
+msgid "third and second last pages"
+msgstr "a treia și a doua ultima pagină"
+
+#: pdf_bot/files/split.py:47
+msgid "Advanced usage"
+msgstr "Utilizare complexă"
+
+#: pdf_bot/files/split.py:48
+msgid "pages"
+msgstr "pagini"
+
+#: pdf_bot/files/split.py:49
+msgid "to the end"
+msgstr "până la capăt"
+
+#: pdf_bot/files/split.py:50
+msgid "all pages in reversed order"
+msgstr "toate paginile în ordine inversă"
+
+#: pdf_bot/files/split.py:51
+msgid "except"
+msgstr "cu excepţia"
+
+#: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
 msgstr "Zona nu este validă. încearcă din nou"
 
-#: pdf_bot/files/split.py:64
+#: pdf_bot/files/split.py:81
 msgid "Splitting your PDF file"
 msgstr "Divizarea fișierului PDF"
 
@@ -833,5 +859,28 @@ msgstr "Nu am găsit niciun text în fișierul PDF"
 #~ "Send me your feedback, note that "
 #~ "only English feedback will be forwarded"
 #~ " to my developer"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the range of pages that you'll like to keep\n"
+#~ "\n"
+#~ "<b>General usage</b>\n"
+#~ "<code>:      all pages</code>\n"
+#~ "<code>22     just the 23rd page</code>\n"
+#~ "<code>0:3    the first three pages</code>\n"
+#~ "<code>:3     the first three pages</code>\n"
+#~ "<code>5:     from the 6th page onwards</code>\n"
+#~ "<code>-1     last page only</code>\n"
+#~ "<code>:-1    all pages but the last page</code>\n"
+#~ "<code>-2     second last page only</code>\n"
+#~ "<code>-2:    last two pages</code>\n"
+#~ "<code>-3:-1  third and second last pages only</code>\n"
+#~ "\n"
+#~ "<b>Advanced usage</b>\n"
+#~ "<code>::2    pages 0 2 4 ... to the end</code>\n"
+#~ "<code>1:10:2 pages 1 3 5 7 9</code>\n"
+#~ "<code>::-1   all pages in reversed order</code>\n"
+#~ "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
+#~ "<code>2::-1  pages 2 1 0</code>"
 #~ msgstr ""
 

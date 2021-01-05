@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 01:23\n"
+"POT-Creation-Date: 2021-01-05 13:07+0000\n"
+"PO-Revision-Date: 2021-01-05 13:51\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -391,7 +391,7 @@ msgstr "Ảnh bạn đã gửi quá lớn để tôi tải xuống"
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr "Hình ảnh"
+msgstr "hình ảnh"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
@@ -431,7 +431,7 @@ msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr "Watermark"
+msgstr "chữ ký ảnh"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
@@ -604,49 +604,75 @@ msgstr "Thay đổi quy mô tệp PDF của bạn, theo chiều <b>{}</b> và th
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "Mở rộng tệp PDF của bạn với chiều rộng <b>{}</b> và chiều cao <b>{}</b>"
 
-#: pdf_bot/files/split.py:18
-msgid "Send me the range of pages that you'll like to keep\n\n"
-"<b>General usage</b>\n"
-"<code>:      all pages</code>\n"
-"<code>22     just the 23rd page</code>\n"
-"<code>0:3    the first three pages</code>\n"
-"<code>:3     the first three pages</code>\n"
-"<code>5:     from the 6th page onwards</code>\n"
-"<code>-1     last page only</code>\n"
-"<code>:-1    all pages but the last page</code>\n"
-"<code>-2     second last page only</code>\n"
-"<code>-2:    last two pages</code>\n"
-"<code>-3:-1  third and second last pages only</code>\n\n"
-"<b>Advanced usage</b>\n"
-"<code>::2    pages 0 2 4 ... to the end</code>\n"
-"<code>1:10:2 pages 1 3 5 7 9</code>\n"
-"<code>::-1   all pages in reversed order</code>\n"
-"<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
-"<code>2::-1  pages 2 1 0</code>"
-msgstr "Gửi cho tôi phạm vi của các trang mà bạn sẽ muốn giữ\n\n"
-"<b>Sử dụng chung</b>\n"
-"<code>: tất cả các trang</code>\n"
-"<code>22 chỉ là trang thứ 23</code>\n"
-"<code>0:3 ba trang đầu tiên</code>\n"
-"<code>: 3 các đầu tiên ba</code>\n"
-"<code>5: từ trang thứ 6 trở đi</code>\n"
-"<code>-1 trang cuối cùng chỉ</code>\n"
-"<code>:-1 tất cả các trang nhưng trang cuối cùng</code>\n"
-"<code>-2 trang cuối cùng thứ hai chỉ</code>\n"
-"<code>-2 : hai trang cuối</code>\n"
-"<code>-3:-1 trang cuối cùng thứ ba và thứ hai chỉ</code>\n\n"
-"<b>sử dụng nâng cao</b>\n"
-"<code>::2 trang 0 2 4 ... đến cuối</code>\n"
-"<code>1:10:2 trang 1 3 5 7 9</code>\n"
-"<code>::-1 tất cả các trang theo thứ tự đảo ngược</code>\n"
-"<code>3:0:-1 trang 3 2 1 nhưng không phải 0</code>\n"
-"<code>2::-1 trang 2 1 0</code>"
+#: pdf_bot/files/split.py:36
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "Gửi cho tôi một loạt các trang mà bạn muốn giữ lại"
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:37
+msgid "General usage"
+msgstr "Sử dụng chung"
+
+#: pdf_bot/files/split.py:38
+msgid "all pages"
+msgstr "tất cả các trang"
+
+#: pdf_bot/files/split.py:39
+msgid "page 8 only"
+msgstr "chỉ trang 8"
+
+#: pdf_bot/files/split.py:40
+msgid "first three pages"
+msgstr "ba trang đầu tiên"
+
+#: pdf_bot/files/split.py:41
+msgid "from page 8 onward"
+msgstr "từ trang 8 trở đi"
+
+#: pdf_bot/files/split.py:42
+msgid "last page only"
+msgstr "chỉ trang cuối cùng"
+
+#: pdf_bot/files/split.py:43
+msgid "all pages except the last page"
+msgstr "tất cả các trang ngoại trừ trang cuối cùng"
+
+#: pdf_bot/files/split.py:44
+msgid "second last page only"
+msgstr "chỉ trang cuối cùng thứ hai"
+
+#: pdf_bot/files/split.py:45
+msgid "last two pages"
+msgstr "hai trang cuối cùng"
+
+#: pdf_bot/files/split.py:46
+msgid "third and second last pages"
+msgstr "trang cuối cùng thứ ba và thứ hai"
+
+#: pdf_bot/files/split.py:47
+msgid "Advanced usage"
+msgstr "Sử dụng nâng cao"
+
+#: pdf_bot/files/split.py:48
+msgid "pages"
+msgstr "trang"
+
+#: pdf_bot/files/split.py:49
+msgid "to the end"
+msgstr "đến cùng"
+
+#: pdf_bot/files/split.py:50
+msgid "all pages in reversed order"
+msgstr "tất cả các trang theo thứ tự đảo ngược"
+
+#: pdf_bot/files/split.py:51
+msgid "except"
+msgstr "ngoại trừ"
+
+#: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
 msgstr "Phạm vi không hợp lệ. Thử lại"
 
-#: pdf_bot/files/split.py:64
+#: pdf_bot/files/split.py:81
 msgid "Splitting your PDF file"
 msgstr "Tách tệp PDF của bạn"
 
@@ -833,5 +859,28 @@ msgstr "Tôi không thể tìm thấy bất kỳ văn bản nào trong tệp PDF
 #~ "Send me your feedback, note that "
 #~ "only English feedback will be forwarded"
 #~ " to my developer"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the range of pages that you'll like to keep\n"
+#~ "\n"
+#~ "<b>General usage</b>\n"
+#~ "<code>:      all pages</code>\n"
+#~ "<code>22     just the 23rd page</code>\n"
+#~ "<code>0:3    the first three pages</code>\n"
+#~ "<code>:3     the first three pages</code>\n"
+#~ "<code>5:     from the 6th page onwards</code>\n"
+#~ "<code>-1     last page only</code>\n"
+#~ "<code>:-1    all pages but the last page</code>\n"
+#~ "<code>-2     second last page only</code>\n"
+#~ "<code>-2:    last two pages</code>\n"
+#~ "<code>-3:-1  third and second last pages only</code>\n"
+#~ "\n"
+#~ "<b>Advanced usage</b>\n"
+#~ "<code>::2    pages 0 2 4 ... to the end</code>\n"
+#~ "<code>1:10:2 pages 1 3 5 7 9</code>\n"
+#~ "<code>::-1   all pages in reversed order</code>\n"
+#~ "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
+#~ "<code>2::-1  pages 2 1 0</code>"
 #~ msgstr ""
 

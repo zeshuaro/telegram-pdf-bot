@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 01:23\n"
+"POT-Creation-Date: 2021-01-05 13:07+0000\n"
+"PO-Revision-Date: 2021-01-05 13:51\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: French\n"
@@ -604,49 +604,75 @@ msgstr "Mise à l'échelle de votre fichier PDF, horizontalement par <b>{}</b> e
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "Mise à l'échelle de votre fichier PDF avec une largeur de <b>{}</b> et une hauteur de <b>{}</b>"
 
-#: pdf_bot/files/split.py:18
-msgid "Send me the range of pages that you'll like to keep\n\n"
-"<b>General usage</b>\n"
-"<code>:      all pages</code>\n"
-"<code>22     just the 23rd page</code>\n"
-"<code>0:3    the first three pages</code>\n"
-"<code>:3     the first three pages</code>\n"
-"<code>5:     from the 6th page onwards</code>\n"
-"<code>-1     last page only</code>\n"
-"<code>:-1    all pages but the last page</code>\n"
-"<code>-2     second last page only</code>\n"
-"<code>-2:    last two pages</code>\n"
-"<code>-3:-1  third and second last pages only</code>\n\n"
-"<b>Advanced usage</b>\n"
-"<code>::2    pages 0 2 4 ... to the end</code>\n"
-"<code>1:10:2 pages 1 3 5 7 9</code>\n"
-"<code>::-1   all pages in reversed order</code>\n"
-"<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
-"<code>2::-1  pages 2 1 0</code>"
-msgstr "Envoyez-moi la gamme de pages que vous aimerez garder\n\n"
-"<b>Utilisation générale</b>\n"
-"<code>:      toutes les pages</code>\n"
-"<code>22     juste la 23ème page</code>\n"
-"<code>0:3    les trois premières pages</code>\n"
-"<code>:3     le les trois premières pages</code>\n"
-"<code>5:     à partir de la 6ème page</code>\n"
-"<code>-1     dernière page seulement</code>\n"
-"<code>:-1    toutes les pages mais la dernière page</code>\n"
-"<code>-2     avant-dernière page seulement</code>\n"
-"<code>-2:    les deux dernières pages</code>\n"
-"<code>--3:-1  troisième et avant-dernière pages seulement</code>\n\n"
-"<b>utilisation avancée</b>\n"
-"<code>::2    pages 0 2 4 ... à la fin</code>\n"
-"<code>1:10:2 pages 1 3 5 7 9</code>\n"
-"<code>::-1   toutes les pages en ordre inverse</code>\n"
-"<code>3:0:-1 pages 3 2 1 mais pas 0</code>\n"
-"<code>2::-1  pages 2 1 0</code>"
+#: pdf_bot/files/split.py:36
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "Envoyez-moi la gamme de pages que vous aimerez garder"
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:37
+msgid "General usage"
+msgstr "Utilisation générale"
+
+#: pdf_bot/files/split.py:38
+msgid "all pages"
+msgstr "toutes les pages"
+
+#: pdf_bot/files/split.py:39
+msgid "page 8 only"
+msgstr "page 8 seulement"
+
+#: pdf_bot/files/split.py:40
+msgid "first three pages"
+msgstr "les trois premières pages"
+
+#: pdf_bot/files/split.py:41
+msgid "from page 8 onward"
+msgstr "à partir de la page 8"
+
+#: pdf_bot/files/split.py:42
+msgid "last page only"
+msgstr "dernière page seulement"
+
+#: pdf_bot/files/split.py:43
+msgid "all pages except the last page"
+msgstr "toutes les pages sauf la dernière page"
+
+#: pdf_bot/files/split.py:44
+msgid "second last page only"
+msgstr "avant-dernière page seulement"
+
+#: pdf_bot/files/split.py:45
+msgid "last two pages"
+msgstr "les deux dernières pages"
+
+#: pdf_bot/files/split.py:46
+msgid "third and second last pages"
+msgstr "troisième et avant-dernière pages"
+
+#: pdf_bot/files/split.py:47
+msgid "Advanced usage"
+msgstr "Utilisation avancée"
+
+#: pdf_bot/files/split.py:48
+msgid "pages"
+msgstr "pages"
+
+#: pdf_bot/files/split.py:49
+msgid "to the end"
+msgstr "jusqu’à la fin"
+
+#: pdf_bot/files/split.py:50
+msgid "all pages in reversed order"
+msgstr "toutes les pages en ordre inversé"
+
+#: pdf_bot/files/split.py:51
+msgid "except"
+msgstr "sauf"
+
+#: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
 msgstr "La plage n'est pas valide. Réessayez"
 
-#: pdf_bot/files/split.py:64
+#: pdf_bot/files/split.py:81
 msgid "Splitting your PDF file"
 msgstr "Séparation de votre fichier PDF"
 
@@ -833,5 +859,28 @@ msgstr "Je n'ai trouvé aucune photo dans votre fichier PDF"
 #~ "Send me your feedback, note that "
 #~ "only English feedback will be forwarded"
 #~ " to my developer"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the range of pages that you'll like to keep\n"
+#~ "\n"
+#~ "<b>General usage</b>\n"
+#~ "<code>:      all pages</code>\n"
+#~ "<code>22     just the 23rd page</code>\n"
+#~ "<code>0:3    the first three pages</code>\n"
+#~ "<code>:3     the first three pages</code>\n"
+#~ "<code>5:     from the 6th page onwards</code>\n"
+#~ "<code>-1     last page only</code>\n"
+#~ "<code>:-1    all pages but the last page</code>\n"
+#~ "<code>-2     second last page only</code>\n"
+#~ "<code>-2:    last two pages</code>\n"
+#~ "<code>-3:-1  third and second last pages only</code>\n"
+#~ "\n"
+#~ "<b>Advanced usage</b>\n"
+#~ "<code>::2    pages 0 2 4 ... to the end</code>\n"
+#~ "<code>1:10:2 pages 1 3 5 7 9</code>\n"
+#~ "<code>::-1   all pages in reversed order</code>\n"
+#~ "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
+#~ "<code>2::-1  pages 2 1 0</code>"
 #~ msgstr ""
 
