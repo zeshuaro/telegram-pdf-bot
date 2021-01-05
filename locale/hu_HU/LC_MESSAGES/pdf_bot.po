@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 01:23\n"
+"PO-Revision-Date: 2021-01-05 12:33\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -185,19 +185,19 @@ msgstr "Tömöríteni"
 
 #: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
-msgstr "Mondd, köszönet 😁 ($ 1)"
+msgstr "Mondd, köszönet 😁 ($1)"
 
 #: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
-msgstr "Kávé ☕ ($ 3)"
+msgstr "Kávé ☕ ($3)"
 
 #: pdf_bot/constants.py:80
 msgid "Beer 🍺 ($5)"
-msgstr "Sör 🍺 ($ 5)"
+msgstr "Sör 🍺 ($5)"
 
 #: pdf_bot/constants.py:81
 msgid "Meal 🍲 ($10)"
-msgstr "Étkezés 🍲 ($ 10)"
+msgstr "Étkezés 🍲 ($10)"
 
 #: pdf_bot/constants.py:82
 msgid "Say Awesome 🤩 (Custom)"
@@ -241,7 +241,7 @@ msgstr "Köszönj a PDF Botnak, és segíts megőrizni a működését"
 
 #: pdf_bot/payment.py:106
 msgid "Something went wrong"
-msgstr "Valami rosszul sült el."
+msgstr "Valami rosszul sült el"
 
 #: pdf_bot/payment.py:114
 msgid "Thank you for your support!"
@@ -249,7 +249,7 @@ msgstr "Köszönöm a támogatást!"
 
 #: pdf_bot/url.py:24
 msgid "You've sent me this web page already and I'm still converting it"
-msgstr "Már elküldted nekem ezt a weboldalt, és még mindig konvertálom."
+msgstr "Már elküldted nekem ezt a weboldalt, és még mindig konvertálom"
 
 #: pdf_bot/url.py:27
 msgid "Converting your web page into a PDF file"
@@ -275,7 +275,7 @@ msgstr "Az elküldött PDF-fájl túl nagy ahhoz, hogy letölthessem\n\n"
 
 #: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
-msgstr "Valami rosszul sült el, kezdd elölről."
+msgstr "Valami rosszul sült el, kezdd elölről"
 
 #: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
@@ -305,7 +305,7 @@ msgstr "Eddig elküldted nekem ezeket:\n"
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
-msgstr "Az eredményfájl túl nagy ahhoz, hogy elküldhessem neked."
+msgstr "Az eredményfájl túl nagy ahhoz, hogy elküldhessem neked"
 
 #: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
@@ -387,11 +387,11 @@ msgstr "Az elküldött fájl nem fénykép"
 
 #: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
-msgstr "A fénykép, amit küldtél, túl nagy ahhoz, hogy letöltsem."
+msgstr "A fénykép, amit küldtél, túl nagy ahhoz, hogy letöltsem"
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr "Fénykép"
+msgstr "fénykép"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
@@ -399,7 +399,7 @@ msgstr "Válassza ki a feladatot az alábbi, ha már elküldte nekem az összes 
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr "<b>{}</b> eltávolításra került a szépítés hez vagy a konvertáláshoz"
+msgstr "<b> {} </b> szót eltávolítottuk szépítés vagy konvertálás miatt"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
@@ -431,7 +431,7 @@ msgstr "Vízjel hozzáadása a PDF-fájlhoz"
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr "Vízjel"
+msgstr "vízjel"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
@@ -440,11 +440,11 @@ msgstr "A PDF-fájl tömörítése"
 #: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
 #: pdf_bot/files/photo.py:224
 msgid "Something went wrong, try again"
-msgstr "Valami rosszul sült el, próbáld újra."
+msgstr "Valami rosszul sült el, próbáld újra"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr "A fájlméret <b>{:.0%}</b> <b>{}</b> -ról <b>{}</b>"
+msgstr "A fájl mérete <b>{:.0%}</b> -kal csökkentve, <b>{}</b> -ról <b>{}</b> -ra"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -452,7 +452,7 @@ msgstr "Válassza ki a végrehajtani kívánt vágástípust"
 
 #: pdf_bot/files/crop.py:48
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Küldj egy számot {} és {}között. Ez a PDF-fájl tartalma és az oldal közötti megőrzési terület százalékos aránya"
+msgstr "Küldjön nekem egy számot {} és {} között. Ez az a margótér százalékos aránya, amelyet meg kell tartani a PDF-fájl tartalma és az oldal között"
 
 #: pdf_bot/files/crop.py:58
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
@@ -460,7 +460,7 @@ msgstr "Küldj egy számot, amit szeretnél beállítani a margó méretéhez. A
 
 #: pdf_bot/files/crop.py:79
 msgid "The number must be between {} and {}, try again"
-msgstr "A számnak {} és {}között kell lennie, próbálkozzon újra"
+msgstr "A számnak {} és {} között kell lennie, próbálja újra"
 
 #: pdf_bot/files/crop.py:100
 msgid "The number is invalid, try again"
@@ -514,7 +514,7 @@ msgstr "A PDF fájl túl nagy ahhoz, hogy letölthessem\n\n"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
-msgstr "OCR-szövegréteg hozzáadása a PDF-fájlhoz"
+msgstr "OCR szövegréteg hozzáadása a PDF fájlhoz"
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
@@ -579,8 +579,8 @@ msgstr "Válassza ki a végrehajtani kívánt léptéktípust"
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr "Küldje el nekem a szélességés magasság\n\n"
-"<b>Példa: 150 200</b> (ez határozza meg a szélesség150 és magassága 200)"
+msgstr "Küldje el nekem a szélességet és a magasságot\n\n"
+"<b> Példa: 150 200 </b> (ezzel a szélességet 150-re, a magasságot pedig 200-ra állítja)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
@@ -590,15 +590,15 @@ msgstr "Küldje el nekem a méretezési tényezők a vízszintes és függőlege
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr "A(z) {} <b></b> méretezési tényezői érvénytelenek, próbálkozzon újra"
+msgstr "A méretezési tényezők <b> {} </b> érvénytelenek, próbálkozzon újra"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr "A(z) {}</b> <b>dimenziók érvénytelenek, próbálkozzon újra"
+msgstr "<b> {} </b> dimenzió érvénytelen, próbálja újra"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr "A PDF-fájl méretezése a(z) {}</b> <b>vízszintesen és függőlegesen <b>{}</b>"
+msgstr "A PDF-fájl méretezése vízszintesen <b> {} </b> és függőlegesen <b> {} </b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
@@ -652,7 +652,7 @@ msgstr "A PDF-fájl felosztása"
 
 #: pdf_bot/files/text.py:22
 msgid "Select how you'll like me to send the text to you"
-msgstr "Válassza ki, hogyan szeretné, hogy küldjem el önnek az sms-t"
+msgstr "Válassza ki, hogy tetszik nekem, hogyan küldöm el a szöveget Önnek"
 
 #: pdf_bot/files/text.py:35
 msgid "Extracting text from your PDF file"
