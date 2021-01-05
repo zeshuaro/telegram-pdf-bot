@@ -44,8 +44,8 @@ def feedback(update: Update, context: CallbackContext) -> int:
     update.effective_message.chat.send_action(ChatAction.TYPING)
     _ = set_lang(update, context)
     text = _(
-        "Send me your feedback, note that only English feedback "
-        "will be forwarded to my developer"
+        "Send me your feedback (only English feedback will be "
+        "forwarded to my developer)"
     )
     reply_with_cancel_btn(update, context, text)
 
