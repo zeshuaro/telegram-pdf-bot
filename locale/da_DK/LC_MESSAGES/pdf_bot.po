@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-05 01:21+0000\n"
-"PO-Revision-Date: 2021-01-05 01:23\n"
+"PO-Revision-Date: 2021-01-05 12:32\n"
 "Last-Translator: \n"
 "Language: da\n"
 "Language-Team: Danish\n"
@@ -265,13 +265,13 @@ msgstr "Handlingen blev annulleret"
 
 #: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
-msgstr "Den fil, du har sendt, er ikke en PDF-fil."
+msgstr "Den fil, du har sendt, er ikke en PDF-fil"
 
 #: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
-msgstr "Den PDF-fil, du har sendt, er for stor til, at jeg kan\n\n"
-", før jeg har annulleret din handling"
+msgstr "PDF-filen du har sendt, er for stor til, at jeg kan downloade\n\n"
+"Jeg har annulleret din handling"
 
 #: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
@@ -290,14 +290,14 @@ msgstr "PDF-filen er allerede krypteret"
 #: pdf_bot/utils.py:199
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr "Din {} PDF-fil er krypteret, og du bliver nødt til at dekryptere den først\n\n"
-", men jeg har annulleret din handling"
+msgstr "Din {} PDF-fil er krypteret, og du skal dekryptere den først\n\n"
+"Jeg har annulleret din handling"
 
 #: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr "Din PDF-fil er krypteret, og du bliver nødt til at dekryptere det først\n\n"
-", men jeg har annulleret din handling"
+msgstr "Din PDF-fil er krypteret, og du skal dekryptere den først\n\n"
+"Jeg har annulleret din handling"
 
 #: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
@@ -391,7 +391,7 @@ msgstr "Det billede, du har sendt, er for stort til, at jeg kan downloade"
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr "Billeder"
+msgstr "billeder"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
@@ -431,7 +431,7 @@ msgstr "Føje vandmærket til PDF-filen"
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr "Vandmærke"
+msgstr "vandmærke"
 
 #: pdf_bot/files/compress.py:22
 msgid "Compressing your PDF file"
@@ -488,7 +488,7 @@ msgstr "PDF-filen er ikke krypteret"
 
 #: pdf_bot/files/crypto.py:57
 msgid "The decryption password is incorrect, try to send it again"
-msgstr "Dekrypteringsadgangskoden er forkert."
+msgstr "Dekrypteringsadgangskoden er forkert"
 
 #: pdf_bot/files/crypto.py:71
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
@@ -623,24 +623,24 @@ msgid "Send me the range of pages that you'll like to keep\n\n"
 "<code>::-1   all pages in reversed order</code>\n"
 "<code>3:0:-1 pages 3 2 1 but not 0</code>\n"
 "<code>2::-1  pages 2 1 0</code>"
-msgstr "Send mig det udvalg af sider,</code>\n"
-"<code></code>\n"
-"<code>som du gerne vil beholde\n\n"
-"<b>Generel brug</b>\n"
-"<code>: alle sider</code>\n"
-"<code>22 bare den 23. første tre sider</code>\n"
-"<code>5: fra den 6</code>\n"
-"<code></code>\n"
-"<code></code>\n"
-"<code></code>\n"
-"<code>. : sidste to sider</code>\n"
-"<code>-3:-1 tredje og anden sidste sider kun</code>\n\n"
-"<b>Avanceret brug</b>\n"
-"<code>::2 sider 0 2 4 ... til slutningen</code>\n"
-"<code>1:10:2 sider 1 3 5 7 9</code>\n"
-"<code>::-1 alle sider i omvendt rækkefølge</code>\n"
-"<code>3:0:-1 sider 3 2 1, men ikke 0</code>\n"
-"<code>2::-1 sider 2 1 0</code>"
+msgstr "Send mig det række af sider, du gerne vil beholde\n\n"
+"<b> Generel brug </b>\n"
+"<code>:      alle sider </code>\n"
+"<code>22     bare den 23. side </code>\n"
+"<code>0:3    de første tre sider </code>\n"
+"<code>:3     de første tre sider </code>\n"
+"<code>5:     fra og med 6. side </code>\n"
+"<code>-1     kun sidste side </code>\n"
+"<code>:-1    alle sider undtagen den sidste side </code>\n"
+"<code>-2     kun sidst sidst sidst </code>\n"
+"<code>-2:    sidste to sider </code>\n"
+"<code>-3:-1  kun tredje og næstsidste side </code>\n\n"
+"<b> Avanceret brug </b>\n"
+"<code>::2    sider 0 2 4 ... til slutningen </code>\n"
+"<code>1:10:2 sider 1 3 5 7 9 </code>\n"
+"<code>::-1   alle sider i omvendt rækkefølge </code>\n"
+"<code>3:0:-1 sider 3 2 1 men ikke 0 </code>\n"
+"<code>2::-1  sider 2 1 0 </code>"
 
 #: pdf_bot/files/split.py:58
 msgid "The range is invalid. Try again"
