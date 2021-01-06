@@ -2,8 +2,9 @@ import os
 
 from dotenv import load_dotenv
 from google.cloud import datastore
+from telegram import User
 
-from pdf_bot.constants import USER, LANGUAGE
+from pdf_bot.constants import USER, LANGUAGE, LANGS_SHORT
 
 
 load_dotenv()
@@ -20,12 +21,23 @@ else:
     client = datastore.Client()
 
 
-def create_user(user_id):
-    user_key = client.key(USER, user_id)
-    with client.transaction():
-        user = client.get(key=user_key)
-        if user is None:
-            user = datastore.Entity(user_key)
-            user[LANGUAGE] = "en_GB"
+def create_user(tele_user: User) -> None:
+    key = client.key(USER, tele_user.id)
+    user_lang_code = tele_user.language_code
+    lang_code = "en_GB"
 
-        client.put(user)
+    if (
+        user_lang_code is not None
+        and user_lang_code != "en"
+        and user_lang_code in LANGS_SHORT
+    ):
+        lang_code = LANGS_SHORT[user_lang_code]
+
+    with client.transaction():
+        db_user = client.get(key=key)
+        if db_user is None:
+            db_user = datastore.Entity(key)
+        # if LANGUAGE not in db_user:
+        db_user[LANGUAGE] = lang_code
+
+        client.put(db_user)
