@@ -37,7 +37,7 @@ def create_user(tele_user: User) -> None:
         db_user = client.get(key=key)
         if db_user is None:
             db_user = datastore.Entity(key)
-        # if LANGUAGE not in db_user:
-        db_user[LANGUAGE] = lang_code
+        if LANGUAGE not in db_user:
+            db_user[LANGUAGE] = lang_code
 
         client.put(db_user)
