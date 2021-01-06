@@ -13,6 +13,7 @@ from telegram import (
     ParseMode,
     Update,
 )
+from telegram.chataction import ChatAction
 from telegram.ext import (
     Updater,
     CommandHandler,
@@ -124,7 +125,12 @@ def main():
     updater.idle()
 
 
-def start_msg(update, context):
+def start_msg(update: Update, context: CallbackContext) -> None:
+    update.effective_message.chat.send_action(ChatAction.TYPING)
+
+    # Create the user entity in Datastore
+    create_user(update.effective_message.from_user)
+
     _ = set_lang(update, context)
     update.effective_message.reply_text(
         _(
@@ -141,14 +147,12 @@ def start_msg(update, context):
         parse_mode=ParseMode.HTML,
     )
 
-    # Create the user entity in Datastore
-    create_user(update.effective_message.from_user.id)
-
 
 def help_msg(update, context):
+    update.effective_message.chat.send_action(ChatAction.TYPING)
     _ = set_lang(update, context)
     keyboard = [
-        [InlineKeyboardButton(_("Set Language"), callback_data=SET_LANG)],
+        [InlineKeyboardButton(_("Set Language 🌎"), callback_data=SET_LANG)],
         [
             InlineKeyboardButton(_("Join Channel"), f"https://t.me/{CHANNEL_NAME}"),
             InlineKeyboardButton(_("Support PDF Bot"), callback_data=PAYMENT),

@@ -124,3 +124,5 @@ LANGUAGES = {
     "🇺🇦 українська мова": "uk_UA",
     "🇻🇳 Tiếng Việt": "vi_VN",
 }
+
+LANGS_SHORT = {x.split("_")[0]: x for x in LANGUAGES.values()}
