@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-06 03:34+0000\n"
-"PO-Revision-Date: 2021-01-06 06:13\n"
+"PO-Revision-Date: 2021-01-08 01:08\n"
 "Last-Translator: \n"
 "Language: he\n"
 "Language-Team: Hebrew\n"
@@ -35,15 +35,15 @@ msgid "Welcome to PDF Bot!\n\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr "ברוכים הבאים ל-PDF Bot!\n\n"
-"<b>עיקריות:</b>\n"
-"- לדחוס, מיזוג, תצוגה מקדימה, שינוי שם, פיצול והוספת סימן מים לקובצי PDF\n"
+"<b>יכולות עיקריות:</b>\n"
+"- דחיסה, מיזוג, תצוגה מקדימה, שינוי שם, פיצול והוספת חתימות-מים לקבצי PDF\n"
 "- יצירת קבצי PDF מהודעות טקסט\n"
-"- לחלץ תמונות וטקסט מקובצי PDF\n"
+"- חילוץ תמונות וטקסט מקבצי PDF\n"
 "- המרת קבצי PDF לתמונות\n"
-"- המרת דפי אינטרנט ותמונות לקובצי PDF\n"
-"- לייפות תמונות הערות בכתב יד לתוך קבצי PDF\n"
+"- המרת דפי אינטרנט ותמונות לקבצי PDF\n"
+"- המרת תמונות כתב-יד לקבצי PDF\n"
 "- <b><i>ועוד...</i></b>\n\n"
-"סוג /help כדי לראות כיצד להשתמש PDF Bot"
+"הקלד help/ כדי לראות כיצד להשתמש ב-PDF Bot"
 
 #: bot.py:155
 msgid "Set Language 🌎"
@@ -153,7 +153,7 @@ msgstr "חתוך"
 
 #: pdf_bot/constants.py:55
 msgid "Compressed"
-msgstr "דחיסה"
+msgstr "דחוס"
 
 #: pdf_bot/constants.py:56
 msgid "Photos"
@@ -328,8 +328,8 @@ msgstr "אין שום הבדל בטקסט בין הקבצים שלך."
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr "שלח לי את קבצי PDF שאתה רוצה\n\n"
-"שים לב שהקבצים ימוזגו בסדר שאתה שולח לי"
+msgstr "שלח לי את קבצי PDF שתרצה לחבר\n"
+"שים לב שהקבצים ימוזגו בסדר בו אתה שולח אותם"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -345,7 +345,8 @@ msgstr "קבצי PDF"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "לחץ <b>עשה</b> אם שלחת לי את כל קבצי PDF שאתה רוצה למזג או להמשיך לשלוח לי את קבצי PDF"
+msgstr "לחץ <b>סיום</b> אם שלחת לי את כל קבצי הPDF שאתה רוצה למזג,\n"
+"או המשך לשלוח לי קבצי PDF שתרצה להוסיף אותם"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
@@ -370,8 +371,8 @@ msgstr "אני לא יכול למזג את קבצי ה- PDF שלך מכיוון 
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "שלח לי את התמונות שאתה רוצה לייפות או להמיר לקובץ PDF\n\n"
-"שים לב שהתמונות יהיו יפה ויהיו מומרות בסדר שאתה שולח לי"
+msgstr "שלח לי את התמונות שאתה רוצה לייפות או להמיר לקובץ PDF\n"
+"שים לב שהתמונות יהיו מומרות לפי סדר שליחתן"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -440,7 +441,7 @@ msgstr "משהו השתבש, נסה שוב"
 
 #: pdf_bot/files/compress.py:60
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr "גודל הקובץ הופחת <b>{:.0%}</b>, מ- <b>{}</b> ל- <b>{}</b>"
+msgstr "גודל הקובץ הופחת ב<b>{:.0%}</b>, מ- <b>{}</b> ל- <b>{}</b>"
 
 #: pdf_bot/files/crop.py:33
 msgid "Select the crop type that you'll like to perform"
@@ -632,7 +633,7 @@ msgstr "כל העמודים פרט לעמוד האחרון"
 
 #: pdf_bot/files/split.py:44
 msgid "second last page only"
-msgstr "עמוד שני אחרון בלבד"
+msgstr "רק העמוד השני מהסוף"
 
 #: pdf_bot/files/split.py:45
 msgid "last two pages"
@@ -640,7 +641,7 @@ msgstr "שני העמודים האחרונים"
 
 #: pdf_bot/files/split.py:46
 msgid "third and second last pages"
-msgstr "עמודים אחרון שלישי ושני"
+msgstr "העמוד השני והשלישי מהסוף"
 
 #: pdf_bot/files/split.py:47
 msgid "Advanced usage"
@@ -648,7 +649,7 @@ msgstr "שימוש מתקדם"
 
 #: pdf_bot/files/split.py:48
 msgid "pages"
-msgstr "דפי"
+msgstr "עמודים"
 
 #: pdf_bot/files/split.py:49
 msgid "to the end"
