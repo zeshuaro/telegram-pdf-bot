@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-06 03:34+0000\n"
-"PO-Revision-Date: 2021-01-06 06:13\n"
+"POT-Creation-Date: 2021-01-16 01:35+0000\n"
+"PO-Revision-Date: 2021-01-16 01:37\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -433,40 +433,40 @@ msgstr "Προσθήκη του υδατογραφήματος στο αρχεί
 msgid "watermark"
 msgstr "στάθμη ύδατος"
 
-#: pdf_bot/files/compress.py:22
+#: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
 msgstr "Συμπίεση του αρχείου PDF"
 
-#: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
-#: pdf_bot/files/photo.py:224
-msgid "Something went wrong, try again"
-msgstr "Κάτι πήγε στραβά, δοκιμάστε ξανά"
-
-#: pdf_bot/files/compress.py:60
+#: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "Το μέγεθος αρχείου μειώθηκε κατά <b>{:.0%}</b>, από <b>{}</b> σε <b>{}</b>"
 
-#: pdf_bot/files/crop.py:33
+#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
+#: pdf_bot/files/photo.py:218
+msgid "Something went wrong, try again"
+msgstr "Κάτι πήγε στραβά, δοκιμάστε ξανά"
+
+#: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
 msgstr "Επιλέξτε τον τύπο περικοπής που θα θέλατε να εκτελέσετε"
 
-#: pdf_bot/files/crop.py:48
+#: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Στείλτε μου έναν αριθμό μεταξύ {} και {}. Αυτό είναι το ποσοστό του περιθωρίου που θα διατηρηθεί μεταξύ του περιεχομένου στο αρχείο PDF και της σελίδας"
 
-#: pdf_bot/files/crop.py:58
+#: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Στείλε μου έναν αριθμό που θα ήθελες να προσαρμόσεις το μέγεθος του περιθωρίου. Οι θετικοί αριθμοί θα μειώσουν το μέγεθος του περιθωρίου και οι αρνητικοί αριθμοί θα το αυξήσουν"
 
-#: pdf_bot/files/crop.py:79
+#: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
 msgstr "Ο αριθμός πρέπει να είναι μεταξύ {} και {}, προσπαθήστε ξανά"
 
-#: pdf_bot/files/crop.py:100
+#: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
 msgstr "Ο αριθμός δεν είναι έγκυρος, προσπαθήστε ξανά"
 
-#: pdf_bot/files/crop.py:110
+#: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
 msgstr "Περικοπή του αρχείου PDF"
 
@@ -502,7 +502,7 @@ msgstr "Στείλτε μου τον κωδικό πρόσβασης για να
 msgid "Encrypting your PDF file"
 msgstr "Κρυπτογράφηση του αρχείου PDF"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
 msgstr "Επιλέξτε την εργασία που θα θέλατε να εκτελέσετε"
 
@@ -520,31 +520,31 @@ msgstr "Προσθήκη επιπέδου κειμένου OCR στο αρχεί
 msgid "Your PDF file already has a text layer"
 msgstr "Το αρχείο PDF έχει ήδη ένα επίπεδο κειμένου"
 
-#: pdf_bot/files/photo.py:56
+#: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "Η φωτογραφία σας είναι πολύ μεγάλη για λήψη. Δεν μπορώ να ομορφύνω ούτε να μετατρέψω τη φωτογραφία σας"
 
-#: pdf_bot/files/photo.py:111
+#: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
 msgstr "Εξαγωγή προεπισκόπησης για το αρχείο PDF"
 
-#: pdf_bot/files/photo.py:159
+#: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
 msgstr "Επιλογή της μορφής αρχείου αποτελεσμάτων"
 
-#: pdf_bot/files/photo.py:171
+#: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
 msgstr "Μετατροπή του αρχείου PDF σε φωτογραφίες"
 
-#: pdf_bot/files/photo.py:209
+#: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
 msgstr "Εξαγωγή όλων των φωτογραφιών στο αρχείο PDF"
 
-#: pdf_bot/files/photo.py:229
+#: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
 msgstr "Δεν μπόρεσα να βρω φωτογραφίες στο αρχείο PDF"
 
-#: pdf_bot/files/photo.py:274
+#: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
 msgstr "Δείτε παραπάνω για όλες τις φωτογραφίες σας"
 
