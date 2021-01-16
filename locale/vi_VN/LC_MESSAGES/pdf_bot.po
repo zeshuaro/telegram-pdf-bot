@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-06 03:34+0000\n"
-"PO-Revision-Date: 2021-01-06 06:13\n"
+"POT-Creation-Date: 2021-01-16 01:35+0000\n"
+"PO-Revision-Date: 2021-01-16 01:37\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -433,40 +433,40 @@ msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 msgid "watermark"
 msgstr "chữ ký ảnh"
 
-#: pdf_bot/files/compress.py:22
+#: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
 msgstr "Nén tệp PDF của bạn"
 
-#: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
-#: pdf_bot/files/photo.py:224
-msgid "Something went wrong, try again"
-msgstr "Đã xảy ra sự cố, hãy thử lại"
-
-#: pdf_bot/files/compress.py:60
+#: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "Kích cỡ tệp giảm <b>{:.0%}</b>, từ <b>{}</b> xuống <b>{}</b>"
 
-#: pdf_bot/files/crop.py:33
+#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
+#: pdf_bot/files/photo.py:218
+msgid "Something went wrong, try again"
+msgstr "Đã xảy ra sự cố, hãy thử lại"
+
+#: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
 msgstr "Chọn loại xén bạn muốn thực hiện"
 
-#: pdf_bot/files/crop.py:48
+#: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Gửi cho tôi một số giữa {} và {}. Đây là tỷ lệ phần trăm không gian ký quỹ để giữ lại giữa nội dung trong tệp PDF của bạn và trang"
 
-#: pdf_bot/files/crop.py:58
+#: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Gửi cho tôi một số mà bạn sẽ muốn điều chỉnh kích thước lề. Số dương sẽ giảm kích thước ký quỹ và số âm sẽ tăng nó"
 
-#: pdf_bot/files/crop.py:79
+#: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
 msgstr "Số phải nằm giữa {} và {}, thử lại"
 
-#: pdf_bot/files/crop.py:100
+#: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
 msgstr "Số không hợp lệ, hãy thử lại"
 
-#: pdf_bot/files/crop.py:110
+#: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
 msgstr "Cắt xén tệp PDF của bạn"
 
@@ -502,7 +502,7 @@ msgstr "Gửi cho tôi mật khẩu để mã hóa tệp PDF của bạn"
 msgid "Encrypting your PDF file"
 msgstr "Mã hóa tệp PDF của bạn"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
 msgstr "Chọn nhiệm vụ bạn muốn thực hiện"
 
@@ -520,31 +520,31 @@ msgstr "Thêm lớp văn bản OCR vào tệp PDF của bạn"
 msgid "Your PDF file already has a text layer"
 msgstr "Tệp PDF của bạn đã có một lớp văn bản"
 
-#: pdf_bot/files/photo.py:56
+#: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "Hình ảnh của bạn là quá lớn đối với tôi để tải về. Tôi không thể làm đẹp hoặc chuyển đổi ảnh của bạn"
 
-#: pdf_bot/files/photo.py:111
+#: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
 msgstr "Trích xuất bản xem trước cho tệp PDF của bạn"
 
-#: pdf_bot/files/photo.py:159
+#: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
 msgstr "Chọn định dạng tệp kết quả"
 
-#: pdf_bot/files/photo.py:171
+#: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
 msgstr "Chuyển đổi tệp PDF của bạn thành ảnh"
 
-#: pdf_bot/files/photo.py:209
+#: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
 msgstr "Trích xuất tất cả các bức ảnh trong tập tin PDF của bạn"
 
-#: pdf_bot/files/photo.py:229
+#: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
 msgstr "Tôi không thể tìm thấy bất kỳ ảnh nào trong tệp PDF của bạn"
 
-#: pdf_bot/files/photo.py:274
+#: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
 msgstr "Xem ở trên cho tất cả các bức ảnh của bạn"
 
