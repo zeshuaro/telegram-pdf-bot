@@ -1,27 +1,30 @@
+import datetime as dt
 import logging
 import os
+import pytz
 import sys
+from threading import Thread
 
 from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
 from logbook.compat import redirect_logging
 from telegram import (
+    ForceReply,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     MessageEntity,
-    ForceReply,
     ParseMode,
     Update,
 )
 from telegram.chataction import ChatAction
 from telegram.ext import (
-    Updater,
+    CallbackContext,
+    CallbackQueryHandler,
     CommandHandler,
     Filters,
     MessageHandler,
-    CallbackQueryHandler,
     PreCheckoutQueryHandler,
-    CallbackContext,
+    Updater,
 )
 from telegram.ext import messagequeue as mq
 from telegram.utils.request import Request
@@ -59,6 +62,19 @@ def main():
         use_context=True,
         request_kwargs={"connect_timeout": TIMEOUT, "read_timeout": TIMEOUT},
     )
+
+    def stop_and_restart():
+        updater.stop()
+        os.execl(sys.executable, sys.executable, *sys.argv)
+
+    def restart(_):
+        Thread(target=stop_and_restart).start()
+
+    job_queue = updater.job_queue
+    run_time = dt.datetime.now(pytz.utc).replace(
+        hour=0, minute=0, second=0, microsecond=0
+    )
+    job_queue.run_daily(restart, time=run_time)
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
