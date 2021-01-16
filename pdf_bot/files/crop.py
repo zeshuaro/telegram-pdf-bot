@@ -1,9 +1,6 @@
 import os
-import shlex
 import tempfile
 
-from logbook import Logger
-from subprocess import Popen, PIPE
 from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup
 from telegram.ext import ConversationHandler
 
@@ -18,6 +15,7 @@ from pdf_bot.constants import (
 )
 from pdf_bot.utils import send_result_file
 from pdf_bot.language import set_lang
+from pdf_bot.files.utils import run_cmd
 
 MIN_PERCENT = 0
 MAX_PERCENT = 100
@@ -118,24 +116,19 @@ def crop_pdf(update, context, percent=None, offset=None):
 
         with tempfile.TemporaryDirectory() as dir_name:
             out_fn = os.path.join(dir_name, f"Cropped_{file_name}")
+            command = f'pdf-crop-margins -o "{out_fn}" "{tf.name}"'
+
             if percent is not None:
-                cmd = f"pdf-crop-margins -p {percent} -o {out_fn} {tf.name}"
+                command += f" -p {percent}"
             else:
-                cmd = f"pdf-crop-margins -a {offset} -o {out_fn} {tf.name}"
+                command += f" -a {offset}"
 
-            proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE, shell=False)
-            out, err = proc.communicate()
-
-            if proc.returncode != 0:
-                log = Logger()
-                log.error(
-                    f'Stdout:\n{out.decode("utf-8")}\n\nStderr:\n{err.decode("utf-8")}'
-                )
+            if run_cmd(command):
+                send_result_file(update, context, out_fn, "crop")
+            else:
                 update.effective_message.reply_text(
                     _("Something went wrong, try again")
                 )
-            else:
-                send_result_file(update, context, out_fn, "crop")
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:

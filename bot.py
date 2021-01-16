@@ -205,16 +205,17 @@ def process_callback_query(update: Update, context: CallbackContext):
     query.answer()
 
 
-def send_msg(update, context):
+def send_msg(update: Update, context: CallbackContext):
     tele_id = int(context.args[0])
     message = " ".join(context.args[1:])
 
     try:
         context.bot.send_message(tele_id, message)
+        update.effective_message.reply_text("Message sent")
     except Exception as e:
         log = Logger()
         log.error(e)
-        update.effective_message.reply_text(DEV_TELE_ID, "Failed to send message")
+        update.effective_message.reply_text("Failed to send message")
 
 
 def error_callback(update, context):
