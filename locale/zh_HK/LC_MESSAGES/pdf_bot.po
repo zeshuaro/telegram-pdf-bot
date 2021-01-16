@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-06 03:34+0000\n"
-"PO-Revision-Date: 2021-01-06 05:58\n"
+"POT-Creation-Date: 2021-01-16 01:35+0000\n"
+"PO-Revision-Date: 2021-01-16 01:37\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -433,40 +433,40 @@ msgstr "加緊水印去你個PDF檔案"
 msgid "watermark"
 msgstr "水印"
 
-#: pdf_bot/files/compress.py:22
+#: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
 msgstr "壓縮緊你嘅PDF檔案"
 
-#: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
-#: pdf_bot/files/photo.py:224
-msgid "Something went wrong, try again"
-msgstr "發生咗未知嘅錯誤，試多次"
-
-#: pdf_bot/files/compress.py:60
+#: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "檔案size細咗<b>{:.0%}</b>，由 <b>{}</b> 壓縮到 <b>{}</b>"
 
-#: pdf_bot/files/crop.py:33
+#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
+#: pdf_bot/files/photo.py:218
+msgid "Something went wrong, try again"
+msgstr "發生咗未知嘅錯誤，試多次"
+
+#: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
 msgstr "揀你想點樣裁剪"
 
-#: pdf_bot/files/crop.py:48
+#: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Send一個係{}同{}之間嘅數字畀我。呢個係你想保留嘅邊界空間嘅百分比"
 
-#: pdf_bot/files/crop.py:58
+#: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Send一個你想調整邊界空間嘅數字畀。 正數會減小邊界空間，而負數就會增加邊界空間"
 
-#: pdf_bot/files/crop.py:79
+#: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
 msgstr "個數字一定要係{}同{}之間，試多次"
 
-#: pdf_bot/files/crop.py:100
+#: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
 msgstr "個數字無效，試多次"
 
-#: pdf_bot/files/crop.py:110
+#: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
 msgstr "裁剪緊你嘅PDF檔案"
 
@@ -502,7 +502,7 @@ msgstr "Send加密密碼畀我嚟加密你嘅PDF檔案"
 msgid "Encrypting your PDF file"
 msgstr "加密緊你嘅PDF檔案"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
 msgstr "揀你想做啲乜"
 
@@ -520,31 +520,31 @@ msgstr "加緊層文字OCR去你個PDF檔案"
 msgid "Your PDF file already has a text layer"
 msgstr "你嘅PDF檔案已經有層文字"
 
-#: pdf_bot/files/photo.py:56
+#: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "你嘅圖片太大啦，我下載唔到。我美化唔到亦都轉換唔到你嘅圖片"
 
-#: pdf_bot/files/photo.py:111
+#: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
 msgstr "攞緊你PDF檔案嘅預覽"
 
-#: pdf_bot/files/photo.py:159
+#: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
 msgstr "揀檔案格式"
 
-#: pdf_bot/files/photo.py:171
+#: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
 msgstr "轉緊你嘅PDF檔案做圖片"
 
-#: pdf_bot/files/photo.py:209
+#: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
 msgstr "攞緊你PDF檔案入面嘅圖片出嚟"
 
-#: pdf_bot/files/photo.py:229
+#: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
 msgstr "我係你嘅PDF檔案入面乜嘢圖片搵唔到"
 
-#: pdf_bot/files/photo.py:274
+#: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
 msgstr "呢啲就係你嘅圖片"
 
