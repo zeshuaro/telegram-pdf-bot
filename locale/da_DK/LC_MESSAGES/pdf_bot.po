@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-06 03:34+0000\n"
-"PO-Revision-Date: 2021-01-06 06:13\n"
+"POT-Creation-Date: 2021-01-16 01:35+0000\n"
+"PO-Revision-Date: 2021-01-16 01:37\n"
 "Last-Translator: \n"
 "Language: da\n"
 "Language-Team: Danish\n"
@@ -433,40 +433,40 @@ msgstr "Føje vandmærket til PDF-filen"
 msgid "watermark"
 msgstr "vandmærke"
 
-#: pdf_bot/files/compress.py:22
+#: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
 msgstr "Komprimere PDF-filen"
 
-#: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
-#: pdf_bot/files/photo.py:224
-msgid "Something went wrong, try again"
-msgstr "Noget gik galt, prøv igen"
-
-#: pdf_bot/files/compress.py:60
+#: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "Filstørrelsen er reduceret <b>{:.0%}</b>, fra <b>{}</b> til <b>{}</b>"
 
-#: pdf_bot/files/crop.py:33
+#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
+#: pdf_bot/files/photo.py:218
+msgid "Something went wrong, try again"
+msgstr "Noget gik galt, prøv igen"
+
+#: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
 msgstr "Vælg den beskæringstype, du vil udføre"
 
-#: pdf_bot/files/crop.py:48
+#: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Send mig et tal mellem {} og {}. Dette er den procentdel af margenpladsen, der skal bevares mellem indholdet i PDF-filen og siden"
 
-#: pdf_bot/files/crop.py:58
+#: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Send mig et tal, som du gerne vil justere margenstørrelsen. Positive tal vil reducere margenstørrelsen, og negative tal vil øge den"
 
-#: pdf_bot/files/crop.py:79
+#: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
 msgstr "Tallet skal være mellem {} og {}, prøv igen"
 
-#: pdf_bot/files/crop.py:100
+#: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
 msgstr "Nummeret er ugyldigt, prøv igen"
 
-#: pdf_bot/files/crop.py:110
+#: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
 msgstr "Beskære PDF-filen"
 
@@ -502,7 +502,7 @@ msgstr "Send mig adgangskoden til at kryptere din PDF-fil"
 msgid "Encrypting your PDF file"
 msgstr "Kryptering af PDF-filen"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
 msgstr "Vælg den opgave, du vil udføre"
 
@@ -520,31 +520,31 @@ msgstr "Føje et OCR-tekstlag til PDF-filen"
 msgid "Your PDF file already has a text layer"
 msgstr "PDF-filen har allerede et tekstlag"
 
-#: pdf_bot/files/photo.py:56
+#: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "Dit billede er for stort til, at jeg kan downloade. Jeg kan ikke forskønne eller konvertere dit billede"
 
-#: pdf_bot/files/photo.py:111
+#: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
 msgstr "Udpakning af et eksempel til PDF-filen"
 
-#: pdf_bot/files/photo.py:159
+#: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
 msgstr "Vælge resultatfilformatet"
 
-#: pdf_bot/files/photo.py:171
+#: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
 msgstr "Konvertere din PDF-fil til fotos"
 
-#: pdf_bot/files/photo.py:209
+#: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
 msgstr "Udtrække alle fotos i din PDF-fil"
 
-#: pdf_bot/files/photo.py:229
+#: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
 msgstr "Jeg kunne ikke finde nogen billeder i din PDF-fil"
 
-#: pdf_bot/files/photo.py:274
+#: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
 msgstr "Se ovenfor for alle dine billeder"
 
