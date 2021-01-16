@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-06 03:34+0000\n"
-"PO-Revision-Date: 2021-01-06 06:13\n"
+"POT-Creation-Date: 2021-01-16 01:35+0000\n"
+"PO-Revision-Date: 2021-01-16 01:37\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -433,40 +433,40 @@ msgstr "Watermerk toevoegen aan het PDF bestand"
 msgid "watermark"
 msgstr "watermerk"
 
-#: pdf_bot/files/compress.py:22
+#: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
 msgstr "Uw PDF-bestand comprimeren"
 
-#: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
-#: pdf_bot/files/photo.py:224
-msgid "Something went wrong, try again"
-msgstr "Er is iets fout gegaan, probeer het opnieuw"
-
-#: pdf_bot/files/compress.py:60
+#: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "Bestandsgrootte verminderd met <b>{:.0%}</b>, van <b>{}</b> tot <b>{}</b>"
 
-#: pdf_bot/files/crop.py:33
+#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
+#: pdf_bot/files/photo.py:218
+msgid "Something went wrong, try again"
+msgstr "Er is iets fout gegaan, probeer het opnieuw"
+
+#: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
 msgstr "Selecteer het type bijsnijden dat je wilt gebruiken"
 
-#: pdf_bot/files/crop.py:48
+#: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Stuur me een nummer tussen {} en {}. Dit is het percentage van de marginale ruimte tussen de inhoud in uw PDF bestand en de pagina randen"
 
-#: pdf_bot/files/crop.py:58
+#: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Stuur me een getal waarmee u de marginale grootte wilt aanpassen. Positieve getallen zullen de marge grootte verkleinen en negatieve getallen zullen het vergroten"
 
-#: pdf_bot/files/crop.py:79
+#: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
 msgstr "Het nummer moet tussen {} en {} liggen, probeer het opnieuw"
 
-#: pdf_bot/files/crop.py:100
+#: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
 msgstr "Het nummer is ongeldig, probeer het opnieuw"
 
-#: pdf_bot/files/crop.py:110
+#: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
 msgstr "PDF bestand aan het bijsnijden"
 
@@ -503,7 +503,7 @@ msgstr "Stuur mij het wachtwoord om uw PDF bestand te versleutelen"
 msgid "Encrypting your PDF file"
 msgstr "PDF bestand aan het versleutelen"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
 msgstr "Selecteer de taak die u wilt uitvoeren"
 
@@ -521,31 +521,31 @@ msgstr "Een OCR-tekstlaag toevoegen aan uw PDF-bestand"
 msgid "Your PDF file already has a text layer"
 msgstr "Uw PDF-bestand heeft al een tekstlaag"
 
-#: pdf_bot/files/photo.py:56
+#: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "Jouw foto is te groot om te downloaden. Ik kan je foto niet verfraaien of converteren"
 
-#: pdf_bot/files/photo.py:111
+#: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
 msgstr "Een voorbeeld van uw PDF bestand aan het genereren"
 
-#: pdf_bot/files/photo.py:159
+#: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
 msgstr "Selecteer het gewenste bestandsformaat"
 
-#: pdf_bot/files/photo.py:171
+#: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
 msgstr "Uw PDF bestand wordt omgezet naar foto's"
 
-#: pdf_bot/files/photo.py:209
+#: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
 msgstr "Alle foto's in uw PDF bestand aan het uitpakken"
 
-#: pdf_bot/files/photo.py:229
+#: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
 msgstr "Ik kon geen foto's/afbeeldingen in je PDF bestand vinden"
 
-#: pdf_bot/files/photo.py:274
+#: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
 msgstr "Zie boven voor al je foto's"
 
