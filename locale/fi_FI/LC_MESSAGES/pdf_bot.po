@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-06 03:34+0000\n"
-"PO-Revision-Date: 2021-01-06 06:13\n"
+"POT-Creation-Date: 2021-01-16 01:35+0000\n"
+"PO-Revision-Date: 2021-01-16 01:37\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -433,40 +433,40 @@ msgstr "Vesileiman lisääminen PDF-tiedostoon"
 msgid "watermark"
 msgstr "vesileima"
 
-#: pdf_bot/files/compress.py:22
+#: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
 msgstr "PDF-tiedoston pakkaaminen"
 
-#: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
-#: pdf_bot/files/photo.py:224
-msgid "Something went wrong, try again"
-msgstr "Jokin meni vikaan, yritä uudelleen"
-
-#: pdf_bot/files/compress.py:60
+#: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "Tiedoston koko pienenee <b>{:.0%}</b>, <b>{}</b> <b>{}</b>"
 
-#: pdf_bot/files/crop.py:33
+#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
+#: pdf_bot/files/photo.py:218
+msgid "Something went wrong, try again"
+msgstr "Jokin meni vikaan, yritä uudelleen"
+
+#: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
 msgstr "Valitse rajaustyyppi, jonka haluat suorittaa"
 
-#: pdf_bot/files/crop.py:48
+#: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Lähetä minulle numero väliltä {} - {}. Tämä on PDF-tiedoston sisällön ja sivun välisen marginaalitilan prosenttiosuus"
 
-#: pdf_bot/files/crop.py:58
+#: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Lähetä minulle numero, jonka haluat säätää reunuksen kokoa. Positiiviset luvut pienenevät marginaalin kokoa ja negatiiviset luvut kasvattavat sitä"
 
-#: pdf_bot/files/crop.py:79
+#: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
 msgstr "Numeron on oltava välillä {} - {}, yritä uudelleen"
 
-#: pdf_bot/files/crop.py:100
+#: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
 msgstr "Numero ei kelpaa, yritä uudelleen"
 
-#: pdf_bot/files/crop.py:110
+#: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
 msgstr "PDF-tiedoston rajaaminen"
 
@@ -502,7 +502,7 @@ msgstr "Lähetä minulle salasana PDF-tiedoston salaamista vastaan"
 msgid "Encrypting your PDF file"
 msgstr "PDF-tiedoston salaaminen"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
 msgstr "Valitse tehtävä, jonka haluat suorittaa"
 
@@ -520,31 +520,31 @@ msgstr "Tekstinnäytetekstikerroksen lisääminen PDF-tiedostoon"
 msgid "Your PDF file already has a text layer"
 msgstr "PDF-tiedostossa on jo tekstikerros"
 
-#: pdf_bot/files/photo.py:56
+#: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "Kuvasi on liian suuri ladattavaksi. En voi kaunistaa tai muuntaa valokuvaasi"
 
-#: pdf_bot/files/photo.py:111
+#: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
 msgstr "PDF-tiedoston esikatselun purkaminen"
 
-#: pdf_bot/files/photo.py:159
+#: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
 msgstr "Valitse tulostiedoston muoto"
 
-#: pdf_bot/files/photo.py:171
+#: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
 msgstr "PDF-tiedoston muuntaminen valokuviksi"
 
-#: pdf_bot/files/photo.py:209
+#: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
 msgstr "Kaikkien PDF-tiedoston valokuvien purkaminen"
 
-#: pdf_bot/files/photo.py:229
+#: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
 msgstr "Pdf-tiedostosta ei löytänyt valokuvia"
 
-#: pdf_bot/files/photo.py:274
+#: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
 msgstr "Katso yllä kaikki valokuvasi"
 
