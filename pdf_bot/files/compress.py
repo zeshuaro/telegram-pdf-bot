@@ -33,9 +33,10 @@ def compress_pdf(update, context):
             out_fn = os.path.join(
                 dir_name, f"Compressed_{os.path.splitext(file_name)[0]}.pdf"
             )
-            cmd = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default \
-            -dNOPAUSE -dQUIET -dBATCH -sOutputFile={} {}".format(
-                out_fn, tf.name
+            cmd = (
+                "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 "
+                "-dPDFSETTINGS=/default -dNOPAUSE -dQUIET -dBATCH "
+                f'-sOutputFile="{out_fn}" "{tf.name}"'
             )
             proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE, shell=False)
             out, err = proc.communicate()

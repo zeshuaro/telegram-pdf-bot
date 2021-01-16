@@ -243,14 +243,18 @@ def write_photos_in_pdf(input_fn, dir_name, file_name):
     root_file_name = os.path.splitext(file_name)[0]
     image_prefix = os.path.join(dir_name, root_file_name)
 
-    cmd = f"pdfimages -png {input_fn} {image_prefix}"
+    cmd = f'pdfimages -png "{input_fn}" "{image_prefix}"'
     proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE, shell=False)
     out, err = proc.communicate()
 
     if proc.returncode != 0:
         is_success = False
         log = Logger()
-        log.error(f'Stdout:\n{out.decode("utf-8")}\n\nStderr:\n{err.decode("utf-8")}')
+        log.error(
+            f"Command:\n{cmd}\n\n"
+            f'Stdout:\n{out.decode("utf-8")}\n\n'
+            f'Stderr:\n{err.decode("utf-8")}'
+        )
 
     return is_success
 

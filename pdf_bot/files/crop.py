@@ -118,10 +118,12 @@ def crop_pdf(update, context, percent=None, offset=None):
 
         with tempfile.TemporaryDirectory() as dir_name:
             out_fn = os.path.join(dir_name, f"Cropped_{file_name}")
+            cmd = f'pdf-crop-margins -o "{out_fn}" "{tf.name}"'
+
             if percent is not None:
-                cmd = f"pdf-crop-margins -p {percent} -o {out_fn} {tf.name}"
+                cmd += f" -p {percent}"
             else:
-                cmd = f"pdf-crop-margins -a {offset} -o {out_fn} {tf.name}"
+                cmd += f" -a {offset}"
 
             proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE, shell=False)
             out, err = proc.communicate()
