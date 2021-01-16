@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-01-06 03:34+0000\n"
-"PO-Revision-Date: 2021-01-06 06:13\n"
+"POT-Creation-Date: 2021-01-16 01:35+0000\n"
+"PO-Revision-Date: 2021-01-16 01:37\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -433,40 +433,40 @@ msgstr "ඔබගේ PDF ගොනුවට වෝටර් මාර්ක් �
 msgid "watermark"
 msgstr "වෝටර් මාර්ක්"
 
-#: pdf_bot/files/compress.py:22
+#: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
 msgstr "ඔබේ PDF ගොනුව සකසමින් පවතී"
 
-#: pdf_bot/files/compress.py:49 pdf_bot/files/crop.py:135
-#: pdf_bot/files/photo.py:224
-msgid "Something went wrong, try again"
-msgstr "යම් වැරැද්දක් සිදු වී ඇත, නැවත උත්සාහ කරන්න"
-
-#: pdf_bot/files/compress.py:60
+#: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "ගොනු ප්‍රමාණය <b>{:.0%}</b>, <b> {} </b> සිට <b> {} </b> දක්වා අඩු කර ඇත"
 
-#: pdf_bot/files/crop.py:33
+#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
+#: pdf_bot/files/photo.py:218
+msgid "Something went wrong, try again"
+msgstr "යම් වැරැද්දක් සිදු වී ඇත, නැවත උත්සාහ කරන්න"
+
+#: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
 msgstr "ඔබ කැපීමට කැමති අදාළ වර්ගය තෝරන්න"
 
-#: pdf_bot/files/crop.py:48
+#: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "මට {} සහ {} අතර අංකයක් එවන්න. ඔබගේ PDF ගොනුවේ සහ පිටුවේ අන්තර්ගතය අතර රඳවා තබා ගැනීමට අවශ්‍ය ඉඩ ප්‍රමාණය මෙයයි"
 
-#: pdf_bot/files/crop.py:58
+#: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "පිටුවේ වට ප්‍රමාණය වෙනස් කිරීමට ඔබ කැමති අංකයක් මට එවන්න. ධන සංඛ්‍යා එම ප්‍රමාණය අඩු කරන අතර සෘණ සංඛ්‍යා එය වැඩි කරයි"
 
-#: pdf_bot/files/crop.py:79
+#: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
 msgstr "අංකය {} සහ {} අතර විය යුතුය, නැවත උත්සාහ කරන්න"
 
-#: pdf_bot/files/crop.py:100
+#: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
 msgstr "අංකය වලංගු එකක් නොවේ, නැවත උත්සාහ කරන්න"
 
-#: pdf_bot/files/crop.py:110
+#: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
 msgstr "ඔබේ PDF ගොනුව කපමින් පවතී"
 
@@ -502,7 +502,7 @@ msgstr "ඔබගේ PDF ගොනුව ආකේතනය කිරීමට �
 msgid "Encrypting your PDF file"
 msgstr "ඔබගේ PDF ගොනුව ආකේතනය කරමින් පවතී"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:70
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
 msgstr "ඔබ ඉටු කිරීමට කැමති කාර්යය තෝරන්න"
 
@@ -520,31 +520,31 @@ msgstr "ඔබේ PDF ගොනුවට OCR අකුරු ස්තරයක�
 msgid "Your PDF file already has a text layer"
 msgstr "ඔබගේ PDF ගොනුවට දැනටමත් අකුරු ස්ථරයක් ඇත"
 
-#: pdf_bot/files/photo.py:56
+#: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "ඔබගේ ඡායාරූපය මට බාගත කිරීමට නොහැකි තරම් විශාලය. ඔබගේ ඡායාරූපය අලංකාර කිරීමට හෝ පරිවර්තනය කිරීමට නොහැකිය"
 
-#: pdf_bot/files/photo.py:111
+#: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
 msgstr "ඔබගේ PDF ගොනුව සඳහා පෙරදසුනක් උපුටා ගනිමින් පවතී"
 
-#: pdf_bot/files/photo.py:159
+#: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
 msgstr "ප්‍රතිදාන ගොනුවේ ආකෘතිය තෝරන්න"
 
-#: pdf_bot/files/photo.py:171
+#: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
 msgstr "ඔබගේ PDF ගොනුව ඡායාරූප බවට පරිවර්තනය කරමින් පවතී"
 
-#: pdf_bot/files/photo.py:209
+#: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
 msgstr "ඔබගේ PDF ගොනුවේ ඇති සියලුම ඡායාරූප උපුටා ගනිමින් පවතී"
 
-#: pdf_bot/files/photo.py:229
+#: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
 msgstr "ඔබගේ PDF ගොනුවේ කිසිදු ඡායාරූපයක් මට සොයාගත නොහැක"
 
-#: pdf_bot/files/photo.py:274
+#: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
 msgstr "ඔබගේ සියලු ඡායාරූප සඳහා ඉහත බලන්න"
 
