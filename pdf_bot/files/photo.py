@@ -1,23 +1,17 @@
 import os
-import shlex
 import shutil
 import tempfile
 
 import pdf2image
-from PIL import Image
 from PyPDF2 import PdfFileWriter
-from logbook import Logger
-from subprocess import Popen, PIPE
 from telegram import (
     ReplyKeyboardRemove,
     ReplyKeyboardMarkup,
-    InputMediaPhoto,
     ChatAction,
 )
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.error import BadRequest
 from telegram.ext import ConversationHandler
-from telegram.parsemode import ParseMode
 
 from pdf_bot.commands import process_photo
 from pdf_bot.constants import (
@@ -33,7 +27,7 @@ from pdf_bot.constants import (
     CANCEL,
     WAIT_PHOTO_TASK,
 )
-from pdf_bot.files.utils import check_back_user_data
+from pdf_bot.files.utils import check_back_user_data, run_cmd
 from pdf_bot.language import set_lang
 from pdf_bot.stats import update_stats
 from pdf_bot.utils import (
@@ -239,24 +233,11 @@ def get_pdf_photos(update, context):
 
 
 def write_photos_in_pdf(input_fn, dir_name, file_name):
-    is_success = True
     root_file_name = os.path.splitext(file_name)[0]
     image_prefix = os.path.join(dir_name, root_file_name)
+    command = f'pdfimages -png "{input_fn}" "{image_prefix}"'
 
-    cmd = f'pdfimages -png "{input_fn}" "{image_prefix}"'
-    proc = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE, shell=False)
-    out, err = proc.communicate()
-
-    if proc.returncode != 0:
-        is_success = False
-        log = Logger()
-        log.error(
-            f"Command:\n{cmd}\n\n"
-            f'Stdout:\n{out.decode("utf-8")}\n\n'
-            f'Stderr:\n{err.decode("utf-8")}'
-        )
-
-    return is_success
+    return run_cmd(command)
 
 
 def send_result_photos(update, context, dir_name, task):
