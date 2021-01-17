@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-16 02:09+0000\n"
-"PO-Revision-Date: 2021-01-16 02:11\n"
+"PO-Revision-Date: 2021-01-16 08:26\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -41,9 +41,9 @@ msgstr "¡Bienvenido a PDF Bot!\n\n"
 "- Extraer imágenes y texto de archivos PDF\n"
 "- Convertir archivos PDF en imágenes\n"
 "- Convertir páginas web e imágenes en archivos PDF\n"
-"- Embellecer imágenes de notas manuscritas en archivos PDF\n"
+"- Mejorar imágenes de notas manuscritas en archivos PDF\n"
 "- <b><i>Y más...</i></b>\n\n"
-"Tipo /help para ver cómo usar PDF Bot"
+"Escribe /help para ver cómo usar PDF Bot"
 
 #: bot.py:171
 msgid "Set Language 🌎"
@@ -68,7 +68,7 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr "Puede realizar la mayoría de las tareas enviándome una de las siguientes:\n"
+msgstr "Puede realizar la mayoría de las tareas enviándome uno de los siguientes:\n"
 "- Archivos PDF\n"
 "- Fotos\n"
 "- Enlaces a páginas web\n\n"
@@ -129,7 +129,7 @@ msgstr "Rotar"
 
 #: pdf_bot/constants.py:49
 msgid "Scale"
-msgstr "Escalar"
+msgstr "Ampliar"
 
 #: pdf_bot/constants.py:50
 msgid "Split"
@@ -137,7 +137,7 @@ msgstr "Dividir"
 
 #: pdf_bot/constants.py:51
 msgid "Beautify"
-msgstr "Embellecer"
+msgstr "Mejorar"
 
 #: pdf_bot/constants.py:52
 msgid "To PDF"
@@ -149,7 +149,7 @@ msgstr "Renombrar"
 
 #: pdf_bot/constants.py:54
 msgid "Crop"
-msgstr "Cortar"
+msgstr "Recortar"
 
 #: pdf_bot/constants.py:55
 msgid "Compressed"
@@ -209,7 +209,7 @@ msgstr "Envíeme sus comentarios (solo los comentarios en inglés serán reenvia
 
 #: pdf_bot/feedback.py:79
 msgid "The feedback is not in English, try again"
-msgstr "El comentario no esta en ingles, intenta nuevamente"
+msgstr "El comentario no está en inglés, inténtalo de nuevo"
 
 #: pdf_bot/feedback.py:99
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
@@ -257,7 +257,7 @@ msgstr "Convirtiendo tu página web en un archivo PDF"
 
 #: pdf_bot/url.py:39
 msgid "Unable to reach your web page"
-msgstr "No se puede acceder a su página web"
+msgstr "No se puede acceder a tu página web"
 
 #: pdf_bot/utils.py:34
 msgid "Action cancelled"
@@ -270,7 +270,7 @@ msgstr "El archivo que enviaste no es un PDF, inténtalo de nuevo"
 #: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
-msgstr "El archivo PDF que enviaste es demasiado grande para mí\n\n"
+msgstr "El archivo PDF que enviaste es demasiado grande para que lo descargue\n\n"
 "He cancelado tu acción"
 
 #: pdf_bot/utils.py:101
@@ -280,8 +280,8 @@ msgstr "Algo salió mal. Por favor, inténtalo de nuevo"
 #: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
-msgstr "Tu archivo PDF parece no ser válido y no pude abrir y leerlo\n\n"
-"La acción se a cancelado"
+msgstr "Tu archivo PDF parece no ser válido y no pude abrirlo ni leerlo\n\n"
+"He cancelado tu acción"
 
 #: pdf_bot/utils.py:197
 msgid "Your PDF file is already encrypted"
@@ -332,8 +332,8 @@ msgstr "No hay diferencias de texto entre tus archivos PDF"
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr "Envíame los archivos PDF que te gusta fusionar\n\n"
-"Tenga en cuenta que los archivos se fusionarán en el orden en que me envíe"
+msgstr "Envíame los archivos PDF que te gustaría combinar\n\n"
+"Ten en cuenta que los archivos se combinaran en el orden en que los envíes"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
@@ -349,7 +349,7 @@ msgstr "Archivos PDF"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "Pulse <b>Hecho</b> si me ha enviado todos los archivos PDF que le gustaría fusionar o seguir enviándome los archivos PDF"
+msgstr "Presiona <b>Hecho</b> si me has enviado todos los archivos PDF que te gustaría combinar o continua enviándome mas archivos PDF"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
@@ -374,8 +374,8 @@ msgstr "No puedo combinar tus archivos PDF porque no pude abrir y leer \"{}\". A
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Envíame las fotos que te gustará embellecer o convertir en un archivo PDF\n\n"
-"Tenga en cuenta que las fotos serán embellecidas y convertidas en el orden en que me envíe"
+msgstr "Envíame las fotos que te gustará mejorar o convertir en un archivo PDF\n\n"
+"Ten en cuenta que las fotos serán mejoradas y convertidas en el orden en que me sean enviadas"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
@@ -395,7 +395,7 @@ msgstr "fotos"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr "Seleccione la tarea desde abajo si me ha enviado todas las fotos, o seguir enviándome las fotos"
+msgstr "Selecciona la tarea abajo si me has enviado todas las fotos, o continua enviándome mas fotos"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
@@ -630,7 +630,7 @@ msgstr "de la página 8 en adelante"
 
 #: pdf_bot/files/split.py:42
 msgid "last page only"
-msgstr "última página solamente"
+msgstr "solo última página"
 
 #: pdf_bot/files/split.py:43
 msgid "all pages except the last page"
@@ -638,7 +638,7 @@ msgstr "todas las páginas excepto la última página"
 
 #: pdf_bot/files/split.py:44
 msgid "second last page only"
-msgstr "segunda última página solamente"
+msgstr "solo penúltima página"
 
 #: pdf_bot/files/split.py:45
 msgid "last two pages"
@@ -646,7 +646,7 @@ msgstr "últimas dos páginas"
 
 #: pdf_bot/files/split.py:46
 msgid "third and second last pages"
-msgstr "tercera y segunda últimas páginas"
+msgstr "páginas antepenúltima y penúltima"
 
 #: pdf_bot/files/split.py:47
 msgid "Advanced usage"
