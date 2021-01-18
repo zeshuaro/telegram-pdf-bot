@@ -1,7 +1,6 @@
 import datetime as dt
 import logging
 import os
-import pytz
 import sys
 from threading import Thread
 
@@ -71,10 +70,7 @@ def main():
         Thread(target=stop_and_restart).start()
 
     job_queue = updater.job_queue
-    run_time = dt.datetime.now(pytz.utc).replace(
-        hour=0, minute=0, second=0, microsecond=0
-    )
-    job_queue.run_daily(restart, time=run_time)
+    job_queue.run_repeating(restart, interval=dt.timedelta(hours=6))
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
