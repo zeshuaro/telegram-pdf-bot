@@ -70,7 +70,7 @@ def main():
         Thread(target=stop_and_restart).start()
 
     job_queue = updater.job_queue
-    job_queue.run_repeating(restart, interval=dt.timedelta(hours=3))
+    job_queue.run_repeating(restart, interval=dt.timedelta(hours=1))
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
