@@ -25,6 +25,7 @@ from telegram.ext import (
     PreCheckoutQueryHandler,
     Updater,
 )
+from telegram.error import Unauthorized
 from telegram.ext import messagequeue as mq
 from telegram.utils.request import Request
 
@@ -70,7 +71,7 @@ def main():
         Thread(target=stop_and_restart).start()
 
     job_queue = updater.job_queue
-    job_queue.run_repeating(restart, interval=dt.timedelta(hours=6))
+    job_queue.run_repeating(restart, interval=dt.timedelta(hours=1))
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
@@ -230,9 +231,10 @@ def send_msg(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Failed to send message")
 
 
-def error_callback(update, context):
-    log = Logger()
-    log.error(f'Update "{update}" caused error "{context.error}"')
+def error_callback(update: Update, context: CallbackContext):
+    if context.error is not Unauthorized:
+        log = Logger()
+        log.error(f'Update "{update}" caused error "{context.error}"')
 
 
 if __name__ == "__main__":
