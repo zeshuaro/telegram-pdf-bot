@@ -1,4 +1,4 @@
-name: Update-l10n
+name: update-l10n
 
 on:
   push:
@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false
 
       - name: Setup Python 🐍
         uses: actions/setup-python@v2
@@ -37,10 +35,9 @@ jobs:
           pybabel update -l locale -i locale/pdf_bot.pot -o locale/en_GB/LC_MESSAGES/pdf_bot.po
           echo NUM_DIFFS=$(git diff --shortstat | egrep -o '[0-9]+ i' | egrep -o '[0-9]+') >> $GITHUB_ENV
 
-      - name: Create Pull Request 🆕
+      - name: Commit changes 🆕
         if: env.NUM_DIFFS > 1
-        uses: peter-evans/create-pull-request@v3
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit-message: Update localization source file
-          branch: update/l10n-source-file
-          title: Update localization source file
+          commit_message: Update localization source file
+          file_pattern: locale/en_GB/LC_MESSAGES/pdf_bot.po
