@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-21 07:49+0000\n"
-"PO-Revision-Date: 2021-03-19 04:06\n"
+"PO-Revision-Date: 2021-03-19 05:05\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: Uzbek\n"
@@ -313,32 +313,34 @@ msgstr "Mana sizning faylingiz natijasi"
 #: pdf_bot/commands/compare.py:54
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
-msgstr ""
+msgstr "Menga taqqoslashni xohlaydigan PDF-fayllardan birini yuboring\n\n"
+"E'tibor bering, men faqat matndagi farqlarni qidirishim mumkin"
 
 #: pdf_bot/commands/compare.py:88
 msgid "Send me the other PDF file that you'll like to compare"
-msgstr ""
+msgstr "Siz solishtirishni istagan boshqa PDF faylini menga yuboring"
 
 #: pdf_bot/commands/compare.py:112
 msgid "Comparing your PDF files"
-msgstr ""
+msgstr "PDF-fayllaringizni taqqoslash"
 
 #: pdf_bot/commands/compare.py:131
 msgid "There are no differences in text between your PDF files"
-msgstr ""
+msgstr "PDF-fayllaringiz o'rtasida matnda farqlar yo'q"
 
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "Birlashtirmoqchi bo'lgan PDF fayllaringizni menga yuboring\n\n"
+"Fayllar menga yuborgan tartibda birlashtirilishini unutmang"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
-msgstr ""
+msgstr "Siz yuborgan fayl PDF fayli emas"
 
 #: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
-msgstr ""
+msgstr "Siz yuborgan PDF fayl juda katta, men uni yuklab olmayapman"
 
 #: pdf_bot/commands/merge.py:130
 msgid "PDF files"
@@ -346,52 +348,53 @@ msgstr "PDF fayllar"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "Agar siz menga birlashtirmoqchi bo'lgan barcha PDF-fayllarni yuborgan bo'lsangiz yoki \"PDF\" fayllarini yuborishda davom etsangiz, <b>Bajarildi</b> tugmasini bosing"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "Birlashtirish uchun <b>{}</b> olib tashlandi"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
-msgstr ""
+msgstr "Siz menga birorta ham PDF fayl yubormadingiz"
 
 #: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
-msgstr ""
+msgstr "Siz menga bitta PDF fayl yubordingiz."
 
 #: pdf_bot/commands/merge.py:216
 msgid "Merging your PDF files"
-msgstr ""
+msgstr "PDF fayllarni birlashtirish"
 
 #: pdf_bot/commands/merge.py:236
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
-msgstr ""
+msgstr "PDF fayllaringizni birlashtira olmayapman, chunki \"{}\" ni ochib o'qiy olmadim. Uning shifrlanmaganligiga ishonch hosil qiling"
 
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Menga bezatishni yoki PDF-faylga o'tkazishni yoqtiradigan fotosuratlarni yuboring\n\n"
+"Fotosuratlar menga yuborilgan tartibda obodonlashtirilishi va o'zgartirilishini unutmang"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
-msgstr ""
+msgstr "Fayl nomi mavjud emas"
 
 #: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
-msgstr ""
+msgstr "Siz yuborgan fayl rasm emas"
 
 #: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
-msgstr ""
+msgstr "Siz yuborgan rasm hajmi juda katta"
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr ""
+msgstr "rasmlar"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "Agar menga barcha fotosuratlarni yuborgan bo'lsangiz, pastdan vazifani tanlang yoki menga fotosuratlarni yuborishda davom eting"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
@@ -411,23 +414,23 @@ msgstr ""
 
 #: pdf_bot/commands/text.py:68
 msgid "Creating your PDF file"
-msgstr ""
+msgstr "PDF faylingizni yaratish"
 
 #: pdf_bot/commands/watermark.py:49
 msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr ""
+msgstr "Watermark qo`shish uchun istagan PDF faylingizni yuboring"
 
 #: pdf_bot/commands/watermark.py:80
 msgid "Send me the watermark PDF file"
-msgstr ""
+msgstr "Menga watermark PDF fayl yuboring"
 
 #: pdf_bot/commands/watermark.py:105
 msgid "Adding the watermark onto your PDF file"
-msgstr ""
+msgstr "Sizning PDF faylingizga Watermark qo`yilmoqda..."
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr ""
+msgstr "Watermark"
 
 #: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
@@ -513,7 +516,7 @@ msgstr ""
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
-msgstr ""
+msgstr "Sizning PDF faylingizda allaqachon matn qatlami mavjud"
 
 #: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
@@ -577,111 +580,112 @@ msgstr ""
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "Menga gorizontal va vertikal o'qlar uchun o'lchov omillarini yuboring\n\n"
+"<b>Misol: 2 0,5</b> (bu gorizontal o'qni ikki baravar oshiradi va vertikal o'qni ikki baravar oshiradi)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "O'lchov omillari <b>{}</b>  da xatolik bor. qaytadan urunib ko`ring"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "<b>{}</b> o'lchamlari yaroqsiz, qaytadan urining"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "PDF-faylingizni gorizontal ravishda <b>{}</b> ga va vertikal ravishda <b>{}</b> gacha masshtablash"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "PDF faylingizni <b>{}</b> kengligi va <b>{}</b> balandligi bilan masshtablash"
 
 #: pdf_bot/files/split.py:36
 msgid "Send me the range of pages that you'll like to keep"
-msgstr ""
+msgstr "Menga saqlamoqchi bo'lgan sahifalaringizni yuboring"
 
 #: pdf_bot/files/split.py:37
 msgid "General usage"
-msgstr ""
+msgstr "Umumiy foydalanish"
 
 #: pdf_bot/files/split.py:38
 msgid "all pages"
-msgstr ""
+msgstr "barcha sahifalar"
 
 #: pdf_bot/files/split.py:39
 msgid "page 8 only"
-msgstr ""
+msgstr "faqat 8-bet"
 
 #: pdf_bot/files/split.py:40
 msgid "first three pages"
-msgstr ""
+msgstr "Birinchi 3 sahifa"
 
 #: pdf_bot/files/split.py:41
 msgid "from page 8 onward"
-msgstr ""
+msgstr "8-betdan boshlab"
 
 #: pdf_bot/files/split.py:42
 msgid "last page only"
-msgstr ""
+msgstr "faqat oxirgi sahifa"
 
 #: pdf_bot/files/split.py:43
 msgid "all pages except the last page"
-msgstr ""
+msgstr "oxirgi sahifadan tashqari barcha sahifalar"
 
 #: pdf_bot/files/split.py:44
 msgid "second last page only"
-msgstr ""
+msgstr "faqat oxirgi ikkinchi sahifa"
 
 #: pdf_bot/files/split.py:45
 msgid "last two pages"
-msgstr ""
+msgstr "oxirgi ikki sahifa"
 
 #: pdf_bot/files/split.py:46
 msgid "third and second last pages"
-msgstr ""
+msgstr "uchinchi va ikkinchi oxirgi sahifalar"
 
 #: pdf_bot/files/split.py:47
 msgid "Advanced usage"
-msgstr ""
+msgstr "Kengaytirilgan foydalanish"
 
 #: pdf_bot/files/split.py:48
 msgid "pages"
-msgstr ""
+msgstr "sahifa"
 
 #: pdf_bot/files/split.py:49
 msgid "to the end"
-msgstr ""
+msgstr "oxiriga"
 
 #: pdf_bot/files/split.py:50
 msgid "all pages in reversed order"
-msgstr ""
+msgstr "Barcha sahifalar teskari tartiblandi"
 
 #: pdf_bot/files/split.py:51
 msgid "except"
-msgstr ""
+msgstr "bundan mustasno"
 
 #: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
-msgstr ""
+msgstr "Oraliq yaroqsiz. Qayta urinib ko'ring"
 
 #: pdf_bot/files/split.py:81
 msgid "Splitting your PDF file"
-msgstr ""
+msgstr "PDF-faylingizni ajratish"
 
 #: pdf_bot/files/text.py:22
 msgid "Select how you'll like me to send the text to you"
-msgstr ""
+msgstr "Matnni sizga yuborishim menga qanday yoqishini tanlang"
 
 #: pdf_bot/files/text.py:35
 msgid "Extracting text from your PDF file"
-msgstr ""
+msgstr "PDF-faylingizdan matn chiqarib olish"
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>PDF-faylingizdagi barcha matnlar uchun yuqoriga qarang</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
-msgstr ""
+msgstr "PDF faylingizda bironta ham matn topolmadim"
 
 #~ msgid ""
 #~ "Send me the first photo that "
