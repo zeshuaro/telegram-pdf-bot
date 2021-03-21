@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-21 07:49+0000\n"
-"PO-Revision-Date: 2021-03-21 09:05\n"
+"PO-Revision-Date: 2021-03-21 10:06\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: Uzbek\n"
@@ -42,7 +42,9 @@ msgstr "PDF botga hush kelibsiz!\n\n"
 " - PDF fayllarni rasmlarga aylantirish\n"
 " - Veb-sahifalarni va rasmlarni PDF-fayllarga aylantirish\n"
 " - Qo'lda yozilgan yozuvlarning rasmlarini PDF-fayllarga chiroyli holda qo'shish\n"
-"- <b><i>Va boshqalar...</i></b>"
+"- <b><i>Va boshqalar...</i></b>\n\n"
+"PDF Bot-dan qanday foydalanishni ko'rish uchun yozing /help buyrug'ini yuboring\n\n"
+"Tarjimon: @Thanks_ALLAH_ForEverything"
 
 #: bot.py:168
 msgid "Set Language 🌎"
@@ -451,68 +453,69 @@ msgstr "Bajarishni xohlagan turni tanlang"
 
 #: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr ""
+msgstr "Menga {} va {} oralig'ida raqam yuboring. Bu sizning PDF-faylingizdagi sahifalar o'rtasida saqlanadigan hoshiyaning foizidir"
 
 #: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr ""
+msgstr "Menga hoshiya hajmini sozlashni xohlagan raqamni yuboring. Pozitiv raqamlar hoshiya hajmini pasaytiradi va negativ aqamlar uni ko'paytiradi"
 
 #: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
-msgstr ""
+msgstr "Raqamlar {} va {} orasida bo'lishi shart. Qaytadan uruning"
 
 #: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
-msgstr ""
+msgstr "Bu raqam yaroqsiz, qaytadan uruning"
 
 #: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
-msgstr ""
+msgstr "PDF faylingiz qirqilmoqda"
 
 #: pdf_bot/files/crypto.py:17
 msgid "Send me the password to decrypt your PDF file"
-msgstr ""
+msgstr "PDF-faylingizni parolini ochish uchun menga parolni yuboring"
 
 #: pdf_bot/files/crypto.py:32
 msgid "Decrypting your PDF file"
-msgstr ""
+msgstr "PDF faylingiz shifrdan ochilmoqda"
 
 #: pdf_bot/files/crypto.py:47
 msgid "Your PDF file seems to be invalid and I couldn't open and read it"
-msgstr ""
+msgstr "Siz yuborgan PDF fayl yaroqsiz va men uni ochib o'qiyolmadim"
 
 #: pdf_bot/files/crypto.py:52
 msgid "Your PDF file is not encrypted"
-msgstr ""
+msgstr "Sizning PDF faylingiz shifrlanmagan"
 
 #: pdf_bot/files/crypto.py:57
 msgid "The decryption password is incorrect, try to send it again"
-msgstr ""
+msgstr "Parol noto'g'ri, uni qayta yuborishga harakat qiling"
 
 #: pdf_bot/files/crypto.py:71
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
-msgstr ""
+msgstr "Sizning PDF-faylingiz men shifrini ocholmaydigan usul bilan shifrlangan"
 
 #: pdf_bot/files/crypto.py:86
 msgid "Send me the password to encrypt your PDF file"
-msgstr ""
+msgstr "Faylingizni parol bilan himoyalash uchun parolni yuboring"
 
 #: pdf_bot/files/crypto.py:100
 msgid "Encrypting your PDF file"
-msgstr ""
+msgstr "PDF faylingiz parol bilan himoyalanmoqda"
 
 #: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
-msgstr ""
+msgstr "Bajarmoqchi bo'lgan harakatni tanlang"
 
 #: pdf_bot/files/file.py:106
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
-msgstr ""
+msgstr "PDF faylingiz men yuklab olishim uchun juda katta\n\n"
+" Unda biron bir vazifani bajara olmayman"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "PDF-faylingizga OCR matn qatlamini qo'shish"
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
@@ -520,62 +523,65 @@ msgstr "Sizning PDF faylingizda allaqachon matn qatlami mavjud"
 
 #: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
-msgstr ""
+msgstr "Fotosuratingiz men uchun juda katta. Men sizning suratingizni bezay olmayman yoki o'zgartira olmayman"
 
 #: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
-msgstr ""
+msgstr "PDF-faylingizni oldindan ko'rishini ajratib olish"
 
 #: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
-msgstr ""
+msgstr "Natijada fayl formatini tanlang"
 
 #: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
-msgstr ""
+msgstr "PDF-faylingizni rasmga aylantirish"
 
 #: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
-msgstr ""
+msgstr "PDF-faylingizdagi barcha fotosuratlarni chiqarib olish"
 
 #: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
-msgstr ""
+msgstr "PDF-faylingizda bironta fotosurat topilmadi"
 
 #: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
-msgstr ""
+msgstr "Barcha rasmlaringiz uchun yuqoriga qarang"
 
 #: pdf_bot/files/rename.py:19
 msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr ""
+msgstr "PDF faylingizni qayta nomlashni xohlagan fayl nomini menga yuboring"
 
 #: pdf_bot/files/rename.py:38
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
-msgstr ""
+msgstr "Fayl nomlari quyidagi belgilarning birortasini o'z ichiga olmaydi:\n"
+" {}\n"
+" Menga boshqa fayl nomini yuboring"
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "PDF faylingizning nomi <b>{}</b> ga o'zgartirilmoqda"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr ""
+msgstr "PDF-faylingizni soat yo'nalishi bo'yicha aylantirishni xohlaydigan darajalarni tanlang"
 
 #: pdf_bot/files/rotate.py:48
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr ""
+msgstr "PDF-faylingizni soat yo'nalishi bo'yicha {} darajaga aylantirish"
 
 #: pdf_bot/files/scale.py:24
 msgid "Select the scale type that you'll like to perform"
-msgstr ""
+msgstr "Siz bajarmoqchi bo'lgan o'lchov turini tanlang"
 
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "Menga kenglik va balandlikni yuboring\n\n"
+" <b>Masalan: 150 200</b> (bunda kenglik 150 ga va balandlik 200 ga o'rnatiladi)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
