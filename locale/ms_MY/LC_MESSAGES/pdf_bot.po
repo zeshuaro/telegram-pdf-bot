@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-01-21 07:49+0000\n"
-"PO-Revision-Date: 2021-03-22 06:37\n"
+"PO-Revision-Date: 2021-03-22 06:51\n"
 "Last-Translator: \n"
 "Language: ms\n"
 "Language-Team: Malay\n"
@@ -34,19 +34,28 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr ""
+msgstr "Selamat datang ke PDF Bot!\n\n"
+"<b>Utama:</b>\n"
+"- Mampatkan, gabungan, pratonton, namakan semula, pisahkan dan tambah tera air ke fail PDF\n"
+"- Buat PDF fail dari mesej teks\n"
+"- Ekstrak imej dan teks dari fail PDF\n"
+"- Tukar fail PDF ke dalam imej\n"
+"- Tukar halaman web dan imej ke dalam fail PDF\n"
+"- Beautify nota tulisan tangan imej ke dalam fail PDF\n"
+"- <b><i>Dan banyak lagi...</i></b>\n\n"
+"Jenis /help untuk melihat bagaimana untuk menggunakan PDF Bot"
 
 #: bot.py:168
 msgid "Set Language 🌎"
-msgstr ""
+msgstr "Set bahasa 🌎"
 
 #: bot.py:170 pdf_bot/utils.py:307
 msgid "Join Channel"
-msgstr ""
+msgstr "Sertai Saluran"
 
 #: bot.py:171 pdf_bot/payment.py:78 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
-msgstr ""
+msgstr "Sokong PDF Bot"
 
 #: bot.py:177
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
@@ -59,608 +68,629 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr ""
+msgstr "Anda boleh melaksanakan kebanyakan tugas dengan menghantar saya salah satu daripada berikut:\n"
+"- Fail PDF\n"
+"- Foto\n"
+"- Pautan laman web\n\n"
+"Seluruh tugas boleh dilakukan dengan menggunakan perintah di bawah:\n"
+"/compare - bandingkan - berbanding PDF fail\n"
+"/merge - menggabungkan fail PDF\n"
+"/photo - menukar dan menggabungkan beberapa foto ke dalam fail PDF\n"
+"/text - membuat fail PDF dari mesej teks\n"
+"/watermark - menambah tera air ke fail PDF"
 
 #: bot.py:212 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr ""
+msgstr "Hantar saya jumlah yang anda ingin menyokong PDF Bot"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
-msgstr ""
+msgstr "Membatalkan"
 
 #: pdf_bot/constants.py:39
 msgid "Done"
-msgstr ""
+msgstr "Dilakukan"
 
 #: pdf_bot/constants.py:40
 msgid "Back"
-msgstr ""
+msgstr "Kembali"
 
 #: pdf_bot/constants.py:41
 msgid "By Percentage"
-msgstr ""
+msgstr "Mengikut Peratus"
 
 #: pdf_bot/constants.py:42
 msgid "By Margin Size"
-msgstr ""
+msgstr "Mengikut Saiz Jidar"
 
 #: pdf_bot/constants.py:43
 msgid "Preview"
-msgstr ""
+msgstr "Pratonton"
 
 #: pdf_bot/constants.py:44
 msgid "Decrypt"
-msgstr ""
+msgstr "Nyahsulitkan"
 
 #: pdf_bot/constants.py:45
 msgid "Encrypt"
-msgstr ""
+msgstr "Menyulitkan"
 
 #: pdf_bot/constants.py:46
 msgid "Extract Photos"
-msgstr ""
+msgstr "Ekstrak Foto"
 
 #: pdf_bot/constants.py:47
 msgid "To Photos"
-msgstr ""
+msgstr "Ke Foto"
 
 #: pdf_bot/constants.py:48
 msgid "Rotate"
-msgstr ""
+msgstr "Putar"
 
 #: pdf_bot/constants.py:49
 msgid "Scale"
-msgstr ""
+msgstr "Skala"
 
 #: pdf_bot/constants.py:50
 msgid "Split"
-msgstr ""
+msgstr "Split"
 
 #: pdf_bot/constants.py:51
 msgid "Beautify"
-msgstr ""
+msgstr "Mencantikkan"
 
 #: pdf_bot/constants.py:52
 msgid "To PDF"
-msgstr ""
+msgstr "Ke PDF"
 
 #: pdf_bot/constants.py:53
 msgid "Rename"
-msgstr ""
+msgstr "Menamakan semula"
 
 #: pdf_bot/constants.py:54
 msgid "Crop"
-msgstr ""
+msgstr "Tanaman"
 
 #: pdf_bot/constants.py:55
 msgid "Compressed"
-msgstr ""
+msgstr "Mampat"
 
 #: pdf_bot/constants.py:56
 msgid "Photos"
-msgstr ""
+msgstr "Gambar"
 
 #: pdf_bot/constants.py:57
 msgid "Remove Last File"
-msgstr ""
+msgstr "Alih Keluar Fail Terakhir"
 
 #: pdf_bot/constants.py:58
 msgid "To Dimensions"
-msgstr ""
+msgstr "Kepada Dimensi"
 
 #: pdf_bot/constants.py:59
 msgid "Extract Text"
-msgstr ""
+msgstr "Ekstrak Teks"
 
 #: pdf_bot/constants.py:60
 msgid "Text Message"
-msgstr ""
+msgstr "Mesej Teks"
 
 #: pdf_bot/constants.py:61
 msgid "Text File"
-msgstr ""
+msgstr "Fail Teks"
 
 #: pdf_bot/constants.py:63
 msgid "Compress"
-msgstr ""
+msgstr "Mampat"
 
 #: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
-msgstr ""
+msgstr "Katakan terima kasih 😁 ($1)"
 
 #: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
-msgstr ""
+msgstr "Kedai kopi ☕ ($3)"
 
 #: pdf_bot/constants.py:80
 msgid "Beer 🍺 ($5)"
-msgstr ""
+msgstr "Bir 🍺 ($5)"
 
 #: pdf_bot/constants.py:81
 msgid "Meal 🍲 ($10)"
-msgstr ""
+msgstr "Makan 🍲 ($10)"
 
 #: pdf_bot/constants.py:82
 msgid "Say Awesome 🤩 (Custom)"
-msgstr ""
+msgstr "Katakanlah Awesome 🤩 (Kastam)"
 
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
-msgstr ""
+msgstr "Hantar maklum balas anda (hanya maklum balas Bahasa Inggeris akan dikemukakan kepada pemaju saya)"
 
 #: pdf_bot/feedback.py:79
 msgid "The feedback is not in English, try again"
-msgstr ""
+msgstr "Maklum balas tidak dalam bahasa Inggeris, cuba lagi"
 
 #: pdf_bot/feedback.py:99
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
-msgstr ""
+msgstr "Terima kasih atas maklum balas anda, saya telah mengemukakannya kepada pemaju saya"
 
 #: pdf_bot/language.py:24
 msgid "Select your language"
-msgstr ""
+msgstr "Pilih bahasa anda"
 
 #: pdf_bot/language.py:62
 msgid "Your language has been set to {}"
-msgstr ""
+msgstr "Bahasa anda telah disetkan ke {}"
 
 #: pdf_bot/payment.py:32
 msgid "The amount you sent is invalid, try again. {}"
-msgstr ""
+msgstr "Jumlah yang anda hantar tidak sah, cuba lagi. {}"
 
 #: pdf_bot/payment.py:53
 msgid "Help translate PDF Bot"
-msgstr ""
+msgstr "Bantu menterjemah Bot PDF"
 
 #: pdf_bot/payment.py:58
 msgid "Select how you want to support PDF Bot"
-msgstr ""
+msgstr "Pilih bagaimana anda mahu menyokong PDF Bot"
 
 #: pdf_bot/payment.py:79
 msgid "Say thanks to PDF Bot and help keep it running"
-msgstr ""
+msgstr "Katakan terima kasih kepada PDF Bot dan membantu memastikan ia berjalan"
 
 #: pdf_bot/payment.py:106
 msgid "Something went wrong"
-msgstr ""
+msgstr "Sesuatu yang tidak kena"
 
 #: pdf_bot/payment.py:114
 msgid "Thank you for your support!"
-msgstr ""
+msgstr "Terima kasih atas sokongan anda!"
 
 #: pdf_bot/url.py:24
 msgid "You've sent me this web page already and I'm still converting it"
-msgstr ""
+msgstr "Anda telah menghantar saya laman web ini sudah dan saya masih menukarnya"
 
 #: pdf_bot/url.py:27
 msgid "Converting your web page into a PDF file"
-msgstr ""
+msgstr "Menukar laman web anda ke dalam fail PDF"
 
 #: pdf_bot/url.py:39
 msgid "Unable to reach your web page"
-msgstr ""
+msgstr "Tidak dapat sampai ke laman web anda"
 
 #: pdf_bot/utils.py:34
 msgid "Action cancelled"
-msgstr ""
+msgstr "Tindakan dibatalkan"
 
 #: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
-msgstr ""
+msgstr "Fail yang anda hantar bukan fail PDF, cuba lagi"
 
 #: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "Fail PDF yang anda hantar terlalu besar untuk saya muat turun\n\n"
+"saya telah membatalkan tindakan anda"
 
 #: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
-msgstr ""
+msgstr "Sesuatu yang tidak kena, mulakan semula"
 
 #: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "Fail PDF anda seolah-olah tidak sah dan saya tidak dapat membuka dan membacanya\n\n"
+"saya telah membatalkan tindakan anda"
 
 #: pdf_bot/utils.py:197
 msgid "Your PDF file is already encrypted"
-msgstr ""
+msgstr "Fail PDF anda telah disulitkan"
 
 #: pdf_bot/utils.py:199
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "Fail {} PDF anda disulitkan dan anda perlu menyahsulitkannya terlebih dahulu\n\n"
+"saya telah membatalkan tindakan anda"
 
 #: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr ""
+msgstr "Fail PDF anda disulitkan dan anda perlu menyahsulitkannya terlebih dahulu\n\n"
+"saya telah membatalkan tindakan anda"
 
 #: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
-msgstr ""
+msgstr "Anda telah menghantar saya {} setakat ini:\n"
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
-msgstr ""
+msgstr "Fail hasilnya terlalu besar untuk saya hantar kepada anda"
 
 #: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
-msgstr ""
+msgstr "Berikut adalah fail keputusan anda"
 
 #: pdf_bot/commands/compare.py:54
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
-msgstr ""
+msgstr "Hantar saya salah satu fail PDF yang anda ingin bandingkan\n\n"
+"Perhatikan bahawa saya hanya boleh mencari perbezaan dalam teks"
 
 #: pdf_bot/commands/compare.py:88
 msgid "Send me the other PDF file that you'll like to compare"
-msgstr ""
+msgstr "Hantar saya fail PDF lain yang anda ingin bandingkan"
 
 #: pdf_bot/commands/compare.py:112
 msgid "Comparing your PDF files"
-msgstr ""
+msgstr "Membandingkan fail PDF anda"
 
 #: pdf_bot/commands/compare.py:131
 msgid "There are no differences in text between your PDF files"
-msgstr ""
+msgstr "Tiada perbezaan teks antara fail PDF anda"
 
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr ""
+msgstr "Hantar saya fail PDF yang anda ingin gabungkan\n\n"
+"Ambil perhatian bahawa fail akan digabungkan mengikut urut yang anda hantar kepada saya"
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
-msgstr ""
+msgstr "Fail yang anda hantar bukan fail PDF"
 
 #: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
-msgstr ""
+msgstr "Fail PDF yang anda hantar terlalu besar untuk saya muat turun"
 
 #: pdf_bot/commands/merge.py:130
 msgid "PDF files"
-msgstr ""
+msgstr "Fail PDF"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "Tekan <b>Selesai</b> jika anda telah menghantar saya semua fail PDF yang anda ingin gabungkan atau terus menghantar fail PDF kepada saya"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr ""
+msgstr "<b>{}</b> telah dialih keluar untuk penggabungan"
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
-msgstr ""
+msgstr "Anda belum menghantar saya sebarang fail PDF"
 
 #: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
-msgstr ""
+msgstr "Anda hanya menghantar saya satu fail PDF."
 
 #: pdf_bot/commands/merge.py:216
 msgid "Merging your PDF files"
-msgstr ""
+msgstr "Menggabungkan fail PDF anda"
 
 #: pdf_bot/commands/merge.py:236
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
-msgstr ""
+msgstr "Saya tidak boleh menggabungkan fail PDF anda kerana saya tidak dapat membuka dan membaca \"{}\". Pastikan ia tidak disulitkan"
 
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Hantar foto yang anda ingin mencantikkan atau menukar ke dalam fail PDF\n\n"
+"Ambil perhatian bahawa foto akan dicantikkan dan ditukar dalam susunan yang anda hantar kepada saya"
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
-msgstr ""
+msgstr "Nama fail tidak tersedia"
 
 #: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
-msgstr ""
+msgstr "Fail yang anda hantar bukan foto"
 
 #: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
-msgstr ""
+msgstr "Foto yang anda hantar terlalu besar untuk saya muat turun"
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr ""
+msgstr "Gambar"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr ""
+msgstr "Pilih tugas dari bawah jika anda telah menghantar semua foto kepada saya, atau terus menghantar foto kepada saya"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr ""
+msgstr "<b>{}</b> telah dialih keluar untuk mencantikkan atau menukar"
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
-msgstr ""
+msgstr "Mencantikkan dan menukar foto anda"
 
 #: pdf_bot/commands/photo.py:222
 msgid "Converting your photos into PDF"
-msgstr ""
+msgstr "Menukar foto anda ke dalam PDF"
 
 #: pdf_bot/commands/text.py:45
 msgid "Send me the text that you'll like to write into your PDF file"
-msgstr ""
+msgstr "Hantar saya teks yang anda ingin tulis ke dalam fail PDF anda"
 
 #: pdf_bot/commands/text.py:68
 msgid "Creating your PDF file"
-msgstr ""
+msgstr "Mencipta fail PDF anda"
 
 #: pdf_bot/commands/watermark.py:49
 msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr ""
+msgstr "Hantar saya fail PDF yang anda ingin tambah tera air"
 
 #: pdf_bot/commands/watermark.py:80
 msgid "Send me the watermark PDF file"
-msgstr ""
+msgstr "Hantar saya fail PDF tera air"
 
 #: pdf_bot/commands/watermark.py:105
 msgid "Adding the watermark onto your PDF file"
-msgstr ""
+msgstr "Menambah tera air ke fail PDF anda"
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr ""
+msgstr "tera air"
 
 #: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
-msgstr ""
+msgstr "Memampatkan fail PDF anda"
 
 #: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr ""
+msgstr "Saiz fail dikurangkan <b>{:.0%}</b>, dari <b>{}</b> ke <b>{}</b>"
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
 #: pdf_bot/files/photo.py:218
 msgid "Something went wrong, try again"
-msgstr ""
+msgstr "Sesuatu yang tidak kena, cuba lagi"
 
 #: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
-msgstr ""
+msgstr "Pilih jenis tanaman yang anda ingin laksanakan"
 
 #: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr ""
+msgstr "Hantar nombor antara {} dan {}. Ini adalah peratusan ruang margin untuk mengekalkan antara kandungan dalam fail PDF anda dan halaman"
 
 #: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr ""
+msgstr "Hantar nombor yang anda ingin laraskan saiz margin. Nombor positif akan mengurangkan saiz margin dan nombor negatif akan meningkatkannya"
 
 #: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
-msgstr ""
+msgstr "Nombor mestilah antara {} dan {}, cuba lagi"
 
 #: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
-msgstr ""
+msgstr "Nombor tidak sah, cuba lagi"
 
 #: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
-msgstr ""
+msgstr "Tanam fail PDF anda"
 
 #: pdf_bot/files/crypto.py:17
 msgid "Send me the password to decrypt your PDF file"
-msgstr ""
+msgstr "Hantar kata laluan untuk menyahsulitkan fail PDF anda"
 
 #: pdf_bot/files/crypto.py:32
 msgid "Decrypting your PDF file"
-msgstr ""
+msgstr "Menyahsulitkan fail PDF anda"
 
 #: pdf_bot/files/crypto.py:47
 msgid "Your PDF file seems to be invalid and I couldn't open and read it"
-msgstr ""
+msgstr "Fail PDF anda seolah-olah tidak sah dan saya tidak dapat membuka dan membacanya"
 
 #: pdf_bot/files/crypto.py:52
 msgid "Your PDF file is not encrypted"
-msgstr ""
+msgstr "Fail PDF anda tidak disulitkan"
 
 #: pdf_bot/files/crypto.py:57
 msgid "The decryption password is incorrect, try to send it again"
-msgstr ""
+msgstr "Kata laluan penyahsulitan tidak betul, cuba hantar sekali lagi"
 
 #: pdf_bot/files/crypto.py:71
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
-msgstr ""
+msgstr "Fail PDF anda disulitkan dengan kaedah yang saya tidak boleh nyahsulitkan"
 
 #: pdf_bot/files/crypto.py:86
 msgid "Send me the password to encrypt your PDF file"
-msgstr ""
+msgstr "Hantar kata laluan untuk menyulitkan fail PDF anda"
 
 #: pdf_bot/files/crypto.py:100
 msgid "Encrypting your PDF file"
-msgstr ""
+msgstr "Menyulitkan fail PDF anda"
 
 #: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
-msgstr ""
+msgstr "Pilih tugas yang anda ingin laksanakan"
 
 #: pdf_bot/files/file.py:106
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
-msgstr ""
+msgstr "Fail PDF anda terlalu besar bagi saya untuk memuat turun\n\n"
+"saya tidak dapat melaksanakan apa-apa tugas di atasnya"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "Menambah lapisan teks OCR ke fail PDF anda"
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
-msgstr ""
+msgstr "Fail PDF anda telah mempunyai lapisan teks"
 
 #: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
-msgstr ""
+msgstr "Foto anda terlalu besar untuk saya muat turun. Saya tidak boleh mencantikkan atau menukar foto anda"
 
 #: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
-msgstr ""
+msgstr "Mengekstrak pratonton untuk fail PDF anda"
 
 #: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
-msgstr ""
+msgstr "Pilih format fail keputusan"
 
 #: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
-msgstr ""
+msgstr "Menukar fail PDF anda ke dalam foto"
 
 #: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
-msgstr ""
+msgstr "Mengekstrak semua foto dalam fail PDF anda"
 
 #: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
-msgstr ""
+msgstr "Saya tidak dapat mencari sebarang foto dalam fail PDF anda"
 
 #: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
-msgstr ""
+msgstr "Lihat di atas untuk semua foto anda"
 
 #: pdf_bot/files/rename.py:19
 msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr ""
+msgstr "Hantar nama fail yang anda ingin namakan semula fail PDF anda"
 
 #: pdf_bot/files/rename.py:38
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
-msgstr ""
+msgstr "Nama fail tidak boleh mengandungi sebarang aksara berikut:\n"
+"{}\n"
+"Hantar nama fail lain kepada saya"
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr ""
+msgstr "Menamakan semula fail PDF anda ke dalam <b>{}</b>"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr ""
+msgstr "Pilih darjah yang anda ingin putar fail PDF anda mengikut arah jam"
 
 #: pdf_bot/files/rotate.py:48
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr ""
+msgstr "Memutar fail PDF anda mengikut arah jam oleh darjah {}"
 
 #: pdf_bot/files/scale.py:24
 msgid "Select the scale type that you'll like to perform"
-msgstr ""
+msgstr "Pilih jenis skala yang anda ingin laksanakan"
 
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr ""
+msgstr "Hantar saya lebar dan ketinggian\n\n"
+"<b>Contoh: 150 200</b> (ini akan menetapkan lebar hingga 150 dan ketinggian kepada 200)"
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr ""
+msgstr "Hantar saya faktor penskalaan untuk paksi mendatar dan menegak\n\n"
+"<b>Contoh: 2 0.5</b> (ini akan menggandakan paksi mendatar dan menghentikan paksi menegak)"
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "Faktor penskalaan <b>{}</b> tidak sah, cuba lagi"
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr ""
+msgstr "Dimensi <b>{}</b> tidak sah, cuba lagi"
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr ""
+msgstr "Menskalakan fail PDF anda, secara mendatar <b>{}</b> dan menegak oleh <b>{}</b>"
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr ""
+msgstr "Menskala fail PDF anda dengan lebar <b>{}</b> dan ketinggian <b>{}</b>"
 
 #: pdf_bot/files/split.py:36
 msgid "Send me the range of pages that you'll like to keep"
-msgstr ""
+msgstr "Hantar saya pelbagai halaman yang anda ingin simpan"
 
 #: pdf_bot/files/split.py:37
 msgid "General usage"
-msgstr ""
+msgstr "Penggunaan am"
 
 #: pdf_bot/files/split.py:38
 msgid "all pages"
-msgstr ""
+msgstr "semua halaman"
 
 #: pdf_bot/files/split.py:39
 msgid "page 8 only"
-msgstr ""
+msgstr "mukasurat 8 sahaja"
 
 #: pdf_bot/files/split.py:40
 msgid "first three pages"
-msgstr ""
+msgstr "tiga muka surat pertama"
 
 #: pdf_bot/files/split.py:41
 msgid "from page 8 onward"
-msgstr ""
+msgstr "daripada mukasurat 8 dan seterusnya"
 
 #: pdf_bot/files/split.py:42
 msgid "last page only"
-msgstr ""
+msgstr "laman terakhir sahaja"
 
 #: pdf_bot/files/split.py:43
 msgid "all pages except the last page"
-msgstr ""
+msgstr "semua halaman kecuali halaman terakhir"
 
 #: pdf_bot/files/split.py:44
 msgid "second last page only"
-msgstr ""
+msgstr "kedua halaman terakhir sahaja"
 
 #: pdf_bot/files/split.py:45
 msgid "last two pages"
-msgstr ""
+msgstr "dua muka surat terakhir"
 
 #: pdf_bot/files/split.py:46
 msgid "third and second last pages"
-msgstr ""
+msgstr "halaman ketiga dan kedua terakhir"
 
 #: pdf_bot/files/split.py:47
 msgid "Advanced usage"
-msgstr ""
+msgstr "Penggunaan lanjutan"
 
 #: pdf_bot/files/split.py:48
 msgid "pages"
-msgstr ""
+msgstr "Muka surat"
 
 #: pdf_bot/files/split.py:49
 msgid "to the end"
-msgstr ""
+msgstr "ke penghujung"
 
 #: pdf_bot/files/split.py:50
 msgid "all pages in reversed order"
-msgstr ""
+msgstr "semua halaman dalam susunan terbalik"
 
 #: pdf_bot/files/split.py:51
 msgid "except"
-msgstr ""
+msgstr "Kecuali"
 
 #: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
-msgstr ""
+msgstr "Julat tidak sah. Cuba lagi"
 
 #: pdf_bot/files/split.py:81
 msgid "Splitting your PDF file"
-msgstr ""
+msgstr "Membahagikan fail PDF anda"
 
 #: pdf_bot/files/text.py:22
 msgid "Select how you'll like me to send the text to you"
-msgstr ""
+msgstr "Pilih bagaimana anda mahu saya menghantar teks kepada anda"
 
 #: pdf_bot/files/text.py:35
 msgid "Extracting text from your PDF file"
-msgstr ""
+msgstr "Mengekstrak teks daripada fail PDF anda"
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr ""
+msgstr "<b>Lihat di atas untuk semua teks dalam fail PDF anda</b>"
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
-msgstr ""
+msgstr "Saya tidak dapat mencari sebarang teks dalam fail PDF anda"
 
 #~ msgid ""
 #~ "Send me the first photo that "
