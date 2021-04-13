@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-06 07:39\n"
+"PO-Revision-Date: 2021-04-13 20:27\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese, Brazilian\n"
@@ -35,15 +35,15 @@ msgid "Welcome to PDF Bot!\n\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr "Bem-vindo ao PDF Bot!\n\n"
-"<b>principais características:</b>\n"
-"- Compressa, mesclar, visualizar, renomear, dividir e adicionar marca d'água a arquivos PDF\n"
+"<b>Principais Características:</b>\n"
+"- Comprimir, mesclar, visualizar, renomear, dividir e adicionar marca d'água a arquivos PDF\n"
 "- Criar arquivos PDF a partir de mensagens de texto\n"
 "- Extrair imagens e textos de arquivos PDF\n"
 "- Converter arquivos PDF em imagens\n"
 "- Converter páginas e imagens da Web em arquivos PDF\n"
 "- Embelezar imagens de notas manuscritas em arquivos PDF\n"
 "- <b><i>E mais...</i></b>\n\n"
-"Tipo /help para ver como usar pdf Bot"
+"Escreva /help para ver como usar o PDF Bot"
 
 #: bot.py:172
 msgid "Set Language 🌎"
@@ -68,8 +68,8 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr "Você pode executar a maioria das tarefas me enviando um dos seguintes:\n"
-"- arquivos PDF\n"
+msgstr "Você pode executar a maioria das tarefas me enviando:\n"
+"- Arquivos PDF\n"
 "- Fotos\n"
 "- Links de página da Web\n\n"
 "O resto das tarefas podem ser executadas usando os comandos abaixo:\n"
@@ -332,7 +332,7 @@ msgstr "Não há diferenças de texto entre seus arquivos PDF"
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr "Envie-me os arquivos PDF que você vai gostar de mesclar\n\n"
+msgstr "Envie-me os arquivos PDF que você gostaria de mesclar\n\n"
 "Observe que os arquivos serão mesclados na ordem que você me enviar"
 
 #: pdf_bot/commands/merge.py:110
@@ -349,7 +349,7 @@ msgstr "Arquivos PDF"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "Pressione <b>Done</b> se você me enviou todos os arquivos PDF que você vai gostar de mesclar ou continuar me enviando os arquivos PDF"
+msgstr "Pressione <b>Pronto</b> se você me enviou todos os arquivos PDF que você deseja mesclar ou continue me enviando os arquivos PDF"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
@@ -374,7 +374,7 @@ msgstr "Não consigo mesclar seus arquivos PDF, pois não pude abrir e ler \"{}\
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Envie-me as fotos que você vai gostar de embelezar ou converter em um arquivo PDF\n\n"
+msgstr "Envie-me as fotos que você deseja embelezar ou converter em um arquivo PDF\n\n"
 "Observe que as fotos serão embelezadas e convertidas na ordem que você me enviar"
 
 #: pdf_bot/commands/photo.py:99
@@ -395,7 +395,7 @@ msgstr "fotos"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr "Selecione a tarefa de baixo se você me enviou todas as fotos, ou continue me enviando as fotos"
+msgstr "Selecione a tarefa abaixo se você me enviou todas as fotos, ou continue me enviando as fotos"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
@@ -411,7 +411,7 @@ msgstr "Convertendo suas fotos em PDF"
 
 #: pdf_bot/commands/text.py:45
 msgid "Send me the text that you'll like to write into your PDF file"
-msgstr "Envie-me o texto que você vai gostar de escrever em seu arquivo PDF"
+msgstr "Envie-me o texto que você deseja escrever em seu arquivo PDF"
 
 #: pdf_bot/commands/text.py:68
 msgid "Creating your PDF file"
@@ -606,7 +606,7 @@ msgstr "Escalonando seu arquivo PDF com largura de <b>{}</b> e altura de <b>{}</
 
 #: pdf_bot/files/split.py:36
 msgid "Send me the range of pages that you'll like to keep"
-msgstr "Envie-me o intervalo de páginas que você vai gostar de manter"
+msgstr "Envie-me o intervalo de páginas que você deseja manter"
 
 #: pdf_bot/files/split.py:37
 msgid "General usage"
