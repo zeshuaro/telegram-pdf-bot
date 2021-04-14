@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-14 10:38\n"
+"PO-Revision-Date: 2021-04-14 12:38\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese, Brazilian\n"
@@ -72,12 +72,12 @@ msgstr "Você pode executar a maioria das tarefas me enviando:\n"
 "- Arquivos PDF\n"
 "- Fotos\n"
 "- Links de página da Web\n\n"
-"O resto das tarefas podem ser executadas usando os comandos abaixo:\n"
+"As outras tarefas podem ser executadas usando os seguintes comandos:\n"
 "/compare - compare arquivos PDF\n"
-"/merge - mescla arquivos PDF\n"
-"/photo - converter e combinar várias fotos em arquivos PDF\n"
-"/text - criar arquivos PDF a partir de mensagens de texto\n"
-"/watermark - adicionar marca d'água a arquivos PDF"
+"/merge - mescle arquivos PDF\n"
+"/photo - converta e combine várias fotos em arquivos PDF\n"
+"/text - crie arquivos PDF a partir de mensagens de texto\n"
+"/watermark - adicione marca d'água a arquivos PDF"
 
 #: bot.py:216 pdf_bot/constants.py:84
 msgid "Send me the amount that you'll like to support PDF Bot"
@@ -349,7 +349,7 @@ msgstr "Arquivos PDF"
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "Pressione <b>Pronto</b> se você me enviou todos os arquivos PDF que você deseja mesclar ou continue me enviando os arquivos PDF"
+msgstr "Pressione <b>Pronto</b> se você me enviou todos os arquivos PDF que você deseja mesclar ou continue me enviando os arquivos PDF desejados"
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
@@ -395,7 +395,7 @@ msgstr "fotos"
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr "Selecione a tarefa abaixo se você me enviou todas as fotos, ou continue me enviando as fotos"
+msgstr "Selecione a tarefa abaixo se você me enviou todas as fotos, ou continue me enviando as fotos desejadas"
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
@@ -646,7 +646,7 @@ msgstr "últimas duas páginas"
 
 #: pdf_bot/files/split.py:46
 msgid "third and second last pages"
-msgstr "penúltima e antepenúltimas páginas"
+msgstr "penúltima e antepenúltima páginas"
 
 #: pdf_bot/files/split.py:47
 msgid "Advanced usage"
