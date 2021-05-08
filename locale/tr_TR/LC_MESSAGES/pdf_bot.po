@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-06 07:39\n"
+"POT-Creation-Date: 2021-05-08 03:00+0000\n"
+"PO-Revision-Date: 2021-05-08 03:54\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Crowdin-File: /master/locale/en_GB/LC_MESSAGES/pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: bot.py:153
+#: bot.py:148
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -45,19 +45,19 @@ msgstr "PDF Bot'a hoş geldiniz!\n\n"
 "- <b><i>Ve daha fazlası...</i></b>\n\n"
 "PDF Bot'u nasıl kullanacağınızı görmek için /help yazın"
 
-#: bot.py:172
+#: bot.py:167
 msgid "Set Language 🌎"
 msgstr "Dili ayarla 🌎"
 
-#: bot.py:174 pdf_bot/utils.py:307
+#: bot.py:169 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "Kanala Katıl"
 
-#: bot.py:175 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "PDF Bot'u Destekle"
 
-#: bot.py:181
+#: bot.py:176
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -78,10 +78,6 @@ msgstr "Görevlerin çoğunu bana aşağıdakilerden birini göndererek gerçekl
 "/photo - birden fazla fotoğrafı PDF dosyalarına dönüştürün ve birleştirin\n"
 "/text - metin mesajlarından PDF dosyaları\n"
 "/watermark - PDF dosyalarına filigran ekleyin"
-
-#: bot.py:216 pdf_bot/constants.py:84
-msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "Bana PDF Bot'u desteklemek istediğiniz miktarı gönderin"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -199,10 +195,6 @@ msgstr "Kola ısmarla 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "Et ısmarla 🍲 ($10)"
 
-#: pdf_bot/constants.py:82
-msgid "Say Awesome 🤩 (Custom)"
-msgstr "Harika şeyler söyle (opsiyonel)"
-
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Geri bildiriminizi bana gönderin (geliştiricime yalnızca İngilizce geri bildirim gönderilecektir)"
@@ -223,27 +215,23 @@ msgstr "Dilinizi seçin"
 msgid "Your language has been set to {}"
 msgstr "Diliniz {} olarak ayarlandı"
 
-#: pdf_bot/payment.py:32
-msgid "The amount you sent is invalid, try again. {}"
-msgstr "Belirttiğiniz değer geçersiz, tekrar deneyin {}"
-
-#: pdf_bot/payment.py:53
+#: pdf_bot/payment.py:37
 msgid "Help translate PDF Bot"
 msgstr "Uygulamayı çevirmeye yardım edin"
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:42
 msgid "Select how you want to support PDF Bot"
 msgstr "PDF Botu nasıl destekleyeceğinizi seçin"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:67
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PDF Bot'a yardım edin ve çalışmasında yardımcı olun"
 
-#: pdf_bot/payment.py:106
+#: pdf_bot/payment.py:90
 msgid "Something went wrong"
 msgstr "Bir sorun oluştu"
 
-#: pdf_bot/payment.py:114
+#: pdf_bot/payment.py:98
 msgid "Thank you for your support!"
 msgstr "Desteğin için teşekkür ederiz!"
 
@@ -884,5 +872,14 @@ msgstr "PDF dosyanızda hiçbir metin bulamadım"
 #~ msgstr ""
 
 #~ msgid "Set Language"
+#~ msgstr ""
+
+#~ msgid "Send me the amount that you'll like to support PDF Bot"
+#~ msgstr ""
+
+#~ msgid "Say Awesome 🤩 (Custom)"
+#~ msgstr ""
+
+#~ msgid "The amount you sent is invalid, try again. {}"
 #~ msgstr ""
 
