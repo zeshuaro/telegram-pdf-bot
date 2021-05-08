@@ -26,7 +26,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Install Babel 🌐
+      - name: Install Babel ⚙️
         run: |
           pip3 install -U pip
           pip3 install Babel==2.9.0
@@ -44,3 +44,17 @@ jobs:
           commit_message: Update localization source file
           file_pattern: locale/en_GB/LC_MESSAGES/pdf_bot.po
           push_options: --force
+
+      - name: Crowdin action 🌐
+        uses: crowdin/github-action@1.1.0
+        with:
+          upload_sources: true
+          upload_translations: false
+          download_translations: true
+          create_pull_request: true
+          pull_request_labels: "automerge, l10n"
+          config: ./crowdin.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
