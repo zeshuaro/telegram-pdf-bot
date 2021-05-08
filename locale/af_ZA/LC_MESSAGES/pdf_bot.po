@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-06 07:39\n"
+"POT-Creation-Date: 2021-05-08 12:54+0000\n"
+"PO-Revision-Date: 2021-05-08 12:54\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -20,10 +20,10 @@ msgstr ""
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: af\n"
-"X-Crowdin-File: /master/locale/en_GB/LC_MESSAGES/pdf_bot.po\n"
-"X-Crowdin-File-ID: 88\n"
+"X-Crowdin-File: pdf_bot.po\n"
+"X-Crowdin-File-ID: 104\n"
 
-#: bot.py:153
+#: bot.py:148
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -34,30 +34,21 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr "Welkom by PDF Bot!\n\n"
-"<b> Belangrikste kenmerke: </b>\n"
-"- Komprimeer, voeg saam, voorskou, herbenoem, verdeel en voeg watermerk by PDF-lêers\n"
-"- Skep PDF-lêers vanaf sms-boodskappe\n"
-"- Onttrek beelde en teks uit PDF-lêers\n"
-"- Skakel PDF-lêers om in beelde\n"
-"- Skakel webblaaie en beelde om in PDF-lêers\n"
-"- Verfraai handgeskrewe notasbeelde in PDF-lêers\n"
-"- <b> <i> En meer... </i> </b>\n\n"
-"Tik /help om te sien hoe u PDF Bot kan gebruik"
+msgstr ""
 
-#: bot.py:172
+#: bot.py:167
 msgid "Set Language 🌎"
-msgstr "Stel taalopsigte 🌎"
+msgstr ""
 
-#: bot.py:174 pdf_bot/utils.py:307
+#: bot.py:169 pdf_bot/utils.py:307
 msgid "Join Channel"
-msgstr "Sluit aan by Kanaal"
+msgstr ""
 
-#: bot.py:175 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
-msgstr "Ondersteun PDF Bot"
+msgstr ""
 
-#: bot.py:181
+#: bot.py:176
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -68,629 +59,596 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr "U kan die meeste van die take uitvoer deur vir my een van die volgende te stuur:\n"
-"- PDF-lêers\n"
-"- Foto's\n"
-"- Webblad skakels\n\n"
-"Die res van die take kan uitgevoer word deur die opdragte hieronder te gebruik:\n"
-"/compare - vergelyk PDF-lêers\n"
-"/merge - voeg PDF-lêers saam\n"
-"/photo - omskep en kombineer verskeie foto's in PDF-lêers\n"
-"/text - skep PDF-lêers van sms-boodskappe\n"
-"/watermark - voeg watermerk by PDF-lêers"
-
-#: bot.py:216 pdf_bot/constants.py:84
-msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "Stuur vir my die bedrag wat jy wil PDF Bot ondersteun"
+msgstr ""
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
-msgstr "Kanselleer"
+msgstr ""
 
 #: pdf_bot/constants.py:39
 msgid "Done"
-msgstr "Gedoen"
+msgstr ""
 
 #: pdf_bot/constants.py:40
 msgid "Back"
-msgstr "Terug"
+msgstr ""
 
 #: pdf_bot/constants.py:41
 msgid "By Percentage"
-msgstr "Deur Persentasie"
+msgstr ""
 
 #: pdf_bot/constants.py:42
 msgid "By Margin Size"
-msgstr "Deur Marge Grootte"
+msgstr ""
 
 #: pdf_bot/constants.py:43
 msgid "Preview"
-msgstr "Voorskou"
+msgstr ""
 
 #: pdf_bot/constants.py:44
 msgid "Decrypt"
-msgstr "Dekripteer"
+msgstr ""
 
 #: pdf_bot/constants.py:45
 msgid "Encrypt"
-msgstr "Enkripteer"
+msgstr ""
 
 #: pdf_bot/constants.py:46
 msgid "Extract Photos"
-msgstr "Uittreksel Foto's"
+msgstr ""
 
 #: pdf_bot/constants.py:47
 msgid "To Photos"
-msgstr "Na foto's"
+msgstr ""
 
 #: pdf_bot/constants.py:48
 msgid "Rotate"
-msgstr "Roteer"
+msgstr ""
 
 #: pdf_bot/constants.py:49
 msgid "Scale"
-msgstr "Skaal"
+msgstr ""
 
 #: pdf_bot/constants.py:50
 msgid "Split"
-msgstr "Verdeel"
+msgstr ""
 
 #: pdf_bot/constants.py:51
 msgid "Beautify"
-msgstr "Hierdie artikel is 'n weesbladsy"
+msgstr ""
 
 #: pdf_bot/constants.py:52
 msgid "To PDF"
-msgstr "Na PDF"
+msgstr ""
 
 #: pdf_bot/constants.py:53
 msgid "Rename"
-msgstr "Hernoem"
+msgstr ""
 
 #: pdf_bot/constants.py:54
 msgid "Crop"
-msgstr "Gewas"
+msgstr ""
 
 #: pdf_bot/constants.py:55
 msgid "Compressed"
-msgstr "Saamgepers"
+msgstr ""
 
 #: pdf_bot/constants.py:56
 msgid "Photos"
-msgstr "Foto's"
+msgstr ""
 
 #: pdf_bot/constants.py:57
 msgid "Remove Last File"
-msgstr "Verwyder laaste lêer"
+msgstr ""
 
 #: pdf_bot/constants.py:58
 msgid "To Dimensions"
-msgstr "Na Afmetings"
+msgstr ""
 
 #: pdf_bot/constants.py:59
 msgid "Extract Text"
-msgstr "Uittreksel teks"
+msgstr ""
 
 #: pdf_bot/constants.py:60
 msgid "Text Message"
-msgstr "Teksboodskap"
+msgstr ""
 
 #: pdf_bot/constants.py:61
 msgid "Text File"
-msgstr "Tekslêer"
+msgstr ""
 
 #: pdf_bot/constants.py:63
 msgid "Compress"
-msgstr "Saamdruk"
+msgstr ""
 
 #: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
-msgstr "Sê dankie 😁 ($1)"
+msgstr ""
 
 #: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
-msgstr "Koffie ☕ ($3)"
+msgstr ""
 
 #: pdf_bot/constants.py:80
 msgid "Beer 🍺 ($5)"
-msgstr "Bier 🍺 ($5)"
+msgstr ""
 
 #: pdf_bot/constants.py:81
 msgid "Meal 🍲 ($10)"
-msgstr "Ete 🍲 ($10)"
-
-#: pdf_bot/constants.py:82
-msgid "Say Awesome 🤩 (Custom)"
-msgstr "Sê Awesome 🤩 (aangepas)"
+msgstr ""
 
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
-msgstr "Stuur vir my jou terugvoer (slegs Engelse terugvoer sal aan my ontwikkelaar gestuur word)"
+msgstr ""
 
 #: pdf_bot/feedback.py:79
 msgid "The feedback is not in English, try again"
-msgstr "Die terugvoer is nie in Engels nie, probeer weer"
+msgstr ""
 
 #: pdf_bot/feedback.py:99
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
-msgstr "Dankie vir jou terugvoer, ek het dit reeds aan my ontwikkelaar aangestuur"
+msgstr ""
 
 #: pdf_bot/language.py:24
 msgid "Select your language"
-msgstr "Kies jou taal"
+msgstr ""
 
 #: pdf_bot/language.py:62
 msgid "Your language has been set to {}"
-msgstr "Jou taal is op {} gestel"
+msgstr ""
 
-#: pdf_bot/payment.py:32
-msgid "The amount you sent is invalid, try again. {}"
-msgstr "Die bedrag wat jy gestuur het, is ongeldig, probeer weer. {}"
-
-#: pdf_bot/payment.py:53
+#: pdf_bot/payment.py:37
 msgid "Help translate PDF Bot"
-msgstr "Help vertaal PDF Bot"
+msgstr ""
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:42
 msgid "Select how you want to support PDF Bot"
-msgstr "Kies hoe jy PDF Bot wil ondersteun"
+msgstr ""
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:67
 msgid "Say thanks to PDF Bot and help keep it running"
-msgstr "Sê dankie aan PDF Bot en help om dit aan die gang te hou"
+msgstr ""
 
-#: pdf_bot/payment.py:106
+#: pdf_bot/payment.py:90
 msgid "Something went wrong"
-msgstr "Iets het verkeerd geloop"
+msgstr ""
 
-#: pdf_bot/payment.py:114
+#: pdf_bot/payment.py:98
 msgid "Thank you for your support!"
-msgstr "Dankie vir jou ondersteuning!"
+msgstr ""
 
 #: pdf_bot/url.py:24
 msgid "You've sent me this web page already and I'm still converting it"
-msgstr "Jy het al vir my hierdie webblad gestuur en ek omskep dit steeds"
+msgstr ""
 
 #: pdf_bot/url.py:27
 msgid "Converting your web page into a PDF file"
-msgstr "Omskakeling van jou webblad in 'n PDF-lêer"
+msgstr ""
 
 #: pdf_bot/url.py:39
 msgid "Unable to reach your web page"
-msgstr "Kan nie jou webblad bereik nie"
+msgstr ""
 
 #: pdf_bot/utils.py:34
 msgid "Action cancelled"
-msgstr "Aksie gekanselleer"
+msgstr ""
 
 #: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
-msgstr "Die lêer wat jy gestuur het, is nie 'n PDF-lêer nie, probeer weer"
+msgstr ""
 
 #: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
-msgstr "Die PDF-lêer wat jy gestuur het, is te groot vir my om\n\n"
-"wat ek jou aksie gekanselleer het, af te laai"
+msgstr ""
 
 #: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
-msgstr "Iets het verkeerd gegaan, begin weer"
+msgstr ""
 
 #: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
-msgstr "Jou PDF-lêer blyk ongeldig te wees en ek kon dit nie oopmaak en\n\n"
-"ek jou aksie gekanselleer het nie"
+msgstr ""
 
 #: pdf_bot/utils.py:197
 msgid "Your PDF file is already encrypted"
-msgstr "Jou PDF-lêer is reeds geënkripteer"
+msgstr ""
 
 #: pdf_bot/utils.py:199
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr "Jou {} PDF-lêer is geënkripteer en jy sal dit eers moet dekripteer\n\n"
-"ek jou aksie gekanselleer het"
+msgstr ""
 
 #: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr "Jou PDF-lêer is geënkripteer en jy moet dit eers dekripteer\n\n"
-"ek jou aksie gekanselleer het"
+msgstr ""
 
 #: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
-msgstr "U het dit tot dusver vir my gestuur:\n"
+msgstr ""
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
-msgstr "Die resultaatlêer is te groot vir my om na u te stuur"
+msgstr ""
 
 #: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
-msgstr "Hier is u resultaatlêer"
+msgstr ""
 
 #: pdf_bot/commands/compare.py:54
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
-msgstr "Stuur vir my een van die PDF-lêers wat jy graag met\n\n"
-"Daarop let dat ek net verskille in teks kan soek"
+msgstr ""
 
 #: pdf_bot/commands/compare.py:88
 msgid "Send me the other PDF file that you'll like to compare"
-msgstr "Stuur vir my die ander PDF-lêer wat jy wil vergelyk"
+msgstr ""
 
 #: pdf_bot/commands/compare.py:112
 msgid "Comparing your PDF files"
-msgstr "Vergelyk jou PDF-lêers"
+msgstr ""
 
 #: pdf_bot/commands/compare.py:131
 msgid "There are no differences in text between your PDF files"
-msgstr "Daar is geen verskille in teks tussen jou PDF-lêers nie"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr "Stuur vir my die PDF-lêers wat jy\n\n"
-"Let daarop dat die lêers saamgesmelt sal word in die volgorde wat jy my stuur"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
-msgstr "Die lêer wat jy gestuur het, is nie 'n PDF-lêer nie"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
-msgstr "Die PDF-lêer wat jy gestuur het, is te groot vir my om af te laai"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:130
 msgid "PDF files"
-msgstr "PDF-lêers"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "Druk <b>Gedoen</b> as jy my al die PDF-lêers gestuur het wat jy wil saamsmelt of aanhou om vir my die PDF-lêers te stuur"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr "<b>{}</b> is verwyder vir samesmelting"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
-msgstr "Jy het nie vir my enige PDF-lêers gestuur nie"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
-msgstr "Jy het net vir my een PDF-lêer gestuur."
+msgstr ""
 
 #: pdf_bot/commands/merge.py:216
 msgid "Merging your PDF files"
-msgstr "Voeg jou PDF-lêers saam"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:236
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
-msgstr "Ek kan nie jou PDF-lêers saamsmelt nie, aangesien ek nie \"{}\" kon oopmaak en lees nie. Maak seker dat dit nie geënkripteer is nie"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Stuur vir my die foto's wat jy wil verfraai of omskep in 'n PDF-lêer\n\n"
-"Let daarop dat die foto's verfraai en omskep sal word in die volgorde wat jy my stuur"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
-msgstr "Lêernaam nie beskikbaar nie"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
-msgstr "Die lêer wat jy gestuur het, is nie 'n foto nie"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
-msgstr "Die foto wat u gestuur het, is te groot vir my om af te laai"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr "foto's"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr "Kies die taak van onder as jy vir my al die foto's gestuur het, of hou aan om vir my die foto's te stuur"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr "<b>{}</b> verwyder vir verfraaiing of omskakeling"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
-msgstr "Verfraai en omskep jou foto's"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:222
 msgid "Converting your photos into PDF"
-msgstr "Omskakeling van jou foto's in PDF"
+msgstr ""
 
 #: pdf_bot/commands/text.py:45
 msgid "Send me the text that you'll like to write into your PDF file"
-msgstr "Stuur vir my die teks wat jy in jou PDF-lêer wil skryf"
+msgstr ""
 
 #: pdf_bot/commands/text.py:68
 msgid "Creating your PDF file"
-msgstr "Skep jou PDF-lêer"
+msgstr ""
 
 #: pdf_bot/commands/watermark.py:49
 msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr "Stuur vir my die PDF-lêer wat jy graag 'n watermerk wil byvoeg"
+msgstr ""
 
 #: pdf_bot/commands/watermark.py:80
 msgid "Send me the watermark PDF file"
-msgstr "Stuur vir my die watermerk PDF-lêer"
+msgstr ""
 
 #: pdf_bot/commands/watermark.py:105
 msgid "Adding the watermark onto your PDF file"
-msgstr "Voeg die watermerk by jou PDF-lêer"
+msgstr ""
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr "watermerk"
+msgstr ""
 
 #: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
-msgstr "Druk u PDF-lêer saam"
+msgstr ""
 
 #: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr "Lêergrootte verminder met <b>{:.0%}</b>, van <b>{}</b> tot <b>{}</b>"
+msgstr ""
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
 #: pdf_bot/files/photo.py:218
 msgid "Something went wrong, try again"
-msgstr "Iets het verkeerd gegaan, probeer weer"
+msgstr ""
 
 #: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
-msgstr "Kies die tipe gewas wat u wil uitvoer"
+msgstr ""
 
 #: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Stuur vir my 'n nommer tussen {} en {}. Dit is die persentasie spasie om tussen die inhoud in u PDF-lêer en die bladsy te behou"
+msgstr ""
 
 #: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Stuur vir my 'n nommer waarmee u die kantlyngrootte wil aanpas. Positiewe getalle sal die kantlyngrootte verminder en negatiewe getalle verhoog dit"
+msgstr ""
 
 #: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
-msgstr "Die getal moet tussen {} en {}, probeer weer"
+msgstr ""
 
 #: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
-msgstr "Die nommer is ongeldig, probeer weer"
+msgstr ""
 
 #: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
-msgstr "Besig om jou PDF-lêer te snoei"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:17
 msgid "Send me the password to decrypt your PDF file"
-msgstr "Stuur vir my die wagwoord om jou PDF-lêer te dekripteer"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:32
 msgid "Decrypting your PDF file"
-msgstr "Dekripteer jou PDF-lêer"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:47
 msgid "Your PDF file seems to be invalid and I couldn't open and read it"
-msgstr "Jou PDF-lêer blyk ongeldig te wees en ek kon dit nie oopmaak en lees nie"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:52
 msgid "Your PDF file is not encrypted"
-msgstr "Jou PDF-lêer is nie geënkripteer nie"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:57
 msgid "The decryption password is incorrect, try to send it again"
-msgstr "Die ontsyferingswagwoord is verkeerd, probeer dit weer stuur"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:71
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
-msgstr "Jou PDF-lêer is geënkripteer met 'n metode wat ek nie kan dekripteer nie"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:86
 msgid "Send me the password to encrypt your PDF file"
-msgstr "Stuur vir my die wagwoord om jou PDF-lêer te enkripteer"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:100
 msgid "Encrypting your PDF file"
-msgstr "Enkripteer jou PDF-lêer"
+msgstr ""
 
 #: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
-msgstr "Kies die taak wat jy wil uitvoer"
+msgstr ""
 
 #: pdf_bot/files/file.py:106
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
-msgstr "Jou PDF-lêer is te groot vir my om af\n\n"
-"en ek kan geen take daarop uitvoer nie"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
-msgstr "Voeg 'n OCR-tekslaag by u PDF-lêer"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
-msgstr "U PDF-lêer het reeds 'n tekslaag"
+msgstr ""
 
 #: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
-msgstr "Jou foto is te groot vir my om af te laai. Ek kan nie u foto verfraai of omskep nie"
+msgstr ""
 
 #: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
-msgstr "Onttrek 'n voorskou vir jou PDF-lêer"
+msgstr ""
 
 #: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
-msgstr "Kies die resultaat lêer formaat"
+msgstr ""
 
 #: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
-msgstr "Omskakeling van jou PDF-lêer in foto's"
+msgstr ""
 
 #: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
-msgstr "Onttrek al die foto's in jou PDF-lêer"
+msgstr ""
 
 #: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
-msgstr "Ek kon geen foto's in jou PDF-lêer vind nie"
+msgstr ""
 
 #: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
-msgstr "Sien hierbo vir al jou foto's"
+msgstr ""
 
 #: pdf_bot/files/rename.py:19
 msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "Stuur vir my die lêernaam waarna jy jou PDF-lêer wil hernoem"
+msgstr ""
 
 #: pdf_bot/files/rename.py:38
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
-msgstr "Lêername kan nie enige van die volgende karakters bevat nie:\n"
-"{} het\n"
-"vir my 'n ander lêernaam"
+msgstr ""
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr "Hernoem tans jou PDF-lêer <b>{}</b>"
+msgstr ""
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "Kies die grade wat jy jou PDF-lêer in kloksgewys wil draai"
+msgstr ""
 
 #: pdf_bot/files/rotate.py:48
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr "Draai u PDF-lêer met {} grade kloksgewys"
+msgstr ""
 
 #: pdf_bot/files/scale.py:24
 msgid "Select the scale type that you'll like to perform"
-msgstr "Kies die skaal wat u wil uitvoer"
+msgstr ""
 
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr "Stuur vir my die breedte en hoogte\n\n"
-"<b>Voorbeeld: 150 200</b> (dit sal die breedte op 150 en hoogte tot 200 stel)"
+msgstr ""
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr "Stuur vir my die skaalfaktore vir die horisontale en vertikale as\n\n"
-"<b> Voorbeeld: 2 0,5 </b> (dit sal die horisontale as verdubbel en die vertikale as halveer)"
+msgstr ""
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr "Die skaalfaktore <b> {} </b> is ongeldig, probeer weer"
+msgstr ""
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr "Die afmetings <b>{}</b> is ongeldig, probeer weer"
+msgstr ""
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr "Skaal jou PDF-lêer, horisontaal deur <b>{}</b> en vertikaal deur <b>{}</b>"
+msgstr ""
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr "Skaal jou PDF-lêer met breedte <b>{}</b> en hoogte van <b>{}</b>"
+msgstr ""
 
 #: pdf_bot/files/split.py:36
 msgid "Send me the range of pages that you'll like to keep"
-msgstr "Stuur vir my die reeks bladsye wat jy wil hou"
+msgstr ""
 
 #: pdf_bot/files/split.py:37
 msgid "General usage"
-msgstr "Algemene gebruik"
+msgstr ""
 
 #: pdf_bot/files/split.py:38
 msgid "all pages"
-msgstr "alle bladsye"
+msgstr ""
 
 #: pdf_bot/files/split.py:39
 msgid "page 8 only"
-msgstr "slegs bladsy 8"
+msgstr ""
 
 #: pdf_bot/files/split.py:40
 msgid "first three pages"
-msgstr "eerste drie bladsye"
+msgstr ""
 
 #: pdf_bot/files/split.py:41
 msgid "from page 8 onward"
-msgstr "vanaf bladsy 8"
+msgstr ""
 
 #: pdf_bot/files/split.py:42
 msgid "last page only"
-msgstr "slegs laaste bladsy"
+msgstr ""
 
 #: pdf_bot/files/split.py:43
 msgid "all pages except the last page"
-msgstr "alle bladsye behalwe die laaste bladsy"
+msgstr ""
 
 #: pdf_bot/files/split.py:44
 msgid "second last page only"
-msgstr "slegs tweede laaste bladsy"
+msgstr ""
 
 #: pdf_bot/files/split.py:45
 msgid "last two pages"
-msgstr "laaste twee bladsye"
+msgstr ""
 
 #: pdf_bot/files/split.py:46
 msgid "third and second last pages"
-msgstr "derde en tweede laaste bladsye"
+msgstr ""
 
 #: pdf_bot/files/split.py:47
 msgid "Advanced usage"
-msgstr "Gevorderde gebruik"
+msgstr ""
 
 #: pdf_bot/files/split.py:48
 msgid "pages"
-msgstr "bladsye"
+msgstr ""
 
 #: pdf_bot/files/split.py:49
 msgid "to the end"
-msgstr "tot die einde"
+msgstr ""
 
 #: pdf_bot/files/split.py:50
 msgid "all pages in reversed order"
-msgstr "alle bladsye in omgekeerde volgorde"
+msgstr ""
 
 #: pdf_bot/files/split.py:51
 msgid "except"
-msgstr "behalwe"
+msgstr ""
 
 #: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
-msgstr "Die reeks is ongeldig. Probeer weer"
+msgstr ""
 
 #: pdf_bot/files/split.py:81
 msgid "Splitting your PDF file"
-msgstr "Verdeel jou PDF-lêer"
+msgstr ""
 
 #: pdf_bot/files/text.py:22
 msgid "Select how you'll like me to send the text to you"
-msgstr "Kies hoe jy wil hê ek moet die teks aan jou stuur"
+msgstr ""
 
 #: pdf_bot/files/text.py:35
 msgid "Extracting text from your PDF file"
-msgstr "Onttrek teks uit jou PDF-lêer"
+msgstr ""
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr "<b>Sien hierbo vir al die teks in jou PDF-lêer</b>"
+msgstr ""
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
-msgstr "Ek kon geen teks in jou PDF-lêer vind nie"
+msgstr ""
 
 #~ msgid ""
 #~ "Send me the first photo that "
@@ -885,5 +843,14 @@ msgstr "Ek kon geen teks in jou PDF-lêer vind nie"
 #~ msgstr ""
 
 #~ msgid "Set Language"
+#~ msgstr ""
+
+#~ msgid "Send me the amount that you'll like to support PDF Bot"
+#~ msgstr ""
+
+#~ msgid "Say Awesome 🤩 (Custom)"
+#~ msgstr ""
+
+#~ msgid "The amount you sent is invalid, try again. {}"
 #~ msgstr ""
 

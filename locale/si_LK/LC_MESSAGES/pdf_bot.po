@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-06 07:39\n"
+"POT-Creation-Date: 2021-05-08 12:54+0000\n"
+"PO-Revision-Date: 2021-05-08 12:54\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -20,10 +20,10 @@ msgstr ""
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: si-LK\n"
-"X-Crowdin-File: /master/locale/en_GB/LC_MESSAGES/pdf_bot.po\n"
-"X-Crowdin-File-ID: 88\n"
+"X-Crowdin-File: pdf_bot.po\n"
+"X-Crowdin-File-ID: 104\n"
 
-#: bot.py:153
+#: bot.py:148
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -34,30 +34,21 @@ msgid "Welcome to PDF Bot!\n\n"
 "- Beautify handwritten notes images into PDF files\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
-msgstr "PDF බොට් වෙත සාදරයෙන් පිළිගනිමු!\n\n"
-"<b> ප්‍රධාන ලක්ෂණ: </b>\n"
-"- පී. ඩී. එෆ් ගොනු වලට සම්පීඩනය, ඒකාබද්ධ කිරීම, පෙරදසුන, නැවත නම් කිරීම, බෙදීම සහ ජල සලකුණ එක් කරන්න\n"
-"- කෙටි පණිවිඩ වලින් PDF ගොනු සාදන්න\n"
-"- PDF ගොනු වලින් රූප සහ පෙළ උපුටා ගන්න\n"
-"- PDF ගොනු රූප බවට පරිවර්තනය කරන්න\n"
-"- වෙබ් පිටු සහ පින්තූර PDF ගොනු බවට පරිවර්තනය කරන්න\n"
-"- අත් අකුරු සටහන් පින්තූර PDF ගොනු වලට අලංකාර කරන්න\n"
-"- <b> <i> සහ තවත්... </i> </b>\n\n"
-"PDF බොට් භාවිතා කරන්නේ කෙසේදැයි බැලීමට ටයිප් කරන්න /help කරන්න"
+msgstr ""
 
-#: bot.py:172
+#: bot.py:167
 msgid "Set Language 🌎"
-msgstr "භාෂාව සකසන්න 🌎"
+msgstr ""
 
-#: bot.py:174 pdf_bot/utils.py:307
+#: bot.py:169 pdf_bot/utils.py:307
 msgid "Join Channel"
-msgstr "නාලිකාවට සම්බන්ධ වන්න"
+msgstr ""
 
-#: bot.py:175 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
-msgstr "PDF බොට් සදහා උදව් කරන්න"
+msgstr ""
 
-#: bot.py:181
+#: bot.py:176
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -68,629 +59,596 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr "පහත සඳහන් දේවලින් එකක් මට එවීමෙන් ඔබට බොහෝ කාර්යයන් කළ හැකිය:\n"
-"- PDF ගොනු\n"
-"- ඡායාරූප\n"
-"- වෙබ් පිටු සබැඳි\n\n"
-"පහත දැක්වෙන විධානයන් භාවිතා කිරීමෙන් ඉතිරි කාර්යයන් ඉටු කළ හැකිය:\n"
-"/compare - PDF ගොනු සංසන්දනය කරන්න\n"
-"/merge - PDF ගොනු ඒකාබද්ධ කරන්න\n"
-"/photo - බහු ඡායාරූප PDF ගොනු බවට පරිවර්තනය කර ඒකාබද්ධ කරන්න\n"
-"/text - කෙටි පණිවිඩ වලින් PDF ගොනු සාදන්න\n"
-"/watermark - PDF ගොනු වලට දිය සලකුණ එක් කරන්න"
-
-#: bot.py:216 pdf_bot/constants.py:84
-msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "ඔබ PDF බොට් සඳහා සහය දැක්වීමට කැමති මුදල මා හට එවන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
-msgstr "අවලංගු කරන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:39
 msgid "Done"
-msgstr "අවසන් කරන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:40
 msgid "Back"
-msgstr "ආපසු"
+msgstr ""
 
 #: pdf_bot/constants.py:41
 msgid "By Percentage"
-msgstr "ප්‍රතිශතය අනුව"
+msgstr ""
 
 #: pdf_bot/constants.py:42
 msgid "By Margin Size"
-msgstr "මාර්ජින් ප්‍රමාණය අනුව"
+msgstr ""
 
 #: pdf_bot/constants.py:43
 msgid "Preview"
-msgstr "පෙරදසුන"
+msgstr ""
 
 #: pdf_bot/constants.py:44
 msgid "Decrypt"
-msgstr "විකේතනය"
+msgstr ""
 
 #: pdf_bot/constants.py:45
 msgid "Encrypt"
-msgstr "ආකේතනය"
+msgstr ""
 
 #: pdf_bot/constants.py:46
 msgid "Extract Photos"
-msgstr "ඡායාරූප උපුටා ගැනීම"
+msgstr ""
 
 #: pdf_bot/constants.py:47
 msgid "To Photos"
-msgstr "ඡායාරූප සදහා"
+msgstr ""
 
 #: pdf_bot/constants.py:48
 msgid "Rotate"
-msgstr "කරකවන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:49
 msgid "Scale"
-msgstr "පරිමාණය"
+msgstr ""
 
 #: pdf_bot/constants.py:50
 msgid "Split"
-msgstr "කොටස් කරන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:51
 msgid "Beautify"
-msgstr "අලංකාර කරන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:52
 msgid "To PDF"
-msgstr "PDF වෙත"
+msgstr ""
 
 #: pdf_bot/constants.py:53
 msgid "Rename"
-msgstr "නම වෙනස් කරන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:54
 msgid "Crop"
-msgstr "අනවශ්‍ය කොටස් කපා දමන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:55
 msgid "Compressed"
-msgstr "හකුලන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:56
 msgid "Photos"
-msgstr "ඡායාරූප"
+msgstr ""
 
 #: pdf_bot/constants.py:57
 msgid "Remove Last File"
-msgstr "අවසාන ගොනුව ඉවත් කරන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:58
 msgid "To Dimensions"
-msgstr "මානයන් වෙත"
+msgstr ""
 
 #: pdf_bot/constants.py:59
 msgid "Extract Text"
-msgstr "අකුරු උපුටා ගැනීම"
+msgstr ""
 
 #: pdf_bot/constants.py:60
 msgid "Text Message"
-msgstr "කෙටි පණිවුඩය"
+msgstr ""
 
 #: pdf_bot/constants.py:61
 msgid "Text File"
-msgstr "අකුරු සහිත ගොනුව"
+msgstr ""
 
 #: pdf_bot/constants.py:63
 msgid "Compress"
-msgstr "හකුලන්න"
+msgstr ""
 
 #: pdf_bot/constants.py:78
 msgid "Say Thanks 😁 ($1)"
-msgstr "ස්තූති කරන්න 😁 ($1)"
+msgstr ""
 
 #: pdf_bot/constants.py:79
 msgid "Coffee ☕ ($3)"
-msgstr "කෝපි ☕ ($3)"
+msgstr ""
 
 #: pdf_bot/constants.py:80
 msgid "Beer 🍺 ($5)"
-msgstr "බියර් 🍺 ($5)"
+msgstr ""
 
 #: pdf_bot/constants.py:81
 msgid "Meal 🍲 ($10)"
-msgstr "කෑම 🍲 ($10)"
-
-#: pdf_bot/constants.py:82
-msgid "Say Awesome 🤩 (Custom)"
-msgstr "නියමයි කියන්න 🤩 (වෙනත්)"
+msgstr ""
 
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
-msgstr "ඔබගේ ප්‍රතිපෝෂණය මට එවන්න (ඉංග්‍රීසි ප්‍රතිපෝෂණය පමණක් මගේ සංවර්ධකයා වෙත යොමු කරනු ලැබේ)"
+msgstr ""
 
 #: pdf_bot/feedback.py:79
 msgid "The feedback is not in English, try again"
-msgstr "මෙම ෆීඩ්බැක් එක ඉංග්‍රීසි නොවන බව හදුනා ගෙන ඇත, නැවත උත්සාහ කරන්න"
+msgstr ""
 
 #: pdf_bot/feedback.py:99
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
-msgstr "ඔබගේ ෆීඩ්බෑක් එකට බෙහෙවින්ම ස්තූතියි, මම එය දැනටමත් මගේ සංවර්ධකයා වෙත යොමු කරන ලදී"
+msgstr ""
 
 #: pdf_bot/language.py:24
 msgid "Select your language"
-msgstr "භාෂාව තෝරන්න"
+msgstr ""
 
 #: pdf_bot/language.py:62
 msgid "Your language has been set to {}"
-msgstr "ඔබගේ භාෂාව {} ලෙස සකසා ඇත"
+msgstr ""
 
-#: pdf_bot/payment.py:32
-msgid "The amount you sent is invalid, try again. {}"
-msgstr "ඔබ එවූ මුදල අවලංගුයි, නැවත උත්සාහ කරන්න. {}"
-
-#: pdf_bot/payment.py:53
+#: pdf_bot/payment.py:37
 msgid "Help translate PDF Bot"
-msgstr "PDF බොට් පරිවර්තනය කිරීමට උදව් කරන්න"
+msgstr ""
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:42
 msgid "Select how you want to support PDF Bot"
-msgstr "ඔබ PDF බොට්ට සඳහා සහය දැක්විය හැකි ආකාරය තෝරන්න"
+msgstr ""
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:67
 msgid "Say thanks to PDF Bot and help keep it running"
-msgstr "PDF බොට්ට ස්තූතියි කියමින් එය දිගටම පවත්වා ගැනීමට උදව් කරන්න"
+msgstr ""
 
-#: pdf_bot/payment.py:106
+#: pdf_bot/payment.py:90
 msgid "Something went wrong"
-msgstr "කුමක් හෝ වරදක් සිදු වී ඇත"
+msgstr ""
 
-#: pdf_bot/payment.py:114
+#: pdf_bot/payment.py:98
 msgid "Thank you for your support!"
-msgstr "ඔබගේ සහයෝගයට ස්තූතියි!"
+msgstr ""
 
 #: pdf_bot/url.py:24
 msgid "You've sent me this web page already and I'm still converting it"
-msgstr "ඔබ දැනටමත් මෙම වෙබ් පිටුව මට එවා ඇති අතර මම තවමත් එය පරිවර්තනය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/url.py:27
 msgid "Converting your web page into a PDF file"
-msgstr "ඔබේ වෙබ් පිටුව PDF ගොනුවක් බවට පරිවර්තනය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/url.py:39
 msgid "Unable to reach your web page"
-msgstr "ඔබගේ වෙබ් පිටුව වෙත ළඟා විය නොහැක"
+msgstr ""
 
 #: pdf_bot/utils.py:34
 msgid "Action cancelled"
-msgstr "ක්‍රියාව අවලංගු කරන ලදි"
+msgstr ""
 
 #: pdf_bot/utils.py:67
 msgid "The file you sent is not a PDF file, try again"
-msgstr "ඔබ එවූ ගොනුව PDF ගොනුවක් නොවේ, නැවත උත්සාහ කරන්න"
+msgstr ""
 
 #: pdf_bot/utils.py:72
 msgid "The PDF file you sent is too large for me to download\n\n"
 "I've cancelled your action"
-msgstr "ඔබ එවූ PDF ගොනුව මට බාගත කිරීමට නොහැකි තරම් විශාලය\n\n"
-"මම ඔබේ ක්‍රියාව අවලංගු කර ඇත"
+msgstr ""
 
 #: pdf_bot/utils.py:101
 msgid "Something went wrong, start over again"
-msgstr "යම් වැරැද්දක් සිදු වී ඇත, නැවත ආරම්භ කරන්න"
+msgstr ""
 
 #: pdf_bot/utils.py:188
 msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
 "I've cancelled your action"
-msgstr "ඔබගේ PDF ගොනුව වලංගු නොවන එකක් බව පෙනේ, මට එය විවෘත කර කියවීමට නොහැක\n\n"
-"මම ඔබේ ක්‍රියාව අවලංගු කර ඇත"
+msgstr ""
 
 #: pdf_bot/utils.py:197
 msgid "Your PDF file is already encrypted"
-msgstr "ඔබගේ PDF ගොනුව දැනටමත් ආකේතනය කර ඇත"
+msgstr ""
 
 #: pdf_bot/utils.py:199
 msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr "ඔබගේ {} PDF ගොනුව ආකේතනය කර ඇති අතර ඔබට එය පළමුව විකේතනය කිරීමට සිදුවේ\n\n"
-"මම ඔබේ ක්‍රියාව අවලංගු කර ඇත"
+msgstr ""
 
 #: pdf_bot/utils.py:204
 msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
 "I've cancelled your action"
-msgstr "ඔබගේ PDF ගොනුව ආකේතනය කර ඇති අතර ඔබට එය පළමුව විකේතනය කිරීමට සිදුවේ\n\n"
-"මම ඔබේ ක්‍රියාව අවලංගු කර ඇත"
+msgstr ""
 
 #: pdf_bot/utils.py:228
 msgid "You've sent me these {} so far:\n"
-msgstr "ඔබ දැනටමත් මට මෙම {} එවා ඇත:\n"
+msgstr ""
 
 #: pdf_bot/utils.py:276
 msgid "The result file is too large for me to send to you"
-msgstr "සකස් කරන ලද ගොනුව මට ඔබ වෙත එවීමට නොහැකි තරම් විශාලය"
+msgstr ""
 
 #: pdf_bot/utils.py:284 pdf_bot/utils.py:291
 msgid "Here is your result file"
-msgstr "මෙන්න ඔබේ සකස් කරන ලද ගොනුව"
+msgstr ""
 
 #: pdf_bot/commands/compare.py:54
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
-msgstr "ඔබ සංසන්දනය කිරීමට කැමති PDF ගොනු වලින් එකක් මට එවන්න\n\n"
-"මට අකුරුවල වෙනස්කම් පමණක් සොයා ගත හැකි බව කරුණාවෙන් සලකන්න"
+msgstr ""
 
 #: pdf_bot/commands/compare.py:88
 msgid "Send me the other PDF file that you'll like to compare"
-msgstr "ඔබ සංසන්දනය කිරීමට කැමති අනෙක් PDF ගොනුව මට එවන්න"
+msgstr ""
 
 #: pdf_bot/commands/compare.py:112
 msgid "Comparing your PDF files"
-msgstr "ඔබගේ PDF ගොනු සංසන්දනය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/commands/compare.py:131
 msgid "There are no differences in text between your PDF files"
-msgstr "ඔබගේ PDF ගොනුවල ඇති අකුරුවල කිසිදු වෙනසක් නොමැත"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:77
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
-msgstr "ඔබ ඒකාබද්ධ කිරීමට කැමති PDF ගොනු මට එවන්න\n\n"
-"ඔබ මට එවන අනුපිළිවෙලට ලිපිගොනු ඒකාබද්ධ වන බව සලකන්න"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:110
 msgid "The file you've sent is not a PDF file"
-msgstr "ඔබ එවා ඇති ගොනුව PDF ගොනුවක් නොවේ"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:112
 msgid "The PDF file you've sent is too large for me to download"
-msgstr "ඔබ එවා ඇති PDF ගොනුව මට බාගත කළ නොහැකි තරම් විශාලය"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:130
 msgid "PDF files"
-msgstr "PDF ගොනු"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:137
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "<b> අවසන් </b> ඔබ ඒකාබද්ධ කිරීමට කැමති සියලුම PDF ගොනු මට එව්වා නම් හෝ මට PDF ලිපිගොනු එවන්න"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:178
 msgid "<b>{}</b> has been removed for merging"
-msgstr "එකතු කිරීම සඳහා <b>{}</b> ඉවත් කර ඇත"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:198
 msgid "You haven't sent me any PDF files"
-msgstr "ඔබ මට PDF ලිපිගොනු කිසිවක් එවා නැත"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:202
 msgid "You've only sent me one PDF file."
-msgstr "ඔබ මට එවා ඇත්තේ එක් PDF ගොනුවක් පමණි."
+msgstr ""
 
 #: pdf_bot/commands/merge.py:216
 msgid "Merging your PDF files"
-msgstr "ඔබගේ PDF ගොනු එකතු කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:236
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
-msgstr "මට \"{}\" විවෘත කර කියවීමට නොහැකි වූ නිසා මට ඔබේ PDF ගොනු එකතු කළ නොහැක. එය ආකේතනය කර නොමැති බවට සහතික වන්න"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:72
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "ඔබ අලංකාර කිරීමට හෝ PDF ගොනුවක් බවට පරිවර්තනය කිරීමට කැමති ඡායාරූප මට එවන්න\n\n"
-"ඔබ මට එවන අනුපිළිවෙලට ඡායාරූප අලංකාර කර පරිවර්තනය කරනු ඇති බව සලකන්න"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:99
 msgid "File name unavailable"
-msgstr "ගොනුවේ නමක් නොමැත"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:118
 msgid "The file you've sent is not a photo"
-msgstr "ඔබ එවූ ගොනුව ඡායාරූපයක් නොවේ"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:124
 msgid "The photo you've sent is too large for me to download"
-msgstr "ඔබ එවූ ඡායාරූපය මට බාගත කිරීමට නොහැකි තරම් විශාලය"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:131
 msgid "photos"
-msgstr "ඡායාරූප"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:138
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr "ඔබ සියලු ඡායාරූප මට එව්වා නම් හෝ පහත සිට ඡායාරූප තෝරන්න"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:182
 msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr "අලංකාර කිරීම හෝ පරිවර්තනය කිරීම සඳහා <b>{}</b> ඉවත් කර ඇත"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:217
 msgid "Beautifying and converting your photos"
-msgstr "ඔබගේ ඡායාරූප අලංකාර කර සහ පරිවර්තනය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/commands/photo.py:222
 msgid "Converting your photos into PDF"
-msgstr "ඔබගේ ඡායාරූප PDF බවට පරිවර්තනය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/commands/text.py:45
 msgid "Send me the text that you'll like to write into your PDF file"
-msgstr "ඔබගේ PDF ගොනුව තුල ලිවීමට ඔබ කැමති වචනය මට එවන්න"
+msgstr ""
 
 #: pdf_bot/commands/text.py:68
 msgid "Creating your PDF file"
-msgstr "ඔබේ PDF ගොනුව නිර්මාණය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/commands/watermark.py:49
 msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr "ඔබට වෝටර් මාර්ක් එකක් එක් කිරීමට කැමති PDF ගොනුව මට එවන්න"
+msgstr ""
 
 #: pdf_bot/commands/watermark.py:80
 msgid "Send me the watermark PDF file"
-msgstr "මට වෝටර්මාර්ක් සහිත PDF ගොනුව එවන්න"
+msgstr ""
 
 #: pdf_bot/commands/watermark.py:105
 msgid "Adding the watermark onto your PDF file"
-msgstr "ඔබගේ PDF ගොනුවට වෝටර් මාර්ක් එකක් එක් කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/commands/watermark.py:118
 msgid "watermark"
-msgstr "වෝටර් මාර්ක්"
+msgstr ""
 
 #: pdf_bot/files/compress.py:20
 msgid "Compressing your PDF file"
-msgstr "ඔබේ PDF ගොනුව සකසමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/compress.py:49
 msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr "ගොනු ප්‍රමාණය <b>{:.0%}</b>, <b> {} </b> සිට <b> {} </b> දක්වා අඩු කර ඇත"
+msgstr ""
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
 #: pdf_bot/files/photo.py:218
 msgid "Something went wrong, try again"
-msgstr "යම් වැරැද්දක් සිදු වී ඇත, නැවත උත්සාහ කරන්න"
+msgstr ""
 
 #: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
-msgstr "ඔබ කැපීමට කැමති අදාළ වර්ගය තෝරන්න"
+msgstr ""
 
 #: pdf_bot/files/crop.py:46
 msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "මට {} සහ {} අතර අංකයක් එවන්න. ඔබගේ PDF ගොනුවේ සහ පිටුවේ අන්තර්ගතය අතර රඳවා තබා ගැනීමට අවශ්‍ය ඉඩ ප්‍රමාණය මෙයයි"
+msgstr ""
 
 #: pdf_bot/files/crop.py:56
 msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "පිටුවේ වට ප්‍රමාණය වෙනස් කිරීමට ඔබ කැමති අංකයක් මට එවන්න. ධන සංඛ්‍යා එම ප්‍රමාණය අඩු කරන අතර සෘණ සංඛ්‍යා එය වැඩි කරයි"
+msgstr ""
 
 #: pdf_bot/files/crop.py:77
 msgid "The number must be between {} and {}, try again"
-msgstr "අංකය {} සහ {} අතර විය යුතුය, නැවත උත්සාහ කරන්න"
+msgstr ""
 
 #: pdf_bot/files/crop.py:98
 msgid "The number is invalid, try again"
-msgstr "අංකය වලංගු එකක් නොවේ, නැවත උත්සාහ කරන්න"
+msgstr ""
 
 #: pdf_bot/files/crop.py:108
 msgid "Cropping your PDF file"
-msgstr "ඔබේ PDF ගොනුව කපමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:17
 msgid "Send me the password to decrypt your PDF file"
-msgstr "ඔබගේ PDF ගොනුව විකේතනය කිරීමට අවශ්‍ය මුරපදය මට එවන්න"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:32
 msgid "Decrypting your PDF file"
-msgstr "ඔබගේ PDF ගොනුව විකේතනය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:47
 msgid "Your PDF file seems to be invalid and I couldn't open and read it"
-msgstr "ඔබගේ PDF ගොනුව අවලංගු එකක් බව පෙනේ, මට එය විවෘත කර කියවීමට හැකියාවක් නැත"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:52
 msgid "Your PDF file is not encrypted"
-msgstr "ඔබගේ PDF ගොනුව ආකේතනය කර නොමැත"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:57
 msgid "The decryption password is incorrect, try to send it again"
-msgstr "විකේතන මුරපදය වැරදියි, එය නැවත යවා උත්සාහ කරන්න"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:71
 msgid "Your PDF file is encrypted with a method that I cannot decrypt"
-msgstr "ඔබගේ PDF ගොනුව ආකේතනය කර ඇත්තේ මට විකේතනය කළ නොහැකි ක්‍රමයක් මගිනි"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:86
 msgid "Send me the password to encrypt your PDF file"
-msgstr "ඔබගේ PDF ගොනුව ආකේතනය කිරීමට මුරපදය එවන්න"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:100
 msgid "Encrypting your PDF file"
-msgstr "ඔබගේ PDF ගොනුව ආකේතනය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
 msgid "Select the task that you'll like to perform"
-msgstr "ඔබ ඉටු කිරීමට කැමති කාර්යය තෝරන්න"
+msgstr ""
 
 #: pdf_bot/files/file.py:106
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
-msgstr "ඔබගේ PDF ගොනුව මට බාගත කිරීමට නොහැකි තරම් විශාලය\n\n"
-"මට ඒ පිළිබඳ කිසිවක් කළ නොහැක"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
-msgstr "ඔබේ PDF ගොනුවට OCR අකුරු ස්තරයක් එක් කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
-msgstr "ඔබගේ PDF ගොනුවට දැනටමත් අකුරු ස්ථරයක් ඇත"
+msgstr ""
 
 #: pdf_bot/files/photo.py:50
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
-msgstr "ඔබගේ ඡායාරූපය මට බාගත කිරීමට නොහැකි තරම් විශාලය. ඔබගේ ඡායාරූපය අලංකාර කිරීමට හෝ පරිවර්තනය කිරීමට නොහැකිය"
+msgstr ""
 
 #: pdf_bot/files/photo.py:105
 msgid "Extracting a preview for your PDF file"
-msgstr "ඔබගේ PDF ගොනුව සඳහා පෙරදසුනක් උපුටා ගනිමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/photo.py:153
 msgid "Select the result file format"
-msgstr "ප්‍රතිදාන ගොනුවේ ආකෘතිය තෝරන්න"
+msgstr ""
 
 #: pdf_bot/files/photo.py:165
 msgid "Converting your PDF file into photos"
-msgstr "ඔබගේ PDF ගොනුව ඡායාරූප බවට පරිවර්තනය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/photo.py:203
 msgid "Extracting all the photos in your PDF file"
-msgstr "ඔබගේ PDF ගොනුවේ ඇති සියලුම ඡායාරූප උපුටා ගනිමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/photo.py:223
 msgid "I couldn't find any photos in your PDF file"
-msgstr "ඔබගේ PDF ගොනුවේ කිසිදු ඡායාරූපයක් මට සොයාගත නොහැක"
+msgstr ""
 
 #: pdf_bot/files/photo.py:259
 msgid "See above for all your photos"
-msgstr "ඔබගේ සියලු ඡායාරූප සඳහා ඉහත බලන්න"
+msgstr ""
 
 #: pdf_bot/files/rename.py:19
 msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "ඔබගේ PDF ගොනුවේ නාමය වෙනස් කිරීමට ඔබ කැමති ගොනු නාමය මට එවන්න"
+msgstr ""
 
 #: pdf_bot/files/rename.py:38
 msgid "File names can't contain any of the following characters:\n"
 "{}\n"
 "Send me another file name"
-msgstr "ගොනු නාමවල පහත දැක්වෙන අක්ෂර කිසිවක් අඩංගු විය නොහැක:\n"
-"{}\n"
-"මට වෙනත් ගොනු නාමයක් එවන්න"
+msgstr ""
 
 #: pdf_bot/files/rename.py:48
 msgid "Renaming your PDF file into <b>{}</b>"
-msgstr "ඔබගේ PDF ගොනුවෙහි නාමය <b>{}</b> ලෙස වෙනස් කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "ඔබේ PDF ගොනුව දක්ෂිණාවර්තව භ්‍රමණය කිරීමට ඔබ කැමති අංශක ප්‍රමාණය තෝරන්න"
+msgstr ""
 
 #: pdf_bot/files/rotate.py:48
 msgid "Rotating your PDF file clockwise by {} degrees"
-msgstr "ඔබේ PDF ගොනුව අංශක {} ක් දක්ෂිණාවර්තව භ්‍රමණය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/scale.py:24
 msgid "Select the scale type that you'll like to perform"
-msgstr "ඔබ වෙනස් කිරීමට කැමති පරිමාණ වර්ගය තෝරන්න"
+msgstr ""
 
 #: pdf_bot/files/scale.py:38
 msgid "Send me the width and height\n\n"
 "<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr "පළල සහ උස මට එවන්න\n\n"
-"<b>උදාහරණ ලෙස: 150 200</b> (මෙහි පළල 150 දක්වාත් උස 200 දක්වාත් සකසනු ලැබේ)"
+msgstr ""
 
 #: pdf_bot/files/scale.py:49
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr "තිරස් හා සිරස් අක්ෂ සඳහා අදාළ පරිමාණය මට එවන්න\n\n"
-"<b>උදාහරණ ලෙස: 2 0.5</b> (මෙහි තිරස් අක්ෂය දෙගුණයක් වන අතර සිරස් අක්ෂය අර්ධයකින් අඩු කරයි)"
+msgstr ""
 
 #: pdf_bot/files/scale.py:73
 msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr "<b>{}</b> පරිමාණය වලංගු එකක් නොවේ, නැවත උත්සාහ කරන්න"
+msgstr ""
 
 #: pdf_bot/files/scale.py:93
 msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr "<b>{}</b> පරිමාණය වලංගු එකක් නොවේ, නැවත උත්සාහ කරන්න"
+msgstr ""
 
 #: pdf_bot/files/scale.py:105
 msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr "ඔබේ PDF ගොනුව තිරස් අතට <b>{}</b> ක් සහ සිරස් අතට <b>{}</b> ක් ලෙස පරිමාණය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr "ඔබේ PDF ගොනුව පළල <b>{}</b> ක් ලෙස සහ උස <b>{}</b> ක් ලෙස පරිමාණය කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/split.py:36
 msgid "Send me the range of pages that you'll like to keep"
-msgstr "ඔබ තබා ගැනීමට කැමති පිටු පරාසය මට එවන්න"
+msgstr ""
 
 #: pdf_bot/files/split.py:37
 msgid "General usage"
-msgstr "සාමාන්‍ය භාවිතය"
+msgstr ""
 
 #: pdf_bot/files/split.py:38
 msgid "all pages"
-msgstr "සියලුම පිටු"
+msgstr ""
 
 #: pdf_bot/files/split.py:39
 msgid "page 8 only"
-msgstr "8 වන පිටුව පමණි"
+msgstr ""
 
 #: pdf_bot/files/split.py:40
 msgid "first three pages"
-msgstr "පළමු පිටු තුන"
+msgstr ""
 
 #: pdf_bot/files/split.py:41
 msgid "from page 8 onward"
-msgstr "8 වන පිටුවේ සිට"
+msgstr ""
 
 #: pdf_bot/files/split.py:42
 msgid "last page only"
-msgstr "අවසාන පිටුව පමණි"
+msgstr ""
 
 #: pdf_bot/files/split.py:43
 msgid "all pages except the last page"
-msgstr "අවසාන පිටුව හැර අනෙක් සියලුම පිටු"
+msgstr ""
 
 #: pdf_bot/files/split.py:44
 msgid "second last page only"
-msgstr "දෙවන අවසාන පිටුව පමණි"
+msgstr ""
 
 #: pdf_bot/files/split.py:45
 msgid "last two pages"
-msgstr "අවසාන පිටු දෙක"
+msgstr ""
 
 #: pdf_bot/files/split.py:46
 msgid "third and second last pages"
-msgstr "තෙවන සහ දෙවන අවසාන පිටු"
+msgstr ""
 
 #: pdf_bot/files/split.py:47
 msgid "Advanced usage"
-msgstr "උසස් භාවිතය"
+msgstr ""
 
 #: pdf_bot/files/split.py:48
 msgid "pages"
-msgstr "පිටු"
+msgstr ""
 
 #: pdf_bot/files/split.py:49
 msgid "to the end"
-msgstr "අවසානය දක්වා"
+msgstr ""
 
 #: pdf_bot/files/split.py:50
 msgid "all pages in reversed order"
-msgstr "සියලුම පිටු ප්‍රතිලෝම අනුපිළිවෙලින්"
+msgstr ""
 
 #: pdf_bot/files/split.py:51
 msgid "except"
-msgstr "හැර"
+msgstr ""
 
 #: pdf_bot/files/split.py:75
 msgid "The range is invalid. Try again"
-msgstr "මෙම පරාසය වලංගු එකක නොවේ. නැවත උත්සහා කරන්න"
+msgstr ""
 
 #: pdf_bot/files/split.py:81
 msgid "Splitting your PDF file"
-msgstr "ඔබේ PDF ගොනුව කොටස් කරමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/text.py:22
 msgid "Select how you'll like me to send the text to you"
-msgstr "අවශය අකුරු ඔබ වෙත එවීමට කැමති ආකාරය තෝරන්න"
+msgstr ""
 
 #: pdf_bot/files/text.py:35
 msgid "Extracting text from your PDF file"
-msgstr "ඔබගේ PDF ගොනුවෙන් අකුරු උපුටා ගනිමින් පවතී"
+msgstr ""
 
 #: pdf_bot/files/text.py:84
 msgid "<b>See above for all the text in your PDF file</b>"
-msgstr "<b>ඔබේ PDF ගොනුවේ ඇති සියලුම අකුරු සඳහා ඉහත බලන්න</b>"
+msgstr ""
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
-msgstr "ඔබගේ PDF ගොනුවේ කිසිදු අකුරක් මට සොයාගත නොහැක"
+msgstr ""
 
 #~ msgid ""
 #~ "Send me the first photo that "
@@ -885,5 +843,14 @@ msgstr "ඔබගේ PDF ගොනුවේ කිසිදු අකුරක�
 #~ msgstr ""
 
 #~ msgid "Set Language"
+#~ msgstr ""
+
+#~ msgid "Send me the amount that you'll like to support PDF Bot"
+#~ msgstr ""
+
+#~ msgid "Say Awesome 🤩 (Custom)"
+#~ msgstr ""
+
+#~ msgid "The amount you sent is invalid, try again. {}"
 #~ msgstr ""
 
