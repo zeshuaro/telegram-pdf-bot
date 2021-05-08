@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-06 07:39\n"
+"POT-Creation-Date: 2021-05-08 03:00+0000\n"
+"PO-Revision-Date: 2021-05-08 14:06\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -20,10 +20,10 @@ msgstr ""
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: si-LK\n"
-"X-Crowdin-File: /master/locale/en_GB/LC_MESSAGES/pdf_bot.po\n"
+"X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: bot.py:153
+#: bot.py:148
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -45,19 +45,19 @@ msgstr "PDF බොට් වෙත සාදරයෙන් පිළිගන�
 "- <b> <i> සහ තවත්... </i> </b>\n\n"
 "PDF බොට් භාවිතා කරන්නේ කෙසේදැයි බැලීමට ටයිප් කරන්න /help කරන්න"
 
-#: bot.py:172
+#: bot.py:167
 msgid "Set Language 🌎"
 msgstr "භාෂාව සකසන්න 🌎"
 
-#: bot.py:174 pdf_bot/utils.py:307
+#: bot.py:169 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "නාලිකාවට සම්බන්ධ වන්න"
 
-#: bot.py:175 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "PDF බොට් සදහා උදව් කරන්න"
 
-#: bot.py:181
+#: bot.py:176
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -78,10 +78,6 @@ msgstr "පහත සඳහන් දේවලින් එකක් මට එ�
 "/photo - බහු ඡායාරූප PDF ගොනු බවට පරිවර්තනය කර ඒකාබද්ධ කරන්න\n"
 "/text - කෙටි පණිවිඩ වලින් PDF ගොනු සාදන්න\n"
 "/watermark - PDF ගොනු වලට දිය සලකුණ එක් කරන්න"
-
-#: bot.py:216 pdf_bot/constants.py:84
-msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "ඔබ PDF බොට් සඳහා සහය දැක්වීමට කැමති මුදල මා හට එවන්න"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -199,10 +195,6 @@ msgstr "බියර් 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "කෑම 🍲 ($10)"
 
-#: pdf_bot/constants.py:82
-msgid "Say Awesome 🤩 (Custom)"
-msgstr "නියමයි කියන්න 🤩 (වෙනත්)"
-
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "ඔබගේ ප්‍රතිපෝෂණය මට එවන්න (ඉංග්‍රීසි ප්‍රතිපෝෂණය පමණක් මගේ සංවර්ධකයා වෙත යොමු කරනු ලැබේ)"
@@ -223,27 +215,23 @@ msgstr "භාෂාව තෝරන්න"
 msgid "Your language has been set to {}"
 msgstr "ඔබගේ භාෂාව {} ලෙස සකසා ඇත"
 
-#: pdf_bot/payment.py:32
-msgid "The amount you sent is invalid, try again. {}"
-msgstr "ඔබ එවූ මුදල අවලංගුයි, නැවත උත්සාහ කරන්න. {}"
-
-#: pdf_bot/payment.py:53
+#: pdf_bot/payment.py:37
 msgid "Help translate PDF Bot"
 msgstr "PDF බොට් පරිවර්තනය කිරීමට උදව් කරන්න"
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:42
 msgid "Select how you want to support PDF Bot"
 msgstr "ඔබ PDF බොට්ට සඳහා සහය දැක්විය හැකි ආකාරය තෝරන්න"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:67
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PDF බොට්ට ස්තූතියි කියමින් එය දිගටම පවත්වා ගැනීමට උදව් කරන්න"
 
-#: pdf_bot/payment.py:106
+#: pdf_bot/payment.py:90
 msgid "Something went wrong"
 msgstr "කුමක් හෝ වරදක් සිදු වී ඇත"
 
-#: pdf_bot/payment.py:114
+#: pdf_bot/payment.py:98
 msgid "Thank you for your support!"
 msgstr "ඔබගේ සහයෝගයට ස්තූතියි!"
 
@@ -885,5 +873,14 @@ msgstr "ඔබගේ PDF ගොනුවේ කිසිදු අකුරක�
 #~ msgstr ""
 
 #~ msgid "Set Language"
+#~ msgstr ""
+
+#~ msgid "Send me the amount that you'll like to support PDF Bot"
+#~ msgstr ""
+
+#~ msgid "Say Awesome 🤩 (Custom)"
+#~ msgstr ""
+
+#~ msgid "The amount you sent is invalid, try again. {}"
 #~ msgstr ""
 

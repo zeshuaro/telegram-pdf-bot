@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-06 07:39\n"
+"POT-Creation-Date: 2021-05-08 03:00+0000\n"
+"PO-Revision-Date: 2021-05-08 14:06\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -20,10 +20,10 @@ msgstr ""
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: vi\n"
-"X-Crowdin-File: /master/locale/en_GB/LC_MESSAGES/pdf_bot.po\n"
+"X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: bot.py:153
+#: bot.py:148
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -45,19 +45,19 @@ msgstr "Chào mừng bạn đến với PDF Bot!\n\n"
 "- <b><i>Và hơn thế nữa...</i></b>\n\n"
 "Loại /help xem cách sử dụng PDF Bot"
 
-#: bot.py:172
+#: bot.py:167
 msgid "Set Language 🌎"
 msgstr "Đặt Ngôn ngữ 🌎"
 
-#: bot.py:174 pdf_bot/utils.py:307
+#: bot.py:169 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "Tham gia Kênh"
 
-#: bot.py:175 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "Hỗ trợ PDF Bot"
 
-#: bot.py:181
+#: bot.py:176
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -78,10 +78,6 @@ msgstr "Bạn có thể thực hiện hầu hết các nhiệm vụ bằng cách
 "/photo - chuyển đổi và kết hợp nhiều ảnh thành các tệp PDF\n"
 "/text - tạo các tệp PDF từ tin nhắn văn bản\n"
 "/watermark - thêm hình mờ vào tệp PDF"
-
-#: bot.py:216 pdf_bot/constants.py:84
-msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "Gửi cho tôi số tiền bạn muốn hỗ trợ PDF Bot"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -199,10 +195,6 @@ msgstr "Bia 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "Bữa 🍲 ($10)"
 
-#: pdf_bot/constants.py:82
-msgid "Say Awesome 🤩 (Custom)"
-msgstr "Nói awesome 🤩 (Custom)"
-
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Gửi cho tôi phản hồi của bạn (chỉ có phản hồi tiếng Anh sẽ được chuyển tiếp đến nhà phát triển của tôi)"
@@ -223,27 +215,23 @@ msgstr "Chọn ngôn ngữ của bạn"
 msgid "Your language has been set to {}"
 msgstr "Ngôn ngữ của bạn đã được đặt thành {}"
 
-#: pdf_bot/payment.py:32
-msgid "The amount you sent is invalid, try again. {}"
-msgstr "Số tiền bạn đã gửi không hợp lệ, hãy thử lại. {}"
-
-#: pdf_bot/payment.py:53
+#: pdf_bot/payment.py:37
 msgid "Help translate PDF Bot"
 msgstr "Trợ giúp dịch PDF Bot"
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:42
 msgid "Select how you want to support PDF Bot"
 msgstr "Chọn cách bạn muốn hỗ trợ PDF Bot"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:67
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Nói lời cảm ơn đến PDF Bot và giúp giữ cho nó chạy"
 
-#: pdf_bot/payment.py:106
+#: pdf_bot/payment.py:90
 msgid "Something went wrong"
 msgstr "Đã xảy ra sự cố"
 
-#: pdf_bot/payment.py:114
+#: pdf_bot/payment.py:98
 msgid "Thank you for your support!"
 msgstr "Cảm ơn bạn đã hỗ trợ của bạn!"
 
@@ -885,5 +873,14 @@ msgstr "Tôi không thể tìm thấy bất kỳ văn bản nào trong tệp PDF
 #~ msgstr ""
 
 #~ msgid "Set Language"
+#~ msgstr ""
+
+#~ msgid "Send me the amount that you'll like to support PDF Bot"
+#~ msgstr ""
+
+#~ msgid "Say Awesome 🤩 (Custom)"
+#~ msgstr ""
+
+#~ msgid "The amount you sent is invalid, try again. {}"
 #~ msgstr ""
 

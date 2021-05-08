@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-06 07:39\n"
+"POT-Creation-Date: 2021-05-08 03:00+0000\n"
+"PO-Revision-Date: 2021-05-08 14:06\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -20,10 +20,10 @@ msgstr ""
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: sr\n"
-"X-Crowdin-File: /master/locale/en_GB/LC_MESSAGES/pdf_bot.po\n"
+"X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: bot.py:153
+#: bot.py:148
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -45,19 +45,19 @@ msgstr "Добродошли у ПДФ Бот!\n\n"
 "- <b><i>Анд море...</i></b>\n\n"
 "Тyпе /help то сее хоw то усе ПДФ Бот"
 
-#: bot.py:172
+#: bot.py:167
 msgid "Set Language 🌎"
 msgstr "Постављање језичких 🌎"
 
-#: bot.py:174 pdf_bot/utils.py:307
+#: bot.py:169 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "Придружи се каналу"
 
-#: bot.py:175 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "Подршка ПДФ Боту"
 
-#: bot.py:181
+#: bot.py:176
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -78,10 +78,6 @@ msgstr "Већину задатака можете извршити тако ш�
 "/photo - конвертовање и комбиновање више фотографија у ПДФ фајлове\n"
 "/text - креирање ПДФ фајлова из текстуалних порука\n"
 "/watermark - додајте водени жиг ПДФ фајловима"
-
-#: bot.py:216 pdf_bot/constants.py:84
-msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "Пошаљите ми суму коју ћете хтети да подржите ПДФ Бота"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -199,10 +195,6 @@ msgstr "Пиво 🍺 (5$)"
 msgid "Meal 🍲 ($10)"
 msgstr "Оброк 🍲 (10$)"
 
-#: pdf_bot/constants.py:82
-msgid "Say Awesome 🤩 (Custom)"
-msgstr "Кажи Сјајно 🤩 (Посебно)"
-
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Пошаљи ми повратне информације (само енглеске повратне информације ће бити прослеђене мом пројектанту)"
@@ -223,27 +215,23 @@ msgstr "Изаберите ваш језик"
 msgid "Your language has been set to {}"
 msgstr "Ваш језик је подешен на {}"
 
-#: pdf_bot/payment.py:32
-msgid "The amount you sent is invalid, try again. {}"
-msgstr "Износ који сте послали је неважећи, покушајте поново. {}"
-
-#: pdf_bot/payment.py:53
+#: pdf_bot/payment.py:37
 msgid "Help translate PDF Bot"
 msgstr "Помогните да се ПДФ Бот преведе"
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:42
 msgid "Select how you want to support PDF Bot"
 msgstr "Изаберите како желите да подржите ПДФ Бота"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:67
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Захвалите се ПДФ Боту и помозите му да настави да ради"
 
-#: pdf_bot/payment.py:106
+#: pdf_bot/payment.py:90
 msgid "Something went wrong"
 msgstr "Нешто је пошло наопако"
 
-#: pdf_bot/payment.py:114
+#: pdf_bot/payment.py:98
 msgid "Thank you for your support!"
 msgstr "Хвала вам на подршци!"
 
@@ -885,5 +873,14 @@ msgstr "Нисам могао да нађем никакав текст у тв�
 #~ msgstr ""
 
 #~ msgid "Set Language"
+#~ msgstr ""
+
+#~ msgid "Send me the amount that you'll like to support PDF Bot"
+#~ msgstr ""
+
+#~ msgid "Say Awesome 🤩 (Custom)"
+#~ msgstr ""
+
+#~ msgid "The amount you sent is invalid, try again. {}"
 #~ msgstr ""
 

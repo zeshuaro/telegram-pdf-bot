@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-06 07:39\n"
+"POT-Creation-Date: 2021-05-08 03:00+0000\n"
+"PO-Revision-Date: 2021-05-08 14:06\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -20,10 +20,10 @@ msgstr ""
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: el\n"
-"X-Crowdin-File: /master/locale/en_GB/LC_MESSAGES/pdf_bot.po\n"
+"X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: bot.py:153
+#: bot.py:148
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -45,19 +45,19 @@ msgstr "Καλώς ήλθατε στο PDF Bot!\n\n"
 "- <b><i> Και πολλά άλλα... </i> </b>\n\n"
 "Πληκτρολογήστε /help για να δείτε πώς να χρησιμοποιήσετε το PDF Bot"
 
-#: bot.py:172
+#: bot.py:167
 msgid "Set Language 🌎"
 msgstr "Ορισμός γλώσσας 🌎"
 
-#: bot.py:174 pdf_bot/utils.py:307
+#: bot.py:169 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "Είσοδος στο Κανάλι"
 
-#: bot.py:175 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "Υποστήριξη BOT PDF"
 
-#: bot.py:181
+#: bot.py:176
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -78,10 +78,6 @@ msgstr "Μπορείτε να εκτελέσετε τις περισσότερε
 "/photo - μετατροπή και συνδυασμός πολλαπλών φωτογραφιών σε αρχεία PDF\n"
 "/text - δημιουργία αρχείων PDF από μηνύματα κειμένου\n"
 "/watermark - προσθέστε υδατογράφημα σε αρχεία PDF"
-
-#: bot.py:216 pdf_bot/constants.py:84
-msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "Στείλτε μου το ποσό που θα σας αρέσει να υποστηρίξει PDF Bot"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -199,10 +195,6 @@ msgstr "🍺 μπύρας ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "Γεύμα 🍲 ($10)"
 
-#: pdf_bot/constants.py:82
-msgid "Say Awesome 🤩 (Custom)"
-msgstr "Πείτε Awesome 🤩 (Custom)"
-
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Στείλτε μου τα σχόλιά σας (μόνο τα αγγλικά σχόλια θα διαβιβαστούν στον προγραμματιστή μου)"
@@ -223,27 +215,23 @@ msgstr "Επιλέξτε τη γλώσσα σας"
 msgid "Your language has been set to {}"
 msgstr "Η γλώσσα σας έχει οριστεί σε {}"
 
-#: pdf_bot/payment.py:32
-msgid "The amount you sent is invalid, try again. {}"
-msgstr "Το ποσό που στείλατε δεν είναι έγκυρο, προσπαθήστε ξανά. {}"
-
-#: pdf_bot/payment.py:53
+#: pdf_bot/payment.py:37
 msgid "Help translate PDF Bot"
 msgstr "Βοήθεια για τη μετάφραση του BOT PDF"
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:42
 msgid "Select how you want to support PDF Bot"
 msgstr "Επιλέξτε τον τρόπο με τον οποίο θέλετε να υποστηρίξετε το PDF Bot"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:67
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Πείτε ευχαριστώ στο PDF Bot και να βοηθήσει να κρατήσει το τρέξιμο"
 
-#: pdf_bot/payment.py:106
+#: pdf_bot/payment.py:90
 msgid "Something went wrong"
 msgstr "Κάτι πήγε στραβά"
 
-#: pdf_bot/payment.py:114
+#: pdf_bot/payment.py:98
 msgid "Thank you for your support!"
 msgstr "Σας ευχαριστούμε για την υποστήριξή σας!"
 
@@ -885,5 +873,14 @@ msgstr "Δεν μπόρεσα να βρω κανένα κείμενο στο α�
 #~ msgstr ""
 
 #~ msgid "Set Language"
+#~ msgstr ""
+
+#~ msgid "Send me the amount that you'll like to support PDF Bot"
+#~ msgstr ""
+
+#~ msgid "Say Awesome 🤩 (Custom)"
+#~ msgstr ""
+
+#~ msgid "The amount you sent is invalid, try again. {}"
 #~ msgstr ""
 
