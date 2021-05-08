@@ -53,7 +53,8 @@ jobs:
           download_translations: true
           create_pull_request: true
           pull_request_labels: "automerge, l10n"
-          source: "locale/en_GB/LC_MESSAGES/pdf_bot.po"
+          config: ./crowdin.yml
+          source: locale/en_GB/LC_MESSAGES/pdf_bot.po
           translation: /locale/%locale_with_underscore%/LC_MESSAGES/pdf_bot.po
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
