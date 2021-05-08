@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-04-06 07:37+0000\n"
-"PO-Revision-Date: 2021-04-06 07:39\n"
+"POT-Creation-Date: 2021-05-08 03:00+0000\n"
+"PO-Revision-Date: 2021-05-08 03:54\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Crowdin-File: /master/locale/en_GB/LC_MESSAGES/pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: bot.py:153
+#: bot.py:148
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -45,19 +45,19 @@ msgstr "पीडीएफ बॉट में आपका स्वागत �
 "- <b> <i> और भी बहुत कुछ... </i> </b>\n\n"
 "पीडीएफ बॉट का उपयोग कैसे करें, यह देखने के लिए /help टाइप करें"
 
-#: bot.py:172
+#: bot.py:167
 msgid "Set Language 🌎"
 msgstr "भाषा चुने 🌎"
 
-#: bot.py:174 pdf_bot/utils.py:307
+#: bot.py:169 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "चैनल से जुड़े"
 
-#: bot.py:175 pdf_bot/payment.py:78 pdf_bot/utils.py:308
+#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "पीडीएफ बॉट का सहयोग करे"
 
-#: bot.py:181
+#: bot.py:176
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -78,10 +78,6 @@ msgstr "आप मुझे निम्न में से कुछ भेज
 "/photo - पीडीएफ फाइलों में कई तस्वीरों का परिवर्तन और संयोजन\n"
 "/text - टेक्स्ट संदेशों से पीडीएफ बनाएं\n"
 "/watermark - पीडीएफ फाइलों में वॉटरमार्क जोड़ें"
-
-#: bot.py:216 pdf_bot/constants.py:84
-msgid "Send me the amount that you'll like to support PDF Bot"
-msgstr "मुझे वह राशि भेजें जिसे आप पीडीएफ बॉट को दान करना चाहते हैं"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -199,10 +195,6 @@ msgstr "बीयर 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "भोजन 🍲 ($10)"
 
-#: pdf_bot/constants.py:82
-msgid "Say Awesome 🤩 (Custom)"
-msgstr "बहुत बढ़िया 🤩 कहो (कस्टम)"
-
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "मुझे अपनी प्रतिक्रिया भेजें (केवल अंग्रेजी प्रतिक्रिया मेरे डेवलपर को भेजी जाएगी)"
@@ -223,27 +215,23 @@ msgstr "अपनी भाषा चुनें"
 msgid "Your language has been set to {}"
 msgstr "आपकी भाषा {} पर सेट हो गई है"
 
-#: pdf_bot/payment.py:32
-msgid "The amount you sent is invalid, try again. {}"
-msgstr "आपके द्वारा भेजी गई राशि अमान्य है, फिर से प्रयास करें। {}"
-
-#: pdf_bot/payment.py:53
+#: pdf_bot/payment.py:37
 msgid "Help translate PDF Bot"
 msgstr "पीडीएफ बॉट का अनुवाद करने में मदद करें"
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:42
 msgid "Select how you want to support PDF Bot"
 msgstr "आप पीडीएफ बॉट का समर्थन कैसे करना चाहते हैं"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:67
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "पीडीएफ बॉट के लिए धन्यवाद कहें और इसे चालू रखने में मदद करें"
 
-#: pdf_bot/payment.py:106
+#: pdf_bot/payment.py:90
 msgid "Something went wrong"
 msgstr "कुछ गलत हो गया"
 
-#: pdf_bot/payment.py:114
+#: pdf_bot/payment.py:98
 msgid "Thank you for your support!"
 msgstr "आपके समर्थन के लिए धन्यवाद!"
 
@@ -885,5 +873,14 @@ msgstr "मुझे आपकी पीडीएफ फ़ाइल में �
 #~ msgstr ""
 
 #~ msgid "Set Language"
+#~ msgstr ""
+
+#~ msgid "Send me the amount that you'll like to support PDF Bot"
+#~ msgstr ""
+
+#~ msgid "Say Awesome 🤩 (Custom)"
+#~ msgstr ""
+
+#~ msgid "The amount you sent is invalid, try again. {}"
 #~ msgstr ""
 
