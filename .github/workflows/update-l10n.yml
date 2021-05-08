@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
 
       - name: Setup Python 🐍
         uses: actions/setup-python@v2
@@ -41,3 +43,4 @@ jobs:
         with:
           commit_message: Update localization source file
           file_pattern: locale/en_GB/LC_MESSAGES/pdf_bot.po
+          push_options: --force
