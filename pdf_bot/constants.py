@@ -79,9 +79,7 @@ THANKS = _("Say Thanks 😁 ($1)")
 COFFEE = _("Coffee ☕ ($3)")
 BEER = _("Beer 🍺 ($5)")
 MEAL = _("Meal 🍲 ($10)")
-CUSTOM = _("Say Awesome 🤩 (Custom)")
 PAYMENT_DICT = {THANKS: 1, COFFEE: 3, BEER: 5, MEAL: 10}
-CUSTOM_MSG = _("Send me the amount that you'll like to support PDF Bot")
 WAIT_PAYMENT = 0
 
 # Datastore constants

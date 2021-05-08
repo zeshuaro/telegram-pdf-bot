@@ -13,7 +13,6 @@ from pdf_bot.payment import (
     send_payment_invoice,
     successful_payment,
     precheckout_check,
-    receive_custom_amount,
 )
 from pdf_bot.feedback import feedback_cov_handler
 from pdf_bot.constants import *
