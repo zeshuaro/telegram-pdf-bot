@@ -92,11 +92,6 @@ def main():
     dispatcher.add_handler(CallbackQueryHandler(process_callback_query, run_async=True))
 
     # Payment handlers
-    dispatcher.add_handler(
-        MessageHandler(
-            Filters.reply & TEXT_FILTER, receive_custom_amount, run_async=True
-        )
-    )
     dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check, run_async=True))
     dispatcher.add_handler(
         MessageHandler(Filters.successful_payment, successful_payment, run_async=True)
@@ -210,12 +205,6 @@ def process_callback_query(update: Update, context: CallbackContext):
             send_support_options(update, context, query)
         elif data in [THANKS, COFFEE, BEER, MEAL]:
             send_payment_invoice(update, context, query)
-        elif data == CUSTOM:
-            context.bot.send_message(
-                query.from_user.id,
-                _("Send me the amount that you'll like to support PDF Bot"),
-                reply_markup=ForceReply(),
-            )
 
         context.user_data[CALLBACK_DATA].remove(data)
 

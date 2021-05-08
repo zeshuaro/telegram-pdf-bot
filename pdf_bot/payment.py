@@ -7,8 +7,10 @@ from telegram import (
     ReplyKeyboardRemove,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
-    ForceReply,
+    Update,
 )
+from telegram.callbackquery import CallbackQuery
+from telegram.ext import CallbackContext
 
 from pdf_bot.constants import *
 from pdf_bot.language import set_lang
@@ -17,26 +19,9 @@ load_dotenv()
 STRIPE_TOKEN = os.environ.get("STRIPE_TOKEN", os.environ.get("STRIPE_TOKEN_BETA"))
 
 
-def receive_custom_amount(update, context):
-    _ = set_lang(update, context)
-    if _(CUSTOM_MSG) in update.effective_message.reply_to_message.text:
-        try:
-            amount = round(float(update.effective_message.text))
-            if amount <= 0:
-                raise ValueError
-
-            send_payment_invoice(update, context, amount=amount)
-        except ValueError:
-            _ = set_lang(update, context)
-            update.effective_message.reply_text(
-                _("The amount you sent is invalid, try again. {}").format(
-                    _(CUSTOM_MSG)
-                ),
-                reply_markup=ForceReply(),
-            )
-
-
-def send_support_options(update, context, query=None):
+def send_support_options(
+    update: Update, context: CallbackContext, query: CallbackQuery = None
+):
     _ = set_lang(update, context, query)
     keyboard = [
         [
@@ -47,7 +32,6 @@ def send_support_options(update, context, query=None):
             InlineKeyboardButton(_(BEER), callback_data=BEER),
             InlineKeyboardButton(_(MEAL), callback_data=MEAL),
         ],
-        [InlineKeyboardButton(_(CUSTOM), callback_data=CUSTOM)],
         [
             InlineKeyboardButton(
                 _("Help translate PDF Bot"), "https://crwd.in/telegram-pdf-bot"
@@ -65,7 +49,11 @@ def send_support_options(update, context, query=None):
     context.bot.send_message(user_id, text, reply_markup=reply_markup)
 
 
-def send_payment_invoice(update, context, query=None, amount=None):
+def send_payment_invoice(
+    update: Update,
+    context: CallbackContext,
+    query: CallbackQuery,
+):
     if query is None:
         message = update.effective_message
         label = message.text
@@ -78,12 +66,7 @@ def send_payment_invoice(update, context, query=None, amount=None):
     title = _("Support PDF Bot")
     description = _("Say thanks to PDF Bot and help keep it running")
 
-    if amount is None:
-        price = PAYMENT_DICT[label]
-    else:
-        label = CUSTOM
-        price = amount
-
+    price = PAYMENT_DICT[label]
     prices = [LabeledPrice(re.sub(r"\s\(.*", "", label), price * 100)]
 
     context.bot.send_invoice(
@@ -92,13 +75,14 @@ def send_payment_invoice(update, context, query=None, amount=None):
         description,
         PAYMENT_PAYLOAD,
         STRIPE_TOKEN,
-        PAYMENT_PARA,
         CURRENCY,
         prices,
+        max_tip_amount=1000,
+        suggested_tip_amounts=[100, 300, 500, 1000],
     )
 
 
-def precheckout_check(update, context):
+def precheckout_check(update: Update, context: CallbackContext):
     _ = set_lang(update, context)
     query = update.pre_checkout_query
 
@@ -108,7 +92,7 @@ def precheckout_check(update, context):
         query.answer(ok=True)
 
 
-def successful_payment(update, context):
+def successful_payment(update: Update, context: CallbackContext):
     _ = set_lang(update, context)
     update.effective_message.reply_text(
         _("Thank you for your support!"), reply_markup=ReplyKeyboardRemove()
