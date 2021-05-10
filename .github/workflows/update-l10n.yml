@@ -46,6 +46,7 @@ jobs:
           push_options: --force
 
       - name: Crowdin action 🌐
+        if: env.NUM_DIFFS > 1
         uses: crowdin/github-action@1.1.0
         with:
           upload_sources: true
