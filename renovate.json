@@ -1,4 +1,13 @@
 {
   "extends": ["config:base"],
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "stabilityDays": 3,
+  "prCreation": "not-pending",
+  "packageRules": [
+    {
+      "matchPaths": [".github/workflows/*.yml"],
+      "labels": ["github-actions"]
+    },
+    { "matchFiles": ["Dockerfile"], "labels": ["docker"] }
+  ]
 }
