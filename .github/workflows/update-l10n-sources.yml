@@ -1,11 +1,11 @@
-name: update-l10n
+name: update-l10n-sources
 
 on:
   push:
     branches: [master]
 
 jobs:
-  update-l10n:
+  update-l10n-sources:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -45,7 +45,7 @@ jobs:
           file_pattern: locale/en_GB/LC_MESSAGES/pdf_bot.po
           push_options: --force
 
-      - name: Crowdin action 🌐
+      - name: Upload sources and download translations 🌐
         if: env.NUM_DIFFS > 1
         uses: crowdin/github-action@1.1.0
         with:
