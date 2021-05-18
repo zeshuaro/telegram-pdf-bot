@@ -1,0 +1,29 @@
+name: update-l10n-translations
+
+on:
+  schedule:
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-l10n-translations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Download translations 🌐
+        uses: crowdin/github-action@1.1.0
+        with:
+          upload_sources: false
+          upload_translations: false
+          download_translations: true
+          create_pull_request: true
+          pull_request_labels: "automerge, l10n"
+          config: ./crowdin.yml
+          source: locale/en_GB/LC_MESSAGES/pdf_bot.po
+          translation: /locale/%locale_with_underscore%/LC_MESSAGES/pdf_bot.po
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
