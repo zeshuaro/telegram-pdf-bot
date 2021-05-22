@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 from logbook import Logger, StreamHandler
 from logbook.compat import redirect_logging
 from telegram import (
-    ForceReply,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     MessageEntity,
@@ -16,6 +15,7 @@ from telegram import (
     Update,
 )
 from telegram.chataction import ChatAction
+from telegram.error import Unauthorized
 from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
@@ -25,7 +25,6 @@ from telegram.ext import (
     PreCheckoutQueryHandler,
     Updater,
 )
-from telegram.error import Unauthorized
 from telegram.ext import messagequeue as mq
 from telegram.utils.request import Request
 
