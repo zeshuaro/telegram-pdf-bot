@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-08 03:00+0000\n"
-"PO-Revision-Date: 2021-05-08 14:06\n"
+"POT-Creation-Date: 2021-05-22 10:15+0000\n"
+"PO-Revision-Date: 2021-05-22 10:16\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: Arabic\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: bot.py:148
+#: bot.py:147
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -45,19 +45,19 @@ msgstr "مرحبا بكم في  بوت PDF \n\n"
 "- <b><i>وأكثر...</i></b>\n\n"
 "اكتب /help لمعرفة كيفية استخدام PDF Bot"
 
-#: bot.py:167
+#: bot.py:166
 msgid "Set Language 🌎"
 msgstr "تغير اللغه 🌎"
 
-#: bot.py:169 pdf_bot/utils.py:307
+#: bot.py:168 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "انضم إلى القناة"
 
-#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
+#: bot.py:169 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "ادعم بوت ال PDF"
 
-#: bot.py:176
+#: bot.py:175
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -235,15 +235,15 @@ msgstr "شيء خاطئ حصل"
 msgid "Thank you for your support!"
 msgstr "شكرا على دعمك!"
 
-#: pdf_bot/url.py:24
+#: pdf_bot/url.py:26
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "لقد ارسلت لي صفحة ويب مسبقا ولا ازال احولها"
 
-#: pdf_bot/url.py:27
+#: pdf_bot/url.py:29
 msgid "Converting your web page into a PDF file"
 msgstr "تحويل صفحة الويب الا ملف PDF"
 
-#: pdf_bot/url.py:39
+#: pdf_bot/url.py:41
 msgid "Unable to reach your web page"
 msgstr "غير قادر على الوصول لصفحة الويب"
 
@@ -398,11 +398,23 @@ msgstr "جاري تجميل وتحويل صورك"
 msgid "Converting your photos into PDF"
 msgstr "تحويل صورك الا PDF"
 
-#: pdf_bot/commands/text.py:45
+#: pdf_bot/commands/text.py:56
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "أرسل لي النص الذي تريد أن تكتبه في ملفك ال بي دي اف"
 
-#: pdf_bot/commands/text.py:68
+#: pdf_bot/commands/text.py:82
+msgid "Select the font or select"
+msgstr ""
+
+#: pdf_bot/commands/text.py:84
+msgid "to use the default font"
+msgstr ""
+
+#: pdf_bot/commands/text.py:108
+msgid "Unknown font, please select a font from the list"
+msgstr ""
+
+#: pdf_bot/commands/text.py:119
 msgid "Creating your PDF file"
 msgstr "أنشئ ملفك ال بي دي اف"
 
