@@ -1,19 +1,21 @@
 import logging
 import os
 import tempfile
-
 from urllib.parse import urlparse
+
+from telegram import Update
+from telegram.ext import CallbackContext
 from weasyprint import HTML
 from weasyprint.urls import URLFetchingError
 
-from pdf_bot.utils import send_result_file
 from pdf_bot.language import set_lang
+from pdf_bot.utils import send_result_file
 
 URLS = "urls"
 logging.getLogger("weasyprint").setLevel(100)
 
 
-def url_to_pdf(update, context):
+def url_to_pdf(update: Update, context: CallbackContext):
     _ = set_lang(update, context)
     message = update.effective_message
     url = message.text
