@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-08 03:00+0000\n"
-"PO-Revision-Date: 2021-05-18 10:56\n"
+"POT-Creation-Date: 2021-05-22 10:15+0000\n"
+"PO-Revision-Date: 2021-05-22 10:16\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: bot.py:148
+#: bot.py:147
 msgid "Welcome to PDF Bot!\n\n"
 "<b>Key features:</b>\n"
 "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
@@ -45,19 +45,19 @@ msgstr "Ласкаво просимо в PDF Бот!\n\n"
 "- <b><i>І багато іншого...</i></b>\n\n"
 "Тип /help, щоб побачити, як використовувати PDF Bot"
 
-#: bot.py:167
+#: bot.py:166
 msgid "Set Language 🌎"
 msgstr "Вибрати мову 🌎"
 
-#: bot.py:169 pdf_bot/utils.py:307
+#: bot.py:168 pdf_bot/utils.py:307
 msgid "Join Channel"
 msgstr "Приєднатися до каналу"
 
-#: bot.py:170 pdf_bot/payment.py:66 pdf_bot/utils.py:308
+#: bot.py:169 pdf_bot/payment.py:66 pdf_bot/utils.py:308
 msgid "Support PDF Bot"
 msgstr "Підтримка PDF Bot"
 
-#: bot.py:176
+#: bot.py:175
 msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "- PDF files\n"
 "- Photos\n"
@@ -235,15 +235,15 @@ msgstr "Щось пішло не так"
 msgid "Thank you for your support!"
 msgstr "Дякуємо за підтримку!"
 
-#: pdf_bot/url.py:24
+#: pdf_bot/url.py:26
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "Ви вже надіслали мені цю веб-сторінку, і я все ще конвертую її"
 
-#: pdf_bot/url.py:27
+#: pdf_bot/url.py:29
 msgid "Converting your web page into a PDF file"
 msgstr "Перетворення веб-сторінки на файл PDF"
 
-#: pdf_bot/url.py:39
+#: pdf_bot/url.py:41
 msgid "Unable to reach your web page"
 msgstr "Не вдається отримати доступ до веб-сторінки"
 
@@ -397,11 +397,23 @@ msgstr "Прикраса та перетворення ваших фотогра
 msgid "Converting your photos into PDF"
 msgstr "Перетворення фотографій у PDF"
 
-#: pdf_bot/commands/text.py:45
+#: pdf_bot/commands/text.py:56
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Надішліть мені текст, який ви хотіли б записати у файл PDF"
 
-#: pdf_bot/commands/text.py:68
+#: pdf_bot/commands/text.py:82
+msgid "Select the font or select"
+msgstr ""
+
+#: pdf_bot/commands/text.py:84
+msgid "to use the default font"
+msgstr ""
+
+#: pdf_bot/commands/text.py:108
+msgid "Unknown font, please select a font from the list"
+msgstr ""
+
+#: pdf_bot/commands/text.py:119
 msgid "Creating your PDF file"
 msgstr "Створення PDF-файлу"
 
