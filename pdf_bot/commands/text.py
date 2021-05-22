@@ -1,6 +1,7 @@
 import os
 import tempfile
 
+from matplotlib import font_manager
 from pdf_bot.constants import CANCEL, TEXT_FILTER
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel, check_user_data, send_result_file
@@ -18,52 +19,15 @@ WAIT_FONT = 1
 
 TEXT = "text"
 SKIP = "Skip"
+FONTS = sorted(
+    [os.path.splitext(os.path.basename(x))[0] for x in font_manager.findSystemFonts()]
+)
 BASE_HTML = """<!DOCTYPE html>
 <html>
 <body>
 <p style="font-family: {font}">{text}</p>
 </body>
 </html>"""
-
-FONTS = {
-    "Arial": "sans-serif",
-    "Helvetica": "sans-serif",
-    "Verdana": "sans-serif",
-    "Trebuchet MS": "sans-serif",
-    "Gill Sans": "sans-serif",
-    "Noto Sans": "sans-serif",
-    "Avantgarde": "sans-serif",
-    "Optima": "sans-serif",
-    "Arial Narrow": "sans-serif",
-    "Times New Roman": "serif",
-    "Didot": "serif",
-    "Georgia": "serif",
-    "Palatino": "serif",
-    "Bookman": "serif",
-    "New Century Schoolbook": "serif",
-    "American Typewriter": "serif",
-    "Andale Mono": "monospace",
-    "Courier New": "monospace",
-    "Courier": "monospace",
-    "FreeMono": "monospace",
-    "OCR A Std": "monospace",
-    "DejaVu Sans Mono": "monospace",
-    "Comic Sans": "cursive",
-    "Apple Chancery": "cursive",
-    "Bradley Hand": "cursive",
-    "Brush Script MT": "cursive",
-    "Snell Roundhand": "cursive",
-    "URW Chancery L": "cursive",
-    "Impact": "fantasy",
-    "Luminari": "fantasy",
-    "Chalkduster": "fantasy",
-    "Jazz LET": "fantasy",
-    "Blippo": "fantasy",
-    "Stencil Std": "fantasy",
-    "Marker Felt": "fantasy",
-    "Trattatello": "fantasy",
-}
-FONT_LIST = sorted(FONTS.keys())
 
 
 def text_cov_handler():
@@ -107,8 +71,7 @@ def ask_font(update: Update, context: CallbackContext):
     context.user_data[TEXT] = text
     keyboard_size = 3
     keyboard = [[_(SKIP), _(CANCEL)]] + [
-        FONT_LIST[i : i + keyboard_size]
-        for i in range(0, len(FONT_LIST), keyboard_size)
+        FONTS[i : i + keyboard_size] for i in range(0, len(FONTS), keyboard_size)
     ]
 
     reply_markup = ReplyKeyboardMarkup(
@@ -155,10 +118,7 @@ def text_to_pdf(update: Update, context: CallbackContext, font: str):
     update.effective_message.reply_text(
         _("Creating your PDF file"), reply_markup=ReplyKeyboardRemove()
     )
-    font_family = f"{font}, {FONTS[font]}"
-    html = HTML(
-        string=BASE_HTML.format(font=font_family, text=text.replace("\n", "<br/>"))
-    )
+    html = HTML(string=BASE_HTML.format(font=font, text=text.replace("\n", "<br/>")))
 
     with tempfile.TemporaryDirectory() as dir_name:
         out_fn = os.path.join(dir_name, "Text.pdf")
