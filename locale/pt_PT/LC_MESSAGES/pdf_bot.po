@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-22 11:27+0000\n"
-"PO-Revision-Date: 2021-05-22 11:27\n"
+"POT-Creation-Date: 2021-05-23 13:29+0000\n"
+"PO-Revision-Date: 2021-05-23 13:29\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese\n"
@@ -397,23 +397,20 @@ msgstr "Embelezando e convertendo suas fotos"
 msgid "Converting your photos into PDF"
 msgstr "Convertendo suas fotos em PDF"
 
-#: pdf_bot/commands/text.py:56
+#: pdf_bot/commands/text.py:59
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Envie-me o texto que você vai gostar de escrever em seu arquivo PDF"
 
-#: pdf_bot/commands/text.py:82
-msgid "Select the font or select"
+#: pdf_bot/commands/text.py:81
+msgid "Send me the font that you'll like to use for the PDF file or skip to use the default font\n\n"
+"See here for the list of supported fonts:"
 msgstr ""
 
-#: pdf_bot/commands/text.py:84
-msgid "to use the default font"
+#: pdf_bot/commands/text.py:115
+msgid "Unknown font, please try again"
 msgstr ""
 
-#: pdf_bot/commands/text.py:108
-msgid "Unknown font, please select a font from the list"
-msgstr ""
-
-#: pdf_bot/commands/text.py:119
+#: pdf_bot/commands/text.py:147
 msgid "Creating your PDF file"
 msgstr "Criando seu arquivo PDF"
 
@@ -894,5 +891,14 @@ msgstr "Não consegui encontrar nenhum texto no seu arquivo PDF"
 #~ msgstr ""
 
 #~ msgid "The amount you sent is invalid, try again. {}"
+#~ msgstr ""
+
+#~ msgid "Select the font or select"
+#~ msgstr ""
+
+#~ msgid "to use the default font"
+#~ msgstr ""
+
+#~ msgid "Unknown font, please select a font from the list"
 #~ msgstr ""
 
