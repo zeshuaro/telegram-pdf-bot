@@ -3,13 +3,10 @@ repos:
     rev: 5.8.0
     hooks:
       - id: isort
-        name: isort (python)
-      - id: isort
-        name: isort (cython)
-        types: [cython]
-      - id: isort
-        name: isort (pyi)
-        types: [pyi]
+        name: isort
+        args:
+          - --diff
+          - --check-only
   - repo: https://github.com/psf/black
     rev: 21.5b1
     hooks:
@@ -18,4 +15,3 @@ repos:
         args:
           - --diff
           - --check
-        types_or: [python, pyi]

@@ -1,33 +1,34 @@
 import os
 import tempfile
+from typing import List, Tuple
 
-from matplotlib import font_manager
-from pdf_bot.constants import CANCEL, TEXT_FILTER
-from pdf_bot.language import set_lang
-from pdf_bot.utils import cancel, check_user_data, send_result_file
+import requests
+from dotenv import load_dotenv
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram.chataction import ChatAction
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
     ConversationHandler,
     MessageHandler,
 )
-from weasyprint import HTML
+from telegram.parsemode import ParseMode
+from weasyprint import CSS, HTML
+from weasyprint.fonts import FontConfiguration
+
+from pdf_bot.constants import CANCEL, TEXT_FILTER
+from pdf_bot.language import set_lang
+from pdf_bot.utils import cancel, check_user_data, send_result_file
+
+load_dotenv()
+GOOGLE_FONTS_API_KEY = os.environ.get("GOOGLE_FONTS_API_KEY")
 
 WAIT_TEXT = 0
 WAIT_FONT = 1
 
 TEXT = "text"
 SKIP = "Skip"
-FONTS = sorted(
-    [os.path.splitext(os.path.basename(x))[0] for x in font_manager.findSystemFonts()]
-)
-BASE_HTML = """<!DOCTYPE html>
-<html>
-<body>
-<p style="font-family: {font}">{text}</p>
-</body>
-</html>"""
+DEFAULT_FONT = "Arial"
 
 
 def text_cov_handler():
@@ -39,7 +40,6 @@ def text_cov_handler():
         },
         fallbacks=[
             CommandHandler("cancel", cancel, run_async=True),
-            MessageHandler(TEXT_FILTER, check_text, run_async=True),
         ],
         allow_reentry=True,
     )
@@ -48,11 +48,14 @@ def text_cov_handler():
 
 
 def ask_text(update: Update, context: CallbackContext):
+    message = update.effective_message
+    message.reply_chat_action(ChatAction.TYPING)
+
     _ = set_lang(update, context)
     reply_markup = ReplyKeyboardMarkup(
         [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
     )
-    update.effective_message.reply_text(
+    message.reply_text(
         _("Send me the text that you'll like to write into your PDF file"),
         reply_markup=reply_markup,
     )
@@ -61,28 +64,27 @@ def ask_text(update: Update, context: CallbackContext):
 
 
 def ask_font(update: Update, context: CallbackContext):
-    _ = set_lang(update, context)
     message = update.effective_message
+    message.reply_chat_action(ChatAction.TYPING)
+
+    _ = set_lang(update, context)
     text = message.text
 
     if text == _(CANCEL):
         return cancel(update, context)
 
     context.user_data[TEXT] = text
-    keyboard_size = 3
-    keyboard = [[_(SKIP), _(CANCEL)]] + [
-        FONTS[i : i + keyboard_size] for i in range(0, len(FONTS), keyboard_size)
-    ]
-
     reply_markup = ReplyKeyboardMarkup(
-        keyboard, resize_keyboard=True, one_time_keyboard=True
+        [[_(SKIP)]], resize_keyboard=True, one_time_keyboard=True
     )
-    update.effective_message.reply_text(
-        "{select_text} '{skip}' {use_default}".format(
-            select_text=_("Select the font or select"),
-            skip=_(SKIP),
-            use_default=_("to use the default font"),
-        ),
+    message.reply_text(
+        _(
+            "Send me the font that you'll like to use for the PDF file or "
+            "skip to use the default font\n\nSee here for the list of supported fonts:"
+        )
+        + ' <a href="https://fonts.google.com/">Google Fonts</a>',
+        parse_mode=ParseMode.HTML,
+        disable_web_page_preview=True,
         reply_markup=reply_markup,
     )
 
@@ -90,26 +92,52 @@ def ask_font(update: Update, context: CallbackContext):
 
 
 def check_text(update: Update, context: CallbackContext):
-    _ = set_lang(update, context)
     message = update.effective_message
-    text = message.text
-    font: str = None
+    message.reply_chat_action(ChatAction.TYPING)
 
-    if text == _(SKIP):
-        font = "Arial"
-    elif text in FONTS:
-        font = text
-    elif text == _(CANCEL):
+    _ = set_lang(update, context)
+    text = message.text
+
+    if text == _(CANCEL):
         return cancel(update, context)
 
-    if text is not None:
-        return text_to_pdf(update, context, font)
+    font_family: str = None
+    font_url: str = None
+
+    if text == _(SKIP):
+        font_family = DEFAULT_FONT
     else:
-        message.reply_text(_("Unknown font, please select a font from the list"))
+        font_family, font_url = get_font(text)
+
+    if font_family is not None:
+        return text_to_pdf(update, context, font_family, font_url)
+    else:
+        message.reply_text(_("Unknown font, please try again"))
         return WAIT_FONT
 
 
-def text_to_pdf(update: Update, context: CallbackContext, font: str):
+def get_font(font: str) -> Tuple[str, str]:
+    font_family: str = None
+    font_url: str = None
+
+    r = requests.get(
+        f"https://www.googleapis.com/webfonts/v1/webfonts?key={GOOGLE_FONTS_API_KEY}"
+    )
+    if r.status_code == 200:
+        font = font.lower()
+        for item in r.json()["items"]:
+            if item["family"].lower() == font:
+                if "regular" in item["files"]:
+                    font_family = item["family"]
+                    font_url = item["files"]["regular"]
+                break
+
+    return font_family, font_url
+
+
+def text_to_pdf(
+    update: Update, context: CallbackContext, font_family: str, font_url: str
+):
     if not check_user_data(update, context, TEXT):
         return ConversationHandler.END
 
@@ -118,11 +146,30 @@ def text_to_pdf(update: Update, context: CallbackContext, font: str):
     update.effective_message.reply_text(
         _("Creating your PDF file"), reply_markup=ReplyKeyboardRemove()
     )
-    html = HTML(string=BASE_HTML.format(font=font, text=text.replace("\n", "<br/>")))
+
+    html = HTML(string="<p>{}</p>".format(text.replace("\n", "<br/>")))
+    font_config = FontConfiguration()
+    stylesheets: List[CSS] = None
+
+    if font_family != DEFAULT_FONT:
+        stylesheets = [
+            CSS(
+                string=(
+                    "@font-face {"
+                    f"font-family: {font_family};"
+                    f"src: url({font_url});"
+                    "}"
+                    "p {"
+                    f"font-family: {font_family};"
+                    "}"
+                ),
+                font_config=font_config,
+            )
+        ]
 
     with tempfile.TemporaryDirectory() as dir_name:
         out_fn = os.path.join(dir_name, "Text.pdf")
-        html.write_pdf(out_fn)
+        html.write_pdf(out_fn, stylesheets=stylesheets, font_config=font_config)
         send_result_file(update, context, out_fn, "text")
 
     return ConversationHandler.END
