@@ -76,15 +76,17 @@ def main():
     dispatcher = updater.dispatcher
 
     # General commands handlers
+    dispatcher.add_handler(
+        CommandHandler(
+            "start", send_support_options, Filters.regex("support"), run_async=True
+        )
+    )
     dispatcher.add_handler(CommandHandler("start", start_msg, run_async=True))
+
     dispatcher.add_handler(CommandHandler("help", help_msg, run_async=True))
     dispatcher.add_handler(CommandHandler("setlang", send_lang, run_async=True))
     dispatcher.add_handler(
         CommandHandler("support", send_support_options, run_async=True)
-    )
-    dispatcher.add_handler(CommandHandler("send", send_msg, Filters.user(DEV_TELE_ID)))
-    dispatcher.add_handler(
-        CommandHandler("stats", get_stats, Filters.user(DEV_TELE_ID))
     )
 
     # Callback query handler
@@ -114,6 +116,12 @@ def main():
     # Feedback handler
     dispatcher.add_handler(feedback_cov_handler())
 
+    # Dev commands handlers
+    dispatcher.add_handler(CommandHandler("send", send_msg, Filters.user(DEV_TELE_ID)))
+    dispatcher.add_handler(
+        CommandHandler("stats", get_stats, Filters.user(DEV_TELE_ID))
+    )
+
     # Log all errors
     dispatcher.add_error_handler(error_callback)
 
@@ -137,7 +145,7 @@ def main():
 
 
 def start_msg(update: Update, context: CallbackContext) -> None:
-    update.effective_message.chat.send_action(ChatAction.TYPING)
+    update.effective_message.reply_chat_action(ChatAction.TYPING)
 
     # Create the user entity in Datastore
     create_user(update.effective_message.from_user)
@@ -160,7 +168,7 @@ def start_msg(update: Update, context: CallbackContext) -> None:
 
 
 def help_msg(update, context):
-    update.effective_message.chat.send_action(ChatAction.TYPING)
+    update.effective_message.reply_chat_action(ChatAction.TYPING)
     _ = set_lang(update, context)
     keyboard = [
         [InlineKeyboardButton(_("Set Language 🌎"), callback_data=SET_LANG)],
