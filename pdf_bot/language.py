@@ -1,12 +1,15 @@
 import gettext
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.chataction import ChatAction
+from telegram.ext import CallbackContext
 
-from pdf_bot.constants import USER, LANGUAGE, LANGUAGES
+from pdf_bot.constants import LANGUAGE, LANGUAGES, USER
 from pdf_bot.store import client
 
 
-def send_lang(update, context, query=None):
+def send_lang(update: Update, context: CallbackContext, query: CallbackQuery = None):
+    update.effective_message.reply_chat_action(ChatAction.TYPING)
     lang = get_lang(update, context, query)
     langs = [
         InlineKeyboardButton(key, callback_data=key)
