@@ -24,6 +24,7 @@ jobs:
           docker_heroku_process_type: web
 
   deploy-prod:
+    needs: [deploy-stg]
     runs-on: ubuntu-latest
     environment:
       name: Production
