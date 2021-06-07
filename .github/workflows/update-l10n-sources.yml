@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT }}
 
       - name: Setup Python 🐍
         uses: actions/setup-python@v2
@@ -53,7 +51,7 @@ jobs:
           upload_translations: false
           download_translations: true
           create_pull_request: true
-          pull_request_labels: "automerge, l10n"
+          pull_request_labels: l10n
           config: ./crowdin.yml
           source: locale/en_GB/LC_MESSAGES/pdf_bot.po
           translation: /locale/%locale_with_underscore%/LC_MESSAGES/pdf_bot.po
