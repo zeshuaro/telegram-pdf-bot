@@ -7,8 +7,8 @@
   "timezone": "Australia/Sydney",
   "packageRules": [
     {
-      "matchPaths": [".github/workflows/*.yml"],
-      "labels": ["github-actions"]
+      "matchPaths": [".github/workflows/*.yml", ".pre-commit-config.yaml"],
+      "labels": ["ci"]
     },
     { "matchFiles": ["Dockerfile"], "labels": ["docker"] }
   ]
