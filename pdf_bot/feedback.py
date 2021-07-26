@@ -3,17 +3,17 @@ import os
 from dotenv import load_dotenv
 from logbook import Logger
 from slack import WebClient
-from telegram import Update, ChatAction
+from telegram import ChatAction, Update
 from telegram.ext import (
+    CallbackContext,
     CommandHandler,
     ConversationHandler,
     MessageHandler,
-    CallbackContext,
 )
 from textblob import TextBlob
 from textblob.exceptions import TranslatorError
 
-from pdf_bot.constants import TEXT_FILTER, CANCEL
+from pdf_bot.constants import CANCEL, TEXT_FILTER
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel, reply_with_cancel_btn
 
@@ -23,9 +23,9 @@ SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
 
 def feedback_cov_handler() -> ConversationHandler:
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("feedback", feedback, run_async=True)],
-        states={0: [MessageHandler(TEXT_FILTER, check_text, run_async=True)]},
-        fallbacks=[CommandHandler("cancel", cancel, run_async=True)],
+        entry_points=[CommandHandler("feedback", feedback)],
+        states={0: [MessageHandler(TEXT_FILTER, check_text)]},
+        fallbacks=[CommandHandler("cancel", cancel)],
     )
 
     return conv_handler

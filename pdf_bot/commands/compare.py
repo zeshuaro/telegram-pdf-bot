@@ -1,19 +1,14 @@
 import os
-import pdf_diff
 import tempfile
 
+import pdf_diff
 from pdf_diff import NoDifferenceError
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
-from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
+from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
-from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK, TEXT_FILTER
-from pdf_bot.utils import (
-    check_pdf,
-    send_result_file,
-    check_user_data,
-    cancel,
-)
+from pdf_bot.constants import BACK, CANCEL, PDF_INVALID_FORMAT, PDF_OK, TEXT_FILTER
 from pdf_bot.language import set_lang
+from pdf_bot.utils import cancel, check_pdf, check_user_data, send_result_file
 
 WAIT_FIRST = 0
 WAIT_SECOND = 1
@@ -22,18 +17,14 @@ COMPARE_ID = "compare_id"
 
 def compare_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("compare", compare, run_async=True)],
+        entry_points=[CommandHandler("compare", compare)],
         states={
-            WAIT_FIRST: [
-                MessageHandler(Filters.document, check_first_doc, run_async=True)
-            ],
-            WAIT_SECOND: [
-                MessageHandler(Filters.document, check_second_doc, run_async=True)
-            ],
+            WAIT_FIRST: [MessageHandler(Filters.document, check_first_doc)],
+            WAIT_SECOND: [MessageHandler(Filters.document, check_second_doc)],
         },
         fallbacks=[
-            CommandHandler("cancel", cancel, run_async=True),
-            MessageHandler(TEXT_FILTER, check_text, run_async=True),
+            CommandHandler("cancel", cancel),
+            MessageHandler(TEXT_FILTER, check_text),
         ],
         allow_reentry=True,
     )

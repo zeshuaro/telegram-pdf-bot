@@ -1,7 +1,8 @@
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
-from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
+from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
 from pdf_bot.constants import *
+from pdf_bot.files.compress import compress_pdf
 from pdf_bot.files.crop import (
     ask_crop_type,
     ask_crop_value,
@@ -17,24 +18,23 @@ from pdf_bot.files.crypto import (
 from pdf_bot.files.document import ask_doc_task
 from pdf_bot.files.ocr import add_ocr_to_pdf
 from pdf_bot.files.photo import (
-    get_pdf_preview,
-    get_pdf_photos,
-    pdf_to_photos,
     ask_photo_results_type,
-    process_photo_task,
     ask_photo_task,
+    get_pdf_photos,
+    get_pdf_preview,
+    pdf_to_photos,
+    process_photo_task,
 )
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, check_rotate_degree
 from pdf_bot.files.scale import (
     ask_scale_type,
     ask_scale_value,
-    check_scale_percent,
     check_scale_dimension,
+    check_scale_percent,
 )
 from pdf_bot.files.split import ask_split_range, split_pdf
 from pdf_bot.files.text import ask_text_type, get_pdf_text
-from pdf_bot.files.compress import compress_pdf
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel
 
@@ -42,52 +42,30 @@ from pdf_bot.utils import cancel
 def file_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[
-            MessageHandler(Filters.document, check_doc, run_async=True),
-            MessageHandler(Filters.photo, check_photo, run_async=True),
+            MessageHandler(Filters.document, check_doc),
+            MessageHandler(Filters.photo, check_photo),
         ],
         states={
-            WAIT_DOC_TASK: [
-                MessageHandler(TEXT_FILTER, check_doc_task, run_async=True)
-            ],
-            WAIT_PHOTO_TASK: [
-                MessageHandler(TEXT_FILTER, check_photo_task, run_async=True)
-            ],
-            WAIT_CROP_TYPE: [
-                MessageHandler(TEXT_FILTER, check_crop_task, run_async=True)
-            ],
-            WAIT_CROP_PERCENT: [
-                MessageHandler(TEXT_FILTER, check_crop_percent, run_async=True)
-            ],
-            WAIT_CROP_OFFSET: [
-                MessageHandler(TEXT_FILTER, check_crop_size, run_async=True)
-            ],
-            WAIT_DECRYPT_PW: [MessageHandler(TEXT_FILTER, decrypt_pdf, run_async=True)],
-            WAIT_ENCRYPT_PW: [MessageHandler(TEXT_FILTER, encrypt_pdf, run_async=True)],
-            WAIT_FILE_NAME: [MessageHandler(TEXT_FILTER, rename_pdf, run_async=True)],
-            WAIT_ROTATE_DEGREE: [
-                MessageHandler(TEXT_FILTER, check_rotate_degree, run_async=True)
-            ],
-            WAIT_SPLIT_RANGE: [MessageHandler(TEXT_FILTER, split_pdf, run_async=True)],
-            WAIT_TEXT_TYPE: [
-                MessageHandler(TEXT_FILTER, check_text_task, run_async=True)
-            ],
-            WAIT_SCALE_TYPE: [
-                MessageHandler(TEXT_FILTER, check_scale_task, run_async=True)
-            ],
-            WAIT_SCALE_PERCENT: [
-                MessageHandler(TEXT_FILTER, check_scale_percent, run_async=True)
-            ],
-            WAIT_SCALE_DIMENSION: [
-                MessageHandler(TEXT_FILTER, check_scale_dimension, run_async=True)
-            ],
+            WAIT_DOC_TASK: [MessageHandler(TEXT_FILTER, check_doc_task)],
+            WAIT_PHOTO_TASK: [MessageHandler(TEXT_FILTER, check_photo_task)],
+            WAIT_CROP_TYPE: [MessageHandler(TEXT_FILTER, check_crop_task)],
+            WAIT_CROP_PERCENT: [MessageHandler(TEXT_FILTER, check_crop_percent)],
+            WAIT_CROP_OFFSET: [MessageHandler(TEXT_FILTER, check_crop_size)],
+            WAIT_DECRYPT_PW: [MessageHandler(TEXT_FILTER, decrypt_pdf)],
+            WAIT_ENCRYPT_PW: [MessageHandler(TEXT_FILTER, encrypt_pdf)],
+            WAIT_FILE_NAME: [MessageHandler(TEXT_FILTER, rename_pdf)],
+            WAIT_ROTATE_DEGREE: [MessageHandler(TEXT_FILTER, check_rotate_degree)],
+            WAIT_SPLIT_RANGE: [MessageHandler(TEXT_FILTER, split_pdf)],
+            WAIT_TEXT_TYPE: [MessageHandler(TEXT_FILTER, check_text_task)],
+            WAIT_SCALE_TYPE: [MessageHandler(TEXT_FILTER, check_scale_task)],
+            WAIT_SCALE_PERCENT: [MessageHandler(TEXT_FILTER, check_scale_percent)],
+            WAIT_SCALE_DIMENSION: [MessageHandler(TEXT_FILTER, check_scale_dimension)],
             WAIT_EXTRACT_PHOTO_TYPE: [
-                MessageHandler(TEXT_FILTER, check_get_photos_task, run_async=True)
+                MessageHandler(TEXT_FILTER, check_get_photos_task)
             ],
-            WAIT_TO_PHOTO_TYPE: [
-                MessageHandler(TEXT_FILTER, check_to_photos_task, run_async=True)
-            ],
+            WAIT_TO_PHOTO_TYPE: [MessageHandler(TEXT_FILTER, check_to_photos_task)],
         },
-        fallbacks=[CommandHandler("cancel", cancel, run_async=True)],
+        fallbacks=[CommandHandler("cancel", cancel)],
         allow_reentry=True,
     )
 

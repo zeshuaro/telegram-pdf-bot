@@ -1,12 +1,7 @@
-import datetime as dt
-import logging
 import os
-import sys
-from threading import Thread
 
 from dotenv import load_dotenv
-from logbook import Logger, StreamHandler
-from logbook.compat import redirect_logging
+from logbook import Logger
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -23,84 +18,57 @@ from telegram.ext import (
     Filters,
     MessageHandler,
     PreCheckoutQueryHandler,
-    Updater,
 )
-from telegram.ext import messagequeue as mq
-from telegram.utils.request import Request
+from telegram.ext.dispatcher import Dispatcher
 
-from pdf_bot import *
+from pdf_bot.commands import (
+    compare_cov_handler,
+    merge_cov_handler,
+    photo_cov_handler,
+    text_cov_handler,
+    watermark_cov_handler,
+)
+from pdf_bot.constants import *
+from pdf_bot.feedback import feedback_cov_handler
+from pdf_bot.files import file_cov_handler
+from pdf_bot.language import send_lang, set_lang, store_lang
+from pdf_bot.payment import (
+    precheckout_check,
+    send_payment_invoice,
+    send_support_options,
+    successful_payment,
+)
+from pdf_bot.stats import get_stats
+from pdf_bot.store import create_user
+from pdf_bot.url import url_to_pdf
 
 load_dotenv()
-APP_URL = os.environ.get("APP_URL")
-PORT = int(os.environ.get("PORT", "8443"))
-TELE_TOKEN = os.environ.get("TELE_TOKEN_BETA", os.environ.get("TELE_TOKEN"))
 DEV_TELE_ID = int(os.environ.get("DEV_TELE_ID"))
-
-TIMEOUT = 20
 CALLBACK_DATA = "callback_data"
 
 
-def main():
-    # Setup logging
-    logging.getLogger("pdfminer").setLevel(logging.WARNING)
-    logging.getLogger("ocrmypdf").setLevel(logging.WARNING)
-    redirect_logging()
-    format_string = "{record.level_name}: {record.message}"
-    StreamHandler(
-        sys.stdout, format_string=format_string, level="INFO"
-    ).push_application()
-    log = Logger()
-
-    q = mq.MessageQueue(all_burst_limit=3, all_time_limit_ms=3000)
-    request = Request(con_pool_size=8)
-    pdf_bot = MQBot(TELE_TOKEN, request=request, mqueue=q)
-
-    # Create the EventHandler and pass it your bot's token.
-    updater = Updater(
-        bot=pdf_bot,
-        use_context=True,
-        request_kwargs={"connect_timeout": TIMEOUT, "read_timeout": TIMEOUT},
-    )
-
-    def stop_and_restart():
-        updater.stop()
-        os.execl(sys.executable, sys.executable, *sys.argv)
-
-    def restart(_):
-        Thread(target=stop_and_restart).start()
-
-    job_queue = updater.job_queue
-    job_queue.run_repeating(restart, interval=dt.timedelta(minutes=30))
-
-    # Get the dispatcher to register handlers
-    dispatcher = updater.dispatcher
-
-    # General commands handlers
+def setup_dispatcher(dispatcher: Dispatcher):
     dispatcher.add_handler(
-        CommandHandler(
-            "start", send_support_options, Filters.regex("support"), run_async=True
-        )
+        CommandHandler("start", send_support_options, Filters.regex("support"))
     )
-    dispatcher.add_handler(CommandHandler("start", start_msg, run_async=True))
+    dispatcher.add_handler(CommandHandler("start", start_msg))
 
-    dispatcher.add_handler(CommandHandler("help", help_msg, run_async=True))
-    dispatcher.add_handler(CommandHandler("setlang", send_lang, run_async=True))
-    dispatcher.add_handler(
-        CommandHandler("support", send_support_options, run_async=True)
-    )
+    dispatcher.add_handler(CommandHandler("help", help_msg))
+    dispatcher.add_handler(CommandHandler("setlang", send_lang))
+    dispatcher.add_handler(CommandHandler("support", send_support_options))
 
     # Callback query handler
-    dispatcher.add_handler(CallbackQueryHandler(process_callback_query, run_async=True))
+    dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
 
     # Payment handlers
-    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check, run_async=True))
+    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check))
     dispatcher.add_handler(
-        MessageHandler(Filters.successful_payment, successful_payment, run_async=True)
+        MessageHandler(Filters.successful_payment, successful_payment)
     )
 
     # URL handler
     dispatcher.add_handler(
-        MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf, run_async=True)
+        MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf)
     )
 
     # PDF commands handlers
@@ -124,24 +92,6 @@ def main():
 
     # Log all errors
     dispatcher.add_error_handler(error_callback)
-
-    # Start the Bot
-    if APP_URL is not None:
-        updater.start_webhook(
-            listen="0.0.0.0",
-            port=PORT,
-            url_path=TELE_TOKEN,
-            webhook_url=APP_URL + TELE_TOKEN,
-        )
-        log.notice("Bot started webhook")
-    else:
-        updater.start_polling()
-        log.notice("Bot started polling")
-
-    # Run the bot until the you presses Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
-    updater.idle()
 
 
 def start_msg(update: Update, context: CallbackContext) -> None:
@@ -235,7 +185,3 @@ def error_callback(update: Update, context: CallbackContext):
     if context.error is not Unauthorized:
         log = Logger()
         log.error(f'Update "{update}" caused error "{context.error}"')
-
-
-if __name__ == "__main__":
-    main()

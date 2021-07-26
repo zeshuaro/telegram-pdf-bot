@@ -79,5 +79,5 @@ cp .env.example .env
 You can then start the bot with the following command:
 
 ```bash
-python bot.py
+python main.py
 ```

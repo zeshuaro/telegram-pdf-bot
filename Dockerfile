@@ -12,14 +12,4 @@ RUN pip install -r requirements.txt
 
 RUN pybabel compile -D pdf_bot -d locale
 
-EXPOSE ${PORT}
-
-ENV APP_URL ${APP_URL}
-ENV TELE_TOKEN ${TELE_TOKEN}
-ENV DEV_TELE_ID ${DEV_TELE_ID}
-ENV GCP_CRED ${GCP_CRED}
-ENV GCP_KEY ${GCP_KEY}
-ENV SLACK_TOKEN ${SLACK_TOKEN}
-ENV STRIPE_TOKEN ${STRIPE_TOKEN}
-
-CMD ["python", "bot.py"]
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 "pdf_bot:create_app()"
