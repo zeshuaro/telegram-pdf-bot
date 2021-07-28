@@ -7,77 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-25 13:22+0000\n"
-"PO-Revision-Date: 2021-05-25 13:22\n"
+"POT-Creation-Date: 2021-07-28 10:41+0000\n"
+"PO-Revision-Date: 2021-07-28 10:41\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.9.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: ja\n"
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-
-#: bot.py:155
-msgid "Welcome to PDF Bot!\n\n"
-"<b>Key features:</b>\n"
-"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
-"- Create PDF files from text messages\n"
-"- Extract images and text from PDF files\n"
-"- Convert PDF files into images\n"
-"- Convert webpages and images into PDF files\n"
-"- Beautify handwritten notes images into PDF files\n"
-"- <b><i>And more...</i></b>\n\n"
-"Type /help to see how to use PDF Bot"
-msgstr "PDFボットへようこそ！\n\n"
-"<b>主な機能：</b>\n"
-"-PDFファイルに透かしを圧縮、マージ、プレビュー、名前変更、分割、追加します\n"
-"-テキストメッセージからPDFファイルを作成する\n"
-"-PDFファイルから画像とテキストを抽出します\n"
-"-PDFファイルを画像に変換する\n"
-"-Webページと画像をPDFファイルに変換します\n"
-"-手書きのメモ画像をPDFファイルに美化する\n"
-"-<b> <i>その他... </i> </b>\n\n"
-"/helpと入力して、PDFボットの使用方法を確認してください"
-
-#: bot.py:174
-msgid "Set Language 🌎"
-msgstr "言語設定 🌎"
-
-#: bot.py:176 pdf_bot/utils.py:307
-msgid "Join Channel"
-msgstr "チャネルに参加"
-
-#: bot.py:177 pdf_bot/payment.py:68 pdf_bot/utils.py:308
-msgid "Support PDF Bot"
-msgstr "PDFボットをサポート"
-
-#: bot.py:183
-msgid "You can perform most of the tasks by sending me one of the followings:\n"
-"- PDF files\n"
-"- Photos\n"
-"- Webpage links\n\n"
-"The rest of the tasks can be performed by using the commands below:\n"
-"/compare - compare PDF files\n"
-"/merge - merge PDF files\n"
-"/photo - convert and combine multiple photos into PDF files\n"
-"/text - create PDF files from text messages\n"
-"/watermark - add watermark to PDF files"
-msgstr "次のいずれかを送信することで、ほとんどのタスクを実行できます。\n"
-"- PDFファイル\n"
-"- 写真\n"
-"- Webページのリンク\n\n"
-"残りのタスクは、以下のコマンドを使用して実行できます。\n"
-"/compare - PDFファイルを比較します\n"
-"/merge - PDFファイルをマージします\n"
-"/photo - 複数の写真をPDFファイルに変換して結合します\n"
-"/text - テキストメッセージからPDFファイルを作成します\n"
-"/watermark - PDFファイルに透かしを追加します"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -195,6 +139,62 @@ msgstr "ビール🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "食事🍲 ($10)"
 
+#: pdf_bot/dispatcher.py:105
+msgid "Welcome to PDF Bot!\n\n"
+"<b>Key features:</b>\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- <b><i>And more...</i></b>\n\n"
+"Type /help to see how to use PDF Bot"
+msgstr "PDFボットへようこそ！\n\n"
+"<b>主な機能：</b>\n"
+"-PDFファイルに透かしを圧縮、マージ、プレビュー、名前変更、分割、追加します\n"
+"-テキストメッセージからPDFファイルを作成する\n"
+"-PDFファイルから画像とテキストを抽出します\n"
+"-PDFファイルを画像に変換する\n"
+"-Webページと画像をPDFファイルに変換します\n"
+"-手書きのメモ画像をPDFファイルに美化する\n"
+"-<b> <i>その他... </i> </b>\n\n"
+"/helpと入力して、PDFボットの使用方法を確認してください"
+
+#: pdf_bot/dispatcher.py:124
+msgid "Set Language 🌎"
+msgstr "言語設定 🌎"
+
+#: pdf_bot/dispatcher.py:126 pdf_bot/utils.py:307
+msgid "Join Channel"
+msgstr "チャネルに参加"
+
+#: pdf_bot/dispatcher.py:127 pdf_bot/payment.py:68 pdf_bot/utils.py:308
+msgid "Support PDF Bot"
+msgstr "PDFボットをサポート"
+
+#: pdf_bot/dispatcher.py:133
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands below:\n"
+"/compare - compare PDF files\n"
+"/merge - merge PDF files\n"
+"/photo - convert and combine multiple photos into PDF files\n"
+"/text - create PDF files from text messages\n"
+"/watermark - add watermark to PDF files"
+msgstr "次のいずれかを送信することで、ほとんどのタスクを実行できます。\n"
+"- PDFファイル\n"
+"- 写真\n"
+"- Webページのリンク\n\n"
+"残りのタスクは、以下のコマンドを使用して実行できます。\n"
+"/compare - PDFファイルを比較します\n"
+"/merge - PDFファイルをマージします\n"
+"/photo - 複数の写真をPDFファイルに変換して結合します\n"
+"/text - テキストメッセージからPDFファイルを作成します\n"
+"/watermark - PDFファイルに透かしを追加します"
+
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "フィードバックを送信してください (英語のフィードバックのみが開発者に転送されます)"
@@ -299,101 +299,101 @@ msgstr "結果ファイルが大きすぎて、私はあなたに送れなくて
 msgid "Here is your result file"
 msgstr "ここにあなたの結果ファイルがあります"
 
-#: pdf_bot/commands/compare.py:54
+#: pdf_bot/commands/compare.py:45
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
 msgstr "比較したいPDFファイルの1つを送\n\n"
 "テキストの違いしか探せることができないことに注意してください"
 
-#: pdf_bot/commands/compare.py:88
+#: pdf_bot/commands/compare.py:79
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "比較したい他の PDF ファイルを送信してください"
 
-#: pdf_bot/commands/compare.py:112
+#: pdf_bot/commands/compare.py:103
 msgid "Comparing your PDF files"
 msgstr "PDF ファイルの比較"
 
-#: pdf_bot/commands/compare.py:131
+#: pdf_bot/commands/compare.py:122
 msgid "There are no differences in text between your PDF files"
 msgstr "PDF ファイル間のテキストの違いはありません。"
 
-#: pdf_bot/commands/merge.py:77
+#: pdf_bot/commands/merge.py:78
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr "マージしたいPDFファイルを送ってください\n\n"
 "あなたが私に送った順序でファイルがマージされることに注意してください"
 
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:111
 msgid "The file you've sent is not a PDF file"
 msgstr "送信したファイルが PDF ファイルではありません"
 
-#: pdf_bot/commands/merge.py:112
+#: pdf_bot/commands/merge.py:113
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "送信した PDF ファイルが大きすぎてダウンロードできなくては"
 
-#: pdf_bot/commands/merge.py:130
+#: pdf_bot/commands/merge.py:131
 msgid "PDF files"
 msgstr "PDF ファイル"
 
-#: pdf_bot/commands/merge.py:137
+#: pdf_bot/commands/merge.py:138
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "[ <b>完了]</b> を押すと、PDF ファイルをマージまたは送信し続ける PDF ファイルをすべて送信した場合"
 
-#: pdf_bot/commands/merge.py:178
+#: pdf_bot/commands/merge.py:179
 msgid "<b>{}</b> has been removed for merging"
 msgstr "<b> {} </b>はマージのために削除されました"
 
-#: pdf_bot/commands/merge.py:198
+#: pdf_bot/commands/merge.py:199
 msgid "You haven't sent me any PDF files"
 msgstr "PDFファイルを送っていない"
 
-#: pdf_bot/commands/merge.py:202
+#: pdf_bot/commands/merge.py:203
 msgid "You've only sent me one PDF file."
 msgstr "PDFファイルは1つしか送ってきなかった。"
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "Merging your PDF files"
 msgstr "PDF ファイルのマージ"
 
-#: pdf_bot/commands/merge.py:236
+#: pdf_bot/commands/merge.py:237
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "「{}」を開いて読むことができなかったので、PDFファイルをマージできません。暗号化されていないことを確認する"
 
-#: pdf_bot/commands/photo.py:72
+#: pdf_bot/commands/photo.py:73
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
 msgstr "あなたが美化したり、PDFファイルに変換したい写真を送ってください\n\n"
 "写真はあなたが私を送る順序で美化され、変換されることに注意してください"
 
-#: pdf_bot/commands/photo.py:99
+#: pdf_bot/commands/photo.py:100
 msgid "File name unavailable"
 msgstr "ファイル名が使用できません"
 
-#: pdf_bot/commands/photo.py:118
+#: pdf_bot/commands/photo.py:119
 msgid "The file you've sent is not a photo"
 msgstr "送信したファイルは写真ではありません"
 
-#: pdf_bot/commands/photo.py:124
+#: pdf_bot/commands/photo.py:125
 msgid "The photo you've sent is too large for me to download"
 msgstr "あなたが送った写真が大きすぎてダウンロードできなくては"
 
-#: pdf_bot/commands/photo.py:131
+#: pdf_bot/commands/photo.py:132
 msgid "photos"
 msgstr "写真"
 
-#: pdf_bot/commands/photo.py:138
+#: pdf_bot/commands/photo.py:139
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
 msgstr "あなたが私にすべての写真を送った場合は、下からタスクを選択するか、私に写真を送り続けます"
 
-#: pdf_bot/commands/photo.py:182
+#: pdf_bot/commands/photo.py:183
 msgid "<b>{}</b> has been removed for beautifying or converting"
 msgstr "<b>{}</b> は、美化または変換のために削除されました"
 
-#: pdf_bot/commands/photo.py:217
+#: pdf_bot/commands/photo.py:218
 msgid "Beautifying and converting your photos"
 msgstr "写真を美化し、変換する"
 
-#: pdf_bot/commands/photo.py:222
+#: pdf_bot/commands/photo.py:223
 msgid "Converting your photos into PDF"
 msgstr "写真を PDF に変換する"
 
@@ -414,19 +414,19 @@ msgstr ""
 msgid "Creating your PDF file"
 msgstr "PDF ファイルの作成"
 
-#: pdf_bot/commands/watermark.py:49
+#: pdf_bot/commands/watermark.py:43
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "透かしを追加したいPDFファイルを送ってください"
 
-#: pdf_bot/commands/watermark.py:80
+#: pdf_bot/commands/watermark.py:74
 msgid "Send me the watermark PDF file"
 msgstr "透かしPDFファイルを送ってください"
 
-#: pdf_bot/commands/watermark.py:105
+#: pdf_bot/commands/watermark.py:99
 msgid "Adding the watermark onto your PDF file"
 msgstr "PDF ファイルにウォーターマークを追加する"
 
-#: pdf_bot/commands/watermark.py:118
+#: pdf_bot/commands/watermark.py:112
 msgid "watermark"
 msgstr "透かし"
 
@@ -503,7 +503,7 @@ msgstr "PDF ファイルの暗号化"
 msgid "Select the task that you'll like to perform"
 msgstr "実行するタスクを選択します。"
 
-#: pdf_bot/files/file.py:106
+#: pdf_bot/files/file.py:84
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "PDFファイルが大きすぎてダウンロードできない\n\n"

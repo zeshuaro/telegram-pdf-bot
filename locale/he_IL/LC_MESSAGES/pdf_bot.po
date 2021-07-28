@@ -7,77 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-25 13:22+0000\n"
-"PO-Revision-Date: 2021-05-25 13:22\n"
+"POT-Creation-Date: 2021-07-28 10:41+0000\n"
+"PO-Revision-Date: 2021-07-28 10:41\n"
 "Last-Translator: \n"
 "Language: he\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.9.1\n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3;\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: he\n"
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-
-#: bot.py:155
-msgid "Welcome to PDF Bot!\n\n"
-"<b>Key features:</b>\n"
-"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
-"- Create PDF files from text messages\n"
-"- Extract images and text from PDF files\n"
-"- Convert PDF files into images\n"
-"- Convert webpages and images into PDF files\n"
-"- Beautify handwritten notes images into PDF files\n"
-"- <b><i>And more...</i></b>\n\n"
-"Type /help to see how to use PDF Bot"
-msgstr "ברוכים הבאים ל-PDF Bot!\n\n"
-"<b>יכולות עיקריות:</b>\n"
-"- דחיסה, מיזוג, תצוגה מקדימה, שינוי שם, פיצול והוספת חתימות-מים לקבצי PDF\n"
-"- יצירת קבצי PDF מהודעות טקסט\n"
-"- חילוץ תמונות וטקסט מקבצי PDF\n"
-"- המרת קבצי PDF לתמונות\n"
-"- המרת דפי אינטרנט ותמונות לקבצי PDF\n"
-"- המרת תמונות כתב-יד לקבצי PDF\n"
-"- <b><i>ועוד...</i></b>\n\n"
-"הקלד help/ כדי לראות כיצד להשתמש ב-PDF Bot"
-
-#: bot.py:174
-msgid "Set Language 🌎"
-msgstr "הגדר שפה 🌎"
-
-#: bot.py:176 pdf_bot/utils.py:307
-msgid "Join Channel"
-msgstr "הצטרף לערוץ"
-
-#: bot.py:177 pdf_bot/payment.py:68 pdf_bot/utils.py:308
-msgid "Support PDF Bot"
-msgstr "תמיכה PDF Bot"
-
-#: bot.py:183
-msgid "You can perform most of the tasks by sending me one of the followings:\n"
-"- PDF files\n"
-"- Photos\n"
-"- Webpage links\n\n"
-"The rest of the tasks can be performed by using the commands below:\n"
-"/compare - compare PDF files\n"
-"/merge - merge PDF files\n"
-"/photo - convert and combine multiple photos into PDF files\n"
-"/text - create PDF files from text messages\n"
-"/watermark - add watermark to PDF files"
-msgstr "באפשרותך לבצע את רוב המשימות על-ידי שליחת אחת מהפעולות הבאות:\n"
-"- קבצי PDF\n"
-"- תמונות\n"
-"- קישורי דף אינטרנט\n\n"
-"ניתן לבצע את שאר המשימות באמצעות הפקודות שלהלן:\n"
-"/compare - השוואת קבצי PDF\n"
-"/merge - מיזוג קבצי PDF\n"
-"/photo - להמיר ולשלב תמונות מרובות לתוך קבצי PDF\n"
-"/text - ליצור קבצי PDF מהודעות טקסט\n"
-"/watermark - להוסיף סימן מים לקובצי PDF"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -195,6 +139,62 @@ msgstr "בירה 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "ארוחה 🍲 ($10)"
 
+#: pdf_bot/dispatcher.py:105
+msgid "Welcome to PDF Bot!\n\n"
+"<b>Key features:</b>\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- <b><i>And more...</i></b>\n\n"
+"Type /help to see how to use PDF Bot"
+msgstr "ברוכים הבאים ל-PDF Bot!\n\n"
+"<b>יכולות עיקריות:</b>\n"
+"- דחיסה, מיזוג, תצוגה מקדימה, שינוי שם, פיצול והוספת חתימות-מים לקבצי PDF\n"
+"- יצירת קבצי PDF מהודעות טקסט\n"
+"- חילוץ תמונות וטקסט מקבצי PDF\n"
+"- המרת קבצי PDF לתמונות\n"
+"- המרת דפי אינטרנט ותמונות לקבצי PDF\n"
+"- המרת תמונות כתב-יד לקבצי PDF\n"
+"- <b><i>ועוד...</i></b>\n\n"
+"הקלד help/ כדי לראות כיצד להשתמש ב-PDF Bot"
+
+#: pdf_bot/dispatcher.py:124
+msgid "Set Language 🌎"
+msgstr "הגדר שפה 🌎"
+
+#: pdf_bot/dispatcher.py:126 pdf_bot/utils.py:307
+msgid "Join Channel"
+msgstr "הצטרף לערוץ"
+
+#: pdf_bot/dispatcher.py:127 pdf_bot/payment.py:68 pdf_bot/utils.py:308
+msgid "Support PDF Bot"
+msgstr "תמיכה PDF Bot"
+
+#: pdf_bot/dispatcher.py:133
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands below:\n"
+"/compare - compare PDF files\n"
+"/merge - merge PDF files\n"
+"/photo - convert and combine multiple photos into PDF files\n"
+"/text - create PDF files from text messages\n"
+"/watermark - add watermark to PDF files"
+msgstr "באפשרותך לבצע את רוב המשימות על-ידי שליחת אחת מהפעולות הבאות:\n"
+"- קבצי PDF\n"
+"- תמונות\n"
+"- קישורי דף אינטרנט\n\n"
+"ניתן לבצע את שאר המשימות באמצעות הפקודות שלהלן:\n"
+"/compare - השוואת קבצי PDF\n"
+"/merge - מיזוג קבצי PDF\n"
+"/photo - להמיר ולשלב תמונות מרובות לתוך קבצי PDF\n"
+"/text - ליצור קבצי PDF מהודעות טקסט\n"
+"/watermark - להוסיף סימן מים לקובצי PDF"
+
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "שלח לי את המשוב שלך (רק משוב באנגלית יועבר למפתח שלי)"
@@ -296,101 +296,101 @@ msgstr "הקובץ גדול מכדי שאוכל לשלוח אליך"
 msgid "Here is your result file"
 msgstr "כאן הקובץ הסופי שלך"
 
-#: pdf_bot/commands/compare.py:54
+#: pdf_bot/commands/compare.py:45
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
 msgstr "שלח לי אחד מקבצי ה- PDF שתרצה להשוות שים לב שאני יכול רק לחפש הבדלי טקסט"
 
-#: pdf_bot/commands/compare.py:88
+#: pdf_bot/commands/compare.py:79
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "שלח לי את קובץ ה- PDF השני שאותו תרצה להשוות"
 
-#: pdf_bot/commands/compare.py:112
+#: pdf_bot/commands/compare.py:103
 msgid "Comparing your PDF files"
 msgstr "השוואה בין קבצי PDF שלך"
 
-#: pdf_bot/commands/compare.py:131
+#: pdf_bot/commands/compare.py:122
 msgid "There are no differences in text between your PDF files"
 msgstr "אין שום הבדל בטקסט בין הקבצים שלך."
 
-#: pdf_bot/commands/merge.py:77
+#: pdf_bot/commands/merge.py:78
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr "שלח לי את קבצי PDF שתרצה לחבר\n"
 "שים לב שהקבצים ימוזגו בסדר בו אתה שולח אותם"
 
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:111
 msgid "The file you've sent is not a PDF file"
 msgstr "הקובץ ששלחת לי הוא לא קובץ PDF"
 
-#: pdf_bot/commands/merge.py:112
+#: pdf_bot/commands/merge.py:113
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "קובץ ה- PDF ששלחת גדול מכדי להוריד אותו"
 
-#: pdf_bot/commands/merge.py:130
+#: pdf_bot/commands/merge.py:131
 msgid "PDF files"
 msgstr "קבצי PDF"
 
-#: pdf_bot/commands/merge.py:137
+#: pdf_bot/commands/merge.py:138
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "לחץ <b>סיום</b> אם שלחת לי את כל קבצי הPDF שאתה רוצה למזג,\n"
 "או המשך לשלוח לי קבצי PDF שתרצה להוסיף אותם"
 
-#: pdf_bot/commands/merge.py:178
+#: pdf_bot/commands/merge.py:179
 msgid "<b>{}</b> has been removed for merging"
 msgstr "<b>{}</b> הוסר בגלל מיזוג"
 
-#: pdf_bot/commands/merge.py:198
+#: pdf_bot/commands/merge.py:199
 msgid "You haven't sent me any PDF files"
 msgstr "לא שלחת לי שום קבצי PDF"
 
-#: pdf_bot/commands/merge.py:202
+#: pdf_bot/commands/merge.py:203
 msgid "You've only sent me one PDF file."
 msgstr "שלחת לי רק קובץ PDF 1."
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "Merging your PDF files"
 msgstr "מזג את קבצי ה-PDF שלך"
 
-#: pdf_bot/commands/merge.py:236
+#: pdf_bot/commands/merge.py:237
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "אני לא יכול למזג את קבצי ה- PDF שלך מכיוון שלא יכולתי לפתוח ולקרוא \"{}\".  ודא שהוא לא מוצפן"
 
-#: pdf_bot/commands/photo.py:72
+#: pdf_bot/commands/photo.py:73
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
 msgstr "שלח לי את התמונות שאתה רוצה לייפות או להמיר לקובץ PDF\n"
 "שים לב שהתמונות יהיו מומרות לפי סדר שליחתן"
 
-#: pdf_bot/commands/photo.py:99
+#: pdf_bot/commands/photo.py:100
 msgid "File name unavailable"
 msgstr "שם קובץ לא זמין"
 
-#: pdf_bot/commands/photo.py:118
+#: pdf_bot/commands/photo.py:119
 msgid "The file you've sent is not a photo"
 msgstr "הקובץ ששלחת לי הוא לא תמונה"
 
-#: pdf_bot/commands/photo.py:124
+#: pdf_bot/commands/photo.py:125
 msgid "The photo you've sent is too large for me to download"
 msgstr "התמונה ששלחת לי גדולה מכדי להוריד אותה"
 
-#: pdf_bot/commands/photo.py:131
+#: pdf_bot/commands/photo.py:132
 msgid "photos"
 msgstr "תמונות"
 
-#: pdf_bot/commands/photo.py:138
+#: pdf_bot/commands/photo.py:139
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
 msgstr "בחר את המשימה מלמטה אם שלחת לי את כל התמונות, או המשך לשלוח לי את התמונות"
 
-#: pdf_bot/commands/photo.py:182
+#: pdf_bot/commands/photo.py:183
 msgid "<b>{}</b> has been removed for beautifying or converting"
 msgstr "<b>{}</b> הוסר לצורך יופי או המרה"
 
-#: pdf_bot/commands/photo.py:217
+#: pdf_bot/commands/photo.py:218
 msgid "Beautifying and converting your photos"
 msgstr "מייפה וממיר את התמונות שלך"
 
-#: pdf_bot/commands/photo.py:222
+#: pdf_bot/commands/photo.py:223
 msgid "Converting your photos into PDF"
 msgstr "ממיר את התמונות שלך לתוך ה PDF"
 
@@ -411,19 +411,19 @@ msgstr ""
 msgid "Creating your PDF file"
 msgstr "יוצר את קובץ ה PDF שלך"
 
-#: pdf_bot/commands/watermark.py:49
+#: pdf_bot/commands/watermark.py:43
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "שלח לי את ה PDF שתרצה להוסיף לו חותם מים"
 
-#: pdf_bot/commands/watermark.py:80
+#: pdf_bot/commands/watermark.py:74
 msgid "Send me the watermark PDF file"
 msgstr "שלח לי את סימן המים של הקובץ PDF"
 
-#: pdf_bot/commands/watermark.py:105
+#: pdf_bot/commands/watermark.py:99
 msgid "Adding the watermark onto your PDF file"
 msgstr "מוסיף את סימן המים לקובץ ה PDF שלך"
 
-#: pdf_bot/commands/watermark.py:118
+#: pdf_bot/commands/watermark.py:112
 msgid "watermark"
 msgstr "סימן-מים"
 
@@ -500,7 +500,7 @@ msgstr "הצפן את קובץ ה-PDF שלך"
 msgid "Select the task that you'll like to perform"
 msgstr "בחר את הפעולות שתרצה לבצע"
 
-#: pdf_bot/files/file.py:106
+#: pdf_bot/files/file.py:84
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "קובץ ה PDF שלך גדול מכדי להוריד אותו,\n"

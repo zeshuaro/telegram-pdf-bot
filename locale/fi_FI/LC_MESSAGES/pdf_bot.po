@@ -7,77 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-25 13:22+0000\n"
-"PO-Revision-Date: 2021-05-25 13:22\n"
+"POT-Creation-Date: 2021-07-28 10:41+0000\n"
+"PO-Revision-Date: 2021-07-28 10:41\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-
-#: bot.py:155
-msgid "Welcome to PDF Bot!\n\n"
-"<b>Key features:</b>\n"
-"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
-"- Create PDF files from text messages\n"
-"- Extract images and text from PDF files\n"
-"- Convert PDF files into images\n"
-"- Convert webpages and images into PDF files\n"
-"- Beautify handwritten notes images into PDF files\n"
-"- <b><i>And more...</i></b>\n\n"
-"Type /help to see how to use PDF Bot"
-msgstr "Tervetuloa PDF-bottiin!\n\n"
-"<b>Tärkeimmät ominaisuudet:</b>\n"
-"- Pakkaa, yhdistä, esikatsele, nimeä uudelleen, jaa ja lisää vesileima PDF-tiedostoihin\n"
-"- Luo PDF-tiedostoja tekstiviesteistä\n"
-"- Pura kuvia ja tekstiä PDF-tiedostoista\n"
-"- Muunna PDF-tiedostot kuviksi\n"
-"- Muunna verkkosivut ja kuvat PDF-tiedostoiksi\n"
-"- Kaunistele käsinkirjoitetut muistiinpanokuvat PDF-tiedostoiksi\n"
-"- <b><i>Ja lisää...</i></b>\n\n"
-"Tyyppi /help nähdäksesi kuinka käyttää PDF-bottia"
-
-#: bot.py:174
-msgid "Set Language 🌎"
-msgstr "Aseta Kieli 🌎"
-
-#: bot.py:176 pdf_bot/utils.py:307
-msgid "Join Channel"
-msgstr "Liity kanavaan"
-
-#: bot.py:177 pdf_bot/payment.py:68 pdf_bot/utils.py:308
-msgid "Support PDF Bot"
-msgstr "Tuki PDF Bot"
-
-#: bot.py:183
-msgid "You can perform most of the tasks by sending me one of the followings:\n"
-"- PDF files\n"
-"- Photos\n"
-"- Webpage links\n\n"
-"The rest of the tasks can be performed by using the commands below:\n"
-"/compare - compare PDF files\n"
-"/merge - merge PDF files\n"
-"/photo - convert and combine multiple photos into PDF files\n"
-"/text - create PDF files from text messages\n"
-"/watermark - add watermark to PDF files"
-msgstr "Voit suorittaa suurimman osan tehtävistä lähettämällä minulle yhden seuraavista:\n"
-"- PDF-tiedostot\n"
-"- Valokuvat\n"
-"- Verkkosivun linkit\n\n"
-"Loput tehtävät voidaan suorittaa alla olevilla komennoilla:\n"
-"/compare - vertaa PDF-tiedostoja\n"
-"/merge - yhdistä PDF-tiedostot\n"
-"/photo - muunna ja yhdistä useita valokuvia PDF-tiedostoiksi\n"
-"/text - luo PDF-tiedostoja tekstiviesteistä\n"
-"/watermark - lisää vesileima PDF-tiedostoihin"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -195,6 +139,62 @@ msgstr "Olut 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "Ateria 🍲 ($10)"
 
+#: pdf_bot/dispatcher.py:105
+msgid "Welcome to PDF Bot!\n\n"
+"<b>Key features:</b>\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- <b><i>And more...</i></b>\n\n"
+"Type /help to see how to use PDF Bot"
+msgstr "Tervetuloa PDF-bottiin!\n\n"
+"<b>Tärkeimmät ominaisuudet:</b>\n"
+"- Pakkaa, yhdistä, esikatsele, nimeä uudelleen, jaa ja lisää vesileima PDF-tiedostoihin\n"
+"- Luo PDF-tiedostoja tekstiviesteistä\n"
+"- Pura kuvia ja tekstiä PDF-tiedostoista\n"
+"- Muunna PDF-tiedostot kuviksi\n"
+"- Muunna verkkosivut ja kuvat PDF-tiedostoiksi\n"
+"- Kaunistele käsinkirjoitetut muistiinpanokuvat PDF-tiedostoiksi\n"
+"- <b><i>Ja lisää...</i></b>\n\n"
+"Tyyppi /help nähdäksesi kuinka käyttää PDF-bottia"
+
+#: pdf_bot/dispatcher.py:124
+msgid "Set Language 🌎"
+msgstr "Aseta Kieli 🌎"
+
+#: pdf_bot/dispatcher.py:126 pdf_bot/utils.py:307
+msgid "Join Channel"
+msgstr "Liity kanavaan"
+
+#: pdf_bot/dispatcher.py:127 pdf_bot/payment.py:68 pdf_bot/utils.py:308
+msgid "Support PDF Bot"
+msgstr "Tuki PDF Bot"
+
+#: pdf_bot/dispatcher.py:133
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands below:\n"
+"/compare - compare PDF files\n"
+"/merge - merge PDF files\n"
+"/photo - convert and combine multiple photos into PDF files\n"
+"/text - create PDF files from text messages\n"
+"/watermark - add watermark to PDF files"
+msgstr "Voit suorittaa suurimman osan tehtävistä lähettämällä minulle yhden seuraavista:\n"
+"- PDF-tiedostot\n"
+"- Valokuvat\n"
+"- Verkkosivun linkit\n\n"
+"Loput tehtävät voidaan suorittaa alla olevilla komennoilla:\n"
+"/compare - vertaa PDF-tiedostoja\n"
+"/merge - yhdistä PDF-tiedostot\n"
+"/photo - muunna ja yhdistä useita valokuvia PDF-tiedostoiksi\n"
+"/text - luo PDF-tiedostoja tekstiviesteistä\n"
+"/watermark - lisää vesileima PDF-tiedostoihin"
+
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Lähetä minulle palautteesi (vain englanninkielinen palaute välittyy kehittäjälleni)"
@@ -299,101 +299,101 @@ msgstr "Tulostiedosto on liian suuri lähetettäväksi sinulle"
 msgid "Here is your result file"
 msgstr "Tässä on tulostiedostosi"
 
-#: pdf_bot/commands/compare.py:54
+#: pdf_bot/commands/compare.py:45
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
 msgstr "Lähetä minulle yksi PDF-tiedostoista, joita haluat verrata\n\n"
 "Huomaa, että voin etsiä vain tekstin eroja"
 
-#: pdf_bot/commands/compare.py:88
+#: pdf_bot/commands/compare.py:79
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Lähetä minulle toinen PDF-tiedosto, jota haluat verrata"
 
-#: pdf_bot/commands/compare.py:112
+#: pdf_bot/commands/compare.py:103
 msgid "Comparing your PDF files"
 msgstr "PDF-tiedostojen vertailu"
 
-#: pdf_bot/commands/compare.py:131
+#: pdf_bot/commands/compare.py:122
 msgid "There are no differences in text between your PDF files"
 msgstr "PDF-tiedostojen tekstissä ei ole eroja"
 
-#: pdf_bot/commands/merge.py:77
+#: pdf_bot/commands/merge.py:78
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr "Lähetä pdf-tiedostot, jotka haluat yhdistää\n\n"
 "Huomaa, että tiedostot yhdistetään lähettämissäsi järjestyksessä"
 
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:111
 msgid "The file you've sent is not a PDF file"
 msgstr "Lähettämäsi tiedosto ei ole PDF-tiedosto"
 
-#: pdf_bot/commands/merge.py:112
+#: pdf_bot/commands/merge.py:113
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "Lähettämäsi PDF-tiedosto on liian suuri ladattavaksi"
 
-#: pdf_bot/commands/merge.py:130
+#: pdf_bot/commands/merge.py:131
 msgid "PDF files"
 msgstr "PDF-tiedostot"
 
-#: pdf_bot/commands/merge.py:137
+#: pdf_bot/commands/merge.py:138
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Paina <b>Valmis</b> jos olet lähettänyt minulle kaikki PDF-tiedostot, jotka haluat yhdistää, tai jatka PDF-tiedostojen lähettämistä"
 
-#: pdf_bot/commands/merge.py:178
+#: pdf_bot/commands/merge.py:179
 msgid "<b>{}</b> has been removed for merging"
 msgstr "<b>{}</b> on poistettu yhdistämistä"
 
-#: pdf_bot/commands/merge.py:198
+#: pdf_bot/commands/merge.py:199
 msgid "You haven't sent me any PDF files"
 msgstr "Et ole lähettänyt minulle PDF-tiedostoja"
 
-#: pdf_bot/commands/merge.py:202
+#: pdf_bot/commands/merge.py:203
 msgid "You've only sent me one PDF file."
 msgstr "Lähetit minulle vain yhden PDF-tiedoston."
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "Merging your PDF files"
 msgstr "PDF-tiedostojen yhdistäminen"
 
-#: pdf_bot/commands/merge.py:236
+#: pdf_bot/commands/merge.py:237
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "Pdf-tiedostoja ei voi yhdistää, koska en voinut avata ja lukea \"{}\". Varmista, että sitä ei ole salattu"
 
-#: pdf_bot/commands/photo.py:72
+#: pdf_bot/commands/photo.py:73
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
 msgstr "Lähetä minulle valokuvat, jotka haluat kaunistaa tai muuntaa PDF-tiedostoksi\n\n"
 "Huomaa, että valokuvat kaunisetaan ja muunnetaan lähettämissäsi järjestyksessä"
 
-#: pdf_bot/commands/photo.py:99
+#: pdf_bot/commands/photo.py:100
 msgid "File name unavailable"
 msgstr "Tiedoston nimi ei ole käytettävissä"
 
-#: pdf_bot/commands/photo.py:118
+#: pdf_bot/commands/photo.py:119
 msgid "The file you've sent is not a photo"
 msgstr "Lähettämäsi tiedosto ei ole valokuva"
 
-#: pdf_bot/commands/photo.py:124
+#: pdf_bot/commands/photo.py:125
 msgid "The photo you've sent is too large for me to download"
 msgstr "Lähettämäsi kuva on liian suuri ladattavaksi"
 
-#: pdf_bot/commands/photo.py:131
+#: pdf_bot/commands/photo.py:132
 msgid "photos"
 msgstr "valokuvat"
 
-#: pdf_bot/commands/photo.py:138
+#: pdf_bot/commands/photo.py:139
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
 msgstr "Valitse tehtävä alapuolelta, jos olet lähettänyt minulle kaikki valokuvat, tai jatka valokuvien lähettämistä"
 
-#: pdf_bot/commands/photo.py:182
+#: pdf_bot/commands/photo.py:183
 msgid "<b>{}</b> has been removed for beautifying or converting"
 msgstr "<b>{}</b> on poistettu kaunistamista tai muuntamista"
 
-#: pdf_bot/commands/photo.py:217
+#: pdf_bot/commands/photo.py:218
 msgid "Beautifying and converting your photos"
 msgstr "Valokuvien kaunistaminen ja muuntaminen"
 
-#: pdf_bot/commands/photo.py:222
+#: pdf_bot/commands/photo.py:223
 msgid "Converting your photos into PDF"
 msgstr "Valokuvien muuntaminen PDF-tiedostoiksi"
 
@@ -414,19 +414,19 @@ msgstr ""
 msgid "Creating your PDF file"
 msgstr "PDF-tiedoston luominen"
 
-#: pdf_bot/commands/watermark.py:49
+#: pdf_bot/commands/watermark.py:43
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Lähetä minulle PDF-tiedosto, jonka haluat lisätä vesileiman"
 
-#: pdf_bot/commands/watermark.py:80
+#: pdf_bot/commands/watermark.py:74
 msgid "Send me the watermark PDF file"
 msgstr "Lähetä minulle vesileiman PDF-tiedosto"
 
-#: pdf_bot/commands/watermark.py:105
+#: pdf_bot/commands/watermark.py:99
 msgid "Adding the watermark onto your PDF file"
 msgstr "Vesileiman lisääminen PDF-tiedostoon"
 
-#: pdf_bot/commands/watermark.py:118
+#: pdf_bot/commands/watermark.py:112
 msgid "watermark"
 msgstr "vesileima"
 
@@ -503,7 +503,7 @@ msgstr "PDF-tiedoston salaaminen"
 msgid "Select the task that you'll like to perform"
 msgstr "Valitse tehtävä, jonka haluat suorittaa"
 
-#: pdf_bot/files/file.py:106
+#: pdf_bot/files/file.py:84
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "PDF-tiedostosi on liian suuri ladattavaksi\n\n"

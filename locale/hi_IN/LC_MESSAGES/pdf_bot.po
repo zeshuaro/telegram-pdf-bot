@@ -7,77 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-25 13:22+0000\n"
-"PO-Revision-Date: 2021-05-25 13:22\n"
+"POT-Creation-Date: 2021-07-28 10:41+0000\n"
+"PO-Revision-Date: 2021-07-28 10:41\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: hi\n"
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-
-#: bot.py:155
-msgid "Welcome to PDF Bot!\n\n"
-"<b>Key features:</b>\n"
-"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
-"- Create PDF files from text messages\n"
-"- Extract images and text from PDF files\n"
-"- Convert PDF files into images\n"
-"- Convert webpages and images into PDF files\n"
-"- Beautify handwritten notes images into PDF files\n"
-"- <b><i>And more...</i></b>\n\n"
-"Type /help to see how to use PDF Bot"
-msgstr "पीडीएफ बॉट में आपका स्वागत है!\n\n"
-"<b> मुख्य विशेषताएं: </b>\n"
-"- संकुचित करें, विलय करें, पूर्वावलोकन करें, नाम बदलें, विभाजित करें और पीडीएफ फाइलों में वॉटरमार्क जोड़ें\n"
-"- टेक्स्ट मैसेज से पीडीएफ फाइल बनाएं\n"
-"- पीडीएफ फाइलों से चित्र और टेक्स्ट निकालें\n"
-"- पीडीएफ फाइलों को चित्रों में बदलें\n"
-"- पीडीएफ फाइलों में वेबपेज और चित्रों को परिवर्तित करें\n"
-"- पीडीएफ फाइलों में हस्तलिखित नोट्स चित्रों को सुशोभित करें\n"
-"- <b> <i> और भी बहुत कुछ... </i> </b>\n\n"
-"पीडीएफ बॉट का उपयोग कैसे करें, यह देखने के लिए /help टाइप करें"
-
-#: bot.py:174
-msgid "Set Language 🌎"
-msgstr "भाषा चुने 🌎"
-
-#: bot.py:176 pdf_bot/utils.py:307
-msgid "Join Channel"
-msgstr "चैनल से जुड़े"
-
-#: bot.py:177 pdf_bot/payment.py:68 pdf_bot/utils.py:308
-msgid "Support PDF Bot"
-msgstr "पीडीएफ बॉट का सहयोग करे"
-
-#: bot.py:183
-msgid "You can perform most of the tasks by sending me one of the followings:\n"
-"- PDF files\n"
-"- Photos\n"
-"- Webpage links\n\n"
-"The rest of the tasks can be performed by using the commands below:\n"
-"/compare - compare PDF files\n"
-"/merge - merge PDF files\n"
-"/photo - convert and combine multiple photos into PDF files\n"
-"/text - create PDF files from text messages\n"
-"/watermark - add watermark to PDF files"
-msgstr "आप मुझे निम्न में से कुछ भेजकर अधिकांश कार्य कर सकते हैं:\n"
-"- पीडीएफ फाइलें\n"
-"- तस्वीरें\n"
-"- वेबपेज लिंक\n\n"
-"नीचे दिए गए आदेशों का उपयोग करके शेष कार्य कर सकते हैं:\n"
-"/compare - पीडीएफ फाइलों की तुलना\n"
-"/merge - पीडीएफ फाइलों का विलय\n"
-"/photo - पीडीएफ फाइलों में कई तस्वीरों का परिवर्तन और संयोजन\n"
-"/text - टेक्स्ट संदेशों से पीडीएफ बनाएं\n"
-"/watermark - पीडीएफ फाइलों में वॉटरमार्क जोड़ें"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -195,6 +139,62 @@ msgstr "बीयर 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "भोजन 🍲 ($10)"
 
+#: pdf_bot/dispatcher.py:105
+msgid "Welcome to PDF Bot!\n\n"
+"<b>Key features:</b>\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- <b><i>And more...</i></b>\n\n"
+"Type /help to see how to use PDF Bot"
+msgstr "पीडीएफ बॉट में आपका स्वागत है!\n\n"
+"<b> मुख्य विशेषताएं: </b>\n"
+"- संकुचित करें, विलय करें, पूर्वावलोकन करें, नाम बदलें, विभाजित करें और पीडीएफ फाइलों में वॉटरमार्क जोड़ें\n"
+"- टेक्स्ट मैसेज से पीडीएफ फाइल बनाएं\n"
+"- पीडीएफ फाइलों से चित्र और टेक्स्ट निकालें\n"
+"- पीडीएफ फाइलों को चित्रों में बदलें\n"
+"- पीडीएफ फाइलों में वेबपेज और चित्रों को परिवर्तित करें\n"
+"- पीडीएफ फाइलों में हस्तलिखित नोट्स चित्रों को सुशोभित करें\n"
+"- <b> <i> और भी बहुत कुछ... </i> </b>\n\n"
+"पीडीएफ बॉट का उपयोग कैसे करें, यह देखने के लिए /help टाइप करें"
+
+#: pdf_bot/dispatcher.py:124
+msgid "Set Language 🌎"
+msgstr "भाषा चुने 🌎"
+
+#: pdf_bot/dispatcher.py:126 pdf_bot/utils.py:307
+msgid "Join Channel"
+msgstr "चैनल से जुड़े"
+
+#: pdf_bot/dispatcher.py:127 pdf_bot/payment.py:68 pdf_bot/utils.py:308
+msgid "Support PDF Bot"
+msgstr "पीडीएफ बॉट का सहयोग करे"
+
+#: pdf_bot/dispatcher.py:133
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands below:\n"
+"/compare - compare PDF files\n"
+"/merge - merge PDF files\n"
+"/photo - convert and combine multiple photos into PDF files\n"
+"/text - create PDF files from text messages\n"
+"/watermark - add watermark to PDF files"
+msgstr "आप मुझे निम्न में से कुछ भेजकर अधिकांश कार्य कर सकते हैं:\n"
+"- पीडीएफ फाइलें\n"
+"- तस्वीरें\n"
+"- वेबपेज लिंक\n\n"
+"नीचे दिए गए आदेशों का उपयोग करके शेष कार्य कर सकते हैं:\n"
+"/compare - पीडीएफ फाइलों की तुलना\n"
+"/merge - पीडीएफ फाइलों का विलय\n"
+"/photo - पीडीएफ फाइलों में कई तस्वीरों का परिवर्तन और संयोजन\n"
+"/text - टेक्स्ट संदेशों से पीडीएफ बनाएं\n"
+"/watermark - पीडीएफ फाइलों में वॉटरमार्क जोड़ें"
+
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "मुझे अपनी प्रतिक्रिया भेजें (केवल अंग्रेजी प्रतिक्रिया मेरे डेवलपर को भेजी जाएगी)"
@@ -299,101 +299,101 @@ msgstr "परिणाम फ़ाइल मेरे लिए आप को 
 msgid "Here is your result file"
 msgstr "यहां आपकी रिजल्ट फाइल है"
 
-#: pdf_bot/commands/compare.py:54
+#: pdf_bot/commands/compare.py:45
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
 msgstr "मुझे पीडीएफ फाइलों में से एक भेजें जिसकी तुलना आप\n\n"
 "ध्यान दें से करना चाहते हैं कि मैं केवल पाठ में अंतर देख सकता हूं"
 
-#: pdf_bot/commands/compare.py:88
+#: pdf_bot/commands/compare.py:79
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "मुझे अन्य पीडीएफ फ़ाइल भेजें जिसकी आप तुलना करना चाहते हैं"
 
-#: pdf_bot/commands/compare.py:112
+#: pdf_bot/commands/compare.py:103
 msgid "Comparing your PDF files"
 msgstr "अपनी पीडीएफ फाइलों की तुलना करना"
 
-#: pdf_bot/commands/compare.py:131
+#: pdf_bot/commands/compare.py:122
 msgid "There are no differences in text between your PDF files"
 msgstr "आपकी पीडीएफ फाइलों के बीच पाठ में कोई अंतर नहीं है"
 
-#: pdf_bot/commands/merge.py:77
+#: pdf_bot/commands/merge.py:78
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr "मुझे पीडीएफ फाइलें भेजें जिन्हें आप विलय करना चाहते हैं\n\n"
 "ध्यान दें कि फ़ाइलों को उस क्रम में मर्ज कर दिया जाएगा जिसे आप मुझे भेजते हैं"
 
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:111
 msgid "The file you've sent is not a PDF file"
 msgstr "आपके द्वारा भेजी गई फ़ाइल पीडीएफ फ़ाइल नहीं है"
 
-#: pdf_bot/commands/merge.py:112
+#: pdf_bot/commands/merge.py:113
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "आपके द्वारा भेजी गई पीडीएफ फाइल मेरे लिए डाउनलोड करने के लिए बहुत बड़ी है"
 
-#: pdf_bot/commands/merge.py:130
+#: pdf_bot/commands/merge.py:131
 msgid "PDF files"
 msgstr "पीडीएफ फाइलें"
 
-#: pdf_bot/commands/merge.py:137
+#: pdf_bot/commands/merge.py:138
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "प्रेस <b>किया</b> अगर आप मुझे सभी पीडीएफ फाइलें है कि आप विलय या मुझे पीडीएफ फ़ाइलें भेजना चाहते है भेजा है"
 
-#: pdf_bot/commands/merge.py:178
+#: pdf_bot/commands/merge.py:179
 msgid "<b>{}</b> has been removed for merging"
 msgstr "विलय के लिए <b> {} </b> हटा दिया गया है"
 
-#: pdf_bot/commands/merge.py:198
+#: pdf_bot/commands/merge.py:199
 msgid "You haven't sent me any PDF files"
 msgstr "आपने मुझे कोई पीडीएफ फाइल नहीं भेजी है"
 
-#: pdf_bot/commands/merge.py:202
+#: pdf_bot/commands/merge.py:203
 msgid "You've only sent me one PDF file."
 msgstr "आपने मुझे केवल एक पीडीएफ फाइल भेजी है।"
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "Merging your PDF files"
 msgstr "अपनी पीडीएफ फाइलों का विलय"
 
-#: pdf_bot/commands/merge.py:236
+#: pdf_bot/commands/merge.py:237
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "मैं आपकी पीडीएफ फाइलों को मर्ज नहीं कर सकता क्योंकि मैं \"{}\" नहीं खोल सकता था और पढ़ सकता था। सुनिश्चित करें कि यह एन्क्रिप्टेड नहीं है"
 
-#: pdf_bot/commands/photo.py:72
+#: pdf_bot/commands/photo.py:73
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
 msgstr "मुझे उन तस्वीरों को भेजें जिन्हें आप पीडीएफ फाइल में सुशोभित या परिवर्तित करना चाहते हैं\n\n"
 "ध्यान दें कि फ़ोटो को सुशोभित किया जाएगा और उस क्रम में परिवर्तित किया जाएगा जिसे आप मुझे भेजते हैं"
 
-#: pdf_bot/commands/photo.py:99
+#: pdf_bot/commands/photo.py:100
 msgid "File name unavailable"
 msgstr "फाइल नाम अनुपलब्ध"
 
-#: pdf_bot/commands/photo.py:118
+#: pdf_bot/commands/photo.py:119
 msgid "The file you've sent is not a photo"
 msgstr "आपके द्वारा भेजी गई फ़ाइल कोई फ़ोटो नहीं है"
 
-#: pdf_bot/commands/photo.py:124
+#: pdf_bot/commands/photo.py:125
 msgid "The photo you've sent is too large for me to download"
 msgstr "आपके द्वारा भेजी गई तस्वीर मेरे लिए डाउनलोड करने के लिए बहुत बड़ी है"
 
-#: pdf_bot/commands/photo.py:131
+#: pdf_bot/commands/photo.py:132
 msgid "photos"
 msgstr "तस्वीरें"
 
-#: pdf_bot/commands/photo.py:138
+#: pdf_bot/commands/photo.py:139
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
 msgstr "यदि आपने मुझे सभी तस्वीरें भेजी हैं, या मुझे तस्वीरें भेजते रहें तो नीचे से कार्य का चयन करें"
 
-#: pdf_bot/commands/photo.py:182
+#: pdf_bot/commands/photo.py:183
 msgid "<b>{}</b> has been removed for beautifying or converting"
 msgstr "सौंदर्यीकरण या रूपांतरित करने के लिए <b>{}</b> हटा दिया गया है"
 
-#: pdf_bot/commands/photo.py:217
+#: pdf_bot/commands/photo.py:218
 msgid "Beautifying and converting your photos"
 msgstr "सौंदर्यीकरण और अपनी तस्वीरों को परिवर्तित"
 
-#: pdf_bot/commands/photo.py:222
+#: pdf_bot/commands/photo.py:223
 msgid "Converting your photos into PDF"
 msgstr "अपनी तस्वीरों को पीडीएफ में परिवर्तित करना"
 
@@ -414,19 +414,19 @@ msgstr ""
 msgid "Creating your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल बनाना"
 
-#: pdf_bot/commands/watermark.py:49
+#: pdf_bot/commands/watermark.py:43
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "मुझे पीडीएफ फाइल भेजें जिसे आप वॉटरमार्क जोड़ना चाहेंगे"
 
-#: pdf_bot/commands/watermark.py:80
+#: pdf_bot/commands/watermark.py:74
 msgid "Send me the watermark PDF file"
 msgstr "मुझे वाटरमार्क पीडीएफ फाइल भेजें"
 
-#: pdf_bot/commands/watermark.py:105
+#: pdf_bot/commands/watermark.py:99
 msgid "Adding the watermark onto your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल पर वॉटरमार्क जोड़ना"
 
-#: pdf_bot/commands/watermark.py:118
+#: pdf_bot/commands/watermark.py:112
 msgid "watermark"
 msgstr "वॉटरमार्क"
 
@@ -503,7 +503,7 @@ msgstr "अपनी पीडीएफ फ़ाइल को एन्क्�
 msgid "Select the task that you'll like to perform"
 msgstr "उस कार्य का चयन करें जिसे आप करना चाहते हैं"
 
-#: pdf_bot/files/file.py:106
+#: pdf_bot/files/file.py:84
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "आपकी पीडीएफ फ़ाइल मेरे लिए डाउनलोड करने के लिए बहुत बड़ी है\n\n"

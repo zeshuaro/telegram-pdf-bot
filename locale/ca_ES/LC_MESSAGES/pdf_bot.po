@@ -7,77 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-25 13:22+0000\n"
-"PO-Revision-Date: 2021-05-25 13:22\n"
+"POT-Creation-Date: 2021-07-28 10:41+0000\n"
+"PO-Revision-Date: 2021-07-28 10:41\n"
 "Last-Translator: \n"
 "Language: ca\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: ca\n"
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-
-#: bot.py:155
-msgid "Welcome to PDF Bot!\n\n"
-"<b>Key features:</b>\n"
-"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
-"- Create PDF files from text messages\n"
-"- Extract images and text from PDF files\n"
-"- Convert PDF files into images\n"
-"- Convert webpages and images into PDF files\n"
-"- Beautify handwritten notes images into PDF files\n"
-"- <b><i>And more...</i></b>\n\n"
-"Type /help to see how to use PDF Bot"
-msgstr "Benvinguts a PDF Bot!\n\n"
-"<b>Característiques clau:</b>\n"
-"- Comprimir, fusionar, previsualitzar, canviar el nom, dividir i afegir filigrana als fitxers PDF\n"
-"- Crear arxius PDF a partir de missatges de text\n"
-"- Extreure imatges i text dels arxius PDF\n"
-"- Convertir arxius PDF en imatges\n"
-"- Convertir pàgines web i imatges en arxius PDF\n"
-"- Embellir imatges de notes manuscrites en arxius PDF\n"
-"- <b><i>I més...</i></b>\n\n"
-"Tipus /help per veure com utilitzar PDF Bot"
-
-#: bot.py:174
-msgid "Set Language 🌎"
-msgstr "Defineix l'idioma 🌎"
-
-#: bot.py:176 pdf_bot/utils.py:307
-msgid "Join Channel"
-msgstr "Entrar a un canal"
-
-#: bot.py:177 pdf_bot/payment.py:68 pdf_bot/utils.py:308
-msgid "Support PDF Bot"
-msgstr "Ajuda PDF bot"
-
-#: bot.py:183
-msgid "You can perform most of the tasks by sending me one of the followings:\n"
-"- PDF files\n"
-"- Photos\n"
-"- Webpage links\n\n"
-"The rest of the tasks can be performed by using the commands below:\n"
-"/compare - compare PDF files\n"
-"/merge - merge PDF files\n"
-"/photo - convert and combine multiple photos into PDF files\n"
-"/text - create PDF files from text messages\n"
-"/watermark - add watermark to PDF files"
-msgstr "Podeu realitzar la major part de les tasques enviant-me una de les següents:\n"
-"- Fitxers PDF\n"
-"- Fotos\n"
-"- Enllaços de pàgines web\n\n"
-"La resta de tasques es poden realitzar utilitzant les ordres següents:\n"
-"/compare - comparar arxius PDF\n"
-"/merge - fusionar arxius PDF\n"
-"/photo - convertir i combinar diverses fotos en arxius PDF\n"
-"/text - crear arxius PDF a partir de missatges de text\n"
-"/watermark - afegir filigrana als arxius PDF"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -195,6 +139,62 @@ msgstr "Cervesa 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "Àpat 🍲 ($10)"
 
+#: pdf_bot/dispatcher.py:105
+msgid "Welcome to PDF Bot!\n\n"
+"<b>Key features:</b>\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- <b><i>And more...</i></b>\n\n"
+"Type /help to see how to use PDF Bot"
+msgstr "Benvinguts a PDF Bot!\n\n"
+"<b>Característiques clau:</b>\n"
+"- Comprimir, fusionar, previsualitzar, canviar el nom, dividir i afegir filigrana als fitxers PDF\n"
+"- Crear arxius PDF a partir de missatges de text\n"
+"- Extreure imatges i text dels arxius PDF\n"
+"- Convertir arxius PDF en imatges\n"
+"- Convertir pàgines web i imatges en arxius PDF\n"
+"- Embellir imatges de notes manuscrites en arxius PDF\n"
+"- <b><i>I més...</i></b>\n\n"
+"Tipus /help per veure com utilitzar PDF Bot"
+
+#: pdf_bot/dispatcher.py:124
+msgid "Set Language 🌎"
+msgstr "Defineix l'idioma 🌎"
+
+#: pdf_bot/dispatcher.py:126 pdf_bot/utils.py:307
+msgid "Join Channel"
+msgstr "Entrar a un canal"
+
+#: pdf_bot/dispatcher.py:127 pdf_bot/payment.py:68 pdf_bot/utils.py:308
+msgid "Support PDF Bot"
+msgstr "Ajuda PDF bot"
+
+#: pdf_bot/dispatcher.py:133
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands below:\n"
+"/compare - compare PDF files\n"
+"/merge - merge PDF files\n"
+"/photo - convert and combine multiple photos into PDF files\n"
+"/text - create PDF files from text messages\n"
+"/watermark - add watermark to PDF files"
+msgstr "Podeu realitzar la major part de les tasques enviant-me una de les següents:\n"
+"- Fitxers PDF\n"
+"- Fotos\n"
+"- Enllaços de pàgines web\n\n"
+"La resta de tasques es poden realitzar utilitzant les ordres següents:\n"
+"/compare - comparar arxius PDF\n"
+"/merge - fusionar arxius PDF\n"
+"/photo - convertir i combinar diverses fotos en arxius PDF\n"
+"/text - crear arxius PDF a partir de missatges de text\n"
+"/watermark - afegir filigrana als arxius PDF"
+
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Envia'm els teus comentaris (només es reenviaran comentaris en anglès al meu desenvolupador)"
@@ -297,101 +297,101 @@ msgstr "L’arxiu resultant és massa gran per enviar-te’l"
 msgid "Here is your result file"
 msgstr "Aquest és l’arxiu resultant"
 
-#: pdf_bot/commands/compare.py:54
+#: pdf_bot/commands/compare.py:45
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
 msgstr "Envia’m un dels arxius PDF que volguis comparar\n\n"
 "Tingues en compte que tan sols puc veure les diferències en el text"
 
-#: pdf_bot/commands/compare.py:88
+#: pdf_bot/commands/compare.py:79
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Envia’m un altre arxiu PDF que volguis comparar"
 
-#: pdf_bot/commands/compare.py:112
+#: pdf_bot/commands/compare.py:103
 msgid "Comparing your PDF files"
 msgstr "Comparant els arxius PDF"
 
-#: pdf_bot/commands/compare.py:131
+#: pdf_bot/commands/compare.py:122
 msgid "There are no differences in text between your PDF files"
 msgstr "No hi ha diferències en el text entre els teus arxius PDF"
 
-#: pdf_bot/commands/merge.py:77
+#: pdf_bot/commands/merge.py:78
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr "Enviï'm els arxius PDF que li agradarà fusionar\n\n"
 "Bitllet que els arxius es fusionaran en l'ordre que m'envia"
 
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:111
 msgid "The file you've sent is not a PDF file"
 msgstr "L’arxiu que has enviat no és un arxiu PDF"
 
-#: pdf_bot/commands/merge.py:112
+#: pdf_bot/commands/merge.py:113
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "L’arxiu PDF que has enviat és molt gran per descarregar"
 
-#: pdf_bot/commands/merge.py:130
+#: pdf_bot/commands/merge.py:131
 msgid "PDF files"
 msgstr "Arxius PDF"
 
-#: pdf_bot/commands/merge.py:137
+#: pdf_bot/commands/merge.py:138
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Premsa <b>Fet</b> si m'ha enviat tots els arxius PDF que li agradarà fusionar o seguir enviant-me els arxius PDF"
 
-#: pdf_bot/commands/merge.py:178
+#: pdf_bot/commands/merge.py:179
 msgid "<b>{}</b> has been removed for merging"
 msgstr "<b>s'</b> de {} per fusionar-se"
 
-#: pdf_bot/commands/merge.py:198
+#: pdf_bot/commands/merge.py:199
 msgid "You haven't sent me any PDF files"
 msgstr "No has enviat cap arxiu PDF"
 
-#: pdf_bot/commands/merge.py:202
+#: pdf_bot/commands/merge.py:203
 msgid "You've only sent me one PDF file."
 msgstr "Has enviat tan sols un arxiu PDF."
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "Merging your PDF files"
 msgstr "Unint els teus arxius PDF"
 
-#: pdf_bot/commands/merge.py:236
+#: pdf_bot/commands/merge.py:237
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "No podem unir els teus arxius PDF fins que no es poguin obrir i llegir. Assegura’t que no estiguin encriptats"
 
-#: pdf_bot/commands/photo.py:72
+#: pdf_bot/commands/photo.py:73
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
 msgstr "Envia'm les fotos que t'agradaria embellir o convertir en un fitxer PDF\n\n"
 "Fixeu-vos que les fotos s'embelliran i es convertiran en l'ordre que m'envieu"
 
-#: pdf_bot/commands/photo.py:99
+#: pdf_bot/commands/photo.py:100
 msgid "File name unavailable"
 msgstr "Nom de l’arxiu invàlid"
 
-#: pdf_bot/commands/photo.py:118
+#: pdf_bot/commands/photo.py:119
 msgid "The file you've sent is not a photo"
 msgstr "L’arxiu que enviies no és una foto"
 
-#: pdf_bot/commands/photo.py:124
+#: pdf_bot/commands/photo.py:125
 msgid "The photo you've sent is too large for me to download"
 msgstr "La foto que has enviat és molt gran per descarregar"
 
-#: pdf_bot/commands/photo.py:131
+#: pdf_bot/commands/photo.py:132
 msgid "photos"
 msgstr "fotos"
 
-#: pdf_bot/commands/photo.py:138
+#: pdf_bot/commands/photo.py:139
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
 msgstr "Seleccioneu la tasca des de baix si m'heu enviat totes les fotos o seguiu enviant-me les fotos"
 
-#: pdf_bot/commands/photo.py:182
+#: pdf_bot/commands/photo.py:183
 msgid "<b>{}</b> has been removed for beautifying or converting"
 msgstr "<b>{}</b> 'ha suprimit per embellir o convertir"
 
-#: pdf_bot/commands/photo.py:217
+#: pdf_bot/commands/photo.py:218
 msgid "Beautifying and converting your photos"
 msgstr "Embellir i convertir les teves fotos"
 
-#: pdf_bot/commands/photo.py:222
+#: pdf_bot/commands/photo.py:223
 msgid "Converting your photos into PDF"
 msgstr "Convertir les teves fotos en PDF"
 
@@ -412,19 +412,19 @@ msgstr ""
 msgid "Creating your PDF file"
 msgstr "Creació del fitxer PDF"
 
-#: pdf_bot/commands/watermark.py:49
+#: pdf_bot/commands/watermark.py:43
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Envia'm el fitxer PDF que t'agradarà afegir una filigrana"
 
-#: pdf_bot/commands/watermark.py:80
+#: pdf_bot/commands/watermark.py:74
 msgid "Send me the watermark PDF file"
 msgstr "Enviï'm l'arxiu pdf de filigrana"
 
-#: pdf_bot/commands/watermark.py:105
+#: pdf_bot/commands/watermark.py:99
 msgid "Adding the watermark onto your PDF file"
 msgstr "Addició de la filigrana al fitxer PDF"
 
-#: pdf_bot/commands/watermark.py:118
+#: pdf_bot/commands/watermark.py:112
 msgid "watermark"
 msgstr "filigrana"
 
@@ -501,7 +501,7 @@ msgstr "Encriptació del fitxer PDF"
 msgid "Select the task that you'll like to perform"
 msgstr "Seleccioneu la tasca que voleu dur a terme"
 
-#: pdf_bot/files/file.py:106
+#: pdf_bot/files/file.py:84
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "El seu arxiu de PDF és massa gran per a mi descarregar\n\n"
