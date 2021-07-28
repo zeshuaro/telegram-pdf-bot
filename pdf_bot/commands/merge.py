@@ -2,6 +2,23 @@ import tempfile
 from collections import defaultdict
 from threading import Lock
 
+from PyPDF2 import PdfFileMerger
+from PyPDF2.utils import PdfReadError
+from telegram import (
+    ChatAction,
+    ParseMode,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    Update,
+)
+from telegram.ext import (
+    CallbackContext,
+    CommandHandler,
+    ConversationHandler,
+    Filters,
+    MessageHandler,
+)
+
 from pdf_bot.constants import (
     CANCEL,
     DONE,
@@ -15,25 +32,9 @@ from pdf_bot.utils import (
     cancel,
     check_pdf,
     check_user_data,
+    reply_with_cancel_btn,
     send_file_names,
     write_send_pdf,
-    reply_with_cancel_btn,
-)
-from PyPDF2 import PdfFileMerger
-from PyPDF2.utils import PdfReadError
-from telegram import (
-    ParseMode,
-    ReplyKeyboardMarkup,
-    ReplyKeyboardRemove,
-    Update,
-    ChatAction,
-)
-from telegram.ext import (
-    CallbackContext,
-    CommandHandler,
-    ConversationHandler,
-    Filters,
-    MessageHandler,
 )
 
 WAIT_MERGE = 0
@@ -45,16 +46,16 @@ merge_locks = defaultdict(Lock)
 
 def merge_cov_handler() -> ConversationHandler:
     handlers = [
-        MessageHandler(Filters.document, check_doc, run_async=True),
-        MessageHandler(TEXT_FILTER, check_text, run_async=True),
+        MessageHandler(Filters.document, check_doc),
+        MessageHandler(TEXT_FILTER, check_text),
     ]
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("merge", merge, run_async=True)],
+        entry_points=[CommandHandler("merge", merge)],
         states={
             WAIT_MERGE: handlers,
             ConversationHandler.WAITING: handlers,
         },
-        fallbacks=[CommandHandler("cancel", cancel, run_async=True)],
+        fallbacks=[CommandHandler("cancel", cancel)],
         allow_reentry=True,
     )
 

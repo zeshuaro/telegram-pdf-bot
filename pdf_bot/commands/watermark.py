@@ -2,17 +2,11 @@ import tempfile
 
 from PyPDF2 import PdfFileWriter
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
-from telegram.ext import ConversationHandler, CommandHandler, MessageHandler, Filters
+from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
-from pdf_bot.constants import PDF_INVALID_FORMAT, PDF_OK, CANCEL, BACK, TEXT_FILTER
-from pdf_bot.utils import (
-    check_pdf,
-    open_pdf,
-    write_send_pdf,
-    check_user_data,
-    cancel,
-)
+from pdf_bot.constants import BACK, CANCEL, PDF_INVALID_FORMAT, PDF_OK, TEXT_FILTER
 from pdf_bot.language import set_lang
+from pdf_bot.utils import cancel, check_pdf, check_user_data, open_pdf, write_send_pdf
 
 WAIT_SRC = 0
 WAIT_WMK = 1
@@ -21,14 +15,14 @@ WMK_ID = "watermark_id"
 
 def watermark_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("watermark", watermark, run_async=True)],
+        entry_points=[CommandHandler("watermark", watermark)],
         states={
-            WAIT_SRC: [MessageHandler(Filters.document, check_src_doc, run_async=True)],
-            WAIT_WMK: [MessageHandler(Filters.document, check_wmk_doc, run_async=True)],
+            WAIT_SRC: [MessageHandler(Filters.document, check_src_doc)],
+            WAIT_WMK: [MessageHandler(Filters.document, check_wmk_doc)],
         },
         fallbacks=[
-            CommandHandler("cancel", cancel, run_async=True),
-            MessageHandler(TEXT_FILTER, check_text, run_async=True),
+            CommandHandler("cancel", cancel),
+            MessageHandler(TEXT_FILTER, check_text),
         ],
         allow_reentry=True,
     )

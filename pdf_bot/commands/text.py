@@ -33,13 +33,13 @@ DEFAULT_FONT = "Arial"
 
 def text_cov_handler():
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("text", ask_text, run_async=True)],
+        entry_points=[CommandHandler("text", ask_text)],
         states={
-            WAIT_TEXT: [MessageHandler(TEXT_FILTER, ask_font, run_async=True)],
-            WAIT_FONT: [MessageHandler(TEXT_FILTER, check_text, run_async=True)],
+            WAIT_TEXT: [MessageHandler(TEXT_FILTER, ask_font)],
+            WAIT_FONT: [MessageHandler(TEXT_FILTER, check_text)],
         },
         fallbacks=[
-            CommandHandler("cancel", cancel, run_async=True),
+            CommandHandler("cancel", cancel),
         ],
         allow_reentry=True,
     )

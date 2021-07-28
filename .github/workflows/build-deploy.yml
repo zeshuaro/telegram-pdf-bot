@@ -1,0 +1,60 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-stg:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    environment:
+      name: Staging
+    env:
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      SERVICE_NAME: ${{ secrets.GCP_SERVICE_NAME }}
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Setup GCloud ⚙️
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          version: "349.0.0"
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Build 🔧
+        run: |-
+          gcloud builds submit \
+            --quiet \
+            --tag "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA"
+
+      - name: Deploy 🚀
+        uses: google-github-actions/deploy-cloudrun@main
+        with:
+          service: ${{ env.SERVICE_NAME }}
+          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.SHA }}
+          region: ${{ secrets.GCP_REGION }}
+
+  deploy-prod:
+    name: Deploy to Production
+    needs: [deploy-stg]
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Deploy 🚀
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          docker_heroku_process_type: web
