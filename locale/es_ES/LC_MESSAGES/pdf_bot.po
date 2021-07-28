@@ -7,77 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-25 13:22+0000\n"
-"PO-Revision-Date: 2021-07-18 08:14\n"
+"POT-Creation-Date: 2021-07-28 10:41+0000\n"
+"PO-Revision-Date: 2021-07-28 10:41\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: es-ES\n"
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-
-#: bot.py:155
-msgid "Welcome to PDF Bot!\n\n"
-"<b>Key features:</b>\n"
-"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
-"- Create PDF files from text messages\n"
-"- Extract images and text from PDF files\n"
-"- Convert PDF files into images\n"
-"- Convert webpages and images into PDF files\n"
-"- Beautify handwritten notes images into PDF files\n"
-"- <b><i>And more...</i></b>\n\n"
-"Type /help to see how to use PDF Bot"
-msgstr "¡Bienvenido a PDF Bot!\n\n"
-"<b>Características clave:</b>\n"
-"- Comprimir, combinar, previsualizar, renombrar, dividir y añadir marcas de agua a archivos PDF\n"
-"- Crear archivos PDF a partir de mensajes de texto\n"
-"- Extraer imágenes y texto de archivos PDF\n"
-"- Convertir archivos PDF en imágenes\n"
-"- Convertir páginas web e imágenes en archivos PDF\n"
-"- Mejorar imágenes de notas manuscritas en archivos PDF\n"
-"- <b><i>Y más...</i></b>\n\n"
-"Escribe /help para ver cómo usar PDF Bot"
-
-#: bot.py:174
-msgid "Set Language 🌎"
-msgstr "Definir Idioma 🌎"
-
-#: bot.py:176 pdf_bot/utils.py:307
-msgid "Join Channel"
-msgstr "Unirse al canal"
-
-#: bot.py:177 pdf_bot/payment.py:68 pdf_bot/utils.py:308
-msgid "Support PDF Bot"
-msgstr "Apoya a PDF Bot"
-
-#: bot.py:183
-msgid "You can perform most of the tasks by sending me one of the followings:\n"
-"- PDF files\n"
-"- Photos\n"
-"- Webpage links\n\n"
-"The rest of the tasks can be performed by using the commands below:\n"
-"/compare - compare PDF files\n"
-"/merge - merge PDF files\n"
-"/photo - convert and combine multiple photos into PDF files\n"
-"/text - create PDF files from text messages\n"
-"/watermark - add watermark to PDF files"
-msgstr "Puede realizar la mayoría de las tareas enviándome uno de los siguientes:\n"
-"- Archivos PDF\n"
-"- Fotos\n"
-"- Enlaces a páginas web\n\n"
-"El resto de las tareas se pueden realizar mediante los siguientes comandos:\n"
-"/compare - comparar archivos PDF\n"
-"/merge - combinar archivos PDF\n"
-"/photo - convertir y combinar múltiples fotos en archivos PDF\n"
-"/text - crear archivos PDF a partir de mensajes de texto\n"
-"/watermark - añadir marca de agua a archivos PDF"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -195,6 +139,62 @@ msgstr "Cerveza 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "Comida 🍲 ($10)"
 
+#: pdf_bot/dispatcher.py:105
+msgid "Welcome to PDF Bot!\n\n"
+"<b>Key features:</b>\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- <b><i>And more...</i></b>\n\n"
+"Type /help to see how to use PDF Bot"
+msgstr "¡Bienvenido a PDF Bot!\n\n"
+"<b>Características clave:</b>\n"
+"- Comprimir, combinar, previsualizar, renombrar, dividir y añadir marcas de agua a archivos PDF\n"
+"- Crear archivos PDF a partir de mensajes de texto\n"
+"- Extraer imágenes y texto de archivos PDF\n"
+"- Convertir archivos PDF en imágenes\n"
+"- Convertir páginas web e imágenes en archivos PDF\n"
+"- Mejorar imágenes de notas manuscritas en archivos PDF\n"
+"- <b><i>Y más...</i></b>\n\n"
+"Escribe /help para ver cómo usar PDF Bot"
+
+#: pdf_bot/dispatcher.py:124
+msgid "Set Language 🌎"
+msgstr "Definir Idioma 🌎"
+
+#: pdf_bot/dispatcher.py:126 pdf_bot/utils.py:307
+msgid "Join Channel"
+msgstr "Unirse al canal"
+
+#: pdf_bot/dispatcher.py:127 pdf_bot/payment.py:68 pdf_bot/utils.py:308
+msgid "Support PDF Bot"
+msgstr "Apoya a PDF Bot"
+
+#: pdf_bot/dispatcher.py:133
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands below:\n"
+"/compare - compare PDF files\n"
+"/merge - merge PDF files\n"
+"/photo - convert and combine multiple photos into PDF files\n"
+"/text - create PDF files from text messages\n"
+"/watermark - add watermark to PDF files"
+msgstr "Puede realizar la mayoría de las tareas enviándome uno de los siguientes:\n"
+"- Archivos PDF\n"
+"- Fotos\n"
+"- Enlaces a páginas web\n\n"
+"El resto de las tareas se pueden realizar mediante los siguientes comandos:\n"
+"/compare - comparar archivos PDF\n"
+"/merge - combinar archivos PDF\n"
+"/photo - convertir y combinar múltiples fotos en archivos PDF\n"
+"/text - crear archivos PDF a partir de mensajes de texto\n"
+"/watermark - añadir marca de agua a archivos PDF"
+
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Envíeme sus comentarios (solo los comentarios en inglés serán reenviados a mi desarrollador)"
@@ -299,101 +299,101 @@ msgstr "El archivo resultado es demasiado grande para que te lo envíe"
 msgid "Here is your result file"
 msgstr "Este es tu archivo resultado"
 
-#: pdf_bot/commands/compare.py:54
+#: pdf_bot/commands/compare.py:45
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
 msgstr "Envíame uno de los archivos PDF que te gustaría comparar\n\n"
 "Ten en cuenta que solo puedo buscar diferencias de texto"
 
-#: pdf_bot/commands/compare.py:88
+#: pdf_bot/commands/compare.py:79
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Envíame el otro archivo PDF que te gustaría comparar"
 
-#: pdf_bot/commands/compare.py:112
+#: pdf_bot/commands/compare.py:103
 msgid "Comparing your PDF files"
 msgstr "Comparando tus archivos PDF"
 
-#: pdf_bot/commands/compare.py:131
+#: pdf_bot/commands/compare.py:122
 msgid "There are no differences in text between your PDF files"
 msgstr "No hay diferencias de texto entre tus archivos PDF"
 
-#: pdf_bot/commands/merge.py:77
+#: pdf_bot/commands/merge.py:78
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr "Envíame los archivos PDF que te gustaría combinar\n\n"
 "Ten en cuenta que los archivos se combinaran en el orden en que los envíes"
 
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:111
 msgid "The file you've sent is not a PDF file"
 msgstr "El archivo que has enviado no es un archivo PDF"
 
-#: pdf_bot/commands/merge.py:112
+#: pdf_bot/commands/merge.py:113
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "El archivo PDF que has enviado es demasiado grande para que lo descargue"
 
-#: pdf_bot/commands/merge.py:130
+#: pdf_bot/commands/merge.py:131
 msgid "PDF files"
 msgstr "Archivos PDF"
 
-#: pdf_bot/commands/merge.py:137
+#: pdf_bot/commands/merge.py:138
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Presiona <b>Hecho</b> si me has enviado todos los archivos PDF que te gustaría combinar o continua enviándome mas archivos PDF"
 
-#: pdf_bot/commands/merge.py:178
+#: pdf_bot/commands/merge.py:179
 msgid "<b>{}</b> has been removed for merging"
 msgstr "<b>{}</b> ha sido eliminado de la fusión"
 
-#: pdf_bot/commands/merge.py:198
+#: pdf_bot/commands/merge.py:199
 msgid "You haven't sent me any PDF files"
 msgstr "No me has enviado ningún archivo PDF"
 
-#: pdf_bot/commands/merge.py:202
+#: pdf_bot/commands/merge.py:203
 msgid "You've only sent me one PDF file."
 msgstr "Sólo me has enviado un archivo PDF."
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "Merging your PDF files"
 msgstr "Combinando tus archivos PDF"
 
-#: pdf_bot/commands/merge.py:236
+#: pdf_bot/commands/merge.py:237
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "No puedo combinar tus archivos PDF porque no pude abrir y leer \"{}\". Asegúrate de que no está cifrado"
 
-#: pdf_bot/commands/photo.py:72
+#: pdf_bot/commands/photo.py:73
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
 msgstr "Envíame las fotos que te gustará mejorar o convertir en un archivo PDF\n\n"
 "Ten en cuenta que las fotos serán mejoradas y convertidas en el orden en que me sean enviadas"
 
-#: pdf_bot/commands/photo.py:99
+#: pdf_bot/commands/photo.py:100
 msgid "File name unavailable"
 msgstr "Nombre de archivo no disponible"
 
-#: pdf_bot/commands/photo.py:118
+#: pdf_bot/commands/photo.py:119
 msgid "The file you've sent is not a photo"
 msgstr "El archivo que has enviado no es una imagen"
 
-#: pdf_bot/commands/photo.py:124
+#: pdf_bot/commands/photo.py:125
 msgid "The photo you've sent is too large for me to download"
 msgstr "La imagen que has enviado es demasiado grande para que yo la descargue"
 
-#: pdf_bot/commands/photo.py:131
+#: pdf_bot/commands/photo.py:132
 msgid "photos"
 msgstr "fotos"
 
-#: pdf_bot/commands/photo.py:138
+#: pdf_bot/commands/photo.py:139
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
 msgstr "Selecciona la tarea abajo si me has enviado todas las fotos, o continua enviándome mas fotos"
 
-#: pdf_bot/commands/photo.py:182
+#: pdf_bot/commands/photo.py:183
 msgid "<b>{}</b> has been removed for beautifying or converting"
 msgstr "<b>{}</b> ha sido eliminado para embellecer o convertir"
 
-#: pdf_bot/commands/photo.py:217
+#: pdf_bot/commands/photo.py:218
 msgid "Beautifying and converting your photos"
 msgstr "Embelleciendo y convirtiendo tus fotos"
 
-#: pdf_bot/commands/photo.py:222
+#: pdf_bot/commands/photo.py:223
 msgid "Converting your photos into PDF"
 msgstr "Convirtiendo tus imágenes en PDF"
 
@@ -415,19 +415,19 @@ msgstr "Unknown font, please try again"
 msgid "Creating your PDF file"
 msgstr "Creando tu archivo PDF"
 
-#: pdf_bot/commands/watermark.py:49
+#: pdf_bot/commands/watermark.py:43
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Envíame el archivo PDF al que quieres añadir una marca de agua"
 
-#: pdf_bot/commands/watermark.py:80
+#: pdf_bot/commands/watermark.py:74
 msgid "Send me the watermark PDF file"
 msgstr "Enviarme el archivo PDF de marca de agua"
 
-#: pdf_bot/commands/watermark.py:105
+#: pdf_bot/commands/watermark.py:99
 msgid "Adding the watermark onto your PDF file"
 msgstr "Añadiendo la marca de agua a tu archivo PDF"
 
-#: pdf_bot/commands/watermark.py:118
+#: pdf_bot/commands/watermark.py:112
 msgid "watermark"
 msgstr "marca de agua"
 
@@ -504,7 +504,7 @@ msgstr "Cifrando tu archivo PDF"
 msgid "Select the task that you'll like to perform"
 msgstr "Elegir la tarea a realizar"
 
-#: pdf_bot/files/file.py:106
+#: pdf_bot/files/file.py:84
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "Tu archivo PDF es demasiado grande para descargar\n\n"

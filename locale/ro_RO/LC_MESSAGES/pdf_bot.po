@@ -7,77 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-05-25 13:22+0000\n"
-"PO-Revision-Date: 2021-05-25 13:22\n"
+"POT-Creation-Date: 2021-07-28 10:41+0000\n"
+"PO-Revision-Date: 2021-07-28 10:41\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.9.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
 "X-Crowdin-Language: ro\n"
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
-
-#: bot.py:155
-msgid "Welcome to PDF Bot!\n\n"
-"<b>Key features:</b>\n"
-"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
-"- Create PDF files from text messages\n"
-"- Extract images and text from PDF files\n"
-"- Convert PDF files into images\n"
-"- Convert webpages and images into PDF files\n"
-"- Beautify handwritten notes images into PDF files\n"
-"- <b><i>And more...</i></b>\n\n"
-"Type /help to see how to use PDF Bot"
-msgstr "Bine ati venit la PDF Bot!\n\n"
-"<b>Caracteristici cheie:</b>\n"
-"- Comprima, îmbinarea, previzualizarea, redenumirea, scindarea și adăugarea filigranului în fișiere PDF\n"
-"- Crearea fișierelor PDF din mesaje text\n"
-"- Extragerea imaginilor și textului din fișiere PDF\n"
-"- Conversia fișierelor PDF în imagini\n"
-"- Conversia paginilor web și a imaginilor în fișiere PDF\n"
-"- Înfrumusețați imaginile cu notele scrise scrise în fișiere PDF\n"
-"- <b><i>Și mai mult...</i></b>\n\n"
-"Tastați /help pentru a vedea să utilizați PDF Bot"
-
-#: bot.py:174
-msgid "Set Language 🌎"
-msgstr "Setează Limba 🌎"
-
-#: bot.py:176 pdf_bot/utils.py:307
-msgid "Join Channel"
-msgstr "Alăturați-vă canalului"
-
-#: bot.py:177 pdf_bot/payment.py:68 pdf_bot/utils.py:308
-msgid "Support PDF Bot"
-msgstr "Suport PDF Bot"
-
-#: bot.py:183
-msgid "You can perform most of the tasks by sending me one of the followings:\n"
-"- PDF files\n"
-"- Photos\n"
-"- Webpage links\n\n"
-"The rest of the tasks can be performed by using the commands below:\n"
-"/compare - compare PDF files\n"
-"/merge - merge PDF files\n"
-"/photo - convert and combine multiple photos into PDF files\n"
-"/text - create PDF files from text messages\n"
-"/watermark - add watermark to PDF files"
-msgstr "Puteți efectua cele mai multe dintre sarcini prin trimiterea-mi una dintre următoarele:\n"
-"- fișiere PDF\n"
-"- Fotografii\n"
-"- Link-uri pagina web\n\n"
-"Restul sarcinilor pot fi efectuate prin utilizarea comenzilor de mai jos:\n"
-"/compare - compara fisiere PDF\n"
-"/merge - merge fisiere PDF\n"
-"/photo - converteste si combina mai multe fotografii in fisiere PDF\n"
-"/text - creeaza fisiere PDF din mesaje text\n"
-"/watermark - adauga filigran la fisiere PDF"
 
 #: pdf_bot/constants.py:38
 msgid "Cancel"
@@ -195,6 +139,62 @@ msgstr "Bere 🍺 ($5)"
 msgid "Meal 🍲 ($10)"
 msgstr "🍲 de masă ($10)"
 
+#: pdf_bot/dispatcher.py:105
+msgid "Welcome to PDF Bot!\n\n"
+"<b>Key features:</b>\n"
+"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
+"- Create PDF files from text messages\n"
+"- Extract images and text from PDF files\n"
+"- Convert PDF files into images\n"
+"- Convert webpages and images into PDF files\n"
+"- Beautify handwritten notes images into PDF files\n"
+"- <b><i>And more...</i></b>\n\n"
+"Type /help to see how to use PDF Bot"
+msgstr "Bine ati venit la PDF Bot!\n\n"
+"<b>Caracteristici cheie:</b>\n"
+"- Comprima, îmbinarea, previzualizarea, redenumirea, scindarea și adăugarea filigranului în fișiere PDF\n"
+"- Crearea fișierelor PDF din mesaje text\n"
+"- Extragerea imaginilor și textului din fișiere PDF\n"
+"- Conversia fișierelor PDF în imagini\n"
+"- Conversia paginilor web și a imaginilor în fișiere PDF\n"
+"- Înfrumusețați imaginile cu notele scrise scrise în fișiere PDF\n"
+"- <b><i>Și mai mult...</i></b>\n\n"
+"Tastați /help pentru a vedea să utilizați PDF Bot"
+
+#: pdf_bot/dispatcher.py:124
+msgid "Set Language 🌎"
+msgstr "Setează Limba 🌎"
+
+#: pdf_bot/dispatcher.py:126 pdf_bot/utils.py:307
+msgid "Join Channel"
+msgstr "Alăturați-vă canalului"
+
+#: pdf_bot/dispatcher.py:127 pdf_bot/payment.py:68 pdf_bot/utils.py:308
+msgid "Support PDF Bot"
+msgstr "Suport PDF Bot"
+
+#: pdf_bot/dispatcher.py:133
+msgid "You can perform most of the tasks by sending me one of the followings:\n"
+"- PDF files\n"
+"- Photos\n"
+"- Webpage links\n\n"
+"The rest of the tasks can be performed by using the commands below:\n"
+"/compare - compare PDF files\n"
+"/merge - merge PDF files\n"
+"/photo - convert and combine multiple photos into PDF files\n"
+"/text - create PDF files from text messages\n"
+"/watermark - add watermark to PDF files"
+msgstr "Puteți efectua cele mai multe dintre sarcini prin trimiterea-mi una dintre următoarele:\n"
+"- fișiere PDF\n"
+"- Fotografii\n"
+"- Link-uri pagina web\n\n"
+"Restul sarcinilor pot fi efectuate prin utilizarea comenzilor de mai jos:\n"
+"/compare - compara fisiere PDF\n"
+"/merge - merge fisiere PDF\n"
+"/photo - converteste si combina mai multe fotografii in fisiere PDF\n"
+"/text - creeaza fisiere PDF din mesaje text\n"
+"/watermark - adauga filigran la fisiere PDF"
+
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Trimite-mi feedback-ul dumneavoastră (numai feedback-ul în limba engleză vor fi transmise la dezvoltatorul meu)"
@@ -299,101 +299,101 @@ msgstr "Fișierul rezultat este prea mare pentru a-l trimite la dvs."
 msgid "Here is your result file"
 msgstr "Aici este fișierul rezultat"
 
-#: pdf_bot/commands/compare.py:54
+#: pdf_bot/commands/compare.py:45
 msgid "Send me one of the PDF files that you'll like to compare\n\n"
 "Note that I can only look for differences in text"
 msgstr "Trimite-mi unul dintre fișierele PDF pe care veți dori să compare\n\n"
 "Rețineți că pot căuta doar diferențe în text"
 
-#: pdf_bot/commands/compare.py:88
+#: pdf_bot/commands/compare.py:79
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Trimite-mi celălalt fișier PDF pe care doriți să-l comparați"
 
-#: pdf_bot/commands/compare.py:112
+#: pdf_bot/commands/compare.py:103
 msgid "Comparing your PDF files"
 msgstr "Compararea fișierelor PDF"
 
-#: pdf_bot/commands/compare.py:131
+#: pdf_bot/commands/compare.py:122
 msgid "There are no differences in text between your PDF files"
 msgstr "Nu există diferențe de text între fișierele PDF"
 
-#: pdf_bot/commands/merge.py:77
+#: pdf_bot/commands/merge.py:78
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr "Trimiteți-mi fișierele PDF pe care doriți să le îmbinați\n\n"
 "Rețineți că fișierele vor fi îmbinate în ordinea în care îmi trimiteți"
 
-#: pdf_bot/commands/merge.py:110
+#: pdf_bot/commands/merge.py:111
 msgid "The file you've sent is not a PDF file"
 msgstr "Fișierul pe care l-ați trimis nu este un fișier PDF"
 
-#: pdf_bot/commands/merge.py:112
+#: pdf_bot/commands/merge.py:113
 msgid "The PDF file you've sent is too large for me to download"
 msgstr "Fișierul PDF pe care l-ați trimis este prea mare pentru a fi descărcat"
 
-#: pdf_bot/commands/merge.py:130
+#: pdf_bot/commands/merge.py:131
 msgid "PDF files"
 msgstr "Fișiere PDF"
 
-#: pdf_bot/commands/merge.py:137
+#: pdf_bot/commands/merge.py:138
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Apăsați <b>Făcut</b> dacă mi-ați trimis toate fișierele PDF pe care doriți să le îmbinați sau să continuați să-mi trimiteți fișierele PDF"
 
-#: pdf_bot/commands/merge.py:178
+#: pdf_bot/commands/merge.py:179
 msgid "<b>{}</b> has been removed for merging"
 msgstr "<b>{}</b> a fost eliminat pentru îmbinare"
 
-#: pdf_bot/commands/merge.py:198
+#: pdf_bot/commands/merge.py:199
 msgid "You haven't sent me any PDF files"
 msgstr "Nu mi-ai trimis niciun fișier PDF"
 
-#: pdf_bot/commands/merge.py:202
+#: pdf_bot/commands/merge.py:203
 msgid "You've only sent me one PDF file."
 msgstr "Mi-ai trimis doar un fișier PDF."
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "Merging your PDF files"
 msgstr "Îmbinarea fișierelor PDF"
 
-#: pdf_bot/commands/merge.py:236
+#: pdf_bot/commands/merge.py:237
 msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
 msgstr "Nu pot îmbina fișierele PDF deoarece nu am putut deschide și citi \"{}\". Asigurați-vă că nu este criptat"
 
-#: pdf_bot/commands/photo.py:72
+#: pdf_bot/commands/photo.py:73
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
 msgstr "Trimiteți-mi fotografiile pe care doriți să le înfrumusețați sau să le convertiți într-un fișier PDF\n\n"
 "Rețineți că fotografiile vor fi înfrumusețate și convertite în ordinea în care îmi trimiteți"
 
-#: pdf_bot/commands/photo.py:99
+#: pdf_bot/commands/photo.py:100
 msgid "File name unavailable"
 msgstr "Nume fișier indisponibil"
 
-#: pdf_bot/commands/photo.py:118
+#: pdf_bot/commands/photo.py:119
 msgid "The file you've sent is not a photo"
 msgstr "Fișierul pe care l-ați trimis nu este o fotografie"
 
-#: pdf_bot/commands/photo.py:124
+#: pdf_bot/commands/photo.py:125
 msgid "The photo you've sent is too large for me to download"
 msgstr "Fotografia pe care ai trimis-o este prea mare pentru a fi descărcată"
 
-#: pdf_bot/commands/photo.py:131
+#: pdf_bot/commands/photo.py:132
 msgid "photos"
 msgstr "fotografii"
 
-#: pdf_bot/commands/photo.py:138
+#: pdf_bot/commands/photo.py:139
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
 msgstr "Selectați sarcina de mai jos dacă mi-ați trimis toate fotografiile sau continuați să-mi trimiteți fotografiile"
 
-#: pdf_bot/commands/photo.py:182
+#: pdf_bot/commands/photo.py:183
 msgid "<b>{}</b> has been removed for beautifying or converting"
 msgstr "<b>{}</b> a fost eliminată pentru înfrumusețare sau conversie"
 
-#: pdf_bot/commands/photo.py:217
+#: pdf_bot/commands/photo.py:218
 msgid "Beautifying and converting your photos"
 msgstr "Înfrumusețarea și conversia fotografiilor"
 
-#: pdf_bot/commands/photo.py:222
+#: pdf_bot/commands/photo.py:223
 msgid "Converting your photos into PDF"
 msgstr "Conversia fotografiilor în PDF"
 
@@ -414,19 +414,19 @@ msgstr ""
 msgid "Creating your PDF file"
 msgstr "Crearea fișierului PDF"
 
-#: pdf_bot/commands/watermark.py:49
+#: pdf_bot/commands/watermark.py:43
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Trimiteți-mi fișierul PDF pe care doriți să-l adăugați o inscripționare"
 
-#: pdf_bot/commands/watermark.py:80
+#: pdf_bot/commands/watermark.py:74
 msgid "Send me the watermark PDF file"
 msgstr "Trimite-mi fișierul PDF de inscripționare"
 
-#: pdf_bot/commands/watermark.py:105
+#: pdf_bot/commands/watermark.py:99
 msgid "Adding the watermark onto your PDF file"
 msgstr "Adăugarea filigranului în fișierul PDF"
 
-#: pdf_bot/commands/watermark.py:118
+#: pdf_bot/commands/watermark.py:112
 msgid "watermark"
 msgstr "filigran"
 
@@ -503,7 +503,7 @@ msgstr "Criptarea fișierului PDF"
 msgid "Select the task that you'll like to perform"
 msgstr "Selectați activitatea pe care doriți să o efectuați"
 
-#: pdf_bot/files/file.py:106
+#: pdf_bot/files/file.py:84
 msgid "Your PDF file is too big for me to download\n\n"
 "I can't perform any tasks on it"
 msgstr "Fișierul PDF este prea mare pentru a putea descărca\n\n"
