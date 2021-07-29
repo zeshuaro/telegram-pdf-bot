@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 
 RUN pybabel compile -D pdf_bot -d locale
 
-CMD exec gunicorn --bind :$PORT --workers 2 --threads 4 --timeout 0 "pdf_bot:create_app()"
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 4 --timeout 0 "pdf_bot:create_app()"
