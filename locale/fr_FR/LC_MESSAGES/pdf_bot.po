@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-07-28 10:41+0000\n"
-"PO-Revision-Date: 2021-07-28 10:41\n"
+"PO-Revision-Date: 2021-08-01 08:14\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: French\n"
@@ -151,15 +151,15 @@ msgid "Welcome to PDF Bot!\n\n"
 "- <b><i>And more...</i></b>\n\n"
 "Type /help to see how to use PDF Bot"
 msgstr "Bienvenue sur PDF Bot!\n\n"
-"<b>principales caractéristiques:</b>\n"
-"- Compresser, fusionner, prévisualiser, renommer, diviser et ajouter du filigrane aux fichiers PDF\n"
+"<b>Principales caractéristiques:</b>\n"
+"- Compresser, fusionner, prévisualiser, renommer, diviser et ajouter un filigrane aux fichiers PDF\n"
 "- Créer des fichiers PDF à partir de messages texte\n"
 "- Extraire des images et du texte à partir de fichiers PDF\n"
-"- Convertir les fichiers PDF en images\n"
-"- Convertir les pages Web et les images en fichiers PDF\n"
-"- Beautify notes manuscrites images en fichiers PDF\n"
-"- <b><i>Et plus encore ... type</i></b>\n\n"
-"/help à voir comment utiliser PDF Bot"
+"- Convertir des fichiers PDF en images\n"
+"- Convertir des pages Web et des images en fichiers PDF\n"
+"- Embellir les images de notes manuscrites en fichiers PDF\n"
+"- <b><i>Et plus encore...</i></b>\n\n"
+"Tapez /help pour voir comment utiliser PDF Bot"
 
 #: pdf_bot/dispatcher.py:124
 msgid "Set Language 🌎"
@@ -184,7 +184,7 @@ msgid "You can perform most of the tasks by sending me one of the followings:\n"
 "/photo - convert and combine multiple photos into PDF files\n"
 "/text - create PDF files from text messages\n"
 "/watermark - add watermark to PDF files"
-msgstr "Vous pouvez effectuer la plupart des tâches en m’envoyant l’une des tâches suivantes:\n"
+msgstr "Vous pouvez effectuer la plupart des tâches en m’envoyant l’un des médias suivants:\n"
 "- fichiers PDF\n"
 "- Photos\n"
 "- Liens de page Web\n\n"
@@ -321,7 +321,7 @@ msgstr "Il n'y a pas de différence de texte entre vos fichiers PDF"
 msgid "Send me the PDF files that you'll like to merge\n\n"
 "Note that the files will be merged in the order that you send me"
 msgstr "Envoyez-moi les fichiers PDF que vous aimerez fusionner\n\n"
-"Notez que les fichiers seront fusionnés dans l’ordre que vous m’envoyez"
+"Notez que les fichiers seront fusionnés dans l’ordre que vous les avez envoyés"
 
 #: pdf_bot/commands/merge.py:111
 msgid "The file you've sent is not a PDF file"
@@ -337,7 +337,7 @@ msgstr "Fichiers PDF"
 
 #: pdf_bot/commands/merge.py:138
 msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "Appuyez <b>faites</b> si vous m’avez envoyé tous les fichiers PDF que vous aimerez fusionner ou continuer à m’envoyer les fichiers PDF"
+msgstr "Appuyez sur <b>Terminé</b> si vous m’avez envoyé tous les fichiers PDF que vous souhaitez fusionner ou continuez de m’envoyer les fichiers PDF"
 
 #: pdf_bot/commands/merge.py:179
 msgid "<b>{}</b> has been removed for merging"
@@ -362,8 +362,8 @@ msgstr "Je ne peux pas fusionner vos fichiers PDF car je n'ai pas pu ouvrir et l
 #: pdf_bot/commands/photo.py:73
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
 "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Envoyez-moi les photos que vous aimerez embellir ou convertir en fichier PDF\n\n"
-"Notez que les photos seront embellies et converties dans l’ordre que vous m’envoyez"
+msgstr "Envoyez-moi les photos que vous souhaitez embellir ou convertir en fichier PDF\n\n"
+"Notez que les photos seront embellies et converties dans l’ordre dans lequel vous m’envoyez"
 
 #: pdf_bot/commands/photo.py:100
 msgid "File name unavailable"
@@ -383,7 +383,7 @@ msgstr "photos"
 
 #: pdf_bot/commands/photo.py:139
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr "Sélectionnez la tâche d’en bas si vous m’avez envoyé toutes les photos, ou continuez à m’envoyer les photos"
+msgstr "Sélectionnez la tâche ci-dessous si vous m’avez envoyé toutes les photos, ou continuez à m’envoyer les photos"
 
 #: pdf_bot/commands/photo.py:183
 msgid "<b>{}</b> has been removed for beautifying or converting"
@@ -404,11 +404,12 @@ msgstr "Envoyez-moi le texte que vous aimeriez écrire dans votre fichier PDF"
 #: pdf_bot/commands/text.py:81
 msgid "Send me the font that you'll like to use for the PDF file or skip to use the default font\n\n"
 "See here for the list of supported fonts:"
-msgstr ""
+msgstr "Envoyez-moi la police que vous aimeriez utiliser pour le fichier PDF ou passez pour garder la police par défaut\n\n"
+"Voir ici pour la liste des polices supportées :"
 
 #: pdf_bot/commands/text.py:115
 msgid "Unknown font, please try again"
-msgstr ""
+msgstr "Police inconnue, veuillez réessayer"
 
 #: pdf_bot/commands/text.py:147
 msgid "Creating your PDF file"
@@ -615,7 +616,7 @@ msgstr "toutes les pages"
 
 #: pdf_bot/files/split.py:39
 msgid "page 8 only"
-msgstr "page 8 seulement"
+msgstr "8 page seulement"
 
 #: pdf_bot/files/split.py:40
 msgid "first three pages"
@@ -659,7 +660,7 @@ msgstr "jusqu’à la fin"
 
 #: pdf_bot/files/split.py:50
 msgid "all pages in reversed order"
-msgstr "toutes les pages en ordre inversé"
+msgstr "toutes les pages dans l’ordre inverse"
 
 #: pdf_bot/files/split.py:51
 msgid "except"
