@@ -16,7 +16,7 @@ jobs:
       - name: Setup Python 🐍
         uses: actions/setup-python@v2
         with:
-          python-version: "3.7"
+          python-version: "3.9"
 
       - name: Restore pip cache 💾
         uses: actions/cache@v2
@@ -28,8 +28,8 @@ jobs:
 
       - name: Install Babel ⚙️
         run: |
-          pip3 install -U pip
-          pip3 install Babel==2.9.1
+          python -m pip install -U pip
+          python -m pip install Babel==2.9.1
 
       - name: Update localization source file 📄
         run: |

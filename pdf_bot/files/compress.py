@@ -1,14 +1,14 @@
-import humanize
 import os
 import tempfile
 
-from telegram import ReplyKeyboardRemove, ParseMode
+import humanize
+from telegram import ParseMode, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
 from pdf_bot.constants import PDF_INFO
+from pdf_bot.files.utils import run_cmd
 from pdf_bot.language import set_lang
 from pdf_bot.utils import check_user_data, send_result_file
-from pdf_bot.files.utils import run_cmd
 
 
 def compress_pdf(update, context):

@@ -1,14 +1,15 @@
 import tempfile
 
-from pdf_bot.constants import PDF_INFO, WAIT_SPLIT_RANGE
-from pdf_bot.files.utils import check_back_user_data, get_back_markup
-from pdf_bot.language import set_lang
-from pdf_bot.utils import open_pdf, write_send_pdf
 from PyPDF2 import PdfFileMerger
 from PyPDF2.pagerange import PageRange
 from telegram import ReplyKeyboardRemove, Update
 from telegram.ext import CallbackContext, ConversationHandler
 from telegram.parsemode import ParseMode
+
+from pdf_bot.constants import PDF_INFO, WAIT_SPLIT_RANGE
+from pdf_bot.files.utils import check_back_user_data, get_back_markup
+from pdf_bot.language import set_lang
+from pdf_bot.utils import open_pdf, write_send_pdf
 
 
 def ask_split_range(update: Update, context: CallbackContext) -> int:
