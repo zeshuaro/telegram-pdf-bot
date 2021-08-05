@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-07-28 10:41+0000\n"
-"PO-Revision-Date: 2021-07-28 10:41\n"
+"POT-Creation-Date: 2021-08-05 08:15+0000\n"
+"PO-Revision-Date: 2021-08-05 08:16\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -439,7 +439,7 @@ msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "<b>{</b>} <b></b> {} {} <b></b>"
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
-#: pdf_bot/files/photo.py:218
+#: pdf_bot/files/photo.py:214
 msgid "Something went wrong, try again"
 msgstr "뭔가 잘못, 다시 시도"
 
@@ -499,7 +499,7 @@ msgstr "PDF 파일을 암호화하기 위해 암호를 보내주세요."
 msgid "Encrypting your PDF file"
 msgstr "PDF 파일 암호화"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:60
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
 
@@ -517,31 +517,31 @@ msgstr "PDF 파일에 OCR 텍스트 레이어 추가"
 msgid "Your PDF file already has a text layer"
 msgstr "PDF 파일에 이미 텍스트 레이어가 있습니다."
 
-#: pdf_bot/files/photo.py:50
+#: pdf_bot/files/photo.py:46
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "사진이 너무 커서 다운로드할 수 없습니다. 나는 당신의 사진을 아름답게하거나 변환 할 수 없습니다"
 
-#: pdf_bot/files/photo.py:105
+#: pdf_bot/files/photo.py:101
 msgid "Extracting a preview for your PDF file"
 msgstr "PDF 파일에 대한 미리 보기 추출"
 
-#: pdf_bot/files/photo.py:153
+#: pdf_bot/files/photo.py:149
 msgid "Select the result file format"
 msgstr "결과 파일 형식 선택"
 
-#: pdf_bot/files/photo.py:165
+#: pdf_bot/files/photo.py:161
 msgid "Converting your PDF file into photos"
 msgstr "PDF 파일을 사진으로 변환"
 
-#: pdf_bot/files/photo.py:203
+#: pdf_bot/files/photo.py:199
 msgid "Extracting all the photos in your PDF file"
 msgstr "PDF 파일의 모든 사진 추출"
 
-#: pdf_bot/files/photo.py:223
+#: pdf_bot/files/photo.py:219
 msgid "I couldn't find any photos in your PDF file"
 msgstr "PDF 파일에서 사진을 찾을 수 없습니다."
 
-#: pdf_bot/files/photo.py:259
+#: pdf_bot/files/photo.py:255
 msgid "See above for all your photos"
 msgstr "모든 사진에 대한 위 참조"
 
@@ -601,75 +601,75 @@ msgstr "PDF 파일 의 배율 조정, <b>{}</b> 및 <b>{}</b>의해 세로로 �
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "<b>{}</b> 너비와 <b>{} 높이로 PDF 파일 확장</b>"
 
-#: pdf_bot/files/split.py:36
+#: pdf_bot/files/split.py:37
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "보관할 페이지 범위 보내기"
 
-#: pdf_bot/files/split.py:37
+#: pdf_bot/files/split.py:38
 msgid "General usage"
 msgstr "일반 사용"
 
-#: pdf_bot/files/split.py:38
+#: pdf_bot/files/split.py:39
 msgid "all pages"
 msgstr "모든 페이지"
 
-#: pdf_bot/files/split.py:39
+#: pdf_bot/files/split.py:40
 msgid "page 8 only"
 msgstr "8페이지만"
 
-#: pdf_bot/files/split.py:40
+#: pdf_bot/files/split.py:41
 msgid "first three pages"
 msgstr "처음 세 페이지"
 
-#: pdf_bot/files/split.py:41
+#: pdf_bot/files/split.py:42
 msgid "from page 8 onward"
 msgstr "8페이지 이후"
 
-#: pdf_bot/files/split.py:42
+#: pdf_bot/files/split.py:43
 msgid "last page only"
 msgstr "마지막 페이지만"
 
-#: pdf_bot/files/split.py:43
+#: pdf_bot/files/split.py:44
 msgid "all pages except the last page"
 msgstr "마지막 페이지를 제외한 모든 페이지"
 
-#: pdf_bot/files/split.py:44
+#: pdf_bot/files/split.py:45
 msgid "second last page only"
 msgstr "두 번째 마지막 페이지만"
 
-#: pdf_bot/files/split.py:45
+#: pdf_bot/files/split.py:46
 msgid "last two pages"
 msgstr "마지막 두 페이지"
 
-#: pdf_bot/files/split.py:46
+#: pdf_bot/files/split.py:47
 msgid "third and second last pages"
 msgstr "세 번째 및 두 번째 마지막 페이지"
 
-#: pdf_bot/files/split.py:47
+#: pdf_bot/files/split.py:48
 msgid "Advanced usage"
 msgstr "고급 사용"
 
-#: pdf_bot/files/split.py:48
+#: pdf_bot/files/split.py:49
 msgid "pages"
 msgstr "페이지"
 
-#: pdf_bot/files/split.py:49
+#: pdf_bot/files/split.py:50
 msgid "to the end"
 msgstr "끝까지"
 
-#: pdf_bot/files/split.py:50
+#: pdf_bot/files/split.py:51
 msgid "all pages in reversed order"
 msgstr "모든 페이지가 반전된 순서로"
 
-#: pdf_bot/files/split.py:51
+#: pdf_bot/files/split.py:52
 msgid "except"
 msgstr "제외한"
 
-#: pdf_bot/files/split.py:75
+#: pdf_bot/files/split.py:76
 msgid "The range is invalid. Try again"
 msgstr "범위가 잘못되었습니다. 다시 한 번 시도해 보세요"
 
-#: pdf_bot/files/split.py:81
+#: pdf_bot/files/split.py:82
 msgid "Splitting your PDF file"
 msgstr "PDF 파일 분할"
 

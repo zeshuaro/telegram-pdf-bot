@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-07-28 10:41+0000\n"
-"PO-Revision-Date: 2021-07-28 10:41\n"
+"POT-Creation-Date: 2021-08-05 08:15+0000\n"
+"PO-Revision-Date: 2021-08-05 08:16\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -439,7 +439,7 @@ msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "A fájl mérete <b>{:.0%}</b> -kal csökkentve, <b>{}</b> -ról <b>{}</b> -ra"
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
-#: pdf_bot/files/photo.py:218
+#: pdf_bot/files/photo.py:214
 msgid "Something went wrong, try again"
 msgstr "Valami rosszul sült el, próbáld újra"
 
@@ -499,7 +499,7 @@ msgstr "Küldje el a jelszót a PDF-fájl titkosításához"
 msgid "Encrypting your PDF file"
 msgstr "A PDF-fájl titkosítása"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:60
 msgid "Select the task that you'll like to perform"
 msgstr "Válassza ki a végrehajtani kívánt feladatot"
 
@@ -517,31 +517,31 @@ msgstr "OCR szövegréteg hozzáadása a PDF fájlhoz"
 msgid "Your PDF file already has a text layer"
 msgstr "A PDF-fájlnak már van szövegrétege"
 
-#: pdf_bot/files/photo.py:50
+#: pdf_bot/files/photo.py:46
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "A fényképed túl nagy ahhoz, hogy letöltsem. Nem tudom szépíteni vagy átalakítani a fotó"
 
-#: pdf_bot/files/photo.py:105
+#: pdf_bot/files/photo.py:101
 msgid "Extracting a preview for your PDF file"
 msgstr "A PDF-fájl előnézetének kibontása"
 
-#: pdf_bot/files/photo.py:153
+#: pdf_bot/files/photo.py:149
 msgid "Select the result file format"
 msgstr "Az eredményfájl formátumának kiválasztása"
 
-#: pdf_bot/files/photo.py:165
+#: pdf_bot/files/photo.py:161
 msgid "Converting your PDF file into photos"
 msgstr "A PDF-fájl átalakítása fényképekké"
 
-#: pdf_bot/files/photo.py:203
+#: pdf_bot/files/photo.py:199
 msgid "Extracting all the photos in your PDF file"
 msgstr "A PDF-fájlban lévő összes fénykép kibontása"
 
-#: pdf_bot/files/photo.py:223
+#: pdf_bot/files/photo.py:219
 msgid "I couldn't find any photos in your PDF file"
 msgstr "Nem találtam fényképeket a PDF-fájlban"
 
-#: pdf_bot/files/photo.py:259
+#: pdf_bot/files/photo.py:255
 msgid "See above for all your photos"
 msgstr "Lásd fent az összes fotó"
 
@@ -601,75 +601,75 @@ msgstr "A PDF-fájl méretezése vízszintesen <b> {} </b> és függőlegesen <b
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "A PDF-fájl méretezése <b>{}</b> szélességgel és <b>{}</b>magasságával"
 
-#: pdf_bot/files/split.py:36
+#: pdf_bot/files/split.py:37
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Küldje el nekem a tartomány oldalak, hogy szeretné tartani"
 
-#: pdf_bot/files/split.py:37
+#: pdf_bot/files/split.py:38
 msgid "General usage"
 msgstr "Általános használat"
 
-#: pdf_bot/files/split.py:38
+#: pdf_bot/files/split.py:39
 msgid "all pages"
 msgstr "minden oldal"
 
-#: pdf_bot/files/split.py:39
+#: pdf_bot/files/split.py:40
 msgid "page 8 only"
 msgstr "csak a 8."
 
-#: pdf_bot/files/split.py:40
+#: pdf_bot/files/split.py:41
 msgid "first three pages"
 msgstr "első három oldal"
 
-#: pdf_bot/files/split.py:41
+#: pdf_bot/files/split.py:42
 msgid "from page 8 onward"
 msgstr "a 8."
 
-#: pdf_bot/files/split.py:42
+#: pdf_bot/files/split.py:43
 msgid "last page only"
 msgstr "csak az utolsó oldalon"
 
-#: pdf_bot/files/split.py:43
+#: pdf_bot/files/split.py:44
 msgid "all pages except the last page"
 msgstr "az utolsó oldal kivételével az összes oldal"
 
-#: pdf_bot/files/split.py:44
+#: pdf_bot/files/split.py:45
 msgid "second last page only"
 msgstr "csak az utolsó második oldal"
 
-#: pdf_bot/files/split.py:45
+#: pdf_bot/files/split.py:46
 msgid "last two pages"
 msgstr "utolsó két oldal"
 
-#: pdf_bot/files/split.py:46
+#: pdf_bot/files/split.py:47
 msgid "third and second last pages"
 msgstr "harmadik és második utolsó oldal"
 
-#: pdf_bot/files/split.py:47
+#: pdf_bot/files/split.py:48
 msgid "Advanced usage"
 msgstr "Speciális használat"
 
-#: pdf_bot/files/split.py:48
+#: pdf_bot/files/split.py:49
 msgid "pages"
 msgstr "oldalak"
 
-#: pdf_bot/files/split.py:49
+#: pdf_bot/files/split.py:50
 msgid "to the end"
 msgstr "a végére"
 
-#: pdf_bot/files/split.py:50
+#: pdf_bot/files/split.py:51
 msgid "all pages in reversed order"
 msgstr "minden oldal fordított sorrendben"
 
-#: pdf_bot/files/split.py:51
+#: pdf_bot/files/split.py:52
 msgid "except"
 msgstr "kivéve"
 
-#: pdf_bot/files/split.py:75
+#: pdf_bot/files/split.py:76
 msgid "The range is invalid. Try again"
 msgstr "A tartomány érvénytelen. próbáld újra"
 
-#: pdf_bot/files/split.py:81
+#: pdf_bot/files/split.py:82
 msgid "Splitting your PDF file"
 msgstr "A PDF-fájl felosztása"
 

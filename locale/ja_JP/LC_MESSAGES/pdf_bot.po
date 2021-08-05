@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-07-28 10:41+0000\n"
-"PO-Revision-Date: 2021-07-28 10:41\n"
+"POT-Creation-Date: 2021-08-05 08:15+0000\n"
+"PO-Revision-Date: 2021-08-05 08:16\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -439,7 +439,7 @@ msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "ファイルサイズが<b> {:.0%} </b>減少して<b> {} </b>から<b> {} </b>になりました"
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
-#: pdf_bot/files/photo.py:218
+#: pdf_bot/files/photo.py:214
 msgid "Something went wrong, try again"
 msgstr "何かが間違っていた、もう一度やり直す"
 
@@ -499,7 +499,7 @@ msgstr "PDFファイルを暗号化するためのパスワードを送信する
 msgid "Encrypting your PDF file"
 msgstr "PDF ファイルの暗号化"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:60
 msgid "Select the task that you'll like to perform"
 msgstr "実行するタスクを選択します。"
 
@@ -517,31 +517,31 @@ msgstr "PDF ファイルへの OCR テキストレイヤーの追加"
 msgid "Your PDF file already has a text layer"
 msgstr "PDF ファイルにテキストレイヤーが既に存在する"
 
-#: pdf_bot/files/photo.py:50
+#: pdf_bot/files/photo.py:46
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "あなたの写真は大きすぎてダウンロードできませんでした。私はあなたの写真を美しくしたり、変換することはできません"
 
-#: pdf_bot/files/photo.py:105
+#: pdf_bot/files/photo.py:101
 msgid "Extracting a preview for your PDF file"
 msgstr "PDF ファイルのプレビューを抽出する"
 
-#: pdf_bot/files/photo.py:153
+#: pdf_bot/files/photo.py:149
 msgid "Select the result file format"
 msgstr "結果ファイル形式を選択します"
 
-#: pdf_bot/files/photo.py:165
+#: pdf_bot/files/photo.py:161
 msgid "Converting your PDF file into photos"
 msgstr "PDF ファイルを写真に変換する"
 
-#: pdf_bot/files/photo.py:203
+#: pdf_bot/files/photo.py:199
 msgid "Extracting all the photos in your PDF file"
 msgstr "PDF ファイル内のすべての写真を抽出する"
 
-#: pdf_bot/files/photo.py:223
+#: pdf_bot/files/photo.py:219
 msgid "I couldn't find any photos in your PDF file"
 msgstr "PDF ファイルに写真が見つかりませんでした"
 
-#: pdf_bot/files/photo.py:259
+#: pdf_bot/files/photo.py:255
 msgid "See above for all your photos"
 msgstr "すべての写真については、上記を参照してください。"
 
@@ -601,75 +601,75 @@ msgstr "PDF ファイルをスケールし、 <b>{}</b> を水平方向に、 <b
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "幅<b> {} </b>および高さ<b> {} </b>でPDFファイルをスケーリングする"
 
-#: pdf_bot/files/split.py:36
+#: pdf_bot/files/split.py:37
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "あなたが保持したいページの範囲を私に送ってください"
 
-#: pdf_bot/files/split.py:37
+#: pdf_bot/files/split.py:38
 msgid "General usage"
 msgstr "一般的な使用法"
 
-#: pdf_bot/files/split.py:38
+#: pdf_bot/files/split.py:39
 msgid "all pages"
 msgstr "すべてのページ"
 
-#: pdf_bot/files/split.py:39
+#: pdf_bot/files/split.py:40
 msgid "page 8 only"
 msgstr "ページ 8 のみ"
 
-#: pdf_bot/files/split.py:40
+#: pdf_bot/files/split.py:41
 msgid "first three pages"
 msgstr "最初の 3 ページ"
 
-#: pdf_bot/files/split.py:41
+#: pdf_bot/files/split.py:42
 msgid "from page 8 onward"
 msgstr "8ページ以降"
 
-#: pdf_bot/files/split.py:42
+#: pdf_bot/files/split.py:43
 msgid "last page only"
 msgstr "最後のページのみ"
 
-#: pdf_bot/files/split.py:43
+#: pdf_bot/files/split.py:44
 msgid "all pages except the last page"
 msgstr "最後のページ以外のすべてのページ"
 
-#: pdf_bot/files/split.py:44
+#: pdf_bot/files/split.py:45
 msgid "second last page only"
 msgstr "2 番目の最後のページのみ"
 
-#: pdf_bot/files/split.py:45
+#: pdf_bot/files/split.py:46
 msgid "last two pages"
 msgstr "最後の 2 ページ"
 
-#: pdf_bot/files/split.py:46
+#: pdf_bot/files/split.py:47
 msgid "third and second last pages"
 msgstr "3 番目と 2 番目の最後のページ"
 
-#: pdf_bot/files/split.py:47
+#: pdf_bot/files/split.py:48
 msgid "Advanced usage"
 msgstr "高度な使用法"
 
-#: pdf_bot/files/split.py:48
+#: pdf_bot/files/split.py:49
 msgid "pages"
 msgstr "ページ"
 
-#: pdf_bot/files/split.py:49
+#: pdf_bot/files/split.py:50
 msgid "to the end"
 msgstr "最後まで"
 
-#: pdf_bot/files/split.py:50
+#: pdf_bot/files/split.py:51
 msgid "all pages in reversed order"
 msgstr "すべてのページが逆順に並んだ"
 
-#: pdf_bot/files/split.py:51
+#: pdf_bot/files/split.py:52
 msgid "except"
 msgstr "除いて"
 
-#: pdf_bot/files/split.py:75
+#: pdf_bot/files/split.py:76
 msgid "The range is invalid. Try again"
 msgstr "範囲が無効です。もう一度やり直してください"
 
-#: pdf_bot/files/split.py:81
+#: pdf_bot/files/split.py:82
 msgid "Splitting your PDF file"
 msgstr "PDF ファイルの分割"
 

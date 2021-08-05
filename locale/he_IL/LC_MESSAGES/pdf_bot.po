@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-07-28 10:41+0000\n"
-"PO-Revision-Date: 2021-07-28 10:41\n"
+"POT-Creation-Date: 2021-08-05 08:15+0000\n"
+"PO-Revision-Date: 2021-08-05 08:16\n"
 "Last-Translator: \n"
 "Language: he\n"
 "Language-Team: Hebrew\n"
@@ -436,7 +436,7 @@ msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "גודל הקובץ הופחת ב<b>{:.0%}</b>, מ- <b>{}</b> ל- <b>{}</b>"
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
-#: pdf_bot/files/photo.py:218
+#: pdf_bot/files/photo.py:214
 msgid "Something went wrong, try again"
 msgstr "משהו השתבש, נסה שוב"
 
@@ -496,7 +496,7 @@ msgstr "שלח לי את הסיסמה להצפנת הקובץ PDF שלך"
 msgid "Encrypting your PDF file"
 msgstr "הצפן את קובץ ה-PDF שלך"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:60
 msgid "Select the task that you'll like to perform"
 msgstr "בחר את הפעולות שתרצה לבצע"
 
@@ -514,31 +514,31 @@ msgstr "הוספת שכבת טקסט OCR לקובץ ה- PDF שלך"
 msgid "Your PDF file already has a text layer"
 msgstr "כבר קיים לקובץ ה PDF שלך שכבת טקסט"
 
-#: pdf_bot/files/photo.py:50
+#: pdf_bot/files/photo.py:46
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "התמונה ששלחת לי גדולה מכדי להורידה. אני לא יכול לייפות או להמיר את התמונה"
 
-#: pdf_bot/files/photo.py:105
+#: pdf_bot/files/photo.py:101
 msgid "Extracting a preview for your PDF file"
 msgstr "מחלץ תצוגה מקדימה לקובץ ה- PDF שלך"
 
-#: pdf_bot/files/photo.py:153
+#: pdf_bot/files/photo.py:149
 msgid "Select the result file format"
 msgstr "בחר את פורמט הקובץ שתרצה שיהיה"
 
-#: pdf_bot/files/photo.py:165
+#: pdf_bot/files/photo.py:161
 msgid "Converting your PDF file into photos"
 msgstr "ממיר את קובץ ה PDF שלך לתמונות"
 
-#: pdf_bot/files/photo.py:203
+#: pdf_bot/files/photo.py:199
 msgid "Extracting all the photos in your PDF file"
 msgstr "מחלץ את כל התמונות מהקובץ PDF"
 
-#: pdf_bot/files/photo.py:223
+#: pdf_bot/files/photo.py:219
 msgid "I couldn't find any photos in your PDF file"
 msgstr "אני לא מצליח למצוא שום תמונה בקובץ ה PDF הזה"
 
-#: pdf_bot/files/photo.py:259
+#: pdf_bot/files/photo.py:255
 msgid "See above for all your photos"
 msgstr "ראה לעיל את כל התמונות שלך"
 
@@ -596,75 +596,75 @@ msgstr "קנה מידה של קובץ ה- PDF שלך, אופקית על ידי <
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "קנה מידה של קובץ ה- PDF ברוחב <b>{}</b> וגובהו <b>{}</b>"
 
-#: pdf_bot/files/split.py:36
+#: pdf_bot/files/split.py:37
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "שלח לי את טווח הדפים שאתה רוצה לשמור"
 
-#: pdf_bot/files/split.py:37
+#: pdf_bot/files/split.py:38
 msgid "General usage"
 msgstr "שימוש כללי"
 
-#: pdf_bot/files/split.py:38
+#: pdf_bot/files/split.py:39
 msgid "all pages"
 msgstr "כל העמודים"
 
-#: pdf_bot/files/split.py:39
+#: pdf_bot/files/split.py:40
 msgid "page 8 only"
 msgstr "עמוד 8 בלבד"
 
-#: pdf_bot/files/split.py:40
+#: pdf_bot/files/split.py:41
 msgid "first three pages"
 msgstr "שלושת העמודים הראשונים"
 
-#: pdf_bot/files/split.py:41
+#: pdf_bot/files/split.py:42
 msgid "from page 8 onward"
 msgstr "מעמוד 8 ואילך"
 
-#: pdf_bot/files/split.py:42
+#: pdf_bot/files/split.py:43
 msgid "last page only"
 msgstr "עמוד אחרון בלבד"
 
-#: pdf_bot/files/split.py:43
+#: pdf_bot/files/split.py:44
 msgid "all pages except the last page"
 msgstr "כל העמודים פרט לעמוד האחרון"
 
-#: pdf_bot/files/split.py:44
+#: pdf_bot/files/split.py:45
 msgid "second last page only"
 msgstr "רק העמוד השני מהסוף"
 
-#: pdf_bot/files/split.py:45
+#: pdf_bot/files/split.py:46
 msgid "last two pages"
 msgstr "שני העמודים האחרונים"
 
-#: pdf_bot/files/split.py:46
+#: pdf_bot/files/split.py:47
 msgid "third and second last pages"
 msgstr "העמוד השני והשלישי מהסוף"
 
-#: pdf_bot/files/split.py:47
+#: pdf_bot/files/split.py:48
 msgid "Advanced usage"
 msgstr "שימוש מתקדם"
 
-#: pdf_bot/files/split.py:48
+#: pdf_bot/files/split.py:49
 msgid "pages"
 msgstr "עמודים"
 
-#: pdf_bot/files/split.py:49
+#: pdf_bot/files/split.py:50
 msgid "to the end"
 msgstr "עד הסוף"
 
-#: pdf_bot/files/split.py:50
+#: pdf_bot/files/split.py:51
 msgid "all pages in reversed order"
 msgstr "כל העמודים בסדר הפוך"
 
-#: pdf_bot/files/split.py:51
+#: pdf_bot/files/split.py:52
 msgid "except"
 msgstr "מלבד"
 
-#: pdf_bot/files/split.py:75
+#: pdf_bot/files/split.py:76
 msgid "The range is invalid. Try again"
 msgstr "טווח המרחק לא תקין, נסה שנית"
 
-#: pdf_bot/files/split.py:81
+#: pdf_bot/files/split.py:82
 msgid "Splitting your PDF file"
 msgstr "מפצל את קובץ ה PDF שלך"
 

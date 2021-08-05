@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-07-28 10:41+0000\n"
-"PO-Revision-Date: 2021-07-28 10:41\n"
+"POT-Creation-Date: 2021-08-05 08:15+0000\n"
+"PO-Revision-Date: 2021-08-05 08:16\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese\n"
@@ -439,7 +439,7 @@ msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
 msgstr "Tamanho do arquivo reduzido por <b>{:.0%}</b>, de <b>{}</b> para <b>{}</b>"
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
-#: pdf_bot/files/photo.py:218
+#: pdf_bot/files/photo.py:214
 msgid "Something went wrong, try again"
 msgstr "Algo deu errado, tente de novo."
 
@@ -499,7 +499,7 @@ msgstr "Envie-me a senha para criptografar seu arquivo PDF"
 msgid "Encrypting your PDF file"
 msgstr "Criptografando seu arquivo PDF"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:64
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:60
 msgid "Select the task that you'll like to perform"
 msgstr "Selecione a tarefa que você gostaria de executar"
 
@@ -517,31 +517,31 @@ msgstr "Adicionando uma camada de texto OCR ao seu arquivo PDF"
 msgid "Your PDF file already has a text layer"
 msgstr "Seu arquivo PDF já tem uma camada de texto"
 
-#: pdf_bot/files/photo.py:50
+#: pdf_bot/files/photo.py:46
 msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
 msgstr "Sua foto é muito grande para eu baixar. Não posso embelezar ou converter sua foto."
 
-#: pdf_bot/files/photo.py:105
+#: pdf_bot/files/photo.py:101
 msgid "Extracting a preview for your PDF file"
 msgstr "Extraindo uma visualização para o seu arquivo PDF"
 
-#: pdf_bot/files/photo.py:153
+#: pdf_bot/files/photo.py:149
 msgid "Select the result file format"
 msgstr "Selecione o formato do arquivo de resultado"
 
-#: pdf_bot/files/photo.py:165
+#: pdf_bot/files/photo.py:161
 msgid "Converting your PDF file into photos"
 msgstr "Convertendo seu arquivo PDF em fotos"
 
-#: pdf_bot/files/photo.py:203
+#: pdf_bot/files/photo.py:199
 msgid "Extracting all the photos in your PDF file"
 msgstr "Extraindo todas as fotos em seu arquivo PDF"
 
-#: pdf_bot/files/photo.py:223
+#: pdf_bot/files/photo.py:219
 msgid "I couldn't find any photos in your PDF file"
 msgstr "Não encontrei nenhuma foto no seu arquivo PDF."
 
-#: pdf_bot/files/photo.py:259
+#: pdf_bot/files/photo.py:255
 msgid "See above for all your photos"
 msgstr "Veja acima todas as suas fotos"
 
@@ -601,75 +601,75 @@ msgstr "Dimensionando seu arquivo PDF, horizontalmente <b>{}</b> e verticalmente
 msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
 msgstr "Dimensionando seu arquivo PDF com largura de <b>{}</b> e altura de <b>{}</b>"
 
-#: pdf_bot/files/split.py:36
+#: pdf_bot/files/split.py:37
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Envie-me o intervalo de páginas que você vai gostar de manter"
 
-#: pdf_bot/files/split.py:37
+#: pdf_bot/files/split.py:38
 msgid "General usage"
 msgstr "Uso geral"
 
-#: pdf_bot/files/split.py:38
+#: pdf_bot/files/split.py:39
 msgid "all pages"
 msgstr "todas as páginas"
 
-#: pdf_bot/files/split.py:39
+#: pdf_bot/files/split.py:40
 msgid "page 8 only"
 msgstr "página 8 apenas"
 
-#: pdf_bot/files/split.py:40
+#: pdf_bot/files/split.py:41
 msgid "first three pages"
 msgstr "três primeiras páginas"
 
-#: pdf_bot/files/split.py:41
+#: pdf_bot/files/split.py:42
 msgid "from page 8 onward"
 msgstr "a partir da página 8 em diante"
 
-#: pdf_bot/files/split.py:42
+#: pdf_bot/files/split.py:43
 msgid "last page only"
 msgstr "última página apenas"
 
-#: pdf_bot/files/split.py:43
+#: pdf_bot/files/split.py:44
 msgid "all pages except the last page"
 msgstr "todas as páginas, exceto a última página"
 
-#: pdf_bot/files/split.py:44
+#: pdf_bot/files/split.py:45
 msgid "second last page only"
 msgstr "segunda última página apenas"
 
-#: pdf_bot/files/split.py:45
+#: pdf_bot/files/split.py:46
 msgid "last two pages"
 msgstr "últimas duas páginas"
 
-#: pdf_bot/files/split.py:46
+#: pdf_bot/files/split.py:47
 msgid "third and second last pages"
 msgstr "terceira e segunda últimas páginas"
 
-#: pdf_bot/files/split.py:47
+#: pdf_bot/files/split.py:48
 msgid "Advanced usage"
 msgstr "Uso avançado"
 
-#: pdf_bot/files/split.py:48
+#: pdf_bot/files/split.py:49
 msgid "pages"
 msgstr "páginas"
 
-#: pdf_bot/files/split.py:49
+#: pdf_bot/files/split.py:50
 msgid "to the end"
 msgstr "até o fim"
 
-#: pdf_bot/files/split.py:50
+#: pdf_bot/files/split.py:51
 msgid "all pages in reversed order"
 msgstr "todas as páginas em ordem invertida"
 
-#: pdf_bot/files/split.py:51
+#: pdf_bot/files/split.py:52
 msgid "except"
 msgstr "exceto"
 
-#: pdf_bot/files/split.py:75
+#: pdf_bot/files/split.py:76
 msgid "The range is invalid. Try again"
 msgstr "O alcance é inválido. Tentar novamente"
 
-#: pdf_bot/files/split.py:81
+#: pdf_bot/files/split.py:82
 msgid "Splitting your PDF file"
 msgstr "Dividindo seu arquivo PDF"
 
