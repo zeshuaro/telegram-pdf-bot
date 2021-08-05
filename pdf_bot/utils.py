@@ -1,28 +1,28 @@
 import os
 import tempfile
+from threading import Lock
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError
 from telegram import (
     ChatAction,
-    Update,
-    ReplyKeyboardMarkup,
-    ReplyKeyboardRemove,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    Update,
 )
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
-from telegram.ext import ConversationHandler, CallbackContext
-from threading import Lock
+from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.constants import (
     CANCEL,
-    PDF_OK,
-    PDF_INVALID_FORMAT,
-    PDF_TOO_LARGE,
-    PDF_INFO,
     CHANNEL_NAME,
     PAYMENT,
+    PDF_INFO,
+    PDF_INVALID_FORMAT,
+    PDF_OK,
+    PDF_TOO_LARGE,
 )
 from pdf_bot.language import set_lang
 from pdf_bot.stats import update_stats

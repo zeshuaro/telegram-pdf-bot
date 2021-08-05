@@ -1,21 +1,21 @@
 from telegram import ReplyKeyboardMarkup
 
 from pdf_bot.constants import (
+    CANCEL,
+    COMPRESS,
+    CROP,
     DECRYPT,
     ENCRYPT,
+    EXTRACT_PHOTO,
+    EXTRACT_TEXT,
+    OCR,
+    PREVIEW,
+    RENAME,
     ROTATE,
     SCALE,
     SPLIT,
-    PREVIEW,
     TO_PHOTO,
-    EXTRACT_PHOTO,
-    RENAME,
-    CROP,
-    CANCEL,
     WAIT_DOC_TASK,
-    EXTRACT_TEXT,
-    OCR,
-    COMPRESS,
 )
 from pdf_bot.utils import set_lang
 

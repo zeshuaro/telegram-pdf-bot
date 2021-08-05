@@ -1,17 +1,17 @@
-from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, ParseMode
+from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
 from pdf_bot.constants import (
+    BACK,
     BY_PERCENT,
     TO_DIMENSIONS,
-    BACK,
-    WAIT_SCALE_TYPE,
-    WAIT_SCALE_PERCENT,
     WAIT_SCALE_DIMENSION,
+    WAIT_SCALE_PERCENT,
+    WAIT_SCALE_TYPE,
 )
-from pdf_bot.utils import process_pdf
-from pdf_bot.language import set_lang
 from pdf_bot.files.utils import get_back_markup
+from pdf_bot.language import set_lang
+from pdf_bot.utils import process_pdf
 
 
 def ask_scale_type(update, context):

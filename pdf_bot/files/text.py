@@ -3,13 +3,13 @@ import tempfile
 import textwrap
 
 from pdfminer.high_level import extract_text_to_fp
-from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup, ParseMode
+from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_MESSAGE_LENGTH
 from telegram.ext import ConversationHandler
 
-from pdf_bot.constants import TEXT_FILE, TEXT_MESSAGE, BACK, WAIT_TEXT_TYPE, PDF_INFO
-from pdf_bot.utils import send_result_file, check_user_data
+from pdf_bot.constants import BACK, PDF_INFO, TEXT_FILE, TEXT_MESSAGE, WAIT_TEXT_TYPE
 from pdf_bot.language import set_lang
+from pdf_bot.utils import check_user_data, send_result_file
 
 
 def ask_text_type(update, context):

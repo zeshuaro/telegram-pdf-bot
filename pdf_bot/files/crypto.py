@@ -5,10 +5,10 @@ from PyPDF2.utils import PdfReadError
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
-from pdf_bot.constants import WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW, PDF_INFO
-from pdf_bot.utils import write_send_pdf, process_pdf
+from pdf_bot.constants import PDF_INFO, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW
+from pdf_bot.files.utils import check_back_user_data, get_back_markup
 from pdf_bot.language import set_lang
-from pdf_bot.files.utils import get_back_markup, check_back_user_data
+from pdf_bot.utils import process_pdf, write_send_pdf
 
 
 def ask_decrypt_pw(update, context):

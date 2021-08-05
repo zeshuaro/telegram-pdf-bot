@@ -4,37 +4,33 @@ import tempfile
 
 import pdf2image
 from PyPDF2 import PdfFileWriter
-from telegram import (
-    ReplyKeyboardRemove,
-    ReplyKeyboardMarkup,
-    ChatAction,
-)
+from telegram import ChatAction, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.error import BadRequest
 from telegram.ext import ConversationHandler
 
 from pdf_bot.commands import process_photo
 from pdf_bot.constants import (
-    PDF_INFO,
-    WAIT_EXTRACT_PHOTO_TYPE,
-    WAIT_TO_PHOTO_TYPE,
     BACK,
-    EXTRACT_PHOTO,
-    PHOTOS,
-    COMPRESSED,
     BEAUTIFY,
-    TO_PDF,
     CANCEL,
+    COMPRESSED,
+    EXTRACT_PHOTO,
+    PDF_INFO,
+    PHOTOS,
+    TO_PDF,
+    WAIT_EXTRACT_PHOTO_TYPE,
     WAIT_PHOTO_TASK,
+    WAIT_TO_PHOTO_TYPE,
 )
 from pdf_bot.files.utils import check_back_user_data, run_cmd
 from pdf_bot.language import set_lang
 from pdf_bot.stats import update_stats
 from pdf_bot.utils import (
-    open_pdf,
-    send_result_file,
     check_user_data,
     get_support_markup,
+    open_pdf,
+    send_result_file,
 )
 
 PHOTO_ID = "photo_id"

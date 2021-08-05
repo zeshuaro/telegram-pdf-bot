@@ -1,21 +1,21 @@
 import os
 import tempfile
 
-from telegram import ReplyKeyboardRemove, ReplyKeyboardMarkup
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
 from pdf_bot.constants import (
+    BACK,
     BY_PERCENT,
     BY_SIZE,
-    BACK,
-    WAIT_CROP_TYPE,
-    WAIT_CROP_PERCENT,
-    WAIT_CROP_OFFSET,
     PDF_INFO,
+    WAIT_CROP_OFFSET,
+    WAIT_CROP_PERCENT,
+    WAIT_CROP_TYPE,
 )
-from pdf_bot.utils import send_result_file
-from pdf_bot.language import set_lang
 from pdf_bot.files.utils import run_cmd
+from pdf_bot.language import set_lang
+from pdf_bot.utils import send_result_file
 
 MIN_PERCENT = 0
 MAX_PERCENT = 100

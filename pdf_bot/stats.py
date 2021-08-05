@@ -2,17 +2,17 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-import matplotlib.pyplot as plt
 import os
 import tempfile
-
 from collections import defaultdict
 from datetime import date
+
+import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 from google.cloud import datastore
 
+from pdf_bot.constants import LANGUAGE, LANGUAGES, USER
 from pdf_bot.store import client
-from pdf_bot.constants import USER, LANGUAGE, LANGUAGES
 
 load_dotenv()
 DEV_TELE_ID = int(os.environ.get("DEV_TELE_ID"))
