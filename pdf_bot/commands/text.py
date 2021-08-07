@@ -14,7 +14,7 @@ from telegram.ext import (
 )
 from telegram.parsemode import ParseMode
 from weasyprint import CSS, HTML
-from weasyprint.fonts import FontConfiguration
+from weasyprint.text.fonts import FontConfiguration
 
 from pdf_bot.constants import CANCEL, TEXT_FILTER
 from pdf_bot.language import set_lang
