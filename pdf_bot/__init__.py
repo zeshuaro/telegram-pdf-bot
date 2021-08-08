@@ -29,7 +29,7 @@ def create_app():
         pass
 
     q = mq.MessageQueue(all_burst_limit=3, all_time_limit_ms=3000)
-    req = Request(con_pool_size=8)
+    req = Request(con_pool_size=8, connect_timeout=10, read_timeout=10)
     bot = MQBot(TELE_TOKEN, request=req, mqueue=q)
 
     dispatcher = Dispatcher(bot=bot, update_queue=None, workers=0)
