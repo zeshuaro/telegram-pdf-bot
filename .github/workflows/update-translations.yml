@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-l10n-translations:
+  update-translations:
+    name: Update Translations
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
