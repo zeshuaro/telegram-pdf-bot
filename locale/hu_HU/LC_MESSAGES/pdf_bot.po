@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 06:08+0000\n"
-"PO-Revision-Date: 2021-08-15 06:44\n"
+"POT-Creation-Date: 2021-08-15 07:34+0000\n"
+"PO-Revision-Date: 2021-08-15 07:34\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -124,20 +124,24 @@ msgid "Compress"
 msgstr "Tömöríteni"
 
 #: pdf_bot/constants.py:78
-msgid "Say Thanks {emoji} ({value})"
-msgstr "Köszönet {emoji} ({value})"
+msgid "Say Thanks"
+msgstr ""
 
 #: pdf_bot/constants.py:79
-msgid "Coffee {emoji} ({value})"
-msgstr "Kávé {emoji} ({value})"
+msgid "Coffee"
+msgstr ""
 
 #: pdf_bot/constants.py:80
-msgid "Beer {emoji} ({value})"
-msgstr "Sör {emoji} ({value})"
+msgid "Beer"
+msgstr ""
 
 #: pdf_bot/constants.py:81
-msgid "Meal {emoji} ({value})"
-msgstr "Étkezési {emoji} ({value})"
+msgid "Meal"
+msgstr ""
+
+#: pdf_bot/constants.py:82
+msgid "{message} {emoji} (${value})"
+msgstr ""
 
 #: pdf_bot/dispatcher.py:114
 msgid "Welcome to PDF Bot!"
@@ -187,7 +191,7 @@ msgstr "Nyelv beállítása 🌎"
 msgid "Join Channel"
 msgstr "Csatlakozás a csatornához"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "Támogatás PDF Bot"
 
@@ -251,23 +255,23 @@ msgstr "Válassza ki a nyelvet"
 msgid "Your language has been set to {language}"
 msgstr "A nyelved {language}"
 
-#: pdf_bot/payment.py:39
+#: pdf_bot/payment.py:51
 msgid "Help translate PDF Bot"
 msgstr "Segítség a PDF Bot fordításában"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:63
 msgid "Select how you want to support PDF Bot"
 msgstr "Válassza ki, hogyan szeretné támogatni a PDF Bot"
 
-#: pdf_bot/payment.py:70
+#: pdf_bot/payment.py:79
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Köszönj a PDF Botnak, és segíts megőrizni a működését"
 
-#: pdf_bot/payment.py:93
+#: pdf_bot/payment.py:100
 msgid "Something went wrong"
 msgstr "Valami rosszul sült el"
 
-#: pdf_bot/payment.py:101
+#: pdf_bot/payment.py:108
 msgid "Thank you for your support!"
 msgstr "Köszönöm a támogatást!"
 
@@ -1363,5 +1367,17 @@ msgstr "Nem találtam szöveget a PDF-fájlban"
 #~ msgstr ""
 
 #~ msgid "Your PDF file is too big for me to download"
+#~ msgstr ""
+
+#~ msgid "Say Thanks {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Coffee {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Beer {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Meal {emoji} ({value})"
 #~ msgstr ""
 

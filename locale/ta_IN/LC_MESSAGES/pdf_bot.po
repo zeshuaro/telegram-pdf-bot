@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 06:08+0000\n"
-"PO-Revision-Date: 2021-08-15 06:44\n"
+"POT-Creation-Date: 2021-08-15 07:34+0000\n"
+"PO-Revision-Date: 2021-08-15 07:34\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -124,20 +124,24 @@ msgid "Compress"
 msgstr "நெருங்கி அழுத்து"
 
 #: pdf_bot/constants.py:78
-msgid "Say Thanks {emoji} ({value})"
-msgstr "நன்றி {emoji} ({value})"
+msgid "Say Thanks"
+msgstr ""
 
 #: pdf_bot/constants.py:79
-msgid "Coffee {emoji} ({value})"
-msgstr "காபி {emoji} ({value})"
+msgid "Coffee"
+msgstr ""
 
 #: pdf_bot/constants.py:80
-msgid "Beer {emoji} ({value})"
-msgstr "பீர் {emoji} ({value})"
+msgid "Beer"
+msgstr ""
 
 #: pdf_bot/constants.py:81
-msgid "Meal {emoji} ({value})"
-msgstr "உணவு {emoji} ({value})"
+msgid "Meal"
+msgstr ""
+
+#: pdf_bot/constants.py:82
+msgid "{message} {emoji} (${value})"
+msgstr ""
 
 #: pdf_bot/dispatcher.py:114
 msgid "Welcome to PDF Bot!"
@@ -187,7 +191,7 @@ msgstr "மொழி 🌎 அமை"
 msgid "Join Channel"
 msgstr "சேனலில் சேரவும்"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "PTM போட் ஆதரவு"
 
@@ -251,23 +255,23 @@ msgstr "உங்கள் மொழியைத் தேர்ந்தெட�
 msgid "Your language has been set to {language}"
 msgstr "உங்கள் மொழி {language}"
 
-#: pdf_bot/payment.py:39
+#: pdf_bot/payment.py:51
 msgid "Help translate PDF Bot"
 msgstr "PTM போட் மொழிபெயர்க்க உதவுங்கள்"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:63
 msgid "Select how you want to support PDF Bot"
 msgstr "PTM போட் ஐ எவ்வாறு ஆதரிக்க விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/payment.py:70
+#: pdf_bot/payment.py:79
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PTM பாட் நன்றி சொல்ல மற்றும் அதை இயங்கும் வைக்க உதவ"
 
-#: pdf_bot/payment.py:93
+#: pdf_bot/payment.py:100
 msgid "Something went wrong"
 msgstr "ஏதோ தவறு நடந்தது"
 
-#: pdf_bot/payment.py:101
+#: pdf_bot/payment.py:108
 msgid "Thank you for your support!"
 msgstr "உங்கள் ஆதரவுக்கு நன்றி!"
 
@@ -1363,5 +1367,17 @@ msgstr "உங்கள் PPM கோப்பில் எந்த உரை�
 #~ msgstr ""
 
 #~ msgid "Your PDF file is too big for me to download"
+#~ msgstr ""
+
+#~ msgid "Say Thanks {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Coffee {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Beer {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Meal {emoji} ({value})"
 #~ msgstr ""
 

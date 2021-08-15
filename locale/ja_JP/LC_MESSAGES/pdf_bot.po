@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 06:08+0000\n"
-"PO-Revision-Date: 2021-08-15 06:44\n"
+"POT-Creation-Date: 2021-08-15 07:34+0000\n"
+"PO-Revision-Date: 2021-08-15 07:34\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -124,20 +124,24 @@ msgid "Compress"
 msgstr "圧縮"
 
 #: pdf_bot/constants.py:78
-msgid "Say Thanks {emoji} ({value})"
-msgstr "お礼 {emoji} を言う ({value})"
+msgid "Say Thanks"
+msgstr ""
 
 #: pdf_bot/constants.py:79
-msgid "Coffee {emoji} ({value})"
-msgstr "コーヒー {emoji} ({value})"
+msgid "Coffee"
+msgstr ""
 
 #: pdf_bot/constants.py:80
-msgid "Beer {emoji} ({value})"
-msgstr "ビール {emoji} ({value})"
+msgid "Beer"
+msgstr ""
 
 #: pdf_bot/constants.py:81
-msgid "Meal {emoji} ({value})"
-msgstr "食事 {emoji} ({value})"
+msgid "Meal"
+msgstr ""
+
+#: pdf_bot/constants.py:82
+msgid "{message} {emoji} (${value})"
+msgstr ""
 
 #: pdf_bot/dispatcher.py:114
 msgid "Welcome to PDF Bot!"
@@ -187,7 +191,7 @@ msgstr "言語設定 🌎"
 msgid "Join Channel"
 msgstr "チャネルに参加"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "PDFボットをサポート"
 
@@ -251,23 +255,23 @@ msgstr "言語を選択する"
 msgid "Your language has been set to {language}"
 msgstr "言語が {language}に設定されています"
 
-#: pdf_bot/payment.py:39
+#: pdf_bot/payment.py:51
 msgid "Help translate PDF Bot"
 msgstr "PDFボットの翻訳を支援"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:63
 msgid "Select how you want to support PDF Bot"
 msgstr "PDFボットのサポート方法を選択する"
 
-#: pdf_bot/payment.py:70
+#: pdf_bot/payment.py:79
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PDFボットに感謝し、それを実行し続けるのに役立ちます"
 
-#: pdf_bot/payment.py:93
+#: pdf_bot/payment.py:100
 msgid "Something went wrong"
 msgstr "何かがうまくいかなかった"
 
-#: pdf_bot/payment.py:101
+#: pdf_bot/payment.py:108
 msgid "Thank you for your support!"
 msgstr "ご支援ありがとうございます!"
 
@@ -1363,5 +1367,17 @@ msgstr "PDF ファイルにテキストが見つからない"
 #~ msgstr ""
 
 #~ msgid "Your PDF file is too big for me to download"
+#~ msgstr ""
+
+#~ msgid "Say Thanks {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Coffee {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Beer {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Meal {emoji} ({value})"
 #~ msgstr ""
 

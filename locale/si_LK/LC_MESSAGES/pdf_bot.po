@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 06:08+0000\n"
-"PO-Revision-Date: 2021-08-15 06:08\n"
+"POT-Creation-Date: 2021-08-15 07:34+0000\n"
+"PO-Revision-Date: 2021-08-15 07:34\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -124,19 +124,23 @@ msgid "Compress"
 msgstr "හකුලන්න"
 
 #: pdf_bot/constants.py:78
-msgid "Say Thanks {emoji} ({value})"
+msgid "Say Thanks"
 msgstr ""
 
 #: pdf_bot/constants.py:79
-msgid "Coffee {emoji} ({value})"
+msgid "Coffee"
 msgstr ""
 
 #: pdf_bot/constants.py:80
-msgid "Beer {emoji} ({value})"
+msgid "Beer"
 msgstr ""
 
 #: pdf_bot/constants.py:81
-msgid "Meal {emoji} ({value})"
+msgid "Meal"
+msgstr ""
+
+#: pdf_bot/constants.py:82
+msgid "{message} {emoji} (${value})"
 msgstr ""
 
 #: pdf_bot/dispatcher.py:114
@@ -187,7 +191,7 @@ msgstr "භාෂාව සකසන්න 🌎"
 msgid "Join Channel"
 msgstr "නාලිකාවට සම්බන්ධ වන්න"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "PDF බොට් සදහා උදව් කරන්න"
 
@@ -251,23 +255,23 @@ msgstr "භාෂාව තෝරන්න"
 msgid "Your language has been set to {language}"
 msgstr ""
 
-#: pdf_bot/payment.py:39
+#: pdf_bot/payment.py:51
 msgid "Help translate PDF Bot"
 msgstr "PDF බොට් පරිවර්තනය කිරීමට උදව් කරන්න"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:63
 msgid "Select how you want to support PDF Bot"
 msgstr "ඔබ PDF බොට්ට සඳහා සහය දැක්විය හැකි ආකාරය තෝරන්න"
 
-#: pdf_bot/payment.py:70
+#: pdf_bot/payment.py:79
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PDF බොට්ට ස්තූතියි කියමින් එය දිගටම පවත්වා ගැනීමට උදව් කරන්න"
 
-#: pdf_bot/payment.py:93
+#: pdf_bot/payment.py:100
 msgid "Something went wrong"
 msgstr "කුමක් හෝ වරදක් සිදු වී ඇත"
 
-#: pdf_bot/payment.py:101
+#: pdf_bot/payment.py:108
 msgid "Thank you for your support!"
 msgstr "ඔබගේ සහයෝගයට ස්තූතියි!"
 
@@ -1363,5 +1367,17 @@ msgstr "ඔබගේ PDF ගොනුවේ කිසිදු අකුරක�
 #~ msgstr ""
 
 #~ msgid "Your PDF file is too big for me to download"
+#~ msgstr ""
+
+#~ msgid "Say Thanks {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Coffee {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Beer {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Meal {emoji} ({value})"
 #~ msgstr ""
 
