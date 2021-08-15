@@ -144,17 +144,18 @@ def help_msg(update, context):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.effective_message.reply_text(
-        "{desc_1}:\n{pdf_files}\n{photos}\n{webpage_links}\n\n{desc_2}:\n"
+        "{desc_1}\n{pdf_files}\n{photos}\n{webpage_links}\n\n{desc_2}\n"
         "{compare_desc}\n{merge_desc}\n{photo_desc}\n{text_desc}\n"
         "{watermark_desc}".format(
             desc_1=_(
-                "You can perform most of the tasks by sending me one of the followings"
+                "You can perform most of the tasks by sending me one of the followings:"
             ),
             pdf_files=_("- PDF files"),
             photos=_("- Photos"),
             webpage_links=_("- Webpage links"),
             desc_2=_(
-                "The rest of the tasks can be performed by using the following commands"
+                "The rest of the tasks can be performed"
+                " by using the following commands:"
             ),
             compare_desc=_("{command} - compare PDF files").format(command="/compare"),
             merge_desc=_("{command} - merge PDF files").format(command="/merge"),
