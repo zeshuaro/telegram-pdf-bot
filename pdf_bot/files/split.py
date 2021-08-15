@@ -52,15 +52,17 @@ def ask_split_range(update: Update, context: CallbackContext) -> int:
     ).format(
         intro=_("Send me the range of pages that you'll like to keep"),
         general=_("General usage"),
-        all=_("{}      all pages").format(":"),
-        eight_only=_("{}      page 8 only").format("7"),
-        first_three=_("{}    first three pages").format("0:3"),
-        from_eight=_("{}     from page 8 onward").format("7:"),
-        last_only=_("{}     last page only").format("-1"),
-        all_except_last=_("{}    all pages except the last page").format(":-1"),
-        second_last=_("{}     second last page only").format("-2"),
-        last_two=_("{}    last two pages").format("-2:"),
-        third_second=_("{}  third and second last pages").format("-3:-1"),
+        all=_("{range}      all pages").format(range=":"),
+        eight_only=_("{range}      page 8 only").format(range="7"),
+        first_three=_("{range}    first three pages").format(range="0:3"),
+        from_eight=_("{range}     from page 8 onward").format(range="7:"),
+        last_only=_("{range}     last page only").format(range="-1"),
+        all_except_last=_("{range}    all pages except the last page").format(
+            range=":-1"
+        ),
+        second_last=_("{range}     second last page only").format(range="-2"),
+        last_two=_("{range}    last two pages").format(range="-2:"),
+        third_second=_("{range}  third and second last pages").format(range="-3:-1"),
         advanced=_("Advanced usage"),
         pages_to_end=_("{range}    pages {results} and to the end").format(
             range="::2", results="0 2 4 ..."
@@ -68,7 +70,7 @@ def ask_split_range(update: Update, context: CallbackContext) -> int:
         odd_pages=_("{range} pages {results}").format(
             range="1:10:2", results="1 3 5 7 9"
         ),
-        all_reversed=_("{}   all pages in reversed order").format("::-1"),
+        all_reversed=_("{range}   all pages in reversed order").format(range="::-1"),
         pages_except=_("{range} pages {results} except {except_text}").format(
             range="3:0:-1", results="3 2 1", except_text="0"
         ),

@@ -123,7 +123,9 @@ def start_msg(update: Update, context: CallbackContext) -> None:
             convert_to_pdf=_("- Convert webpages and images into PDF files"),
             beautify=_("- Beautify handwritten notes images into PDF files"),
             and_more=_("- And more..."),
-            see_usage=_("Type {} to see how to use PDF Bot").format("/help"),
+            see_usage=_("Type {command} to see how to use PDF Bot").format(
+                command="/help"
+            ),
         ),
         parse_mode=ParseMode.HTML,
     )
@@ -154,13 +156,17 @@ def help_msg(update, context):
             desc_2=_(
                 "The rest of the tasks can be performed by using the following commands"
             ),
-            compare_desc=_("{} - compare PDF files").format("/compare"),
-            merge_desc=_("{} - merge PDF files").format("/merge"),
+            compare_desc=_("{command} - compare PDF files").format(command="/compare"),
+            merge_desc=_("{command} - merge PDF files").format(command="/merge"),
             photo_desc=_(
-                "{} - convert and combine multiple photos into PDF files"
-            ).format("/photo"),
-            text_desc=_("{} - create PDF files from text messages").format("/text"),
-            watermark_desc=_("{} - add watermark to PDF files").format("/watermark"),
+                "{command} - convert and combine multiple photos into PDF files"
+            ).format(command="/photo"),
+            text_desc=_("{command} - create PDF files from text messages").format(
+                command="/text"
+            ),
+            watermark_desc=_("{command} - add watermark to PDF files").format(
+                command="/watermark"
+            ),
         ),
         reply_markup=reply_markup,
     )

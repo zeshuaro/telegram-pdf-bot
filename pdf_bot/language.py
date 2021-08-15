@@ -62,7 +62,9 @@ def store_lang(update, context, query):
 
     context.user_data[LANGUAGE] = lang_code
     _ = set_lang(update, context)
-    query.message.edit_text(_("Your language has been set to {}").format(query.data))
+    query.message.edit_text(
+        _("Your language has been set to {language}").format(language=query.data)
+    )
 
 
 def set_lang(update, context, query=None):

@@ -201,8 +201,9 @@ def open_pdf(update, context, file_id, file_name, file_type=None):
                 text = _("Your PDF file is already encrypted")
             else:
                 text = _(
-                    "Your {} PDF file is encrypted and you'll have to decrypt it first"
-                ).format(file_type)
+                    "Your {file_type} PDF file is encrypted "
+                    "and you'll have to decrypt it first"
+                ).format(file_type=file_type)
         else:
             text = _("Your PDF file is encrypted and you'll have to decrypt it first")
 
@@ -225,7 +226,9 @@ def send_file_names(update, context, file_names, file_type):
         None
     """
     _ = set_lang(update, context)
-    text = "{}\n".format(_("You've sent me these {} so far:").format(file_type))
+    text = "{desc}\n".format(
+        desc=_("You've sent me these {file_type} so far:").format(file_type=file_type)
+    )
     for i, filename in enumerate(file_names):
         text += f"{i + 1}: {filename}\n"
 

@@ -148,9 +148,9 @@ def ask_next_doc(update: Update, context: CallbackContext) -> int:
     )
     update.effective_message.reply_text(
         _(
-            "Press {} if you've sent me all the PDF files that "
+            "Press {done} if you've sent me all the PDF files that "
             "you'll like to merge or keep sending me the PDF files"
-        ).format("<b>{}</b>".format(_(DONE))),
+        ).format(done=f"<b>{_(DONE)}</b>"),
         reply_markup=reply_markup,
         parse_mode=ParseMode.HTML,
     )
@@ -188,7 +188,9 @@ def remove_doc(update: Update, context: CallbackContext, lock: Lock) -> int:
     file_name = file_names.pop()
 
     update.effective_message.reply_text(
-        _("{} has been removed for merging").format("<b>{}</b>".format(file_name)),
+        _("{file_name} has been removed for merging").format(
+            file_name=f"<b>{file_name}</b>"
+        ),
         parse_mode=ParseMode.HTML,
     )
 
@@ -246,9 +248,10 @@ def merge_pdf(update: Update, context: CallbackContext) -> int:
             merger.append(open(file_name, "rb"))
         except PdfReadError:
             update.effective_message.reply_text(
-                _("I couldn't merge your PDF files as this file is invalid: {}").format(
-                    file_names[i]
-                )
+                _(
+                    "I couldn't merge your PDF files "
+                    "as this file is invalid: {file_name}"
+                ).format(file_name=file_names[i])
             )
 
             return ConversationHandler.END

@@ -37,7 +37,7 @@ def ask_scale_value(update, context, ask_percent=True):
         message.reply_text(
             "{desc_1}\n{desc_2}\n\n{desc_3}".format(
                 desc_1=_("Send me the width and height"),
-                desc_2="<b>{}</b>".format(_("Example: 150 200")),
+                desc_2=f"<b>{_('Example: 150 200')}</b>",
                 desc_3=_("This will set the width to 150 and height to 200"),
             ),
             reply_markup=reply_markup,
@@ -51,7 +51,7 @@ def ask_scale_value(update, context, ask_percent=True):
                 desc_1=_(
                     "Send me the scaling factors for the horizontal and vertical axes"
                 ),
-                desc_2="<b>{}</b>".format(_("Example: 2 0.5")),
+                desc_2=f"<b>{_('Example: 2 0.5')}</b>",
                 desc_3=_(
                     "This will double the horizontal axis and halve the vertical axis"
                 ),
@@ -75,8 +75,8 @@ def check_scale_percent(update, context):
         x, y = map(float, text.split())
     except ValueError:
         message.reply_text(
-            _("The scaling factors {} are invalid, please try again").format(
-                "<b>{}</b>".format(text)
+            _("The scaling factors {values} are invalid, please try again").format(
+                values=f"<b>{text}</b>"
             ),
             parse_mode=ParseMode.HTML,
         )
@@ -97,8 +97,8 @@ def check_scale_dimension(update, context):
         x, y = map(float, text.split())
     except ValueError:
         message.reply_text(
-            _("The dimensions {} are invalid, please try again").format(
-                "<b>{}</b>".format(text)
+            _("The dimensions {values} are invalid, please try again").format(
+                values=f"<b>{text}</b>"
             ),
             parse_mode=ParseMode.HTML,
         )
@@ -115,8 +115,8 @@ def scale_pdf(update, context, percent=None, dim=None):
                 "Scaling your PDF file, horizontally by {horizontal} "
                 "and vertically by {vertical}"
             ).format(
-                horizontal="<b>{}</b>".format(percent[0]),
-                vertical="<b>{}</b>".format(percent[1]),
+                horizontal=f"<b>{percent[0]}</b>",
+                vertical=f"<b>{percent[1]}</b>",
             ),
             reply_markup=ReplyKeyboardRemove(),
             parse_mode=ParseMode.HTML,
@@ -126,9 +126,7 @@ def scale_pdf(update, context, percent=None, dim=None):
         update.effective_message.reply_text(
             _(
                 "Scaling your PDF file with width of {width} and height of {height}"
-            ).format(
-                width="<b>{}</b>".format(dim[0]), height="<b>{}</b>".format(dim[1])
-            ),
+            ).format(width=f"<b>{dim[0]}</b>", height=f"<b>{dim[1]}</b>"),
             reply_markup=ReplyKeyboardRemove(),
             parse_mode=ParseMode.HTML,
         )

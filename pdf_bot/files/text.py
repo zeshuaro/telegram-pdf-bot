@@ -81,7 +81,7 @@ def send_pdf_text(update, context, pdf_texts, is_file, out_fn):
                 message.reply_text(msg_text.strip())
 
             message.reply_text(
-                "<b>{}</b>".format(_("See above for all the text in your PDF file")),
+                f"<b>{_('See above for all the text in your PDF file')}</b>",
                 parse_mode=ParseMode.HTML,
             )
     else:

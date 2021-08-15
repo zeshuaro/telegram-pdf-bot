@@ -45,8 +45,8 @@ def compress_pdf(update, context):
                         "File size reduced by {percent}, "
                         "from {old_size} to {new_size}".format(
                             percent="<b>{:.0%}</b>".format((1 - new_size / old_size)),
-                            old_size="<b>{}</b>".format(humanize.naturalsize(old_size)),
-                            new_size="<b>{}</b>".format(humanize.naturalsize(new_size)),
+                            old_size=f"<b>{humanize.naturalsize(old_size)}</b>",
+                            new_size=f"<b>{humanize.naturalsize(new_size)}</b>",
                         )
                     ),
                     parse_mode=ParseMode.HTML,
