@@ -1,4 +1,4 @@
-name: Update l10n sources
+name: Update l10n Source
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          key: ${{ runner.os }}-pip-babel-2.9.1
           restore-keys: |
             ${{ runner.os }}-pip-
 
