@@ -42,11 +42,11 @@ def compress_pdf(update, context):
                 new_size = os.path.getsize(out_fn)
                 update.effective_message.reply_text(
                     _(
-                        "File size reduced by <b>{:.0%}</b>, "
-                        "from <b>{}</b> to <b>{}</b>".format(
-                            (1 - new_size / old_size),
-                            humanize.naturalsize(old_size),
-                            humanize.naturalsize(new_size),
+                        "File size reduced by {percent}, "
+                        "from {old_size} to {new_size}".format(
+                            percent="<b>{:.0%}</b>".format((1 - new_size / old_size)),
+                            old_size="<b>{}</b>".format(humanize.naturalsize(old_size)),
+                            new_size="<b>{}</b>".format(humanize.naturalsize(new_size)),
                         )
                     ),
                     parse_mode=ParseMode.HTML,
@@ -55,7 +55,7 @@ def compress_pdf(update, context):
 
             else:
                 update.effective_message.reply_text(
-                    _("Something went wrong, try again")
+                    _("Something went wrong, please try again")
                 )
 
     # Clean up memory

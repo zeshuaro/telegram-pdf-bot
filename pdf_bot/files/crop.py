@@ -43,19 +43,27 @@ def ask_crop_value(update, context):
 
     if message.text == _(BY_PERCENT):
         message.reply_text(
-            _(
-                "Send me a number between {} and {}. This is the percentage of margin space to "
-                "retain between the content in your PDF file and the page"
-            ).format(MIN_PERCENT, MAX_PERCENT),
+            "{desc_1}\n\n{desc_2}".format(
+                desc_1=_(
+                    "Send me a number between {min_percent} and {max_percent}"
+                ).format(min_percent=MIN_PERCENT, max_percent=MAX_PERCENT),
+                desc_2=_(
+                    "This is the percentage of margin space to retain "
+                    "between the content in your PDF file and the page"
+                ),
+            ),
             reply_markup=reply_markup,
         )
 
         return WAIT_CROP_PERCENT
     else:
         message.reply_text(
-            _(
-                "Send me a number that you'll like to adjust the margin size. "
-                "Positive numbers will decrease the margin size and negative numbers will increase it"
+            "{desc_1}\n\n{desc_2}".format(
+                desc_1=_("Send me a number that you'll like to adjust the margin size"),
+                desc_2=_(
+                    "Positive numbers will decrease the margin size "
+                    "and negative numbers will increase it"
+                ),
             ),
             reply_markup=reply_markup,
         )
@@ -74,9 +82,10 @@ def check_crop_percent(update, context):
         percent = float(message.text)
     except ValueError:
         message.reply_text(
-            _("The number must be between {} and {}, try again").format(
-                MIN_PERCENT, MAX_PERCENT
-            )
+            _(
+                "The number must be between {min_percent} and {max_percent}, "
+                "please try again"
+            ).format(min_percent=MIN_PERCENT, max_percent=MAX_PERCENT),
         )
 
         return WAIT_CROP_PERCENT
@@ -95,7 +104,9 @@ def check_crop_size(update, context):
         offset = float(update.effective_message.text)
     except ValueError:
         _ = set_lang(update, context)
-        update.effective_message.reply_text(_("The number is invalid, try again"))
+        update.effective_message.reply_text(
+            _("The number is invalid, please try again")
+        )
 
         return WAIT_CROP_OFFSET
 
@@ -127,7 +138,7 @@ def crop_pdf(update, context, percent=None, offset=None):
                 send_result_file(update, context, out_fn, "crop")
             else:
                 update.effective_message.reply_text(
-                    _("Something went wrong, try again")
+                    _("Something went wrong, please try again")
                 )
 
     # Clean up memory

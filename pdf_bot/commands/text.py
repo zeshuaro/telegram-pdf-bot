@@ -78,11 +78,15 @@ def ask_font(update: Update, context: CallbackContext):
         [[_(SKIP)]], resize_keyboard=True, one_time_keyboard=True
     )
     message.reply_text(
-        _(
-            "Send me the font that you'll like to use for the PDF file or "
-            "skip to use the default font\n\nSee here for the list of supported fonts:"
-        )
-        + ' <a href="https://fonts.google.com/">Google Fonts</a>',
+        "{desc_1}\n\n{desc_2}".format(
+            desc_1=_(
+                "Send me the font that you'll like to use for the PDF file "
+                "or press {} to use the default font"
+            ).format(_(SKIP)),
+            desc_2=_("See here for the list of supported fonts: {}").format(
+                '<a href="https://fonts.google.com/">Google Fonts</a>'
+            ),
+        ),
         parse_mode=ParseMode.HTML,
         disable_web_page_preview=True,
         reply_markup=reply_markup,

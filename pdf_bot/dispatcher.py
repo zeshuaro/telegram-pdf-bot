@@ -102,16 +102,28 @@ def start_msg(update: Update, context: CallbackContext) -> None:
 
     _ = set_lang(update, context)
     update.effective_message.reply_text(
-        _(
-            "Welcome to PDF Bot!\n\n<b>Key features:</b>\n"
-            "- Compress, merge, preview, rename, split and add watermark to PDF files\n"
-            "- Create PDF files from text messages\n"
-            "- Extract images and text from PDF files\n"
-            "- Convert PDF files into images\n"
-            "- Convert webpages and images into PDF files\n"
-            "- Beautify handwritten notes images into PDF files\n"
-            "- <b><i>And more...</i></b>\n\n"
-            "Type /help to see how to use PDF Bot"
+        "{welcome}\n\n<b>{key_features}</b>\n"
+        "{features_summary}\n"
+        "{pdf_from_text}\n"
+        "{extract_pdf}\n"
+        "{convert_to_images}\n"
+        "{convert_to_pdf}\n"
+        "{beautify}\n"
+        "<b><i>{and_more}</i></b>\n\n"
+        "{see_usage}".format(
+            welcome=_("Welcome to PDF Bot!"),
+            key_features=_("Key features:"),
+            features_summary=_(
+                "- Compress, merge, preview, rename, split "
+                "and add watermark to PDF files"
+            ),
+            pdf_from_text=_("- Create PDF files from text messages"),
+            extract_pdf=_("- Extract images and text from PDF files"),
+            convert_to_images=_("- Convert PDF files into images"),
+            convert_to_pdf=_("- Convert webpages and images into PDF files"),
+            beautify=_("- Beautify handwritten notes images into PDF files"),
+            and_more=_("- And more..."),
+            see_usage=_("Type {} to see how to use PDF Bot").format("/help"),
         ),
         parse_mode=ParseMode.HTML,
     )
@@ -130,15 +142,25 @@ def help_msg(update, context):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     update.effective_message.reply_text(
-        _(
-            "You can perform most of the tasks by sending me one of the followings:\n"
-            "- PDF files\n- Photos\n- Webpage links\n\n"
-            "The rest of the tasks can be performed by using the commands below:\n"
-            "/compare - compare PDF files\n"
-            "/merge - merge PDF files\n"
-            "/photo - convert and combine multiple photos into PDF files\n"
-            "/text - create PDF files from text messages\n"
-            "/watermark - add watermark to PDF files"
+        "{desc_1}:\n{pdf_files}\n{photos}\n{webpage_links}\n\n{desc_2}:\n"
+        "{compare_desc}\n{merge_desc}\n{photo_desc}\n{text_desc}\n"
+        "{watermark_desc}".format(
+            desc_1=_(
+                "You can perform most of the tasks by sending me one of the followings"
+            ),
+            pdf_files=_("- PDF files"),
+            photos=_("- Photos"),
+            webpage_links=_("- Webpage links"),
+            desc_2=_(
+                "The rest of the tasks can be performed by using the following commands"
+            ),
+            compare_desc=_("{} - compare PDF files").format("/compare"),
+            merge_desc=_("{} - merge PDF files").format("/merge"),
+            photo_desc=_(
+                "{} - convert and combine multiple photos into PDF files"
+            ).format("/photo"),
+            text_desc=_("{} - create PDF files from text messages").format("/text"),
+            watermark_desc=_("{} - add watermark to PDF files").format("/watermark"),
         ),
         reply_markup=reply_markup,
     )

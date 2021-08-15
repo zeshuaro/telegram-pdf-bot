@@ -70,12 +70,20 @@ def photo(update: Update, context: CallbackContext) -> int:
 
 def ask_first_photo(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
-    text = _(
-        "Send me the photos that you'll like to beautify or "
-        "convert into a PDF file\n\nNote that the photos will be beautified and "
-        "converted in the order that you send me"
+    reply_with_cancel_btn(
+        update,
+        context,
+        "{desc_1}\n\n{desc_2}".format(
+            desc_1=_(
+                "Send me the photos that you'll like to beautify "
+                "or convert into a PDF file"
+            ),
+            desc_2=_(
+                "Note that the photos will be beautified "
+                "and converted in the order that you send me"
+            ),
+        ),
     )
-    reply_with_cancel_btn(update, context, text)
 
     return WAIT_PHOTO
 
@@ -116,13 +124,21 @@ def check_photo_file(update: Update, context: CallbackContext):
         photo_file = message.document
         if not photo_file.mime_type.startswith("image"):
             photo_file = None
-            message.reply_text(_("The file you've sent is not a photo"))
+            message.reply_text(_("Your file is not a photo"))
     else:
         photo_file = message.photo[-1]
 
     if photo_file is not None and photo_file.file_size > MAX_FILESIZE_DOWNLOAD:
         photo_file = None
-        message.reply_text(_("The photo you've sent is too large for me to download"))
+        message.reply_text(
+            "{desc_1}\n\n{desc_2}".format(
+                desc_1=_("Your file is too large for me to download"),
+                desc_2=_(
+                    "Note that this is a Telegram Bot limitation and there's "
+                    "nothing I can do unless Telegram changes this limit"
+                ),
+            ),
+        )
 
     return photo_file
 
@@ -180,7 +196,9 @@ def remove_photo(update: Update, context: CallbackContext) -> int:
     file_name = file_names.pop()
 
     update.effective_message.reply_text(
-        _("<b>{}</b> has been removed for beautifying or converting").format(file_name),
+        _("{} has been removed for beautifying or converting").format(
+            "<b>{}</b>".format(file_name)
+        ),
         parse_mode=ParseMode.HTML,
     )
 

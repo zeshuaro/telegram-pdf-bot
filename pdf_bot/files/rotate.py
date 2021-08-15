@@ -32,7 +32,7 @@ def check_rotate_degree(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
 
-    if text in [_(ROTATE_90), _(ROTATE_180), _(ROTATE_270)]:
+    if text in [ROTATE_90, ROTATE_180, ROTATE_270]:
         return rotate_pdf(update, context)
     elif text == _(BACK):
         return ask_doc_task(update, context)

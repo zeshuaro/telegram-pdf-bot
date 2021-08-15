@@ -42,9 +42,9 @@ def ask_first_doc(update, context):
         [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
     )
     update.effective_message.reply_text(
-        _(
-            "Send me one of the PDF files that you'll like to compare\n\n"
-            "Note that I can only look for differences in text"
+        "{desc_1}\n\n{desc_2}".format(
+            desc_1=_("Send me one of the PDF files that you'll like to compare"),
+            desc_2=_("Note that I can only look for text differences"),
         ),
         reply_markup=reply_markup,
     )
@@ -119,7 +119,7 @@ def compare_pdf(update, context):
                 send_result_file(update, context, out_fn, "compare")
         except NoDifferenceError:
             message.reply_text(
-                _("There are no differences in text between your PDF files")
+                _("There are no text differences between your PDF files")
             )
 
     # Clean up memory and files

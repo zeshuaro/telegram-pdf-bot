@@ -64,14 +64,19 @@ def check_pdf(update, context, send_msg=True):
     if not pdf_file.mime_type.endswith("pdf"):
         pdf_status = PDF_INVALID_FORMAT
         if send_msg:
-            message.reply_text(_("The file you sent is not a PDF file, try again"))
+            message.reply_text(_("Your file is not a PDF file, please try again"))
     elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         pdf_status = PDF_TOO_LARGE
         if send_msg:
             message.reply_text(
-                _(
-                    "The PDF file you sent is too large for me to download\n\n"
-                    "I've cancelled your action"
+                "{desc_1}\n\n{desc_2}".format(
+                    desc_1=_(
+                        "Your PDF file is too large for me to download and process"
+                    ),
+                    desc_2=_(
+                        "Note that this is a Telegram Bot limitation and there's "
+                        "nothing I can do unless Telegram changes this limit"
+                    ),
                 )
             )
 
@@ -98,7 +103,9 @@ def check_user_data(
     if key not in context.user_data:
         data_ok = False
         _ = set_lang(update, context)
-        update.effective_message.reply_text(_("Something went wrong, start over again"))
+        update.effective_message.reply_text(
+            _("Something went wrong, please start over again")
+        )
 
     if lock is not None:
         lock.release()
@@ -185,10 +192,7 @@ def open_pdf(update, context, file_id, file_name, file_type=None):
         pdf_reader = PdfFileReader(open(file_name, "rb"))
     except PdfReadError:
         update.effective_message.reply_text(
-            _(
-                "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
-                "I've cancelled your action"
-            )
+            _("Your PDF file seems to be invalid and I couldn't open and process it")
         )
 
     if pdf_reader is not None and pdf_reader.isEncrypted:
@@ -197,14 +201,10 @@ def open_pdf(update, context, file_id, file_name, file_type=None):
                 text = _("Your PDF file is already encrypted")
             else:
                 text = _(
-                    "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
-                    "I've cancelled your action"
+                    "Your {} PDF file is encrypted and you'll have to decrypt it first"
                 ).format(file_type)
         else:
-            text = _(
-                "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
-                "I've cancelled your action"
-            )
+            text = _("Your PDF file is encrypted and you'll have to decrypt it first")
 
         pdf_reader = None
         update.effective_message.reply_text(text)
@@ -225,7 +225,7 @@ def send_file_names(update, context, file_names, file_type):
         None
     """
     _ = set_lang(update, context)
-    text = _("You've sent me these {} so far:\n").format(file_type)
+    text = "{}\n".format(_("You've sent me these {} so far:").format(file_type))
     for i, filename in enumerate(file_names):
         text += f"{i + 1}: {filename}\n"
 
@@ -273,7 +273,13 @@ def send_result_file(update, context, out_fn, task):
 
     if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
         message.reply_text(
-            _("The result file is too large for me to send to you"),
+            "{desc_1}\n\n{desc_2}".format(
+                desc_1=_("The result file is too large for me to send to you"),
+                desc_2=_(
+                    "Note that this is a Telegram Bot limitation and there's "
+                    "nothing I can do unless Telegram changes this limit"
+                ),
+            ),
             reply_markup=reply_markup,
         )
     else:
