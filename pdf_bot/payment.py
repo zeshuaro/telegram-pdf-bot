@@ -27,12 +27,24 @@ def send_support_options(
     _ = set_lang(update, context, query)
     keyboard = [
         [
-            InlineKeyboardButton(_(THANKS), callback_data=THANKS),
-            InlineKeyboardButton(_(COFFEE), callback_data=COFFEE),
+            InlineKeyboardButton(
+                _(PAYMENT_MSG).format(message=_(THANKS), emoji="😁", value="1"),
+                callback_data=f"payment,{_(THANKS)},1",
+            ),
+            InlineKeyboardButton(
+                _(PAYMENT_MSG).format(message=_(COFFEE), emoji="☕", value="3"),
+                callback_data=f"payment,{_(COFFEE)},3",
+            ),
         ],
         [
-            InlineKeyboardButton(_(BEER), callback_data=BEER),
-            InlineKeyboardButton(_(MEAL), callback_data=MEAL),
+            InlineKeyboardButton(
+                _(PAYMENT_MSG).format(message=_(BEER), emoji="🍺", value="5"),
+                callback_data=f"payment,{_(BEER)},5",
+            ),
+            InlineKeyboardButton(
+                _(PAYMENT_MSG).format(message=_(MEAL), emoji="🍲", value="10"),
+                callback_data=f"payment,{_(MEAL)},10",
+            ),
         ],
         [
             InlineKeyboardButton(
@@ -57,20 +69,15 @@ def send_payment_invoice(
     context: CallbackContext,
     query: CallbackQuery,
 ):
-    if query is None:
-        message = update.effective_message
-        label = message.text
-    else:
-        message = query.message
-        label = query.data
+    message = query.message
+    support_message, price = query.data.split(",")[1:]
+    price = int(price)
 
     _ = set_lang(update, context)
     chat_id = message.chat_id
     title = _("Support PDF Bot")
     description = _("Say thanks to PDF Bot and help keep it running")
-
-    price = PAYMENT_DICT[label]
-    prices = [LabeledPrice(re.sub(r"\s\(.*", "", label), price * 100)]
+    prices = [LabeledPrice(support_message, price * 100)]
 
     context.bot.send_invoice(
         chat_id,

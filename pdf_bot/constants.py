@@ -75,11 +75,11 @@ PAYMENT = "payment"
 PAYMENT_PAYLOAD = "payment_payload"
 CURRENCY = "USD"
 PAYMENT_PARA = "payment_para"
-THANKS = _("Say Thanks {emoji} ({value})").format(emoji="😁", value="$1")
-COFFEE = _("Coffee {emoji} ({value})").format(emoji="☕", value="$3")
-BEER = _("Beer {emoji} ({value})").format(emoji="🍺", value="$5")
-MEAL = _("Meal {emoji} ({value})").format(emoji="🍲", value="$10")
-PAYMENT_DICT = {THANKS: 1, COFFEE: 3, BEER: 5, MEAL: 10}
+THANKS = _("Say Thanks")
+COFFEE = _("Coffee")
+BEER = _("Beer")
+MEAL = _("Meal")
+PAYMENT_MSG = _("{message} {emoji} (${value})")
 WAIT_PAYMENT = 0
 
 # Datastore constants

@@ -151,7 +151,7 @@ def text_to_pdf(
         _("Creating your PDF file"), reply_markup=ReplyKeyboardRemove()
     )
 
-    html = HTML(string=f"<p>{text.replace('\n', '<br/>')}</p>")
+    html = HTML(string="<p>{context}</p>".format(content=text.replace("\n", "<br/>")))
     font_config = FontConfiguration()
     stylesheets: List[CSS] = None
 
