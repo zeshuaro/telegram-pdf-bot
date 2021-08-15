@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 05:58+0000\n"
-"PO-Revision-Date: 2021-08-15 05:58\n"
+"POT-Creation-Date: 2021-08-15 06:08+0000\n"
+"PO-Revision-Date: 2021-08-15 06:08\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -183,17 +183,17 @@ msgstr "Zadáním {command} , jak používat PDF Bota"
 msgid "Set Language 🌎"
 msgstr "Nastavit jazyk 🌎"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:316
+#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:314
 msgid "Join Channel"
 msgstr "Připojit se k kanálu"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:317
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "Podpora PDF Bot"
 
 #: pdf_bot/dispatcher.py:150
 msgid "You can perform most of the tasks by sending me one of the followings:"
-msgstr ""
+msgstr "Většinu úkolů můžete provést zasláním jedné z následujících akcí:"
 
 #: pdf_bot/dispatcher.py:153
 msgid "- PDF files"
@@ -209,7 +209,7 @@ msgstr "- Odkazy na webové stránky"
 
 #: pdf_bot/dispatcher.py:156
 msgid "The rest of the tasks can be performed by using the following commands:"
-msgstr ""
+msgstr "Zbytek úkolů lze provést pomocí následujících příkazů:"
 
 #: pdf_bot/dispatcher.py:160
 msgid "{command} - compare PDF files"
@@ -291,45 +291,46 @@ msgstr "Akce byla zrušena"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Soubor není souborEM PDF, opakujte akci"
 
+#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
 #: pdf_bot/utils.py:73
-msgid "Your PDF file is too large for me to download and process"
-msgstr "Váš soubor PDF je příliš velký na to, abych jej stahoval a zpracovávám"
+msgid "Your file is too large for me to download and process"
+msgstr "Váš soubor je příliš velký na to, abych ho stahoval a zpracovávám."
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:76
-#: pdf_bot/utils.py:281
+#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Všimněte si, že se jedná o omezení Telegram Bot a není nic, co bych mohl udělat, pokud Telegram nezmění tento limit"
 
-#: pdf_bot/utils.py:107
+#: pdf_bot/utils.py:105
 msgid "Something went wrong, please start over again"
 msgstr "Něco se pokazilo, prosím, začněte znovu."
 
-#: pdf_bot/utils.py:195
+#: pdf_bot/utils.py:193
 msgid "Your file is invalid and I couldn't open and process it"
-msgstr ""
+msgstr "Váš soubor je neplatný a nemohl jsem ho otevřít a zpracovat."
 
-#: pdf_bot/utils.py:201
+#: pdf_bot/utils.py:199
 msgid "Your PDF file is already encrypted"
 msgstr "Soubor PDF je již zašifrován"
 
-#: pdf_bot/utils.py:203
+#: pdf_bot/utils.py:201
 msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Váš {file_type} soubor PDF je zašifrován a budete ho muset nejprve dešifrovat"
 
-#: pdf_bot/utils.py:208
+#: pdf_bot/utils.py:206
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Soubor PDF je zašifrován a nejprve ho budete muset dešifrovat"
 
-#: pdf_bot/utils.py:230
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {file_type} so far:"
 msgstr "Zatím jsi mi poslal {file_type} :"
 
-#: pdf_bot/utils.py:280
+#: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "Výsledný soubor je příliš velký na to, abych vám ho mohl poslat"
 
-#: pdf_bot/utils.py:293 pdf_bot/utils.py:300
+#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
 msgid "Here is your result file"
 msgstr "Zde je váš výsledný soubor"
 
@@ -364,10 +365,6 @@ msgstr "Všimněte si, že soubory budou sloučeny v pořadí, v pořadí, v kte
 #: pdf_bot/commands/merge.py:115
 msgid "Your file is not a PDF file"
 msgstr "Soubor není soubor PDF"
-
-#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
-msgid "Your file is too large for me to download and process"
-msgstr ""
 
 #: pdf_bot/commands/merge.py:143
 msgid "PDF files"
@@ -551,8 +548,8 @@ msgid "Select the task that you'll like to perform"
 msgstr "Vyberte úkol, který chcete provést"
 
 #: pdf_bot/files/file.py:85
-msgid "Your PDF file is too big for me to download"
-msgstr "Váš soubor PDF je příliš velký na to, abych ho stáhnul"
+msgid "Your file is too big for me to download and process"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
@@ -564,7 +561,7 @@ msgstr "Soubor PDF už má textovou vrstvu"
 
 #: pdf_bot/files/photo.py:47
 msgid "Your photo is too large for me to download and process"
-msgstr ""
+msgstr "Vaše fotografie je příliš velká na to, abych ji stahoval a zpracovává."
 
 #: pdf_bot/files/photo.py:104
 msgid "Extracting a preview for your PDF file"
@@ -700,11 +697,11 @@ msgstr "Pokročilé použití"
 
 #: pdf_bot/files/split.py:67
 msgid "{range}    pages {pages} and to the end"
-msgstr ""
+msgstr "{range}    stránky {pages} a až do konce"
 
 #: pdf_bot/files/split.py:70
 msgid "{range} pages {pages}"
-msgstr ""
+msgstr "{range} stránky {pages}"
 
 #: pdf_bot/files/split.py:71
 msgid "{range}   all pages in reversed order"
@@ -712,11 +709,11 @@ msgstr "{range}   stránky v obráceném pořadí"
 
 #: pdf_bot/files/split.py:72
 msgid "{range} pages {pages} except {page}"
-msgstr ""
+msgstr "{range} stránky {pages} kromě {page}"
 
 #: pdf_bot/files/split.py:75
 msgid "{range}  pages {pages}"
-msgstr ""
+msgstr "{range}  stránky {pages}"
 
 #: pdf_bot/files/split.py:99
 msgid "The range is invalid, please try again"
@@ -1360,5 +1357,11 @@ msgstr "Nemohu najít žádný text ve vašem PDF souboru"
 #~ msgstr ""
 
 #~ msgid "{range}  pages {results}"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too big for me to download"
 #~ msgstr ""
 

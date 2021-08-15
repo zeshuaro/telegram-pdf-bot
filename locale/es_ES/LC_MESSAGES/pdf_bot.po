@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 05:58+0000\n"
-"PO-Revision-Date: 2021-08-15 05:58\n"
+"POT-Creation-Date: 2021-08-15 06:08+0000\n"
+"PO-Revision-Date: 2021-08-15 06:08\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -183,17 +183,17 @@ msgstr "Escriba {command} para ver cómo usar PDF Bot"
 msgid "Set Language 🌎"
 msgstr "Definir Idioma 🌎"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:316
+#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:314
 msgid "Join Channel"
 msgstr "Unirse al canal"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:317
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "Apoya a PDF Bot"
 
 #: pdf_bot/dispatcher.py:150
 msgid "You can perform most of the tasks by sending me one of the followings:"
-msgstr ""
+msgstr "Puede realizar la mayoría de las tareas enviándome una de las siguientes opciones:"
 
 #: pdf_bot/dispatcher.py:153
 msgid "- PDF files"
@@ -209,7 +209,7 @@ msgstr "- Enlaces a páginas web"
 
 #: pdf_bot/dispatcher.py:156
 msgid "The rest of the tasks can be performed by using the following commands:"
-msgstr ""
+msgstr "El resto de las tareas se pueden realizar mediante los siguientes comandos:"
 
 #: pdf_bot/dispatcher.py:160
 msgid "{command} - compare PDF files"
@@ -291,45 +291,46 @@ msgstr "Acción cancelada"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Su archivo no es un archivo PDF, inténtelo de nuevo"
 
+#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
 #: pdf_bot/utils.py:73
-msgid "Your PDF file is too large for me to download and process"
-msgstr "Su archivo PDF es demasiado grande para que lo descargue y procese"
+msgid "Your file is too large for me to download and process"
+msgstr "Su archivo es demasiado grande para que lo descargue y procese"
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:76
-#: pdf_bot/utils.py:281
+#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Tenga en cuenta que esta es una limitación de Telegram Bot y no hay nada que pueda hacer a menos que Telegram cambie este límite"
 
-#: pdf_bot/utils.py:107
+#: pdf_bot/utils.py:105
 msgid "Something went wrong, please start over again"
 msgstr "Algo salió mal, por favor, empezar de nuevo"
 
-#: pdf_bot/utils.py:195
+#: pdf_bot/utils.py:193
 msgid "Your file is invalid and I couldn't open and process it"
-msgstr ""
+msgstr "Su archivo no es válido y no pude abrirlo y procesarlo"
 
-#: pdf_bot/utils.py:201
+#: pdf_bot/utils.py:199
 msgid "Your PDF file is already encrypted"
 msgstr "Tu archivo PDF ya está cifrado"
 
-#: pdf_bot/utils.py:203
+#: pdf_bot/utils.py:201
 msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Su archivo PDF {file_type} está encriptado y tendrá que descifrarlo primero"
 
-#: pdf_bot/utils.py:208
+#: pdf_bot/utils.py:206
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Su archivo PDF está encriptado y tendrá que descifrarlo primero"
 
-#: pdf_bot/utils.py:230
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {file_type} so far:"
 msgstr "Me has enviado estas {file_type} hasta ahora:"
 
-#: pdf_bot/utils.py:280
+#: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "El archivo resultado es demasiado grande para que te lo envíe"
 
-#: pdf_bot/utils.py:293 pdf_bot/utils.py:300
+#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
 msgid "Here is your result file"
 msgstr "Este es tu archivo resultado"
 
@@ -364,10 +365,6 @@ msgstr "Tenga en cuenta que los archivos se combinarán en el orden en que me en
 #: pdf_bot/commands/merge.py:115
 msgid "Your file is not a PDF file"
 msgstr "El archivo no es un archivo PDF"
-
-#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
-msgid "Your file is too large for me to download and process"
-msgstr ""
 
 #: pdf_bot/commands/merge.py:143
 msgid "PDF files"
@@ -551,8 +548,8 @@ msgid "Select the task that you'll like to perform"
 msgstr "Elegir la tarea a realizar"
 
 #: pdf_bot/files/file.py:85
-msgid "Your PDF file is too big for me to download"
-msgstr "Su archivo PDF es demasiado grande para que lo descargue"
+msgid "Your file is too big for me to download and process"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
@@ -564,7 +561,7 @@ msgstr "Tu archivo PDF ya tiene una capa de texto"
 
 #: pdf_bot/files/photo.py:47
 msgid "Your photo is too large for me to download and process"
-msgstr ""
+msgstr "Su foto es demasiado grande para que la descargue y procese"
 
 #: pdf_bot/files/photo.py:104
 msgid "Extracting a preview for your PDF file"
@@ -700,11 +697,11 @@ msgstr "Uso avanzado"
 
 #: pdf_bot/files/split.py:67
 msgid "{range}    pages {pages} and to the end"
-msgstr ""
+msgstr "{range}    páginas {pages} y hasta el final"
 
 #: pdf_bot/files/split.py:70
 msgid "{range} pages {pages}"
-msgstr ""
+msgstr "{range} páginas {pages}"
 
 #: pdf_bot/files/split.py:71
 msgid "{range}   all pages in reversed order"
@@ -712,11 +709,11 @@ msgstr "{range}   todas las páginas en orden inverso"
 
 #: pdf_bot/files/split.py:72
 msgid "{range} pages {pages} except {page}"
-msgstr ""
+msgstr "{range} páginas {pages} excepto {page}"
 
 #: pdf_bot/files/split.py:75
 msgid "{range}  pages {pages}"
-msgstr ""
+msgstr "{range}  páginas {pages}"
 
 #: pdf_bot/files/split.py:99
 msgid "The range is invalid, please try again"
@@ -1360,5 +1357,11 @@ msgstr "No pude encontrar ningún texto en tu archivo PDF"
 #~ msgstr ""
 
 #~ msgid "{range}  pages {results}"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too big for me to download"
 #~ msgstr ""
 

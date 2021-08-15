@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 05:58+0000\n"
-"PO-Revision-Date: 2021-08-15 05:58\n"
+"POT-Creation-Date: 2021-08-15 06:08+0000\n"
+"PO-Revision-Date: 2021-08-15 06:08\n"
 "Last-Translator: \n"
 "Language: ky\n"
 "Language-Team: Kyrgyz\n"
@@ -183,11 +183,11 @@ msgstr ""
 msgid "Set Language 🌎"
 msgstr ""
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:316
+#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:314
 msgid "Join Channel"
 msgstr ""
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:317
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr ""
 
@@ -291,45 +291,46 @@ msgstr ""
 msgid "Your file is not a PDF file, please try again"
 msgstr ""
 
+#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
 #: pdf_bot/utils.py:73
-msgid "Your PDF file is too large for me to download and process"
+msgid "Your file is too large for me to download and process"
 msgstr ""
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:76
-#: pdf_bot/utils.py:281
+#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
 
-#: pdf_bot/utils.py:107
+#: pdf_bot/utils.py:105
 msgid "Something went wrong, please start over again"
 msgstr ""
 
-#: pdf_bot/utils.py:195
+#: pdf_bot/utils.py:193
 msgid "Your file is invalid and I couldn't open and process it"
 msgstr ""
 
-#: pdf_bot/utils.py:201
+#: pdf_bot/utils.py:199
 msgid "Your PDF file is already encrypted"
 msgstr ""
 
-#: pdf_bot/utils.py:203
+#: pdf_bot/utils.py:201
 msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
 msgstr ""
 
-#: pdf_bot/utils.py:208
+#: pdf_bot/utils.py:206
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr ""
 
-#: pdf_bot/utils.py:230
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {file_type} so far:"
 msgstr ""
 
-#: pdf_bot/utils.py:280
+#: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr ""
 
-#: pdf_bot/utils.py:293 pdf_bot/utils.py:300
+#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
 msgid "Here is your result file"
 msgstr ""
 
@@ -363,10 +364,6 @@ msgstr ""
 
 #: pdf_bot/commands/merge.py:115
 msgid "Your file is not a PDF file"
-msgstr ""
-
-#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
-msgid "Your file is too large for me to download and process"
 msgstr ""
 
 #: pdf_bot/commands/merge.py:143
@@ -551,7 +548,7 @@ msgid "Select the task that you'll like to perform"
 msgstr ""
 
 #: pdf_bot/files/file.py:85
-msgid "Your PDF file is too big for me to download"
+msgid "Your file is too big for me to download and process"
 msgstr ""
 
 #: pdf_bot/files/ocr.py:20
@@ -1360,5 +1357,11 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "{range}  pages {results}"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too big for me to download"
 #~ msgstr ""
 

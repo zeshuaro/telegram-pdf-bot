@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 05:58+0000\n"
-"PO-Revision-Date: 2021-08-15 05:58\n"
+"POT-Creation-Date: 2021-08-15 06:08+0000\n"
+"PO-Revision-Date: 2021-08-15 06:08\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -183,17 +183,17 @@ msgstr "Nhập {command} để xem cách sử dụng PDF Bot"
 msgid "Set Language 🌎"
 msgstr "Đặt Ngôn ngữ 🌎"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:316
+#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:314
 msgid "Join Channel"
 msgstr "Tham gia Kênh"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:317
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "Hỗ trợ PDF Bot"
 
 #: pdf_bot/dispatcher.py:150
 msgid "You can perform most of the tasks by sending me one of the followings:"
-msgstr ""
+msgstr "Bạn có thể thực hiện hầu hết các nhiệm vụ bằng cách gửi cho tôi một trong những điều sau đây:"
 
 #: pdf_bot/dispatcher.py:153
 msgid "- PDF files"
@@ -209,7 +209,7 @@ msgstr "- Nối kết trang web"
 
 #: pdf_bot/dispatcher.py:156
 msgid "The rest of the tasks can be performed by using the following commands:"
-msgstr ""
+msgstr "Phần còn lại của các tác vụ có thể được thực hiện bằng cách sử dụng các lệnh sau:"
 
 #: pdf_bot/dispatcher.py:160
 msgid "{command} - compare PDF files"
@@ -291,45 +291,46 @@ msgstr "Hành động bị hủy bỏ"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Tệp của bạn không phải là tệp PDF, vui lòng thử lại"
 
+#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
 #: pdf_bot/utils.py:73
-msgid "Your PDF file is too large for me to download and process"
-msgstr "Tệp PDF của bạn quá lớn để tôi có thể tải xuống và xử lý"
+msgid "Your file is too large for me to download and process"
+msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:76
-#: pdf_bot/utils.py:281
+#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
 
-#: pdf_bot/utils.py:107
+#: pdf_bot/utils.py:105
 msgid "Something went wrong, please start over again"
 msgstr "Có điều gì đó không ổn, xin hãy bắt đầu lại từ đầu"
 
-#: pdf_bot/utils.py:195
+#: pdf_bot/utils.py:193
 msgid "Your file is invalid and I couldn't open and process it"
-msgstr ""
+msgstr "Tệp của bạn không hợp lệ và tôi không thể mở và xử lý tệp đó"
 
-#: pdf_bot/utils.py:201
+#: pdf_bot/utils.py:199
 msgid "Your PDF file is already encrypted"
 msgstr "Tệp PDF của bạn đã được mã hóa"
 
-#: pdf_bot/utils.py:203
+#: pdf_bot/utils.py:201
 msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Tệp PDF {file_type} của bạn được mã hóa và bạn sẽ phải giải mã nó trước"
 
-#: pdf_bot/utils.py:208
+#: pdf_bot/utils.py:206
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Tệp PDF của bạn được mã hóa và bạn sẽ phải giải mã nó trước"
 
-#: pdf_bot/utils.py:230
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {file_type} so far:"
 msgstr "Bạn đã gửi cho tôi những {file_type} này cho đến nay:"
 
-#: pdf_bot/utils.py:280
+#: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "Tệp kết quả quá lớn để tôi gửi cho bạn"
 
-#: pdf_bot/utils.py:293 pdf_bot/utils.py:300
+#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
 msgid "Here is your result file"
 msgstr "Đây là tệp kết quả của bạn"
 
@@ -364,10 +365,6 @@ msgstr "Lưu ý rằng các tệp sẽ được hợp nhất theo thứ tự mà
 #: pdf_bot/commands/merge.py:115
 msgid "Your file is not a PDF file"
 msgstr "Tệp của bạn không phải là tệp PDF"
-
-#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
-msgid "Your file is too large for me to download and process"
-msgstr ""
 
 #: pdf_bot/commands/merge.py:143
 msgid "PDF files"
@@ -551,8 +548,8 @@ msgid "Select the task that you'll like to perform"
 msgstr "Chọn nhiệm vụ bạn muốn thực hiện"
 
 #: pdf_bot/files/file.py:85
-msgid "Your PDF file is too big for me to download"
-msgstr "Tệp PDF của bạn quá lớn để tôi có thể tải xuống"
+msgid "Your file is too big for me to download and process"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
@@ -564,7 +561,7 @@ msgstr "Tệp PDF của bạn đã có một lớp văn bản"
 
 #: pdf_bot/files/photo.py:47
 msgid "Your photo is too large for me to download and process"
-msgstr ""
+msgstr "Ảnh của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
 #: pdf_bot/files/photo.py:104
 msgid "Extracting a preview for your PDF file"
@@ -700,11 +697,11 @@ msgstr "Sử dụng nâng cao"
 
 #: pdf_bot/files/split.py:67
 msgid "{range}    pages {pages} and to the end"
-msgstr ""
+msgstr "{range}    trang {pages} và đến cuối cùng"
 
 #: pdf_bot/files/split.py:70
 msgid "{range} pages {pages}"
-msgstr ""
+msgstr "{range} trang {pages}"
 
 #: pdf_bot/files/split.py:71
 msgid "{range}   all pages in reversed order"
@@ -712,11 +709,11 @@ msgstr "{range}   tất cả các trang theo thứ tự đảo ngược"
 
 #: pdf_bot/files/split.py:72
 msgid "{range} pages {pages} except {page}"
-msgstr ""
+msgstr "{range} trang {pages} ngoại trừ {page}"
 
 #: pdf_bot/files/split.py:75
 msgid "{range}  pages {pages}"
-msgstr ""
+msgstr "{range}  trang {pages}"
 
 #: pdf_bot/files/split.py:99
 msgid "The range is invalid, please try again"
@@ -1360,5 +1357,11 @@ msgstr "Tôi không thể tìm thấy bất kỳ văn bản nào trong tệp PDF
 #~ msgstr ""
 
 #~ msgid "{range}  pages {results}"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too big for me to download"
 #~ msgstr ""
 
