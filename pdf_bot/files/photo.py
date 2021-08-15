@@ -43,10 +43,13 @@ def ask_photo_task(update, context, photo_file):
 
     if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         message.reply_text(
-            _(
-                "Your photo is too large for me to download. "
-                "I can't beautify or convert your photo"
-            )
+            "{desc_1}\n\n{desc_2}".format(
+                desc_1=_("Your photo is too large for me to download"),
+                desc_2=_(
+                    "Note that this is a Telegram Bot limitation and there's "
+                    "nothing I can do unless Telegram changes this limit"
+                ),
+            ),
         )
 
         return ConversationHandler.END
@@ -211,7 +214,7 @@ def get_pdf_photos(update, context):
             os.mkdir(dir_name)
             if not write_photos_in_pdf(tf.name, dir_name, file_name):
                 update.effective_message.reply_text(
-                    _("Something went wrong, try again")
+                    _("Something went wrong, please try again")
                 )
             else:
                 if not os.listdir(dir_name):

@@ -41,14 +41,15 @@ def send_support_options(
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    text = _("Select how you want to support PDF Bot")
 
     if query is None:
         user_id = update.effective_message.from_user.id
     else:
         user_id = query.from_user.id
 
-    context.bot.send_message(user_id, text, reply_markup=reply_markup)
+    context.bot.send_message(
+        user_id, _("Select how you want to support PDF Bot"), reply_markup=reply_markup
+    )
 
 
 def send_payment_invoice(

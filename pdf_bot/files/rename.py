@@ -35,17 +35,18 @@ def rename_pdf(update, context):
 
     if set(text) & set(invalid_chars):
         message.reply_text(
-            _(
-                "File names can't contain any of the following characters:\n{}\n"
-                "Send me another file name"
-            ).format(invalid_chars)
+            "{desc_1}\n{invalid_chars}\n{desc_2}".format(
+                desc_1=_("File names can't contain any of the following characters:"),
+                invalid_chars=invalid_chars,
+                desc_2=_("Please try again"),
+            ),
         )
 
         return WAIT_FILE_NAME
 
     new_fn = "{}.pdf".format(text)
     message.reply_text(
-        _("Renaming your PDF file into <b>{}</b>").format(new_fn),
+        _("Renaming your PDF file into {}").format("<b>{}</b>".format(new_fn)),
         parse_mode=ParseMode.HTML,
         reply_markup=ReplyKeyboardRemove(),
     )

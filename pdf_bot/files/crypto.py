@@ -44,7 +44,7 @@ def decrypt_pdf(update, context):
             pdf_reader = PdfFileReader(open(tf.name, "rb"))
         except PdfReadError:
             message.reply_text(
-                _("Your PDF file seems to be invalid and I couldn't open and read it")
+                _("Your PDF file is invalid and I couldn't open and process it")
             )
 
         if pdf_reader is not None:
@@ -54,9 +54,7 @@ def decrypt_pdf(update, context):
                 try:
                     if pdf_reader.decrypt(message.text) == 0:
                         message.reply_text(
-                            _(
-                                "The decryption password is incorrect, try to send it again"
-                            )
+                            _("The decryption password is incorrect, please try again")
                         )
 
                         return WAIT_DECRYPT_PW
@@ -69,7 +67,8 @@ def decrypt_pdf(update, context):
                 except NotImplementedError:
                     message.reply_text(
                         _(
-                            "Your PDF file is encrypted with a method that I cannot decrypt"
+                            "Your PDF file is encrypted with a method "
+                            "that I can't decrypt"
                         )
                     )
 

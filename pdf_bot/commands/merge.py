@@ -75,12 +75,16 @@ def merge(update: Update, context: CallbackContext) -> int:
 
 def ask_first_doc(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
-    text = _(
-        "Send me the PDF files that you'll like to merge\n\n"
-        "Note that the files will be merged in the order that you send me"
+    reply_with_cancel_btn(
+        update,
+        context,
+        "{desc_1}\n\n{desc_2}".format(
+            desc_1=_("Send me the PDF files that you'll like to merge"),
+            desc_2=_(
+                "Note that the files will be merged in the order that you send me"
+            ),
+        ),
     )
-
-    reply_with_cancel_btn(update, context, text)
 
     return WAIT_MERGE
 
@@ -108,9 +112,17 @@ def process_invalid_pdf(
 ) -> int:
     _ = set_lang(update, context)
     if pdf_result == PDF_INVALID_FORMAT:
-        text = _("The file you've sent is not a PDF file")
+        text = _("Your file is not a PDF file")
     else:
-        text = _("The PDF file you've sent is too large for me to download")
+        text = (
+            "{desc_1}\n\n{desc_2}".format(
+                desc_1=_("Your PDF file is too large for me to download"),
+                desc_2=_(
+                    "Note that this is a Telegram Bot limitation and there's "
+                    "nothing I can do unless Telegram changes this limit"
+                ),
+            ),
+        )
 
     update.effective_message.reply_text(text)
     user_id = update.effective_message.from_user.id
@@ -136,9 +148,9 @@ def ask_next_doc(update: Update, context: CallbackContext) -> int:
     )
     update.effective_message.reply_text(
         _(
-            "Press <b>Done</b> if you've sent me all the PDF files that "
+            "Press {} if you've sent me all the PDF files that "
             "you'll like to merge or keep sending me the PDF files"
-        ),
+        ).format("<b>{}</b>".format(_(DONE))),
         reply_markup=reply_markup,
         parse_mode=ParseMode.HTML,
     )
@@ -176,7 +188,7 @@ def remove_doc(update: Update, context: CallbackContext, lock: Lock) -> int:
     file_name = file_names.pop()
 
     update.effective_message.reply_text(
-        _("<b>{}</b> has been removed for merging").format(file_name),
+        _("{} has been removed for merging").format("<b>{}</b>".format(file_name)),
         parse_mode=ParseMode.HTML,
     )
 
@@ -200,7 +212,7 @@ def preprocess_merge_pdf(update: Update, context: CallbackContext, lock: Lock) -
 
         result = ask_first_doc(update, context)
     elif num_files == 1:
-        update.effective_message.reply_text(_("You've only sent me one PDF file."))
+        update.effective_message.reply_text(_("You've only sent me one PDF file"))
 
         result = ask_next_doc(update, context)
     else:
@@ -234,10 +246,9 @@ def merge_pdf(update: Update, context: CallbackContext) -> int:
             merger.append(open(file_name, "rb"))
         except PdfReadError:
             update.effective_message.reply_text(
-                _(
-                    "I can't merge your PDF files as I couldn't open and read \"{}\". "
-                    "Ensure that it is not encrypted"
-                ).format(file_names[i])
+                _("I couldn't merge your PDF files as this file is invalid: {}").format(
+                    file_names[i]
+                )
             )
 
             return ConversationHandler.END

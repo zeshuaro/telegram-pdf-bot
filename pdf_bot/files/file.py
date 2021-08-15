@@ -81,9 +81,13 @@ def check_doc(update, context):
     elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
         _ = set_lang(update, context)
         update.effective_message.reply_text(
-            _(
-                "Your PDF file is too big for me to download\n\nI can't perform any tasks on it"
-            )
+            "{desc_1}\n\n{desc_2}".format(
+                desc_1=_("Your PDF file is too big for me to download"),
+                desc_2=_(
+                    "Note that this is a Telegram Bot limitation and there's "
+                    "nothing I can do unless Telegram changes this limit"
+                ),
+            ),
         )
 
         return ConversationHandler.END

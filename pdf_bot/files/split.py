@@ -14,42 +14,67 @@ from pdf_bot.utils import open_pdf, write_send_pdf
 
 def ask_split_range(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
+    # "{intro}\n\n"
+    # "<b>{general}</b>\n"
+    # "<code>:      {all}</code>\n"
+    # "<code>7      {eight_only}</code>\n"
+    # "<code>0:3    {first_three}</code>\n"
+    # "<code>7:     {from_eight}</code>\n"
+    # "<code>-1     {last_only}</code>\n"
+    # "<code>:-1    {all_except_last}</code>\n"
+    # "<code>-2     {second_last}</code>\n"
+    # "<code>-2:    {last_two}</code>\n"
+    # "<code>-3:-1  {third_second}</code>\n\n"
+    # "<b>{advanced}</b>\n"
+    # "<code>::2    {pages} 0 2 4 ... {to_end}</code>\n"
+    # "<code>1:10:2 {pages} 1 3 5 7 9</code>\n"
+    # "<code>::-1   {all_reversed}</code>\n"
+    # "<code>3:0:-1 {pages} 3 2 1 {except_txt} 0</code>\n"
+    # "<code>2::-1  {pages} 2 1 0</code>"
     text = (
         "{intro}\n\n"
         "<b>{general}</b>\n"
-        "<code>:      {all}</code>\n"
-        "<code>7      {eight_only}</code>\n"
-        "<code>0:3    {first_three}</code>\n"
-        "<code>:3     {first_three}</code>\n"
-        "<code>7:     {from_eight}</code>\n"
-        "<code>-1     {last_only}</code>\n"
-        "<code>:-1    {all_except_last}</code>\n"
-        "<code>-2     {second_last}</code>\n"
-        "<code>-2:    {last_two}</code>\n"
-        "<code>-3:-1  {third_second}</code>\n\n"
+        "<code>{all}</code>\n"
+        "<code>{eight_only}</code>\n"
+        "<code>{first_three}</code>\n"
+        "<code>{from_eight}</code>\n"
+        "<code>{last_only}</code>\n"
+        "<code>{all_except_last}</code>\n"
+        "<code>{second_last}</code>\n"
+        "<code>{last_two}</code>\n"
+        "<code>{third_second}</code>\n\n"
         "<b>{advanced}</b>\n"
-        "<code>::2    {pages} 0 2 4 ... {to_end}</code>\n"
-        "<code>1:10:2 {pages} 1 3 5 7 9</code>\n"
-        "<code>::-1   {all_reversed}</code>\n"
-        "<code>3:0:-1 {pages} 3 2 1 {except_txt} 0</code>\n"
-        "<code>2::-1  {pages} 2 1 0</code>"
+        "<code>{pages_to_end}</code>\n"
+        "<code>{odd_pages}</code>\n"
+        "<code>{all_reversed}</code>\n"
+        "<code>{pages_except}</code>\n"
+        "<code>{pages_reverse_from}</code>"
     ).format(
         intro=_("Send me the range of pages that you'll like to keep"),
         general=_("General usage"),
-        all=_("all pages"),
-        eight_only=_("page 8 only"),
-        first_three=_("first three pages"),
-        from_eight=_("from page 8 onward"),
-        last_only=_("last page only"),
-        all_except_last=_("all pages except the last page"),
-        second_last=_("second last page only"),
-        last_two=_("last two pages"),
-        third_second=_("third and second last pages"),
+        all=_("{}      all pages").format(":"),
+        eight_only=_("{}      page 8 only").format("7"),
+        first_three=_("{}    first three pages").format("0:3"),
+        from_eight=_("{}     from page 8 onward").format("7:"),
+        last_only=_("{}     last page only").format("-1"),
+        all_except_last=_("{}    all pages except the last page").format(":-1"),
+        second_last=_("{}     second last page only").format("-2"),
+        last_two=_("{}    last two pages").format("-2:"),
+        third_second=_("{}  third and second last pages").format("-3:-1"),
         advanced=_("Advanced usage"),
-        pages=_("pages"),
-        to_end=_("to the end"),
-        all_reversed=_("all pages in reversed order"),
-        except_txt=_("except"),
+        pages_to_end=_("{range}    pages {results} and to the end").format(
+            range="::2", results="0 2 4 ..."
+        ),
+        odd_pages=_("{range} pages {results}").format(
+            range="1:10:2", results="1 3 5 7 9"
+        ),
+        all_reversed=_("{}   all pages in reversed order").format("::-1"),
+        pages_except=_("{range} pages {results} except {except_text}").format(
+            range="3:0:-1", results="3 2 1", except_text="0"
+        ),
+        pages_reverse_from=_("{range}  pages {results}").format(
+            range="2::-1", results="2 1 0"
+        ),
     )
     update.effective_message.reply_text(
         text,
@@ -71,10 +96,8 @@ def split_pdf(update: Update, context: CallbackContext) -> int:
 
     if not PageRange.valid(split_range):
         message.reply_text(
-            _(
-                "The range is invalid. Try again",
-                reply_markup=get_back_markup(update, context),
-            )
+            _("The range is invalid, please try again"),
+            reply_markup=get_back_markup(update, context),
         )
 
         return WAIT_SPLIT_RANGE
