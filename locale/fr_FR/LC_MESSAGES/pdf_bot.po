@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-05 08:15+0000\n"
-"PO-Revision-Date: 2021-08-06 08:15\n"
+"POT-Creation-Date: 2021-08-15 02:38+0000\n"
+"PO-Revision-Date: 2021-08-15 02:38\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: French\n"
@@ -124,76 +124,112 @@ msgid "Compress"
 msgstr "Compresser"
 
 #: pdf_bot/constants.py:78
-msgid "Say Thanks 😁 ($1)"
-msgstr "Merci 😁 ($1)"
+msgid "Say Thanks {emoji} ({value})"
+msgstr ""
 
 #: pdf_bot/constants.py:79
-msgid "Coffee ☕ ($3)"
-msgstr "Café ☕ ($3)"
+msgid "Coffee {emoji} ({value})"
+msgstr ""
 
 #: pdf_bot/constants.py:80
-msgid "Beer 🍺 ($5)"
-msgstr "Bière 🍺 ($5)"
+msgid "Beer {emoji} ({value})"
+msgstr ""
 
 #: pdf_bot/constants.py:81
-msgid "Meal 🍲 ($10)"
-msgstr "Repas 🍲 ($10)"
+msgid "Meal {emoji} ({value})"
+msgstr ""
 
-#: pdf_bot/dispatcher.py:105
-msgid "Welcome to PDF Bot!\n\n"
-"<b>Key features:</b>\n"
-"- Compress, merge, preview, rename, split and add watermark to PDF files\n"
-"- Create PDF files from text messages\n"
-"- Extract images and text from PDF files\n"
-"- Convert PDF files into images\n"
-"- Convert webpages and images into PDF files\n"
-"- Beautify handwritten notes images into PDF files\n"
-"- <b><i>And more...</i></b>\n\n"
-"Type /help to see how to use PDF Bot"
-msgstr "Bienvenue sur PDF Bot!\n\n"
-"<b>Principales caractéristiques:</b>\n"
-"- Compresser, fusionner, prévisualiser, renommer, diviser et ajouter un filigrane aux fichiers PDF\n"
-"- Créer des fichiers PDF à partir de messages texte\n"
-"- Extraire des images et du texte à partir de fichiers PDF\n"
-"- Convertir des fichiers PDF en images\n"
-"- Convertir des pages Web et des images en fichiers PDF\n"
-"- Embellir les images de notes manuscrites en fichiers PDF\n"
-"- <b><i>Et plus encore...</i></b>\n\n"
-"Tapez /help pour voir comment utiliser PDF Bot"
+#: pdf_bot/dispatcher.py:114
+msgid "Welcome to PDF Bot!"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:115
+msgid "Key features:"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:116
+msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:120
+msgid "- Create PDF files from text messages"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:121
+msgid "- Extract images and text from PDF files"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:122
+msgid "- Convert PDF files into images"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:123
+msgid "- Convert webpages and images into PDF files"
+msgstr ""
 
 #: pdf_bot/dispatcher.py:124
+msgid "- Beautify handwritten notes images into PDF files"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:125
+msgid "- And more..."
+msgstr ""
+
+#: pdf_bot/dispatcher.py:126
+msgid "Type {} to see how to use PDF Bot"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:136
 msgid "Set Language 🌎"
 msgstr "Définir la langue 🌎"
 
-#: pdf_bot/dispatcher.py:126 pdf_bot/utils.py:307
+#: pdf_bot/dispatcher.py:138 pdf_bot/utils.py:313
 msgid "Join Channel"
 msgstr "Rejoindre la chaîne"
 
-#: pdf_bot/dispatcher.py:127 pdf_bot/payment.py:68 pdf_bot/utils.py:308
+#: pdf_bot/dispatcher.py:139 pdf_bot/payment.py:69 pdf_bot/utils.py:314
 msgid "Support PDF Bot"
 msgstr "Support PDF Bot"
 
-#: pdf_bot/dispatcher.py:133
-msgid "You can perform most of the tasks by sending me one of the followings:\n"
-"- PDF files\n"
-"- Photos\n"
-"- Webpage links\n\n"
-"The rest of the tasks can be performed by using the commands below:\n"
-"/compare - compare PDF files\n"
-"/merge - merge PDF files\n"
-"/photo - convert and combine multiple photos into PDF files\n"
-"/text - create PDF files from text messages\n"
-"/watermark - add watermark to PDF files"
-msgstr "Vous pouvez effectuer la plupart des tâches en m’envoyant l’un des médias suivants:\n"
-"- fichiers PDF\n"
-"- Photos\n"
-"- Liens de page Web\n\n"
-"Le reste des tâches peuvent être effectuées en utilisant les commandes ci-dessous:\n"
-"/compare - comparer les fichiers PDF\n"
-"/merge - fusionner les fichiers PDF\n"
-"/photo - convertir et combiner plusieurs photos en fichiers PDF\n"
-"/text - créer des fichiers PDF à partir de messages texte\n"
-"/watermark - ajouter du filigrane aux fichiers PDF"
+#: pdf_bot/dispatcher.py:148
+msgid "You can perform most of the tasks by sending me one of the followings"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:151
+msgid "- PDF files"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:152
+msgid "- Photos"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:153
+msgid "- Webpage links"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:154
+msgid "The rest of the tasks can be performed by using the following commands"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:157
+msgid "{} - compare PDF files"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:158
+msgid "{} - merge PDF files"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:159
+msgid "{} - convert and combine multiple photos into PDF files"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:162
+msgid "{} - create PDF files from text messages"
+msgstr ""
+
+#: pdf_bot/dispatcher.py:163
+msgid "{} - add watermark to PDF files"
+msgstr ""
 
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
@@ -219,19 +255,19 @@ msgstr "Votre langue a été définie sur {}"
 msgid "Help translate PDF Bot"
 msgstr "Aider à traduire PDF Bot"
 
-#: pdf_bot/payment.py:44
+#: pdf_bot/payment.py:51
 msgid "Select how you want to support PDF Bot"
 msgstr "Sélectionnez comment vous voulez aider PDF Bot"
 
-#: pdf_bot/payment.py:69
+#: pdf_bot/payment.py:70
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Dites merci à PDF Bot et aidez-le à le faire fonctionner"
 
-#: pdf_bot/payment.py:92
+#: pdf_bot/payment.py:93
 msgid "Something went wrong"
 msgstr "Une erreur s’est produite"
 
-#: pdf_bot/payment.py:100
+#: pdf_bot/payment.py:101
 msgid "Thank you for your support!"
 msgstr "Merci de votre soutien!"
 
@@ -252,58 +288,58 @@ msgid "Action cancelled"
 msgstr "Action annulée"
 
 #: pdf_bot/utils.py:67
-msgid "The file you sent is not a PDF file, try again"
-msgstr "Le fichier que vous avez envoyé n'est pas un fichier PDF, réessayez"
+msgid "Your file is not a PDF file, please try again"
+msgstr ""
 
-#: pdf_bot/utils.py:72
-msgid "The PDF file you sent is too large for me to download\n\n"
-"I've cancelled your action"
-msgstr "Le fichier PDF que vous avez envoyé est trop volumineux pour que je puisse le télécharger\n\n"
-"J'ai annulé votre action"
+#: pdf_bot/utils.py:73
+msgid "Your PDF file is too large for me to download and process"
+msgstr ""
 
-#: pdf_bot/utils.py:101
-msgid "Something went wrong, start over again"
-msgstr "Une erreur s'est produite, veuillez réessayer"
+#: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
+#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:76
+#: pdf_bot/utils.py:278
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr ""
 
-#: pdf_bot/utils.py:188
-msgid "Your PDF file seems to be invalid and I couldn't open and read it\n\n"
-"I've cancelled your action"
-msgstr "Votre fichier PDF semble invalide et je n'ai pas pu l'ouvrir et le lire.\n\n"
-"J'ai annulé votre action"
+#: pdf_bot/utils.py:107
+msgid "Something went wrong, please start over again"
+msgstr ""
 
-#: pdf_bot/utils.py:197
+#: pdf_bot/utils.py:195
+msgid "Your PDF file seems to be invalid and I couldn't open and process it"
+msgstr ""
+
+#: pdf_bot/utils.py:201
 msgid "Your PDF file is already encrypted"
 msgstr "Votre fichier PDF est déjà crypté"
 
-#: pdf_bot/utils.py:199
-msgid "Your {} PDF file is encrypted and you'll have to decrypt it first\n\n"
-"I've cancelled your action"
-msgstr "Votre fichier PDF {} est crypté et vous devrez le décrypter en premier\n\n"
-"J'ai annulé votre action"
+#: pdf_bot/utils.py:203
+msgid "Your {} PDF file is encrypted and you'll have to decrypt it first"
+msgstr ""
 
-#: pdf_bot/utils.py:204
-msgid "Your PDF file is encrypted and you'll have to decrypt it first\n\n"
-"I've cancelled your action"
-msgstr "Votre fichier PDF {} est crypté et vous devrez le décrypter en premier\n\n"
-"J'ai annulé votre action"
+#: pdf_bot/utils.py:207
+msgid "Your PDF file is encrypted and you'll have to decrypt it first"
+msgstr ""
 
 #: pdf_bot/utils.py:228
-msgid "You've sent me these {} so far:\n"
-msgstr "Vous m'avez envoyé ces {} jusqu'à présent :\n"
+msgid "You've sent me these {} so far:"
+msgstr ""
 
-#: pdf_bot/utils.py:276
+#: pdf_bot/utils.py:277
 msgid "The result file is too large for me to send to you"
 msgstr "Le fichier de résultat est trop volumineux pour que je puisse vous envoyer"
 
-#: pdf_bot/utils.py:284 pdf_bot/utils.py:291
+#: pdf_bot/utils.py:290 pdf_bot/utils.py:297
 msgid "Here is your result file"
 msgstr "Voici votre fichier final"
 
-#: pdf_bot/commands/compare.py:45
-msgid "Send me one of the PDF files that you'll like to compare\n\n"
-"Note that I can only look for differences in text"
-msgstr "Envoyez-moi un des fichiers PDF que vous aimeriez comparer\n\n"
-"Notez que je ne peux que rechercher des différences de texte"
+#: pdf_bot/commands/compare.py:46
+msgid "Send me one of the PDF files that you'll like to compare"
+msgstr ""
+
+#: pdf_bot/commands/compare.py:47
+msgid "Note that I can only look for text differences"
+msgstr ""
 
 #: pdf_bot/commands/compare.py:79
 msgid "Send me the other PDF file that you'll like to compare"
@@ -314,86 +350,90 @@ msgid "Comparing your PDF files"
 msgstr "Comparaison de vos fichiers PDF"
 
 #: pdf_bot/commands/compare.py:122
-msgid "There are no differences in text between your PDF files"
-msgstr "Il n'y a pas de différence de texte entre vos fichiers PDF"
+msgid "There are no text differences between your PDF files"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:78
-msgid "Send me the PDF files that you'll like to merge\n\n"
-"Note that the files will be merged in the order that you send me"
-msgstr "Envoyez-moi les fichiers PDF que vous aimerez fusionner\n\n"
-"Notez que les fichiers seront fusionnés dans l’ordre que vous les avez envoyés"
+#: pdf_bot/commands/merge.py:82
+msgid "Send me the PDF files that you'll like to merge"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:111
-msgid "The file you've sent is not a PDF file"
-msgstr "Le fichier que vous avez envoyé n'est pas un fichier PDF"
+#: pdf_bot/commands/merge.py:83
+msgid "Note that the files will be merged in the order that you send me"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:113
-msgid "The PDF file you've sent is too large for me to download"
-msgstr "Le fichier PDF que vous avez envoyé est trop volumineux pour que je puisse le télécharger"
+#: pdf_bot/commands/merge.py:115
+msgid "Your file is not a PDF file"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:131
+#: pdf_bot/commands/merge.py:119
+msgid "Your PDF file is too large for me to download"
+msgstr ""
+
+#: pdf_bot/commands/merge.py:143
 msgid "PDF files"
 msgstr "Fichiers PDF"
 
-#: pdf_bot/commands/merge.py:138
-msgid "Press <b>Done</b> if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "Appuyez sur <b>Terminé</b> si vous m’avez envoyé tous les fichiers PDF que vous souhaitez fusionner ou continuez de m’envoyer les fichiers PDF"
+#: pdf_bot/commands/merge.py:150
+msgid "Press {} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:179
-msgid "<b>{}</b> has been removed for merging"
-msgstr "<b>{}</b> a été supprimé pour fusion"
+#: pdf_bot/commands/merge.py:191
+msgid "{} has been removed for merging"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:199
+#: pdf_bot/commands/merge.py:211
 msgid "You haven't sent me any PDF files"
 msgstr "Vous n'avez pas envoyé de fichier PDF"
 
-#: pdf_bot/commands/merge.py:203
-msgid "You've only sent me one PDF file."
-msgstr "Vous n'avez envoyé qu'un seul fichier PDF."
+#: pdf_bot/commands/merge.py:215
+msgid "You've only sent me one PDF file"
+msgstr ""
 
-#: pdf_bot/commands/merge.py:217
+#: pdf_bot/commands/merge.py:229
 msgid "Merging your PDF files"
 msgstr "Fusion de vos fichiers PDF"
 
-#: pdf_bot/commands/merge.py:237
-msgid "I can't merge your PDF files as I couldn't open and read \"{}\". Ensure that it is not encrypted"
-msgstr "Je ne peux pas fusionner vos fichiers PDF car je n'ai pas pu ouvrir et lire \"{}\". Assurez-vous qu'il n'est pas crypté"
+#: pdf_bot/commands/merge.py:249
+msgid "I couldn't merge your PDF files as this file is invalid: {}"
+msgstr ""
 
-#: pdf_bot/commands/photo.py:73
-msgid "Send me the photos that you'll like to beautify or convert into a PDF file\n\n"
-"Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Envoyez-moi les photos que vous souhaitez embellir ou convertir en fichier PDF\n\n"
-"Notez que les photos seront embellies et converties dans l’ordre dans lequel vous m’envoyez"
+#: pdf_bot/commands/photo.py:77
+msgid "Send me the photos that you'll like to beautify or convert into a PDF file"
+msgstr ""
 
-#: pdf_bot/commands/photo.py:100
+#: pdf_bot/commands/photo.py:81
+msgid "Note that the photos will be beautified and converted in the order that you send me"
+msgstr ""
+
+#: pdf_bot/commands/photo.py:108
 msgid "File name unavailable"
 msgstr "Nom de fichier indisponible"
 
-#: pdf_bot/commands/photo.py:119
-msgid "The file you've sent is not a photo"
-msgstr "Le fichier que vous avez envoyé n'est pas une photo"
+#: pdf_bot/commands/photo.py:127
+msgid "Your file is not a photo"
+msgstr ""
 
-#: pdf_bot/commands/photo.py:125
-msgid "The photo you've sent is too large for me to download"
-msgstr "La photo que vous avez envoyée est trop grande pour que je puisse la télécharger"
+#: pdf_bot/commands/photo.py:135
+msgid "Your file is too large for me to download"
+msgstr ""
 
-#: pdf_bot/commands/photo.py:132
+#: pdf_bot/commands/photo.py:148
 msgid "photos"
 msgstr "photos"
 
-#: pdf_bot/commands/photo.py:139
+#: pdf_bot/commands/photo.py:155
 msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
 msgstr "Sélectionnez la tâche ci-dessous si vous m’avez envoyé toutes les photos, ou continuez à m’envoyer les photos"
 
-#: pdf_bot/commands/photo.py:183
-msgid "<b>{}</b> has been removed for beautifying or converting"
-msgstr "<b>{}</b> a été supprimé pour embellir ou convertir"
+#: pdf_bot/commands/photo.py:199
+msgid "{} has been removed for beautifying or converting"
+msgstr ""
 
-#: pdf_bot/commands/photo.py:218
+#: pdf_bot/commands/photo.py:236
 msgid "Beautifying and converting your photos"
 msgstr "Embellissement et conversion de vos photos"
 
-#: pdf_bot/commands/photo.py:223
+#: pdf_bot/commands/photo.py:241
 msgid "Converting your photos into PDF"
 msgstr "Convertir vos photos en PDF"
 
@@ -401,17 +441,19 @@ msgstr "Convertir vos photos en PDF"
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Envoyez-moi le texte que vous aimeriez écrire dans votre fichier PDF"
 
-#: pdf_bot/commands/text.py:81
-msgid "Send me the font that you'll like to use for the PDF file or skip to use the default font\n\n"
-"See here for the list of supported fonts:"
-msgstr "Envoyez-moi la police que vous aimeriez utiliser pour le fichier PDF ou passez pour garder la police par défaut\n\n"
-"Voir ici pour la liste des polices supportées :"
+#: pdf_bot/commands/text.py:82
+msgid "Send me the font that you'll like to use for the PDF file or press {} to use the default font"
+msgstr ""
 
-#: pdf_bot/commands/text.py:115
+#: pdf_bot/commands/text.py:86
+msgid "See here for the list of supported fonts: {}"
+msgstr ""
+
+#: pdf_bot/commands/text.py:119
 msgid "Unknown font, please try again"
 msgstr "Police inconnue, veuillez réessayer"
 
-#: pdf_bot/commands/text.py:147
+#: pdf_bot/commands/text.py:151
 msgid "Creating your PDF file"
 msgstr "Création de votre fichier PDF"
 
@@ -436,35 +478,43 @@ msgid "Compressing your PDF file"
 msgstr "Compression de votre fichier PDF"
 
 #: pdf_bot/files/compress.py:49
-msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
-msgstr "Taille du fichier réduite de <b>{:.0%}</b>, de <b>{}</b> à <b>{}</b>"
+msgid "File size reduced by {percent}, from {old_size} to {new_size}"
+msgstr ""
 
-#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:130
-#: pdf_bot/files/photo.py:214
-msgid "Something went wrong, try again"
-msgstr "Une erreur est survenue, veuillez réessayer"
+#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:141
+#: pdf_bot/files/photo.py:217
+msgid "Something went wrong, please try again"
+msgstr ""
 
 #: pdf_bot/files/crop.py:31
 msgid "Select the crop type that you'll like to perform"
 msgstr "Sélectionnez le type de rognage que vous souhaitez effectuer"
 
-#: pdf_bot/files/crop.py:46
-msgid "Send me a number between {} and {}. This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Envoyez-moi un numéro entre {} et {}. Ceci est le pourcentage d'espace de marge à conserver entre le contenu de votre fichier PDF et la page"
+#: pdf_bot/files/crop.py:47
+msgid "Send me a number between {min_percent} and {max_percent}"
+msgstr ""
 
-#: pdf_bot/files/crop.py:56
-msgid "Send me a number that you'll like to adjust the margin size. Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Envoyez-moi un nombre que vous aimeriez ajuster la taille de la marge. Les nombres positifs diminueront la taille de la marge et les nombres négatifs l'augmenteront"
+#: pdf_bot/files/crop.py:50
+msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr ""
 
-#: pdf_bot/files/crop.py:77
-msgid "The number must be between {} and {}, try again"
-msgstr "Le nombre doit être compris entre {} et {}, réessayez"
+#: pdf_bot/files/crop.py:62
+msgid "Send me a number that you'll like to adjust the margin size"
+msgstr ""
 
-#: pdf_bot/files/crop.py:98
-msgid "The number is invalid, try again"
-msgstr "Le nombre est invalide, réessayez"
+#: pdf_bot/files/crop.py:63
+msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr ""
+
+#: pdf_bot/files/crop.py:85
+msgid "The number must be between {min_percent} and {max_percent}, please try again"
+msgstr ""
 
 #: pdf_bot/files/crop.py:108
+msgid "The number is invalid, please try again"
+msgstr ""
+
+#: pdf_bot/files/crop.py:119
 msgid "Cropping your PDF file"
 msgstr "Recadrage de votre fichier PDF"
 
@@ -477,38 +527,36 @@ msgid "Decrypting your PDF file"
 msgstr "Décryptage de votre fichier PDF"
 
 #: pdf_bot/files/crypto.py:47
-msgid "Your PDF file seems to be invalid and I couldn't open and read it"
-msgstr "Votre fichier PDF semble être invalide, je n'ai pas pu l'ouvrir et le lire"
+msgid "Your PDF file is invalid and I couldn't open and process it"
+msgstr ""
 
 #: pdf_bot/files/crypto.py:52
 msgid "Your PDF file is not encrypted"
 msgstr "Votre PDF n'est pas crypté"
 
 #: pdf_bot/files/crypto.py:57
-msgid "The decryption password is incorrect, try to send it again"
-msgstr "Le mot de passe de décryptage est incorrect, essayez de le renvoyer"
+msgid "The decryption password is incorrect, please try again"
+msgstr ""
 
-#: pdf_bot/files/crypto.py:71
-msgid "Your PDF file is encrypted with a method that I cannot decrypt"
-msgstr "Votre fichier PDF est crypté avec une méthode que je ne peux pas déchiffrer"
+#: pdf_bot/files/crypto.py:69
+msgid "Your PDF file is encrypted with a method that I can't decrypt"
+msgstr ""
 
-#: pdf_bot/files/crypto.py:86
+#: pdf_bot/files/crypto.py:85
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Envoyez-moi le mot de passe pour crypter votre fichier PDF"
 
-#: pdf_bot/files/crypto.py:100
+#: pdf_bot/files/crypto.py:99
 msgid "Encrypting your PDF file"
 msgstr "Cryptage de votre fichier PDF"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:60
+#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Sélectionner les actions que vous souhaitez effectuer"
 
-#: pdf_bot/files/file.py:84
-msgid "Your PDF file is too big for me to download\n\n"
-"I can't perform any tasks on it"
-msgstr "Votre fichier PDF est trop volumineux pour que je puisse le télécharger\n\n"
-"Je ne peux pas effectuer de tâches dessus"
+#: pdf_bot/files/file.py:85
+msgid "Your PDF file is too big for me to download"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
@@ -518,31 +566,31 @@ msgstr "Ajout d'une couche de texte OCR à votre fichier PDF"
 msgid "Your PDF file already has a text layer"
 msgstr "Votre fichier PDF a déjà une couche de texte"
 
-#: pdf_bot/files/photo.py:46
-msgid "Your photo is too large for me to download. I can't beautify or convert your photo"
-msgstr "Votre photo est trop grande pour que je puisse la télécharger. Je ne peux pas embellir ou convertir votre photo"
+#: pdf_bot/files/photo.py:47
+msgid "Your photo is too large for me to download"
+msgstr ""
 
-#: pdf_bot/files/photo.py:101
+#: pdf_bot/files/photo.py:104
 msgid "Extracting a preview for your PDF file"
 msgstr "Extraction d'un aperçu pour votre fichier PDF"
 
-#: pdf_bot/files/photo.py:149
+#: pdf_bot/files/photo.py:152
 msgid "Select the result file format"
 msgstr "Sélectionnez le format du fichier final"
 
-#: pdf_bot/files/photo.py:161
+#: pdf_bot/files/photo.py:164
 msgid "Converting your PDF file into photos"
 msgstr "Conversion de votre fichier PDF en photos"
 
-#: pdf_bot/files/photo.py:199
+#: pdf_bot/files/photo.py:202
 msgid "Extracting all the photos in your PDF file"
 msgstr "Extraction de toutes les photos dans votre fichier PDF"
 
-#: pdf_bot/files/photo.py:219
+#: pdf_bot/files/photo.py:222
 msgid "I couldn't find any photos in your PDF file"
 msgstr "Je n'ai trouvé aucune photo dans votre fichier PDF"
 
-#: pdf_bot/files/photo.py:255
+#: pdf_bot/files/photo.py:258
 msgid "See above for all your photos"
 msgstr "Voir ci-dessus pour toutes vos photos"
 
@@ -550,17 +598,17 @@ msgstr "Voir ci-dessus pour toutes vos photos"
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Envoyez-moi le nom du fichier que vous aimeriez renommer en PDF"
 
-#: pdf_bot/files/rename.py:38
-msgid "File names can't contain any of the following characters:\n"
-"{}\n"
-"Send me another file name"
-msgstr "Les noms de fichiers ne peuvent contenir aucun des caractères suivants :\n"
-"{}\n"
-"Envoyez-moi un autre nom de fichier"
+#: pdf_bot/files/rename.py:39
+msgid "File names can't contain any of the following characters:"
+msgstr ""
 
-#: pdf_bot/files/rename.py:48
-msgid "Renaming your PDF file into <b>{}</b>"
-msgstr "Renommer votre fichier PDF en <b>{}</b>"
+#: pdf_bot/files/rename.py:41
+msgid "Please try again"
+msgstr ""
+
+#: pdf_bot/files/rename.py:49
+msgid "Renaming your PDF file into {}"
+msgstr ""
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -574,103 +622,119 @@ msgstr "Tourner votre fichier PDF dans le sens des aiguilles d'une montre de {} 
 msgid "Select the scale type that you'll like to perform"
 msgstr "Sélectionner les actions que vous souhaitez effectuer"
 
-#: pdf_bot/files/scale.py:38
-msgid "Send me the width and height\n\n"
-"<b>Example: 150 200</b> (this will set the width to 150 and height to 200)"
-msgstr "Envoyez-moi la largeur et la hauteur\n\n"
-"<b>Exemple: 150 200</b> (cela réglera la largeur à 150 et la hauteur à 200)"
+#: pdf_bot/files/scale.py:39
+msgid "Send me the width and height"
+msgstr ""
 
-#: pdf_bot/files/scale.py:49
-msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
-"<b>Example: 2 0.5</b> (this will double the horizontal axis and halve the vertical axis)"
-msgstr "Envoyez-moi les facteurs de mise à l'échelle des axes horizontaux et verticaux\n\n"
-"<b>Exemple: 2 0.5</b> (cela doublera l'axe horizontal et réduira de moitié l'axe vertical)"
+#: pdf_bot/files/scale.py:40
+msgid "Example: 150 200"
+msgstr ""
 
-#: pdf_bot/files/scale.py:73
-msgid "The scaling factors <b>{}</b> are invalid, try again"
-msgstr "Les facteurs d'échelle <b>{}</b> ne sont pas valides, réessayez"
+#: pdf_bot/files/scale.py:41
+msgid "This will set the width to 150 and height to 200"
+msgstr ""
 
-#: pdf_bot/files/scale.py:93
-msgid "The dimensions <b>{}</b> are invalid, try again"
-msgstr "Les dimensions <b>{}</b> ne sont pas valides, réessayez"
+#: pdf_bot/files/scale.py:51
+msgid "Send me the scaling factors for the horizontal and vertical axes"
+msgstr ""
 
-#: pdf_bot/files/scale.py:105
-msgid "Scaling your PDF file, horizontally by <b>{}</b> and vertically by <b>{}</b>"
-msgstr "Mise à l'échelle de votre fichier PDF, horizontalement par <b>{}</b> et verticalement par <b>{}</b>"
+#: pdf_bot/files/scale.py:54
+msgid "Example: 2 0.5"
+msgstr ""
 
-#: pdf_bot/files/scale.py:115
-msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
-msgstr "Mise à l'échelle de votre fichier PDF avec une largeur de <b>{}</b> et une hauteur de <b>{}</b>"
+#: pdf_bot/files/scale.py:55
+msgid "This will double the horizontal axis and halve the vertical axis"
+msgstr ""
 
-#: pdf_bot/files/split.py:37
+#: pdf_bot/files/scale.py:78
+msgid "The scaling factors {} are invalid, please try again"
+msgstr ""
+
+#: pdf_bot/files/scale.py:100
+msgid "The dimensions {} are invalid, please try again"
+msgstr ""
+
+#: pdf_bot/files/scale.py:114
+msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
+msgstr ""
+
+#: pdf_bot/files/scale.py:127
+msgid "Scaling your PDF file with width of {width} and height of {height}"
+msgstr ""
+
+#: pdf_bot/files/split.py:53
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Envoyez-moi la gamme de pages que vous aimerez garder"
 
-#: pdf_bot/files/split.py:38
+#: pdf_bot/files/split.py:54
 msgid "General usage"
 msgstr "Utilisation générale"
 
-#: pdf_bot/files/split.py:39
-msgid "all pages"
-msgstr "toutes les pages"
+#: pdf_bot/files/split.py:55
+msgid "{}      all pages"
+msgstr ""
 
-#: pdf_bot/files/split.py:40
-msgid "page 8 only"
-msgstr "8 page seulement"
+#: pdf_bot/files/split.py:56
+msgid "{}      page 8 only"
+msgstr ""
 
-#: pdf_bot/files/split.py:41
-msgid "first three pages"
-msgstr "les trois premières pages"
+#: pdf_bot/files/split.py:57
+msgid "{}    first three pages"
+msgstr ""
 
-#: pdf_bot/files/split.py:42
-msgid "from page 8 onward"
-msgstr "à partir de la page 8"
+#: pdf_bot/files/split.py:58
+msgid "{}     from page 8 onward"
+msgstr ""
 
-#: pdf_bot/files/split.py:43
-msgid "last page only"
-msgstr "dernière page seulement"
+#: pdf_bot/files/split.py:59
+msgid "{}     last page only"
+msgstr ""
 
-#: pdf_bot/files/split.py:44
-msgid "all pages except the last page"
-msgstr "toutes les pages sauf la dernière page"
+#: pdf_bot/files/split.py:60
+msgid "{}    all pages except the last page"
+msgstr ""
 
-#: pdf_bot/files/split.py:45
-msgid "second last page only"
-msgstr "avant-dernière page seulement"
+#: pdf_bot/files/split.py:61
+msgid "{}     second last page only"
+msgstr ""
 
-#: pdf_bot/files/split.py:46
-msgid "last two pages"
-msgstr "les deux dernières pages"
+#: pdf_bot/files/split.py:62
+msgid "{}    last two pages"
+msgstr ""
 
-#: pdf_bot/files/split.py:47
-msgid "third and second last pages"
-msgstr "troisième et avant-dernière pages"
+#: pdf_bot/files/split.py:63
+msgid "{}  third and second last pages"
+msgstr ""
 
-#: pdf_bot/files/split.py:48
+#: pdf_bot/files/split.py:64
 msgid "Advanced usage"
 msgstr "Utilisation avancée"
 
-#: pdf_bot/files/split.py:49
-msgid "pages"
-msgstr "pages"
+#: pdf_bot/files/split.py:65
+msgid "{range}    pages {results} and to the end"
+msgstr ""
 
-#: pdf_bot/files/split.py:50
-msgid "to the end"
-msgstr "jusqu’à la fin"
+#: pdf_bot/files/split.py:68
+msgid "{range} pages {results}"
+msgstr ""
 
-#: pdf_bot/files/split.py:51
-msgid "all pages in reversed order"
-msgstr "toutes les pages dans l’ordre inverse"
+#: pdf_bot/files/split.py:71
+msgid "{}   all pages in reversed order"
+msgstr ""
 
-#: pdf_bot/files/split.py:52
-msgid "except"
-msgstr "sauf"
+#: pdf_bot/files/split.py:72
+msgid "{range} pages {results} except {except_text}"
+msgstr ""
 
-#: pdf_bot/files/split.py:76
-msgid "The range is invalid. Try again"
-msgstr "La plage n'est pas valide. Réessayez"
+#: pdf_bot/files/split.py:75
+msgid "{range}  pages {results}"
+msgstr ""
 
-#: pdf_bot/files/split.py:82
+#: pdf_bot/files/split.py:99
+msgid "The range is invalid, please try again"
+msgstr ""
+
+#: pdf_bot/files/split.py:105
 msgid "Splitting your PDF file"
 msgstr "Séparation de votre fichier PDF"
 
@@ -683,8 +747,8 @@ msgid "Extracting text from your PDF file"
 msgstr "Extraction d'un aperçu pour votre fichier PDF"
 
 #: pdf_bot/files/text.py:84
-msgid "<b>See above for all the text in your PDF file</b>"
-msgstr "<b>Voir ci-dessus pour tout le texte de votre fichier PDF</b>"
+msgid "See above for all the text in your PDF file"
+msgstr ""
 
 #: pdf_bot/files/text.py:88
 msgid "I couldn't find any text in your PDF file"
@@ -901,5 +965,283 @@ msgstr "Je n'ai trouvé aucune photo dans votre fichier PDF"
 #~ msgstr ""
 
 #~ msgid "Unknown font, please select a font from the list"
+#~ msgstr ""
+
+#~ msgid "Say Thanks 😁 ($1)"
+#~ msgstr ""
+
+#~ msgid "Coffee ☕ ($3)"
+#~ msgstr ""
+
+#~ msgid "Beer 🍺 ($5)"
+#~ msgstr ""
+
+#~ msgid "Meal 🍲 ($10)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Welcome to PDF Bot!\n"
+#~ "\n"
+#~ "<b>Key features:</b>\n"
+#~ "- Compress, merge, preview, rename, "
+#~ "split and add watermark to PDF "
+#~ "files\n"
+#~ "- Create PDF files from text messages\n"
+#~ "- Extract images and text from PDF files\n"
+#~ "- Convert PDF files into images\n"
+#~ "- Convert webpages and images into PDF files\n"
+#~ "- Beautify handwritten notes images into PDF files\n"
+#~ "- <b><i>And more...</i></b>\n"
+#~ "\n"
+#~ "Type /help to see how to use PDF Bot"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can perform most of the tasks"
+#~ " by sending me one of the "
+#~ "followings:\n"
+#~ "- PDF files\n"
+#~ "- Photos\n"
+#~ "- Webpage links\n"
+#~ "\n"
+#~ "The rest of the tasks can be performed by using the commands below:\n"
+#~ "/compare - compare PDF files\n"
+#~ "/merge - merge PDF files\n"
+#~ "/photo - convert and combine multiple photos into PDF files\n"
+#~ "/text - create PDF files from text messages\n"
+#~ "/watermark - add watermark to PDF files"
+#~ msgstr ""
+
+#~ msgid "The file you sent is not a PDF file, try again"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The PDF file you sent is too large for me to download\n"
+#~ "\n"
+#~ "I've cancelled your action"
+#~ msgstr ""
+
+#~ msgid "Something went wrong, start over again"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your PDF file seems to be invalid and I couldn't open and read it\n"
+#~ "\n"
+#~ "I've cancelled your action"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your {} PDF file is encrypted and you'll have to decrypt it first\n"
+#~ "\n"
+#~ "I've cancelled your action"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your PDF file is encrypted and you'll have to decrypt it first\n"
+#~ "\n"
+#~ "I've cancelled your action"
+#~ msgstr ""
+
+#~ msgid "You've sent me these {} so far:\n"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me one of the PDF files that you'll like to compare\n"
+#~ "\n"
+#~ "Note that I can only look for differences in text"
+#~ msgstr ""
+
+#~ msgid "There are no differences in text between your PDF files"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the PDF files that you'll like to merge\n"
+#~ "\n"
+#~ "Note that the files will be merged in the order that you send me"
+#~ msgstr ""
+
+#~ msgid "The file you've sent is not a PDF file"
+#~ msgstr ""
+
+#~ msgid "The PDF file you've sent is too large for me to download"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Press <b>Done</b> if you've sent me "
+#~ "all the PDF files that you'll like"
+#~ " to merge or keep sending me "
+#~ "the PDF files"
+#~ msgstr ""
+
+#~ msgid "<b>{}</b> has been removed for merging"
+#~ msgstr ""
+
+#~ msgid "You've only sent me one PDF file."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "I can't merge your PDF files as"
+#~ " I couldn't open and read \"{}\". "
+#~ "Ensure that it is not encrypted"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the photos that you'll "
+#~ "like to beautify or convert into a"
+#~ " PDF file\n"
+#~ "\n"
+#~ "Note that the photos will be "
+#~ "beautified and converted in the order"
+#~ " that you send me"
+#~ msgstr ""
+
+#~ msgid "The file you've sent is not a photo"
+#~ msgstr ""
+
+#~ msgid "The photo you've sent is too large for me to download"
+#~ msgstr ""
+
+#~ msgid "<b>{}</b> has been removed for beautifying or converting"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the font that you'll like"
+#~ " to use for the PDF file or "
+#~ "skip to use the default font\n"
+#~ "\n"
+#~ "See here for the list of supported fonts:"
+#~ msgstr ""
+
+#~ msgid "File size reduced by <b>{:.0%}</b>, from <b>{}</b> to <b>{}</b>"
+#~ msgstr ""
+
+#~ msgid "Something went wrong, try again"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me a number between {} and"
+#~ " {}. This is the percentage of "
+#~ "margin space to retain between the "
+#~ "content in your PDF file and the"
+#~ " page"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me a number that you'll like"
+#~ " to adjust the margin size. Positive"
+#~ " numbers will decrease the margin "
+#~ "size and negative numbers will increase"
+#~ " it"
+#~ msgstr ""
+
+#~ msgid "The number must be between {} and {}, try again"
+#~ msgstr ""
+
+#~ msgid "The number is invalid, try again"
+#~ msgstr ""
+
+#~ msgid "Your PDF file seems to be invalid and I couldn't open and read it"
+#~ msgstr ""
+
+#~ msgid "The decryption password is incorrect, try to send it again"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is encrypted with a method that I cannot decrypt"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your PDF file is too big for me to download\n"
+#~ "\n"
+#~ "I can't perform any tasks on it"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your photo is too large for me "
+#~ "to download. I can't beautify or "
+#~ "convert your photo"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "File names can't contain any of the following characters:\n"
+#~ "{}\n"
+#~ "Send me another file name"
+#~ msgstr ""
+
+#~ msgid "Renaming your PDF file into <b>{}</b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the width and height\n"
+#~ "\n"
+#~ "<b>Example: 150 200</b> (this will set"
+#~ " the width to 150 and height to"
+#~ " 200)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the scaling factors for the horizontal and vertical axes\n"
+#~ "\n"
+#~ "<b>Example: 2 0.5</b> (this will double"
+#~ " the horizontal axis and halve the"
+#~ " vertical axis)"
+#~ msgstr ""
+
+#~ msgid "The scaling factors <b>{}</b> are invalid, try again"
+#~ msgstr ""
+
+#~ msgid "The dimensions <b>{}</b> are invalid, try again"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Scaling your PDF file, horizontally by"
+#~ " <b>{}</b> and vertically by <b>{}</b>"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file with width of <b>{}</b> and height of <b>{}</b>"
+#~ msgstr ""
+
+#~ msgid "all pages"
+#~ msgstr ""
+
+#~ msgid "page 8 only"
+#~ msgstr ""
+
+#~ msgid "first three pages"
+#~ msgstr ""
+
+#~ msgid "from page 8 onward"
+#~ msgstr ""
+
+#~ msgid "last page only"
+#~ msgstr ""
+
+#~ msgid "all pages except the last page"
+#~ msgstr ""
+
+#~ msgid "second last page only"
+#~ msgstr ""
+
+#~ msgid "last two pages"
+#~ msgstr ""
+
+#~ msgid "third and second last pages"
+#~ msgstr ""
+
+#~ msgid "pages"
+#~ msgstr ""
+
+#~ msgid "to the end"
+#~ msgstr ""
+
+#~ msgid "all pages in reversed order"
+#~ msgstr ""
+
+#~ msgid "except"
+#~ msgstr ""
+
+#~ msgid "The range is invalid. Try again"
+#~ msgstr ""
+
+#~ msgid "<b>See above for all the text in your PDF file</b>"
 #~ msgstr ""
 
