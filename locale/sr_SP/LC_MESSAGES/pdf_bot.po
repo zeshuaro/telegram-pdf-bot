@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 05:58+0000\n"
-"PO-Revision-Date: 2021-08-15 05:58\n"
+"POT-Creation-Date: 2021-08-15 06:08+0000\n"
+"PO-Revision-Date: 2021-08-15 06:08\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -183,17 +183,17 @@ msgstr "Укуцате {command} да бисте видели како се ко
 msgid "Set Language 🌎"
 msgstr "Постављање језичких 🌎"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:316
+#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:314
 msgid "Join Channel"
 msgstr "Придружи се каналу"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:317
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "Подршка ПДФ Боту"
 
 #: pdf_bot/dispatcher.py:150
 msgid "You can perform most of the tasks by sending me one of the followings:"
-msgstr ""
+msgstr "Већину задатака можете извршити тако што ћете ми послати једну од следећих опција:"
 
 #: pdf_bot/dispatcher.py:153
 msgid "- PDF files"
@@ -209,7 +209,7 @@ msgstr "- Линкови Веб страница"
 
 #: pdf_bot/dispatcher.py:156
 msgid "The rest of the tasks can be performed by using the following commands:"
-msgstr ""
+msgstr "Остали задаци се могу извршити помоћу следећих команди:"
 
 #: pdf_bot/dispatcher.py:160
 msgid "{command} - compare PDF files"
@@ -291,45 +291,46 @@ msgstr "Радња је отказана"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Ваш фајл није ПДФ фајл, покушајте поново"
 
+#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
 #: pdf_bot/utils.py:73
-msgid "Your PDF file is too large for me to download and process"
-msgstr "Ваш ПДФ фајл је превелик да га преузмем и обрадим"
+msgid "Your file is too large for me to download and process"
+msgstr "Ваш фајл је превелик да га преузмем и обрадим"
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:76
-#: pdf_bot/utils.py:281
+#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
 
-#: pdf_bot/utils.py:107
+#: pdf_bot/utils.py:105
 msgid "Something went wrong, please start over again"
 msgstr "Нешто је пошло наопако, молим те почни испочетка"
 
-#: pdf_bot/utils.py:195
+#: pdf_bot/utils.py:193
 msgid "Your file is invalid and I couldn't open and process it"
-msgstr ""
+msgstr "Ваш фајл је неважећи и нисам могао да га отворим и обрадим"
 
-#: pdf_bot/utils.py:201
+#: pdf_bot/utils.py:199
 msgid "Your PDF file is already encrypted"
 msgstr "Ваш ПДФ фајл је већ шифрован"
 
-#: pdf_bot/utils.py:203
+#: pdf_bot/utils.py:201
 msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Ваш {file_type} ПДФ фајл је шифрован и мораћете прво да га дешифрујете"
 
-#: pdf_bot/utils.py:208
+#: pdf_bot/utils.py:206
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Ваш ПДФ фајл је шифрован и мораћете прво да га дешифрујете"
 
-#: pdf_bot/utils.py:230
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {file_type} so far:"
 msgstr "До сада си ми послао {file_type} ових година:"
 
-#: pdf_bot/utils.py:280
+#: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "Датотека са резултатима је превелика да бих вам је послао"
 
-#: pdf_bot/utils.py:293 pdf_bot/utils.py:300
+#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
 msgid "Here is your result file"
 msgstr "Ово је твоја датотека са резултатима"
 
@@ -364,10 +365,6 @@ msgstr "Имајте на крају да ће датотеке бити обј�
 #: pdf_bot/commands/merge.py:115
 msgid "Your file is not a PDF file"
 msgstr "Ваш фајл није ПДФ фајл"
-
-#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
-msgid "Your file is too large for me to download and process"
-msgstr ""
 
 #: pdf_bot/commands/merge.py:143
 msgid "PDF files"
@@ -551,8 +548,8 @@ msgid "Select the task that you'll like to perform"
 msgstr "Изаберите задатак који ћете хтети да извршите"
 
 #: pdf_bot/files/file.py:85
-msgid "Your PDF file is too big for me to download"
-msgstr "Твој ПДФ фајл ми је превелик за преузимање"
+msgid "Your file is too big for me to download and process"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
@@ -564,7 +561,7 @@ msgstr "Ваш ПДФ фајл већ има слој текста"
 
 #: pdf_bot/files/photo.py:47
 msgid "Your photo is too large for me to download and process"
-msgstr ""
+msgstr "Твоја фотографија је превелика за скидање и обраду"
 
 #: pdf_bot/files/photo.py:104
 msgid "Extracting a preview for your PDF file"
@@ -700,11 +697,11 @@ msgstr "Напредна употреба"
 
 #: pdf_bot/files/split.py:67
 msgid "{range}    pages {pages} and to the end"
-msgstr ""
+msgstr "{range}    странице {pages} и до краја"
 
 #: pdf_bot/files/split.py:70
 msgid "{range} pages {pages}"
-msgstr ""
+msgstr "{range} странице {pages}"
 
 #: pdf_bot/files/split.py:71
 msgid "{range}   all pages in reversed order"
@@ -712,11 +709,11 @@ msgstr "{range}   све странице обрнутим редоследом"
 
 #: pdf_bot/files/split.py:72
 msgid "{range} pages {pages} except {page}"
-msgstr ""
+msgstr "{range} странице {pages} осим {page}"
 
 #: pdf_bot/files/split.py:75
 msgid "{range}  pages {pages}"
-msgstr ""
+msgstr "{range}  странице {pages}"
 
 #: pdf_bot/files/split.py:99
 msgid "The range is invalid, please try again"
@@ -1360,5 +1357,11 @@ msgstr "Нисам могао да нађем никакав текст у тв�
 #~ msgstr ""
 
 #~ msgid "{range}  pages {results}"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too big for me to download"
 #~ msgstr ""
 

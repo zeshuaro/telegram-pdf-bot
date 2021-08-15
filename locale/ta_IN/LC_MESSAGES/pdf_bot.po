@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 05:58+0000\n"
-"PO-Revision-Date: 2021-08-15 05:58\n"
+"POT-Creation-Date: 2021-08-15 06:08+0000\n"
+"PO-Revision-Date: 2021-08-15 06:08\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -183,17 +183,17 @@ msgstr "PTM போட் ஐ எவ்வாறு பயன்படுத்�
 msgid "Set Language 🌎"
 msgstr "மொழி 🌎 அமை"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:316
+#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:314
 msgid "Join Channel"
 msgstr "சேனலில் சேரவும்"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:317
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:69 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "PTM போட் ஆதரவு"
 
 #: pdf_bot/dispatcher.py:150
 msgid "You can perform most of the tasks by sending me one of the followings:"
-msgstr ""
+msgstr "பின்வருவனவற்றில் ஒன்றை எனக்கு அனுப்புவதன் மூலம் பெரும்பாலான பணிகளை நீங்கள் செய்யலாம்:"
 
 #: pdf_bot/dispatcher.py:153
 msgid "- PDF files"
@@ -209,7 +209,7 @@ msgstr "- வலைப்பக்க இணைப்புகள்"
 
 #: pdf_bot/dispatcher.py:156
 msgid "The rest of the tasks can be performed by using the following commands:"
-msgstr ""
+msgstr "மீதமுள்ள பணிகளை பின்வரும் கட்டளைகளைப் பயன்படுத்தி செய்ய முடியும்:"
 
 #: pdf_bot/dispatcher.py:160
 msgid "{command} - compare PDF files"
@@ -291,45 +291,46 @@ msgstr "நடவடிக்கை ரத்து"
 msgid "Your file is not a PDF file, please try again"
 msgstr "உங்கள் கோப்பு PPM கோப்பு அல்ல, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
+#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
 #: pdf_bot/utils.py:73
-msgid "Your PDF file is too large for me to download and process"
-msgstr "உங்கள் PPM கோப்பு எனக்கு பதிவிறக்க மற்றும் செயலாக்க மிகவும் பெரியது"
+msgid "Your file is too large for me to download and process"
+msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:76
-#: pdf_bot/utils.py:281
+#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
 
-#: pdf_bot/utils.py:107
+#: pdf_bot/utils.py:105
 msgid "Something went wrong, please start over again"
 msgstr "ஏதோ தவறு நடந்தது, தயவுசெய்து மீண்டும் தொடங்குங்கள்"
 
-#: pdf_bot/utils.py:195
+#: pdf_bot/utils.py:193
 msgid "Your file is invalid and I couldn't open and process it"
-msgstr ""
+msgstr "உங்கள் கோப்பு செல்லுபடியாகாது, அதை என்னால் திறந்து செயலாக்க முடியவில்லை"
 
-#: pdf_bot/utils.py:201
+#: pdf_bot/utils.py:199
 msgid "Your PDF file is already encrypted"
 msgstr "உங்கள் PPM கோப்பு ஏற்கனவே குறியாக்கம் செய்யப்பட்டுள்ளது"
 
-#: pdf_bot/utils.py:203
+#: pdf_bot/utils.py:201
 msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
 msgstr "உங்கள் {file_type} PPM கோப்பு குறியாக்கம் செய்யப்பட்டு, முதலில் அதை மறைகுறிநீக்க வேண்டும்"
 
-#: pdf_bot/utils.py:208
+#: pdf_bot/utils.py:206
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "உங்கள் PPM கோப்பு குறியாக்கம் செய்யப்பட்டது மற்றும் நீங்கள் முதலில் அதை மறைகுறிநீக்க வேண்டும்"
 
-#: pdf_bot/utils.py:230
+#: pdf_bot/utils.py:228
 msgid "You've sent me these {file_type} so far:"
 msgstr "நீங்கள் இதுவரை இந்த {file_type} எனக்கு அனுப்பியுள்ளீர்கள்:"
 
-#: pdf_bot/utils.py:280
+#: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "முடிவு கோப்பு எனக்கு உங்களுக்கு அனுப்ப மிகவும் பெரியது"
 
-#: pdf_bot/utils.py:293 pdf_bot/utils.py:300
+#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
 msgid "Here is your result file"
 msgstr "இங்கே உங்கள் விளைவாக கோப்பு உள்ளது"
 
@@ -364,10 +365,6 @@ msgstr "நீங்கள் எனக்கு அனுப்பும் வ
 #: pdf_bot/commands/merge.py:115
 msgid "Your file is not a PDF file"
 msgstr "உங்கள் கோப்பு PPM கோப்பு அல்ல"
-
-#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
-msgid "Your file is too large for me to download and process"
-msgstr ""
 
 #: pdf_bot/commands/merge.py:143
 msgid "PDF files"
@@ -551,8 +548,8 @@ msgid "Select the task that you'll like to perform"
 msgstr "நீங்கள் செய்ய விரும்பும் பணியைத் தேர்ந்தெடுக்கவும்"
 
 #: pdf_bot/files/file.py:85
-msgid "Your PDF file is too big for me to download"
-msgstr "உங்கள் PPM கோப்பு எனக்கு பதிவிறக்க மிகவும் பெரியது"
+msgid "Your file is too big for me to download and process"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
@@ -564,7 +561,7 @@ msgstr "உங்கள் PPM கோப்பு ஏற்கனவே உர�
 
 #: pdf_bot/files/photo.py:47
 msgid "Your photo is too large for me to download and process"
-msgstr ""
+msgstr "உங்கள் புகைப்படம் பதிவிறக்க மற்றும் செயலாக்க எனக்கு மிகவும் பெரியது"
 
 #: pdf_bot/files/photo.py:104
 msgid "Extracting a preview for your PDF file"
@@ -700,11 +697,11 @@ msgstr "மேம்பட்ட பயன்பாடு"
 
 #: pdf_bot/files/split.py:67
 msgid "{range}    pages {pages} and to the end"
-msgstr ""
+msgstr "{range}    பக்கங்கள் {pages} மற்றும் இறுதி வரை"
 
 #: pdf_bot/files/split.py:70
 msgid "{range} pages {pages}"
-msgstr ""
+msgstr "{range} பக்கங்கள் {pages}"
 
 #: pdf_bot/files/split.py:71
 msgid "{range}   all pages in reversed order"
@@ -712,11 +709,11 @@ msgstr "{range}   அனைத்து பக்கங்களையும் 
 
 #: pdf_bot/files/split.py:72
 msgid "{range} pages {pages} except {page}"
-msgstr ""
+msgstr "{page}தவிர {range} பக்கங்கள் {pages}"
 
 #: pdf_bot/files/split.py:75
 msgid "{range}  pages {pages}"
-msgstr ""
+msgstr "{range}  பக்கங்கள் {pages}"
 
 #: pdf_bot/files/split.py:99
 msgid "The range is invalid, please try again"
@@ -1360,5 +1357,11 @@ msgstr "உங்கள் PPM கோப்பில் எந்த உரை�
 #~ msgstr ""
 
 #~ msgid "{range}  pages {results}"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too big for me to download"
 #~ msgstr ""
 
