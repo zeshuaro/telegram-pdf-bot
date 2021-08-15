@@ -64,18 +64,16 @@ def ask_split_range(update: Update, context: CallbackContext) -> int:
         last_two=_("{range}    last two pages").format(range="-2:"),
         third_second=_("{range}  third and second last pages").format(range="-3:-1"),
         advanced=_("Advanced usage"),
-        pages_to_end=_("{range}    pages {results} and to the end").format(
-            range="::2", results="0 2 4 ..."
+        pages_to_end=_("{range}    pages {pages} and to the end").format(
+            range="::2", pages="0 2 4 ..."
         ),
-        odd_pages=_("{range} pages {results}").format(
-            range="1:10:2", results="1 3 5 7 9"
-        ),
+        odd_pages=_("{range} pages {pages}").format(range="1:10:2", pages="1 3 5 7 9"),
         all_reversed=_("{range}   all pages in reversed order").format(range="::-1"),
-        pages_except=_("{range} pages {results} except {except_text}").format(
-            range="3:0:-1", results="3 2 1", except_text="0"
+        pages_except=_("{range} pages {pages} except {page}").format(
+            range="3:0:-1", pages="3 2 1", page="0"
         ),
-        pages_reverse_from=_("{range}  pages {results}").format(
-            range="2::-1", results="2 1 0"
+        pages_reverse_from=_("{range}  pages {pages}").format(
+            range="2::-1", pages="2 1 0"
         ),
     )
     update.effective_message.reply_text(

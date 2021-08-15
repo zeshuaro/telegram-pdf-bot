@@ -192,7 +192,7 @@ def open_pdf(update, context, file_id, file_name, file_type=None):
         pdf_reader = PdfFileReader(open(file_name, "rb"))
     except PdfReadError:
         update.effective_message.reply_text(
-            _("Your PDF file seems to be invalid and I couldn't open and process it")
+            _("Your file is invalid and I couldn't open and process it")
         )
 
     if pdf_reader is not None and pdf_reader.isEncrypted:

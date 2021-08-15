@@ -116,7 +116,7 @@ def process_invalid_pdf(
     else:
         text = (
             "{desc_1}\n\n{desc_2}".format(
-                desc_1=_("Your PDF file is too large for me to download"),
+                desc_1=_("Your file is too large for me to download and process"),
                 desc_2=_(
                     "Note that this is a Telegram Bot limitation and there's "
                     "nothing I can do unless Telegram changes this limit"
