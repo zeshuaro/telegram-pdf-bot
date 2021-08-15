@@ -196,8 +196,8 @@ def remove_photo(update: Update, context: CallbackContext) -> int:
     file_name = file_names.pop()
 
     update.effective_message.reply_text(
-        _("{} has been removed for beautifying or converting").format(
-            "<b>{}</b>".format(file_name)
+        _("{file_name} has been removed for beautifying or converting").format(
+            file_name=f"<b>{file_name}</b>"
         ),
         parse_mode=ParseMode.HTML,
     )

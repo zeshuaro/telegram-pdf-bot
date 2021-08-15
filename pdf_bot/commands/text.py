@@ -81,10 +81,10 @@ def ask_font(update: Update, context: CallbackContext):
         "{desc_1}\n\n{desc_2}".format(
             desc_1=_(
                 "Send me the font that you'll like to use for the PDF file "
-                "or press {} to use the default font"
-            ).format(_(SKIP)),
-            desc_2=_("See here for the list of supported fonts: {}").format(
-                '<a href="https://fonts.google.com/">Google Fonts</a>'
+                "or press {skip} to use the default font"
+            ).format(skip=_(SKIP)),
+            desc_2=_("See here for the list of supported fonts: {fonts}").format(
+                fonts='<a href="https://fonts.google.com/">Google Fonts</a>'
             ),
         ),
         parse_mode=ParseMode.HTML,
@@ -151,7 +151,7 @@ def text_to_pdf(
         _("Creating your PDF file"), reply_markup=ReplyKeyboardRemove()
     )
 
-    html = HTML(string="<p>{}</p>".format(text.replace("\n", "<br/>")))
+    html = HTML(string=f"<p>{text.replace('\n', '<br/>')}</p>")
     font_config = FontConfiguration()
     stylesheets: List[CSS] = None
 

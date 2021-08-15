@@ -44,9 +44,11 @@ def rename_pdf(update, context):
 
         return WAIT_FILE_NAME
 
-    new_fn = "{}.pdf".format(text)
+    new_fn = f"{text}.pdf"
     message.reply_text(
-        _("Renaming your PDF file into {}").format("<b>{}</b>".format(new_fn)),
+        _("Renaming your PDF file into {file_name}").format(
+            file_name=f"<b>{new_fn}</b>"
+        ),
         parse_mode=ParseMode.HTML,
         reply_markup=ReplyKeyboardRemove(),
     )

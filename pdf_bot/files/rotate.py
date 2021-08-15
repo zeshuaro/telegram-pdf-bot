@@ -45,7 +45,7 @@ def rotate_pdf(update, context):
     _ = set_lang(update, context)
     degree = int(update.effective_message.text)
     update.effective_message.reply_text(
-        _("Rotating your PDF file clockwise by {} degrees").format(degree),
+        _("Rotating your PDF file clockwise by {degree} degrees").format(degree=degree),
         reply_markup=ReplyKeyboardRemove(),
     )
     process_pdf(update, context, "rotated", rotate_degree=degree)

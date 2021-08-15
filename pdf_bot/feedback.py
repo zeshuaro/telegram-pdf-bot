@@ -79,9 +79,7 @@ def receive_feedback(update: Update, context: CallbackContext) -> int:
         message.reply_text(_("The feedback is not in English, try again"))
         return 0
 
-    text = "Feedback received from @{} ({}):\n\n{}".format(
-        tele_username, tele_id, feedback_msg
-    )
+    text = f"Feedback received from @{tele_username} ({tele_id}):\n\n{feedback_msg}"
     success = False
 
     if SLACK_TOKEN is not None:
