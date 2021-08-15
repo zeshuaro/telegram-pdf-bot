@@ -126,6 +126,9 @@ LANGUAGES = {
     "🇺🇿 Oʻzbekcha": "uz_UZ",
     "🇲🇾 Bahasa Melayu": "ms_MY",
     "🇮🇳 தமிழ்": "ta_IN",
+    "🇪🇹 አማርኛ": "am_ET",
+    "🇰🇬 Кыргызча": "ky_KG",
+    "🇺🇿 Oʻzbekcha": "uz_UZ",
 }
 
 LANGS_SHORT = {x.split("_")[0]: x for x in LANGUAGES.values()}
