@@ -189,7 +189,7 @@ def process_callback_query(update: Update, context: CallbackContext):
             store_lang(update, context, query)
         if data == PAYMENT:
             send_support_options(update, context, query)
-        elif data in [THANKS, COFFEE, BEER, MEAL]:
+        elif data.startswith("payment,"):
             send_payment_invoice(update, context, query)
 
         context.user_data[CALLBACK_DATA].remove(data)
