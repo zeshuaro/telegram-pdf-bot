@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 03:22+0000\n"
-"PO-Revision-Date: 2021-08-15 03:23\n"
+"POT-Creation-Date: 2021-08-15 05:58+0000\n"
+"PO-Revision-Date: 2021-08-15 05:58\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -177,7 +177,7 @@ msgstr "- மேலும்..."
 
 #: pdf_bot/dispatcher.py:126
 msgid "Type {command} to see how to use PDF Bot"
-msgstr ""
+msgstr "PTM போட் ஐ எவ்வாறு பயன்படுத்துவது என்பதைப் பார்க்க {command} தட்டச்சு செய்யவும்"
 
 #: pdf_bot/dispatcher.py:138
 msgid "Set Language 🌎"
@@ -192,8 +192,8 @@ msgid "Support PDF Bot"
 msgstr "PTM போட் ஆதரவு"
 
 #: pdf_bot/dispatcher.py:150
-msgid "You can perform most of the tasks by sending me one of the followings"
-msgstr "பின்வருவனவற்றில் ஒன்றை எனக்கு அனுப்புவதன் மூலம் பெரும்பாலான பணிகளை நீங்கள் செய்யலாம்"
+msgid "You can perform most of the tasks by sending me one of the followings:"
+msgstr ""
 
 #: pdf_bot/dispatcher.py:153
 msgid "- PDF files"
@@ -208,28 +208,28 @@ msgid "- Webpage links"
 msgstr "- வலைப்பக்க இணைப்புகள்"
 
 #: pdf_bot/dispatcher.py:156
-msgid "The rest of the tasks can be performed by using the following commands"
-msgstr "மீதமுள்ள பணிகளை பின்வரும் கட்டளைகளைப் பயன்படுத்தி செய்ய முடியும்"
-
-#: pdf_bot/dispatcher.py:159
-msgid "{command} - compare PDF files"
+msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr ""
 
 #: pdf_bot/dispatcher.py:160
-msgid "{command} - merge PDF files"
-msgstr ""
+msgid "{command} - compare PDF files"
+msgstr "{command} - PTM கோப்புகளை ஒப்பிடு"
 
 #: pdf_bot/dispatcher.py:161
+msgid "{command} - merge PDF files"
+msgstr "{command} - PTM கோப்புகளை ஒன்றிணைக்கவும்"
+
+#: pdf_bot/dispatcher.py:162
 msgid "{command} - convert and combine multiple photos into PDF files"
-msgstr ""
+msgstr "{command} - PTM கோப்புகளில் பல புகைப்படங்களை மாற்றி இணைக்கவும்"
 
-#: pdf_bot/dispatcher.py:164
+#: pdf_bot/dispatcher.py:165
 msgid "{command} - create PDF files from text messages"
-msgstr ""
+msgstr "{command} - உரை செய்திகளில் இருந்து PPM கோப்புகளை உருவாக்கவும்"
 
-#: pdf_bot/dispatcher.py:167
+#: pdf_bot/dispatcher.py:168
 msgid "{command} - add watermark to PDF files"
-msgstr ""
+msgstr "{command} - PTM கோப்புகளில் வாட்டர்மார்க் சேர்க்கவும்"
 
 #: pdf_bot/feedback.py:46
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
@@ -249,7 +249,7 @@ msgstr "உங்கள் மொழியைத் தேர்ந்தெட�
 
 #: pdf_bot/language.py:66
 msgid "Your language has been set to {language}"
-msgstr ""
+msgstr "உங்கள் மொழி {language}"
 
 #: pdf_bot/payment.py:39
 msgid "Help translate PDF Bot"
@@ -306,8 +306,8 @@ msgid "Something went wrong, please start over again"
 msgstr "ஏதோ தவறு நடந்தது, தயவுசெய்து மீண்டும் தொடங்குங்கள்"
 
 #: pdf_bot/utils.py:195
-msgid "Your PDF file seems to be invalid and I couldn't open and process it"
-msgstr "உங்கள் PPM கோப்பு செல்லுபடியாகாது என்று தெரிகிறது, அதை என்னால் திறந்து செயலாக்க முடியவில்லை"
+msgid "Your file is invalid and I couldn't open and process it"
+msgstr ""
 
 #: pdf_bot/utils.py:201
 msgid "Your PDF file is already encrypted"
@@ -315,7 +315,7 @@ msgstr "உங்கள் PPM கோப்பு ஏற்கனவே கு�
 
 #: pdf_bot/utils.py:203
 msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
-msgstr ""
+msgstr "உங்கள் {file_type} PPM கோப்பு குறியாக்கம் செய்யப்பட்டு, முதலில் அதை மறைகுறிநீக்க வேண்டும்"
 
 #: pdf_bot/utils.py:208
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
@@ -323,7 +323,7 @@ msgstr "உங்கள் PPM கோப்பு குறியாக்கம
 
 #: pdf_bot/utils.py:230
 msgid "You've sent me these {file_type} so far:"
-msgstr ""
+msgstr "நீங்கள் இதுவரை இந்த {file_type} எனக்கு அனுப்பியுள்ளீர்கள்:"
 
 #: pdf_bot/utils.py:280
 msgid "The result file is too large for me to send to you"
@@ -365,9 +365,9 @@ msgstr "நீங்கள் எனக்கு அனுப்பும் வ
 msgid "Your file is not a PDF file"
 msgstr "உங்கள் கோப்பு PPM கோப்பு அல்ல"
 
-#: pdf_bot/commands/merge.py:119
-msgid "Your PDF file is too large for me to download"
-msgstr "உங்கள் PPM கோப்பு எனக்கு பதிவிறக்க மிகவும் பெரியது"
+#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
+msgid "Your file is too large for me to download and process"
+msgstr ""
 
 #: pdf_bot/commands/merge.py:143
 msgid "PDF files"
@@ -375,11 +375,11 @@ msgstr "PTM கோப்புகள்"
 
 #: pdf_bot/commands/merge.py:150
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr ""
+msgstr "நீங்கள் இணைக்க விரும்பும் அல்லது PTM கோப்புகளை எனக்கு அனுப்ப விரும்பும் அனைத்து PPM கோப்புகளைஎனக்கு அனுப்பியிருந்தால் {done} அழுத்தவும்"
 
 #: pdf_bot/commands/merge.py:191
 msgid "{file_name} has been removed for merging"
-msgstr ""
+msgstr "{file_name} இணைப்பதற்கு அகற்றப்பட்டுள்ளது"
 
 #: pdf_bot/commands/merge.py:213
 msgid "You haven't sent me any PDF files"
@@ -395,7 +395,7 @@ msgstr "உங்கள் PPM கோப்புகளை இணைத்தல
 
 #: pdf_bot/commands/merge.py:251
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr ""
+msgstr "இந்தக் கோப்பு செல்லுபடியாகாது என்பதால் உங்கள் PPM கோப்புகளை என்னால் இணைக்க முடியவில்லை: {file_name}"
 
 #: pdf_bot/commands/photo.py:77
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file"
@@ -413,10 +413,6 @@ msgstr "கோப்பு பெயர் கிடைக்கவில்ல�
 msgid "Your file is not a photo"
 msgstr "உங்கள் கோப்பு ஒரு புகைப்படம் அல்ல"
 
-#: pdf_bot/commands/photo.py:135
-msgid "Your file is too large for me to download"
-msgstr "உங்கள் கோப்பு எனக்கு பதிவிறக்க மிகவும் பெரியது"
-
 #: pdf_bot/commands/photo.py:148
 msgid "photos"
 msgstr "புகைப்படங்கள்"
@@ -427,7 +423,7 @@ msgstr "நீங்கள் எனக்கு அனைத்து புக
 
 #: pdf_bot/commands/photo.py:199
 msgid "{file_name} has been removed for beautifying or converting"
-msgstr ""
+msgstr "{file_name} அழகுபடுத்துவதற்காக அல்லது மாற்றுவதற்காக அகற்றப்பட்டுள்ளது"
 
 #: pdf_bot/commands/photo.py:236
 msgid "Beautifying and converting your photos"
@@ -443,11 +439,11 @@ msgstr "உங்கள் PTM கோப்பில் எழுத விர�
 
 #: pdf_bot/commands/text.py:82
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
-msgstr ""
+msgstr "PTM கோப்பிற்கு நீங்கள் பயன்படுத்த விரும்பும் எழுத்துருவை எனக்கு அனுப்பவும் அல்லது இயல்புநிலை எழுத்துருவை பயன்படுத்த {skip} அழுத்தவும்"
 
 #: pdf_bot/commands/text.py:86
 msgid "See here for the list of supported fonts: {fonts}"
-msgstr ""
+msgstr "ஆதரிக்கப்படும் எழுத்துருக்களின் பட்டியலுக்கு இங்கே பார்க்கவும்: {fonts}"
 
 #: pdf_bot/commands/text.py:119
 msgid "Unknown font, please try again"
@@ -567,8 +563,8 @@ msgid "Your PDF file already has a text layer"
 msgstr "உங்கள் PPM கோப்பு ஏற்கனவே உரை அடுக்கு உள்ளது"
 
 #: pdf_bot/files/photo.py:47
-msgid "Your photo is too large for me to download"
-msgstr "உங்கள் புகைப்படம் எனக்கு பதிவிறக்க மிகவும் பெரியது"
+msgid "Your photo is too large for me to download and process"
+msgstr ""
 
 #: pdf_bot/files/photo.py:104
 msgid "Extracting a preview for your PDF file"
@@ -608,7 +604,7 @@ msgstr "தயவுசெய்து மீண்டும் முயற்�
 
 #: pdf_bot/files/rename.py:49
 msgid "Renaming your PDF file into {file_name}"
-msgstr ""
+msgstr "உங்கள் PTM கோப்பை {file_name}"
 
 #: pdf_bot/files/rotate.py:24
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -616,7 +612,7 @@ msgstr "உங்கள் PP1 கோப்பை கடிகாரதிசை
 
 #: pdf_bot/files/rotate.py:48
 msgid "Rotating your PDF file clockwise by {degree} degrees"
-msgstr ""
+msgstr "உங்கள் PPM கோப்பை கடிகாரதிசையில் சுழற்றுவது {degree} டிகிரி"
 
 #: pdf_bot/files/scale.py:24
 msgid "Select the scale type that you'll like to perform"
@@ -640,11 +636,11 @@ msgstr "இது கிடைமட்ட அச்சை இரட்டிப
 
 #: pdf_bot/files/scale.py:78
 msgid "The scaling factors {values} are invalid, please try again"
-msgstr ""
+msgstr "{values} அளவிடும் காரணிகள் செல்லுபடியாகாது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
 #: pdf_bot/files/scale.py:100
 msgid "The dimensions {values} are invalid, please try again"
-msgstr ""
+msgstr "{values} பரிமாணங்கள் செல்லுபடியாகாது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
 #: pdf_bot/files/scale.py:114
 msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
@@ -664,69 +660,69 @@ msgstr "பொதுவான பயன்பாடு"
 
 #: pdf_bot/files/split.py:55
 msgid "{range}      all pages"
-msgstr ""
+msgstr "{range}      அனைத்து பக்கங்களிலும்"
 
 #: pdf_bot/files/split.py:56
 msgid "{range}      page 8 only"
-msgstr ""
+msgstr "{range}      பக்கம் 8 மட்டும்"
 
 #: pdf_bot/files/split.py:57
 msgid "{range}    first three pages"
-msgstr ""
+msgstr "{range}    முதல் மூன்று பக்கங்கள்"
 
 #: pdf_bot/files/split.py:58
 msgid "{range}     from page 8 onward"
-msgstr ""
+msgstr "{range}     பக்கம் 8 முதல்"
 
 #: pdf_bot/files/split.py:59
 msgid "{range}     last page only"
-msgstr ""
+msgstr "{range}     கடைசி பக்கம் மட்டும்"
 
 #: pdf_bot/files/split.py:60
 msgid "{range}    all pages except the last page"
-msgstr ""
+msgstr "கடைசி பக்கத்தைத் தவிர மற்ற அனைத்து பக்கங்களையும் {range}"
 
 #: pdf_bot/files/split.py:63
 msgid "{range}     second last page only"
-msgstr ""
+msgstr "{range}     இரண்டாவது கடைசி பக்கம் மட்டும்"
 
 #: pdf_bot/files/split.py:64
 msgid "{range}    last two pages"
-msgstr ""
+msgstr "கடைசி இரண்டு பக்கங்களை {range}"
 
 #: pdf_bot/files/split.py:65
 msgid "{range}  third and second last pages"
-msgstr ""
+msgstr "{range}  மூன்றாவது மற்றும் இரண்டாவது கடைசி பக்கங்கள்"
 
 #: pdf_bot/files/split.py:66
 msgid "Advanced usage"
 msgstr "மேம்பட்ட பயன்பாடு"
 
 #: pdf_bot/files/split.py:67
-msgid "{range}    pages {results} and to the end"
-msgstr "{range}    பக்கங்கள் {results} மற்றும் இறுதி வரை"
-
-#: pdf_bot/files/split.py:70
-msgid "{range} pages {results}"
-msgstr "{range} பக்கங்கள் {results}"
-
-#: pdf_bot/files/split.py:73
-msgid "{range}   all pages in reversed order"
+msgid "{range}    pages {pages} and to the end"
 msgstr ""
 
-#: pdf_bot/files/split.py:74
-msgid "{range} pages {results} except {except_text}"
-msgstr "{except_text}தவிர {range} பக்கங்கள் {results}"
+#: pdf_bot/files/split.py:70
+msgid "{range} pages {pages}"
+msgstr ""
 
-#: pdf_bot/files/split.py:77
-msgid "{range}  pages {results}"
-msgstr "{range}  பக்கங்கள் {results}"
+#: pdf_bot/files/split.py:71
+msgid "{range}   all pages in reversed order"
+msgstr "{range}   அனைத்து பக்கங்களையும் தலைகீழ் வரிசையில்"
 
-#: pdf_bot/files/split.py:101
+#: pdf_bot/files/split.py:72
+msgid "{range} pages {pages} except {page}"
+msgstr ""
+
+#: pdf_bot/files/split.py:75
+msgid "{range}  pages {pages}"
+msgstr ""
+
+#: pdf_bot/files/split.py:99
 msgid "The range is invalid, please try again"
 msgstr "வரம்பு செல்லுபடியாகாது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/files/split.py:107
+#: pdf_bot/files/split.py:105
 msgid "Splitting your PDF file"
 msgstr "உங்கள் PPM கோப்பை ப்பிரிக்கிறது"
 
@@ -1334,5 +1330,35 @@ msgstr "உங்கள் PPM கோப்பில் எந்த உரை�
 #~ msgstr ""
 
 #~ msgid "See above for all the text in your PDF file"
+#~ msgstr ""
+
+#~ msgid "You can perform most of the tasks by sending me one of the followings"
+#~ msgstr ""
+
+#~ msgid "The rest of the tasks can be performed by using the following commands"
+#~ msgstr ""
+
+#~ msgid "Your PDF file seems to be invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is too large for me to download"
+#~ msgstr ""
+
+#~ msgid "Your file is too large for me to download"
+#~ msgstr ""
+
+#~ msgid "Your photo is too large for me to download"
+#~ msgstr ""
+
+#~ msgid "{range}    pages {results} and to the end"
+#~ msgstr ""
+
+#~ msgid "{range} pages {results}"
+#~ msgstr ""
+
+#~ msgid "{range} pages {results} except {except_text}"
+#~ msgstr ""
+
+#~ msgid "{range}  pages {results}"
 #~ msgstr ""
 
