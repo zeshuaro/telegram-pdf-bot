@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 10:57+0000\n"
-"PO-Revision-Date: 2021-08-15 10:57\n"
+"POT-Creation-Date: 2021-08-22 12:17+0000\n"
+"PO-Revision-Date: 2021-08-22 12:17\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -23,123 +23,123 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/constants.py:38
+#: pdf_bot/consts.py:38
 msgid "Cancel"
 msgstr "रद्द"
 
-#: pdf_bot/constants.py:39
+#: pdf_bot/consts.py:39
 msgid "Done"
 msgstr "पूर्ण"
 
-#: pdf_bot/constants.py:40
+#: pdf_bot/consts.py:40
 msgid "Back"
 msgstr "वापस"
 
-#: pdf_bot/constants.py:41
+#: pdf_bot/consts.py:41
 msgid "By Percentage"
 msgstr "प्रतिशत के आधार पर"
 
-#: pdf_bot/constants.py:42
+#: pdf_bot/consts.py:42
 msgid "By Margin Size"
 msgstr "मार्जिन के आकार से"
 
-#: pdf_bot/constants.py:43
+#: pdf_bot/consts.py:43
 msgid "Preview"
 msgstr "पूर्वावलोकन"
 
-#: pdf_bot/constants.py:44
+#: pdf_bot/consts.py:44
 msgid "Decrypt"
 msgstr "डिक्रिप्ट"
 
-#: pdf_bot/constants.py:45
+#: pdf_bot/consts.py:45
 msgid "Encrypt"
 msgstr "एन्क्रिप्ट"
 
-#: pdf_bot/constants.py:46
+#: pdf_bot/consts.py:46
 msgid "Extract Photos"
 msgstr "चित्र निकालें"
 
-#: pdf_bot/constants.py:47
+#: pdf_bot/consts.py:47
 msgid "To Photos"
 msgstr "चित्र में"
 
-#: pdf_bot/constants.py:48
+#: pdf_bot/consts.py:48
 msgid "Rotate"
 msgstr "घुमाएँ"
 
-#: pdf_bot/constants.py:49
+#: pdf_bot/consts.py:49
 msgid "Scale"
 msgstr "परिमाण"
 
-#: pdf_bot/constants.py:50
+#: pdf_bot/consts.py:50
 msgid "Split"
 msgstr "विभाजिन"
 
-#: pdf_bot/constants.py:51
+#: pdf_bot/consts.py:51
 msgid "Beautify"
 msgstr "सुशोभित"
 
-#: pdf_bot/constants.py:52
+#: pdf_bot/consts.py:52
 msgid "To PDF"
 msgstr "पीडीएफ में"
 
-#: pdf_bot/constants.py:53
+#: pdf_bot/consts.py:53
 msgid "Rename"
 msgstr "नाम बदलें"
 
-#: pdf_bot/constants.py:54
+#: pdf_bot/consts.py:54
 msgid "Crop"
 msgstr "क्रॉप"
 
-#: pdf_bot/constants.py:55
+#: pdf_bot/consts.py:55
 msgid "Compressed"
 msgstr "संपीड़ित"
 
-#: pdf_bot/constants.py:56
+#: pdf_bot/consts.py:56
 msgid "Photos"
 msgstr "चित्र"
 
-#: pdf_bot/constants.py:57
+#: pdf_bot/consts.py:57
 msgid "Remove Last File"
 msgstr "अंतिम फाइल हटाएँ"
 
-#: pdf_bot/constants.py:58
+#: pdf_bot/consts.py:58
 msgid "To Dimensions"
 msgstr "आयामों के लिए"
 
-#: pdf_bot/constants.py:59
+#: pdf_bot/consts.py:59
 msgid "Extract Text"
 msgstr "टेक्स्ट निकालें"
 
-#: pdf_bot/constants.py:60
+#: pdf_bot/consts.py:60
 msgid "Text Message"
 msgstr "टेक्स्ट मैसेज"
 
-#: pdf_bot/constants.py:61
+#: pdf_bot/consts.py:61
 msgid "Text File"
 msgstr "टेक्स्ट फाइल"
 
-#: pdf_bot/constants.py:63
+#: pdf_bot/consts.py:63
 msgid "Compress"
 msgstr "संपीड़ित"
 
-#: pdf_bot/constants.py:78
+#: pdf_bot/consts.py:78
 msgid "Say Thanks"
 msgstr "धन्यवाद कहो"
 
-#: pdf_bot/constants.py:79
+#: pdf_bot/consts.py:79
 msgid "Coffee"
 msgstr "कॉफ़ी"
 
-#: pdf_bot/constants.py:80
+#: pdf_bot/consts.py:80
 msgid "Beer"
 msgstr "बियर"
 
-#: pdf_bot/constants.py:81
+#: pdf_bot/consts.py:81
 msgid "Meal"
 msgstr "भोजन"
 
-#: pdf_bot/constants.py:82
+#: pdf_bot/consts.py:82
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -191,7 +191,7 @@ msgstr "भाषा चुने 🌎"
 msgid "Join Channel"
 msgstr "चैनल से जुड़े"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "पीडीएफ बॉट का सहयोग करे"
 
@@ -255,23 +255,23 @@ msgstr "अपनी भाषा चुनें"
 msgid "Your language has been set to {language}"
 msgstr "आपकी भाषा को {language}के लिए सेट किया गया है"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:58
 msgid "Help translate PDF Bot"
 msgstr "पीडीएफ बॉट का अनुवाद करने में मदद करें"
 
-#: pdf_bot/payment.py:63
+#: pdf_bot/payment.py:70
 msgid "Select how you want to support PDF Bot"
 msgstr "आप पीडीएफ बॉट का समर्थन कैसे करना चाहते हैं"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:86
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "पीडीएफ बॉट के लिए धन्यवाद कहें और इसे चालू रखने में मदद करें"
 
-#: pdf_bot/payment.py:100
+#: pdf_bot/payment.py:107
 msgid "Something went wrong"
 msgstr "कुछ गलत हो गया"
 
-#: pdf_bot/payment.py:108
+#: pdf_bot/payment.py:115
 msgid "Thank you for your support!"
 msgstr "आपके समर्थन के लिए धन्यवाद!"
 
@@ -301,7 +301,7 @@ msgid "Your file is too large for me to download and process"
 msgstr "आपकी फ़ाइल डाउनलोड करने और प्रक्रिया करने के लिए मेरे लिए बहुत बड़ी है"
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/files/file.py:129 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ध्यान दें कि यह एक टेलीग्राम बॉट सीमा है और मैं ऐसा कुछ नहीं कर सकता जब तक कि टेलीग्राम इस सीमा को नहीं बदलता"
@@ -346,15 +346,15 @@ msgstr "मुझे उन पीडीएफ फाइलों में स�
 msgid "Note that I can only look for text differences"
 msgstr "ध्यान दें कि मैं केवल पाठ मतभेदों की तलाश कर सकता हूं"
 
-#: pdf_bot/commands/compare.py:79
+#: pdf_bot/commands/compare.py:81
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "मुझे अन्य पीडीएफ फ़ाइल भेजें जिसकी आप तुलना करना चाहते हैं"
 
-#: pdf_bot/commands/compare.py:103
+#: pdf_bot/commands/compare.py:105
 msgid "Comparing your PDF files"
 msgstr "अपनी पीडीएफ फाइलों की तुलना करना"
 
-#: pdf_bot/commands/compare.py:122
+#: pdf_bot/commands/compare.py:124
 msgid "There are no text differences between your PDF files"
 msgstr "आपकी पीडीएफ फ़ाइलों के बीच कोई पाठ अंतर नहीं है"
 
@@ -378,23 +378,23 @@ msgstr "पीडीएफ फाइलें"
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "प्रेस {done} यदि आपने मुझे उन सभी पीडीएफ फाइलों को भेज दिया है जिन्हें आप विलय करना चाहते हैं या मुझे पीडीएफ फाइलें भेजते रहेंगे"
 
-#: pdf_bot/commands/merge.py:191
+#: pdf_bot/commands/merge.py:193
 msgid "{file_name} has been removed for merging"
 msgstr "विलय के लिए {file_name} हटा दिया गया है"
 
-#: pdf_bot/commands/merge.py:213
+#: pdf_bot/commands/merge.py:215
 msgid "You haven't sent me any PDF files"
 msgstr "आपने मुझे कोई पीडीएफ फाइल नहीं भेजी है"
 
-#: pdf_bot/commands/merge.py:217
+#: pdf_bot/commands/merge.py:219
 msgid "You've only sent me one PDF file"
 msgstr "आपने मुझे केवल एक पीडीएफ फाइल भेजी है"
 
-#: pdf_bot/commands/merge.py:231
+#: pdf_bot/commands/merge.py:233
 msgid "Merging your PDF files"
 msgstr "अपनी पीडीएफ फाइलों का विलय"
 
-#: pdf_bot/commands/merge.py:251
+#: pdf_bot/commands/merge.py:253
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "मैं आपकी पीडीएफ फाइलों को मर्ज नहीं कर सका क्योंकि यह फ़ाइल अमान्य है: {file_name}"
 
@@ -458,15 +458,15 @@ msgstr "अपनी पीडीएफ फ़ाइल बनाना"
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "मुझे पीडीएफ फाइल भेजें जिसे आप वॉटरमार्क जोड़ना चाहेंगे"
 
-#: pdf_bot/commands/watermark.py:74
+#: pdf_bot/commands/watermark.py:76
 msgid "Send me the watermark PDF file"
 msgstr "मुझे वाटरमार्क पीडीएफ फाइल भेजें"
 
-#: pdf_bot/commands/watermark.py:99
+#: pdf_bot/commands/watermark.py:101
 msgid "Adding the watermark onto your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल पर वॉटरमार्क जोड़ना"
 
-#: pdf_bot/commands/watermark.py:112
+#: pdf_bot/commands/watermark.py:114
 msgid "watermark"
 msgstr "वॉटरमार्क"
 
@@ -551,7 +551,7 @@ msgstr "अपनी पीडीएफ फ़ाइल को एन्क्�
 msgid "Select the task that you'll like to perform"
 msgstr "उस कार्य का चयन करें जिसे आप करना चाहते हैं"
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:128
 msgid "Your file is too big for me to download and process"
 msgstr "आपकी फ़ाइल डाउनलोड करने और प्रक्रिया करने के लिए मेरे लिए बहुत बड़ी है"
 
@@ -611,7 +611,7 @@ msgstr "अपनी पीडीएफ फ़ाइल का नाम बद�
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "उन डिग्रियों का चयन करें जिन्हें आप अपनी पीडीएफ फ़ाइल को दक्षिणावर्त में घुमाना चाहते हैं"
 
-#: pdf_bot/files/rotate.py:48
+#: pdf_bot/files/rotate.py:50
 msgid "Rotating your PDF file clockwise by {degree} degrees"
 msgstr "{degree} डिग्री द्वारा अपनी पीडीएफ फाइल को दक्षिणावर्त घुमाएं"
 

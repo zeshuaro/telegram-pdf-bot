@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 10:57+0000\n"
-"PO-Revision-Date: 2021-08-15 10:57\n"
+"POT-Creation-Date: 2021-08-22 12:17+0000\n"
+"PO-Revision-Date: 2021-08-22 12:17\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -23,123 +23,123 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/constants.py:38
+#: pdf_bot/consts.py:38
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: pdf_bot/constants.py:39
+#: pdf_bot/consts.py:39
 msgid "Done"
 msgstr "Udělal"
 
-#: pdf_bot/constants.py:40
+#: pdf_bot/consts.py:40
 msgid "Back"
 msgstr "Zpět"
 
-#: pdf_bot/constants.py:41
+#: pdf_bot/consts.py:41
 msgid "By Percentage"
 msgstr "Podle procenta"
 
-#: pdf_bot/constants.py:42
+#: pdf_bot/consts.py:42
 msgid "By Margin Size"
 msgstr "Podle velikosti okraje"
 
-#: pdf_bot/constants.py:43
+#: pdf_bot/consts.py:43
 msgid "Preview"
 msgstr "Náhled"
 
-#: pdf_bot/constants.py:44
+#: pdf_bot/consts.py:44
 msgid "Decrypt"
 msgstr "Dešifrování"
 
-#: pdf_bot/constants.py:45
+#: pdf_bot/consts.py:45
 msgid "Encrypt"
 msgstr "Šifrování"
 
-#: pdf_bot/constants.py:46
+#: pdf_bot/consts.py:46
 msgid "Extract Photos"
 msgstr "Extrahování fotografií"
 
-#: pdf_bot/constants.py:47
+#: pdf_bot/consts.py:47
 msgid "To Photos"
 msgstr "K fotografiím"
 
-#: pdf_bot/constants.py:48
+#: pdf_bot/consts.py:48
 msgid "Rotate"
 msgstr "Otočit"
 
-#: pdf_bot/constants.py:49
+#: pdf_bot/consts.py:49
 msgid "Scale"
 msgstr "Měřítko"
 
-#: pdf_bot/constants.py:50
+#: pdf_bot/consts.py:50
 msgid "Split"
 msgstr "Rozdělit"
 
-#: pdf_bot/constants.py:51
+#: pdf_bot/consts.py:51
 msgid "Beautify"
 msgstr "Zkrášlit"
 
-#: pdf_bot/constants.py:52
+#: pdf_bot/consts.py:52
 msgid "To PDF"
 msgstr "Do PDF"
 
-#: pdf_bot/constants.py:53
+#: pdf_bot/consts.py:53
 msgid "Rename"
 msgstr "Přejmenovat"
 
-#: pdf_bot/constants.py:54
+#: pdf_bot/consts.py:54
 msgid "Crop"
 msgstr "Plodin"
 
-#: pdf_bot/constants.py:55
+#: pdf_bot/consts.py:55
 msgid "Compressed"
 msgstr "Komprimované"
 
-#: pdf_bot/constants.py:56
+#: pdf_bot/consts.py:56
 msgid "Photos"
 msgstr "Fotografie"
 
-#: pdf_bot/constants.py:57
+#: pdf_bot/consts.py:57
 msgid "Remove Last File"
 msgstr "Odebrat poslední soubor"
 
-#: pdf_bot/constants.py:58
+#: pdf_bot/consts.py:58
 msgid "To Dimensions"
 msgstr "Do dimenzí"
 
-#: pdf_bot/constants.py:59
+#: pdf_bot/consts.py:59
 msgid "Extract Text"
 msgstr "Extrahovat text"
 
-#: pdf_bot/constants.py:60
+#: pdf_bot/consts.py:60
 msgid "Text Message"
 msgstr "Textová zpráva"
 
-#: pdf_bot/constants.py:61
+#: pdf_bot/consts.py:61
 msgid "Text File"
 msgstr "Textový soubor"
 
-#: pdf_bot/constants.py:63
+#: pdf_bot/consts.py:63
 msgid "Compress"
 msgstr "Komprimovat"
 
-#: pdf_bot/constants.py:78
+#: pdf_bot/consts.py:78
 msgid "Say Thanks"
 msgstr "Řekni díky"
 
-#: pdf_bot/constants.py:79
+#: pdf_bot/consts.py:79
 msgid "Coffee"
 msgstr "Káva"
 
-#: pdf_bot/constants.py:80
+#: pdf_bot/consts.py:80
 msgid "Beer"
 msgstr "Pivo"
 
-#: pdf_bot/constants.py:81
+#: pdf_bot/consts.py:81
 msgid "Meal"
 msgstr "Jídlo"
 
-#: pdf_bot/constants.py:82
+#: pdf_bot/consts.py:82
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -191,7 +191,7 @@ msgstr "Nastavit jazyk 🌎"
 msgid "Join Channel"
 msgstr "Připojit se k kanálu"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "Podpora PDF Bot"
 
@@ -255,23 +255,23 @@ msgstr "Vyberte si jazyk"
 msgid "Your language has been set to {language}"
 msgstr "Váš jazyk byl nastaven na {language}"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:58
 msgid "Help translate PDF Bot"
 msgstr "Nápověda přeložit PDF Bot"
 
-#: pdf_bot/payment.py:63
+#: pdf_bot/payment.py:70
 msgid "Select how you want to support PDF Bot"
 msgstr "Vyberte, jak chcete podporovat PDF Bot"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:86
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Řekněte díky PDF Bot a pomozte udržet ho v chodu"
 
-#: pdf_bot/payment.py:100
+#: pdf_bot/payment.py:107
 msgid "Something went wrong"
 msgstr "Něco se pokazilo"
 
-#: pdf_bot/payment.py:108
+#: pdf_bot/payment.py:115
 msgid "Thank you for your support!"
 msgstr "Děkujeme vám za vaši podporu!"
 
@@ -301,7 +301,7 @@ msgid "Your file is too large for me to download and process"
 msgstr "Váš soubor je příliš velký na to, abych ho stahoval a zpracovávám."
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/files/file.py:129 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Všimněte si, že se jedná o omezení Telegram Bot a není nic, co bych mohl udělat, pokud Telegram nezmění tento limit"
@@ -346,15 +346,15 @@ msgstr "Pošlete mi jeden ze souborů PDF, který chcete porovnat"
 msgid "Note that I can only look for text differences"
 msgstr "Všimněte si, že lze hledat pouze textové rozdíly"
 
-#: pdf_bot/commands/compare.py:79
+#: pdf_bot/commands/compare.py:81
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Pošlete mi další soubor PDF, který budete chtít porovnat"
 
-#: pdf_bot/commands/compare.py:103
+#: pdf_bot/commands/compare.py:105
 msgid "Comparing your PDF files"
 msgstr "Porovnání souborů PDF"
 
-#: pdf_bot/commands/compare.py:122
+#: pdf_bot/commands/compare.py:124
 msgid "There are no text differences between your PDF files"
 msgstr "Mezi soubory PDF nejsou žádné textové rozdíly"
 
@@ -378,23 +378,23 @@ msgstr "Soubory PDF"
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Stiskněte {done} , pokud jste mi poslali všechny soubory PDF, které chcete sloučit, nebo mi stále posílají soubory PDF"
 
-#: pdf_bot/commands/merge.py:191
+#: pdf_bot/commands/merge.py:193
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} odebrána pro sloučení"
 
-#: pdf_bot/commands/merge.py:213
+#: pdf_bot/commands/merge.py:215
 msgid "You haven't sent me any PDF files"
 msgstr "Neposlal jsi mi žádné soubory PDF"
 
-#: pdf_bot/commands/merge.py:217
+#: pdf_bot/commands/merge.py:219
 msgid "You've only sent me one PDF file"
 msgstr "Poslali jste mi jen jeden soubor PDF."
 
-#: pdf_bot/commands/merge.py:231
+#: pdf_bot/commands/merge.py:233
 msgid "Merging your PDF files"
 msgstr "Sloučení souborů PDF"
 
-#: pdf_bot/commands/merge.py:251
+#: pdf_bot/commands/merge.py:253
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Nemohl jsem sloučit vaše soubory PDF, protože tento soubor je neplatný: {file_name}"
 
@@ -458,15 +458,15 @@ msgstr "Vytvoření souboru PDF"
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Pošlete mi soubor PDF, který chcete přidat vodoznak"
 
-#: pdf_bot/commands/watermark.py:74
+#: pdf_bot/commands/watermark.py:76
 msgid "Send me the watermark PDF file"
 msgstr "Pošlete mi soubor PDF s vodoznakem"
 
-#: pdf_bot/commands/watermark.py:99
+#: pdf_bot/commands/watermark.py:101
 msgid "Adding the watermark onto your PDF file"
 msgstr "Přidání vodoznaku do souboru PDF"
 
-#: pdf_bot/commands/watermark.py:112
+#: pdf_bot/commands/watermark.py:114
 msgid "watermark"
 msgstr "vodoznak"
 
@@ -551,7 +551,7 @@ msgstr "Šifrování souboru PDF"
 msgid "Select the task that you'll like to perform"
 msgstr "Vyberte úkol, který chcete provést"
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:128
 msgid "Your file is too big for me to download and process"
 msgstr "Váš soubor je příliš velký na to, abych ho stahoval a zpracovávám."
 
@@ -611,7 +611,7 @@ msgstr "Přejmenování souboru PDF na {file_name}"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Vyberte stupně, které chcete otočit soubor PDF ve směru hodinových ručiček"
 
-#: pdf_bot/files/rotate.py:48
+#: pdf_bot/files/rotate.py:50
 msgid "Rotating your PDF file clockwise by {degree} degrees"
 msgstr "Otočení souboru PDF ve směru hodinových ručiček o {degree} stupňů"
 

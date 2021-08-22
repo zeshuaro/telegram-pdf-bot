@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 10:57+0000\n"
-"PO-Revision-Date: 2021-08-15 10:57\n"
+"POT-Creation-Date: 2021-08-22 12:17+0000\n"
+"PO-Revision-Date: 2021-08-22 12:17\n"
 "Last-Translator: \n"
 "Language: am\n"
 "Language-Team: Amharic\n"
@@ -23,123 +23,123 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/constants.py:38
+#: pdf_bot/consts.py:38
 msgid "Cancel"
 msgstr "ሰርዝ"
 
-#: pdf_bot/constants.py:39
+#: pdf_bot/consts.py:39
 msgid "Done"
 msgstr "ተከናውኗል"
 
-#: pdf_bot/constants.py:40
+#: pdf_bot/consts.py:40
 msgid "Back"
 msgstr "ተመለስ"
 
-#: pdf_bot/constants.py:41
+#: pdf_bot/consts.py:41
 msgid "By Percentage"
 msgstr "በፐርሰንት"
 
-#: pdf_bot/constants.py:42
+#: pdf_bot/consts.py:42
 msgid "By Margin Size"
 msgstr "በMargin  መጠን"
 
-#: pdf_bot/constants.py:43
+#: pdf_bot/consts.py:43
 msgid "Preview"
 msgstr "ቅድመ-እይታ"
 
-#: pdf_bot/constants.py:44
+#: pdf_bot/consts.py:44
 msgid "Decrypt"
 msgstr "ዲክሪፕት"
 
-#: pdf_bot/constants.py:45
+#: pdf_bot/consts.py:45
 msgid "Encrypt"
 msgstr "ኢንክሪፕት"
 
-#: pdf_bot/constants.py:46
+#: pdf_bot/consts.py:46
 msgid "Extract Photos"
 msgstr "ፎቶዎችን ያውጡ"
 
-#: pdf_bot/constants.py:47
+#: pdf_bot/consts.py:47
 msgid "To Photos"
 msgstr "ወደ ፎቶዎች"
 
-#: pdf_bot/constants.py:48
+#: pdf_bot/consts.py:48
 msgid "Rotate"
 msgstr "አዙር"
 
-#: pdf_bot/constants.py:49
+#: pdf_bot/consts.py:49
 msgid "Scale"
 msgstr "መጠን"
 
-#: pdf_bot/constants.py:50
+#: pdf_bot/consts.py:50
 msgid "Split"
 msgstr "ተከፈለ"
 
-#: pdf_bot/constants.py:51
+#: pdf_bot/consts.py:51
 msgid "Beautify"
 msgstr "አሳምር"
 
-#: pdf_bot/constants.py:52
+#: pdf_bot/consts.py:52
 msgid "To PDF"
 msgstr "ወደ ፒዲኤፍ"
 
-#: pdf_bot/constants.py:53
+#: pdf_bot/consts.py:53
 msgid "Rename"
 msgstr "ዳግም ሰይም"
 
-#: pdf_bot/constants.py:54
+#: pdf_bot/consts.py:54
 msgid "Crop"
 msgstr "ቁረጥ"
 
-#: pdf_bot/constants.py:55
+#: pdf_bot/consts.py:55
 msgid "Compressed"
 msgstr "ተቀንሷል"
 
-#: pdf_bot/constants.py:56
+#: pdf_bot/consts.py:56
 msgid "Photos"
 msgstr "ፎቶዎች"
 
-#: pdf_bot/constants.py:57
+#: pdf_bot/consts.py:57
 msgid "Remove Last File"
 msgstr "የመጨረሻውን ፋይል አስወግድ"
 
-#: pdf_bot/constants.py:58
+#: pdf_bot/consts.py:58
 msgid "To Dimensions"
 msgstr "ወደ ልኬቶች"
 
-#: pdf_bot/constants.py:59
+#: pdf_bot/consts.py:59
 msgid "Extract Text"
 msgstr "ጽሑፍ ያውጡ"
 
-#: pdf_bot/constants.py:60
+#: pdf_bot/consts.py:60
 msgid "Text Message"
 msgstr "የጽሁፍ መልዕክት"
 
-#: pdf_bot/constants.py:61
+#: pdf_bot/consts.py:61
 msgid "Text File"
 msgstr "የጽሑፍ ፋይል"
 
-#: pdf_bot/constants.py:63
+#: pdf_bot/consts.py:63
 msgid "Compress"
 msgstr "መጭመቅ"
 
-#: pdf_bot/constants.py:78
+#: pdf_bot/consts.py:78
 msgid "Say Thanks"
 msgstr "አመሰግናለሁ በሉ"
 
-#: pdf_bot/constants.py:79
+#: pdf_bot/consts.py:79
 msgid "Coffee"
 msgstr "ቡና"
 
-#: pdf_bot/constants.py:80
+#: pdf_bot/consts.py:80
 msgid "Beer"
 msgstr "ቢራ"
 
-#: pdf_bot/constants.py:81
+#: pdf_bot/consts.py:81
 msgid "Meal"
 msgstr "ምግብ"
 
-#: pdf_bot/constants.py:82
+#: pdf_bot/consts.py:82
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -191,7 +191,7 @@ msgstr "ቋንቋ አዘጋጅ 🌎"
 msgid "Join Channel"
 msgstr "ቻናሉን ይቀላቀሉ"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "የፒዲኤፍ ቦትን ይደግፉ"
 
@@ -255,23 +255,23 @@ msgstr "ቋንቋዎን ይምረጡ"
 msgid "Your language has been set to {language}"
 msgstr "ቋንቋዎ ወደ {language}"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:58
 msgid "Help translate PDF Bot"
 msgstr "ፒዲኤፍ ቦትን ለመተርጎም ያግዙ"
 
-#: pdf_bot/payment.py:63
+#: pdf_bot/payment.py:70
 msgid "Select how you want to support PDF Bot"
 msgstr "ፒዲኤፍ ቦትን እንዴት መደገፍ እንደሚፈልጉ ይምረጡ"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:86
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "ለፒዲኤፍ ቦት ምስጋና ይናገሩ እና እንዲሠራ ያግዙ"
 
-#: pdf_bot/payment.py:100
+#: pdf_bot/payment.py:107
 msgid "Something went wrong"
 msgstr "የሆነ ስህተት ተከስቷል"
 
-#: pdf_bot/payment.py:108
+#: pdf_bot/payment.py:115
 msgid "Thank you for your support!"
 msgstr "ለድጋፎት እናመሰግናለን!"
 
@@ -301,7 +301,7 @@ msgid "Your file is too large for me to download and process"
 msgstr "ለማውረድ እና ለማስኬድ ፋይልዎ ለእኔ በጣም ትልቅ ነው"
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/files/file.py:129 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ይህ የቴሌግራም ቦት ውስንነት መሆኑን እና ቴሌግራም ይህንን ገደብ ካልቀየረ የማደርገው ምንም ነገር የለም"
@@ -346,15 +346,15 @@ msgstr "ለማወዳደር ከሚወዷቸው የፒዲኤፍ ፋይሎች ው�
 msgid "Note that I can only look for text differences"
 msgstr "የጽሑፍ ልዩነቶችን ብቻ መፈለግ እንደምችል ልብ ይበሉ"
 
-#: pdf_bot/commands/compare.py:79
+#: pdf_bot/commands/compare.py:81
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "ለማወዳደር የምትፈልገውን ሌላ የፒዲኤፍ ፋይል ላክልኝ"
 
-#: pdf_bot/commands/compare.py:103
+#: pdf_bot/commands/compare.py:105
 msgid "Comparing your PDF files"
 msgstr "የፒዲኤፍ ፋይሎችዎን ማወዳደር"
 
-#: pdf_bot/commands/compare.py:122
+#: pdf_bot/commands/compare.py:124
 msgid "There are no text differences between your PDF files"
 msgstr "በፒዲኤፍ ፋይሎችዎ መካከል ምንም የጽሑፍ ልዩነቶች የሉም"
 
@@ -378,23 +378,23 @@ msgstr "ፒዲኤፍ ፋይሎች"
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "የፒዲኤፍ ፋይሎችን ማዋሃድ ወይም መቀጠል የሚፈልጓቸውን ሁሉንም የፒዲኤፍ ፋይሎች ከላኩልኝ {done}"
 
-#: pdf_bot/commands/merge.py:191
+#: pdf_bot/commands/merge.py:193
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} በማዋሃድ ተወግዷል"
 
-#: pdf_bot/commands/merge.py:213
+#: pdf_bot/commands/merge.py:215
 msgid "You haven't sent me any PDF files"
 msgstr "ምንም የፒዲኤፍ ፋይሎች አልላኩልኝም"
 
-#: pdf_bot/commands/merge.py:217
+#: pdf_bot/commands/merge.py:219
 msgid "You've only sent me one PDF file"
 msgstr "አንድ የፒዲኤፍ ፋይል ብቻ ልከውልኛል"
 
-#: pdf_bot/commands/merge.py:231
+#: pdf_bot/commands/merge.py:233
 msgid "Merging your PDF files"
 msgstr "የፒዲኤፍ ፋይሎችዎን ማዋሃድ"
 
-#: pdf_bot/commands/merge.py:251
+#: pdf_bot/commands/merge.py:253
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "ይህ ፋይል ልክ ያልሆነ ስለሆነ የፒዲኤፍ ፋይሎችዎን ማዋሃድ አልቻልኩም - {file_name}"
 
@@ -458,15 +458,15 @@ msgstr "የፒዲኤፍ ፋይልዎን በመፍጠር ላይ"
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "የውሃ ምልክት ማድረጊያ ማከል የሚፈልጉትን የፒዲኤፍ ፋይል ላኩልኝ"
 
-#: pdf_bot/commands/watermark.py:74
+#: pdf_bot/commands/watermark.py:76
 msgid "Send me the watermark PDF file"
 msgstr "የውሃ ምልክት ማድረጊያ ፒዲኤፍ ፋይል ላክልኝ"
 
-#: pdf_bot/commands/watermark.py:99
+#: pdf_bot/commands/watermark.py:101
 msgid "Adding the watermark onto your PDF file"
 msgstr "በፒዲኤፍ ፋይልዎ ላይ የውሃ ምልክቱን ማከል"
 
-#: pdf_bot/commands/watermark.py:112
+#: pdf_bot/commands/watermark.py:114
 msgid "watermark"
 msgstr "የውሃ ምልክት"
 
@@ -551,7 +551,7 @@ msgstr "የፒዲኤፍ ፋይልዎን ማመስጠር"
 msgid "Select the task that you'll like to perform"
 msgstr "ማከናወን የሚወዱትን ተግባር ይምረጡ"
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:128
 msgid "Your file is too big for me to download and process"
 msgstr "ለማውረድ እና ለማስኬድ ፋይልዎ ለእኔ በጣም ትልቅ ነው"
 
@@ -611,7 +611,7 @@ msgstr "የፒዲኤፍ ፋይልዎን ወደ {file_name}"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "ፒዲኤፍ ፋይልዎን አቅጣጫ ለማሽከርከር የሚፈልጉትን ዲግሪዎች ይምረጡ"
 
-#: pdf_bot/files/rotate.py:48
+#: pdf_bot/files/rotate.py:50
 msgid "Rotating your PDF file clockwise by {degree} degrees"
 msgstr "የፒዲኤፍ ፋይልዎን በሰዓት አቅጣጫ በ {degree} ዲግሪ ማሽከርከር"
 
