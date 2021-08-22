@@ -1,4 +1,12 @@
 repos:
+  - repo: https://github.com/psf/black
+    rev: 21.5b1
+    hooks:
+      - id: black
+        args:
+          - --diff
+          - --check
+
   - repo: https://github.com/pycqa/isort
     rev: 5.9.3
     hooks:
@@ -7,10 +15,10 @@ repos:
           - --diff
           - --check-only
 
-  - repo: https://github.com/psf/black
-    rev: 21.5b1
+  - repo: local
     hooks:
-      - id: black
-        args:
-          - --diff
-          - --check
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]

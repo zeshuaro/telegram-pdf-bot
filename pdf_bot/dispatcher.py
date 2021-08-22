@@ -28,7 +28,7 @@ from pdf_bot.commands import (
     text_cov_handler,
     watermark_cov_handler,
 )
-from pdf_bot.constants import *
+from pdf_bot.consts import CHANNEL_NAME, LANGUAGES, PAYMENT, SET_LANG
 from pdf_bot.feedback import feedback_cov_handler
 from pdf_bot.files import file_cov_handler
 from pdf_bot.language import send_lang, set_lang, store_lang
@@ -204,10 +204,8 @@ def send_msg(update: Update, context: CallbackContext):
     try:
         context.bot.send_message(tele_id, message)
         update.effective_message.reply_text("Message sent")
-    except Exception as e:
-        log = Logger()
-        log.error(e)
-        update.effective_message.reply_text("Failed to send message")
+    except Unauthorized:
+        update.effective_message.reply_text("User has blocked the bot")
 
 
 def error_callback(update: Update, context: CallbackContext):

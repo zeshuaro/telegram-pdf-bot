@@ -4,7 +4,7 @@ from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, 
 from telegram.chataction import ChatAction
 from telegram.ext import CallbackContext
 
-from pdf_bot.constants import LANGUAGE, LANGUAGES, USER
+from pdf_bot.consts import LANGUAGE, LANGUAGES, USER
 from pdf_bot.store import client
 
 

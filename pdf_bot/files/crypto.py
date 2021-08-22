@@ -5,7 +5,7 @@ from PyPDF2.utils import PdfReadError
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
-from pdf_bot.constants import PDF_INFO, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW
+from pdf_bot.consts import PDF_INFO, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW
 from pdf_bot.files.utils import check_back_user_data, get_back_markup
 from pdf_bot.language import set_lang
 from pdf_bot.utils import process_pdf, write_send_pdf

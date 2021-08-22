@@ -16,7 +16,7 @@ from telegram.parsemode import ParseMode
 from weasyprint import CSS, HTML
 from weasyprint.fonts import FontConfiguration
 
-from pdf_bot.constants import CANCEL, TEXT_FILTER
+from pdf_bot.consts import CANCEL, TEXT_FILTER
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel, check_user_data, send_result_file
 
@@ -115,9 +115,9 @@ def check_text(update: Update, context: CallbackContext):
 
     if font_family is not None:
         return text_to_pdf(update, context, font_family, font_url)
-    else:
-        message.reply_text(_("Unknown font, please try again"))
-        return WAIT_FONT
+
+    message.reply_text(_("Unknown font, please try again"))
+    return WAIT_FONT
 
 
 def get_font(font: str) -> Tuple[str, str]:

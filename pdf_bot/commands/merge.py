@@ -19,7 +19,7 @@ from telegram.ext import (
     MessageHandler,
 )
 
-from pdf_bot.constants import (
+from pdf_bot.consts import (
     CANCEL,
     DONE,
     PDF_INVALID_FORMAT,
@@ -173,10 +173,12 @@ def check_text(update: Update, context: CallbackContext) -> int:
 
         if text == _(REMOVE_LAST):
             return remove_doc(update, context, lock)
-        elif text == _(DONE):
+        if text == _(DONE):
             return preprocess_merge_pdf(update, context, lock)
     elif text == _(CANCEL):
         return cancel(update, context)
+
+    return WAIT_MERGE
 
 
 def remove_doc(update: Update, context: CallbackContext, lock: Lock) -> int:

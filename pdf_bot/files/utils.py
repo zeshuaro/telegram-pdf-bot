@@ -5,7 +5,7 @@ from logbook import Logger
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import ConversationHandler
 
-from pdf_bot.constants import BACK, PDF_INFO
+from pdf_bot.consts import BACK, PDF_INFO
 from pdf_bot.files.document import ask_doc_task
 from pdf_bot.utils import check_user_data, set_lang
 

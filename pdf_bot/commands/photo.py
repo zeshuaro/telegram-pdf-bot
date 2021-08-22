@@ -22,7 +22,7 @@ from telegram.ext import (
     MessageHandler,
 )
 
-from pdf_bot.constants import BEAUTIFY, CANCEL, REMOVE_LAST, TEXT_FILTER, TO_PDF
+from pdf_bot.consts import BEAUTIFY, CANCEL, REMOVE_LAST, TEXT_FILTER, TO_PDF
 from pdf_bot.language import set_lang
 from pdf_bot.utils import (
     cancel,
@@ -204,8 +204,8 @@ def remove_photo(update: Update, context: CallbackContext) -> int:
 
     if len(file_ids) == 0:
         return ask_first_photo(update, context)
-    else:
-        return ask_next_photo(update, context)
+
+    return ask_next_photo(update, context)
 
 
 def process_all_photos(update: Update, context: CallbackContext) -> int:

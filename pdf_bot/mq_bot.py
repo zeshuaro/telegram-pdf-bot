@@ -1,3 +1,5 @@
+# pylint: disable=bare-except,no-member,super-with-arguments
+
 import telegram.bot
 from telegram.ext import messagequeue as mq
 

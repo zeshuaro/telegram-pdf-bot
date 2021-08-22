@@ -1,5 +1,4 @@
 import os
-import re
 
 from dotenv import load_dotenv
 from telegram import (
@@ -13,7 +12,15 @@ from telegram import (
 from telegram.callbackquery import CallbackQuery
 from telegram.ext import CallbackContext
 
-from pdf_bot.constants import *
+from pdf_bot.consts import (
+    BEER,
+    COFFEE,
+    CURRENCY,
+    MEAL,
+    PAYMENT_MSG,
+    PAYMENT_PAYLOAD,
+    THANKS,
+)
 from pdf_bot.language import set_lang
 
 load_dotenv()

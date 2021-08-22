@@ -4,7 +4,7 @@ import tempfile
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
-from pdf_bot.constants import (
+from pdf_bot.consts import (
     BACK,
     BY_PERCENT,
     BY_SIZE,
@@ -56,19 +56,19 @@ def ask_crop_value(update, context):
         )
 
         return WAIT_CROP_PERCENT
-    else:
-        message.reply_text(
-            "{desc_1}\n\n{desc_2}".format(
-                desc_1=_("Send me a number that you'll like to adjust the margin size"),
-                desc_2=_(
-                    "Positive numbers will decrease the margin size "
-                    "and negative numbers will increase it"
-                ),
-            ),
-            reply_markup=reply_markup,
-        )
 
-        return WAIT_CROP_OFFSET
+    message.reply_text(
+        "{desc_1}\n\n{desc_2}".format(
+            desc_1=_("Send me a number that you'll like to adjust the margin size"),
+            desc_2=_(
+                "Positive numbers will decrease the margin size "
+                "and negative numbers will increase it"
+            ),
+        ),
+        reply_markup=reply_markup,
+    )
+
+    return WAIT_CROP_OFFSET
 
 
 def check_crop_percent(update, context):

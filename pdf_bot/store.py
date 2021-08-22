@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from google.cloud import datastore
 from telegram import User
 
-from pdf_bot.constants import LANGS_SHORT, LANGUAGE, USER
+from pdf_bot.consts import LANGS_SHORT, LANGUAGE, USER
 
 load_dotenv()
 GCP_KEY_FILE = os.environ.get("GCP_KEY_FILE")
