@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 10:57+0000\n"
-"PO-Revision-Date: 2021-08-15 10:57\n"
+"POT-Creation-Date: 2021-08-22 12:17+0000\n"
+"PO-Revision-Date: 2021-08-22 12:17\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -23,123 +23,123 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/constants.py:38
+#: pdf_bot/consts.py:38
 msgid "Cancel"
 msgstr "取消"
 
-#: pdf_bot/constants.py:39
+#: pdf_bot/consts.py:39
 msgid "Done"
 msgstr "完成"
 
-#: pdf_bot/constants.py:40
+#: pdf_bot/consts.py:40
 msgid "Back"
 msgstr "返回"
 
-#: pdf_bot/constants.py:41
+#: pdf_bot/consts.py:41
 msgid "By Percentage"
 msgstr "按百分比"
 
-#: pdf_bot/constants.py:42
+#: pdf_bot/consts.py:42
 msgid "By Margin Size"
 msgstr "按边界大小"
 
-#: pdf_bot/constants.py:43
+#: pdf_bot/consts.py:43
 msgid "Preview"
 msgstr "预览"
 
-#: pdf_bot/constants.py:44
+#: pdf_bot/consts.py:44
 msgid "Decrypt"
 msgstr "解码"
 
-#: pdf_bot/constants.py:45
+#: pdf_bot/consts.py:45
 msgid "Encrypt"
 msgstr "加密"
 
-#: pdf_bot/constants.py:46
+#: pdf_bot/consts.py:46
 msgid "Extract Photos"
 msgstr "提取图片"
 
-#: pdf_bot/constants.py:47
+#: pdf_bot/consts.py:47
 msgid "To Photos"
 msgstr "转换到图片"
 
-#: pdf_bot/constants.py:48
+#: pdf_bot/consts.py:48
 msgid "Rotate"
 msgstr "旋转"
 
-#: pdf_bot/constants.py:49
+#: pdf_bot/consts.py:49
 msgid "Scale"
 msgstr "缩放"
 
-#: pdf_bot/constants.py:50
+#: pdf_bot/consts.py:50
 msgid "Split"
 msgstr "分割"
 
-#: pdf_bot/constants.py:51
+#: pdf_bot/consts.py:51
 msgid "Beautify"
 msgstr "美化"
 
-#: pdf_bot/constants.py:52
+#: pdf_bot/consts.py:52
 msgid "To PDF"
 msgstr "转换到PDF档案"
 
-#: pdf_bot/constants.py:53
+#: pdf_bot/consts.py:53
 msgid "Rename"
 msgstr "重新命名"
 
-#: pdf_bot/constants.py:54
+#: pdf_bot/consts.py:54
 msgid "Crop"
 msgstr "裁剪"
 
-#: pdf_bot/constants.py:55
+#: pdf_bot/consts.py:55
 msgid "Compressed"
 msgstr "压缩档"
 
-#: pdf_bot/constants.py:56
+#: pdf_bot/consts.py:56
 msgid "Photos"
 msgstr "图片"
 
-#: pdf_bot/constants.py:57
+#: pdf_bot/consts.py:57
 msgid "Remove Last File"
 msgstr "移除上一个档案"
 
-#: pdf_bot/constants.py:58
+#: pdf_bot/consts.py:58
 msgid "To Dimensions"
 msgstr "自订尺寸"
 
-#: pdf_bot/constants.py:59
+#: pdf_bot/consts.py:59
 msgid "Extract Text"
 msgstr "提取文字"
 
-#: pdf_bot/constants.py:60
+#: pdf_bot/consts.py:60
 msgid "Text Message"
 msgstr "讯息"
 
-#: pdf_bot/constants.py:61
+#: pdf_bot/consts.py:61
 msgid "Text File"
 msgstr "文字档案"
 
-#: pdf_bot/constants.py:63
+#: pdf_bot/consts.py:63
 msgid "Compress"
 msgstr "压缩"
 
-#: pdf_bot/constants.py:78
+#: pdf_bot/consts.py:78
 msgid "Say Thanks"
 msgstr "说谢谢"
 
-#: pdf_bot/constants.py:79
+#: pdf_bot/consts.py:79
 msgid "Coffee"
 msgstr "咖啡"
 
-#: pdf_bot/constants.py:80
+#: pdf_bot/consts.py:80
 msgid "Beer"
 msgstr "啤酒"
 
-#: pdf_bot/constants.py:81
+#: pdf_bot/consts.py:81
 msgid "Meal"
 msgstr "餐"
 
-#: pdf_bot/constants.py:82
+#: pdf_bot/consts.py:82
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} （${value}）"
 
@@ -191,7 +191,7 @@ msgstr "设置语言 🌎"
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "支持 PDF Bot"
 
@@ -255,23 +255,23 @@ msgstr "选择你的语言"
 msgid "Your language has been set to {language}"
 msgstr "您的语言已设置为 {language}"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:58
 msgid "Help translate PDF Bot"
 msgstr "帮助翻译PDF Bot"
 
-#: pdf_bot/payment.py:63
+#: pdf_bot/payment.py:70
 msgid "Select how you want to support PDF Bot"
 msgstr "选择你支持PDF Bot的方式"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:86
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "跟PDF Bot说谢谢并帮助它继续运行"
 
-#: pdf_bot/payment.py:100
+#: pdf_bot/payment.py:107
 msgid "Something went wrong"
 msgstr "出了点问题"
 
-#: pdf_bot/payment.py:108
+#: pdf_bot/payment.py:115
 msgid "Thank you for your support!"
 msgstr "感谢你的支持！"
 
@@ -301,7 +301,7 @@ msgid "Your file is too large for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/files/file.py:129 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
@@ -346,15 +346,15 @@ msgstr "向我发送您要比较的 PDF 文件之一"
 msgid "Note that I can only look for text differences"
 msgstr "请注意，我只能查找文本差异"
 
-#: pdf_bot/commands/compare.py:79
+#: pdf_bot/commands/compare.py:81
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "发给我另一个你想要比较的PDF档案"
 
-#: pdf_bot/commands/compare.py:103
+#: pdf_bot/commands/compare.py:105
 msgid "Comparing your PDF files"
 msgstr "正在比较你的PDF档案"
 
-#: pdf_bot/commands/compare.py:122
+#: pdf_bot/commands/compare.py:124
 msgid "There are no text differences between your PDF files"
 msgstr "您的 PDF 文件之间没有文本差异"
 
@@ -378,23 +378,23 @@ msgstr "PDF档案"
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "按 {done} ，如果您已将您希望合并的所有 PDF 文件发送给我，或继续将 PDF 文件发送给我"
 
-#: pdf_bot/commands/merge.py:191
+#: pdf_bot/commands/merge.py:193
 msgid "{file_name} has been removed for merging"
 msgstr "合并 {file_name} 已被移除"
 
-#: pdf_bot/commands/merge.py:213
+#: pdf_bot/commands/merge.py:215
 msgid "You haven't sent me any PDF files"
 msgstr "你还没有向我发送任何PDF档案"
 
-#: pdf_bot/commands/merge.py:217
+#: pdf_bot/commands/merge.py:219
 msgid "You've only sent me one PDF file"
 msgstr "你只寄给我一个 Pdf 文件"
 
-#: pdf_bot/commands/merge.py:231
+#: pdf_bot/commands/merge.py:233
 msgid "Merging your PDF files"
 msgstr "正在合并你的PDF档案"
 
-#: pdf_bot/commands/merge.py:251
+#: pdf_bot/commands/merge.py:253
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "我不能合并您的 PDF 文件，因为此文件无效： {file_name}"
 
@@ -458,15 +458,15 @@ msgstr "正在创建你的PDF档案"
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "向我发送你想要添加水印的PDF档案"
 
-#: pdf_bot/commands/watermark.py:74
+#: pdf_bot/commands/watermark.py:76
 msgid "Send me the watermark PDF file"
 msgstr "发给我水印PDF档案"
 
-#: pdf_bot/commands/watermark.py:99
+#: pdf_bot/commands/watermark.py:101
 msgid "Adding the watermark onto your PDF file"
 msgstr "正在添加水印到你的PDF档案中"
 
-#: pdf_bot/commands/watermark.py:112
+#: pdf_bot/commands/watermark.py:114
 msgid "watermark"
 msgstr "水印"
 
@@ -551,7 +551,7 @@ msgstr "正在加密你的PDF档案"
 msgid "Select the task that you'll like to perform"
 msgstr "选择你想要做什么"
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:128
 msgid "Your file is too big for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
@@ -611,7 +611,7 @@ msgstr "将 PDF 文件重命名为 {file_name}"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "选择你想要顺时针旋转你PDF档案的度数"
 
-#: pdf_bot/files/rotate.py:48
+#: pdf_bot/files/rotate.py:50
 msgid "Rotating your PDF file clockwise by {degree} degrees"
 msgstr "顺时针旋转您的 PDF 文件 {degree} 度"
 

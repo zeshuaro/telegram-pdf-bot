@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 10:57+0000\n"
-"PO-Revision-Date: 2021-08-15 10:57\n"
+"POT-Creation-Date: 2021-08-22 12:17+0000\n"
+"PO-Revision-Date: 2021-08-22 12:17\n"
 "Last-Translator: \n"
 "Language: de\n"
 "Language-Team: German\n"
@@ -23,123 +23,123 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/constants.py:38
+#: pdf_bot/consts.py:38
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: pdf_bot/constants.py:39
+#: pdf_bot/consts.py:39
 msgid "Done"
 msgstr "Fertig"
 
-#: pdf_bot/constants.py:40
+#: pdf_bot/consts.py:40
 msgid "Back"
 msgstr "Zurück"
 
-#: pdf_bot/constants.py:41
+#: pdf_bot/consts.py:41
 msgid "By Percentage"
 msgstr "Nach Prozent"
 
-#: pdf_bot/constants.py:42
+#: pdf_bot/consts.py:42
 msgid "By Margin Size"
 msgstr "Nach Randgröße"
 
-#: pdf_bot/constants.py:43
+#: pdf_bot/consts.py:43
 msgid "Preview"
 msgstr "Vorschau"
 
-#: pdf_bot/constants.py:44
+#: pdf_bot/consts.py:44
 msgid "Decrypt"
 msgstr "Entschlüsseln"
 
-#: pdf_bot/constants.py:45
+#: pdf_bot/consts.py:45
 msgid "Encrypt"
 msgstr "Verschlüsseln"
 
-#: pdf_bot/constants.py:46
+#: pdf_bot/consts.py:46
 msgid "Extract Photos"
 msgstr "Extrahieren Fotos"
 
-#: pdf_bot/constants.py:47
+#: pdf_bot/consts.py:47
 msgid "To Photos"
 msgstr "Zu Fotos"
 
-#: pdf_bot/constants.py:48
+#: pdf_bot/consts.py:48
 msgid "Rotate"
 msgstr "Drehen"
 
-#: pdf_bot/constants.py:49
+#: pdf_bot/consts.py:49
 msgid "Scale"
 msgstr "Skala"
 
-#: pdf_bot/constants.py:50
+#: pdf_bot/consts.py:50
 msgid "Split"
 msgstr "Trennen"
 
-#: pdf_bot/constants.py:51
+#: pdf_bot/consts.py:51
 msgid "Beautify"
 msgstr "Verschönern"
 
-#: pdf_bot/constants.py:52
+#: pdf_bot/consts.py:52
 msgid "To PDF"
 msgstr "Zum PDF"
 
-#: pdf_bot/constants.py:53
+#: pdf_bot/consts.py:53
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: pdf_bot/constants.py:54
+#: pdf_bot/consts.py:54
 msgid "Crop"
 msgstr "Ernte"
 
-#: pdf_bot/constants.py:55
+#: pdf_bot/consts.py:55
 msgid "Compressed"
 msgstr "Komprimiert"
 
-#: pdf_bot/constants.py:56
+#: pdf_bot/consts.py:56
 msgid "Photos"
 msgstr "Fotos"
 
-#: pdf_bot/constants.py:57
+#: pdf_bot/consts.py:57
 msgid "Remove Last File"
 msgstr "Entfernen Letzte Datei"
 
-#: pdf_bot/constants.py:58
+#: pdf_bot/consts.py:58
 msgid "To Dimensions"
 msgstr "Zu Dimensionen"
 
-#: pdf_bot/constants.py:59
+#: pdf_bot/consts.py:59
 msgid "Extract Text"
 msgstr "Extrahieren von Text"
 
-#: pdf_bot/constants.py:60
+#: pdf_bot/consts.py:60
 msgid "Text Message"
 msgstr "Textnachricht"
 
-#: pdf_bot/constants.py:61
+#: pdf_bot/consts.py:61
 msgid "Text File"
 msgstr "Textdatei"
 
-#: pdf_bot/constants.py:63
+#: pdf_bot/consts.py:63
 msgid "Compress"
 msgstr "Komprimieren"
 
-#: pdf_bot/constants.py:78
+#: pdf_bot/consts.py:78
 msgid "Say Thanks"
 msgstr "Danke sagen"
 
-#: pdf_bot/constants.py:79
+#: pdf_bot/consts.py:79
 msgid "Coffee"
 msgstr "Kaffee"
 
-#: pdf_bot/constants.py:80
+#: pdf_bot/consts.py:80
 msgid "Beer"
 msgstr "Bier"
 
-#: pdf_bot/constants.py:81
+#: pdf_bot/consts.py:81
 msgid "Meal"
 msgstr "Mahlzeit"
 
-#: pdf_bot/constants.py:82
+#: pdf_bot/consts.py:82
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -191,7 +191,7 @@ msgstr "Sprache festlegen 🌎"
 msgid "Join Channel"
 msgstr "Join Channel"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "Unterstützung PDF Bot"
 
@@ -255,23 +255,23 @@ msgstr "Wählen Sie Ihre Sprache"
 msgid "Your language has been set to {language}"
 msgstr "Ihre Sprache wurde auf {language}eingestellt"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:58
 msgid "Help translate PDF Bot"
 msgstr "Hilfe beim Übersetzen von PDF Bot"
 
-#: pdf_bot/payment.py:63
+#: pdf_bot/payment.py:70
 msgid "Select how you want to support PDF Bot"
 msgstr "Wählen Sie aus, wie Sie PDF Bot unterstützen möchten"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:86
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Sagen Sie danke an PDF Bot und helfen Sie, es am Laufen zu halten"
 
-#: pdf_bot/payment.py:100
+#: pdf_bot/payment.py:107
 msgid "Something went wrong"
 msgstr "Irgendetwas ist schief gelaufen"
 
-#: pdf_bot/payment.py:108
+#: pdf_bot/payment.py:115
 msgid "Thank you for your support!"
 msgstr "Vielen Dank für Ihre Unterstützung!"
 
@@ -301,7 +301,7 @@ msgid "Your file is too large for me to download and process"
 msgstr "Ihre Datei ist zu groß, als dass ich sie herunterladen und verarbeiten könnte"
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/files/file.py:129 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Beachten Sie, dass dies eine Telegram Bot-Einschränkung ist und ich nichts tun kann, es sei denn, Telegram ändert dieses Limit"
@@ -346,15 +346,15 @@ msgstr "Senden Sie mir eine der PDF-Dateien, die Sie vergleichen möchten"
 msgid "Note that I can only look for text differences"
 msgstr "Beachten Sie, dass ich nur nach Textunterschieden suchen kann"
 
-#: pdf_bot/commands/compare.py:79
+#: pdf_bot/commands/compare.py:81
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Schicken Sie mir die andere PDF-Datei, die Sie vergleichen möchten"
 
-#: pdf_bot/commands/compare.py:103
+#: pdf_bot/commands/compare.py:105
 msgid "Comparing your PDF files"
 msgstr "Vergleichen Ihrer PDF-Dateien"
 
-#: pdf_bot/commands/compare.py:122
+#: pdf_bot/commands/compare.py:124
 msgid "There are no text differences between your PDF files"
 msgstr "Es gibt keine Textunterschiede zwischen Ihren PDF-Dateien"
 
@@ -378,23 +378,23 @@ msgstr "PDF-Dateien"
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Drücken Sie {done} , wenn Sie mir alle PDF-Dateien gesendet haben, die Sie zusammenführen möchten, oder senden Sie mir weiterhin die PDF-Dateien"
 
-#: pdf_bot/commands/merge.py:191
+#: pdf_bot/commands/merge.py:193
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} wurde für die Zusammenführung entfernt"
 
-#: pdf_bot/commands/merge.py:213
+#: pdf_bot/commands/merge.py:215
 msgid "You haven't sent me any PDF files"
 msgstr "Sie haben mir keine PDF-Dateien gesendet"
 
-#: pdf_bot/commands/merge.py:217
+#: pdf_bot/commands/merge.py:219
 msgid "You've only sent me one PDF file"
 msgstr "Sie haben mir nur eine PDF-Datei geschickt"
 
-#: pdf_bot/commands/merge.py:231
+#: pdf_bot/commands/merge.py:233
 msgid "Merging your PDF files"
 msgstr "Zusammenführen Ihrer PDF-Dateien"
 
-#: pdf_bot/commands/merge.py:251
+#: pdf_bot/commands/merge.py:253
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Ich konnte Ihre PDF-Dateien nicht zusammenführen, da diese Datei ungültig ist: {file_name}"
 
@@ -458,15 +458,15 @@ msgstr "Erstellen Ihrer PDF-Datei"
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Senden Sie mir die PDF-Datei, die Sie ein Wasserzeichen hinzufügen möchten"
 
-#: pdf_bot/commands/watermark.py:74
+#: pdf_bot/commands/watermark.py:76
 msgid "Send me the watermark PDF file"
 msgstr "Schicken Sie mir die Wasserzeichen-PDF-Datei"
 
-#: pdf_bot/commands/watermark.py:99
+#: pdf_bot/commands/watermark.py:101
 msgid "Adding the watermark onto your PDF file"
 msgstr "Hinzufügen des Wasserzeichens zu Ihrer PDF-Datei"
 
-#: pdf_bot/commands/watermark.py:112
+#: pdf_bot/commands/watermark.py:114
 msgid "watermark"
 msgstr "wasserzeichen"
 
@@ -551,7 +551,7 @@ msgstr "Verschlüsseln Ihrer PDF-Datei"
 msgid "Select the task that you'll like to perform"
 msgstr "Wählen Sie die Aufgabe aus, die Sie ausführen möchten"
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:128
 msgid "Your file is too big for me to download and process"
 msgstr "Ihre Datei ist zu groß, als dass ich sie herunterladen und verarbeiten könnte"
 
@@ -611,7 +611,7 @@ msgstr "Umbenennen der PDF-Datei in {file_name}"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Wählen Sie die Grade aus, die Sie Ihre PDF-Datei im Uhrzeigersinn drehen möchten"
 
-#: pdf_bot/files/rotate.py:48
+#: pdf_bot/files/rotate.py:50
 msgid "Rotating your PDF file clockwise by {degree} degrees"
 msgstr "Drehen der PDF-Datei im Uhrzeigersinn um {degree} Grad"
 

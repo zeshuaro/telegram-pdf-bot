@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-08-15 10:57+0000\n"
-"PO-Revision-Date: 2021-08-15 10:57\n"
+"POT-Creation-Date: 2021-08-22 12:17+0000\n"
+"PO-Revision-Date: 2021-08-22 12:17\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -23,123 +23,123 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/constants.py:38
+#: pdf_bot/consts.py:38
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: pdf_bot/constants.py:39
+#: pdf_bot/consts.py:39
 msgid "Done"
 msgstr "Tehnyt"
 
-#: pdf_bot/constants.py:40
+#: pdf_bot/consts.py:40
 msgid "Back"
 msgstr "Bck"
 
-#: pdf_bot/constants.py:41
+#: pdf_bot/consts.py:41
 msgid "By Percentage"
 msgstr "Prosentteina"
 
-#: pdf_bot/constants.py:42
+#: pdf_bot/consts.py:42
 msgid "By Margin Size"
 msgstr "Reunuksen koon mukaan"
 
-#: pdf_bot/constants.py:43
+#: pdf_bot/consts.py:43
 msgid "Preview"
 msgstr "Esikatselu"
 
-#: pdf_bot/constants.py:44
+#: pdf_bot/consts.py:44
 msgid "Decrypt"
 msgstr "Purkaa"
 
-#: pdf_bot/constants.py:45
+#: pdf_bot/consts.py:45
 msgid "Encrypt"
 msgstr "Salata"
 
-#: pdf_bot/constants.py:46
+#: pdf_bot/consts.py:46
 msgid "Extract Photos"
 msgstr "Pura valokuvat"
 
-#: pdf_bot/constants.py:47
+#: pdf_bot/consts.py:47
 msgid "To Photos"
 msgstr "Valokuviin"
 
-#: pdf_bot/constants.py:48
+#: pdf_bot/consts.py:48
 msgid "Rotate"
 msgstr "Kiertää"
 
-#: pdf_bot/constants.py:49
+#: pdf_bot/consts.py:49
 msgid "Scale"
 msgstr "Mittakaavassa"
 
-#: pdf_bot/constants.py:50
+#: pdf_bot/consts.py:50
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/constants.py:51
+#: pdf_bot/consts.py:51
 msgid "Beautify"
 msgstr "Kaunistaa"
 
-#: pdf_bot/constants.py:52
+#: pdf_bot/consts.py:52
 msgid "To PDF"
 msgstr "PDF-tiedostoon"
 
-#: pdf_bot/constants.py:53
+#: pdf_bot/consts.py:53
 msgid "Rename"
 msgstr "Nimeä"
 
-#: pdf_bot/constants.py:54
+#: pdf_bot/consts.py:54
 msgid "Crop"
 msgstr "Rajata"
 
-#: pdf_bot/constants.py:55
+#: pdf_bot/consts.py:55
 msgid "Compressed"
 msgstr "Pakattu"
 
-#: pdf_bot/constants.py:56
+#: pdf_bot/consts.py:56
 msgid "Photos"
 msgstr "Valokuvat"
 
-#: pdf_bot/constants.py:57
+#: pdf_bot/consts.py:57
 msgid "Remove Last File"
 msgstr "Poista viimeinen tiedosto"
 
-#: pdf_bot/constants.py:58
+#: pdf_bot/consts.py:58
 msgid "To Dimensions"
 msgstr "Dimensioihin"
 
-#: pdf_bot/constants.py:59
+#: pdf_bot/consts.py:59
 msgid "Extract Text"
 msgstr "Pura teksti"
 
-#: pdf_bot/constants.py:60
+#: pdf_bot/consts.py:60
 msgid "Text Message"
 msgstr "Tekstiviesti"
 
-#: pdf_bot/constants.py:61
+#: pdf_bot/consts.py:61
 msgid "Text File"
 msgstr "Tekstitiedosto"
 
-#: pdf_bot/constants.py:63
+#: pdf_bot/consts.py:63
 msgid "Compress"
 msgstr "Pakata"
 
-#: pdf_bot/constants.py:78
+#: pdf_bot/consts.py:78
 msgid "Say Thanks"
 msgstr "Sano kiitos"
 
-#: pdf_bot/constants.py:79
+#: pdf_bot/consts.py:79
 msgid "Coffee"
 msgstr "Kahvi"
 
-#: pdf_bot/constants.py:80
+#: pdf_bot/consts.py:80
 msgid "Beer"
 msgstr "Olut"
 
-#: pdf_bot/constants.py:81
+#: pdf_bot/consts.py:81
 msgid "Meal"
 msgstr "Ateria"
 
-#: pdf_bot/constants.py:82
+#: pdf_bot/consts.py:82
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -191,7 +191,7 @@ msgstr "Aseta Kieli 🌎"
 msgid "Join Channel"
 msgstr "Liity kanavaan"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:78 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:315
 msgid "Support PDF Bot"
 msgstr "Tuki PDF Bot"
 
@@ -255,23 +255,23 @@ msgstr "Valitse kieli"
 msgid "Your language has been set to {language}"
 msgstr "Kielesi on määritetty {language}"
 
-#: pdf_bot/payment.py:51
+#: pdf_bot/payment.py:58
 msgid "Help translate PDF Bot"
 msgstr "Auta kääntämään PDF-botti"
 
-#: pdf_bot/payment.py:63
+#: pdf_bot/payment.py:70
 msgid "Select how you want to support PDF Bot"
 msgstr "Valitse, miten haluat tukea PDF Botia"
 
-#: pdf_bot/payment.py:79
+#: pdf_bot/payment.py:86
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Kiitä PDF Botia ja auta pitämään se käynnissä"
 
-#: pdf_bot/payment.py:100
+#: pdf_bot/payment.py:107
 msgid "Something went wrong"
 msgstr "Jokin meni vikaan"
 
-#: pdf_bot/payment.py:108
+#: pdf_bot/payment.py:115
 msgid "Thank you for your support!"
 msgstr "Kiitos tuestanne!"
 
@@ -301,7 +301,7 @@ msgid "Your file is too large for me to download and process"
 msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
 #: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:86 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/files/file.py:129 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Huomaa, että tämä on Telegram Bot -rajoitus, enkä voi tehdä mitään, ellei Telegram muuta tätä rajaa"
@@ -346,15 +346,15 @@ msgstr "Lähetä minulle yksi PDF-tiedostoista, joita haluat verrata"
 msgid "Note that I can only look for text differences"
 msgstr "Huomaa, että voin etsiä vain tekstieroja"
 
-#: pdf_bot/commands/compare.py:79
+#: pdf_bot/commands/compare.py:81
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Lähetä minulle toinen PDF-tiedosto, jota haluat verrata"
 
-#: pdf_bot/commands/compare.py:103
+#: pdf_bot/commands/compare.py:105
 msgid "Comparing your PDF files"
 msgstr "PDF-tiedostojen vertailu"
 
-#: pdf_bot/commands/compare.py:122
+#: pdf_bot/commands/compare.py:124
 msgid "There are no text differences between your PDF files"
 msgstr "PDF-tiedostojen välillä ei ole tekstieroja"
 
@@ -378,23 +378,23 @@ msgstr "PDF-tiedostot"
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Paina {done} jos olet lähettänyt minulle kaikki PDF-tiedostot, jotka haluat yhdistää, tai jatka PDF-tiedostojen lähettämistä"
 
-#: pdf_bot/commands/merge.py:191
+#: pdf_bot/commands/merge.py:193
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} on poistettu yhdistämistä"
 
-#: pdf_bot/commands/merge.py:213
+#: pdf_bot/commands/merge.py:215
 msgid "You haven't sent me any PDF files"
 msgstr "Et ole lähettänyt minulle PDF-tiedostoja"
 
-#: pdf_bot/commands/merge.py:217
+#: pdf_bot/commands/merge.py:219
 msgid "You've only sent me one PDF file"
 msgstr "Lähetit minulle vain yhden PDF-tiedoston."
 
-#: pdf_bot/commands/merge.py:231
+#: pdf_bot/commands/merge.py:233
 msgid "Merging your PDF files"
 msgstr "PDF-tiedostojen yhdistäminen"
 
-#: pdf_bot/commands/merge.py:251
+#: pdf_bot/commands/merge.py:253
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "PDF-tiedostoja ei voi yhdistää, koska tämä tiedosto ei kelpaa: {file_name}"
 
@@ -458,15 +458,15 @@ msgstr "PDF-tiedoston luominen"
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Lähetä minulle PDF-tiedosto, jonka haluat lisätä vesileiman"
 
-#: pdf_bot/commands/watermark.py:74
+#: pdf_bot/commands/watermark.py:76
 msgid "Send me the watermark PDF file"
 msgstr "Lähetä minulle vesileiman PDF-tiedosto"
 
-#: pdf_bot/commands/watermark.py:99
+#: pdf_bot/commands/watermark.py:101
 msgid "Adding the watermark onto your PDF file"
 msgstr "Vesileiman lisääminen PDF-tiedostoon"
 
-#: pdf_bot/commands/watermark.py:112
+#: pdf_bot/commands/watermark.py:114
 msgid "watermark"
 msgstr "vesileima"
 
@@ -551,7 +551,7 @@ msgstr "PDF-tiedoston salaaminen"
 msgid "Select the task that you'll like to perform"
 msgstr "Valitse tehtävä, jonka haluat suorittaa"
 
-#: pdf_bot/files/file.py:85
+#: pdf_bot/files/file.py:128
 msgid "Your file is too big for me to download and process"
 msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
@@ -611,7 +611,7 @@ msgstr "PDF-tiedoston uudelleennimeäminen {file_name}"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Valitse asteet, joita haluat kiertää PDF-tiedostoa myötäpäivään"
 
-#: pdf_bot/files/rotate.py:48
+#: pdf_bot/files/rotate.py:50
 msgid "Rotating your PDF file clockwise by {degree} degrees"
 msgstr "PDF-tiedoston kiertäminen myötäpäivään {degree} astetta"
 
