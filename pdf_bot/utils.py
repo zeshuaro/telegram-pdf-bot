@@ -15,7 +15,7 @@ from telegram import (
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import CallbackContext, ConversationHandler
 
-from pdf_bot.constants import (
+from pdf_bot.consts import (
     CANCEL,
     CHANNEL_NAME,
     PAYMENT,

@@ -6,7 +6,7 @@ from pdf_diff import NoDifferenceError
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
-from pdf_bot.constants import BACK, CANCEL, PDF_INVALID_FORMAT, PDF_OK, TEXT_FILTER
+from pdf_bot.consts import BACK, CANCEL, PDF_INVALID_FORMAT, PDF_OK, TEXT_FILTER
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel, check_pdf, check_user_data, send_result_file
 
@@ -58,15 +58,17 @@ def check_text(update, context):
 
     if text == _(BACK):
         return ask_first_doc(update, context)
-    elif text == _(CANCEL):
+    if text == _(CANCEL):
         return cancel(update, context)
+
+    return None
 
 
 def check_first_doc(update, context):
     result = check_pdf(update, context)
     if result == PDF_INVALID_FORMAT:
         return WAIT_FIRST
-    elif result != PDF_OK:
+    if result != PDF_OK:
         return ConversationHandler.END
 
     _ = set_lang(update, context)
@@ -90,7 +92,7 @@ def check_second_doc(update, context):
     result = check_pdf(update, context)
     if result == PDF_INVALID_FORMAT:
         return WAIT_SECOND
-    elif result != PDF_OK:
+    if result != PDF_OK:
         return ConversationHandler.END
 
     return compare_pdf(update, context)

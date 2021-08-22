@@ -13,7 +13,7 @@ from telegram.ext import (
 from textblob import TextBlob
 from textblob.exceptions import TranslatorError
 
-from pdf_bot.constants import CANCEL, TEXT_FILTER
+from pdf_bot.consts import CANCEL, TEXT_FILTER
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel, reply_with_cancel_btn
 
@@ -57,8 +57,8 @@ def check_text(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
     if update.effective_message.text == _(CANCEL):
         return cancel(update, context)
-    else:
-        return receive_feedback(update, context)
+
+    return receive_feedback(update, context)
 
 
 def receive_feedback(update: Update, context: CallbackContext) -> int:

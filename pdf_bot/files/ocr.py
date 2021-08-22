@@ -6,7 +6,7 @@ from ocrmypdf.exceptions import PriorOcrFoundError
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
-from pdf_bot.constants import PDF_INFO
+from pdf_bot.consts import PDF_INFO
 from pdf_bot.language import set_lang
 from pdf_bot.utils import check_user_data, send_result_file
 

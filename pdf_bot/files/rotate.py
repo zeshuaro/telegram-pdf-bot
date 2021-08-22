@@ -1,7 +1,7 @@
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
-from pdf_bot.constants import (
+from pdf_bot.consts import (
     BACK,
     PDF_INFO,
     ROTATE_90,
@@ -34,8 +34,10 @@ def check_rotate_degree(update, context):
 
     if text in [ROTATE_90, ROTATE_180, ROTATE_270]:
         return rotate_pdf(update, context)
-    elif text == _(BACK):
+    if text == _(BACK):
         return ask_doc_task(update, context)
+
+    return WAIT_ROTATE_DEGREE
 
 
 def rotate_pdf(update, context):

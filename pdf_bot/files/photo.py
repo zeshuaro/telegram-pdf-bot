@@ -10,7 +10,7 @@ from telegram.error import BadRequest
 from telegram.ext import ConversationHandler
 
 from pdf_bot.commands import process_photo
-from pdf_bot.constants import (
+from pdf_bot.consts import (
     BACK,
     BEAUTIFY,
     CANCEL,

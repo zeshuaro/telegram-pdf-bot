@@ -1,3 +1,5 @@
+# pylint: disable=wrong-import-order,wrong-import-position
+
 import matplotlib
 
 matplotlib.use("Agg")
@@ -11,7 +13,7 @@ import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 from google.cloud import datastore
 
-from pdf_bot.constants import LANGUAGE, LANGUAGES, USER
+from pdf_bot.consts import LANGUAGE, LANGUAGES, USER
 from pdf_bot.store import client
 
 load_dotenv()
@@ -34,7 +36,7 @@ def update_stats(update, task):
         client.put(user)
 
 
-def get_stats(update, context):
+def get_stats(update, _):
     query = client.query(kind=USER)
     num_users = num_tasks = 0
     counts = defaultdict(int)

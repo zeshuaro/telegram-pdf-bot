@@ -7,7 +7,7 @@ from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_MESSAGE_LENGTH
 from telegram.ext import ConversationHandler
 
-from pdf_bot.constants import BACK, PDF_INFO, TEXT_FILE, TEXT_MESSAGE, WAIT_TEXT_TYPE
+from pdf_bot.consts import BACK, PDF_INFO, TEXT_FILE, TEXT_MESSAGE, WAIT_TEXT_TYPE
 from pdf_bot.language import set_lang
 from pdf_bot.utils import check_user_data, send_result_file
 

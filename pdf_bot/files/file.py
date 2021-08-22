@@ -1,7 +1,50 @@
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
-from pdf_bot.constants import *
+from pdf_bot.consts import (
+    BACK,
+    BEAUTIFY,
+    BY_PERCENT,
+    BY_SIZE,
+    CANCEL,
+    COMPRESS,
+    COMPRESSED,
+    CROP,
+    DECRYPT,
+    ENCRYPT,
+    EXTRACT_PHOTO,
+    EXTRACT_TEXT,
+    OCR,
+    PDF_INFO,
+    PHOTOS,
+    PREVIEW,
+    RENAME,
+    ROTATE,
+    SCALE,
+    SPLIT,
+    TEXT_FILE,
+    TEXT_FILTER,
+    TEXT_MESSAGE,
+    TO_DIMENSIONS,
+    TO_PDF,
+    TO_PHOTO,
+    WAIT_CROP_OFFSET,
+    WAIT_CROP_PERCENT,
+    WAIT_CROP_TYPE,
+    WAIT_DECRYPT_PW,
+    WAIT_DOC_TASK,
+    WAIT_ENCRYPT_PW,
+    WAIT_EXTRACT_PHOTO_TYPE,
+    WAIT_FILE_NAME,
+    WAIT_PHOTO_TASK,
+    WAIT_ROTATE_DEGREE,
+    WAIT_SCALE_DIMENSION,
+    WAIT_SCALE_PERCENT,
+    WAIT_SCALE_TYPE,
+    WAIT_SPLIT_RANGE,
+    WAIT_TEXT_TYPE,
+    WAIT_TO_PHOTO_TYPE,
+)
 from pdf_bot.files.compress import compress_pdf
 from pdf_bot.files.crop import (
     ask_crop_type,
@@ -76,9 +119,9 @@ def check_doc(update, context):
     doc = update.effective_message.document
     if doc.mime_type.startswith("image"):
         return ask_photo_task(update, context, doc)
-    elif not doc.mime_type.endswith("pdf"):
+    if not doc.mime_type.endswith("pdf"):
         return ConversationHandler.END
-    elif doc.file_size >= MAX_FILESIZE_DOWNLOAD:
+    if doc.file_size >= MAX_FILESIZE_DOWNLOAD:
         _ = set_lang(update, context)
         update.effective_message.reply_text(
             "{desc_1}\n\n{desc_2}".format(
@@ -93,7 +136,6 @@ def check_doc(update, context):
         return ConversationHandler.END
 
     context.user_data[PDF_INFO] = doc.file_id, doc.file_name
-
     return ask_doc_task(update, context)
 
 
@@ -107,30 +149,32 @@ def check_doc_task(update, context):
 
     if text == _(CROP):
         return ask_crop_type(update, context)
-    elif text == _(DECRYPT):
+    if text == _(DECRYPT):
         return ask_decrypt_pw(update, context)
-    elif text == _(ENCRYPT):
+    if text == _(ENCRYPT):
         return ask_encrypt_pw(update, context)
-    elif text in [_(EXTRACT_PHOTO), _(TO_PHOTO)]:
+    if text in [_(EXTRACT_PHOTO), _(TO_PHOTO)]:
         return ask_photo_results_type(update, context)
-    elif text == _(PREVIEW):
+    if text == _(PREVIEW):
         return get_pdf_preview(update, context)
-    elif text == _(RENAME):
+    if text == _(RENAME):
         return ask_pdf_new_name(update, context)
-    elif text == _(ROTATE):
+    if text == _(ROTATE):
         return ask_rotate_degree(update, context)
-    elif text in [_(SCALE)]:
+    if text in [_(SCALE)]:
         return ask_scale_type(update, context)
-    elif text == _(SPLIT):
+    if text == _(SPLIT):
         return ask_split_range(update, context)
-    elif text == _(EXTRACT_TEXT):
+    if text == _(EXTRACT_TEXT):
         return ask_text_type(update, context)
-    elif text == OCR:
+    if text == OCR:
         return add_ocr_to_pdf(update, context)
-    elif text == COMPRESS:
+    if text == COMPRESS:
         return compress_pdf(update, context)
-    elif text == _(CANCEL):
+    if text == _(CANCEL):
         return cancel(update, context)
+
+    return WAIT_DOC_TASK
 
 
 def check_photo_task(update, context):
@@ -139,8 +183,10 @@ def check_photo_task(update, context):
 
     if text in [_(BEAUTIFY), _(TO_PDF)]:
         return process_photo_task(update, context)
-    elif text == _(CANCEL):
+    if text == _(CANCEL):
         return cancel(update, context)
+
+    return WAIT_PHOTO_TASK
 
 
 def check_crop_task(update, context):
@@ -149,8 +195,10 @@ def check_crop_task(update, context):
 
     if text in [_(BY_PERCENT), _(BY_SIZE)]:
         return ask_crop_value(update, context)
-    elif text == _(BACK):
+    if text == _(BACK):
         return ask_doc_task(update, context)
+
+    return WAIT_CROP_TYPE
 
 
 def check_scale_task(update, context):
@@ -159,8 +207,10 @@ def check_scale_task(update, context):
 
     if text in [_(BY_PERCENT), _(TO_DIMENSIONS)]:
         return ask_scale_value(update, context)
-    elif text == _(BACK):
+    if text == _(BACK):
         return ask_doc_task(update, context)
+
+    return WAIT_SCALE_TYPE
 
 
 def check_text_task(update, context):
@@ -169,10 +219,12 @@ def check_text_task(update, context):
 
     if text == _(TEXT_MESSAGE):
         return get_pdf_text(update, context, is_file=False)
-    elif text == _(TEXT_FILE):
+    if text == _(TEXT_FILE):
         return get_pdf_text(update, context, is_file=True)
-    elif text == _(BACK):
+    if text == _(BACK):
         return ask_doc_task(update, context)
+
+    return WAIT_TEXT_TYPE
 
 
 def check_get_photos_task(update, context):
@@ -181,8 +233,10 @@ def check_get_photos_task(update, context):
 
     if text in [_(PHOTOS), _(COMPRESSED)]:
         return get_pdf_photos(update, context)
-    elif text == _(BACK):
+    if text == _(BACK):
         return ask_doc_task(update, context)
+
+    return WAIT_EXTRACT_PHOTO_TYPE
 
 
 def check_to_photos_task(update, context):
@@ -191,5 +245,7 @@ def check_to_photos_task(update, context):
 
     if text in [_(PHOTOS), _(COMPRESSED)]:
         return pdf_to_photos(update, context)
-    elif text == _(BACK):
+    if text == _(BACK):
         return ask_doc_task(update, context)
+
+    return WAIT_TO_PHOTO_TYPE

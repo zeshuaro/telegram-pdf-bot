@@ -1,7 +1,7 @@
 from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
-from pdf_bot.constants import (
+from pdf_bot.consts import (
     BACK,
     BY_PERCENT,
     TO_DIMENSIONS,
@@ -45,22 +45,22 @@ def ask_scale_value(update, context, ask_percent=True):
         )
 
         return WAIT_SCALE_DIMENSION
-    else:
-        message.reply_text(
-            "{desc_1}\n{desc_2}\n\n{desc_3}".format(
-                desc_1=_(
-                    "Send me the scaling factors for the horizontal and vertical axes"
-                ),
-                desc_2=f"<b>{_('Example: 2 0.5')}</b>",
-                desc_3=_(
-                    "This will double the horizontal axis and halve the vertical axis"
-                ),
-            ),
-            reply_markup=reply_markup,
-            parse_mode=ParseMode.HTML,
-        )
 
-        return WAIT_SCALE_PERCENT
+    message.reply_text(
+        "{desc_1}\n{desc_2}\n\n{desc_3}".format(
+            desc_1=_(
+                "Send me the scaling factors for the horizontal and vertical axes"
+            ),
+            desc_2=f"<b>{_('Example: 2 0.5')}</b>",
+            desc_3=_(
+                "This will double the horizontal axis and halve the vertical axis"
+            ),
+        ),
+        reply_markup=reply_markup,
+        parse_mode=ParseMode.HTML,
+    )
+
+    return WAIT_SCALE_PERCENT
 
 
 def check_scale_percent(update, context):

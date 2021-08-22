@@ -1,6 +1,6 @@
 from telegram import ReplyKeyboardMarkup
 
-from pdf_bot.constants import (
+from pdf_bot.consts import (
     CANCEL,
     COMPRESS,
     CROP,
