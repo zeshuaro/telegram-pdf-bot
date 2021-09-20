@@ -4,6 +4,7 @@ multi_line_output = 3
 
 [tool.pylint.message-control]
 disable = [
+    "consider-using-f-string",
     "consider-using-with",
     "duplicate-code",
     "invalid-name",
@@ -14,4 +15,5 @@ disable = [
     "too-many-branches",
     "too-many-locals",
     "too-many-return-statements",
+    "unspecified-encoding",
 ]
