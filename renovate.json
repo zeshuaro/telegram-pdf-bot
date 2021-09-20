@@ -6,18 +6,21 @@
   "prCreation": "not-pending",
   "schedule": ["after 6pm every weekday", "every weekend"],
   "timezone": "Australia/Sydney",
+  "pip_requirements": {
+    "fileMatch": ["^([\\w-]*)requirements([-\\w]*)\\.(txt|pip)$"]
+  },
+  "pre-commit": {
+    "enabled": true
+  },
   "packageRules": [
     {
-      "groupName": "CI",
+      "groupName": "GitHub Actions Dependencies",
       "semanticCommitType": "ci",
-      "matchPaths": [".github/workflows/*.yml", ".pre-commit-config.yaml"],
-      "labels": ["ci"]
+      "matchPaths": [".github/workflows/*.yml"]
     },
     {
-      "groupName": "Docker",
-      "semanticCommitScope": "docker",
-      "matchFiles": ["Dockerfile"],
-      "labels": ["docker"]
+      "groupName": "Pre-Commit Dependencies",
+      "matchPaths": [".pre-commit-config.yaml", "requirements-dev.txt"]
     }
   ]
 }
