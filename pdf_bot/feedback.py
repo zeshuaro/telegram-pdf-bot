@@ -1,11 +1,10 @@
-import asyncio
 import os
 
 import cld3
 from dotenv import load_dotenv
 from logbook import Logger
+from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
-from slack_sdk.web.async_client import AsyncWebClient
 from telegram import ChatAction, Update
 from telegram.ext import (
     CallbackContext,
@@ -21,7 +20,7 @@ from pdf_bot.utils import cancel, reply_with_cancel_btn
 load_dotenv()
 SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
 
-slack_client = AsyncWebClient(SLACK_TOKEN)
+slack_client = WebClient(SLACK_TOKEN)
 
 
 def feedback_cov_handler() -> ConversationHandler:
@@ -71,24 +70,20 @@ def receive_feedback(update: Update, context: CallbackContext) -> int:
 
     _ = set_lang(update, context)
     if feedback_lang.language.lower() == "en":
-        text = (
-            f"Feedback received from @{message.chat.username} ({message.chat.id}):\n\n"
-            f"{feedback_msg}"
-        )
-        asyncio.run(post_message(text))
+        try:
+            text = (
+                f"Feedback received from @{message.chat.username} "
+                f"({message.chat.id}):\n\n{feedback_msg}"
+            )
+            slack_client.chat_postMessage(channel="#pdf-bot-feedback", text=text)
+        except SlackApiError as e:
+            log = Logger()
+            log.error(f"Failed to send Slack message: {e.response['error']}")
+
         message.reply_text(
             _("Thank you for your feedback, I've already forwarded it to my developer")
         )
-
         return ConversationHandler.END
 
     message.reply_text(_("The feedback is not in English, try again"))
     return 0
-
-
-async def post_message(text):
-    try:
-        await slack_client.chat_postMessage(channel="#pdf-bot-feedback", text=text)
-    except SlackApiError as e:
-        log = Logger()
-        log.error(f"Failed to send Slack message: {e.response['error']}")
