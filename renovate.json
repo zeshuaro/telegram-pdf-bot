@@ -2,7 +2,7 @@
   "extends": ["config:base"],
   "labels": ["dependencies"],
   "semanticCommits": "enabled",
-  "stabilityDays": 3,
+  "stabilityDays": 7,
   "prCreation": "not-pending",
   "schedule": ["after 6pm every weekday", "every weekend"],
   "timezone": "Australia/Sydney",
@@ -15,12 +15,13 @@
   "packageRules": [
     {
       "groupName": "GitHub Actions Dependencies",
-      "semanticCommitType": "ci",
-      "matchPaths": [".github/workflows/*.yml"]
+      "matchPaths": [".github/workflows/*.yml"],
+      "addLabels": ["ci"]
     },
     {
       "groupName": "Pre-Commit Dependencies",
-      "matchPaths": [".pre-commit-config.yaml", "requirements-dev.txt"]
+      "matchPaths": [".pre-commit-config.yaml", "requirements-dev.txt"],
+      "addLabels": ["ci"]
     }
   ]
 }
