@@ -1,8 +1,11 @@
+import asyncio
 import os
 
+import cld3
 from dotenv import load_dotenv
 from logbook import Logger
-from slack import WebClient
+from slack_sdk.errors import SlackApiError
+from slack_sdk.web.async_client import AsyncWebClient
 from telegram import ChatAction, Update
 from telegram.ext import (
     CallbackContext,
@@ -10,8 +13,6 @@ from telegram.ext import (
     ConversationHandler,
     MessageHandler,
 )
-from textblob import TextBlob
-from textblob.exceptions import TranslatorError
 
 from pdf_bot.consts import CANCEL, TEXT_FILTER
 from pdf_bot.language import set_lang
@@ -19,6 +20,8 @@ from pdf_bot.utils import cancel, reply_with_cancel_btn
 
 load_dotenv()
 SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
+
+slack_client = AsyncWebClient(SLACK_TOKEN)
 
 
 def feedback_cov_handler() -> ConversationHandler:
@@ -63,38 +66,29 @@ def check_text(update: Update, context: CallbackContext) -> int:
 
 def receive_feedback(update: Update, context: CallbackContext) -> int:
     message = update.effective_message
-    tele_username = message.chat.username
-    tele_id = message.chat.id
     feedback_msg = message.text
-    feedback_lang = None
-    b = TextBlob(feedback_msg)
-
-    try:
-        feedback_lang = b.detect_language()
-    except TranslatorError:
-        pass
+    feedback_lang = cld3.get_language(feedback_msg)  # pylint: disable=no-member
 
     _ = set_lang(update, context)
-    if feedback_lang is None or feedback_lang.lower() != "en":
-        message.reply_text(_("The feedback is not in English, try again"))
-        return 0
+    if feedback_lang.language.lower() == "en":
+        text = (
+            f"Feedback received from @{message.chat.username} ({message.chat.id}):\n\n"
+            f"{feedback_msg}"
+        )
+        asyncio.run(post_message(text))
+        message.reply_text(
+            _("Thank you for your feedback, I've already forwarded it to my developer")
+        )
 
-    text = f"Feedback received from @{tele_username} ({tele_id}):\n\n{feedback_msg}"
-    success = False
+        return ConversationHandler.END
 
-    if SLACK_TOKEN is not None:
-        client = WebClient(token=SLACK_TOKEN)
-        response = client.chat_postMessage(channel="#pdf-bot-feedback", text=text)
+    message.reply_text(_("The feedback is not in English, try again"))
+    return 0
 
-        if response["ok"] and response["message"]["text"] == text:
-            success = True
 
-    if not success:
+async def post_message(text):
+    try:
+        await slack_client.chat_postMessage(channel="#pdf-bot-feedback", text=text)
+    except SlackApiError as e:
         log = Logger()
-        log.notice(text)
-
-    message.reply_text(
-        _("Thank you for your feedback, I've already forwarded it to my developer")
-    )
-
-    return ConversationHandler.END
+        log.error(f"Failed to send Slack message: {e.response['error']}")
