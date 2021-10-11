@@ -1,4 +1,4 @@
-FROM python:3.10.0
+FROM python:3.9.7
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils libcairo2 libpango-1.0-0 libpangoft2-1.0-0 \
