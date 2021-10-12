@@ -14,9 +14,13 @@
   },
   "packageRules": [
     {
+      "groupName": "Docker Dependencies",
+      "matchPaths": ["Dockerfile"],
+      "semanticCommitScope": "docker"
+    },
+    {
       "groupName": "GitHub Actions Dependencies",
       "matchPaths": [".github/workflows/*.yml"],
-      "semanticCommitScope": "docker",
       "addLabels": ["ci"]
     },
     {
