@@ -14,6 +14,14 @@
   },
   "packageRules": [
     {
+      "groupName": "Dependencies",
+      "matchPaths": ["requirements.txt"]
+    },
+    {
+      "groupName": "Dev Dependencies",
+      "matchPaths": [".pre-commit-config.yaml", "requirements-dev.txt"]
+    },
+    {
       "groupName": "Docker Dependencies",
       "matchPaths": ["Dockerfile"],
       "semanticCommitScope": "docker"
@@ -21,11 +29,6 @@
     {
       "groupName": "GitHub Actions Dependencies",
       "matchPaths": [".github/workflows/*.yml"],
-      "addLabels": ["ci"]
-    },
-    {
-      "groupName": "Pre-Commit Dependencies",
-      "matchPaths": [".pre-commit-config.yaml", "requirements-dev.txt"],
       "addLabels": ["ci"]
     }
   ]
