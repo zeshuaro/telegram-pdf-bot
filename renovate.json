@@ -2,7 +2,7 @@
   "extends": ["config:base"],
   "labels": ["dependencies"],
   "semanticCommits": "enabled",
-  "stabilityDays": 7,
+  "stabilityDays": 3,
   "prCreation": "not-pending",
   "schedule": ["after 6pm every weekday", "every weekend"],
   "timezone": "Australia/Sydney",
@@ -13,10 +13,6 @@
     "enabled": true
   },
   "packageRules": [
-    {
-      "groupName": "Dependencies",
-      "matchPaths": ["requirements.txt"]
-    },
     {
       "groupName": "Dev Dependencies",
       "matchPaths": [".pre-commit-config.yaml", "requirements-dev.txt"]
