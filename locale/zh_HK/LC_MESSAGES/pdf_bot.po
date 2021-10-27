@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-09-24 14:43+0000\n"
-"PO-Revision-Date: 2021-09-24 14:43\n"
+"POT-Creation-Date: 2021-10-27 12:49+0000\n"
+"PO-Revision-Date: 2021-10-27 12:49\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -235,6 +235,10 @@ msgstr "{command} - 用文字訊息嚟創建PDF檔案"
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - 加水印去PDF檔案"
 
+#: pdf_bot/dispatcher.py:216
+msgid "Failed to process, please try again"
+msgstr ""
+
 #: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Send你嘅意見畀我（淨係英文嘅意見先至會轉發畀我嘅開發者）"
@@ -275,15 +279,19 @@ msgstr "發生咗未知嘅錯誤"
 msgid "Thank you for your support!"
 msgstr "多謝你嘅支持！"
 
-#: pdf_bot/url.py:29
+#: pdf_bot/url.py:35 pdf_bot/utils.py:291 pdf_bot/utils.py:298
+msgid "Here is your result file"
+msgstr "你嘅檔案"
+
+#: pdf_bot/url.py:50
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "你已經send咗呢個網頁俾我啦，我仲轉緊佢做PDF檔案"
 
-#: pdf_bot/url.py:33
+#: pdf_bot/url.py:54
 msgid "Converting your web page into a PDF file"
 msgstr "轉緊你嘅網頁做PDF檔案"
 
-#: pdf_bot/url.py:45
+#: pdf_bot/url.py:66
 msgid "Unable to reach your web page"
 msgstr "無法訪問你嘅網頁"
 
@@ -333,10 +341,6 @@ msgstr "你send咗呢啲{file_type}畀我："
 #: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "個檔案太大啦，我send唔到俾你"
-
-#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
-msgid "Here is your result file"
-msgstr "你嘅檔案"
 
 #: pdf_bot/commands/compare.py:46
 msgid "Send me one of the PDF files that you'll like to compare"
