@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-09-24 14:43+0000\n"
-"PO-Revision-Date: 2021-09-24 14:43\n"
+"POT-Creation-Date: 2021-10-27 12:49+0000\n"
+"PO-Revision-Date: 2021-10-27 12:49\n"
 "Last-Translator: \n"
 "Language: da\n"
 "Language-Team: Danish\n"
@@ -235,6 +235,10 @@ msgstr "{command} - oprette PDF-filer ud fra tekstbeskeder"
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - føj vandmærke til PDF-filer"
 
+#: pdf_bot/dispatcher.py:216
+msgid "Failed to process, please try again"
+msgstr ""
+
 #: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Send mig din feedback (kun engelsk feedback vil blive videresendt til min udvikler)"
@@ -275,15 +279,19 @@ msgstr "Noget gik galt"
 msgid "Thank you for your support!"
 msgstr "Tak for din støtte!"
 
-#: pdf_bot/url.py:29
+#: pdf_bot/url.py:35 pdf_bot/utils.py:291 pdf_bot/utils.py:298
+msgid "Here is your result file"
+msgstr "Her er din resultatfil"
+
+#: pdf_bot/url.py:50
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "Du har sendt mig denne webside allerede, og jeg er stadig konvertere det"
 
-#: pdf_bot/url.py:33
+#: pdf_bot/url.py:54
 msgid "Converting your web page into a PDF file"
 msgstr "Konvertere din webside til en PDF-fil"
 
-#: pdf_bot/url.py:45
+#: pdf_bot/url.py:66
 msgid "Unable to reach your web page"
 msgstr "Der kan ikke nås til din webside"
 
@@ -333,10 +341,6 @@ msgstr "Du har sendt mig disse {file_type} indtil videre:"
 #: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "Resultatfilen er for stor til, at jeg kan sende til dig"
-
-#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
-msgid "Here is your result file"
-msgstr "Her er din resultatfil"
 
 #: pdf_bot/commands/compare.py:46
 msgid "Send me one of the PDF files that you'll like to compare"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-09-24 14:43+0000\n"
-"PO-Revision-Date: 2021-09-24 14:43\n"
+"POT-Creation-Date: 2021-10-27 12:49+0000\n"
+"PO-Revision-Date: 2021-10-27 12:49\n"
 "Last-Translator: \n"
 "Language: it\n"
 "Language-Team: Italian\n"
@@ -235,6 +235,10 @@ msgstr "{command} - creare file PDF da messaggi di testo"
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - aggiungere filigrana ai file PDF"
 
+#: pdf_bot/dispatcher.py:216
+msgid "Failed to process, please try again"
+msgstr ""
+
 #: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Inviami il tuo feedback (solo il feedback in inglese verrà inoltrato al mio sviluppatore)"
@@ -275,15 +279,19 @@ msgstr "Qualcosa è andato storto"
 msgid "Thank you for your support!"
 msgstr "Grazie per il tuo supporto!"
 
-#: pdf_bot/url.py:29
+#: pdf_bot/url.py:35 pdf_bot/utils.py:291 pdf_bot/utils.py:298
+msgid "Here is your result file"
+msgstr "Ecco il tuo file completato"
+
+#: pdf_bot/url.py:50
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "Mi hai già inviato questa pagina web e la sto ancora convertendo"
 
-#: pdf_bot/url.py:33
+#: pdf_bot/url.py:54
 msgid "Converting your web page into a PDF file"
 msgstr "Sto convertendo la pagina web in PDF"
 
-#: pdf_bot/url.py:45
+#: pdf_bot/url.py:66
 msgid "Unable to reach your web page"
 msgstr "Impossibile raggiungere la pagina web"
 
@@ -333,10 +341,6 @@ msgstr "Mi hai mandato questi {file_type} finora:"
 #: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "Il file ottenuto è troppo grande per poterlo inviare"
-
-#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
-msgid "Here is your result file"
-msgstr "Ecco il tuo file completato"
 
 #: pdf_bot/commands/compare.py:46
 msgid "Send me one of the PDF files that you'll like to compare"
