@@ -40,7 +40,7 @@ from pdf_bot.payment import (
 )
 from pdf_bot.stats import get_stats
 from pdf_bot.store import create_user
-from pdf_bot.url import process_url
+from pdf_bot.url import url_to_pdf
 
 load_dotenv()
 DEV_TELE_ID = int(os.environ.get("DEV_TELE_ID"))
@@ -68,7 +68,7 @@ def setup_dispatcher(dispatcher: Dispatcher):
 
     # URL handler
     dispatcher.add_handler(
-        MessageHandler(Filters.entity(MessageEntity.URL), process_url)
+        MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf)
     )
 
     # PDF commands handlers
@@ -209,10 +209,6 @@ def send_msg(update: Update, context: CallbackContext):
 
 
 def error_callback(update: Update, context: CallbackContext):
-    _ = set_lang(update, context)
-    error = context.error
-
-    if error is not Unauthorized:
-        update.effective_message.reply_text(_("Failed to process, please try again"))
+    if context.error is not Unauthorized:
         log = Logger()
-        log.error(f'Update "{update}" caused error "{error}"')
+        log.error(f'Update "{update}" caused error "{context.error}"')
