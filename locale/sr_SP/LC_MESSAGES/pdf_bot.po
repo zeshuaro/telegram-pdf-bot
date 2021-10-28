@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-10-27 12:49+0000\n"
-"PO-Revision-Date: 2021-10-27 12:49\n"
+"POT-Creation-Date: 2021-10-28 07:00+0000\n"
+"PO-Revision-Date: 2021-10-28 07:01\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -235,10 +235,6 @@ msgstr "{command} - креирање ПДФ фајлова од текстуал
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - додајте водени жиг ПДФ фајловима"
 
-#: pdf_bot/dispatcher.py:216
-msgid "Failed to process, please try again"
-msgstr ""
-
 #: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Пошаљи ми повратне информације (само енглеске повратне информације ће бити прослеђене мом пројектанту)"
@@ -279,19 +275,15 @@ msgstr "Нешто је пошло наопако"
 msgid "Thank you for your support!"
 msgstr "Хвала вам на подршци!"
 
-#: pdf_bot/url.py:35 pdf_bot/utils.py:291 pdf_bot/utils.py:298
-msgid "Here is your result file"
-msgstr "Ово је твоја датотека са резултатима"
-
-#: pdf_bot/url.py:50
+#: pdf_bot/url.py:29
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "Већ си ми послао ову wеб страницу, а ја је још увек конвертујем"
 
-#: pdf_bot/url.py:54
+#: pdf_bot/url.py:33
 msgid "Converting your web page into a PDF file"
 msgstr "Конвертовање Wеб странице у ПДФ датотеку"
 
-#: pdf_bot/url.py:66
+#: pdf_bot/url.py:45
 msgid "Unable to reach your web page"
 msgstr "Није могуће стићи до Wеб странице"
 
@@ -341,6 +333,10 @@ msgstr "До сада си ми послао {file_type} ових година:"
 #: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "Датотека са резултатима је превелика да бих вам је послао"
+
+#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
+msgid "Here is your result file"
+msgstr "Ово је твоја датотека са резултатима"
 
 #: pdf_bot/commands/compare.py:46
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -1383,5 +1379,8 @@ msgstr "Нисам могао да нађем никакав текст у тв�
 #~ msgstr ""
 
 #~ msgid "Meal {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Failed to process, please try again"
 #~ msgstr ""
 

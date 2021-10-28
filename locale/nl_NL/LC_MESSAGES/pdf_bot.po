@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-10-27 12:49+0000\n"
-"PO-Revision-Date: 2021-10-27 12:49\n"
+"POT-Creation-Date: 2021-10-28 07:00+0000\n"
+"PO-Revision-Date: 2021-10-28 07:01\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -235,10 +235,6 @@ msgstr "{command} - PDF-bestanden maken op tekstberichten"
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - watermerk toevoegen aan PDF-bestanden"
 
-#: pdf_bot/dispatcher.py:216
-msgid "Failed to process, please try again"
-msgstr ""
-
 #: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Stuur mij uw feedback (alleen Engelse feedback wordt doorgestuurd naar mijn ontwikkelaar)"
@@ -279,19 +275,15 @@ msgstr "Er is iets misgegaan"
 msgid "Thank you for your support!"
 msgstr "Bedankt voor je steun!"
 
-#: pdf_bot/url.py:35 pdf_bot/utils.py:291 pdf_bot/utils.py:298
-msgid "Here is your result file"
-msgstr "Hier is het bestand"
-
-#: pdf_bot/url.py:50
+#: pdf_bot/url.py:29
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "Je hebt me deze webpagina al gestuurd en ik ben nog steeds bezig met het converteren"
 
-#: pdf_bot/url.py:54
+#: pdf_bot/url.py:33
 msgid "Converting your web page into a PDF file"
 msgstr "Webpagina converteren naar een PDF bestand"
 
-#: pdf_bot/url.py:66
+#: pdf_bot/url.py:45
 msgid "Unable to reach your web page"
 msgstr "Kan uw webpagina niet bereiken"
 
@@ -341,6 +333,10 @@ msgstr "Je hebt me tot nu toe deze {file_type} gestuurd:"
 #: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
 msgstr "Het bestand is te groot voor mij om naar u te verzenden"
+
+#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
+msgid "Here is your result file"
+msgstr "Hier is het bestand"
 
 #: pdf_bot/commands/compare.py:46
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -1383,5 +1379,8 @@ msgstr "Ik kon geen tekst in uw PDF-bestand vinden"
 #~ msgstr ""
 
 #~ msgid "Meal {emoji} ({value})"
+#~ msgstr ""
+
+#~ msgid "Failed to process, please try again"
 #~ msgstr ""
 
