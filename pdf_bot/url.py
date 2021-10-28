@@ -4,37 +4,16 @@ import tempfile
 from urllib.parse import urlparse
 
 from logbook import Logger
-from telegram import ChatAction, Update
+from telegram import Update
 from telegram.ext import CallbackContext
 from weasyprint import HTML
 from weasyprint.urls import URLFetchingError
 
 from pdf_bot.language import set_lang
-from pdf_bot.utils import get_support_markup, send_result_file
+from pdf_bot.utils import send_result_file
 
 URLS = "urls"
 logging.getLogger("weasyprint").setLevel(100)
-
-
-def process_url(update: Update, context: CallbackContext):
-    url = update.effective_message.text
-    if url.split("?")[0].endswith(".pdf"):
-        download_pdf(update, context)
-    else:
-        url_to_pdf(update, context)
-
-
-def download_pdf(update: Update, context: CallbackContext):
-    _ = set_lang(update, context)
-    reply_markup = get_support_markup(update, context)
-
-    message = update.effective_message
-    message.reply_chat_action(ChatAction.UPLOAD_DOCUMENT)
-    message.reply_document(
-        document=message.text,
-        caption=_("Here is your result file"),
-        reply_markup=reply_markup,
-    )
 
 
 def url_to_pdf(update: Update, context: CallbackContext):
