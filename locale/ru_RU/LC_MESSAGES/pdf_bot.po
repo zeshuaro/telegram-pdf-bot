@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2021-10-28 07:00+0000\n"
-"PO-Revision-Date: 2021-10-28 07:01\n"
+"PO-Revision-Date: 2021-11-22 11:04\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -125,7 +125,7 @@ msgstr "Сжать"
 
 #: pdf_bot/consts.py:78
 msgid "Say Thanks"
-msgstr "Скажите спасибо"
+msgstr "Скажите «Спасибо«"
 
 #: pdf_bot/consts.py:79
 msgid "Coffee"
@@ -312,7 +312,7 @@ msgstr "Что-то пошло не так, пожалуйста, начните
 
 #: pdf_bot/utils.py:193
 msgid "Your file is invalid and I couldn't open and process it"
-msgstr "Ваш файл недействителен, и мне не удалось открыть и обработать его"
+msgstr "Ваш файл недействителен, мне не удалось открыть и обработать его"
 
 #: pdf_bot/utils.py:199
 msgid "Your PDF file is already encrypted"
@@ -320,15 +320,15 @@ msgstr "Ваш PDF-файл уже зашифрован"
 
 #: pdf_bot/utils.py:201
 msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
-msgstr "Ваш {file_type} PDF-файл зашифрован, и вам придется сначала расшифровать его"
+msgstr "Ваш {file_type} PDF-файл зашифрован, вам необходимо сначала расшифровать его"
 
 #: pdf_bot/utils.py:206
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
-msgstr "Ваш PDF-файл зашифрован, и вам придется сначала расшифровать его"
+msgstr "Ваш PDF-файл зашифрован, вам необходимо сначала расшифровать его"
 
 #: pdf_bot/utils.py:228
 msgid "You've sent me these {file_type} so far:"
-msgstr "Вы прислали мне эти {file_type} до сих пор:"
+msgstr "На данный момент Вы прислали мне это {file_type}:"
 
 #: pdf_bot/utils.py:278
 msgid "The result file is too large for me to send to you"
@@ -340,7 +340,7 @@ msgstr "Вот ваш итоговый файл"
 
 #: pdf_bot/commands/compare.py:46
 msgid "Send me one of the PDF files that you'll like to compare"
-msgstr "Пришлите мне один из PDF-файлов, которые вы захотите сравнить"
+msgstr "Пришлите мне один из PDF-файлов, которые вы хотите сравнить"
 
 #: pdf_bot/commands/compare.py:47
 msgid "Note that I can only look for text differences"
@@ -364,7 +364,7 @@ msgstr "Пришлите мне PDF-файлы, которые вы хотите
 
 #: pdf_bot/commands/merge.py:83
 msgid "Note that the files will be merged in the order that you send me"
-msgstr "Обратите внимание, что файлы будут объединены в том порядке, в который вы мне отправите"
+msgstr "Обратите внимание, что файлы будут объединены в том порядке, в котором вы мне их отправите"
 
 #: pdf_bot/commands/merge.py:115
 msgid "Your file is not a PDF file"
@@ -376,11 +376,11 @@ msgstr "PDF-файлы"
 
 #: pdf_bot/commands/merge.py:150
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "Нажмите {done} , если вы отправили мне все PDF-файлы, которые вы хотите объединить, или продолжайте присылать мне PDF-файлы"
+msgstr "Нажмите {done}, если вы отправили мне все PDF-файлы, которые вы хотите объединить, или продолжите присылать мне PDF-файлы"
 
 #: pdf_bot/commands/merge.py:193
 msgid "{file_name} has been removed for merging"
-msgstr "{file_name} удален для объединения"
+msgstr "{file_name} был удален для объединения"
 
 #: pdf_bot/commands/merge.py:215
 msgid "You haven't sent me any PDF files"
@@ -400,11 +400,11 @@ msgstr "Не удалось объединить PDF-файлы, так как �
 
 #: pdf_bot/commands/photo.py:77
 msgid "Send me the photos that you'll like to beautify or convert into a PDF file"
-msgstr "Пришлите мне фотографии, которые вы хотите украсить или преобразовать в PDF-файл"
+msgstr "Пришлите мне фотографии, которые вы хотите улучшить или преобразовать в PDF-файл"
 
 #: pdf_bot/commands/photo.py:81
 msgid "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Обратите внимание, что фотографии будут украшены и преобразованы в том порядке, в который вы мне присылаете"
+msgstr "Обратите внимание, что фотографии будут улучшены и преобразованы в том порядке, в котором вы мне их присылаете"
 
 #: pdf_bot/commands/photo.py:108
 msgid "File name unavailable"
@@ -424,7 +424,7 @@ msgstr "Выберите задание из списка ниже, если в�
 
 #: pdf_bot/commands/photo.py:199
 msgid "{file_name} has been removed for beautifying or converting"
-msgstr "{file_name} был удален для украшения или преобразования"
+msgstr "{file_name} был удален для улучшения или преобразования"
 
 #: pdf_bot/commands/photo.py:236
 msgid "Beautifying and converting your photos"
@@ -525,7 +525,7 @@ msgstr "Расшифровка PDF-файла"
 
 #: pdf_bot/files/crypto.py:47
 msgid "Your PDF file is invalid and I couldn't open and process it"
-msgstr "Ваш PDF-файл недействителен, и я не смог открыть и обработать его"
+msgstr "Ваш PDF-файл недействителен, я не смог открыть и обработать его"
 
 #: pdf_bot/files/crypto.py:52
 msgid "Your PDF file is not encrypted"
@@ -601,7 +601,7 @@ msgstr "Имена файлов не могут содержать следую�
 
 #: pdf_bot/files/rename.py:41
 msgid "Please try again"
-msgstr "Повторите попытку"
+msgstr "Пожалуйста, попробуйте еще раз"
 
 #: pdf_bot/files/rename.py:49
 msgid "Renaming your PDF file into {file_name}"
@@ -681,7 +681,7 @@ msgstr "{range}     только последняя страница"
 
 #: pdf_bot/files/split.py:60
 msgid "{range}    all pages except the last page"
-msgstr "{range}    все страницы, кроме последней страницы"
+msgstr "{range}    все, кроме последней страницы"
 
 #: pdf_bot/files/split.py:63
 msgid "{range}     second last page only"
@@ -721,7 +721,7 @@ msgstr "{pages}{range}  страниц"
 
 #: pdf_bot/files/split.py:99
 msgid "The range is invalid, please try again"
-msgstr "Недопустимый диапазон, повторите попытку"
+msgstr "Недопустимый диапазон, пожалуйста, попробуйте снова"
 
 #: pdf_bot/files/split.py:105
 msgid "Splitting your PDF file"
