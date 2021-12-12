@@ -51,30 +51,31 @@ jobs:
     environment:
       name: Staging
     env:
-      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-      SERVICE_NAME: ${{ secrets.GCP_SERVICE_NAME }}
+      GCP_IMAGE: ${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_SERVICE_NAME }}:${{ github.sha }}
 
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
 
-      - name: Setup GCloud ⚙️
-        uses: google-github-actions/setup-gcloud@master
+      - name: Authenticate to Google Cloud 🔐
+        uses: google-github-actions/auth@v0.4.3
         with:
-          version: "349.0.0"
-          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
 
-      - name: Build 🏗
+      - name: Setup Google Cloud ⚙️
+        uses: google-github-actions/setup-gcloud@v0.3.0
+
+      - name: Authorize Docker push 🚢
+        run: gcloud auth configure-docker
+
+      - name: Build and push image 🏗
         run: |-
-          gcloud builds submit \
-            --quiet \
-            --tag "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA"
+          docker build -t gcr.io/${{ env.GCP_IMAGE }} .
+          docker push gcr.io/${{ env.GCP_IMAGE }}
 
       - name: Deploy 🚀
-        uses: google-github-actions/deploy-cloudrun@main
+        uses: google-github-actions/deploy-cloudrun@v0.6.0
         with:
-          service: ${{ env.SERVICE_NAME }}
-          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.SHA }}
+          service: ${{ secrets.GCP_SERVICE_NAME }}
+          image: gcr.io/${{ env.GCP_IMAGE }}
           region: ${{ secrets.GCP_REGION }}
