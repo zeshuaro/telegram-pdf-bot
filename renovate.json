@@ -1,4 +1,5 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "labels": ["dependencies"],
   "semanticCommits": "enabled",
@@ -6,16 +7,14 @@
   "prCreation": "not-pending",
   "schedule": ["after 6pm every weekday", "every weekend"],
   "timezone": "Australia/Sydney",
-  "pip_requirements": {
-    "fileMatch": ["^([\\w-]*)requirements([-\\w]*)\\.(txt|pip)$"]
-  },
   "pre-commit": {
     "enabled": true
   },
   "packageRules": [
     {
       "groupName": "Dev Dependencies",
-      "matchPaths": [".pre-commit-config.yaml", "requirements-dev.txt"]
+      "matchPaths": ["pyproject.toml", ".pre-commit-config.yaml"],
+      "matchDepTypes": ["dev-dependencies", "repository"]
     },
     {
       "groupName": "Docker Dependencies",
