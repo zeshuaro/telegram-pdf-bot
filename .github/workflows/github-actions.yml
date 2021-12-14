@@ -7,6 +7,17 @@ on:
   pull_request:
 
 jobs:
+  test-image:
+    name: Test Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Test image 🧪
+        run: docker build .
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
