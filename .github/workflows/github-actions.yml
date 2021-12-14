@@ -57,7 +57,7 @@ jobs:
   deploy-stg:
     name: Deploy to Staging
     runs-on: ubuntu-latest
-    needs: [lint]
+    needs: [test-image, lint]
     if: ${{ github.ref == 'refs/heads/master' }}
     environment:
       name: Staging
