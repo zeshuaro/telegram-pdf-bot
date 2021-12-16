@@ -17,14 +17,15 @@
       "matchDepTypes": ["dev-dependencies", "repository"]
     },
     {
-      "groupName": "Docker Dependencies",
-      "matchPaths": ["Dockerfile"],
-      "semanticCommitScope": "docker"
-    },
-    {
       "groupName": "GitHub Actions Dependencies",
       "matchPaths": [".github/workflows/*.yml"],
       "addLabels": ["ci"]
+    },
+    {
+      "groupName": "Python",
+      "matchPaths": [".python-version", "Dockerfile"],
+      "matchPackageNames": ["python"],
+      "semanticCommitScope": "python"
     }
   ]
 }
