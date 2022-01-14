@@ -46,7 +46,7 @@ jobs:
 
       - name: Commit changes 🆕
         if: env.NUM_DIFFS > 1
-        uses: stefanzweifel/git-auto-commit-action@v4.13.0
+        uses: stefanzweifel/git-auto-commit-action@v4.13.1
         with:
           commit_message: "ci: update localization source file [skip ci]"
           file_pattern: locale/en_GB/LC_MESSAGES/pdf_bot.po
