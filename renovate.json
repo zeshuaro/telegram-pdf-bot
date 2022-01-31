@@ -5,13 +5,10 @@
   "semanticCommits": "enabled",
   "schedule": ["after 6pm every weekday", "every weekend"],
   "timezone": "Australia/Sydney",
-  "pre-commit": {
-    "enabled": true
-  },
   "packageRules": [
     {
       "groupName": "Dev Dependencies",
-      "matchPaths": ["pyproject.toml", ".pre-commit-config.yaml"],
+      "matchPaths": ["pyproject.toml"],
       "matchDepTypes": ["dev-dependencies", "repository"]
     },
     {
