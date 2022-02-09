@@ -1126,7 +1126,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "slack-sdk"
-version = "3.13.0"
+version = "3.14.1"
 description = "The Slack API Platform SDK for Python"
 category = "main"
 optional = false
@@ -1134,7 +1134,7 @@ python-versions = ">=3.6.0"
 
 [package.extras]
 optional = ["aiodns (>1.0)", "aiohttp (>=3.7.3,<4)", "boto3 (<=2)", "SQLAlchemy (>=1,<2)", "websockets (>=10,<11)", "websocket-client (>=1,<2)"]
-testing = ["pytest (>=6.2.5,<7)", "pytest-asyncio (<1)", "Flask-Sockets (>=0.2,<1)", "Flask (>=1,<2)", "Werkzeug (<2)", "pytest-cov (>=2,<3)", "codecov (>=2,<3)", "flake8 (>=4,<5)", "black (==21.12b0)", "psutil (>=5,<6)", "databases (>=0.3)", "boto3 (<=2)", "moto (<2)"]
+testing = ["pytest (>=6.2.5,<7)", "pytest-asyncio (<1)", "Flask-Sockets (>=0.2,<1)", "Flask (>=1,<2)", "Werkzeug (<2)", "pytest-cov (>=2,<3)", "codecov (>=2,<3)", "flake8 (>=4,<5)", "black (==22.1.0)", "psutil (>=5,<6)", "databases (>=0.5)", "boto3 (<=2)", "moto (>=3,<4)"]
 
 [[package]]
 name = "tinycss2"
@@ -1327,7 +1327,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "2aea4ae0192d7523a541dbce822ad7fd7bf873eb5a6cb5294b2b5cfb1824c1ff"
+content-hash = "bb216bd209f5866ee9875b9cf6f99ac02d12c3757a62439f005bb6a1a63467c5"
 
 [metadata.files]
 apscheduler = [
@@ -2349,8 +2349,8 @@ six = [
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 slack-sdk = [
-    {file = "slack_sdk-3.13.0-py2.py3-none-any.whl", hash = "sha256:54f2a5f7419f1ab932af9e3200f7f2f93db96e0f0eb8ad7d3b4214aa9f124641"},
-    {file = "slack_sdk-3.13.0.tar.gz", hash = "sha256:aae6ce057e286a5e7fe7a9f256e85b886eee556def8e04b82b08f699e64d7f67"},
+    {file = "slack_sdk-3.14.1-py2.py3-none-any.whl", hash = "sha256:b1a007072d2e98978cf906ff3452641ea4ab185e4eddbc27b087bbd9a8043ff0"},
+    {file = "slack_sdk-3.14.1.tar.gz", hash = "sha256:306d3647509fcfbd4ebe5dba19386ead329e85d297366805dbeac543bbd60904"},
 ]
 tinycss2 = [
     {file = "tinycss2-1.1.1-py3-none-any.whl", hash = "sha256:fe794ceaadfe3cf3e686b22155d0da5780dd0e273471a51846d0a02bc204fec8"},
