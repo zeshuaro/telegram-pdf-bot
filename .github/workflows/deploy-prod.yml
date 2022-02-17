@@ -25,7 +25,7 @@ jobs:
           credentials_json: "${{ secrets.GCP_SA_KEY }}"
 
       - name: Setup Google Cloud ⚙️
-        uses: google-github-actions/setup-gcloud@v0.5.0
+        uses: google-github-actions/setup-gcloud@v0.5.1
 
       - name: Authorize Docker push 🚢
         run: gcloud auth configure-docker
