@@ -546,6 +546,17 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "langdetect"
+version = "1.0.9"
+description = "Language detection library ported from Google's language-detection."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+six = "*"
+
+[[package]]
 name = "lazy-object-proxy"
 version = "1.6.0"
 description = "A fast and thorough lazy object proxy."
@@ -894,14 +905,6 @@ python-versions = "*"
 
 [package.dependencies]
 pyasn1 = ">=0.4.6,<0.5.0"
-
-[[package]]
-name = "pycld3"
-version = "0.22"
-description = "CLD3 Python bindings"
-category = "main"
-optional = false
-python-versions = ">2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*"
 
 [[package]]
 name = "pycparser"
@@ -1327,7 +1330,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "0eb12acd9340cf343cb4a745fb859631e27157163c465c08a8fb1c0a093c9e74"
+content-hash = "57dddd4bc7ebe60d6f74e0332100fb813bb61514847959213a449e0b3aee8454"
 
 [metadata.files]
 apscheduler = [
@@ -1757,6 +1760,10 @@ kiwisolver = [
     {file = "kiwisolver-1.3.2-pp37-pypy37_pp73-win_amd64.whl", hash = "sha256:bcadb05c3d4794eb9eee1dddf1c24215c92fb7b55a80beae7a60530a91060560"},
     {file = "kiwisolver-1.3.2.tar.gz", hash = "sha256:fc4453705b81d03568d5b808ad8f09c77c47534f6ac2e72e733f9ca4714aa75c"},
 ]
+langdetect = [
+    {file = "langdetect-1.0.9-py2-none-any.whl", hash = "sha256:7cbc0746252f19e76f77c0b1690aadf01963be835ef0cd4b56dddf2a8f1dfc2a"},
+    {file = "langdetect-1.0.9.tar.gz", hash = "sha256:cbc1fef89f8d062739774bd51eda3da3274006b3661d199c2655f6b3f6d605a0"},
+]
 lazy-object-proxy = [
     {file = "lazy-object-proxy-1.6.0.tar.gz", hash = "sha256:489000d368377571c6f982fba6497f2aa13c6d1facc40660963da62f5c379726"},
     {file = "lazy_object_proxy-1.6.0-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:c6938967f8528b3668622a9ed3b31d145fab161a32f5891ea7b84f6b790be05b"},
@@ -2171,17 +2178,6 @@ pyasn1-modules = [
     {file = "pyasn1_modules-0.2.8-py3.5.egg", hash = "sha256:426edb7a5e8879f1ec54a1864f16b882c2837bfd06eee62f2c982315ee2473ed"},
     {file = "pyasn1_modules-0.2.8-py3.6.egg", hash = "sha256:cbac4bc38d117f2a49aeedec4407d23e8866ea4ac27ff2cf7fb3e5b570df19e0"},
     {file = "pyasn1_modules-0.2.8-py3.7.egg", hash = "sha256:c29a5e5cc7a3f05926aff34e097e84f8589cd790ce0ed41b67aed6857b26aafd"},
-]
-pycld3 = [
-    {file = "pycld3-0.22-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:a5ed75d673719cd03174d4bd8f387933181fe64ad2482a975efc76c965a2709e"},
-    {file = "pycld3-0.22-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:407ef96f7638ee499afb66d8b29c46ad3f86808c6ea9584b580b8b9c4bb029ef"},
-    {file = "pycld3-0.22-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:5572632b64911c3ecf8e3919fa70ed8f1ee7d595090fbc95ca640d6aec6ba1cc"},
-    {file = "pycld3-0.22-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:a1c55b2146ddd3c6294b4c1590eddafdf66cccfea0db95aa6194c08c36dcee8a"},
-    {file = "pycld3-0.22-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:d7327567bcbae275921fb441b037f815b76adcad7349e8b9451fb5dbfcf57b8a"},
-    {file = "pycld3-0.22-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:903d33e62a717ff0cf3f75d7cfb835c786b78f5c78f309e2c0bb8ad1fd0e05b6"},
-    {file = "pycld3-0.22-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:1e0c8d6e64e0f0ae5e464806af5793234c403e10a16bd796df742d910a1dd464"},
-    {file = "pycld3-0.22-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:d614a9d5fbd7e1286fc8f3061332d83d34bec52f6e9c627246c14f245f0a3852"},
-    {file = "pycld3-0.22.tar.gz", hash = "sha256:2de0f6895342a116bce6032e6b5bea747de1dcad5d511c6583ae4343a0708dd5"},
 ]
 pycparser = [
     {file = "pycparser-2.21-py2.py3-none-any.whl", hash = "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"},

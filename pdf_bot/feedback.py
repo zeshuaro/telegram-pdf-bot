@@ -1,7 +1,7 @@
 import os
 
-import cld3
 from dotenv import load_dotenv
+from langdetect import detect
 from logbook import Logger
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
@@ -66,10 +66,10 @@ def check_text(update: Update, context: CallbackContext) -> int:
 def receive_feedback(update: Update, context: CallbackContext) -> int:
     message = update.effective_message
     feedback_msg = message.text
-    feedback_lang = cld3.get_language(feedback_msg)  # pylint: disable=no-member
+    feedback_lang = detect(feedback_msg)  # pylint: disable=no-member
 
     _ = set_lang(update, context)
-    if feedback_lang.language.lower() == "en":
+    if feedback_lang.lower() == "en":
         try:
             text = (
                 f"Feedback received from @{message.chat.username} "
