@@ -682,7 +682,7 @@ python-versions = ">=3.8"
 
 [[package]]
 name = "ocrmypdf"
-version = "13.3.0"
+version = "13.4.0"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 category = "main"
 optional = false
@@ -693,7 +693,7 @@ coloredlogs = ">=14.0"
 img2pdf = ">=0.3.0,<0.5"
 packaging = ">=20"
 "pdfminer.six" = ">=20191110,<20200720 || >20200720,<=20211012"
-pikepdf = ">=4.0.0"
+pikepdf = ">=4.0.0,<5.0.0 || >5.0.0"
 Pillow = ">=8.2.0"
 pluggy = ">=0.13.0,<2"
 reportlab = ">=3.5.66"
@@ -798,13 +798,12 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 lxml = ">=4.0"
-packaging = ">=20"
-Pillow = ">=6.0,<10"
+Pillow = ">=6.0"
 
 [package.extras]
-docs = ["gitpython", "pygithub", "Sphinx (>=3)", "ipython", "matplotlib", "pybind11", "requests", "setuptools-scm", "sphinx-issues", "sphinx-panels", "sphinx-rtd-theme", "tomli"]
-mypy = ["lxml-stubs", "types-pillow", "types-requests", "types-setuptools"]
-test = ["Pillow (>=9,<10)", "attrs (>=20.2.0)", "coverage", "hypothesis (>=5,<7)", "psutil (>=5,<6)", "pybind11", "pytest (>=6,<8)", "pytest-cov (>=2.10.1,<3)", "pytest-timeout (>=1.4.2)", "pytest-xdist (>=1.28,<3)", "python-dateutil (>=2.8.0)", "tomli", "python-xmp-toolkit (>=2.0.1)"]
+docs = ["Sphinx (>=3)", "ipython", "matplotlib", "pybind11", "setuptools-scm", "sphinx-issues", "sphinx-rtd-theme", "toml"]
+mypy = ["lxml-stubs", "types-pillow", "types-requests", "types-setuptools", "types-toml"]
+test = ["Pillow (>=7,<9)", "attrs (>=20.2.0)", "coverage", "hypothesis (>=5,<7)", "psutil (>=5,<6)", "pybind11", "pytest (>=6,<7)", "pytest-cov (>=2.10.1,<3)", "pytest-timeout (>=1.4.2)", "pytest-xdist (>=1.28,<3)", "python-dateutil (>=2.8.0)", "toml", "python-xmp-toolkit (>=2.0.1)"]
 
 [[package]]
 name = "pillow"
@@ -1320,7 +1319,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "680e0df78e909ad60fb2e5fb29bc9858f08ec564048c8d1ecfdd90b9f33c7ba0"
+content-hash = "beb11c40d253a001e3729b374931378befff4da1b3dc1048de7a279df61f3bcd"
 
 [metadata.files]
 apscheduler = [
@@ -2007,8 +2006,8 @@ numpy = [
     {file = "numpy-1.22.2.zip", hash = "sha256:076aee5a3763d41da6bef9565fdf3cb987606f567cd8b104aded2b38b7b47abf"},
 ]
 ocrmypdf = [
-    {file = "ocrmypdf-13.3.0-py37-none-any.whl", hash = "sha256:386be6e456f8c3ed84c7c35689ad948e0aa97201d813db59d2d1c4121546ee3f"},
-    {file = "ocrmypdf-13.3.0.tar.gz", hash = "sha256:20682c9603e6264dc33e3e4f4cb13bec661f8c670f9f688371b87c5fd2fc95e1"},
+    {file = "ocrmypdf-13.4.0-py37-none-any.whl", hash = "sha256:bb770ef09439112c4fd84b7cca7f53da88f10927eda8c24ab0e9ae1c1626d018"},
+    {file = "ocrmypdf-13.4.0.tar.gz", hash = "sha256:e5a882afe9e1eb5382c916f13649dcab03035546f34d4bf1487d561081cb662c"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
