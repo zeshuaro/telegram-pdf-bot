@@ -9,19 +9,19 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.error import BadRequest
 from telegram.ext import ConversationHandler
 
-from pdf_bot.commands import process_photo
+from pdf_bot.commands import process_image
 from pdf_bot.consts import (
     BACK,
     BEAUTIFY,
     CANCEL,
     COMPRESSED,
-    EXTRACT_PHOTO,
+    EXTRACT_IMAGE,
+    IMAGES,
     PDF_INFO,
-    PHOTOS,
     TO_PDF,
-    WAIT_EXTRACT_PHOTO_TYPE,
-    WAIT_PHOTO_TASK,
-    WAIT_TO_PHOTO_TYPE,
+    WAIT_EXTRACT_IMAGE_TYPE,
+    WAIT_IMAGE_TASK,
+    WAIT_TO_IMAGE_TYPE,
 )
 from pdf_bot.files.utils import check_back_user_data, run_cmd
 from pdf_bot.language import set_lang
@@ -33,18 +33,18 @@ from pdf_bot.utils import (
     send_result_file,
 )
 
-PHOTO_ID = "photo_id"
+IMAGE_ID = "image_id"
 MAX_MEDIA_GROUP = 10
 
 
-def ask_photo_task(update, context, photo_file):
+def ask_image_task(update, context, image_file):
     _ = set_lang(update, context)
     message = update.effective_message
 
-    if photo_file.file_size >= MAX_FILESIZE_DOWNLOAD:
+    if image_file.file_size >= MAX_FILESIZE_DOWNLOAD:
         message.reply_text(
             "{desc_1}\n\n{desc_2}".format(
-                desc_1=_("Your photo is too large for me to download and process"),
+                desc_1=_("Your image is too large for me to download and process"),
                 desc_2=_(
                     "Note that this is a Telegram Bot limitation and there's "
                     "nothing I can do unless Telegram changes this limit"
@@ -54,7 +54,7 @@ def ask_photo_task(update, context, photo_file):
 
         return ConversationHandler.END
 
-    context.user_data[PHOTO_ID] = photo_file.file_id
+    context.user_data[IMAGE_ID] = image_file.file_id
     keyboard = [[_(BEAUTIFY), _(TO_PDF)], [_(CANCEL)]]
     reply_markup = ReplyKeyboardMarkup(
         keyboard, resize_keyboard=True, one_time_keyboard=True
@@ -63,33 +63,24 @@ def ask_photo_task(update, context, photo_file):
         _("Select the task that you'll like to perform"), reply_markup=reply_markup
     )
 
-    return WAIT_PHOTO_TASK
+    return WAIT_IMAGE_TASK
 
 
-def process_photo_task(update, context):
-    """
-    Receive the task and perform the task on the photo
-    Args:
-        update: the update object
-        context: the context object
-
-    Returns:
-        The variable indicating the conversation has ended
-    """
-    if not check_user_data(update, context, PHOTO_ID):
+def process_image_task(update, context):
+    if not check_user_data(update, context, IMAGE_ID):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
     user_data = context.user_data
-    file_id = user_data[PHOTO_ID]
+    file_id = user_data[IMAGE_ID]
 
     if update.effective_message.text == _(BEAUTIFY):
-        process_photo(update, context, [file_id], is_beautify=True)
+        process_image(update, context, [file_id], is_beautify=True)
     else:
-        process_photo(update, context, [file_id], is_beautify=False)
+        process_image(update, context, [file_id], is_beautify=False)
 
-    if user_data[PHOTO_ID] == file_id:
-        del user_data[PHOTO_ID]
+    if user_data[IMAGE_ID] == file_id:
+        del user_data[IMAGE_ID]
 
     return ConversationHandler.END
 
@@ -137,14 +128,14 @@ def get_pdf_preview(update, context):
     return ConversationHandler.END
 
 
-def ask_photo_results_type(update, context):
+def ask_image_results_type(update, context):
     _ = set_lang(update, context)
-    if update.effective_message.text == _(EXTRACT_PHOTO):
-        return_type = WAIT_EXTRACT_PHOTO_TYPE
+    if update.effective_message.text == _(EXTRACT_IMAGE):
+        return_type = WAIT_EXTRACT_IMAGE_TYPE
     else:
-        return_type = WAIT_TO_PHOTO_TYPE
+        return_type = WAIT_TO_IMAGE_TYPE
 
-    keyboard = [[_(PHOTOS), _(COMPRESSED)], [_(BACK)]]
+    keyboard = [[_(IMAGES), _(COMPRESSED)], [_(BACK)]]
     reply_markup = ReplyKeyboardMarkup(
         keyboard, resize_keyboard=True, one_time_keyboard=True
     )
@@ -155,13 +146,13 @@ def ask_photo_results_type(update, context):
     return return_type
 
 
-def pdf_to_photos(update, context):
+def pdf_to_images(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
     update.effective_message.reply_text(
-        _("Converting your PDF file into photos"), reply_markup=ReplyKeyboardRemove()
+        _("Converting your PDF file into images"), reply_markup=ReplyKeyboardRemove()
     )
 
     with tempfile.NamedTemporaryFile() as tf:
@@ -171,11 +162,11 @@ def pdf_to_photos(update, context):
         pdf_file.download(custom_path=tf.name)
 
         with tempfile.TemporaryDirectory() as tmp_dir_name:
-            # Setup the directory for the photos
-            dir_name = os.path.join(tmp_dir_name, "PDF_Photos")
+            # Setup the directory for the images
+            dir_name = os.path.join(tmp_dir_name, "PDF_Images")
             os.mkdir(dir_name)
 
-            # Convert the PDF file into photos
+            # Convert the PDF file into images
             pdf2image.convert_from_path(
                 tf.name,
                 output_folder=dir_name,
@@ -183,8 +174,8 @@ def pdf_to_photos(update, context):
                 fmt="png",
             )
 
-            # Handle the result photos
-            send_result_photos(update, context, dir_name, "to_photos")
+            # Handle the result images
+            send_result_images(update, context, dir_name, "to_photos")
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -193,13 +184,13 @@ def pdf_to_photos(update, context):
     return ConversationHandler.END
 
 
-def get_pdf_photos(update, context):
+def get_pdf_images(update, context):
     if not check_user_data(update, context, PDF_INFO):
         return ConversationHandler.END
 
     _ = set_lang(update, context)
     update.effective_message.reply_text(
-        _("Extracting all the photos in your PDF file"),
+        _("Extracting all the images in your PDF file"),
         reply_markup=ReplyKeyboardRemove(),
     )
 
@@ -210,19 +201,19 @@ def get_pdf_photos(update, context):
         pdf_file.download(custom_path=tf.name)
 
         with tempfile.TemporaryDirectory() as tmp_dir_name:
-            dir_name = os.path.join(tmp_dir_name, "Photos_In_PDF")
+            dir_name = os.path.join(tmp_dir_name, "Images_In_PDF")
             os.mkdir(dir_name)
-            if not write_photos_in_pdf(tf.name, dir_name, file_name):
+            if not write_images_in_pdf(tf.name, dir_name, file_name):
                 update.effective_message.reply_text(
                     _("Something went wrong, please try again")
                 )
             else:
                 if not os.listdir(dir_name):
                     update.effective_message.reply_text(
-                        _("I couldn't find any photos in your PDF file")
+                        _("I couldn't find any images in your PDF file")
                     )
                 else:
-                    send_result_photos(update, context, dir_name, "get_photos")
+                    send_result_images(update, context, dir_name, "get_photos")
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -231,7 +222,7 @@ def get_pdf_photos(update, context):
     return ConversationHandler.END
 
 
-def write_photos_in_pdf(input_fn, dir_name, file_name):
+def write_images_in_pdf(input_fn, dir_name, file_name):
     root_file_name = os.path.splitext(file_name)[0]
     image_prefix = os.path.join(dir_name, root_file_name)
     command = f'pdfimages -png "{input_fn}" "{image_prefix}"'
@@ -239,29 +230,26 @@ def write_photos_in_pdf(input_fn, dir_name, file_name):
     return run_cmd(command)
 
 
-def send_result_photos(update, context, dir_name, task):
+def send_result_images(update, context, dir_name, task):
     _ = set_lang(update, context)
     message = update.effective_message
 
-    if message.text == _(PHOTOS):
-        for photo_name in sorted(os.listdir(dir_name)):
-            photo_path = os.path.join(dir_name, photo_name)
-            if os.path.getsize(photo_path) <= MAX_FILESIZE_UPLOAD:
+    if message.text == _(IMAGES):
+        for image_name in sorted(os.listdir(dir_name)):
+            image_path = os.path.join(dir_name, image_name)
+            if os.path.getsize(image_path) <= MAX_FILESIZE_UPLOAD:
                 try:
                     message.chat.send_action(ChatAction.UPLOAD_PHOTO)
-                    message.reply_photo(open(photo_path, "rb"))
+                    message.reply_photo(open(image_path, "rb"))
                 except BadRequest:
                     message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-                    message.reply_document(open(photo_path, "rb"))
+                    message.reply_document(open(image_path, "rb"))
 
         message.reply_text(
-            _("See above for all your photos"),
+            _("See above for all your images"),
             reply_markup=get_support_markup(update, context),
         )
         update_stats(update, task)
     else:
-        # Compress the directory of photos
         shutil.make_archive(dir_name, "zip", dir_name)
-
-        # Send result file
         send_result_file(update, context, f"{dir_name}.zip", task)
