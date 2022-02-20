@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-10-28 07:00+0000\n"
-"PO-Revision-Date: 2021-10-28 07:01\n"
+"POT-Creation-Date: 2022-02-20 10:17+0000\n"
+"PO-Revision-Date: 2022-02-20 10:17\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -56,12 +56,12 @@ msgid "Encrypt"
 msgstr "Κρυπτογράφηση"
 
 #: pdf_bot/consts.py:46
-msgid "Extract Photos"
-msgstr "Απόσπασμα Φωτογραφίες"
+msgid "Extract Images"
+msgstr ""
 
 #: pdf_bot/consts.py:47
-msgid "To Photos"
-msgstr "Σε φωτογραφίες"
+msgid "To Images"
+msgstr ""
 
 #: pdf_bot/consts.py:48
 msgid "Rotate"
@@ -96,8 +96,8 @@ msgid "Compressed"
 msgstr "Συμπιεσμένο"
 
 #: pdf_bot/consts.py:56
-msgid "Photos"
-msgstr "Φωτογραφίες"
+msgid "Images"
+msgstr ""
 
 #: pdf_bot/consts.py:57
 msgid "Remove Last File"
@@ -204,8 +204,8 @@ msgid "- PDF files"
 msgstr "- Αρχεία PDF"
 
 #: pdf_bot/dispatcher.py:154
-msgid "- Photos"
-msgstr "- Φωτογραφίες"
+msgid "- Images"
+msgstr ""
 
 #: pdf_bot/dispatcher.py:155
 msgid "- Webpage links"
@@ -224,8 +224,8 @@ msgid "{command} - merge PDF files"
 msgstr "{command} - συγχώνευση αρχείων PDF"
 
 #: pdf_bot/dispatcher.py:162
-msgid "{command} - convert and combine multiple photos into PDF files"
-msgstr "{command} - μετατρέψτε και συνδυάστε πολλές φωτογραφίες σε αρχεία PDF"
+msgid "{command} - convert and combine multiple images into PDF files"
+msgstr ""
 
 #: pdf_bot/dispatcher.py:165
 msgid "{command} - create PDF files from text messages"
@@ -295,13 +295,13 @@ msgstr "Η ενέργεια ακυρώθηκε"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Το αρχείο σας δεν είναι αρχείο PDF, προσπαθήστε ξανά"
 
-#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
+#: pdf_bot/commands/image.py:135 pdf_bot/commands/merge.py:119
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Το αρχείο σας είναι πολύ μεγάλο για να το κατεβάσω και να το επεξεργαστώ"
 
-#: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:129 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
+#: pdf_bot/files/file.py:129 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Σημειώστε ότι αυτός είναι ένας περιορισμός Bot τηλεγραφήματος και δεν μπορώ να κάνω τίποτα αν το Telegram αλλάξει αυτό το όριο"
@@ -358,6 +358,42 @@ msgstr "Σύγκριση των αρχείων PDF"
 msgid "There are no text differences between your PDF files"
 msgstr "Δεν υπάρχουν διαφορές κειμένου μεταξύ των αρχείων PDF"
 
+#: pdf_bot/commands/image.py:77
+msgid "Send me the images that you'll like to beautify or convert into a PDF file"
+msgstr ""
+
+#: pdf_bot/commands/image.py:81
+msgid "Note that the images will be beautified and converted in the order that you send me"
+msgstr ""
+
+#: pdf_bot/commands/image.py:108
+msgid "File name unavailable"
+msgstr "Το όνομα αρχείου δεν είναι διαθέσιμο"
+
+#: pdf_bot/commands/image.py:127
+msgid "Your file is not an image"
+msgstr ""
+
+#: pdf_bot/commands/image.py:148
+msgid "images"
+msgstr ""
+
+#: pdf_bot/commands/image.py:155
+msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
+msgstr ""
+
+#: pdf_bot/commands/image.py:199
+msgid "{file_name} has been removed for beautifying or converting"
+msgstr "{file_name} έχει καταργηθεί για ωραιοποίηση ή μετατροπή"
+
+#: pdf_bot/commands/image.py:236
+msgid "Beautifying and converting your images"
+msgstr ""
+
+#: pdf_bot/commands/image.py:241
+msgid "Converting your images into PDF"
+msgstr ""
+
 #: pdf_bot/commands/merge.py:82
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Στείλτε μου τα αρχεία PDF που θέλετε να συγχωνεύσετε"
@@ -397,42 +433,6 @@ msgstr "Συγχώνευση των αρχείων PDF"
 #: pdf_bot/commands/merge.py:253
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Δεν ήταν δυνατή η συγχώνευση των αρχείων PDF, καθώς αυτό το αρχείο δεν είναι έγκυρο: {file_name}"
-
-#: pdf_bot/commands/photo.py:77
-msgid "Send me the photos that you'll like to beautify or convert into a PDF file"
-msgstr "Στείλτε μου τις φωτογραφίες που θέλετε να ομορφύνετε ή να μετατρέψετε σε αρχείο PDF"
-
-#: pdf_bot/commands/photo.py:81
-msgid "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Σημειώστε ότι οι φωτογραφίες θα ομορφύνονται και θα μετατρέπονται με τη σειρά που θα μου στείλετε"
-
-#: pdf_bot/commands/photo.py:108
-msgid "File name unavailable"
-msgstr "Το όνομα αρχείου δεν είναι διαθέσιμο"
-
-#: pdf_bot/commands/photo.py:127
-msgid "Your file is not a photo"
-msgstr "Το αρχείο σας δεν είναι φωτογραφία"
-
-#: pdf_bot/commands/photo.py:148
-msgid "photos"
-msgstr "φωτογραφίες"
-
-#: pdf_bot/commands/photo.py:155
-msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr "Επιλέξτε την εργασία από κάτω αν μου έχετε στείλει όλες τις φωτογραφίες ή συνεχίστε να μου στέλνετε τις φωτογραφίες"
-
-#: pdf_bot/commands/photo.py:199
-msgid "{file_name} has been removed for beautifying or converting"
-msgstr "{file_name} έχει καταργηθεί για ωραιοποίηση ή μετατροπή"
-
-#: pdf_bot/commands/photo.py:236
-msgid "Beautifying and converting your photos"
-msgstr "Καλλωπισμός και μετατροπή των φωτογραφιών σας"
-
-#: pdf_bot/commands/photo.py:241
-msgid "Converting your photos into PDF"
-msgstr "Μετατροπή των φωτογραφιών σας σε PDF"
 
 #: pdf_bot/commands/text.py:59
 msgid "Send me the text that you'll like to write into your PDF file"
@@ -479,7 +479,7 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Το μέγεθος του αρχείου μειώθηκε κατά {percent}, από {old_size} σε {new_size}"
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:141
-#: pdf_bot/files/photo.py:217
+#: pdf_bot/files/image.py:208
 msgid "Something went wrong, please try again"
 msgstr "Κάτι πήγε στραβά, προσπαθήστε ξανά."
 
@@ -547,13 +547,41 @@ msgstr "Στείλτε μου τον κωδικό πρόσβασης για να
 msgid "Encrypting your PDF file"
 msgstr "Κρυπτογράφηση του αρχείου PDF"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:63
+#: pdf_bot/files/document.py:52 pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Επιλέξτε την εργασία που θα θέλατε να εκτελέσετε"
 
 #: pdf_bot/files/file.py:128
 msgid "Your file is too big for me to download and process"
 msgstr "Το αρχείο σας είναι πολύ μεγάλο για να το κατεβάσω και να το επεξεργαστώ."
+
+#: pdf_bot/files/image.py:47
+msgid "Your image is too large for me to download and process"
+msgstr ""
+
+#: pdf_bot/files/image.py:95
+msgid "Extracting a preview for your PDF file"
+msgstr "Εξαγωγή προεπισκόπησης για το αρχείο PDF"
+
+#: pdf_bot/files/image.py:143
+msgid "Select the result file format"
+msgstr "Επιλογή της μορφής αρχείου αποτελεσμάτων"
+
+#: pdf_bot/files/image.py:155
+msgid "Converting your PDF file into images"
+msgstr ""
+
+#: pdf_bot/files/image.py:193
+msgid "Extracting all the images in your PDF file"
+msgstr ""
+
+#: pdf_bot/files/image.py:213
+msgid "I couldn't find any images in your PDF file"
+msgstr ""
+
+#: pdf_bot/files/image.py:249
+msgid "See above for all your images"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
@@ -562,34 +590,6 @@ msgstr "Προσθήκη επιπέδου κειμένου OCR στο αρχεί
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
 msgstr "Το αρχείο PDF έχει ήδη ένα επίπεδο κειμένου"
-
-#: pdf_bot/files/photo.py:47
-msgid "Your photo is too large for me to download and process"
-msgstr "Η φωτογραφία σας είναι πολύ μεγάλη για να τη κατεβάσω και να τη επεξεργαστώ"
-
-#: pdf_bot/files/photo.py:104
-msgid "Extracting a preview for your PDF file"
-msgstr "Εξαγωγή προεπισκόπησης για το αρχείο PDF"
-
-#: pdf_bot/files/photo.py:152
-msgid "Select the result file format"
-msgstr "Επιλογή της μορφής αρχείου αποτελεσμάτων"
-
-#: pdf_bot/files/photo.py:164
-msgid "Converting your PDF file into photos"
-msgstr "Μετατροπή του αρχείου PDF σε φωτογραφίες"
-
-#: pdf_bot/files/photo.py:202
-msgid "Extracting all the photos in your PDF file"
-msgstr "Εξαγωγή όλων των φωτογραφιών στο αρχείο PDF"
-
-#: pdf_bot/files/photo.py:222
-msgid "I couldn't find any photos in your PDF file"
-msgstr "Δεν μπόρεσα να βρω φωτογραφίες στο αρχείο PDF"
-
-#: pdf_bot/files/photo.py:258
-msgid "See above for all your photos"
-msgstr "Δείτε παραπάνω για όλες τις φωτογραφίες σας"
 
 #: pdf_bot/files/rename.py:19
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -1382,5 +1382,65 @@ msgstr "Δεν μπόρεσα να βρω κανένα κείμενο στο α�
 #~ msgstr ""
 
 #~ msgid "Failed to process, please try again"
+#~ msgstr ""
+
+#~ msgid "Extract Photos"
+#~ msgstr ""
+
+#~ msgid "To Photos"
+#~ msgstr ""
+
+#~ msgid "Photos"
+#~ msgstr ""
+
+#~ msgid "- Photos"
+#~ msgstr ""
+
+#~ msgid "{command} - convert and combine multiple photos into PDF files"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the photos that you'll "
+#~ "like to beautify or convert into a"
+#~ " PDF file"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Note that the photos will be "
+#~ "beautified and converted in the order"
+#~ " that you send me"
+#~ msgstr ""
+
+#~ msgid "Your file is not a photo"
+#~ msgstr ""
+
+#~ msgid "photos"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Select the task from below if "
+#~ "you've sent me all the photos, or"
+#~ " keep sending me the photos"
+#~ msgstr ""
+
+#~ msgid "Beautifying and converting your photos"
+#~ msgstr ""
+
+#~ msgid "Converting your photos into PDF"
+#~ msgstr ""
+
+#~ msgid "Your photo is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "Converting your PDF file into photos"
+#~ msgstr ""
+
+#~ msgid "Extracting all the photos in your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any photos in your PDF file"
+#~ msgstr ""
+
+#~ msgid "See above for all your photos"
 #~ msgstr ""
 

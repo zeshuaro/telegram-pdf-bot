@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2021-10-28 07:00+0000\n"
-"PO-Revision-Date: 2022-01-30 12:43\n"
+"POT-Creation-Date: 2022-02-20 10:17+0000\n"
+"PO-Revision-Date: 2022-02-20 10:17\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -56,12 +56,12 @@ msgid "Encrypt"
 msgstr "Cifrar"
 
 #: pdf_bot/consts.py:46
-msgid "Extract Photos"
-msgstr "Extraer fotos"
+msgid "Extract Images"
+msgstr ""
 
 #: pdf_bot/consts.py:47
-msgid "To Photos"
-msgstr "A fotos"
+msgid "To Images"
+msgstr ""
 
 #: pdf_bot/consts.py:48
 msgid "Rotate"
@@ -96,8 +96,8 @@ msgid "Compressed"
 msgstr "Comprimido"
 
 #: pdf_bot/consts.py:56
-msgid "Photos"
-msgstr "Fotos"
+msgid "Images"
+msgstr ""
 
 #: pdf_bot/consts.py:57
 msgid "Remove Last File"
@@ -204,8 +204,8 @@ msgid "- PDF files"
 msgstr "- Archivos PDF"
 
 #: pdf_bot/dispatcher.py:154
-msgid "- Photos"
-msgstr "- Fotos"
+msgid "- Images"
+msgstr ""
 
 #: pdf_bot/dispatcher.py:155
 msgid "- Webpage links"
@@ -224,8 +224,8 @@ msgid "{command} - merge PDF files"
 msgstr "{command} : combinar archivos PDF"
 
 #: pdf_bot/dispatcher.py:162
-msgid "{command} - convert and combine multiple photos into PDF files"
-msgstr "{command} - convertir y combinar varias fotos en archivos PDF"
+msgid "{command} - convert and combine multiple images into PDF files"
+msgstr ""
 
 #: pdf_bot/dispatcher.py:165
 msgid "{command} - create PDF files from text messages"
@@ -295,13 +295,13 @@ msgstr "Acción cancelada"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Su archivo no es un archivo PDF, inténtelo de nuevo"
 
-#: pdf_bot/commands/merge.py:119 pdf_bot/commands/photo.py:135
+#: pdf_bot/commands/image.py:135 pdf_bot/commands/merge.py:119
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Su archivo es demasiado grande para que lo descargue y procese"
 
-#: pdf_bot/commands/merge.py:120 pdf_bot/commands/photo.py:136
-#: pdf_bot/files/file.py:129 pdf_bot/files/photo.py:48 pdf_bot/utils.py:74
+#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
+#: pdf_bot/files/file.py:129 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:279
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Tenga en cuenta que esta es una limitación de Telegram Bot y no hay nada que pueda hacer a menos que Telegram cambie este límite"
@@ -358,6 +358,42 @@ msgstr "Comparando tus archivos PDF"
 msgid "There are no text differences between your PDF files"
 msgstr "No hay diferencias de texto entre los archivos PDF"
 
+#: pdf_bot/commands/image.py:77
+msgid "Send me the images that you'll like to beautify or convert into a PDF file"
+msgstr ""
+
+#: pdf_bot/commands/image.py:81
+msgid "Note that the images will be beautified and converted in the order that you send me"
+msgstr ""
+
+#: pdf_bot/commands/image.py:108
+msgid "File name unavailable"
+msgstr "Nombre de archivo no disponible"
+
+#: pdf_bot/commands/image.py:127
+msgid "Your file is not an image"
+msgstr ""
+
+#: pdf_bot/commands/image.py:148
+msgid "images"
+msgstr ""
+
+#: pdf_bot/commands/image.py:155
+msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
+msgstr ""
+
+#: pdf_bot/commands/image.py:199
+msgid "{file_name} has been removed for beautifying or converting"
+msgstr "{file_name} se ha eliminado para embellecer o convertir"
+
+#: pdf_bot/commands/image.py:236
+msgid "Beautifying and converting your images"
+msgstr ""
+
+#: pdf_bot/commands/image.py:241
+msgid "Converting your images into PDF"
+msgstr ""
+
 #: pdf_bot/commands/merge.py:82
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Envíame los archivos PDF que te gustará combinar"
@@ -397,42 +433,6 @@ msgstr "Combinando tus archivos PDF"
 #: pdf_bot/commands/merge.py:253
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "No pude combinar sus archivos PDF ya que este archivo no es válido: {file_name}"
-
-#: pdf_bot/commands/photo.py:77
-msgid "Send me the photos that you'll like to beautify or convert into a PDF file"
-msgstr "Envíame las fotos que te gustaría embellecer o convertir en un archivo PDF"
-
-#: pdf_bot/commands/photo.py:81
-msgid "Note that the photos will be beautified and converted in the order that you send me"
-msgstr "Tenga en cuenta que las fotos serán embellecidas y convertidas en el orden en que me envíe"
-
-#: pdf_bot/commands/photo.py:108
-msgid "File name unavailable"
-msgstr "Nombre de archivo no disponible"
-
-#: pdf_bot/commands/photo.py:127
-msgid "Your file is not a photo"
-msgstr "Su archivo no es una foto"
-
-#: pdf_bot/commands/photo.py:148
-msgid "photos"
-msgstr "fotos"
-
-#: pdf_bot/commands/photo.py:155
-msgid "Select the task from below if you've sent me all the photos, or keep sending me the photos"
-msgstr "Selecciona la tarea abajo si me has enviado todas las fotos, o continua enviándome mas fotos"
-
-#: pdf_bot/commands/photo.py:199
-msgid "{file_name} has been removed for beautifying or converting"
-msgstr "{file_name} se ha eliminado para embellecer o convertir"
-
-#: pdf_bot/commands/photo.py:236
-msgid "Beautifying and converting your photos"
-msgstr "Embelleciendo y convirtiendo tus fotos"
-
-#: pdf_bot/commands/photo.py:241
-msgid "Converting your photos into PDF"
-msgstr "Convirtiendo tus imágenes en PDF"
 
 #: pdf_bot/commands/text.py:59
 msgid "Send me the text that you'll like to write into your PDF file"
@@ -479,7 +479,7 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Tamaño del archivo reducido en {percent}, de {old_size} a {new_size}"
 
 #: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:141
-#: pdf_bot/files/photo.py:217
+#: pdf_bot/files/image.py:208
 msgid "Something went wrong, please try again"
 msgstr "Algo salió mal, por favor inténtalo de nuevo"
 
@@ -547,13 +547,41 @@ msgstr "Envíame la contraseña para cifrar tu archivo PDF"
 msgid "Encrypting your PDF file"
 msgstr "Cifrando tu archivo PDF"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/photo.py:63
+#: pdf_bot/files/document.py:52 pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Elegir la tarea a realizar"
 
 #: pdf_bot/files/file.py:128
 msgid "Your file is too big for me to download and process"
 msgstr "Su archivo es demasiado grande para que yo lo descargue y procese"
+
+#: pdf_bot/files/image.py:47
+msgid "Your image is too large for me to download and process"
+msgstr ""
+
+#: pdf_bot/files/image.py:95
+msgid "Extracting a preview for your PDF file"
+msgstr "Extrayendo una vista previa de tu archivo PDF"
+
+#: pdf_bot/files/image.py:143
+msgid "Select the result file format"
+msgstr "Seleccione el formato del archivo resultante"
+
+#: pdf_bot/files/image.py:155
+msgid "Converting your PDF file into images"
+msgstr ""
+
+#: pdf_bot/files/image.py:193
+msgid "Extracting all the images in your PDF file"
+msgstr ""
+
+#: pdf_bot/files/image.py:213
+msgid "I couldn't find any images in your PDF file"
+msgstr ""
+
+#: pdf_bot/files/image.py:249
+msgid "See above for all your images"
+msgstr ""
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
@@ -562,34 +590,6 @@ msgstr "Añadiendo una capa de texto OCR a tu archivo PDF"
 #: pdf_bot/files/ocr.py:38
 msgid "Your PDF file already has a text layer"
 msgstr "Tu archivo PDF ya tiene una capa de texto"
-
-#: pdf_bot/files/photo.py:47
-msgid "Your photo is too large for me to download and process"
-msgstr "Su foto es demasiado grande para que la descargue y procese"
-
-#: pdf_bot/files/photo.py:104
-msgid "Extracting a preview for your PDF file"
-msgstr "Extrayendo una vista previa de tu archivo PDF"
-
-#: pdf_bot/files/photo.py:152
-msgid "Select the result file format"
-msgstr "Seleccione el formato del archivo resultante"
-
-#: pdf_bot/files/photo.py:164
-msgid "Converting your PDF file into photos"
-msgstr "Convirtiendo tu archivo PDF en fotos"
-
-#: pdf_bot/files/photo.py:202
-msgid "Extracting all the photos in your PDF file"
-msgstr "Extrayendo todas las fotos de tu archivo PDF"
-
-#: pdf_bot/files/photo.py:222
-msgid "I couldn't find any photos in your PDF file"
-msgstr "No pude encontrar ninguna imagen en tu archivo PDF"
-
-#: pdf_bot/files/photo.py:258
-msgid "See above for all your photos"
-msgstr "Ver arriba para todas tus fotos"
 
 #: pdf_bot/files/rename.py:19
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -1382,5 +1382,65 @@ msgstr "No pude encontrar ningún texto en tu archivo PDF"
 #~ msgstr ""
 
 #~ msgid "Failed to process, please try again"
+#~ msgstr ""
+
+#~ msgid "Extract Photos"
+#~ msgstr ""
+
+#~ msgid "To Photos"
+#~ msgstr ""
+
+#~ msgid "Photos"
+#~ msgstr ""
+
+#~ msgid "- Photos"
+#~ msgstr ""
+
+#~ msgid "{command} - convert and combine multiple photos into PDF files"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me the photos that you'll "
+#~ "like to beautify or convert into a"
+#~ " PDF file"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Note that the photos will be "
+#~ "beautified and converted in the order"
+#~ " that you send me"
+#~ msgstr ""
+
+#~ msgid "Your file is not a photo"
+#~ msgstr ""
+
+#~ msgid "photos"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Select the task from below if "
+#~ "you've sent me all the photos, or"
+#~ " keep sending me the photos"
+#~ msgstr ""
+
+#~ msgid "Beautifying and converting your photos"
+#~ msgstr ""
+
+#~ msgid "Converting your photos into PDF"
+#~ msgstr ""
+
+#~ msgid "Your photo is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "Converting your PDF file into photos"
+#~ msgstr ""
+
+#~ msgid "Extracting all the photos in your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any photos in your PDF file"
+#~ msgstr ""
+
+#~ msgid "See above for all your photos"
 #~ msgstr ""
 
