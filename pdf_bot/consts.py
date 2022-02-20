@@ -18,7 +18,7 @@ PDF_TOO_LARGE = 2
 
 # PDF file constants
 WAIT_DOC_TASK = 0
-WAIT_PHOTO_TASK = 1
+WAIT_IMAGE_TASK = 1
 WAIT_CROP_TYPE = 2
 WAIT_CROP_PERCENT = 3
 WAIT_CROP_OFFSET = 4
@@ -30,8 +30,8 @@ WAIT_SPLIT_RANGE = 9
 WAIT_SCALE_TYPE = 10
 WAIT_SCALE_PERCENT = 11
 WAIT_SCALE_DIMENSION = 12
-WAIT_EXTRACT_PHOTO_TYPE = 13
-WAIT_TO_PHOTO_TYPE = 14
+WAIT_EXTRACT_IMAGE_TYPE = 13
+WAIT_TO_IMAGE_TYPE = 14
 WAIT_TEXT_TYPE = 15
 
 # Keyboard constants
@@ -43,8 +43,8 @@ BY_SIZE = _("By Margin Size")
 PREVIEW = _("Preview")
 DECRYPT = _("Decrypt")
 ENCRYPT = _("Encrypt")
-EXTRACT_PHOTO = _("Extract Photos")
-TO_PHOTO = _("To Photos")
+EXTRACT_IMAGE = _("Extract Images")
+TO_IMAGES = _("To Images")
 ROTATE = _("Rotate")
 SCALE = _("Scale")
 SPLIT = _("Split")
@@ -53,7 +53,7 @@ TO_PDF = _("To PDF")
 RENAME = _("Rename")
 CROP = _("Crop")
 COMPRESSED = _("Compressed")
-PHOTOS = _("Photos")
+IMAGES = _("Images")
 REMOVE_LAST = _("Remove Last File")
 TO_DIMENSIONS = _("To Dimensions")
 EXTRACT_TEXT = _("Extract Text")

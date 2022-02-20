@@ -6,7 +6,7 @@ from pdf_bot.consts import (
     CROP,
     DECRYPT,
     ENCRYPT,
-    EXTRACT_PHOTO,
+    EXTRACT_IMAGE,
     EXTRACT_TEXT,
     OCR,
     PREVIEW,
@@ -14,7 +14,7 @@ from pdf_bot.consts import (
     ROTATE,
     SCALE,
     SPLIT,
-    TO_PHOTO,
+    TO_IMAGES,
     WAIT_DOC_TASK,
 )
 from pdf_bot.utils import set_lang
@@ -30,8 +30,8 @@ def ask_doc_task(update, context):
             _(SCALE),
             _(SPLIT),
             _(PREVIEW),
-            _(TO_PHOTO),
-            _(EXTRACT_PHOTO),
+            _(TO_IMAGES),
+            _(EXTRACT_IMAGE),
             _(RENAME),
             _(CROP),
             _(EXTRACT_TEXT),

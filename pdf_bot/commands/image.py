@@ -32,22 +32,22 @@ from pdf_bot.utils import (
     send_result_file,
 )
 
-WAIT_PHOTO = 0
-PHOTO_IDS = "photo_ids"
-PHOTO_NAMES = "photo_names"
+WAIT_IMAGE = 0
+IMAGE_IDS = "image_ids"
+IMAGE_NAMES = "image_names"
 
-photo_locks = defaultdict(Lock)
+image_locks = defaultdict(Lock)
 
 
-def photo_cov_handler() -> ConversationHandler:
+def image_cov_handler() -> ConversationHandler:
     handlers = [
-        MessageHandler(Filters.document | Filters.photo, check_photo),
+        MessageHandler(Filters.document | Filters.photo, check_image),
         MessageHandler(TEXT_FILTER, check_text),
     ]
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler("photo", photo)],
+        entry_points=[CommandHandler("image", image)],
         states={
-            WAIT_PHOTO: handlers,
+            WAIT_IMAGE: handlers,
             ConversationHandler.WAITING: handlers,
         },
         fallbacks=[CommandHandler("cancel", cancel)],
@@ -57,79 +57,79 @@ def photo_cov_handler() -> ConversationHandler:
     return conv_handler
 
 
-def photo(update: Update, context: CallbackContext) -> int:
+def image(update: Update, context: CallbackContext) -> int:
     update.effective_message.chat.send_action(ChatAction.TYPING)
     user_id = update.effective_message.from_user.id
-    photo_locks[user_id].acquire()
-    context.user_data[PHOTO_IDS] = []
-    context.user_data[PHOTO_NAMES] = []
-    photo_locks[user_id].release()
+    image_locks[user_id].acquire()
+    context.user_data[IMAGE_IDS] = []
+    context.user_data[IMAGE_NAMES] = []
+    image_locks[user_id].release()
 
-    return ask_first_photo(update, context)
+    return ask_first_image(update, context)
 
 
-def ask_first_photo(update: Update, context: CallbackContext) -> int:
+def ask_first_image(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
     reply_with_cancel_btn(
         update,
         context,
         "{desc_1}\n\n{desc_2}".format(
             desc_1=_(
-                "Send me the photos that you'll like to beautify "
-                "or convert into a PDF file"
+                "Send me the images that you'll like to beautify or convert into a PDF "
+                "file"
             ),
             desc_2=_(
-                "Note that the photos will be beautified "
-                "and converted in the order that you send me"
+                "Note that the images will be beautified and converted in the order "
+                "that you send me"
             ),
         ),
     )
 
-    return WAIT_PHOTO
+    return WAIT_IMAGE
 
 
-def check_photo(update: Update, context: CallbackContext) -> int:
+def check_image(update: Update, context: CallbackContext) -> int:
     message = update.effective_message
     message.chat.send_action(ChatAction.TYPING)
-    photo_file = check_photo_file(update, context)
+    image_file = check_image_file(update, context)
     user_id = message.from_user.id
-    photo_locks[user_id].acquire()
+    image_locks[user_id].acquire()
 
-    if photo_file is None:
-        if not context.user_data[PHOTO_IDS]:
-            result = ask_first_photo(update, context)
+    if image_file is None:
+        if not context.user_data[IMAGE_IDS]:
+            result = ask_first_image(update, context)
         else:
-            result = ask_next_photo(update, context)
+            result = ask_next_image(update, context)
     else:
         _ = set_lang(update, context)
         try:
-            file_name = photo_file.file_name
+            file_name = image_file.file_name
         except AttributeError:
             file_name = _("File name unavailable")
 
-        context.user_data[PHOTO_IDS].append(photo_file.file_id)
-        context.user_data[PHOTO_NAMES].append(file_name)
-        result = ask_next_photo(update, context)
+        context.user_data[IMAGE_IDS].append(image_file.file_id)
+        context.user_data[IMAGE_NAMES].append(file_name)
+        result = ask_next_image(update, context)
 
-    photo_locks[user_id].release()
+    image_locks[user_id].release()
 
     return result
 
 
-def check_photo_file(update: Update, context: CallbackContext):
+def check_image_file(update: Update, context: CallbackContext):
     _ = set_lang(update, context)
     message = update.effective_message
 
     if message.document:
-        photo_file = message.document
-        if not photo_file.mime_type.startswith("image"):
-            photo_file = None
-            message.reply_text(_("Your file is not a photo"))
+        image_file = message.document
+        if not image_file.mime_type.startswith("image"):
+            image_file = None
+            message.reply_text(_("Your file is not an image"))
     else:
-        photo_file = message.photo[-1]
+        image_file = message.photo[-1]
 
-    if photo_file is not None and photo_file.file_size > MAX_FILESIZE_DOWNLOAD:
-        photo_file = None
+    if image_file is not None and image_file.file_size > MAX_FILESIZE_DOWNLOAD:
+        image_file = None
         message.reply_text(
             "{desc_1}\n\n{desc_2}".format(
                 desc_1=_("Your file is too large for me to download and process"),
@@ -140,12 +140,12 @@ def check_photo_file(update: Update, context: CallbackContext):
             ),
         )
 
-    return photo_file
+    return image_file
 
 
-def ask_next_photo(update: Update, context: CallbackContext) -> int:
+def ask_next_image(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
-    send_file_names(update, context, context.user_data[PHOTO_NAMES], _("photos"))
+    send_file_names(update, context, context.user_data[IMAGE_NAMES], _("images"))
     reply_markup = ReplyKeyboardMarkup(
         [[_(BEAUTIFY), _(TO_PDF)], [_(REMOVE_LAST), _(CANCEL)]],
         resize_keyboard=True,
@@ -153,13 +153,13 @@ def ask_next_photo(update: Update, context: CallbackContext) -> int:
     )
     update.effective_message.reply_text(
         _(
-            "Select the task from below if you've sent me all the photos, "
-            "or keep sending me the photos"
+            "Select the task from below if you've sent me all the images, or keep "
+            "sending me the images"
         ),
         reply_markup=reply_markup,
     )
 
-    return WAIT_PHOTO
+    return WAIT_IMAGE
 
 
 def check_text(update: Update, context: CallbackContext) -> int:
@@ -171,27 +171,27 @@ def check_text(update: Update, context: CallbackContext) -> int:
 
     if text in [_(REMOVE_LAST), _(BEAUTIFY), _(TO_PDF)]:
         user_id = message.from_user.id
-        photo_locks[user_id].acquire()
+        image_locks[user_id].acquire()
 
-        if not check_user_data(update, context, PHOTO_IDS):
+        if not check_user_data(update, context, IMAGE_IDS):
             result = ConversationHandler.END
         else:
             if text == _(REMOVE_LAST):
-                result = remove_photo(update, context)
+                result = remove_image(update, context)
             elif text in [_(BEAUTIFY), _(TO_PDF)]:
-                result = process_all_photos(update, context)
+                result = process_all_images(update, context)
 
-        photo_locks[user_id].release()
+        image_locks[user_id].release()
     elif text == _(CANCEL):
         result = cancel(update, context)
 
     return result
 
 
-def remove_photo(update: Update, context: CallbackContext) -> int:
+def remove_image(update: Update, context: CallbackContext) -> int:
     _ = set_lang(update, context)
-    file_ids = context.user_data[PHOTO_IDS]
-    file_names = context.user_data[PHOTO_NAMES]
+    file_ids = context.user_data[IMAGE_IDS]
+    file_names = context.user_data[IMAGE_NAMES]
     file_ids.pop()
     file_name = file_names.pop()
 
@@ -203,66 +203,66 @@ def remove_photo(update: Update, context: CallbackContext) -> int:
     )
 
     if len(file_ids) == 0:
-        return ask_first_photo(update, context)
+        return ask_first_image(update, context)
 
-    return ask_next_photo(update, context)
+    return ask_next_image(update, context)
 
 
-def process_all_photos(update: Update, context: CallbackContext) -> int:
+def process_all_images(update: Update, context: CallbackContext) -> int:
     user_data = context.user_data
-    file_ids = user_data[PHOTO_IDS]
-    file_names = user_data[PHOTO_NAMES]
+    file_ids = user_data[IMAGE_IDS]
+    file_names = user_data[IMAGE_NAMES]
 
     if update.effective_message.text == BEAUTIFY:
-        process_photo(update, context, file_ids, is_beautify=True)
+        process_image(update, context, file_ids, is_beautify=True)
     else:
-        process_photo(update, context, file_ids, is_beautify=False)
+        process_image(update, context, file_ids, is_beautify=False)
 
     # Clean up memory
-    if user_data[PHOTO_IDS] == file_ids:
-        del user_data[PHOTO_IDS]
-    if user_data[PHOTO_NAMES] == file_names:
-        del user_data[PHOTO_NAMES]
+    if user_data[IMAGE_IDS] == file_ids:
+        del user_data[IMAGE_IDS]
+    if user_data[IMAGE_NAMES] == file_names:
+        del user_data[IMAGE_NAMES]
 
     return ConversationHandler.END
 
 
-def process_photo(
+def process_image(
     update: Update, context: CallbackContext, file_ids: List[str], is_beautify: bool
 ) -> None:
     _ = set_lang(update, context)
     if is_beautify:
         update.effective_message.reply_text(
-            _("Beautifying and converting your photos"),
+            _("Beautifying and converting your images"),
             reply_markup=ReplyKeyboardRemove(),
         )
     else:
         update.effective_message.reply_text(
-            _("Converting your photos into PDF"), reply_markup=ReplyKeyboardRemove()
+            _("Converting your images into PDF"), reply_markup=ReplyKeyboardRemove()
         )
 
     # Setup temporary files
     temp_files = [tempfile.NamedTemporaryFile() for _ in range(len(file_ids))]
-    photo_files = []
+    image_files = []
 
-    # Download all photos
+    # Download all images
     for i, file_id in enumerate(file_ids):
         file_name = temp_files[i].name
-        photo_file = context.bot.get_file(file_id)
-        photo_file.download(custom_path=file_name)
-        photo_files.append(file_name)
+        image_file = context.bot.get_file(file_id)
+        image_file.download(custom_path=file_name)
+        image_files.append(file_name)
 
     with tempfile.TemporaryDirectory() as dir_name:
         if is_beautify:
             out_fn = os.path.join(dir_name, "Beautified.pdf")
             noteshrink.notescan_main(
-                photo_files, basename=f"{dir_name}/page", pdfname=out_fn
+                image_files, basename=f"{dir_name}/page", pdfname=out_fn
             )
             send_result_file(update, context, out_fn, "beautify")
         else:
             out_fn = os.path.join(dir_name, "Converted.pdf")
             with open(out_fn, "wb") as f:
-                f.write(img2pdf.convert(photo_files))
+                f.write(img2pdf.convert(image_files))
 
             send_result_file(update, context, out_fn, "to_pdf")
 

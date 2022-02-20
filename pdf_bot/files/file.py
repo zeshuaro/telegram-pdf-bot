@@ -12,11 +12,11 @@ from pdf_bot.consts import (
     CROP,
     DECRYPT,
     ENCRYPT,
-    EXTRACT_PHOTO,
+    EXTRACT_IMAGE,
     EXTRACT_TEXT,
     OCR,
     PDF_INFO,
-    PHOTOS,
+    IMAGES,
     PREVIEW,
     RENAME,
     ROTATE,
@@ -27,23 +27,23 @@ from pdf_bot.consts import (
     TEXT_MESSAGE,
     TO_DIMENSIONS,
     TO_PDF,
-    TO_PHOTO,
+    TO_IMAGES,
     WAIT_CROP_OFFSET,
     WAIT_CROP_PERCENT,
     WAIT_CROP_TYPE,
     WAIT_DECRYPT_PW,
     WAIT_DOC_TASK,
     WAIT_ENCRYPT_PW,
-    WAIT_EXTRACT_PHOTO_TYPE,
+    WAIT_EXTRACT_IMAGE_TYPE,
     WAIT_FILE_NAME,
-    WAIT_PHOTO_TASK,
+    WAIT_IMAGE_TASK,
     WAIT_ROTATE_DEGREE,
     WAIT_SCALE_DIMENSION,
     WAIT_SCALE_PERCENT,
     WAIT_SCALE_TYPE,
     WAIT_SPLIT_RANGE,
     WAIT_TEXT_TYPE,
-    WAIT_TO_PHOTO_TYPE,
+    WAIT_TO_IMAGE_TYPE,
 )
 from pdf_bot.files.compress import compress_pdf
 from pdf_bot.files.crop import (
@@ -60,13 +60,13 @@ from pdf_bot.files.crypto import (
 )
 from pdf_bot.files.document import ask_doc_task
 from pdf_bot.files.ocr import add_ocr_to_pdf
-from pdf_bot.files.photo import (
-    ask_photo_results_type,
-    ask_photo_task,
-    get_pdf_photos,
+from pdf_bot.files.image import (
+    ask_image_results_type,
+    ask_image_task,
+    get_pdf_images,
     get_pdf_preview,
-    pdf_to_photos,
-    process_photo_task,
+    pdf_to_images,
+    process_image_task,
 )
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, check_rotate_degree
@@ -86,11 +86,11 @@ def file_cov_handler():
     conv_handler = ConversationHandler(
         entry_points=[
             MessageHandler(Filters.document, check_doc),
-            MessageHandler(Filters.photo, check_photo),
+            MessageHandler(Filters.photo, check_image),
         ],
         states={
             WAIT_DOC_TASK: [MessageHandler(TEXT_FILTER, check_doc_task)],
-            WAIT_PHOTO_TASK: [MessageHandler(TEXT_FILTER, check_photo_task)],
+            WAIT_IMAGE_TASK: [MessageHandler(TEXT_FILTER, check_image_task)],
             WAIT_CROP_TYPE: [MessageHandler(TEXT_FILTER, check_crop_task)],
             WAIT_CROP_PERCENT: [MessageHandler(TEXT_FILTER, check_crop_percent)],
             WAIT_CROP_OFFSET: [MessageHandler(TEXT_FILTER, check_crop_size)],
@@ -103,10 +103,10 @@ def file_cov_handler():
             WAIT_SCALE_TYPE: [MessageHandler(TEXT_FILTER, check_scale_task)],
             WAIT_SCALE_PERCENT: [MessageHandler(TEXT_FILTER, check_scale_percent)],
             WAIT_SCALE_DIMENSION: [MessageHandler(TEXT_FILTER, check_scale_dimension)],
-            WAIT_EXTRACT_PHOTO_TYPE: [
-                MessageHandler(TEXT_FILTER, check_get_photos_task)
+            WAIT_EXTRACT_IMAGE_TYPE: [
+                MessageHandler(TEXT_FILTER, check_get_images_task)
             ],
-            WAIT_TO_PHOTO_TYPE: [MessageHandler(TEXT_FILTER, check_to_photos_task)],
+            WAIT_TO_IMAGE_TYPE: [MessageHandler(TEXT_FILTER, check_to_images_task)],
         },
         fallbacks=[CommandHandler("cancel", cancel)],
         allow_reentry=True,
@@ -118,7 +118,7 @@ def file_cov_handler():
 def check_doc(update, context):
     doc = update.effective_message.document
     if doc.mime_type.startswith("image"):
-        return ask_photo_task(update, context, doc)
+        return ask_image_task(update, context, doc)
     if not doc.mime_type.endswith("pdf"):
         return ConversationHandler.END
     if doc.file_size >= MAX_FILESIZE_DOWNLOAD:
@@ -139,8 +139,8 @@ def check_doc(update, context):
     return ask_doc_task(update, context)
 
 
-def check_photo(update, context):
-    return ask_photo_task(update, context, update.effective_message.photo[-1])
+def check_image(update, context):
+    return ask_image_task(update, context, update.effective_message.photo[-1])
 
 
 def check_doc_task(update, context):
@@ -153,8 +153,8 @@ def check_doc_task(update, context):
         return ask_decrypt_pw(update, context)
     if text == _(ENCRYPT):
         return ask_encrypt_pw(update, context)
-    if text in [_(EXTRACT_PHOTO), _(TO_PHOTO)]:
-        return ask_photo_results_type(update, context)
+    if text in [_(EXTRACT_IMAGE), _(TO_IMAGES)]:
+        return ask_image_results_type(update, context)
     if text == _(PREVIEW):
         return get_pdf_preview(update, context)
     if text == _(RENAME):
@@ -177,16 +177,16 @@ def check_doc_task(update, context):
     return WAIT_DOC_TASK
 
 
-def check_photo_task(update, context):
+def check_image_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
 
     if text in [_(BEAUTIFY), _(TO_PDF)]:
-        return process_photo_task(update, context)
+        return process_image_task(update, context)
     if text == _(CANCEL):
         return cancel(update, context)
 
-    return WAIT_PHOTO_TASK
+    return WAIT_IMAGE_TASK
 
 
 def check_crop_task(update, context):
@@ -227,25 +227,25 @@ def check_text_task(update, context):
     return WAIT_TEXT_TYPE
 
 
-def check_get_photos_task(update, context):
+def check_get_images_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
 
-    if text in [_(PHOTOS), _(COMPRESSED)]:
-        return get_pdf_photos(update, context)
+    if text in [_(IMAGES), _(COMPRESSED)]:
+        return get_pdf_images(update, context)
     if text == _(BACK):
         return ask_doc_task(update, context)
 
-    return WAIT_EXTRACT_PHOTO_TYPE
+    return WAIT_EXTRACT_IMAGE_TYPE
 
 
-def check_to_photos_task(update, context):
+def check_to_images_task(update, context):
     _ = set_lang(update, context)
     text = update.effective_message.text
 
-    if text in [_(PHOTOS), _(COMPRESSED)]:
-        return pdf_to_photos(update, context)
+    if text in [_(IMAGES), _(COMPRESSED)]:
+        return pdf_to_images(update, context)
     if text == _(BACK):
         return ask_doc_task(update, context)
 
-    return WAIT_TO_PHOTO_TYPE
+    return WAIT_TO_IMAGE_TYPE
