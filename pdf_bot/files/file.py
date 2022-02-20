@@ -14,9 +14,9 @@ from pdf_bot.consts import (
     ENCRYPT,
     EXTRACT_IMAGE,
     EXTRACT_TEXT,
+    IMAGES,
     OCR,
     PDF_INFO,
-    IMAGES,
     PREVIEW,
     RENAME,
     ROTATE,
@@ -26,8 +26,8 @@ from pdf_bot.consts import (
     TEXT_FILTER,
     TEXT_MESSAGE,
     TO_DIMENSIONS,
-    TO_PDF,
     TO_IMAGES,
+    TO_PDF,
     WAIT_CROP_OFFSET,
     WAIT_CROP_PERCENT,
     WAIT_CROP_TYPE,
@@ -59,7 +59,6 @@ from pdf_bot.files.crypto import (
     encrypt_pdf,
 )
 from pdf_bot.files.document import ask_doc_task
-from pdf_bot.files.ocr import add_ocr_to_pdf
 from pdf_bot.files.image import (
     ask_image_results_type,
     ask_image_task,
@@ -68,6 +67,7 @@ from pdf_bot.files.image import (
     pdf_to_images,
     process_image_task,
 )
+from pdf_bot.files.ocr import add_ocr_to_pdf
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, check_rotate_degree
 from pdf_bot.files.scale import (

@@ -23,8 +23,8 @@ from telegram.ext.dispatcher import Dispatcher
 
 from pdf_bot.commands import (
     compare_cov_handler,
-    merge_cov_handler,
     image_cov_handler,
+    merge_cov_handler,
     text_cov_handler,
     watermark_cov_handler,
 )
