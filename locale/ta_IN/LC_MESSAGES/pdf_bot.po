@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-02-21 08:04+0000\n"
-"PO-Revision-Date: 2022-02-21 08:05\n"
+"PO-Revision-Date: 2022-02-21 08:18\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -57,11 +57,11 @@ msgstr "குறியாக்கு"
 
 #: pdf_bot/consts.py:46
 msgid "Extract Images"
-msgstr ""
+msgstr "படங்களை பிரித்தெடுக்கவும்"
 
 #: pdf_bot/consts.py:47
 msgid "To Images"
-msgstr ""
+msgstr "படிமங்களுக்கு"
 
 #: pdf_bot/consts.py:48
 msgid "Rotate"
@@ -97,7 +97,7 @@ msgstr "சேர்த்து அழுத்தப்பட்ட"
 
 #: pdf_bot/consts.py:56
 msgid "Images"
-msgstr ""
+msgstr "படிமங்கள்"
 
 #: pdf_bot/consts.py:57
 msgid "Remove Last File"
@@ -205,7 +205,7 @@ msgstr "- PTM கோப்புகள்"
 
 #: pdf_bot/dispatcher.py:154
 msgid "- Images"
-msgstr ""
+msgstr "- படங்கள்"
 
 #: pdf_bot/dispatcher.py:155
 msgid "- Webpage links"
@@ -225,7 +225,7 @@ msgstr "{command} - PTM கோப்புகளை ஒன்றிணைக்�
 
 #: pdf_bot/dispatcher.py:162
 msgid "{command} - convert and combine multiple images into PDF files"
-msgstr ""
+msgstr "{command} - PTM கோப்புகளில் பல படங்களை மாற்றி இணைக்கவும்"
 
 #: pdf_bot/dispatcher.py:165
 msgid "{command} - create PDF files from text messages"
@@ -277,7 +277,7 @@ msgstr "உங்கள் ஆதரவுக்கு நன்றி!"
 
 #: pdf_bot/url.py:28
 msgid "Timed out processing your web page, your web page is probably too complex to process"
-msgstr ""
+msgstr "உங்கள் வலைப்பக்கத்தைச் செயலாக்கும் நேரம், உங்கள் வலைப்பக்கம் செயலாக்க மிகவும் சிக்கலானதாக இருக்கலாம்"
 
 #: pdf_bot/url.py:35
 msgid "You've sent me this web page already and I'm still converting it"
@@ -364,11 +364,11 @@ msgstr "உங்கள் PTM கோப்புகளுக்கு இடை
 
 #: pdf_bot/commands/image.py:77
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr ""
+msgstr "நீங்கள் அழகுபடுத்த அல்லது PTM கோப்பு மாற்ற விரும்பும் படங்களை எனக்கு அனுப்பவும்"
 
 #: pdf_bot/commands/image.py:81
 msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "நீங்கள் எனக்கு அனுப்பும் வரிசையில் படங்கள் அழகுபடுத்தப்பட்டு மாற்றப்படும் என்பதை நினைவில் கொள்க"
 
 #: pdf_bot/commands/image.py:108
 msgid "File name unavailable"
@@ -376,15 +376,15 @@ msgstr "கோப்பு பெயர் கிடைக்கவில்ல�
 
 #: pdf_bot/commands/image.py:127
 msgid "Your file is not an image"
-msgstr ""
+msgstr "உங்கள் கோப்பு ஒரு பிம்பம் அல்ல"
 
 #: pdf_bot/commands/image.py:148
 msgid "images"
-msgstr ""
+msgstr "படிமங்கள்"
 
 #: pdf_bot/commands/image.py:155
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr ""
+msgstr "நீங்கள் எனக்கு அனைத்து படங்களையும் அனுப்பியிருந்தால், அல்லது படங்களை எனக்கு அனுப்பினால் கீழே இருந்து பணியைத் தேர்ந்தெடுக்கவும்"
 
 #: pdf_bot/commands/image.py:199
 msgid "{file_name} has been removed for beautifying or converting"
@@ -392,11 +392,11 @@ msgstr "{file_name} அழகுபடுத்துவதற்காக அ�
 
 #: pdf_bot/commands/image.py:236
 msgid "Beautifying and converting your images"
-msgstr ""
+msgstr "உங்கள் படங்களை அழகுபடுத்துதல் மற்றும் மாற்றுதல்"
 
 #: pdf_bot/commands/image.py:241
 msgid "Converting your images into PDF"
-msgstr ""
+msgstr "உங்கள் படங்களை PPM-யாக மாற்றுதல்"
 
 #: pdf_bot/commands/merge.py:82
 msgid "Send me the PDF files that you'll like to merge"
@@ -561,7 +561,7 @@ msgstr "பதிவிறக்க மற்றும் செயலாக்�
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
-msgstr ""
+msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் படத்தை எனக்கு மிகவும் பெரியது"
 
 #: pdf_bot/files/image.py:95
 msgid "Extracting a preview for your PDF file"
@@ -573,19 +573,19 @@ msgstr "முடிவு கோப்பு வடிவமைப்பை த
 
 #: pdf_bot/files/image.py:155
 msgid "Converting your PDF file into images"
-msgstr ""
+msgstr "உங்கள் PTM கோப்பை பிம்பங்களாக மாற்றுதல்"
 
 #: pdf_bot/files/image.py:193
 msgid "Extracting all the images in your PDF file"
-msgstr ""
+msgstr "உங்கள் PTM கோப்பு அனைத்து படங்களை பிரித்தெடுக்கும்"
 
 #: pdf_bot/files/image.py:213
 msgid "I couldn't find any images in your PDF file"
-msgstr ""
+msgstr "உங்கள் PPM கோப்பில் எந்த படங்களையும் என்னால் கண்டுபிடிக்க முடியவில்லை"
 
 #: pdf_bot/files/image.py:249
 msgid "See above for all your images"
-msgstr ""
+msgstr "உங்கள் எல்லா படங்களுக்கும் மேலே பார்க்கவும்"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
