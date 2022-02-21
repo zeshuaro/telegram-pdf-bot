@@ -17,4 +17,4 @@ COPY locale locale/
 RUN pybabel compile -D pdf_bot -d locale
 
 COPY pdf_bot pdf_bot/
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 10 --timeout 0 "pdf_bot:create_app()"
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 10 --timeout 30 "pdf_bot:create_app()"
