@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-02-21 08:04+0000\n"
-"PO-Revision-Date: 2022-02-21 08:04\n"
+"PO-Revision-Date: 2022-02-21 08:18\n"
 "Last-Translator: \n"
 "Language: ca\n"
 "Language-Team: Catalan\n"
@@ -57,11 +57,11 @@ msgstr "Encriptar"
 
 #: pdf_bot/consts.py:46
 msgid "Extract Images"
-msgstr ""
+msgstr "Extreu imatges"
 
 #: pdf_bot/consts.py:47
 msgid "To Images"
-msgstr ""
+msgstr "A les imatges"
 
 #: pdf_bot/consts.py:48
 msgid "Rotate"
@@ -97,7 +97,7 @@ msgstr "Comprimir"
 
 #: pdf_bot/consts.py:56
 msgid "Images"
-msgstr ""
+msgstr "Imatges"
 
 #: pdf_bot/consts.py:57
 msgid "Remove Last File"
@@ -205,7 +205,7 @@ msgstr "- Arxius PDF"
 
 #: pdf_bot/dispatcher.py:154
 msgid "- Images"
-msgstr ""
+msgstr "- Imatges"
 
 #: pdf_bot/dispatcher.py:155
 msgid "- Webpage links"
@@ -225,7 +225,7 @@ msgstr "{command} : combina fitxers PDF"
 
 #: pdf_bot/dispatcher.py:162
 msgid "{command} - convert and combine multiple images into PDF files"
-msgstr ""
+msgstr "{command} : converteix i combina diverses imatges en fitxers PDF"
 
 #: pdf_bot/dispatcher.py:165
 msgid "{command} - create PDF files from text messages"
@@ -277,7 +277,7 @@ msgstr "Gràcies pel teu suport!"
 
 #: pdf_bot/url.py:28
 msgid "Timed out processing your web page, your web page is probably too complex to process"
-msgstr ""
+msgstr "S'ha esgotat el temps d'espera per processar la vostra pàgina web, probablement la pàgina web és massa complexa per processar-la"
 
 #: pdf_bot/url.py:35
 msgid "You've sent me this web page already and I'm still converting it"
@@ -364,11 +364,11 @@ msgstr "No hi ha diferències de text entre els fitxers PDF"
 
 #: pdf_bot/commands/image.py:77
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr ""
+msgstr "Envia'm les imatges que t'agradaria embellir o convertir en un arxiu PDF"
 
 #: pdf_bot/commands/image.py:81
 msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Tingueu en compte que les imatges s'embelliran i es convertiran en l'ordre que m'envieu"
 
 #: pdf_bot/commands/image.py:108
 msgid "File name unavailable"
@@ -376,15 +376,15 @@ msgstr "Nom de l’arxiu invàlid"
 
 #: pdf_bot/commands/image.py:127
 msgid "Your file is not an image"
-msgstr ""
+msgstr "El fitxer no és una imatge"
 
 #: pdf_bot/commands/image.py:148
 msgid "images"
-msgstr ""
+msgstr "Imatges"
 
 #: pdf_bot/commands/image.py:155
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr ""
+msgstr "Seleccioneu la tasca des de baix si m'heu enviat totes les imatges o seguiu enviant-me les imatges"
 
 #: pdf_bot/commands/image.py:199
 msgid "{file_name} has been removed for beautifying or converting"
@@ -392,11 +392,11 @@ msgstr "{file_name} s'ha suprimit per embellir o convertir"
 
 #: pdf_bot/commands/image.py:236
 msgid "Beautifying and converting your images"
-msgstr ""
+msgstr "Embellir i convertir les imatges"
 
 #: pdf_bot/commands/image.py:241
 msgid "Converting your images into PDF"
-msgstr ""
+msgstr "Convertir les imatges en PDF"
 
 #: pdf_bot/commands/merge.py:82
 msgid "Send me the PDF files that you'll like to merge"
@@ -561,7 +561,7 @@ msgstr "El teu arxiu és massa gran per a mi per descarregar-lo i processar-lo"
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
-msgstr ""
+msgstr "La vostra imatge és massa gran per descarregar-la i processar-la"
 
 #: pdf_bot/files/image.py:95
 msgid "Extracting a preview for your PDF file"
@@ -573,19 +573,19 @@ msgstr "Seleccioneu el format del fitxer de resultats"
 
 #: pdf_bot/files/image.py:155
 msgid "Converting your PDF file into images"
-msgstr ""
+msgstr "Convertir el fitxer PDF en imatges"
 
 #: pdf_bot/files/image.py:193
 msgid "Extracting all the images in your PDF file"
-msgstr ""
+msgstr "S'estan extraient totes les imatges del fitxer PDF"
 
 #: pdf_bot/files/image.py:213
 msgid "I couldn't find any images in your PDF file"
-msgstr ""
+msgstr "No he pogut trobar cap imatge al teu arxiu PDF"
 
 #: pdf_bot/files/image.py:249
 msgid "See above for all your images"
-msgstr ""
+msgstr "Veure més amunt per a totes les seves imatges"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"

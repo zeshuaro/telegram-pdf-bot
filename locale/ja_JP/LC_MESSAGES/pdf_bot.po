@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-02-21 08:04+0000\n"
-"PO-Revision-Date: 2022-02-21 08:04\n"
+"PO-Revision-Date: 2022-02-21 08:18\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -57,11 +57,11 @@ msgstr "暗号化"
 
 #: pdf_bot/consts.py:46
 msgid "Extract Images"
-msgstr ""
+msgstr "イメージを抽出する"
 
 #: pdf_bot/consts.py:47
 msgid "To Images"
-msgstr ""
+msgstr "画像へ"
 
 #: pdf_bot/consts.py:48
 msgid "Rotate"
@@ -97,7 +97,7 @@ msgstr "圧縮"
 
 #: pdf_bot/consts.py:56
 msgid "Images"
-msgstr ""
+msgstr "画像"
 
 #: pdf_bot/consts.py:57
 msgid "Remove Last File"
@@ -205,7 +205,7 @@ msgstr "- PDFファイル"
 
 #: pdf_bot/dispatcher.py:154
 msgid "- Images"
-msgstr ""
+msgstr "- 画像"
 
 #: pdf_bot/dispatcher.py:155
 msgid "- Webpage links"
@@ -225,7 +225,7 @@ msgstr "{command} - PDFファイルをマージ"
 
 #: pdf_bot/dispatcher.py:162
 msgid "{command} - convert and combine multiple images into PDF files"
-msgstr ""
+msgstr "{command} - 複数の画像をPDFファイルに変換して結合する"
 
 #: pdf_bot/dispatcher.py:165
 msgid "{command} - create PDF files from text messages"
@@ -277,7 +277,7 @@ msgstr "ご支援ありがとうございます!"
 
 #: pdf_bot/url.py:28
 msgid "Timed out processing your web page, your web page is probably too complex to process"
-msgstr ""
+msgstr "Web ページの処理がタイムアウトした場合、Web ページは複雑すぎて処理できません"
 
 #: pdf_bot/url.py:35
 msgid "You've sent me this web page already and I'm still converting it"
@@ -364,11 +364,11 @@ msgstr "PDF ファイル間にテキストの違いはありません"
 
 #: pdf_bot/commands/image.py:77
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr ""
+msgstr "PDFファイルを美化したり、PDFファイルに変換したりしたい画像を送ってください"
 
 #: pdf_bot/commands/image.py:81
 msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "画像は美化され、あなたが私を送る順序で変換されることに注意してください"
 
 #: pdf_bot/commands/image.py:108
 msgid "File name unavailable"
@@ -376,15 +376,15 @@ msgstr "ファイル名が使用できません"
 
 #: pdf_bot/commands/image.py:127
 msgid "Your file is not an image"
-msgstr ""
+msgstr "ファイルが画像ではありません"
 
 #: pdf_bot/commands/image.py:148
 msgid "images"
-msgstr ""
+msgstr "画像"
 
 #: pdf_bot/commands/image.py:155
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr ""
+msgstr "すべての画像を送信した場合は、下からタスクを選択するか、画像を送信し続けます"
 
 #: pdf_bot/commands/image.py:199
 msgid "{file_name} has been removed for beautifying or converting"
@@ -392,11 +392,11 @@ msgstr "{file_name} は美化または変換のために削除されました"
 
 #: pdf_bot/commands/image.py:236
 msgid "Beautifying and converting your images"
-msgstr ""
+msgstr "画像を美化し、変換する"
 
 #: pdf_bot/commands/image.py:241
 msgid "Converting your images into PDF"
-msgstr ""
+msgstr "画像を PDF に変換する"
 
 #: pdf_bot/commands/merge.py:82
 msgid "Send me the PDF files that you'll like to merge"
@@ -561,7 +561,7 @@ msgstr "ファイルが大きすぎてダウンロードして処理できませ
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
-msgstr ""
+msgstr "あなたのイメージは大きすぎてダウンロードして処理できません"
 
 #: pdf_bot/files/image.py:95
 msgid "Extracting a preview for your PDF file"
@@ -573,19 +573,19 @@ msgstr "結果ファイル形式を選択します"
 
 #: pdf_bot/files/image.py:155
 msgid "Converting your PDF file into images"
-msgstr ""
+msgstr "PDF ファイルを画像に変換する"
 
 #: pdf_bot/files/image.py:193
 msgid "Extracting all the images in your PDF file"
-msgstr ""
+msgstr "PDF ファイル内のすべての画像を抽出する"
 
 #: pdf_bot/files/image.py:213
 msgid "I couldn't find any images in your PDF file"
-msgstr ""
+msgstr "PDF ファイルに画像が見つかりませんでした"
 
 #: pdf_bot/files/image.py:249
 msgid "See above for all your images"
-msgstr ""
+msgstr "すべての画像については、上記を参照してください。"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"

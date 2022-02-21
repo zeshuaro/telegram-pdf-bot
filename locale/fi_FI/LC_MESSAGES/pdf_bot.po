@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-02-21 08:04+0000\n"
-"PO-Revision-Date: 2022-02-21 08:04\n"
+"PO-Revision-Date: 2022-02-21 08:18\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -57,11 +57,11 @@ msgstr "Salata"
 
 #: pdf_bot/consts.py:46
 msgid "Extract Images"
-msgstr ""
+msgstr "Pura kuvat"
 
 #: pdf_bot/consts.py:47
 msgid "To Images"
-msgstr ""
+msgstr "Kuviin"
 
 #: pdf_bot/consts.py:48
 msgid "Rotate"
@@ -97,7 +97,7 @@ msgstr "Pakattu"
 
 #: pdf_bot/consts.py:56
 msgid "Images"
-msgstr ""
+msgstr "Kuvia"
 
 #: pdf_bot/consts.py:57
 msgid "Remove Last File"
@@ -205,7 +205,7 @@ msgstr "- PDF-tiedostot"
 
 #: pdf_bot/dispatcher.py:154
 msgid "- Images"
-msgstr ""
+msgstr "- Kuvat"
 
 #: pdf_bot/dispatcher.py:155
 msgid "- Webpage links"
@@ -225,7 +225,7 @@ msgstr "{command} - PDF-tiedostojen yhdistäminen"
 
 #: pdf_bot/dispatcher.py:162
 msgid "{command} - convert and combine multiple images into PDF files"
-msgstr ""
+msgstr "{command} - muuntaa ja yhdistää useita kuvia PDF-tiedostoiksi"
 
 #: pdf_bot/dispatcher.py:165
 msgid "{command} - create PDF files from text messages"
@@ -277,7 +277,7 @@ msgstr "Kiitos tuestanne!"
 
 #: pdf_bot/url.py:28
 msgid "Timed out processing your web page, your web page is probably too complex to process"
-msgstr ""
+msgstr "Verkkosivun aikakatkaisija, verkkosivusi on todennäköisesti liian monimutkainen käsiteltäväksi"
 
 #: pdf_bot/url.py:35
 msgid "You've sent me this web page already and I'm still converting it"
@@ -364,11 +364,11 @@ msgstr "PDF-tiedostojen välillä ei ole tekstieroja"
 
 #: pdf_bot/commands/image.py:77
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr ""
+msgstr "Lähetä minulle kuvat, jotka haluat kaunistaa tai muuntaa PDF-tiedostoksi"
 
 #: pdf_bot/commands/image.py:81
 msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "Huomaa, että kuvat kaunistavat ja muunnetaan siinä järjestyksessä, jonka lähetät minulle"
 
 #: pdf_bot/commands/image.py:108
 msgid "File name unavailable"
@@ -376,15 +376,15 @@ msgstr "Tiedoston nimi ei ole käytettävissä"
 
 #: pdf_bot/commands/image.py:127
 msgid "Your file is not an image"
-msgstr ""
+msgstr "Tiedosto ei ole kuva"
 
 #: pdf_bot/commands/image.py:148
 msgid "images"
-msgstr ""
+msgstr "Kuvia"
 
 #: pdf_bot/commands/image.py:155
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr ""
+msgstr "Valitse tehtävä alapuolelta, jos olet lähettänyt minulle kaikki kuvat, tai jatka kuvien lähettämistä minulle"
 
 #: pdf_bot/commands/image.py:199
 msgid "{file_name} has been removed for beautifying or converting"
@@ -392,11 +392,11 @@ msgstr "{file_name} on poistettu kaunistamista tai muuntamista"
 
 #: pdf_bot/commands/image.py:236
 msgid "Beautifying and converting your images"
-msgstr ""
+msgstr "Kuvien kaunistaminen ja muuntaminen"
 
 #: pdf_bot/commands/image.py:241
 msgid "Converting your images into PDF"
-msgstr ""
+msgstr "Kuvien muuntaminen PDF-muotoon"
 
 #: pdf_bot/commands/merge.py:82
 msgid "Send me the PDF files that you'll like to merge"
@@ -561,7 +561,7 @@ msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
-msgstr ""
+msgstr "Kuvasi on liian suuri, jotta voin ladata ja käsitellä"
 
 #: pdf_bot/files/image.py:95
 msgid "Extracting a preview for your PDF file"
@@ -573,19 +573,19 @@ msgstr "Valitse tulostiedoston muoto"
 
 #: pdf_bot/files/image.py:155
 msgid "Converting your PDF file into images"
-msgstr ""
+msgstr "PDF-tiedoston muuntaminen kuviksi"
 
 #: pdf_bot/files/image.py:193
 msgid "Extracting all the images in your PDF file"
-msgstr ""
+msgstr "Kaikkien PDF-tiedoston kuvien purkaminen"
 
 #: pdf_bot/files/image.py:213
 msgid "I couldn't find any images in your PDF file"
-msgstr ""
+msgstr "PDF-tiedostosta ei löydy kuvia"
 
 #: pdf_bot/files/image.py:249
 msgid "See above for all your images"
-msgstr ""
+msgstr "Katso yllä kaikki kuvasi"
 
 #: pdf_bot/files/ocr.py:20
 msgid "Adding an OCR text layer to your PDF file"
