@@ -7,11 +7,6 @@
   "timezone": "Australia/Sydney",
   "packageRules": [
     {
-      "groupName": "Dev Dependencies",
-      "matchPaths": ["pyproject.toml"],
-      "matchDepTypes": ["dev-dependencies", "repository"]
-    },
-    {
       "groupName": "GitHub Actions Dependencies",
       "matchPaths": [".github/workflows/*.yml"],
       "addLabels": ["ci"]
