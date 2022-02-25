@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-02-21 08:04+0000\n"
-"PO-Revision-Date: 2022-02-21 08:18\n"
+"POT-Creation-Date: 2022-02-25 10:20+0000\n"
+"PO-Revision-Date: 2022-02-25 10:21\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -187,11 +187,11 @@ msgstr "पीडीएफ बॉट का उपयोग करने के 
 msgid "Set Language 🌎"
 msgstr "भाषा चुने 🌎"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:314
+#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "चैनल से जुड़े"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "पीडीएफ बॉट का सहयोग करे"
 
@@ -275,19 +275,19 @@ msgstr "कुछ गलत हो गया"
 msgid "Thank you for your support!"
 msgstr "आपके समर्थन के लिए धन्यवाद!"
 
-#: pdf_bot/url.py:28
+#: pdf_bot/url.py:29
 msgid "Timed out processing your web page, your web page is probably too complex to process"
 msgstr "अपने वेब पेज को संसाधित करने के लिए टाइम आउट किया गया है, आपका वेब पेज शायद प्रक्रिया करने के लिए बहुत जटिल है"
 
-#: pdf_bot/url.py:35
+#: pdf_bot/url.py:36
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "आपने मुझे यह वेबपेज पहले ही भेज दिया है और मैं इसे पुनः परिवर्तित कर रहा हूं"
 
-#: pdf_bot/url.py:38
+#: pdf_bot/url.py:39
 msgid "Converting your web page into a PDF file"
 msgstr "आपका वेबपेज पीडीएफ फाइल में परिवर्तित हो रहा है"
 
-#: pdf_bot/url.py:50
+#: pdf_bot/url.py:51
 msgid "Unable to reach your web page"
 msgstr "वेबपेज तक पहुंचने में कठिनाई हो रही है"
 
@@ -299,14 +299,14 @@ msgstr "कार्रवाई रद्द"
 msgid "Your file is not a PDF file, please try again"
 msgstr "आपकी फ़ाइल पीडीएफ फ़ाइल नहीं है, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/commands/image.py:135 pdf_bot/commands/merge.py:119
+#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "आपकी फ़ाइल डाउनलोड करने और प्रक्रिया करने के लिए मेरे लिए बहुत बड़ी है"
 
-#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
+#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
 #: pdf_bot/files/file.py:129 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
-#: pdf_bot/utils.py:279
+#: pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ध्यान दें कि यह एक टेलीग्राम बॉट सीमा है और मैं ऐसा कुछ नहीं कर सकता जब तक कि टेलीग्राम इस सीमा को नहीं बदलता"
 
@@ -314,240 +314,236 @@ msgstr "ध्यान दें कि यह एक टेलीग्रा�
 msgid "Something went wrong, please start over again"
 msgstr "कुछ गलत हो गया, कृपया फिर से शुरू करें"
 
-#: pdf_bot/utils.py:193
+#: pdf_bot/utils.py:179
 msgid "Your file is invalid and I couldn't open and process it"
 msgstr "आपकी फ़ाइल अमान्य है और मैं इसे खोल और संसाधित नहीं कर सका"
 
-#: pdf_bot/utils.py:199
+#: pdf_bot/utils.py:185
 msgid "Your PDF file is already encrypted"
 msgstr "आपकी पीडीएफ फाइल पहले से ही एन्क्रिप्टेड है"
 
-#: pdf_bot/utils.py:201
-msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
-msgstr "आपकी {file_type} पीडीएफ फ़ाइल एन्क्रिप्टेड है और आपको इसे पहले डिक्रिप्ट करना होगा"
-
-#: pdf_bot/utils.py:206
+#: pdf_bot/utils.py:187 pdf_bot/utils.py:191
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "आपकी पीडीएफ फाइल एन्क्रिप्टेड है और आपको इसे पहले डिक्रिप्ट करना होगा"
 
-#: pdf_bot/utils.py:228
+#: pdf_bot/utils.py:213
 msgid "You've sent me these {file_type} so far:"
 msgstr "तुम मुझे इन {file_type} अब तक भेजा है:"
 
-#: pdf_bot/utils.py:278
+#: pdf_bot/utils.py:242
 msgid "The result file is too large for me to send to you"
 msgstr "परिणाम फ़ाइल मेरे लिए आप को भेजने के लिए बहुत बड़ी है"
 
-#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
+#: pdf_bot/utils.py:255 pdf_bot/utils.py:262
 msgid "Here is your result file"
 msgstr "यहां आपकी रिजल्ट फाइल है"
 
-#: pdf_bot/commands/compare.py:46
+#: pdf_bot/commands/compare.py:47
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "मुझे उन पीडीएफ फाइलों में से एक भेजें जिसकी आप तुलना करना चाहते हैं"
 
-#: pdf_bot/commands/compare.py:47
+#: pdf_bot/commands/compare.py:48
 msgid "Note that I can only look for text differences"
 msgstr "ध्यान दें कि मैं केवल पाठ मतभेदों की तलाश कर सकता हूं"
 
-#: pdf_bot/commands/compare.py:81
+#: pdf_bot/commands/compare.py:82
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "मुझे अन्य पीडीएफ फ़ाइल भेजें जिसकी आप तुलना करना चाहते हैं"
 
-#: pdf_bot/commands/compare.py:105
+#: pdf_bot/commands/compare.py:106
 msgid "Comparing your PDF files"
 msgstr "अपनी पीडीएफ फाइलों की तुलना करना"
 
-#: pdf_bot/commands/compare.py:124
+#: pdf_bot/commands/compare.py:125
 msgid "There are no text differences between your PDF files"
 msgstr "आपकी पीडीएफ फ़ाइलों के बीच कोई पाठ अंतर नहीं है"
 
-#: pdf_bot/commands/image.py:77
+#: pdf_bot/commands/image.py:78
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "मुझे उन छवियों को भेजें जिन्हें आप सुशोभित करना चाहते हैं या एक पीडीएफ फाइल में परिवर्तित करना चाहते हैं"
 
-#: pdf_bot/commands/image.py:81
+#: pdf_bot/commands/image.py:82
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "ध्यान दें कि छवियों को सुशोभित किया जाएगा और उस क्रम में परिवर्तित किया जाएगा जिसे आप मुझे भेजते हैं"
 
-#: pdf_bot/commands/image.py:108
+#: pdf_bot/commands/image.py:109
 msgid "File name unavailable"
 msgstr "फाइल नाम अनुपलब्ध"
 
-#: pdf_bot/commands/image.py:127
+#: pdf_bot/commands/image.py:128
 msgid "Your file is not an image"
 msgstr "आपकी फ़ाइल एक छवि नहीं है"
 
-#: pdf_bot/commands/image.py:148
+#: pdf_bot/commands/image.py:149
 msgid "images"
 msgstr "छवियां"
 
-#: pdf_bot/commands/image.py:155
+#: pdf_bot/commands/image.py:156
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "नीचे से कार्य का चयन करें यदि आपने मुझे सभी छवियां भेजी हैं, या मुझे छवियां भेजते रहें"
 
-#: pdf_bot/commands/image.py:199
+#: pdf_bot/commands/image.py:200
 msgid "{file_name} has been removed for beautifying or converting"
 msgstr "सौंदर्यीकरण या परिवर्तित करने के लिए {file_name} हटा दिया गया है"
 
-#: pdf_bot/commands/image.py:236
+#: pdf_bot/commands/image.py:237
 msgid "Beautifying and converting your images"
 msgstr "अपनी छवियों को सुशोभित और परिवर्तित करना"
 
-#: pdf_bot/commands/image.py:241
+#: pdf_bot/commands/image.py:242
 msgid "Converting your images into PDF"
 msgstr "अपनी छवियों को पीडीएफ में कनवर्ट करना"
 
-#: pdf_bot/commands/merge.py:82
+#: pdf_bot/commands/merge.py:83
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "मुझे पीडीएफ फाइलें भेजें जिन्हें आप मर्ज करना चाहते हैं"
 
-#: pdf_bot/commands/merge.py:83
+#: pdf_bot/commands/merge.py:84
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "ध्यान दें कि फ़ाइलों को उस क्रम में मर्ज कर दिया जाएगा जिसे आप मुझे भेजते हैं"
 
-#: pdf_bot/commands/merge.py:115
+#: pdf_bot/commands/merge.py:116
 msgid "Your file is not a PDF file"
 msgstr "आपकी फ़ाइल पीडीएफ फ़ाइल नहीं है"
 
-#: pdf_bot/commands/merge.py:143
+#: pdf_bot/commands/merge.py:144
 msgid "PDF files"
 msgstr "पीडीएफ फाइलें"
 
-#: pdf_bot/commands/merge.py:150
+#: pdf_bot/commands/merge.py:151
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "प्रेस {done} यदि आपने मुझे उन सभी पीडीएफ फाइलों को भेज दिया है जिन्हें आप विलय करना चाहते हैं या मुझे पीडीएफ फाइलें भेजते रहेंगे"
 
-#: pdf_bot/commands/merge.py:193
+#: pdf_bot/commands/merge.py:194
 msgid "{file_name} has been removed for merging"
 msgstr "विलय के लिए {file_name} हटा दिया गया है"
 
-#: pdf_bot/commands/merge.py:215
+#: pdf_bot/commands/merge.py:216
 msgid "You haven't sent me any PDF files"
 msgstr "आपने मुझे कोई पीडीएफ फाइल नहीं भेजी है"
 
-#: pdf_bot/commands/merge.py:219
+#: pdf_bot/commands/merge.py:220
 msgid "You've only sent me one PDF file"
 msgstr "आपने मुझे केवल एक पीडीएफ फाइल भेजी है"
 
-#: pdf_bot/commands/merge.py:233
+#: pdf_bot/commands/merge.py:234
 msgid "Merging your PDF files"
 msgstr "अपनी पीडीएफ फाइलों का विलय"
 
-#: pdf_bot/commands/merge.py:253
+#: pdf_bot/commands/merge.py:254
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "मैं आपकी पीडीएफ फाइलों को मर्ज नहीं कर सका क्योंकि यह फ़ाइल अमान्य है: {file_name}"
 
-#: pdf_bot/commands/text.py:59
+#: pdf_bot/commands/text.py:60
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "मुझे वह पाठ भेजें जिसे आप अपनी पीडीएफ फ़ाइल में लिखना चाहते हैं"
 
-#: pdf_bot/commands/text.py:82
+#: pdf_bot/commands/text.py:83
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "मुझे वह फ़ॉन्ट भेजें जिसका उपयोग आप पीडीएफ फ़ाइल के लिए करना चाहते हैं या डिफ़ॉल्ट फ़ॉन्ट का उपयोग करने के लिए {skip} दबाएंगे"
 
-#: pdf_bot/commands/text.py:86
+#: pdf_bot/commands/text.py:87
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "समर्थित फोंट की सूची के लिए यहां देखें: {fonts}"
 
-#: pdf_bot/commands/text.py:119
+#: pdf_bot/commands/text.py:120
 msgid "Unknown font, please try again"
 msgstr "अज्ञात फ़ॉन्ट, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/commands/text.py:151
+#: pdf_bot/commands/text.py:152
 msgid "Creating your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल बनाना"
 
-#: pdf_bot/commands/watermark.py:43
+#: pdf_bot/commands/watermark.py:44
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "मुझे पीडीएफ फाइल भेजें जिसे आप वॉटरमार्क जोड़ना चाहेंगे"
 
-#: pdf_bot/commands/watermark.py:76
+#: pdf_bot/commands/watermark.py:77
 msgid "Send me the watermark PDF file"
 msgstr "मुझे वाटरमार्क पीडीएफ फाइल भेजें"
 
-#: pdf_bot/commands/watermark.py:101
+#: pdf_bot/commands/watermark.py:102
 msgid "Adding the watermark onto your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल पर वॉटरमार्क जोड़ना"
 
-#: pdf_bot/commands/watermark.py:114
+#: pdf_bot/commands/watermark.py:115
 msgid "watermark"
 msgstr "वॉटरमार्क"
 
-#: pdf_bot/files/compress.py:20
+#: pdf_bot/files/compress.py:21
 msgid "Compressing your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को संकुचित करना"
 
-#: pdf_bot/files/compress.py:47
+#: pdf_bot/files/compress.py:48
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "फाइल का आकार {percent}से घटाकर {old_size} से {new_size}"
 
-#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:141
+#: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
 #: pdf_bot/files/image.py:208
 msgid "Something went wrong, please try again"
 msgstr "कुछ गलत हो गया, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/files/crop.py:31
+#: pdf_bot/files/crop.py:32
 msgid "Select the crop type that you'll like to perform"
 msgstr "उस क्रॉप टाइप का चयन करें जिसे आप करना चाहते हैं"
 
-#: pdf_bot/files/crop.py:47
+#: pdf_bot/files/crop.py:48
 msgid "Send me a number between {min_percent} and {max_percent}"
 msgstr "मुझे {min_percent} और {max_percent}के बीच एक नंबर भेजें"
 
-#: pdf_bot/files/crop.py:50
+#: pdf_bot/files/crop.py:51
 msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "यह आपकी पीडीएफ फ़ाइल और पृष्ठ में सामग्री के बीच बनाए रखने के लिए मार्जिन स्पेस का प्रतिशत है"
 
-#: pdf_bot/files/crop.py:62
+#: pdf_bot/files/crop.py:63
 msgid "Send me a number that you'll like to adjust the margin size"
 msgstr "मुझे एक नंबर भेजें जिसे आप मार्जिन आकार को समायोजित करना चाहते हैं"
 
-#: pdf_bot/files/crop.py:63
+#: pdf_bot/files/crop.py:64
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "सकारात्मक संख्या मार्जिन आकार कम हो जाएगा और नकारात्मक संख्या इसे बढ़ा देंगे"
 
-#: pdf_bot/files/crop.py:85
+#: pdf_bot/files/crop.py:86
 msgid "The number must be between {min_percent} and {max_percent}, please try again"
 msgstr "संख्या {min_percent} और {max_percent}के बीच होना चाहिए, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/files/crop.py:108
+#: pdf_bot/files/crop.py:109
 msgid "The number is invalid, please try again"
 msgstr "संख्या अमान्य है, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/files/crop.py:119
+#: pdf_bot/files/crop.py:120
 msgid "Cropping your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को क्रॉप करना"
 
-#: pdf_bot/files/crypto.py:17
+#: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
 msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक्रिप्ट करने के लिए पासवर्ड भेजें"
 
-#: pdf_bot/files/crypto.py:32
+#: pdf_bot/files/crypto.py:33
 msgid "Decrypting your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को डिक्रिप्ट करना"
 
-#: pdf_bot/files/crypto.py:47
+#: pdf_bot/files/crypto.py:48
 msgid "Your PDF file is invalid and I couldn't open and process it"
 msgstr "आपकी पीडीएफ फाइल अमान्य है और मैं इसे खोल और संसाधित नहीं कर सका"
 
-#: pdf_bot/files/crypto.py:52
+#: pdf_bot/files/crypto.py:53
 msgid "Your PDF file is not encrypted"
 msgstr "आपकी पीडीएफ फाइल एन्क्रिप्टेड नहीं है"
 
-#: pdf_bot/files/crypto.py:57
+#: pdf_bot/files/crypto.py:58
 msgid "The decryption password is incorrect, please try again"
 msgstr "डिक्रिप्शन पासवर्ड गलत है, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/files/crypto.py:69
+#: pdf_bot/files/crypto.py:76
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "आपकी पीडीएफ फ़ाइल एक विधि के साथ एन्क्रिप्टेड है जिसे मैं डिक्रिप्ट नहीं कर सकता"
 
-#: pdf_bot/files/crypto.py:85
+#: pdf_bot/files/crypto.py:92
 msgid "Send me the password to encrypt your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को एन्क्रिप्ट करने के लिए मुझे पासवर्ड भेजें"
 
-#: pdf_bot/files/crypto.py:99
+#: pdf_bot/files/crypto.py:106
 msgid "Encrypting your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को एन्क्रिप्ट करना"
 
@@ -583,163 +579,163 @@ msgstr "अपनी पीडीएफ फाइल में सभी छव�
 msgid "I couldn't find any images in your PDF file"
 msgstr "मैं अपनी पीडीएफ फाइल में कोई छवियों को नहीं ढूँढ सका"
 
-#: pdf_bot/files/image.py:249
+#: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "अपने सभी चित्रों के लिए ऊपर देखें"
 
-#: pdf_bot/files/ocr.py:20
+#: pdf_bot/files/ocr.py:21
 msgid "Adding an OCR text layer to your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल में ओसीआर टेक्स्ट लेयर जोड़ना"
 
-#: pdf_bot/files/ocr.py:38
+#: pdf_bot/files/ocr.py:39
 msgid "Your PDF file already has a text layer"
 msgstr "आपकी पीडीएफ फ़ाइल में पहले से ही एक टेक्स्ट लेयर है"
 
-#: pdf_bot/files/rename.py:19
+#: pdf_bot/files/rename.py:20
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "मुझे फ़ाइल का नाम भेजें जिसे आप अपनी पीडीएफ फ़ाइल का नाम बदलना चाहते हैं"
 
-#: pdf_bot/files/rename.py:39
+#: pdf_bot/files/rename.py:40
 msgid "File names can't contain any of the following characters:"
 msgstr "फ़ाइल नामों में निम्नलिखित में से कोई भी वर्ण शामिल नहीं हो सकता है:"
 
-#: pdf_bot/files/rename.py:41
+#: pdf_bot/files/rename.py:42
 msgid "Please try again"
 msgstr "कृपया फिर से प्रयास करें"
 
-#: pdf_bot/files/rename.py:49
+#: pdf_bot/files/rename.py:50
 msgid "Renaming your PDF file into {file_name}"
 msgstr "अपनी पीडीएफ फ़ाइल का नाम बदलकर {file_name}"
 
-#: pdf_bot/files/rotate.py:24
+#: pdf_bot/files/rotate.py:25
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "उन डिग्रियों का चयन करें जिन्हें आप अपनी पीडीएफ फ़ाइल को दक्षिणावर्त में घुमाना चाहते हैं"
 
-#: pdf_bot/files/rotate.py:50
+#: pdf_bot/files/rotate.py:51
 msgid "Rotating your PDF file clockwise by {degree} degrees"
 msgstr "{degree} डिग्री द्वारा अपनी पीडीएफ फाइल को दक्षिणावर्त घुमाएं"
 
-#: pdf_bot/files/scale.py:24
+#: pdf_bot/files/scale.py:25
 msgid "Select the scale type that you'll like to perform"
 msgstr "उस पैमाने के प्रकार का चयन करें जिसे आप करना चाहते हैं"
 
-#: pdf_bot/files/scale.py:39
+#: pdf_bot/files/scale.py:40
 msgid "Send me the width and height"
 msgstr "मुझे चौड़ाई और ऊंचाई भेजें"
 
-#: pdf_bot/files/scale.py:41
+#: pdf_bot/files/scale.py:42
 msgid "This will set the width to 150 and height to 200"
 msgstr "इससे चौड़ाई 150 और ऊंचाई 200 तय होगी।"
 
-#: pdf_bot/files/scale.py:51
+#: pdf_bot/files/scale.py:52
 msgid "Send me the scaling factors for the horizontal and vertical axes"
 msgstr "मुझे क्षैतिज और ऊर्ध्वाधर कुल्हाड़ियों के लिए स्केलिंग कारक भेजें"
 
-#: pdf_bot/files/scale.py:55
+#: pdf_bot/files/scale.py:56
 msgid "This will double the horizontal axis and halve the vertical axis"
 msgstr "यह क्षैतिज धुरी को दोगुना कर देगा और ऊर्ध्वाधर धुरी को आधा कर देगा"
 
-#: pdf_bot/files/scale.py:78
+#: pdf_bot/files/scale.py:79
 msgid "The scaling factors {values} are invalid, please try again"
 msgstr "स्केलिंग कारक {values} अमान्य हैं, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/files/scale.py:100
+#: pdf_bot/files/scale.py:101
 msgid "The dimensions {values} are invalid, please try again"
 msgstr "{values} आयाम अमान्य हैं, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/files/scale.py:114
+#: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
 msgstr "अपनी पीडीएफ फ़ाइल को स्केलिंग करना, क्षैतिज रूप से {horizontal} और लंबवत रूप से {vertical}द्वारा"
 
-#: pdf_bot/files/scale.py:127
+#: pdf_bot/files/scale.py:128
 msgid "Scaling your PDF file with width of {width} and height of {height}"
 msgstr "{width} की चौड़ाई और {height}की ऊंचाई के साथ अपनी पीडीएफ फाइल स्केलिंग"
 
-#: pdf_bot/files/split.py:53
+#: pdf_bot/files/split.py:54
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "मुझे उन पृष्ठों की सीमा भेजें जिन्हें आप रखना चाहते हैं"
 
-#: pdf_bot/files/split.py:54
+#: pdf_bot/files/split.py:55
 msgid "General usage"
 msgstr "सामान्य उपयोग"
 
-#: pdf_bot/files/split.py:55
+#: pdf_bot/files/split.py:56
 msgid "{range}      all pages"
 msgstr "सभी पृष्ठों {range}"
 
-#: pdf_bot/files/split.py:56
+#: pdf_bot/files/split.py:57
 msgid "{range}      page 8 only"
 msgstr "{range}      पेज 8 ही"
 
-#: pdf_bot/files/split.py:57
+#: pdf_bot/files/split.py:58
 msgid "{range}    first three pages"
 msgstr "{range}    पहले तीन पृष्ठ"
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:59
 msgid "{range}     from page 8 onward"
 msgstr "पेज 8 से आगे {range}"
 
-#: pdf_bot/files/split.py:59
+#: pdf_bot/files/split.py:60
 msgid "{range}     last page only"
 msgstr "केवल अंतिम पृष्ठ {range}"
 
-#: pdf_bot/files/split.py:60
+#: pdf_bot/files/split.py:61
 msgid "{range}    all pages except the last page"
 msgstr "अंतिम पृष्ठ को छोड़कर सभी पृष्ठों को {range}"
 
-#: pdf_bot/files/split.py:63
+#: pdf_bot/files/split.py:64
 msgid "{range}     second last page only"
 msgstr "{range}     दूसरा अंतिम पृष्ठ ही"
 
-#: pdf_bot/files/split.py:64
+#: pdf_bot/files/split.py:65
 msgid "{range}    last two pages"
 msgstr "पिछले दो पृष्ठों {range}"
 
-#: pdf_bot/files/split.py:65
+#: pdf_bot/files/split.py:66
 msgid "{range}  third and second last pages"
 msgstr "{range}  तीसरे और दूसरे अंतिम पृष्ठ"
 
-#: pdf_bot/files/split.py:66
+#: pdf_bot/files/split.py:67
 msgid "Advanced usage"
 msgstr "उन्नत उपयोग"
 
-#: pdf_bot/files/split.py:67
+#: pdf_bot/files/split.py:68
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    पृष्ठ {pages} और अंत तक"
 
-#: pdf_bot/files/split.py:70
+#: pdf_bot/files/split.py:71
 msgid "{range} pages {pages}"
 msgstr "{range} पेज {pages}"
 
-#: pdf_bot/files/split.py:71
+#: pdf_bot/files/split.py:72
 msgid "{range}   all pages in reversed order"
 msgstr "उलट क्रम में सभी पृष्ठों {range}"
 
-#: pdf_bot/files/split.py:72
+#: pdf_bot/files/split.py:73
 msgid "{range} pages {pages} except {page}"
 msgstr "{page}को छोड़कर {range} पेज {pages}"
 
-#: pdf_bot/files/split.py:75
+#: pdf_bot/files/split.py:76
 msgid "{range}  pages {pages}"
 msgstr "{range}  पेज {pages}"
 
-#: pdf_bot/files/split.py:99
+#: pdf_bot/files/split.py:100
 msgid "The range is invalid, please try again"
 msgstr "सीमा अमान्य है, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/files/split.py:105
+#: pdf_bot/files/split.py:106
 msgid "Splitting your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को विभाजित करना"
 
-#: pdf_bot/files/text.py:22
+#: pdf_bot/files/text.py:23
 msgid "Select how you'll like me to send the text to you"
 msgstr "चुनें कि आप मुझे पाठ भेजने के लिए कैसे पसंद करेंगे"
 
-#: pdf_bot/files/text.py:35
+#: pdf_bot/files/text.py:36
 msgid "Extracting text from your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल से पाठ निकालना"
 
-#: pdf_bot/files/text.py:88
+#: pdf_bot/files/text.py:89
 msgid "I couldn't find any text in your PDF file"
 msgstr "मुझे आपकी पीडीएफ फ़ाइल में कोई पाठ नहीं मिला"
 
@@ -1446,5 +1442,11 @@ msgstr "मुझे आपकी पीडीएफ फ़ाइल में �
 #~ msgstr ""
 
 #~ msgid "See above for all your photos"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your {file_type} PDF file is encrypted"
+#~ " and you'll have to decrypt it "
+#~ "first"
 #~ msgstr ""
 

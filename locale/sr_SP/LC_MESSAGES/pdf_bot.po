@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-02-21 08:04+0000\n"
-"PO-Revision-Date: 2022-02-21 08:18\n"
+"POT-Creation-Date: 2022-02-25 10:20+0000\n"
+"PO-Revision-Date: 2022-02-25 10:21\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -187,11 +187,11 @@ msgstr "Укуцате {command} да бисте видели како се ко
 msgid "Set Language 🌎"
 msgstr "Постављање језичких 🌎"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:314
+#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Придружи се каналу"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Подршка ПДФ Боту"
 
@@ -275,19 +275,19 @@ msgstr "Нешто је пошло наопако"
 msgid "Thank you for your support!"
 msgstr "Хвала вам на подршци!"
 
-#: pdf_bot/url.py:28
+#: pdf_bot/url.py:29
 msgid "Timed out processing your web page, your web page is probably too complex to process"
 msgstr "Време обраде Wеб странице, Wеб страница је вероватно превише сложена за обраду"
 
-#: pdf_bot/url.py:35
+#: pdf_bot/url.py:36
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "Већ си ми послао ову wеб страницу, а ја је још увек конвертујем"
 
-#: pdf_bot/url.py:38
+#: pdf_bot/url.py:39
 msgid "Converting your web page into a PDF file"
 msgstr "Конвертовање Wеб странице у ПДФ датотеку"
 
-#: pdf_bot/url.py:50
+#: pdf_bot/url.py:51
 msgid "Unable to reach your web page"
 msgstr "Није могуће стићи до Wеб странице"
 
@@ -299,14 +299,14 @@ msgstr "Радња је отказана"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Ваш фајл није ПДФ фајл, покушајте поново"
 
-#: pdf_bot/commands/image.py:135 pdf_bot/commands/merge.py:119
+#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Ваш фајл је превелик да га преузмем и обрадим"
 
-#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
+#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
 #: pdf_bot/files/file.py:129 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
-#: pdf_bot/utils.py:279
+#: pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
 
@@ -314,240 +314,236 @@ msgstr "Имајте науда да је ово ограничење Телег
 msgid "Something went wrong, please start over again"
 msgstr "Нешто је пошло наопако, молим те почни испочетка"
 
-#: pdf_bot/utils.py:193
+#: pdf_bot/utils.py:179
 msgid "Your file is invalid and I couldn't open and process it"
 msgstr "Ваш фајл је неважећи и нисам могао да га отворим и обрадим"
 
-#: pdf_bot/utils.py:199
+#: pdf_bot/utils.py:185
 msgid "Your PDF file is already encrypted"
 msgstr "Ваш ПДФ фајл је већ шифрован"
 
-#: pdf_bot/utils.py:201
-msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
-msgstr "Ваш {file_type} ПДФ фајл је шифрован и мораћете прво да га дешифрујете"
-
-#: pdf_bot/utils.py:206
+#: pdf_bot/utils.py:187 pdf_bot/utils.py:191
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Ваш ПДФ фајл је шифрован и мораћете прво да га дешифрујете"
 
-#: pdf_bot/utils.py:228
+#: pdf_bot/utils.py:213
 msgid "You've sent me these {file_type} so far:"
 msgstr "До сада си ми послао {file_type} ових година:"
 
-#: pdf_bot/utils.py:278
+#: pdf_bot/utils.py:242
 msgid "The result file is too large for me to send to you"
 msgstr "Датотека са резултатима је превелика да бих вам је послао"
 
-#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
+#: pdf_bot/utils.py:255 pdf_bot/utils.py:262
 msgid "Here is your result file"
 msgstr "Ово је твоја датотека са резултатима"
 
-#: pdf_bot/commands/compare.py:46
+#: pdf_bot/commands/compare.py:47
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "Пошаљите ми један од ПДФ фајлова које ћете хтети да упоредите"
 
-#: pdf_bot/commands/compare.py:47
+#: pdf_bot/commands/compare.py:48
 msgid "Note that I can only look for text differences"
 msgstr "Имајте на науда да могу да тражим само текстуалне разлике"
 
-#: pdf_bot/commands/compare.py:81
+#: pdf_bot/commands/compare.py:82
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Пошаљи ми други ПДФ фајл који би волео да упоредиш"
 
-#: pdf_bot/commands/compare.py:105
+#: pdf_bot/commands/compare.py:106
 msgid "Comparing your PDF files"
 msgstr "Поређење ПДФ датотека"
 
-#: pdf_bot/commands/compare.py:124
+#: pdf_bot/commands/compare.py:125
 msgid "There are no text differences between your PDF files"
 msgstr "Не постоје текстуалне разлике између ВАШИХ ПДФ фајлова"
 
-#: pdf_bot/commands/image.py:77
+#: pdf_bot/commands/image.py:78
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Пошаљите ми слике које ћете хтети да улепшате или претворите у ПДФ фајл"
 
-#: pdf_bot/commands/image.py:81
+#: pdf_bot/commands/image.py:82
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Имајте науда ће слике бити улепшане и конвертоване редоследом којим ми шаљете"
 
-#: pdf_bot/commands/image.py:108
+#: pdf_bot/commands/image.py:109
 msgid "File name unavailable"
 msgstr "Име датотеке није доступно"
 
-#: pdf_bot/commands/image.py:127
+#: pdf_bot/commands/image.py:128
 msgid "Your file is not an image"
 msgstr "Твоја датотека није слика"
 
-#: pdf_bot/commands/image.py:148
+#: pdf_bot/commands/image.py:149
 msgid "images"
 msgstr "Имиџис"
 
-#: pdf_bot/commands/image.py:155
+#: pdf_bot/commands/image.py:156
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Изабери задатак одоздо ако си ми послао све слике, или настави да ми шаљеш слике"
 
-#: pdf_bot/commands/image.py:199
+#: pdf_bot/commands/image.py:200
 msgid "{file_name} has been removed for beautifying or converting"
 msgstr "{file_name} је уклоњен због улепшавања или конвертовања"
 
-#: pdf_bot/commands/image.py:236
+#: pdf_bot/commands/image.py:237
 msgid "Beautifying and converting your images"
 msgstr "Улепшавање и конвертовање слика"
 
-#: pdf_bot/commands/image.py:241
+#: pdf_bot/commands/image.py:242
 msgid "Converting your images into PDF"
 msgstr "Конвертовање слика у ПДФ"
 
-#: pdf_bot/commands/merge.py:82
+#: pdf_bot/commands/merge.py:83
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Пошаљите ми ПДФ фајлове које ћете хтети да обједините"
 
-#: pdf_bot/commands/merge.py:83
+#: pdf_bot/commands/merge.py:84
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Имајте на крају да ће датотеке бити обједињене редоследом којим ми шаљете"
 
-#: pdf_bot/commands/merge.py:115
+#: pdf_bot/commands/merge.py:116
 msgid "Your file is not a PDF file"
 msgstr "Ваш фајл није ПДФ фајл"
 
-#: pdf_bot/commands/merge.py:143
+#: pdf_bot/commands/merge.py:144
 msgid "PDF files"
 msgstr "ПДФ датотеке"
 
-#: pdf_bot/commands/merge.py:150
+#: pdf_bot/commands/merge.py:151
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Притисните {done} ако сте ми послали све ПДФ фајлове које ћете хтети да обједините или ми стално шаљете ПДФ фајлове"
 
-#: pdf_bot/commands/merge.py:193
+#: pdf_bot/commands/merge.py:194
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} је за обједињавање"
 
-#: pdf_bot/commands/merge.py:215
+#: pdf_bot/commands/merge.py:216
 msgid "You haven't sent me any PDF files"
 msgstr "Ниси ми послао ниједан ПДФ фајл"
 
-#: pdf_bot/commands/merge.py:219
+#: pdf_bot/commands/merge.py:220
 msgid "You've only sent me one PDF file"
 msgstr "Послали сте ми само један ПДФ фајл"
 
-#: pdf_bot/commands/merge.py:233
+#: pdf_bot/commands/merge.py:234
 msgid "Merging your PDF files"
 msgstr "Обједињавање ПДФ датотека"
 
-#: pdf_bot/commands/merge.py:253
+#: pdf_bot/commands/merge.py:254
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Нисам могао да објединим ваше ПДФ датотеке јер је ова датотека неважећа: {file_name}"
 
-#: pdf_bot/commands/text.py:59
+#: pdf_bot/commands/text.py:60
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Пошаљите ми текст који ћете хтети да упишете у свој ПДФ фајл"
 
-#: pdf_bot/commands/text.py:82
+#: pdf_bot/commands/text.py:83
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "Пошаљите ми фонт који желите да користите за ПДФ датотеку или притисните тастер {skip} бисте користили подразумевани фонт"
 
-#: pdf_bot/commands/text.py:86
+#: pdf_bot/commands/text.py:87
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "Погледајте овде листу подржаних фонтова: {fonts}"
 
-#: pdf_bot/commands/text.py:119
+#: pdf_bot/commands/text.py:120
 msgid "Unknown font, please try again"
 msgstr "Непознат фонт, покушајте поново"
 
-#: pdf_bot/commands/text.py:151
+#: pdf_bot/commands/text.py:152
 msgid "Creating your PDF file"
 msgstr "Креирање ПДФ фајла"
 
-#: pdf_bot/commands/watermark.py:43
+#: pdf_bot/commands/watermark.py:44
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Пошаљите ми ПДФ фајл који желите да додате водени жиг"
 
-#: pdf_bot/commands/watermark.py:76
+#: pdf_bot/commands/watermark.py:77
 msgid "Send me the watermark PDF file"
 msgstr "Пошаљи ми ВОДЕНИ ЖИГ ПДФ фајл"
 
-#: pdf_bot/commands/watermark.py:101
+#: pdf_bot/commands/watermark.py:102
 msgid "Adding the watermark onto your PDF file"
 msgstr "Додавање воденог жига у ваш ПДФ фајл"
 
-#: pdf_bot/commands/watermark.py:114
+#: pdf_bot/commands/watermark.py:115
 msgid "watermark"
 msgstr "водени жиг"
 
-#: pdf_bot/files/compress.py:20
+#: pdf_bot/files/compress.py:21
 msgid "Compressing your PDF file"
 msgstr "Компримовање ПДФ датотеке"
 
-#: pdf_bot/files/compress.py:47
+#: pdf_bot/files/compress.py:48
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Величина датотеке смањена за {percent}, са {old_size} на {new_size}"
 
-#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:141
+#: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
 #: pdf_bot/files/image.py:208
 msgid "Something went wrong, please try again"
 msgstr "Нешто је пошло наопако, молим вас покушајте поново"
 
-#: pdf_bot/files/crop.py:31
+#: pdf_bot/files/crop.py:32
 msgid "Select the crop type that you'll like to perform"
 msgstr "Изаберите тип изрези који желите да извршите"
 
-#: pdf_bot/files/crop.py:47
+#: pdf_bot/files/crop.py:48
 msgid "Send me a number between {min_percent} and {max_percent}"
 msgstr "Пошаљи ми број између {min_percent} и {max_percent}"
 
-#: pdf_bot/files/crop.py:50
+#: pdf_bot/files/crop.py:51
 msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Ово је проценат простора на маргинама који треба задржати између садржаја у ПДФ фајлу и странице"
 
-#: pdf_bot/files/crop.py:62
+#: pdf_bot/files/crop.py:63
 msgid "Send me a number that you'll like to adjust the margin size"
 msgstr "Пошаљите ми број који желите да подесите величину маргине"
 
-#: pdf_bot/files/crop.py:63
+#: pdf_bot/files/crop.py:64
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Позитивни бројеви ће смањити величину маргине и негативни бројеви ће је повећати"
 
-#: pdf_bot/files/crop.py:85
+#: pdf_bot/files/crop.py:86
 msgid "The number must be between {min_percent} and {max_percent}, please try again"
 msgstr "Број мора бити између {min_percent} и {max_percent}, покушајте поново"
 
-#: pdf_bot/files/crop.py:108
+#: pdf_bot/files/crop.py:109
 msgid "The number is invalid, please try again"
 msgstr "Број је неважећи, покушајте поново"
 
-#: pdf_bot/files/crop.py:119
+#: pdf_bot/files/crop.py:120
 msgid "Cropping your PDF file"
 msgstr "Изрезивање ПДФ датотеке"
 
-#: pdf_bot/files/crypto.py:17
+#: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Пошаљи ми лозинку за дешифровање твог ПДФ фајла"
 
-#: pdf_bot/files/crypto.py:32
+#: pdf_bot/files/crypto.py:33
 msgid "Decrypting your PDF file"
 msgstr "Дешифровање ПДФ датотеке"
 
-#: pdf_bot/files/crypto.py:47
+#: pdf_bot/files/crypto.py:48
 msgid "Your PDF file is invalid and I couldn't open and process it"
 msgstr "Ваш ПДФ фајл је неважећи и нисам могао да га отворим и обрадим"
 
-#: pdf_bot/files/crypto.py:52
+#: pdf_bot/files/crypto.py:53
 msgid "Your PDF file is not encrypted"
 msgstr "Ваша ПДФ датотека није шифрована"
 
-#: pdf_bot/files/crypto.py:57
+#: pdf_bot/files/crypto.py:58
 msgid "The decryption password is incorrect, please try again"
 msgstr "Лозинка за дешифровање је нетачна, покушајте поново"
 
-#: pdf_bot/files/crypto.py:69
+#: pdf_bot/files/crypto.py:76
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Ваш ПДФ фајл је шифрован методом који не могу да дешифрујем"
 
-#: pdf_bot/files/crypto.py:85
+#: pdf_bot/files/crypto.py:92
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Пошаљи ми лозинку да шифрујем твој ПДФ фајл"
 
-#: pdf_bot/files/crypto.py:99
+#: pdf_bot/files/crypto.py:106
 msgid "Encrypting your PDF file"
 msgstr "Шифровање ПДФ датотеке"
 
@@ -583,163 +579,163 @@ msgstr "Издвајање свих слика из ПДФ фајла"
 msgid "I couldn't find any images in your PDF file"
 msgstr "Нисам могао да нађем слике у твом ПДФ фајлу"
 
-#: pdf_bot/files/image.py:249
+#: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Погледајте горе за све ваше слике"
 
-#: pdf_bot/files/ocr.py:20
+#: pdf_bot/files/ocr.py:21
 msgid "Adding an OCR text layer to your PDF file"
 msgstr "Додавање ОЦР слоја текста у ПДФ датотеку"
 
-#: pdf_bot/files/ocr.py:38
+#: pdf_bot/files/ocr.py:39
 msgid "Your PDF file already has a text layer"
 msgstr "Ваш ПДФ фајл већ има слој текста"
 
-#: pdf_bot/files/rename.py:19
+#: pdf_bot/files/rename.py:20
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Пошаљите ми име датотеке у које желите да преименујете свој ПДФ фајл"
 
-#: pdf_bot/files/rename.py:39
+#: pdf_bot/files/rename.py:40
 msgid "File names can't contain any of the following characters:"
 msgstr "Имена датотека не могу да садрже ниједан од следећих знакова:"
 
-#: pdf_bot/files/rename.py:41
+#: pdf_bot/files/rename.py:42
 msgid "Please try again"
 msgstr "Покушајте поново"
 
-#: pdf_bot/files/rename.py:49
+#: pdf_bot/files/rename.py:50
 msgid "Renaming your PDF file into {file_name}"
 msgstr "Преисагавање ПДФ фајла у {file_name}"
 
-#: pdf_bot/files/rotate.py:24
+#: pdf_bot/files/rotate.py:25
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Изаберите степене које ћете хтети да ротирајте ПДФ фајл у смеру казаљке на сату"
 
-#: pdf_bot/files/rotate.py:50
+#: pdf_bot/files/rotate.py:51
 msgid "Rotating your PDF file clockwise by {degree} degrees"
 msgstr "Ротирање ПДФ датотеке у смеру казаљке на сату {degree} степени"
 
-#: pdf_bot/files/scale.py:24
+#: pdf_bot/files/scale.py:25
 msgid "Select the scale type that you'll like to perform"
 msgstr "Изаберите тип размере који ћете хтети да извршите"
 
-#: pdf_bot/files/scale.py:39
+#: pdf_bot/files/scale.py:40
 msgid "Send me the width and height"
 msgstr "Пошаљи ми ширину и висину"
 
-#: pdf_bot/files/scale.py:41
+#: pdf_bot/files/scale.py:42
 msgid "This will set the width to 150 and height to 200"
 msgstr "То ће поставити ширину на 150, а висину на 200"
 
-#: pdf_bot/files/scale.py:51
+#: pdf_bot/files/scale.py:52
 msgid "Send me the scaling factors for the horizontal and vertical axes"
 msgstr "Пошаљи ми факторе размере хоризонталних и вертикалних оса"
 
-#: pdf_bot/files/scale.py:55
+#: pdf_bot/files/scale.py:56
 msgid "This will double the horizontal axis and halve the vertical axis"
 msgstr "Ово ће удвостручити хоризонталну осу и преполовити вертикалну осу"
 
-#: pdf_bot/files/scale.py:78
+#: pdf_bot/files/scale.py:79
 msgid "The scaling factors {values} are invalid, please try again"
 msgstr "Фактори размере {values} неважећи, покушајте поново"
 
-#: pdf_bot/files/scale.py:100
+#: pdf_bot/files/scale.py:101
 msgid "The dimensions {values} are invalid, please try again"
 msgstr "Димензије {values} неважеће, покушајте поново"
 
-#: pdf_bot/files/scale.py:114
+#: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
 msgstr "Подешавање величине ПДФ датотеке, хоризонтално по {horizontal} и вертикално по {vertical}"
 
-#: pdf_bot/files/scale.py:127
+#: pdf_bot/files/scale.py:128
 msgid "Scaling your PDF file with width of {width} and height of {height}"
 msgstr "Подешавање величине ПДФ датотеке ширином {width} и висином {height}"
 
-#: pdf_bot/files/split.py:53
+#: pdf_bot/files/split.py:54
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Пошаљите ми опсег страница које ћете хтети да задржите"
 
-#: pdf_bot/files/split.py:54
+#: pdf_bot/files/split.py:55
 msgid "General usage"
 msgstr "Општа употреба"
 
-#: pdf_bot/files/split.py:55
+#: pdf_bot/files/split.py:56
 msgid "{range}      all pages"
 msgstr "{range}      све странице"
 
-#: pdf_bot/files/split.py:56
+#: pdf_bot/files/split.py:57
 msgid "{range}      page 8 only"
 msgstr "{range}      страница 8"
 
-#: pdf_bot/files/split.py:57
+#: pdf_bot/files/split.py:58
 msgid "{range}    first three pages"
 msgstr "{range}    прве три стране"
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:59
 msgid "{range}     from page 8 onward"
 msgstr "{range}     од стране 8 па надаље"
 
-#: pdf_bot/files/split.py:59
+#: pdf_bot/files/split.py:60
 msgid "{range}     last page only"
 msgstr "{range}     последња страница"
 
-#: pdf_bot/files/split.py:60
+#: pdf_bot/files/split.py:61
 msgid "{range}    all pages except the last page"
 msgstr "{range}    све странице осим последње странице"
 
-#: pdf_bot/files/split.py:63
+#: pdf_bot/files/split.py:64
 msgid "{range}     second last page only"
 msgstr "{range}     на другој последњој страни"
 
-#: pdf_bot/files/split.py:64
+#: pdf_bot/files/split.py:65
 msgid "{range}    last two pages"
 msgstr "{range}    последње две странице"
 
-#: pdf_bot/files/split.py:65
+#: pdf_bot/files/split.py:66
 msgid "{range}  third and second last pages"
 msgstr "{range}  и друга последња страна"
 
-#: pdf_bot/files/split.py:66
+#: pdf_bot/files/split.py:67
 msgid "Advanced usage"
 msgstr "Напредна употреба"
 
-#: pdf_bot/files/split.py:67
+#: pdf_bot/files/split.py:68
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    странице {pages} и до краја"
 
-#: pdf_bot/files/split.py:70
+#: pdf_bot/files/split.py:71
 msgid "{range} pages {pages}"
 msgstr "{range} странице {pages}"
 
-#: pdf_bot/files/split.py:71
+#: pdf_bot/files/split.py:72
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   све странице обрнутим редоследом"
 
-#: pdf_bot/files/split.py:72
+#: pdf_bot/files/split.py:73
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} странице {pages} осим {page}"
 
-#: pdf_bot/files/split.py:75
+#: pdf_bot/files/split.py:76
 msgid "{range}  pages {pages}"
 msgstr "{range}  странице {pages}"
 
-#: pdf_bot/files/split.py:99
+#: pdf_bot/files/split.py:100
 msgid "The range is invalid, please try again"
 msgstr "Опсег је неважећи, покушајте поново"
 
-#: pdf_bot/files/split.py:105
+#: pdf_bot/files/split.py:106
 msgid "Splitting your PDF file"
 msgstr "Дељење ПДФ датотеке"
 
-#: pdf_bot/files/text.py:22
+#: pdf_bot/files/text.py:23
 msgid "Select how you'll like me to send the text to you"
 msgstr "Изаберите како ће вам се свидети да вам пошаљем поруку."
 
-#: pdf_bot/files/text.py:35
+#: pdf_bot/files/text.py:36
 msgid "Extracting text from your PDF file"
 msgstr "Издвајање текста из ПДФ датотеке"
 
-#: pdf_bot/files/text.py:88
+#: pdf_bot/files/text.py:89
 msgid "I couldn't find any text in your PDF file"
 msgstr "Нисам могао да нађем никакав текст у твом ПДФ фајлу"
 
@@ -1446,5 +1442,11 @@ msgstr "Нисам могао да нађем никакав текст у тв�
 #~ msgstr ""
 
 #~ msgid "See above for all your photos"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your {file_type} PDF file is encrypted"
+#~ " and you'll have to decrypt it "
+#~ "first"
 #~ msgstr ""
 
