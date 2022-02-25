@@ -6,6 +6,7 @@ from telegram import ReplyKeyboardRemove, Update
 from telegram.ext import CallbackContext, ConversationHandler
 from telegram.parsemode import ParseMode
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO, WAIT_SPLIT_RANGE
 from pdf_bot.files.utils import check_back_user_data, get_back_markup
 from pdf_bot.language import set_lang
@@ -112,7 +113,7 @@ def split_pdf(update: Update, context: CallbackContext) -> int:
         if pdf_reader is not None:
             merger = PdfFileMerger()
             merger.append(pdf_reader, pages=PageRange(split_range))
-            write_send_pdf(update, context, merger, file_name, "split")
+            write_send_pdf(update, context, merger, file_name, TaskType.split_pdf)
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:

@@ -5,6 +5,7 @@ from PyPDF2.utils import PdfReadError
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO, WAIT_DECRYPT_PW, WAIT_ENCRYPT_PW
 from pdf_bot.files.utils import check_back_user_data, get_back_markup
 from pdf_bot.language import set_lang
@@ -63,7 +64,13 @@ def decrypt_pdf(update, context):
                     for page in pdf_reader.pages:
                         pdf_writer.addPage(page)
 
-                    write_send_pdf(update, context, pdf_writer, file_name, "decrypted")
+                    write_send_pdf(
+                        update,
+                        context,
+                        pdf_writer,
+                        file_name,
+                        TaskType.decrypt_pdf,
+                    )
                 except NotImplementedError:
                     message.reply_text(
                         _(
@@ -98,6 +105,8 @@ def encrypt_pdf(update, context):
     update.effective_message.reply_text(
         _("Encrypting your PDF file"), reply_markup=ReplyKeyboardRemove()
     )
-    process_pdf(update, context, "encrypted", encrypt_pw=update.effective_message.text)
+    process_pdf(
+        update, context, TaskType.encrypt_pdf, encrypt_pw=update.effective_message.text
+    )
 
     return ConversationHandler.END

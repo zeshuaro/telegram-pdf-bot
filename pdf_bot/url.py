@@ -9,6 +9,7 @@ from telegram.ext import CallbackContext
 from weasyprint import HTML
 from weasyprint.urls import URLFetchingError
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.language import set_lang
 from pdf_bot.utils import send_result_file
 
@@ -45,7 +46,7 @@ def url_to_pdf(update: Update, context: CallbackContext):
             out_fn = os.path.join(dir_name, f"{urlparse(url).netloc}.pdf")
             try:
                 HTML(url=url).write_pdf(out_fn)
-                send_result_file(update, context, out_fn, "url")
+                send_result_file(update, context, out_fn, TaskType.url_to_pdf)
             except URLFetchingError:
                 message.reply_text(_("Unable to reach your web page"))
 

@@ -5,6 +5,7 @@ import humanize
 from telegram import ParseMode, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
 from pdf_bot.files.utils import run_cmd
 from pdf_bot.language import set_lang
@@ -51,7 +52,7 @@ def compress_pdf(update, context):
                     ),
                     parse_mode=ParseMode.HTML,
                 )
-                send_result_file(update, context, out_fn, "compress")
+                send_result_file(update, context, out_fn, TaskType.compress_pdf)
 
             else:
                 update.effective_message.reply_text(

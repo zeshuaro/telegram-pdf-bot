@@ -15,6 +15,7 @@ from telegram import (
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import CallbackContext, ConversationHandler
 
+from pdf_bot.analytics import EventAction, TaskType, send_event
 from pdf_bot.consts import (
     CANCEL,
     CHANNEL_NAME,
@@ -25,7 +26,6 @@ from pdf_bot.consts import (
     PDF_TOO_LARGE,
 )
 from pdf_bot.language import set_lang
-from pdf_bot.stats import update_stats
 
 
 def cancel(update, context):
@@ -114,32 +114,18 @@ def check_user_data(
 def process_pdf(
     update,
     context,
-    file_type,
+    task_type: TaskType,
     encrypt_pw=None,
     rotate_degree=None,
     scale_by=None,
     scale_to=None,
 ):
-    """
-    Process different PDF file manipulations
-    Args:
-        update: the update object
-        context: the context object
-        file_type: the string of file type
-        encrypt_pw: the string of encryption password
-        rotate_degree: the int of rotation degree
-        scale_by: the tuple of scale by values
-        scale_to: the tuple of scale to values
-
-    Returns:
-        None
-    """
     with tempfile.NamedTemporaryFile() as tf:
         user_data = context.user_data
         file_id, file_name = user_data[PDF_INFO]
 
         if encrypt_pw is not None:
-            pdf_reader = open_pdf(update, context, file_id, tf.name, file_type)
+            pdf_reader = open_pdf(update, context, file_id, tf.name, task_type)
         else:
             pdf_reader = open_pdf(update, context, file_id, tf.name)
 
@@ -161,14 +147,14 @@ def process_pdf(
                 pdf_writer.encrypt(encrypt_pw)
 
             # Send result file
-            write_send_pdf(update, context, pdf_writer, file_name, file_type)
+            write_send_pdf(update, context, pdf_writer, file_name, task_type)
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
         del user_data[PDF_INFO]
 
 
-def open_pdf(update, context, file_id, file_name, file_type=None):
+def open_pdf(update, context, file_id, file_name, task_type=None):
     """
     Download, open and validate PDF file
     Args:
@@ -194,14 +180,13 @@ def open_pdf(update, context, file_id, file_name, file_type=None):
         )
 
     if pdf_reader is not None and pdf_reader.isEncrypted:
-        if file_type is not None:
-            if file_type == "encrypted":
+        if task_type is not None:
+            if task_type == TaskType.encrypt_pdf:
                 text = _("Your PDF file is already encrypted")
             else:
                 text = _(
-                    "Your {file_type} PDF file is encrypted "
-                    "and you'll have to decrypt it first"
-                ).format(file_type=file_type)
+                    "Your PDF file is encrypted and you'll have to decrypt it first"
+                )
         else:
             text = _("Your PDF file is encrypted and you'll have to decrypt it first")
 
@@ -233,46 +218,25 @@ def send_file_names(update, context, file_names, file_type):
     update.effective_message.reply_text(text)
 
 
-def write_send_pdf(update, context, pdf_writer, file_name, task):
-    """
-    Write and send result PDF file to user
-    Args:
-        update: the update object
-        context: the context object
-        pdf_writer: the PdfFileWriter object
-        file_name: the string of the file name
-        task: the string of the task
-
-    Returns:
-        None
-    """
+def write_send_pdf(update, context, pdf_writer, file_name, task_type: TaskType):
     with tempfile.TemporaryDirectory() as dir_name:
-        new_fn = f"{task.title()}_{file_name}"
+        new_fn = f"{task_type.value.title()}_{file_name}"
         out_fn = os.path.join(dir_name, new_fn)
 
         with open(out_fn, "wb") as f:
             pdf_writer.write(f)
 
-        send_result_file(update, context, out_fn, task)
+        send_result_file(update, context, out_fn, task_type)
 
 
-def send_result_file(update, context, out_fn, task):
-    """
-    Send result file to user
-    Args:
-        update: the update object
-        context: the context object
-        out_fn: the string of the output file name
-        task: the string of the task
-
-    Returns:
-        None
-    """
+def send_result_file(
+    update: Update, context: CallbackContext, output_filename: str, task: TaskType
+):
     _ = set_lang(update, context)
     message = update.effective_message
     reply_markup = get_support_markup(update, context)
 
-    if os.path.getsize(out_fn) >= MAX_FILESIZE_UPLOAD:
+    if os.path.getsize(output_filename) >= MAX_FILESIZE_UPLOAD:
         message.reply_text(
             "{desc_1}\n\n{desc_2}".format(
                 desc_1=_("The result file is too large for me to send to you"),
@@ -284,22 +248,22 @@ def send_result_file(update, context, out_fn, task):
             reply_markup=reply_markup,
         )
     else:
-        if out_fn.endswith(".png"):
+        if output_filename.endswith(".png"):
             message.chat.send_action(ChatAction.UPLOAD_PHOTO)
             message.reply_photo(
-                open(out_fn, "rb"),
+                open(output_filename, "rb"),
                 caption=_("Here is your result file"),
                 reply_markup=reply_markup,
             )
         else:
             message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
             message.reply_document(
-                document=open(out_fn, "rb"),
+                document=open(output_filename, "rb"),
                 caption=_("Here is your result file"),
                 reply_markup=reply_markup,
             )
 
-    update_stats(update, task)
+    send_event(update, context, task, EventAction.complete)
 
 
 def get_support_markup(update, context):

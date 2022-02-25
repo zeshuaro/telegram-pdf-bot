@@ -22,6 +22,7 @@ from telegram.ext import (
     MessageHandler,
 )
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BEAUTIFY, CANCEL, REMOVE_LAST, TEXT_FILTER, TO_PDF
 from pdf_bot.language import set_lang
 from pdf_bot.utils import (
@@ -258,13 +259,13 @@ def process_image(
             noteshrink.notescan_main(
                 image_files, basename=f"{dir_name}/page", pdfname=out_fn
             )
-            send_result_file(update, context, out_fn, "beautify")
+            send_result_file(update, context, out_fn, TaskType.beautify_image)
         else:
             out_fn = os.path.join(dir_name, "Converted.pdf")
             with open(out_fn, "wb") as f:
                 f.write(img2pdf.convert(image_files))
 
-            send_result_file(update, context, out_fn, "to_pdf")
+            send_result_file(update, context, out_fn, TaskType.image_to_pdf)
 
     # Clean up files
     for tf in temp_files:

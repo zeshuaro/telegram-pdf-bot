@@ -7,6 +7,7 @@ from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 from telegram.parsemode import ParseMode
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO, WAIT_FILE_NAME
 from pdf_bot.files.utils import check_back_user_data, get_back_markup
 from pdf_bot.language import set_lang
@@ -64,7 +65,7 @@ def rename_pdf(update, context):
     with tempfile.TemporaryDirectory() as dir_name:
         out_fn = os.path.join(dir_name, new_fn)
         shutil.move(tf.name, out_fn)
-        send_result_file(update, context, out_fn, "rename")
+        send_result_file(update, context, out_fn, TaskType.rename_pdf)
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:

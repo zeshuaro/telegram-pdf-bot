@@ -7,6 +7,7 @@ from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_MESSAGE_LENGTH
 from telegram.ext import ConversationHandler
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK, PDF_INFO, TEXT_FILE, TEXT_MESSAGE, WAIT_TEXT_TYPE
 from pdf_bot.language import set_lang
 from pdf_bot.utils import check_user_data, send_result_file
@@ -67,7 +68,7 @@ def send_pdf_text(update, context, pdf_texts, is_file, out_fn):
             with open(out_fn, "w") as f:
                 f.write("\n".join(pdf_texts))
 
-            send_result_file(update, context, out_fn, "get_text")
+            send_result_file(update, context, out_fn, TaskType.get_pdf_text)
         else:
             msg_text = ""
             for pdf_text in pdf_texts:
