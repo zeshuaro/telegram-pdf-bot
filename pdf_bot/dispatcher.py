@@ -211,4 +211,4 @@ def send_msg(update: Update, context: CallbackContext):
 def error_callback(update: Update, context: CallbackContext):
     if context.error is not Unauthorized:
         log = Logger()
-        log.error(f'Update "{update}" caused error "{context.error}"')
+        log.error(f'Update "{update}" caused error', exc_info=context.error)

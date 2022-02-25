@@ -4,6 +4,7 @@ import tempfile
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import (
     BACK,
     BY_PERCENT,
@@ -135,7 +136,7 @@ def crop_pdf(update, context, percent=None, offset=None):
                 command += f" -a {offset}"
 
             if run_cmd(command):
-                send_result_file(update, context, out_fn, "crop")
+                send_result_file(update, context, out_fn, TaskType.crop_pdf)
             else:
                 update.effective_message.reply_text(
                     _("Something went wrong, please try again")

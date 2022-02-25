@@ -6,6 +6,7 @@ from ocrmypdf.exceptions import PriorOcrFoundError
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
 from pdf_bot.language import set_lang
 from pdf_bot.utils import check_user_data, send_result_file
@@ -32,7 +33,7 @@ def add_ocr_to_pdf(update, context):
             try:
                 # logging.getLogger("ocrmypdf").setLevel(logging.WARNING)
                 ocrmypdf.ocr(tf.name, out_fn, deskew=True, progress_bar=False)
-                send_result_file(update, context, out_fn, "ocr")
+                send_result_file(update, context, out_fn, TaskType.ocr_pdf)
             except PriorOcrFoundError:
                 update.effective_message.reply_text(
                     _("Your PDF file already has a text layer")

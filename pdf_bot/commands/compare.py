@@ -6,6 +6,7 @@ from pdf_diff import NoDifferenceError
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK, CANCEL, PDF_INVALID_FORMAT, PDF_OK, TEXT_FILTER
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel, check_pdf, check_user_data, send_result_file
@@ -118,7 +119,7 @@ def compare_pdf(update, context):
             with tempfile.TemporaryDirectory() as dir_name:
                 out_fn = os.path.join(dir_name, "Differences.png")
                 pdf_diff.main(files=[tf1.name, tf2.name], out_file=out_fn)
-                send_result_file(update, context, out_fn, "compare")
+                send_result_file(update, context, out_fn, TaskType.compare_pdf)
         except NoDifferenceError:
             message.reply_text(
                 _("There are no text differences between your PDF files")

@@ -1,6 +1,7 @@
 from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import (
     BACK,
     BY_PERCENT,
@@ -121,7 +122,7 @@ def scale_pdf(update, context, percent=None, dim=None):
             reply_markup=ReplyKeyboardRemove(),
             parse_mode=ParseMode.HTML,
         )
-        process_pdf(update, context, "scaled", scale_by=percent)
+        process_pdf(update, context, TaskType.scale_pdf, scale_by=percent)
     else:
         update.effective_message.reply_text(
             _(
@@ -130,6 +131,6 @@ def scale_pdf(update, context, percent=None, dim=None):
             reply_markup=ReplyKeyboardRemove(),
             parse_mode=ParseMode.HTML,
         )
-        process_pdf(update, context, "scaled", scale_to=dim)
+        process_pdf(update, context, TaskType.scale_pdf, scale_to=dim)
 
     return ConversationHandler.END

@@ -16,6 +16,7 @@ from telegram.parsemode import ParseMode
 from weasyprint import CSS, HTML
 from weasyprint.text.fonts import FontConfiguration
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import CANCEL, TEXT_FILTER
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel, check_user_data, send_result_file
@@ -174,6 +175,6 @@ def text_to_pdf(
     with tempfile.TemporaryDirectory() as dir_name:
         out_fn = os.path.join(dir_name, "Text.pdf")
         html.write_pdf(out_fn, stylesheets=stylesheets, font_config=font_config)
-        send_result_file(update, context, out_fn, "text")
+        send_result_file(update, context, out_fn, TaskType.text_to_pdf)
 
     return ConversationHandler.END

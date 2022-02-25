@@ -9,6 +9,7 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.error import BadRequest
 from telegram.ext import ConversationHandler
 
+from pdf_bot.analytics import EventAction, TaskType, send_event
 from pdf_bot.commands import process_image
 from pdf_bot.consts import (
     BACK,
@@ -25,7 +26,6 @@ from pdf_bot.consts import (
 )
 from pdf_bot.files.utils import check_back_user_data, run_cmd
 from pdf_bot.language import set_lang
-from pdf_bot.stats import update_stats
 from pdf_bot.utils import (
     check_user_data,
     get_support_markup,
@@ -119,7 +119,7 @@ def get_pdf_preview(update, context):
                     imgs[0].save(out_fn)
 
                     # Send result file
-                    send_result_file(update, context, out_fn, "preview")
+                    send_result_file(update, context, out_fn, TaskType.preview_pdf)
 
     # Clean up memory and files
     if user_data[PDF_INFO] == file_id:
@@ -175,7 +175,7 @@ def pdf_to_images(update, context):
             )
 
             # Handle the result images
-            send_result_images(update, context, dir_name, "to_photos")
+            send_result_images(update, context, dir_name, TaskType.pdf_to_image)
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -213,7 +213,9 @@ def get_pdf_images(update, context):
                         _("I couldn't find any images in your PDF file")
                     )
                 else:
-                    send_result_images(update, context, dir_name, "get_photos")
+                    send_result_images(
+                        update, context, dir_name, TaskType.get_pdf_image
+                    )
 
     # Clean up memory
     if user_data[PDF_INFO] == file_id:
@@ -230,7 +232,7 @@ def write_images_in_pdf(input_fn, dir_name, file_name):
     return run_cmd(command)
 
 
-def send_result_images(update, context, dir_name, task):
+def send_result_images(update, context, dir_name, task: TaskType):
     _ = set_lang(update, context)
     message = update.effective_message
 
@@ -249,7 +251,7 @@ def send_result_images(update, context, dir_name, task):
             _("See above for all your images"),
             reply_markup=get_support_markup(update, context),
         )
-        update_stats(update, task)
+        send_event(update, context, task, EventAction.complete)
     else:
         shutil.make_archive(dir_name, "zip", dir_name)
         send_result_file(update, context, f"{dir_name}.zip", task)

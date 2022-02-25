@@ -19,6 +19,7 @@ from telegram.ext import (
     MessageHandler,
 )
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import (
     CANCEL,
     DONE,
@@ -259,7 +260,7 @@ def merge_pdf(update: Update, context: CallbackContext) -> int:
             return ConversationHandler.END
 
     # Send result file
-    write_send_pdf(update, context, merger, "files.pdf", "merged")
+    write_send_pdf(update, context, merger, "files.pdf", TaskType.merge_pdf)
 
     # Clean up memory and files
     if user_data[MERGE_IDS] == file_ids:

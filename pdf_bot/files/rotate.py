@@ -1,6 +1,7 @@
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import (
     BACK,
     PDF_INFO,
@@ -50,6 +51,6 @@ def rotate_pdf(update, context):
         _("Rotating your PDF file clockwise by {degree} degrees").format(degree=degree),
         reply_markup=ReplyKeyboardRemove(),
     )
-    process_pdf(update, context, "rotated", rotate_degree=degree)
+    process_pdf(update, context, TaskType.rotate_pdf, rotate_degree=degree)
 
     return ConversationHandler.END

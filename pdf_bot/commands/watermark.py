@@ -4,6 +4,7 @@ from PyPDF2 import PdfFileWriter
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
+from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK, CANCEL, PDF_INVALID_FORMAT, PDF_OK, TEXT_FILTER
 from pdf_bot.language import set_lang
 from pdf_bot.utils import cancel, check_pdf, check_user_data, open_pdf, write_send_pdf
@@ -120,7 +121,9 @@ def add_wmk(update, context):
                 pdf_writer.addPage(page)
 
             # Send result file
-            write_send_pdf(update, context, pdf_writer, "file.pdf", "watermarked")
+            write_send_pdf(
+                update, context, pdf_writer, "file.pdf", TaskType.watermark_pdf
+            )
 
     # Clean up memory and files
     if user_data[WMK_ID] == src_file_id:
