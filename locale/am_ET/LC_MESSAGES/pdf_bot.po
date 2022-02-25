@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-02-21 08:04+0000\n"
-"PO-Revision-Date: 2022-02-21 08:04\n"
+"POT-Creation-Date: 2022-02-25 10:20+0000\n"
+"PO-Revision-Date: 2022-02-25 10:20\n"
 "Last-Translator: \n"
 "Language: am\n"
 "Language-Team: Amharic\n"
@@ -187,11 +187,11 @@ msgstr "ፒዲኤፍ ቦትን እንዴት እንደሚጠቀሙ ለማየት {
 msgid "Set Language 🌎"
 msgstr "ቋንቋ አዘጋጅ 🌎"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:314
+#: pdf_bot/dispatcher.py:140 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "ቻናሉን ይቀላቀሉ"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:315
+#: pdf_bot/dispatcher.py:141 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "የፒዲኤፍ ቦትን ይደግፉ"
 
@@ -275,19 +275,19 @@ msgstr "የሆነ ስህተት ተከስቷል"
 msgid "Thank you for your support!"
 msgstr "ለድጋፎት እናመሰግናለን!"
 
-#: pdf_bot/url.py:28
+#: pdf_bot/url.py:29
 msgid "Timed out processing your web page, your web page is probably too complex to process"
 msgstr ""
 
-#: pdf_bot/url.py:35
+#: pdf_bot/url.py:36
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "ይህንን ድረ-ገጽ ቀድሞውኑ ልከውልኛል አሁንም እየቀየርኩት ነው"
 
-#: pdf_bot/url.py:38
+#: pdf_bot/url.py:39
 msgid "Converting your web page into a PDF file"
 msgstr "የድር ገጽዎን ወደ ፒዲኤፍ ፋይል መለወጥ"
 
-#: pdf_bot/url.py:50
+#: pdf_bot/url.py:51
 msgid "Unable to reach your web page"
 msgstr "የድር ገጽዎን መድረስ አልተቻለም"
 
@@ -299,14 +299,14 @@ msgstr "እርምጃ ተሰር .ል"
 msgid "Your file is not a PDF file, please try again"
 msgstr "ፋይልዎ የፒዲኤፍ ፋይል አይደለም ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/commands/image.py:135 pdf_bot/commands/merge.py:119
+#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "ለማውረድ እና ለማስኬድ ፋይልዎ ለእኔ በጣም ትልቅ ነው"
 
-#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
+#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
 #: pdf_bot/files/file.py:129 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
-#: pdf_bot/utils.py:279
+#: pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ይህ የቴሌግራም ቦት ውስንነት መሆኑን እና ቴሌግራም ይህንን ገደብ ካልቀየረ የማደርገው ምንም ነገር የለም"
 
@@ -314,240 +314,236 @@ msgstr "ይህ የቴሌግራም ቦት ውስንነት መሆኑን እና ቴ
 msgid "Something went wrong, please start over again"
 msgstr "የሆነ ችግር ተፈጥሯል ፣ እባክዎ እንደገና ይጀምሩ"
 
-#: pdf_bot/utils.py:193
+#: pdf_bot/utils.py:179
 msgid "Your file is invalid and I couldn't open and process it"
 msgstr "ፋይልዎ ልክ አይደለም እና መክፈት እና ማስኬድ አልቻልኩም"
 
-#: pdf_bot/utils.py:199
+#: pdf_bot/utils.py:185
 msgid "Your PDF file is already encrypted"
 msgstr "የእርስዎ ፒዲኤፍ ፋይል አስቀድሞ ተመስጥሯል"
 
-#: pdf_bot/utils.py:201
-msgid "Your {file_type} PDF file is encrypted and you'll have to decrypt it first"
-msgstr "የእርስዎ {file_type} ፒዲኤፍ ፋይል የተመሰጠረ ሲሆን መጀመሪያ ዲክሪፕት ማድረግ ይኖርብዎታል"
-
-#: pdf_bot/utils.py:206
+#: pdf_bot/utils.py:187 pdf_bot/utils.py:191
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "የፒዲኤፍ ፋይልዎ የተመሰጠረ ሲሆን መጀመሪያ ዲክሪፕት ማድረግ ይኖርብዎታል"
 
-#: pdf_bot/utils.py:228
+#: pdf_bot/utils.py:213
 msgid "You've sent me these {file_type} so far:"
 msgstr "እስካሁን እነዚህን {file_type} ልከውልኛል ፦"
 
-#: pdf_bot/utils.py:278
+#: pdf_bot/utils.py:242
 msgid "The result file is too large for me to send to you"
 msgstr "የውጤት ፋይል ለእርስዎ ልልክልኝ በጣም ትልቅ ነው"
 
-#: pdf_bot/utils.py:291 pdf_bot/utils.py:298
+#: pdf_bot/utils.py:255 pdf_bot/utils.py:262
 msgid "Here is your result file"
 msgstr "የውጤት ፋይልዎ ይኸውና"
 
-#: pdf_bot/commands/compare.py:46
+#: pdf_bot/commands/compare.py:47
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "ለማወዳደር ከሚወዷቸው የፒዲኤፍ ፋይሎች ውስጥ አንዱን ላኩልኝ"
 
-#: pdf_bot/commands/compare.py:47
+#: pdf_bot/commands/compare.py:48
 msgid "Note that I can only look for text differences"
 msgstr "የጽሑፍ ልዩነቶችን ብቻ መፈለግ እንደምችል ልብ ይበሉ"
 
-#: pdf_bot/commands/compare.py:81
+#: pdf_bot/commands/compare.py:82
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "ለማወዳደር የምትፈልገውን ሌላ የፒዲኤፍ ፋይል ላክልኝ"
 
-#: pdf_bot/commands/compare.py:105
+#: pdf_bot/commands/compare.py:106
 msgid "Comparing your PDF files"
 msgstr "የፒዲኤፍ ፋይሎችዎን ማወዳደር"
 
-#: pdf_bot/commands/compare.py:124
+#: pdf_bot/commands/compare.py:125
 msgid "There are no text differences between your PDF files"
 msgstr "በፒዲኤፍ ፋይሎችዎ መካከል ምንም የጽሑፍ ልዩነቶች የሉም"
 
-#: pdf_bot/commands/image.py:77
+#: pdf_bot/commands/image.py:78
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr ""
 
-#: pdf_bot/commands/image.py:81
+#: pdf_bot/commands/image.py:82
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr ""
 
-#: pdf_bot/commands/image.py:108
+#: pdf_bot/commands/image.py:109
 msgid "File name unavailable"
 msgstr "የፋይል ስም አይገኝም"
 
-#: pdf_bot/commands/image.py:127
+#: pdf_bot/commands/image.py:128
 msgid "Your file is not an image"
 msgstr ""
 
-#: pdf_bot/commands/image.py:148
+#: pdf_bot/commands/image.py:149
 msgid "images"
 msgstr ""
 
-#: pdf_bot/commands/image.py:155
+#: pdf_bot/commands/image.py:156
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr ""
 
-#: pdf_bot/commands/image.py:199
+#: pdf_bot/commands/image.py:200
 msgid "{file_name} has been removed for beautifying or converting"
 msgstr "ለማስዋብ ወይም ለመለወጥ {file_name}"
 
-#: pdf_bot/commands/image.py:236
+#: pdf_bot/commands/image.py:237
 msgid "Beautifying and converting your images"
 msgstr ""
 
-#: pdf_bot/commands/image.py:241
+#: pdf_bot/commands/image.py:242
 msgid "Converting your images into PDF"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:82
+#: pdf_bot/commands/merge.py:83
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "ልታዋህዳቸው የምትፈልጋቸውን የፒዲኤፍ ፋይሎች ላክልኝ"
 
-#: pdf_bot/commands/merge.py:83
+#: pdf_bot/commands/merge.py:84
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "ልብ በሉኝ ቅደም ተከተል ውስጥ ፋይሎቹ እንደሚዋሃዱ ልብ ይበሉ"
 
-#: pdf_bot/commands/merge.py:115
+#: pdf_bot/commands/merge.py:116
 msgid "Your file is not a PDF file"
 msgstr "ፋይልዎ የፒዲኤፍ ፋይል አይደለም"
 
-#: pdf_bot/commands/merge.py:143
+#: pdf_bot/commands/merge.py:144
 msgid "PDF files"
 msgstr "ፒዲኤፍ ፋይሎች"
 
-#: pdf_bot/commands/merge.py:150
+#: pdf_bot/commands/merge.py:151
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "የፒዲኤፍ ፋይሎችን ማዋሃድ ወይም መቀጠል የሚፈልጓቸውን ሁሉንም የፒዲኤፍ ፋይሎች ከላኩልኝ {done}"
 
-#: pdf_bot/commands/merge.py:193
+#: pdf_bot/commands/merge.py:194
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} በማዋሃድ ተወግዷል"
 
-#: pdf_bot/commands/merge.py:215
+#: pdf_bot/commands/merge.py:216
 msgid "You haven't sent me any PDF files"
 msgstr "ምንም የፒዲኤፍ ፋይሎች አልላኩልኝም"
 
-#: pdf_bot/commands/merge.py:219
+#: pdf_bot/commands/merge.py:220
 msgid "You've only sent me one PDF file"
 msgstr "አንድ የፒዲኤፍ ፋይል ብቻ ልከውልኛል"
 
-#: pdf_bot/commands/merge.py:233
+#: pdf_bot/commands/merge.py:234
 msgid "Merging your PDF files"
 msgstr "የፒዲኤፍ ፋይሎችዎን ማዋሃድ"
 
-#: pdf_bot/commands/merge.py:253
+#: pdf_bot/commands/merge.py:254
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "ይህ ፋይል ልክ ያልሆነ ስለሆነ የፒዲኤፍ ፋይሎችዎን ማዋሃድ አልቻልኩም - {file_name}"
 
-#: pdf_bot/commands/text.py:59
+#: pdf_bot/commands/text.py:60
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "በፒዲኤፍ ፋይልዎ ውስጥ ለመጻፍ የሚፈልጉትን ጽሑፍ ይላኩልኝ"
 
-#: pdf_bot/commands/text.py:82
+#: pdf_bot/commands/text.py:83
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "ለፒዲኤፍ ፋይሉ ለመጠቀም የሚፈልጉትን ቅርጸ -ቁምፊ ይላኩልኝ ወይም ነባሪውን ቅርጸ -ቁምፊ ለመጠቀም {skip}"
 
-#: pdf_bot/commands/text.py:86
+#: pdf_bot/commands/text.py:87
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "የሚደገፉ ቅርጸ -ቁምፊዎች ዝርዝር እዚህ ይመልከቱ {fonts}"
 
-#: pdf_bot/commands/text.py:119
+#: pdf_bot/commands/text.py:120
 msgid "Unknown font, please try again"
 msgstr "ያልታወቀ ቅርጸ -ቁምፊ ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/commands/text.py:151
+#: pdf_bot/commands/text.py:152
 msgid "Creating your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን በመፍጠር ላይ"
 
-#: pdf_bot/commands/watermark.py:43
+#: pdf_bot/commands/watermark.py:44
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "የውሃ ምልክት ማድረጊያ ማከል የሚፈልጉትን የፒዲኤፍ ፋይል ላኩልኝ"
 
-#: pdf_bot/commands/watermark.py:76
+#: pdf_bot/commands/watermark.py:77
 msgid "Send me the watermark PDF file"
 msgstr "የውሃ ምልክት ማድረጊያ ፒዲኤፍ ፋይል ላክልኝ"
 
-#: pdf_bot/commands/watermark.py:101
+#: pdf_bot/commands/watermark.py:102
 msgid "Adding the watermark onto your PDF file"
 msgstr "በፒዲኤፍ ፋይልዎ ላይ የውሃ ምልክቱን ማከል"
 
-#: pdf_bot/commands/watermark.py:114
+#: pdf_bot/commands/watermark.py:115
 msgid "watermark"
 msgstr "የውሃ ምልክት"
 
-#: pdf_bot/files/compress.py:20
+#: pdf_bot/files/compress.py:21
 msgid "Compressing your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን በመጭመቅ"
 
-#: pdf_bot/files/compress.py:47
+#: pdf_bot/files/compress.py:48
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "የፋይል መጠን በ {percent}ቀንሷል ፣ ከ {old_size} ወደ {new_size}"
 
-#: pdf_bot/files/compress.py:58 pdf_bot/files/crop.py:141
+#: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
 #: pdf_bot/files/image.py:208
 msgid "Something went wrong, please try again"
 msgstr "የሆነ ችግር ተፈጥሯል ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/files/crop.py:31
+#: pdf_bot/files/crop.py:32
 msgid "Select the crop type that you'll like to perform"
 msgstr "ማከናወን የሚወዱትን የሰብል ዓይነት ይምረጡ"
 
-#: pdf_bot/files/crop.py:47
+#: pdf_bot/files/crop.py:48
 msgid "Send me a number between {min_percent} and {max_percent}"
 msgstr "{min_percent} እና {max_percent}መካከል ቁጥር ላክልኝ"
 
-#: pdf_bot/files/crop.py:50
+#: pdf_bot/files/crop.py:51
 msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "በፒዲኤፍ ፋይልዎ እና በገጹ ውስጥ ባለው ይዘት መካከል ለማቆየት ይህ የሕዳግ ቦታ መቶኛ ነው"
 
-#: pdf_bot/files/crop.py:62
+#: pdf_bot/files/crop.py:63
 msgid "Send me a number that you'll like to adjust the margin size"
 msgstr "የኅዳግ መጠኑን ለማስተካከል የሚወዱትን ቁጥር ላክልኝ"
 
-#: pdf_bot/files/crop.py:63
+#: pdf_bot/files/crop.py:64
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "አዎንታዊ ቁጥሮች የሕዳግ መጠንን ይቀንሳሉ እና አሉታዊ ቁጥሮች ይጨምራሉ"
 
-#: pdf_bot/files/crop.py:85
+#: pdf_bot/files/crop.py:86
 msgid "The number must be between {min_percent} and {max_percent}, please try again"
 msgstr "{min_percent} እና {max_percent}መካከል መሆን አለበት ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/files/crop.py:108
+#: pdf_bot/files/crop.py:109
 msgid "The number is invalid, please try again"
 msgstr "ቁጥሩ ልክ ያልሆነ ነው ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/files/crop.py:119
+#: pdf_bot/files/crop.py:120
 msgid "Cropping your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን በመከርከም ላይ"
 
-#: pdf_bot/files/crypto.py:17
+#: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን ዲክሪፕት ለማድረግ የይለፍ ቃሉን ይላኩልኝ"
 
-#: pdf_bot/files/crypto.py:32
+#: pdf_bot/files/crypto.py:33
 msgid "Decrypting your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን ዲክሪፕት ማድረግ"
 
-#: pdf_bot/files/crypto.py:47
+#: pdf_bot/files/crypto.py:48
 msgid "Your PDF file is invalid and I couldn't open and process it"
 msgstr "የፒዲኤፍ ፋይልዎ ልክ አይደለም እና መክፈት እና ማስኬድ አልቻልኩም"
 
-#: pdf_bot/files/crypto.py:52
+#: pdf_bot/files/crypto.py:53
 msgid "Your PDF file is not encrypted"
 msgstr "የእርስዎ ፒዲኤፍ ፋይል አልተመሰጠረም"
 
-#: pdf_bot/files/crypto.py:57
+#: pdf_bot/files/crypto.py:58
 msgid "The decryption password is incorrect, please try again"
 msgstr "ዲክሪፕት የይለፍ ቃል ትክክል አይደለም ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/files/crypto.py:69
+#: pdf_bot/files/crypto.py:76
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "የፒዲኤፍ ፋይልዎ ዲክሪፕት ማድረግ ባልችል ዘዴ ተመስጥሯል"
 
-#: pdf_bot/files/crypto.py:85
+#: pdf_bot/files/crypto.py:92
 msgid "Send me the password to encrypt your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን ለማመስጠር የይለፍ ቃሉን ይላኩልኝ"
 
-#: pdf_bot/files/crypto.py:99
+#: pdf_bot/files/crypto.py:106
 msgid "Encrypting your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን ማመስጠር"
 
@@ -583,163 +579,163 @@ msgstr ""
 msgid "I couldn't find any images in your PDF file"
 msgstr ""
 
-#: pdf_bot/files/image.py:249
+#: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr ""
 
-#: pdf_bot/files/ocr.py:20
+#: pdf_bot/files/ocr.py:21
 msgid "Adding an OCR text layer to your PDF file"
 msgstr "በፒ.ዲ.ኤፍ. ፋይልዎ ላይ የ OCR ጽሑፍ ንብርብርን በማከል ላይ"
 
-#: pdf_bot/files/ocr.py:38
+#: pdf_bot/files/ocr.py:39
 msgid "Your PDF file already has a text layer"
 msgstr "የእርስዎ ፒዲኤፍ ፋይል ቀደም ሲል የጽሑፍ ንብርብር አለው"
 
-#: pdf_bot/files/rename.py:19
+#: pdf_bot/files/rename.py:20
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "የፒ.ዲ.ኤፍ. ፋይልዎን እንደገና ለመሰየም የሚፈልጉትን የፋይል ስም ይላኩልኝ"
 
-#: pdf_bot/files/rename.py:39
+#: pdf_bot/files/rename.py:40
 msgid "File names can't contain any of the following characters:"
 msgstr "የፋይል ስሞች ከሚከተሉት ቁምፊዎች ውስጥ ማናቸውንም መያዝ አይችሉም ፦"
 
-#: pdf_bot/files/rename.py:41
+#: pdf_bot/files/rename.py:42
 msgid "Please try again"
 msgstr "እባክዎ ዳግም ይሞክሩ"
 
-#: pdf_bot/files/rename.py:49
+#: pdf_bot/files/rename.py:50
 msgid "Renaming your PDF file into {file_name}"
 msgstr "የፒዲኤፍ ፋይልዎን ወደ {file_name}"
 
-#: pdf_bot/files/rotate.py:24
+#: pdf_bot/files/rotate.py:25
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "ፒዲኤፍ ፋይልዎን አቅጣጫ ለማሽከርከር የሚፈልጉትን ዲግሪዎች ይምረጡ"
 
-#: pdf_bot/files/rotate.py:50
+#: pdf_bot/files/rotate.py:51
 msgid "Rotating your PDF file clockwise by {degree} degrees"
 msgstr "የፒዲኤፍ ፋይልዎን በሰዓት አቅጣጫ በ {degree} ዲግሪ ማሽከርከር"
 
-#: pdf_bot/files/scale.py:24
+#: pdf_bot/files/scale.py:25
 msgid "Select the scale type that you'll like to perform"
 msgstr "ማከናወን የሚወዱትን የመጠን ዓይነት ይምረጡ"
 
-#: pdf_bot/files/scale.py:39
+#: pdf_bot/files/scale.py:40
 msgid "Send me the width and height"
 msgstr "ስፋቱን እና ቁመቱን ላክልኝ"
 
-#: pdf_bot/files/scale.py:41
+#: pdf_bot/files/scale.py:42
 msgid "This will set the width to 150 and height to 200"
 msgstr "ይህ ስፋቱን 150 እና ቁመቱን 200 ያደርገዋል"
 
-#: pdf_bot/files/scale.py:51
+#: pdf_bot/files/scale.py:52
 msgid "Send me the scaling factors for the horizontal and vertical axes"
 msgstr "ለአግድም እና ቀጥ ያሉ መጥረቢያዎች የመጠን መለኪያዎች ላክልኝ"
 
-#: pdf_bot/files/scale.py:55
+#: pdf_bot/files/scale.py:56
 msgid "This will double the horizontal axis and halve the vertical axis"
 msgstr "ይህ አግድም ዘንግን በእጥፍ ይጨምራል እና ቀጥ ያለ ዘንግን በግማሽ ይቀንሳል"
 
-#: pdf_bot/files/scale.py:78
+#: pdf_bot/files/scale.py:79
 msgid "The scaling factors {values} are invalid, please try again"
 msgstr "የመጠን መለኪያዎች {values} ልክ ያልሆኑ ናቸው ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/files/scale.py:100
+#: pdf_bot/files/scale.py:101
 msgid "The dimensions {values} are invalid, please try again"
 msgstr "መጠኖቹ {values} ልክ ያልሆኑ ናቸው ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/files/scale.py:114
+#: pdf_bot/files/scale.py:115
 msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
 msgstr "የፒዲኤፍ ፋይልዎን በአግድም በ {horizontal} እና በአቀባዊ በ {vertical}"
 
-#: pdf_bot/files/scale.py:127
+#: pdf_bot/files/scale.py:128
 msgid "Scaling your PDF file with width of {width} and height of {height}"
 msgstr "{width} ፒዲኤፍ ፋይልዎን በ 0 ስፋት እና በ {height}"
 
-#: pdf_bot/files/split.py:53
+#: pdf_bot/files/split.py:54
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "ለማቆየት የሚፈልጓቸውን የገጾች ብዛት ላክልኝ"
 
-#: pdf_bot/files/split.py:54
+#: pdf_bot/files/split.py:55
 msgid "General usage"
 msgstr "አጠቃላይ አጠቃቀም"
 
-#: pdf_bot/files/split.py:55
+#: pdf_bot/files/split.py:56
 msgid "{range}      all pages"
 msgstr "{range}      ሁሉም ገጾች"
 
-#: pdf_bot/files/split.py:56
+#: pdf_bot/files/split.py:57
 msgid "{range}      page 8 only"
 msgstr "{range}      ገጽ 8 ብቻ"
 
-#: pdf_bot/files/split.py:57
+#: pdf_bot/files/split.py:58
 msgid "{range}    first three pages"
 msgstr "{range}    የመጀመሪያዎቹ ሦስት ገጾች"
 
-#: pdf_bot/files/split.py:58
+#: pdf_bot/files/split.py:59
 msgid "{range}     from page 8 onward"
 msgstr "{range}     ከገጽ 8 ጀምሮ"
 
-#: pdf_bot/files/split.py:59
+#: pdf_bot/files/split.py:60
 msgid "{range}     last page only"
 msgstr "{range}     የመጨረሻው ገጽ ብቻ"
 
-#: pdf_bot/files/split.py:60
+#: pdf_bot/files/split.py:61
 msgid "{range}    all pages except the last page"
 msgstr "{range}    ሁሉም ገጾች ከመጨረሻው ገጽ በስተቀር"
 
-#: pdf_bot/files/split.py:63
+#: pdf_bot/files/split.py:64
 msgid "{range}     second last page only"
 msgstr "{range}     ሰከንድ የመጨረሻ ገጽ ብቻ"
 
-#: pdf_bot/files/split.py:64
+#: pdf_bot/files/split.py:65
 msgid "{range}    last two pages"
 msgstr "{range}    የመጨረሻዎቹ ሁለት ገጾች"
 
-#: pdf_bot/files/split.py:65
+#: pdf_bot/files/split.py:66
 msgid "{range}  third and second last pages"
 msgstr "{range}  ሦስተኛ እና ሁለተኛ የመጨረሻ ገጾች"
 
-#: pdf_bot/files/split.py:66
+#: pdf_bot/files/split.py:67
 msgid "Advanced usage"
 msgstr "የላቀ አጠቃቀም"
 
-#: pdf_bot/files/split.py:67
+#: pdf_bot/files/split.py:68
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    ገጾች {pages} እና እስከ መጨረሻው"
 
-#: pdf_bot/files/split.py:70
+#: pdf_bot/files/split.py:71
 msgid "{range} pages {pages}"
 msgstr "{range} ገጾች {pages}"
 
-#: pdf_bot/files/split.py:71
+#: pdf_bot/files/split.py:72
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   ሁሉም ገጾች በተገላቢጦሽ ቅደም ተከተል"
 
-#: pdf_bot/files/split.py:72
+#: pdf_bot/files/split.py:73
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} ገጾች {pages} ከ {page}"
 
-#: pdf_bot/files/split.py:75
+#: pdf_bot/files/split.py:76
 msgid "{range}  pages {pages}"
 msgstr "{range}  ገጾች {pages}"
 
-#: pdf_bot/files/split.py:99
+#: pdf_bot/files/split.py:100
 msgid "The range is invalid, please try again"
 msgstr "ክልሉ ልክ ያልሆነ ነው ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/files/split.py:105
+#: pdf_bot/files/split.py:106
 msgid "Splitting your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን በመከፋፈል ላይ"
 
-#: pdf_bot/files/text.py:22
+#: pdf_bot/files/text.py:23
 msgid "Select how you'll like me to send the text to you"
 msgstr "ጽሑፉን ወደ አንተ እንድልክ እንዴት እንደምትወድ ምረጥ"
 
-#: pdf_bot/files/text.py:35
+#: pdf_bot/files/text.py:36
 msgid "Extracting text from your PDF file"
 msgstr "ጽሑፍን ከፒዲኤፍ ፋይልዎ ማውጣት"
 
-#: pdf_bot/files/text.py:88
+#: pdf_bot/files/text.py:89
 msgid "I couldn't find any text in your PDF file"
 msgstr "በፒዲኤፍ ፋይልዎ ውስጥ ምንም ጽሑፍ ማግኘት አልቻልኩም"
 
@@ -1446,5 +1442,11 @@ msgstr "በፒዲኤፍ ፋይልዎ ውስጥ ምንም ጽሑፍ ማግኘት 
 #~ msgstr ""
 
 #~ msgid "See above for all your photos"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your {file_type} PDF file is encrypted"
+#~ " and you'll have to decrypt it "
+#~ "first"
 #~ msgstr ""
 
