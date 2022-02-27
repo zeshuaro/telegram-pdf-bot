@@ -15,6 +15,7 @@ jobs:
           token: ${{ secrets.PAT }}
 
       - name: Setup Python 🐍
+        id: setup-python
         uses: actions/setup-python@v2
         with:
           python-version: "3.9.7"
@@ -22,17 +23,16 @@ jobs:
       - name: Install Poetry 📦
         uses: snok/install-poetry@v1.3.1
         with:
-          version: 1.1.12
           virtualenvs-create: true
           virtualenvs-in-project: true
 
-      - name: Cache Poetry 💾
+      - name: Cache virtual environment 💾
         uses: actions/cache@v2
         with:
           path: .venv
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-poetry-
+            ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-
 
       - name: Install dependencies ⚙️
         run: poetry install --no-interaction --no-root
