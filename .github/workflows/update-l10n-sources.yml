@@ -16,7 +16,7 @@ jobs:
 
       - name: Setup Python 🐍
         id: setup-python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: "3.9.7"
 
