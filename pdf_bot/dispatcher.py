@@ -209,6 +209,8 @@ def send_msg(update: Update, context: CallbackContext):
 
 
 def error_callback(update: Update, context: CallbackContext):
-    if context.error is not Unauthorized:
+    try:
+        raise context.error
+    except Exception:  # pylint: disable=broad-except
         log = Logger()
-        log.error(f'Update "{update}" caused error', exc_info=context.error)
+        log.exception(f'Update "{update}" caused error')
