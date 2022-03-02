@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Test image 🧪
         run: docker build .
@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Python 🐍
         id: setup-python
@@ -66,7 +66,7 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Authenticate to Google Cloud 🔐
         uses: google-github-actions/auth@v0.6.0
