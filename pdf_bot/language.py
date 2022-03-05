@@ -1,5 +1,6 @@
 import gettext
 
+from google.cloud import datastore
 from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.chataction import ChatAction
 from telegram.ext import CallbackContext
@@ -58,6 +59,8 @@ def store_lang(update, context, query):
     with client.transaction():
         user_key = client.key(USER, query.from_user.id)
         user = client.get(key=user_key)
+        if user is None:
+            user = datastore.Entity(user_key)
         user[LANGUAGE] = lang_code
         client.put(user)
 
