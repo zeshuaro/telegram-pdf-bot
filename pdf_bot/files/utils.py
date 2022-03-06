@@ -1,7 +1,7 @@
 import shlex
 from subprocess import PIPE, Popen
 
-from logbook import Logger
+from loguru import logger
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import ConversationHandler
 
@@ -47,8 +47,7 @@ def run_cmd(cmd: str) -> bool:
 
     if proc.returncode != 0:
         is_success = False
-        log = Logger()
-        log.error(
+        logger.error(
             f"Command:\n{cmd}\n\n"
             f'Stdout:\n{out.decode("utf-8")}\n\n'
             f'Stderr:\n{err.decode("utf-8")}'

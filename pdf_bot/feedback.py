@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 from langdetect import detect
-from logbook import Logger
+from loguru import logger
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 from telegram import ChatAction, Update
@@ -76,9 +76,8 @@ def receive_feedback(update: Update, context: CallbackContext) -> int:
                 f"({message.chat.id}):\n\n{feedback_msg}"
             )
             slack_client.chat_postMessage(channel="#pdf-bot-feedback", text=text)
-        except SlackApiError as e:
-            log = Logger()
-            log.error(f"Failed to send Slack message: {e.response['error']}")
+        except SlackApiError:
+            logger.exception("Failed to send feedback to Slack")
 
         message.reply_text(
             _("Thank you for your feedback, I've already forwarded it to my developer")
