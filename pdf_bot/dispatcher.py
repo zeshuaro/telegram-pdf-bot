@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from logbook import Logger
+from loguru import logger
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -211,6 +211,7 @@ def send_msg(update: Update, context: CallbackContext):
 def error_callback(update: Update, context: CallbackContext):
     try:
         raise context.error
+    except Unauthorized:
+        pass
     except Exception:  # pylint: disable=broad-except
-        log = Logger()
-        log.exception(f'Update "{update}" caused error')
+        logger.exception(f'Update "{update}" caused error')

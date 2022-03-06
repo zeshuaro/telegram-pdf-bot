@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from logbook import Logger
+from loguru import logger
 from telegram.ext import Updater
 from telegram.ext import messagequeue as mq
 from telegram.utils.request import Request
@@ -35,8 +35,7 @@ def main():
     dp.setup_dispatcher(dispatcher)
 
     updater.start_polling()
-    log = Logger()
-    log.notice("Bot started polling")
+    logger.info("Bot started polling")
 
     # Run the bot until the you presses Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since

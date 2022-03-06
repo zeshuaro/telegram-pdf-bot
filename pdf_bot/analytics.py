@@ -4,7 +4,7 @@ from uuid import UUID
 
 import requests
 from dotenv import load_dotenv
-from logbook import Logger
+from loguru import logger
 from requests.exceptions import HTTPError
 from telegram import Update
 from telegram.ext import CallbackContext
@@ -45,7 +45,6 @@ class EventAction(Enum):
 def send_event(
     update: Update, context: CallbackContext, category: TaskType, action: EventAction
 ) -> None:
-    logger = Logger()
     if TRACKING_ID is not None:
         lang = get_lang(update, context)
         payload = {

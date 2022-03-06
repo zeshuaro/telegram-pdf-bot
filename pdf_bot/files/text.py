@@ -7,7 +7,7 @@ from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_MESSAGE_LENGTH
 from telegram.ext import ConversationHandler
 
-from pdf_bot.analytics import TaskType
+from pdf_bot.analytics import EventAction, TaskType, send_event
 from pdf_bot.consts import BACK, PDF_INFO, TEXT_FILE, TEXT_MESSAGE, WAIT_TEXT_TYPE
 from pdf_bot.language import set_lang
 from pdf_bot.utils import check_user_data, send_result_file
@@ -85,5 +85,6 @@ def send_pdf_text(update, context, pdf_texts, is_file, out_fn):
                 f"<b>{_('See above for all the text in your PDF file')}</b>",
                 parse_mode=ParseMode.HTML,
             )
+            send_event(update, context, TaskType.get_pdf_text, EventAction.complete)
     else:
         message.reply_text(_("I couldn't find any text in your PDF file"))
