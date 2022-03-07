@@ -38,7 +38,6 @@ from pdf_bot.payment import (
     send_support_options,
     successful_payment,
 )
-from pdf_bot.stats import get_stats
 from pdf_bot.store import create_user
 from pdf_bot.url import url_to_pdf
 
@@ -86,9 +85,6 @@ def setup_dispatcher(dispatcher: Dispatcher):
 
     # Dev commands handlers
     dispatcher.add_handler(CommandHandler("send", send_msg, Filters.user(DEV_TELE_ID)))
-    dispatcher.add_handler(
-        CommandHandler("stats", get_stats, Filters.user(DEV_TELE_ID))
-    )
 
     # Log all errors
     dispatcher.add_error_handler(error_callback)
