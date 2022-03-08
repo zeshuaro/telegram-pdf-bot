@@ -49,7 +49,10 @@ def get_lang(update: Update, context: CallbackContext, query: CallbackQuery = No
             if lang == "en":
                 lang = "en_GB"
 
-        context.user_data[LANGUAGE] = lang
+        if context.user_data is None:
+            context.user_data = {LANGUAGE: lang}
+        else:
+            context.user_data[LANGUAGE] = lang
 
     return lang
 
