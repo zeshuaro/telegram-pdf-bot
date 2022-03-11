@@ -7,6 +7,7 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Crowdin](https://badges.crowdin.net/telegram-pdf-bot/localized.svg)](https://crowdin.com/project/telegram-pdf-bot)
 [![Telegram Channel](https://img.shields.io/badge/Telegram-Channel-blue.svg)](https://t.me/pdf2botdev)
+[![Mentioned in Awesome Telegram](https://awesome.re/mentioned-badge.svg)](https://github.com/ebertti/awesome-telegram)
 
 A Telegram bot that can:
 
@@ -41,21 +42,12 @@ macOS
 brew install libxml2 libxslt poppler cairo pango gdk-pixbuf libffi
 ```
 
-### Setup Virtual Environment
+### Install dependencies
 
-Create a virtual environment with the following command:
-
-```sh
-virtualenv venv
-source venv/bin/activate
-```
-
-### Bot Requirements
-
-Run the following command to install the required packages:
+This project uses [Poetry](https://python-poetry.org/) as the dependency manager, run the following command to install the dependencies:
 
 ```sh
-pip install -r requirements.txt
+poetry install --no-root
 ```
 
 ### Compile the translation files
