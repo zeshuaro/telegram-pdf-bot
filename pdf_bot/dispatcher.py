@@ -42,7 +42,7 @@ from pdf_bot.store import create_user
 from pdf_bot.url import url_to_pdf
 
 load_dotenv()
-DEV_TELE_ID = int(os.environ.get("DEV_TELE_ID"))
+ADMIN_TELEGRAM_ID = os.environ.get("ADMIN_TELEGRAM_ID")
 CALLBACK_DATA = "callback_data"
 
 
@@ -83,8 +83,11 @@ def setup_dispatcher(dispatcher: Dispatcher):
     # Feedback handler
     dispatcher.add_handler(feedback_cov_handler())
 
-    # Dev commands handlers
-    dispatcher.add_handler(CommandHandler("send", send_msg, Filters.user(DEV_TELE_ID)))
+    # Admin commands handlers
+    if ADMIN_TELEGRAM_ID is not None:
+        dispatcher.add_handler(
+            CommandHandler("send", send_msg, Filters.user(int(ADMIN_TELEGRAM_ID)))
+        )
 
     # Log all errors
     dispatcher.add_error_handler(error_callback)

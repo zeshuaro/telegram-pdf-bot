@@ -11,7 +11,7 @@ import pdf_bot.logging as pdf_bot_logging
 from pdf_bot.mq_bot import MQBot
 
 load_dotenv()
-TELE_TOKEN = os.environ.get("TELE_TOKEN")
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 
 TIMEOUT = 20
 
@@ -22,7 +22,7 @@ def main():
 
     q = mq.MessageQueue(all_burst_limit=3, all_time_limit_ms=3000)
     request = Request(con_pool_size=8)
-    pdf_bot = MQBot(TELE_TOKEN, request=request, mqueue=q)
+    pdf_bot = MQBot(TELEGRAM_TOKEN, request=request, mqueue=q)
 
     # Create the EventHandler and pass it your bot's token.
     updater = Updater(

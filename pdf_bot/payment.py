@@ -24,7 +24,7 @@ from pdf_bot.consts import (
 from pdf_bot.language import set_lang
 
 load_dotenv()
-STRIPE_TOKEN = os.environ.get("STRIPE_TOKEN", os.environ.get("STRIPE_TOKEN_BETA"))
+STRIPE_TOKEN = os.environ.get("STRIPE_TOKEN")
 
 
 def send_support_options(
