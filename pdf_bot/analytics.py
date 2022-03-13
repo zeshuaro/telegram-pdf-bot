@@ -12,7 +12,7 @@ from telegram.ext import CallbackContext
 from pdf_bot.language import get_lang
 
 load_dotenv()
-TRACKING_ID = os.environ.get("GA_TRACKING_ID")
+GA_TRACKING_ID = os.environ.get("GA_TRACKING_ID")
 
 
 class TaskType(Enum):
@@ -45,11 +45,11 @@ class EventAction(Enum):
 def send_event(
     update: Update, context: CallbackContext, category: TaskType, action: EventAction
 ) -> None:
-    if TRACKING_ID is not None:
+    if GA_TRACKING_ID is not None:
         lang = get_lang(update, context)
         payload = {
             "v": 1,
-            "tid": TRACKING_ID,
+            "tid": GA_TRACKING_ID,
             "ua": "Apache/2.4.34 (Ubuntu) OpenSSL/1.1.1 (internal dummy connection)",
             "ds": "telegram",
             "cid": UUID(int=update.effective_message.from_user.id),

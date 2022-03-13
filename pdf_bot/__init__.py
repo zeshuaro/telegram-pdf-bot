@@ -13,7 +13,7 @@ import pdf_bot.logging as log
 from pdf_bot.mq_bot import MQBot
 
 load_dotenv()
-TELE_TOKEN = os.environ.get("TELE_TOKEN")
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 
 
 def create_app():
@@ -30,7 +30,7 @@ def create_app():
 
     q = mq.MessageQueue(all_burst_limit=3, all_time_limit_ms=3000)
     req = Request(con_pool_size=8, connect_timeout=10, read_timeout=10)
-    bot = MQBot(TELE_TOKEN, request=req, mqueue=q)
+    bot = MQBot(TELEGRAM_TOKEN, request=req, mqueue=q)
 
     dispatcher = Dispatcher(bot=bot, update_queue=None, workers=0)
     dp.setup_dispatcher(dispatcher)
