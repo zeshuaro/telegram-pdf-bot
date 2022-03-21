@@ -12,7 +12,8 @@ from telegram.ext import CallbackContext
 from pdf_bot.language import get_lang
 
 load_dotenv()
-GA_TRACKING_ID = os.environ.get("GA_TRACKING_ID")
+GA_API_SECRET = os.environ.get("GA_API_SECRET")
+GA_MEASUREMENT_ID = os.environ.get("GA_MEASUREMENT_ID")
 
 
 class TaskType(Enum):
@@ -43,25 +44,26 @@ class EventAction(Enum):
 
 
 def send_event(
-    update: Update, context: CallbackContext, category: TaskType, action: EventAction
+    update: Update, context: CallbackContext, event: TaskType, action: EventAction
 ) -> None:
-    if GA_TRACKING_ID is not None:
+    if GA_API_SECRET is not None and GA_MEASUREMENT_ID is not None:
         lang = get_lang(update, context)
-        payload = {
-            "v": 1,
-            "tid": GA_TRACKING_ID,
-            "ua": "Apache/2.4.34 (Ubuntu) OpenSSL/1.1.1 (internal dummy connection)",
-            "ds": "telegram",
-            "cid": UUID(int=update.effective_message.from_user.id),
-            "ul": lang,
-            "t": "event",
-            "ec": category.value,
-            "ea": action.value,
+        params = {"api_secret": GA_API_SECRET, "measurement_id": GA_MEASUREMENT_ID}
+        json = {
+            "client_id": str(UUID(int=update.effective_message.from_user.id)),
+            "user_properties": {"language": {"value": lang}},
+            "events": [
+                {
+                    "name": event.value,
+                    "params": {"action": action.value},
+                }
+            ],
         }
-        data = "&".join(f"{key}={value}" for key, value in payload.items())
 
         try:
-            r = requests.post("https://www.google-analytics.com/collect", data=data)
+            r = requests.post(
+                "https://www.google-analytics.com/mp/collect", params=params, json=json
+            )
             r.raise_for_status()
         except HTTPError:
             logger.exception("Failed to send analytics")
