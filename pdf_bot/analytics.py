@@ -48,9 +48,11 @@ def send_event(
 ) -> None:
     if GA_API_SECRET is not None and GA_MEASUREMENT_ID is not None:
         lang = get_lang(update, context)
+        user_id = update.effective_message.from_user.id
         params = {"api_secret": GA_API_SECRET, "measurement_id": GA_MEASUREMENT_ID}
         json = {
-            "client_id": str(UUID(int=update.effective_message.from_user.id)),
+            "client_id": str(UUID(int=user_id)),
+            "user_id": str(user_id),
             "user_properties": {"language": {"value": lang}},
             "events": [
                 {
@@ -62,7 +64,9 @@ def send_event(
 
         try:
             r = requests.post(
-                "https://www.google-analytics.com/mp/collect", params=params, json=json
+                "https://www.google-analytics.com/mp/collect",
+                params=params,
+                json=json,
             )
             r.raise_for_status()
         except HTTPError:
