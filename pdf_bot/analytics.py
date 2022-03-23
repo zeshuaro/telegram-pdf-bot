@@ -53,7 +53,7 @@ def send_event(
         json = {
             "client_id": str(UUID(int=user_id)),
             "user_id": str(user_id),
-            "user_properties": {"language": {"value": lang}},
+            "user_properties": {"bot_language": {"value": lang}},
             "events": [
                 {
                     "name": event.value,
