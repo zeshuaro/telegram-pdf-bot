@@ -52,6 +52,7 @@ def send_event(
         params = {"api_secret": GA_API_SECRET, "measurement_id": GA_MEASUREMENT_ID}
         json = {
             "client_id": str(UUID(int=user_id)),
+            "user_id": str(user_id),
             "user_properties": {"bot_language": {"value": lang}},
             "events": [
                 {
