@@ -749,7 +749,7 @@ mupdf = ["PyMuPDF (>=1.18.0)"]
 
 [[package]]
 name = "pdfminer.six"
-version = "20211012"
+version = "20220319"
 description = "PDF parser and analyzer"
 category = "main"
 optional = false
@@ -760,8 +760,9 @@ chardet = {version = "*", markers = "python_version > \"3.0\""}
 cryptography = "*"
 
 [package.extras]
-dev = ["nose", "tox", "mypy (==0.910)"]
+dev = ["black", "mypy (==0.931)", "nox", "pytest"]
 docs = ["sphinx", "sphinx-argparse"]
+image = ["pillow"]
 
 [[package]]
 name = "pikepdf"
@@ -1290,7 +1291,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "da0b658af566c37216f6a46a812d17fcf7501833b444ae16af7e3de39593e357"
+content-hash = "e0170a7d5e34fdf335097f835f77e395ea292b93fd16ef70b04097c416a097dc"
 
 [metadata.files]
 apscheduler = [
@@ -1880,8 +1881,8 @@ pdfcropmargins = [
     {file = "pdfCropMargins-1.0.5.tar.gz", hash = "sha256:76fd16b3955e11b2a9fc3ad839342d6528f10324908a4a8f04f94ecda68205b3"},
 ]
 "pdfminer.six" = [
-    {file = "pdfminer.six-20211012-py3-none-any.whl", hash = "sha256:d3efb75c0249b51c1bf795e3a8bddf1726b276c77bf75fb136adea471ee2825b"},
-    {file = "pdfminer.six-20211012.tar.gz", hash = "sha256:0351f17d362ee2d48b158be52bcde6576d96460efd038a3e89a043fba6d634d7"},
+    {file = "pdfminer.six-20220319-py3-none-any.whl", hash = "sha256:af0630f98a292bad4170f54e80f82ca81b916dd0b2c996437ec45c02f11d8762"},
+    {file = "pdfminer.six-20220319.tar.gz", hash = "sha256:eff2ce0abeaa4df94dc3461f70eab104487c7b4a2b3c7e9fd0aeec6c5f44d6a6"},
 ]
 pikepdf = [
     {file = "pikepdf-5.0.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:a59414a3c13c31dc9e5fe9d27c8081281d20f6eb3e056a0bc56a92a2b71f58e3"},
