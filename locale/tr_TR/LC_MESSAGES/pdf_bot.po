@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-03-13 11:32+0000\n"
-"PO-Revision-Date: 2022-03-13 11:32\n"
+"PO-Revision-Date: 2022-04-11 09:06\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -97,7 +97,7 @@ msgstr "Sıkıştır"
 
 #: pdf_bot/consts.py:56
 msgid "Images"
-msgstr "Görüntü"
+msgstr "Görseller"
 
 #: pdf_bot/consts.py:57
 msgid "Remove Last File"
@@ -157,23 +157,23 @@ msgstr "- PDF dosyalarını sıkıştırın, birleştirin, önizleyin, yeniden a
 
 #: pdf_bot/dispatcher.py:119
 msgid "- Create PDF files from text messages"
-msgstr "- Metin mesajlarından PDF dosyaları oluşturma"
+msgstr "- Metin mesajlarından PDF dosyaları oluşturun"
 
 #: pdf_bot/dispatcher.py:120
 msgid "- Extract images and text from PDF files"
-msgstr "- PDF dosyalarından resim ve metin ayıklama"
+msgstr "- PDF dosyalarından resimleri ve metinleri ayıklayın"
 
 #: pdf_bot/dispatcher.py:121
 msgid "- Convert PDF files into images"
-msgstr "- PDF dosyalarını görüntüye dönüştürme"
+msgstr "- PDF dosyalarını resimlere dönüştürün"
 
 #: pdf_bot/dispatcher.py:122
 msgid "- Convert webpages and images into PDF files"
-msgstr "- Web sayfalarını ve görüntüleri PDF dosyalarına dönüştürme"
+msgstr "- Web sayfalarını ve resimleri PDF dosyalarına dönüştürün"
 
 #: pdf_bot/dispatcher.py:123
 msgid "- Beautify handwritten notes images into PDF files"
-msgstr "- El yazısı not görüntülerini PDF dosyalarına güzelleştirme"
+msgstr "- El yazısı not resimlerini PDF dosyası olarak güzelleştirin"
 
 #: pdf_bot/dispatcher.py:124
 msgid "- And more..."
@@ -197,7 +197,7 @@ msgstr "PDF Bot'u Destekle"
 
 #: pdf_bot/dispatcher.py:149
 msgid "You can perform most of the tasks by sending me one of the followings:"
-msgstr "Görevlerin çoğunu bana aşağıdakilerden birini göndererek gerçekleştirebilirsiniz:"
+msgstr "Bana aşağıdakilerden birini göndererek görevlerin çoğunu gerçekleştirebilirsiniz:"
 
 #: pdf_bot/dispatcher.py:152
 msgid "- PDF files"
@@ -225,7 +225,7 @@ msgstr "{command} - PDF dosyalarını birleştirme"
 
 #: pdf_bot/dispatcher.py:161
 msgid "{command} - convert and combine multiple images into PDF files"
-msgstr "{command} - birden fazla görüntüyü PDF dosyalarına dönüştürme ve birleştirme"
+msgstr "{command} - birden fazla resimi PDF dosyalarına dönüştürme ve birleştirme"
 
 #: pdf_bot/dispatcher.py:164
 msgid "{command} - create PDF files from text messages"
@@ -253,7 +253,7 @@ msgstr "Dilinizi seçin"
 
 #: pdf_bot/language.py:73
 msgid "Your language has been set to {language}"
-msgstr "Diliniz {language}olarak ayarlandı"
+msgstr "Diliniz {language} olarak ayarlandı"
 
 #: pdf_bot/payment.py:58
 msgid "Help translate PDF Bot"
@@ -277,7 +277,7 @@ msgstr "Desteğin için teşekkür ederiz!"
 
 #: pdf_bot/url.py:29
 msgid "Timed out processing your web page, your web page is probably too complex to process"
-msgstr "Web sayfanızı işlemek için zamanlanmış, web sayfanız muhtemelen işlenemeyecek kadar karmaşıktır"
+msgstr "Web sayfanızı işleme zaman aşımına uğramış, web sayfanız muhtemelen işlenemeyecek kadar karmaşıktır"
 
 #: pdf_bot/url.py:36
 msgid "You've sent me this web page already and I'm still converting it"
@@ -312,7 +312,7 @@ msgstr "Bunun bir Telegram Bot sınırlaması olduğunu ve Telegram bu sınırı
 
 #: pdf_bot/utils.py:105
 msgid "Something went wrong, please start over again"
-msgstr "Bir şeyler ters gitti, lütfen baştan başla."
+msgstr "Bir şeyler ters gitti, lütfen baştan başla"
 
 #: pdf_bot/utils.py:179
 msgid "Your file is invalid and I couldn't open and process it"
@@ -356,11 +356,11 @@ msgstr "PDF dosyalarınızı karşılaştırma"
 
 #: pdf_bot/commands/compare.py:125
 msgid "There are no text differences between your PDF files"
-msgstr "PDF dosyalarınız arasında metin farkı yoktur"
+msgstr "PDF dosyalarınız arasında metin farkı yok"
 
 #: pdf_bot/commands/image.py:78
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr "Güzelleştirmek veya PDF dosyasına dönüştürmek istediğiniz görüntüleri bana gönderin"
+msgstr "Güzelleştirmek veya PDF dosyasına dönüştürmek istediğiniz resimleri bana gönderin"
 
 #: pdf_bot/commands/image.py:82
 msgid "Note that the images will be beautified and converted in the order that you send me"
@@ -376,7 +376,7 @@ msgstr "Dosyanız bir resim değil"
 
 #: pdf_bot/commands/image.py:149
 msgid "images"
-msgstr "Görüntü"
+msgstr "resimler"
 
 #: pdf_bot/commands/image.py:156
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
@@ -424,7 +424,7 @@ msgstr "Bana hiç PDF dosyası göndermedin"
 
 #: pdf_bot/commands/merge.py:220
 msgid "You've only sent me one PDF file"
-msgstr "Bana sadece bir PDF dosyası gönderdin."
+msgstr "Bana sadece bir PDF dosyası gönderdin"
 
 #: pdf_bot/commands/merge.py:234
 msgid "Merging your PDF files"
@@ -476,7 +476,7 @@ msgstr "PDF dosyanız sıkıştırılıyor"
 
 #: pdf_bot/files/compress.py:48
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
-msgstr "Dosya boyutu {percent}azaltıldı , {old_size} 'den {new_size}"
+msgstr "Dosya boyutu {percent} azaltıldı, {old_size} 'den {new_size}"
 
 #: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
 #: pdf_bot/files/image.py:208
@@ -489,7 +489,7 @@ msgstr "Gerçekleştirmek istediğiniz kırpma türünü seçin"
 
 #: pdf_bot/files/crop.py:48
 msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "{min_percent} ile {max_percent}arasında bir numara gönder."
+msgstr "{min_percent} ile {max_percent} arasında bir numara gönder"
 
 #: pdf_bot/files/crop.py:51
 msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
