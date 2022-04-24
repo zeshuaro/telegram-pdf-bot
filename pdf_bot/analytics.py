@@ -18,6 +18,7 @@ GA_MEASUREMENT_ID = os.environ.get("GA_MEASUREMENT_ID")
 
 class TaskType(Enum):
     beautify_image = "beautify_image"
+    black_and_wite_pdf = "black_and_white_pdf"
     compare_pdf = "compare_pdf"
     compress_pdf = "compress_pdf"
     crop_pdf = "crop_pdf"

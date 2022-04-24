@@ -61,6 +61,7 @@ TEXT_MESSAGE = _("Text Message")
 TEXT_FILE = _("Text File")
 OCR = "OCR"
 COMPRESS = _("Compress")
+BLACK_AND_WHITE = _("Black & White")
 
 # Rotation constants
 ROTATE_90 = "90"
