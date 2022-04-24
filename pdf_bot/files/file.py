@@ -4,6 +4,7 @@ from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHa
 from pdf_bot.consts import (
     BACK,
     BEAUTIFY,
+    BLACK_AND_WHITE,
     BY_PERCENT,
     BY_SIZE,
     CANCEL,
@@ -45,6 +46,7 @@ from pdf_bot.consts import (
     WAIT_TEXT_TYPE,
     WAIT_TO_IMAGE_TYPE,
 )
+from pdf_bot.files.black_white import black_and_white_pdf
 from pdf_bot.files.compress import compress_pdf
 from pdf_bot.files.crop import (
     ask_crop_type,
@@ -171,6 +173,8 @@ def check_doc_task(update, context):
         return add_ocr_to_pdf(update, context)
     if text == COMPRESS:
         return compress_pdf(update, context)
+    if text == BLACK_AND_WHITE:
+        return black_and_white_pdf(update, context)
     if text == _(CANCEL):
         return cancel(update, context)
 

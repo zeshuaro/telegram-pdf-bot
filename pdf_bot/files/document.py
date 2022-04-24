@@ -1,6 +1,7 @@
 from telegram import ReplyKeyboardMarkup
 
 from pdf_bot.consts import (
+    BLACK_AND_WHITE,
     CANCEL,
     COMPRESS,
     CROP,
@@ -37,13 +38,14 @@ def ask_doc_task(update, context):
             _(EXTRACT_TEXT),
             OCR,
             _(COMPRESS),
+            _(BLACK_AND_WHITE),
         ]
     )
-    keywords.append(CANCEL)
     keyboard_size = 3
     keyboard = [
         keywords[i : i + keyboard_size] for i in range(0, len(keywords), keyboard_size)
     ]
+    keyboard.append([_(CANCEL)])
 
     reply_markup = ReplyKeyboardMarkup(
         keyboard, resize_keyboard=True, one_time_keyboard=True
