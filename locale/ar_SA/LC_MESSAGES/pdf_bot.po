@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-04-22 11:13+0000\n"
-"PO-Revision-Date: 2022-04-22 11:14\n"
+"POT-Creation-Date: 2022-04-24 11:27+0000\n"
+"PO-Revision-Date: 2022-04-24 11:27\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: Arabic\n"
@@ -123,23 +123,27 @@ msgstr "ملف نصي"
 msgid "Compress"
 msgstr "ضغط"
 
-#: pdf_bot/consts.py:78
+#: pdf_bot/consts.py:64
+msgid "Black & White"
+msgstr ""
+
+#: pdf_bot/consts.py:79
 msgid "Say Thanks"
 msgstr "قل شكراً"
 
-#: pdf_bot/consts.py:79
+#: pdf_bot/consts.py:80
 msgid "Coffee"
 msgstr "قهوة"
 
-#: pdf_bot/consts.py:80
+#: pdf_bot/consts.py:81
 msgid "Beer"
 msgstr "بيرة"
 
-#: pdf_bot/consts.py:81
+#: pdf_bot/consts.py:82
 msgid "Meal"
 msgstr "طعام"
 
-#: pdf_bot/consts.py:82
+#: pdf_bot/consts.py:83
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -305,7 +309,7 @@ msgid "Your file is too large for me to download and process"
 msgstr "ملفك كبير جدا بالنسبة لي لتحميل ومعالجة"
 
 #: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
-#: pdf_bot/files/file.py:129 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
+#: pdf_bot/files/file.py:131 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "لاحظ أن هذا هو تقييد تيليجرام بوت وليس هناك شيء يمكنني القيام به ما لم تغير تيليجرام هذا الحد"
@@ -470,6 +474,10 @@ msgstr "جاري اضافة العلامة المائية"
 msgid "watermark"
 msgstr "علامة مائية"
 
+#: pdf_bot/files/black_white.py:21
+msgid "Converting your PDF file to black and white"
+msgstr ""
+
 #: pdf_bot/files/compress.py:21
 msgid "Compressing your PDF file"
 msgstr "اضغط ملفك ال بي دي اف"
@@ -547,11 +555,11 @@ msgstr "أرسل كلمة السر ل تشفير الملف"
 msgid "Encrypting your PDF file"
 msgstr "جاري تشفير الملف"
 
-#: pdf_bot/files/document.py:52 pdf_bot/files/image.py:63
+#: pdf_bot/files/document.py:54 pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "حدد نوع المهمة التي تريد تنفيذها"
 
-#: pdf_bot/files/file.py:128
+#: pdf_bot/files/file.py:130
 msgid "Your file is too big for me to download and process"
 msgstr "ملفك كبير جدا بالنسبة لي لتحميل ومعالجة"
 
