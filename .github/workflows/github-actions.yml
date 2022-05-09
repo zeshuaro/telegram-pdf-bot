@@ -52,7 +52,9 @@ jobs:
       - name: Run linting 🧪
         run: |
           source .venv/bin/activate
-          pre-commit run --all-files
+          black --check --diff main.py pdf_bot
+          isort --check --diff main.py pdf_bot
+          pylint main.py pdf_bot
 
   deploy-stg:
     name: Deploy to Staging
