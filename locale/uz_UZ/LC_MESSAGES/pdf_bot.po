@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-04-24 11:27+0000\n"
-"PO-Revision-Date: 2022-04-24 11:27\n"
+"PO-Revision-Date: 2022-05-09 12:07\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: Uzbek\n"
@@ -57,11 +57,11 @@ msgstr "Shifrlash"
 
 #: pdf_bot/consts.py:46
 msgid "Extract Images"
-msgstr ""
+msgstr "Rasmlarni ajratib olish"
 
 #: pdf_bot/consts.py:47
 msgid "To Images"
-msgstr ""
+msgstr "Rasmlarga"
 
 #: pdf_bot/consts.py:48
 msgid "Rotate"
@@ -97,7 +97,7 @@ msgstr "Hajmi kamaytirilgan"
 
 #: pdf_bot/consts.py:56
 msgid "Images"
-msgstr ""
+msgstr "Rasmlar"
 
 #: pdf_bot/consts.py:57
 msgid "Remove Last File"
@@ -125,7 +125,7 @@ msgstr "Hajmini kamaytirish"
 
 #: pdf_bot/consts.py:64
 msgid "Black & White"
-msgstr ""
+msgstr "Qora va Oq"
 
 #: pdf_bot/consts.py:79
 msgid "Say Thanks"
@@ -209,7 +209,7 @@ msgstr "- PDF -fayllar"
 
 #: pdf_bot/dispatcher.py:153
 msgid "- Images"
-msgstr ""
+msgstr "- Rasmlar"
 
 #: pdf_bot/dispatcher.py:154
 msgid "- Webpage links"
@@ -229,7 +229,7 @@ msgstr "{command} - PDF -fayllarni birlashtirish"
 
 #: pdf_bot/dispatcher.py:161
 msgid "{command} - convert and combine multiple images into PDF files"
-msgstr ""
+msgstr "{command} - bir nechta tasvirlarni PDF-fayllarga aylantiring va birlashtiring"
 
 #: pdf_bot/dispatcher.py:164
 msgid "{command} - create PDF files from text messages"
@@ -281,7 +281,7 @@ msgstr "Qo'llab-quvvatlaganingiz uchun rahmat!"
 
 #: pdf_bot/url.py:29
 msgid "Timed out processing your web page, your web page is probably too complex to process"
-msgstr ""
+msgstr "Veb-sahifangizni qayta ishlash vaqti tugadi, veb-sahifangizni qayta ishlash juda murakkab"
 
 #: pdf_bot/url.py:36
 msgid "You've sent me this web page already and I'm still converting it"
@@ -364,11 +364,11 @@ msgstr "PDF -fayllaringiz o'rtasida matn farqlari yo'q"
 
 #: pdf_bot/commands/image.py:78
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr ""
+msgstr "PDFga aylantirmoqchi bo'lgan rasmlarni menga yuboring"
 
 #: pdf_bot/commands/image.py:82
 msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "E'tibor bering, rasmlar siz menga yuborgan tartibda o'zgartiriladi"
 
 #: pdf_bot/commands/image.py:109
 msgid "File name unavailable"
@@ -376,15 +376,15 @@ msgstr "Fayl nomi mavjud emas"
 
 #: pdf_bot/commands/image.py:128
 msgid "Your file is not an image"
-msgstr ""
+msgstr "Siz yuborgan fayl rasm emas"
 
 #: pdf_bot/commands/image.py:149
 msgid "images"
-msgstr ""
+msgstr "rasmlar"
 
 #: pdf_bot/commands/image.py:156
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr ""
+msgstr "Agar menga barcha rasmlarni yuborgan bo'lsangiz yoki tasvirlarni yuborishda davom etsangiz, pastdan vazifani tanlang"
 
 #: pdf_bot/commands/image.py:200
 msgid "{file_name} has been removed for beautifying or converting"
@@ -392,11 +392,11 @@ msgstr "{file_name} obodonlashtirish yoki o'zgartirish uchun olib tashlandi"
 
 #: pdf_bot/commands/image.py:237
 msgid "Beautifying and converting your images"
-msgstr ""
+msgstr "Rasmlaringiz o'zgartirolmoqda"
 
 #: pdf_bot/commands/image.py:242
 msgid "Converting your images into PDF"
-msgstr ""
+msgstr "Rasmlaringizni PDF fayliga aylantirish"
 
 #: pdf_bot/commands/merge.py:83
 msgid "Send me the PDF files that you'll like to merge"
@@ -476,7 +476,7 @@ msgstr "watermark"
 
 #: pdf_bot/files/black_white.py:21
 msgid "Converting your PDF file to black and white"
-msgstr ""
+msgstr "PDF faylingizni qora va oq rangga o'tkazish"
 
 #: pdf_bot/files/compress.py:21
 msgid "Compressing your PDF file"
@@ -565,7 +565,7 @@ msgstr "Faylingiz yuklab olish va qayta ishlashim uchun juda katta"
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
-msgstr ""
+msgstr "Yuklab olishim va qayta ishlashim uchun yuborgan rasmingiz juda katta"
 
 #: pdf_bot/files/image.py:95
 msgid "Extracting a preview for your PDF file"
@@ -577,19 +577,19 @@ msgstr "Natijada fayl formatini tanlang"
 
 #: pdf_bot/files/image.py:155
 msgid "Converting your PDF file into images"
-msgstr ""
+msgstr "PDF-faylingizni rasmga aylantirish"
 
 #: pdf_bot/files/image.py:193
 msgid "Extracting all the images in your PDF file"
-msgstr ""
+msgstr "PDF-faylingizdagi barcha fotosuratlarni chiqarib olish"
 
 #: pdf_bot/files/image.py:213
 msgid "I couldn't find any images in your PDF file"
-msgstr ""
+msgstr "PDF-faylingizda bironta fotosurat topilmadi"
 
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
-msgstr ""
+msgstr "Barcha rasmlaringiz uchun yuqoriga qarang"
 
 #: pdf_bot/files/ocr.py:21
 msgid "Adding an OCR text layer to your PDF file"
