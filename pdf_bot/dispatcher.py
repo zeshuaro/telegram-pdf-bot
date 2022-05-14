@@ -48,26 +48,30 @@ CALLBACK_DATA = "callback_data"
 
 def setup_dispatcher(dispatcher: Dispatcher):
     dispatcher.add_handler(
-        CommandHandler("start", send_support_options, Filters.regex("support"))
+        CommandHandler(
+            "start", send_support_options, Filters.regex("support"), run_async=True
+        )
     )
-    dispatcher.add_handler(CommandHandler("start", start_msg))
+    dispatcher.add_handler(CommandHandler("start", start_msg, run_async=True))
 
-    dispatcher.add_handler(CommandHandler("help", help_msg))
-    dispatcher.add_handler(CommandHandler("setlang", send_lang))
-    dispatcher.add_handler(CommandHandler("support", send_support_options))
+    dispatcher.add_handler(CommandHandler("help", help_msg, run_async=True))
+    dispatcher.add_handler(CommandHandler("setlang", send_lang, run_async=True))
+    dispatcher.add_handler(
+        CommandHandler("support", send_support_options, run_async=True)
+    )
 
     # Callback query handler
-    dispatcher.add_handler(CallbackQueryHandler(process_callback_query))
+    dispatcher.add_handler(CallbackQueryHandler(process_callback_query, run_async=True))
 
     # Payment handlers
-    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check))
+    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check, run_async=True))
     dispatcher.add_handler(
-        MessageHandler(Filters.successful_payment, successful_payment)
+        MessageHandler(Filters.successful_payment, successful_payment, run_async=True)
     )
 
     # URL handler
     dispatcher.add_handler(
-        MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf)
+        MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf, run_async=True)
     )
 
     # PDF commands handlers

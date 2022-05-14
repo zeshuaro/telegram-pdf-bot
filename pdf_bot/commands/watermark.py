@@ -26,6 +26,7 @@ def watermark_cov_handler():
             MessageHandler(TEXT_FILTER, check_text),
         ],
         allow_reentry=True,
+        run_async=True,
     )
 
     return conv_handler

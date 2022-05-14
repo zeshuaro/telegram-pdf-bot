@@ -12,6 +12,8 @@ from pdf_bot.mq_bot import MQBot
 
 load_dotenv()
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
+APP_URL = os.environ.get("APP_URL")
+PORT = int(os.environ.get("PORT", "8443"))
 
 TIMEOUT = 20
 
@@ -34,8 +36,17 @@ def main():
     dispatcher = updater.dispatcher
     dp.setup_dispatcher(dispatcher)
 
-    updater.start_polling()
-    logger.info("Bot started polling")
+    if APP_URL is not None:
+        updater.start_webhook(
+            listen="0.0.0.0",
+            port=PORT,
+            url_path=TELEGRAM_TOKEN,
+            webhook_url=f"{APP_URL}/{TELEGRAM_TOKEN}",
+        )
+        logger.info("Bot started webhook")
+    else:
+        updater.start_polling()
+        logger.info("Bot started polling")
 
     # Run the bot until the you presses Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
