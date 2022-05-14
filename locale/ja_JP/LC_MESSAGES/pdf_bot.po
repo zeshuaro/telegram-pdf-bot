@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-04-24 11:27+0000\n"
-"PO-Revision-Date: 2022-04-24 11:27\n"
+"POT-Creation-Date: 2022-05-14 12:14+0000\n"
+"PO-Revision-Date: 2022-05-14 12:14\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -147,107 +147,107 @@ msgstr "食事"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:113
+#: pdf_bot/dispatcher.py:117
 msgid "Welcome to PDF Bot!"
 msgstr "PDFボットへようこそ!"
 
-#: pdf_bot/dispatcher.py:114
+#: pdf_bot/dispatcher.py:118
 msgid "Key features:"
 msgstr "主な特徴:"
 
-#: pdf_bot/dispatcher.py:115
+#: pdf_bot/dispatcher.py:119
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- PDFファイルに対する圧縮、マージ、プレビュー、名前変更、分割、透かしの追加"
 
-#: pdf_bot/dispatcher.py:119
+#: pdf_bot/dispatcher.py:123
 msgid "- Create PDF files from text messages"
 msgstr "- テキストメッセージからPDFファイルを作成"
 
-#: pdf_bot/dispatcher.py:120
+#: pdf_bot/dispatcher.py:124
 msgid "- Extract images and text from PDF files"
 msgstr "- PDFファイルから画像やテキストを抽出"
 
-#: pdf_bot/dispatcher.py:121
+#: pdf_bot/dispatcher.py:125
 msgid "- Convert PDF files into images"
 msgstr "- PDFファイルを画像に変換"
 
-#: pdf_bot/dispatcher.py:122
+#: pdf_bot/dispatcher.py:126
 msgid "- Convert webpages and images into PDF files"
 msgstr "- ウェブページと画像をPDFファイルに変換"
 
-#: pdf_bot/dispatcher.py:123
+#: pdf_bot/dispatcher.py:127
 msgid "- Beautify handwritten notes images into PDF files"
 msgstr "- 手書きのノート画像をPDFファイルに美化"
 
-#: pdf_bot/dispatcher.py:124
+#: pdf_bot/dispatcher.py:128
 msgid "- And more..."
 msgstr "- そしてもっと.."
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:129
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "PDF ボットの使用方法を確認するには、「 {command} 」と入力します。"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:141
 msgid "Set Language 🌎"
 msgstr "言語設定 🌎"
 
-#: pdf_bot/dispatcher.py:139 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:143 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "チャネルに参加"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:144 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "PDFボットをサポート"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:153
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "タスクの大半は、次のいずれかを送信することで実行できます。"
 
-#: pdf_bot/dispatcher.py:152
+#: pdf_bot/dispatcher.py:156
 msgid "- PDF files"
 msgstr "- PDFファイル"
 
-#: pdf_bot/dispatcher.py:153
+#: pdf_bot/dispatcher.py:157
 msgid "- Images"
 msgstr "- 画像"
 
-#: pdf_bot/dispatcher.py:154
+#: pdf_bot/dispatcher.py:158
 msgid "- Webpage links"
 msgstr "- ウェブページへのリンク"
 
-#: pdf_bot/dispatcher.py:155
+#: pdf_bot/dispatcher.py:159
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "残りのタスクは、次のコマンドを使用して実行できます。"
 
-#: pdf_bot/dispatcher.py:159
+#: pdf_bot/dispatcher.py:163
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF ファイルを比較する"
 
-#: pdf_bot/dispatcher.py:160
+#: pdf_bot/dispatcher.py:164
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDFファイルをマージ"
 
-#: pdf_bot/dispatcher.py:161
+#: pdf_bot/dispatcher.py:165
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 複数の画像をPDFファイルに変換して結合する"
 
-#: pdf_bot/dispatcher.py:164
+#: pdf_bot/dispatcher.py:168
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - テキストメッセージからPDFファイルを作成する"
 
-#: pdf_bot/dispatcher.py:167
+#: pdf_bot/dispatcher.py:171
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF ファイルに透かしを追加する"
 
-#: pdf_bot/feedback.py:48
+#: pdf_bot/feedback.py:49
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "フィードバックを送信してください (英語のフィードバックのみが開発者に転送されます)"
 
-#: pdf_bot/feedback.py:83
+#: pdf_bot/feedback.py:84
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr "フィードバックをありがとう、私はすでに私の開発者にそれを転送しました"
 
-#: pdf_bot/feedback.py:87
+#: pdf_bot/feedback.py:88
 msgid "The feedback is not in English, try again"
 msgstr "フィードバックは英語ではありません、もう一度やり直してください"
 
@@ -303,13 +303,13 @@ msgstr "アクションがキャンセルされました"
 msgid "Your file is not a PDF file, please try again"
 msgstr "ファイルが PDF ファイルではありません。"
 
-#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
+#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "ファイルが大きすぎるので、ダウンロードして処理できません"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
-#: pdf_bot/files/file.py:131 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
+#: pdf_bot/commands/image.py:138 pdf_bot/commands/merge.py:122
+#: pdf_bot/files/file.py:132 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "これは電報ボットの制限であり、テレグラムがこの制限を変更しない限り、私は何もできませんのでご注意ください"
@@ -342,135 +342,135 @@ msgstr "結果ファイルが大きすぎて、私はあなたに送れなくて
 msgid "Here is your result file"
 msgstr "ここにあなたの結果ファイルがあります"
 
-#: pdf_bot/commands/compare.py:47
+#: pdf_bot/commands/compare.py:48
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "比較したい PDF ファイルの 1 つを送信してください"
 
-#: pdf_bot/commands/compare.py:48
+#: pdf_bot/commands/compare.py:49
 msgid "Note that I can only look for text differences"
 msgstr "テキストの違いしか探せることができないことに注意してください"
 
-#: pdf_bot/commands/compare.py:82
+#: pdf_bot/commands/compare.py:83
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "比較したい他の PDF ファイルを送信してください"
 
-#: pdf_bot/commands/compare.py:106
+#: pdf_bot/commands/compare.py:107
 msgid "Comparing your PDF files"
 msgstr "PDF ファイルの比較"
 
-#: pdf_bot/commands/compare.py:125
+#: pdf_bot/commands/compare.py:126
 msgid "There are no text differences between your PDF files"
 msgstr "PDF ファイル間にテキストの違いはありません"
 
-#: pdf_bot/commands/image.py:78
+#: pdf_bot/commands/image.py:79
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "PDFファイルを美化したり、PDFファイルに変換したりしたい画像を送ってください"
 
-#: pdf_bot/commands/image.py:82
+#: pdf_bot/commands/image.py:83
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "画像は美化され、あなたが私を送る順序で変換されることに注意してください"
 
-#: pdf_bot/commands/image.py:109
+#: pdf_bot/commands/image.py:110
 msgid "File name unavailable"
 msgstr "ファイル名が使用できません"
 
-#: pdf_bot/commands/image.py:128
+#: pdf_bot/commands/image.py:129
 msgid "Your file is not an image"
 msgstr "ファイルが画像ではありません"
 
-#: pdf_bot/commands/image.py:149
+#: pdf_bot/commands/image.py:150
 msgid "images"
 msgstr "画像"
 
-#: pdf_bot/commands/image.py:156
+#: pdf_bot/commands/image.py:157
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "すべての画像を送信した場合は、下からタスクを選択するか、画像を送信し続けます"
 
-#: pdf_bot/commands/image.py:200
+#: pdf_bot/commands/image.py:201
 msgid "{file_name} has been removed for beautifying or converting"
 msgstr "{file_name} は美化または変換のために削除されました"
 
-#: pdf_bot/commands/image.py:237
+#: pdf_bot/commands/image.py:238
 msgid "Beautifying and converting your images"
 msgstr "画像を美化し、変換する"
 
-#: pdf_bot/commands/image.py:242
+#: pdf_bot/commands/image.py:243
 msgid "Converting your images into PDF"
 msgstr "画像を PDF に変換する"
 
-#: pdf_bot/commands/merge.py:83
+#: pdf_bot/commands/merge.py:84
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "マージしたい PDF ファイルを送信する"
 
-#: pdf_bot/commands/merge.py:84
+#: pdf_bot/commands/merge.py:85
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "ファイルは、あなたが私を送信する順序でマージされることに注意してください"
 
-#: pdf_bot/commands/merge.py:116
+#: pdf_bot/commands/merge.py:117
 msgid "Your file is not a PDF file"
 msgstr "ファイルが PDF ファイルではありません"
 
-#: pdf_bot/commands/merge.py:144
+#: pdf_bot/commands/merge.py:145
 msgid "PDF files"
 msgstr "PDF ファイル"
 
-#: pdf_bot/commands/merge.py:151
+#: pdf_bot/commands/merge.py:152
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "{done} を押すと、PDFファイルをマージしたり、PDFファイルを送信し続けたりしたいPDFファイルをすべて送信した場合"
 
-#: pdf_bot/commands/merge.py:194
+#: pdf_bot/commands/merge.py:195
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} はマージのために削除されました"
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "You haven't sent me any PDF files"
 msgstr "PDFファイルを送っていない"
 
-#: pdf_bot/commands/merge.py:220
+#: pdf_bot/commands/merge.py:221
 msgid "You've only sent me one PDF file"
 msgstr "PDFファイルを1つしか送っていない"
 
-#: pdf_bot/commands/merge.py:234
+#: pdf_bot/commands/merge.py:235
 msgid "Merging your PDF files"
 msgstr "PDF ファイルのマージ"
 
-#: pdf_bot/commands/merge.py:254
+#: pdf_bot/commands/merge.py:255
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "このファイルは無効であるため、PDFファイルをマージできませんでした: {file_name}"
 
-#: pdf_bot/commands/text.py:60
+#: pdf_bot/commands/text.py:61
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "PDFファイルに書き込みたいテキストを送ってください"
 
-#: pdf_bot/commands/text.py:83
+#: pdf_bot/commands/text.py:84
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "PDFファイルに使用したいフォントを送るか、 {skip} を押してデフォルトのフォントを使用してください"
 
-#: pdf_bot/commands/text.py:87
+#: pdf_bot/commands/text.py:88
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "サポートされているフォントの一覧については、ここを参照してください: {fonts}"
 
-#: pdf_bot/commands/text.py:120
+#: pdf_bot/commands/text.py:121
 msgid "Unknown font, please try again"
 msgstr "不明なフォントです。"
 
-#: pdf_bot/commands/text.py:152
+#: pdf_bot/commands/text.py:153
 msgid "Creating your PDF file"
 msgstr "PDF ファイルの作成"
 
-#: pdf_bot/commands/watermark.py:44
+#: pdf_bot/commands/watermark.py:45
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "透かしを追加したいPDFファイルを送ってください"
 
-#: pdf_bot/commands/watermark.py:77
+#: pdf_bot/commands/watermark.py:78
 msgid "Send me the watermark PDF file"
 msgstr "透かしPDFファイルを送ってください"
 
-#: pdf_bot/commands/watermark.py:102
+#: pdf_bot/commands/watermark.py:103
 msgid "Adding the watermark onto your PDF file"
 msgstr "PDF ファイルにウォーターマークを追加する"
 
-#: pdf_bot/commands/watermark.py:115
+#: pdf_bot/commands/watermark.py:116
 msgid "watermark"
 msgstr "透かし"
 
@@ -559,7 +559,7 @@ msgstr "PDF ファイルの暗号化"
 msgid "Select the task that you'll like to perform"
 msgstr "実行するタスクを選択します。"
 
-#: pdf_bot/files/file.py:130
+#: pdf_bot/files/file.py:131
 msgid "Your file is too big for me to download and process"
 msgstr "ファイルが大きすぎてダウンロードして処理できません"
 
