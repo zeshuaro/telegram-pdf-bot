@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-04-24 11:27+0000\n"
-"PO-Revision-Date: 2022-04-24 11:27\n"
+"POT-Creation-Date: 2022-05-14 12:14+0000\n"
+"PO-Revision-Date: 2022-05-14 12:14\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -147,107 +147,107 @@ msgstr "Maaltijd"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:113
+#: pdf_bot/dispatcher.py:117
 msgid "Welcome to PDF Bot!"
 msgstr "Welkom bij PDF Bot!"
 
-#: pdf_bot/dispatcher.py:114
+#: pdf_bot/dispatcher.py:118
 msgid "Key features:"
 msgstr "Belangrijkste kenmerken:"
 
-#: pdf_bot/dispatcher.py:115
+#: pdf_bot/dispatcher.py:119
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- Comprimeren, samenvoegen, bekijken, hernoemen, splitsen en watermerk toevoegen aan PDF-bestanden"
 
-#: pdf_bot/dispatcher.py:119
+#: pdf_bot/dispatcher.py:123
 msgid "- Create PDF files from text messages"
 msgstr "- PDF-bestanden maken op tekstberichten"
 
-#: pdf_bot/dispatcher.py:120
+#: pdf_bot/dispatcher.py:124
 msgid "- Extract images and text from PDF files"
 msgstr "- Afbeeldingen en tekst uit PDF-bestanden extraheren"
 
-#: pdf_bot/dispatcher.py:121
+#: pdf_bot/dispatcher.py:125
 msgid "- Convert PDF files into images"
 msgstr "- PDF-bestanden converteren naar afbeeldingen"
 
-#: pdf_bot/dispatcher.py:122
+#: pdf_bot/dispatcher.py:126
 msgid "- Convert webpages and images into PDF files"
 msgstr "- Converteer webpagina's en afbeeldingen naar PDF-bestanden"
 
-#: pdf_bot/dispatcher.py:123
+#: pdf_bot/dispatcher.py:127
 msgid "- Beautify handwritten notes images into PDF files"
 msgstr "- Verfraai handgeschreven notities afbeeldingen in PDF-bestanden"
 
-#: pdf_bot/dispatcher.py:124
+#: pdf_bot/dispatcher.py:128
 msgid "- And more..."
 msgstr "- En meer..."
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:129
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Typ {command} om te zien hoe u PDF Bot gebruikt"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:141
 msgid "Set Language 🌎"
 msgstr "Taal instellen 🌎"
 
-#: pdf_bot/dispatcher.py:139 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:143 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Abonneer op het kanaal"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:144 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "PDF Bot ondersteunen"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:153
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "U kunt de meeste taken uitvoeren door mij een van de volgende handelingen te sturen:"
 
-#: pdf_bot/dispatcher.py:152
+#: pdf_bot/dispatcher.py:156
 msgid "- PDF files"
 msgstr "- PDF-bestanden"
 
-#: pdf_bot/dispatcher.py:153
+#: pdf_bot/dispatcher.py:157
 msgid "- Images"
 msgstr "- Afbeeldingen"
 
-#: pdf_bot/dispatcher.py:154
+#: pdf_bot/dispatcher.py:158
 msgid "- Webpage links"
 msgstr "- Webpagina links"
 
-#: pdf_bot/dispatcher.py:155
+#: pdf_bot/dispatcher.py:159
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "De rest van de taken kan worden uitgevoerd met behulp van de volgende opdrachten:"
 
-#: pdf_bot/dispatcher.py:159
+#: pdf_bot/dispatcher.py:163
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF-bestanden vergelijken"
 
-#: pdf_bot/dispatcher.py:160
+#: pdf_bot/dispatcher.py:164
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF-bestanden samenvoegen"
 
-#: pdf_bot/dispatcher.py:161
+#: pdf_bot/dispatcher.py:165
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - converteer en combineer meerdere afbeeldingen naar PDF-bestanden"
 
-#: pdf_bot/dispatcher.py:164
+#: pdf_bot/dispatcher.py:168
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - PDF-bestanden maken op tekstberichten"
 
-#: pdf_bot/dispatcher.py:167
+#: pdf_bot/dispatcher.py:171
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - watermerk toevoegen aan PDF-bestanden"
 
-#: pdf_bot/feedback.py:48
+#: pdf_bot/feedback.py:49
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Stuur mij uw feedback (alleen Engelse feedback wordt doorgestuurd naar mijn ontwikkelaar)"
 
-#: pdf_bot/feedback.py:83
+#: pdf_bot/feedback.py:84
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr "Bedankt voor je feedback, ik heb het al doorgestuurd naar mijn ontwikkelaar"
 
-#: pdf_bot/feedback.py:87
+#: pdf_bot/feedback.py:88
 msgid "The feedback is not in English, try again"
 msgstr "De feedback is niet in het Engels, probeer het opnieuw"
 
@@ -303,13 +303,13 @@ msgstr "Actie geannuleerd"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Uw bestand is geen PDF-bestand, probeer het opnieuw"
 
-#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
+#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
-#: pdf_bot/files/file.py:131 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
+#: pdf_bot/commands/image.py:138 pdf_bot/commands/merge.py:122
+#: pdf_bot/files/file.py:132 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen tenzij Telegram deze limiet wijzigt"
@@ -342,135 +342,135 @@ msgstr "Het bestand is te groot voor mij om naar u te verzenden"
 msgid "Here is your result file"
 msgstr "Hier is het bestand"
 
-#: pdf_bot/commands/compare.py:47
+#: pdf_bot/commands/compare.py:48
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "Stuur me een van de PDF-bestanden die u wilt vergelijken"
 
-#: pdf_bot/commands/compare.py:48
+#: pdf_bot/commands/compare.py:49
 msgid "Note that I can only look for text differences"
 msgstr "Merk op dat ik alleen kan zoeken naar tekstverschillen"
 
-#: pdf_bot/commands/compare.py:82
+#: pdf_bot/commands/compare.py:83
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Stuur me het andere PDF bestand voor de vergelijking"
 
-#: pdf_bot/commands/compare.py:106
+#: pdf_bot/commands/compare.py:107
 msgid "Comparing your PDF files"
 msgstr "Vergelijk je PDF bestanden"
 
-#: pdf_bot/commands/compare.py:125
+#: pdf_bot/commands/compare.py:126
 msgid "There are no text differences between your PDF files"
 msgstr "Er zijn geen tekstverschillen tussen uw PDF-bestanden"
 
-#: pdf_bot/commands/image.py:78
+#: pdf_bot/commands/image.py:79
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Stuur me de afbeeldingen die je wilt verfraaien of converteren naar een PDF-bestand"
 
-#: pdf_bot/commands/image.py:82
+#: pdf_bot/commands/image.py:83
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Merk op dat de afbeeldingen worden verfraaid en geconverteerd in de volgorde die u mij stuurt"
 
-#: pdf_bot/commands/image.py:109
+#: pdf_bot/commands/image.py:110
 msgid "File name unavailable"
 msgstr "Bestandsnaam niet beschikbaar"
 
-#: pdf_bot/commands/image.py:128
+#: pdf_bot/commands/image.py:129
 msgid "Your file is not an image"
 msgstr "Uw bestand is geen afbeelding"
 
-#: pdf_bot/commands/image.py:149
+#: pdf_bot/commands/image.py:150
 msgid "images"
 msgstr "beelden"
 
-#: pdf_bot/commands/image.py:156
+#: pdf_bot/commands/image.py:157
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Selecteer de taak hieronder als je me alle afbeeldingen hebt gestuurd of blijf me de afbeeldingen sturen"
 
-#: pdf_bot/commands/image.py:200
+#: pdf_bot/commands/image.py:201
 msgid "{file_name} has been removed for beautifying or converting"
 msgstr "{file_name} is verwijderd voor verfraaiing of conversie"
 
-#: pdf_bot/commands/image.py:237
+#: pdf_bot/commands/image.py:238
 msgid "Beautifying and converting your images"
 msgstr "Verfraaien en converteren van uw afbeeldingen"
 
-#: pdf_bot/commands/image.py:242
+#: pdf_bot/commands/image.py:243
 msgid "Converting your images into PDF"
 msgstr "Uw afbeeldingen converteren naar PDF"
 
-#: pdf_bot/commands/merge.py:83
+#: pdf_bot/commands/merge.py:84
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Stuur me de PDF-bestanden die u wilt samenvoegen"
 
-#: pdf_bot/commands/merge.py:84
+#: pdf_bot/commands/merge.py:85
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Merk op dat de bestanden worden samengevoegd in de volgorde die u mij stuurt"
 
-#: pdf_bot/commands/merge.py:116
+#: pdf_bot/commands/merge.py:117
 msgid "Your file is not a PDF file"
 msgstr "Uw bestand is geen PDF-bestand"
 
-#: pdf_bot/commands/merge.py:144
+#: pdf_bot/commands/merge.py:145
 msgid "PDF files"
 msgstr "PDF bestanden"
 
-#: pdf_bot/commands/merge.py:151
+#: pdf_bot/commands/merge.py:152
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Druk op {done} als u mij alle PDF-bestanden hebt gestuurd die u wilt samenvoegen of blijf me de PDF-bestanden sturen"
 
-#: pdf_bot/commands/merge.py:194
+#: pdf_bot/commands/merge.py:195
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} is verwijderd voor samenvoegen"
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "You haven't sent me any PDF files"
 msgstr "U heeft mij nog geen PDF bestanden gestuurd"
 
-#: pdf_bot/commands/merge.py:220
+#: pdf_bot/commands/merge.py:221
 msgid "You've only sent me one PDF file"
 msgstr "Je hebt me maar één PDF-bestand gestuurd."
 
-#: pdf_bot/commands/merge.py:234
+#: pdf_bot/commands/merge.py:235
 msgid "Merging your PDF files"
 msgstr "PDF bestanden aan het samenvoegen"
 
-#: pdf_bot/commands/merge.py:254
+#: pdf_bot/commands/merge.py:255
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Ik kon uw PDF-bestanden niet samenvoegen omdat dit bestand ongeldig is: {file_name}"
 
-#: pdf_bot/commands/text.py:60
+#: pdf_bot/commands/text.py:61
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Stuur mij de tekst die u wilt schrijven in uw PDF-bestand"
 
-#: pdf_bot/commands/text.py:83
+#: pdf_bot/commands/text.py:84
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "Stuur me het lettertype dat u wilt gebruiken voor het PDF-bestand of druk op {skip} om het standaardlettertype te gebruiken"
 
-#: pdf_bot/commands/text.py:87
+#: pdf_bot/commands/text.py:88
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "Zie hier voor de lijst met ondersteunde lettertypen: {fonts}"
 
-#: pdf_bot/commands/text.py:120
+#: pdf_bot/commands/text.py:121
 msgid "Unknown font, please try again"
 msgstr "Onbekend lettertype, probeer het opnieuw"
 
-#: pdf_bot/commands/text.py:152
+#: pdf_bot/commands/text.py:153
 msgid "Creating your PDF file"
 msgstr "Uw PDF-bestand maken"
 
-#: pdf_bot/commands/watermark.py:44
+#: pdf_bot/commands/watermark.py:45
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Stuur me het PDF-bestand waaraan u eenn watermerk wilt toevoegen"
 
-#: pdf_bot/commands/watermark.py:77
+#: pdf_bot/commands/watermark.py:78
 msgid "Send me the watermark PDF file"
 msgstr "Stuur mij het watermerk PDF-bestand"
 
-#: pdf_bot/commands/watermark.py:102
+#: pdf_bot/commands/watermark.py:103
 msgid "Adding the watermark onto your PDF file"
 msgstr "Watermerk toevoegen aan het PDF bestand"
 
-#: pdf_bot/commands/watermark.py:115
+#: pdf_bot/commands/watermark.py:116
 msgid "watermark"
 msgstr "watermerk"
 
@@ -559,7 +559,7 @@ msgstr "PDF bestand aan het versleutelen"
 msgid "Select the task that you'll like to perform"
 msgstr "Selecteer de taak die u wilt uitvoeren"
 
-#: pdf_bot/files/file.py:130
+#: pdf_bot/files/file.py:131
 msgid "Your file is too big for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-04-24 11:27+0000\n"
-"PO-Revision-Date: 2022-04-24 11:27\n"
+"POT-Creation-Date: 2022-05-14 12:14+0000\n"
+"PO-Revision-Date: 2022-05-14 12:14\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese, Brazilian\n"
@@ -147,107 +147,107 @@ msgstr "Refeição"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji}${value}"
 
-#: pdf_bot/dispatcher.py:113
+#: pdf_bot/dispatcher.py:117
 msgid "Welcome to PDF Bot!"
 msgstr "Bem-vindo ao PDF Bot!"
 
-#: pdf_bot/dispatcher.py:114
+#: pdf_bot/dispatcher.py:118
 msgid "Key features:"
 msgstr "Principais características:"
 
-#: pdf_bot/dispatcher.py:115
+#: pdf_bot/dispatcher.py:119
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- Compactar, mesclar, visualizar, renomear, dividir e adicionar marca d'água aos arquivos PDF"
 
-#: pdf_bot/dispatcher.py:119
+#: pdf_bot/dispatcher.py:123
 msgid "- Create PDF files from text messages"
 msgstr "- Criar arquivos PDF a partir de mensagens de texto"
 
-#: pdf_bot/dispatcher.py:120
+#: pdf_bot/dispatcher.py:124
 msgid "- Extract images and text from PDF files"
 msgstr "- Extrair imagens e textos de arquivos PDF"
 
-#: pdf_bot/dispatcher.py:121
+#: pdf_bot/dispatcher.py:125
 msgid "- Convert PDF files into images"
 msgstr "- Converter arquivos PDF em imagens"
 
-#: pdf_bot/dispatcher.py:122
+#: pdf_bot/dispatcher.py:126
 msgid "- Convert webpages and images into PDF files"
 msgstr "- Converter páginas e imagens da Web em arquivos PDF"
 
-#: pdf_bot/dispatcher.py:123
+#: pdf_bot/dispatcher.py:127
 msgid "- Beautify handwritten notes images into PDF files"
 msgstr "- Embelezar imagens de notas manuscritas em arquivos PDF"
 
-#: pdf_bot/dispatcher.py:124
+#: pdf_bot/dispatcher.py:128
 msgid "- And more..."
 msgstr "- E mais..."
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:129
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Digite {command} para ver como usar o PDF Bot"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:141
 msgid "Set Language 🌎"
 msgstr "Definir Idioma 🌎"
 
-#: pdf_bot/dispatcher.py:139 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:143 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Entre no Canal"
 
-#: pdf_bot/dispatcher.py:140 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:144 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Ajude o PDF Bot"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:153
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Você pode executar a maioria das tarefas me enviando um dos seguintes:"
 
-#: pdf_bot/dispatcher.py:152
+#: pdf_bot/dispatcher.py:156
 msgid "- PDF files"
 msgstr "- arquivos PDF"
 
-#: pdf_bot/dispatcher.py:153
+#: pdf_bot/dispatcher.py:157
 msgid "- Images"
 msgstr "- Imagens"
 
-#: pdf_bot/dispatcher.py:154
+#: pdf_bot/dispatcher.py:158
 msgid "- Webpage links"
 msgstr "- Links de página da Web"
 
-#: pdf_bot/dispatcher.py:155
+#: pdf_bot/dispatcher.py:159
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "O resto das tarefas podem ser executadas usando os seguintes comandos:"
 
-#: pdf_bot/dispatcher.py:159
+#: pdf_bot/dispatcher.py:163
 msgid "{command} - compare PDF files"
 msgstr "{command} - compare arquivos PDF"
 
-#: pdf_bot/dispatcher.py:160
+#: pdf_bot/dispatcher.py:164
 msgid "{command} - merge PDF files"
 msgstr "{command} - mescla arquivos PDF"
 
-#: pdf_bot/dispatcher.py:161
+#: pdf_bot/dispatcher.py:165
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - converta e combine várias imagens em arquivos PDF"
 
-#: pdf_bot/dispatcher.py:164
+#: pdf_bot/dispatcher.py:168
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - crie arquivos PDF a partir de mensagens de texto"
 
-#: pdf_bot/dispatcher.py:167
+#: pdf_bot/dispatcher.py:171
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - adicionar marca d'água aos arquivos PDF"
 
-#: pdf_bot/feedback.py:48
+#: pdf_bot/feedback.py:49
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Envie-me seu feedback (apenas o feedback em inglês será encaminhado para o meu desenvolvedor)"
 
-#: pdf_bot/feedback.py:83
+#: pdf_bot/feedback.py:84
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr "Obrigado por seu feedback, já o enviei para o meu desenvolvedor"
 
-#: pdf_bot/feedback.py:87
+#: pdf_bot/feedback.py:88
 msgid "The feedback is not in English, try again"
 msgstr "O feedback não está em inglês, tente novamente"
 
@@ -303,13 +303,13 @@ msgstr "Ação cancelada"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Seu arquivo não é um arquivo PDF, por favor tente novamente"
 
-#: pdf_bot/commands/image.py:136 pdf_bot/commands/merge.py:120
+#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Seu arquivo é muito grande para eu baixar e processar"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
-#: pdf_bot/files/file.py:131 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
+#: pdf_bot/commands/image.py:138 pdf_bot/commands/merge.py:122
+#: pdf_bot/files/file.py:132 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
 #: pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Note que esta é uma limitação do Telegram Bot e não há nada que eu possa fazer a menos que o Telegram mude esse limite"
@@ -342,135 +342,135 @@ msgstr "O arquivo final é muito grande para que eu envie para você"
 msgid "Here is your result file"
 msgstr "Aqui está o seu arquivo final"
 
-#: pdf_bot/commands/compare.py:47
+#: pdf_bot/commands/compare.py:48
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "Envie-me um dos arquivos PDF que você vai gostar de comparar"
 
-#: pdf_bot/commands/compare.py:48
+#: pdf_bot/commands/compare.py:49
 msgid "Note that I can only look for text differences"
 msgstr "Note que eu só posso procurar por diferenças de texto"
 
-#: pdf_bot/commands/compare.py:82
+#: pdf_bot/commands/compare.py:83
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Envie-me o outro arquivo PDF que você gostaria de comparar"
 
-#: pdf_bot/commands/compare.py:106
+#: pdf_bot/commands/compare.py:107
 msgid "Comparing your PDF files"
 msgstr "Comparando seus arquivos PDF"
 
-#: pdf_bot/commands/compare.py:125
+#: pdf_bot/commands/compare.py:126
 msgid "There are no text differences between your PDF files"
 msgstr "Não há diferenças de texto entre seus arquivos PDF"
 
-#: pdf_bot/commands/image.py:78
+#: pdf_bot/commands/image.py:79
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Envie-me as imagens que você vai gostar de embelezar ou converter em um arquivo PDF"
 
-#: pdf_bot/commands/image.py:82
+#: pdf_bot/commands/image.py:83
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Note que as imagens serão embelezadas e convertidas na ordem que você me enviar"
 
-#: pdf_bot/commands/image.py:109
+#: pdf_bot/commands/image.py:110
 msgid "File name unavailable"
 msgstr "Nome do arquivo indisponível"
 
-#: pdf_bot/commands/image.py:128
+#: pdf_bot/commands/image.py:129
 msgid "Your file is not an image"
 msgstr "Seu arquivo não é uma imagem"
 
-#: pdf_bot/commands/image.py:149
+#: pdf_bot/commands/image.py:150
 msgid "images"
 msgstr "Imagens"
 
-#: pdf_bot/commands/image.py:156
+#: pdf_bot/commands/image.py:157
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Selecione a tarefa abaixo se você me enviou todas as imagens, ou continue me enviando as imagens"
 
-#: pdf_bot/commands/image.py:200
+#: pdf_bot/commands/image.py:201
 msgid "{file_name} has been removed for beautifying or converting"
 msgstr "{file_name} foi removido para embelezar ou converter"
 
-#: pdf_bot/commands/image.py:237
+#: pdf_bot/commands/image.py:238
 msgid "Beautifying and converting your images"
 msgstr "Embelezando e convertendo suas imagens"
 
-#: pdf_bot/commands/image.py:242
+#: pdf_bot/commands/image.py:243
 msgid "Converting your images into PDF"
 msgstr "Convertendo suas imagens em PDF"
 
-#: pdf_bot/commands/merge.py:83
+#: pdf_bot/commands/merge.py:84
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Envie-me os arquivos PDF que você vai gostar de mesclar"
 
-#: pdf_bot/commands/merge.py:84
+#: pdf_bot/commands/merge.py:85
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Note que os arquivos serão mesclados na ordem que você me enviar"
 
-#: pdf_bot/commands/merge.py:116
+#: pdf_bot/commands/merge.py:117
 msgid "Your file is not a PDF file"
 msgstr "Seu arquivo não é um arquivo PDF"
 
-#: pdf_bot/commands/merge.py:144
+#: pdf_bot/commands/merge.py:145
 msgid "PDF files"
 msgstr "Arquivos PDF"
 
-#: pdf_bot/commands/merge.py:151
+#: pdf_bot/commands/merge.py:152
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Pressione {done} se você me enviou todos os arquivos PDF que você vai gostar de mesclar ou continuar me enviando os arquivos PDF"
 
-#: pdf_bot/commands/merge.py:194
+#: pdf_bot/commands/merge.py:195
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} foi removido para fusão"
 
-#: pdf_bot/commands/merge.py:216
+#: pdf_bot/commands/merge.py:217
 msgid "You haven't sent me any PDF files"
 msgstr "Você não me enviou nenhum arquivo PDF"
 
-#: pdf_bot/commands/merge.py:220
+#: pdf_bot/commands/merge.py:221
 msgid "You've only sent me one PDF file"
 msgstr "Você só me enviou um arquivo PDF"
 
-#: pdf_bot/commands/merge.py:234
+#: pdf_bot/commands/merge.py:235
 msgid "Merging your PDF files"
 msgstr "Mesclando seus arquivos PDF"
 
-#: pdf_bot/commands/merge.py:254
+#: pdf_bot/commands/merge.py:255
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Eu não poderia mesclar seus arquivos PDF, pois este arquivo é inválido: {file_name}"
 
-#: pdf_bot/commands/text.py:60
+#: pdf_bot/commands/text.py:61
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Envie-me o texto que você deseja escrever em seu arquivo PDF"
 
-#: pdf_bot/commands/text.py:83
+#: pdf_bot/commands/text.py:84
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "Envie-me a fonte que você gostaria de usar para o arquivo PDF ou pressionar {skip} para usar a fonte padrão"
 
-#: pdf_bot/commands/text.py:87
+#: pdf_bot/commands/text.py:88
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "Veja aqui a lista de fontes suportadas: {fonts}"
 
-#: pdf_bot/commands/text.py:120
+#: pdf_bot/commands/text.py:121
 msgid "Unknown font, please try again"
 msgstr "Fonte desconhecida, por favor tente novamente"
 
-#: pdf_bot/commands/text.py:152
+#: pdf_bot/commands/text.py:153
 msgid "Creating your PDF file"
 msgstr "Criando seu arquivo PDF"
 
-#: pdf_bot/commands/watermark.py:44
+#: pdf_bot/commands/watermark.py:45
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Envie-me o arquivo PDF que você gostaria de adicionar uma marca d'água"
 
-#: pdf_bot/commands/watermark.py:77
+#: pdf_bot/commands/watermark.py:78
 msgid "Send me the watermark PDF file"
 msgstr "Envie-me a marca d'água do arquivo PDF"
 
-#: pdf_bot/commands/watermark.py:102
+#: pdf_bot/commands/watermark.py:103
 msgid "Adding the watermark onto your PDF file"
 msgstr "Adicionando a marca d'água no seu arquivo PDF"
 
-#: pdf_bot/commands/watermark.py:115
+#: pdf_bot/commands/watermark.py:116
 msgid "watermark"
 msgstr "marca d'água"
 
@@ -559,7 +559,7 @@ msgstr "Criptografando seu arquivo PDF"
 msgid "Select the task that you'll like to perform"
 msgstr "Selecione a tarefa que você deseja executar"
 
-#: pdf_bot/files/file.py:130
+#: pdf_bot/files/file.py:131
 msgid "Your file is too big for me to download and process"
 msgstr "Seu arquivo é muito grande para eu baixar e processar"
 
