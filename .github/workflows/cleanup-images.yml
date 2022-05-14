@@ -1,0 +1,32 @@
+name: DigitalOcean Cleanup Images
+
+on:
+  schedule:
+    - cron: "0 17 * * *"
+
+jobs:
+  cleanup:
+    name: Cleanup Docker Images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Install doctl 🌊
+        uses: digitalocean/action-doctl@v2.1.1
+        with:
+          token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+
+      - name: Authenticate to DigitalOcean 🔐
+        run: doctl registry login --expiry-seconds 600
+
+      - name: Delete old images 🧹
+        run: |-
+          TAGS=$(doctl registry repository list-tags ${{ secrets. DIGITALOCEAN_APP_NAME }} -o json | jq -r "sort_by(.updated_at) | reverse | .[5:] | .[] | .tag" | tr '\n' ' ')
+          [[ -n "$TAGS" ]] && doctl registry repository delete-tag --force ${{ secrets. DIGITALOCEAN_APP_NAME }} $TAGS
+          echo "Done"
+
+      - name: Run garbage collection 🗑
+        run: |-
+          doctl registry garbage-collection start --include-untagged-manifests --force ${{ secrets.DIGITALOCEAN_REGISTRY }}
