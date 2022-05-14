@@ -53,6 +53,7 @@ def image_cov_handler() -> ConversationHandler:
         },
         fallbacks=[CommandHandler("cancel", cancel)],
         allow_reentry=True,
+        run_async=True,
     )
 
     return conv_handler

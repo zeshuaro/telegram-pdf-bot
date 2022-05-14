@@ -43,6 +43,7 @@ def text_cov_handler():
             CommandHandler("cancel", cancel),
         ],
         allow_reentry=True,
+        run_async=True,
     )
 
     return conv_handler

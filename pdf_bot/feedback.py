@@ -28,6 +28,7 @@ def feedback_cov_handler() -> ConversationHandler:
         entry_points=[CommandHandler("feedback", feedback)],
         states={0: [MessageHandler(TEXT_FILTER, check_text)]},
         fallbacks=[CommandHandler("cancel", cancel)],
+        run_async=True,
     )
 
     return conv_handler

@@ -56,39 +56,43 @@ jobs:
           isort --check --diff main.py pdf_bot
           pylint main.py pdf_bot
 
-  deploy-stg:
-    name: Deploy to Staging
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     needs: [test-image, lint]
     if: ${{ github.ref == 'refs/heads/master' }}
-    environment:
-      name: Staging
     env:
-      GCP_IMAGE: ${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_SERVICE_NAME }}:${{ github.sha }}
+      DOCKER_IMAGE: registry.digitalocean.com/${{ secrets.DIGITALOCEAN_REGISTRY }}/${{ secrets.DIGITALOCEAN_APP_NAME }}:${{ github.sha }}
 
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Authenticate to Google Cloud 🔐
-        uses: google-github-actions/auth@v0.7.1
+      - name: Install doctl 🌊
+        uses: digitalocean/action-doctl@v2.1.1
         with:
-          credentials_json: "${{ secrets.GCP_SA_KEY }}"
+          token: ${{ secrets.DIGITALOCEAN_TOKEN }}
 
-      - name: Setup Google Cloud ⚙️
-        uses: google-github-actions/setup-gcloud@v0.6.0
-
-      - name: Authorize Docker push 🚢
-        run: gcloud auth configure-docker
+      - name: Authenticate to DigitalOcean 🔐
+        run: doctl registry login --expiry-seconds 600
 
       - name: Build and push image 🏗
         run: |-
-          docker build -t gcr.io/${{ env.GCP_IMAGE }} .
-          docker push gcr.io/${{ env.GCP_IMAGE }}
+          docker build -t ${{ env.DOCKER_IMAGE }} .
+          docker push ${{ env.DOCKER_IMAGE }}
 
       - name: Deploy 🚀
-        uses: google-github-actions/deploy-cloudrun@v0.10.0
+        uses: digitalocean/app_action@v1.1.2
         with:
-          service: ${{ secrets.GCP_SERVICE_NAME }}
-          image: gcr.io/${{ env.GCP_IMAGE }}
-          region: ${{ secrets.GCP_REGION }}
+          app_name: ${{ secrets.DIGITALOCEAN_APP_NAME }}
+          token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+          images: '[
+            {
+              "name": "${{ secrets.DIGITALOCEAN_APP_NAME }}",
+              "image": {
+                "registry_type": "DOCR",
+                "repository": "${{ secrets.DIGITALOCEAN_APP_NAME }}",
+                "tag": "${{ github.sha }}"
+              }
+            }
+          ]'
