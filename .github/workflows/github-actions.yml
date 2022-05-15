@@ -7,6 +7,48 @@ on:
   pull_request:
 
 jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Setup Python 🐍
+        id: setup-python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10.4"
+
+      - name: Install Poetry 📦
+        uses: snok/install-poetry@v1.3.1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Cache virtual environment 💾
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-
+
+      - name: Install dependencies ⚙️
+        run: poetry install --no-interaction
+
+      - name: Run Tests 🧪
+        run: |
+          source .venv/bin/activate
+          pybabel compile -D pdf_bot -d locale
+          pytest --cov=pdf_bot --cov-report=xml
+
+      - name: Upload coverage report 📡
+        uses: codecov/codecov-action@v3.1.0
+        with:
+          files: ./coverage.xml
+
   test-image:
     name: Test Image
     runs-on: ubuntu-latest
@@ -90,11 +132,11 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_TOKEN }}
           images: '[
             {
-              "name": "${{ secrets.DIGITALOCEAN_APP_NAME }}",
-              "image": {
-                "registry_type": "DOCR",
-                "repository": "${{ secrets.DIGITALOCEAN_APP_NAME }}",
-                "tag": "${{ github.sha }}"
-              }
+            "name": "${{ secrets.DIGITALOCEAN_APP_NAME }}",
+            "image": {
+            "registry_type": "DOCR",
+            "repository": "${{ secrets.DIGITALOCEAN_APP_NAME }}",
+            "tag": "${{ github.sha }}"
             }
-          ]'
+            }
+            ]'

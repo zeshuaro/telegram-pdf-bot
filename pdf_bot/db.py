@@ -1,4 +1,5 @@
 import os
+import sys
 
 from dotenv import load_dotenv
 from google.cloud import datastore
@@ -11,7 +12,9 @@ if GCP_CRED is not None:
     with open(GCP_KEY_FILE, "w") as f:
         f.write(GCP_CRED)
 
-if GCP_KEY_FILE is not None:
+if "pytest" in sys.modules:
+    db = None
+elif GCP_KEY_FILE is not None:
     db = datastore.Client.from_service_account_json(GCP_KEY_FILE)
 else:
     db = datastore.Client()
