@@ -21,6 +21,7 @@ from telegram.ext import (
 )
 from telegram.ext.dispatcher import Dispatcher
 
+from pdf_bot.account.repository import account_repository
 from pdf_bot.commands import (
     compare_cov_handler,
     image_cov_handler,
@@ -38,7 +39,6 @@ from pdf_bot.payment import (
     send_support_options,
     successful_payment,
 )
-from pdf_bot.store import create_user
 from pdf_bot.url import url_to_pdf
 
 load_dotenv()
@@ -101,7 +101,7 @@ def start_msg(update: Update, context: CallbackContext) -> None:
     update.effective_message.reply_chat_action(ChatAction.TYPING)
 
     # Create the user entity in Datastore
-    create_user(update.effective_message.from_user)
+    account_repository.create_user(update.effective_message.from_user)
 
     _ = set_lang(update, context)
     update.effective_message.reply_text(
