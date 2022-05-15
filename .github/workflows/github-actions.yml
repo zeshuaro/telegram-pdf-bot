@@ -42,10 +42,12 @@ jobs:
         run: |
           source .venv/bin/activate
           pybabel compile -D pdf_bot -d locale
-          pytest --cov=pdf_bot
+          pytest --cov=pdf_bot --cov-report=xml
 
       - name: Upload coverage report 📡
         uses: codecov/codecov-action@v3.1.0
+        with:
+          files: ./coverage.xml
 
   test-image:
     name: Test Image
