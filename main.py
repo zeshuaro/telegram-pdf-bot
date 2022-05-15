@@ -3,12 +3,9 @@ import os
 from dotenv import load_dotenv
 from loguru import logger
 from telegram.ext import Updater
-from telegram.ext import messagequeue as mq
-from telegram.utils.request import Request
 
 import pdf_bot.dispatcher as dp
 import pdf_bot.logging as pdf_bot_logging
-from pdf_bot.mq_bot import MQBot
 
 load_dotenv()
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
@@ -22,14 +19,9 @@ def main():
     # Setup logging
     pdf_bot_logging.setup_logging()
 
-    q = mq.MessageQueue(all_burst_limit=3, all_time_limit_ms=3000)
-    request = Request(con_pool_size=12, connect_timeout=TIMEOUT, read_timeout=TIMEOUT)
-    pdf_bot = MQBot(TELEGRAM_TOKEN, request=request, mqueue=q)
-
     # Create the EventHandler and pass it your bot's token.
     updater = Updater(
-        bot=pdf_bot,
-        use_context=True,
+        token=TELEGRAM_TOKEN,
         request_kwargs={"connect_timeout": TIMEOUT, "read_timeout": TIMEOUT},
         workers=8,
     )
