@@ -1,4 +1,3 @@
-import random
 from typing import cast
 from unittest.mock import MagicMock
 
@@ -21,20 +20,13 @@ def fixture_account_service(account_repository: AccountRepository) -> AccountSer
     return AccountService(account_repository)
 
 
-@pytest.fixture(name="telegram_user")
-def fixture_telegram_user() -> User:
-    user = cast(User, MagicMock())
-    user.id = random.randint(0, 10)
-    return user
-
-
 def test_create_user(
     account_service: AccountService,
     account_repository: AccountRepository,
     telegram_user: User,
 ):
     account_service.create_user(telegram_user)
-    assert account_repository.upsert_user.called_with(telegram_user.id, _LANGUAGE_CODE)
+    account_repository.upsert_user.assert_called_with(telegram_user.id, _LANGUAGE_CODE)
 
 
 def test_create_user_with_language_code(
@@ -44,7 +36,7 @@ def test_create_user_with_language_code(
 ):
     telegram_user.language_code = "it"
     account_service.create_user(telegram_user)
-    assert account_repository.upsert_user.called_with(telegram_user.id, "it_IT")
+    account_repository.upsert_user.assert_called_with(telegram_user.id, "it_IT")
 
 
 def test_create_user_with_invalid_language_code(
@@ -55,4 +47,4 @@ def test_create_user_with_invalid_language_code(
     lang_code = "clearly_invalid_code"
     telegram_user.language_code = lang_code
     account_service.create_user(telegram_user)
-    assert account_repository.upsert_user.called_with(telegram_user.id, _LANGUAGE_CODE)
+    account_repository.upsert_user.assert_called_with(telegram_user.id, _LANGUAGE_CODE)
