@@ -61,6 +61,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test-image, lint]
     if: ${{ github.ref == 'refs/heads/master' }}
+    environment:
+      name: Production
     env:
       DOCKER_IMAGE: registry.digitalocean.com/${{ secrets.DIGITALOCEAN_REGISTRY }}/${{ secrets.DIGITALOCEAN_APP_NAME }}:${{ github.sha }}
 
