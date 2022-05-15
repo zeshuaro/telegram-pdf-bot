@@ -117,14 +117,6 @@ python-versions = "*"
 pycparser = "*"
 
 [[package]]
-name = "chardet"
-version = "4.0.0"
-description = "Universal encoding detector for Python 2 and 3"
-category = "main"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[[package]]
 name = "charset-normalizer"
 version = "2.0.12"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
@@ -624,15 +616,15 @@ mupdf = ["PyMuPDF (>=1.18.0)"]
 
 [[package]]
 name = "pdfminer.six"
-version = "20220319"
+version = "20220506"
 description = "PDF parser and analyzer"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-chardet = {version = "*", markers = "python_version > \"3.0\""}
-cryptography = "*"
+charset-normalizer = ">=2.0.0,<2.1.0"
+cryptography = ">=36.0.0,<36.1.0"
 
 [package.extras]
 dev = ["black", "mypy (==0.931)", "nox", "pytest"]
@@ -1093,7 +1085,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "1a94370a53a143fa3bf842670a3e33e87f20a7afeb492efa686aa5e4ef297611"
+content-hash = "c5d1a7ce25891b52bd013c6f27088927b9d76d3cd19d140971d1b8e01f04487f"
 
 [metadata.files]
 apscheduler = [
@@ -1288,10 +1280,6 @@ cffi = [
     {file = "cffi-1.15.0-cp39-cp39-win32.whl", hash = "sha256:2a23af14f408d53d5e6cd4e3d9a24ff9e05906ad574822a10563efcef137979a"},
     {file = "cffi-1.15.0-cp39-cp39-win_amd64.whl", hash = "sha256:3773c4d81e6e818df2efbc7dd77325ca0dcb688116050fb2b3011218eda36139"},
     {file = "cffi-1.15.0.tar.gz", hash = "sha256:920f0d66a896c2d99f0adbb391f990a84091179542c205fa53ce5787aff87954"},
-]
-chardet = [
-    {file = "chardet-4.0.0-py2.py3-none-any.whl", hash = "sha256:f864054d66fd9118f2e67044ac8981a54775ec5b67aed0441892edb553d21da5"},
-    {file = "chardet-4.0.0.tar.gz", hash = "sha256:0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"},
 ]
 charset-normalizer = [
     {file = "charset-normalizer-2.0.12.tar.gz", hash = "sha256:2857e29ff0d34db842cd7ca3230549d1a697f96ee6d3fb071cfa6c7393832597"},
@@ -1601,8 +1589,8 @@ pdfcropmargins = [
     {file = "pdfCropMargins-1.0.5.tar.gz", hash = "sha256:76fd16b3955e11b2a9fc3ad839342d6528f10324908a4a8f04f94ecda68205b3"},
 ]
 "pdfminer.six" = [
-    {file = "pdfminer.six-20220319-py3-none-any.whl", hash = "sha256:af0630f98a292bad4170f54e80f82ca81b916dd0b2c996437ec45c02f11d8762"},
-    {file = "pdfminer.six-20220319.tar.gz", hash = "sha256:eff2ce0abeaa4df94dc3461f70eab104487c7b4a2b3c7e9fd0aeec6c5f44d6a6"},
+    {file = "pdfminer.six-20220506-py3-none-any.whl", hash = "sha256:0960be95fe8724a4847f83d53d0331b890871f6035ba706841568caa2b541bf5"},
+    {file = "pdfminer.six-20220506.tar.gz", hash = "sha256:3d65c1a0f4a0465c709e191550ec77a684ebe0bcb562337ccbfb7aa228c52076"},
 ]
 pikepdf = [
     {file = "pikepdf-5.1.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:1d3141916dc9efc433fd22beba544f67a53a805800c3ff902baffa398ef4c85e"},
