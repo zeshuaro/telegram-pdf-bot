@@ -6,7 +6,7 @@ from telegram.chataction import ChatAction
 from telegram.ext import CallbackContext
 
 from pdf_bot.consts import LANGUAGE, LANGUAGES, USER
-from pdf_bot.store import client
+from pdf_bot.db import db
 
 
 def send_lang(update: Update, context: CallbackContext, query: CallbackQuery = None):
@@ -39,8 +39,8 @@ def get_lang(update: Update, context: CallbackContext, query: CallbackQuery = No
         else:
             user_id = query.from_user.id
 
-        user_key = client.key(USER, user_id)
-        user = client.get(key=user_key)
+        user_key = db.key(USER, user_id)
+        user = db.get(key=user_key)
 
         if user is None or LANGUAGE not in user:
             lang = "en_GB"
@@ -59,13 +59,13 @@ def get_lang(update: Update, context: CallbackContext, query: CallbackQuery = No
 
 def store_lang(update, context, query):
     lang_code = LANGUAGES[query.data]
-    with client.transaction():
-        user_key = client.key(USER, query.from_user.id)
-        user = client.get(key=user_key)
+    with db.transaction():
+        user_key = db.key(USER, query.from_user.id)
+        user = db.get(key=user_key)
         if user is None:
             user = datastore.Entity(user_key)
         user[LANGUAGE] = lang_code
-        client.put(user)
+        db.put(user)
 
     context.user_data[LANGUAGE] = lang_code
     _ = set_lang(update, context)

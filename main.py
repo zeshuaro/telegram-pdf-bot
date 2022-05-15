@@ -23,7 +23,7 @@ def main():
     pdf_bot_logging.setup_logging()
 
     q = mq.MessageQueue(all_burst_limit=3, all_time_limit_ms=3000)
-    request = Request(con_pool_size=8, connect_timeout=TIMEOUT, read_timeout=TIMEOUT)
+    request = Request(con_pool_size=12, connect_timeout=TIMEOUT, read_timeout=TIMEOUT)
     pdf_bot = MQBot(TELEGRAM_TOKEN, request=request, mqueue=q)
 
     # Create the EventHandler and pass it your bot's token.
