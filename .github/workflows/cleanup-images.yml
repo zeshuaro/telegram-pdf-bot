@@ -1,6 +1,9 @@
 name: DigitalOcean Cleanup Images
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: "0 17 * * *"
   workflow_dispatch:
@@ -24,10 +27,11 @@ jobs:
 
       - name: Delete old images 🧹
         run: |-
-          TAGS=$(doctl registry repository list-tags ${{ secrets. DIGITALOCEAN_APP_NAME }} -o json | jq -r "sort_by(.updated_at) | reverse | .[5:] | .[] | .tag" | tr '\n' ' ')
+          TAGS=$(doctl registry repository list-tags ${{ secrets. DIGITALOCEAN_APP_NAME }} -o json | jq -r "sort_by(.updated_at) | reverse | .[10:] | .[] | .tag" | tr '\n' ' ')
           [[ -n "$TAGS" ]] && doctl registry repository delete-tag --force ${{ secrets. DIGITALOCEAN_APP_NAME }} $TAGS
           echo "Done"
 
       - name: Run garbage collection 🗑
+        if: ${{ github.event_name == 'schedule' }}
         run: |-
           doctl registry garbage-collection start --include-untagged-manifests --force ${{ secrets.DIGITALOCEAN_REGISTRY }}
