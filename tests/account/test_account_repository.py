@@ -23,6 +23,27 @@ def fixture_account_repository(db) -> AccountRepository:
     return AccountRepository(db)
 
 
+def test_get_user(
+    account_repository: AccountRepository,
+    db: Client,
+    user_id: int,
+    user_entity: Entity,
+):
+    db.get = MagicMock(return_value=user_entity)
+    actual = account_repository.get_user(user_id)
+    assert actual == user_entity
+
+
+def test_get_user_null(
+    account_repository: AccountRepository,
+    db: Client,
+    user_id: int,
+):
+    db.get = MagicMock(return_value=None)
+    actual = account_repository.get_user(user_id)
+    assert actual is None
+
+
 def test_upsert_user(
     account_repository: AccountRepository,
     db: Client,
