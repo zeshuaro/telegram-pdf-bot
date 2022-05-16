@@ -20,25 +20,14 @@ jobs:
       - name: Setup Snyk 🐕
         uses: snyk/actions/setup@master
 
+      - name: Install Poetry 📦
+        run: pipx install poetry
+
       - name: Setup Python 🐍
-        id: setup-python
         uses: actions/setup-python@v3
         with:
           python-version: "3.10.4"
-
-      - name: Install Poetry 📦
-        uses: snok/install-poetry@v1.3.1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-
-      - name: Cache virtual environment 💾
-        uses: actions/cache@v3
-        with:
-          path: .venv
-          key: ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-
+          cache: poetry
 
       - name: Install dependencies ⚙️
         run: poetry install --no-root --no-interaction
