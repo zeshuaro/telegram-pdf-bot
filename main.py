@@ -1,5 +1,6 @@
 import os
 
+import sentry_sdk
 from dotenv import load_dotenv
 from loguru import logger
 from telegram.ext import Updater
@@ -9,6 +10,7 @@ import pdf_bot.logging as pdf_bot_logging
 
 load_dotenv()
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
+SENTRY_DSN = os.environ.get("SENTRY_DSN")
 APP_URL = os.environ.get("APP_URL")
 PORT = int(os.environ.get("PORT", "8443"))
 
@@ -16,10 +18,10 @@ TIMEOUT = 30
 
 
 def main():
-    # Setup logging
     pdf_bot_logging.setup_logging()
+    if SENTRY_DSN is not None:
+        sentry_sdk.init(SENTRY_DSN, traces_sample_rate=1.0)
 
-    # Create the EventHandler and pass it your bot's token.
     updater = Updater(
         token=TELEGRAM_TOKEN,
         request_kwargs={"connect_timeout": TIMEOUT, "read_timeout": TIMEOUT},
@@ -41,9 +43,6 @@ def main():
         updater.start_polling()
         logger.info("Bot started polling")
 
-    # Run the bot until the you presses Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
 
 
