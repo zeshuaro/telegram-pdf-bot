@@ -112,7 +112,7 @@ jobs:
 
       - name: Build and push image 🏗
         run: |-
-          docker build -t ${{ env.DOCKER_IMAGE }} .
+          docker build -t ${{ env.DOCKER_IMAGE }} --build-arg COMMIT_HASH=${{ github.sha }} .
           docker push ${{ env.DOCKER_IMAGE }}
 
       - name: Deploy 🚀
