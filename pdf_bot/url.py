@@ -49,6 +49,8 @@ def url_to_pdf(update: Update, context: CallbackContext):
                 send_result_file(update, context, out_fn, TaskType.url_to_pdf)
             except URLFetchingError:
                 message.reply_text(_("Unable to reach your web page"))
+            except AssertionError:
+                message.reply_text(_("Failed to convert your web page"))
 
     try:
         del user_data[URLS][url]
