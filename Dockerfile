@@ -1,5 +1,7 @@
 FROM --platform=linux/amd64 python:3.10.4-slim AS build
 
+ARG COMMIT_HASH
+
 WORKDIR /build
 RUN apt-get update && apt-get install -y --no-install-recommends git
 
@@ -15,6 +17,9 @@ RUN pybabel compile -D pdf_bot -d locale \
     && find locale -type f -name '*.po' -delete
 
 FROM --platform=linux/amd64 python:3.10.4-slim AS deploy
+
+ARG COMMIT_HASH
+ENV SENTRY_RELEASE $COMMIT_HASH
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ghostscript libpango-1.0-0 \
