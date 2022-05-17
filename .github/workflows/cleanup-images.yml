@@ -27,8 +27,8 @@ jobs:
 
       - name: Delete old images 🧹
         run: |-
-          TAGS=$(doctl registry repository list-tags ${{ secrets. DIGITALOCEAN_APP_NAME }} -o json | jq -r "sort_by(.updated_at) | reverse | .[10:] | .[] | .tag" | tr '\n' ' ')
-          [[ -n "$TAGS" ]] && doctl registry repository delete-tag --force ${{ secrets. DIGITALOCEAN_APP_NAME }} $TAGS
+          DIGESTS=$(doctl registry repository list-tags ${{ secrets. DIGITALOCEAN_APP_NAME }} -o json | jq -r "sort_by(.updated_at) | reverse | .[10:] | .[] | .manifest_digest" | tr '\n' ' ')
+          [[ -n "$DIGESTS" ]] && doctl registry repository delete-manifest --force ${{ secrets. DIGITALOCEAN_APP_NAME }} $DIGESTS
           echo "Done"
 
       - name: Run garbage collection 🗑
