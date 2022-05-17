@@ -1,7 +1,6 @@
 import os
 
 from dotenv import load_dotenv
-from loguru import logger
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -211,10 +210,8 @@ def send_msg(update: Update, context: CallbackContext):
         update.effective_message.reply_text("User has blocked the bot")
 
 
-def error_callback(update: Update, context: CallbackContext):
+def error_callback(_update: Update, context: CallbackContext):
     try:
         raise context.error
     except Unauthorized:
         pass
-    except Exception:  # pylint: disable=broad-except
-        logger.exception(f'Update "{update}" caused error')
