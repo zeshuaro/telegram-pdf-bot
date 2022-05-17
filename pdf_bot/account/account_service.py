@@ -1,6 +1,6 @@
 from telegram import User
 
-from pdf_bot.account import AccountRepository
+from pdf_bot.account.account_repository import AccountRepository
 from pdf_bot.consts import LANGS_SHORT
 
 
