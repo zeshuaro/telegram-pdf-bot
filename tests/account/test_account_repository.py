@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 from google.cloud.datastore import Client, Entity, Key
 
-from pdf_bot.account.account_repository import AccountRepository
+from pdf_bot.account import AccountRepository
 
 
 @pytest.fixture(name="user_entity")

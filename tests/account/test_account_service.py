@@ -4,8 +4,7 @@ from unittest.mock import MagicMock
 import pytest
 from telegram import User
 
-from pdf_bot.account.account_repository import AccountRepository
-from pdf_bot.account.account_service import AccountService
+from pdf_bot.account import AccountRepository, AccountService
 
 _LANGUAGE_CODE = "en_GB"
 

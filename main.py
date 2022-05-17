@@ -7,6 +7,7 @@ from telegram.ext import Updater
 
 import pdf_bot.dispatcher as dp
 import pdf_bot.logging as pdf_bot_logging
+from pdf_bot.containers import Application
 
 load_dotenv()
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
@@ -47,4 +48,8 @@ def main():
 
 
 if __name__ == "__main__":
+    application = Application()
+    application.core.init_resources()
+    application.wire(modules=["pdf_bot.dispatcher"])
+
     main()

@@ -27,6 +27,7 @@ langdetect = "1.0.9"
 loguru = "0.6.0"
 sentry-sdk = "1.5.12"
 grpcio-tools = "1.46.1"
+dependency-injector = "4.39.1"
 
 [tool.poetry.dev-dependencies]
 black = "22.3.0"
@@ -42,6 +43,11 @@ build-backend = "poetry.core.masonry.api"
 [tool.isort]
 profile = "black"
 multi_line_output = 3
+
+[tool.pylint.master]
+extension-pkg-allow-list = [
+    "dependency_injector"
+]
 
 [tool.pylint.message-control]
 disable = [

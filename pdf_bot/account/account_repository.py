@@ -6,8 +6,8 @@ from pdf_bot.db import db as default_db
 
 
 class AccountRepository:
-    def __init__(self, db_client: Client | None = None):
-        self.db = db_client or default_db
+    def __init__(self, db: Client | None = None):
+        self.db = db or default_db
 
     def get_user(self, user_id: int) -> Entity | None:
         key = self.db.key(USER, user_id)
@@ -24,6 +24,3 @@ class AccountRepository:
                 db_user[LANGUAGE] = language_code
 
             self.db.put(db_user)
-
-
-account_repository = AccountRepository()

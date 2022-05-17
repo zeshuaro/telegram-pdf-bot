@@ -1,14 +1,9 @@
 import os
 
+from dependency_injector.wiring import Provide, inject
 from dotenv import load_dotenv
 from sentry_sdk import set_user
-from telegram import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    MessageEntity,
-    ParseMode,
-    Update,
-)
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, Update
 from telegram.chataction import ChatAction
 from telegram.error import Unauthorized
 from telegram.ext import (
@@ -21,7 +16,7 @@ from telegram.ext import (
 )
 from telegram.ext.dispatcher import Dispatcher
 
-from pdf_bot.account.account_service import account_service
+from pdf_bot.command.command_service import CommandService
 from pdf_bot.commands import (
     compare_cov_handler,
     image_cov_handler,
@@ -30,6 +25,7 @@ from pdf_bot.commands import (
     watermark_cov_handler,
 )
 from pdf_bot.consts import CHANNEL_NAME, LANGUAGES, PAYMENT, SET_LANG
+from pdf_bot.containers import Application
 from pdf_bot.feedback import feedback_cov_handler
 from pdf_bot.files import file_cov_handler
 from pdf_bot.language import send_lang, set_lang, store_lang
@@ -46,13 +42,21 @@ ADMIN_TELEGRAM_ID = os.environ.get("ADMIN_TELEGRAM_ID")
 CALLBACK_DATA = "callback_data"
 
 
-def setup_dispatcher(dispatcher: Dispatcher):
+@inject
+def setup_dispatcher(
+    dispatcher: Dispatcher,
+    command_service: CommandService = Provide[
+        Application.services.command  # pylint: disable=no-member
+    ],
+):
     dispatcher.add_handler(
         CommandHandler(
             "start", send_support_options, Filters.regex("support"), run_async=True
         )
     )
-    dispatcher.add_handler(CommandHandler("start", start_msg, run_async=True))
+    dispatcher.add_handler(
+        CommandHandler("start", command_service.send_start_message, run_async=True)
+    )
 
     dispatcher.add_handler(CommandHandler("help", help_msg, run_async=True))
     dispatcher.add_handler(CommandHandler("setlang", send_lang, run_async=True))
@@ -95,43 +99,6 @@ def setup_dispatcher(dispatcher: Dispatcher):
 
     # Log all errors
     dispatcher.add_error_handler(error_callback)
-
-
-def start_msg(update: Update, context: CallbackContext) -> None:
-    update.effective_message.reply_chat_action(ChatAction.TYPING)
-
-    # Create the user entity in Datastore
-    account_service.create_user(update.effective_message.from_user)
-
-    _ = set_lang(update, context)
-    update.effective_message.reply_text(
-        "{welcome}\n\n<b>{key_features}</b>\n"
-        "{features_summary}\n"
-        "{pdf_from_text}\n"
-        "{extract_pdf}\n"
-        "{convert_to_images}\n"
-        "{convert_to_pdf}\n"
-        "{beautify}\n"
-        "<b><i>{and_more}</i></b>\n\n"
-        "{see_usage}".format(
-            welcome=_("Welcome to PDF Bot!"),
-            key_features=_("Key features:"),
-            features_summary=_(
-                "- Compress, merge, preview, rename, split "
-                "and add watermark to PDF files"
-            ),
-            pdf_from_text=_("- Create PDF files from text messages"),
-            extract_pdf=_("- Extract images and text from PDF files"),
-            convert_to_images=_("- Convert PDF files into images"),
-            convert_to_pdf=_("- Convert webpages and images into PDF files"),
-            beautify=_("- Beautify handwritten notes images into PDF files"),
-            and_more=_("- And more..."),
-            see_usage=_("Type {command} to see how to use PDF Bot").format(
-                command="/help"
-            ),
-        ),
-        parse_mode=ParseMode.HTML,
-    )
 
 
 def help_msg(update, context):
