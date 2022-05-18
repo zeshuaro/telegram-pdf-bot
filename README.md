@@ -21,6 +21,8 @@ A Telegram bot that can:
 - Beautify handwritten notes images into PDF files
 - Convert webpages and images into PDF files
 
+[![DigitalOcean Referral Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg)](https://www.digitalocean.com/?refcode=4991e58bfd21&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes
