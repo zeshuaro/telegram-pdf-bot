@@ -15,7 +15,7 @@ SENTRY_DSN = os.environ.get("SENTRY_DSN")
 APP_URL = os.environ.get("APP_URL")
 PORT = int(os.environ.get("PORT", "8443"))
 
-TIMEOUT = 30
+TIMEOUT = 45
 
 
 def main():
