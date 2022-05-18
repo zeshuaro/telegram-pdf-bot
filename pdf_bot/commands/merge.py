@@ -250,7 +250,7 @@ def merge_pdf(update: Update, context: CallbackContext) -> int:
 
         try:
             merger.append(open(file_name, "rb"))
-        except PdfReadError:
+        except (PdfReadError, ValueError):
             update.effective_message.reply_text(
                 _(
                     "I couldn't merge your PDF files "
