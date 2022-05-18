@@ -29,7 +29,7 @@ def test_get_user(
     user_id: int,
     user_entity: Entity,
 ):
-    db.get = MagicMock(return_value=user_entity)
+    db.get.return_value = user_entity
     actual = account_repository.get_user(user_id)
     assert actual == user_entity
 
@@ -39,7 +39,7 @@ def test_get_user_null(
     db: Client,
     user_id: int,
 ):
-    db.get = MagicMock(return_value=None)
+    db.get.return_value = None
     actual = account_repository.get_user(user_id)
     assert actual is None
 
@@ -51,7 +51,7 @@ def test_upsert_user(
     language_code: str,
     user_entity: Entity,
 ):
-    db.get = MagicMock(return_value=user_entity)
+    db.get.return_value = user_entity
 
     account_repository.upsert_user(user_id, language_code)
 
@@ -67,8 +67,8 @@ def test_upsert_user_new_user(
     user_entity: Entity,
 ):
     with patch("pdf_bot.account.account_repository.datastore") as datastore:
-        datastore.Entity = MagicMock(return_value=user_entity)
-        db.get = MagicMock(return_value=None)
+        datastore.Entity.return_value = user_entity
+        db.get.return_value = None
 
         account_repository.upsert_user(user_id, language_code)
 
