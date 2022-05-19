@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-17 13:54+0000\n"
-"PO-Revision-Date: 2022-05-17 13:54\n"
+"POT-Creation-Date: 2022-05-19 12:23+0000\n"
+"PO-Revision-Date: 2022-05-19 12:23\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -147,57 +147,61 @@ msgstr "Γεύμα"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:108
+#: pdf_bot/dispatcher.py:110
 msgid "Set Language 🌎"
 msgstr "Ορισμός γλώσσας 🌎"
 
-#: pdf_bot/dispatcher.py:110 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:112 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Είσοδος στο Κανάλι"
 
-#: pdf_bot/dispatcher.py:111 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:113 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Υποστήριξη BOT PDF"
 
-#: pdf_bot/dispatcher.py:120
+#: pdf_bot/dispatcher.py:122
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Μπορείτε να εκτελέσετε τις περισσότερες από τις εργασίες στέλνοντας μου ένα από τα εξής:"
 
-#: pdf_bot/dispatcher.py:123
+#: pdf_bot/dispatcher.py:125
 msgid "- PDF files"
 msgstr "- Αρχεία PDF"
 
-#: pdf_bot/dispatcher.py:124
+#: pdf_bot/dispatcher.py:126
 msgid "- Images"
 msgstr "- Εικόνες"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:127
 msgid "- Webpage links"
 msgstr "- Σύνδεσμοι ιστοσελίδων"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:128
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Οι υπόλοιπες εργασίες μπορούν να εκτελεστούν χρησιμοποιώντας τις ακόλουθες εντολές:"
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:132
 msgid "{command} - compare PDF files"
 msgstr "{command} - σύγκριση αρχείων PDF"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:133
 msgid "{command} - merge PDF files"
 msgstr "{command} - συγχώνευση αρχείων PDF"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:134
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - μετατρέψτε και συνδυάστε πολλές εικόνες σε αρχεία PDF"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - δημιουργία αρχείων PDF από μηνύματα κειμένου"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - προσθήκη υδατογραφήματος σε αρχεία PDF"
+
+#: pdf_bot/dispatcher.py:175
+msgid "The button has expired, please try again with a new message/query then press the new button"
+msgstr ""
 
 #: pdf_bot/feedback.py:49
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
@@ -346,26 +350,6 @@ msgstr "- Και περισσότερο..."
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Πληκτρολογήστε {command} για να δείτε πώς να χρησιμοποιήσετε το PDF Bot"
 
-#: pdf_bot/commands/compare.py:48
-msgid "Send me one of the PDF files that you'll like to compare"
-msgstr "Στείλτε μου ένα από τα αρχεία PDF που θέλετε να συγκρίνετε"
-
-#: pdf_bot/commands/compare.py:49
-msgid "Note that I can only look for text differences"
-msgstr "Σημειώστε ότι μπορώ να αναζητήσω μόνο διαφορές κειμένου"
-
-#: pdf_bot/commands/compare.py:83
-msgid "Send me the other PDF file that you'll like to compare"
-msgstr "Στείλτε μου το άλλο αρχείο PDF που θα σας αρέσει να συγκρίνετε"
-
-#: pdf_bot/commands/compare.py:107
-msgid "Comparing your PDF files"
-msgstr "Σύγκριση των αρχείων PDF"
-
-#: pdf_bot/commands/compare.py:126
-msgid "There are no text differences between your PDF files"
-msgstr "Δεν υπάρχουν διαφορές κειμένου μεταξύ των αρχείων PDF"
-
 #: pdf_bot/commands/image.py:79
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Στείλτε μου τις εικόνες που θέλετε να ομορφύνετε ή να μετατρέψετε σε αρχείο PDF"
@@ -477,6 +461,26 @@ msgstr "Προσθήκη του υδατογραφήματος στο αρχεί
 #: pdf_bot/commands/watermark.py:116
 msgid "watermark"
 msgstr "στάθμη ύδατος"
+
+#: pdf_bot/compare/compare_service.py:25
+msgid "Send me one of the PDF files that you'll like to compare"
+msgstr "Στείλτε μου ένα από τα αρχεία PDF που θέλετε να συγκρίνετε"
+
+#: pdf_bot/compare/compare_service.py:26
+msgid "Note that I can only look for text differences"
+msgstr "Σημειώστε ότι μπορώ να αναζητήσω μόνο διαφορές κειμένου"
+
+#: pdf_bot/compare/compare_service.py:48
+msgid "Send me the other PDF file that you'll like to compare"
+msgstr "Στείλτε μου το άλλο αρχείο PDF που θα σας αρέσει να συγκρίνετε"
+
+#: pdf_bot/compare/compare_service.py:72
+msgid "Comparing your PDF files"
+msgstr "Σύγκριση των αρχείων PDF"
+
+#: pdf_bot/compare/compare_service.py:82
+msgid "There are no text differences between your PDF files"
+msgstr "Δεν υπάρχουν διαφορές κειμένου μεταξύ των αρχείων PDF"
 
 #: pdf_bot/files/black_white.py:21
 msgid "Converting your PDF file to black and white"
