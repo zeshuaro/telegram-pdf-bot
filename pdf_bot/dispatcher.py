@@ -2,7 +2,6 @@ import os
 
 from dependency_injector.wiring import Provide, inject
 from dotenv import load_dotenv
-from sentry_sdk import set_user
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, Update
 from telegram.chataction import ChatAction
 from telegram.error import BadRequest, Unauthorized
