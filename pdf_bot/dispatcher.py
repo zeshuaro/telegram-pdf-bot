@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from sentry_sdk import set_user
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, Update
 from telegram.chataction import ChatAction
-from telegram.error import Unauthorized
+from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
@@ -167,7 +167,19 @@ def process_callback_query(update: Update, context: CallbackContext):
 
         context.user_data[CALLBACK_DATA].remove(data)
 
-    query.answer()
+    try:
+        query.answer()
+    except BadRequest as e:
+        if e.message.startswith("Query is too old"):
+            context.bot.send_message(
+                query.from_user.id,
+                _(
+                    "The button has expired, please try again with a new message/query "
+                    "then press the new button"
+                ),
+            )
+        else:
+            raise
 
 
 def send_msg(update: Update, context: CallbackContext):
