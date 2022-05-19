@@ -2,10 +2,9 @@ import os
 
 from dependency_injector.wiring import Provide, inject
 from dotenv import load_dotenv
-from sentry_sdk import set_user
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, Update
 from telegram.chataction import ChatAction
-from telegram.error import Unauthorized
+from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
@@ -167,7 +166,19 @@ def process_callback_query(update: Update, context: CallbackContext):
 
         context.user_data[CALLBACK_DATA].remove(data)
 
-    query.answer()
+    try:
+        query.answer()
+    except BadRequest as e:
+        if e.message.startswith("Query is too old"):
+            context.bot.send_message(
+                query.from_user.id,
+                _(
+                    "The button has expired, please try again with a new message/query "
+                    "then press the new button"
+                ),
+            )
+        else:
+            raise
 
 
 def send_msg(update: Update, context: CallbackContext):
@@ -181,11 +192,8 @@ def send_msg(update: Update, context: CallbackContext):
         update.effective_message.reply_text("User has blocked the bot")
 
 
-def error_callback(update: Update, context: CallbackContext):
-    set_user({"id": update.effective_user.id})
+def error_callback(_update: Update, context: CallbackContext):
     try:
         raise context.error
     except Unauthorized:
         pass
-    finally:
-        set_user(None)
