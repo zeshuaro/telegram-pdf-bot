@@ -193,11 +193,8 @@ def send_msg(update: Update, context: CallbackContext):
         update.effective_message.reply_text("User has blocked the bot")
 
 
-def error_callback(update: Update, context: CallbackContext):
-    set_user({"id": update.effective_user.id})
+def error_callback(_update: Update, context: CallbackContext):
     try:
         raise context.error
     except Unauthorized:
         pass
-    finally:
-        set_user(None)
