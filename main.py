@@ -1,6 +1,7 @@
 import os
 
 import sentry_sdk
+from dependency_injector.wiring import Provide, inject
 from dotenv import load_dotenv
 from loguru import logger
 from telegram.ext import Updater
@@ -18,16 +19,13 @@ PORT = int(os.environ.get("PORT", "8443"))
 TIMEOUT = 45
 
 
-def main():
+@inject
+def main(
+    updater: Updater = Provide[Application.core.updater],  # pylint: disable=no-member
+):
     pdf_bot_logging.setup_logging()
     if SENTRY_DSN is not None:
         sentry_sdk.init(SENTRY_DSN, traces_sample_rate=1.0)
-
-    updater = Updater(
-        token=TELEGRAM_TOKEN,
-        request_kwargs={"connect_timeout": TIMEOUT, "read_timeout": TIMEOUT},
-        workers=8,
-    )
 
     dispatcher = updater.dispatcher
     dp.setup_dispatcher(dispatcher)
@@ -50,6 +48,6 @@ def main():
 if __name__ == "__main__":
     application = Application()
     application.core.init_resources()
-    application.wire(modules=["pdf_bot.dispatcher"])
+    application.wire(modules=[__name__, "pdf_bot.dispatcher"])
 
     main()
