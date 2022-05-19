@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-17 13:54+0000\n"
-"PO-Revision-Date: 2022-05-17 13:54\n"
+"POT-Creation-Date: 2022-05-19 12:23+0000\n"
+"PO-Revision-Date: 2022-05-19 12:23\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -147,57 +147,61 @@ msgstr "Öğün"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:108
+#: pdf_bot/dispatcher.py:110
 msgid "Set Language 🌎"
 msgstr "Dili ayarla 🌎"
 
-#: pdf_bot/dispatcher.py:110 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:112 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Kanala Katıl"
 
-#: pdf_bot/dispatcher.py:111 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:113 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "PDF Bot'u Destekle"
 
-#: pdf_bot/dispatcher.py:120
+#: pdf_bot/dispatcher.py:122
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Bana aşağıdakilerden birini göndererek görevlerin çoğunu gerçekleştirebilirsiniz:"
 
-#: pdf_bot/dispatcher.py:123
+#: pdf_bot/dispatcher.py:125
 msgid "- PDF files"
 msgstr "- PDF dosyaları"
 
-#: pdf_bot/dispatcher.py:124
+#: pdf_bot/dispatcher.py:126
 msgid "- Images"
 msgstr "- Resimler"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:127
 msgid "- Webpage links"
 msgstr "- Web sayfası bağlantıları"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:128
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Görevlerin geri kalanı aşağıdaki komutlar kullanılarak gerçekleştirilebilir:"
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:132
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF dosyalarını karşılaştırma"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:133
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF dosyalarını birleştirme"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:134
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - birden fazla resimi PDF dosyalarına dönüştürme ve birleştirme"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - metin mesajlarından PDF dosyaları oluşturma"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF dosyalarına filigran ekleme"
+
+#: pdf_bot/dispatcher.py:175
+msgid "The button has expired, please try again with a new message/query then press the new button"
+msgstr ""
 
 #: pdf_bot/feedback.py:49
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
@@ -346,26 +350,6 @@ msgstr "- Ve daha fazlası..."
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "PDF Bot'un nasıl kullanılacağını görmek için {command} yazın"
 
-#: pdf_bot/commands/compare.py:48
-msgid "Send me one of the PDF files that you'll like to compare"
-msgstr "Karşılaştırmak istediğiniz PDF dosyalarından birini gönderin"
-
-#: pdf_bot/commands/compare.py:49
-msgid "Note that I can only look for text differences"
-msgstr "Yalnızca metin farklılıklarını arayabileceğimi unutmayın"
-
-#: pdf_bot/commands/compare.py:83
-msgid "Send me the other PDF file that you'll like to compare"
-msgstr "Karşılaştırmak istediğiniz diğer PDF dosyasını bana gönderin"
-
-#: pdf_bot/commands/compare.py:107
-msgid "Comparing your PDF files"
-msgstr "PDF dosyalarınızı karşılaştırma"
-
-#: pdf_bot/commands/compare.py:126
-msgid "There are no text differences between your PDF files"
-msgstr "PDF dosyalarınız arasında metin farkı yok"
-
 #: pdf_bot/commands/image.py:79
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Güzelleştirmek veya PDF dosyasına dönüştürmek istediğiniz resimleri bana gönderin"
@@ -477,6 +461,26 @@ msgstr "PDF dosyanıza filigran ekleme"
 #: pdf_bot/commands/watermark.py:116
 msgid "watermark"
 msgstr "filigran"
+
+#: pdf_bot/compare/compare_service.py:25
+msgid "Send me one of the PDF files that you'll like to compare"
+msgstr "Karşılaştırmak istediğiniz PDF dosyalarından birini gönderin"
+
+#: pdf_bot/compare/compare_service.py:26
+msgid "Note that I can only look for text differences"
+msgstr "Yalnızca metin farklılıklarını arayabileceğimi unutmayın"
+
+#: pdf_bot/compare/compare_service.py:48
+msgid "Send me the other PDF file that you'll like to compare"
+msgstr "Karşılaştırmak istediğiniz diğer PDF dosyasını bana gönderin"
+
+#: pdf_bot/compare/compare_service.py:72
+msgid "Comparing your PDF files"
+msgstr "PDF dosyalarınızı karşılaştırma"
+
+#: pdf_bot/compare/compare_service.py:82
+msgid "There are no text differences between your PDF files"
+msgstr "PDF dosyalarınız arasında metin farkı yok"
 
 #: pdf_bot/files/black_white.py:21
 msgid "Converting your PDF file to black and white"
