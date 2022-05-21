@@ -8,10 +8,10 @@ from telegram.ext import Updater
 
 from pdf_bot.account import AccountRepository, AccountService
 from pdf_bot.command import CommandService
-from pdf_bot.compare import CompareService
-from pdf_bot.compare.compare_handlers import CompareHandlers
+from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import TelegramService
+from pdf_bot.watermark import WatermarkHandlers, WatermarkService
 
 load_dotenv()
 
@@ -41,12 +41,16 @@ class Services(containers.DeclarativeContainer):
     telegram = providers.Factory(TelegramService, updater=core.updater)
     pdf = providers.Factory(PdfService, telegram_service=telegram)
     compare = providers.Factory(CompareService, pdf_service=pdf)
+    watermark = providers.Factory(WatermarkService, pdf_service=pdf)
 
 
 class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
 
     compare = providers.Factory(CompareHandlers, compare_service=services.compare)
+    watermark = providers.Factory(
+        WatermarkHandlers, watermark_service=services.watermark
+    )
 
 
 class Application(containers.DeclarativeContainer):

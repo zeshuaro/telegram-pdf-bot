@@ -1,11 +1,32 @@
 import random
 import string
-from typing import cast
+from pathlib import Path
+from typing import Callable, List, cast
 from unittest.mock import MagicMock
 
 import pytest
 from telegram import Bot, Document, File, Message, Update, User
 from telegram.ext import CallbackContext
+
+TEST_DATA_PATH = Path(__file__).parent.resolve() / "data"
+
+
+@pytest.fixture
+def get_data_file() -> Callable[[str], Path]:
+    def _func(filename: str):
+        return TEST_DATA_PATH / filename
+
+    return _func
+
+
+@pytest.fixture
+def context_manager_side_effect() -> Callable[[str], MagicMock]:
+    def _func(return_value: str):
+        mock = MagicMock()
+        mock.__enter__.return_value = return_value
+        return mock
+
+    return _func
 
 
 @pytest.fixture(name="user_id")
@@ -35,6 +56,14 @@ def fixture_telegram_document(document_id: int) -> Document:
     doc = cast(Document, MagicMock())
     doc.file_id = document_id
     return doc
+
+
+@pytest.fixture
+def document_ids_generator() -> Callable[[int], List[str]]:
+    def _func(n: int):
+        return ["".join(random.choices(string.ascii_letters, k=10)) for _ in range(n)]
+
+    return _func
 
 
 @pytest.fixture(name="telegram_file")

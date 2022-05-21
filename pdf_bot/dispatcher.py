@@ -16,12 +16,7 @@ from telegram.ext import (
 from telegram.ext.dispatcher import Dispatcher
 
 from pdf_bot.command.command_service import CommandService
-from pdf_bot.commands import (
-    image_cov_handler,
-    merge_cov_handler,
-    text_cov_handler,
-    watermark_cov_handler,
-)
+from pdf_bot.commands import image_cov_handler, merge_cov_handler, text_cov_handler
 from pdf_bot.compare import CompareHandlers
 from pdf_bot.consts import CHANNEL_NAME, LANGUAGES, PAYMENT, SET_LANG
 from pdf_bot.containers import Application
@@ -35,6 +30,7 @@ from pdf_bot.payment import (
     successful_payment,
 )
 from pdf_bot.url import url_to_pdf
+from pdf_bot.watermark import WatermarkHandlers
 
 load_dotenv()
 ADMIN_TELEGRAM_ID = os.environ.get("ADMIN_TELEGRAM_ID")
@@ -47,8 +43,11 @@ def setup_dispatcher(
     command_service: CommandService = Provide[
         Application.services.command  # pylint: disable=no-member
     ],
-    compare_handler: CompareHandlers = Provide[
+    compare_handlers: CompareHandlers = Provide[
         Application.handlers.compare  # pylint: disable=no-member
+    ],
+    watermark_handlers: WatermarkHandlers = Provide[
+        Application.handlers.watermark  # pylint: disable=no-member
     ],
 ):
     dispatcher.add_handler(
@@ -81,11 +80,11 @@ def setup_dispatcher(
     )
 
     # PDF commands handlers
-    dispatcher.add_handler(compare_handler.conversation_handler())
+    dispatcher.add_handler(compare_handlers.conversation_handler())
     dispatcher.add_handler(merge_cov_handler())
     dispatcher.add_handler(image_cov_handler())
     dispatcher.add_handler(text_cov_handler())
-    dispatcher.add_handler(watermark_cov_handler())
+    dispatcher.add_handler(watermark_handlers.conversation_handler())
 
     # PDF file handler
     dispatcher.add_handler(file_cov_handler())
