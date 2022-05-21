@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-19 12:23+0000\n"
-"PO-Revision-Date: 2022-05-19 12:23\n"
+"POT-Creation-Date: 2022-05-21 13:12+0000\n"
+"PO-Revision-Date: 2022-05-21 13:12\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -147,59 +147,59 @@ msgstr "Bữa ăn"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:110
+#: pdf_bot/dispatcher.py:109
 msgid "Set Language 🌎"
 msgstr "Đặt Ngôn ngữ 🌎"
 
-#: pdf_bot/dispatcher.py:112 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:111 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Tham gia Kênh"
 
-#: pdf_bot/dispatcher.py:113 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:112 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Hỗ trợ PDF Bot"
 
-#: pdf_bot/dispatcher.py:122
+#: pdf_bot/dispatcher.py:121
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Bạn có thể thực hiện hầu hết các nhiệm vụ bằng cách gửi cho tôi một trong những điều sau đây:"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:124
 msgid "- PDF files"
 msgstr "- Tệp PDF"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:125
 msgid "- Images"
 msgstr "- Hình ảnh"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:126
 msgid "- Webpage links"
 msgstr "- Nối kết trang web"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:127
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Phần còn lại của các tác vụ có thể được thực hiện bằng cách sử dụng các lệnh sau:"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:131
 msgid "{command} - compare PDF files"
 msgstr "{command} - so sánh tệp PDF"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:132
 msgid "{command} - merge PDF files"
 msgstr "{command} - hợp nhất tệp PDF"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:133
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - chuyển đổi và kết hợp nhiều hình ảnh thành tệp PDF"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:136
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - tạo tệp PDF từ tin nhắn văn bản"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:139
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - thêm hình nền mờ vào tệp PDF"
 
-#: pdf_bot/dispatcher.py:175
+#: pdf_bot/dispatcher.py:174
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr ""
 
@@ -445,22 +445,6 @@ msgstr "Phông chữ không xác định, vui lòng thử lại"
 #: pdf_bot/commands/text.py:153
 msgid "Creating your PDF file"
 msgstr "Tạo tệp PDF của bạn"
-
-#: pdf_bot/commands/watermark.py:45
-msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr "Gửi cho tôi tệp PDF mà bạn muốn thêm hình nền mờ"
-
-#: pdf_bot/commands/watermark.py:78
-msgid "Send me the watermark PDF file"
-msgstr "Gửi cho tôi tệp PDF hình mờ"
-
-#: pdf_bot/commands/watermark.py:103
-msgid "Adding the watermark onto your PDF file"
-msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
-
-#: pdf_bot/commands/watermark.py:116
-msgid "watermark"
-msgstr "chữ ký ảnh"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -754,6 +738,26 @@ msgstr "Trích xuất văn bản từ tệp PDF của bạn"
 #: pdf_bot/files/text.py:90
 msgid "I couldn't find any text in your PDF file"
 msgstr "Tôi không thể tìm thấy bất kỳ văn bản nào trong tệp PDF của bạn"
+
+#: pdf_bot/pdf/pdf_service.py:61
+msgid "Your PDF file is invalid"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:64
+msgid "Your PDF file is encrypted"
+msgstr ""
+
+#: pdf_bot/watermark/watermark_service.py:28
+msgid "Send me the PDF file that you'll like to add a watermark"
+msgstr "Gửi cho tôi tệp PDF mà bạn muốn thêm hình nền mờ"
+
+#: pdf_bot/watermark/watermark_service.py:49
+msgid "Send me the watermark PDF file"
+msgstr "Gửi cho tôi tệp PDF hình mờ"
+
+#: pdf_bot/watermark/watermark_service.py:69
+msgid "Adding the watermark onto your PDF file"
+msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 
 #~ msgid ""
 #~ "Send me the first photo that "
@@ -1464,5 +1468,8 @@ msgstr "Tôi không thể tìm thấy bất kỳ văn bản nào trong tệp PDF
 #~ "Your {file_type} PDF file is encrypted"
 #~ " and you'll have to decrypt it "
 #~ "first"
+#~ msgstr ""
+
+#~ msgid "watermark"
 #~ msgstr ""
 
