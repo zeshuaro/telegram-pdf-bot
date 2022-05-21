@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-19 12:23+0000\n"
-"PO-Revision-Date: 2022-05-19 12:23\n"
+"POT-Creation-Date: 2022-05-21 13:12+0000\n"
+"PO-Revision-Date: 2022-05-21 13:12\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese\n"
@@ -147,59 +147,59 @@ msgstr "Refeição"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji}${value}"
 
-#: pdf_bot/dispatcher.py:110
+#: pdf_bot/dispatcher.py:109
 msgid "Set Language 🌎"
 msgstr "Definir Idioma 🌎"
 
-#: pdf_bot/dispatcher.py:112 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:111 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Inscreva-se no Canal"
 
-#: pdf_bot/dispatcher.py:113 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:112 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Suporte ao BOT PDF"
 
-#: pdf_bot/dispatcher.py:122
+#: pdf_bot/dispatcher.py:121
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Você pode executar a maioria das tarefas me enviando um dos seguintes:"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:124
 msgid "- PDF files"
 msgstr "- arquivos PDF"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:125
 msgid "- Images"
 msgstr "- Imagens"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:126
 msgid "- Webpage links"
 msgstr "- Links de página da Web"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:127
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "O resto das tarefas podem ser executadas usando os seguintes comandos:"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:131
 msgid "{command} - compare PDF files"
 msgstr "{command} - compare arquivos PDF"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:132
 msgid "{command} - merge PDF files"
 msgstr "{command} - mescla arquivos PDF"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:133
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - converta e combine várias imagens em arquivos PDF"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:136
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - crie arquivos PDF a partir de mensagens de texto"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:139
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - adicionar marca d'água aos arquivos PDF"
 
-#: pdf_bot/dispatcher.py:175
+#: pdf_bot/dispatcher.py:174
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr ""
 
@@ -445,22 +445,6 @@ msgstr "Fonte desconhecida, por favor, tente novamente"
 #: pdf_bot/commands/text.py:153
 msgid "Creating your PDF file"
 msgstr "Criando seu arquivo PDF"
-
-#: pdf_bot/commands/watermark.py:45
-msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr "Envie-me o arquivo PDF que você vai gostar de adicionar uma marca d'água"
-
-#: pdf_bot/commands/watermark.py:78
-msgid "Send me the watermark PDF file"
-msgstr "Envie-me o arquivo PDF marca d'água"
-
-#: pdf_bot/commands/watermark.py:103
-msgid "Adding the watermark onto your PDF file"
-msgstr "Adicionando a marca d'água no seu arquivo PDF"
-
-#: pdf_bot/commands/watermark.py:116
-msgid "watermark"
-msgstr "marca d'água"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -754,6 +738,26 @@ msgstr "Extraindo texto do seu arquivo PDF"
 #: pdf_bot/files/text.py:90
 msgid "I couldn't find any text in your PDF file"
 msgstr "Não consegui encontrar nenhum texto no seu arquivo PDF"
+
+#: pdf_bot/pdf/pdf_service.py:61
+msgid "Your PDF file is invalid"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:64
+msgid "Your PDF file is encrypted"
+msgstr ""
+
+#: pdf_bot/watermark/watermark_service.py:28
+msgid "Send me the PDF file that you'll like to add a watermark"
+msgstr "Envie-me o arquivo PDF que você vai gostar de adicionar uma marca d'água"
+
+#: pdf_bot/watermark/watermark_service.py:49
+msgid "Send me the watermark PDF file"
+msgstr "Envie-me o arquivo PDF marca d'água"
+
+#: pdf_bot/watermark/watermark_service.py:69
+msgid "Adding the watermark onto your PDF file"
+msgstr "Adicionando a marca d'água no seu arquivo PDF"
 
 #~ msgid ""
 #~ "Send me the first photo that "
@@ -1464,5 +1468,8 @@ msgstr "Não consegui encontrar nenhum texto no seu arquivo PDF"
 #~ "Your {file_type} PDF file is encrypted"
 #~ " and you'll have to decrypt it "
 #~ "first"
+#~ msgstr ""
+
+#~ msgid "watermark"
 #~ msgstr ""
 

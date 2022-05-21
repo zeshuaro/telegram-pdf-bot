@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-19 12:23+0000\n"
-"PO-Revision-Date: 2022-05-19 12:23\n"
+"POT-Creation-Date: 2022-05-21 13:12+0000\n"
+"PO-Revision-Date: 2022-05-21 13:12\n"
 "Last-Translator: \n"
 "Language: he\n"
 "Language-Team: Hebrew\n"
@@ -147,59 +147,59 @@ msgstr "ארוחה"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:110
+#: pdf_bot/dispatcher.py:109
 msgid "Set Language 🌎"
 msgstr "הגדרת 🌎 שפה"
 
-#: pdf_bot/dispatcher.py:112 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:111 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "הצטרפות לערוץ"
 
-#: pdf_bot/dispatcher.py:113 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:112 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "תמיכה בבוט PDF"
 
-#: pdf_bot/dispatcher.py:122
+#: pdf_bot/dispatcher.py:121
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "באפשרותך לבצע את רוב המשימות על-ידי שליחת אחת מהמשימות הבאות:"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:124
 msgid "- PDF files"
 msgstr "- קובצי PDF"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:125
 msgid "- Images"
 msgstr "- תמונות"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:126
 msgid "- Webpage links"
 msgstr "- קישורי דף אינטרנט"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:127
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "ניתן לבצע את שאר המשימות באמצעות הפקודות הבאות:"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:131
 msgid "{command} - compare PDF files"
 msgstr "{command} - השוואת קובצי PDF"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:132
 msgid "{command} - merge PDF files"
 msgstr "{command} - מיזוג קובצי PDF"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:133
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - המרה ושילוב של תמונות מרובות לקובצי PDF"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:136
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - יצירת קובצי PDF מהודעות טקסט"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:139
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - הוספת סימן מים לקובצי PDF"
 
-#: pdf_bot/dispatcher.py:175
+#: pdf_bot/dispatcher.py:174
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr ""
 
@@ -445,22 +445,6 @@ msgstr "גופן לא ידוע, נא נסה שוב"
 #: pdf_bot/commands/text.py:153
 msgid "Creating your PDF file"
 msgstr "קובץ ה־PDF שלך נוצר"
-
-#: pdf_bot/commands/watermark.py:45
-msgid "Send me the PDF file that you'll like to add a watermark"
-msgstr "שלח לי את ה PDF שתרצה להוסיף לו חותם מים"
-
-#: pdf_bot/commands/watermark.py:78
-msgid "Send me the watermark PDF file"
-msgstr "שלח לי את סימן המים של הקובץ PDF"
-
-#: pdf_bot/commands/watermark.py:103
-msgid "Adding the watermark onto your PDF file"
-msgstr "מוסיף את סימן המים לקובץ ה PDF שלך"
-
-#: pdf_bot/commands/watermark.py:116
-msgid "watermark"
-msgstr "סימן-מים"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -754,6 +738,26 @@ msgstr "מחלץ טקסט מקובץ ה PDF שלך"
 #: pdf_bot/files/text.py:90
 msgid "I couldn't find any text in your PDF file"
 msgstr "אני לא מצליח למצוא שום טקסט בקובץ ה PDF הזה"
+
+#: pdf_bot/pdf/pdf_service.py:61
+msgid "Your PDF file is invalid"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:64
+msgid "Your PDF file is encrypted"
+msgstr ""
+
+#: pdf_bot/watermark/watermark_service.py:28
+msgid "Send me the PDF file that you'll like to add a watermark"
+msgstr "שלח לי את ה PDF שתרצה להוסיף לו חותם מים"
+
+#: pdf_bot/watermark/watermark_service.py:49
+msgid "Send me the watermark PDF file"
+msgstr "שלח לי את סימן המים של הקובץ PDF"
+
+#: pdf_bot/watermark/watermark_service.py:69
+msgid "Adding the watermark onto your PDF file"
+msgstr "מוסיף את סימן המים לקובץ ה PDF שלך"
 
 #~ msgid ""
 #~ "Send me the first photo that "
@@ -1464,5 +1468,8 @@ msgstr "אני לא מצליח למצוא שום טקסט בקובץ ה PDF הז
 #~ "Your {file_type} PDF file is encrypted"
 #~ " and you'll have to decrypt it "
 #~ "first"
+#~ msgstr ""
+
+#~ msgid "watermark"
 #~ msgstr ""
 
