@@ -1,4 +1,4 @@
-from .exceptions import PdfServiceError
+from .exceptions import PdfEncryptError, PdfReadError, PdfServiceError
 from .pdf_service import PdfService
 
-__all__ = ["PdfService", "PdfServiceError"]
+__all__ = ["PdfService", "PdfServiceError", "PdfEncryptError", "PdfReadError"]
