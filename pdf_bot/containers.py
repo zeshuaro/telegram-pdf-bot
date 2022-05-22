@@ -9,6 +9,7 @@ from telegram.ext import Updater
 from pdf_bot.account import AccountRepository, AccountService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
+from pdf_bot.io import IOService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import TelegramService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
@@ -36,10 +37,11 @@ class Services(containers.DeclarativeContainer):
     core = providers.DependenciesContainer()
     repositories = providers.DependenciesContainer()
 
+    io = providers.Factory(IOService)
     account = providers.Factory(AccountService, account_repository=repositories.account)
     command = providers.Factory(CommandService, account_service=account)
-    telegram = providers.Factory(TelegramService, updater=core.updater)
-    pdf = providers.Factory(PdfService, telegram_service=telegram)
+    telegram = providers.Factory(TelegramService, io_service=io, updater=core.updater)
+    pdf = providers.Factory(PdfService, io_service=io, telegram_service=telegram)
     compare = providers.Factory(CompareService, pdf_service=pdf)
     watermark = providers.Factory(WatermarkService, pdf_service=pdf)
 

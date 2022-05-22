@@ -77,8 +77,8 @@ class WatermarkService:
         try:
             with self.pdf_service.add_watermark_to_pdf(
                 src_file_id, wmk_file_id
-            ) as out_fn:
-                send_result_file(update, context, out_fn, TaskType.watermark_pdf)
+            ) as out_path:
+                send_result_file(update, context, out_path, TaskType.watermark_pdf)
         except PdfServiceError as e:
             update.effective_message.reply_text(str(e))
 

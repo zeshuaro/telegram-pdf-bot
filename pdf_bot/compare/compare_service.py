@@ -75,8 +75,8 @@ class CompareService:
         file_id_b = message.document.file_id
 
         try:
-            with self.pdf_service.compare_pdfs(file_id_a, file_id_b) as out_fn:
-                send_result_file(update, context, out_fn, TaskType.compare_pdf)
+            with self.pdf_service.compare_pdfs(file_id_a, file_id_b) as out_path:
+                send_result_file(update, context, out_path, TaskType.compare_pdf)
         except NoDifferenceError:
             message.reply_text(
                 _("There are no text differences between your PDF files")

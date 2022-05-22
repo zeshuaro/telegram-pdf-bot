@@ -8,6 +8,8 @@ import pytest
 from telegram import Bot, Document, File, Message, Update, User
 from telegram.ext import CallbackContext
 
+from pdf_bot.io.io_service import IOService
+
 TEST_DATA_PATH = Path(__file__).parent.resolve() / "data"
 
 
@@ -97,3 +99,8 @@ def telegram_update(telegram_message: Message) -> Update:
 def telegram_context() -> CallbackContext:
     context = cast(CallbackContext, MagicMock())
     return context
+
+
+@pytest.fixture
+def io_service() -> IOService:
+    return IOService()

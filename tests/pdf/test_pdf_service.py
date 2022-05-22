@@ -7,6 +7,7 @@ import pytest
 from PyPDF2.utils import PdfReadError as PyPdfReadError
 
 from pdf_bot.compare import CompareService
+from pdf_bot.io.io_service import IOService
 from pdf_bot.pdf import PdfReadError, PdfService
 from pdf_bot.telegram import TelegramService
 
@@ -17,8 +18,10 @@ def fixture_telegram_service() -> TelegramService:
 
 
 @pytest.fixture(name="pdf_service")
-def fixture_pdf_service(telegram_service: TelegramService) -> CompareService:
-    return PdfService(telegram_service)
+def fixture_pdf_service(
+    io_service: IOService, telegram_service: TelegramService
+) -> CompareService:
+    return PdfService(io_service, telegram_service)
 
 
 def test_compare_pdfs(
