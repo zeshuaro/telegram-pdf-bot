@@ -1,12 +1,15 @@
 import pytest
 from telegram import Bot, File
 
+from pdf_bot.io import IOService
 from pdf_bot.telegram import TelegramService
 
 
 @pytest.fixture(name="telegram_service")
-def fixture_telegram_service(telegram_bot: Bot) -> TelegramService:
-    return TelegramService(bot=telegram_bot)
+def fixture_telegram_service(
+    io_service: IOService, telegram_bot: Bot
+) -> TelegramService:
+    return TelegramService(io_service, bot=telegram_bot)
 
 
 def test_download_file(
