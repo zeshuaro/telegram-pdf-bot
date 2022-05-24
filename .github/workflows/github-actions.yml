@@ -116,7 +116,7 @@ jobs:
           docker push ${{ env.DOCKER_IMAGE }}
 
       - name: Deploy 🚀
-        uses: digitalocean/app_action@v1.1.2
+        uses: digitalocean/app_action@v1.1.3
         with:
           app_name: ${{ secrets.DIGITALOCEAN_APP_NAME }}
           token: ${{ secrets.DIGITALOCEAN_TOKEN }}
