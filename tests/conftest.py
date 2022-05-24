@@ -9,6 +9,7 @@ from telegram import Bot, Document, File, Message, Update, User
 from telegram.ext import CallbackContext
 
 from pdf_bot.io.io_service import IOService
+from pdf_bot.pdf.pdf_service import PdfService
 
 TEST_DATA_PATH = Path(__file__).parent.resolve() / "data"
 
@@ -53,6 +54,11 @@ def fixture_telegram_user(user_id: int) -> User:
     return user
 
 
+@pytest.fixture(name="telegram_text")
+def fixture_telegram_text() -> str:
+    return "telegram_text"
+
+
 @pytest.fixture(name="telegram_document")
 def fixture_telegram_document(document_id: int) -> Document:
     doc = cast(Document, MagicMock())
@@ -75,11 +81,12 @@ def fixture_telegram_file() -> Document:
 
 @pytest.fixture(name="telegram_message")
 def fixture_telegram_message(
-    telegram_user: User, telegram_document: Document
+    telegram_user: User, telegram_document: Document, telegram_text: str
 ) -> Message:
     msg = cast(Message, MagicMock())
     msg.from_user = telegram_user
     msg.document = telegram_document
+    msg.text = telegram_text
     return msg
 
 
@@ -104,3 +111,8 @@ def telegram_context() -> CallbackContext:
 @pytest.fixture
 def io_service() -> IOService:
     return IOService()
+
+
+@pytest.fixture
+def pdf_service() -> PdfService:
+    return cast(PdfService, MagicMock())

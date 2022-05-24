@@ -16,7 +16,7 @@ from telegram.ext import (
 from telegram.ext.dispatcher import Dispatcher
 
 from pdf_bot.command.command_service import CommandService
-from pdf_bot.commands import image_cov_handler, merge_cov_handler, text_cov_handler
+from pdf_bot.commands import image_cov_handler, merge_cov_handler
 from pdf_bot.compare import CompareHandlers
 from pdf_bot.consts import CHANNEL_NAME, LANGUAGES, PAYMENT, SET_LANG
 from pdf_bot.containers import Application
@@ -29,6 +29,7 @@ from pdf_bot.payment import (
     send_support_options,
     successful_payment,
 )
+from pdf_bot.text.text_handlers import TextHandlers
 from pdf_bot.url import url_to_pdf
 from pdf_bot.watermark import WatermarkHandlers
 
@@ -45,6 +46,9 @@ def setup_dispatcher(
     ],
     compare_handlers: CompareHandlers = Provide[
         Application.handlers.compare  # pylint: disable=no-member
+    ],
+    text_handlers: TextHandlers = Provide[
+        Application.handlers.text  # pylint: disable=no-member
     ],
     watermark_handlers: WatermarkHandlers = Provide[
         Application.handlers.watermark  # pylint: disable=no-member
@@ -83,7 +87,7 @@ def setup_dispatcher(
     dispatcher.add_handler(compare_handlers.conversation_handler())
     dispatcher.add_handler(merge_cov_handler())
     dispatcher.add_handler(image_cov_handler())
-    dispatcher.add_handler(text_cov_handler())
+    dispatcher.add_handler(text_handlers.conversation_handler())
     dispatcher.add_handler(watermark_handlers.conversation_handler())
 
     # PDF file handler
