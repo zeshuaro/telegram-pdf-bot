@@ -2,7 +2,6 @@ import os
 
 from dotenv import load_dotenv
 from telegram import (
-    ChatAction,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     LabeledPrice,
@@ -30,7 +29,6 @@ STRIPE_TOKEN = os.environ.get("STRIPE_TOKEN")
 def send_support_options(
     update: Update, context: CallbackContext, query: CallbackQuery = None
 ):
-    update.effective_message.reply_chat_action(ChatAction.TYPING)
     _ = set_lang(update, context, query)
     keyboard = [
         [

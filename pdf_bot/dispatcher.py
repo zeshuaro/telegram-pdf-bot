@@ -3,7 +3,6 @@ import os
 from dependency_injector.wiring import Provide, inject
 from dotenv import load_dotenv
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageEntity, Update
-from telegram.chataction import ChatAction
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import (
     CallbackContext,
@@ -107,7 +106,6 @@ def setup_dispatcher(
 
 
 def help_msg(update, context):
-    update.effective_message.reply_chat_action(ChatAction.TYPING)
     _ = set_lang(update, context)
     keyboard = [
         [InlineKeyboardButton(_("Set Language 🌎"), callback_data=SET_LANG)],
