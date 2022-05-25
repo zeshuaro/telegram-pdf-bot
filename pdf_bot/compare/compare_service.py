@@ -6,7 +6,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.compare.constants import COMPARE_ID, WAIT_FIRST_PDF, WAIT_SECOND_PDF
 from pdf_bot.consts import BACK, CANCEL, PDF_INVALID_FORMAT, PDF_OK
 from pdf_bot.language import set_lang
-from pdf_bot.pdf import PdfService
+from pdf_bot.pdf.pdf_service import PdfService
 from pdf_bot.utils import cancel, check_pdf, check_user_data, send_result_file
 
 

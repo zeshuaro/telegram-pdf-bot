@@ -12,6 +12,9 @@ from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.io import IOService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import TelegramService
+from pdf_bot.text.text_handlers import TextHandlers
+from pdf_bot.text.text_repository import TextRepository
+from pdf_bot.text.text_service import TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
 
 load_dotenv()
@@ -31,6 +34,7 @@ class Core(containers.DeclarativeContainer):
 
 class Repositories(containers.DeclarativeContainer):
     account = providers.Singleton(AccountRepository)
+    text = providers.Singleton(TextRepository)
 
 
 class Services(containers.DeclarativeContainer):
@@ -42,7 +46,11 @@ class Services(containers.DeclarativeContainer):
     command = providers.Factory(CommandService, account_service=account)
     telegram = providers.Factory(TelegramService, io_service=io, updater=core.updater)
     pdf = providers.Factory(PdfService, io_service=io, telegram_service=telegram)
+
     compare = providers.Factory(CompareService, pdf_service=pdf)
+    text = providers.Factory(
+        TextService, text_repository=repositories.text, pdf_service=pdf
+    )
     watermark = providers.Factory(WatermarkService, pdf_service=pdf)
 
 
@@ -50,6 +58,7 @@ class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
 
     compare = providers.Factory(CompareHandlers, compare_service=services.compare)
+    text = providers.Factory(TextHandlers, text_service=services.text)
     watermark = providers.Factory(
         WatermarkHandlers, watermark_service=services.watermark
     )
