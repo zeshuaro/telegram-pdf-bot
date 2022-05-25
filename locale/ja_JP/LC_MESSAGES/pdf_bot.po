@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-25 07:40+0000\n"
-"PO-Revision-Date: 2022-05-25 07:40\n"
+"POT-Creation-Date: 2022-05-25 11:13+0000\n"
+"PO-Revision-Date: 2022-05-25 11:13\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -147,99 +147,99 @@ msgstr "食事"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:113
+#: pdf_bot/dispatcher.py:111
 msgid "Set Language 🌎"
 msgstr "言語設定 🌎"
 
-#: pdf_bot/dispatcher.py:115 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:113 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "チャネルに参加"
 
-#: pdf_bot/dispatcher.py:116 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:114 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "PDFボットをサポート"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:123
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "タスクの大半は、次のいずれかを送信することで実行できます。"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:126
 msgid "- PDF files"
 msgstr "- PDFファイル"
 
-#: pdf_bot/dispatcher.py:129
+#: pdf_bot/dispatcher.py:127
 msgid "- Images"
 msgstr "- 画像"
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:128
 msgid "- Webpage links"
 msgstr "- ウェブページへのリンク"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:129
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "残りのタスクは、次のコマンドを使用して実行できます。"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:133
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF ファイルを比較する"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:134
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDFファイルをマージ"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:135
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 複数の画像をPDFファイルに変換して結合する"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:138
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - テキストメッセージからPDFファイルを作成する"
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:141
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF ファイルに透かしを追加する"
 
-#: pdf_bot/dispatcher.py:178
+#: pdf_bot/dispatcher.py:176
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "ボタンの有効期限が切れています。新しいメッセージ/クエリでもう一度やり直してから、新しいボタンを押してください"
 
-#: pdf_bot/feedback.py:49
+#: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "フィードバックを送信してください (英語のフィードバックのみが開発者に転送されます)"
 
-#: pdf_bot/feedback.py:84
+#: pdf_bot/feedback.py:83
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr "フィードバックをありがとう、私はすでに私の開発者にそれを転送しました"
 
-#: pdf_bot/feedback.py:88
+#: pdf_bot/feedback.py:87
 msgid "The feedback is not in English, try again"
 msgstr "フィードバックは英語ではありません、もう一度やり直してください"
 
-#: pdf_bot/language.py:28
+#: pdf_bot/language.py:26
 msgid "Select your language"
 msgstr "言語を選択する"
 
-#: pdf_bot/language.py:73
+#: pdf_bot/language.py:69
 msgid "Your language has been set to {language}"
 msgstr "言語が {language}に設定されています"
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:56
 msgid "Help translate PDF Bot"
 msgstr "PDFボットの翻訳を支援"
 
-#: pdf_bot/payment.py:70
+#: pdf_bot/payment.py:68
 msgid "Select how you want to support PDF Bot"
 msgstr "PDFボットのサポート方法を選択する"
 
-#: pdf_bot/payment.py:86
+#: pdf_bot/payment.py:84
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PDFボットに感謝し、それを実行し続けるのに役立ちます"
 
-#: pdf_bot/payment.py:107
+#: pdf_bot/payment.py:105
 msgid "Something went wrong"
 msgstr "何かがうまくいかなかった"
 
-#: pdf_bot/payment.py:115
+#: pdf_bot/payment.py:113
 msgid "Thank you for your support!"
 msgstr "ご支援ありがとうございます!"
 
@@ -719,11 +719,11 @@ msgstr "PDF ファイルからテキストを抽出する"
 msgid "I couldn't find any text in your PDF file"
 msgstr "PDF ファイルにテキストが見つからない"
 
-#: pdf_bot/pdf/pdf_service.py:102
+#: pdf_bot/pdf/pdf_service.py:104
 msgid "Your PDF file is invalid"
 msgstr "PDF ファイルが無効です"
 
-#: pdf_bot/pdf/pdf_service.py:105
+#: pdf_bot/pdf/pdf_service.py:107
 msgid "Your PDF file is encrypted"
 msgstr "PDFファイルは暗号化されています"
 
