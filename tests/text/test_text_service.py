@@ -7,8 +7,7 @@ from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf.pdf_service import PdfService
-from pdf_bot.text.text_repository import TextRepository
-from pdf_bot.text.text_service import TextService
+from pdf_bot.text import TextRepository, TextService
 
 WAIT_TEXT = 0
 WAIT_FONT = 1

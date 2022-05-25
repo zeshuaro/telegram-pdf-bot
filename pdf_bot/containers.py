@@ -12,9 +12,7 @@ from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.io import IOService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import TelegramService
-from pdf_bot.text.text_handlers import TextHandlers
-from pdf_bot.text.text_repository import TextRepository
-from pdf_bot.text.text_service import TextService
+from pdf_bot.text import TextHandlers, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
 
 load_dotenv()

@@ -10,7 +10,7 @@ from pdf_bot.compare import CompareService
 from pdf_bot.io.io_service import IOService
 from pdf_bot.pdf import PdfReadError, PdfService
 from pdf_bot.telegram import TelegramService
-from pdf_bot.text.models import FontData
+from pdf_bot.text import FontData
 
 
 @pytest.fixture(name="telegram_service")

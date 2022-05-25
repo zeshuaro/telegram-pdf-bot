@@ -29,7 +29,7 @@ from pdf_bot.payment import (
     send_support_options,
     successful_payment,
 )
-from pdf_bot.text.text_handlers import TextHandlers
+from pdf_bot.text import TextHandlers
 from pdf_bot.url import url_to_pdf
 from pdf_bot.watermark import WatermarkHandlers
 

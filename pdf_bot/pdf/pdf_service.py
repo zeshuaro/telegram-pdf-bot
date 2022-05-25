@@ -1,6 +1,6 @@
 import gettext
 from contextlib import contextmanager
-from typing import Generator, List
+from typing import TYPE_CHECKING, Generator, List, Union
 
 import pdf_diff
 from PyPDF2 import PdfFileReader, PdfFileWriter
@@ -11,7 +11,9 @@ from weasyprint.text.fonts import FontConfiguration
 from pdf_bot.io import IOService
 from pdf_bot.pdf.exceptions import PdfEncryptError, PdfReadError
 from pdf_bot.telegram import TelegramService
-from pdf_bot.text.models import FontData
+
+if TYPE_CHECKING:
+    from pdf_bot.text import FontData
 
 _ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gettext
 
@@ -45,7 +47,7 @@ class PdfService:
                 pass
 
     @contextmanager
-    def create_pdf_from_text(self, text: str, font_data: FontData | None):
+    def create_pdf_from_text(self, text: str, font_data: Union["FontData", None]):
         html = HTML(
             string="<p>{content}</p>".format(content=text.replace("\n", "<br/>"))
         )
