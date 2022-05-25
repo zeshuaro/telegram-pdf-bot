@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-22 03:18+0000\n"
-"PO-Revision-Date: 2022-05-22 08:19\n"
+"POT-Creation-Date: 2022-05-25 07:40+0000\n"
+"PO-Revision-Date: 2022-05-25 07:40\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -147,59 +147,59 @@ msgstr "食事"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:109
+#: pdf_bot/dispatcher.py:113
 msgid "Set Language 🌎"
 msgstr "言語設定 🌎"
 
-#: pdf_bot/dispatcher.py:111 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:115 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "チャネルに参加"
 
-#: pdf_bot/dispatcher.py:112 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:116 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "PDFボットをサポート"
 
-#: pdf_bot/dispatcher.py:121
+#: pdf_bot/dispatcher.py:125
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "タスクの大半は、次のいずれかを送信することで実行できます。"
 
-#: pdf_bot/dispatcher.py:124
+#: pdf_bot/dispatcher.py:128
 msgid "- PDF files"
 msgstr "- PDFファイル"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:129
 msgid "- Images"
 msgstr "- 画像"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:130
 msgid "- Webpage links"
 msgstr "- ウェブページへのリンク"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:131
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "残りのタスクは、次のコマンドを使用して実行できます。"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:135
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF ファイルを比較する"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:136
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDFファイルをマージ"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 複数の画像をPDFファイルに変換して結合する"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - テキストメッセージからPDFファイルを作成する"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:143
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF ファイルに透かしを追加する"
 
-#: pdf_bot/dispatcher.py:174
+#: pdf_bot/dispatcher.py:178
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "ボタンの有効期限が切れています。新しいメッセージ/クエリでもう一度やり直してから、新しいボタンを押してください"
 
@@ -425,26 +425,6 @@ msgstr "PDF ファイルのマージ"
 #: pdf_bot/commands/merge.py:255
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "このファイルは無効であるため、PDFファイルをマージできませんでした: {file_name}"
-
-#: pdf_bot/commands/text.py:61
-msgid "Send me the text that you'll like to write into your PDF file"
-msgstr "PDFファイルに書き込みたいテキストを送ってください"
-
-#: pdf_bot/commands/text.py:84
-msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
-msgstr "PDFファイルに使用したいフォントを送るか、 {skip} を押してデフォルトのフォントを使用してください"
-
-#: pdf_bot/commands/text.py:88
-msgid "See here for the list of supported fonts: {fonts}"
-msgstr "サポートされているフォントの一覧については、ここを参照してください: {fonts}"
-
-#: pdf_bot/commands/text.py:121
-msgid "Unknown font, please try again"
-msgstr "不明なフォントです。"
-
-#: pdf_bot/commands/text.py:153
-msgid "Creating your PDF file"
-msgstr "PDF ファイルの作成"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -739,13 +719,37 @@ msgstr "PDF ファイルからテキストを抽出する"
 msgid "I couldn't find any text in your PDF file"
 msgstr "PDF ファイルにテキストが見つからない"
 
-#: pdf_bot/pdf/pdf_service.py:66
+#: pdf_bot/pdf/pdf_service.py:102
 msgid "Your PDF file is invalid"
 msgstr "PDF ファイルが無効です"
 
-#: pdf_bot/pdf/pdf_service.py:69
+#: pdf_bot/pdf/pdf_service.py:105
 msgid "Your PDF file is encrypted"
 msgstr "PDFファイルは暗号化されています"
+
+#: pdf_bot/text/constants.py:10
+msgid "Skip"
+msgstr ""
+
+#: pdf_bot/text/text_service.py:30
+msgid "Send me the text that you'll like to write into your PDF file"
+msgstr "PDFファイルに書き込みたいテキストを送ってください"
+
+#: pdf_bot/text/text_service.py:51
+msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
+msgstr "PDFファイルに使用したいフォントを送るか、 {skip} を押してデフォルトのフォントを使用してください"
+
+#: pdf_bot/text/text_service.py:55
+msgid "See here for the list of supported fonts: {fonts}"
+msgstr "サポートされているフォントの一覧については、ここを参照してください: {fonts}"
+
+#: pdf_bot/text/text_service.py:83
+msgid "Unknown font, please try again"
+msgstr "不明なフォントです。"
+
+#: pdf_bot/text/text_service.py:98
+msgid "Creating your PDF file"
+msgstr "PDF ファイルの作成"
 
 #: pdf_bot/watermark/watermark_service.py:28
 msgid "Send me the PDF file that you'll like to add a watermark"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-22 03:18+0000\n"
-"PO-Revision-Date: 2022-05-22 08:19\n"
+"POT-Creation-Date: 2022-05-25 07:40+0000\n"
+"PO-Revision-Date: 2022-05-25 07:40\n"
 "Last-Translator: \n"
 "Language: ms\n"
 "Language-Team: Malay\n"
@@ -147,59 +147,59 @@ msgstr "Makan"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:109
+#: pdf_bot/dispatcher.py:113
 msgid "Set Language 🌎"
 msgstr "Set bahasa 🌎"
 
-#: pdf_bot/dispatcher.py:111 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:115 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Sertai Saluran"
 
-#: pdf_bot/dispatcher.py:112 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:116 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Sokong PDF Bot"
 
-#: pdf_bot/dispatcher.py:121
+#: pdf_bot/dispatcher.py:125
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Anda boleh melaksanakan kebanyakan tugas dengan menghantar saya salah satu daripada berikut:"
 
-#: pdf_bot/dispatcher.py:124
+#: pdf_bot/dispatcher.py:128
 msgid "- PDF files"
 msgstr "- Fail PDF"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:129
 msgid "- Images"
 msgstr "- Imej"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:130
 msgid "- Webpage links"
 msgstr "- Pautan laman web"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:131
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Tugas lain boleh dilakukan menggunakan perintah berikut:"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:135
 msgid "{command} - compare PDF files"
 msgstr "{command} - bandingkan fail PDF"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:136
 msgid "{command} - merge PDF files"
 msgstr "{command} - gabungkan fail PDF"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - menukar dan menggabungkan pelbagai imej ke dalam fail PDF"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - cipta fail PDF daripada mesej teks"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:143
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - tambah tera air ke fail PDF"
 
-#: pdf_bot/dispatcher.py:174
+#: pdf_bot/dispatcher.py:178
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Butang telah tamat tempoh, sila cuba lagi dengan mesej/pertanyaan baru kemudian tekan butang baru"
 
@@ -425,26 +425,6 @@ msgstr "Menggabungkan fail PDF anda"
 #: pdf_bot/commands/merge.py:255
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Saya tidak dapat menggabungkan fail PDF anda kerana fail ini tidak sah: {file_name}"
-
-#: pdf_bot/commands/text.py:61
-msgid "Send me the text that you'll like to write into your PDF file"
-msgstr "Hantar saya teks yang anda ingin tulis ke dalam fail PDF anda"
-
-#: pdf_bot/commands/text.py:84
-msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
-msgstr "Hantar saya fon yang anda ingin gunakan untuk fail PDF atau tekan {skip} untuk menggunakan fon lalai"
-
-#: pdf_bot/commands/text.py:88
-msgid "See here for the list of supported fonts: {fonts}"
-msgstr "Lihat di sini untuk senarai fon yang disokong: {fonts}"
-
-#: pdf_bot/commands/text.py:121
-msgid "Unknown font, please try again"
-msgstr "Unknown font, please try again"
-
-#: pdf_bot/commands/text.py:153
-msgid "Creating your PDF file"
-msgstr "Mencipta fail PDF anda"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -739,13 +719,37 @@ msgstr "Mengekstrak teks daripada fail PDF anda"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Saya tidak dapat mencari sebarang teks dalam fail PDF anda"
 
-#: pdf_bot/pdf/pdf_service.py:66
+#: pdf_bot/pdf/pdf_service.py:102
 msgid "Your PDF file is invalid"
 msgstr "Fail PDF anda tidak sah"
 
-#: pdf_bot/pdf/pdf_service.py:69
+#: pdf_bot/pdf/pdf_service.py:105
 msgid "Your PDF file is encrypted"
 msgstr "Fail PDF anda disulitkan"
+
+#: pdf_bot/text/constants.py:10
+msgid "Skip"
+msgstr ""
+
+#: pdf_bot/text/text_service.py:30
+msgid "Send me the text that you'll like to write into your PDF file"
+msgstr "Hantar saya teks yang anda ingin tulis ke dalam fail PDF anda"
+
+#: pdf_bot/text/text_service.py:51
+msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
+msgstr "Hantar saya fon yang anda ingin gunakan untuk fail PDF atau tekan {skip} untuk menggunakan fon lalai"
+
+#: pdf_bot/text/text_service.py:55
+msgid "See here for the list of supported fonts: {fonts}"
+msgstr "Lihat di sini untuk senarai fon yang disokong: {fonts}"
+
+#: pdf_bot/text/text_service.py:83
+msgid "Unknown font, please try again"
+msgstr "Unknown font, please try again"
+
+#: pdf_bot/text/text_service.py:98
+msgid "Creating your PDF file"
+msgstr "Mencipta fail PDF anda"
 
 #: pdf_bot/watermark/watermark_service.py:28
 msgid "Send me the PDF file that you'll like to add a watermark"
