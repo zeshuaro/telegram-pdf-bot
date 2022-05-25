@@ -597,7 +597,7 @@ python-versions = ">=3.8"
 
 [[package]]
 name = "ocrmypdf"
-version = "13.4.4"
+version = "13.4.5"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 category = "main"
 optional = false
@@ -607,7 +607,7 @@ python-versions = ">=3.7"
 coloredlogs = ">=14.0"
 img2pdf = ">=0.3.0,<0.5"
 packaging = ">=20"
-"pdfminer.six" = ">=20191110,<20200720 || >20200720,<=20220506"
+"pdfminer.six" = ">=20191110,<20200720 || >20200720"
 pikepdf = ">=4.0.0,<5.0.0 || >5.0.0"
 Pillow = ">=8.2.0"
 pluggy = ">=0.13.0,<2"
@@ -1233,7 +1233,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "f991ac8b0ff442f939c1e9db8df49fafd1854b402b32e0cdd89a94adfa8cbec3"
+content-hash = "f72e857256b84d2f3db55a6f420608a7acea497e5c5eeb5101f1e39e475dca62"
 
 [metadata.files]
 apscheduler = [
@@ -1879,8 +1879,8 @@ numpy = [
     {file = "numpy-1.22.4.zip", hash = "sha256:425b390e4619f58d8526b3dcf656dde069133ae5c240229821f01b5f44ea07af"},
 ]
 ocrmypdf = [
-    {file = "ocrmypdf-13.4.4-py37-none-any.whl", hash = "sha256:1169e7acee4cb12d0d61ca1c2cf1f78250ed5d2d0e33fd68f58defbaf3770af7"},
-    {file = "ocrmypdf-13.4.4.tar.gz", hash = "sha256:d132a9e5dcd73a477f8bd89f15de2c4ae64b394ca296644971fcd004168ace9d"},
+    {file = "ocrmypdf-13.4.5-py37-none-any.whl", hash = "sha256:33ace59f53494142a2b0b15a5de3ba6c20a30bdf601429709557346f5bafe85a"},
+    {file = "ocrmypdf-13.4.5.tar.gz", hash = "sha256:47752a9f56c45de21e2b57133a92acea92ab8327ae28c9978447c99006f58f7b"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
