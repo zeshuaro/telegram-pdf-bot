@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-22 03:18+0000\n"
-"PO-Revision-Date: 2022-05-22 08:19\n"
+"POT-Creation-Date: 2022-05-25 07:40+0000\n"
+"PO-Revision-Date: 2022-05-25 07:40\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -147,59 +147,59 @@ msgstr "Étkezés"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:109
+#: pdf_bot/dispatcher.py:113
 msgid "Set Language 🌎"
 msgstr "Nyelv beállítása 🌎"
 
-#: pdf_bot/dispatcher.py:111 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:115 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Csatlakozás a csatornához"
 
-#: pdf_bot/dispatcher.py:112 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:116 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Támogatás PDF Bot"
 
-#: pdf_bot/dispatcher.py:121
+#: pdf_bot/dispatcher.py:125
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "A legtöbb feladatot az alábbiak egyikének elküldésével végezheti el:"
 
-#: pdf_bot/dispatcher.py:124
+#: pdf_bot/dispatcher.py:128
 msgid "- PDF files"
 msgstr "- PDF fájlok"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:129
 msgid "- Images"
 msgstr "- Képek"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:130
 msgid "- Webpage links"
 msgstr "- Weboldal linkek"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:131
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "A többi feladat a következő parancsokkal végezhető el:"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:135
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF fájlok összehasonlítása"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:136
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF fájlok egyesítése"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - több kép konvertálása és kombinálása PDF-fájlokká"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - PDF fájlok létrehozása szöveges üzenetekből"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:143
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - vízjel hozzáadása PDF fájlokhoz"
 
-#: pdf_bot/dispatcher.py:174
+#: pdf_bot/dispatcher.py:178
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "A gomb lejárt, próbálkozzon újra egy új üzenettel/lekérdezéssel, majd nyomja meg az új gombot"
 
@@ -425,26 +425,6 @@ msgstr "A PDF-fájlok egyesítése"
 #: pdf_bot/commands/merge.py:255
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Nem tudtam egyesíteni a PDF-fájlokat, mivel ez a fájl érvénytelen: {file_name}"
-
-#: pdf_bot/commands/text.py:61
-msgid "Send me the text that you'll like to write into your PDF file"
-msgstr "Küldje el a szöveget, hogy szeretne írni a PDF-fájl"
-
-#: pdf_bot/commands/text.py:84
-msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
-msgstr "Küldje el nekem azt a betűtípust, amelyet használni szeretne a PDF-fájlhoz, vagy nyomja le a {skip} az alapértelmezett betűtípus használatához"
-
-#: pdf_bot/commands/text.py:88
-msgid "See here for the list of supported fonts: {fonts}"
-msgstr "A támogatott betűtípusok listáját itt tekintheti meg: {fonts}"
-
-#: pdf_bot/commands/text.py:121
-msgid "Unknown font, please try again"
-msgstr "Ismeretlen betűtípus, próbálkozzon újra"
-
-#: pdf_bot/commands/text.py:153
-msgid "Creating your PDF file"
-msgstr "A PDF-fájl létrehozása"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -739,13 +719,37 @@ msgstr "Szöveg kibontása a PDF-fájlból"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Nem találtam szöveget a PDF-fájlban"
 
-#: pdf_bot/pdf/pdf_service.py:66
+#: pdf_bot/pdf/pdf_service.py:102
 msgid "Your PDF file is invalid"
 msgstr "A PDF-fájl érvénytelen"
 
-#: pdf_bot/pdf/pdf_service.py:69
+#: pdf_bot/pdf/pdf_service.py:105
 msgid "Your PDF file is encrypted"
 msgstr "A PDF-fájl titkosítva van"
+
+#: pdf_bot/text/constants.py:10
+msgid "Skip"
+msgstr ""
+
+#: pdf_bot/text/text_service.py:30
+msgid "Send me the text that you'll like to write into your PDF file"
+msgstr "Küldje el a szöveget, hogy szeretne írni a PDF-fájl"
+
+#: pdf_bot/text/text_service.py:51
+msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
+msgstr "Küldje el nekem azt a betűtípust, amelyet használni szeretne a PDF-fájlhoz, vagy nyomja le a {skip} az alapértelmezett betűtípus használatához"
+
+#: pdf_bot/text/text_service.py:55
+msgid "See here for the list of supported fonts: {fonts}"
+msgstr "A támogatott betűtípusok listáját itt tekintheti meg: {fonts}"
+
+#: pdf_bot/text/text_service.py:83
+msgid "Unknown font, please try again"
+msgstr "Ismeretlen betűtípus, próbálkozzon újra"
+
+#: pdf_bot/text/text_service.py:98
+msgid "Creating your PDF file"
+msgstr "A PDF-fájl létrehozása"
 
 #: pdf_bot/watermark/watermark_service.py:28
 msgid "Send me the PDF file that you'll like to add a watermark"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-22 03:18+0000\n"
-"PO-Revision-Date: 2022-05-22 08:19\n"
+"POT-Creation-Date: 2022-05-25 07:40+0000\n"
+"PO-Revision-Date: 2022-05-25 07:40\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -147,59 +147,59 @@ msgstr "Bữa ăn"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:109
+#: pdf_bot/dispatcher.py:113
 msgid "Set Language 🌎"
 msgstr "Đặt Ngôn ngữ 🌎"
 
-#: pdf_bot/dispatcher.py:111 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:115 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Tham gia Kênh"
 
-#: pdf_bot/dispatcher.py:112 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:116 pdf_bot/payment.py:85 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Hỗ trợ PDF Bot"
 
-#: pdf_bot/dispatcher.py:121
+#: pdf_bot/dispatcher.py:125
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Bạn có thể thực hiện hầu hết các nhiệm vụ bằng cách gửi cho tôi một trong những điều sau đây:"
 
-#: pdf_bot/dispatcher.py:124
+#: pdf_bot/dispatcher.py:128
 msgid "- PDF files"
 msgstr "- Tệp PDF"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:129
 msgid "- Images"
 msgstr "- Hình ảnh"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:130
 msgid "- Webpage links"
 msgstr "- Nối kết trang web"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:131
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Phần còn lại của các tác vụ có thể được thực hiện bằng cách sử dụng các lệnh sau:"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:135
 msgid "{command} - compare PDF files"
 msgstr "{command} - so sánh tệp PDF"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:136
 msgid "{command} - merge PDF files"
 msgstr "{command} - hợp nhất tệp PDF"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - chuyển đổi và kết hợp nhiều hình ảnh thành tệp PDF"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - tạo tệp PDF từ tin nhắn văn bản"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:143
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - thêm hình nền mờ vào tệp PDF"
 
-#: pdf_bot/dispatcher.py:174
+#: pdf_bot/dispatcher.py:178
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Nút đã hết hạn, vui lòng thử lại với thư/truy vấn mới sau đó nhấn nút mới"
 
@@ -425,26 +425,6 @@ msgstr "Hợp nhất các tệp PDF của bạn"
 #: pdf_bot/commands/merge.py:255
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Tôi không thể hợp nhất các tệp PDF của bạn vì tệp này không hợp lệ: {file_name}"
-
-#: pdf_bot/commands/text.py:61
-msgid "Send me the text that you'll like to write into your PDF file"
-msgstr "Gửi cho tôi văn bản bạn muốn viết vào tệp PDF của mình"
-
-#: pdf_bot/commands/text.py:84
-msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
-msgstr "Gửi cho tôi phông chữ mà bạn muốn sử dụng cho tệp PDF hoặc nhấn {skip} để sử dụng phông chữ mặc định"
-
-#: pdf_bot/commands/text.py:88
-msgid "See here for the list of supported fonts: {fonts}"
-msgstr "Xem tại đây để biết danh sách các phông chữ được hỗ trợ: {fonts}"
-
-#: pdf_bot/commands/text.py:121
-msgid "Unknown font, please try again"
-msgstr "Phông chữ không xác định, vui lòng thử lại"
-
-#: pdf_bot/commands/text.py:153
-msgid "Creating your PDF file"
-msgstr "Tạo tệp PDF của bạn"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -739,13 +719,37 @@ msgstr "Trích xuất văn bản từ tệp PDF của bạn"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Tôi không thể tìm thấy bất kỳ văn bản nào trong tệp PDF của bạn"
 
-#: pdf_bot/pdf/pdf_service.py:66
+#: pdf_bot/pdf/pdf_service.py:102
 msgid "Your PDF file is invalid"
 msgstr "Tệp PDF của bạn không hợp lệ"
 
-#: pdf_bot/pdf/pdf_service.py:69
+#: pdf_bot/pdf/pdf_service.py:105
 msgid "Your PDF file is encrypted"
 msgstr "Tệp PDF của bạn được mã hóa"
+
+#: pdf_bot/text/constants.py:10
+msgid "Skip"
+msgstr ""
+
+#: pdf_bot/text/text_service.py:30
+msgid "Send me the text that you'll like to write into your PDF file"
+msgstr "Gửi cho tôi văn bản bạn muốn viết vào tệp PDF của mình"
+
+#: pdf_bot/text/text_service.py:51
+msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
+msgstr "Gửi cho tôi phông chữ mà bạn muốn sử dụng cho tệp PDF hoặc nhấn {skip} để sử dụng phông chữ mặc định"
+
+#: pdf_bot/text/text_service.py:55
+msgid "See here for the list of supported fonts: {fonts}"
+msgstr "Xem tại đây để biết danh sách các phông chữ được hỗ trợ: {fonts}"
+
+#: pdf_bot/text/text_service.py:83
+msgid "Unknown font, please try again"
+msgstr "Phông chữ không xác định, vui lòng thử lại"
+
+#: pdf_bot/text/text_service.py:98
+msgid "Creating your PDF file"
+msgstr "Tạo tệp PDF của bạn"
 
 #: pdf_bot/watermark/watermark_service.py:28
 msgid "Send me the PDF file that you'll like to add a watermark"
