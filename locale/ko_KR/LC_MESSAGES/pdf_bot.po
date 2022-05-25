@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-25 07:40+0000\n"
-"PO-Revision-Date: 2022-05-25 07:40\n"
+"POT-Creation-Date: 2022-05-25 11:13+0000\n"
+"PO-Revision-Date: 2022-05-25 11:13\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -147,99 +147,99 @@ msgstr "식사"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:113
+#: pdf_bot/dispatcher.py:111
 msgid "Set Language 🌎"
 msgstr "언어 설정 🌎"
 
-#: pdf_bot/dispatcher.py:115 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:113 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "채널 가입"
 
-#: pdf_bot/dispatcher.py:116 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:114 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "지원 PDF 봇"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:123
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "다음 중 하나를 보내서 대부분의 작업을 수행할 수 있습니다."
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:126
 msgid "- PDF files"
 msgstr "- PDF 파일"
 
-#: pdf_bot/dispatcher.py:129
+#: pdf_bot/dispatcher.py:127
 msgid "- Images"
 msgstr "- 이미지"
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:128
 msgid "- Webpage links"
 msgstr "- 웹 페이지 링크"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:129
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "나머지 작업은 다음 명령을 사용하여 수행할 수 있습니다."
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:133
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF 파일을 비교"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:134
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF 파일 병합"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:135
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 변환및 PDF 파일로 여러 이미지를 결합"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:138
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - 문자 메시지에서 PDF 파일을 만듭니다."
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:141
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF 파일에 워터 마크 추가"
 
-#: pdf_bot/dispatcher.py:178
+#: pdf_bot/dispatcher.py:176
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "버튼이 만료되었으므로 새 메시지 / 쿼리로 다시 시도한 다음 새 버튼을 누르십시오."
 
-#: pdf_bot/feedback.py:49
+#: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "피드백을 보내주세요(영어 피드백만 개발자에게 전달됩니다)"
 
-#: pdf_bot/feedback.py:84
+#: pdf_bot/feedback.py:83
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr "귀하의 의견에 감사드립니다, 나는 이미 내 개발자에게 전달했습니다"
 
-#: pdf_bot/feedback.py:88
+#: pdf_bot/feedback.py:87
 msgid "The feedback is not in English, try again"
 msgstr "피드백은 영어로되지 않습니다, 다시 시도"
 
-#: pdf_bot/language.py:28
+#: pdf_bot/language.py:26
 msgid "Select your language"
 msgstr "언어 선택"
 
-#: pdf_bot/language.py:73
+#: pdf_bot/language.py:69
 msgid "Your language has been set to {language}"
 msgstr "언어가 {language}설정되었습니다."
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:56
 msgid "Help translate PDF Bot"
 msgstr "PDF 봇 번역 도움말"
 
-#: pdf_bot/payment.py:70
+#: pdf_bot/payment.py:68
 msgid "Select how you want to support PDF Bot"
 msgstr "PDF 봇을 지원하는 방법 선택"
 
-#: pdf_bot/payment.py:86
+#: pdf_bot/payment.py:84
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PDF 봇에 감사하고 실행 유지 하는 데 도움이"
 
-#: pdf_bot/payment.py:107
+#: pdf_bot/payment.py:105
 msgid "Something went wrong"
 msgstr "뭔가 잘못되었습니다."
 
-#: pdf_bot/payment.py:115
+#: pdf_bot/payment.py:113
 msgid "Thank you for your support!"
 msgstr "당신의 지원에 감사드립니다!"
 
@@ -719,11 +719,11 @@ msgstr "PDF 파일에서 텍스트 추출"
 msgid "I couldn't find any text in your PDF file"
 msgstr "PDF 파일에서 텍스트를 찾을 수 없습니다."
 
-#: pdf_bot/pdf/pdf_service.py:102
+#: pdf_bot/pdf/pdf_service.py:104
 msgid "Your PDF file is invalid"
 msgstr "PDF 파일이 잘못되었습니다."
 
-#: pdf_bot/pdf/pdf_service.py:105
+#: pdf_bot/pdf/pdf_service.py:107
 msgid "Your PDF file is encrypted"
 msgstr "PDF 파일이 암호화되었습니다."
 

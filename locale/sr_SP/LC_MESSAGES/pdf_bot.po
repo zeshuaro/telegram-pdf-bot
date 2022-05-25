@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-25 07:40+0000\n"
-"PO-Revision-Date: 2022-05-25 07:40\n"
+"POT-Creation-Date: 2022-05-25 11:13+0000\n"
+"PO-Revision-Date: 2022-05-25 11:13\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -147,99 +147,99 @@ msgstr "Оброк"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:113
+#: pdf_bot/dispatcher.py:111
 msgid "Set Language 🌎"
 msgstr "Постављање језичких 🌎"
 
-#: pdf_bot/dispatcher.py:115 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:113 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Придружи се каналу"
 
-#: pdf_bot/dispatcher.py:116 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:114 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Подршка ПДФ Боту"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:123
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Већину задатака можете извршити тако што ћете ми послати једну од следећих опција:"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:126
 msgid "- PDF files"
 msgstr "- ПДФ фајлови"
 
-#: pdf_bot/dispatcher.py:129
+#: pdf_bot/dispatcher.py:127
 msgid "- Images"
 msgstr "- Слике"
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:128
 msgid "- Webpage links"
 msgstr "- Линкови Веб страница"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:129
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Остали задаци се могу извршити помоћу следећих команди:"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:133
 msgid "{command} - compare PDF files"
 msgstr "{command} - упоредите ПДФ фајлове"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:134
 msgid "{command} - merge PDF files"
 msgstr "{command} - обједињавање ПДФ фајлова"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:135
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - конвертовање и комбиновање више слика у ПДФ фајлове"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:138
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - креирање ПДФ фајлова од текстуалних порука"
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:141
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - додајте водени жиг ПДФ фајловима"
 
-#: pdf_bot/dispatcher.py:178
+#: pdf_bot/dispatcher.py:176
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Дугме је истекло, покушајте поново са новом поруком/упитом, а затим притисните ново дугме"
 
-#: pdf_bot/feedback.py:49
+#: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Пошаљи ми повратне информације (само енглеске повратне информације ће бити прослеђене мом пројектанту)"
 
-#: pdf_bot/feedback.py:84
+#: pdf_bot/feedback.py:83
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr "Хвала вам на повратним информацијама, већ сам их проследио свом програмеру"
 
-#: pdf_bot/feedback.py:88
+#: pdf_bot/feedback.py:87
 msgid "The feedback is not in English, try again"
 msgstr "Повратне информације нису на енглеском, покушајте поново"
 
-#: pdf_bot/language.py:28
+#: pdf_bot/language.py:26
 msgid "Select your language"
 msgstr "Изаберите ваш језик"
 
-#: pdf_bot/language.py:73
+#: pdf_bot/language.py:69
 msgid "Your language has been set to {language}"
 msgstr "Ваш језик је подешен на {language}"
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:56
 msgid "Help translate PDF Bot"
 msgstr "Помогните да се ПДФ Бот преведе"
 
-#: pdf_bot/payment.py:70
+#: pdf_bot/payment.py:68
 msgid "Select how you want to support PDF Bot"
 msgstr "Изаберите како желите да подржите ПДФ Бота"
 
-#: pdf_bot/payment.py:86
+#: pdf_bot/payment.py:84
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Захвалите се ПДФ Боту и помозите му да настави да ради"
 
-#: pdf_bot/payment.py:107
+#: pdf_bot/payment.py:105
 msgid "Something went wrong"
 msgstr "Нешто је пошло наопако"
 
-#: pdf_bot/payment.py:115
+#: pdf_bot/payment.py:113
 msgid "Thank you for your support!"
 msgstr "Хвала вам на подршци!"
 
@@ -719,11 +719,11 @@ msgstr "Издвајање текста из ПДФ датотеке"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Нисам могао да нађем никакав текст у твом ПДФ фајлу"
 
-#: pdf_bot/pdf/pdf_service.py:102
+#: pdf_bot/pdf/pdf_service.py:104
 msgid "Your PDF file is invalid"
 msgstr "Ваша ПДФ датотека је неважећа"
 
-#: pdf_bot/pdf/pdf_service.py:105
+#: pdf_bot/pdf/pdf_service.py:107
 msgid "Your PDF file is encrypted"
 msgstr "Ваш ПДФ фајл је шифрован"
 

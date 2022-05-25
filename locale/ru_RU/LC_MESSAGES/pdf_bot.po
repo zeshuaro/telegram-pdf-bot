@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-25 07:40+0000\n"
-"PO-Revision-Date: 2022-05-25 07:40\n"
+"POT-Creation-Date: 2022-05-25 11:13+0000\n"
+"PO-Revision-Date: 2022-05-25 11:13\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -147,99 +147,99 @@ msgstr "Еда"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:113
+#: pdf_bot/dispatcher.py:111
 msgid "Set Language 🌎"
 msgstr "Установить язык 🌎"
 
-#: pdf_bot/dispatcher.py:115 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:113 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Присоединиться к каналу"
 
-#: pdf_bot/dispatcher.py:116 pdf_bot/payment.py:85 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:114 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Поддержать PDF Bot"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:123
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Вы можете выполнить большинство задач, отправив мне один из следующих вариантов:"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:126
 msgid "- PDF files"
 msgstr "- PDF файлы"
 
-#: pdf_bot/dispatcher.py:129
+#: pdf_bot/dispatcher.py:127
 msgid "- Images"
 msgstr "- Изображения"
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:128
 msgid "- Webpage links"
 msgstr "- Ссылки на веб-страницы"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:129
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Остальные задачи можно выполнить с помощью следующих команд:"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:133
 msgid "{command} - compare PDF files"
 msgstr "{command} - сравнить PDF файлы"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:134
 msgid "{command} - merge PDF files"
 msgstr "{command} - объединение PDF файлов"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:135
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - конвертируйте и объединяйте несколько изображений в PDF-файлы"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:138
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - создание PDF файлов из текстовых сообщений"
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:141
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - добавление водяного знака в PDF-файлы"
 
-#: pdf_bot/dispatcher.py:178
+#: pdf_bot/dispatcher.py:176
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Срок действия кнопки истек, повторите попытку с новым сообщением/запросом, затем нажмите новую кнопку"
 
-#: pdf_bot/feedback.py:49
+#: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
 msgstr "Отправьте мне свой отзыв (только отзывы на английском языке будут переданы моему разработчику)"
 
-#: pdf_bot/feedback.py:84
+#: pdf_bot/feedback.py:83
 msgid "Thank you for your feedback, I've already forwarded it to my developer"
 msgstr "Спасибо за ваш отзыв, я уже отправил его моему разработчику"
 
-#: pdf_bot/feedback.py:88
+#: pdf_bot/feedback.py:87
 msgid "The feedback is not in English, try again"
 msgstr "Отзыв не на английском языке, попробуйте еще раз"
 
-#: pdf_bot/language.py:28
+#: pdf_bot/language.py:26
 msgid "Select your language"
 msgstr "Выберите свой язык"
 
-#: pdf_bot/language.py:73
+#: pdf_bot/language.py:69
 msgid "Your language has been set to {language}"
 msgstr "Ваш язык настроен на {language}"
 
-#: pdf_bot/payment.py:58
+#: pdf_bot/payment.py:56
 msgid "Help translate PDF Bot"
 msgstr "Помочь перевести PDF Bot"
 
-#: pdf_bot/payment.py:70
+#: pdf_bot/payment.py:68
 msgid "Select how you want to support PDF Bot"
 msgstr "Выберите, каким образом вы хотите поддержать PDF Bot"
 
-#: pdf_bot/payment.py:86
+#: pdf_bot/payment.py:84
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Скажите спасибо PDF Bot и помогите поддерживать его в рабочем состоянии"
 
-#: pdf_bot/payment.py:107
+#: pdf_bot/payment.py:105
 msgid "Something went wrong"
 msgstr "Что-то пошло не так"
 
-#: pdf_bot/payment.py:115
+#: pdf_bot/payment.py:113
 msgid "Thank you for your support!"
 msgstr "Спасибо за вашу поддержку!"
 
@@ -719,11 +719,11 @@ msgstr "Извлечение текста из PDF-файла"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Я не смог найти текст в вашем PDF-файле"
 
-#: pdf_bot/pdf/pdf_service.py:102
+#: pdf_bot/pdf/pdf_service.py:104
 msgid "Your PDF file is invalid"
 msgstr "Ваш PDF-файл недействителен"
 
-#: pdf_bot/pdf/pdf_service.py:105
+#: pdf_bot/pdf/pdf_service.py:107
 msgid "Your PDF file is encrypted"
 msgstr "Ваш PDF-файл зашифрован"
 
