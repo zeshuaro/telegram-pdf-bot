@@ -4,8 +4,7 @@ from unittest.mock import MagicMock
 import pytest
 from requests import Response, Session
 
-from pdf_bot.text.models import FontData
-from pdf_bot.text.text_repository import TextRepository
+from pdf_bot.text import FontData, TextRepository
 
 
 @pytest.fixture(name="font_family")
