@@ -18,6 +18,16 @@ class IOService:
         finally:
             tf.close()
 
+    @staticmethod
+    @contextmanager
+    def create_temp_files(num_files: int) -> Generator[str, None, None]:
+        try:
+            tempfiles = [NamedTemporaryFile() for _ in range(num_files)]
+            yield [x.name for x in tempfiles]
+        finally:
+            for tf in tempfiles:
+                tf.close()
+
     @contextmanager
     def create_temp_pdf_file(self, prefix: str) -> Generator[str, None, None]:
         try:
