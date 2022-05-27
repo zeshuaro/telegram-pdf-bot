@@ -1,5 +1,5 @@
 from contextlib import contextmanager
-from typing import Generator
+from typing import Generator, List
 
 from telegram import Bot
 from telegram.ext import Updater
@@ -24,5 +24,16 @@ class TelegramService:
                 file = self.bot.get_file(file_id)
                 file.download(custom_path=out_path)
                 yield out_path
+            finally:
+                pass
+
+    @contextmanager
+    def download_files(self, file_ids: List[str]) -> Generator[List[str], None, None]:
+        with self.io_service.create_temp_files(len(file_ids)) as out_paths:
+            try:
+                for i, file_id in enumerate(file_ids):
+                    file = self.bot.get_file(file_id)
+                    file.download(custom_path=out_paths[i])
+                yield out_paths
             finally:
                 pass

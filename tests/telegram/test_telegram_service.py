@@ -1,3 +1,7 @@
+from random import randint
+from typing import Callable, List
+from unittest.mock import MagicMock, call
+
 import pytest
 from telegram import Bot, File
 
@@ -22,3 +26,22 @@ def test_download_file(
     with telegram_service.download_file(document_id):
         telegram_bot.get_file.assert_called_with(document_id)
         telegram_file.download.assert_called()
+
+
+def test_download_files(
+    telegram_service: TelegramService,
+    telegram_bot: Bot,
+    document_ids_generator: Callable[[int], List[str]],
+):
+    def get_file_side_effect(doc_id: str):
+        mock = MagicMock()
+        mock.__enter__.return_value = File(doc_id, doc_id)
+        return mock
+
+    num_files = randint(0, 10)
+    file_ids = document_ids_generator(num_files)
+    telegram_bot.get_file.side_effect = get_file_side_effect
+
+    with telegram_service.download_files(file_ids):
+        calls = [call(file_id) for file_id in file_ids]
+        telegram_bot.get_file.assert_has_calls(calls)
