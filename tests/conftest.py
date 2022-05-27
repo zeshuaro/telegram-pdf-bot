@@ -43,6 +43,14 @@ def fixture_document_id() -> str:
 
 
 @pytest.fixture
+def document_ids_generator() -> Callable[[int], List[str]]:
+    def _func(n: int):
+        return ["".join(random.choices(string.ascii_letters, k=10)) for _ in range(n)]
+
+    return _func
+
+
+@pytest.fixture
 def language_code() -> str:
     return "en_GB"
 
@@ -64,14 +72,6 @@ def fixture_telegram_document(document_id: int) -> Document:
     doc = cast(Document, MagicMock())
     doc.file_id = document_id
     return doc
-
-
-@pytest.fixture
-def document_ids_generator() -> Callable[[int], List[str]]:
-    def _func(n: int):
-        return ["".join(random.choices(string.ascii_letters, k=10)) for _ in range(n)]
-
-    return _func
 
 
 @pytest.fixture(name="telegram_file")
