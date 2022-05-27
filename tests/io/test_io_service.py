@@ -1,4 +1,5 @@
 import os
+from random import randint
 
 import pytest
 
@@ -22,6 +23,12 @@ def test_create_temp_file_with_suffix(io_service: IOService):
     with io_service.create_temp_file(suffix=suffix) as out_path:
         paths = os.path.split(out_path)
         assert paths[1].endswith(suffix)
+
+
+def test_create_temp_files(io_service: IOService):
+    num_files = randint(0, 10)
+    with io_service.create_temp_files(num_files) as out_paths:
+        assert len(out_paths) == num_files
 
 
 def test_create_temp_pdf_file(io_service: IOService):
