@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-25 11:13+0000\n"
-"PO-Revision-Date: 2022-05-25 11:13\n"
+"POT-Creation-Date: 2022-05-28 02:08+0000\n"
+"PO-Revision-Date: 2022-05-28 02:09\n"
 "Last-Translator: \n"
 "Language: da\n"
 "Language-Team: Danish\n"
@@ -422,7 +422,7 @@ msgstr "Du har kun sendt mig én PDF-fil"
 msgid "Merging your PDF files"
 msgstr "Fletning af PDF-filer"
 
-#: pdf_bot/commands/merge.py:255
+#: pdf_bot/commands/merge.py:255 pdf_bot/pdf/pdf_service.py:113
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Jeg kunne ikke flette PDF-filerne, da filen er ugyldig: {file_name}"
 
@@ -719,11 +719,11 @@ msgstr "Udpakning af tekst fra PDF-filen"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Jeg kunne ikke finde tekst i din PDF-fil"
 
-#: pdf_bot/pdf/pdf_service.py:104
+#: pdf_bot/pdf/pdf_service.py:130
 msgid "Your PDF file is invalid"
 msgstr "Din PDF fil er ugyldig"
 
-#: pdf_bot/pdf/pdf_service.py:107
+#: pdf_bot/pdf/pdf_service.py:133
 msgid "Your PDF file is encrypted"
 msgstr "Din PDF-fil er krypteret"
 

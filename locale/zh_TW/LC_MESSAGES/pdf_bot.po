@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-25 11:13+0000\n"
-"PO-Revision-Date: 2022-05-25 11:13\n"
+"POT-Creation-Date: 2022-05-28 02:08+0000\n"
+"PO-Revision-Date: 2022-05-28 02:09\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -422,7 +422,7 @@ msgstr "你只寄給我一個 Pdf 檔"
 msgid "Merging your PDF files"
 msgstr "正在合併你的PDF檔案"
 
-#: pdf_bot/commands/merge.py:255
+#: pdf_bot/commands/merge.py:255 pdf_bot/pdf/pdf_service.py:113
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "我不能合併您的 PDF 檔，因為此文件無效： {file_name}"
 
@@ -719,11 +719,11 @@ msgstr "正在提取你的PDF檔案的文字"
 msgid "I couldn't find any text in your PDF file"
 msgstr "我在你的PDF檔案中找不到任何文字"
 
-#: pdf_bot/pdf/pdf_service.py:104
+#: pdf_bot/pdf/pdf_service.py:130
 msgid "Your PDF file is invalid"
 msgstr "您的 PDF 檔無效"
 
-#: pdf_bot/pdf/pdf_service.py:107
+#: pdf_bot/pdf/pdf_service.py:133
 msgid "Your PDF file is encrypted"
 msgstr "您的 PDF 檔已加密"
 
