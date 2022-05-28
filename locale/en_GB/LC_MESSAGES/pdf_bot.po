@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot VERSION\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-25 11:13+0000\n"
+"POT-Creation-Date: 2022-05-28 02:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: locale\n"
@@ -430,7 +430,7 @@ msgstr ""
 msgid "Merging your PDF files"
 msgstr ""
 
-#: pdf_bot/commands/merge.py:255
+#: pdf_bot/commands/merge.py:255 pdf_bot/pdf/pdf_service.py:113
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr ""
 
@@ -735,11 +735,11 @@ msgstr ""
 msgid "I couldn't find any text in your PDF file"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:104
+#: pdf_bot/pdf/pdf_service.py:130
 msgid "Your PDF file is invalid"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:107
+#: pdf_bot/pdf/pdf_service.py:133
 msgid "Your PDF file is encrypted"
 msgstr ""
 
