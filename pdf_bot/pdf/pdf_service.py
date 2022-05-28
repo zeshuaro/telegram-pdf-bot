@@ -106,7 +106,7 @@ class PdfService:
             for i, file_path in enumerate(file_paths):
                 try:
                     merger.append(open(file_path, "rb"))
-                except (PdfReadError, ValueError) as e:
+                except (PyPdfReadError, ValueError) as e:
                     raise PdfReadError(
                         _(
                             "I couldn't merge your PDF files as this file is invalid: "

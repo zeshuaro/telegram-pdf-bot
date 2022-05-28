@@ -5,6 +5,7 @@ from typing import Callable, List, cast
 from unittest.mock import ANY, MagicMock, call, patch
 
 import pytest
+from PyPDF2 import PdfFileMerger
 from PyPDF2.utils import PdfReadError as PyPdfReadError
 
 from pdf_bot.compare import CompareService
@@ -114,3 +115,27 @@ def test_merge_pdfs(
             calls = [call(ANY) for _ in range(num_files)]
             merger.append.assert_has_calls(calls)
             merger.write.assert_called_once()
+
+
+@pytest.mark.parametrize("exception", [(PyPdfReadError()), (ValueError(),)])
+def test_merge_pdfs_read_error(
+    pdf_service: PdfService,
+    telegram_service: TelegramService,
+    file_data_generator: Callable[[int], List[FileData]],
+    exception: Exception,
+):
+    num_files = randint(0, 10)
+    file_data_list = file_data_generator(num_files)
+    file_ids = [x.id for x in file_data_list]
+
+    telegram_service.download_files.return_value.__enter__.return_value = file_ids
+    merger = cast(PdfFileMerger, MagicMock())
+    merger.append.side_effect = exception
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileMerger"
+    ) as pdf_file_merger:
+        pdf_file_merger.return_value = merger
+        with pytest.raises(PdfReadError), pdf_service.merge_pdfs(file_data_list):
+            telegram_service.download_files.assert_called_once_with(file_ids)
+            merger.write.assert_not_called()
