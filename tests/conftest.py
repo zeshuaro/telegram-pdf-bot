@@ -9,9 +9,14 @@ from telegram import Bot, Document, File, Message, Update, User
 from telegram.ext import CallbackContext
 
 from pdf_bot.io.io_service import IOService
+from pdf_bot.models import FileData
 from pdf_bot.pdf.pdf_service import PdfService
 
 TEST_DATA_PATH = Path(__file__).parent.resolve() / "data"
+
+
+def random_string():
+    return "".join(random.choices(string.ascii_letters, k=10))
 
 
 @pytest.fixture
@@ -39,13 +44,21 @@ def fixture_user_id() -> int:
 
 @pytest.fixture(name="document_id")
 def fixture_document_id() -> str:
-    return "".join(random.choices(string.ascii_letters, k=10))
+    return random_string()
 
 
 @pytest.fixture
 def document_ids_generator() -> Callable[[int], List[str]]:
     def _func(n: int):
-        return ["".join(random.choices(string.ascii_letters, k=10)) for _ in range(n)]
+        return [random_string() for _ in range(n)]
+
+    return _func
+
+
+@pytest.fixture
+def file_data_generator() -> Callable[[int], List[FileData]]:
+    def _func(n: int):
+        return [FileData(random_string(), random_string()) for _ in range(n)]
 
     return _func
 
