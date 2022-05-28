@@ -3,12 +3,13 @@ from contextlib import contextmanager
 from typing import TYPE_CHECKING, Generator, List, Union
 
 import pdf_diff
-from PyPDF2 import PdfFileReader, PdfFileWriter
+from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError as PyPdfReadError
 from weasyprint import CSS, HTML
 from weasyprint.text.fonts import FontConfiguration
 
 from pdf_bot.io import IOService
+from pdf_bot.models import FileData
 from pdf_bot.pdf.exceptions import PdfEncryptError, PdfReadError
 from pdf_bot.telegram import TelegramService
 
@@ -92,6 +93,31 @@ class PdfService:
         ) as out_path:
             try:
                 pdf_diff.main(files=[file_name_a, file_name_b], out_file=out_path)
+                yield out_path
+            finally:
+                pass
+
+    @contextmanager
+    def merge_pdfs(self, file_data_list: List[FileData]) -> Generator[str, None, None]:
+        file_ids = [x.id for x in file_data_list]
+        merger = PdfFileMerger()
+
+        with self.telegram_service.download_files(file_ids) as file_paths:
+            for i, file_path in enumerate(file_paths):
+                try:
+                    merger.append(open(file_path, "rb"))
+                except (PyPdfReadError, ValueError) as e:
+                    raise PdfReadError(
+                        _(
+                            "I couldn't merge your PDF files as this file is invalid: "
+                            "{file_name}".format(file_name=file_data_list[i].name)
+                        )
+                    ) from e
+
+        with self.io_service.create_temp_pdf_file(prefix="Merged_files") as out_path:
+            try:
+                with open(out_path) as f:
+                    merger.write(f)
                 yield out_path
             finally:
                 pass
