@@ -3,11 +3,16 @@ from typing import Callable, List
 from unittest.mock import MagicMock, call
 
 import pytest
-from telegram import Bot, File
+from telegram import Bot, Document, File
+from telegram.constants import MAX_FILESIZE_DOWNLOAD
 
 from pdf_bot.io import IOService
 from pdf_bot.models import FileData
-from pdf_bot.telegram import TelegramService
+from pdf_bot.telegram import (
+    TelegramFileMimeTypeError,
+    TelegramFileTooLargeError,
+    TelegramService,
+)
 
 
 @pytest.fixture(name="telegram_service")
@@ -15,6 +20,31 @@ def fixture_telegram_service(
     io_service: IOService, telegram_bot: Bot
 ) -> TelegramService:
     return TelegramService(io_service, bot=telegram_bot)
+
+
+def test_check_pdf_document(
+    telegram_service: TelegramService, telegram_document: Document
+):
+    telegram_document.mime_type = "pdf"
+    telegram_document.file_size = MAX_FILESIZE_DOWNLOAD
+    telegram_service.check_pdf_document(telegram_document)
+
+
+def test_check_pdf_document_invalid_mime_type(
+    telegram_service: TelegramService, telegram_document: Document
+):
+    telegram_document.mime_type = "clearly_random"
+    with pytest.raises(TelegramFileMimeTypeError):
+        telegram_service.check_pdf_document(telegram_document)
+
+
+def test_check_pdf_document_too_large(
+    telegram_service: TelegramService, telegram_document: Document
+):
+    telegram_document.mime_type = "pdf"
+    telegram_document.file_size = MAX_FILESIZE_DOWNLOAD + 1
+    with pytest.raises(TelegramFileTooLargeError):
+        telegram_service.check_pdf_document(telegram_document)
 
 
 def test_download_file(
