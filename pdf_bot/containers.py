@@ -10,6 +10,7 @@ from pdf_bot.account import AccountRepository, AccountService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.io import IOService
+from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import TelegramService
 from pdf_bot.text import TextHandlers, TextRepository, TextService
@@ -46,6 +47,7 @@ class Services(containers.DeclarativeContainer):
     pdf = providers.Factory(PdfService, io_service=io, telegram_service=telegram)
 
     compare = providers.Factory(CompareService, pdf_service=pdf)
+    merge = providers.Factory(MergeService, pdf_service=pdf, telegram_service=telegram)
     text = providers.Factory(
         TextService, text_repository=repositories.text, pdf_service=pdf
     )
@@ -56,6 +58,7 @@ class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
 
     compare = providers.Factory(CompareHandlers, compare_service=services.compare)
+    merge = providers.Factory(MergeHandlers, merge_service=services.merge)
     text = providers.Factory(TextHandlers, text_service=services.text)
     watermark = providers.Factory(
         WatermarkHandlers, watermark_service=services.watermark

@@ -116,7 +116,7 @@ class PdfService:
 
         with self.io_service.create_temp_pdf_file(prefix="Merged_files") as out_path:
             try:
-                with open(out_path) as f:
+                with open(out_path, "wb") as f:
                     merger.write(f)
                 yield out_path
             finally:

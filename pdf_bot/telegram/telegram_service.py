@@ -5,6 +5,7 @@ from telegram import Bot
 from telegram.ext import Updater
 
 from pdf_bot.io import IOService
+from pdf_bot.models import FileData
 
 
 class TelegramService:
@@ -37,3 +38,10 @@ class TelegramService:
                 yield out_paths
             finally:
                 pass
+
+    def send_file_names(
+        self, chat_id: str, text: str, file_data_list: List[FileData]
+    ) -> None:
+        for i, file_data in enumerate(file_data_list):
+            text += f"{i + 1}: {file_data.name}\n"
+        self.bot.send_message(chat_id, text)
