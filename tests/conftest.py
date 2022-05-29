@@ -11,6 +11,7 @@ from telegram.ext import CallbackContext
 from pdf_bot.io.io_service import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf.pdf_service import PdfService
+from pdf_bot.telegram import TelegramService
 
 TEST_DATA_PATH = Path(__file__).parent.resolve() / "data"
 
@@ -44,6 +45,11 @@ def fixture_user_id() -> int:
 
 @pytest.fixture(name="document_id")
 def fixture_document_id() -> str:
+    return random_string()
+
+
+@pytest.fixture(name="document_name")
+def fixture_document_name() -> str:
     return random_string()
 
 
@@ -81,10 +87,16 @@ def fixture_telegram_text() -> str:
 
 
 @pytest.fixture(name="telegram_document")
-def fixture_telegram_document(document_id: int) -> Document:
+def fixture_telegram_document(document_id: str, document_name: str) -> Document:
     doc = cast(Document, MagicMock())
     doc.file_id = document_id
+    doc.file_name = document_name
     return doc
+
+
+@pytest.fixture
+def file_data(telegram_document: Document) -> FileData:
+    return FileData.from_telegram_document(telegram_document)
 
 
 @pytest.fixture(name="telegram_file")
@@ -129,3 +141,8 @@ def io_service() -> IOService:
 @pytest.fixture
 def pdf_service() -> PdfService:
     return cast(PdfService, MagicMock())
+
+
+@pytest.fixture
+def telegram_service() -> TelegramService:
+    return cast(TelegramService, MagicMock())

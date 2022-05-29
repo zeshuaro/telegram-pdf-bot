@@ -124,7 +124,7 @@ def test_merge_pdfs_read_error(
     file_data_generator: Callable[[int], List[FileData]],
     exception: Exception,
 ):
-    num_files = randint(0, 10)
+    num_files = randint(1, 10)
     file_data_list = file_data_generator(num_files)
     file_ids = [x.id for x in file_data_list]
 

@@ -80,7 +80,7 @@ class WatermarkService:
             ) as out_path:
                 send_result_file(update, context, out_path, TaskType.watermark_pdf)
         except PdfServiceError as e:
-            update.effective_message.reply_text(str(e))
+            update.effective_message.reply_text(_(e))
 
         if user_data[WATERMARK_KEY] == src_file_id:
             del user_data[WATERMARK_KEY]

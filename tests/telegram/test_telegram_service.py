@@ -6,6 +6,7 @@ import pytest
 from telegram import Bot, File
 
 from pdf_bot.io import IOService
+from pdf_bot.models import FileData
 from pdf_bot.telegram import TelegramService
 
 
@@ -45,3 +46,13 @@ def test_download_files(
     with telegram_service.download_files(file_ids):
         calls = [call(file_id) for file_id in file_ids]
         telegram_bot.get_file.assert_has_calls(calls)
+
+
+def test_send_file_names(telegram_service: TelegramService, telegram_bot: Bot):
+    chat_id = "chat_id"
+    text = "text"
+    file_data_list = [FileData("a", "a"), FileData("b", "b")]
+
+    telegram_service.send_file_names(chat_id, text, file_data_list)
+
+    telegram_bot.send_message.assert_called_once_with(chat_id, f"{text}1: a\n2: b\n")
