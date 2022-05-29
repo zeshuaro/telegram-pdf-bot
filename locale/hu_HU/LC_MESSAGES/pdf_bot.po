@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-28 02:08+0000\n"
-"PO-Revision-Date: 2022-05-28 02:09\n"
+"POT-Creation-Date: 2022-05-29 03:13+0000\n"
+"PO-Revision-Date: 2022-05-29 03:13\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -147,59 +147,59 @@ msgstr "Étkezés"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:111
+#: pdf_bot/dispatcher.py:115
 msgid "Set Language 🌎"
 msgstr "Nyelv beállítása 🌎"
 
-#: pdf_bot/dispatcher.py:113 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:117 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Csatlakozás a csatornához"
 
-#: pdf_bot/dispatcher.py:114 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:118 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Támogatás PDF Bot"
 
-#: pdf_bot/dispatcher.py:123
+#: pdf_bot/dispatcher.py:127
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "A legtöbb feladatot az alábbiak egyikének elküldésével végezheti el:"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:130
 msgid "- PDF files"
 msgstr "- PDF fájlok"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:131
 msgid "- Images"
 msgstr "- Képek"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:132
 msgid "- Webpage links"
 msgstr "- Weboldal linkek"
 
-#: pdf_bot/dispatcher.py:129
+#: pdf_bot/dispatcher.py:133
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "A többi feladat a következő parancsokkal végezhető el:"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF fájlok összehasonlítása"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:138
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF fájlok egyesítése"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:139
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - több kép konvertálása és kombinálása PDF-fájlokká"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:142
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - PDF fájlok létrehozása szöveges üzenetekből"
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - vízjel hozzáadása PDF fájlokhoz"
 
-#: pdf_bot/dispatcher.py:176
+#: pdf_bot/dispatcher.py:180
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "A gomb lejárt, próbálkozzon újra egy új üzenettel/lekérdezéssel, majd nyomja meg az új gombot"
 
@@ -271,14 +271,14 @@ msgstr "Művelet megszakítva"
 msgid "Your file is not a PDF file, please try again"
 msgstr "A fájl nem PDF-fájl, próbálkozzon újra"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
+#: pdf_bot/commands/image.py:137 pdf_bot/merge/merge_service.py:74
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "A fájl túl nagy ahhoz, hogy letöltse és feldolgozza"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/commands/merge.py:122
-#: pdf_bot/files/file.py:132 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
-#: pdf_bot/utils.py:243
+#: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
+#: pdf_bot/files/image.py:48 pdf_bot/merge/merge_service.py:75
+#: pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Ne feledje, hogy ez egy Telegram Bot korlátozás, és semmit sem tehetek, ha a Telegram nem változtatja meg ezt a korlátot"
 
@@ -385,46 +385,6 @@ msgstr "A képek szépítése és konvertálása"
 #: pdf_bot/commands/image.py:243
 msgid "Converting your images into PDF"
 msgstr "Képek konvertálása PDF formátumba"
-
-#: pdf_bot/commands/merge.py:84
-msgid "Send me the PDF files that you'll like to merge"
-msgstr "Küldje el nekem azokat a PDF-fájlokat, amelyeket egyesíteni szeretne"
-
-#: pdf_bot/commands/merge.py:85
-msgid "Note that the files will be merged in the order that you send me"
-msgstr "Vegye figyelembe, hogy a fájlok összevonásra kerülnek abban a sorrendben, amelyet ön küld nekem"
-
-#: pdf_bot/commands/merge.py:117
-msgid "Your file is not a PDF file"
-msgstr "A fájl nem PDF-fájl"
-
-#: pdf_bot/commands/merge.py:145
-msgid "PDF files"
-msgstr "PDF-fájlok"
-
-#: pdf_bot/commands/merge.py:152
-msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "Nyomja meg a {done} , ha elküldte nekem az összes PDF-fájlt, amelyet egyesíteni szeretne, vagy továbbra is elküldi nekem a PDF-fájlokat"
-
-#: pdf_bot/commands/merge.py:195
-msgid "{file_name} has been removed for merging"
-msgstr "{file_name} eltávolították az összeolvadás miatt"
-
-#: pdf_bot/commands/merge.py:217
-msgid "You haven't sent me any PDF files"
-msgstr "Nem küldött nekem PDF-fájlt"
-
-#: pdf_bot/commands/merge.py:221
-msgid "You've only sent me one PDF file"
-msgstr "Csak egy PDF fájlt küldtél nekem."
-
-#: pdf_bot/commands/merge.py:235
-msgid "Merging your PDF files"
-msgstr "A PDF-fájlok egyesítése"
-
-#: pdf_bot/commands/merge.py:255 pdf_bot/pdf/pdf_service.py:113
-msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr "Nem tudtam egyesíteni a PDF-fájlokat, mivel ez a fájl érvénytelen: {file_name}"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -718,6 +678,50 @@ msgstr "Szöveg kibontása a PDF-fájlból"
 #: pdf_bot/files/text.py:90
 msgid "I couldn't find any text in your PDF file"
 msgstr "Nem találtam szöveget a PDF-fájlban"
+
+#: pdf_bot/merge/merge_service.py:44
+msgid "Send me the PDF files that you'll like to merge"
+msgstr "Küldje el nekem azokat a PDF-fájlokat, amelyeket egyesíteni szeretne"
+
+#: pdf_bot/merge/merge_service.py:45
+msgid "Note that the files will be merged in the order that you send me"
+msgstr "Vegye figyelembe, hogy a fájlok összevonásra kerülnek abban a sorrendben, amelyet ön küld nekem"
+
+#: pdf_bot/merge/merge_service.py:70
+msgid "Your file is not a PDF file"
+msgstr "A fájl nem PDF-fájl"
+
+#: pdf_bot/merge/merge_service.py:89
+msgid "You've sent me these PDF files so far:"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:100
+msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgstr "Nyomja meg a {done} , ha elküldte nekem az összes PDF-fájlt, amelyet egyesíteni szeretne, vagy továbbra is elküldi nekem a PDF-fájlokat"
+
+#: pdf_bot/merge/merge_service.py:136
+msgid "You've already removed all the PDF files you've sent me"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:141
+msgid "{file_name} has been removed for merging"
+msgstr "{file_name} eltávolították az összeolvadás miatt"
+
+#: pdf_bot/merge/merge_service.py:156
+msgid "You haven't sent me any PDF files"
+msgstr "Nem küldött nekem PDF-fájlt"
+
+#: pdf_bot/merge/merge_service.py:159
+msgid "You've only sent me one PDF file"
+msgstr "Csak egy PDF fájlt küldtél nekem."
+
+#: pdf_bot/merge/merge_service.py:166
+msgid "Merging your PDF files"
+msgstr "A PDF-fájlok egyesítése"
+
+#: pdf_bot/pdf/pdf_service.py:113
+msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
+msgstr "Nem tudtam egyesíteni a PDF-fájlokat, mivel ez a fájl érvénytelen: {file_name}"
 
 #: pdf_bot/pdf/pdf_service.py:130
 msgid "Your PDF file is invalid"
@@ -1475,5 +1479,8 @@ msgstr "Vízjel hozzáadása a PDF-fájlhoz"
 #~ msgstr ""
 
 #~ msgid "watermark"
+#~ msgstr ""
+
+#~ msgid "PDF files"
 #~ msgstr ""
 

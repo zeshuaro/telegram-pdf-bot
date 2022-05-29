@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-28 02:08+0000\n"
-"PO-Revision-Date: 2022-05-28 02:09\n"
+"POT-Creation-Date: 2022-05-29 03:13+0000\n"
+"PO-Revision-Date: 2022-05-29 03:13\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese, Brazilian\n"
@@ -147,59 +147,59 @@ msgstr "Refeição"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji}${value}"
 
-#: pdf_bot/dispatcher.py:111
+#: pdf_bot/dispatcher.py:115
 msgid "Set Language 🌎"
 msgstr "Definir Idioma 🌎"
 
-#: pdf_bot/dispatcher.py:113 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:117 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Entre no Canal"
 
-#: pdf_bot/dispatcher.py:114 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:118 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Ajude o PDF Bot"
 
-#: pdf_bot/dispatcher.py:123
+#: pdf_bot/dispatcher.py:127
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Você pode executar a maioria das tarefas me enviando um dos seguintes:"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:130
 msgid "- PDF files"
 msgstr "- arquivos PDF"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:131
 msgid "- Images"
 msgstr "- Imagens"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:132
 msgid "- Webpage links"
 msgstr "- Links de página da Web"
 
-#: pdf_bot/dispatcher.py:129
+#: pdf_bot/dispatcher.py:133
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "O resto das tarefas podem ser executadas usando os seguintes comandos:"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - compare PDF files"
 msgstr "{command} - compare arquivos PDF"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:138
 msgid "{command} - merge PDF files"
 msgstr "{command} - mescla arquivos PDF"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:139
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - converta e combine várias imagens em arquivos PDF"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:142
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - crie arquivos PDF a partir de mensagens de texto"
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - adicionar marca d'água aos arquivos PDF"
 
-#: pdf_bot/dispatcher.py:176
+#: pdf_bot/dispatcher.py:180
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "O botão expirou, por favor tente novamente com uma nova mensagem/consulta e pressione o novo botão"
 
@@ -271,14 +271,14 @@ msgstr "Ação cancelada"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Seu arquivo não é um arquivo PDF, por favor tente novamente"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
+#: pdf_bot/commands/image.py:137 pdf_bot/merge/merge_service.py:74
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Seu arquivo é muito grande para eu baixar e processar"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/commands/merge.py:122
-#: pdf_bot/files/file.py:132 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
-#: pdf_bot/utils.py:243
+#: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
+#: pdf_bot/files/image.py:48 pdf_bot/merge/merge_service.py:75
+#: pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Note que esta é uma limitação do Telegram Bot e não há nada que eu possa fazer a menos que o Telegram mude esse limite"
 
@@ -385,46 +385,6 @@ msgstr "Embelezando e convertendo suas imagens"
 #: pdf_bot/commands/image.py:243
 msgid "Converting your images into PDF"
 msgstr "Convertendo suas imagens em PDF"
-
-#: pdf_bot/commands/merge.py:84
-msgid "Send me the PDF files that you'll like to merge"
-msgstr "Envie-me os arquivos PDF que você vai gostar de mesclar"
-
-#: pdf_bot/commands/merge.py:85
-msgid "Note that the files will be merged in the order that you send me"
-msgstr "Note que os arquivos serão mesclados na ordem que você me enviar"
-
-#: pdf_bot/commands/merge.py:117
-msgid "Your file is not a PDF file"
-msgstr "Seu arquivo não é um arquivo PDF"
-
-#: pdf_bot/commands/merge.py:145
-msgid "PDF files"
-msgstr "Arquivos PDF"
-
-#: pdf_bot/commands/merge.py:152
-msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "Pressione {done} se você me enviou todos os arquivos PDF que você vai gostar de mesclar ou continuar me enviando os arquivos PDF"
-
-#: pdf_bot/commands/merge.py:195
-msgid "{file_name} has been removed for merging"
-msgstr "{file_name} foi removido para fusão"
-
-#: pdf_bot/commands/merge.py:217
-msgid "You haven't sent me any PDF files"
-msgstr "Você não me enviou nenhum arquivo PDF"
-
-#: pdf_bot/commands/merge.py:221
-msgid "You've only sent me one PDF file"
-msgstr "Você só me enviou um arquivo PDF"
-
-#: pdf_bot/commands/merge.py:235
-msgid "Merging your PDF files"
-msgstr "Mesclando seus arquivos PDF"
-
-#: pdf_bot/commands/merge.py:255 pdf_bot/pdf/pdf_service.py:113
-msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr "Eu não poderia mesclar seus arquivos PDF, pois este arquivo é inválido: {file_name}"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -718,6 +678,50 @@ msgstr "Extraindo texto do seu arquivo PDF"
 #: pdf_bot/files/text.py:90
 msgid "I couldn't find any text in your PDF file"
 msgstr "Não consegui encontrar nenhum texto no seu arquivo PDF"
+
+#: pdf_bot/merge/merge_service.py:44
+msgid "Send me the PDF files that you'll like to merge"
+msgstr "Envie-me os arquivos PDF que você vai gostar de mesclar"
+
+#: pdf_bot/merge/merge_service.py:45
+msgid "Note that the files will be merged in the order that you send me"
+msgstr "Note que os arquivos serão mesclados na ordem que você me enviar"
+
+#: pdf_bot/merge/merge_service.py:70
+msgid "Your file is not a PDF file"
+msgstr "Seu arquivo não é um arquivo PDF"
+
+#: pdf_bot/merge/merge_service.py:89
+msgid "You've sent me these PDF files so far:"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:100
+msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgstr "Pressione {done} se você me enviou todos os arquivos PDF que você vai gostar de mesclar ou continuar me enviando os arquivos PDF"
+
+#: pdf_bot/merge/merge_service.py:136
+msgid "You've already removed all the PDF files you've sent me"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:141
+msgid "{file_name} has been removed for merging"
+msgstr "{file_name} foi removido para fusão"
+
+#: pdf_bot/merge/merge_service.py:156
+msgid "You haven't sent me any PDF files"
+msgstr "Você não me enviou nenhum arquivo PDF"
+
+#: pdf_bot/merge/merge_service.py:159
+msgid "You've only sent me one PDF file"
+msgstr "Você só me enviou um arquivo PDF"
+
+#: pdf_bot/merge/merge_service.py:166
+msgid "Merging your PDF files"
+msgstr "Mesclando seus arquivos PDF"
+
+#: pdf_bot/pdf/pdf_service.py:113
+msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
+msgstr "Eu não poderia mesclar seus arquivos PDF, pois este arquivo é inválido: {file_name}"
 
 #: pdf_bot/pdf/pdf_service.py:130
 msgid "Your PDF file is invalid"
@@ -1475,5 +1479,8 @@ msgstr "Adicionando a marca d'água no seu arquivo PDF"
 #~ msgstr ""
 
 #~ msgid "watermark"
+#~ msgstr ""
+
+#~ msgid "PDF files"
 #~ msgstr ""
 

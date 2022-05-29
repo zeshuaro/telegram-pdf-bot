@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-28 02:08+0000\n"
-"PO-Revision-Date: 2022-05-28 02:09\n"
+"POT-Creation-Date: 2022-05-29 03:13+0000\n"
+"PO-Revision-Date: 2022-05-29 03:13\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -147,59 +147,59 @@ msgstr "食事"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:111
+#: pdf_bot/dispatcher.py:115
 msgid "Set Language 🌎"
 msgstr "言語設定 🌎"
 
-#: pdf_bot/dispatcher.py:113 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:117 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "チャネルに参加"
 
-#: pdf_bot/dispatcher.py:114 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:118 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "PDFボットをサポート"
 
-#: pdf_bot/dispatcher.py:123
+#: pdf_bot/dispatcher.py:127
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "タスクの大半は、次のいずれかを送信することで実行できます。"
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:130
 msgid "- PDF files"
 msgstr "- PDFファイル"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:131
 msgid "- Images"
 msgstr "- 画像"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:132
 msgid "- Webpage links"
 msgstr "- ウェブページへのリンク"
 
-#: pdf_bot/dispatcher.py:129
+#: pdf_bot/dispatcher.py:133
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "残りのタスクは、次のコマンドを使用して実行できます。"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF ファイルを比較する"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:138
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDFファイルをマージ"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:139
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 複数の画像をPDFファイルに変換して結合する"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:142
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - テキストメッセージからPDFファイルを作成する"
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF ファイルに透かしを追加する"
 
-#: pdf_bot/dispatcher.py:176
+#: pdf_bot/dispatcher.py:180
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "ボタンの有効期限が切れています。新しいメッセージ/クエリでもう一度やり直してから、新しいボタンを押してください"
 
@@ -271,14 +271,14 @@ msgstr "アクションがキャンセルされました"
 msgid "Your file is not a PDF file, please try again"
 msgstr "ファイルが PDF ファイルではありません。"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
+#: pdf_bot/commands/image.py:137 pdf_bot/merge/merge_service.py:74
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "ファイルが大きすぎるので、ダウンロードして処理できません"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/commands/merge.py:122
-#: pdf_bot/files/file.py:132 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
-#: pdf_bot/utils.py:243
+#: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
+#: pdf_bot/files/image.py:48 pdf_bot/merge/merge_service.py:75
+#: pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "これは電報ボットの制限であり、テレグラムがこの制限を変更しない限り、私は何もできませんのでご注意ください"
 
@@ -385,46 +385,6 @@ msgstr "画像を美化し、変換する"
 #: pdf_bot/commands/image.py:243
 msgid "Converting your images into PDF"
 msgstr "画像を PDF に変換する"
-
-#: pdf_bot/commands/merge.py:84
-msgid "Send me the PDF files that you'll like to merge"
-msgstr "マージしたい PDF ファイルを送信する"
-
-#: pdf_bot/commands/merge.py:85
-msgid "Note that the files will be merged in the order that you send me"
-msgstr "ファイルは、あなたが私を送信する順序でマージされることに注意してください"
-
-#: pdf_bot/commands/merge.py:117
-msgid "Your file is not a PDF file"
-msgstr "ファイルが PDF ファイルではありません"
-
-#: pdf_bot/commands/merge.py:145
-msgid "PDF files"
-msgstr "PDF ファイル"
-
-#: pdf_bot/commands/merge.py:152
-msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "{done} を押すと、PDFファイルをマージしたり、PDFファイルを送信し続けたりしたいPDFファイルをすべて送信した場合"
-
-#: pdf_bot/commands/merge.py:195
-msgid "{file_name} has been removed for merging"
-msgstr "{file_name} はマージのために削除されました"
-
-#: pdf_bot/commands/merge.py:217
-msgid "You haven't sent me any PDF files"
-msgstr "PDFファイルを送っていない"
-
-#: pdf_bot/commands/merge.py:221
-msgid "You've only sent me one PDF file"
-msgstr "PDFファイルを1つしか送っていない"
-
-#: pdf_bot/commands/merge.py:235
-msgid "Merging your PDF files"
-msgstr "PDF ファイルのマージ"
-
-#: pdf_bot/commands/merge.py:255 pdf_bot/pdf/pdf_service.py:113
-msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr "このファイルは無効であるため、PDFファイルをマージできませんでした: {file_name}"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -718,6 +678,50 @@ msgstr "PDF ファイルからテキストを抽出する"
 #: pdf_bot/files/text.py:90
 msgid "I couldn't find any text in your PDF file"
 msgstr "PDF ファイルにテキストが見つからない"
+
+#: pdf_bot/merge/merge_service.py:44
+msgid "Send me the PDF files that you'll like to merge"
+msgstr "マージしたい PDF ファイルを送信する"
+
+#: pdf_bot/merge/merge_service.py:45
+msgid "Note that the files will be merged in the order that you send me"
+msgstr "ファイルは、あなたが私を送信する順序でマージされることに注意してください"
+
+#: pdf_bot/merge/merge_service.py:70
+msgid "Your file is not a PDF file"
+msgstr "ファイルが PDF ファイルではありません"
+
+#: pdf_bot/merge/merge_service.py:89
+msgid "You've sent me these PDF files so far:"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:100
+msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgstr "{done} を押すと、PDFファイルをマージしたり、PDFファイルを送信し続けたりしたいPDFファイルをすべて送信した場合"
+
+#: pdf_bot/merge/merge_service.py:136
+msgid "You've already removed all the PDF files you've sent me"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:141
+msgid "{file_name} has been removed for merging"
+msgstr "{file_name} はマージのために削除されました"
+
+#: pdf_bot/merge/merge_service.py:156
+msgid "You haven't sent me any PDF files"
+msgstr "PDFファイルを送っていない"
+
+#: pdf_bot/merge/merge_service.py:159
+msgid "You've only sent me one PDF file"
+msgstr "PDFファイルを1つしか送っていない"
+
+#: pdf_bot/merge/merge_service.py:166
+msgid "Merging your PDF files"
+msgstr "PDF ファイルのマージ"
+
+#: pdf_bot/pdf/pdf_service.py:113
+msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
+msgstr "このファイルは無効であるため、PDFファイルをマージできませんでした: {file_name}"
 
 #: pdf_bot/pdf/pdf_service.py:130
 msgid "Your PDF file is invalid"
@@ -1475,5 +1479,8 @@ msgstr "PDF ファイルにウォーターマークを追加する"
 #~ msgstr ""
 
 #~ msgid "watermark"
+#~ msgstr ""
+
+#~ msgid "PDF files"
 #~ msgstr ""
 
