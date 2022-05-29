@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-28 02:08+0000\n"
-"PO-Revision-Date: 2022-05-28 02:09\n"
+"POT-Creation-Date: 2022-05-29 03:13+0000\n"
+"PO-Revision-Date: 2022-05-29 03:13\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -147,59 +147,59 @@ msgstr "餐"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} （${value}）"
 
-#: pdf_bot/dispatcher.py:111
+#: pdf_bot/dispatcher.py:115
 msgid "Set Language 🌎"
 msgstr "設定語言 🌎"
 
-#: pdf_bot/dispatcher.py:113 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:117 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: pdf_bot/dispatcher.py:114 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:118 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "支持PDF Bot"
 
-#: pdf_bot/dispatcher.py:123
+#: pdf_bot/dispatcher.py:127
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "您可以透過向我傳送以下以下一項來執行大部分任務："
 
-#: pdf_bot/dispatcher.py:126
+#: pdf_bot/dispatcher.py:130
 msgid "- PDF files"
 msgstr "- PDF 檔"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:131
 msgid "- Images"
 msgstr "- 影像"
 
-#: pdf_bot/dispatcher.py:128
+#: pdf_bot/dispatcher.py:132
 msgid "- Webpage links"
 msgstr "- 網頁連結"
 
-#: pdf_bot/dispatcher.py:129
+#: pdf_bot/dispatcher.py:133
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "其餘任務可使用以下命令執行："
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:137
 msgid "{command} - compare PDF files"
 msgstr "{command} - 比較 PDF 檔"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:138
 msgid "{command} - merge PDF files"
 msgstr "{command} - 合併 PDF 檔"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:139
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 將多個影像轉換並合併為PDF檔"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:142
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - 從簡訊創建 PDF 檔"
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - 在 PDF 檔中添加浮水印"
 
-#: pdf_bot/dispatcher.py:176
+#: pdf_bot/dispatcher.py:180
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "按鈕已過期，請使用新消息/查詢重試，然後按新按鈕"
 
@@ -271,14 +271,14 @@ msgstr "操作取消"
 msgid "Your file is not a PDF file, please try again"
 msgstr "您的檔不是 PDF 檔，請再試一次"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/commands/merge.py:121
+#: pdf_bot/commands/image.py:137 pdf_bot/merge/merge_service.py:74
 #: pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "您的檔太大，我無法下載和處理"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/commands/merge.py:122
-#: pdf_bot/files/file.py:132 pdf_bot/files/image.py:48 pdf_bot/utils.py:74
-#: pdf_bot/utils.py:243
+#: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
+#: pdf_bot/files/image.py:48 pdf_bot/merge/merge_service.py:75
+#: pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "請注意，這是一個電報機器人的限制，我什麼也做不了，除非電報改變這個限制"
 
@@ -385,46 +385,6 @@ msgstr "美化和轉換圖像"
 #: pdf_bot/commands/image.py:243
 msgid "Converting your images into PDF"
 msgstr "將影像轉換為 PDF 格式"
-
-#: pdf_bot/commands/merge.py:84
-msgid "Send me the PDF files that you'll like to merge"
-msgstr "將您希望合併的 PDF 檔案發送給我"
-
-#: pdf_bot/commands/merge.py:85
-msgid "Note that the files will be merged in the order that you send me"
-msgstr "請注意，檔將按照您發送給我的順序合併"
-
-#: pdf_bot/commands/merge.py:117
-msgid "Your file is not a PDF file"
-msgstr "您的檔不是 PDF 檔"
-
-#: pdf_bot/commands/merge.py:145
-msgid "PDF files"
-msgstr "PDF檔案"
-
-#: pdf_bot/commands/merge.py:152
-msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "按 {done} ，如果您已將您希望合併的所有 PDF 檔發送給我，或繼續將 PDF 檔發送給我"
-
-#: pdf_bot/commands/merge.py:195
-msgid "{file_name} has been removed for merging"
-msgstr "合併 {file_name} 已被移除"
-
-#: pdf_bot/commands/merge.py:217
-msgid "You haven't sent me any PDF files"
-msgstr "你還沒有向我發送任何PDF檔案"
-
-#: pdf_bot/commands/merge.py:221
-msgid "You've only sent me one PDF file"
-msgstr "你只寄給我一個 Pdf 檔"
-
-#: pdf_bot/commands/merge.py:235
-msgid "Merging your PDF files"
-msgstr "正在合併你的PDF檔案"
-
-#: pdf_bot/commands/merge.py:255 pdf_bot/pdf/pdf_service.py:113
-msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr "我不能合併您的 PDF 檔，因為此文件無效： {file_name}"
 
 #: pdf_bot/compare/compare_service.py:25
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -718,6 +678,50 @@ msgstr "正在提取你的PDF檔案的文字"
 #: pdf_bot/files/text.py:90
 msgid "I couldn't find any text in your PDF file"
 msgstr "我在你的PDF檔案中找不到任何文字"
+
+#: pdf_bot/merge/merge_service.py:44
+msgid "Send me the PDF files that you'll like to merge"
+msgstr "將您希望合併的 PDF 檔案發送給我"
+
+#: pdf_bot/merge/merge_service.py:45
+msgid "Note that the files will be merged in the order that you send me"
+msgstr "請注意，檔將按照您發送給我的順序合併"
+
+#: pdf_bot/merge/merge_service.py:70
+msgid "Your file is not a PDF file"
+msgstr "您的檔不是 PDF 檔"
+
+#: pdf_bot/merge/merge_service.py:89
+msgid "You've sent me these PDF files so far:"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:100
+msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
+msgstr "按 {done} ，如果您已將您希望合併的所有 PDF 檔發送給我，或繼續將 PDF 檔發送給我"
+
+#: pdf_bot/merge/merge_service.py:136
+msgid "You've already removed all the PDF files you've sent me"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:141
+msgid "{file_name} has been removed for merging"
+msgstr "合併 {file_name} 已被移除"
+
+#: pdf_bot/merge/merge_service.py:156
+msgid "You haven't sent me any PDF files"
+msgstr "你還沒有向我發送任何PDF檔案"
+
+#: pdf_bot/merge/merge_service.py:159
+msgid "You've only sent me one PDF file"
+msgstr "你只寄給我一個 Pdf 檔"
+
+#: pdf_bot/merge/merge_service.py:166
+msgid "Merging your PDF files"
+msgstr "正在合併你的PDF檔案"
+
+#: pdf_bot/pdf/pdf_service.py:113
+msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
+msgstr "我不能合併您的 PDF 檔，因為此文件無效： {file_name}"
 
 #: pdf_bot/pdf/pdf_service.py:130
 msgid "Your PDF file is invalid"
@@ -1475,5 +1479,8 @@ msgstr "正在添加水印到你的PDF檔案中"
 #~ msgstr ""
 
 #~ msgid "watermark"
+#~ msgstr ""
+
+#~ msgid "PDF files"
 #~ msgstr ""
 
