@@ -5,6 +5,7 @@ from unittest.mock import MagicMock, call
 import pytest
 from telegram import Bot, Document, File, Message
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
+from telegram.ext import CallbackContext
 
 from pdf_bot.io import IOService
 from pdf_bot.models import FileData
@@ -13,6 +14,7 @@ from pdf_bot.telegram import (
     TelegramFileTooLargeError,
     TelegramService,
 )
+from pdf_bot.telegram.exceptions import TelegramUserDataKeyError
 
 
 @pytest.fixture(name="telegram_service")
@@ -90,6 +92,28 @@ def test_download_files(
     with telegram_service.download_files(file_ids):
         calls = [call(file_id) for file_id in file_ids]
         telegram_bot.get_file.assert_has_calls(calls)
+
+
+def test_get_user_data(
+    telegram_service: TelegramService, telegram_context: CallbackContext
+):
+    key = "key"
+    value = "value"
+    telegram_context.user_data = {key: value}
+
+    actual = telegram_service.get_user_data(telegram_context, key)
+
+    assert actual == value
+    assert key not in telegram_context.user_data
+
+
+def test_get_user_data_key_error(
+    telegram_service: TelegramService, telegram_context: CallbackContext
+):
+    telegram_context.user_data = {}
+
+    with pytest.raises(TelegramUserDataKeyError):
+        telegram_service.get_user_data(telegram_context, "key")
 
 
 def test_send_file_names(telegram_service: TelegramService, telegram_bot: Bot):

@@ -8,3 +8,7 @@ class TelegramFileMimeTypeError(TelegramServiceError):
 
 class TelegramFileTooLargeError(TelegramServiceError):
     pass
+
+
+class TelegramUserDataKeyError(TelegramServiceError):
+    pass

@@ -1,16 +1,17 @@
 import gettext
 from contextlib import contextmanager
-from typing import Generator, List
+from typing import Any, Generator, List
 
 from telegram import Bot, Document, Message
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
-from telegram.ext import Updater
+from telegram.ext import CallbackContext, Updater
 
 from pdf_bot.io import IOService
 from pdf_bot.models import FileData
 from pdf_bot.telegram.exceptions import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
+    TelegramUserDataKeyError,
 )
 
 _ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gettext
@@ -66,6 +67,13 @@ class TelegramService:
                 yield out_paths
             finally:
                 pass
+
+    @staticmethod
+    def get_user_data(context: CallbackContext, key: str) -> Any:
+        data = context.user_data.pop(key, None)
+        if data is None:
+            raise TelegramUserDataKeyError(_("Something went wrong, please try again"))
+        return data
 
     def send_file_names(
         self, chat_id: str, text: str, file_data_list: List[FileData]
