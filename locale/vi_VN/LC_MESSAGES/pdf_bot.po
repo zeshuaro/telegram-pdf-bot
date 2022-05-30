@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-29 04:33+0000\n"
-"PO-Revision-Date: 2022-05-29 04:33\n"
+"POT-Creation-Date: 2022-05-30 11:14+0000\n"
+"PO-Revision-Date: 2022-05-30 11:15\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -271,14 +271,12 @@ msgstr "Hành động bị hủy bỏ"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Tệp của bạn không phải là tệp PDF, vui lòng thử lại"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/merge/merge_service.py:74
-#: pdf_bot/utils.py:73
+#: pdf_bot/commands/image.py:137 pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
 #: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
-#: pdf_bot/files/image.py:48 pdf_bot/merge/merge_service.py:75
-#: pdf_bot/utils.py:74 pdf_bot/utils.py:243
+#: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
 
@@ -386,23 +384,23 @@ msgstr "Làm đẹp và chuyển đổi hình ảnh của bạn"
 msgid "Converting your images into PDF"
 msgstr "Chuyển đổi hình ảnh của bạn thành PDF"
 
-#: pdf_bot/compare/compare_service.py:25
+#: pdf_bot/compare/compare_service.py:29
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "Gửi cho tôi một trong những tệp PDF mà bạn muốn so sánh"
 
-#: pdf_bot/compare/compare_service.py:26
+#: pdf_bot/compare/compare_service.py:30
 msgid "Note that I can only look for text differences"
 msgstr "Lưu ý rằng tôi chỉ có thể tìm kiếm sự khác biệt văn bản"
 
-#: pdf_bot/compare/compare_service.py:48
+#: pdf_bot/compare/compare_service.py:52
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Gửi cho tôi các tập tin PDF khác mà bạn sẽ muốn so sánh"
 
-#: pdf_bot/compare/compare_service.py:72
+#: pdf_bot/compare/compare_service.py:73
 msgid "Comparing your PDF files"
 msgstr "So sánh các tệp PDF của bạn"
 
-#: pdf_bot/compare/compare_service.py:82
+#: pdf_bot/compare/compare_service.py:83
 msgid "There are no text differences between your PDF files"
 msgstr "Không có sự khác biệt văn bản giữa các tệp PDF của bạn"
 
@@ -679,43 +677,39 @@ msgstr "Trích xuất văn bản từ tệp PDF của bạn"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Tôi không thể tìm thấy bất kỳ văn bản nào trong tệp PDF của bạn"
 
-#: pdf_bot/merge/merge_service.py:44
+#: pdf_bot/merge/merge_service.py:37
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Gửi cho tôi các tệp PDF mà bạn muốn hợp nhất"
 
-#: pdf_bot/merge/merge_service.py:45
+#: pdf_bot/merge/merge_service.py:38
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Lưu ý rằng các tệp sẽ được hợp nhất theo thứ tự mà bạn gửi cho tôi"
 
-#: pdf_bot/merge/merge_service.py:70
-msgid "Your file is not a PDF file"
-msgstr "Tệp của bạn không phải là tệp PDF"
-
-#: pdf_bot/merge/merge_service.py:89
+#: pdf_bot/merge/merge_service.py:62
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:100
+#: pdf_bot/merge/merge_service.py:73
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Nhấn {done} nếu bạn đã gửi cho tôi tất cả các tệp PDF mà bạn muốn hợp nhất hoặc tiếp tục gửi cho tôi các tệp PDF"
 
-#: pdf_bot/merge/merge_service.py:136
+#: pdf_bot/merge/merge_service.py:109
 msgid "You've already removed all the PDF files you've sent me"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:141
+#: pdf_bot/merge/merge_service.py:114
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} đã bị loại bỏ vì sáp nhập"
 
-#: pdf_bot/merge/merge_service.py:156
+#: pdf_bot/merge/merge_service.py:129
 msgid "You haven't sent me any PDF files"
 msgstr "Bạn chưa gửi cho tôi bất kỳ tệp PDF nào"
 
-#: pdf_bot/merge/merge_service.py:159
+#: pdf_bot/merge/merge_service.py:132
 msgid "You've only sent me one PDF file"
 msgstr "Bạn chỉ gửi cho tôi một tệp PDF"
 
-#: pdf_bot/merge/merge_service.py:166
+#: pdf_bot/merge/merge_service.py:139
 msgid "Merging your PDF files"
 msgstr "Hợp nhất các tệp PDF của bạn"
 
@@ -759,15 +753,15 @@ msgstr "Phông chữ không xác định, vui lòng thử lại"
 msgid "Creating your PDF file"
 msgstr "Tạo tệp PDF của bạn"
 
-#: pdf_bot/watermark/watermark_service.py:28
+#: pdf_bot/watermark/watermark_service.py:32
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Gửi cho tôi tệp PDF mà bạn muốn thêm hình nền mờ"
 
-#: pdf_bot/watermark/watermark_service.py:49
+#: pdf_bot/watermark/watermark_service.py:53
 msgid "Send me the watermark PDF file"
 msgstr "Gửi cho tôi tệp PDF hình mờ"
 
-#: pdf_bot/watermark/watermark_service.py:69
+#: pdf_bot/watermark/watermark_service.py:72
 msgid "Adding the watermark onto your PDF file"
 msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 
@@ -1486,5 +1480,8 @@ msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 #~ msgstr ""
 
 #~ msgid "PDF files"
+#~ msgstr ""
+
+#~ msgid "Your file is not a PDF file"
 #~ msgstr ""
 

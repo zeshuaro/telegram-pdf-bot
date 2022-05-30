@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-29 04:33+0000\n"
-"PO-Revision-Date: 2022-05-29 04:33\n"
+"POT-Creation-Date: 2022-05-30 11:14+0000\n"
+"PO-Revision-Date: 2022-05-30 11:15\n"
 "Last-Translator: \n"
 "Language: pl\n"
 "Language-Team: Polish\n"
@@ -271,14 +271,12 @@ msgstr "Działanie anulowane"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Plik nie jest plikiem PDF, spróbuj ponownie"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/merge/merge_service.py:74
-#: pdf_bot/utils.py:73
+#: pdf_bot/commands/image.py:137 pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Twój plik jest zbyt duży, abym można go było pobrać i przetworzyć"
 
 #: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
-#: pdf_bot/files/image.py:48 pdf_bot/merge/merge_service.py:75
-#: pdf_bot/utils.py:74 pdf_bot/utils.py:243
+#: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Zauważ, że jest to ograniczenie Bota Telegrama i nic nie mogę zrobić, chyba że Telegram zmieni ten limit"
 
@@ -386,23 +384,23 @@ msgstr "Upiększanie i konwertowanie obrazów"
 msgid "Converting your images into PDF"
 msgstr "Konwertowanie obrazów do formatu PDF"
 
-#: pdf_bot/compare/compare_service.py:25
+#: pdf_bot/compare/compare_service.py:29
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "Wyślij mi jeden z plików PDF, które chcesz porównać"
 
-#: pdf_bot/compare/compare_service.py:26
+#: pdf_bot/compare/compare_service.py:30
 msgid "Note that I can only look for text differences"
 msgstr "Zauważ, że mogę szukać tylko różnic w tekście"
 
-#: pdf_bot/compare/compare_service.py:48
+#: pdf_bot/compare/compare_service.py:52
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Wyślij mi inny plik PDF, który chcesz porównać"
 
-#: pdf_bot/compare/compare_service.py:72
+#: pdf_bot/compare/compare_service.py:73
 msgid "Comparing your PDF files"
 msgstr "Porównywanie plików PDF"
 
-#: pdf_bot/compare/compare_service.py:82
+#: pdf_bot/compare/compare_service.py:83
 msgid "There are no text differences between your PDF files"
 msgstr "Nie ma różnic tekstowych między plikami PDF"
 
@@ -679,43 +677,39 @@ msgstr "Wyodrębnianie tekstu z pliku PDF"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Nie mogę znaleźć żadnego tekstu w pliku PDF"
 
-#: pdf_bot/merge/merge_service.py:44
+#: pdf_bot/merge/merge_service.py:37
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Wyślij mi pliki PDF, które chcesz scalić"
 
-#: pdf_bot/merge/merge_service.py:45
+#: pdf_bot/merge/merge_service.py:38
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Zauważ, że pliki zostaną scalone w kolejności, w jakiej mi wyślesz"
 
-#: pdf_bot/merge/merge_service.py:70
-msgid "Your file is not a PDF file"
-msgstr "Plik nie jest plikiem PDF"
-
-#: pdf_bot/merge/merge_service.py:89
+#: pdf_bot/merge/merge_service.py:62
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:100
+#: pdf_bot/merge/merge_service.py:73
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Naciśnij {done} , jeśli wysłałeś mi wszystkie pliki PDF, które chcesz scalić, lub nadal wysyłaj mi pliki PDF"
 
-#: pdf_bot/merge/merge_service.py:136
+#: pdf_bot/merge/merge_service.py:109
 msgid "You've already removed all the PDF files you've sent me"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:141
+#: pdf_bot/merge/merge_service.py:114
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} został usunięty w celu scalenia"
 
-#: pdf_bot/merge/merge_service.py:156
+#: pdf_bot/merge/merge_service.py:129
 msgid "You haven't sent me any PDF files"
 msgstr "Nie wysłałeś mi żadnych plików PDF"
 
-#: pdf_bot/merge/merge_service.py:159
+#: pdf_bot/merge/merge_service.py:132
 msgid "You've only sent me one PDF file"
 msgstr "Wysłano mi tylko jeden plik PDF"
 
-#: pdf_bot/merge/merge_service.py:166
+#: pdf_bot/merge/merge_service.py:139
 msgid "Merging your PDF files"
 msgstr "Scalanie plików PDF"
 
@@ -759,15 +753,15 @@ msgstr "Nieznana czcionka, spróbuj ponownie"
 msgid "Creating your PDF file"
 msgstr "Tworzenie pliku PDF"
 
-#: pdf_bot/watermark/watermark_service.py:28
+#: pdf_bot/watermark/watermark_service.py:32
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Wyślij mi plik PDF, który chcesz dodać znak wodny"
 
-#: pdf_bot/watermark/watermark_service.py:49
+#: pdf_bot/watermark/watermark_service.py:53
 msgid "Send me the watermark PDF file"
 msgstr "Wyślij mi plik PDF znaku wodnego"
 
-#: pdf_bot/watermark/watermark_service.py:69
+#: pdf_bot/watermark/watermark_service.py:72
 msgid "Adding the watermark onto your PDF file"
 msgstr "Dodawanie znaku wodnego do pliku PDF"
 
@@ -1486,5 +1480,8 @@ msgstr "Dodawanie znaku wodnego do pliku PDF"
 #~ msgstr ""
 
 #~ msgid "PDF files"
+#~ msgstr ""
+
+#~ msgid "Your file is not a PDF file"
 #~ msgstr ""
 
