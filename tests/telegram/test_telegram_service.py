@@ -3,7 +3,7 @@ from typing import Callable, List
 from unittest.mock import MagicMock, call
 
 import pytest
-from telegram import Bot, Document, File
+from telegram import Bot, Document, File, Message
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 
 from pdf_bot.io import IOService
@@ -23,28 +23,42 @@ def fixture_telegram_service(
 
 
 def test_check_pdf_document(
-    telegram_service: TelegramService, telegram_document: Document
+    telegram_service: TelegramService,
+    telegram_message: Message,
+    telegram_document: Document,
 ):
     telegram_document.mime_type = "pdf"
     telegram_document.file_size = MAX_FILESIZE_DOWNLOAD
-    telegram_service.check_pdf_document(telegram_document)
+    telegram_message.document = telegram_document
+
+    actual = telegram_service.check_pdf_document(telegram_message)
+
+    assert actual == telegram_document
 
 
 def test_check_pdf_document_invalid_mime_type(
-    telegram_service: TelegramService, telegram_document: Document
+    telegram_service: TelegramService,
+    telegram_message: Message,
+    telegram_document: Document,
 ):
     telegram_document.mime_type = "clearly_random"
+    telegram_message.document = telegram_document
+
     with pytest.raises(TelegramFileMimeTypeError):
-        telegram_service.check_pdf_document(telegram_document)
+        telegram_service.check_pdf_document(telegram_message)
 
 
 def test_check_pdf_document_too_large(
-    telegram_service: TelegramService, telegram_document: Document
+    telegram_service: TelegramService,
+    telegram_message: Message,
+    telegram_document: Document,
 ):
     telegram_document.mime_type = "pdf"
     telegram_document.file_size = MAX_FILESIZE_DOWNLOAD + 1
+    telegram_message.document = telegram_document
+
     with pytest.raises(TelegramFileTooLargeError):
-        telegram_service.check_pdf_document(telegram_document)
+        telegram_service.check_pdf_document(telegram_message)
 
 
 def test_download_file(

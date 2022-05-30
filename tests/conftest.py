@@ -144,5 +144,7 @@ def pdf_service() -> PdfService:
 
 
 @pytest.fixture
-def telegram_service() -> TelegramService:
-    return cast(TelegramService, MagicMock())
+def telegram_service(telegram_document: Document) -> TelegramService:
+    service = cast(TelegramService, MagicMock())
+    service.check_pdf_document.return_value = telegram_document
+    return service

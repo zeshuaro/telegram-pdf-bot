@@ -40,12 +40,12 @@ class WatermarkService:
         message = update.effective_message
 
         try:
-            self.telegram_service.check_pdf_document(message.document)
+            doc = self.telegram_service.check_pdf_document(message)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             return WAIT_SOURCE_PDF
 
-        context.user_data[WATERMARK_KEY] = message.document.file_id
+        context.user_data[WATERMARK_KEY] = doc.file_id
         reply_markup = ReplyKeyboardMarkup(
             [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
@@ -63,7 +63,7 @@ class WatermarkService:
         message = update.effective_message
 
         try:
-            self.telegram_service.check_pdf_document(message.document)
+            doc = self.telegram_service.check_pdf_document(message)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             return WAIT_WATERMARK_PDF
@@ -75,7 +75,7 @@ class WatermarkService:
 
         user_data = context.user_data
         src_file_id = user_data[WATERMARK_KEY]
-        wmk_file_id = update.effective_message.document.file_id
+        wmk_file_id = doc.file_id
 
         try:
             with self.pdf_service.add_watermark_to_pdf(
@@ -83,7 +83,7 @@ class WatermarkService:
             ) as out_path:
                 send_result_file(update, context, out_path, TaskType.watermark_pdf)
         except PdfServiceError as e:
-            update.effective_message.reply_text(_(str(e)))
+            message.reply_text(_(str(e)))
 
         if user_data[WATERMARK_KEY] == src_file_id:
             del user_data[WATERMARK_KEY]
