@@ -2,7 +2,7 @@ import gettext
 from contextlib import contextmanager
 from typing import Generator, List
 
-from telegram import Bot, Document
+from telegram import Bot, Document, Message
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import Updater
 
@@ -27,21 +27,24 @@ class TelegramService:
         self.bot = bot or updater.bot
 
     @staticmethod
-    def check_pdf_document(document: Document):
-        if not document.mime_type.endswith("pdf"):
+    def check_pdf_document(message: Message) -> Document:
+        doc = message.document
+        if not doc.mime_type.endswith("pdf"):
             raise TelegramFileMimeTypeError(
                 _(
                     "Your file is not a PDF file, please try again "
                     "and ensure that your file has the .pdf extension"
                 )
             )
-        if document.file_size > MAX_FILESIZE_DOWNLOAD:
+        if doc.file_size > MAX_FILESIZE_DOWNLOAD:
             raise TelegramFileTooLargeError(
                 "Your file is too large for me to download and process, "
                 "please try again with a differnt file\n\n"
                 "Note that this is a Telegram Bot limitation and there's "
                 "nothing I can do unless Telegram changes this limit"
             )
+
+        return doc
 
     @contextmanager
     def download_file(self, file_id: str) -> Generator[str, None, None]:

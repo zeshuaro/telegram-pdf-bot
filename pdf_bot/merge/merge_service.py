@@ -48,12 +48,12 @@ class MergeService:
         message = update.effective_message
 
         try:
-            self.telegram_service.check_pdf_document(message.document)
+            doc = self.telegram_service.check_pdf_document(message)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             return WAIT_MERGE_PDF
 
-        file_data = FileData.from_telegram_document(message.document)
+        file_data = FileData.from_telegram_document(doc)
         context.user_data[MERGE_PDF_DATA].append(file_data)
         return self.ask_next_pdf(update, context)
 

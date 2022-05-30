@@ -39,12 +39,12 @@ class CompareService:
         message = update.effective_message
 
         try:
-            self.telegram_service.check_pdf_document(message.document)
+            doc = self.telegram_service.check_pdf_document(message)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             return WAIT_FIRST_PDF
 
-        context.user_data[COMPARE_ID] = message.document.file_id
+        context.user_data[COMPARE_ID] = doc.file_id
         reply_markup = ReplyKeyboardMarkup(
             [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
@@ -63,7 +63,7 @@ class CompareService:
         message = update.effective_message
 
         try:
-            self.telegram_service.check_pdf_document(message.document)
+            doc = self.telegram_service.check_pdf_document(message)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             return WAIT_SECOND_PDF
@@ -73,7 +73,7 @@ class CompareService:
             _("Comparing your PDF files"), reply_markup=ReplyKeyboardRemove()
         )
         file_id_a = user_data[COMPARE_ID]
-        file_id_b = message.document.file_id
+        file_id_b = doc.file_id
 
         try:
             with self.pdf_service.compare_pdfs(file_id_a, file_id_b) as out_path:
