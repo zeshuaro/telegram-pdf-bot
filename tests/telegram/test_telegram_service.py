@@ -104,36 +104,16 @@ def test_get_user_data(
     actual = telegram_service.get_user_data(telegram_context, key)
 
     assert actual == value
-    assert key in telegram_context.user_data
+    assert key not in telegram_context.user_data
 
 
 def test_get_user_data_key_error(
     telegram_service: TelegramService, telegram_context: CallbackContext
 ):
     telegram_context.user_data = {}
+
     with pytest.raises(TelegramUserDataKeyError):
         telegram_service.get_user_data(telegram_context, "key")
-
-
-def test_get_and_pop_user_data(
-    telegram_service: TelegramService, telegram_context: CallbackContext
-):
-    key = "key"
-    value = "value"
-    telegram_context.user_data = {key: value}
-
-    actual = telegram_service.get_and_pop_user_data(telegram_context, key)
-
-    assert actual == value
-    assert key not in telegram_context.user_data
-
-
-def test_get_and_pop_user_data_key_error(
-    telegram_service: TelegramService, telegram_context: CallbackContext
-):
-    telegram_context.user_data = {}
-    with pytest.raises(TelegramUserDataKeyError):
-        telegram_service.get_and_pop_user_data(telegram_context, "key")
 
 
 def test_send_file_names(telegram_service: TelegramService, telegram_bot: Bot):
