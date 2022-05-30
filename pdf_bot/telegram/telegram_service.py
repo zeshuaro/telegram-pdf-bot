@@ -68,11 +68,12 @@ class TelegramService:
             finally:
                 pass
 
-    def get_user_data(self, context: CallbackContext, key: str) -> Any:
-        return self._get_user_data(context, key)
-
-    def get_and_pop_user_data(self, context: CallbackContext, key: str) -> Any:
-        return self._get_user_data(context, key, is_pop=True)
+    @staticmethod
+    def get_user_data(context: CallbackContext, key: str) -> Any:
+        data = context.user_data.pop(key, None)
+        if data is None:
+            raise TelegramUserDataKeyError(_("Something went wrong, please try again"))
+        return data
 
     def send_file_names(
         self, chat_id: str, text: str, file_data_list: List[FileData]
@@ -80,12 +81,3 @@ class TelegramService:
         for i, file_data in enumerate(file_data_list):
             text += f"{i + 1}: {file_data.name}\n"
         self.bot.send_message(chat_id, text)
-
-    @staticmethod
-    def _get_user_data(context: CallbackContext, key: str, is_pop=False) -> Any:
-        user_data = context.user_data
-        value = user_data.pop(key, None) if is_pop else user_data.get(key, None)
-
-        if value is None:
-            raise TelegramUserDataKeyError(_("Something went wrong, please try again"))
-        return value
