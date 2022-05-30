@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-29 04:33+0000\n"
-"PO-Revision-Date: 2022-05-29 04:33\n"
+"POT-Creation-Date: 2022-05-30 11:14+0000\n"
+"PO-Revision-Date: 2022-05-30 11:15\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -271,14 +271,12 @@ msgstr "Aksie gekanselleer"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Jou lêer is nie 'n PDF-lêer nie, probeer asseblief weer"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/merge/merge_service.py:74
-#: pdf_bot/utils.py:73
+#: pdf_bot/commands/image.py:137 pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Jou lêer is te groot vir my om af te laai en te verwerk"
 
 #: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
-#: pdf_bot/files/image.py:48 pdf_bot/merge/merge_service.py:75
-#: pdf_bot/utils.py:74 pdf_bot/utils.py:243
+#: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Let daarop dat dit 'n Telegram Bot beperking is en daar is niks wat ek kan doen nie, tensy Telegram hierdie limiet verander"
 
@@ -386,23 +384,23 @@ msgstr "Verfraai en omskep u beelde"
 msgid "Converting your images into PDF"
 msgstr "Omskakeling van u beelde in PDF"
 
-#: pdf_bot/compare/compare_service.py:25
+#: pdf_bot/compare/compare_service.py:29
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "Stuur vir my een van die PDF-lêers wat jy graag wil vergelyk"
 
-#: pdf_bot/compare/compare_service.py:26
+#: pdf_bot/compare/compare_service.py:30
 msgid "Note that I can only look for text differences"
 msgstr "Let daarop dat ek net teksverskille kan soek"
 
-#: pdf_bot/compare/compare_service.py:48
+#: pdf_bot/compare/compare_service.py:52
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Stuur vir my die ander PDF-lêer wat jy wil vergelyk"
 
-#: pdf_bot/compare/compare_service.py:72
+#: pdf_bot/compare/compare_service.py:73
 msgid "Comparing your PDF files"
 msgstr "Vergelyk jou PDF-lêers"
 
-#: pdf_bot/compare/compare_service.py:82
+#: pdf_bot/compare/compare_service.py:83
 msgid "There are no text differences between your PDF files"
 msgstr "Daar is geen teksverskille tussen jou PDF-lêers nie"
 
@@ -679,43 +677,39 @@ msgstr "Onttrek teks uit jou PDF-lêer"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Ek kon geen teks in jou PDF-lêer vind nie"
 
-#: pdf_bot/merge/merge_service.py:44
+#: pdf_bot/merge/merge_service.py:37
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Stuur vir my die PDF-lêers wat jy graag wil saamsmelt"
 
-#: pdf_bot/merge/merge_service.py:45
+#: pdf_bot/merge/merge_service.py:38
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Let daarop dat die lêers saamgesmelt sal word in die volgorde wat jy my stuur"
 
-#: pdf_bot/merge/merge_service.py:70
-msgid "Your file is not a PDF file"
-msgstr "Jou lêer is nie 'n PDF-lêer nie"
-
-#: pdf_bot/merge/merge_service.py:89
+#: pdf_bot/merge/merge_service.py:62
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:100
+#: pdf_bot/merge/merge_service.py:73
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Druk {done} as jy vir my al die PDF-lêers gestuur het wat jy graag wil saamsmelt of aanhou om vir my die PDF-lêers te stuur"
 
-#: pdf_bot/merge/merge_service.py:136
+#: pdf_bot/merge/merge_service.py:109
 msgid "You've already removed all the PDF files you've sent me"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:141
+#: pdf_bot/merge/merge_service.py:114
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} is verwyder vir samesmelting"
 
-#: pdf_bot/merge/merge_service.py:156
+#: pdf_bot/merge/merge_service.py:129
 msgid "You haven't sent me any PDF files"
 msgstr "Jy het nie vir my enige PDF-lêers gestuur nie"
 
-#: pdf_bot/merge/merge_service.py:159
+#: pdf_bot/merge/merge_service.py:132
 msgid "You've only sent me one PDF file"
 msgstr "Jy het net vir my een PDF-lêer gestuur"
 
-#: pdf_bot/merge/merge_service.py:166
+#: pdf_bot/merge/merge_service.py:139
 msgid "Merging your PDF files"
 msgstr "Voeg jou PDF-lêers saam"
 
@@ -759,15 +753,15 @@ msgstr "Onbekende lettertipe, probeer asseblief weer"
 msgid "Creating your PDF file"
 msgstr "Skep jou PDF-lêer"
 
-#: pdf_bot/watermark/watermark_service.py:28
+#: pdf_bot/watermark/watermark_service.py:32
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Stuur vir my die PDF-lêer wat jy graag 'n watermerk wil byvoeg"
 
-#: pdf_bot/watermark/watermark_service.py:49
+#: pdf_bot/watermark/watermark_service.py:53
 msgid "Send me the watermark PDF file"
 msgstr "Stuur vir my die watermerk PDF-lêer"
 
-#: pdf_bot/watermark/watermark_service.py:69
+#: pdf_bot/watermark/watermark_service.py:72
 msgid "Adding the watermark onto your PDF file"
 msgstr "Voeg die watermerk by jou PDF-lêer"
 
@@ -1486,5 +1480,8 @@ msgstr "Voeg die watermerk by jou PDF-lêer"
 #~ msgstr ""
 
 #~ msgid "PDF files"
+#~ msgstr ""
+
+#~ msgid "Your file is not a PDF file"
 #~ msgstr ""
 

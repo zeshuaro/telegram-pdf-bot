@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-29 04:33+0000\n"
-"PO-Revision-Date: 2022-05-29 04:33\n"
+"POT-Creation-Date: 2022-05-30 11:14+0000\n"
+"PO-Revision-Date: 2022-05-30 11:15\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -271,14 +271,12 @@ msgstr "Toiminto peruutettu"
 msgid "Your file is not a PDF file, please try again"
 msgstr "Tiedostosi ei ole PDF-tiedosto, yritä uudelleen"
 
-#: pdf_bot/commands/image.py:137 pdf_bot/merge/merge_service.py:74
-#: pdf_bot/utils.py:73
+#: pdf_bot/commands/image.py:137 pdf_bot/utils.py:73
 msgid "Your file is too large for me to download and process"
 msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
 #: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
-#: pdf_bot/files/image.py:48 pdf_bot/merge/merge_service.py:75
-#: pdf_bot/utils.py:74 pdf_bot/utils.py:243
+#: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Huomaa, että tämä on Telegram Bot -rajoitus, enkä voi tehdä mitään, ellei Telegram muuta tätä rajaa"
 
@@ -386,23 +384,23 @@ msgstr "Kuvien kaunistaminen ja muuntaminen"
 msgid "Converting your images into PDF"
 msgstr "Kuvien muuntaminen PDF-muotoon"
 
-#: pdf_bot/compare/compare_service.py:25
+#: pdf_bot/compare/compare_service.py:29
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "Lähetä minulle yksi PDF-tiedostoista, joita haluat verrata"
 
-#: pdf_bot/compare/compare_service.py:26
+#: pdf_bot/compare/compare_service.py:30
 msgid "Note that I can only look for text differences"
 msgstr "Huomaa, että voin etsiä vain tekstieroja"
 
-#: pdf_bot/compare/compare_service.py:48
+#: pdf_bot/compare/compare_service.py:52
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Lähetä minulle toinen PDF-tiedosto, jota haluat verrata"
 
-#: pdf_bot/compare/compare_service.py:72
+#: pdf_bot/compare/compare_service.py:73
 msgid "Comparing your PDF files"
 msgstr "PDF-tiedostojen vertailu"
 
-#: pdf_bot/compare/compare_service.py:82
+#: pdf_bot/compare/compare_service.py:83
 msgid "There are no text differences between your PDF files"
 msgstr "PDF-tiedostojen välillä ei ole tekstieroja"
 
@@ -679,43 +677,39 @@ msgstr "Tekstin purkaminen PDF-tiedostosta"
 msgid "I couldn't find any text in your PDF file"
 msgstr "PDF-tiedostosta ei löytänyt tekstiä"
 
-#: pdf_bot/merge/merge_service.py:44
+#: pdf_bot/merge/merge_service.py:37
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Lähetä pdf-tiedostot, jotka haluat yhdistää"
 
-#: pdf_bot/merge/merge_service.py:45
+#: pdf_bot/merge/merge_service.py:38
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Huomaa, että tiedostot yhdistetään lähettämissäsi järjestyksessä"
 
-#: pdf_bot/merge/merge_service.py:70
-msgid "Your file is not a PDF file"
-msgstr "Tiedosto ei ole PDF-tiedosto"
-
-#: pdf_bot/merge/merge_service.py:89
+#: pdf_bot/merge/merge_service.py:62
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:100
+#: pdf_bot/merge/merge_service.py:73
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Paina {done} jos olet lähettänyt minulle kaikki PDF-tiedostot, jotka haluat yhdistää, tai jatka PDF-tiedostojen lähettämistä"
 
-#: pdf_bot/merge/merge_service.py:136
+#: pdf_bot/merge/merge_service.py:109
 msgid "You've already removed all the PDF files you've sent me"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:141
+#: pdf_bot/merge/merge_service.py:114
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} on poistettu yhdistämistä"
 
-#: pdf_bot/merge/merge_service.py:156
+#: pdf_bot/merge/merge_service.py:129
 msgid "You haven't sent me any PDF files"
 msgstr "Et ole lähettänyt minulle PDF-tiedostoja"
 
-#: pdf_bot/merge/merge_service.py:159
+#: pdf_bot/merge/merge_service.py:132
 msgid "You've only sent me one PDF file"
 msgstr "Lähetit minulle vain yhden PDF-tiedoston."
 
-#: pdf_bot/merge/merge_service.py:166
+#: pdf_bot/merge/merge_service.py:139
 msgid "Merging your PDF files"
 msgstr "PDF-tiedostojen yhdistäminen"
 
@@ -759,15 +753,15 @@ msgstr "Tuntematon fontti, yritä uudelleen"
 msgid "Creating your PDF file"
 msgstr "PDF-tiedoston luominen"
 
-#: pdf_bot/watermark/watermark_service.py:28
+#: pdf_bot/watermark/watermark_service.py:32
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Lähetä minulle PDF-tiedosto, jonka haluat lisätä vesileiman"
 
-#: pdf_bot/watermark/watermark_service.py:49
+#: pdf_bot/watermark/watermark_service.py:53
 msgid "Send me the watermark PDF file"
 msgstr "Lähetä minulle vesileiman PDF-tiedosto"
 
-#: pdf_bot/watermark/watermark_service.py:69
+#: pdf_bot/watermark/watermark_service.py:72
 msgid "Adding the watermark onto your PDF file"
 msgstr "Vesileiman lisääminen PDF-tiedostoon"
 
@@ -1486,5 +1480,8 @@ msgstr "Vesileiman lisääminen PDF-tiedostoon"
 #~ msgstr ""
 
 #~ msgid "PDF files"
+#~ msgstr ""
+
+#~ msgid "Your file is not a PDF file"
 #~ msgstr ""
 
