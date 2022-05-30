@@ -1,24 +1,17 @@
 from typing import List
 
-from telegram import (
-    ChatAction,
-    ParseMode,
-    ReplyKeyboardMarkup,
-    ReplyKeyboardRemove,
-    Update,
-)
+from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import CANCEL, DONE, PDF_INVALID_FORMAT, PDF_TOO_LARGE, REMOVE_LAST
+from pdf_bot.consts import CANCEL, DONE, REMOVE_LAST
 from pdf_bot.language import set_lang
 from pdf_bot.merge.constants import MERGE_PDF_DATA, WAIT_MERGE_PDF
 from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService, PdfServiceError
-from pdf_bot.telegram import TelegramService
+from pdf_bot.telegram import TelegramService, TelegramServiceError
 from pdf_bot.utils import (
     cancel,
-    check_pdf,
     check_user_data,
     reply_with_cancel_btn,
     send_result_file,
@@ -50,38 +43,18 @@ class MergeService:
 
         return WAIT_MERGE_PDF
 
-    def check_pdf_for_merge(self, update: Update, context: CallbackContext) -> int:
+    def check_pdf(self, update: Update, context: CallbackContext) -> int:
+        _ = set_lang(update, context)
         message = update.effective_message
-        message.reply_chat_action(ChatAction.TYPING)
-        result = check_pdf(update, context, send_msg=False)
 
-        if result in [PDF_INVALID_FORMAT, PDF_TOO_LARGE]:
-            return self.process_invalid_pdf(update, context, result)
+        try:
+            self.telegram_service.check_pdf_document(message.document)
+        except TelegramServiceError as e:
+            message.reply_text(_(str(e)))
+            return WAIT_MERGE_PDF
 
         file_data = FileData.from_telegram_document(message.document)
         context.user_data[MERGE_PDF_DATA].append(file_data)
-        return self.ask_next_pdf(update, context)
-
-    def process_invalid_pdf(
-        self, update: Update, context: CallbackContext, pdf_result: int
-    ) -> int:
-        _ = set_lang(update, context)
-        if pdf_result == PDF_INVALID_FORMAT:
-            text = _("Your file is not a PDF file")
-        else:
-            text = (
-                "{desc_1}\n\n{desc_2}".format(
-                    desc_1=_("Your file is too large for me to download and process"),
-                    desc_2=_(
-                        "Note that this is a Telegram Bot limitation and there's "
-                        "nothing I can do unless Telegram changes this limit"
-                    ),
-                ),
-            )
-
-        update.effective_message.reply_text(text)
-        if not context.user_data[MERGE_PDF_DATA]:
-            return self.ask_first_pdf(update, context)
         return self.ask_next_pdf(update, context)
 
     def ask_next_pdf(self, update: Update, context: CallbackContext) -> int:
@@ -172,7 +145,7 @@ class MergeService:
             ) as out_path:
                 send_result_file(update, context, out_path, TaskType.merge_pdf)
         except PdfServiceError as e:
-            update.effective_message.reply_text(_(e))
+            update.effective_message.reply_text(_(str(e)))
 
         context.user_data[MERGE_PDF_DATA] = []
         return ConversationHandler.END

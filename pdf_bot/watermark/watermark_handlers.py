@@ -23,7 +23,7 @@ class WatermarkHandlers:
                 ],
                 WAIT_WATERMARK_PDF: [
                     MessageHandler(
-                        Filters.document, self.watermark_service.check_watermark_pdf
+                        Filters.document, self.watermark_service.add_watermark_to_pdf
                     )
                 ],
             },

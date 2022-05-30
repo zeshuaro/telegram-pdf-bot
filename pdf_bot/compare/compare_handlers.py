@@ -22,9 +22,7 @@ class CompareHandlers:
                     )
                 ],
                 WAIT_SECOND_PDF: [
-                    MessageHandler(
-                        Filters.document, self.compare_service.check_second_pdf
-                    )
+                    MessageHandler(Filters.document, self.compare_service.compare_pdfs)
                 ],
             },
             fallbacks=[

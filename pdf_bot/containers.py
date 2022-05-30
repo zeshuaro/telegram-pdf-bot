@@ -46,12 +46,16 @@ class Services(containers.DeclarativeContainer):
     telegram = providers.Factory(TelegramService, io_service=io, updater=core.updater)
     pdf = providers.Factory(PdfService, io_service=io, telegram_service=telegram)
 
-    compare = providers.Factory(CompareService, pdf_service=pdf)
+    compare = providers.Factory(
+        CompareService, pdf_service=pdf, telegram_service=telegram
+    )
     merge = providers.Factory(MergeService, pdf_service=pdf, telegram_service=telegram)
     text = providers.Factory(
         TextService, text_repository=repositories.text, pdf_service=pdf
     )
-    watermark = providers.Factory(WatermarkService, pdf_service=pdf)
+    watermark = providers.Factory(
+        WatermarkService, pdf_service=pdf, telegram_service=telegram
+    )
 
 
 class Handlers(containers.DeclarativeContainer):
