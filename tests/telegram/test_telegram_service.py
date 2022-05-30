@@ -69,7 +69,7 @@ def test_download_files(
         mock.__enter__.return_value = File(doc_id, doc_id)
         return mock
 
-    num_files = randint(0, 10)
+    num_files = randint(2, 10)
     file_ids = document_ids_generator(num_files)
     telegram_bot.get_file.side_effect = get_file_side_effect
 
