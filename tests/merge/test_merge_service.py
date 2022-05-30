@@ -5,11 +5,10 @@ import pytest
 from telegram import Update
 from telegram.ext import CallbackContext
 
-from pdf_bot.consts import PDF_INVALID_FORMAT
 from pdf_bot.merge import MergeService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram import TelegramService
+from pdf_bot.telegram import TelegramService, TelegramServiceError
 
 WAIT_MERGE_PDF = 0
 MERGE_PDF_DATA = "merge_pdf_data"
@@ -52,44 +51,24 @@ def test_check_pdf(
     file_data_list = MagicMock()
     telegram_context.user_data.__getitem__.return_value = file_data_list
 
-    with patch("pdf_bot.merge.merge_service.check_pdf"):
-        actual = merge_service.check_pdf_for_merge(telegram_update, telegram_context)
-        assert actual == WAIT_MERGE_PDF
-        telegram_context.user_data.__getitem__.assert_called_with(MERGE_PDF_DATA)
-        file_data_list.append.assert_called_once_with(file_data)
-        telegram_service.send_file_names.assert_called_once()
+    actual = merge_service.check_pdf(telegram_update, telegram_context)
+
+    assert actual == WAIT_MERGE_PDF
+    telegram_context.user_data.__getitem__.assert_called_with(MERGE_PDF_DATA)
+    file_data_list.append.assert_called_once_with(file_data)
+    telegram_service.send_file_names.assert_called_once()
 
 
-def test_check_pdf_invlid_pdf_and_wait_first_pdf(
+def test_check_pdf_invlid_pdf(
     merge_service: MergeService,
     telegram_service: TelegramService,
     telegram_update: Update,
     telegram_context: CallbackContext,
 ):
-    telegram_context.user_data.__getitem__.return_value = []
-    with patch("pdf_bot.merge.merge_service.check_pdf") as check_pdf:
-        check_pdf.return_value = PDF_INVALID_FORMAT
+    telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
-        actual = merge_service.check_pdf_for_merge(telegram_update, telegram_context)
+    actual = merge_service.check_pdf(telegram_update, telegram_context)
 
-        assert actual == WAIT_MERGE_PDF
-        telegram_context.user_data.__getitem__.assert_called_with(MERGE_PDF_DATA)
-        telegram_service.send_file_names.assert_not_called()
-
-
-def test_check_pdf_invlid_pdf_and_wait_next_pdf(
-    merge_service: MergeService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    telegram_context.user_data.__getitem__.return_value = [1, 2]
-
-    with patch("pdf_bot.merge.merge_service.check_pdf") as check_pdf:
-        check_pdf.return_value = PDF_INVALID_FORMAT
-
-        actual = merge_service.check_pdf_for_merge(telegram_update, telegram_context)
-
-        assert actual == WAIT_MERGE_PDF
-        telegram_context.user_data.__getitem__.assert_called_with(MERGE_PDF_DATA)
-        telegram_service.send_file_names.assert_called_once()
+    assert actual == WAIT_MERGE_PDF
+    telegram_context.user_data.__getitem__.assert_not_called()
+    telegram_service.send_file_names.assert_not_called()

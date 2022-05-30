@@ -15,9 +15,7 @@ class MergeHandlers:
             entry_points=[CommandHandler("merge", self.merge_service.ask_first_pdf)],
             states={
                 WAIT_MERGE_PDF: [
-                    MessageHandler(
-                        Filters.document, self.merge_service.check_pdf_for_merge
-                    ),
+                    MessageHandler(Filters.document, self.merge_service.check_pdf),
                     MessageHandler(TEXT_FILTER, self.merge_service.check_text),
                 ],
             },

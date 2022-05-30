@@ -2,11 +2,12 @@ from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK, CANCEL, PDF_INVALID_FORMAT, PDF_OK
+from pdf_bot.consts import BACK, CANCEL
 from pdf_bot.language import set_lang
 from pdf_bot.pdf import PdfServiceError
 from pdf_bot.pdf.pdf_service import PdfService
-from pdf_bot.utils import cancel, check_pdf, check_user_data, send_result_file
+from pdf_bot.telegram import TelegramService, TelegramServiceError
+from pdf_bot.utils import cancel, check_user_data, send_result_file
 from pdf_bot.watermark.constants import (
     WAIT_SOURCE_PDF,
     WAIT_WATERMARK_PDF,
@@ -15,8 +16,11 @@ from pdf_bot.watermark.constants import (
 
 
 class WatermarkService:
-    def __init__(self, pdf_service: PdfService) -> None:
+    def __init__(
+        self, pdf_service: PdfService, telegram_service: TelegramService
+    ) -> None:
         self.pdf_service = pdf_service
+        self.telegram_service = telegram_service
 
     @staticmethod
     def ask_source_pdf(update: Update, context: CallbackContext):
@@ -31,41 +35,40 @@ class WatermarkService:
 
         return WAIT_SOURCE_PDF
 
-    @staticmethod
-    def check_source_pdf(update: Update, context: CallbackContext):
-        result = check_pdf(update, context)
-        if result == PDF_INVALID_FORMAT:
-            return WAIT_SOURCE_PDF
-        if result != PDF_OK:
-            return ConversationHandler.END
-
+    def check_source_pdf(self, update: Update, context: CallbackContext):
         _ = set_lang(update, context)
-        context.user_data[WATERMARK_KEY] = update.effective_message.document.file_id
+        message = update.effective_message
 
+        try:
+            self.telegram_service.check_pdf_document(message.document)
+        except TelegramServiceError as e:
+            message.reply_text(_(str(e)))
+            return WAIT_SOURCE_PDF
+
+        context.user_data[WATERMARK_KEY] = message.document.file_id
         reply_markup = ReplyKeyboardMarkup(
             [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
-        update.effective_message.reply_text(
+        message.reply_text(
             _("Send me the watermark PDF file"), reply_markup=reply_markup
         )
 
         return WAIT_WATERMARK_PDF
 
-    def check_watermark_pdf(self, update: Update, context: CallbackContext):
+    def add_watermark_to_pdf(self, update: Update, context: CallbackContext):
         if not check_user_data(update, context, WATERMARK_KEY):
             return ConversationHandler.END
 
-        result = check_pdf(update, context)
-        if result == PDF_INVALID_FORMAT:
-            return WAIT_WATERMARK_PDF
-        if result != PDF_OK:
-            return ConversationHandler.END
-
-        return self.add_watermark(update, context)
-
-    def add_watermark(self, update: Update, context: CallbackContext):
         _ = set_lang(update, context)
-        update.effective_message.reply_text(
+        message = update.effective_message
+
+        try:
+            self.telegram_service.check_pdf_document(message.document)
+        except TelegramServiceError as e:
+            message.reply_text(_(str(e)))
+            return WAIT_WATERMARK_PDF
+
+        message.reply_text(
             _("Adding the watermark onto your PDF file"),
             reply_markup=ReplyKeyboardRemove(),
         )
@@ -80,7 +83,7 @@ class WatermarkService:
             ) as out_path:
                 send_result_file(update, context, out_path, TaskType.watermark_pdf)
         except PdfServiceError as e:
-            update.effective_message.reply_text(_(e))
+            update.effective_message.reply_text(_(str(e)))
 
         if user_data[WATERMARK_KEY] == src_file_id:
             del user_data[WATERMARK_KEY]

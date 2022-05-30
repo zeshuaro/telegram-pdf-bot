@@ -37,7 +37,8 @@ class TelegramService:
             )
         if document.file_size > MAX_FILESIZE_DOWNLOAD:
             raise TelegramFileTooLargeError(
-                "Your file is too large for me to download and process\n\n"
+                "Your file is too large for me to download and process, "
+                "please try again with a differnt file\n\n"
                 "Note that this is a Telegram Bot limitation and there's "
                 "nothing I can do unless Telegram changes this limit"
             )
