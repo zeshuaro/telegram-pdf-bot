@@ -6,8 +6,12 @@ from pdf_bot.consts import BACK, CANCEL
 from pdf_bot.language import set_lang
 from pdf_bot.pdf import PdfServiceError
 from pdf_bot.pdf.pdf_service import PdfService
-from pdf_bot.telegram import TelegramService, TelegramServiceError
-from pdf_bot.utils import cancel, check_user_data, send_result_file
+from pdf_bot.telegram import (
+    TelegramService,
+    TelegramServiceError,
+    TelegramUserDataKeyError,
+)
+from pdf_bot.utils import cancel, send_result_file
 from pdf_bot.watermark.constants import (
     WAIT_SOURCE_PDF,
     WAIT_WATERMARK_PDF,
@@ -56,16 +60,16 @@ class WatermarkService:
         return WAIT_WATERMARK_PDF
 
     def add_watermark_to_pdf(self, update: Update, context: CallbackContext):
-        if not check_user_data(update, context, WATERMARK_KEY):
-            return ConversationHandler.END
-
         _ = set_lang(update, context)
         message = update.effective_message
 
         try:
+            src_file_id = self.telegram_service.get_user_data(context, WATERMARK_KEY)
             doc = self.telegram_service.check_pdf_document(message)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
+            if isinstance(e, TelegramUserDataKeyError):
+                return ConversationHandler.END
             return WAIT_WATERMARK_PDF
 
         message.reply_text(
@@ -73,20 +77,13 @@ class WatermarkService:
             reply_markup=ReplyKeyboardRemove(),
         )
 
-        user_data = context.user_data
-        src_file_id = user_data[WATERMARK_KEY]
-        wmk_file_id = doc.file_id
-
         try:
             with self.pdf_service.add_watermark_to_pdf(
-                src_file_id, wmk_file_id
+                src_file_id, doc.file_id
             ) as out_path:
                 send_result_file(update, context, out_path, TaskType.watermark_pdf)
         except PdfServiceError as e:
             message.reply_text(_(str(e)))
-
-        if user_data[WATERMARK_KEY] == src_file_id:
-            del user_data[WATERMARK_KEY]
 
         return ConversationHandler.END
 

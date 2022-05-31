@@ -7,8 +7,12 @@ from pdf_bot.compare.constants import COMPARE_ID, WAIT_FIRST_PDF, WAIT_SECOND_PD
 from pdf_bot.consts import BACK, CANCEL
 from pdf_bot.language import set_lang
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram import TelegramService, TelegramServiceError
-from pdf_bot.utils import cancel, check_user_data, send_result_file
+from pdf_bot.telegram import (
+    TelegramService,
+    TelegramServiceError,
+    TelegramUserDataKeyError,
+)
+from pdf_bot.utils import cancel, send_result_file
 
 
 class CompareService:
@@ -56,35 +60,29 @@ class CompareService:
         return WAIT_SECOND_PDF
 
     def compare_pdfs(self, update: Update, context: CallbackContext) -> int:
-        if not check_user_data(update, context, COMPARE_ID):
-            return ConversationHandler.END
-
         _ = set_lang(update, context)
         message = update.effective_message
 
         try:
+            file_id = self.telegram_service.get_user_data(context, COMPARE_ID)
             doc = self.telegram_service.check_pdf_document(message)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
+            if isinstance(e, TelegramUserDataKeyError):
+                return ConversationHandler.END
             return WAIT_SECOND_PDF
 
-        user_data = context.user_data
         message.reply_text(
             _("Comparing your PDF files"), reply_markup=ReplyKeyboardRemove()
         )
-        file_id_a = user_data[COMPARE_ID]
-        file_id_b = doc.file_id
 
         try:
-            with self.pdf_service.compare_pdfs(file_id_a, file_id_b) as out_path:
+            with self.pdf_service.compare_pdfs(file_id, doc.file_id) as out_path:
                 send_result_file(update, context, out_path, TaskType.compare_pdf)
         except NoDifferenceError:
             message.reply_text(
                 _("There are no text differences between your PDF files")
             )
-
-        if user_data[COMPARE_ID] == file_id_a:
-            del user_data[COMPARE_ID]
 
         return ConversationHandler.END
 

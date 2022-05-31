@@ -70,6 +70,18 @@ class TelegramService:
 
     @staticmethod
     def get_user_data(context: CallbackContext, key: str) -> Any:
+        """Get and pop value from user data by the provided key
+
+        Args:
+            context (CallbackContext): the Telegram callback context
+            key (str): the key for the value in user data
+
+        Raises:
+            TelegramUserDataKeyError: if the key does not exist in user data
+
+        Returns:
+            Any: the value for the key
+        """
         data = context.user_data.pop(key, None)
         if data is None:
             raise TelegramUserDataKeyError(_("Something went wrong, please try again"))
