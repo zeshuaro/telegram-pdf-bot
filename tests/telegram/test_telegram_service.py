@@ -3,7 +3,7 @@ from typing import Callable, List
 from unittest.mock import MagicMock, call
 
 import pytest
-from telegram import Bot, Document, File, Message
+from telegram import Bot, Document, File, Message, PhotoSize
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import CallbackContext
 
@@ -22,6 +22,72 @@ def fixture_telegram_service(
     io_service: IOService, telegram_bot: Bot
 ) -> TelegramService:
     return TelegramService(io_service, bot=telegram_bot)
+
+
+def test_check_image_document(
+    telegram_service: TelegramService,
+    telegram_message: Message,
+    telegram_document: Document,
+):
+    telegram_document.mime_type = "image"
+    telegram_document.file_size = MAX_FILESIZE_DOWNLOAD
+    telegram_message.document = telegram_document
+
+    actual = telegram_service.check_image(telegram_message)
+
+    assert actual == telegram_document
+
+
+def test_check_image_document_invalid_mime_type(
+    telegram_service: TelegramService,
+    telegram_message: Message,
+    telegram_document: Document,
+):
+    telegram_document.mime_type = "clearly_random"
+    telegram_message.document = telegram_document
+
+    with pytest.raises(TelegramFileMimeTypeError):
+        telegram_service.check_image(telegram_message)
+
+
+def test_check_image_document_too_large(
+    telegram_service: TelegramService,
+    telegram_message: Message,
+    telegram_document: Document,
+):
+    telegram_document.mime_type = "image"
+    telegram_document.file_size = MAX_FILESIZE_DOWNLOAD + 1
+    telegram_message.document = telegram_document
+
+    with pytest.raises(TelegramFileTooLargeError):
+        telegram_service.check_image(telegram_message)
+
+
+def test_check_image(
+    telegram_service: TelegramService,
+    telegram_message: Message,
+    telegram_photo_size: PhotoSize,
+):
+    telegram_photo_size.file_size = MAX_FILESIZE_DOWNLOAD
+    telegram_message.document = None
+    telegram_message.photo = [telegram_photo_size]
+
+    actual = telegram_service.check_image(telegram_message)
+
+    assert actual == telegram_photo_size
+
+
+def test_check_image_too_large(
+    telegram_service: TelegramService,
+    telegram_message: Message,
+    telegram_photo_size: PhotoSize,
+):
+    telegram_photo_size.file_size = MAX_FILESIZE_DOWNLOAD + 1
+    telegram_message.document = None
+    telegram_message.photo = [telegram_photo_size]
+
+    with pytest.raises(TelegramFileTooLargeError):
+        telegram_service.check_image(telegram_message)
 
 
 def test_check_pdf_document(

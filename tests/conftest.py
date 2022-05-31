@@ -5,7 +5,7 @@ from typing import Callable, List, cast
 from unittest.mock import MagicMock
 
 import pytest
-from telegram import Bot, Document, File, Message, Update, User
+from telegram import Bot, Document, File, Message, PhotoSize, Update, User
 from telegram.ext import CallbackContext
 
 from pdf_bot.io.io_service import IOService
@@ -92,6 +92,11 @@ def fixture_telegram_document(document_id: str, document_name: str) -> Document:
     doc.file_id = document_id
     doc.file_name = document_name
     return doc
+
+
+@pytest.fixture(name="telegram_photo_size")
+def fixture_telegram_photo_size() -> PhotoSize:
+    return cast(PhotoSize, MagicMock())
 
 
 @pytest.fixture
