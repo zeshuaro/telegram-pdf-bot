@@ -3,6 +3,7 @@ import os
 from contextlib import contextmanager
 from typing import TYPE_CHECKING, Generator, List, Union
 
+import img2pdf
 import noteshrink
 import pdf_diff
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
@@ -62,6 +63,21 @@ class PdfService:
                 noteshrink.notescan_main(
                     file_paths, basename=f"{out_path_base}_page", pdfname=out_path
                 )
+                yield out_path
+            finally:
+                pass
+
+    @contextmanager
+    def convert_images_to_pdf(self, file_data_list: List[FileData]):
+        file_ids = self._get_file_ids(file_data_list)
+        with self.telegram_service.download_files(
+            file_ids
+        ) as file_paths, self.io_service.create_temp_pdf_file(
+            prefix="Converted"
+        ) as out_path:
+            try:
+                with open(out_path, "wb") as f:
+                    f.write(img2pdf.convert(file_paths))
                 yield out_path
             finally:
                 pass
