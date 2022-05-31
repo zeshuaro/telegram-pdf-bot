@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-31 07:47+0000\n"
-"PO-Revision-Date: 2022-05-31 07:47\n"
+"POT-Creation-Date: 2022-05-31 08:43+0000\n"
+"PO-Revision-Date: 2022-05-31 08:43\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -267,7 +267,7 @@ msgstr "Nem sikerült konvertálni a weblapot"
 msgid "Action cancelled"
 msgstr "Művelet megszakítva"
 
-#: pdf_bot/utils.py:67
+#: pdf_bot/telegram/telegram_service.py:58 pdf_bot/utils.py:67
 msgid "Your file is not a PDF file, please try again"
 msgstr "A fájl nem PDF-fájl, próbálkozzon újra"
 
@@ -417,7 +417,7 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Fájlméret {percent}-kal csökkentve – {old_size} -ről {new_size}-re"
 
 #: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:87
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "Valami elromlott, kérem, próbálkozzon újra."
 
@@ -725,8 +725,18 @@ msgstr "A PDF-fájl érvénytelen"
 msgid "Your PDF file is encrypted"
 msgstr "A PDF-fájl titkosítva van"
 
-#: pdf_bot/telegram/telegram_service.py:35
-msgid "Your file is not a PDF file, please try again and ensure that your file has the .pdf extension"
+#: pdf_bot/telegram/telegram_service.py:36
+msgid "Your file is not an image, please try again"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:43
+msgid "Your image is too large for me to download and process, please try again with a differnt image\n\n"
+"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:62
+msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
+"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
 
 #: pdf_bot/text/constants.py:10
@@ -1483,5 +1493,11 @@ msgstr "Vízjel hozzáadása a PDF-fájlhoz"
 #~ msgstr ""
 
 #~ msgid "Your file is not a PDF file"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your file is not a PDF file, "
+#~ "please try again and ensure that "
+#~ "your file has the .pdf extension"
 #~ msgstr ""
 
