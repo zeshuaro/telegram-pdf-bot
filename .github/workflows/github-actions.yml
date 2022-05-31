@@ -83,9 +83,9 @@ jobs:
       - name: Run linting 🧪
         run: |
           source .venv/bin/activate
-          black --check --diff main.py pdf_bot
-          isort --check --diff main.py pdf_bot
-          pylint main.py pdf_bot
+          black --check --diff .
+          isort --check --diff .
+          pylint main.py pdf_bot tests
 
   deploy:
     name: Deploy
