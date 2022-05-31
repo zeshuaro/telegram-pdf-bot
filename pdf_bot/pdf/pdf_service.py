@@ -1,7 +1,9 @@
 import gettext
+import os
 from contextlib import contextmanager
 from typing import TYPE_CHECKING, Generator, List, Union
 
+import noteshrink
 import pdf_diff
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError as PyPdfReadError
@@ -43,6 +45,23 @@ class PdfService:
             try:
                 with open(out_path, "wb") as f:
                     writer.write(f)
+                yield out_path
+            finally:
+                pass
+
+    @contextmanager
+    def beautify_images(self, file_data_list: List[FileData]):
+        file_ids = self._get_file_ids(file_data_list)
+        with self.telegram_service.download_files(
+            file_ids
+        ) as file_paths, self.io_service.create_temp_pdf_file(
+            prefix="Beautified"
+        ) as out_path:
+            try:
+                out_path_base = os.path.splitext(out_path)[0]
+                noteshrink.notescan_main(
+                    file_paths, basename=f"{out_path_base}_page", pdfname=out_path
+                )
                 yield out_path
             finally:
                 pass
@@ -99,7 +118,7 @@ class PdfService:
 
     @contextmanager
     def merge_pdfs(self, file_data_list: List[FileData]) -> Generator[str, None, None]:
-        file_ids = [x.id for x in file_data_list]
+        file_ids = self._get_file_ids(file_data_list)
         merger = PdfFileMerger()
 
         with self.telegram_service.download_files(file_ids) as file_paths:
@@ -122,6 +141,10 @@ class PdfService:
             finally:
                 pass
 
+    @staticmethod
+    def _get_file_ids(file_data_list: List[FileData]) -> List[str]:
+        return [x.id for x in file_data_list]
+
     def _open_pdf(self, file_id: str, allow_encrypted: bool = False) -> PdfFileReader:
         with self.telegram_service.download_file(file_id) as file_name:
             try:
@@ -129,7 +152,6 @@ class PdfService:
             except PyPdfReadError as e:
                 raise PdfReadError(_("Your PDF file is invalid")) from e
 
-            if pdf_reader.is_encrypted and not allow_encrypted:
-                raise PdfEncryptError(_("Your PDF file is encrypted"))
-
-            return pdf_reader
+        if pdf_reader.is_encrypted and not allow_encrypted:
+            raise PdfEncryptError(_("Your PDF file is encrypted"))
+        return pdf_reader
