@@ -51,7 +51,10 @@ class Services(containers.DeclarativeContainer):
     )
     merge = providers.Factory(MergeService, pdf_service=pdf, telegram_service=telegram)
     text = providers.Factory(
-        TextService, text_repository=repositories.text, pdf_service=pdf
+        TextService,
+        text_repository=repositories.text,
+        pdf_service=pdf,
+        telegram_service=telegram,
     )
     watermark = providers.Factory(
         WatermarkService, pdf_service=pdf, telegram_service=telegram

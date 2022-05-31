@@ -6,19 +6,24 @@ from telegram.parsemode import ParseMode
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import CANCEL
 from pdf_bot.language import set_lang
-from pdf_bot.pdf.pdf_service import PdfService
+from pdf_bot.pdf import PdfService
+from pdf_bot.telegram import TelegramService, TelegramServiceError
 from pdf_bot.text.constants import SKIP, TEXT_KEY, WAIT_FONT, WAIT_TEXT
 from pdf_bot.text.models import FontData
 from pdf_bot.text.text_repository import TextRepository
-from pdf_bot.utils import cancel, check_user_data, send_result_file
+from pdf_bot.utils import cancel, send_result_file
 
 
 class TextService:
     def __init__(
-        self, text_repository: TextRepository, pdf_service: PdfService
+        self,
+        text_repository: TextRepository,
+        pdf_service: PdfService,
+        telegram_service: TelegramService,
     ) -> None:
         self.text_repository = text_repository
         self.pdf_service = pdf_service
+        self.telegram_service = telegram_service
 
     @staticmethod
     def ask_pdf_text(update: Update, context: CallbackContext):
@@ -89,21 +94,19 @@ class TextService:
         context: CallbackContext,
         font_data: FontData | None = None,
     ):
-        if not check_user_data(update, context, TEXT_KEY):
-            return ConversationHandler.END
-
         _ = set_lang(update, context)
-        text = context.user_data[TEXT_KEY]
-        update.effective_message.reply_text(
-            _("Creating your PDF file"), reply_markup=ReplyKeyboardRemove()
-        )
-
-        with self.pdf_service.create_pdf_from_text(text, font_data) as out_path:
-            send_result_file(update, context, out_path, TaskType.text_to_pdf)
+        message = update.effective_message
 
         try:
-            del context.user_data[TEXT_KEY]
-        except KeyError:
-            pass
+            text = self.telegram_service.get_user_data(context, TEXT_KEY)
+        except TelegramServiceError as e:
+            message.reply_text(_(str(e)))
+            return ConversationHandler.END
+
+        message.reply_text(
+            _("Creating your PDF file"), reply_markup=ReplyKeyboardRemove()
+        )
+        with self.pdf_service.create_pdf_from_text(text, font_data) as out_path:
+            send_result_file(update, context, out_path, TaskType.text_to_pdf)
 
         return ConversationHandler.END
