@@ -2,7 +2,7 @@ import gettext
 from contextlib import contextmanager
 from typing import Any, Generator, List
 
-from telegram import Bot, Document, Message
+from telegram import Bot, Document, Message, PhotoSize
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import CallbackContext, Updater
 
@@ -28,21 +28,43 @@ class TelegramService:
         self.bot = bot or updater.bot
 
     @staticmethod
+    def check_image(message: Message) -> Document | PhotoSize:
+        img_file = message.document
+        if img_file is not None:
+            if not img_file.mime_type.startswith("image"):
+                raise TelegramFileMimeTypeError(
+                    _("Your file is not an image, please try again")
+                )
+        else:
+            img_file = message.photo[-1]
+
+        if img_file.file_size > MAX_FILESIZE_DOWNLOAD:
+            raise TelegramFileTooLargeError(
+                _(
+                    "Your image is too large for me to download and process, "
+                    "please try again with a differnt image\n\n"
+                    "Note that this is a Telegram Bot limitation and there's "
+                    "nothing I can do unless Telegram changes this limit"
+                )
+            )
+
+        return img_file
+
+    @staticmethod
     def check_pdf_document(message: Message) -> Document:
         doc = message.document
         if not doc.mime_type.endswith("pdf"):
             raise TelegramFileMimeTypeError(
-                _(
-                    "Your file is not a PDF file, please try again "
-                    "and ensure that your file has the .pdf extension"
-                )
+                _("Your file is not a PDF file, please try again")
             )
         if doc.file_size > MAX_FILESIZE_DOWNLOAD:
             raise TelegramFileTooLargeError(
-                "Your file is too large for me to download and process, "
-                "please try again with a differnt file\n\n"
-                "Note that this is a Telegram Bot limitation and there's "
-                "nothing I can do unless Telegram changes this limit"
+                _(
+                    "Your file is too large for me to download and process, "
+                    "please try again with a differnt file\n\n"
+                    "Note that this is a Telegram Bot limitation and there's "
+                    "nothing I can do unless Telegram changes this limit"
+                )
             )
 
         return doc
