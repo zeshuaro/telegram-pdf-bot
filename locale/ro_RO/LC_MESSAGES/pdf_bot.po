@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-30 12:51+0000\n"
-"PO-Revision-Date: 2022-05-30 12:51\n"
+"POT-Creation-Date: 2022-05-31 07:47+0000\n"
+"PO-Revision-Date: 2022-05-31 07:47\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -384,23 +384,23 @@ msgstr "Înfrumusețarea și conversia imaginilor"
 msgid "Converting your images into PDF"
 msgstr "Conversia imaginilor în PDF"
 
-#: pdf_bot/compare/compare_service.py:29
+#: pdf_bot/compare/compare_service.py:33
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "Trimite-mi unul dintre fișierele PDF pe care veți dori să le comparați"
 
-#: pdf_bot/compare/compare_service.py:30
+#: pdf_bot/compare/compare_service.py:34
 msgid "Note that I can only look for text differences"
 msgstr "Rețineți că pot căuta doar diferențe de text"
 
-#: pdf_bot/compare/compare_service.py:52
+#: pdf_bot/compare/compare_service.py:56
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Trimite-mi celălalt fișier PDF pe care doriți să-l comparați"
 
-#: pdf_bot/compare/compare_service.py:73
+#: pdf_bot/compare/compare_service.py:76
 msgid "Comparing your PDF files"
 msgstr "Compararea fișierelor PDF"
 
-#: pdf_bot/compare/compare_service.py:83
+#: pdf_bot/compare/compare_service.py:84
 msgid "There are no text differences between your PDF files"
 msgstr "Nu există diferențe de text între fișierele PDF"
 
@@ -417,7 +417,7 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Dimensiunea fișierului redusă cu {percent}, de la {old_size} la {new_size}"
 
 #: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:75
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:87
 msgid "Something went wrong, please try again"
 msgstr "Ceva nu a mers bine, vă rugăm să încercați din nou"
 
@@ -677,19 +677,19 @@ msgstr "Extragerea textului din fișierul PDF"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Nu am găsit niciun text în fișierul PDF"
 
-#: pdf_bot/merge/merge_service.py:37
+#: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Trimiteți-mi fișierele PDF pe care veți dori să le îmbinați"
 
-#: pdf_bot/merge/merge_service.py:38
+#: pdf_bot/merge/merge_service.py:33
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Rețineți că fișierele vor fi îmbinate în ordinea în care îmi trimiteți"
 
-#: pdf_bot/merge/merge_service.py:62
+#: pdf_bot/merge/merge_service.py:57
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:73
+#: pdf_bot/merge/merge_service.py:68
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Apăsați {done} dacă mi-ați trimis toate fișierele PDF pe care veți dori să le îmbinați sau continuați să-mi trimiteți fișierele PDF"
 
@@ -701,15 +701,15 @@ msgstr ""
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} a fost eliminat pentru fuzionarea"
 
-#: pdf_bot/merge/merge_service.py:129
+#: pdf_bot/merge/merge_service.py:132
 msgid "You haven't sent me any PDF files"
 msgstr "Nu mi-ai trimis niciun fișier PDF"
 
-#: pdf_bot/merge/merge_service.py:132
+#: pdf_bot/merge/merge_service.py:135
 msgid "You've only sent me one PDF file"
 msgstr "Mi-ați trimis un singur fișier PDF"
 
-#: pdf_bot/merge/merge_service.py:139
+#: pdf_bot/merge/merge_service.py:145
 msgid "Merging your PDF files"
 msgstr "Îmbinarea fișierelor PDF"
 
@@ -733,35 +733,35 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: pdf_bot/text/text_service.py:30
+#: pdf_bot/text/text_service.py:35
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Trimite-mi textul pe care vrei să-l scrii în fișierul PDF"
 
-#: pdf_bot/text/text_service.py:51
+#: pdf_bot/text/text_service.py:56
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "Trimiteți-mi fontul pe care veți dori să îl utilizați pentru fișierul PDF sau apăsați {skip} pentru a utiliza fontul implicit"
 
-#: pdf_bot/text/text_service.py:55
+#: pdf_bot/text/text_service.py:60
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "Vezi aici lista fonturilor acceptate: {fonts}"
 
-#: pdf_bot/text/text_service.py:83
+#: pdf_bot/text/text_service.py:88
 msgid "Unknown font, please try again"
 msgstr "Font necunoscut, vă rugăm să încercați din nou"
 
-#: pdf_bot/text/text_service.py:98
+#: pdf_bot/text/text_service.py:107
 msgid "Creating your PDF file"
 msgstr "Crearea fișierului PDF"
 
-#: pdf_bot/watermark/watermark_service.py:32
+#: pdf_bot/watermark/watermark_service.py:36
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Trimiteți-mi fișierul PDF pe care doriți să-l adăugați o inscripționare"
 
-#: pdf_bot/watermark/watermark_service.py:53
+#: pdf_bot/watermark/watermark_service.py:57
 msgid "Send me the watermark PDF file"
 msgstr "Trimite-mi fișierul PDF de inscripționare"
 
-#: pdf_bot/watermark/watermark_service.py:72
+#: pdf_bot/watermark/watermark_service.py:76
 msgid "Adding the watermark onto your PDF file"
 msgstr "Adăugarea filigranului în fișierul PDF"
 

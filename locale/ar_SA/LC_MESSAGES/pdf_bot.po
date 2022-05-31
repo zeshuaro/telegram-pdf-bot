@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-30 12:51+0000\n"
-"PO-Revision-Date: 2022-05-30 12:51\n"
+"POT-Creation-Date: 2022-05-31 07:47+0000\n"
+"PO-Revision-Date: 2022-05-31 07:47\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: Arabic\n"
@@ -384,23 +384,23 @@ msgstr "تجميل الصور وتحويلها"
 msgid "Converting your images into PDF"
 msgstr "تحويل صورك إلى PDF"
 
-#: pdf_bot/compare/compare_service.py:29
+#: pdf_bot/compare/compare_service.py:33
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "أرسل لي أحد ملفات PDF التي تريد مقارنتها"
 
-#: pdf_bot/compare/compare_service.py:30
+#: pdf_bot/compare/compare_service.py:34
 msgid "Note that I can only look for text differences"
 msgstr "لاحظ أنه يمكنني البحث فقط عن الاختلافات النصية"
 
-#: pdf_bot/compare/compare_service.py:52
+#: pdf_bot/compare/compare_service.py:56
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "أرسل الملف الاخر الذي تريد مقارنته"
 
-#: pdf_bot/compare/compare_service.py:73
+#: pdf_bot/compare/compare_service.py:76
 msgid "Comparing your PDF files"
 msgstr "جاري المقارنة بين الملفين"
 
-#: pdf_bot/compare/compare_service.py:83
+#: pdf_bot/compare/compare_service.py:84
 msgid "There are no text differences between your PDF files"
 msgstr "لا توجد اختلافات نصية بين ملفات PDF"
 
@@ -417,7 +417,7 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "حجم الملف الذي تم تخفيضه بمقدار {percent}، من {old_size} إلى {new_size}"
 
 #: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:75
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:87
 msgid "Something went wrong, please try again"
 msgstr "حدث خطأ ما، يرجى المحاولة مرة أخرى"
 
@@ -677,19 +677,19 @@ msgstr "استخراج النص من الملف"
 msgid "I couldn't find any text in your PDF file"
 msgstr "لم استطع ايجاد اي نص في الملف"
 
-#: pdf_bot/merge/merge_service.py:37
+#: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "أرسل لي ملفات PDF التي تريد دمجها"
 
-#: pdf_bot/merge/merge_service.py:38
+#: pdf_bot/merge/merge_service.py:33
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "لاحظ أنه سيتم دمج الملفات بالترتيب الذي ترسله لي"
 
-#: pdf_bot/merge/merge_service.py:62
+#: pdf_bot/merge/merge_service.py:57
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:73
+#: pdf_bot/merge/merge_service.py:68
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "اضغط {done} إذا كنت قد أرسلت لي جميع ملفات PDF التي تريد دمجها أو الاستمرار في إرسال ملفات PDF لي"
 
@@ -701,15 +701,15 @@ msgstr ""
 msgid "{file_name} has been removed for merging"
 msgstr "تمت إزالة {file_name} للدمج"
 
-#: pdf_bot/merge/merge_service.py:129
+#: pdf_bot/merge/merge_service.py:132
 msgid "You haven't sent me any PDF files"
 msgstr "لم ترسل لي أي ملفات PDF"
 
-#: pdf_bot/merge/merge_service.py:132
+#: pdf_bot/merge/merge_service.py:135
 msgid "You've only sent me one PDF file"
 msgstr "لقد أرسلت لي ملف PDF واحد فقط"
 
-#: pdf_bot/merge/merge_service.py:139
+#: pdf_bot/merge/merge_service.py:145
 msgid "Merging your PDF files"
 msgstr "جاري دمج المفات"
 
@@ -733,35 +733,35 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: pdf_bot/text/text_service.py:30
+#: pdf_bot/text/text_service.py:35
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "أرسل لي النص الذي تريد أن تكتبه في ملفك ال بي دي اف"
 
-#: pdf_bot/text/text_service.py:51
+#: pdf_bot/text/text_service.py:56
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "أرسل لي الخط الذي تريد استخدامه لملف PDF أو اضغط {skip} لاستخدام الخط الافتراضي"
 
-#: pdf_bot/text/text_service.py:55
+#: pdf_bot/text/text_service.py:60
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "انظر هنا للحصول على قائمة الخطوط المعتمدة: {fonts}"
 
-#: pdf_bot/text/text_service.py:83
+#: pdf_bot/text/text_service.py:88
 msgid "Unknown font, please try again"
 msgstr "خط غير معروف، الرجاء المحاولة مرة أخرى"
 
-#: pdf_bot/text/text_service.py:98
+#: pdf_bot/text/text_service.py:107
 msgid "Creating your PDF file"
 msgstr "أنشئ ملفك ال بي دي اف"
 
-#: pdf_bot/watermark/watermark_service.py:32
+#: pdf_bot/watermark/watermark_service.py:36
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "أرسل الملف الذي تريد أن يكون له علامة مائية"
 
-#: pdf_bot/watermark/watermark_service.py:53
+#: pdf_bot/watermark/watermark_service.py:57
 msgid "Send me the watermark PDF file"
 msgstr "أرسل ملف العلامة المائية PDF"
 
-#: pdf_bot/watermark/watermark_service.py:72
+#: pdf_bot/watermark/watermark_service.py:76
 msgid "Adding the watermark onto your PDF file"
 msgstr "جاري اضافة العلامة المائية"
 
