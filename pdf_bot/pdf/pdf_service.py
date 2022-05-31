@@ -30,12 +30,12 @@ class PdfService:
     def add_watermark_to_pdf(self, source_file_id, watermark_file_id):
         src_reader = self._open_pdf(source_file_id)
         wmk_reader = self._open_pdf(watermark_file_id)
-        wmk_page = wmk_reader.getPage(0)
+        wmk_page = wmk_reader.pages[0]
         writer = PdfFileWriter()
 
         for page in src_reader.pages:
-            page.mergePage(wmk_page)
-            writer.addPage(page)
+            page.merge_page(wmk_page)
+            writer.add_page(page)
 
         with self.io_service.create_temp_pdf_file(
             prefix="File_with_watermark"
@@ -129,7 +129,7 @@ class PdfService:
             except PyPdfReadError as e:
                 raise PdfReadError(_("Your PDF file is invalid")) from e
 
-            if pdf_reader.isEncrypted and not allow_encrypted:
+            if pdf_reader.is_encrypted and not allow_encrypted:
                 raise PdfEncryptError(_("Your PDF file is encrypted"))
 
             return pdf_reader

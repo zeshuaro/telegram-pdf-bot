@@ -21,19 +21,19 @@ def random_string():
 
 
 @pytest.fixture
-def get_data_file() -> Callable[[str], Path]:
-    def _func(filename: str):
-        return TEST_DATA_PATH / filename
+def context_manager_side_effect_echo() -> Callable[[str], MagicMock]:
+    def _func(return_value: str):
+        mock = MagicMock()
+        mock.__enter__.return_value = return_value
+        return mock
 
     return _func
 
 
 @pytest.fixture
-def context_manager_side_effect() -> Callable[[str], MagicMock]:
-    def _func(return_value: str):
-        mock = MagicMock()
-        mock.__enter__.return_value = return_value
-        return mock
+def method_side_effect_echo() -> Callable[[str], MagicMock]:
+    def _func(return_value: str, *_args, **_kwargs):
+        return return_value
 
     return _func
 
@@ -134,13 +134,12 @@ def telegram_update(telegram_message: Message) -> Update:
 
 @pytest.fixture
 def telegram_context() -> CallbackContext:
-    context = cast(CallbackContext, MagicMock())
-    return context
+    return cast(CallbackContext, MagicMock())
 
 
 @pytest.fixture
 def io_service() -> IOService:
-    return IOService()
+    return cast(IOService, MagicMock())
 
 
 @pytest.fixture

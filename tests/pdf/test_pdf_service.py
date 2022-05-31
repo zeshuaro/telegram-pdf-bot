@@ -1,11 +1,9 @@
-import os
-from pathlib import Path
 from random import randint
 from typing import Callable, List, cast
 from unittest.mock import ANY, MagicMock, call, patch
 
 import pytest
-from PyPDF2 import PdfFileMerger
+from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError as PyPdfReadError
 
 from pdf_bot.compare import CompareService
@@ -31,16 +29,49 @@ def fixture_pdf_service(
 def test_add_watermark_to_pdf(
     pdf_service: PdfService,
     telegram_service: TelegramService,
-    get_data_file: Callable[[str], Path],
-    context_manager_side_effect: Callable[[str], MagicMock],
+    io_service: IOService,
+    document_ids_generator: Callable[[int], List[str]],
+    context_manager_side_effect_echo: Callable[[str], MagicMock],
+    method_side_effect_echo: Callable[[str], MagicMock],
 ):
-    telegram_service.download_file.side_effect = context_manager_side_effect
-    src_file = get_data_file("base.pdf")
-    wmk_file = get_data_file("watermark.pdf")
-    expected_file = get_data_file("base_watermark.pdf")
+    src_file_id, wmk_file_id = document_ids_generator(2)
+    src_reader = cast(PdfFileReader, MagicMock())
+    wmk_reader = cast(PdfFileReader, MagicMock())
+    writer = cast(PdfFileWriter, MagicMock())
+    src_reader.is_encrypted = wmk_reader.is_encrypted = False
 
-    with pdf_service.add_watermark_to_pdf(src_file, wmk_file) as out_fn:
-        assert os.path.getsize(out_fn) == os.path.getsize(expected_file)
+    src_pages = [MagicMock() for _ in range(randint(2, 10))]
+    src_reader.pages = src_pages
+
+    wmk_page = MagicMock()
+    wmk_reader.pages = [wmk_page]
+
+    def pdf_file_reader_side_effect(file_id: str, *_args, **_kwargs):
+        if file_id == src_file_id:
+            return src_reader
+        return wmk_reader
+
+    with patch("builtins.open") as mock_open, patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader, patch(
+        "pdf_bot.pdf.pdf_service.PdfFileWriter"
+    ) as pdf_file_writer:
+        telegram_service.download_file.side_effect = context_manager_side_effect_echo
+        mock_open.side_effect = method_side_effect_echo
+        pdf_file_reader.side_effect = pdf_file_reader_side_effect
+        pdf_file_writer.return_value = writer
+
+        with pdf_service.add_watermark_to_pdf(src_file_id, wmk_file_id):
+            add_page_calls = []
+            for src_page in src_pages:
+                src_page.merge_page.assert_called_once_with(wmk_page)
+                add_page_calls.append(call(src_page))
+
+            writer.add_page.assert_has_calls(add_page_calls)
+            writer.write.assert_called_once()
+            io_service.create_temp_pdf_file.assert_called_once_with(
+                prefix="File_with_watermark"
+            )
 
 
 def test_add_watermark_to_pdf_read_error(pdf_service: PdfService):
