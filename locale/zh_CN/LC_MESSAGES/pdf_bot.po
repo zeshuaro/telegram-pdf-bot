@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-31 07:47+0000\n"
-"PO-Revision-Date: 2022-05-31 07:47\n"
+"POT-Creation-Date: 2022-05-31 08:43+0000\n"
+"PO-Revision-Date: 2022-05-31 08:43\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -267,7 +267,7 @@ msgstr "无法转换您的网页"
 msgid "Action cancelled"
 msgstr "操作取消"
 
-#: pdf_bot/utils.py:67
+#: pdf_bot/telegram/telegram_service.py:58 pdf_bot/utils.py:67
 msgid "Your file is not a PDF file, please try again"
 msgstr "您的文件不是 PDF 文件，请再试一次"
 
@@ -417,7 +417,7 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "文件大小减少 {percent}，从 {old_size} 减少到 {new_size}"
 
 #: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:87
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "出问题了，请再试一次"
 
@@ -725,8 +725,18 @@ msgstr "您的 PDF 文件无效"
 msgid "Your PDF file is encrypted"
 msgstr "您的 PDF 文件已加密"
 
-#: pdf_bot/telegram/telegram_service.py:35
-msgid "Your file is not a PDF file, please try again and ensure that your file has the .pdf extension"
+#: pdf_bot/telegram/telegram_service.py:36
+msgid "Your file is not an image, please try again"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:43
+msgid "Your image is too large for me to download and process, please try again with a differnt image\n\n"
+"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:62
+msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
+"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
 
 #: pdf_bot/text/constants.py:10
@@ -1483,5 +1493,11 @@ msgstr "正在添加水印到你的PDF档案中"
 #~ msgstr ""
 
 #~ msgid "Your file is not a PDF file"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your file is not a PDF file, "
+#~ "please try again and ensure that "
+#~ "your file has the .pdf extension"
 #~ msgstr ""
 
