@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-30 12:51+0000\n"
-"PO-Revision-Date: 2022-05-30 12:51\n"
+"POT-Creation-Date: 2022-05-31 07:47+0000\n"
+"PO-Revision-Date: 2022-05-31 07:47\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -384,23 +384,23 @@ msgstr "美化和轉換圖像"
 msgid "Converting your images into PDF"
 msgstr "將影像轉換為 PDF 格式"
 
-#: pdf_bot/compare/compare_service.py:29
+#: pdf_bot/compare/compare_service.py:33
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "向我發送您要比較的 PDF 檔之一"
 
-#: pdf_bot/compare/compare_service.py:30
+#: pdf_bot/compare/compare_service.py:34
 msgid "Note that I can only look for text differences"
 msgstr "請注意，我只能查找文本差異"
 
-#: pdf_bot/compare/compare_service.py:52
+#: pdf_bot/compare/compare_service.py:56
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "發給我另一個你想要比較的PDF檔案"
 
-#: pdf_bot/compare/compare_service.py:73
+#: pdf_bot/compare/compare_service.py:76
 msgid "Comparing your PDF files"
 msgstr "正在比較你的PDF檔案"
 
-#: pdf_bot/compare/compare_service.py:83
+#: pdf_bot/compare/compare_service.py:84
 msgid "There are no text differences between your PDF files"
 msgstr "您的 PDF 檔案之間沒有文字差異"
 
@@ -417,7 +417,7 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "檔大小減少 {percent}，從 {old_size} 減少到 {new_size}"
 
 #: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:75
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:87
 msgid "Something went wrong, please try again"
 msgstr "出問題了，請再試一次"
 
@@ -677,19 +677,19 @@ msgstr "正在提取你的PDF檔案的文字"
 msgid "I couldn't find any text in your PDF file"
 msgstr "我在你的PDF檔案中找不到任何文字"
 
-#: pdf_bot/merge/merge_service.py:37
+#: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "將您希望合併的 PDF 檔案發送給我"
 
-#: pdf_bot/merge/merge_service.py:38
+#: pdf_bot/merge/merge_service.py:33
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "請注意，檔將按照您發送給我的順序合併"
 
-#: pdf_bot/merge/merge_service.py:62
+#: pdf_bot/merge/merge_service.py:57
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:73
+#: pdf_bot/merge/merge_service.py:68
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "按 {done} ，如果您已將您希望合併的所有 PDF 檔發送給我，或繼續將 PDF 檔發送給我"
 
@@ -701,15 +701,15 @@ msgstr ""
 msgid "{file_name} has been removed for merging"
 msgstr "合併 {file_name} 已被移除"
 
-#: pdf_bot/merge/merge_service.py:129
+#: pdf_bot/merge/merge_service.py:132
 msgid "You haven't sent me any PDF files"
 msgstr "你還沒有向我發送任何PDF檔案"
 
-#: pdf_bot/merge/merge_service.py:132
+#: pdf_bot/merge/merge_service.py:135
 msgid "You've only sent me one PDF file"
 msgstr "你只寄給我一個 Pdf 檔"
 
-#: pdf_bot/merge/merge_service.py:139
+#: pdf_bot/merge/merge_service.py:145
 msgid "Merging your PDF files"
 msgstr "正在合併你的PDF檔案"
 
@@ -733,35 +733,35 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: pdf_bot/text/text_service.py:30
+#: pdf_bot/text/text_service.py:35
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "向我發送你想寫在PDF檔案的文字"
 
-#: pdf_bot/text/text_service.py:51
+#: pdf_bot/text/text_service.py:56
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "將您希望用於 PDF 檔案的字型發送給我，或按 {skip} 使用預設字體"
 
-#: pdf_bot/text/text_service.py:55
+#: pdf_bot/text/text_service.py:60
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "請參閱此處檢視支援字型清單： {fonts}"
 
-#: pdf_bot/text/text_service.py:83
+#: pdf_bot/text/text_service.py:88
 msgid "Unknown font, please try again"
 msgstr "未知字體，請再試一次"
 
-#: pdf_bot/text/text_service.py:98
+#: pdf_bot/text/text_service.py:107
 msgid "Creating your PDF file"
 msgstr "正在創建你的PDF檔案"
 
-#: pdf_bot/watermark/watermark_service.py:32
+#: pdf_bot/watermark/watermark_service.py:36
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "向我發送你想要添加水印的PDF檔案"
 
-#: pdf_bot/watermark/watermark_service.py:53
+#: pdf_bot/watermark/watermark_service.py:57
 msgid "Send me the watermark PDF file"
 msgstr "發給我水印PDF檔案"
 
-#: pdf_bot/watermark/watermark_service.py:72
+#: pdf_bot/watermark/watermark_service.py:76
 msgid "Adding the watermark onto your PDF file"
 msgstr "正在添加水印到你的PDF檔案中"
 

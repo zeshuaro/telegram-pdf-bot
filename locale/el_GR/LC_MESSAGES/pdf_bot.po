@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-05-30 12:51+0000\n"
-"PO-Revision-Date: 2022-05-30 12:51\n"
+"POT-Creation-Date: 2022-05-31 07:47+0000\n"
+"PO-Revision-Date: 2022-05-31 07:47\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -384,23 +384,23 @@ msgstr "Ωραιοποίηση και μετατροπή των εικόνων �
 msgid "Converting your images into PDF"
 msgstr "Μετατροπή των εικόνων σας σε PDF"
 
-#: pdf_bot/compare/compare_service.py:29
+#: pdf_bot/compare/compare_service.py:33
 msgid "Send me one of the PDF files that you'll like to compare"
 msgstr "Στείλτε μου ένα από τα αρχεία PDF που θέλετε να συγκρίνετε"
 
-#: pdf_bot/compare/compare_service.py:30
+#: pdf_bot/compare/compare_service.py:34
 msgid "Note that I can only look for text differences"
 msgstr "Σημειώστε ότι μπορώ να αναζητήσω μόνο διαφορές κειμένου"
 
-#: pdf_bot/compare/compare_service.py:52
+#: pdf_bot/compare/compare_service.py:56
 msgid "Send me the other PDF file that you'll like to compare"
 msgstr "Στείλτε μου το άλλο αρχείο PDF που θα σας αρέσει να συγκρίνετε"
 
-#: pdf_bot/compare/compare_service.py:73
+#: pdf_bot/compare/compare_service.py:76
 msgid "Comparing your PDF files"
 msgstr "Σύγκριση των αρχείων PDF"
 
-#: pdf_bot/compare/compare_service.py:83
+#: pdf_bot/compare/compare_service.py:84
 msgid "There are no text differences between your PDF files"
 msgstr "Δεν υπάρχουν διαφορές κειμένου μεταξύ των αρχείων PDF"
 
@@ -417,7 +417,7 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Το μέγεθος του αρχείου μειώθηκε κατά {percent}, από {old_size} σε {new_size}"
 
 #: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:75
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:87
 msgid "Something went wrong, please try again"
 msgstr "Κάτι πήγε στραβά, προσπαθήστε ξανά."
 
@@ -677,19 +677,19 @@ msgstr "Εξαγωγή κειμένου από το αρχείο PDF"
 msgid "I couldn't find any text in your PDF file"
 msgstr "Δεν μπόρεσα να βρω κανένα κείμενο στο αρχείο PDF"
 
-#: pdf_bot/merge/merge_service.py:37
+#: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Στείλτε μου τα αρχεία PDF που θέλετε να συγχωνεύσετε"
 
-#: pdf_bot/merge/merge_service.py:38
+#: pdf_bot/merge/merge_service.py:33
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Σημειώστε ότι τα αρχεία θα συγχωνευτούν με τη σειρά που θα μου στείλετε"
 
-#: pdf_bot/merge/merge_service.py:62
+#: pdf_bot/merge/merge_service.py:57
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:73
+#: pdf_bot/merge/merge_service.py:68
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Πατήστε {done} αν μου έχετε στείλει όλα τα αρχεία PDF που θέλετε να συγχωνεύσετε ή συνεχίστε να μου στέλνετε τα αρχεία PDF"
 
@@ -701,15 +701,15 @@ msgstr ""
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} έχει αφαιρεθεί για συγχώνευση"
 
-#: pdf_bot/merge/merge_service.py:129
+#: pdf_bot/merge/merge_service.py:132
 msgid "You haven't sent me any PDF files"
 msgstr "Δεν μου έχετε στείλει αρχεία PDF"
 
-#: pdf_bot/merge/merge_service.py:132
+#: pdf_bot/merge/merge_service.py:135
 msgid "You've only sent me one PDF file"
 msgstr "Μου έστειλες μόνο ένα αρχείο PDF."
 
-#: pdf_bot/merge/merge_service.py:139
+#: pdf_bot/merge/merge_service.py:145
 msgid "Merging your PDF files"
 msgstr "Συγχώνευση των αρχείων PDF"
 
@@ -733,35 +733,35 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: pdf_bot/text/text_service.py:30
+#: pdf_bot/text/text_service.py:35
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Στείλτε μου το κείμενο που θα σας αρέσει να γράφετε στο αρχείο PDF"
 
-#: pdf_bot/text/text_service.py:51
+#: pdf_bot/text/text_service.py:56
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "Στείλτε μου τη γραμματοσειρά που θέλετε να χρησιμοποιήσετε για το αρχείο PDF ή πατήστε {skip} για να χρησιμοποιήσετε την προεπιλεγμένη γραμματοσειρά"
 
-#: pdf_bot/text/text_service.py:55
+#: pdf_bot/text/text_service.py:60
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "Δείτε εδώ για τη λίστα των υποστηριζόμενων γραμματοσειρών: {fonts}"
 
-#: pdf_bot/text/text_service.py:83
+#: pdf_bot/text/text_service.py:88
 msgid "Unknown font, please try again"
 msgstr "Άγνωστη γραμματοσειρά, προσπαθήστε ξανά"
 
-#: pdf_bot/text/text_service.py:98
+#: pdf_bot/text/text_service.py:107
 msgid "Creating your PDF file"
 msgstr "Δημιουργία του αρχείου PDF"
 
-#: pdf_bot/watermark/watermark_service.py:32
+#: pdf_bot/watermark/watermark_service.py:36
 msgid "Send me the PDF file that you'll like to add a watermark"
 msgstr "Στείλτε μου το αρχείο PDF που θα θέλατε να προσθέσετε ένα υδατογράφημα"
 
-#: pdf_bot/watermark/watermark_service.py:53
+#: pdf_bot/watermark/watermark_service.py:57
 msgid "Send me the watermark PDF file"
 msgstr "Στείλτε μου το αρχείο PDF υδατογράφημα"
 
-#: pdf_bot/watermark/watermark_service.py:72
+#: pdf_bot/watermark/watermark_service.py:76
 msgid "Adding the watermark onto your PDF file"
 msgstr "Προσθήκη του υδατογραφήματος στο αρχείο PDF"
 
