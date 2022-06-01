@@ -64,8 +64,8 @@ class WatermarkService:
         message = update.effective_message
 
         try:
-            src_file_id = self.telegram_service.get_user_data(context, WATERMARK_KEY)
             doc = self.telegram_service.check_pdf_document(message)
+            src_file_id = self.telegram_service.get_user_data(context, WATERMARK_KEY)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             if isinstance(e, TelegramUserDataKeyError):

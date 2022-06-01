@@ -127,7 +127,7 @@ def test_compare_pdfs_invalid_user_data(
         send_result_file.assert_not_called()
 
 
-def test_check_second_pdf_invalid_pdf(
+def test_compare_pdfs_invalid_pdf(
     compare_service: CompareService,
     pdf_service: PdfService,
     telegram_service: TelegramService,
@@ -140,5 +140,6 @@ def test_check_second_pdf_invalid_pdf(
         actual = compare_service.compare_pdfs(telegram_update, telegram_context)
 
         assert actual == WAIT_SECOND_PDF
+        telegram_service.get_user_data.assert_not_called()
         pdf_service.compare_pdfs.assert_not_called()
         send_result_file.assert_not_called()
