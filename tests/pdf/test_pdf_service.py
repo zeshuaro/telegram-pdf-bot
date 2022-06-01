@@ -84,6 +84,46 @@ def test_add_watermark_to_pdf_read_error(pdf_service: PdfService):
             pass
 
 
+def test_beautify_images(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+    file_data_generator: Callable[[int], List[FileData]],
+):
+    num_files = randint(2, 10)
+    file_data_list = file_data_generator(num_files)
+    file_ids = [x.id for x in file_data_list]
+    telegram_service.download_files.return_value.__enter__.return_value = file_ids
+
+    with patch(
+        "pdf_bot.pdf.pdf_service.noteshrink"
+    ) as noteshrink, pdf_service.beautify_images(file_data_list):
+        telegram_service.download_files.assert_called_once_with(file_ids)
+        io_service.create_temp_pdf_file.assert_called_once_with(prefix="Beautified")
+        noteshrink.notescan_main.assert_called_once_with(
+            file_ids, basename=ANY, pdfname=ANY
+        )
+
+
+def test_convert_images_to_pdf(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+    file_data_generator: Callable[[int], List[FileData]],
+):
+    num_files = randint(2, 10)
+    file_data_list = file_data_generator(num_files)
+    file_ids = [x.id for x in file_data_list]
+    telegram_service.download_files.return_value.__enter__.return_value = file_ids
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.img2pdf"
+    ) as img2pdf, pdf_service.convert_images_to_pdf(file_data_list):
+        telegram_service.download_files.assert_called_once_with(file_ids)
+        io_service.create_temp_pdf_file.assert_called_once_with(prefix="Converted")
+        img2pdf.convert.assert_called_once_with(file_ids)
+
+
 def test_create_pdf_from_text(pdf_service: PdfService):
     text = "text"
     font_data = FontData("family", "url")
@@ -130,7 +170,7 @@ def test_merge_pdfs(
     telegram_service: TelegramService,
     file_data_generator: Callable[[int], List[FileData]],
 ):
-    num_files = randint(0, 10)
+    num_files = randint(2, 10)
     file_data_list = file_data_generator(num_files)
     file_ids = [x.id for x in file_data_list]
 
