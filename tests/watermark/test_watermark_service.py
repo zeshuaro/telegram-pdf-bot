@@ -69,7 +69,7 @@ def test_check_source_pdf_invalid_pdf(
     telegram_context.user_data.__setitem__.assert_not_called()
 
 
-def test_check_watermark_pdf(
+def test_add_watermark_to_pdf(
     watermark_service: WatermarkService,
     pdf_service: PdfService,
     telegram_service: TelegramService,
@@ -96,7 +96,7 @@ def test_check_watermark_pdf(
         )
 
 
-def test_check_watermark_pdf_service_error(
+def test_add_watermark_to_pdf_service_error(
     watermark_service: WatermarkService,
     pdf_service: PdfService,
     telegram_service: TelegramService,
@@ -121,7 +121,7 @@ def test_check_watermark_pdf_service_error(
         send_result_file.assert_not_called()
 
 
-def test_check_watermark_pdf_invalid_user_data(
+def test_add_watermark_to_pdf_invalid_user_data(
     watermark_service: WatermarkService,
     pdf_service: PdfService,
     telegram_service: TelegramService,
@@ -141,7 +141,7 @@ def test_check_watermark_pdf_invalid_user_data(
         send_result_file.assert_not_called()
 
 
-def test_check_watermark_pdf_invalid_pdf(
+def test_add_watermark_to_pdf_invalid_pdf(
     watermark_service: WatermarkService,
     telegram_service: TelegramService,
     pdf_service: PdfService,
@@ -159,4 +159,5 @@ def test_check_watermark_pdf_invalid_pdf(
 
         assert actual == WAIT_WATERMARK_PDF
         pdf_service.add_watermark_to_pdf.assert_not_called()
+        telegram_service.get_user_data.assert_not_called()
         send_result_file.assert_not_called()

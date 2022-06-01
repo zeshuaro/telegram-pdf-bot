@@ -64,8 +64,8 @@ class CompareService:
         message = update.effective_message
 
         try:
-            file_id = self.telegram_service.get_user_data(context, COMPARE_ID)
             doc = self.telegram_service.check_pdf_document(message)
+            file_id = self.telegram_service.get_user_data(context, COMPARE_ID)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             if isinstance(e, TelegramUserDataKeyError):
