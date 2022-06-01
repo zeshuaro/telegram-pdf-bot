@@ -15,12 +15,12 @@ from telegram.ext import (
 from telegram.ext.dispatcher import Dispatcher
 
 from pdf_bot.command.command_service import CommandService
-from pdf_bot.commands import image_cov_handler
 from pdf_bot.compare import CompareHandlers
 from pdf_bot.consts import CHANNEL_NAME, LANGUAGES, PAYMENT, SET_LANG
 from pdf_bot.containers import Application
 from pdf_bot.feedback import feedback_cov_handler
 from pdf_bot.file import FileHandlers
+from pdf_bot.image import ImageHandlers
 from pdf_bot.language import send_lang, set_lang, store_lang
 from pdf_bot.merge import MergeHandlers
 from pdf_bot.payment import (
@@ -49,6 +49,9 @@ def setup_dispatcher(
     ],
     file_handlers: FileHandlers = Provide[
         Application.handlers.file  # pylint: disable=no-member
+    ],
+    image_handlers: ImageHandlers = Provide[
+        Application.handlers.image  # pylint: disable=no-member
     ],
     merge_handlers: MergeHandlers = Provide[
         Application.handlers.merge  # pylint: disable=no-member
@@ -92,7 +95,7 @@ def setup_dispatcher(
     # PDF commands handlers
     dispatcher.add_handler(compare_handlers.conversation_handler())
     dispatcher.add_handler(merge_handlers.conversation_handler())
-    dispatcher.add_handler(image_cov_handler())
+    dispatcher.add_handler(image_handlers.conversation_handler())
     dispatcher.add_handler(text_handlers.conversation_handler())
     dispatcher.add_handler(watermark_handlers.conversation_handler())
 
