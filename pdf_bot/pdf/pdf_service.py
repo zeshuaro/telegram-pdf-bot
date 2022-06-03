@@ -51,7 +51,7 @@ class PdfService:
                 pass
 
     @contextmanager
-    def beautify_images(self, file_data_list: List[FileData]):
+    def beautify_and_convert_images_to_pdf(self, file_data_list: List[FileData]):
         file_ids = self._get_file_ids(file_data_list)
         with self.telegram_service.download_files(
             file_ids

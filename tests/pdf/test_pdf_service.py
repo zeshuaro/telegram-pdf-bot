@@ -97,7 +97,7 @@ def test_beautify_images(
 
     with patch(
         "pdf_bot.pdf.pdf_service.noteshrink"
-    ) as noteshrink, pdf_service.beautify_images(file_data_list):
+    ) as noteshrink, pdf_service.beautify_and_convert_images_to_pdf(file_data_list):
         telegram_service.download_files.assert_called_once_with(file_ids)
         io_service.create_temp_pdf_file.assert_called_once_with(prefix="Beautified")
         noteshrink.notescan_main.assert_called_once_with(
