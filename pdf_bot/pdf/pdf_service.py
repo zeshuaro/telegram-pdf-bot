@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING, Generator, List, Union
 
 import img2pdf
 import noteshrink
+import pdf2image
 import pdf_diff
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.utils import PdfReadError as PyPdfReadError
@@ -63,6 +64,30 @@ class PdfService:
                 noteshrink.notescan_main(
                     file_paths, basename=f"{out_path_base}_page", pdfname=out_path
                 )
+                yield out_path
+            finally:
+                pass
+
+    @contextmanager
+    def black_and_white_pdf(self, file_id: str):
+        with self.telegram_service.download_file(
+            file_id
+        ) as file_path, self.io_service.create_temp_pdf_file(
+            prefix="Black_and_White"
+        ) as out_path:
+            try:
+                out_path_base = os.path.splitext(out_path)[0]
+                images = pdf2image.convert_from_path(
+                    file_path,
+                    output_folder=".",
+                    output_file=out_path_base,
+                    fmt="png",
+                    grayscale=True,
+                    paths_only=True,
+                )
+
+                with open(out_path, "wb") as f:
+                    f.write(img2pdf.convert(images))
                 yield out_path
             finally:
                 pass
