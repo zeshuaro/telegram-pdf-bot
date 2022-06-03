@@ -26,7 +26,7 @@ def test_create_temp_file_with_suffix(io_service: IOService):
 
 
 def test_create_temp_files(io_service: IOService):
-    num_files = randint(0, 10)
+    num_files = randint(2, 10)
     with io_service.create_temp_files(num_files) as out_paths:
         assert len(out_paths) == num_files
 
