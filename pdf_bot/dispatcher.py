@@ -20,7 +20,7 @@ from pdf_bot.compare import CompareHandlers
 from pdf_bot.consts import CHANNEL_NAME, LANGUAGES, PAYMENT, SET_LANG
 from pdf_bot.containers import Application
 from pdf_bot.feedback import feedback_cov_handler
-from pdf_bot.files import file_cov_handler
+from pdf_bot.file import FileHandlers
 from pdf_bot.language import send_lang, set_lang, store_lang
 from pdf_bot.merge import MergeHandlers
 from pdf_bot.payment import (
@@ -46,6 +46,9 @@ def setup_dispatcher(
     ],
     compare_handlers: CompareHandlers = Provide[
         Application.handlers.compare  # pylint: disable=no-member
+    ],
+    file_handlers: FileHandlers = Provide[
+        Application.handlers.file  # pylint: disable=no-member
     ],
     merge_handlers: MergeHandlers = Provide[
         Application.handlers.merge  # pylint: disable=no-member
@@ -94,7 +97,7 @@ def setup_dispatcher(
     dispatcher.add_handler(watermark_handlers.conversation_handler())
 
     # PDF file handler
-    dispatcher.add_handler(file_cov_handler())
+    dispatcher.add_handler(file_handlers.conversation_handler())
 
     # Feedback handler
     dispatcher.add_handler(feedback_cov_handler())
