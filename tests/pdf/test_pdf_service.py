@@ -84,7 +84,28 @@ def test_add_watermark_to_pdf_read_error(pdf_service: PdfService):
             pass
 
 
-def test_beautify_images(
+def test_black_and_white_pdf(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    images = "images"
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.pdf2image"
+    ) as pdf2image, patch("pdf_bot.pdf.pdf_service.img2pdf") as img2pdf:
+        pdf2image.convert_from_path.return_value = images
+        with pdf_service.black_and_white_pdf(file_id):
+            telegram_service.download_file.assert_called_once_with(file_id)
+            io_service.create_temp_pdf_file.assert_called_once_with(
+                prefix="Black_and_White"
+            )
+            pdf2image.convert_from_path.assert_called_once()
+            img2pdf.convert.assert_called_once_with(images)
+
+
+def test_beautify_and_convert_images_to_pdf(
     pdf_service: PdfService,
     io_service: IOService,
     telegram_service: TelegramService,
