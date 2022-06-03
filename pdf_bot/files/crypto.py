@@ -1,7 +1,7 @@
 import tempfile
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
-from PyPDF2.utils import PdfReadError
+from PyPDF2.errors import PdfReadError
 from telegram import ReplyKeyboardRemove
 from telegram.ext import ConversationHandler
 

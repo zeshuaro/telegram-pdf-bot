@@ -3,7 +3,7 @@ import tempfile
 from threading import Lock
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
-from PyPDF2.utils import PdfReadError
+from PyPDF2.errors import PdfReadError
 from telegram import (
     ChatAction,
     InlineKeyboardButton,

@@ -4,7 +4,7 @@ from unittest.mock import ANY, MagicMock, call, patch
 
 import pytest
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
-from PyPDF2.utils import PdfReadError as PyPdfReadError
+from PyPDF2.errors import PdfReadError as PyPdfReadError
 
 from pdf_bot.compare import CompareService
 from pdf_bot.io.io_service import IOService
