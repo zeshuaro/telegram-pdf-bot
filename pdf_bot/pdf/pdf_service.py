@@ -7,7 +7,7 @@ import img2pdf
 import noteshrink
 import pdf_diff
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
-from PyPDF2.utils import PdfReadError as PyPdfReadError
+from PyPDF2.errors import PdfReadError as PyPdfReadError
 from weasyprint import CSS, HTML
 from weasyprint.text.fonts import FontConfiguration
 
