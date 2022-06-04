@@ -10,8 +10,15 @@ _ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gett
 
 
 class CLIService:
+    def compress_pdf(self, input_path: str, output_path: str):
+        command = (
+            "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default "
+            f'-dNOPAUSE -dQUIET -dBATCH -sOutputFile="{output_path}" "{input_path}"'
+        )
+        self._run_command(command)
+
     @staticmethod
-    def run_command(command: str):
+    def _run_command(command: str):
         proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE, shell=False)
         out, err = proc.communicate()
 

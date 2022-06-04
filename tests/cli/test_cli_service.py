@@ -19,16 +19,55 @@ def fixture_popen_process() -> Popen:
     return proc
 
 
-def test_run_command(cli_service: CLIService, popen_process: Popen):
+@pytest.fixture(name="input_path")
+def fixture_input_path() -> str:
+    return "input_path"
+
+
+@pytest.fixture(name="output_path")
+def fixture_output_path() -> str:
+    return "output_path"
+
+
+@pytest.fixture(name="compress_command")
+def fixture_compress_command(input_path: str, output_path: str) -> str:
+    return (
+        "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 "
+        "-dPDFSETTINGS=/default -dNOPAUSE -dQUIET -dBATCH "
+        f"-sOutputFile={output_path} {input_path}"
+    )
+
+
+def test_compress_pdf(
+    cli_service: CLIService,
+    popen_process: Popen,
+    input_path: str,
+    output_path: str,
+    compress_command: str,
+):
     popen_process.returncode = 0
     with patch("pdf_bot.cli.cli_service.Popen") as popen:
         popen.return_value = popen_process
-        cli_service.run_command("command")
+
+        cli_service.compress_pdf(input_path, output_path)
+
+        args = popen.call_args.args[0]
+        assert " ".join(args) == compress_command
 
 
-def test_run_command_error(cli_service: CLIService, popen_process: Popen):
+def test_compress_pdf_error(
+    cli_service: CLIService,
+    popen_process: Popen,
+    input_path: str,
+    output_path: str,
+    compress_command: str,
+):
     popen_process.returncode = 1
     with patch("pdf_bot.cli.cli_service.Popen") as popen:
         popen.return_value = popen_process
+
         with pytest.raises(CLIServiceError):
-            cli_service.run_command("cd")
+            cli_service.compress_pdf(input_path, output_path)
+
+        args = popen.call_args.args[0]
+        assert " ".join(args) == compress_command
