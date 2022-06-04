@@ -35,7 +35,7 @@ def test_black_and_white_pdf(
     document_id: int,
 ):
     out_path = "out_path"
-    telegram_service.get_user_data.return_value = document_id
+    telegram_service.get_user_data.return_value = (document_id, 0)
     pdf_service.black_and_white_pdf.return_value.__enter__.return_value = out_path
 
     with patch("pdf_bot.file.file_service.send_result_file") as send_result_file:

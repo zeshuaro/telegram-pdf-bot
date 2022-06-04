@@ -21,7 +21,7 @@ class FileService:
         message = update.effective_message
 
         try:
-            file_id = self.telegram_service.get_user_data(context, PDF_INFO)
+            file_id, _ = self.telegram_service.get_user_data(context, PDF_INFO)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             return ConversationHandler.END
