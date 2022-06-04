@@ -1,9 +1,18 @@
 from contextlib import contextmanager
-from tempfile import NamedTemporaryFile
+from tempfile import NamedTemporaryFile, TemporaryDirectory
 from typing import Generator, List
 
 
 class IOService:
+    @staticmethod
+    @contextmanager
+    def create_temp_directory() -> Generator[str, None, None]:
+        try:
+            td = TemporaryDirectory()
+            yield td.name
+        finally:
+            td.cleanup()
+
     @staticmethod
     @contextmanager
     def create_temp_file(

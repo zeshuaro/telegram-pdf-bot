@@ -1,5 +1,6 @@
 import os
 from random import randint
+from unittest.mock import patch
 
 import pytest
 
@@ -9,6 +10,13 @@ from pdf_bot.io import IOService
 @pytest.fixture(name="io_service")
 def fixture_io_service() -> IOService:
     return IOService()
+
+
+def test_create_temp_directory(io_service: IOService):
+    with patch(
+        "pdf_bot.io.io_service.TemporaryDirectory"
+    ) as temporary_directory, io_service.create_temp_directory():
+        temporary_directory.assert_called_once()
 
 
 def test_create_temp_file_with_prefix(io_service: IOService):
