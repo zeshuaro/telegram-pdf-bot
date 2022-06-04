@@ -6,10 +6,11 @@ import pytest
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
 
+from pdf_bot.cli import CLIService
 from pdf_bot.compare import CompareService
 from pdf_bot.io.io_service import IOService
 from pdf_bot.models import FileData
-from pdf_bot.pdf import PdfReadError, PdfService
+from pdf_bot.pdf import CompressResult, PdfReadError, PdfService
 from pdf_bot.telegram import TelegramService
 from pdf_bot.text import FontData
 
@@ -21,9 +22,9 @@ def fixture_telegram_service() -> TelegramService:
 
 @pytest.fixture(name="pdf_service")
 def fixture_pdf_service(
-    io_service: IOService, telegram_service: TelegramService
+    cli_service: CLIService, io_service: IOService, telegram_service: TelegramService
 ) -> CompareService:
-    return PdfService(io_service, telegram_service)
+    return PdfService(cli_service, io_service, telegram_service)
 
 
 def test_add_watermark_to_pdf(
@@ -124,6 +125,36 @@ def test_beautify_and_convert_images_to_pdf(
         noteshrink.notescan_main.assert_called_once_with(
             file_ids, basename=ANY, pdfname=ANY
         )
+
+
+def test_compress_pdf(
+    pdf_service: PdfService,
+    cli_service: CLIService,
+    telegram_service: TelegramService,
+    io_service: IOService,
+):
+    file_id = "file_id"
+    file_path = "file_path"
+    out_path = "out_path"
+
+    old_size = randint(11, 20)
+    new_size = randint(1, 10)
+
+    def getsize_side_effect(path: str, *_args, **_kwargs):
+        if path == file_path:
+            return old_size
+        return new_size
+
+    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with patch("pdf_bot.pdf.pdf_service.os") as os:
+        os.path.getsize.side_effect = getsize_side_effect
+        with pdf_service.compress_pdf(file_id) as compress_result:
+            assert compress_result == CompressResult(old_size, new_size, out_path)
+            cli_service.compress_pdf.assert_called_once_with(file_path, out_path)
+            telegram_service.download_file.assert_called_once_with(file_id)
+            io_service.create_temp_pdf_file.assert_called_once_with(prefix="Compressed")
 
 
 def test_convert_images_to_pdf(

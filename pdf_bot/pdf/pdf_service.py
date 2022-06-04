@@ -12,9 +12,11 @@ from PyPDF2.errors import PdfReadError as PyPdfReadError
 from weasyprint import CSS, HTML
 from weasyprint.text.fonts import FontConfiguration
 
+from pdf_bot.cli import CLIService
 from pdf_bot.io import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf.exceptions import PdfEncryptError, PdfReadError
+from pdf_bot.pdf.models import CompressResult
 from pdf_bot.telegram import TelegramService
 
 if TYPE_CHECKING:
@@ -25,8 +27,12 @@ _ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gett
 
 class PdfService:
     def __init__(
-        self, io_service: IOService, telegram_service: TelegramService
+        self,
+        cli_service: CLIService,
+        io_service: IOService,
+        telegram_service: TelegramService,
     ) -> None:
+        self.cli_service = cli_service
         self.io_service = io_service
         self.telegram_service = telegram_service
 
@@ -87,6 +93,21 @@ class PdfService:
                 with open(out_path, "wb") as f:
                     f.write(img2pdf.convert(images))
                 yield out_path
+            finally:
+                pass
+
+    @contextmanager
+    def compress_pdf(self, file_id: str):
+        with self.telegram_service.download_file(
+            file_id
+        ) as file_path, self.io_service.create_temp_pdf_file(
+            prefix="Compressed"
+        ) as out_path:
+            try:
+                self.cli_service.compress_pdf(file_path, out_path)
+                old_size = os.path.getsize(file_path)
+                new_size = os.path.getsize(out_path)
+                yield CompressResult(old_size, new_size, out_path)
             finally:
                 pass
 
