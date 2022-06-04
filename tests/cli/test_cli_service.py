@@ -1,3 +1,4 @@
+from random import randint
 from subprocess import Popen
 from typing import cast
 from unittest.mock import MagicMock, patch
@@ -29,21 +30,11 @@ def fixture_output_path() -> str:
     return "output_path"
 
 
-@pytest.fixture(name="compress_command")
-def fixture_compress_command(input_path: str, output_path: str) -> str:
-    return (
-        "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 "
-        "-dPDFSETTINGS=/default -dNOPAUSE -dQUIET -dBATCH "
-        f"-sOutputFile={output_path} {input_path}"
-    )
-
-
 def test_compress_pdf(
     cli_service: CLIService,
     popen_process: Popen,
     input_path: str,
     output_path: str,
-    compress_command: str,
 ):
     popen_process.returncode = 0
     with patch("pdf_bot.cli.cli_service.Popen") as popen:
@@ -52,7 +43,9 @@ def test_compress_pdf(
         cli_service.compress_pdf(input_path, output_path)
 
         args = popen.call_args.args[0]
-        assert " ".join(args) == compress_command
+        assert args[0] == "gs"
+        assert input_path in args
+        assert f"-sOutputFile={output_path}" in args
 
 
 def test_compress_pdf_error(
@@ -60,7 +53,6 @@ def test_compress_pdf_error(
     popen_process: Popen,
     input_path: str,
     output_path: str,
-    compress_command: str,
 ):
     popen_process.returncode = 1
     with patch("pdf_bot.cli.cli_service.Popen") as popen:
@@ -69,5 +61,74 @@ def test_compress_pdf_error(
         with pytest.raises(CLIServiceError):
             cli_service.compress_pdf(input_path, output_path)
 
+
+def test_crop_pdf_by_percentage(
+    cli_service: CLIService,
+    popen_process: Popen,
+    input_path: str,
+    output_path: str,
+):
+    percent = randint(0, 10)
+    popen_process.returncode = 0
+
+    with patch("pdf_bot.cli.cli_service.Popen") as popen:
+        popen.return_value = popen_process
+
+        cli_service.crop_pdf_by_percentage(input_path, output_path, percent)
+
         args = popen.call_args.args[0]
-        assert " ".join(args) == compress_command
+        assert args[0] == "pdf-crop-margins"
+        assert input_path in args
+        command = " ".join(args)
+        assert f"-o {output_path}" in command
+        assert f"-p {percent}" in command
+
+
+def test_crop_pdf_by_percentage_error(
+    cli_service: CLIService,
+    popen_process: Popen,
+    input_path: str,
+    output_path: str,
+):
+    popen_process.returncode = 1
+    with patch("pdf_bot.cli.cli_service.Popen") as popen:
+        popen.return_value = popen_process
+
+        with pytest.raises(CLIServiceError):
+            cli_service.crop_pdf_by_percentage(input_path, output_path, 0)
+
+
+def test_crop_pdf_by_offset(
+    cli_service: CLIService,
+    popen_process: Popen,
+    input_path: str,
+    output_path: str,
+):
+    offset = randint(0, 10)
+    popen_process.returncode = 0
+
+    with patch("pdf_bot.cli.cli_service.Popen") as popen:
+        popen.return_value = popen_process
+
+        cli_service.crop_pdf_by_offset(input_path, output_path, offset)
+
+        args = popen.call_args.args[0]
+        assert args[0] == "pdf-crop-margins"
+        assert input_path in args
+        command = " ".join(args)
+        assert f"-o {output_path}" in command
+        assert f"-a {offset}" in command
+
+
+def test_crop_pdf_by_offset_error(
+    cli_service: CLIService,
+    popen_process: Popen,
+    input_path: str,
+    output_path: str,
+):
+    popen_process.returncode = 1
+    with patch("pdf_bot.cli.cli_service.Popen") as popen:
+        popen.return_value = popen_process
+
+        with pytest.raises(CLIServiceError):
+            cli_service.crop_pdf_by_offset(input_path, output_path, 0)
