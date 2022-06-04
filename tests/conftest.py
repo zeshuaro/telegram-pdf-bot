@@ -8,9 +8,10 @@ import pytest
 from telegram import Bot, Document, File, Message, PhotoSize, Update, User
 from telegram.ext import CallbackContext
 
-from pdf_bot.io.io_service import IOService
+from pdf_bot.cli import CLIService
+from pdf_bot.io import IOService
 from pdf_bot.models import FileData
-from pdf_bot.pdf.pdf_service import PdfService
+from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import TelegramService
 
 TEST_DATA_PATH = Path(__file__).parent.resolve() / "data"
@@ -152,3 +153,8 @@ def telegram_service(telegram_document: Document) -> TelegramService:
     service = cast(TelegramService, MagicMock())
     service.check_pdf_document.return_value = telegram_document
     return service
+
+
+@pytest.fixture
+def cli_service() -> CLIService:
+    return cast(CLIService, MagicMock())
