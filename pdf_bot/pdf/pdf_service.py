@@ -70,17 +70,15 @@ class PdfService:
 
     @contextmanager
     def black_and_white_pdf(self, file_id: str):
-        with self.telegram_service.download_file(
-            file_id
-        ) as file_path, self.io_service.create_temp_pdf_file(
-            prefix="Black_and_White"
-        ) as out_path:
+        with (
+            self.telegram_service.download_file(file_id) as file_path,
+            self.io_service.create_temp_directory() as dir_name,
+            self.io_service.create_temp_pdf_file(prefix="Black_and_White") as out_path,
+        ):
             try:
-                out_path_base = os.path.splitext(out_path)[0]
                 images = pdf2image.convert_from_path(
                     file_path,
-                    output_folder=".",
-                    output_file=out_path_base,
+                    output_folder=dir_name,
                     fmt="png",
                     grayscale=True,
                     paths_only=True,
