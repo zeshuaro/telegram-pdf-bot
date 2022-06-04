@@ -47,7 +47,6 @@ from pdf_bot.consts import (
     WAIT_TO_IMAGE_TYPE,
 )
 from pdf_bot.file.file_service import FileService
-from pdf_bot.files.compress import compress_pdf
 from pdf_bot.files.crop import (
     ask_crop_type,
     ask_crop_value,
@@ -177,9 +176,9 @@ class FileHandlers:
             return ask_text_type(update, context)
         if text == OCR:
             return add_ocr_to_pdf(update, context)
-        if text == COMPRESS:
-            return compress_pdf(update, context)
-        if text == BLACK_AND_WHITE:
+        if text == _(COMPRESS):
+            return self.file_service.compress_pdf(update, context)
+        if text == _(BLACK_AND_WHITE):
             return self.file_service.black_and_white_pdf(update, context)
         if text == _(CANCEL):
             return cancel(update, context)

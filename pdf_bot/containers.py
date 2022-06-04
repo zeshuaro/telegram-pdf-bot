@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from telegram.ext import Updater
 
 from pdf_bot.account import AccountRepository, AccountService
+from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.file import FileHandlers, FileService
@@ -41,11 +42,14 @@ class Services(containers.DeclarativeContainer):
     core = providers.DependenciesContainer()
     repositories = providers.DependenciesContainer()
 
+    cli = providers.Factory(CLIService)
     io = providers.Factory(IOService)
     account = providers.Factory(AccountService, account_repository=repositories.account)
     command = providers.Factory(CommandService, account_service=account)
     telegram = providers.Factory(TelegramService, io_service=io, updater=core.updater)
-    pdf = providers.Factory(PdfService, io_service=io, telegram_service=telegram)
+    pdf = providers.Factory(
+        PdfService, cli_service=cli, io_service=io, telegram_service=telegram
+    )
 
     compare = providers.Factory(
         CompareService, pdf_service=pdf, telegram_service=telegram
