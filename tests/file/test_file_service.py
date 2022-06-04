@@ -8,6 +8,7 @@ from telegram.ext import CallbackContext, ConversationHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.file import FileService
 from pdf_bot.pdf import PdfService
+from pdf_bot.pdf.models import CompressResult
 from pdf_bot.telegram import TelegramService, TelegramUserDataKeyError
 
 PDF_INFO = "pdf_info"
@@ -62,4 +63,46 @@ def test_black_and_white_pdf_invalid_user_data(
 
         assert actual == ConversationHandler.END
         pdf_service.black_and_white_pdf.assert_not_called()
+        send_result_file.assert_not_called()
+
+
+def test_compress_pdf(
+    file_service: FileService,
+    pdf_service: PdfService,
+    telegram_service: TelegramService,
+    telegram_update: Update,
+    telegram_context: CallbackContext,
+    document_id: int,
+):
+    compress_result = CompressResult(2, 1, "out_path")
+    telegram_service.get_user_data.return_value = (document_id, 0)
+    pdf_service.compress_pdf.return_value.__enter__.return_value = compress_result
+
+    with patch("pdf_bot.file.file_service.send_result_file") as send_result_file:
+        actual = file_service.compress_pdf(telegram_update, telegram_context)
+
+        assert actual == ConversationHandler.END
+        pdf_service.compress_pdf.assert_called_with(document_id)
+        send_result_file.assert_called_once_with(
+            telegram_update,
+            telegram_context,
+            compress_result.out_path,
+            TaskType.compress_pdf,
+        )
+
+
+def test_compress_pdf_invalid_user_data(
+    file_service: FileService,
+    pdf_service: PdfService,
+    telegram_service: TelegramService,
+    telegram_update: Update,
+    telegram_context: CallbackContext,
+):
+    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
+
+    with patch("pdf_bot.file.file_service.send_result_file") as send_result_file:
+        actual = file_service.compress_pdf(telegram_update, telegram_context)
+
+        assert actual == ConversationHandler.END
+        pdf_service.compress_pdf.assert_not_called()
         send_result_file.assert_not_called()
