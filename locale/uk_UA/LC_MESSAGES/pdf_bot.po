@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-03 11:03+0000\n"
-"PO-Revision-Date: 2022-06-03 11:04\n"
+"POT-Creation-Date: 2022-06-04 04:35+0000\n"
+"PO-Revision-Date: 2022-06-04 04:35\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -147,59 +147,59 @@ msgstr "Їжа"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:115
+#: pdf_bot/dispatcher.py:118
 msgid "Set Language 🌎"
 msgstr "Вибрати мову 🌎"
 
-#: pdf_bot/dispatcher.py:117 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Приєднатися до каналу"
 
-#: pdf_bot/dispatcher.py:118 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Підтримка PDF Bot"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:130
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Більшість завдань можна виконати, надіславши одну з наведених нижче дій."
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:133
 msgid "- PDF files"
 msgstr "- PDF-файли"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:134
 msgid "- Images"
 msgstr "- Зображення"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:135
 msgid "- Webpage links"
 msgstr "- Посилання на веб-сторінки"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:136
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Решту завдань можна виконати за допомогою таких команд:"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - compare PDF files"
 msgstr "{command} - порівняння PDF-файлів"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:141
 msgid "{command} - merge PDF files"
 msgstr "{command} - об'єднати PDF-файли"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:142
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - конвертувати та об'єднувати кілька зображень у ФАЙЛИ PDF"
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - створення PDF-файлів з текстових повідомлень"
 
-#: pdf_bot/dispatcher.py:145
+#: pdf_bot/dispatcher.py:148
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - додати водяний знак до PDF-файлів"
 
-#: pdf_bot/dispatcher.py:180
+#: pdf_bot/dispatcher.py:183
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Термін дії кнопки минув, спробуйте ще раз з новим повідомленням / запитом, а потім натисніть нову кнопку"
 
@@ -275,7 +275,7 @@ msgstr "Ваш файл не є PDF-файлом, повторіть спроб�
 msgid "Your file is too large for me to download and process"
 msgstr "Ваш файл завеликий для завантаження та обробки"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:138
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Зверніть увагу, що це обмеження Telegram Bot, і я нічого не можу зробити, якщо Telegram не змінить це обмеження"
@@ -404,9 +404,9 @@ msgstr "Порівняння PDF-файлів"
 msgid "There are no text differences between your PDF files"
 msgstr "Між PDF-файлами немає різниці в тексті"
 
-#: pdf_bot/files/black_white.py:21
-msgid "Converting your PDF file to black and white"
-msgstr "Перетворення PDF-файлу на чорно-білий"
+#: pdf_bot/file/file_handlers.py:137
+msgid "Your file is too big for me to download and process"
+msgstr "Ваш файл занадто великий для мене, щоб завантажити і обробити"
 
 #: pdf_bot/files/compress.py:21
 msgid "Compressing your PDF file"
@@ -488,10 +488,6 @@ msgstr "Шифрування PDF-файлу"
 #: pdf_bot/files/document.py:54 pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Виберіть завдання, яке потрібно виконати"
-
-#: pdf_bot/files/file.py:131
-msgid "Your file is too big for me to download and process"
-msgstr "Ваш файл занадто великий для мене, щоб завантажити і обробити"
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
@@ -713,15 +709,15 @@ msgstr "Ви надіслали мені лише один PDF-файл"
 msgid "Merging your PDF files"
 msgstr "Об'єміщення PDF-файлів"
 
-#: pdf_bot/pdf/pdf_service.py:173
+#: pdf_bot/pdf/pdf_service.py:171
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Не вдалося об'єднати PDF-файли, оскільки цей файл неприпустимий: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:194
+#: pdf_bot/pdf/pdf_service.py:192
 msgid "Your PDF file is invalid"
 msgstr "Неприпустимий PDF-файл"
 
-#: pdf_bot/pdf/pdf_service.py:197
+#: pdf_bot/pdf/pdf_service.py:195
 msgid "Your PDF file is encrypted"
 msgstr "Ваш PDF-файл зашифровано"
 
@@ -1499,5 +1495,8 @@ msgstr "Додавання водяного знака до файлу PDF"
 #~ "Your file is not a PDF file, "
 #~ "please try again and ensure that "
 #~ "your file has the .pdf extension"
+#~ msgstr ""
+
+#~ msgid "Converting your PDF file to black and white"
 #~ msgstr ""
 
