@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-04 11:09+0000\n"
-"PO-Revision-Date: 2022-06-04 11:10\n"
+"POT-Creation-Date: 2022-06-04 12:08+0000\n"
+"PO-Revision-Date: 2022-06-04 12:08\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese\n"
@@ -275,7 +275,7 @@ msgstr "Seu arquivo não é um arquivo PDF, por favor tente novamente"
 msgid "Your file is too large for me to download and process"
 msgstr "Seu arquivo é muito grande para eu baixar e processar"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:138
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:137
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Note que esta é uma limitação do Telegram Bot e não há nada que eu possa fazer a menos que o Telegram mude esse limite"
@@ -408,22 +408,13 @@ msgstr "Comparando seus arquivos PDF"
 msgid "There are no text differences between your PDF files"
 msgstr "Não há diferenças de texto entre seus arquivos PDF"
 
-#: pdf_bot/file/file_handlers.py:137
+#: pdf_bot/file/file_handlers.py:136
 msgid "Your file is too big for me to download and process"
 msgstr "Seu arquivo é muito grande para eu baixar e processar"
 
-#: pdf_bot/files/compress.py:21
-msgid "Compressing your PDF file"
-msgstr "Comprimindo seu arquivo PDF"
-
-#: pdf_bot/files/compress.py:48
+#: pdf_bot/file/file_service.py:45
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Tamanho do arquivo reduzido por {percent}, de {old_size} para {new_size}"
-
-#: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:109
-msgid "Something went wrong, please try again"
-msgstr "Algo deu errado, por favor, tente de novo."
 
 #: pdf_bot/files/crop.py:32
 msgid "Select the crop type that you'll like to perform"
@@ -456,6 +447,11 @@ msgstr "O número é inválido, por favor tente novamente"
 #: pdf_bot/files/crop.py:120
 msgid "Cropping your PDF file"
 msgstr "Cortando seu arquivo PDF"
+
+#: pdf_bot/files/crop.py:142 pdf_bot/files/image.py:208
+#: pdf_bot/telegram/telegram_service.py:109
+msgid "Something went wrong, please try again"
+msgstr "Algo deu errado, por favor, tente de novo."
 
 #: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
@@ -1502,5 +1498,8 @@ msgstr "Adicionando a marca d'água no seu arquivo PDF"
 #~ msgstr ""
 
 #~ msgid "Converting your PDF file to black and white"
+#~ msgstr ""
+
+#~ msgid "Compressing your PDF file"
 #~ msgstr ""
 

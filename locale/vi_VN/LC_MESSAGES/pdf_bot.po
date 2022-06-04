@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-04 11:09+0000\n"
-"PO-Revision-Date: 2022-06-04 11:10\n"
+"POT-Creation-Date: 2022-06-04 12:08+0000\n"
+"PO-Revision-Date: 2022-06-04 12:08\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -275,7 +275,7 @@ msgstr "Tệp của bạn không phải là tệp PDF, vui lòng thử lại"
 msgid "Your file is too large for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:138
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:137
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
@@ -408,22 +408,13 @@ msgstr "So sánh các tệp PDF của bạn"
 msgid "There are no text differences between your PDF files"
 msgstr "Không có sự khác biệt văn bản giữa các tệp PDF của bạn"
 
-#: pdf_bot/file/file_handlers.py:137
+#: pdf_bot/file/file_handlers.py:136
 msgid "Your file is too big for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
-#: pdf_bot/files/compress.py:21
-msgid "Compressing your PDF file"
-msgstr "Nén tệp PDF của bạn"
-
-#: pdf_bot/files/compress.py:48
+#: pdf_bot/file/file_service.py:45
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Kích thước tệp giảm {percent}, từ {old_size} xuống {new_size}"
-
-#: pdf_bot/files/compress.py:59 pdf_bot/files/crop.py:142
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:109
-msgid "Something went wrong, please try again"
-msgstr "Có điều gì đó không ổn, xin hãy thử lại"
 
 #: pdf_bot/files/crop.py:32
 msgid "Select the crop type that you'll like to perform"
@@ -456,6 +447,11 @@ msgstr "Số không hợp lệ, vui lòng thử lại"
 #: pdf_bot/files/crop.py:120
 msgid "Cropping your PDF file"
 msgstr "Cắt xén tệp PDF của bạn"
+
+#: pdf_bot/files/crop.py:142 pdf_bot/files/image.py:208
+#: pdf_bot/telegram/telegram_service.py:109
+msgid "Something went wrong, please try again"
+msgstr "Có điều gì đó không ổn, xin hãy thử lại"
 
 #: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
@@ -1502,5 +1498,8 @@ msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 #~ msgstr ""
 
 #~ msgid "Converting your PDF file to black and white"
+#~ msgstr ""
+
+#~ msgid "Compressing your PDF file"
 #~ msgstr ""
 
