@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-03 11:03+0000\n"
-"PO-Revision-Date: 2022-06-03 11:04\n"
+"POT-Creation-Date: 2022-06-04 04:35+0000\n"
+"PO-Revision-Date: 2022-06-04 04:35\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -147,59 +147,59 @@ msgstr "Ateria"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:115
+#: pdf_bot/dispatcher.py:118
 msgid "Set Language 🌎"
 msgstr "Aseta Kieli 🌎"
 
-#: pdf_bot/dispatcher.py:117 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "Liity kanavaan"
 
-#: pdf_bot/dispatcher.py:118 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "Tuki PDF Bot"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:130
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Voit suorittaa suurimman osan tehtävistä lähettämällä minulle jommankin seuraavista:"
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:133
 msgid "- PDF files"
 msgstr "- PDF-tiedostot"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:134
 msgid "- Images"
 msgstr "- Kuvat"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:135
 msgid "- Webpage links"
 msgstr "- Verkkosivun linkit"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:136
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Loput tehtävät voidaan suorittaa seuraavilla komennoilla:"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - compare PDF files"
 msgstr "{command} - vertaa PDF-tiedostoja"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:141
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF-tiedostojen yhdistäminen"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:142
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - muuntaa ja yhdistää useita kuvia PDF-tiedostoiksi"
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - pdf-tiedostojen luominen tekstiviesteistä"
 
-#: pdf_bot/dispatcher.py:145
+#: pdf_bot/dispatcher.py:148
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - lisää vesileima PDF-tiedostoihin"
 
-#: pdf_bot/dispatcher.py:180
+#: pdf_bot/dispatcher.py:183
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Painike on vanhentunut, yritä uudelleen uudella viestillä/kyselyllä ja paina sitten uutta painiketta"
 
@@ -275,7 +275,7 @@ msgstr "Tiedostosi ei ole PDF-tiedosto, yritä uudelleen"
 msgid "Your file is too large for me to download and process"
 msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:138
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Huomaa, että tämä on Telegram Bot -rajoitus, enkä voi tehdä mitään, ellei Telegram muuta tätä rajaa"
@@ -404,9 +404,9 @@ msgstr "PDF-tiedostojen vertailu"
 msgid "There are no text differences between your PDF files"
 msgstr "PDF-tiedostojen välillä ei ole tekstieroja"
 
-#: pdf_bot/files/black_white.py:21
-msgid "Converting your PDF file to black and white"
-msgstr "PDF-tiedoston muuntaminen mustavalkoiseksi"
+#: pdf_bot/file/file_handlers.py:137
+msgid "Your file is too big for me to download and process"
+msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
 #: pdf_bot/files/compress.py:21
 msgid "Compressing your PDF file"
@@ -488,10 +488,6 @@ msgstr "PDF-tiedoston salaaminen"
 #: pdf_bot/files/document.py:54 pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Valitse tehtävä, jonka haluat suorittaa"
-
-#: pdf_bot/files/file.py:131
-msgid "Your file is too big for me to download and process"
-msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
@@ -713,15 +709,15 @@ msgstr "Lähetit minulle vain yhden PDF-tiedoston."
 msgid "Merging your PDF files"
 msgstr "PDF-tiedostojen yhdistäminen"
 
-#: pdf_bot/pdf/pdf_service.py:173
+#: pdf_bot/pdf/pdf_service.py:171
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "PDF-tiedostoja ei voi yhdistää, koska tämä tiedosto ei kelpaa: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:194
+#: pdf_bot/pdf/pdf_service.py:192
 msgid "Your PDF file is invalid"
 msgstr "PDF-tiedosto ei kelpaa"
 
-#: pdf_bot/pdf/pdf_service.py:197
+#: pdf_bot/pdf/pdf_service.py:195
 msgid "Your PDF file is encrypted"
 msgstr "PDF-tiedostosi on salattu"
 
@@ -1499,5 +1495,8 @@ msgstr "Vesileiman lisääminen PDF-tiedostoon"
 #~ "Your file is not a PDF file, "
 #~ "please try again and ensure that "
 #~ "your file has the .pdf extension"
+#~ msgstr ""
+
+#~ msgid "Converting your PDF file to black and white"
 #~ msgstr ""
 

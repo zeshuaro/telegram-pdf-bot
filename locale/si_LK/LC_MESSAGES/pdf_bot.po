@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-03 11:03+0000\n"
-"PO-Revision-Date: 2022-06-03 11:04\n"
+"POT-Creation-Date: 2022-06-04 04:35+0000\n"
+"PO-Revision-Date: 2022-06-04 04:35\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -147,59 +147,59 @@ msgstr "කෑම"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:115
+#: pdf_bot/dispatcher.py:118
 msgid "Set Language 🌎"
 msgstr "භාෂාව සකසන්න 🌎"
 
-#: pdf_bot/dispatcher.py:117 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "නාලිකාවට සම්බන්ධ වන්න"
 
-#: pdf_bot/dispatcher.py:118 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "PDF බොට් සදහා උදව් කරන්න"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:130
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "පහත සඳහන් ඒවායින් එකක් මට යැවීමෙන් ඔබට බොහෝ කාර්යයන් ඉටු කළ හැකිය:"
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:133
 msgid "- PDF files"
 msgstr "- PDF ගොනු"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:134
 msgid "- Images"
 msgstr ""
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:135
 msgid "- Webpage links"
 msgstr "- වෙබ් පිටු සම්බන්ධක"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:136
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "පහත දැක්වෙන විධානයන් භාවිතා කිරීමෙන් ඉතිරි කාර්යයන් ඉටු කළ හැකිය:"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF ගොනු සංසන්දනය කරන්න"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:141
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF ගොනු ඒකාබද්ධ කරන්න"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:142
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr ""
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - කෙටි පණිවුඩ වලින් PDF ගොනු සාදන්න"
 
-#: pdf_bot/dispatcher.py:145
+#: pdf_bot/dispatcher.py:148
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - පීඩීඑෆ් ගොනු වලට ජල සලකුණක් එක් කරන්න"
 
-#: pdf_bot/dispatcher.py:180
+#: pdf_bot/dispatcher.py:183
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr ""
 
@@ -275,7 +275,7 @@ msgstr "ඔබේ ගොනුව PDF ගොනුවක් නොවේ, කර
 msgid "Your file is too large for me to download and process"
 msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:138
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "මෙය ටෙලිග්‍රාම් බොට් සීමාවක් බව සලකන්න, ටෙලිග්‍රාම් මෙම සීමාව වෙනස් නොකළහොත් මට කළ හැකි කිසිවක් නැත"
@@ -404,9 +404,9 @@ msgstr "ඔබගේ PDF ගොනු සංසන්දනය කරමින�
 msgid "There are no text differences between your PDF files"
 msgstr "ඔබේ PDF ලිපිගොනු අතර පෙළ වෙනස්කම් නොමැත"
 
-#: pdf_bot/files/black_white.py:21
-msgid "Converting your PDF file to black and white"
-msgstr ""
+#: pdf_bot/file/file_handlers.py:137
+msgid "Your file is too big for me to download and process"
+msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
 #: pdf_bot/files/compress.py:21
 msgid "Compressing your PDF file"
@@ -488,10 +488,6 @@ msgstr "ඔබගේ PDF ගොනුව ආකේතනය කරමින් �
 #: pdf_bot/files/document.py:54 pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "ඔබ ඉටු කිරීමට කැමති කාර්යය තෝරන්න"
-
-#: pdf_bot/files/file.py:131
-msgid "Your file is too big for me to download and process"
-msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
@@ -713,15 +709,15 @@ msgstr "ඔබ මට එවා ඇත්තේ එක් PDF ගොනුවක
 msgid "Merging your PDF files"
 msgstr "ඔබගේ PDF ගොනු එකතු කරමින් පවතී"
 
-#: pdf_bot/pdf/pdf_service.py:173
+#: pdf_bot/pdf/pdf_service.py:171
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "මෙම ගොනුව වලංගු නොවන බැවින් මට ඔබේ PDF ගොනු ඒකාබද්ධ කිරීමට නොහැකි විය: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:194
+#: pdf_bot/pdf/pdf_service.py:192
 msgid "Your PDF file is invalid"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:197
+#: pdf_bot/pdf/pdf_service.py:195
 msgid "Your PDF file is encrypted"
 msgstr ""
 
@@ -1499,5 +1495,8 @@ msgstr "ඔබගේ PDF ගොනුවට වෝටර් මාර්ක් �
 #~ "Your file is not a PDF file, "
 #~ "please try again and ensure that "
 #~ "your file has the .pdf extension"
+#~ msgstr ""
+
+#~ msgid "Converting your PDF file to black and white"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-03 11:03+0000\n"
-"PO-Revision-Date: 2022-06-03 11:04\n"
+"POT-Creation-Date: 2022-06-04 04:35+0000\n"
+"PO-Revision-Date: 2022-06-04 04:35\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -147,59 +147,59 @@ msgstr "餐"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} （${value}）"
 
-#: pdf_bot/dispatcher.py:115
+#: pdf_bot/dispatcher.py:118
 msgid "Set Language 🌎"
 msgstr "设置语言 🌎"
 
-#: pdf_bot/dispatcher.py:117 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:278
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: pdf_bot/dispatcher.py:118 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:279
 msgid "Support PDF Bot"
 msgstr "支持 PDF Bot"
 
-#: pdf_bot/dispatcher.py:127
+#: pdf_bot/dispatcher.py:130
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "您可以通过向我发送以下以下一项来执行大部分任务："
 
-#: pdf_bot/dispatcher.py:130
+#: pdf_bot/dispatcher.py:133
 msgid "- PDF files"
 msgstr "- PDF 文件"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:134
 msgid "- Images"
 msgstr "- 图像"
 
-#: pdf_bot/dispatcher.py:132
+#: pdf_bot/dispatcher.py:135
 msgid "- Webpage links"
 msgstr "- 网页链接"
 
-#: pdf_bot/dispatcher.py:133
+#: pdf_bot/dispatcher.py:136
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "其余任务可使用以下命令执行："
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "{command} - compare PDF files"
 msgstr "{command} - 比较 PDF 文件"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:141
 msgid "{command} - merge PDF files"
 msgstr "{command} - 合并 PDF 文件"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:142
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 将多个图像转换并合并为PDF文件"
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - 从短信创建 PDF 文件"
 
-#: pdf_bot/dispatcher.py:145
+#: pdf_bot/dispatcher.py:148
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - 在 PDF 文件中添加水印"
 
-#: pdf_bot/dispatcher.py:180
+#: pdf_bot/dispatcher.py:183
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "按钮已过期，请使用新消息/查询重试，然后按新按钮"
 
@@ -275,7 +275,7 @@ msgstr "您的文件不是 PDF 文件，请再试一次"
 msgid "Your file is too large for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/files/file.py:132
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:138
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
@@ -404,9 +404,9 @@ msgstr "正在比较你的PDF档案"
 msgid "There are no text differences between your PDF files"
 msgstr "您的 PDF 文件之间没有文本差异"
 
-#: pdf_bot/files/black_white.py:21
-msgid "Converting your PDF file to black and white"
-msgstr "将 PDF 文件转换为黑白"
+#: pdf_bot/file/file_handlers.py:137
+msgid "Your file is too big for me to download and process"
+msgstr "您的文件太大，我无法下载和处理"
 
 #: pdf_bot/files/compress.py:21
 msgid "Compressing your PDF file"
@@ -488,10 +488,6 @@ msgstr "正在加密你的PDF档案"
 #: pdf_bot/files/document.py:54 pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "选择你想要做什么"
-
-#: pdf_bot/files/file.py:131
-msgid "Your file is too big for me to download and process"
-msgstr "您的文件太大，我无法下载和处理"
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
@@ -713,15 +709,15 @@ msgstr "你只寄给我一个 Pdf 文件"
 msgid "Merging your PDF files"
 msgstr "正在合并你的PDF档案"
 
-#: pdf_bot/pdf/pdf_service.py:173
+#: pdf_bot/pdf/pdf_service.py:171
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "我不能合并您的 PDF 文件，因为此文件无效： {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:194
+#: pdf_bot/pdf/pdf_service.py:192
 msgid "Your PDF file is invalid"
 msgstr "您的 PDF 文件无效"
 
-#: pdf_bot/pdf/pdf_service.py:197
+#: pdf_bot/pdf/pdf_service.py:195
 msgid "Your PDF file is encrypted"
 msgstr "您的 PDF 文件已加密"
 
@@ -1499,5 +1495,8 @@ msgstr "正在添加水印到你的PDF档案中"
 #~ "Your file is not a PDF file, "
 #~ "please try again and ensure that "
 #~ "your file has the .pdf extension"
+#~ msgstr ""
+
+#~ msgid "Converting your PDF file to black and white"
 #~ msgstr ""
 
