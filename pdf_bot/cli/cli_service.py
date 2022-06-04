@@ -17,6 +17,28 @@ class CLIService:
         )
         self._run_command(command)
 
+    def crop_pdf_by_percentage(
+        self, input_path: str, output_path: str, percentage: float
+    ):
+        return self._crop_pdf(input_path, output_path, percentage=percentage)
+
+    def crop_pdf_by_offset(self, input_path: str, output_path: str, offset: float):
+        return self._crop_pdf(input_path, output_path, offset=offset)
+
+    def _crop_pdf(
+        self,
+        input_path: str,
+        output_path: str,
+        percentage: float | None = None,
+        offset: float | None = None,
+    ):
+        command = f'pdf-crop-margins -o "{output_path}" "{input_path}"'
+        if percentage is not None:
+            command += f" -p {percentage}"
+        else:
+            command += f" -a {offset}"
+        self._run_command(command)
+
     @staticmethod
     def _run_command(command: str):
         proc = Popen(shlex.split(command), stdout=PIPE, stderr=PIPE, shell=False)
