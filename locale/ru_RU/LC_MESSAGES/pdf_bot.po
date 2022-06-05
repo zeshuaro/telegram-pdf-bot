@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 10:19+0000\n"
-"PO-Revision-Date: 2022-06-05 10:19\n"
+"POT-Creation-Date: 2022-06-05 11:46+0000\n"
+"PO-Revision-Date: 2022-06-05 11:46\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -275,7 +275,7 @@ msgstr "Ваш файл не является PDF-файлом, повторит
 msgid "Your file is too large for me to download and process"
 msgstr "Ваш файл слишком велик для загрузки и обработки"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:145
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:144
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Обратите внимание, что это ограничение Telegram Bot, и я ничего не могу сделать, если Telegram не изменит это ограничение."
@@ -436,7 +436,11 @@ msgstr ""
 msgid "The number {number} is invalid, please try again"
 msgstr ""
 
-#: pdf_bot/file/file_handlers.py:144
+#: pdf_bot/decrypt/decrypt_service.py:30
+msgid "Send me the password to decrypt your PDF file"
+msgstr "Пришлите мне пароль для расшифровки вашего PDF-файла"
+
+#: pdf_bot/file/file_handlers.py:143
 msgid "Your file is too big for me to download and process"
 msgstr "Ваш файл слишком велик для загрузки и обработки"
 
@@ -449,35 +453,11 @@ msgstr "Размер файла уменьшен на {percent}, с {old_size} �
 msgid "Select the task that you'll like to perform"
 msgstr "Выберите задачу, которую вам нужно выполнить"
 
-#: pdf_bot/files/crypto.py:18
-msgid "Send me the password to decrypt your PDF file"
-msgstr "Пришлите мне пароль для расшифровки вашего PDF-файла"
-
-#: pdf_bot/files/crypto.py:33
-msgid "Decrypting your PDF file"
-msgstr "Расшифровка PDF-файла"
-
-#: pdf_bot/files/crypto.py:48
-msgid "Your PDF file is invalid and I couldn't open and process it"
-msgstr "Ваш PDF-файл недействителен, я не смог открыть и обработать его"
-
-#: pdf_bot/files/crypto.py:53 pdf_bot/pdf/pdf_service.py:208
-msgid "Your PDF file is not encrypted"
-msgstr "Ваш PDF-файл не зашифрован"
-
-#: pdf_bot/files/crypto.py:58
-msgid "The decryption password is incorrect, please try again"
-msgstr "Пароль расшифровки неправильный, повторите попытку"
-
-#: pdf_bot/files/crypto.py:76 pdf_bot/pdf/pdf_service.py:227
-msgid "Your PDF file is encrypted with a method that I can't decrypt"
-msgstr "Ваш PDF-файл зашифрован с помощью метода, который я не могу расшифровать"
-
-#: pdf_bot/files/crypto.py:92
+#: pdf_bot/files/crypto.py:14
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Пришлите мне пароль для шифрования PDF-файла"
 
-#: pdf_bot/files/crypto.py:106
+#: pdf_bot/files/crypto.py:28
 msgid "Encrypting your PDF file"
 msgstr "Шифрование вашего PDF-файла"
 
@@ -705,19 +685,27 @@ msgstr "Вы прислали мне только один PDF-файл"
 msgid "Merging your PDF files"
 msgstr "Слияние ваших PDF-файлов"
 
-#: pdf_bot/pdf/pdf_service.py:212
+#: pdf_bot/pdf/pdf_service.py:213
+msgid "Your PDF file is not encrypted"
+msgstr "Ваш PDF-файл не зашифрован"
+
+#: pdf_bot/pdf/pdf_service.py:218
 msgid "Incorrect password, please try again"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:243
+#: pdf_bot/pdf/pdf_service.py:222
+msgid "Your PDF file is encrypted with a method that I can't decrypt"
+msgstr "Ваш PDF-файл зашифрован с помощью метода, который я не могу расшифровать"
+
+#: pdf_bot/pdf/pdf_service.py:250
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Не удалось объединить PDF-файлы, так как этот файл недействителен: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:264
+#: pdf_bot/pdf/pdf_service.py:271
 msgid "Your PDF file is invalid"
 msgstr "Ваш PDF-файл недействителен"
 
-#: pdf_bot/pdf/pdf_service.py:267
+#: pdf_bot/pdf/pdf_service.py:274
 msgid "Your PDF file is encrypted"
 msgstr "Ваш PDF-файл зашифрован"
 
@@ -1512,5 +1500,14 @@ msgstr "Добавление водяного знака в ваш PDF-файл"
 #~ msgstr ""
 
 #~ msgid "Cropping your PDF file"
+#~ msgstr ""
+
+#~ msgid "Decrypting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "The decryption password is incorrect, please try again"
 #~ msgstr ""
 

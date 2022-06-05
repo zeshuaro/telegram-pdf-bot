@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 10:19+0000\n"
-"PO-Revision-Date: 2022-06-05 10:19\n"
+"POT-Creation-Date: 2022-06-05 11:46+0000\n"
+"PO-Revision-Date: 2022-06-05 11:46\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -275,7 +275,7 @@ msgstr "파일은 PDF 파일이 아니며 다시 시도하십시오."
 msgid "Your file is too large for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리할 수 없습니다."
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:145
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:144
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
@@ -436,7 +436,11 @@ msgstr ""
 msgid "The number {number} is invalid, please try again"
 msgstr ""
 
-#: pdf_bot/file/file_handlers.py:144
+#: pdf_bot/decrypt/decrypt_service.py:30
+msgid "Send me the password to decrypt your PDF file"
+msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
+
+#: pdf_bot/file/file_handlers.py:143
 msgid "Your file is too big for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리하지 않습니다."
 
@@ -449,35 +453,11 @@ msgstr "{old_size} {new_size}파일 크기가 {percent}감소했습니다."
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
 
-#: pdf_bot/files/crypto.py:18
-msgid "Send me the password to decrypt your PDF file"
-msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
-
-#: pdf_bot/files/crypto.py:33
-msgid "Decrypting your PDF file"
-msgstr "PDF 파일 암호 해독"
-
-#: pdf_bot/files/crypto.py:48
-msgid "Your PDF file is invalid and I couldn't open and process it"
-msgstr "PDF 파일이 잘못되어 열리고 처리할 수 없습니다."
-
-#: pdf_bot/files/crypto.py:53 pdf_bot/pdf/pdf_service.py:208
-msgid "Your PDF file is not encrypted"
-msgstr "PDF 파일이 암호화되지 않음"
-
-#: pdf_bot/files/crypto.py:58
-msgid "The decryption password is incorrect, please try again"
-msgstr "암호 해독 암호가 올바르지 않습니다, 다시 시도하십시오"
-
-#: pdf_bot/files/crypto.py:76 pdf_bot/pdf/pdf_service.py:227
-msgid "Your PDF file is encrypted with a method that I can't decrypt"
-msgstr "PDF 파일은 해독할 수 없는 방법으로 암호화됩니다."
-
-#: pdf_bot/files/crypto.py:92
+#: pdf_bot/files/crypto.py:14
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDF 파일을 암호화하기 위해 암호를 보내주세요."
 
-#: pdf_bot/files/crypto.py:106
+#: pdf_bot/files/crypto.py:28
 msgid "Encrypting your PDF file"
 msgstr "PDF 파일 암호화"
 
@@ -705,19 +685,27 @@ msgstr "PDF 파일 하나만 보냈습니다."
 msgid "Merging your PDF files"
 msgstr "PDF 파일 병합"
 
-#: pdf_bot/pdf/pdf_service.py:212
+#: pdf_bot/pdf/pdf_service.py:213
+msgid "Your PDF file is not encrypted"
+msgstr "PDF 파일이 암호화되지 않음"
+
+#: pdf_bot/pdf/pdf_service.py:218
 msgid "Incorrect password, please try again"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:243
+#: pdf_bot/pdf/pdf_service.py:222
+msgid "Your PDF file is encrypted with a method that I can't decrypt"
+msgstr "PDF 파일은 해독할 수 없는 방법으로 암호화됩니다."
+
+#: pdf_bot/pdf/pdf_service.py:250
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "이 파일이 유효하지 않으므로 PDF 파일을 병합할 수 없습니다 {file_name}."
 
-#: pdf_bot/pdf/pdf_service.py:264
+#: pdf_bot/pdf/pdf_service.py:271
 msgid "Your PDF file is invalid"
 msgstr "PDF 파일이 잘못되었습니다."
 
-#: pdf_bot/pdf/pdf_service.py:267
+#: pdf_bot/pdf/pdf_service.py:274
 msgid "Your PDF file is encrypted"
 msgstr "PDF 파일이 암호화되었습니다."
 
@@ -1512,5 +1500,14 @@ msgstr "PDF 파일에 워터마크 추가"
 #~ msgstr ""
 
 #~ msgid "Cropping your PDF file"
+#~ msgstr ""
+
+#~ msgid "Decrypting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "The decryption password is incorrect, please try again"
 #~ msgstr ""
 
