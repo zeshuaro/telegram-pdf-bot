@@ -181,7 +181,7 @@ class PdfService:
         self,
         file_id: str,
         percentage: float | None = None,
-        offset: float | None = None,
+        margin_size: float | None = None,
     ):
         with self.telegram_service.download_file(
             file_id
@@ -194,7 +194,9 @@ class PdfService:
                         file_path, out_path, percentage
                     )
                 else:
-                    self.cli_service.crop_pdf_by_offset(file_path, out_path, offset)
+                    self.cli_service.crop_pdf_by_margin_size(
+                        file_path, out_path, margin_size
+                    )
                 yield out_path
             finally:
                 pass

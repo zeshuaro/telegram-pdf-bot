@@ -22,21 +22,23 @@ class CLIService:
     ):
         return self._crop_pdf(input_path, output_path, percentage=percentage)
 
-    def crop_pdf_by_offset(self, input_path: str, output_path: str, offset: float):
-        return self._crop_pdf(input_path, output_path, offset=offset)
+    def crop_pdf_by_margin_size(
+        self, input_path: str, output_path: str, margin_size: float
+    ):
+        return self._crop_pdf(input_path, output_path, margin_size=margin_size)
 
     def _crop_pdf(
         self,
         input_path: str,
         output_path: str,
         percentage: float | None = None,
-        offset: float | None = None,
+        margin_size: float | None = None,
     ):
         command = f'pdf-crop-margins -o "{output_path}" "{input_path}"'
         if percentage is not None:
             command += f" -p {percentage}"
         else:
-            command += f" -a {offset}"
+            command += f" -a {margin_size}"
         self._run_command(command)
 
     @staticmethod

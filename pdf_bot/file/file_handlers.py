@@ -6,7 +6,6 @@ from pdf_bot.consts import (
     BEAUTIFY,
     BLACK_AND_WHITE,
     BY_PERCENT,
-    BY_SIZE,
     CANCEL,
     COMPRESS,
     COMPRESSED,
@@ -29,9 +28,6 @@ from pdf_bot.consts import (
     TO_DIMENSIONS,
     TO_IMAGES,
     TO_PDF,
-    WAIT_CROP_OFFSET,
-    WAIT_CROP_PERCENT,
-    WAIT_CROP_TYPE,
     WAIT_DECRYPT_PW,
     WAIT_ENCRYPT_PW,
     WAIT_EXTRACT_IMAGE_TYPE,
@@ -45,14 +41,9 @@ from pdf_bot.consts import (
     WAIT_TEXT_TYPE,
     WAIT_TO_IMAGE_TYPE,
 )
+from pdf_bot.crop import CropService, crop_constants
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService, file_task_constants
-from pdf_bot.files.crop import (
-    ask_crop_type,
-    ask_crop_value,
-    check_crop_percent,
-    check_crop_size,
-)
 from pdf_bot.files.crypto import (
     ask_decrypt_pw,
     ask_encrypt_pw,
@@ -84,10 +75,14 @@ from pdf_bot.utils import cancel
 
 class FileHandlers:
     def __init__(
-        self, file_task_service: FileTaskService, file_service: FileService
+        self,
+        file_task_service: FileTaskService,
+        file_service: FileService,
+        crop_service: CropService,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
+        self.crop_service = crop_service
 
     def conversation_handler(self):
         return ConversationHandler(
@@ -100,9 +95,19 @@ class FileHandlers:
                     MessageHandler(TEXT_FILTER, self.check_doc_task)
                 ],
                 WAIT_IMAGE_TASK: [MessageHandler(TEXT_FILTER, self.check_image_task)],
-                WAIT_CROP_TYPE: [MessageHandler(TEXT_FILTER, self.check_crop_task)],
-                WAIT_CROP_PERCENT: [MessageHandler(TEXT_FILTER, check_crop_percent)],
-                WAIT_CROP_OFFSET: [MessageHandler(TEXT_FILTER, check_crop_size)],
+                crop_constants.WAIT_CROP_TYPE: [
+                    MessageHandler(TEXT_FILTER, self.crop_service.check_crop_type)
+                ],
+                crop_constants.WAIT_CROP_PERCENTAGE: [
+                    MessageHandler(
+                        TEXT_FILTER, self.crop_service.crop_pdf_by_percentage
+                    )
+                ],
+                crop_constants.WAIT_CROP_MARGIN_SIZE: [
+                    MessageHandler(
+                        TEXT_FILTER, self.crop_service.crop_pdf_by_margin_size
+                    )
+                ],
                 WAIT_DECRYPT_PW: [MessageHandler(TEXT_FILTER, decrypt_pdf)],
                 WAIT_ENCRYPT_PW: [MessageHandler(TEXT_FILTER, encrypt_pdf)],
                 WAIT_FILE_NAME: [MessageHandler(TEXT_FILTER, rename_pdf)],
@@ -158,7 +163,7 @@ class FileHandlers:
         text = update.effective_message.text
 
         if text == _(CROP):
-            return ask_crop_type(update, context)
+            return self.crop_service.ask_crop_type(update, context)
         if text == _(DECRYPT):
             return ask_decrypt_pw(update, context)
         if text == _(ENCRYPT):
@@ -199,17 +204,6 @@ class FileHandlers:
             return cancel(update, context)
 
         return WAIT_IMAGE_TASK
-
-    def check_crop_task(self, update, context):
-        _ = set_lang(update, context)
-        text = update.effective_message.text
-
-        if text in [_(BY_PERCENT), _(BY_SIZE)]:
-            return ask_crop_value(update, context)
-        if text == _(BACK):
-            return self.file_task_service.ask_pdf_task(update, context)
-
-        return WAIT_CROP_TYPE
 
     def check_scale_task(self, update, context):
         _ = set_lang(update, context)

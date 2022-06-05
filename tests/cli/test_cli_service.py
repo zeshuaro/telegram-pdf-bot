@@ -98,29 +98,29 @@ def test_crop_pdf_by_percentage_error(
             cli_service.crop_pdf_by_percentage(input_path, output_path, 0)
 
 
-def test_crop_pdf_by_offset(
+def test_crop_pdf_by_margin_size(
     cli_service: CLIService,
     popen_process: Popen,
     input_path: str,
     output_path: str,
 ):
-    offset = randint(0, 10)
+    margin_size = randint(0, 10)
     popen_process.returncode = 0
 
     with patch("pdf_bot.cli.cli_service.Popen") as popen:
         popen.return_value = popen_process
 
-        cli_service.crop_pdf_by_offset(input_path, output_path, offset)
+        cli_service.crop_pdf_by_margin_size(input_path, output_path, margin_size)
 
         args = popen.call_args.args[0]
         assert args[0] == "pdf-crop-margins"
         assert input_path in args
         command = " ".join(args)
         assert f"-o {output_path}" in command
-        assert f"-a {offset}" in command
+        assert f"-a {margin_size}" in command
 
 
-def test_crop_pdf_by_offset_error(
+def test_crop_pdf_by_margin_size_error(
     cli_service: CLIService,
     popen_process: Popen,
     input_path: str,
@@ -131,4 +131,4 @@ def test_crop_pdf_by_offset_error(
         popen.return_value = popen_process
 
         with pytest.raises(CLIServiceError):
-            cli_service.crop_pdf_by_offset(input_path, output_path, 0)
+            cli_service.crop_pdf_by_margin_size(input_path, output_path, 0)
