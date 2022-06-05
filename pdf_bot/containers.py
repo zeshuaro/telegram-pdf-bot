@@ -11,6 +11,7 @@ from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.file import FileHandlers, FileService
+from pdf_bot.file_task import FileTaskService
 from pdf_bot.io import IOService
 from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.pdf import PdfService
@@ -44,6 +45,8 @@ class Services(containers.DeclarativeContainer):
 
     cli = providers.Factory(CLIService)
     io = providers.Factory(IOService)
+    file_task = providers.Factory(FileTaskService)
+
     account = providers.Factory(AccountService, account_repository=repositories.account)
     command = providers.Factory(CommandService, account_service=account)
     telegram = providers.Factory(TelegramService, io_service=io, updater=core.updater)
@@ -71,7 +74,9 @@ class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
 
     compare = providers.Factory(CompareHandlers, compare_service=services.compare)
-    file = providers.Factory(FileHandlers, file_service=services.file)
+    file = providers.Factory(
+        FileHandlers, file_task_service=services.file_task, file_service=services.file
+    )
     merge = providers.Factory(MergeHandlers, merge_service=services.merge)
     text = providers.Factory(TextHandlers, text_service=services.text)
     watermark = providers.Factory(
