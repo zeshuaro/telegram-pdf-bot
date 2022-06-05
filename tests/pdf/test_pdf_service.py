@@ -11,6 +11,7 @@ from pdf_bot.compare import CompareService
 from pdf_bot.io.io_service import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import CompressResult, PdfDecryptError, PdfReadError, PdfService
+from pdf_bot.pdf.exceptions import PdfIncorrectPasswordError
 from pdf_bot.telegram import TelegramService
 from pdf_bot.text import FontData
 
@@ -336,7 +337,9 @@ def test_decrypt_pdf_incorrect_password(
         "pdf_bot.pdf.pdf_service.PdfFileReader"
     ) as pdf_file_reader:
         pdf_file_reader.return_value = reader
-        with pytest.raises(PdfDecryptError), pdf_service.decrypt_pdf(file_id, password):
+        with pytest.raises(PdfIncorrectPasswordError), pdf_service.decrypt_pdf(
+            file_id, password
+        ):
             telegram_service.download_file.assert_called_once_with(file_id)
             reader.decrypt.assert_called_once_with(password)
             io_service.create_temp_pdf_file.assert_not_called()
