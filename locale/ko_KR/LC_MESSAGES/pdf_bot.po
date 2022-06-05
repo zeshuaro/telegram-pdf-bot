@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 03:18+0000\n"
-"PO-Revision-Date: 2022-06-05 03:19\n"
+"POT-Creation-Date: 2022-06-05 05:39+0000\n"
+"PO-Revision-Date: 2022-06-05 05:40\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -35,11 +35,11 @@ msgstr "수행"
 msgid "Back"
 msgstr "뒤로"
 
-#: pdf_bot/consts.py:40
+#: pdf_bot/consts.py:40 pdf_bot/crop/crop_constants.py:5
 msgid "By Percentage"
 msgstr "백분율별"
 
-#: pdf_bot/consts.py:41
+#: pdf_bot/consts.py:41 pdf_bot/crop/crop_constants.py:6
 msgid "By Margin Size"
 msgstr "마진 크기별"
 
@@ -275,7 +275,7 @@ msgstr "파일은 PDF 파일이 아니며 다시 시도하십시오."
 msgid "Your file is too large for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리할 수 없습니다."
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:140
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:145
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
@@ -308,7 +308,7 @@ msgstr "결과 파일이 너무 커서 전송할 수 없습니다."
 msgid "Here is your result file"
 msgstr "다음은 결과 파일입니다."
 
-#: pdf_bot/cli/cli_service.py:53
+#: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
 msgstr ""
 
@@ -408,7 +408,35 @@ msgstr "PDF 파일 비교"
 msgid "There are no text differences between your PDF files"
 msgstr "PDF 파일 간에 텍스트 차이가 없습니다."
 
-#: pdf_bot/file/file_handlers.py:139
+#: pdf_bot/crop/crop_service.py:36
+msgid "Select the crop type that you'll like to perform"
+msgstr "수행하려는 자르기 유형 선택"
+
+#: pdf_bot/crop/crop_service.py:63
+msgid "Send me a number between {min_percent} and {max_percent}"
+msgstr "{min_percent} {max_percent}사이에 번호를 보내주세요."
+
+#: pdf_bot/crop/crop_service.py:69
+msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr "이는 PDF 파일의 콘텐츠와 페이지 간에 유지할 여백 공간의 백분율입니다."
+
+#: pdf_bot/crop/crop_service.py:80
+msgid "Send me a number that you'll like to adjust the margin size"
+msgstr "여백 크기를 조정하려는 번호를 보내주십시오."
+
+#: pdf_bot/crop/crop_service.py:81
+msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr "양수 로 마진 크기가 감소하고 음수로 증가합니다."
+
+#: pdf_bot/crop/crop_service.py:101
+msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:126
+msgid "The number {number} is invalid, please try again"
+msgstr ""
+
+#: pdf_bot/file/file_handlers.py:144
 msgid "Your file is too big for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리하지 않습니다."
 
@@ -420,43 +448,6 @@ msgstr "{old_size} {new_size}파일 크기가 {percent}감소했습니다."
 #: pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
-
-#: pdf_bot/files/crop.py:32
-msgid "Select the crop type that you'll like to perform"
-msgstr "수행하려는 자르기 유형 선택"
-
-#: pdf_bot/files/crop.py:48
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "{min_percent} {max_percent}사이에 번호를 보내주세요."
-
-#: pdf_bot/files/crop.py:51
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "이는 PDF 파일의 콘텐츠와 페이지 간에 유지할 여백 공간의 백분율입니다."
-
-#: pdf_bot/files/crop.py:63
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "여백 크기를 조정하려는 번호를 보내주십시오."
-
-#: pdf_bot/files/crop.py:64
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "양수 로 마진 크기가 감소하고 음수로 증가합니다."
-
-#: pdf_bot/files/crop.py:86
-msgid "The number must be between {min_percent} and {max_percent}, please try again"
-msgstr "숫자는 {min_percent} {max_percent}사이여야하며 다시 시도하십시오."
-
-#: pdf_bot/files/crop.py:109
-msgid "The number is invalid, please try again"
-msgstr "번호가 유효하지 않습니다, 다시 시도하십시오"
-
-#: pdf_bot/files/crop.py:120
-msgid "Cropping your PDF file"
-msgstr "PDF 파일 자르기"
-
-#: pdf_bot/files/crop.py:142 pdf_bot/files/image.py:208
-#: pdf_bot/telegram/telegram_service.py:109
-msgid "Something went wrong, please try again"
-msgstr "뭔가 잘못, 다시 시도하십시오"
 
 #: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
@@ -509,6 +500,10 @@ msgstr "PDF 파일을 이미지로 변환"
 #: pdf_bot/files/image.py:193
 msgid "Extracting all the images in your PDF file"
 msgstr "PDF 파일의 모든 이미지 추출"
+
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:109
+msgid "Something went wrong, please try again"
+msgstr "뭔가 잘못, 다시 시도하십시오"
 
 #: pdf_bot/files/image.py:213
 msgid "I couldn't find any images in your PDF file"
@@ -710,15 +705,15 @@ msgstr "PDF 파일 하나만 보냈습니다."
 msgid "Merging your PDF files"
 msgstr "PDF 파일 병합"
 
-#: pdf_bot/pdf/pdf_service.py:215
+#: pdf_bot/pdf/pdf_service.py:217
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "이 파일이 유효하지 않으므로 PDF 파일을 병합할 수 없습니다 {file_name}."
 
-#: pdf_bot/pdf/pdf_service.py:236
+#: pdf_bot/pdf/pdf_service.py:238
 msgid "Your PDF file is invalid"
 msgstr "PDF 파일이 잘못되었습니다."
 
-#: pdf_bot/pdf/pdf_service.py:239
+#: pdf_bot/pdf/pdf_service.py:241
 msgid "Your PDF file is encrypted"
 msgstr "PDF 파일이 암호화되었습니다."
 
@@ -1502,5 +1497,16 @@ msgstr "PDF 파일에 워터마크 추가"
 #~ msgstr ""
 
 #~ msgid "Compressing your PDF file"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number must be between {min_percent}"
+#~ " and {max_percent}, please try again"
+#~ msgstr ""
+
+#~ msgid "The number is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Cropping your PDF file"
 #~ msgstr ""
 
