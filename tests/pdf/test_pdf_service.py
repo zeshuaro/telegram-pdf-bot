@@ -226,24 +226,24 @@ def test_drop_pdf_by_percentage(
         io_service.create_temp_pdf_file.assert_called_once_with(prefix="Cropped")
 
 
-def test_drop_pdf_by_offset(
+def test_crop_pdf_by_margin_size(
     pdf_service: PdfService,
     io_service: IOService,
     cli_service: CLIService,
     telegram_service: TelegramService,
 ):
     file_id = "file_id"
-    offset = randint(1, 10)
+    margin_size = randint(1, 10)
     file_path = "file_path"
     out_path = "out_path"
 
     telegram_service.download_file.return_value.__enter__.return_value = file_path
     io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
 
-    with pdf_service.crop_pdf(file_id, offset=offset) as actual_path:
+    with pdf_service.crop_pdf(file_id, margin_size=margin_size) as actual_path:
         assert actual_path == out_path
-        cli_service.crop_pdf_by_offset.assert_called_once_with(
-            file_path, out_path, offset
+        cli_service.crop_pdf_by_margin_size.assert_called_once_with(
+            file_path, out_path, margin_size
         )
         telegram_service.download_file.assert_called_once_with(file_id)
         io_service.create_temp_pdf_file.assert_called_once_with(prefix="Cropped")

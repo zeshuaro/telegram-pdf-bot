@@ -9,6 +9,7 @@ from telegram import Bot, Document, File, Message, PhotoSize, Update, User
 from telegram.ext import CallbackContext
 
 from pdf_bot.cli import CLIService
+from pdf_bot.file_task import FileTaskService
 from pdf_bot.io import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService
@@ -158,3 +159,8 @@ def telegram_service(telegram_document: Document) -> TelegramService:
 @pytest.fixture
 def cli_service() -> CLIService:
     return cast(CLIService, MagicMock())
+
+
+@pytest.fixture
+def file_task_service() -> FileTaskService:
+    return cast(FileTaskService, MagicMock())
