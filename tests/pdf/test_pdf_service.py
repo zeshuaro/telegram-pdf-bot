@@ -203,6 +203,52 @@ def test_create_pdf_from_text_without_font_data(pdf_service: PdfService):
             css_class.assert_not_called()
 
 
+def test_drop_pdf_by_percentage(
+    pdf_service: PdfService,
+    io_service: IOService,
+    cli_service: CLIService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    percent = randint(1, 10)
+    file_path = "file_path"
+    out_path = "out_path"
+
+    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with pdf_service.crop_pdf(file_id, percentage=percent) as actual_path:
+        assert actual_path == out_path
+        cli_service.crop_pdf_by_percentage.assert_called_once_with(
+            file_path, out_path, percent
+        )
+        telegram_service.download_file.assert_called_once_with(file_id)
+        io_service.create_temp_pdf_file.assert_called_once_with(prefix="Cropped")
+
+
+def test_drop_pdf_by_offset(
+    pdf_service: PdfService,
+    io_service: IOService,
+    cli_service: CLIService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    offset = randint(1, 10)
+    file_path = "file_path"
+    out_path = "out_path"
+
+    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with pdf_service.crop_pdf(file_id, offset=offset) as actual_path:
+        assert actual_path == out_path
+        cli_service.crop_pdf_by_offset.assert_called_once_with(
+            file_path, out_path, offset
+        )
+        telegram_service.download_file.assert_called_once_with(file_id)
+        io_service.create_temp_pdf_file.assert_called_once_with(prefix="Cropped")
+
+
 def test_compare_pdfs(
     pdf_service: PdfService,
     telegram_service: TelegramService,
