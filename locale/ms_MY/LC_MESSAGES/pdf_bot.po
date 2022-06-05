@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 03:18+0000\n"
-"PO-Revision-Date: 2022-06-05 03:19\n"
+"POT-Creation-Date: 2022-06-05 05:39+0000\n"
+"PO-Revision-Date: 2022-06-05 05:40\n"
 "Last-Translator: \n"
 "Language: ms\n"
 "Language-Team: Malay\n"
@@ -35,11 +35,11 @@ msgstr "Fail telah Selesai"
 msgid "Back"
 msgstr "Kembali"
 
-#: pdf_bot/consts.py:40
+#: pdf_bot/consts.py:40 pdf_bot/crop/crop_constants.py:5
 msgid "By Percentage"
 msgstr "Mengikut kepada Peratus"
 
-#: pdf_bot/consts.py:41
+#: pdf_bot/consts.py:41 pdf_bot/crop/crop_constants.py:6
 msgid "By Margin Size"
 msgstr "Mengikut Saiz kepada Jidar"
 
@@ -275,7 +275,7 @@ msgstr "Fail anda bukan fail PDF, sila cuba lagi"
 msgid "Your file is too large for me to download and process"
 msgstr "Fail anda terlalu besar untuk saya muat turun dan proses"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:140
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:145
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Ambil perhatian bahawa ini adalah batasan Bot Telegram dan tiada apa yang boleh saya lakukan melainkan Telegram mengubah had ini"
@@ -308,7 +308,7 @@ msgstr "Fail hasilnya terlalu besar untuk saya hantar kepada anda"
 msgid "Here is your result file"
 msgstr "Berikut adalah fail keputusan anda"
 
-#: pdf_bot/cli/cli_service.py:53
+#: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
 msgstr ""
 
@@ -408,7 +408,35 @@ msgstr "Membandingkan fail PDF anda"
 msgid "There are no text differences between your PDF files"
 msgstr "Tiada perbezaan teks antara fail PDF anda"
 
-#: pdf_bot/file/file_handlers.py:139
+#: pdf_bot/crop/crop_service.py:36
+msgid "Select the crop type that you'll like to perform"
+msgstr "Pilih jenis tanaman yang anda ingin laksanakan"
+
+#: pdf_bot/crop/crop_service.py:63
+msgid "Send me a number between {min_percent} and {max_percent}"
+msgstr "Hantarkan nombor antara {min_percent} dan {max_percent}"
+
+#: pdf_bot/crop/crop_service.py:69
+msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr "Ini ialah peratusan ruang margin untuk dikekalkan antara kandungan dalam fail PDF anda dan halaman"
+
+#: pdf_bot/crop/crop_service.py:80
+msgid "Send me a number that you'll like to adjust the margin size"
+msgstr "Hantarkan nombor yang anda ingin laraskan saiz jidar"
+
+#: pdf_bot/crop/crop_service.py:81
+msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr "Nombor positif akan mengurangkan saiz margin dan nombor negatif akan meningkatkannya"
+
+#: pdf_bot/crop/crop_service.py:101
+msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:126
+msgid "The number {number} is invalid, please try again"
+msgstr ""
+
+#: pdf_bot/file/file_handlers.py:144
 msgid "Your file is too big for me to download and process"
 msgstr "Fail anda terlalu besar bagi saya untuk memuat turun dan memproses"
 
@@ -420,43 +448,6 @@ msgstr "Saiz fail dikurangkan sebanyak {percent}, dari {old_size} ke {new_size}"
 #: pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Pilih tugas yang anda ingin laksanakan"
-
-#: pdf_bot/files/crop.py:32
-msgid "Select the crop type that you'll like to perform"
-msgstr "Pilih jenis tanaman yang anda ingin laksanakan"
-
-#: pdf_bot/files/crop.py:48
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "Hantarkan nombor antara {min_percent} dan {max_percent}"
-
-#: pdf_bot/files/crop.py:51
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Ini ialah peratusan ruang margin untuk dikekalkan antara kandungan dalam fail PDF anda dan halaman"
-
-#: pdf_bot/files/crop.py:63
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "Hantarkan nombor yang anda ingin laraskan saiz jidar"
-
-#: pdf_bot/files/crop.py:64
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Nombor positif akan mengurangkan saiz margin dan nombor negatif akan meningkatkannya"
-
-#: pdf_bot/files/crop.py:86
-msgid "The number must be between {min_percent} and {max_percent}, please try again"
-msgstr "Nombor mesti di antara {min_percent} dan {max_percent}, sila cuba lagi"
-
-#: pdf_bot/files/crop.py:109
-msgid "The number is invalid, please try again"
-msgstr "Nombor tidak sah, sila cuba lagi"
-
-#: pdf_bot/files/crop.py:120
-msgid "Cropping your PDF file"
-msgstr "Tanam fail PDF anda"
-
-#: pdf_bot/files/crop.py:142 pdf_bot/files/image.py:208
-#: pdf_bot/telegram/telegram_service.py:109
-msgid "Something went wrong, please try again"
-msgstr "Ada sesuatu yang tak kena, sila cuba lagi"
 
 #: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
@@ -509,6 +500,10 @@ msgstr "Menukar fail PDF anda kepada imej"
 #: pdf_bot/files/image.py:193
 msgid "Extracting all the images in your PDF file"
 msgstr "Mengekstrak semua imej dalam fail PDF anda"
+
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:109
+msgid "Something went wrong, please try again"
+msgstr "Ada sesuatu yang tak kena, sila cuba lagi"
 
 #: pdf_bot/files/image.py:213
 msgid "I couldn't find any images in your PDF file"
@@ -710,15 +705,15 @@ msgstr "Anda hanya menghantar saya satu fail PDF"
 msgid "Merging your PDF files"
 msgstr "Menggabungkan fail PDF anda"
 
-#: pdf_bot/pdf/pdf_service.py:215
+#: pdf_bot/pdf/pdf_service.py:217
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Saya tidak dapat menggabungkan fail PDF anda kerana fail ini tidak sah: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:236
+#: pdf_bot/pdf/pdf_service.py:238
 msgid "Your PDF file is invalid"
 msgstr "Fail PDF anda tidak sah"
 
-#: pdf_bot/pdf/pdf_service.py:239
+#: pdf_bot/pdf/pdf_service.py:241
 msgid "Your PDF file is encrypted"
 msgstr "Fail PDF anda disulitkan"
 
@@ -1502,5 +1497,16 @@ msgstr "Menambah tera air ke fail PDF anda"
 #~ msgstr ""
 
 #~ msgid "Compressing your PDF file"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number must be between {min_percent}"
+#~ " and {max_percent}, please try again"
+#~ msgstr ""
+
+#~ msgid "The number is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Cropping your PDF file"
 #~ msgstr ""
 

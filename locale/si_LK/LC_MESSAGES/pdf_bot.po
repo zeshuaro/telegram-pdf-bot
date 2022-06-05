@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 03:18+0000\n"
-"PO-Revision-Date: 2022-06-05 03:19\n"
+"POT-Creation-Date: 2022-06-05 05:39+0000\n"
+"PO-Revision-Date: 2022-06-05 05:40\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -35,11 +35,11 @@ msgstr "අවසන් කරන්න"
 msgid "Back"
 msgstr "ආපසු"
 
-#: pdf_bot/consts.py:40
+#: pdf_bot/consts.py:40 pdf_bot/crop/crop_constants.py:5
 msgid "By Percentage"
 msgstr "ප්‍රතිශතය අනුව"
 
-#: pdf_bot/consts.py:41
+#: pdf_bot/consts.py:41 pdf_bot/crop/crop_constants.py:6
 msgid "By Margin Size"
 msgstr "මාර්ජින් ප්‍රමාණය අනුව"
 
@@ -275,7 +275,7 @@ msgstr "ඔබේ ගොනුව PDF ගොනුවක් නොවේ, කර
 msgid "Your file is too large for me to download and process"
 msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:140
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:145
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "මෙය ටෙලිග්‍රාම් බොට් සීමාවක් බව සලකන්න, ටෙලිග්‍රාම් මෙම සීමාව වෙනස් නොකළහොත් මට කළ හැකි කිසිවක් නැත"
@@ -308,7 +308,7 @@ msgstr "සකස් කරන ලද ගොනුව මට ඔබ වෙත �
 msgid "Here is your result file"
 msgstr "මෙන්න ඔබේ සකස් කරන ලද ගොනුව"
 
-#: pdf_bot/cli/cli_service.py:53
+#: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
 msgstr ""
 
@@ -408,7 +408,35 @@ msgstr "ඔබගේ PDF ගොනු සංසන්දනය කරමින�
 msgid "There are no text differences between your PDF files"
 msgstr "ඔබේ PDF ලිපිගොනු අතර පෙළ වෙනස්කම් නොමැත"
 
-#: pdf_bot/file/file_handlers.py:139
+#: pdf_bot/crop/crop_service.py:36
+msgid "Select the crop type that you'll like to perform"
+msgstr "ඔබ කැපීමට කැමති අදාළ වර්ගය තෝරන්න"
+
+#: pdf_bot/crop/crop_service.py:63
+msgid "Send me a number between {min_percent} and {max_percent}"
+msgstr "{min_percent} සහ {max_percent}අතර අංකයක් මට එවන්න"
+
+#: pdf_bot/crop/crop_service.py:69
+msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr "ඔබේ PDF ගොනුවේ සහ පිටුවේ අන්තර්ගතය අතර තබා ගැනීමට ආන්තික අවකාශයේ ප්‍රතිශතය මෙයයි"
+
+#: pdf_bot/crop/crop_service.py:80
+msgid "Send me a number that you'll like to adjust the margin size"
+msgstr "ආන්තික ප්‍රමාණය සකස් කිරීමට ඔබ කැමති අංකයක් මට එවන්න"
+
+#: pdf_bot/crop/crop_service.py:81
+msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr "ධන සංඛ්‍යා ආන්තික ප්‍රමාණය අඩු කරන අතර negativeණ සංඛ්‍යා එය වැඩි කරයි"
+
+#: pdf_bot/crop/crop_service.py:101
+msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:126
+msgid "The number {number} is invalid, please try again"
+msgstr ""
+
+#: pdf_bot/file/file_handlers.py:144
 msgid "Your file is too big for me to download and process"
 msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
@@ -420,43 +448,6 @@ msgstr "{old_size} සිට {new_size}දක්වා {percent}කින් අ
 #: pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "ඔබ ඉටු කිරීමට කැමති කාර්යය තෝරන්න"
-
-#: pdf_bot/files/crop.py:32
-msgid "Select the crop type that you'll like to perform"
-msgstr "ඔබ කැපීමට කැමති අදාළ වර්ගය තෝරන්න"
-
-#: pdf_bot/files/crop.py:48
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "{min_percent} සහ {max_percent}අතර අංකයක් මට එවන්න"
-
-#: pdf_bot/files/crop.py:51
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "ඔබේ PDF ගොනුවේ සහ පිටුවේ අන්තර්ගතය අතර තබා ගැනීමට ආන්තික අවකාශයේ ප්‍රතිශතය මෙයයි"
-
-#: pdf_bot/files/crop.py:63
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "ආන්තික ප්‍රමාණය සකස් කිරීමට ඔබ කැමති අංකයක් මට එවන්න"
-
-#: pdf_bot/files/crop.py:64
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "ධන සංඛ්‍යා ආන්තික ප්‍රමාණය අඩු කරන අතර negativeණ සංඛ්‍යා එය වැඩි කරයි"
-
-#: pdf_bot/files/crop.py:86
-msgid "The number must be between {min_percent} and {max_percent}, please try again"
-msgstr "{min_percent} සහ {max_percent}අතර විය යුතුය, කරුණාකර නැවත උත්සාහ කරන්න"
-
-#: pdf_bot/files/crop.py:109
-msgid "The number is invalid, please try again"
-msgstr "අංකය වලංගු නැත, කරුණාකර නැවත උත්සාහ කරන්න"
-
-#: pdf_bot/files/crop.py:120
-msgid "Cropping your PDF file"
-msgstr "ඔබේ PDF ගොනුව කපමින් පවතී"
-
-#: pdf_bot/files/crop.py:142 pdf_bot/files/image.py:208
-#: pdf_bot/telegram/telegram_service.py:109
-msgid "Something went wrong, please try again"
-msgstr "යම් දෙයක් වැරදිණි, කරුණාකර නැවත උත්සාහ කරන්න"
 
 #: pdf_bot/files/crypto.py:18
 msgid "Send me the password to decrypt your PDF file"
@@ -509,6 +500,10 @@ msgstr ""
 #: pdf_bot/files/image.py:193
 msgid "Extracting all the images in your PDF file"
 msgstr ""
+
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:109
+msgid "Something went wrong, please try again"
+msgstr "යම් දෙයක් වැරදිණි, කරුණාකර නැවත උත්සාහ කරන්න"
 
 #: pdf_bot/files/image.py:213
 msgid "I couldn't find any images in your PDF file"
@@ -710,15 +705,15 @@ msgstr "ඔබ මට එවා ඇත්තේ එක් PDF ගොනුවක
 msgid "Merging your PDF files"
 msgstr "ඔබගේ PDF ගොනු එකතු කරමින් පවතී"
 
-#: pdf_bot/pdf/pdf_service.py:215
+#: pdf_bot/pdf/pdf_service.py:217
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "මෙම ගොනුව වලංගු නොවන බැවින් මට ඔබේ PDF ගොනු ඒකාබද්ධ කිරීමට නොහැකි විය: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:236
+#: pdf_bot/pdf/pdf_service.py:238
 msgid "Your PDF file is invalid"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:239
+#: pdf_bot/pdf/pdf_service.py:241
 msgid "Your PDF file is encrypted"
 msgstr ""
 
@@ -1502,5 +1497,16 @@ msgstr "ඔබගේ PDF ගොනුවට වෝටර් මාර්ක් �
 #~ msgstr ""
 
 #~ msgid "Compressing your PDF file"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number must be between {min_percent}"
+#~ " and {max_percent}, please try again"
+#~ msgstr ""
+
+#~ msgid "The number is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Cropping your PDF file"
 #~ msgstr ""
 
