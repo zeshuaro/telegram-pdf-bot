@@ -672,20 +672,27 @@ python-versions = "*"
 pillow = "*"
 
 [[package]]
-name = "pdfcropmargins"
+name = "pdfCropMargins"
 version = "1.0.5"
 description = "A command-line program to crop the margins of PDF files, with many options."
 category = "main"
 optional = false
 python-versions = "*"
+develop = false
 
 [package.dependencies]
 pillow = {version = ">=7.1.0", markers = "python_version >= \"3.0.0\""}
-PyPDF2 = "*"
+PyPDF2 = ">=2.0.0"
 
 [package.extras]
 gui = ["PyMuPDF (>=1.18.0)", "PySimpleGUI27 (>=2.4.1)", "typing", "PySimpleGUI (>=4.28.0)"]
 mupdf = ["PyMuPDF (>=1.18.0)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/zeshuaro/pdfCropMargins"
+reference = "master"
+resolved_reference = "9914aed5e78f01253769fe60aac4734b8bd783af"
 
 [[package]]
 name = "pdfminer.six"
@@ -1246,7 +1253,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "07bc66a0437d72a642ebfb56763d0082de02e381a1c8da5de6154c9fce82905f"
+content-hash = "b911a8398684af92cc69dcb735feffea87a6748e5a786513bec59068907ba3a9"
 
 [metadata.files]
 apscheduler = [
@@ -1910,9 +1917,7 @@ pdf2image = [
     {file = "pdf2image-1.16.0-py3-none-any.whl", hash = "sha256:84f79f2b8fad943e36323ea4e937fcb05f26ded0caa0a01181df66049e42fb65"},
     {file = "pdf2image-1.16.0.tar.gz", hash = "sha256:d58ed94d978a70c73c2bb7fdf8acbaf2a7089c29ff8141be5f45433c0c4293bb"},
 ]
-pdfcropmargins = [
-    {file = "pdfCropMargins-1.0.5.tar.gz", hash = "sha256:76fd16b3955e11b2a9fc3ad839342d6528f10324908a4a8f04f94ecda68205b3"},
-]
+pdfCropMargins = []
 "pdfminer.six" = [
     {file = "pdfminer.six-20220524-py3-none-any.whl", hash = "sha256:7e19b857ec76bcbd35665909ad8965a481ad48d9bdff6c45f8522ee66f8a7aab"},
     {file = "pdfminer.six-20220524.tar.gz", hash = "sha256:5a64c924410ac48501d6060b21638bf401db69f5b1bd57207df7fbc070ac8ae2"},
