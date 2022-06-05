@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 05:39+0000\n"
-"PO-Revision-Date: 2022-06-05 05:40\n"
+"POT-Creation-Date: 2022-06-05 10:19+0000\n"
+"PO-Revision-Date: 2022-06-05 10:19\n"
 "Last-Translator: \n"
 "Language: ca\n"
 "Language-Team: Catalan\n"
@@ -461,7 +461,7 @@ msgstr "S'està desxifrant el dispositiu"
 msgid "Your PDF file is invalid and I couldn't open and process it"
 msgstr "El fitxer PDF no és vàlid i no l'he pogut obrir i processar-lo"
 
-#: pdf_bot/files/crypto.py:53
+#: pdf_bot/files/crypto.py:53 pdf_bot/pdf/pdf_service.py:208
 msgid "Your PDF file is not encrypted"
 msgstr "El teu arxiu PDF no està encriptat"
 
@@ -469,7 +469,7 @@ msgstr "El teu arxiu PDF no està encriptat"
 msgid "The decryption password is incorrect, please try again"
 msgstr "La contrasenya de desxifrat és incorrecta, torneu-ho a provar"
 
-#: pdf_bot/files/crypto.py:76
+#: pdf_bot/files/crypto.py:76 pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "El fitxer PDF està xifrat amb un mètode que no puc desxifrar"
 
@@ -705,15 +705,19 @@ msgstr "Només m'has enviat un arxiu PDF"
 msgid "Merging your PDF files"
 msgstr "Unint els teus arxius PDF"
 
-#: pdf_bot/pdf/pdf_service.py:217
+#: pdf_bot/pdf/pdf_service.py:212
+msgid "Incorrect password, please try again"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:243
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "No he pogut combinar els fitxers PDF perquè aquest fitxer no és vàlid: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:238
+#: pdf_bot/pdf/pdf_service.py:264
 msgid "Your PDF file is invalid"
 msgstr "El fitxer PDF no és vàlid"
 
-#: pdf_bot/pdf/pdf_service.py:241
+#: pdf_bot/pdf/pdf_service.py:267
 msgid "Your PDF file is encrypted"
 msgstr "El fitxer PDF està xifrat"
 

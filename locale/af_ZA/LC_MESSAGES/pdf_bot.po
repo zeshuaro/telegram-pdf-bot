@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 05:39+0000\n"
-"PO-Revision-Date: 2022-06-05 05:40\n"
+"POT-Creation-Date: 2022-06-05 10:19+0000\n"
+"PO-Revision-Date: 2022-06-05 10:19\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -461,7 +461,7 @@ msgstr "Dekripteer jou PDF-lêer"
 msgid "Your PDF file is invalid and I couldn't open and process it"
 msgstr "Jou PDF-lêer is ongeldig en ek kon dit nie oopmaak en verwerk nie"
 
-#: pdf_bot/files/crypto.py:53
+#: pdf_bot/files/crypto.py:53 pdf_bot/pdf/pdf_service.py:208
 msgid "Your PDF file is not encrypted"
 msgstr "Jou PDF-lêer is nie geënkripteer nie"
 
@@ -469,7 +469,7 @@ msgstr "Jou PDF-lêer is nie geënkripteer nie"
 msgid "The decryption password is incorrect, please try again"
 msgstr "Die dekripsie wagwoord is verkeerd, probeer asseblief weer"
 
-#: pdf_bot/files/crypto.py:76
+#: pdf_bot/files/crypto.py:76 pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Jou PDF-lêer is geënkripteer met 'n metode wat ek nie kan dekripteer nie"
 
@@ -705,15 +705,19 @@ msgstr "Jy het net vir my een PDF-lêer gestuur"
 msgid "Merging your PDF files"
 msgstr "Voeg jou PDF-lêers saam"
 
-#: pdf_bot/pdf/pdf_service.py:217
+#: pdf_bot/pdf/pdf_service.py:212
+msgid "Incorrect password, please try again"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:243
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Ek kon nie jou PDF-lêers saamsmelt nie, aangesien hierdie lêer ongeldig is: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:238
+#: pdf_bot/pdf/pdf_service.py:264
 msgid "Your PDF file is invalid"
 msgstr "Jou PDF-lêer is ongeldig"
 
-#: pdf_bot/pdf/pdf_service.py:241
+#: pdf_bot/pdf/pdf_service.py:267
 msgid "Your PDF file is encrypted"
 msgstr "Jou PDF-lêer is geënkripteer"
 
