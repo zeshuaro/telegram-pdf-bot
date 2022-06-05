@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 02:47+0000\n"
-"PO-Revision-Date: 2022-06-05 02:47\n"
+"POT-Creation-Date: 2022-06-05 03:18+0000\n"
+"PO-Revision-Date: 2022-06-05 03:19\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -43,87 +43,87 @@ msgstr "백분율별"
 msgid "By Margin Size"
 msgstr "마진 크기별"
 
-#: pdf_bot/consts.py:42 pdf_bot/file/file_constants.py:5
+#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_constants.py:5
 msgid "Preview"
 msgstr "미리 보기"
 
-#: pdf_bot/consts.py:43 pdf_bot/file/file_constants.py:6
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_constants.py:6
 msgid "Decrypt"
 msgstr "해독"
 
-#: pdf_bot/consts.py:44 pdf_bot/file/file_constants.py:7
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_constants.py:7
 msgid "Encrypt"
 msgstr "암호화"
 
-#: pdf_bot/consts.py:45 pdf_bot/file/file_constants.py:8
+#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_constants.py:8
 msgid "Extract Images"
 msgstr "이미지 추출"
 
-#: pdf_bot/consts.py:46 pdf_bot/file/file_constants.py:9
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_constants.py:9
 msgid "To Images"
 msgstr "이미지에"
 
-#: pdf_bot/consts.py:47 pdf_bot/file/file_constants.py:10
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_constants.py:10
 msgid "Rotate"
 msgstr "회전"
 
-#: pdf_bot/consts.py:48 pdf_bot/file/file_constants.py:11
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_constants.py:11
 msgid "Scale"
 msgstr "규모"
 
-#: pdf_bot/consts.py:49 pdf_bot/file/file_constants.py:12
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_constants.py:12
 msgid "Split"
 msgstr "분할"
 
-#: pdf_bot/consts.py:50 pdf_bot/file/file_constants.py:13
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_constants.py:13
 msgid "Beautify"
 msgstr "아름 답게"
 
-#: pdf_bot/consts.py:51 pdf_bot/file/file_constants.py:14
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_constants.py:14
 msgid "To PDF"
 msgstr "PDF로"
 
-#: pdf_bot/consts.py:52 pdf_bot/file/file_constants.py:15
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_constants.py:15
 msgid "Rename"
 msgstr "이름을 바꿀"
 
-#: pdf_bot/consts.py:53 pdf_bot/file/file_constants.py:16
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_constants.py:16
 msgid "Crop"
 msgstr "자르기"
 
-#: pdf_bot/consts.py:54 pdf_bot/file/file_constants.py:17
+#: pdf_bot/consts.py:54 pdf_bot/file_task/file_task_constants.py:17
 msgid "Compressed"
 msgstr "압축"
 
-#: pdf_bot/consts.py:55 pdf_bot/file/file_constants.py:18
+#: pdf_bot/consts.py:55 pdf_bot/file_task/file_task_constants.py:18
 msgid "Images"
 msgstr "이미지"
 
-#: pdf_bot/consts.py:56 pdf_bot/file/file_constants.py:19
+#: pdf_bot/consts.py:56 pdf_bot/file_task/file_task_constants.py:19
 msgid "Remove Last File"
 msgstr "마지막 파일 제거"
 
-#: pdf_bot/consts.py:57 pdf_bot/file/file_constants.py:20
+#: pdf_bot/consts.py:57 pdf_bot/file_task/file_task_constants.py:20
 msgid "To Dimensions"
 msgstr "치수에"
 
-#: pdf_bot/consts.py:58 pdf_bot/file/file_constants.py:21
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_constants.py:21
 msgid "Extract Text"
 msgstr "텍스트 추출"
 
-#: pdf_bot/consts.py:59 pdf_bot/file/file_constants.py:22
+#: pdf_bot/consts.py:59 pdf_bot/file_task/file_task_constants.py:22
 msgid "Text Message"
 msgstr "문자 메시지"
 
-#: pdf_bot/consts.py:60 pdf_bot/file/file_constants.py:23
+#: pdf_bot/consts.py:60 pdf_bot/file_task/file_task_constants.py:23
 msgid "Text File"
 msgstr "텍스트 파일"
 
-#: pdf_bot/consts.py:62 pdf_bot/file/file_constants.py:25
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_constants.py:25
 msgid "Compress"
 msgstr "압축"
 
-#: pdf_bot/consts.py:63 pdf_bot/file/file_constants.py:26
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_constants.py:26
 msgid "Black & White"
 msgstr "흑백"
 
@@ -275,7 +275,7 @@ msgstr "파일은 PDF 파일이 아니며 다시 시도하십시오."
 msgid "Your file is too large for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리할 수 없습니다."
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:137
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:140
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
@@ -408,18 +408,18 @@ msgstr "PDF 파일 비교"
 msgid "There are no text differences between your PDF files"
 msgstr "PDF 파일 간에 텍스트 차이가 없습니다."
 
-#: pdf_bot/file/file_handlers.py:136
+#: pdf_bot/file/file_handlers.py:139
 msgid "Your file is too big for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리하지 않습니다."
 
-#: pdf_bot/file/file_service.py:35 pdf_bot/files/document.py:54
+#: pdf_bot/file/file_service.py:45
+msgid "File size reduced by {percent}, from {old_size} to {new_size}"
+msgstr "{old_size} {new_size}파일 크기가 {percent}감소했습니다."
+
+#: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
-
-#: pdf_bot/file/file_service.py:66
-msgid "File size reduced by {percent}, from {old_size} to {new_size}"
-msgstr "{old_size} {new_size}파일 크기가 {percent}감소했습니다."
 
 #: pdf_bot/files/crop.py:32
 msgid "Select the crop type that you'll like to perform"

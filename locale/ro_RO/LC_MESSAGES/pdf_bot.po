@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 02:47+0000\n"
-"PO-Revision-Date: 2022-06-05 02:47\n"
+"POT-Creation-Date: 2022-06-05 03:18+0000\n"
+"PO-Revision-Date: 2022-06-05 03:19\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -43,87 +43,87 @@ msgstr "După procentaj"
 msgid "By Margin Size"
 msgstr "După dimensiunea marginii"
 
-#: pdf_bot/consts.py:42 pdf_bot/file/file_constants.py:5
+#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_constants.py:5
 msgid "Preview"
 msgstr "Previzualizare"
 
-#: pdf_bot/consts.py:43 pdf_bot/file/file_constants.py:6
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_constants.py:6
 msgid "Decrypt"
 msgstr "Decripta"
 
-#: pdf_bot/consts.py:44 pdf_bot/file/file_constants.py:7
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_constants.py:7
 msgid "Encrypt"
 msgstr "Cripta"
 
-#: pdf_bot/consts.py:45 pdf_bot/file/file_constants.py:8
+#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_constants.py:8
 msgid "Extract Images"
 msgstr "Extrageți imagini"
 
-#: pdf_bot/consts.py:46 pdf_bot/file/file_constants.py:9
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_constants.py:9
 msgid "To Images"
 msgstr "Pentru imagini"
 
-#: pdf_bot/consts.py:47 pdf_bot/file/file_constants.py:10
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_constants.py:10
 msgid "Rotate"
 msgstr "Roti"
 
-#: pdf_bot/consts.py:48 pdf_bot/file/file_constants.py:11
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_constants.py:11
 msgid "Scale"
 msgstr "Scară"
 
-#: pdf_bot/consts.py:49 pdf_bot/file/file_constants.py:12
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_constants.py:12
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/consts.py:50 pdf_bot/file/file_constants.py:13
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_constants.py:13
 msgid "Beautify"
 msgstr "Înfrumuseţa"
 
-#: pdf_bot/consts.py:51 pdf_bot/file/file_constants.py:14
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_constants.py:14
 msgid "To PDF"
 msgstr "În PDF"
 
-#: pdf_bot/consts.py:52 pdf_bot/file/file_constants.py:15
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_constants.py:15
 msgid "Rename"
 msgstr "Redenumiţi"
 
-#: pdf_bot/consts.py:53 pdf_bot/file/file_constants.py:16
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_constants.py:16
 msgid "Crop"
 msgstr "Cultură"
 
-#: pdf_bot/consts.py:54 pdf_bot/file/file_constants.py:17
+#: pdf_bot/consts.py:54 pdf_bot/file_task/file_task_constants.py:17
 msgid "Compressed"
 msgstr "Comprimat"
 
-#: pdf_bot/consts.py:55 pdf_bot/file/file_constants.py:18
+#: pdf_bot/consts.py:55 pdf_bot/file_task/file_task_constants.py:18
 msgid "Images"
 msgstr "Imagini"
 
-#: pdf_bot/consts.py:56 pdf_bot/file/file_constants.py:19
+#: pdf_bot/consts.py:56 pdf_bot/file_task/file_task_constants.py:19
 msgid "Remove Last File"
 msgstr "Eliminare ultimul fișier"
 
-#: pdf_bot/consts.py:57 pdf_bot/file/file_constants.py:20
+#: pdf_bot/consts.py:57 pdf_bot/file_task/file_task_constants.py:20
 msgid "To Dimensions"
 msgstr "La dimensiuni"
 
-#: pdf_bot/consts.py:58 pdf_bot/file/file_constants.py:21
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_constants.py:21
 msgid "Extract Text"
 msgstr "Extragere text"
 
-#: pdf_bot/consts.py:59 pdf_bot/file/file_constants.py:22
+#: pdf_bot/consts.py:59 pdf_bot/file_task/file_task_constants.py:22
 msgid "Text Message"
 msgstr "Mesaj text"
 
-#: pdf_bot/consts.py:60 pdf_bot/file/file_constants.py:23
+#: pdf_bot/consts.py:60 pdf_bot/file_task/file_task_constants.py:23
 msgid "Text File"
 msgstr "Fișier text"
 
-#: pdf_bot/consts.py:62 pdf_bot/file/file_constants.py:25
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_constants.py:25
 msgid "Compress"
 msgstr "Comprima"
 
-#: pdf_bot/consts.py:63 pdf_bot/file/file_constants.py:26
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_constants.py:26
 msgid "Black & White"
 msgstr "Alb-negru"
 
@@ -275,7 +275,7 @@ msgstr "Fișierul nu este un fișier PDF, încercați din nou"
 msgid "Your file is too large for me to download and process"
 msgstr "Fișierul este prea mare pentru mine pentru a descărca și procesa"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:137
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:140
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Rețineți că aceasta este o limitare Telegram Bot și nu e nimic nu pot face cu excepția cazului în Telegram modificări această limită"
@@ -408,18 +408,18 @@ msgstr "Compararea fișierelor PDF"
 msgid "There are no text differences between your PDF files"
 msgstr "Nu există diferențe de text între fișierele PDF"
 
-#: pdf_bot/file/file_handlers.py:136
+#: pdf_bot/file/file_handlers.py:139
 msgid "Your file is too big for me to download and process"
 msgstr "Fișierul este prea mare pentru mine pentru a descărca și procesa"
 
-#: pdf_bot/file/file_service.py:35 pdf_bot/files/document.py:54
+#: pdf_bot/file/file_service.py:45
+msgid "File size reduced by {percent}, from {old_size} to {new_size}"
+msgstr "Dimensiunea fișierului redusă cu {percent}, de la {old_size} la {new_size}"
+
+#: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Selectați activitatea pe care doriți să o efectuați"
-
-#: pdf_bot/file/file_service.py:66
-msgid "File size reduced by {percent}, from {old_size} to {new_size}"
-msgstr "Dimensiunea fișierului redusă cu {percent}, de la {old_size} la {new_size}"
 
 #: pdf_bot/files/crop.py:32
 msgid "Select the crop type that you'll like to perform"
