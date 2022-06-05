@@ -45,8 +45,8 @@ from pdf_bot.consts import (
     WAIT_TEXT_TYPE,
     WAIT_TO_IMAGE_TYPE,
 )
-from pdf_bot.file import file_constants
 from pdf_bot.file.file_service import FileService
+from pdf_bot.file_task import FileTaskService, file_task_constants
 from pdf_bot.files.crop import (
     ask_crop_type,
     ask_crop_value,
@@ -83,7 +83,10 @@ from pdf_bot.utils import cancel
 
 
 class FileHandlers:
-    def __init__(self, file_service: FileService) -> None:
+    def __init__(
+        self, file_task_service: FileTaskService, file_service: FileService
+    ) -> None:
+        self.file_task_service = file_task_service
         self.file_service = file_service
 
     def conversation_handler(self):
@@ -93,7 +96,7 @@ class FileHandlers:
                 MessageHandler(Filters.photo, self.check_image),
             ],
             states={
-                file_constants.WAIT_PDF_TASK: [
+                file_task_constants.WAIT_PDF_TASK: [
                     MessageHandler(TEXT_FILTER, self.check_doc_task)
                 ],
                 WAIT_IMAGE_TASK: [MessageHandler(TEXT_FILTER, self.check_image_task)],
@@ -144,7 +147,7 @@ class FileHandlers:
             return ConversationHandler.END
 
         context.user_data[PDF_INFO] = doc.file_id, doc.file_name
-        return self.file_service.ask_pdf_task(update, context)
+        return self.file_task_service.ask_pdf_task(update, context)
 
     @staticmethod
     def check_image(update, context):
@@ -183,7 +186,7 @@ class FileHandlers:
         if text == _(CANCEL):
             return cancel(update, context)
 
-        return file_constants.WAIT_PDF_TASK
+        return file_task_constants.WAIT_PDF_TASK
 
     @staticmethod
     def check_image_task(update, context):
@@ -204,7 +207,7 @@ class FileHandlers:
         if text in [_(BY_PERCENT), _(BY_SIZE)]:
             return ask_crop_value(update, context)
         if text == _(BACK):
-            return self.file_service.ask_pdf_task(update, context)
+            return self.file_task_service.ask_pdf_task(update, context)
 
         return WAIT_CROP_TYPE
 
@@ -215,7 +218,7 @@ class FileHandlers:
         if text in [_(BY_PERCENT), _(TO_DIMENSIONS)]:
             return ask_scale_value(update, context)
         if text == _(BACK):
-            return self.file_service.ask_pdf_task(update, context)
+            return self.file_task_service.ask_pdf_task(update, context)
 
         return WAIT_SCALE_TYPE
 
@@ -228,7 +231,7 @@ class FileHandlers:
         if text == _(TEXT_FILE):
             return get_pdf_text(update, context, is_file=True)
         if text == _(BACK):
-            return self.file_service.ask_pdf_task(update, context)
+            return self.file_task_service.ask_pdf_task(update, context)
 
         return WAIT_TEXT_TYPE
 
@@ -239,7 +242,7 @@ class FileHandlers:
         if text in [_(IMAGES), _(COMPRESSED)]:
             return get_pdf_images(update, context)
         if text == _(BACK):
-            return self.file_service.ask_pdf_task(update, context)
+            return self.file_task_service.ask_pdf_task(update, context)
 
         return WAIT_EXTRACT_IMAGE_TYPE
 
@@ -250,6 +253,6 @@ class FileHandlers:
         if text in [_(IMAGES), _(COMPRESSED)]:
             return pdf_to_images(update, context)
         if text == _(BACK):
-            return self.file_service.ask_pdf_task(update, context)
+            return self.file_task_service.ask_pdf_task(update, context)
 
         return WAIT_TO_IMAGE_TYPE
