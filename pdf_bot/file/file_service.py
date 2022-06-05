@@ -1,8 +1,9 @@
-from telegram import ParseMode, Update
+from telegram import ParseMode, ReplyKeyboardMarkup, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import PDF_INFO
+from pdf_bot.consts import CANCEL, PDF_INFO
+from pdf_bot.file import file_constants
 from pdf_bot.language import set_lang
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import TelegramService, TelegramServiceError
@@ -15,6 +16,26 @@ class FileService:
     ) -> None:
         self.pdf_service = pdf_service
         self.telegram_service = telegram_service
+
+    @staticmethod
+    def ask_pdf_task(update: Update, context: CallbackContext):
+        _ = set_lang(update, context)
+        keywords = [_(x) for x in file_constants.PDF_TASKS]
+        keyboard_size = 3
+        keyboard = [
+            keywords[i : i + keyboard_size]
+            for i in range(0, len(keywords), keyboard_size)
+        ]
+        keyboard.append([_(CANCEL)])
+
+        reply_markup = ReplyKeyboardMarkup(
+            keyboard, resize_keyboard=True, one_time_keyboard=True
+        )
+        update.effective_message.reply_text(
+            _("Select the task that you'll like to perform"), reply_markup=reply_markup
+        )
+
+        return file_constants.WAIT_PDF_TASK
 
     def black_and_white_pdf(self, update: Update, context: CallbackContext):
         _ = set_lang(update, context)

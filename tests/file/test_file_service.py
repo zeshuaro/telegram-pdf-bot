@@ -6,7 +6,7 @@ from telegram import Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.file import FileService
+from pdf_bot.file import FileService, file_constants
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf.models import CompressResult
 from pdf_bot.telegram import TelegramService, TelegramUserDataKeyError
@@ -25,6 +25,15 @@ def fixture_file_service(
 def set_lang() -> Iterator[None]:
     with patch("pdf_bot.file.file_service.set_lang"):
         yield
+
+
+def test_ask_pdf_task(
+    file_service: FileService,
+    telegram_update: Update,
+    telegram_context: CallbackContext,
+):
+    actual = file_service.ask_pdf_task(telegram_update, telegram_context)
+    assert actual == file_constants.WAIT_PDF_TASK
 
 
 def test_black_and_white_pdf(

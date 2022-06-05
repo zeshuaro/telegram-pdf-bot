@@ -16,8 +16,8 @@ from pdf_bot.consts import (
     SCALE,
     SPLIT,
     TO_IMAGES,
-    WAIT_DOC_TASK,
 )
+from pdf_bot.file import file_constants
 from pdf_bot.utils import set_lang
 
 
@@ -54,4 +54,4 @@ def ask_doc_task(update, context):
         _("Select the task that you'll like to perform"), reply_markup=reply_markup
     )
 
-    return WAIT_DOC_TASK
+    return file_constants.WAIT_PDF_TASK

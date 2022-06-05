@@ -33,7 +33,6 @@ from pdf_bot.consts import (
     WAIT_CROP_PERCENT,
     WAIT_CROP_TYPE,
     WAIT_DECRYPT_PW,
-    WAIT_DOC_TASK,
     WAIT_ENCRYPT_PW,
     WAIT_EXTRACT_IMAGE_TYPE,
     WAIT_FILE_NAME,
@@ -46,6 +45,7 @@ from pdf_bot.consts import (
     WAIT_TEXT_TYPE,
     WAIT_TO_IMAGE_TYPE,
 )
+from pdf_bot.file import file_constants
 from pdf_bot.file.file_service import FileService
 from pdf_bot.files.crop import (
     ask_crop_type,
@@ -59,7 +59,6 @@ from pdf_bot.files.crypto import (
     decrypt_pdf,
     encrypt_pdf,
 )
-from pdf_bot.files.document import ask_doc_task
 from pdf_bot.files.image import (
     ask_image_results_type,
     ask_image_task,
@@ -94,7 +93,9 @@ class FileHandlers:
                 MessageHandler(Filters.photo, self.check_image),
             ],
             states={
-                WAIT_DOC_TASK: [MessageHandler(TEXT_FILTER, self.check_doc_task)],
+                file_constants.WAIT_PDF_TASK: [
+                    MessageHandler(TEXT_FILTER, self.check_doc_task)
+                ],
                 WAIT_IMAGE_TASK: [MessageHandler(TEXT_FILTER, self.check_image_task)],
                 WAIT_CROP_TYPE: [MessageHandler(TEXT_FILTER, self.check_crop_task)],
                 WAIT_CROP_PERCENT: [MessageHandler(TEXT_FILTER, check_crop_percent)],
@@ -122,8 +123,7 @@ class FileHandlers:
             run_async=True,
         )
 
-    @staticmethod
-    def check_doc(update, context):
+    def check_doc(self, update, context):
         doc = update.effective_message.document
         if doc.mime_type.startswith("image"):
             return ask_image_task(update, context, doc)
@@ -144,7 +144,7 @@ class FileHandlers:
             return ConversationHandler.END
 
         context.user_data[PDF_INFO] = doc.file_id, doc.file_name
-        return ask_doc_task(update, context)
+        return self.file_service.ask_pdf_task(update, context)
 
     @staticmethod
     def check_image(update, context):
@@ -183,7 +183,7 @@ class FileHandlers:
         if text == _(CANCEL):
             return cancel(update, context)
 
-        return WAIT_DOC_TASK
+        return file_constants.WAIT_PDF_TASK
 
     @staticmethod
     def check_image_task(update, context):
@@ -197,32 +197,29 @@ class FileHandlers:
 
         return WAIT_IMAGE_TASK
 
-    @staticmethod
-    def check_crop_task(update, context):
+    def check_crop_task(self, update, context):
         _ = set_lang(update, context)
         text = update.effective_message.text
 
         if text in [_(BY_PERCENT), _(BY_SIZE)]:
             return ask_crop_value(update, context)
         if text == _(BACK):
-            return ask_doc_task(update, context)
+            return self.file_service.ask_pdf_task(update, context)
 
         return WAIT_CROP_TYPE
 
-    @staticmethod
-    def check_scale_task(update, context):
+    def check_scale_task(self, update, context):
         _ = set_lang(update, context)
         text = update.effective_message.text
 
         if text in [_(BY_PERCENT), _(TO_DIMENSIONS)]:
             return ask_scale_value(update, context)
         if text == _(BACK):
-            return ask_doc_task(update, context)
+            return self.file_service.ask_pdf_task(update, context)
 
         return WAIT_SCALE_TYPE
 
-    @staticmethod
-    def check_text_task(update, context):
+    def check_text_task(self, update, context):
         _ = set_lang(update, context)
         text = update.effective_message.text
 
@@ -231,30 +228,28 @@ class FileHandlers:
         if text == _(TEXT_FILE):
             return get_pdf_text(update, context, is_file=True)
         if text == _(BACK):
-            return ask_doc_task(update, context)
+            return self.file_service.ask_pdf_task(update, context)
 
         return WAIT_TEXT_TYPE
 
-    @staticmethod
-    def check_get_images_task(update, context):
+    def check_get_images_task(self, update, context):
         _ = set_lang(update, context)
         text = update.effective_message.text
 
         if text in [_(IMAGES), _(COMPRESSED)]:
             return get_pdf_images(update, context)
         if text == _(BACK):
-            return ask_doc_task(update, context)
+            return self.file_service.ask_pdf_task(update, context)
 
         return WAIT_EXTRACT_IMAGE_TYPE
 
-    @staticmethod
-    def check_to_images_task(update, context):
+    def check_to_images_task(self, update, context):
         _ = set_lang(update, context)
         text = update.effective_message.text
 
         if text in [_(IMAGES), _(COMPRESSED)]:
             return pdf_to_images(update, context)
         if text == _(BACK):
-            return ask_doc_task(update, context)
+            return self.file_service.ask_pdf_task(update, context)
 
         return WAIT_TO_IMAGE_TYPE
