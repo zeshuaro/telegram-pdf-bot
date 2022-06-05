@@ -15,7 +15,12 @@ from weasyprint.text.fonts import FontConfiguration
 from pdf_bot.cli import CLIService
 from pdf_bot.io import IOService
 from pdf_bot.models import FileData
-from pdf_bot.pdf.exceptions import PdfDecryptError, PdfEncryptError, PdfReadError
+from pdf_bot.pdf.exceptions import (
+    PdfDecryptError,
+    PdfEncryptError,
+    PdfIncorrectPasswordError,
+    PdfReadError,
+)
 from pdf_bot.pdf.models import CompressResult
 from pdf_bot.telegram import TelegramService
 
@@ -209,23 +214,25 @@ class PdfService:
 
         try:
             if reader.decrypt(password) == 0:
-                raise PdfDecryptError(_("Incorrect password, please try again"))
-
-            writer = PdfFileWriter()
-            for page in reader.pages:
-                writer.add_page(page)
-
-            with self.io_service.create_temp_pdf_file("Decrypted") as out_path:
-                try:
-                    with open(out_path, "wb") as f:
-                        writer.write(f)
-                    yield out_path
-                finally:
-                    pass
+                raise PdfIncorrectPasswordError(
+                    _("Incorrect password, please try again")
+                )
         except NotImplementedError as e:
             raise PdfDecryptError(
                 _("Your PDF file is encrypted with a method that I can't decrypt")
             ) from e
+
+        writer = PdfFileWriter()
+        for page in reader.pages:
+            writer.add_page(page)
+
+        with self.io_service.create_temp_pdf_file("Decrypted") as out_path:
+            try:
+                with open(out_path, "wb") as f:
+                    writer.write(f)
+                yield out_path
+            finally:
+                pass
 
     @contextmanager
     def merge_pdfs(self, file_data_list: List[FileData]) -> Generator[str, None, None]:
