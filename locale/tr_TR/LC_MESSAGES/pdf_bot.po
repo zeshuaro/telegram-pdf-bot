@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 05:39+0000\n"
-"PO-Revision-Date: 2022-06-05 05:40\n"
+"POT-Creation-Date: 2022-06-05 10:19+0000\n"
+"PO-Revision-Date: 2022-06-05 10:19\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -461,7 +461,7 @@ msgstr "PDF dosyanızın şifresini çözme"
 msgid "Your PDF file is invalid and I couldn't open and process it"
 msgstr "PDF dosyanız geçersiz ve açıp işleyemedim"
 
-#: pdf_bot/files/crypto.py:53
+#: pdf_bot/files/crypto.py:53 pdf_bot/pdf/pdf_service.py:208
 msgid "Your PDF file is not encrypted"
 msgstr "PDF dosyanız şifrelenmemiş"
 
@@ -469,7 +469,7 @@ msgstr "PDF dosyanız şifrelenmemiş"
 msgid "The decryption password is incorrect, please try again"
 msgstr "Şifre çözme parolası yanlış, lütfen yeniden deneyin"
 
-#: pdf_bot/files/crypto.py:76
+#: pdf_bot/files/crypto.py:76 pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "PDF dosyanız şifresini çözemeyeceğim bir yöntemle şifreleniyor"
 
@@ -705,15 +705,19 @@ msgstr "Bana sadece bir PDF dosyası gönderdin"
 msgid "Merging your PDF files"
 msgstr "PDF dosyalarınızı birleştirme"
 
-#: pdf_bot/pdf/pdf_service.py:217
+#: pdf_bot/pdf/pdf_service.py:212
+msgid "Incorrect password, please try again"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:243
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Bu dosya geçersiz olduğu için PDF dosyalarınızı birleştiremedim: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:238
+#: pdf_bot/pdf/pdf_service.py:264
 msgid "Your PDF file is invalid"
 msgstr "PDF dosyanız geçersiz"
 
-#: pdf_bot/pdf/pdf_service.py:241
+#: pdf_bot/pdf/pdf_service.py:267
 msgid "Your PDF file is encrypted"
 msgstr "PDF dosyanız şifrelenir"
 

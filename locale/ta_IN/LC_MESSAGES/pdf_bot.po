@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 05:39+0000\n"
-"PO-Revision-Date: 2022-06-05 05:40\n"
+"POT-Creation-Date: 2022-06-05 10:19+0000\n"
+"PO-Revision-Date: 2022-06-05 10:19\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -461,7 +461,7 @@ msgstr "உங்கள் PPM கோப்பை மறைகுறிநீக
 msgid "Your PDF file is invalid and I couldn't open and process it"
 msgstr "உங்கள் PPM கோப்பு செல்லுபடியாகாது, அதை என்னால் திறந்து செயலாக்க முடியவில்லை"
 
-#: pdf_bot/files/crypto.py:53
+#: pdf_bot/files/crypto.py:53 pdf_bot/pdf/pdf_service.py:208
 msgid "Your PDF file is not encrypted"
 msgstr "உங்கள் PPM கோப்பு குறியாக்கம் செய்யப்படவில்லை"
 
@@ -469,7 +469,7 @@ msgstr "உங்கள் PPM கோப்பு குறியாக்கம
 msgid "The decryption password is incorrect, please try again"
 msgstr "மறைகுறிநீக்க கடவுச்சொல் தவறானது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/files/crypto.py:76
+#: pdf_bot/files/crypto.py:76 pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "உங்கள் PPM கோப்பு குறியாக்கம் செய்யப்பட்டது, நான் மறைகுறிநீக்க முடியாது என்று ஒரு முறை"
 
@@ -705,15 +705,19 @@ msgstr "நீங்கள் எனக்கு ஒரு PPM கோப்ப�
 msgid "Merging your PDF files"
 msgstr "உங்கள் PPM கோப்புகளை இணைத்தல்"
 
-#: pdf_bot/pdf/pdf_service.py:217
+#: pdf_bot/pdf/pdf_service.py:212
+msgid "Incorrect password, please try again"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:243
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "இந்தக் கோப்பு செல்லுபடியாகாது என்பதால் உங்கள் PPM கோப்புகளை என்னால் இணைக்க முடியவில்லை: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:238
+#: pdf_bot/pdf/pdf_service.py:264
 msgid "Your PDF file is invalid"
 msgstr "உங்கள் PDF கோப்பு செல்லுபடியாகாது"
 
-#: pdf_bot/pdf/pdf_service.py:241
+#: pdf_bot/pdf/pdf_service.py:267
 msgid "Your PDF file is encrypted"
 msgstr "உங்கள் PDF கோப்பு குறியாக்கம் செய்யப்பட்டுள்ளது"
 
