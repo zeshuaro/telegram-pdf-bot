@@ -97,6 +97,23 @@ class PdfService:
                 pass
 
     @contextmanager
+    def compare_pdfs(
+        self, file_id_a: str, file_id_b: str
+    ) -> Generator[str, None, None]:
+        with self.telegram_service.download_file(
+            file_id_a
+        ) as file_name_a, self.telegram_service.download_file(
+            file_id_b
+        ) as file_name_b, self.io_service.create_temp_png_file(
+            prefix="Differences"
+        ) as out_path:
+            try:
+                pdf_diff.main(files=[file_name_a, file_name_b], out_file=out_path)
+                yield out_path
+            finally:
+                pass
+
+    @contextmanager
     def compress_pdf(self, file_id: str):
         with self.telegram_service.download_file(
             file_id
@@ -160,18 +177,24 @@ class PdfService:
             pass
 
     @contextmanager
-    def compare_pdfs(
-        self, file_id_a: str, file_id_b: str
-    ) -> Generator[str, None, None]:
+    def crop_pdf(
+        self,
+        file_id: str,
+        percentage: float | None = None,
+        offset: float | None = None,
+    ):
         with self.telegram_service.download_file(
-            file_id_a
-        ) as file_name_a, self.telegram_service.download_file(
-            file_id_b
-        ) as file_name_b, self.io_service.create_temp_png_file(
-            prefix="Differences"
+            file_id
+        ) as file_path, self.io_service.create_temp_pdf_file(
+            prefix="Cropped"
         ) as out_path:
             try:
-                pdf_diff.main(files=[file_name_a, file_name_b], out_file=out_path)
+                if percentage is not None:
+                    self.cli_service.crop_pdf_by_percentage(
+                        file_path, out_path, percentage
+                    )
+                else:
+                    self.cli_service.crop_pdf_by_offset(file_path, out_path, offset)
                 yield out_path
             finally:
                 pass
