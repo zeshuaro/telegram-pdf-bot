@@ -10,7 +10,7 @@ from pdf_bot.cli import CLIService
 from pdf_bot.compare import CompareService
 from pdf_bot.io.io_service import IOService
 from pdf_bot.models import FileData
-from pdf_bot.pdf import CompressResult, PdfReadError, PdfService
+from pdf_bot.pdf import CompressResult, PdfDecryptError, PdfReadError, PdfService
 from pdf_bot.telegram import TelegramService
 from pdf_bot.text import FontData
 
@@ -261,6 +261,107 @@ def test_compare_pdfs(
         assert pdf_diff.main.called
         calls = [call(doc_id) for doc_id in doc_ids]
         telegram_service.download_file.assert_has_calls(calls, any_order=True)
+
+
+def test_decrypt_pdf(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    password = "password"
+    out_path = "out_path"
+
+    reader = cast(PdfFileReader, MagicMock())
+    writer = cast(PdfFileWriter, MagicMock())
+    reader.is_encrypted = True
+
+    pages = [MagicMock() for _ in range(randint(2, 10))]
+    reader.pages = pages
+
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader, patch(
+        "pdf_bot.pdf.pdf_service.PdfFileWriter"
+    ) as pdf_file_writer:
+        pdf_file_reader.return_value = reader
+        pdf_file_writer.return_value = writer
+
+        with pdf_service.decrypt_pdf(file_id, password) as actual_path:
+            assert actual_path == out_path
+            telegram_service.download_file.assert_called_once_with(file_id)
+            reader.decrypt.assert_called_once_with(password)
+            io_service.create_temp_pdf_file.assert_called_once_with("Decrypted")
+
+            calls = [call(page) for page in pages]
+            writer.add_page.assert_has_calls(calls)
+
+
+def test_decrypt_pdf_already_encrypted(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    password = "password"
+
+    reader = cast(PdfFileReader, MagicMock())
+    reader.is_encrypted = False
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader:
+        pdf_file_reader.return_value = reader
+        with pytest.raises(PdfDecryptError), pdf_service.decrypt_pdf(file_id, password):
+            telegram_service.download_file.assert_called_once_with(file_id)
+            reader.decrypt.assert_not_called()
+            io_service.create_temp_pdf_file.assert_not_called()
+
+
+def test_decrypt_pdf_incorrect_password(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    password = "password"
+
+    reader = cast(PdfFileReader, MagicMock())
+    reader.is_encrypted = True
+    reader.decrypt.return_value = 0
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader:
+        pdf_file_reader.return_value = reader
+        with pytest.raises(PdfDecryptError), pdf_service.decrypt_pdf(file_id, password):
+            telegram_service.download_file.assert_called_once_with(file_id)
+            reader.decrypt.assert_called_once_with(password)
+            io_service.create_temp_pdf_file.assert_not_called()
+
+
+def test_decrypt_pdf_invalid_encryption_method(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    password = "password"
+
+    reader = cast(PdfFileReader, MagicMock())
+    reader.is_encrypted = True
+    reader.decrypt.side_effect = NotImplementedError()
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader:
+        pdf_file_reader.return_value = reader
+        with pytest.raises(PdfDecryptError), pdf_service.decrypt_pdf(file_id, password):
+            telegram_service.download_file.assert_called_once_with(file_id)
+            reader.decrypt.assert_called_once_with(password)
+            io_service.create_temp_pdf_file.assert_not_called()
 
 
 def test_merge_pdfs(
