@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 10:19+0000\n"
-"PO-Revision-Date: 2022-06-05 10:19\n"
+"POT-Creation-Date: 2022-06-05 11:46+0000\n"
+"PO-Revision-Date: 2022-06-05 11:46\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -275,7 +275,7 @@ msgstr "Uw bestand is geen PDF-bestand, probeer het opnieuw"
 msgid "Your file is too large for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:145
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:144
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen tenzij Telegram deze limiet wijzigt"
@@ -436,7 +436,11 @@ msgstr ""
 msgid "The number {number} is invalid, please try again"
 msgstr ""
 
-#: pdf_bot/file/file_handlers.py:144
+#: pdf_bot/decrypt/decrypt_service.py:30
+msgid "Send me the password to decrypt your PDF file"
+msgstr "Stuur me het wachtwoord om uw PDF bestand te decoderen"
+
+#: pdf_bot/file/file_handlers.py:143
 msgid "Your file is too big for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 
@@ -449,35 +453,11 @@ msgstr "Bestandsgrootte verminderd met {percent}, van {old_size} tot {new_size}"
 msgid "Select the task that you'll like to perform"
 msgstr "Selecteer de taak die u wilt uitvoeren"
 
-#: pdf_bot/files/crypto.py:18
-msgid "Send me the password to decrypt your PDF file"
-msgstr "Stuur me het wachtwoord om uw PDF bestand te decoderen"
-
-#: pdf_bot/files/crypto.py:33
-msgid "Decrypting your PDF file"
-msgstr "PDF bestand aan het decoderen"
-
-#: pdf_bot/files/crypto.py:48
-msgid "Your PDF file is invalid and I couldn't open and process it"
-msgstr "Uw PDF-bestand is ongeldig en ik kon het niet openen en verwerken"
-
-#: pdf_bot/files/crypto.py:53 pdf_bot/pdf/pdf_service.py:208
-msgid "Your PDF file is not encrypted"
-msgstr "Uw PDF bestand is niet versleuteld"
-
-#: pdf_bot/files/crypto.py:58
-msgid "The decryption password is incorrect, please try again"
-msgstr "Het decoderingswachtwoord is onjuist, probeer het opnieuw"
-
-#: pdf_bot/files/crypto.py:76 pdf_bot/pdf/pdf_service.py:227
-msgid "Your PDF file is encrypted with a method that I can't decrypt"
-msgstr "Uw PDF-bestand is versleuteld met een methode die ik niet kan decoderen"
-
-#: pdf_bot/files/crypto.py:92
+#: pdf_bot/files/crypto.py:14
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Stuur mij het wachtwoord om uw PDF bestand te versleutelen"
 
-#: pdf_bot/files/crypto.py:106
+#: pdf_bot/files/crypto.py:28
 msgid "Encrypting your PDF file"
 msgstr "PDF bestand aan het versleutelen"
 
@@ -705,19 +685,27 @@ msgstr "Je hebt me maar één PDF-bestand gestuurd."
 msgid "Merging your PDF files"
 msgstr "PDF bestanden aan het samenvoegen"
 
-#: pdf_bot/pdf/pdf_service.py:212
+#: pdf_bot/pdf/pdf_service.py:213
+msgid "Your PDF file is not encrypted"
+msgstr "Uw PDF bestand is niet versleuteld"
+
+#: pdf_bot/pdf/pdf_service.py:218
 msgid "Incorrect password, please try again"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:243
+#: pdf_bot/pdf/pdf_service.py:222
+msgid "Your PDF file is encrypted with a method that I can't decrypt"
+msgstr "Uw PDF-bestand is versleuteld met een methode die ik niet kan decoderen"
+
+#: pdf_bot/pdf/pdf_service.py:250
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Ik kon uw PDF-bestanden niet samenvoegen omdat dit bestand ongeldig is: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:264
+#: pdf_bot/pdf/pdf_service.py:271
 msgid "Your PDF file is invalid"
 msgstr "Uw PDF-bestand is ongeldig"
 
-#: pdf_bot/pdf/pdf_service.py:267
+#: pdf_bot/pdf/pdf_service.py:274
 msgid "Your PDF file is encrypted"
 msgstr "Uw PDF-bestand is gecodeerd"
 
@@ -1512,5 +1500,14 @@ msgstr "Watermerk toevoegen aan het PDF bestand"
 #~ msgstr ""
 
 #~ msgid "Cropping your PDF file"
+#~ msgstr ""
+
+#~ msgid "Decrypting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "The decryption password is incorrect, please try again"
 #~ msgstr ""
 

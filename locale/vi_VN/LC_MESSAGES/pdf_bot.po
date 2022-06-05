@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-05 10:19+0000\n"
-"PO-Revision-Date: 2022-06-05 10:19\n"
+"POT-Creation-Date: 2022-06-05 11:46+0000\n"
+"PO-Revision-Date: 2022-06-05 11:46\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -275,7 +275,7 @@ msgstr "Tệp của bạn không phải là tệp PDF, vui lòng thử lại"
 msgid "Your file is too large for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:145
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:144
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
@@ -436,7 +436,11 @@ msgstr ""
 msgid "The number {number} is invalid, please try again"
 msgstr ""
 
-#: pdf_bot/file/file_handlers.py:144
+#: pdf_bot/decrypt/decrypt_service.py:30
+msgid "Send me the password to decrypt your PDF file"
+msgstr "Gửi cho tôi mật khẩu để giải mã tệp PDF của bạn"
+
+#: pdf_bot/file/file_handlers.py:143
 msgid "Your file is too big for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
@@ -449,35 +453,11 @@ msgstr "Kích thước tệp giảm {percent}, từ {old_size} xuống {new_size
 msgid "Select the task that you'll like to perform"
 msgstr "Chọn nhiệm vụ bạn muốn thực hiện"
 
-#: pdf_bot/files/crypto.py:18
-msgid "Send me the password to decrypt your PDF file"
-msgstr "Gửi cho tôi mật khẩu để giải mã tệp PDF của bạn"
-
-#: pdf_bot/files/crypto.py:33
-msgid "Decrypting your PDF file"
-msgstr "Giải mã tệp PDF của bạn"
-
-#: pdf_bot/files/crypto.py:48
-msgid "Your PDF file is invalid and I couldn't open and process it"
-msgstr "Tệp PDF của bạn không hợp lệ và tôi không thể mở và xử lý tệp đó"
-
-#: pdf_bot/files/crypto.py:53 pdf_bot/pdf/pdf_service.py:208
-msgid "Your PDF file is not encrypted"
-msgstr "Tệp PDF của bạn không được mã hóa"
-
-#: pdf_bot/files/crypto.py:58
-msgid "The decryption password is incorrect, please try again"
-msgstr "Mật khẩu giải mã không chính xác, vui lòng thử lại"
-
-#: pdf_bot/files/crypto.py:76 pdf_bot/pdf/pdf_service.py:227
-msgid "Your PDF file is encrypted with a method that I can't decrypt"
-msgstr "Tệp PDF của bạn được mã hóa bằng một phương pháp mà tôi không thể giải mã"
-
-#: pdf_bot/files/crypto.py:92
+#: pdf_bot/files/crypto.py:14
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Gửi cho tôi mật khẩu để mã hóa tệp PDF của bạn"
 
-#: pdf_bot/files/crypto.py:106
+#: pdf_bot/files/crypto.py:28
 msgid "Encrypting your PDF file"
 msgstr "Mã hóa tệp PDF của bạn"
 
@@ -705,19 +685,27 @@ msgstr "Bạn chỉ gửi cho tôi một tệp PDF"
 msgid "Merging your PDF files"
 msgstr "Hợp nhất các tệp PDF của bạn"
 
-#: pdf_bot/pdf/pdf_service.py:212
+#: pdf_bot/pdf/pdf_service.py:213
+msgid "Your PDF file is not encrypted"
+msgstr "Tệp PDF của bạn không được mã hóa"
+
+#: pdf_bot/pdf/pdf_service.py:218
 msgid "Incorrect password, please try again"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:243
+#: pdf_bot/pdf/pdf_service.py:222
+msgid "Your PDF file is encrypted with a method that I can't decrypt"
+msgstr "Tệp PDF của bạn được mã hóa bằng một phương pháp mà tôi không thể giải mã"
+
+#: pdf_bot/pdf/pdf_service.py:250
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Tôi không thể hợp nhất các tệp PDF của bạn vì tệp này không hợp lệ: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:264
+#: pdf_bot/pdf/pdf_service.py:271
 msgid "Your PDF file is invalid"
 msgstr "Tệp PDF của bạn không hợp lệ"
 
-#: pdf_bot/pdf/pdf_service.py:267
+#: pdf_bot/pdf/pdf_service.py:274
 msgid "Your PDF file is encrypted"
 msgstr "Tệp PDF của bạn được mã hóa"
 
@@ -1512,5 +1500,14 @@ msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 #~ msgstr ""
 
 #~ msgid "Cropping your PDF file"
+#~ msgstr ""
+
+#~ msgid "Decrypting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "The decryption password is incorrect, please try again"
 #~ msgstr ""
 
