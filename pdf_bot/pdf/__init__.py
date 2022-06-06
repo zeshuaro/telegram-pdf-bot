@@ -2,6 +2,7 @@ from .exceptions import (
     PdfDecryptError,
     PdfEncryptError,
     PdfIncorrectPasswordError,
+    PdfOcrError,
     PdfReadError,
     PdfServiceError,
 )
@@ -17,4 +18,5 @@ __all__ = [
     "PdfReadError",
     "PdfServiceError",
     "CompressResult",
+    "PdfOcrError",
 ]

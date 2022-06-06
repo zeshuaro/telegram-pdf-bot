@@ -3,6 +3,7 @@ from typing import Callable, List, cast
 from unittest.mock import ANY, MagicMock, call, patch
 
 import pytest
+from ocrmypdf.exceptions import PriorOcrFoundError
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
 
@@ -10,7 +11,13 @@ from pdf_bot.cli import CLIService
 from pdf_bot.compare import CompareService
 from pdf_bot.io.io_service import IOService
 from pdf_bot.models import FileData
-from pdf_bot.pdf import CompressResult, PdfDecryptError, PdfReadError, PdfService
+from pdf_bot.pdf import (
+    CompressResult,
+    PdfDecryptError,
+    PdfOcrError,
+    PdfReadError,
+    PdfService,
+)
 from pdf_bot.pdf.exceptions import PdfIncorrectPasswordError
 from pdf_bot.telegram import TelegramService
 from pdf_bot.text import FontData
@@ -448,3 +455,46 @@ def test_merge_pdfs_read_error(
         with pytest.raises(PdfReadError), pdf_service.merge_pdfs(file_data_list):
             telegram_service.download_files.assert_called_once_with(file_ids)
             merger.write.assert_not_called()
+
+
+def test_ocr_pdf(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    file_path = "file_path"
+    out_path = "out_path"
+
+    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf, pdf_service.ocr_pdf(
+        file_id
+    ) as actual_path:
+        assert actual_path == out_path
+        telegram_service.download_file.assert_called_once_with(file_id)
+        io_service.create_temp_pdf_file.assert_called_once_with("OCR")
+        ocrmypdf.ocr.assert_called_once_with(file_path, out_path, progress_bar=False)
+
+
+def test_ocr_pdf_prior_ocr_found(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    file_path = "file_path"
+    out_path = "out_path"
+
+    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf:
+        ocrmypdf.ocr.side_effect = PriorOcrFoundError()
+        with pytest.raises(PdfOcrError), pdf_service.ocr_pdf(file_id):
+            telegram_service.download_file.assert_called_once_with(file_id)
+            io_service.create_temp_pdf_file.assert_called_once_with("OCR")
+            ocrmypdf.ocr.assert_called_once_with(
+                file_path, out_path, progress_bar=False
+            )
