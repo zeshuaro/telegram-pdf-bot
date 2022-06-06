@@ -367,6 +367,42 @@ def test_decrypt_pdf_invalid_encryption_method(
             io_service.create_temp_pdf_file.assert_not_called()
 
 
+def test_encrypt_pdf(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    password = "password"
+    out_path = "out_path"
+
+    reader = cast(PdfFileReader, MagicMock())
+    writer = cast(PdfFileWriter, MagicMock())
+    reader.is_encrypted = False
+
+    pages = [MagicMock() for _ in range(randint(2, 10))]
+    reader.pages = pages
+
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader, patch(
+        "pdf_bot.pdf.pdf_service.PdfFileWriter"
+    ) as pdf_file_writer:
+        pdf_file_reader.return_value = reader
+        pdf_file_writer.return_value = writer
+
+        with pdf_service.encrypt_pdf(file_id, password) as actual_path:
+            assert actual_path == out_path
+            telegram_service.download_file.assert_called_once_with(file_id)
+            io_service.create_temp_pdf_file.assert_called_once_with("Encrypted")
+
+            calls = [call(page) for page in pages]
+            writer.add_page.assert_has_calls(calls)
+            writer.encrypt.assert_called_once_with(password)
+
+
 def test_merge_pdfs(
     pdf_service: PdfService,
     telegram_service: TelegramService,

@@ -235,6 +235,23 @@ class PdfService:
                 pass
 
     @contextmanager
+    def encrypt_pdf(self, file_id: str, password: str):
+        reader = self._open_pdf(file_id)
+        writer = PdfFileWriter()
+
+        for page in reader.pages:
+            writer.add_page(page)
+        writer.encrypt(password)
+
+        with self.io_service.create_temp_pdf_file("Encrypted") as out_path:
+            try:
+                with open(out_path, "wb") as f:
+                    writer.write(f)
+                yield out_path
+            finally:
+                pass
+
+    @contextmanager
     def merge_pdfs(self, file_data_list: List[FileData]) -> Generator[str, None, None]:
         file_ids = self._get_file_ids(file_data_list)
         merger = PdfFileMerger()
