@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 10:23+0000\n"
-"PO-Revision-Date: 2022-06-06 10:23\n"
+"POT-Creation-Date: 2022-06-06 10:45+0000\n"
+"PO-Revision-Date: 2022-06-06 10:45\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -275,7 +275,7 @@ msgstr "Ваш файл не є PDF-файлом, повторіть спроб�
 msgid "Your file is too large for me to download and process"
 msgstr "Ваш файл завеликий для завантаження та обробки"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:146
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Зверніть увагу, що це обмеження Telegram Bot, і я нічого не можу зробити, якщо Telegram не змінить це обмеження"
@@ -444,7 +444,7 @@ msgstr "Надішліть мені пароль для розшифруванн
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Надішліть мені пароль для шифрування PDF-файлу"
 
-#: pdf_bot/file/file_handlers.py:146
+#: pdf_bot/file/file_handlers.py:145
 msgid "Your file is too big for me to download and process"
 msgstr "Ваш файл занадто великий для мене, щоб завантажити і обробити"
 
@@ -488,14 +488,6 @@ msgstr "Не вдалося знайти зображення у вашому PD
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Дивіться вище для всіх ваших зображень"
-
-#: pdf_bot/files/ocr.py:21
-msgid "Adding an OCR text layer to your PDF file"
-msgstr "Додавання текстового шару розпізнавання до файлу PDF"
-
-#: pdf_bot/files/ocr.py:38 pdf_bot/pdf/pdf_service.py:291
-msgid "Your PDF file already has a text layer"
-msgstr "Pdf-файл уже має текстовий шар"
 
 #: pdf_bot/files/rename.py:20
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -696,6 +688,10 @@ msgstr "Ваш PDF-файл зашифровано методом, який не
 #: pdf_bot/pdf/pdf_service.py:270
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Не вдалося об'єднати PDF-файли, оскільки цей файл неприпустимий: {file_name}"
+
+#: pdf_bot/pdf/pdf_service.py:291
+msgid "Your PDF file already has a text layer"
+msgstr "Pdf-файл уже має текстовий шар"
 
 #: pdf_bot/pdf/pdf_service.py:304
 msgid "Your PDF file is invalid"
@@ -1508,5 +1504,8 @@ msgstr "Додавання водяного знака до файлу PDF"
 #~ msgstr ""
 
 #~ msgid "Encrypting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Adding an OCR text layer to your PDF file"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 10:23+0000\n"
-"PO-Revision-Date: 2022-06-06 10:23\n"
+"POT-Creation-Date: 2022-06-06 10:45+0000\n"
+"PO-Revision-Date: 2022-06-06 10:45\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -275,7 +275,7 @@ msgstr "Uw bestand is geen PDF-bestand, probeer het opnieuw"
 msgid "Your file is too large for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:146
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen tenzij Telegram deze limiet wijzigt"
@@ -444,7 +444,7 @@ msgstr "Stuur me het wachtwoord om uw PDF bestand te decoderen"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Stuur mij het wachtwoord om uw PDF bestand te versleutelen"
 
-#: pdf_bot/file/file_handlers.py:146
+#: pdf_bot/file/file_handlers.py:145
 msgid "Your file is too big for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 
@@ -488,14 +488,6 @@ msgstr "Ik kon geen afbeeldingen vinden in uw PDF-bestand"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Zie hierboven voor al uw afbeeldingen"
-
-#: pdf_bot/files/ocr.py:21
-msgid "Adding an OCR text layer to your PDF file"
-msgstr "Een OCR-tekstlaag toevoegen aan uw PDF-bestand"
-
-#: pdf_bot/files/ocr.py:38 pdf_bot/pdf/pdf_service.py:291
-msgid "Your PDF file already has a text layer"
-msgstr "Uw PDF-bestand heeft al een tekstlaag"
 
 #: pdf_bot/files/rename.py:20
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -696,6 +688,10 @@ msgstr "Uw PDF-bestand is versleuteld met een methode die ik niet kan decoderen"
 #: pdf_bot/pdf/pdf_service.py:270
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Ik kon uw PDF-bestanden niet samenvoegen omdat dit bestand ongeldig is: {file_name}"
+
+#: pdf_bot/pdf/pdf_service.py:291
+msgid "Your PDF file already has a text layer"
+msgstr "Uw PDF-bestand heeft al een tekstlaag"
 
 #: pdf_bot/pdf/pdf_service.py:304
 msgid "Your PDF file is invalid"
@@ -1508,5 +1504,8 @@ msgstr "Watermerk toevoegen aan het PDF bestand"
 #~ msgstr ""
 
 #~ msgid "Encrypting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Adding an OCR text layer to your PDF file"
 #~ msgstr ""
 
