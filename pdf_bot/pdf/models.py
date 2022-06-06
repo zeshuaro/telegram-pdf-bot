@@ -24,3 +24,9 @@ class CompressResult:
     @staticmethod
     def _readable_size(size: int):
         return humanize.naturalsize(size)
+
+
+@dataclass
+class FontData:
+    font_family: str
+    font_url: str

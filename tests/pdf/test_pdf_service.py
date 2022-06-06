@@ -14,6 +14,7 @@ from pdf_bot.io.io_service import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import (
     CompressResult,
+    FontData,
     PdfDecryptError,
     PdfOcrError,
     PdfReadError,
@@ -21,7 +22,6 @@ from pdf_bot.pdf import (
 )
 from pdf_bot.pdf.exceptions import PdfEncryptError, PdfIncorrectPasswordError
 from pdf_bot.telegram import TelegramService
-from pdf_bot.text import FontData
 
 
 @pytest.fixture(name="telegram_service")
