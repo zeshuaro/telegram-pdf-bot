@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 11:35+0000\n"
-"PO-Revision-Date: 2022-06-06 11:35\n"
+"POT-Creation-Date: 2022-06-06 11:59+0000\n"
+"PO-Revision-Date: 2022-06-06 11:59\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese\n"
@@ -275,7 +275,7 @@ msgstr "Seu arquivo não é um arquivo PDF, por favor tente novamente"
 msgid "Your file is too large for me to download and process"
 msgstr "Seu arquivo é muito grande para eu baixar e processar"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:149
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:152
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Note que esta é uma limitação do Telegram Bot e não há nada que eu possa fazer a menos que o Telegram mude esse limite"
@@ -444,7 +444,7 @@ msgstr "Envie-me a senha para descriptografar seu arquivo PDF"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Envie-me a senha para criptografar seu arquivo PDF"
 
-#: pdf_bot/file/file_handlers.py:148
+#: pdf_bot/file/file_handlers.py:151
 msgid "Your file is too big for me to download and process"
 msgstr "Seu arquivo é muito grande para eu baixar e processar"
 
@@ -492,14 +492,6 @@ msgstr "Não consegui encontrar nenhuma imagem em seu arquivo PDF"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Veja acima todas as suas imagens"
-
-#: pdf_bot/files/rotate.py:25
-msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "Selecione os graus que você gostaria de girar seu arquivo PDF no sentido horário"
-
-#: pdf_bot/files/rotate.py:51
-msgid "Rotating your PDF file clockwise by {degree} degrees"
-msgstr "Girando seu arquivo PDF no sentido horário por {degree} graus"
 
 #: pdf_bot/files/scale.py:25
 msgid "Select the scale type that you'll like to perform"
@@ -700,6 +692,10 @@ msgstr "Os nomes dos arquivos não podem conter nenhum dos seguintes caracteres:
 #: pdf_bot/rename/rename_service.py:52
 msgid "Please try again"
 msgstr "Por favor, tente de novo."
+
+#: pdf_bot/rotate/rotate_service.py:37
+msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
+msgstr "Selecione os graus que você gostaria de girar seu arquivo PDF no sentido horário"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1510,5 +1506,8 @@ msgstr "Adicionando a marca d'água no seu arquivo PDF"
 #~ msgstr ""
 
 #~ msgid "Renaming your PDF file into {file_name}"
+#~ msgstr ""
+
+#~ msgid "Rotating your PDF file clockwise by {degree} degrees"
 #~ msgstr ""
 

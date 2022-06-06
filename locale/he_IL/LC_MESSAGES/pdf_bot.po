@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 11:35+0000\n"
-"PO-Revision-Date: 2022-06-06 11:35\n"
+"POT-Creation-Date: 2022-06-06 11:59+0000\n"
+"PO-Revision-Date: 2022-06-06 11:59\n"
 "Last-Translator: \n"
 "Language: he\n"
 "Language-Team: Hebrew\n"
@@ -275,7 +275,7 @@ msgstr "הקובץ שלך אינו קובץ PDF, נא נסה שוב"
 msgid "Your file is too large for me to download and process"
 msgstr "הקובץ שלך גדול מדי מכדי שאוריד ואעבד אותו"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:149
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:152
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "שים לב כי זוהי מגבלה של טלגרם ואין שום דבר שאני יכול לעשות אלא אם כן טלגרם תשנה את המגבלה הזאת"
@@ -444,7 +444,7 @@ msgstr "שלח לי את הסיסמה לפענוח הקובץ PDF שלך"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "שלח לי את הסיסמה להצפנת הקובץ PDF שלך"
 
-#: pdf_bot/file/file_handlers.py:148
+#: pdf_bot/file/file_handlers.py:151
 msgid "Your file is too big for me to download and process"
 msgstr "הקובץ שלך גדול מדי מכדי שאני אוריד ואעבד אותו."
 
@@ -492,14 +492,6 @@ msgstr "לא מצאתי תמונות בקובץ PDF שלך"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "ראה לעיל עבור כל התמונות שלך"
-
-#: pdf_bot/files/rotate.py:25
-msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "בחר את המעלות שתרצה לשנות את הקובץ PDF שלך בסיבוב השעון"
-
-#: pdf_bot/files/rotate.py:51
-msgid "Rotating your PDF file clockwise by {degree} degrees"
-msgstr "סיבוב קובץ PDF בכיוון השעון ב- {degree} מעלות"
 
 #: pdf_bot/files/scale.py:25
 msgid "Select the scale type that you'll like to perform"
@@ -700,6 +692,10 @@ msgstr "שמות קבצים אינם יכולים להכיל אף אחד מהת�
 #: pdf_bot/rename/rename_service.py:52
 msgid "Please try again"
 msgstr "נא נסה שוב"
+
+#: pdf_bot/rotate/rotate_service.py:37
+msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
+msgstr "בחר את המעלות שתרצה לשנות את הקובץ PDF שלך בסיבוב השעון"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1510,5 +1506,8 @@ msgstr "מוסיף את סימן המים לקובץ ה PDF שלך"
 #~ msgstr ""
 
 #~ msgid "Renaming your PDF file into {file_name}"
+#~ msgstr ""
+
+#~ msgid "Rotating your PDF file clockwise by {degree} degrees"
 #~ msgstr ""
 

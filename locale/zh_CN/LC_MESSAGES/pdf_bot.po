@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 11:35+0000\n"
-"PO-Revision-Date: 2022-06-06 11:35\n"
+"POT-Creation-Date: 2022-06-06 11:59+0000\n"
+"PO-Revision-Date: 2022-06-06 11:59\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -275,7 +275,7 @@ msgstr "您的文件不是 PDF 文件，请再试一次"
 msgid "Your file is too large for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:149
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:152
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
@@ -444,7 +444,7 @@ msgstr "把密码发给我来解密你的PDF档案"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "把密码发给我来加密你的PDF档案"
 
-#: pdf_bot/file/file_handlers.py:148
+#: pdf_bot/file/file_handlers.py:151
 msgid "Your file is too big for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
@@ -492,14 +492,6 @@ msgstr "我在您的 PDF 文件中找不到任何图像"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "查看上文以获取所有图像"
-
-#: pdf_bot/files/rotate.py:25
-msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "选择你想要顺时针旋转你PDF档案的度数"
-
-#: pdf_bot/files/rotate.py:51
-msgid "Rotating your PDF file clockwise by {degree} degrees"
-msgstr "顺时针旋转您的 PDF 文件 {degree} 度"
 
 #: pdf_bot/files/scale.py:25
 msgid "Select the scale type that you'll like to perform"
@@ -700,6 +692,10 @@ msgstr "文件名称不能包含以下任何字符："
 #: pdf_bot/rename/rename_service.py:52
 msgid "Please try again"
 msgstr "请再试一次"
+
+#: pdf_bot/rotate/rotate_service.py:37
+msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
+msgstr "选择你想要顺时针旋转你PDF档案的度数"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1510,5 +1506,8 @@ msgstr "正在添加水印到你的PDF档案中"
 #~ msgstr ""
 
 #~ msgid "Renaming your PDF file into {file_name}"
+#~ msgstr ""
+
+#~ msgid "Rotating your PDF file clockwise by {degree} degrees"
 #~ msgstr ""
 
