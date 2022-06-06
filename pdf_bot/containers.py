@@ -19,6 +19,7 @@ from pdf_bot.io import IOService
 from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.pdf import PdfService
 from pdf_bot.rename import RenameService
+from pdf_bot.rotate import RotateService
 from pdf_bot.telegram import TelegramService
 from pdf_bot.text import TextHandlers, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
@@ -87,6 +88,12 @@ class Services(containers.DeclarativeContainer):
         pdf_service=pdf,
         telegram_service=telegram,
     )
+    rotate = providers.Factory(
+        RotateService,
+        file_task_service=file_task,
+        pdf_service=pdf,
+        telegram_service=telegram,
+    )
     text = providers.Factory(
         TextService,
         text_repository=repositories.text,
@@ -110,6 +117,7 @@ class Handlers(containers.DeclarativeContainer):
         decrypt_service=services.decrypt,
         encrypt_service=services.encrypt,
         rename_service=services.rename,
+        rotate_service=services.rotate,
     )
     merge = providers.Factory(MergeHandlers, merge_service=services.merge)
     text = providers.Factory(TextHandlers, text_service=services.text)
