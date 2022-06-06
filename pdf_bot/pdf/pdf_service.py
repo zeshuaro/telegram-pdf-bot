@@ -5,8 +5,10 @@ from typing import TYPE_CHECKING, Generator, List, Union
 
 import img2pdf
 import noteshrink
+import ocrmypdf
 import pdf2image
 import pdf_diff
+from ocrmypdf.exceptions import PriorOcrFoundError
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
 from weasyprint import CSS, HTML
@@ -19,6 +21,7 @@ from pdf_bot.pdf.exceptions import (
     PdfDecryptError,
     PdfEncryptError,
     PdfIncorrectPasswordError,
+    PdfOcrError,
     PdfReadError,
 )
 from pdf_bot.pdf.models import CompressResult
@@ -273,6 +276,19 @@ class PdfService:
                 with open(out_path, "wb") as f:
                     merger.write(f)
                 yield out_path
+            finally:
+                pass
+
+    @contextmanager
+    def ocr_pdf(self, file_id: str) -> Generator[str, None, None]:
+        with self.telegram_service.download_file(
+            file_id
+        ) as file_path, self.io_service.create_temp_pdf_file("OCR") as out_path:
+            try:
+                ocrmypdf.ocr(file_path, out_path, progress_bar=False)
+                yield out_path
+            except PriorOcrFoundError as e:
+                raise PdfOcrError(_("Your PDF file already has a text layer")) from e
             finally:
                 pass
 

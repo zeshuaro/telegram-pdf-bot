@@ -16,3 +16,7 @@ class PdfDecryptError(PdfServiceError):
 
 class PdfIncorrectPasswordError(PdfServiceError):
     pass
+
+
+class PdfOcrError(PdfServiceError):
+    pass
