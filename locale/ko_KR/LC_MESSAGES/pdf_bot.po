@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 11:10+0000\n"
-"PO-Revision-Date: 2022-06-06 11:11\n"
+"POT-Creation-Date: 2022-06-06 11:21+0000\n"
+"PO-Revision-Date: 2022-06-06 11:21\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -275,7 +275,7 @@ msgstr "파일은 PDF 파일이 아니며 다시 시도하십시오."
 msgid "Your file is too large for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리할 수 없습니다."
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:146
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:149
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
@@ -444,7 +444,7 @@ msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDF 파일을 암호화하기 위해 암호를 보내주세요."
 
-#: pdf_bot/file/file_handlers.py:145
+#: pdf_bot/file/file_handlers.py:148
 msgid "Your file is too big for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리하지 않습니다."
 
@@ -492,22 +492,6 @@ msgstr "PDF 파일에서 이미지를 찾을 수 없습니다."
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "모든 이미지에 대해 위 참조"
-
-#: pdf_bot/files/rename.py:20
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "PDF 파일의 이름을 변경하려는 파일 이름을 보내"
-
-#: pdf_bot/files/rename.py:40
-msgid "File names can't contain any of the following characters:"
-msgstr "파일 이름에는 다음 문자가 포함될 수 없습니다."
-
-#: pdf_bot/files/rename.py:42
-msgid "Please try again"
-msgstr "다시 시도하십시오."
-
-#: pdf_bot/files/rename.py:50
-msgid "Renaming your PDF file into {file_name}"
-msgstr "PDF 파일의 이름을 {file_name}"
 
 #: pdf_bot/files/rotate.py:25
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -704,6 +688,18 @@ msgstr "PDF 파일이 잘못되었습니다."
 #: pdf_bot/pdf/pdf_service.py:320
 msgid "Your PDF file is encrypted"
 msgstr "PDF 파일이 암호화되었습니다."
+
+#: pdf_bot/rename/rename_service.py:32
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "PDF 파일의 이름을 변경하려는 파일 이름을 보내"
+
+#: pdf_bot/rename/rename_service.py:48
+msgid "File names can't contain any of the following characters:"
+msgstr "파일 이름에는 다음 문자가 포함될 수 없습니다."
+
+#: pdf_bot/rename/rename_service.py:52
+msgid "Please try again"
+msgstr "다시 시도하십시오."
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1511,5 +1507,8 @@ msgstr "PDF 파일에 워터마크 추가"
 #~ msgstr ""
 
 #~ msgid "Adding an OCR text layer to your PDF file"
+#~ msgstr ""
+
+#~ msgid "Renaming your PDF file into {file_name}"
 #~ msgstr ""
 
