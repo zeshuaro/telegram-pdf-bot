@@ -52,7 +52,6 @@ from pdf_bot.files.image import (
     pdf_to_images,
     process_image_task,
 )
-from pdf_bot.files.ocr import add_ocr_to_pdf
 from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, check_rotate_degree
 from pdf_bot.files.scale import (
@@ -185,7 +184,7 @@ class FileHandlers:
         if text == _(EXTRACT_TEXT):
             return ask_text_type(update, context)
         if text == OCR:
-            return add_ocr_to_pdf(update, context)
+            return self.file_service.ocr_pdf(update, context)
         if text == _(COMPRESS):
             return self.file_service.compress_pdf(update, context)
         if text == _(BLACK_AND_WHITE):
