@@ -29,7 +29,6 @@ from pdf_bot.consts import (
     TO_IMAGES,
     TO_PDF,
     WAIT_EXTRACT_IMAGE_TYPE,
-    WAIT_FILE_NAME,
     WAIT_IMAGE_TASK,
     WAIT_ROTATE_DEGREE,
     WAIT_SCALE_DIMENSION,
@@ -52,7 +51,6 @@ from pdf_bot.files.image import (
     pdf_to_images,
     process_image_task,
 )
-from pdf_bot.files.rename import ask_pdf_new_name, rename_pdf
 from pdf_bot.files.rotate import ask_rotate_degree, check_rotate_degree
 from pdf_bot.files.scale import (
     ask_scale_type,
@@ -63,6 +61,7 @@ from pdf_bot.files.scale import (
 from pdf_bot.files.split import ask_split_range, split_pdf
 from pdf_bot.files.text import ask_text_type, get_pdf_text
 from pdf_bot.language import set_lang
+from pdf_bot.rename import RenameService, rename_constants
 from pdf_bot.utils import cancel
 
 
@@ -74,12 +73,14 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_service: DecryptService,
         encrypt_service: EncryptService,
+        rename_service: RenameService,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
         self.crop_service = crop_service
         self.decrypt_service = decrypt_service
         self.encrypt_service = encrypt_service
+        self.rename_service = rename_service
 
     def conversation_handler(self):
         return ConversationHandler(
@@ -111,7 +112,9 @@ class FileHandlers:
                 encrypt_constants.WAIT_ENCRYPT_PASSWORD: [
                     MessageHandler(TEXT_FILTER, self.encrypt_service.encrypt_pdf)
                 ],
-                WAIT_FILE_NAME: [MessageHandler(TEXT_FILTER, rename_pdf)],
+                rename_constants.WAIT_NEW_FILE_NAME: [
+                    MessageHandler(TEXT_FILTER, self.rename_service.rename_pdf)
+                ],
                 WAIT_ROTATE_DEGREE: [MessageHandler(TEXT_FILTER, check_rotate_degree)],
                 WAIT_SPLIT_RANGE: [MessageHandler(TEXT_FILTER, split_pdf)],
                 WAIT_TEXT_TYPE: [MessageHandler(TEXT_FILTER, self.check_text_task)],
@@ -174,7 +177,7 @@ class FileHandlers:
         if text == _(PREVIEW):
             return get_pdf_preview(update, context)
         if text == _(RENAME):
-            return ask_pdf_new_name(update, context)
+            return self.rename_service.ask_new_file_name(update, context)
         if text == _(ROTATE):
             return ask_rotate_degree(update, context)
         if text in [_(SCALE)]:
