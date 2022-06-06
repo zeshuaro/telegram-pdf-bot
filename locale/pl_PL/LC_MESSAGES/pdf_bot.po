@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 08:08+0000\n"
-"PO-Revision-Date: 2022-06-06 08:09\n"
+"POT-Creation-Date: 2022-06-06 08:22+0000\n"
+"PO-Revision-Date: 2022-06-06 08:23\n"
 "Last-Translator: \n"
 "Language: pl\n"
 "Language-Team: Polish\n"
@@ -275,7 +275,7 @@ msgstr "Plik nie jest plikiem PDF, spróbuj ponownie"
 msgid "Your file is too large for me to download and process"
 msgstr "Twój plik jest zbyt duży, abym można go było pobrać i przetworzyć"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:144
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Zauważ, że jest to ograniczenie Bota Telegrama i nic nie mogę zrobić, chyba że Telegram zmieni ten limit"
@@ -440,7 +440,11 @@ msgstr ""
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Wyślij mi hasło do odszyfrowania pliku PDF"
 
-#: pdf_bot/file/file_handlers.py:143
+#: pdf_bot/encrypt/encrypt_service.py:30
+msgid "Send me the password to encrypt your PDF file"
+msgstr "Wyślij mi hasło do zaszyfrowania pliku PDF"
+
+#: pdf_bot/file/file_handlers.py:146
 msgid "Your file is too big for me to download and process"
 msgstr "Twój plik jest zbyt duży, abym go pobrał i przetworzył"
 
@@ -452,14 +456,6 @@ msgstr "Rozmiar pliku zmniejszony o {percent}, z {old_size} do {new_size}"
 #: pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Wybierz zadanie, które chcesz wykonać"
-
-#: pdf_bot/files/crypto.py:14
-msgid "Send me the password to encrypt your PDF file"
-msgstr "Wyślij mi hasło do zaszyfrowania pliku PDF"
-
-#: pdf_bot/files/crypto.py:28
-msgid "Encrypting your PDF file"
-msgstr "Szyfrowanie pliku PDF"
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
@@ -1509,5 +1505,8 @@ msgstr "Dodawanie znaku wodnego do pliku PDF"
 #~ msgstr ""
 
 #~ msgid "The decryption password is incorrect, please try again"
+#~ msgstr ""
+
+#~ msgid "Encrypting your PDF file"
 #~ msgstr ""
 
