@@ -28,7 +28,6 @@ from pdf_bot.consts import (
     TO_DIMENSIONS,
     TO_IMAGES,
     TO_PDF,
-    WAIT_ENCRYPT_PW,
     WAIT_EXTRACT_IMAGE_TYPE,
     WAIT_FILE_NAME,
     WAIT_IMAGE_TASK,
@@ -42,9 +41,9 @@ from pdf_bot.consts import (
 )
 from pdf_bot.crop import CropService, crop_constants
 from pdf_bot.decrypt import DecryptService, decrypt_constants
+from pdf_bot.encrypt import EncryptService, encrypt_constants
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService, file_task_constants
-from pdf_bot.files.crypto import ask_encrypt_pw, encrypt_pdf
 from pdf_bot.files.image import (
     ask_image_results_type,
     ask_image_task,
@@ -75,11 +74,13 @@ class FileHandlers:
         file_service: FileService,
         crop_service: CropService,
         decrypt_service: DecryptService,
+        encrypt_service: EncryptService,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
         self.crop_service = crop_service
         self.decrypt_service = decrypt_service
+        self.encrypt_service = encrypt_service
 
     def conversation_handler(self):
         return ConversationHandler(
@@ -108,7 +109,9 @@ class FileHandlers:
                 decrypt_constants.WAIT_DECRYPT_PASSWORD: [
                     MessageHandler(TEXT_FILTER, self.decrypt_service.decrypt_pdf)
                 ],
-                WAIT_ENCRYPT_PW: [MessageHandler(TEXT_FILTER, encrypt_pdf)],
+                encrypt_constants.WAIT_ENCRYPT_PASSWORD: [
+                    MessageHandler(TEXT_FILTER, self.encrypt_service.encrypt_pdf)
+                ],
                 WAIT_FILE_NAME: [MessageHandler(TEXT_FILTER, rename_pdf)],
                 WAIT_ROTATE_DEGREE: [MessageHandler(TEXT_FILTER, check_rotate_degree)],
                 WAIT_SPLIT_RANGE: [MessageHandler(TEXT_FILTER, split_pdf)],
@@ -166,7 +169,7 @@ class FileHandlers:
         if text == _(DECRYPT):
             return self.decrypt_service.ask_password(update, context)
         if text == _(ENCRYPT):
-            return ask_encrypt_pw(update, context)
+            return self.encrypt_service.ask_password(update, context)
         if text in [_(EXTRACT_IMAGE), _(TO_IMAGES)]:
             return ask_image_results_type(update, context)
         if text == _(PREVIEW):
