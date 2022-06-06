@@ -1,3 +1,4 @@
+import os
 from random import randint
 from typing import Callable, List, cast
 from unittest.mock import ANY, MagicMock, call, patch
@@ -156,8 +157,8 @@ def test_compress_pdf(
     telegram_service.download_file.return_value.__enter__.return_value = file_path
     io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
 
-    with patch("pdf_bot.pdf.pdf_service.os") as os:
-        os.path.getsize.side_effect = getsize_side_effect
+    with patch("pdf_bot.pdf.pdf_service.os") as mock_os:
+        mock_os.path.getsize.side_effect = getsize_side_effect
         with pdf_service.compress_pdf(file_id) as compress_result:
             assert compress_result == CompressResult(old_size, new_size, out_path)
             cli_service.compress_pdf.assert_called_once_with(file_path, out_path)
@@ -518,3 +519,27 @@ def test_ocr_pdf_prior_ocr_found(
             ocrmypdf.ocr.assert_called_once_with(
                 file_path, out_path, progress_bar=False
             )
+
+
+def test_rename_pdf(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    file_name = "file_name"
+    file_path = "file_path"
+    dir_name = "dir_name"
+    out_path = os.path.join(dir_name, file_name)
+
+    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    io_service.create_temp_directory.return_value.__enter__.return_value = dir_name
+
+    with patch("pdf_bot.pdf.pdf_service.shutil") as shutil, pdf_service.rename_pdf(
+        file_id, file_name
+    ) as actual_path:
+        assert actual_path == out_path
+
+        telegram_service.download_file.assert_called_once_with(file_id)
+        io_service.create_temp_directory.assert_called_once()
+        shutil.move.assert_called_once_with(file_path, out_path)

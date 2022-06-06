@@ -1,5 +1,6 @@
 import gettext
 import os
+import shutil
 from contextlib import contextmanager
 from typing import TYPE_CHECKING, Generator, List, Union
 
@@ -289,6 +290,18 @@ class PdfService:
                 yield out_path
             except PriorOcrFoundError as e:
                 raise PdfOcrError(_("Your PDF file already has a text layer")) from e
+            finally:
+                pass
+
+    @contextmanager
+    def rename_pdf(self, file_id: str, file_name: str) -> Generator[str, None, None]:
+        with self.telegram_service.download_file(
+            file_id
+        ) as file_path, self.io_service.create_temp_directory() as dir_name:
+            try:
+                out_path = os.path.join(dir_name, file_name)
+                shutil.move(file_path, out_path)
+                yield out_path
             finally:
                 pass
 
