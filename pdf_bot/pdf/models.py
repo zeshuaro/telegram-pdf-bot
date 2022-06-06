@@ -30,3 +30,14 @@ class CompressResult:
 class FontData:
     font_family: str
     font_url: str
+
+
+@dataclass
+class ScaleData:
+    x: str
+    y: str
+
+    @staticmethod
+    def from_string(value: str) -> "ScaleData":
+        x, y = map(float, value.split())
+        return ScaleData(x, y)

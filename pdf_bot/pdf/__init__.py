@@ -6,7 +6,7 @@ from .exceptions import (
     PdfReadError,
     PdfServiceError,
 )
-from .models import CompressResult, FontData
+from .models import CompressResult, FontData, ScaleData
 from .pdf_service import PdfService
 
 __all__ = [
@@ -20,4 +20,5 @@ __all__ = [
     "CompressResult",
     "PdfOcrError",
     "FontData",
+    "ScaleData",
 ]
