@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 11:10+0000\n"
-"PO-Revision-Date: 2022-06-06 11:11\n"
+"POT-Creation-Date: 2022-06-06 11:21+0000\n"
+"PO-Revision-Date: 2022-06-06 11:21\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -275,7 +275,7 @@ msgstr "Tệp của bạn không phải là tệp PDF, vui lòng thử lại"
 msgid "Your file is too large for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:146
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:149
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
@@ -444,7 +444,7 @@ msgstr "Gửi cho tôi mật khẩu để giải mã tệp PDF của bạn"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Gửi cho tôi mật khẩu để mã hóa tệp PDF của bạn"
 
-#: pdf_bot/file/file_handlers.py:145
+#: pdf_bot/file/file_handlers.py:148
 msgid "Your file is too big for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
@@ -492,22 +492,6 @@ msgstr "Tôi không thể tìm thấy bất kỳ hình ảnh nào trong tệp PD
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Xem ở trên cho tất cả các hình ảnh của bạn"
-
-#: pdf_bot/files/rename.py:20
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "Gửi cho tôi tên tệp mà bạn muốn đổi tên tệp PDF của mình thành"
-
-#: pdf_bot/files/rename.py:40
-msgid "File names can't contain any of the following characters:"
-msgstr "Tên tệp không thể chứa bất kỳ ký tự nào sau đây:"
-
-#: pdf_bot/files/rename.py:42
-msgid "Please try again"
-msgstr "Vui lòng thử lại"
-
-#: pdf_bot/files/rename.py:50
-msgid "Renaming your PDF file into {file_name}"
-msgstr "Đổi tên tệp PDF của bạn thành {file_name}"
 
 #: pdf_bot/files/rotate.py:25
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -704,6 +688,18 @@ msgstr "Tệp PDF của bạn không hợp lệ"
 #: pdf_bot/pdf/pdf_service.py:320
 msgid "Your PDF file is encrypted"
 msgstr "Tệp PDF của bạn được mã hóa"
+
+#: pdf_bot/rename/rename_service.py:32
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "Gửi cho tôi tên tệp mà bạn muốn đổi tên tệp PDF của mình thành"
+
+#: pdf_bot/rename/rename_service.py:48
+msgid "File names can't contain any of the following characters:"
+msgstr "Tên tệp không thể chứa bất kỳ ký tự nào sau đây:"
+
+#: pdf_bot/rename/rename_service.py:52
+msgid "Please try again"
+msgstr "Vui lòng thử lại"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1511,5 +1507,8 @@ msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 #~ msgstr ""
 
 #~ msgid "Adding an OCR text layer to your PDF file"
+#~ msgstr ""
+
+#~ msgid "Renaming your PDF file into {file_name}"
 #~ msgstr ""
 

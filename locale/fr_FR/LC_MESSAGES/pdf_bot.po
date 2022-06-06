@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 11:10+0000\n"
-"PO-Revision-Date: 2022-06-06 11:11\n"
+"POT-Creation-Date: 2022-06-06 11:21+0000\n"
+"PO-Revision-Date: 2022-06-06 11:21\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: French\n"
@@ -275,7 +275,7 @@ msgstr "Votre fichier n’est pas un fichier PDF, veuillez réessayer"
 msgid "Your file is too large for me to download and process"
 msgstr "Votre fichier est trop volumineux pour que je le télécharge et le traite"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:146
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:149
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Notez qu’il s’agit d’une limitation de Telegram Bot et qu’il n’y a rien que je puisse faire à moins que Telegram ne modifie cette limite"
@@ -444,7 +444,7 @@ msgstr "Envoyez-moi le mot de passe pour décrypter votre fichier PDF"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Envoyez-moi le mot de passe pour crypter votre fichier PDF"
 
-#: pdf_bot/file/file_handlers.py:145
+#: pdf_bot/file/file_handlers.py:148
 msgid "Your file is too big for me to download and process"
 msgstr "Votre fichier est trop volumineux pour que je le télécharge et le traite"
 
@@ -492,22 +492,6 @@ msgstr "Je n’ai trouvé aucune image dans votre fichier PDF"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Voir ci-dessus pour toutes vos images"
-
-#: pdf_bot/files/rename.py:20
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "Envoyez-moi le nom du fichier que vous aimeriez renommer en PDF"
-
-#: pdf_bot/files/rename.py:40
-msgid "File names can't contain any of the following characters:"
-msgstr "Les noms de fichiers ne peuvent contenir aucun des caractères suivants :"
-
-#: pdf_bot/files/rename.py:42
-msgid "Please try again"
-msgstr "Veuillez réessayer"
-
-#: pdf_bot/files/rename.py:50
-msgid "Renaming your PDF file into {file_name}"
-msgstr "Renommer votre fichier PDF en {file_name}"
 
 #: pdf_bot/files/rotate.py:25
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -704,6 +688,18 @@ msgstr "Votre fichier PDF n’est pas valide"
 #: pdf_bot/pdf/pdf_service.py:320
 msgid "Your PDF file is encrypted"
 msgstr "Votre fichier PDF est crypté"
+
+#: pdf_bot/rename/rename_service.py:32
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "Envoyez-moi le nom du fichier que vous aimeriez renommer en PDF"
+
+#: pdf_bot/rename/rename_service.py:48
+msgid "File names can't contain any of the following characters:"
+msgstr "Les noms de fichiers ne peuvent contenir aucun des caractères suivants :"
+
+#: pdf_bot/rename/rename_service.py:52
+msgid "Please try again"
+msgstr "Veuillez réessayer"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1511,5 +1507,8 @@ msgstr "Ajouter le filigrane à votre fichier PDF"
 #~ msgstr ""
 
 #~ msgid "Adding an OCR text layer to your PDF file"
+#~ msgstr ""
+
+#~ msgid "Renaming your PDF file into {file_name}"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 11:10+0000\n"
-"PO-Revision-Date: 2022-06-06 11:11\n"
+"POT-Creation-Date: 2022-06-06 11:21+0000\n"
+"PO-Revision-Date: 2022-06-06 11:21\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: Arabic\n"
@@ -275,7 +275,7 @@ msgstr "ملفك ليس ملف PDF، يرجى المحاولة مرة أخرى"
 msgid "Your file is too large for me to download and process"
 msgstr "ملفك كبير جدا بالنسبة لي لتحميل ومعالجة"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:146
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:149
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "لاحظ أن هذا هو تقييد تيليجرام بوت وليس هناك شيء يمكنني القيام به ما لم تغير تيليجرام هذا الحد"
@@ -444,7 +444,7 @@ msgstr "أرسل كلمة السر لفك تشفير الملف"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "أرسل كلمة السر ل تشفير الملف"
 
-#: pdf_bot/file/file_handlers.py:145
+#: pdf_bot/file/file_handlers.py:148
 msgid "Your file is too big for me to download and process"
 msgstr "ملفك كبير جدا بالنسبة لي لتحميل ومعالجة"
 
@@ -492,22 +492,6 @@ msgstr "لم أتمكن من العثور على أي صور في ملف PDF ا�
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "انظر أعلاه لجميع الصور الخاصة بك"
-
-#: pdf_bot/files/rename.py:20
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "ارسل لي اسمالكي اغير ملفك له"
-
-#: pdf_bot/files/rename.py:40
-msgid "File names can't contain any of the following characters:"
-msgstr "لا يمكن أن تحتوي أسماء الملفات على أي من الأحرف التالية:"
-
-#: pdf_bot/files/rename.py:42
-msgid "Please try again"
-msgstr "الرجاء المحاولة مرة أخرى"
-
-#: pdf_bot/files/rename.py:50
-msgid "Renaming your PDF file into {file_name}"
-msgstr "إعادة تسمية ملف PDF الخاص بك إلى {file_name}"
 
 #: pdf_bot/files/rotate.py:25
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -704,6 +688,18 @@ msgstr "ملف PDF غير صالح"
 #: pdf_bot/pdf/pdf_service.py:320
 msgid "Your PDF file is encrypted"
 msgstr "ملف PDF الخاص بك مشفر"
+
+#: pdf_bot/rename/rename_service.py:32
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "ارسل لي اسمالكي اغير ملفك له"
+
+#: pdf_bot/rename/rename_service.py:48
+msgid "File names can't contain any of the following characters:"
+msgstr "لا يمكن أن تحتوي أسماء الملفات على أي من الأحرف التالية:"
+
+#: pdf_bot/rename/rename_service.py:52
+msgid "Please try again"
+msgstr "الرجاء المحاولة مرة أخرى"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1511,5 +1507,8 @@ msgstr "جاري اضافة العلامة المائية"
 #~ msgstr ""
 
 #~ msgid "Adding an OCR text layer to your PDF file"
+#~ msgstr ""
+
+#~ msgid "Renaming your PDF file into {file_name}"
 #~ msgstr ""
 
