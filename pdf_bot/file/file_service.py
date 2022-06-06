@@ -1,4 +1,4 @@
-from telegram import ParseMode, Update
+from telegram import ParseMode, ReplyKeyboardRemove, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -58,10 +58,16 @@ class FileService:
 
     def ocr_pdf(self, update: Update, context: CallbackContext):
         _ = set_lang(update, context)
+        message = update.effective_message
+        message.reply_text(
+            _("Adding an OCR text layer to your PDF file"),
+            reply_markup=ReplyKeyboardRemove(),
+        )
+
         try:
             file_id, _file_name = self.telegram_service.get_user_data(context, PDF_INFO)
             with self.pdf_service.ocr_pdf(file_id) as out_path:
                 send_result_file(update, context, out_path, TaskType.ocr_pdf)
         except (TelegramServiceError, PdfServiceError) as e:
-            update.effective_message.reply_text(_(str(e)))
+            message.reply_text(_(str(e)))
         return ConversationHandler.END
