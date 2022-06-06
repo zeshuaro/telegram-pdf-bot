@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 08:22+0000\n"
-"PO-Revision-Date: 2022-06-06 08:23\n"
+"POT-Creation-Date: 2022-06-06 10:23+0000\n"
+"PO-Revision-Date: 2022-06-06 10:23\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -493,7 +493,7 @@ msgstr "Δείτε παραπάνω για όλες τις εικόνες σας
 msgid "Adding an OCR text layer to your PDF file"
 msgstr "Προσθήκη επιπέδου κειμένου OCR στο αρχείο PDF"
 
-#: pdf_bot/files/ocr.py:38
+#: pdf_bot/files/ocr.py:38 pdf_bot/pdf/pdf_service.py:291
 msgid "Your PDF file already has a text layer"
 msgstr "Το αρχείο PDF έχει ήδη ένα επίπεδο κειμένου"
 
@@ -681,27 +681,27 @@ msgstr "Μου έστειλες μόνο ένα αρχείο PDF."
 msgid "Merging your PDF files"
 msgstr "Συγχώνευση των αρχείων PDF"
 
-#: pdf_bot/pdf/pdf_service.py:213
+#: pdf_bot/pdf/pdf_service.py:216
 msgid "Your PDF file is not encrypted"
 msgstr "Το αρχείο PDF δεν είναι κρυπτογραφημένο"
 
-#: pdf_bot/pdf/pdf_service.py:218
+#: pdf_bot/pdf/pdf_service.py:221
 msgid "Incorrect password, please try again"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:225
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Το αρχείο PDF κρυπτογραφείται με μια μέθοδο που δεν μπορώ να αποκρυπτογραφήσω"
 
-#: pdf_bot/pdf/pdf_service.py:267
+#: pdf_bot/pdf/pdf_service.py:270
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Δεν ήταν δυνατή η συγχώνευση των αρχείων PDF, καθώς αυτό το αρχείο δεν είναι έγκυρο: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:288
+#: pdf_bot/pdf/pdf_service.py:304
 msgid "Your PDF file is invalid"
 msgstr "Το αρχείο PDF δεν είναι έγκυρο"
 
-#: pdf_bot/pdf/pdf_service.py:291
+#: pdf_bot/pdf/pdf_service.py:307
 msgid "Your PDF file is encrypted"
 msgstr "Το αρχείο PDF είναι κρυπτογραφημένο"
 
