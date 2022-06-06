@@ -305,6 +305,22 @@ class PdfService:
             finally:
                 pass
 
+    @contextmanager
+    def rotate_pdf(self, file_id: str, degree: int):
+        reader = self._open_pdf(file_id)
+        writer = PdfFileWriter()
+
+        for page in reader.pages:
+            writer.add_page(page.rotate_clockwise(degree))
+
+        with self.io_service.create_temp_pdf_file("Rotated") as out_path:
+            try:
+                with open(out_path, "wb") as f:
+                    writer.write(f)
+                yield out_path
+            finally:
+                pass
+
     @staticmethod
     def _get_file_ids(file_data_list: List[FileData]) -> List[str]:
         return [x.id for x in file_data_list]

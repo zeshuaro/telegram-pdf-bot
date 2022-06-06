@@ -543,3 +543,44 @@ def test_rename_pdf(
         telegram_service.download_file.assert_called_once_with(file_id)
         io_service.create_temp_directory.assert_called_once()
         shutil.copy.assert_called_once_with(file_path, out_path)
+
+
+def test_rotate_pdf(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    degree = 90
+    out_path = "out_path"
+
+    reader = cast(PdfFileReader, MagicMock())
+    writer = cast(PdfFileWriter, MagicMock())
+    reader.is_encrypted = False
+
+    pages = [MagicMock() for _ in range(randint(2, 10))]
+    rotated_pages = [MagicMock() for _ in pages]
+    for i, page in enumerate(pages):
+        page.rotate_clockwise.return_value = rotated_pages[i]
+    reader.pages = pages
+
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader, patch(
+        "pdf_bot.pdf.pdf_service.PdfFileWriter"
+    ) as pdf_file_writer:
+        pdf_file_reader.return_value = reader
+        pdf_file_writer.return_value = writer
+
+        with pdf_service.rotate_pdf(file_id, degree) as actual_path:
+            assert actual_path == out_path
+            telegram_service.download_file.assert_called_once_with(file_id)
+            io_service.create_temp_pdf_file.assert_called_once_with("Rotated")
+
+            for page in pages:
+                page.rotate_clockwise.assert_called_once_with(degree)
+
+            calls = [call(page) for page in rotated_pages]
+            writer.add_page.assert_has_calls(calls)
