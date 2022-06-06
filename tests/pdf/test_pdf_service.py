@@ -19,6 +19,7 @@ from pdf_bot.pdf import (
     PdfOcrError,
     PdfReadError,
     PdfService,
+    ScaleData,
 )
 from pdf_bot.pdf.exceptions import PdfEncryptError, PdfIncorrectPasswordError
 from pdf_bot.telegram import TelegramService
@@ -34,6 +35,11 @@ def fixture_pdf_service(
     cli_service: CLIService, io_service: IOService, telegram_service: TelegramService
 ) -> CompareService:
     return PdfService(cli_service, io_service, telegram_service)
+
+
+@pytest.fixture(name="scale_data")
+def fixture_scale_data() -> ScaleData:
+    return ScaleData(randint(0, 10), randint(0, 10))
 
 
 def test_add_watermark_to_pdf(
@@ -583,4 +589,86 @@ def test_rotate_pdf(
                 page.rotate_clockwise.assert_called_once_with(degree)
 
             calls = [call(page) for page in rotated_pages]
+            writer.add_page.assert_has_calls(calls)
+
+
+def test_scale_pdf_by_factor(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+    scale_data: ScaleData,
+):
+    file_id = "file_id"
+    out_path = "out_path"
+
+    reader = cast(PdfFileReader, MagicMock())
+    writer = cast(PdfFileWriter, MagicMock())
+    reader.is_encrypted = False
+
+    pages = [MagicMock() for _ in range(randint(2, 10))]
+    scaled_pages = [MagicMock() for _ in pages]
+    for i, page in enumerate(pages):
+        page.scale.return_value = scaled_pages[i]
+    reader.pages = pages
+
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader, patch(
+        "pdf_bot.pdf.pdf_service.PdfFileWriter"
+    ) as pdf_file_writer:
+        pdf_file_reader.return_value = reader
+        pdf_file_writer.return_value = writer
+
+        with pdf_service.scale_pdf_by_factor(file_id, scale_data) as actual_path:
+            assert actual_path == out_path
+            telegram_service.download_file.assert_called_once_with(file_id)
+            io_service.create_temp_pdf_file.assert_called_once_with("Scaled")
+
+            for page in pages:
+                page.scale.assert_called_once_with(scale_data.x, scale_data.y)
+
+            calls = [call(page) for page in scaled_pages]
+            writer.add_page.assert_has_calls(calls)
+
+
+def test_scale_pdf_to_dimension(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+    scale_data: ScaleData,
+):
+    file_id = "file_id"
+    out_path = "out_path"
+
+    reader = cast(PdfFileReader, MagicMock())
+    writer = cast(PdfFileWriter, MagicMock())
+    reader.is_encrypted = False
+
+    pages = [MagicMock() for _ in range(randint(2, 10))]
+    scaled_pages = [MagicMock() for _ in pages]
+    for i, page in enumerate(pages):
+        page.scale_to.return_value = scaled_pages[i]
+    reader.pages = pages
+
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader, patch(
+        "pdf_bot.pdf.pdf_service.PdfFileWriter"
+    ) as pdf_file_writer:
+        pdf_file_reader.return_value = reader
+        pdf_file_writer.return_value = writer
+
+        with pdf_service.scale_pdf_to_dimension(file_id, scale_data) as actual_path:
+            assert actual_path == out_path
+            telegram_service.download_file.assert_called_once_with(file_id)
+            io_service.create_temp_pdf_file.assert_called_once_with("Scaled")
+
+            for page in pages:
+                page.scale_to.assert_called_once_with(scale_data.x, scale_data.y)
+
+            calls = [call(page) for page in scaled_pages]
             writer.add_page.assert_has_calls(calls)
