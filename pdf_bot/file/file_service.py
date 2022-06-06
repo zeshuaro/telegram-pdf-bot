@@ -4,7 +4,7 @@ from telegram.ext import CallbackContext, ConversationHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
 from pdf_bot.language import set_lang
-from pdf_bot.pdf import PdfService
+from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.telegram import TelegramService, TelegramServiceError
 from pdf_bot.utils import send_result_file
 
@@ -21,7 +21,7 @@ class FileService:
         message = update.effective_message
 
         try:
-            file_id, _ = self.telegram_service.get_user_data(context, PDF_INFO)
+            file_id, _file_name = self.telegram_service.get_user_data(context, PDF_INFO)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             return ConversationHandler.END
@@ -54,4 +54,14 @@ class FileService:
             send_result_file(
                 update, context, compress_result.out_path, TaskType.compress_pdf
             )
+        return ConversationHandler.END
+
+    def ocr_pdf(self, update: Update, context: CallbackContext):
+        _ = set_lang(update, context)
+        try:
+            file_id, _file_name = self.telegram_service.get_user_data(context, PDF_INFO)
+            with self.pdf_service.ocr_pdf(file_id) as out_path:
+                send_result_file(update, context, out_path, TaskType.ocr_pdf)
+        except (TelegramServiceError, PdfServiceError) as e:
+            update.effective_message.reply_text(_(str(e)))
         return ConversationHandler.END
