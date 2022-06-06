@@ -12,6 +12,7 @@ from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.crop import CropService
 from pdf_bot.decrypt import DecryptService
+from pdf_bot.encrypt import EncryptService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.io import IOService
@@ -72,6 +73,12 @@ class Services(containers.DeclarativeContainer):
         pdf_service=pdf,
         telegram_service=telegram,
     )
+    encrypt = providers.Factory(
+        EncryptService,
+        file_task_service=file_task,
+        pdf_service=pdf,
+        telegram_service=telegram,
+    )
     merge = providers.Factory(MergeService, pdf_service=pdf, telegram_service=telegram)
     text = providers.Factory(
         TextService,
@@ -94,6 +101,7 @@ class Handlers(containers.DeclarativeContainer):
         file_service=services.file,
         crop_service=services.crop,
         decrypt_service=services.decrypt,
+        encrypt_service=services.encrypt,
     )
     merge = providers.Factory(MergeHandlers, merge_service=services.merge)
     text = providers.Factory(TextHandlers, text_service=services.text)
