@@ -27,7 +27,7 @@ from pdf_bot.pdf.exceptions import (
 from pdf_bot.pdf.models import CompressResult
 from pdf_bot.telegram import TelegramService
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from pdf_bot.text import FontData
 
 _ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gettext
