@@ -18,7 +18,7 @@ from pdf_bot.pdf import (
     PdfReadError,
     PdfService,
 )
-from pdf_bot.pdf.exceptions import PdfIncorrectPasswordError
+from pdf_bot.pdf.exceptions import PdfEncryptError, PdfIncorrectPasswordError
 from pdf_bot.telegram import TelegramService
 from pdf_bot.text import FontData
 
@@ -408,6 +408,26 @@ def test_encrypt_pdf(
             calls = [call(page) for page in pages]
             writer.add_page.assert_has_calls(calls)
             writer.encrypt.assert_called_once_with(password)
+
+
+def test_encrypt_pdf_already_encrypted(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    password = "password"
+
+    reader = cast(PdfFileReader, MagicMock())
+    reader.is_encrypted = True
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader:
+        pdf_file_reader.return_value = reader
+        with pytest.raises(PdfEncryptError), pdf_service.encrypt_pdf(file_id, password):
+            telegram_service.download_file.assert_called_once_with(file_id)
+            io_service.create_temp_pdf_file.assert_not_called()
 
 
 def test_merge_pdfs(
