@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 08:22+0000\n"
-"PO-Revision-Date: 2022-06-06 08:23\n"
+"POT-Creation-Date: 2022-06-06 10:23+0000\n"
+"PO-Revision-Date: 2022-06-06 10:23\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -493,7 +493,7 @@ msgstr ""
 msgid "Adding an OCR text layer to your PDF file"
 msgstr "加緊層文字OCR去你個PDF檔案"
 
-#: pdf_bot/files/ocr.py:38
+#: pdf_bot/files/ocr.py:38 pdf_bot/pdf/pdf_service.py:291
 msgid "Your PDF file already has a text layer"
 msgstr "你嘅PDF檔案已經有層文字"
 
@@ -681,27 +681,27 @@ msgstr "你淨係send咗一個PDF檔案畀我咋"
 msgid "Merging your PDF files"
 msgstr "合併緊你嘅PDF檔案"
 
-#: pdf_bot/pdf/pdf_service.py:213
+#: pdf_bot/pdf/pdf_service.py:216
 msgid "Your PDF file is not encrypted"
 msgstr "你嘅PDF檔案本身都冇加密"
 
-#: pdf_bot/pdf/pdf_service.py:218
+#: pdf_bot/pdf/pdf_service.py:221
 msgid "Incorrect password, please try again"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:225
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "你嘅PDF檔案用嘅加密方式我解密唔到"
 
-#: pdf_bot/pdf/pdf_service.py:267
+#: pdf_bot/pdf/pdf_service.py:270
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "我合併唔到你嘅PDF檔案，因為呢個檔案無效：{file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:288
+#: pdf_bot/pdf/pdf_service.py:304
 msgid "Your PDF file is invalid"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:291
+#: pdf_bot/pdf/pdf_service.py:307
 msgid "Your PDF file is encrypted"
 msgstr ""
 

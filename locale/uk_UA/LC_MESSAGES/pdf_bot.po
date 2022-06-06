@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 08:22+0000\n"
-"PO-Revision-Date: 2022-06-06 08:23\n"
+"POT-Creation-Date: 2022-06-06 10:23+0000\n"
+"PO-Revision-Date: 2022-06-06 10:23\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -493,7 +493,7 @@ msgstr "Дивіться вище для всіх ваших зображень"
 msgid "Adding an OCR text layer to your PDF file"
 msgstr "Додавання текстового шару розпізнавання до файлу PDF"
 
-#: pdf_bot/files/ocr.py:38
+#: pdf_bot/files/ocr.py:38 pdf_bot/pdf/pdf_service.py:291
 msgid "Your PDF file already has a text layer"
 msgstr "Pdf-файл уже має текстовий шар"
 
@@ -681,27 +681,27 @@ msgstr "Ви надіслали мені лише один PDF-файл"
 msgid "Merging your PDF files"
 msgstr "Об'єміщення PDF-файлів"
 
-#: pdf_bot/pdf/pdf_service.py:213
+#: pdf_bot/pdf/pdf_service.py:216
 msgid "Your PDF file is not encrypted"
 msgstr "Файл PDF не зашифровано"
 
-#: pdf_bot/pdf/pdf_service.py:218
+#: pdf_bot/pdf/pdf_service.py:221
 msgid "Incorrect password, please try again"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:225
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Ваш PDF-файл зашифровано методом, який не вдається розшифрувати"
 
-#: pdf_bot/pdf/pdf_service.py:267
+#: pdf_bot/pdf/pdf_service.py:270
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Не вдалося об'єднати PDF-файли, оскільки цей файл неприпустимий: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:288
+#: pdf_bot/pdf/pdf_service.py:304
 msgid "Your PDF file is invalid"
 msgstr "Неприпустимий PDF-файл"
 
-#: pdf_bot/pdf/pdf_service.py:291
+#: pdf_bot/pdf/pdf_service.py:307
 msgid "Your PDF file is encrypted"
 msgstr "Ваш PDF-файл зашифровано"
 
