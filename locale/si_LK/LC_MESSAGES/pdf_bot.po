@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 10:23+0000\n"
-"PO-Revision-Date: 2022-06-06 10:23\n"
+"POT-Creation-Date: 2022-06-06 10:45+0000\n"
+"PO-Revision-Date: 2022-06-06 10:45\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -275,7 +275,7 @@ msgstr "ඔබේ ගොනුව PDF ගොනුවක් නොවේ, කර
 msgid "Your file is too large for me to download and process"
 msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:146
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "මෙය ටෙලිග්‍රාම් බොට් සීමාවක් බව සලකන්න, ටෙලිග්‍රාම් මෙම සීමාව වෙනස් නොකළහොත් මට කළ හැකි කිසිවක් නැත"
@@ -444,7 +444,7 @@ msgstr "ඔබගේ PDF ගොනුව විකේතනය කිරීම�
 msgid "Send me the password to encrypt your PDF file"
 msgstr "ඔබගේ PDF ගොනුව ආකේතනය කිරීමට මුරපදය එවන්න"
 
-#: pdf_bot/file/file_handlers.py:146
+#: pdf_bot/file/file_handlers.py:145
 msgid "Your file is too big for me to download and process"
 msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
@@ -488,14 +488,6 @@ msgstr ""
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr ""
-
-#: pdf_bot/files/ocr.py:21
-msgid "Adding an OCR text layer to your PDF file"
-msgstr "ඔබේ PDF ගොනුවට OCR අකුරු ස්තරයක් එක් කරමින් පවතී"
-
-#: pdf_bot/files/ocr.py:38 pdf_bot/pdf/pdf_service.py:291
-msgid "Your PDF file already has a text layer"
-msgstr "ඔබගේ PDF ගොනුවට දැනටමත් අකුරු ස්ථරයක් ඇත"
 
 #: pdf_bot/files/rename.py:20
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -696,6 +688,10 @@ msgstr "මට විකේතනය කළ නොහැකි ක්‍රම�
 #: pdf_bot/pdf/pdf_service.py:270
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "මෙම ගොනුව වලංගු නොවන බැවින් මට ඔබේ PDF ගොනු ඒකාබද්ධ කිරීමට නොහැකි විය: {file_name}"
+
+#: pdf_bot/pdf/pdf_service.py:291
+msgid "Your PDF file already has a text layer"
+msgstr "ඔබගේ PDF ගොනුවට දැනටමත් අකුරු ස්ථරයක් ඇත"
 
 #: pdf_bot/pdf/pdf_service.py:304
 msgid "Your PDF file is invalid"
@@ -1508,5 +1504,8 @@ msgstr "ඔබගේ PDF ගොනුවට වෝටර් මාර්ක් �
 #~ msgstr ""
 
 #~ msgid "Encrypting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Adding an OCR text layer to your PDF file"
 #~ msgstr ""
 
