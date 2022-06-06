@@ -542,4 +542,4 @@ def test_rename_pdf(
 
         telegram_service.download_file.assert_called_once_with(file_id)
         io_service.create_temp_directory.assert_called_once()
-        shutil.move.assert_called_once_with(file_path, out_path)
+        shutil.copy.assert_called_once_with(file_path, out_path)

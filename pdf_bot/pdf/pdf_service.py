@@ -300,7 +300,7 @@ class PdfService:
         ) as file_path, self.io_service.create_temp_directory() as dir_name:
             try:
                 out_path = os.path.join(dir_name, file_name)
-                shutil.move(file_path, out_path)
+                shutil.copy(file_path, out_path)
                 yield out_path
             finally:
                 pass
