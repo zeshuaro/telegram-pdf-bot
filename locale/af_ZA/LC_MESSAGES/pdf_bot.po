@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-06 11:35+0000\n"
-"PO-Revision-Date: 2022-06-06 11:35\n"
+"POT-Creation-Date: 2022-06-06 11:59+0000\n"
+"PO-Revision-Date: 2022-06-06 11:59\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -275,7 +275,7 @@ msgstr "Jou lêer is nie 'n PDF-lêer nie, probeer asseblief weer"
 msgid "Your file is too large for me to download and process"
 msgstr "Jou lêer is te groot vir my om af te laai en te verwerk"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:149
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:152
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Let daarop dat dit 'n Telegram Bot beperking is en daar is niks wat ek kan doen nie, tensy Telegram hierdie limiet verander"
@@ -444,7 +444,7 @@ msgstr "Stuur vir my die wagwoord om jou PDF-lêer te dekripteer"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Stuur vir my die wagwoord om jou PDF-lêer te enkripteer"
 
-#: pdf_bot/file/file_handlers.py:148
+#: pdf_bot/file/file_handlers.py:151
 msgid "Your file is too big for me to download and process"
 msgstr "Jou lêer is te groot vir my om af te laai en te verwerk"
 
@@ -492,14 +492,6 @@ msgstr "Ek kon geen beelde in u PDF-lêer vind nie"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Sien hierbo vir al jou beelde"
-
-#: pdf_bot/files/rotate.py:25
-msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "Kies die grade wat jy jou PDF-lêer in kloksgewys wil draai"
-
-#: pdf_bot/files/rotate.py:51
-msgid "Rotating your PDF file clockwise by {degree} degrees"
-msgstr "Roteer jou PDF-lêer kloksgewys deur {degree} grade"
 
 #: pdf_bot/files/scale.py:25
 msgid "Select the scale type that you'll like to perform"
@@ -700,6 +692,10 @@ msgstr "Lêername kan nie enige van die volgende karakters bevat nie:"
 #: pdf_bot/rename/rename_service.py:52
 msgid "Please try again"
 msgstr "Probeer asseblief weer"
+
+#: pdf_bot/rotate/rotate_service.py:37
+msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
+msgstr "Kies die grade wat jy jou PDF-lêer in kloksgewys wil draai"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1510,5 +1506,8 @@ msgstr "Voeg die watermerk by jou PDF-lêer"
 #~ msgstr ""
 
 #~ msgid "Renaming your PDF file into {file_name}"
+#~ msgstr ""
+
+#~ msgid "Rotating your PDF file clockwise by {degree} degrees"
 #~ msgstr ""
 
