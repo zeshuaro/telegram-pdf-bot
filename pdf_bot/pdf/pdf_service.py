@@ -2,7 +2,7 @@ import gettext
 import os
 import shutil
 from contextlib import contextmanager
-from typing import TYPE_CHECKING, Generator, List, Union
+from typing import Generator, List
 
 import img2pdf
 import noteshrink
@@ -25,11 +25,8 @@ from pdf_bot.pdf.exceptions import (
     PdfOcrError,
     PdfReadError,
 )
-from pdf_bot.pdf.models import CompressResult
+from pdf_bot.pdf.models import CompressResult, FontData
 from pdf_bot.telegram import TelegramService
-
-if TYPE_CHECKING:  # pragma: no cover
-    from pdf_bot.text import FontData
 
 _ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gettext
 
@@ -153,7 +150,7 @@ class PdfService:
                 pass
 
     @contextmanager
-    def create_pdf_from_text(self, text: str, font_data: Union["FontData", None]):
+    def create_pdf_from_text(self, text: str, font_data: FontData | None):
         html = HTML(
             string="<p>{content}</p>".format(content=text.replace("\n", "<br/>"))
         )

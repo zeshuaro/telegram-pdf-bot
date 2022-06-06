@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from requests import Session
 
-from pdf_bot.text.models import FontData
+from pdf_bot.pdf import FontData
 
 load_dotenv()
 GOOGLE_FONTS_TOKEN = os.environ.get("GOOGLE_FONTS_TOKEN")
