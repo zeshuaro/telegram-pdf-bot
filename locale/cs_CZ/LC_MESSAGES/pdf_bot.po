@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 10:04+0000\n"
-"PO-Revision-Date: 2022-06-08 10:05\n"
+"POT-Creation-Date: 2022-06-08 10:56+0000\n"
+"PO-Revision-Date: 2022-06-08 10:57\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -275,7 +275,7 @@ msgstr "Soubor není souborEM PDF, opakujte akci"
 msgid "Your file is too large for me to download and process"
 msgstr "Váš soubor je příliš velký na to, abych ho stahoval a zpracovávám."
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:152
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Všimněte si, že se jedná o omezení Telegram Bot a není nic, co bych mohl udělat, pokud Telegram nezmění tento limit"
@@ -444,7 +444,7 @@ msgstr "Pošlete mi heslo k dešifrování souboru PDF"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Pošlete mi heslo k šifrování souboru PDF"
 
-#: pdf_bot/file/file_handlers.py:151
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "Váš soubor je příliš velký na to, abych ho stahoval a zpracovávám."
 
@@ -492,42 +492,6 @@ msgstr "V souboru PDF se mi nepodařilo najít žádné obrázky"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Podívejte se na výše pro všechny vaše obrázky"
-
-#: pdf_bot/files/scale.py:25
-msgid "Select the scale type that you'll like to perform"
-msgstr "Vyberte typ měřítka, který chcete provést"
-
-#: pdf_bot/files/scale.py:40
-msgid "Send me the width and height"
-msgstr "Pošli mi šířku a výšku."
-
-#: pdf_bot/files/scale.py:42
-msgid "This will set the width to 150 and height to 200"
-msgstr "Tím se nastaví šířka na 150 a výška na 200"
-
-#: pdf_bot/files/scale.py:52
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "Pošlete mi faktory měřítka pro vodorovné a svislé osy"
-
-#: pdf_bot/files/scale.py:56
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "Tím se zdvojnásobí vodorovná osa a svislá osa se sníží na polovinu."
-
-#: pdf_bot/files/scale.py:79
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "Faktory změny měřítka {values} neplatné, opakujte akci"
-
-#: pdf_bot/files/scale.py:101
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "Rozměry {values} neplatné, opakujte akci."
-
-#: pdf_bot/files/scale.py:115
-msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
-msgstr "Změna měřítka souboru PDF, vodorovně {horizontal} a svisle podle {vertical}"
-
-#: pdf_bot/files/scale.py:128
-msgid "Scaling your PDF file with width of {width} and height of {height}"
-msgstr "Změna měřítka souboru PDF se šířkou {width} a výškou {height}"
 
 #: pdf_bot/files/split.py:54
 msgid "Send me the range of pages that you'll like to keep"
@@ -696,6 +660,42 @@ msgstr "Opakujte akci."
 #: pdf_bot/rotate/rotate_service.py:37
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Vyberte stupně, které chcete otočit soubor PDF ve směru hodinových ručiček"
+
+#: pdf_bot/scale/scale_constants.py:5
+msgid "By scaling factor"
+msgstr ""
+
+#: pdf_bot/scale/scale_constants.py:6
+msgid "To dimension"
+msgstr ""
+
+#: pdf_bot/scale/scale_service.py:37
+msgid "Select the scale type that you'll like to perform"
+msgstr "Vyberte typ měřítka, který chcete provést"
+
+#: pdf_bot/scale/scale_service.py:68
+msgid "The scaling factors {values} are invalid, please try again"
+msgstr "Faktory změny měřítka {values} neplatné, opakujte akci"
+
+#: pdf_bot/scale/scale_service.py:88
+msgid "The dimensions {values} are invalid, please try again"
+msgstr "Rozměry {values} neplatné, opakujte akci."
+
+#: pdf_bot/scale/scale_service.py:107
+msgid "Send me the scaling factors for the horizontal and vertical axes"
+msgstr "Pošlete mi faktory měřítka pro vodorovné a svislé osy"
+
+#: pdf_bot/scale/scale_service.py:112
+msgid "This will double the horizontal axis and halve the vertical axis"
+msgstr "Tím se zdvojnásobí vodorovná osa a svislá osa se sníží na polovinu."
+
+#: pdf_bot/scale/scale_service.py:124
+msgid "Send me the width and height"
+msgstr "Pošli mi šířku a výšku."
+
+#: pdf_bot/scale/scale_service.py:126
+msgid "This will set the width to 150 and height to 200"
+msgstr "Tím se nastaví šířka na 150 a výška na 200"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1509,5 +1509,13 @@ msgstr "Přidání vodoznaku do souboru PDF"
 #~ msgstr ""
 
 #~ msgid "Rotating your PDF file clockwise by {degree} degrees"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Scaling your PDF file, horizontally by"
+#~ " {horizontal} and vertically by {vertical}"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file with width of {width} and height of {height}"
 #~ msgstr ""
 

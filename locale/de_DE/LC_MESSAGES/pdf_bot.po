@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 10:04+0000\n"
-"PO-Revision-Date: 2022-06-08 10:05\n"
+"POT-Creation-Date: 2022-06-08 10:56+0000\n"
+"PO-Revision-Date: 2022-06-08 10:57\n"
 "Last-Translator: \n"
 "Language: de\n"
 "Language-Team: German\n"
@@ -275,7 +275,7 @@ msgstr "Ihre Datei ist keine PDF-Datei, bitte versuchen Sie es erneut"
 msgid "Your file is too large for me to download and process"
 msgstr "Ihre Datei ist zu groß, als dass ich sie herunterladen und verarbeiten könnte"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:152
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Beachten Sie, dass dies eine Telegram Bot-Einschränkung ist und ich nichts tun kann, es sei denn, Telegram ändert dieses Limit"
@@ -444,7 +444,7 @@ msgstr "Senden Sie mir das Passwort, um Ihre PDF-Datei zu entschlüsseln"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Senden Sie mir das Passwort, um Ihre PDF-Datei zu verschlüsseln"
 
-#: pdf_bot/file/file_handlers.py:151
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "Ihre Datei ist zu groß, als dass ich sie herunterladen und verarbeiten könnte"
 
@@ -492,42 +492,6 @@ msgstr "Ich konnte keine Bilder in Ihrer PDF-Datei finden"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Siehe oben für alle Ihre Bilder"
-
-#: pdf_bot/files/scale.py:25
-msgid "Select the scale type that you'll like to perform"
-msgstr "Wählen Sie den Skalentyp aus, den Sie ausführen möchten"
-
-#: pdf_bot/files/scale.py:40
-msgid "Send me the width and height"
-msgstr "Senden Sie mir die Breite und Höhe"
-
-#: pdf_bot/files/scale.py:42
-msgid "This will set the width to 150 and height to 200"
-msgstr "Dadurch wird die Breite auf 150 und die Höhe auf 200 festgelegt."
-
-#: pdf_bot/files/scale.py:52
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "Senden Sie mir die Skalierungsfaktoren für die horizontale und vertikale Achse"
-
-#: pdf_bot/files/scale.py:56
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "Dadurch wird die horizontale Achse verdoppelt und die vertikale Achse halbiert"
-
-#: pdf_bot/files/scale.py:79
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "Die Skalierungsfaktoren {values} ungültig sind, versuchen Sie es bitte erneut"
-
-#: pdf_bot/files/scale.py:101
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "Die Abmessungen {values} sind ungültig, bitte versuchen Sie es erneut"
-
-#: pdf_bot/files/scale.py:115
-msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
-msgstr "Skalieren Sie Ihre PDF-Datei horizontal nach {horizontal} und vertikal nach {vertical}"
-
-#: pdf_bot/files/scale.py:128
-msgid "Scaling your PDF file with width of {width} and height of {height}"
-msgstr "Skalieren Ihrer PDF-Datei mit {width} breite und {height}"
 
 #: pdf_bot/files/split.py:54
 msgid "Send me the range of pages that you'll like to keep"
@@ -696,6 +660,42 @@ msgstr "Bitte versuchen Sie es erneut"
 #: pdf_bot/rotate/rotate_service.py:37
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Wählen Sie die Grade aus, die Sie Ihre PDF-Datei im Uhrzeigersinn drehen möchten"
+
+#: pdf_bot/scale/scale_constants.py:5
+msgid "By scaling factor"
+msgstr ""
+
+#: pdf_bot/scale/scale_constants.py:6
+msgid "To dimension"
+msgstr ""
+
+#: pdf_bot/scale/scale_service.py:37
+msgid "Select the scale type that you'll like to perform"
+msgstr "Wählen Sie den Skalentyp aus, den Sie ausführen möchten"
+
+#: pdf_bot/scale/scale_service.py:68
+msgid "The scaling factors {values} are invalid, please try again"
+msgstr "Die Skalierungsfaktoren {values} ungültig sind, versuchen Sie es bitte erneut"
+
+#: pdf_bot/scale/scale_service.py:88
+msgid "The dimensions {values} are invalid, please try again"
+msgstr "Die Abmessungen {values} sind ungültig, bitte versuchen Sie es erneut"
+
+#: pdf_bot/scale/scale_service.py:107
+msgid "Send me the scaling factors for the horizontal and vertical axes"
+msgstr "Senden Sie mir die Skalierungsfaktoren für die horizontale und vertikale Achse"
+
+#: pdf_bot/scale/scale_service.py:112
+msgid "This will double the horizontal axis and halve the vertical axis"
+msgstr "Dadurch wird die horizontale Achse verdoppelt und die vertikale Achse halbiert"
+
+#: pdf_bot/scale/scale_service.py:124
+msgid "Send me the width and height"
+msgstr "Senden Sie mir die Breite und Höhe"
+
+#: pdf_bot/scale/scale_service.py:126
+msgid "This will set the width to 150 and height to 200"
+msgstr "Dadurch wird die Breite auf 150 und die Höhe auf 200 festgelegt."
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1509,5 +1509,13 @@ msgstr "Hinzufügen des Wasserzeichens zu Ihrer PDF-Datei"
 #~ msgstr ""
 
 #~ msgid "Rotating your PDF file clockwise by {degree} degrees"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Scaling your PDF file, horizontally by"
+#~ " {horizontal} and vertically by {vertical}"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file with width of {width} and height of {height}"
 #~ msgstr ""
 

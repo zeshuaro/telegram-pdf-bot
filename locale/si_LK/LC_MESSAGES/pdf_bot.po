@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 10:04+0000\n"
-"PO-Revision-Date: 2022-06-08 10:06\n"
+"POT-Creation-Date: 2022-06-08 10:56+0000\n"
+"PO-Revision-Date: 2022-06-08 10:57\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -275,7 +275,7 @@ msgstr "ඔබේ ගොනුව PDF ගොනුවක් නොවේ, කර
 msgid "Your file is too large for me to download and process"
 msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:152
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "මෙය ටෙලිග්‍රාම් බොට් සීමාවක් බව සලකන්න, ටෙලිග්‍රාම් මෙම සීමාව වෙනස් නොකළහොත් මට කළ හැකි කිසිවක් නැත"
@@ -444,7 +444,7 @@ msgstr "ඔබගේ PDF ගොනුව විකේතනය කිරීම�
 msgid "Send me the password to encrypt your PDF file"
 msgstr "ඔබගේ PDF ගොනුව ආකේතනය කිරීමට මුරපදය එවන්න"
 
-#: pdf_bot/file/file_handlers.py:151
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
@@ -492,42 +492,6 @@ msgstr ""
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr ""
-
-#: pdf_bot/files/scale.py:25
-msgid "Select the scale type that you'll like to perform"
-msgstr "ඔබ වෙනස් කිරීමට කැමති පරිමාණ වර්ගය තෝරන්න"
-
-#: pdf_bot/files/scale.py:40
-msgid "Send me the width and height"
-msgstr "පළල සහ උස මට එවන්න"
-
-#: pdf_bot/files/scale.py:42
-msgid "This will set the width to 150 and height to 200"
-msgstr "මෙය පළල 150 දක්වා සහ උස 200 දක්වා සකසනු ඇත"
-
-#: pdf_bot/files/scale.py:52
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "තිරස් හා සිරස් අක්ෂ සඳහා පරිමාණ සාධක මට එවන්න"
-
-#: pdf_bot/files/scale.py:56
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "මෙය තිරස් අක්ෂය දෙගුණ කරන අතර සිරස් අක්ෂය අඩකින් අඩු කරයි"
-
-#: pdf_bot/files/scale.py:79
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "පරිමාණ සාධක {values} වලංගු නැත, කරුණාකර නැවත උත්සාහ කරන්න"
-
-#: pdf_bot/files/scale.py:101
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "මානයන් {values} වලංගු නැත, කරුණාකර නැවත උත්සාහ කරන්න"
-
-#: pdf_bot/files/scale.py:115
-msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
-msgstr "ඔබේ PDF ගොනුව තිරස් අතට {horizontal} සහ සිරස් අතට {vertical}"
-
-#: pdf_bot/files/scale.py:128
-msgid "Scaling your PDF file with width of {width} and height of {height}"
-msgstr "ඔබේ PDF ගොනුව {width} පළල සහ උස {height}"
 
 #: pdf_bot/files/split.py:54
 msgid "Send me the range of pages that you'll like to keep"
@@ -696,6 +660,42 @@ msgstr "කරුණාකර නැවත උත්සාහ කරන්න"
 #: pdf_bot/rotate/rotate_service.py:37
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "ඔබේ PDF ගොනුව දක්ෂිණාවර්තව භ්‍රමණය කිරීමට ඔබ කැමති අංශක ප්‍රමාණය තෝරන්න"
+
+#: pdf_bot/scale/scale_constants.py:5
+msgid "By scaling factor"
+msgstr ""
+
+#: pdf_bot/scale/scale_constants.py:6
+msgid "To dimension"
+msgstr ""
+
+#: pdf_bot/scale/scale_service.py:37
+msgid "Select the scale type that you'll like to perform"
+msgstr "ඔබ වෙනස් කිරීමට කැමති පරිමාණ වර්ගය තෝරන්න"
+
+#: pdf_bot/scale/scale_service.py:68
+msgid "The scaling factors {values} are invalid, please try again"
+msgstr "පරිමාණ සාධක {values} වලංගු නැත, කරුණාකර නැවත උත්සාහ කරන්න"
+
+#: pdf_bot/scale/scale_service.py:88
+msgid "The dimensions {values} are invalid, please try again"
+msgstr "මානයන් {values} වලංගු නැත, කරුණාකර නැවත උත්සාහ කරන්න"
+
+#: pdf_bot/scale/scale_service.py:107
+msgid "Send me the scaling factors for the horizontal and vertical axes"
+msgstr "තිරස් හා සිරස් අක්ෂ සඳහා පරිමාණ සාධක මට එවන්න"
+
+#: pdf_bot/scale/scale_service.py:112
+msgid "This will double the horizontal axis and halve the vertical axis"
+msgstr "මෙය තිරස් අක්ෂය දෙගුණ කරන අතර සිරස් අක්ෂය අඩකින් අඩු කරයි"
+
+#: pdf_bot/scale/scale_service.py:124
+msgid "Send me the width and height"
+msgstr "පළල සහ උස මට එවන්න"
+
+#: pdf_bot/scale/scale_service.py:126
+msgid "This will set the width to 150 and height to 200"
+msgstr "මෙය පළල 150 දක්වා සහ උස 200 දක්වා සකසනු ඇත"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1509,5 +1509,13 @@ msgstr "ඔබගේ PDF ගොනුවට වෝටර් මාර්ක් �
 #~ msgstr ""
 
 #~ msgid "Rotating your PDF file clockwise by {degree} degrees"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Scaling your PDF file, horizontally by"
+#~ " {horizontal} and vertically by {vertical}"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file with width of {width} and height of {height}"
 #~ msgstr ""
 

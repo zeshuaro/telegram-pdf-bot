@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 10:04+0000\n"
-"PO-Revision-Date: 2022-06-08 10:05\n"
+"POT-Creation-Date: 2022-06-08 10:56+0000\n"
+"PO-Revision-Date: 2022-06-08 10:57\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -275,7 +275,7 @@ msgstr "உங்கள் கோப்பு PPM கோப்பு அல்�
 msgid "Your file is too large for me to download and process"
 msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:152
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
@@ -444,7 +444,7 @@ msgstr "உங்கள் PPM கோப்பை மறைகுறிநீக
 msgid "Send me the password to encrypt your PDF file"
 msgstr "உங்கள் PPM கோப்பை குறியாக்க கடவுச்சொல்லை எனக்கு அனுப்பவும்"
 
-#: pdf_bot/file/file_handlers.py:151
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
 
@@ -492,42 +492,6 @@ msgstr "உங்கள் PPM கோப்பில் எந்த படங�
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "உங்கள் எல்லா படங்களுக்கும் மேலே பார்க்கவும்"
-
-#: pdf_bot/files/scale.py:25
-msgid "Select the scale type that you'll like to perform"
-msgstr "நீங்கள் செய்ய விரும்பும் அளவு வகையைத் தேர்ந்தெடுக்கவும்"
-
-#: pdf_bot/files/scale.py:40
-msgid "Send me the width and height"
-msgstr "அகலம் மற்றும் உயரத்தை எனக்கு அனுப்பவும்"
-
-#: pdf_bot/files/scale.py:42
-msgid "This will set the width to 150 and height to 200"
-msgstr "இது அகலத்தை 150 மற்றும் உயரம் 200 ஆக அமைக்கும்"
-
-#: pdf_bot/files/scale.py:52
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "கிடைமட்ட மற்றும் செங்குத்து அச்சுகளுக்கான அளவிடும் காரணிகளை எனக்கு அனுப்பவும்"
-
-#: pdf_bot/files/scale.py:56
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "இது கிடைமட்ட அச்சை இரட்டிப்பாக்கி செங்குத்து அச்சை பாதியாக மாற்றும்"
-
-#: pdf_bot/files/scale.py:79
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "{values} அளவிடும் காரணிகள் செல்லுபடியாகாது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
-
-#: pdf_bot/files/scale.py:101
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "{values} பரிமாணங்கள் செல்லுபடியாகாது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
-
-#: pdf_bot/files/scale.py:115
-msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
-msgstr "உங்கள் PTM கோப்பை அளவிடுதல், கிடைமட்டமாக {horizontal} மற்றும் செங்குத்தாக {vertical}"
-
-#: pdf_bot/files/scale.py:128
-msgid "Scaling your PDF file with width of {width} and height of {height}"
-msgstr "{width} அகலம் மற்றும் உயரம் உங்கள் PP1 கோப்பு அளவிடும் {height}"
 
 #: pdf_bot/files/split.py:54
 msgid "Send me the range of pages that you'll like to keep"
@@ -696,6 +660,42 @@ msgstr "தயவுசெய்து மீண்டும் முயற்�
 #: pdf_bot/rotate/rotate_service.py:37
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "உங்கள் PP1 கோப்பை கடிகாரதிசையில் சுழற்ற விரும்பும் டிகிரியைத் தேர்ந்தெடுக்கவும்"
+
+#: pdf_bot/scale/scale_constants.py:5
+msgid "By scaling factor"
+msgstr ""
+
+#: pdf_bot/scale/scale_constants.py:6
+msgid "To dimension"
+msgstr ""
+
+#: pdf_bot/scale/scale_service.py:37
+msgid "Select the scale type that you'll like to perform"
+msgstr "நீங்கள் செய்ய விரும்பும் அளவு வகையைத் தேர்ந்தெடுக்கவும்"
+
+#: pdf_bot/scale/scale_service.py:68
+msgid "The scaling factors {values} are invalid, please try again"
+msgstr "{values} அளவிடும் காரணிகள் செல்லுபடியாகாது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
+
+#: pdf_bot/scale/scale_service.py:88
+msgid "The dimensions {values} are invalid, please try again"
+msgstr "{values} பரிமாணங்கள் செல்லுபடியாகாது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
+
+#: pdf_bot/scale/scale_service.py:107
+msgid "Send me the scaling factors for the horizontal and vertical axes"
+msgstr "கிடைமட்ட மற்றும் செங்குத்து அச்சுகளுக்கான அளவிடும் காரணிகளை எனக்கு அனுப்பவும்"
+
+#: pdf_bot/scale/scale_service.py:112
+msgid "This will double the horizontal axis and halve the vertical axis"
+msgstr "இது கிடைமட்ட அச்சை இரட்டிப்பாக்கி செங்குத்து அச்சை பாதியாக மாற்றும்"
+
+#: pdf_bot/scale/scale_service.py:124
+msgid "Send me the width and height"
+msgstr "அகலம் மற்றும் உயரத்தை எனக்கு அனுப்பவும்"
+
+#: pdf_bot/scale/scale_service.py:126
+msgid "This will set the width to 150 and height to 200"
+msgstr "இது அகலத்தை 150 மற்றும் உயரம் 200 ஆக அமைக்கும்"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1509,5 +1509,13 @@ msgstr "உங்கள் PTM கோப்பில் வாட்டர்ம
 #~ msgstr ""
 
 #~ msgid "Rotating your PDF file clockwise by {degree} degrees"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Scaling your PDF file, horizontally by"
+#~ " {horizontal} and vertically by {vertical}"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file with width of {width} and height of {height}"
 #~ msgstr ""
 
