@@ -12,6 +12,7 @@ import pdf_diff
 from ocrmypdf.exceptions import PriorOcrFoundError
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
+from PyPDF2.pagerange import PageRange
 from weasyprint import CSS, HTML
 from weasyprint.text.fonts import FontConfiguration
 
@@ -334,6 +335,24 @@ class PdfService:
             try:
                 with open(out_path, "wb") as f:
                     writer.write(f)
+                yield out_path
+            finally:
+                pass
+
+    @staticmethod
+    def split_range_valid(split_range: str) -> bool:
+        return PageRange.valid(split_range)
+
+    @contextmanager
+    def split_pdf(self, file_id: str, split_range: str):
+        reader = self._open_pdf(file_id)
+        merger = PdfFileMerger()
+        merger.append(reader, pages=PageRange(split_range))
+
+        with self.io_service.create_temp_pdf_file("Split") as out_path:
+            try:
+                with open(out_path, "wb") as f:
+                    merger.write(f)
                 yield out_path
             finally:
                 pass

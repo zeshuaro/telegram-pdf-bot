@@ -7,6 +7,7 @@ import pytest
 from ocrmypdf.exceptions import PriorOcrFoundError
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
+from PyPDF2.pagerange import PageRange
 
 from pdf_bot.cli import CLIService
 from pdf_bot.compare import CompareService
@@ -662,3 +663,60 @@ def test_scale_pdf_to_dimension(
                 page.scale_to.assert_called_once_with(scale_data.x, scale_data.y)
                 calls.append(call(page))
             writer.add_page.assert_has_calls(calls)
+
+
+@pytest.mark.parametrize(
+    "split_range",
+    [
+        ":",
+        "7",
+        "0:3",
+        "7:",
+        "-1",
+        ":-1",
+        "-2",
+        "-2:",
+        "-3:-1",
+        "::2",
+        "1:10:2",
+        "::-1",
+        "3:0:-1",
+        "2:-1",
+    ],
+)
+def test_split_range_valid(pdf_service: PdfService, split_range: str):
+    assert pdf_service.split_range_valid(split_range)
+
+
+def test_split_range_invalid(pdf_service: PdfService):
+    assert not pdf_service.split_range_valid("clearly_invalid")
+
+
+def test_split_pdf(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    out_path = "out_path"
+    split_range = "7:"
+
+    reader = cast(PdfFileReader, MagicMock())
+    merger = cast(PdfFileMerger, MagicMock())
+    reader.is_encrypted = False
+
+    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.PdfFileReader"
+    ) as pdf_file_reader, patch(
+        "pdf_bot.pdf.pdf_service.PdfFileMerger"
+    ) as pdf_file_merger:
+        pdf_file_reader.return_value = reader
+        pdf_file_merger.return_value = merger
+
+        with pdf_service.split_pdf(file_id, split_range) as actual_path:
+            assert actual_path == out_path
+            telegram_service.download_file.assert_called_once_with(file_id)
+            io_service.create_temp_pdf_file.assert_called_once_with("Split")
+            merger.append.assert_called_once_with(reader, pages=PageRange(split_range))
