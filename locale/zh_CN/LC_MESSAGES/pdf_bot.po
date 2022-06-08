@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 11:26+0000\n"
-"PO-Revision-Date: 2022-06-08 11:27\n"
+"POT-Creation-Date: 2022-06-08 11:46+0000\n"
+"PO-Revision-Date: 2022-06-08 11:47\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -151,11 +151,11 @@ msgstr "{message} {emoji} （${value}）"
 msgid "Set Language 🌎"
 msgstr "设置语言 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "支持 PDF Bot"
 
@@ -263,48 +263,40 @@ msgstr "无法访问你的网页"
 msgid "Failed to convert your web page"
 msgstr "无法转换您的网页"
 
-#: pdf_bot/utils.py:34
+#: pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "操作取消"
 
-#: pdf_bot/telegram/telegram_service.py:58 pdf_bot/utils.py:67
-msgid "Your file is not a PDF file, please try again"
-msgstr "您的文件不是 PDF 文件，请再试一次"
-
-#: pdf_bot/commands/image.py:137 pdf_bot/utils.py:73
-msgid "Your file is too large for me to download and process"
-msgstr "您的文件太大，我无法下载和处理"
-
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
-#: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
-
-#: pdf_bot/utils.py:105
+#: pdf_bot/utils.py:61
 msgid "Something went wrong, please start over again"
 msgstr "出问题了，请重新开始"
 
-#: pdf_bot/utils.py:179
+#: pdf_bot/utils.py:92
 msgid "Your file is invalid and I couldn't open and process it"
 msgstr "您的文件无效，我无法打开和处理它"
 
-#: pdf_bot/utils.py:185
+#: pdf_bot/utils.py:98
 msgid "Your PDF file is already encrypted"
 msgstr "你的PDF档案本来就已经加密了"
 
-#: pdf_bot/utils.py:187 pdf_bot/utils.py:191
+#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "您的 PDF 文件已加密，您必须先解密"
 
-#: pdf_bot/utils.py:213
+#: pdf_bot/utils.py:126
 msgid "You've sent me these {file_type} so far:"
 msgstr "到目前为止， 你已经寄给我这些 {file_type} ："
 
-#: pdf_bot/utils.py:242
+#: pdf_bot/utils.py:155
 msgid "The result file is too large for me to send to you"
 msgstr "输出档案太大了，我无法发送给你"
 
-#: pdf_bot/utils.py:255 pdf_bot/utils.py:262
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
+
+#: pdf_bot/utils.py:168 pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "你的输出档案"
 
@@ -367,6 +359,10 @@ msgstr "没有档案名称"
 #: pdf_bot/commands/image.py:129
 msgid "Your file is not an image"
 msgstr "您的文件不是图像"
+
+#: pdf_bot/commands/image.py:137
+msgid "Your file is too large for me to download and process"
+msgstr "您的文件太大，我无法下载和处理"
 
 #: pdf_bot/commands/image.py:150
 msgid "images"
@@ -444,7 +440,7 @@ msgstr "把密码发给我来解密你的PDF档案"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "把密码发给我来加密你的PDF档案"
 
-#: pdf_bot/file/file_handlers.py:149
+#: pdf_bot/file/file_handlers.py:152
 msgid "Your file is too big for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
@@ -492,82 +488,6 @@ msgstr "我在您的 PDF 文件中找不到任何图像"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "查看上文以获取所有图像"
-
-#: pdf_bot/files/split.py:54
-msgid "Send me the range of pages that you'll like to keep"
-msgstr "向我发送你想要保留的页面范围"
-
-#: pdf_bot/files/split.py:55
-msgid "General usage"
-msgstr "基本用法"
-
-#: pdf_bot/files/split.py:56
-msgid "{range}      all pages"
-msgstr "{range}      所有页面"
-
-#: pdf_bot/files/split.py:57
-msgid "{range}      page 8 only"
-msgstr "仅限 {range}      页 8"
-
-#: pdf_bot/files/split.py:58
-msgid "{range}    first three pages"
-msgstr "前三页{range}"
-
-#: pdf_bot/files/split.py:59
-msgid "{range}     from page 8 onward"
-msgstr "{range}     从第 8 页开始"
-
-#: pdf_bot/files/split.py:60
-msgid "{range}     last page only"
-msgstr "仅 {range}     最后一页"
-
-#: pdf_bot/files/split.py:61
-msgid "{range}    all pages except the last page"
-msgstr "除最后一页外，所有页面都{range}"
-
-#: pdf_bot/files/split.py:64
-msgid "{range}     second last page only"
-msgstr "仅 {range}     最后一页的第二页"
-
-#: pdf_bot/files/split.py:65
-msgid "{range}    last two pages"
-msgstr "最后两页{range}"
-
-#: pdf_bot/files/split.py:66
-msgid "{range}  third and second last pages"
-msgstr "{range}  第三页和第二页"
-
-#: pdf_bot/files/split.py:67
-msgid "Advanced usage"
-msgstr "进阶用法"
-
-#: pdf_bot/files/split.py:68
-msgid "{range}    pages {pages} and to the end"
-msgstr "{range}    页 {pages} ，并到最后"
-
-#: pdf_bot/files/split.py:71
-msgid "{range} pages {pages}"
-msgstr "{range} 页 {pages}"
-
-#: pdf_bot/files/split.py:72
-msgid "{range}   all pages in reversed order"
-msgstr "{range}   所有页面的倒序"
-
-#: pdf_bot/files/split.py:73
-msgid "{range} pages {pages} except {page}"
-msgstr "除了 {page}， {pages} 页{range} 页"
-
-#: pdf_bot/files/split.py:76
-msgid "{range}  pages {pages}"
-msgstr "{range}  页 {pages}"
-
-#: pdf_bot/files/split.py:100
-msgid "The range is invalid, please try again"
-msgstr "范围无效，请再试一次"
-
-#: pdf_bot/files/split.py:106
-msgid "Splitting your PDF file"
-msgstr "正在分割你的PDF档案"
 
 #: pdf_bot/files/text.py:23
 msgid "Select how you'll like me to send the text to you"
@@ -697,6 +617,78 @@ msgstr "将宽度和高度发送给我"
 msgid "This will set the width to 150 and height to 200"
 msgstr "这将将宽度设置为 150，高度设置为 200"
 
+#: pdf_bot/split/split_service.py:65
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "向我发送你想要保留的页面范围"
+
+#: pdf_bot/split/split_service.py:66
+msgid "General usage"
+msgstr "基本用法"
+
+#: pdf_bot/split/split_service.py:67
+msgid "{range}      all pages"
+msgstr "{range}      所有页面"
+
+#: pdf_bot/split/split_service.py:68
+msgid "{range}      page 8 only"
+msgstr "仅限 {range}      页 8"
+
+#: pdf_bot/split/split_service.py:69
+msgid "{range}    first three pages"
+msgstr "前三页{range}"
+
+#: pdf_bot/split/split_service.py:70
+msgid "{range}     from page 8 onward"
+msgstr "{range}     从第 8 页开始"
+
+#: pdf_bot/split/split_service.py:71
+msgid "{range}     last page only"
+msgstr "仅 {range}     最后一页"
+
+#: pdf_bot/split/split_service.py:72
+msgid "{range}    all pages except the last page"
+msgstr "除最后一页外，所有页面都{range}"
+
+#: pdf_bot/split/split_service.py:75
+msgid "{range}     second last page only"
+msgstr "仅 {range}     最后一页的第二页"
+
+#: pdf_bot/split/split_service.py:76
+msgid "{range}    last two pages"
+msgstr "最后两页{range}"
+
+#: pdf_bot/split/split_service.py:77
+msgid "{range}  third and second last pages"
+msgstr "{range}  第三页和第二页"
+
+#: pdf_bot/split/split_service.py:80
+msgid "Advanced usage"
+msgstr "进阶用法"
+
+#: pdf_bot/split/split_service.py:81
+msgid "{range}    pages {pages} and to the end"
+msgstr "{range}    页 {pages} ，并到最后"
+
+#: pdf_bot/split/split_service.py:84
+msgid "{range} pages {pages}"
+msgstr "{range} 页 {pages}"
+
+#: pdf_bot/split/split_service.py:87
+msgid "{range}   all pages in reversed order"
+msgstr "{range}   所有页面的倒序"
+
+#: pdf_bot/split/split_service.py:90
+msgid "{range} pages {pages} except {page}"
+msgstr "除了 {page}， {pages} 页{range} 页"
+
+#: pdf_bot/split/split_service.py:93
+msgid "{range}  pages {pages}"
+msgstr "{range}  页 {pages}"
+
+#: pdf_bot/split/split_service.py:115
+msgid "The range is invalid, please try again"
+msgstr "范围无效，请再试一次"
+
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
 msgstr ""
@@ -705,6 +697,10 @@ msgstr ""
 msgid "Your image is too large for me to download and process, please try again with a differnt image\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:58
+msgid "Your file is not a PDF file, please try again"
+msgstr "您的文件不是 PDF 文件，请再试一次"
 
 #: pdf_bot/telegram/telegram_service.py:62
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
@@ -1517,5 +1513,8 @@ msgstr "正在添加水印到你的PDF档案中"
 #~ msgstr ""
 
 #~ msgid "Scaling your PDF file with width of {width} and height of {height}"
+#~ msgstr ""
+
+#~ msgid "Splitting your PDF file"
 #~ msgstr ""
 

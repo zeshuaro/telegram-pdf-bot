@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 11:26+0000\n"
-"PO-Revision-Date: 2022-06-08 11:26\n"
+"POT-Creation-Date: 2022-06-08 11:46+0000\n"
+"PO-Revision-Date: 2022-06-08 11:46\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -151,11 +151,11 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "Setează Limba 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Alăturați-vă canalului"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Suport PDF Bot"
 
@@ -263,48 +263,40 @@ msgstr "Imposibil de accesat pagina web"
 msgid "Failed to convert your web page"
 msgstr "Nu a reușit să convertească pagina web"
 
-#: pdf_bot/utils.py:34
+#: pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "Acțiune revocată"
 
-#: pdf_bot/telegram/telegram_service.py:58 pdf_bot/utils.py:67
-msgid "Your file is not a PDF file, please try again"
-msgstr "Fișierul nu este un fișier PDF, încercați din nou"
-
-#: pdf_bot/commands/image.py:137 pdf_bot/utils.py:73
-msgid "Your file is too large for me to download and process"
-msgstr "Fișierul este prea mare pentru mine pentru a descărca și procesa"
-
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
-#: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "Rețineți că aceasta este o limitare Telegram Bot și nu e nimic nu pot face cu excepția cazului în Telegram modificări această limită"
-
-#: pdf_bot/utils.py:105
+#: pdf_bot/utils.py:61
 msgid "Something went wrong, please start over again"
 msgstr "Ceva nu a mers bine, vă rugăm să începeți din nou"
 
-#: pdf_bot/utils.py:179
+#: pdf_bot/utils.py:92
 msgid "Your file is invalid and I couldn't open and process it"
 msgstr "Fișierul nu este valid și nu l-am putut deschide și procesa"
 
-#: pdf_bot/utils.py:185
+#: pdf_bot/utils.py:98
 msgid "Your PDF file is already encrypted"
 msgstr "Fișierul PDF este deja criptat"
 
-#: pdf_bot/utils.py:187 pdf_bot/utils.py:191
+#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Fișierul PDF este criptat și va trebui să îl decriptați mai întâi"
 
-#: pdf_bot/utils.py:213
+#: pdf_bot/utils.py:126
 msgid "You've sent me these {file_type} so far:"
 msgstr "Mi-ai trimis aceste {file_type} până acum:"
 
-#: pdf_bot/utils.py:242
+#: pdf_bot/utils.py:155
 msgid "The result file is too large for me to send to you"
 msgstr "Fișierul rezultat este prea mare pentru a-l trimite la dvs."
 
-#: pdf_bot/utils.py:255 pdf_bot/utils.py:262
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "Rețineți că aceasta este o limitare Telegram Bot și nu e nimic nu pot face cu excepția cazului în Telegram modificări această limită"
+
+#: pdf_bot/utils.py:168 pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "Aici este fișierul rezultat"
 
@@ -367,6 +359,10 @@ msgstr "Nume fișier indisponibil"
 #: pdf_bot/commands/image.py:129
 msgid "Your file is not an image"
 msgstr "Fișierul nu este o imagine"
+
+#: pdf_bot/commands/image.py:137
+msgid "Your file is too large for me to download and process"
+msgstr "Fișierul este prea mare pentru mine pentru a descărca și procesa"
 
 #: pdf_bot/commands/image.py:150
 msgid "images"
@@ -444,7 +440,7 @@ msgstr "Trimite-mi parola pentru a decripta fișierul PDF"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Trimite-mi parola pentru criptarea fișierului PDF"
 
-#: pdf_bot/file/file_handlers.py:149
+#: pdf_bot/file/file_handlers.py:152
 msgid "Your file is too big for me to download and process"
 msgstr "Fișierul este prea mare pentru mine pentru a descărca și procesa"
 
@@ -492,82 +488,6 @@ msgstr "Nu am putut găsi imagini în fișierul PDF"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Vedeți mai sus pentru toate imaginile dvs."
-
-#: pdf_bot/files/split.py:54
-msgid "Send me the range of pages that you'll like to keep"
-msgstr "Trimite-mi gama de pagini pe care vei dori să le păstrezi"
-
-#: pdf_bot/files/split.py:55
-msgid "General usage"
-msgstr "Utilizare generală"
-
-#: pdf_bot/files/split.py:56
-msgid "{range}      all pages"
-msgstr "{range}      toate paginile"
-
-#: pdf_bot/files/split.py:57
-msgid "{range}      page 8 only"
-msgstr "{range}      pagina 8 numai"
-
-#: pdf_bot/files/split.py:58
-msgid "{range}    first three pages"
-msgstr "{range}    primele trei pagini"
-
-#: pdf_bot/files/split.py:59
-msgid "{range}     from page 8 onward"
-msgstr "{range}     începând cu pagina 8"
-
-#: pdf_bot/files/split.py:60
-msgid "{range}     last page only"
-msgstr "{range}     doar ultima pagină"
-
-#: pdf_bot/files/split.py:61
-msgid "{range}    all pages except the last page"
-msgstr "{range}    toate paginile, cu excepția ultimei pagini"
-
-#: pdf_bot/files/split.py:64
-msgid "{range}     second last page only"
-msgstr "{range}     a doua pagină doar"
-
-#: pdf_bot/files/split.py:65
-msgid "{range}    last two pages"
-msgstr "{range}    ultimele două pagini"
-
-#: pdf_bot/files/split.py:66
-msgid "{range}  third and second last pages"
-msgstr "{range}  treia și a doua pagină"
-
-#: pdf_bot/files/split.py:67
-msgid "Advanced usage"
-msgstr "Utilizare complexă"
-
-#: pdf_bot/files/split.py:68
-msgid "{range}    pages {pages} and to the end"
-msgstr "{range}    pagini {pages} și până la sfârșit"
-
-#: pdf_bot/files/split.py:71
-msgid "{range} pages {pages}"
-msgstr "{pages}pagini {range}"
-
-#: pdf_bot/files/split.py:72
-msgid "{range}   all pages in reversed order"
-msgstr "{range}   toate paginile în ordine inversă"
-
-#: pdf_bot/files/split.py:73
-msgid "{range} pages {pages} except {page}"
-msgstr "{pages} pagini {range} , cu excepția {page}"
-
-#: pdf_bot/files/split.py:76
-msgid "{range}  pages {pages}"
-msgstr "{pages}pagini {range}"
-
-#: pdf_bot/files/split.py:100
-msgid "The range is invalid, please try again"
-msgstr "Intervalul nu este valid, încercați din nou"
-
-#: pdf_bot/files/split.py:106
-msgid "Splitting your PDF file"
-msgstr "Divizarea fișierului PDF"
 
 #: pdf_bot/files/text.py:23
 msgid "Select how you'll like me to send the text to you"
@@ -697,6 +617,78 @@ msgstr "Trimite-mi lățimea și înălțimea"
 msgid "This will set the width to 150 and height to 200"
 msgstr "Aceasta va seta lățimea la 150 și înălțimea la 200"
 
+#: pdf_bot/split/split_service.py:65
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "Trimite-mi gama de pagini pe care vei dori să le păstrezi"
+
+#: pdf_bot/split/split_service.py:66
+msgid "General usage"
+msgstr "Utilizare generală"
+
+#: pdf_bot/split/split_service.py:67
+msgid "{range}      all pages"
+msgstr "{range}      toate paginile"
+
+#: pdf_bot/split/split_service.py:68
+msgid "{range}      page 8 only"
+msgstr "{range}      pagina 8 numai"
+
+#: pdf_bot/split/split_service.py:69
+msgid "{range}    first three pages"
+msgstr "{range}    primele trei pagini"
+
+#: pdf_bot/split/split_service.py:70
+msgid "{range}     from page 8 onward"
+msgstr "{range}     începând cu pagina 8"
+
+#: pdf_bot/split/split_service.py:71
+msgid "{range}     last page only"
+msgstr "{range}     doar ultima pagină"
+
+#: pdf_bot/split/split_service.py:72
+msgid "{range}    all pages except the last page"
+msgstr "{range}    toate paginile, cu excepția ultimei pagini"
+
+#: pdf_bot/split/split_service.py:75
+msgid "{range}     second last page only"
+msgstr "{range}     a doua pagină doar"
+
+#: pdf_bot/split/split_service.py:76
+msgid "{range}    last two pages"
+msgstr "{range}    ultimele două pagini"
+
+#: pdf_bot/split/split_service.py:77
+msgid "{range}  third and second last pages"
+msgstr "{range}  treia și a doua pagină"
+
+#: pdf_bot/split/split_service.py:80
+msgid "Advanced usage"
+msgstr "Utilizare complexă"
+
+#: pdf_bot/split/split_service.py:81
+msgid "{range}    pages {pages} and to the end"
+msgstr "{range}    pagini {pages} și până la sfârșit"
+
+#: pdf_bot/split/split_service.py:84
+msgid "{range} pages {pages}"
+msgstr "{pages}pagini {range}"
+
+#: pdf_bot/split/split_service.py:87
+msgid "{range}   all pages in reversed order"
+msgstr "{range}   toate paginile în ordine inversă"
+
+#: pdf_bot/split/split_service.py:90
+msgid "{range} pages {pages} except {page}"
+msgstr "{pages} pagini {range} , cu excepția {page}"
+
+#: pdf_bot/split/split_service.py:93
+msgid "{range}  pages {pages}"
+msgstr "{pages}pagini {range}"
+
+#: pdf_bot/split/split_service.py:115
+msgid "The range is invalid, please try again"
+msgstr "Intervalul nu este valid, încercați din nou"
+
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
 msgstr ""
@@ -705,6 +697,10 @@ msgstr ""
 msgid "Your image is too large for me to download and process, please try again with a differnt image\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:58
+msgid "Your file is not a PDF file, please try again"
+msgstr "Fișierul nu este un fișier PDF, încercați din nou"
 
 #: pdf_bot/telegram/telegram_service.py:62
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
@@ -1517,5 +1513,8 @@ msgstr "Adăugarea filigranului în fișierul PDF"
 #~ msgstr ""
 
 #~ msgid "Scaling your PDF file with width of {width} and height of {height}"
+#~ msgstr ""
+
+#~ msgid "Splitting your PDF file"
 #~ msgstr ""
 
