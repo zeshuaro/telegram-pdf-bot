@@ -37,6 +37,9 @@ class ScaleData:
     x: str
     y: str
 
+    def __str__(self) -> str:
+        return f"{self.x} {self.y}"
+
     @staticmethod
     def from_string(value: str) -> "ScaleData":
         x, y = map(float, value.split())

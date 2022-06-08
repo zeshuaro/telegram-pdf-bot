@@ -325,10 +325,10 @@ class PdfService:
 
         for page in reader.pages:
             if isinstance(scale_data, ScaleByData):
-                new_page = page.scale(scale_data.x, scale_data.y)
+                page.scale(scale_data.x, scale_data.y)
             else:
-                new_page = page.scale_to(scale_data.x, scale_data.y)
-            writer.add_page(new_page)
+                page.scale_to(scale_data.x, scale_data.y)
+            writer.add_page(page)
 
         with self.io_service.create_temp_pdf_file("Scaled") as out_path:
             try:
