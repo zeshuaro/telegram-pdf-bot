@@ -28,7 +28,6 @@ from pdf_bot.consts import (
     TO_PDF,
     WAIT_EXTRACT_IMAGE_TYPE,
     WAIT_IMAGE_TASK,
-    WAIT_SPLIT_RANGE,
     WAIT_TEXT_TYPE,
     WAIT_TO_IMAGE_TYPE,
 )
@@ -45,12 +44,12 @@ from pdf_bot.files.image import (
     pdf_to_images,
     process_image_task,
 )
-from pdf_bot.files.split import ask_split_range, split_pdf
 from pdf_bot.files.text import ask_text_type, get_pdf_text
 from pdf_bot.language import set_lang
 from pdf_bot.rename import RenameService, rename_constants
 from pdf_bot.rotate import RotateService, rotate_constants
 from pdf_bot.scale import ScaleService, scale_constants
+from pdf_bot.split import SplitService, split_constants
 from pdf_bot.utils import cancel
 
 
@@ -65,6 +64,7 @@ class FileHandlers:
         rename_service: RenameService,
         rotate_service: RotateService,
         scale_service: ScaleService,
+        split_service: SplitService,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
@@ -74,6 +74,7 @@ class FileHandlers:
         self.rename_service = rename_service
         self.rotate_service = rotate_service
         self.scale_service = scale_service
+        self.split_service = split_service
 
     def conversation_handler(self):
         return ConversationHandler(
@@ -122,7 +123,9 @@ class FileHandlers:
                         TEXT_FILTER, self.scale_service.scale_pdf_to_dimension
                     )
                 ],
-                WAIT_SPLIT_RANGE: [MessageHandler(TEXT_FILTER, split_pdf)],
+                split_constants.WAIT_SPLIT_RANGE: [
+                    MessageHandler(TEXT_FILTER, self.split_service.split_pdf)
+                ],
                 WAIT_TEXT_TYPE: [MessageHandler(TEXT_FILTER, self.check_text_task)],
                 WAIT_EXTRACT_IMAGE_TYPE: [
                     MessageHandler(TEXT_FILTER, self.check_get_images_task)
@@ -184,7 +187,7 @@ class FileHandlers:
         if text == _(SCALE):
             return self.scale_service.ask_scale_type(update, context)
         if text == _(SPLIT):
-            return ask_split_range(update, context)
+            return self.split_service.ask_split_range(update, context)
         if text == _(EXTRACT_TEXT):
             return ask_text_type(update, context)
         if text == OCR:
