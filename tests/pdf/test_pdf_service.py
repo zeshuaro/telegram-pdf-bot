@@ -434,6 +434,27 @@ def test_encrypt_pdf_already_encrypted(
             io_service.create_temp_pdf_file.assert_not_called()
 
 
+def test_extract_text_from_pdf(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    file_path = "file_path"
+    telegram_service.download_file.return_value.__enter__.return_value = file_path
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.extract_text"
+    ) as extract_text, patch(
+        "pdf_bot.pdf.pdf_service.textwrap"
+    ), pdf_service.extract_text_from_pdf(
+        file_id
+    ):
+        telegram_service.download_file.assert_called_once_with(file_id)
+        extract_text.assert_called_once_with(file_path)
+        io_service.create_temp_txt_file.assert_called_once_with("PDF_text")
+
+
 def test_merge_pdfs(
     pdf_service: PdfService,
     telegram_service: TelegramService,

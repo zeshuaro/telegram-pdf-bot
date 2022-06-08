@@ -1,6 +1,7 @@
 import gettext
 import os
 import shutil
+import textwrap
 from contextlib import contextmanager
 from typing import Generator, List
 
@@ -10,6 +11,7 @@ import ocrmypdf
 import pdf2image
 import pdf_diff
 from ocrmypdf.exceptions import PriorOcrFoundError
+from pdfminer.high_level import extract_text
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
 from PyPDF2.pagerange import PageRange
@@ -249,6 +251,20 @@ class PdfService:
             try:
                 with open(out_path, "wb") as f:
                     writer.write(f)
+                yield out_path
+            finally:
+                pass
+
+    @contextmanager
+    def extract_text_from_pdf(self, file_id: str):
+        with self.telegram_service.download_file(file_id) as file_path:
+            text = extract_text(file_path)
+
+        wrapped_text = textwrap.wrap(text)
+        with self.io_service.create_temp_txt_file("PDF_text") as out_path:
+            try:
+                with open(out_path, "w") as f:
+                    f.write("\n".join(wrapped_text))
                 yield out_path
             finally:
                 pass

@@ -49,3 +49,9 @@ def test_create_temp_png_file(io_service: IOService):
     with io_service.create_temp_png_file("prefix") as out_path:
         paths = os.path.split(out_path)
         assert paths[1].endswith(".png")
+
+
+def test_create_temp_txt_file(io_service: IOService):
+    with io_service.create_temp_txt_file("prefix") as out_path:
+        paths = os.path.split(out_path)
+        assert paths[1].endswith(".txt")
