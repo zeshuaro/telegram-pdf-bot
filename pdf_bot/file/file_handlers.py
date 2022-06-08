@@ -5,7 +5,6 @@ from pdf_bot.consts import (
     BACK,
     BEAUTIFY,
     BLACK_AND_WHITE,
-    BY_PERCENT,
     CANCEL,
     COMPRESS,
     COMPRESSED,
@@ -25,14 +24,10 @@ from pdf_bot.consts import (
     TEXT_FILE,
     TEXT_FILTER,
     TEXT_MESSAGE,
-    TO_DIMENSIONS,
     TO_IMAGES,
     TO_PDF,
     WAIT_EXTRACT_IMAGE_TYPE,
     WAIT_IMAGE_TASK,
-    WAIT_SCALE_DIMENSION,
-    WAIT_SCALE_PERCENT,
-    WAIT_SCALE_TYPE,
     WAIT_SPLIT_RANGE,
     WAIT_TEXT_TYPE,
     WAIT_TO_IMAGE_TYPE,
@@ -50,17 +45,12 @@ from pdf_bot.files.image import (
     pdf_to_images,
     process_image_task,
 )
-from pdf_bot.files.scale import (
-    ask_scale_type,
-    ask_scale_value,
-    check_scale_dimension,
-    check_scale_percent,
-)
 from pdf_bot.files.split import ask_split_range, split_pdf
 from pdf_bot.files.text import ask_text_type, get_pdf_text
 from pdf_bot.language import set_lang
 from pdf_bot.rename import RenameService, rename_constants
 from pdf_bot.rotate import RotateService, rotate_constants
+from pdf_bot.scale import ScaleService, scale_constants
 from pdf_bot.utils import cancel
 
 
@@ -74,6 +64,7 @@ class FileHandlers:
         encrypt_service: EncryptService,
         rename_service: RenameService,
         rotate_service: RotateService,
+        scale_service: ScaleService,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
@@ -82,6 +73,7 @@ class FileHandlers:
         self.encrypt_service = encrypt_service
         self.rename_service = rename_service
         self.rotate_service = rotate_service
+        self.scale_service = scale_service
 
     def conversation_handler(self):
         return ConversationHandler(
@@ -119,13 +111,19 @@ class FileHandlers:
                 rotate_constants.WAIT_ROTATE_DEGREE: [
                     MessageHandler(TEXT_FILTER, self.rotate_service.rotate_pdf)
                 ],
+                scale_constants.WAIT_SCALE_TYPE: [
+                    MessageHandler(TEXT_FILTER, self.scale_service.check_scale_type)
+                ],
+                scale_constants.WAIT_SCALE_FACTOR: [
+                    MessageHandler(TEXT_FILTER, self.scale_service.scale_pdf_by_factor)
+                ],
+                scale_constants.WAIT_SCALE_DIMENSION: [
+                    MessageHandler(
+                        TEXT_FILTER, self.scale_service.scale_pdf_to_dimension
+                    )
+                ],
                 WAIT_SPLIT_RANGE: [MessageHandler(TEXT_FILTER, split_pdf)],
                 WAIT_TEXT_TYPE: [MessageHandler(TEXT_FILTER, self.check_text_task)],
-                WAIT_SCALE_TYPE: [MessageHandler(TEXT_FILTER, self.check_scale_task)],
-                WAIT_SCALE_PERCENT: [MessageHandler(TEXT_FILTER, check_scale_percent)],
-                WAIT_SCALE_DIMENSION: [
-                    MessageHandler(TEXT_FILTER, check_scale_dimension)
-                ],
                 WAIT_EXTRACT_IMAGE_TYPE: [
                     MessageHandler(TEXT_FILTER, self.check_get_images_task)
                 ],
@@ -183,8 +181,8 @@ class FileHandlers:
             return self.rename_service.ask_new_file_name(update, context)
         if text == _(ROTATE):
             return self.rotate_service.ask_degree(update, context)
-        if text in [_(SCALE)]:
-            return ask_scale_type(update, context)
+        if text == _(SCALE):
+            return self.scale_service.ask_scale_type(update, context)
         if text == _(SPLIT):
             return ask_split_range(update, context)
         if text == _(EXTRACT_TEXT):
@@ -211,17 +209,6 @@ class FileHandlers:
             return cancel(update, context)
 
         return WAIT_IMAGE_TASK
-
-    def check_scale_task(self, update, context):
-        _ = set_lang(update, context)
-        text = update.effective_message.text
-
-        if text in [_(BY_PERCENT), _(TO_DIMENSIONS)]:
-            return ask_scale_value(update, context)
-        if text == _(BACK):
-            return self.file_task_service.ask_pdf_task(update, context)
-
-        return WAIT_SCALE_TYPE
 
     def check_text_task(self, update, context):
         _ = set_lang(update, context)

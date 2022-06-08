@@ -602,9 +602,6 @@ def test_scale_pdf_by_factor(
     reader.is_encrypted = False
 
     pages = [MagicMock() for _ in range(randint(2, 10))]
-    scaled_pages = [MagicMock() for _ in pages]
-    for i, page in enumerate(pages):
-        page.scale.return_value = scaled_pages[i]
     reader.pages = pages
 
     io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
@@ -622,10 +619,10 @@ def test_scale_pdf_by_factor(
             telegram_service.download_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("Scaled")
 
+            calls = []
             for page in pages:
                 page.scale.assert_called_once_with(scale_data.x, scale_data.y)
-
-            calls = [call(page) for page in scaled_pages]
+                calls.append(call(page))
             writer.add_page.assert_has_calls(calls)
 
 
@@ -643,9 +640,6 @@ def test_scale_pdf_to_dimension(
     reader.is_encrypted = False
 
     pages = [MagicMock() for _ in range(randint(2, 10))]
-    scaled_pages = [MagicMock() for _ in pages]
-    for i, page in enumerate(pages):
-        page.scale_to.return_value = scaled_pages[i]
     reader.pages = pages
 
     io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
@@ -663,8 +657,8 @@ def test_scale_pdf_to_dimension(
             telegram_service.download_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("Scaled")
 
+            calls = []
             for page in pages:
                 page.scale_to.assert_called_once_with(scale_data.x, scale_data.y)
-
-            calls = [call(page) for page in scaled_pages]
+                calls.append(call(page))
             writer.add_page.assert_has_calls(calls)
