@@ -2,7 +2,7 @@ import os
 import tempfile
 from threading import Lock
 
-from PyPDF2 import PdfFileReader, PdfFileWriter
+from PyPDF2 import PdfFileReader
 from PyPDF2.errors import PdfReadError
 from telegram import (
     ChatAction,
@@ -12,19 +12,11 @@ from telegram import (
     ReplyKeyboardRemove,
     Update,
 )
-from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
+from telegram.constants import MAX_FILESIZE_UPLOAD
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import EventAction, TaskType, send_event
-from pdf_bot.consts import (
-    CANCEL,
-    CHANNEL_NAME,
-    PAYMENT,
-    PDF_INFO,
-    PDF_INVALID_FORMAT,
-    PDF_OK,
-    PDF_TOO_LARGE,
-)
+from pdf_bot.consts import CANCEL, CHANNEL_NAME, PAYMENT
 from pdf_bot.language import set_lang
 
 
@@ -43,42 +35,6 @@ def reply_with_cancel_btn(update: Update, context: CallbackContext, text: str):
         [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
     )
     update.effective_message.reply_text(text, reply_markup=reply_markup)
-
-
-def check_pdf(update, context, send_msg=True):
-    """
-    Validate the PDF file
-    Args:
-        update: the update object
-        context: the context object
-        send_msg: the bool indicating to send a message or not
-
-    Returns:
-        The variable indicating the validation result
-    """
-    pdf_status = PDF_OK
-    message = update.effective_message
-    pdf_file = message.document
-    _ = set_lang(update, context)
-
-    if not pdf_file.mime_type.endswith("pdf"):
-        pdf_status = PDF_INVALID_FORMAT
-        if send_msg:
-            message.reply_text(_("Your file is not a PDF file, please try again"))
-    elif pdf_file.file_size >= MAX_FILESIZE_DOWNLOAD:
-        pdf_status = PDF_TOO_LARGE
-        if send_msg:
-            message.reply_text(
-                "{desc_1}\n\n{desc_2}".format(
-                    desc_1=_("Your file is too large for me to download and process"),
-                    desc_2=_(
-                        "Note that this is a Telegram Bot limitation and there's "
-                        "nothing I can do unless Telegram changes this limit"
-                    ),
-                )
-            )
-
-    return pdf_status
 
 
 def check_user_data(
@@ -109,49 +65,6 @@ def check_user_data(
         lock.release()
 
     return data_ok
-
-
-def process_pdf(
-    update,
-    context,
-    task_type: TaskType,
-    encrypt_pw=None,
-    rotate_degree=None,
-    scale_by=None,
-    scale_to=None,
-):
-    with tempfile.NamedTemporaryFile() as tf:
-        user_data = context.user_data
-        file_id, file_name = user_data[PDF_INFO]
-
-        if encrypt_pw is not None:
-            pdf_reader = open_pdf(update, context, file_id, tf.name, task_type)
-        else:
-            pdf_reader = open_pdf(update, context, file_id, tf.name)
-
-        if pdf_reader is not None:
-            pdf_writer = PdfFileWriter()
-            for page in pdf_reader.pages:
-                if rotate_degree is not None:
-                    pdf_writer.addPage(page.rotateClockwise(rotate_degree))
-                elif scale_by is not None:
-                    page.scale(scale_by[0], scale_by[1])
-                    pdf_writer.addPage(page)
-                elif scale_to is not None:
-                    page.scaleTo(scale_to[0], scale_to[1])
-                    pdf_writer.addPage(page)
-                else:
-                    pdf_writer.addPage(page)
-
-            if encrypt_pw is not None:
-                pdf_writer.encrypt(encrypt_pw)
-
-            # Send result file
-            write_send_pdf(update, context, pdf_writer, file_name, task_type)
-
-    # Clean up memory
-    if user_data[PDF_INFO] == file_id:
-        del user_data[PDF_INFO]
 
 
 def open_pdf(update, context, file_id, file_name, task_type=None):
