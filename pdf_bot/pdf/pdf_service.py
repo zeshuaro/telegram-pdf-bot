@@ -262,7 +262,7 @@ class PdfService:
             text = extract_text(file_path)
 
         if not text:
-            raise PdfNoTextError()
+            raise PdfNoTextError(_("No text found in your PDF file"))
 
         wrapped_text = textwrap.wrap(text)
         with self.io_service.create_temp_txt_file("PDF_text") as out_path:
