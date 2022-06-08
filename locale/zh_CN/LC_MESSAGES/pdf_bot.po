@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 10:04+0000\n"
-"PO-Revision-Date: 2022-06-08 10:05\n"
+"POT-Creation-Date: 2022-06-08 10:56+0000\n"
+"PO-Revision-Date: 2022-06-08 10:57\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -275,7 +275,7 @@ msgstr "您的文件不是 PDF 文件，请再试一次"
 msgid "Your file is too large for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:152
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
@@ -444,7 +444,7 @@ msgstr "把密码发给我来解密你的PDF档案"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "把密码发给我来加密你的PDF档案"
 
-#: pdf_bot/file/file_handlers.py:151
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
@@ -492,42 +492,6 @@ msgstr "我在您的 PDF 文件中找不到任何图像"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "查看上文以获取所有图像"
-
-#: pdf_bot/files/scale.py:25
-msgid "Select the scale type that you'll like to perform"
-msgstr "选择你要怎样缩放"
-
-#: pdf_bot/files/scale.py:40
-msgid "Send me the width and height"
-msgstr "将宽度和高度发送给我"
-
-#: pdf_bot/files/scale.py:42
-msgid "This will set the width to 150 and height to 200"
-msgstr "这将将宽度设置为 150，高度设置为 200"
-
-#: pdf_bot/files/scale.py:52
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "将水平轴和垂直轴的缩放因子发送给我"
-
-#: pdf_bot/files/scale.py:56
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "这将使水平轴翻倍，将垂直轴减半"
-
-#: pdf_bot/files/scale.py:79
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "{values} 的缩放因子无效，请再试一次"
-
-#: pdf_bot/files/scale.py:101
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "尺寸 {values} 无效，请再试一次"
-
-#: pdf_bot/files/scale.py:115
-msgid "Scaling your PDF file, horizontally by {horizontal} and vertically by {vertical}"
-msgstr "按 {horizontal} 水平缩放 PDF 文件，通过 {vertical}垂直缩放"
-
-#: pdf_bot/files/scale.py:128
-msgid "Scaling your PDF file with width of {width} and height of {height}"
-msgstr "将 PDF 文件的宽度与 {width} 和高度 {height}"
 
 #: pdf_bot/files/split.py:54
 msgid "Send me the range of pages that you'll like to keep"
@@ -696,6 +660,42 @@ msgstr "请再试一次"
 #: pdf_bot/rotate/rotate_service.py:37
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "选择你想要顺时针旋转你PDF档案的度数"
+
+#: pdf_bot/scale/scale_constants.py:5
+msgid "By scaling factor"
+msgstr ""
+
+#: pdf_bot/scale/scale_constants.py:6
+msgid "To dimension"
+msgstr ""
+
+#: pdf_bot/scale/scale_service.py:37
+msgid "Select the scale type that you'll like to perform"
+msgstr "选择你要怎样缩放"
+
+#: pdf_bot/scale/scale_service.py:68
+msgid "The scaling factors {values} are invalid, please try again"
+msgstr "{values} 的缩放因子无效，请再试一次"
+
+#: pdf_bot/scale/scale_service.py:88
+msgid "The dimensions {values} are invalid, please try again"
+msgstr "尺寸 {values} 无效，请再试一次"
+
+#: pdf_bot/scale/scale_service.py:107
+msgid "Send me the scaling factors for the horizontal and vertical axes"
+msgstr "将水平轴和垂直轴的缩放因子发送给我"
+
+#: pdf_bot/scale/scale_service.py:112
+msgid "This will double the horizontal axis and halve the vertical axis"
+msgstr "这将使水平轴翻倍，将垂直轴减半"
+
+#: pdf_bot/scale/scale_service.py:124
+msgid "Send me the width and height"
+msgstr "将宽度和高度发送给我"
+
+#: pdf_bot/scale/scale_service.py:126
+msgid "This will set the width to 150 and height to 200"
+msgstr "这将将宽度设置为 150，高度设置为 200"
 
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
@@ -1509,5 +1509,13 @@ msgstr "正在添加水印到你的PDF档案中"
 #~ msgstr ""
 
 #~ msgid "Rotating your PDF file clockwise by {degree} degrees"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Scaling your PDF file, horizontally by"
+#~ " {horizontal} and vertically by {vertical}"
+#~ msgstr ""
+
+#~ msgid "Scaling your PDF file with width of {width} and height of {height}"
 #~ msgstr ""
 
