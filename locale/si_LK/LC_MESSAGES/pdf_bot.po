@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 11:46+0000\n"
-"PO-Revision-Date: 2022-06-08 11:47\n"
+"POT-Creation-Date: 2022-06-08 13:38+0000\n"
+"PO-Revision-Date: 2022-06-08 13:38\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -537,31 +537,35 @@ msgstr "ඔබ මට එවා ඇත්තේ එක් PDF ගොනුවක
 msgid "Merging your PDF files"
 msgstr "ඔබගේ PDF ගොනු එකතු කරමින් පවතී"
 
-#: pdf_bot/pdf/pdf_service.py:215
+#: pdf_bot/pdf/pdf_service.py:218
 msgid "Your PDF file is not encrypted"
 msgstr "ඔබගේ PDF ගොනුව ආකේතනය කර නොමැත"
 
-#: pdf_bot/pdf/pdf_service.py:220
+#: pdf_bot/pdf/pdf_service.py:223
 msgid "Incorrect password, please try again"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:224
+#: pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "මට විකේතනය කළ නොහැකි ක්‍රමයක් සමඟ ඔබේ PDF ගොනුව සංකේතනය කර ඇත"
 
-#: pdf_bot/pdf/pdf_service.py:269
+#: pdf_bot/pdf/pdf_service.py:265
+msgid "No text found in your PDF file"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:289
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "මෙම ගොනුව වලංගු නොවන බැවින් මට ඔබේ PDF ගොනු ඒකාබද්ධ කිරීමට නොහැකි විය: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:290
+#: pdf_bot/pdf/pdf_service.py:310
 msgid "Your PDF file already has a text layer"
 msgstr "ඔබගේ PDF ගොනුවට දැනටමත් අකුරු ස්ථරයක් ඇත"
 
-#: pdf_bot/pdf/pdf_service.py:369
+#: pdf_bot/pdf/pdf_service.py:389
 msgid "Your PDF file is invalid"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:372
+#: pdf_bot/pdf/pdf_service.py:392
 msgid "Your PDF file is encrypted"
 msgstr ""
 

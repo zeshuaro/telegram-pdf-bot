@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 11:46+0000\n"
-"PO-Revision-Date: 2022-06-08 11:46\n"
+"POT-Creation-Date: 2022-06-08 13:38+0000\n"
+"PO-Revision-Date: 2022-06-08 13:38\n"
 "Last-Translator: \n"
 "Language: sv\n"
 "Language-Team: Swedish\n"
@@ -537,31 +537,35 @@ msgstr "Du har bara skickat mig en PDF-fil."
 msgid "Merging your PDF files"
 msgstr "Sammanslagning av dina PDF-filer"
 
-#: pdf_bot/pdf/pdf_service.py:215
+#: pdf_bot/pdf/pdf_service.py:218
 msgid "Your PDF file is not encrypted"
 msgstr "Din PDF-fil är inte krypterad"
 
-#: pdf_bot/pdf/pdf_service.py:220
+#: pdf_bot/pdf/pdf_service.py:223
 msgid "Incorrect password, please try again"
 msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:224
+#: pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Din PDF-fil är krypterad med en metod som jag inte kan dekryptera"
 
-#: pdf_bot/pdf/pdf_service.py:269
+#: pdf_bot/pdf/pdf_service.py:265
+msgid "No text found in your PDF file"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:289
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Jag kunde inte slå samman dina PDF-filer eftersom den här filen är ogiltig: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:290
+#: pdf_bot/pdf/pdf_service.py:310
 msgid "Your PDF file already has a text layer"
 msgstr "Din PDF-fil har redan ett textlager"
 
-#: pdf_bot/pdf/pdf_service.py:369
+#: pdf_bot/pdf/pdf_service.py:389
 msgid "Your PDF file is invalid"
 msgstr "Din PDF-fil är ogiltig"
 
-#: pdf_bot/pdf/pdf_service.py:372
+#: pdf_bot/pdf/pdf_service.py:392
 msgid "Your PDF file is encrypted"
 msgstr "Din PDF fil är krypterad"
 
