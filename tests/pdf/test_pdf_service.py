@@ -23,7 +23,11 @@ from pdf_bot.pdf import (
     ScaleByData,
     ScaleToData,
 )
-from pdf_bot.pdf.exceptions import PdfEncryptError, PdfIncorrectPasswordError
+from pdf_bot.pdf.exceptions import (
+    PdfEncryptError,
+    PdfIncorrectPasswordError,
+    PdfNoTextError,
+)
 from pdf_bot.telegram import TelegramService
 
 
@@ -453,6 +457,25 @@ def test_extract_text_from_pdf(
         telegram_service.download_file.assert_called_once_with(file_id)
         extract_text.assert_called_once_with(file_path)
         io_service.create_temp_txt_file.assert_called_once_with("PDF_text")
+
+
+def test_extract_text_from_pdf_no_text(
+    pdf_service: PdfService,
+    io_service: IOService,
+    telegram_service: TelegramService,
+):
+    file_id = "file_id"
+    file_path = "file_path"
+    telegram_service.download_file.return_value.__enter__.return_value = file_path
+
+    with patch("builtins.open"), patch(
+        "pdf_bot.pdf.pdf_service.extract_text"
+    ) as extract_text:
+        extract_text.return_value = ""
+        with pytest.raises(PdfNoTextError), pdf_service.extract_text_from_pdf(file_id):
+            telegram_service.download_file.assert_called_once_with(file_id)
+            extract_text.assert_called_once_with(file_path)
+            io_service.create_temp_txt_file.assert_not_called()
 
 
 def test_merge_pdfs(

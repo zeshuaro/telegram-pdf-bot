@@ -25,6 +25,7 @@ from pdf_bot.pdf.exceptions import (
     PdfDecryptError,
     PdfEncryptError,
     PdfIncorrectPasswordError,
+    PdfNoTextError,
     PdfOcrError,
     PdfReadError,
 )
@@ -259,6 +260,9 @@ class PdfService:
     def extract_text_from_pdf(self, file_id: str):
         with self.telegram_service.download_file(file_id) as file_path:
             text = extract_text(file_path)
+
+        if not text:
+            raise PdfNoTextError()
 
         wrapped_text = textwrap.wrap(text)
         with self.io_service.create_temp_txt_file("PDF_text") as out_path:
