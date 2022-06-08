@@ -2,6 +2,7 @@ from .exceptions import (
     PdfDecryptError,
     PdfEncryptError,
     PdfIncorrectPasswordError,
+    PdfNoTextError,
     PdfOcrError,
     PdfReadError,
     PdfServiceError,
@@ -23,4 +24,5 @@ __all__ = [
     "ScaleData",
     "ScaleByData",
     "ScaleToData",
+    "PdfNoTextError",
 ]
