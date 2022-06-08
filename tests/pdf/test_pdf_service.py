@@ -19,7 +19,8 @@ from pdf_bot.pdf import (
     PdfOcrError,
     PdfReadError,
     PdfService,
-    ScaleData,
+    ScaleByData,
+    ScaleToData,
 )
 from pdf_bot.pdf.exceptions import PdfEncryptError, PdfIncorrectPasswordError
 from pdf_bot.telegram import TelegramService
@@ -35,11 +36,6 @@ def fixture_pdf_service(
     cli_service: CLIService, io_service: IOService, telegram_service: TelegramService
 ) -> CompareService:
     return PdfService(cli_service, io_service, telegram_service)
-
-
-@pytest.fixture(name="scale_data")
-def fixture_scale_data() -> ScaleData:
-    return ScaleData(randint(0, 10), randint(0, 10))
 
 
 def test_add_watermark_to_pdf(
@@ -596,10 +592,10 @@ def test_scale_pdf_by_factor(
     pdf_service: PdfService,
     io_service: IOService,
     telegram_service: TelegramService,
-    scale_data: ScaleData,
 ):
     file_id = "file_id"
     out_path = "out_path"
+    scale_data = ScaleByData(randint(0, 10), randint(0, 10))
 
     reader = cast(PdfFileReader, MagicMock())
     writer = cast(PdfFileWriter, MagicMock())
@@ -621,7 +617,7 @@ def test_scale_pdf_by_factor(
         pdf_file_reader.return_value = reader
         pdf_file_writer.return_value = writer
 
-        with pdf_service.scale_pdf_by_factor(file_id, scale_data) as actual_path:
+        with pdf_service.scale_pdf(file_id, scale_data) as actual_path:
             assert actual_path == out_path
             telegram_service.download_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("Scaled")
@@ -637,10 +633,10 @@ def test_scale_pdf_to_dimension(
     pdf_service: PdfService,
     io_service: IOService,
     telegram_service: TelegramService,
-    scale_data: ScaleData,
 ):
     file_id = "file_id"
     out_path = "out_path"
+    scale_data = ScaleToData(randint(0, 10), randint(0, 10))
 
     reader = cast(PdfFileReader, MagicMock())
     writer = cast(PdfFileWriter, MagicMock())
@@ -662,7 +658,7 @@ def test_scale_pdf_to_dimension(
         pdf_file_reader.return_value = reader
         pdf_file_writer.return_value = writer
 
-        with pdf_service.scale_pdf_to_dimension(file_id, scale_data) as actual_path:
+        with pdf_service.scale_pdf(file_id, scale_data) as actual_path:
             assert actual_path == out_path
             telegram_service.download_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("Scaled")

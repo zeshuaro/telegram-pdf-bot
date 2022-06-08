@@ -41,3 +41,11 @@ class ScaleData:
     def from_string(value: str) -> "ScaleData":
         x, y = map(float, value.split())
         return ScaleData(x, y)
+
+
+class ScaleByData(ScaleData):
+    pass
+
+
+class ScaleToData(ScaleData):
+    pass
