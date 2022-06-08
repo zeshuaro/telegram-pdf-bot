@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 11:26+0000\n"
-"PO-Revision-Date: 2022-06-08 11:27\n"
+"POT-Creation-Date: 2022-06-08 11:46+0000\n"
+"PO-Revision-Date: 2022-06-08 11:46\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -151,11 +151,11 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "Nyelv beállítása 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Csatlakozás a csatornához"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Támogatás PDF Bot"
 
@@ -263,48 +263,40 @@ msgstr "Nem érhető el a weboldal"
 msgid "Failed to convert your web page"
 msgstr "Nem sikerült konvertálni a weblapot"
 
-#: pdf_bot/utils.py:34
+#: pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "Művelet megszakítva"
 
-#: pdf_bot/telegram/telegram_service.py:58 pdf_bot/utils.py:67
-msgid "Your file is not a PDF file, please try again"
-msgstr "A fájl nem PDF-fájl, próbálkozzon újra"
-
-#: pdf_bot/commands/image.py:137 pdf_bot/utils.py:73
-msgid "Your file is too large for me to download and process"
-msgstr "A fájl túl nagy ahhoz, hogy letöltse és feldolgozza"
-
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
-#: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "Ne feledje, hogy ez egy Telegram Bot korlátozás, és semmit sem tehetek, ha a Telegram nem változtatja meg ezt a korlátot"
-
-#: pdf_bot/utils.py:105
+#: pdf_bot/utils.py:61
 msgid "Something went wrong, please start over again"
 msgstr "Valami elromlott, kérem, kezdje újra."
 
-#: pdf_bot/utils.py:179
+#: pdf_bot/utils.py:92
 msgid "Your file is invalid and I couldn't open and process it"
 msgstr "A fájl érvénytelen, és nem tudtam megnyitni és feldolgozni"
 
-#: pdf_bot/utils.py:185
+#: pdf_bot/utils.py:98
 msgid "Your PDF file is already encrypted"
 msgstr "A PDF-fájl már titkosítva van"
 
-#: pdf_bot/utils.py:187 pdf_bot/utils.py:191
+#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "A PDF-fájl titkosítva van, és először vissza kell fejteniük"
 
-#: pdf_bot/utils.py:213
+#: pdf_bot/utils.py:126
 msgid "You've sent me these {file_type} so far:"
 msgstr "Eddig ezeket a {file_type} küldted nekem:"
 
-#: pdf_bot/utils.py:242
+#: pdf_bot/utils.py:155
 msgid "The result file is too large for me to send to you"
 msgstr "Az eredményfájl túl nagy ahhoz, hogy elküldhessem neked"
 
-#: pdf_bot/utils.py:255 pdf_bot/utils.py:262
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "Ne feledje, hogy ez egy Telegram Bot korlátozás, és semmit sem tehetek, ha a Telegram nem változtatja meg ezt a korlátot"
+
+#: pdf_bot/utils.py:168 pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "Itt van az eredményfájl"
 
@@ -367,6 +359,10 @@ msgstr "A fájlnév nem érhető el"
 #: pdf_bot/commands/image.py:129
 msgid "Your file is not an image"
 msgstr "A fájl nem kép"
+
+#: pdf_bot/commands/image.py:137
+msgid "Your file is too large for me to download and process"
+msgstr "A fájl túl nagy ahhoz, hogy letöltse és feldolgozza"
 
 #: pdf_bot/commands/image.py:150
 msgid "images"
@@ -444,7 +440,7 @@ msgstr "Küldje el a jelszót a PDF-fájl visszafejtéséhez"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Küldje el a jelszót a PDF-fájl titkosításához"
 
-#: pdf_bot/file/file_handlers.py:149
+#: pdf_bot/file/file_handlers.py:152
 msgid "Your file is too big for me to download and process"
 msgstr "A fájl túl nagy nekem, hogy töltse le és feldolgozza"
 
@@ -492,82 +488,6 @@ msgstr "Nem találtam képeket a PDF-fájlban"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Lásd fent az összes képet"
-
-#: pdf_bot/files/split.py:54
-msgid "Send me the range of pages that you'll like to keep"
-msgstr "Küldje el nekem a tartomány oldalak, hogy szeretné tartani"
-
-#: pdf_bot/files/split.py:55
-msgid "General usage"
-msgstr "Általános használat"
-
-#: pdf_bot/files/split.py:56
-msgid "{range}      all pages"
-msgstr "{range}      összes oldal"
-
-#: pdf_bot/files/split.py:57
-msgid "{range}      page 8 only"
-msgstr "{range}      csak a 8. oldal"
-
-#: pdf_bot/files/split.py:58
-msgid "{range}    first three pages"
-msgstr "{range}    első három oldal"
-
-#: pdf_bot/files/split.py:59
-msgid "{range}     from page 8 onward"
-msgstr "{range}     a 8. oldaltól"
-
-#: pdf_bot/files/split.py:60
-msgid "{range}     last page only"
-msgstr "csak az utolsó oldal {range}"
-
-#: pdf_bot/files/split.py:61
-msgid "{range}    all pages except the last page"
-msgstr "{range}    az utolsó oldal kivételével az összes oldalt"
-
-#: pdf_bot/files/split.py:64
-msgid "{range}     second last page only"
-msgstr "csak {range}     második utolsó oldal"
-
-#: pdf_bot/files/split.py:65
-msgid "{range}    last two pages"
-msgstr "{range}    utolsó két oldal"
-
-#: pdf_bot/files/split.py:66
-msgid "{range}  third and second last pages"
-msgstr "{range}  harmadik és második utolsó oldal"
-
-#: pdf_bot/files/split.py:67
-msgid "Advanced usage"
-msgstr "Speciális használat"
-
-#: pdf_bot/files/split.py:68
-msgid "{range}    pages {pages} and to the end"
-msgstr "{range}    oldalak {pages} és a végéig"
-
-#: pdf_bot/files/split.py:71
-msgid "{range} pages {pages}"
-msgstr "{range} oldalak {pages}"
-
-#: pdf_bot/files/split.py:72
-msgid "{range}   all pages in reversed order"
-msgstr "{range}   az összes oldalt fordított sorrendben"
-
-#: pdf_bot/files/split.py:73
-msgid "{range} pages {pages} except {page}"
-msgstr "{range} oldalak {pages} , kivéve {page}"
-
-#: pdf_bot/files/split.py:76
-msgid "{range}  pages {pages}"
-msgstr "{range}  oldalak {pages}"
-
-#: pdf_bot/files/split.py:100
-msgid "The range is invalid, please try again"
-msgstr "A tartomány érvénytelen, próbálkozzon újra"
-
-#: pdf_bot/files/split.py:106
-msgid "Splitting your PDF file"
-msgstr "A PDF-fájl felosztása"
 
 #: pdf_bot/files/text.py:23
 msgid "Select how you'll like me to send the text to you"
@@ -697,6 +617,78 @@ msgstr "Küldje el nekem a szélességét és magasságát"
 msgid "This will set the width to 150 and height to 200"
 msgstr "Ez a szélességet 150-re, a magasságot pedig 200-ra"
 
+#: pdf_bot/split/split_service.py:65
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "Küldje el nekem a tartomány oldalak, hogy szeretné tartani"
+
+#: pdf_bot/split/split_service.py:66
+msgid "General usage"
+msgstr "Általános használat"
+
+#: pdf_bot/split/split_service.py:67
+msgid "{range}      all pages"
+msgstr "{range}      összes oldal"
+
+#: pdf_bot/split/split_service.py:68
+msgid "{range}      page 8 only"
+msgstr "{range}      csak a 8. oldal"
+
+#: pdf_bot/split/split_service.py:69
+msgid "{range}    first three pages"
+msgstr "{range}    első három oldal"
+
+#: pdf_bot/split/split_service.py:70
+msgid "{range}     from page 8 onward"
+msgstr "{range}     a 8. oldaltól"
+
+#: pdf_bot/split/split_service.py:71
+msgid "{range}     last page only"
+msgstr "csak az utolsó oldal {range}"
+
+#: pdf_bot/split/split_service.py:72
+msgid "{range}    all pages except the last page"
+msgstr "{range}    az utolsó oldal kivételével az összes oldalt"
+
+#: pdf_bot/split/split_service.py:75
+msgid "{range}     second last page only"
+msgstr "csak {range}     második utolsó oldal"
+
+#: pdf_bot/split/split_service.py:76
+msgid "{range}    last two pages"
+msgstr "{range}    utolsó két oldal"
+
+#: pdf_bot/split/split_service.py:77
+msgid "{range}  third and second last pages"
+msgstr "{range}  harmadik és második utolsó oldal"
+
+#: pdf_bot/split/split_service.py:80
+msgid "Advanced usage"
+msgstr "Speciális használat"
+
+#: pdf_bot/split/split_service.py:81
+msgid "{range}    pages {pages} and to the end"
+msgstr "{range}    oldalak {pages} és a végéig"
+
+#: pdf_bot/split/split_service.py:84
+msgid "{range} pages {pages}"
+msgstr "{range} oldalak {pages}"
+
+#: pdf_bot/split/split_service.py:87
+msgid "{range}   all pages in reversed order"
+msgstr "{range}   az összes oldalt fordított sorrendben"
+
+#: pdf_bot/split/split_service.py:90
+msgid "{range} pages {pages} except {page}"
+msgstr "{range} oldalak {pages} , kivéve {page}"
+
+#: pdf_bot/split/split_service.py:93
+msgid "{range}  pages {pages}"
+msgstr "{range}  oldalak {pages}"
+
+#: pdf_bot/split/split_service.py:115
+msgid "The range is invalid, please try again"
+msgstr "A tartomány érvénytelen, próbálkozzon újra"
+
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
 msgstr ""
@@ -705,6 +697,10 @@ msgstr ""
 msgid "Your image is too large for me to download and process, please try again with a differnt image\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:58
+msgid "Your file is not a PDF file, please try again"
+msgstr "A fájl nem PDF-fájl, próbálkozzon újra"
 
 #: pdf_bot/telegram/telegram_service.py:62
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
@@ -1517,5 +1513,8 @@ msgstr "Vízjel hozzáadása a PDF-fájlhoz"
 #~ msgstr ""
 
 #~ msgid "Scaling your PDF file with width of {width} and height of {height}"
+#~ msgstr ""
+
+#~ msgid "Splitting your PDF file"
 #~ msgstr ""
 

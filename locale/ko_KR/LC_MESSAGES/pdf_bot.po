@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 11:26+0000\n"
-"PO-Revision-Date: 2022-06-08 11:27\n"
+"POT-Creation-Date: 2022-06-08 11:46+0000\n"
+"PO-Revision-Date: 2022-06-08 11:46\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -151,11 +151,11 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "언어 설정 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "채널 가입"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "지원 PDF 봇"
 
@@ -263,48 +263,40 @@ msgstr "웹 페이지에 연결할 수 없습니다."
 msgid "Failed to convert your web page"
 msgstr "웹 페이지를 변환하지 못했습니다."
 
-#: pdf_bot/utils.py:34
+#: pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "취소된 조치"
 
-#: pdf_bot/telegram/telegram_service.py:58 pdf_bot/utils.py:67
-msgid "Your file is not a PDF file, please try again"
-msgstr "파일은 PDF 파일이 아니며 다시 시도하십시오."
-
-#: pdf_bot/commands/image.py:137 pdf_bot/utils.py:73
-msgid "Your file is too large for me to download and process"
-msgstr "파일이 너무 커서 다운로드하고 처리할 수 없습니다."
-
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
-#: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
-
-#: pdf_bot/utils.py:105
+#: pdf_bot/utils.py:61
 msgid "Something went wrong, please start over again"
 msgstr "뭔가 잘못, 다시 시작하시기 바랍니다"
 
-#: pdf_bot/utils.py:179
+#: pdf_bot/utils.py:92
 msgid "Your file is invalid and I couldn't open and process it"
 msgstr "파일이 잘못되어 열수 없습니다."
 
-#: pdf_bot/utils.py:185
+#: pdf_bot/utils.py:98
 msgid "Your PDF file is already encrypted"
 msgstr "PDF 파일은 이미 암호화되어 있습니다."
 
-#: pdf_bot/utils.py:187 pdf_bot/utils.py:191
+#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "PDF 파일이 암호화되어 먼저 해독해야 합니다."
 
-#: pdf_bot/utils.py:213
+#: pdf_bot/utils.py:126
 msgid "You've sent me these {file_type} so far:"
 msgstr "당신은 지금까지 나에게 이러한 {file_type} 보냈습니다 :"
 
-#: pdf_bot/utils.py:242
+#: pdf_bot/utils.py:155
 msgid "The result file is too large for me to send to you"
 msgstr "결과 파일이 너무 커서 전송할 수 없습니다."
 
-#: pdf_bot/utils.py:255 pdf_bot/utils.py:262
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
+
+#: pdf_bot/utils.py:168 pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "다음은 결과 파일입니다."
 
@@ -367,6 +359,10 @@ msgstr "파일 이름을 사용할 수 없음"
 #: pdf_bot/commands/image.py:129
 msgid "Your file is not an image"
 msgstr "파일은 이미지가 아닙니다."
+
+#: pdf_bot/commands/image.py:137
+msgid "Your file is too large for me to download and process"
+msgstr "파일이 너무 커서 다운로드하고 처리할 수 없습니다."
 
 #: pdf_bot/commands/image.py:150
 msgid "images"
@@ -444,7 +440,7 @@ msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDF 파일을 암호화하기 위해 암호를 보내주세요."
 
-#: pdf_bot/file/file_handlers.py:149
+#: pdf_bot/file/file_handlers.py:152
 msgid "Your file is too big for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리하지 않습니다."
 
@@ -492,82 +488,6 @@ msgstr "PDF 파일에서 이미지를 찾을 수 없습니다."
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "모든 이미지에 대해 위 참조"
-
-#: pdf_bot/files/split.py:54
-msgid "Send me the range of pages that you'll like to keep"
-msgstr "보관할 페이지 범위 보내기"
-
-#: pdf_bot/files/split.py:55
-msgid "General usage"
-msgstr "일반 사용"
-
-#: pdf_bot/files/split.py:56
-msgid "{range}      all pages"
-msgstr "모든 페이지 {range}"
-
-#: pdf_bot/files/split.py:57
-msgid "{range}      page 8 only"
-msgstr "{range}      페이지 8만"
-
-#: pdf_bot/files/split.py:58
-msgid "{range}    first three pages"
-msgstr "처음 세 페이지 {range}"
-
-#: pdf_bot/files/split.py:59
-msgid "{range}     from page 8 onward"
-msgstr "8페이지 이후의 {range}"
-
-#: pdf_bot/files/split.py:60
-msgid "{range}     last page only"
-msgstr "{range}     마지막 페이지만"
-
-#: pdf_bot/files/split.py:61
-msgid "{range}    all pages except the last page"
-msgstr "마지막 페이지를 제외한 모든 페이지를 {range}"
-
-#: pdf_bot/files/split.py:64
-msgid "{range}     second last page only"
-msgstr "두 번째 마지막 페이지만 {range}"
-
-#: pdf_bot/files/split.py:65
-msgid "{range}    last two pages"
-msgstr "{range}    지난 두 페이지"
-
-#: pdf_bot/files/split.py:66
-msgid "{range}  third and second last pages"
-msgstr "{range}  세 번째 및 두 번째 마지막 페이지"
-
-#: pdf_bot/files/split.py:67
-msgid "Advanced usage"
-msgstr "고급 사용"
-
-#: pdf_bot/files/split.py:68
-msgid "{range}    pages {pages} and to the end"
-msgstr "{range}    페이지 {pages} 끝까지"
-
-#: pdf_bot/files/split.py:71
-msgid "{range} pages {pages}"
-msgstr "{range} 페이지 {pages}"
-
-#: pdf_bot/files/split.py:72
-msgid "{range}   all pages in reversed order"
-msgstr "모든 페이지를 반전 순서로 {range}"
-
-#: pdf_bot/files/split.py:73
-msgid "{range} pages {pages} except {page}"
-msgstr "{range} 페이지 {pages} {page}제외"
-
-#: pdf_bot/files/split.py:76
-msgid "{range}  pages {pages}"
-msgstr "{range}  페이지 {pages}"
-
-#: pdf_bot/files/split.py:100
-msgid "The range is invalid, please try again"
-msgstr "범위가 유효하지 않습니다, 다시 시도하십시오"
-
-#: pdf_bot/files/split.py:106
-msgid "Splitting your PDF file"
-msgstr "PDF 파일 분할"
 
 #: pdf_bot/files/text.py:23
 msgid "Select how you'll like me to send the text to you"
@@ -697,6 +617,78 @@ msgstr "너비와 높이 보내기"
 msgid "This will set the width to 150 and height to 200"
 msgstr "이렇게 하면 너비가 150이고 높이는 200으로 설정됩니다."
 
+#: pdf_bot/split/split_service.py:65
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "보관할 페이지 범위 보내기"
+
+#: pdf_bot/split/split_service.py:66
+msgid "General usage"
+msgstr "일반 사용"
+
+#: pdf_bot/split/split_service.py:67
+msgid "{range}      all pages"
+msgstr "모든 페이지 {range}"
+
+#: pdf_bot/split/split_service.py:68
+msgid "{range}      page 8 only"
+msgstr "{range}      페이지 8만"
+
+#: pdf_bot/split/split_service.py:69
+msgid "{range}    first three pages"
+msgstr "처음 세 페이지 {range}"
+
+#: pdf_bot/split/split_service.py:70
+msgid "{range}     from page 8 onward"
+msgstr "8페이지 이후의 {range}"
+
+#: pdf_bot/split/split_service.py:71
+msgid "{range}     last page only"
+msgstr "{range}     마지막 페이지만"
+
+#: pdf_bot/split/split_service.py:72
+msgid "{range}    all pages except the last page"
+msgstr "마지막 페이지를 제외한 모든 페이지를 {range}"
+
+#: pdf_bot/split/split_service.py:75
+msgid "{range}     second last page only"
+msgstr "두 번째 마지막 페이지만 {range}"
+
+#: pdf_bot/split/split_service.py:76
+msgid "{range}    last two pages"
+msgstr "{range}    지난 두 페이지"
+
+#: pdf_bot/split/split_service.py:77
+msgid "{range}  third and second last pages"
+msgstr "{range}  세 번째 및 두 번째 마지막 페이지"
+
+#: pdf_bot/split/split_service.py:80
+msgid "Advanced usage"
+msgstr "고급 사용"
+
+#: pdf_bot/split/split_service.py:81
+msgid "{range}    pages {pages} and to the end"
+msgstr "{range}    페이지 {pages} 끝까지"
+
+#: pdf_bot/split/split_service.py:84
+msgid "{range} pages {pages}"
+msgstr "{range} 페이지 {pages}"
+
+#: pdf_bot/split/split_service.py:87
+msgid "{range}   all pages in reversed order"
+msgstr "모든 페이지를 반전 순서로 {range}"
+
+#: pdf_bot/split/split_service.py:90
+msgid "{range} pages {pages} except {page}"
+msgstr "{range} 페이지 {pages} {page}제외"
+
+#: pdf_bot/split/split_service.py:93
+msgid "{range}  pages {pages}"
+msgstr "{range}  페이지 {pages}"
+
+#: pdf_bot/split/split_service.py:115
+msgid "The range is invalid, please try again"
+msgstr "범위가 유효하지 않습니다, 다시 시도하십시오"
+
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
 msgstr ""
@@ -705,6 +697,10 @@ msgstr ""
 msgid "Your image is too large for me to download and process, please try again with a differnt image\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:58
+msgid "Your file is not a PDF file, please try again"
+msgstr "파일은 PDF 파일이 아니며 다시 시도하십시오."
 
 #: pdf_bot/telegram/telegram_service.py:62
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
@@ -1517,5 +1513,8 @@ msgstr "PDF 파일에 워터마크 추가"
 #~ msgstr ""
 
 #~ msgid "Scaling your PDF file with width of {width} and height of {height}"
+#~ msgstr ""
+
+#~ msgid "Splitting your PDF file"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 11:26+0000\n"
-"PO-Revision-Date: 2022-06-08 11:27\n"
+"POT-Creation-Date: 2022-06-08 11:46+0000\n"
+"PO-Revision-Date: 2022-06-08 11:47\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese, Brazilian\n"
@@ -151,11 +151,11 @@ msgstr "{message} {emoji}${value}"
 msgid "Set Language 🌎"
 msgstr "Definir Idioma 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:278
+#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Entre no Canal"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:279
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Ajude o PDF Bot"
 
@@ -263,48 +263,40 @@ msgstr "Não foi possível acessar sua página web"
 msgid "Failed to convert your web page"
 msgstr "Falha na conversão de sua página web"
 
-#: pdf_bot/utils.py:34
+#: pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "Ação cancelada"
 
-#: pdf_bot/telegram/telegram_service.py:58 pdf_bot/utils.py:67
-msgid "Your file is not a PDF file, please try again"
-msgstr "Seu arquivo não é um arquivo PDF, por favor tente novamente"
-
-#: pdf_bot/commands/image.py:137 pdf_bot/utils.py:73
-msgid "Your file is too large for me to download and process"
-msgstr "Seu arquivo é muito grande para eu baixar e processar"
-
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
-#: pdf_bot/files/image.py:48 pdf_bot/utils.py:74 pdf_bot/utils.py:243
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "Note que esta é uma limitação do Telegram Bot e não há nada que eu possa fazer a menos que o Telegram mude esse limite"
-
-#: pdf_bot/utils.py:105
+#: pdf_bot/utils.py:61
 msgid "Something went wrong, please start over again"
 msgstr "Algo deu errado, por favor, comece de novo."
 
-#: pdf_bot/utils.py:179
+#: pdf_bot/utils.py:92
 msgid "Your file is invalid and I couldn't open and process it"
 msgstr "Seu arquivo é inválido e eu não poderia abri-lo e processá-lo"
 
-#: pdf_bot/utils.py:185
+#: pdf_bot/utils.py:98
 msgid "Your PDF file is already encrypted"
 msgstr "Seu arquivo PDF já está criptografado"
 
-#: pdf_bot/utils.py:187 pdf_bot/utils.py:191
+#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
 msgid "Your PDF file is encrypted and you'll have to decrypt it first"
 msgstr "Seu arquivo PDF é criptografado e você terá que descriptografá-lo primeiro"
 
-#: pdf_bot/utils.py:213
+#: pdf_bot/utils.py:126
 msgid "You've sent me these {file_type} so far:"
 msgstr "Você me enviou essas {file_type} até agora:"
 
-#: pdf_bot/utils.py:242
+#: pdf_bot/utils.py:155
 msgid "The result file is too large for me to send to you"
 msgstr "O arquivo final é muito grande para que eu envie para você"
 
-#: pdf_bot/utils.py:255 pdf_bot/utils.py:262
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "Note que esta é uma limitação do Telegram Bot e não há nada que eu possa fazer a menos que o Telegram mude esse limite"
+
+#: pdf_bot/utils.py:168 pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "Aqui está o seu arquivo final"
 
@@ -367,6 +359,10 @@ msgstr "Nome do arquivo indisponível"
 #: pdf_bot/commands/image.py:129
 msgid "Your file is not an image"
 msgstr "Seu arquivo não é uma imagem"
+
+#: pdf_bot/commands/image.py:137
+msgid "Your file is too large for me to download and process"
+msgstr "Seu arquivo é muito grande para eu baixar e processar"
 
 #: pdf_bot/commands/image.py:150
 msgid "images"
@@ -444,7 +440,7 @@ msgstr "Envie-me a senha para descriptografar seu arquivo PDF"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Envie-me a senha para criptografar seu arquivo PDF"
 
-#: pdf_bot/file/file_handlers.py:149
+#: pdf_bot/file/file_handlers.py:152
 msgid "Your file is too big for me to download and process"
 msgstr "Seu arquivo é muito grande para eu baixar e processar"
 
@@ -492,82 +488,6 @@ msgstr "Não consegui encontrar nenhuma imagem em seu arquivo PDF"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Veja acima todas as suas imagens"
-
-#: pdf_bot/files/split.py:54
-msgid "Send me the range of pages that you'll like to keep"
-msgstr "Envie-me o intervalo de páginas que você deseja manter"
-
-#: pdf_bot/files/split.py:55
-msgid "General usage"
-msgstr "Uso geral"
-
-#: pdf_bot/files/split.py:56
-msgid "{range}      all pages"
-msgstr "{range}      todas as páginas"
-
-#: pdf_bot/files/split.py:57
-msgid "{range}      page 8 only"
-msgstr "{range}      página 8 apenas"
-
-#: pdf_bot/files/split.py:58
-msgid "{range}    first three pages"
-msgstr "{range}    três primeiras páginas"
-
-#: pdf_bot/files/split.py:59
-msgid "{range}     from page 8 onward"
-msgstr "{range}     a partir da página 8 em diante"
-
-#: pdf_bot/files/split.py:60
-msgid "{range}     last page only"
-msgstr "{range}     última página apenas"
-
-#: pdf_bot/files/split.py:61
-msgid "{range}    all pages except the last page"
-msgstr "{range}    todas as páginas, exceto a última página"
-
-#: pdf_bot/files/split.py:64
-msgid "{range}     second last page only"
-msgstr "{range}     segunda última página apenas"
-
-#: pdf_bot/files/split.py:65
-msgid "{range}    last two pages"
-msgstr "{range}    últimas duas páginas"
-
-#: pdf_bot/files/split.py:66
-msgid "{range}  third and second last pages"
-msgstr "{range}  terceira e segunda últimas páginas"
-
-#: pdf_bot/files/split.py:67
-msgid "Advanced usage"
-msgstr "Uso avançado"
-
-#: pdf_bot/files/split.py:68
-msgid "{range}    pages {pages} and to the end"
-msgstr "{range}    páginas {pages} e até o fim"
-
-#: pdf_bot/files/split.py:71
-msgid "{range} pages {pages}"
-msgstr "páginas {range} {pages}"
-
-#: pdf_bot/files/split.py:72
-msgid "{range}   all pages in reversed order"
-msgstr "{range}   todas as páginas em ordem invertida"
-
-#: pdf_bot/files/split.py:73
-msgid "{range} pages {pages} except {page}"
-msgstr "páginas {range} {pages} exceto {page}"
-
-#: pdf_bot/files/split.py:76
-msgid "{range}  pages {pages}"
-msgstr "páginas {range} {pages}"
-
-#: pdf_bot/files/split.py:100
-msgid "The range is invalid, please try again"
-msgstr "O alcance é inválido, por favor tente novamente"
-
-#: pdf_bot/files/split.py:106
-msgid "Splitting your PDF file"
-msgstr "Dividindo seu arquivo PDF"
 
 #: pdf_bot/files/text.py:23
 msgid "Select how you'll like me to send the text to you"
@@ -697,6 +617,78 @@ msgstr "Envie-me a largura e a altura"
 msgid "This will set the width to 150 and height to 200"
 msgstr "Isso definirá a largura para 150 e a altura para 200"
 
+#: pdf_bot/split/split_service.py:65
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "Envie-me o intervalo de páginas que você deseja manter"
+
+#: pdf_bot/split/split_service.py:66
+msgid "General usage"
+msgstr "Uso geral"
+
+#: pdf_bot/split/split_service.py:67
+msgid "{range}      all pages"
+msgstr "{range}      todas as páginas"
+
+#: pdf_bot/split/split_service.py:68
+msgid "{range}      page 8 only"
+msgstr "{range}      página 8 apenas"
+
+#: pdf_bot/split/split_service.py:69
+msgid "{range}    first three pages"
+msgstr "{range}    três primeiras páginas"
+
+#: pdf_bot/split/split_service.py:70
+msgid "{range}     from page 8 onward"
+msgstr "{range}     a partir da página 8 em diante"
+
+#: pdf_bot/split/split_service.py:71
+msgid "{range}     last page only"
+msgstr "{range}     última página apenas"
+
+#: pdf_bot/split/split_service.py:72
+msgid "{range}    all pages except the last page"
+msgstr "{range}    todas as páginas, exceto a última página"
+
+#: pdf_bot/split/split_service.py:75
+msgid "{range}     second last page only"
+msgstr "{range}     segunda última página apenas"
+
+#: pdf_bot/split/split_service.py:76
+msgid "{range}    last two pages"
+msgstr "{range}    últimas duas páginas"
+
+#: pdf_bot/split/split_service.py:77
+msgid "{range}  third and second last pages"
+msgstr "{range}  terceira e segunda últimas páginas"
+
+#: pdf_bot/split/split_service.py:80
+msgid "Advanced usage"
+msgstr "Uso avançado"
+
+#: pdf_bot/split/split_service.py:81
+msgid "{range}    pages {pages} and to the end"
+msgstr "{range}    páginas {pages} e até o fim"
+
+#: pdf_bot/split/split_service.py:84
+msgid "{range} pages {pages}"
+msgstr "páginas {range} {pages}"
+
+#: pdf_bot/split/split_service.py:87
+msgid "{range}   all pages in reversed order"
+msgstr "{range}   todas as páginas em ordem invertida"
+
+#: pdf_bot/split/split_service.py:90
+msgid "{range} pages {pages} except {page}"
+msgstr "páginas {range} {pages} exceto {page}"
+
+#: pdf_bot/split/split_service.py:93
+msgid "{range}  pages {pages}"
+msgstr "páginas {range} {pages}"
+
+#: pdf_bot/split/split_service.py:115
+msgid "The range is invalid, please try again"
+msgstr "O alcance é inválido, por favor tente novamente"
+
 #: pdf_bot/telegram/telegram_service.py:36
 msgid "Your file is not an image, please try again"
 msgstr ""
@@ -705,6 +697,10 @@ msgstr ""
 msgid "Your image is too large for me to download and process, please try again with a differnt image\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:58
+msgid "Your file is not a PDF file, please try again"
+msgstr "Seu arquivo não é um arquivo PDF, por favor tente novamente"
 
 #: pdf_bot/telegram/telegram_service.py:62
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
@@ -1517,5 +1513,8 @@ msgstr "Adicionando a marca d'água no seu arquivo PDF"
 #~ msgstr ""
 
 #~ msgid "Scaling your PDF file with width of {width} and height of {height}"
+#~ msgstr ""
+
+#~ msgid "Splitting your PDF file"
 #~ msgstr ""
 
