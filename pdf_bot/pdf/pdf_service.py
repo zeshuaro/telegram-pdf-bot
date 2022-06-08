@@ -25,7 +25,7 @@ from pdf_bot.pdf.exceptions import (
     PdfOcrError,
     PdfReadError,
 )
-from pdf_bot.pdf.models import CompressResult, FontData, ScaleData
+from pdf_bot.pdf.models import CompressResult, FontData, ScaleByData, ScaleData
 from pdf_bot.telegram import TelegramService
 
 _ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gettext
@@ -319,28 +319,12 @@ class PdfService:
                 pass
 
     @contextmanager
-    def scale_pdf_by_factor(self, file_id: str, scale_data: ScaleData):
-        try:
-            with self._scale_pdf(file_id, scale_data, by_factor=True) as out_path:
-                yield out_path
-        finally:
-            pass
-
-    @contextmanager
-    def scale_pdf_to_dimension(self, file_id: str, scale_data: ScaleData):
-        try:
-            with self._scale_pdf(file_id, scale_data, by_factor=False) as out_path:
-                yield out_path
-        finally:
-            pass
-
-    @contextmanager
-    def _scale_pdf(self, file_id: str, scale_data: ScaleData, by_factor: bool):
+    def scale_pdf(self, file_id: str, scale_data: ScaleData):
         reader = self._open_pdf(file_id)
         writer = PdfFileWriter()
 
         for page in reader.pages:
-            if by_factor:
+            if isinstance(scale_data, ScaleByData):
                 new_page = page.scale(scale_data.x, scale_data.y)
             else:
                 new_page = page.scale_to(scale_data.x, scale_data.y)
