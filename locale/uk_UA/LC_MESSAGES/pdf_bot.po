@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 13:38+0000\n"
-"PO-Revision-Date: 2022-06-08 13:38\n"
+"POT-Creation-Date: 2022-06-09 08:53+0000\n"
+"PO-Revision-Date: 2022-06-09 08:54\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -291,7 +291,7 @@ msgstr "Ви послали мені ці {file_type} до цих пір:"
 msgid "The result file is too large for me to send to you"
 msgstr "Файл результату завеликий для мене, щоб відправити вам"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:148
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Зверніть увагу, що це обмеження Telegram Bot, і я нічого не можу зробити, якщо Telegram не змінить це обмеження"
@@ -440,7 +440,7 @@ msgstr "Надішліть мені пароль для розшифруванн
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Надішліть мені пароль для шифрування PDF-файлу"
 
-#: pdf_bot/file/file_handlers.py:152
+#: pdf_bot/file/file_handlers.py:147
 msgid "Your file is too big for me to download and process"
 msgstr "Ваш файл занадто великий для мене, щоб завантажити і обробити"
 
@@ -448,7 +448,7 @@ msgstr "Ваш файл занадто великий для мене, щоб з
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Розмір файлу зменшено {percent}, з {old_size} до {new_size}"
 
-#: pdf_bot/file/file_service.py:63
+#: pdf_bot/file/file_service.py:77
 msgid "Adding an OCR text layer to your PDF file"
 msgstr ""
 
@@ -488,18 +488,6 @@ msgstr "Не вдалося знайти зображення у вашому PD
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Дивіться вище для всіх ваших зображень"
-
-#: pdf_bot/files/text.py:23
-msgid "Select how you'll like me to send the text to you"
-msgstr "Виберіть спосіб надсилання тексту"
-
-#: pdf_bot/files/text.py:36
-msgid "Extracting text from your PDF file"
-msgstr "Видобування тексту з PDF-файлу"
-
-#: pdf_bot/files/text.py:90
-msgid "I couldn't find any text in your PDF file"
-msgstr "Не вдалося знайти текст у файлі PDF"
 
 #: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
@@ -1520,5 +1508,14 @@ msgstr "Додавання водяного знака до файлу PDF"
 #~ msgstr ""
 
 #~ msgid "Splitting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Select how you'll like me to send the text to you"
+#~ msgstr ""
+
+#~ msgid "Extracting text from your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any text in your PDF file"
 #~ msgstr ""
 

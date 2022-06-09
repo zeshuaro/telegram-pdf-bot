@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 13:38+0000\n"
-"PO-Revision-Date: 2022-06-08 13:38\n"
+"POT-Creation-Date: 2022-06-09 08:53+0000\n"
+"PO-Revision-Date: 2022-06-09 08:54\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -291,7 +291,7 @@ msgstr "Je hebt me tot nu toe deze {file_type} gestuurd:"
 msgid "The result file is too large for me to send to you"
 msgstr "Het bestand is te groot voor mij om naar u te verzenden"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:148
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen tenzij Telegram deze limiet wijzigt"
@@ -440,7 +440,7 @@ msgstr "Stuur me het wachtwoord om uw PDF bestand te decoderen"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Stuur mij het wachtwoord om uw PDF bestand te versleutelen"
 
-#: pdf_bot/file/file_handlers.py:152
+#: pdf_bot/file/file_handlers.py:147
 msgid "Your file is too big for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 
@@ -448,7 +448,7 @@ msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Bestandsgrootte verminderd met {percent}, van {old_size} tot {new_size}"
 
-#: pdf_bot/file/file_service.py:63
+#: pdf_bot/file/file_service.py:77
 msgid "Adding an OCR text layer to your PDF file"
 msgstr ""
 
@@ -488,18 +488,6 @@ msgstr "Ik kon geen afbeeldingen vinden in uw PDF-bestand"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Zie hierboven voor al uw afbeeldingen"
-
-#: pdf_bot/files/text.py:23
-msgid "Select how you'll like me to send the text to you"
-msgstr "Selecteer hoe je graag wil dat ik de tekst zal versturen"
-
-#: pdf_bot/files/text.py:36
-msgid "Extracting text from your PDF file"
-msgstr "Het extraheren van tekst uit uw PDF bestand"
-
-#: pdf_bot/files/text.py:90
-msgid "I couldn't find any text in your PDF file"
-msgstr "Ik kon geen tekst in uw PDF-bestand vinden"
 
 #: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
@@ -1520,5 +1508,14 @@ msgstr "Watermerk toevoegen aan het PDF bestand"
 #~ msgstr ""
 
 #~ msgid "Splitting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Select how you'll like me to send the text to you"
+#~ msgstr ""
+
+#~ msgid "Extracting text from your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any text in your PDF file"
 #~ msgstr ""
 

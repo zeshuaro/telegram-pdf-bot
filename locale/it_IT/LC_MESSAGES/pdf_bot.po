@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 13:38+0000\n"
-"PO-Revision-Date: 2022-06-08 13:38\n"
+"POT-Creation-Date: 2022-06-09 08:53+0000\n"
+"PO-Revision-Date: 2022-06-09 08:54\n"
 "Last-Translator: \n"
 "Language: it\n"
 "Language-Team: Italian\n"
@@ -291,7 +291,7 @@ msgstr "Mi hai mandato questi {file_type} finora:"
 msgid "The result file is too large for me to send to you"
 msgstr "Il file ottenuto è troppo grande per poterlo inviare"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:148
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Si noti che questa è una limitazione di Telegram Bot e non c'è niente che io possa fare a meno che Telegram non cambi questo limite"
@@ -440,7 +440,7 @@ msgstr "Inviami la password per decifrare il file PDF"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Inviami la password per cifrare il file PDF"
 
-#: pdf_bot/file/file_handlers.py:152
+#: pdf_bot/file/file_handlers.py:147
 msgid "Your file is too big for me to download and process"
 msgstr "Il tuo file è troppo grande per essere scaricato ed elaborare"
 
@@ -448,7 +448,7 @@ msgstr "Il tuo file è troppo grande per essere scaricato ed elaborare"
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Dimensioni del file ridotte di {percent}, da {old_size} a {new_size}"
 
-#: pdf_bot/file/file_service.py:63
+#: pdf_bot/file/file_service.py:77
 msgid "Adding an OCR text layer to your PDF file"
 msgstr ""
 
@@ -488,18 +488,6 @@ msgstr "Non sono riuscito a trovare alcuna immagine nel tuo file PDF"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "Vedi sopra per tutte le tue immagini"
-
-#: pdf_bot/files/text.py:23
-msgid "Select how you'll like me to send the text to you"
-msgstr "Seleziona come vorresti che ti inviassi il testo"
-
-#: pdf_bot/files/text.py:36
-msgid "Extracting text from your PDF file"
-msgstr "Estrazione del testo dal file PDF"
-
-#: pdf_bot/files/text.py:90
-msgid "I couldn't find any text in your PDF file"
-msgstr "Non sono riuscito a trovare testo estraibile dal tuo PDF"
 
 #: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
@@ -1520,5 +1508,14 @@ msgstr "Sto aggiungendo il watermark al tuo PDF"
 #~ msgstr ""
 
 #~ msgid "Splitting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Select how you'll like me to send the text to you"
+#~ msgstr ""
+
+#~ msgid "Extracting text from your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any text in your PDF file"
 #~ msgstr ""
 

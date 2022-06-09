@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 13:38+0000\n"
-"PO-Revision-Date: 2022-06-08 13:38\n"
+"POT-Creation-Date: 2022-06-09 08:53+0000\n"
+"PO-Revision-Date: 2022-06-09 08:54\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -291,7 +291,7 @@ msgstr "ඔබ මෙතෙක් මට මේ {file_type} යවා ඇත:"
 msgid "The result file is too large for me to send to you"
 msgstr "සකස් කරන ලද ගොනුව මට ඔබ වෙත එවීමට නොහැකි තරම් විශාලය"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:148
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "මෙය ටෙලිග්‍රාම් බොට් සීමාවක් බව සලකන්න, ටෙලිග්‍රාම් මෙම සීමාව වෙනස් නොකළහොත් මට කළ හැකි කිසිවක් නැත"
@@ -440,7 +440,7 @@ msgstr "ඔබගේ PDF ගොනුව විකේතනය කිරීම�
 msgid "Send me the password to encrypt your PDF file"
 msgstr "ඔබගේ PDF ගොනුව ආකේතනය කිරීමට මුරපදය එවන්න"
 
-#: pdf_bot/file/file_handlers.py:152
+#: pdf_bot/file/file_handlers.py:147
 msgid "Your file is too big for me to download and process"
 msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
@@ -448,7 +448,7 @@ msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීම�
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "{old_size} සිට {new_size}දක්වා {percent}කින් අඩු වේ"
 
-#: pdf_bot/file/file_service.py:63
+#: pdf_bot/file/file_service.py:77
 msgid "Adding an OCR text layer to your PDF file"
 msgstr ""
 
@@ -488,18 +488,6 @@ msgstr ""
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr ""
-
-#: pdf_bot/files/text.py:23
-msgid "Select how you'll like me to send the text to you"
-msgstr "අවශය අකුරු ඔබ වෙත එවීමට කැමති ආකාරය තෝරන්න"
-
-#: pdf_bot/files/text.py:36
-msgid "Extracting text from your PDF file"
-msgstr "ඔබගේ PDF ගොනුවෙන් අකුරු උපුටා ගනිමින් පවතී"
-
-#: pdf_bot/files/text.py:90
-msgid "I couldn't find any text in your PDF file"
-msgstr "ඔබගේ PDF ගොනුවේ කිසිදු අකුරක් මට සොයාගත නොහැක"
 
 #: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
@@ -1520,5 +1508,14 @@ msgstr "ඔබගේ PDF ගොනුවට වෝටර් මාර්ක් �
 #~ msgstr ""
 
 #~ msgid "Splitting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Select how you'll like me to send the text to you"
+#~ msgstr ""
+
+#~ msgid "Extracting text from your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any text in your PDF file"
 #~ msgstr ""
 
