@@ -56,6 +56,20 @@ class FileService:
             )
         return ConversationHandler.END
 
+    def extract_text_from_pdf(self, update: Update, context: CallbackContext):
+        _ = set_lang(update, context)
+        message = update.effective_message
+
+        try:
+            file_id, _file_name = self.telegram_service.get_user_data(context, PDF_INFO)
+        except TelegramServiceError as e:
+            message.reply_text(_(str(e)))
+            return ConversationHandler.END
+
+        with self.pdf_service.extract_text_from_pdf(file_id) as out_path:
+            send_result_file(update, context, out_path, TaskType.get_pdf_text)
+        return ConversationHandler.END
+
     def ocr_pdf(self, update: Update, context: CallbackContext):
         _ = set_lang(update, context)
         message = update.effective_message

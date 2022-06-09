@@ -21,14 +21,11 @@ from pdf_bot.consts import (
     ROTATE,
     SCALE,
     SPLIT,
-    TEXT_FILE,
     TEXT_FILTER,
-    TEXT_MESSAGE,
     TO_IMAGES,
     TO_PDF,
     WAIT_EXTRACT_IMAGE_TYPE,
     WAIT_IMAGE_TASK,
-    WAIT_TEXT_TYPE,
     WAIT_TO_IMAGE_TYPE,
 )
 from pdf_bot.crop import CropService, crop_constants
@@ -44,7 +41,6 @@ from pdf_bot.files.image import (
     pdf_to_images,
     process_image_task,
 )
-from pdf_bot.files.text import ask_text_type, get_pdf_text
 from pdf_bot.language import set_lang
 from pdf_bot.rename import RenameService, rename_constants
 from pdf_bot.rotate import RotateService, rotate_constants
@@ -126,7 +122,6 @@ class FileHandlers:
                 split_constants.WAIT_SPLIT_RANGE: [
                     MessageHandler(TEXT_FILTER, self.split_service.split_pdf)
                 ],
-                WAIT_TEXT_TYPE: [MessageHandler(TEXT_FILTER, self.check_text_task)],
                 WAIT_EXTRACT_IMAGE_TYPE: [
                     MessageHandler(TEXT_FILTER, self.check_get_images_task)
                 ],
@@ -189,7 +184,7 @@ class FileHandlers:
         if text == _(SPLIT):
             return self.split_service.ask_split_range(update, context)
         if text == _(EXTRACT_TEXT):
-            return ask_text_type(update, context)
+            return self.file_service.extract_text_from_pdf(update, context)
         if text == OCR:
             return self.file_service.ocr_pdf(update, context)
         if text == _(COMPRESS):
@@ -212,19 +207,6 @@ class FileHandlers:
             return cancel(update, context)
 
         return WAIT_IMAGE_TASK
-
-    def check_text_task(self, update, context):
-        _ = set_lang(update, context)
-        text = update.effective_message.text
-
-        if text == _(TEXT_MESSAGE):
-            return get_pdf_text(update, context, is_file=False)
-        if text == _(TEXT_FILE):
-            return get_pdf_text(update, context, is_file=True)
-        if text == _(BACK):
-            return self.file_task_service.ask_pdf_task(update, context)
-
-        return WAIT_TEXT_TYPE
 
     def check_get_images_task(self, update, context):
         _ = set_lang(update, context)
