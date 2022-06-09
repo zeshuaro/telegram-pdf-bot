@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-08 13:38+0000\n"
-"PO-Revision-Date: 2022-06-08 13:38\n"
+"POT-Creation-Date: 2022-06-09 08:53+0000\n"
+"PO-Revision-Date: 2022-06-09 08:54\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -291,7 +291,7 @@ msgstr "あなたは今まで私にこれらの {file_type} を送ってきま�
 msgid "The result file is too large for me to send to you"
 msgstr "結果ファイルが大きすぎて、私はあなたに送れなくてはいい"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:148
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "これは電報ボットの制限であり、テレグラムがこの制限を変更しない限り、私は何もできませんのでご注意ください"
@@ -440,7 +440,7 @@ msgstr "PDFファイルの暗号化を解除するためのパスワードを送
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDFファイルを暗号化するためのパスワードを送信する"
 
-#: pdf_bot/file/file_handlers.py:152
+#: pdf_bot/file/file_handlers.py:147
 msgid "Your file is too big for me to download and process"
 msgstr "ファイルが大きすぎてダウンロードして処理できません"
 
@@ -448,7 +448,7 @@ msgstr "ファイルが大きすぎてダウンロードして処理できませ
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "ファイル サイズを {percent}減らして、 {old_size} から {new_size}に"
 
-#: pdf_bot/file/file_service.py:63
+#: pdf_bot/file/file_service.py:77
 msgid "Adding an OCR text layer to your PDF file"
 msgstr ""
 
@@ -488,18 +488,6 @@ msgstr "PDF ファイルに画像が見つかりませんでした"
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
 msgstr "すべての画像については、上記を参照してください。"
-
-#: pdf_bot/files/text.py:23
-msgid "Select how you'll like me to send the text to you"
-msgstr "テキストを送信する方法を選択してください"
-
-#: pdf_bot/files/text.py:36
-msgid "Extracting text from your PDF file"
-msgstr "PDF ファイルからテキストを抽出する"
-
-#: pdf_bot/files/text.py:90
-msgid "I couldn't find any text in your PDF file"
-msgstr "PDF ファイルにテキストが見つからない"
 
 #: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
@@ -1520,5 +1508,14 @@ msgstr "PDF ファイルにウォーターマークを追加する"
 #~ msgstr ""
 
 #~ msgid "Splitting your PDF file"
+#~ msgstr ""
+
+#~ msgid "Select how you'll like me to send the text to you"
+#~ msgstr ""
+
+#~ msgid "Extracting text from your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any text in your PDF file"
 #~ msgstr ""
 
