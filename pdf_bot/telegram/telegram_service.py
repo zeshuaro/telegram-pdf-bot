@@ -11,6 +11,7 @@ from pdf_bot.models import FileData
 from pdf_bot.telegram.exceptions import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
+    TelegramImageNotFoundError,
     TelegramUserDataKeyError,
 )
 
@@ -30,13 +31,16 @@ class TelegramService:
     @staticmethod
     def check_image(message: Message) -> Document | PhotoSize:
         img_file = message.document
-        if img_file is not None:
-            if not img_file.mime_type.startswith("image"):
-                raise TelegramFileMimeTypeError(
-                    _("Your file is not an image, please try again")
-                )
-        else:
-            img_file = message.photo[-1]
+        if img_file is not None and not img_file.mime_type.startswith("image"):
+            raise TelegramFileMimeTypeError(
+                _("Your file is not an image, please try again")
+            )
+
+        if img_file is None:
+            if message.photo:
+                img_file = message.photo[-1]
+            else:
+                raise TelegramImageNotFoundError(_("No image found in your message"))
 
         if img_file.file_size > MAX_FILESIZE_DOWNLOAD:
             raise TelegramFileTooLargeError(

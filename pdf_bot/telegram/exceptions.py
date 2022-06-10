@@ -12,3 +12,7 @@ class TelegramFileTooLargeError(TelegramServiceError):
 
 class TelegramUserDataKeyError(TelegramServiceError):
     pass
+
+
+class TelegramImageNotFoundError(TelegramServiceError):
+    pass
