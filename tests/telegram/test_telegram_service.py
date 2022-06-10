@@ -12,6 +12,7 @@ from pdf_bot.models import FileData
 from pdf_bot.telegram import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
+    TelegramImageNotFoundError,
     TelegramService,
 )
 from pdf_bot.telegram.exceptions import TelegramUserDataKeyError
@@ -87,6 +88,19 @@ def test_check_image_too_large(
     telegram_message.photo = [telegram_photo_size]
 
     with pytest.raises(TelegramFileTooLargeError):
+        telegram_service.check_image(telegram_message)
+
+
+def test_check_image_not_found(
+    telegram_service: TelegramService,
+    telegram_message: Message,
+    telegram_photo_size: PhotoSize,
+):
+    telegram_photo_size.file_size = MAX_FILESIZE_DOWNLOAD + 1
+    telegram_message.document = None
+    telegram_message.photo = []
+
+    with pytest.raises(TelegramImageNotFoundError):
         telegram_service.check_image(telegram_message)
 
 
