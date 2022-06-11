@@ -29,7 +29,18 @@ class TelegramService:
         self.bot = bot or updater.bot
 
     @staticmethod
-    def check_image(message: Message) -> Document | PhotoSize:
+    def check_file_size(file: Document | PhotoSize) -> None:
+        if file.file_size > MAX_FILESIZE_DOWNLOAD:
+            raise TelegramFileTooLargeError(
+                _(
+                    "Your file is too large for me to download and process, "
+                    "please try again with a differnt file\n\n"
+                    "Note that this is a Telegram Bot limitation and there's "
+                    "nothing I can do unless Telegram changes this limit"
+                )
+            )
+
+    def check_image(self, message: Message) -> Document | PhotoSize:
         img_file = message.document
         if img_file is not None and not img_file.mime_type.startswith("image"):
             raise TelegramFileMimeTypeError(
@@ -42,35 +53,16 @@ class TelegramService:
             else:
                 raise TelegramImageNotFoundError(_("No image found in your message"))
 
-        if img_file.file_size > MAX_FILESIZE_DOWNLOAD:
-            raise TelegramFileTooLargeError(
-                _(
-                    "Your image is too large for me to download and process, "
-                    "please try again with a differnt image\n\n"
-                    "Note that this is a Telegram Bot limitation and there's "
-                    "nothing I can do unless Telegram changes this limit"
-                )
-            )
-
+        self.check_file_size(img_file)
         return img_file
 
-    @staticmethod
-    def check_pdf_document(message: Message) -> Document:
+    def check_pdf_document(self, message: Message) -> Document:
         doc = message.document
         if not doc.mime_type.endswith("pdf"):
             raise TelegramFileMimeTypeError(
                 _("Your file is not a PDF file, please try again")
             )
-        if doc.file_size > MAX_FILESIZE_DOWNLOAD:
-            raise TelegramFileTooLargeError(
-                _(
-                    "Your file is too large for me to download and process, "
-                    "please try again with a differnt file\n\n"
-                    "Note that this is a Telegram Bot limitation and there's "
-                    "nothing I can do unless Telegram changes this limit"
-                )
-            )
-
+        self.check_file_size(doc)
         return doc
 
     @contextmanager

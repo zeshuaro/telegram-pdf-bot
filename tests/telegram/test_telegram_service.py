@@ -25,6 +25,15 @@ def fixture_telegram_service(
     return TelegramService(io_service, bot=telegram_bot)
 
 
+def test_check_file_size_too_large(
+    telegram_service: TelegramService,
+    telegram_document: Document,
+):
+    telegram_document.file_size = MAX_FILESIZE_DOWNLOAD + 1
+    with pytest.raises(TelegramFileTooLargeError):
+        telegram_service.check_file_size(telegram_document)
+
+
 def test_check_image_document(
     telegram_service: TelegramService,
     telegram_message: Message,
