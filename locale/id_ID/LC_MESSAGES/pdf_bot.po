@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-09 08:53+0000\n"
-"PO-Revision-Date: 2022-06-09 08:54\n"
+"POT-Creation-Date: 2022-06-11 12:51+0000\n"
+"PO-Revision-Date: 2022-06-11 12:51\n"
 "Last-Translator: \n"
 "Language: id\n"
 "Language-Team: Indonesian\n"
@@ -477,7 +477,7 @@ msgstr "Mengonversi file PDF Anda menjadi gambar"
 msgid "Extracting all the images in your PDF file"
 msgstr "Mengekstrak semua gambar dalam file PDF Anda"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:109
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:105
 msgid "Something went wrong, please try again"
 msgstr "Ada yang tidak beres, silakan coba lagi"
 
@@ -681,23 +681,22 @@ msgstr "halaman {range} {pages}"
 msgid "The range is invalid, please try again"
 msgstr "Rentangnya tidak valid, silakan coba lagi"
 
-#: pdf_bot/telegram/telegram_service.py:36
-msgid "Your file is not an image, please try again"
-msgstr ""
-
-#: pdf_bot/telegram/telegram_service.py:43
-msgid "Your image is too large for me to download and process, please try again with a differnt image\n\n"
-"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr ""
-
-#: pdf_bot/telegram/telegram_service.py:58
-msgid "Your file is not a PDF file, please try again"
-msgstr "File Anda bukan file PDF, silakan coba lagi"
-
-#: pdf_bot/telegram/telegram_service.py:62
+#: pdf_bot/telegram/telegram_service.py:35
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:47
+msgid "Your file is not an image, please try again"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:54
+msgid "No image found in your message"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:63
+msgid "Your file is not a PDF file, please try again"
+msgstr "File Anda bukan file PDF, silakan coba lagi"
 
 #: pdf_bot/text/constants.py:10
 msgid "Skip"
@@ -1517,5 +1516,16 @@ msgstr "Menambahkan cap air ke file PDF Anda"
 #~ msgstr ""
 
 #~ msgid "I couldn't find any text in your PDF file"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your image is too large for me "
+#~ "to download and process, please try "
+#~ "again with a differnt image\n"
+#~ "\n"
+#~ "Note that this is a Telegram Bot"
+#~ " limitation and there's nothing I can"
+#~ " do unless Telegram changes this "
+#~ "limit"
 #~ msgstr ""
 
