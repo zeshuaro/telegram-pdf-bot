@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-06-09 08:53+0000\n"
-"PO-Revision-Date: 2022-06-09 08:54\n"
+"POT-Creation-Date: 2022-06-11 12:51+0000\n"
+"PO-Revision-Date: 2022-06-11 12:51\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: Arabic\n"
@@ -302,7 +302,7 @@ msgstr "هاهو ملفك الناتج"
 
 #: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
-msgstr ""
+msgstr "شكرا"
 
 #: pdf_bot/command/command_service.py:30
 msgid "Welcome to PDF Bot!"
@@ -477,7 +477,7 @@ msgstr "تحويل ملف PDF إلى صور"
 msgid "Extracting all the images in your PDF file"
 msgstr "استخراج جميع الصور في ملف PDF الخاص بك"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:109
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:105
 msgid "Something went wrong, please try again"
 msgstr "حدث خطأ ما، يرجى المحاولة مرة أخرى"
 
@@ -681,23 +681,22 @@ msgstr "صفحات {range} {pages}"
 msgid "The range is invalid, please try again"
 msgstr "النطاق غير صالح، الرجاء المحاولة مرة أخرى"
 
-#: pdf_bot/telegram/telegram_service.py:36
-msgid "Your file is not an image, please try again"
-msgstr ""
-
-#: pdf_bot/telegram/telegram_service.py:43
-msgid "Your image is too large for me to download and process, please try again with a differnt image\n\n"
-"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr ""
-
-#: pdf_bot/telegram/telegram_service.py:58
-msgid "Your file is not a PDF file, please try again"
-msgstr "ملفك ليس ملف PDF، يرجى المحاولة مرة أخرى"
-
-#: pdf_bot/telegram/telegram_service.py:62
+#: pdf_bot/telegram/telegram_service.py:35
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:47
+msgid "Your file is not an image, please try again"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:54
+msgid "No image found in your message"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:63
+msgid "Your file is not a PDF file, please try again"
+msgstr "ملفك ليس ملف PDF، يرجى المحاولة مرة أخرى"
 
 #: pdf_bot/text/constants.py:10
 msgid "Skip"
@@ -1517,5 +1516,16 @@ msgstr "جاري اضافة العلامة المائية"
 #~ msgstr ""
 
 #~ msgid "I couldn't find any text in your PDF file"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your image is too large for me "
+#~ "to download and process, please try "
+#~ "again with a differnt image\n"
+#~ "\n"
+#~ "Note that this is a Telegram Bot"
+#~ " limitation and there's nothing I can"
+#~ " do unless Telegram changes this "
+#~ "limit"
 #~ msgstr ""
 
