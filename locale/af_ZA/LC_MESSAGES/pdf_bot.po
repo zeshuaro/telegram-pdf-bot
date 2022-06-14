@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-06-11 12:51+0000\n"
-"PO-Revision-Date: 2022-06-11 12:51\n"
+"PO-Revision-Date: 2022-06-14 08:21\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -302,7 +302,7 @@ msgstr "Hier is u resultaatlêer"
 
 #: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
-msgstr ""
+msgstr "Kon nie die proses voltooi nie"
 
 #: pdf_bot/command/command_service.py:30
 msgid "Welcome to PDF Bot!"
@@ -426,11 +426,11 @@ msgstr "Positiewe getalle sal die margegrootte verminder en negatiewe getalle sa
 
 #: pdf_bot/crop/crop_service.py:101
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr ""
+msgstr "Die nommer {number} nie tussen {min_percent} en {max_percent}is nie , probeer asseblief weer"
 
 #: pdf_bot/crop/crop_service.py:126
 msgid "The number {number} is invalid, please try again"
-msgstr ""
+msgstr "Die nommer {number} is ongeldig, probeer asseblief weer"
 
 #: pdf_bot/decrypt/decrypt_service.py:30
 msgid "Send me the password to decrypt your PDF file"
@@ -450,7 +450,7 @@ msgstr "Lêergrootte verminder met {percent}, van {old_size} tot {new_size}"
 
 #: pdf_bot/file/file_service.py:77
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "Voeg 'n OCR-tekslaag by jou PDF-lêer"
 
 #: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
@@ -499,7 +499,7 @@ msgstr "Let daarop dat die lêers saamgesmelt sal word in die volgorde wat jy my
 
 #: pdf_bot/merge/merge_service.py:57
 msgid "You've sent me these PDF files so far:"
-msgstr ""
+msgstr "U het tot dusver vir my hierdie PDF-lêers gestuur:"
 
 #: pdf_bot/merge/merge_service.py:68
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
@@ -507,7 +507,7 @@ msgstr "Druk {done} as jy vir my al die PDF-lêers gestuur het wat jy graag wil 
 
 #: pdf_bot/merge/merge_service.py:109
 msgid "You've already removed all the PDF files you've sent me"
-msgstr ""
+msgstr "U het reeds al die PDF-lêers verwyder wat u vir my gestuur het"
 
 #: pdf_bot/merge/merge_service.py:114
 msgid "{file_name} has been removed for merging"
@@ -531,7 +531,7 @@ msgstr "Jou PDF-lêer is nie geënkripteer nie"
 
 #: pdf_bot/pdf/pdf_service.py:223
 msgid "Incorrect password, please try again"
-msgstr ""
+msgstr "Verkeerde wagwoord, probeer asseblief weer"
 
 #: pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
@@ -539,7 +539,7 @@ msgstr "Jou PDF-lêer is geënkripteer met 'n metode wat ek nie kan dekripteer n
 
 #: pdf_bot/pdf/pdf_service.py:265
 msgid "No text found in your PDF file"
-msgstr ""
+msgstr "Geen teks in jou PDF-lêer gevind nie"
 
 #: pdf_bot/pdf/pdf_service.py:289
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
@@ -575,11 +575,11 @@ msgstr "Kies die grade wat jy jou PDF-lêer in kloksgewys wil draai"
 
 #: pdf_bot/scale/scale_constants.py:5
 msgid "By scaling factor"
-msgstr ""
+msgstr "Deur skaal faktor"
 
 #: pdf_bot/scale/scale_constants.py:6
 msgid "To dimension"
-msgstr ""
+msgstr "Om dimensie te dimensie"
 
 #: pdf_bot/scale/scale_service.py:37
 msgid "Select the scale type that you'll like to perform"
@@ -684,15 +684,16 @@ msgstr "Die reeks is ongeldig, probeer asseblief weer"
 #: pdf_bot/telegram/telegram_service.py:35
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr ""
+msgstr "U lêer is te groot vir my om af te laai en te verwerk, probeer asseblief weer met 'n ander lêer\n\n"
+"Let daarop dat dit 'n Telegram Bot-beperking is en daar niks is wat ek kan doen nie, tensy Telegram hierdie limiet verander"
 
 #: pdf_bot/telegram/telegram_service.py:47
 msgid "Your file is not an image, please try again"
-msgstr ""
+msgstr "Jou lêer is nie 'n beeld nie, probeer asseblief weer"
 
 #: pdf_bot/telegram/telegram_service.py:54
 msgid "No image found in your message"
-msgstr ""
+msgstr "Geen beeld in jou boodskap gevind nie"
 
 #: pdf_bot/telegram/telegram_service.py:63
 msgid "Your file is not a PDF file, please try again"
@@ -700,7 +701,7 @@ msgstr "Jou lêer is nie 'n PDF-lêer nie, probeer asseblief weer"
 
 #: pdf_bot/text/constants.py:10
 msgid "Skip"
-msgstr ""
+msgstr "Slaan"
 
 #: pdf_bot/text/text_service.py:34
 msgid "Send me the text that you'll like to write into your PDF file"

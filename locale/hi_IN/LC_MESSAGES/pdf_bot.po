@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-06-11 12:51+0000\n"
-"PO-Revision-Date: 2022-06-11 12:51\n"
+"PO-Revision-Date: 2022-06-14 08:21\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -302,7 +302,7 @@ msgstr "यहां आपकी रिजल्ट फाइल है"
 
 #: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
-msgstr ""
+msgstr "प्रक्रिया पूरी करने में विफल"
 
 #: pdf_bot/command/command_service.py:30
 msgid "Welcome to PDF Bot!"
@@ -426,11 +426,11 @@ msgstr "सकारात्मक संख्या मार्जिन आ
 
 #: pdf_bot/crop/crop_service.py:101
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr ""
+msgstr "{number} संख्या {min_percent} और {max_percent}के बीच नहीं है, कृपया पुन: प्रयास करें"
 
 #: pdf_bot/crop/crop_service.py:126
 msgid "The number {number} is invalid, please try again"
-msgstr ""
+msgstr "वह संख्या {number} अमान्य है, कृपया पुन: प्रयास करें"
 
 #: pdf_bot/decrypt/decrypt_service.py:30
 msgid "Send me the password to decrypt your PDF file"
@@ -450,7 +450,7 @@ msgstr "फाइल का आकार {percent}से घटाकर {old_si
 
 #: pdf_bot/file/file_service.py:77
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "अपनी PDF फ़ाइल में एक OCR पाठ परत जोड़ना"
 
 #: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
@@ -499,7 +499,7 @@ msgstr "ध्यान दें कि फ़ाइलों को उस क
 
 #: pdf_bot/merge/merge_service.py:57
 msgid "You've sent me these PDF files so far:"
-msgstr ""
+msgstr "आपने मुझे अब तक ये पीडीएफ फाइलें भेजी हैं:"
 
 #: pdf_bot/merge/merge_service.py:68
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
@@ -507,7 +507,7 @@ msgstr "प्रेस {done} यदि आपने मुझे उन सभ
 
 #: pdf_bot/merge/merge_service.py:109
 msgid "You've already removed all the PDF files you've sent me"
-msgstr ""
+msgstr "आपने पहले ही उन सभी पीडीएफ फाइलों को निकाल दिया है जिन्हें आपने मुझे भेजा है"
 
 #: pdf_bot/merge/merge_service.py:114
 msgid "{file_name} has been removed for merging"
@@ -531,7 +531,7 @@ msgstr "आपकी पीडीएफ फाइल एन्क्रिप्
 
 #: pdf_bot/pdf/pdf_service.py:223
 msgid "Incorrect password, please try again"
-msgstr ""
+msgstr "गलत पासवर्ड, कृपया पुन: प्रयास करें"
 
 #: pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
@@ -539,7 +539,7 @@ msgstr "आपकी पीडीएफ फ़ाइल एक विधि क�
 
 #: pdf_bot/pdf/pdf_service.py:265
 msgid "No text found in your PDF file"
-msgstr ""
+msgstr "आपकी PDF फ़ाइल में कोई पाठ नहीं मिला"
 
 #: pdf_bot/pdf/pdf_service.py:289
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
@@ -575,11 +575,11 @@ msgstr "उन डिग्रियों का चयन करें जि�
 
 #: pdf_bot/scale/scale_constants.py:5
 msgid "By scaling factor"
-msgstr ""
+msgstr "स्केलिंग गुणक द्वारा"
 
 #: pdf_bot/scale/scale_constants.py:6
 msgid "To dimension"
-msgstr ""
+msgstr "आयाम के लिए"
 
 #: pdf_bot/scale/scale_service.py:37
 msgid "Select the scale type that you'll like to perform"
@@ -684,15 +684,16 @@ msgstr "सीमा अमान्य है, कृपया फिर से
 #: pdf_bot/telegram/telegram_service.py:35
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr ""
+msgstr "आपकी फ़ाइल मेरे लिए डाउनलोड करने और संसाधित करने के लिए बहुत बड़ी है, कृपया एक अलग फ़ाइल के साथ फिर से प्रयास करें\n\n"
+"ध्यान दें कि यह एक टेलीग्राम बॉट सीमा है और जब तक टेलीग्राम इस सीमा को नहीं बदलता है तब तक मैं कुछ भी नहीं कर सकता"
 
 #: pdf_bot/telegram/telegram_service.py:47
 msgid "Your file is not an image, please try again"
-msgstr ""
+msgstr "आपकी फ़ाइल कोई छवि नहीं है, कृपया पुन: प्रयास करें"
 
 #: pdf_bot/telegram/telegram_service.py:54
 msgid "No image found in your message"
-msgstr ""
+msgstr "आपके संदेश में कोई छवि नहीं मिली"
 
 #: pdf_bot/telegram/telegram_service.py:63
 msgid "Your file is not a PDF file, please try again"
@@ -700,7 +701,7 @@ msgstr "आपकी फ़ाइल पीडीएफ फ़ाइल नह�
 
 #: pdf_bot/text/constants.py:10
 msgid "Skip"
-msgstr ""
+msgstr "कूद"
 
 #: pdf_bot/text/text_service.py:34
 msgid "Send me the text that you'll like to write into your PDF file"

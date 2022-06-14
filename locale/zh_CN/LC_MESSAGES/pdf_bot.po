@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-06-11 12:51+0000\n"
-"PO-Revision-Date: 2022-06-11 12:51\n"
+"PO-Revision-Date: 2022-06-14 08:21\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -302,7 +302,7 @@ msgstr "你的输出档案"
 
 #: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
-msgstr ""
+msgstr "未能完成进程"
 
 #: pdf_bot/command/command_service.py:30
 msgid "Welcome to PDF Bot!"
@@ -426,11 +426,11 @@ msgstr "正数将减少保证金大小，负数将增加"
 
 #: pdf_bot/crop/crop_service.py:101
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr ""
+msgstr "{number} 号不在 {min_percent} 和 {max_percent}之间，请重试"
 
 #: pdf_bot/crop/crop_service.py:126
 msgid "The number {number} is invalid, please try again"
-msgstr ""
+msgstr "号码 {number} 无效，请重试"
 
 #: pdf_bot/decrypt/decrypt_service.py:30
 msgid "Send me the password to decrypt your PDF file"
@@ -450,7 +450,7 @@ msgstr "文件大小减少 {percent}，从 {old_size} 减少到 {new_size}"
 
 #: pdf_bot/file/file_service.py:77
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "将 OCR 文本图层添加到 PDF 文件"
 
 #: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
@@ -499,7 +499,7 @@ msgstr "请注意，文件将按照您发送给我的顺序合并"
 
 #: pdf_bot/merge/merge_service.py:57
 msgid "You've sent me these PDF files so far:"
-msgstr ""
+msgstr "到目前为止，您已经向我发送了这些PDF文件："
 
 #: pdf_bot/merge/merge_service.py:68
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
@@ -507,7 +507,7 @@ msgstr "按 {done} ，如果您已将您希望合并的所有 PDF 文件发送�
 
 #: pdf_bot/merge/merge_service.py:109
 msgid "You've already removed all the PDF files you've sent me"
-msgstr ""
+msgstr "您已经删除了发送给我的所有PDF文件"
 
 #: pdf_bot/merge/merge_service.py:114
 msgid "{file_name} has been removed for merging"
@@ -531,7 +531,7 @@ msgstr "你的PDF档案并没有加密"
 
 #: pdf_bot/pdf/pdf_service.py:223
 msgid "Incorrect password, please try again"
-msgstr ""
+msgstr "密码不正确，请重试"
 
 #: pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
@@ -539,7 +539,7 @@ msgstr "您的 PDF 文件使用一种无法解密的方法进行加密"
 
 #: pdf_bot/pdf/pdf_service.py:265
 msgid "No text found in your PDF file"
-msgstr ""
+msgstr "在 PDF 文件中找不到任何文本"
 
 #: pdf_bot/pdf/pdf_service.py:289
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
@@ -575,11 +575,11 @@ msgstr "选择你想要顺时针旋转你PDF档案的度数"
 
 #: pdf_bot/scale/scale_constants.py:5
 msgid "By scaling factor"
-msgstr ""
+msgstr "按比例因子"
 
 #: pdf_bot/scale/scale_constants.py:6
 msgid "To dimension"
-msgstr ""
+msgstr "到尺寸"
 
 #: pdf_bot/scale/scale_service.py:37
 msgid "Select the scale type that you'll like to perform"
@@ -684,15 +684,16 @@ msgstr "范围无效，请再试一次"
 #: pdf_bot/telegram/telegram_service.py:35
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr ""
+msgstr "您的文件太大，我无法下载和处理，请使用其他文件重试\n\n"
+"请注意，这是电报机器人的限制，除非电报更改此限制，否则我无能为力"
 
 #: pdf_bot/telegram/telegram_service.py:47
 msgid "Your file is not an image, please try again"
-msgstr ""
+msgstr "您的文件不是图像，请重试"
 
 #: pdf_bot/telegram/telegram_service.py:54
 msgid "No image found in your message"
-msgstr ""
+msgstr "在邮件中未找到图像"
 
 #: pdf_bot/telegram/telegram_service.py:63
 msgid "Your file is not a PDF file, please try again"
@@ -700,7 +701,7 @@ msgstr "您的文件不是 PDF 文件，请再试一次"
 
 #: pdf_bot/text/constants.py:10
 msgid "Skip"
-msgstr ""
+msgstr "跳"
 
 #: pdf_bot/text/text_service.py:34
 msgid "Send me the text that you'll like to write into your PDF file"
