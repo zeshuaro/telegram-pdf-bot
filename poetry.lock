@@ -599,7 +599,7 @@ python-versions = ">=3.8"
 
 [[package]]
 name = "ocrmypdf"
-version = "13.4.7"
+version = "13.5.0"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 category = "main"
 optional = false
@@ -607,12 +607,12 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 coloredlogs = ">=14.0"
-img2pdf = ">=0.3.0,<0.5"
+img2pdf = ">=0.3.0"
 packaging = ">=20"
 "pdfminer.six" = ">=20191110,<20200720 || >20200720"
 pikepdf = ">=4.0.0,<5.0.0 || >5.0.0"
 Pillow = ">=8.2.0"
-pluggy = ">=0.13.0,<2"
+pluggy = ">=0.13.0"
 reportlab = ">=3.5.66"
 tqdm = ">=4"
 
@@ -620,8 +620,8 @@ tqdm = ">=4"
 docs = ["sphinx", "sphinx-issues", "sphinx-rtd-theme"]
 extended_test = ["PyMuPDF (==1.19.1)"]
 test = ["coverage[toml] (>=5)", "pytest (>=6.0.0)", "pytest-cov (>=2.11.1)", "pytest-xdist (>=2.2.0)", "python-xmp-toolkit (==2.0.1)"]
-watcher = ["watchdog (>=1.0.2,<3)"]
-webservice = ["Flask (>=1,<3)"]
+watcher = ["watchdog (>=1.0.2)"]
+webservice = ["Flask (>=1)"]
 
 [[package]]
 name = "packaging"
@@ -1255,7 +1255,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "5e739f5f23b4537c621bdedc15a8b5542588c33026c095c9421c5fcb3ba8c214"
+content-hash = "a5d36415defac172222f128cab4638eb8b611ce1f5c30a495d2ddc439c631d6c"
 
 [metadata.files]
 apscheduler = [
@@ -1905,8 +1905,8 @@ numpy = [
     {file = "numpy-1.22.4.zip", hash = "sha256:425b390e4619f58d8526b3dcf656dde069133ae5c240229821f01b5f44ea07af"},
 ]
 ocrmypdf = [
-    {file = "ocrmypdf-13.4.7-py37-none-any.whl", hash = "sha256:7bf9a20bcc8d0c01712d8413a0a7275c32a95accc2de75e7bc6f6e69af468e3f"},
-    {file = "ocrmypdf-13.4.7.tar.gz", hash = "sha256:8a0a2fa07cf0aac4dea11990d27a15b552afa7ff2dfffdb322bfd8bd0b77751d"},
+    {file = "ocrmypdf-13.5.0-py37-none-any.whl", hash = "sha256:f9bcb0dcf55b4e782887003bacab0d1ff4b288b981247b2d32b652f626064fdc"},
+    {file = "ocrmypdf-13.5.0.tar.gz", hash = "sha256:434dacc4e43a7db9af15daf96a16a1a5926a9d2f2a28da2862ae918dce5b3cc7"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
