@@ -870,7 +870,7 @@ diagrams = ["railroad-diagrams", "jinja2"]
 
 [[package]]
 name = "pypdf2"
-version = "2.2.1"
+version = "2.3.1"
 description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
 category = "main"
 optional = false
@@ -878,6 +878,9 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 typing-extensions = {version = "*", markers = "python_version < \"3.10\""}
+
+[package.extras]
+crypto = ["pycryptodome"]
 
 [[package]]
 name = "pyphen"
@@ -1253,7 +1256,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "5892d9802e1952b25573f1596e4df2944637dc6d911f2d39c2d8281d6ef45a93"
+content-hash = "8cc0859580196c159b35fbd29909104bb18d2256487820a627d5499b059fba6e"
 
 [metadata.files]
 apscheduler = [
@@ -2083,8 +2086,8 @@ pyparsing = [
     {file = "pyparsing-3.0.9.tar.gz", hash = "sha256:2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb"},
 ]
 pypdf2 = [
-    {file = "PyPDF2-2.2.1-py3-none-any.whl", hash = "sha256:abd561e1425adb6a692c38f96542c502123cc92eb8e39f4bf41c9421a485e751"},
-    {file = "PyPDF2-2.2.1.tar.gz", hash = "sha256:749024afd4833d91a5b192e101a81b1b21a2cbef02c2d0f2eac24dc9de23d55a"},
+    {file = "PyPDF2-2.3.1-py3-none-any.whl", hash = "sha256:ece703357ea839bb50833a32de885fa7cc8e19f89d419101c3fee7f8aba4f5fc"},
+    {file = "PyPDF2-2.3.1.tar.gz", hash = "sha256:af95279993a0310108052d16f8117989f50e2331590f4fa6bb8db3c1faa36024"},
 ]
 pyphen = [
     {file = "pyphen-0.12.0-py3-none-any.whl", hash = "sha256:459020cd320eb200c0c5ba46b98b2278fd34c5546f520fdcd2ce5f8d733eb994"},
