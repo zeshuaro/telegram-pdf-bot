@@ -361,11 +361,11 @@ grpc = ["grpcio (>=1.8.2,<2.0dev)"]
 
 [[package]]
 name = "google-cloud-datastore"
-version = "2.7.1"
+version = "2.7.2"
 description = "Google Cloud Datastore API client library"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 google-api-core = {version = ">=1.31.5,<2.0.0 || >2.3.0,<3.0.0dev", extras = ["grpc"]}
@@ -1256,7 +1256,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "d35d21981c061c7e976ed94007992bfaa6e580f32f11e1f13a0f7175d0520392"
+content-hash = "7a28f8865059bee9dfd29366d628795fce1a52fa9b36459d14c2b1355c3a0a70"
 
 [metadata.files]
 apscheduler = [
@@ -1627,8 +1627,8 @@ google-cloud-core = [
     {file = "google_cloud_core-2.3.1-py2.py3-none-any.whl", hash = "sha256:113ba4f492467d5bd442c8d724c1a25ad7384045c3178369038840ecdd19346c"},
 ]
 google-cloud-datastore = [
-    {file = "google-cloud-datastore-2.7.1.tar.gz", hash = "sha256:43474bb2d0302da99cd8308dd513303c51e4bf119e1a32e2527cab91e0289741"},
-    {file = "google_cloud_datastore-2.7.1-py2.py3-none-any.whl", hash = "sha256:e2934fff5ba7d4517c6a7bc3d588bb6e12b40356159119e9537b3d2853a39a4f"},
+    {file = "google-cloud-datastore-2.7.2.tar.gz", hash = "sha256:f28e8e79ec2e8a9b6b96454d9b623b7f0b6a3c0b7e9cd387bde2141160e3c8dd"},
+    {file = "google_cloud_datastore-2.7.2-py2.py3-none-any.whl", hash = "sha256:57425811f345913b5d00019d6d0e2bc34f8acf5bff328542336195b5a7dc8972"},
 ]
 googleapis-common-protos = [
     {file = "googleapis-common-protos-1.56.3.tar.gz", hash = "sha256:6f1369b58ed6cf3a4b7054a44ebe8d03b29c309257583a2bbdc064cd1e4a1442"},
