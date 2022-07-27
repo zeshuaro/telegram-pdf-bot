@@ -596,7 +596,7 @@ python-versions = ">=3.8"
 
 [[package]]
 name = "ocrmypdf"
-version = "13.6.1"
+version = "13.6.2"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 category = "main"
 optional = false
@@ -612,11 +612,12 @@ Pillow = ">=8.2.0"
 pluggy = ">=0.13.0"
 reportlab = ">=3.5.66"
 tqdm = ">=4"
+typing-extensions = {version = ">=4", markers = "python_version < \"3.10\""}
 
 [package.extras]
 docs = ["sphinx", "sphinx-issues", "sphinx-rtd-theme"]
 extended_test = ["PyMuPDF (==1.19.1)"]
-test = ["coverage[toml] (>=5)", "pytest (>=6.0.0)", "pytest-cov (>=2.11.1)", "pytest-xdist (>=2.2.0)", "python-xmp-toolkit (==2.0.1)", "types-humanfriendly", "types-pillow"]
+test = ["coverage[toml] (>=5)", "pytest (>=6.0.0)", "pytest-cov (>=2.11.1)", "pytest-xdist (>=2.2.0)", "python-xmp-toolkit (==2.0.1)", "types-pillow", "types-humanfriendly"]
 watcher = ["watchdog (>=1.0.2)"]
 webservice = ["Flask (>=1)"]
 
@@ -1258,7 +1259,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "ebafa31e6e66dfee95583e5ad6856eb9e878cb8425cc6bfd283d6450dfb6d1f7"
+content-hash = "926044ee302e6f91e3d325e9cbf5ad20573ded48ba928681345e4813952ae3ba"
 
 [metadata.files]
 apscheduler = [
@@ -1868,8 +1869,8 @@ numpy = [
     {file = "numpy-1.23.1.tar.gz", hash = "sha256:d748ef349bfef2e1194b59da37ed5a29c19ea8d7e6342019921ba2ba4fd8b624"},
 ]
 ocrmypdf = [
-    {file = "ocrmypdf-13.6.1-py37-none-any.whl", hash = "sha256:d123e8e1c530fa2a7c0a880e048334867ab691907927d63594b0adf94dbcc5e8"},
-    {file = "ocrmypdf-13.6.1.tar.gz", hash = "sha256:c98061536decf1686e057cfe555b435605d68ab0838de3fccef0e7f3cc591eab"},
+    {file = "ocrmypdf-13.6.2-py37-none-any.whl", hash = "sha256:4a1681e67c7028316f4b765bcad72e685652c83bcbe2a158c1c515426b3dec82"},
+    {file = "ocrmypdf-13.6.2.tar.gz", hash = "sha256:5c151fc49a3afff0ffd8db8b0bff90d623c3fe9a30c3471aad8fb9d54d324cce"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
