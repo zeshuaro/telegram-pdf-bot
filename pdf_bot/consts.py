@@ -131,5 +131,3 @@ LANGUAGES = {
 }
 
 LANGS_SHORT = {x.split("_")[0]: x for x in LANGUAGES.values()}
-
-TESTING = _("Testing")
