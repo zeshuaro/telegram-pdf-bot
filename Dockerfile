@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 python:3.10.5-slim AS build
+FROM --platform=linux/amd64 python:3.10.6-slim AS build
 
 ARG COMMIT_HASH
 
@@ -16,7 +16,7 @@ COPY locale locale/
 RUN pybabel compile -D pdf_bot -d locale \
     && find locale -type f -name '*.po' -delete
 
-FROM --platform=linux/amd64 python:3.10.5-slim AS deploy
+FROM --platform=linux/amd64 python:3.10.6-slim AS deploy
 
 ARG COMMIT_HASH
 ENV SENTRY_RELEASE $COMMIT_HASH
