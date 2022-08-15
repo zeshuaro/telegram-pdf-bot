@@ -144,7 +144,7 @@ jobs:
 
       - name: Upload sources and download translations 🌐
         if: env.NUM_DIFFS > 1
-        uses: crowdin/github-action@1.4.11
+        uses: crowdin/github-action@1.4.12
         with:
           upload_sources: true
           upload_translations: false
