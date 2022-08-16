@@ -87,10 +87,10 @@ tomli = {version = ">=1.1.0", markers = "python_full_version < \"3.11.0a7\""}
 typing-extensions = {version = ">=3.10.0.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
-uvloop = ["uvloop (>=0.15.2)"]
-jupyter = ["tokenize-rt (>=3.2.0)", "ipython (>=7.8.0)"]
-d = ["aiohttp (>=3.7.4)"]
 colorama = ["colorama (>=0.4.3)"]
+d = ["aiohttp (>=3.7.4)"]
+jupyter = ["ipython (>=7.8.0)", "tokenize-rt (>=3.2.0)"]
+uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "brotli"
@@ -455,7 +455,7 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-tests = ["pytest-cov", "pytest", "freezegun"]
+tests = ["freezegun", "pytest", "pytest-cov"]
 
 [[package]]
 name = "idna"
@@ -545,10 +545,10 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, != 3.4.*"
 
 [package.extras]
-source = ["Cython (>=0.29.7)"]
-htmlsoup = ["beautifulsoup4"]
-html5 = ["html5lib"]
 cssselect = ["cssselect (>=0.7)"]
+html5 = ["html5lib"]
+htmlsoup = ["beautifulsoup4"]
+source = ["Cython (>=0.29.7)"]
 
 [[package]]
 name = "mccabe"
@@ -615,11 +615,11 @@ tqdm = ">=4"
 typing-extensions = {version = ">=4", markers = "python_version < \"3.10\""}
 
 [package.extras]
-webservice = ["Flask (>=1)"]
-watcher = ["watchdog (>=1.0.2)"]
-test = ["types-humanfriendly", "types-pillow", "python-xmp-toolkit (==2.0.1)", "pytest-xdist (>=2.2.0)", "pytest-cov (>=2.11.1)", "pytest (>=6.0.0)", "coverage[toml] (>=5)"]
+docs = ["sphinx", "sphinx-issues", "sphinx-rtd-theme"]
 extended_test = ["PyMuPDF (==1.19.1)"]
-docs = ["sphinx-rtd-theme", "sphinx-issues", "sphinx"]
+test = ["coverage[toml] (>=5)", "pytest (>=6.0.0)", "pytest-cov (>=2.11.1)", "pytest-xdist (>=2.2.0)", "python-xmp-toolkit (==2.0.1)", "types-pillow", "types-humanfriendly"]
+watcher = ["watchdog (>=1.0.2)"]
+webservice = ["Flask (>=1)"]
 
 [[package]]
 name = "packaging"
@@ -726,9 +726,9 @@ packaging = "*"
 Pillow = ">=6.0"
 
 [package.extras]
-test = ["python-xmp-toolkit (>=2.0.1)", "tomli", "python-dateutil (>=2.8.0)", "pytest-xdist (>=1.28)", "pytest-timeout (>=1.4.2)", "pytest-cov (>=2.10.1)", "pytest (>=6)", "pybind11", "psutil (>=5)", "hypothesis (>=5)", "coverage", "attrs (>=20.2.0)", "Pillow (>=9)"]
-mypy = ["types-setuptools", "types-requests", "types-pillow", "lxml-stubs"]
-docs = ["tomli", "sphinx-rtd-theme", "sphinx-issues", "sphinx-design", "setuptools-scm", "requests", "pybind11", "matplotlib", "ipython", "Sphinx (>=3)", "pygithub", "gitpython"]
+docs = ["gitpython", "pygithub", "Sphinx (>=3)", "ipython", "matplotlib", "pybind11", "requests", "setuptools-scm", "sphinx-design", "sphinx-issues", "sphinx-rtd-theme", "tomli"]
+mypy = ["lxml-stubs", "types-pillow", "types-requests", "types-setuptools"]
+test = ["Pillow (>=9)", "attrs (>=20.2.0)", "coverage", "hypothesis (>=5)", "psutil (>=5)", "pybind11", "pytest (>=6)", "pytest-cov (>=2.10.1)", "pytest-timeout (>=1.4.2)", "pytest-xdist (>=1.28)", "python-dateutil (>=2.8.0)", "tomli", "python-xmp-toolkit (>=2.0.1)"]
 
 [[package]]
 name = "pillow"
@@ -739,8 +739,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-tests = ["pytest-timeout", "pytest-cov", "pytest", "pyroma", "packaging", "olefile", "markdown2", "defusedxml", "coverage", "check-manifest"]
-docs = ["sphinxext-opengraph", "sphinx-removed-in", "sphinx-issues (>=3.0.1)", "sphinx-copybutton", "sphinx (>=2.4)", "olefile", "furo"]
+docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-issues (>=3.0.1)", "sphinx-removed-in", "sphinxext-opengraph"]
+tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
 
 [[package]]
 name = "platformdirs"
@@ -855,8 +855,8 @@ tomlkit = ">=0.10.1"
 typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
-testutils = ["gitpython (>3)"]
 spelling = ["pyenchant (>=3.2,<4.0)"]
+testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pyparsing"
@@ -966,9 +966,9 @@ pytz = ">=2018.6"
 tornado = ">=6.1"
 
 [package.extras]
-socks = ["pysocks"]
-passport = ["cryptography (!=3.4,!=3.4.1,!=3.4.2,!=3.4.3)"]
 json = ["ujson"]
+passport = ["cryptography (!=3.4,!=3.4.1,!=3.4.2,!=3.4.3)"]
+socks = ["pysocks"]
 
 [[package]]
 name = "pytz"
@@ -1045,7 +1045,7 @@ numpy = ">=1.18.5,<1.25.0"
 
 [[package]]
 name = "sentry-sdk"
-version = "1.9.4"
+version = "1.9.5"
 description = "Python client for Sentry (https://sentry.io)"
 category = "main"
 optional = false
@@ -1183,8 +1183,8 @@ pytz-deprecation-shim = "*"
 tzdata = {version = "*", markers = "platform_system == \"Windows\""}
 
 [package.extras]
-test = ["pytest (>=4.3)", "pytest-mock (>=3.3)"]
-devenv = ["zest.releaser", "pytest-cov", "pyroma", "black"]
+devenv = ["black", "pyroma", "pytest-cov", "zest.releaser"]
+test = ["pytest-mock (>=3.3)", "pytest (>=4.3)"]
 
 [[package]]
 name = "urllib3"
@@ -1218,8 +1218,8 @@ Pyphen = ">=0.9.1"
 tinycss2 = ">=1.0.0"
 
 [package.extras]
-test = ["coverage", "pytest-cov", "pytest-isort", "pytest-flake8", "pytest-xdist", "pytest"]
-doc = ["sphinx-rtd-theme", "sphinx"]
+doc = ["sphinx", "sphinx-rtd-theme"]
+test = ["pytest", "pytest-xdist", "pytest-flake8", "pytest-isort", "pytest-cov", "coverage"]
 
 [[package]]
 name = "webencodings"
@@ -1262,7 +1262,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "61302cd5009b0b681f57029a9074608c826a02ed1ab6e2cb5fce75db77d7b095"
+content-hash = "74defba17b985c1e68621abcd58e89f4da7bb659ef665401c3a41c2666bc26a1"
 
 [metadata.files]
 apscheduler = [
@@ -2189,8 +2189,8 @@ scipy = [
     {file = "scipy-1.9.0.tar.gz", hash = "sha256:c0dfd7d2429452e7e94904c6a3af63cbaa3cf51b348bd9d35b42db7e9ad42791"},
 ]
 sentry-sdk = [
-    {file = "sentry-sdk-1.9.4.tar.gz", hash = "sha256:f1e2333d1922dca3f91e57dad872c73b3cc449ac8542867664fb898b2eec342f"},
-    {file = "sentry_sdk-1.9.4-py2.py3-none-any.whl", hash = "sha256:02b7bf195f209f51c9f9458098a8f541dbf82314d21477e68ad841668fcf9a46"},
+    {file = "sentry-sdk-1.9.5.tar.gz", hash = "sha256:2d7ec7bc88ebbdf2c4b6b2650b3257893d386325a96c9b723adcd31033469b63"},
+    {file = "sentry_sdk-1.9.5-py2.py3-none-any.whl", hash = "sha256:b4b41f90951ed83e7b4c176eef021b19ecba39da5b73aca106c97a9b7e279a90"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
