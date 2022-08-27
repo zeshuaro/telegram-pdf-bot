@@ -67,6 +67,7 @@ def send_event(
                 "https://www.google-analytics.com/mp/collect",
                 params=params,
                 json=json,
+                timeout=10,
             )
             r.raise_for_status()
         except HTTPError:
