@@ -45,7 +45,7 @@ jobs:
           pytest --cov=pdf_bot --cov-report=xml
 
       - name: Upload coverage report 📡
-        uses: codecov/codecov-action@v3.1.0
+        uses: codecov/codecov-action@v3.1.1
         with:
           files: ./coverage.xml
 
