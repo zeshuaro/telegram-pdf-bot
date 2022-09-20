@@ -833,14 +833,14 @@ test = ["coverage[toml]", "pillow", "pytest", "pytest-cov", "pytest-flake8", "py
 
 [[package]]
 name = "pylint"
-version = "2.15.2"
+version = "2.15.3"
 description = "python code static checker"
 category = "dev"
 optional = false
 python-versions = ">=3.7.2"
 
 [package.dependencies]
-astroid = ">=2.12.9,<=2.14.0-dev0"
+astroid = ">=2.12.10,<=2.14.0-dev0"
 colorama = {version = ">=0.4.5", markers = "sys_platform == \"win32\""}
 dill = ">=0.2"
 isort = ">=4.2.5,<6"
@@ -1278,7 +1278,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "82780cb173de9561e24bcdbaaa2bbadb119fc1e89119b7453982295b44065d21"
+content-hash = "162dd53d30a13caf3d25cb2bd0d714fe31c70dba1cee768f81318088a21951b9"
 
 [metadata.files]
 APScheduler = [
@@ -2068,8 +2068,8 @@ pydyf = [
     {file = "pydyf-0.2.0.tar.gz", hash = "sha256:06ebc18b4de29fc1450ae49dd142ecd26bd7ba09d0b1919e365fbc3d8af8a622"},
 ]
 pylint = [
-    {file = "pylint-2.15.2-py3-none-any.whl", hash = "sha256:cc3da458ba810c49d330e09013dec7ced5217772dec8f043ccdd34dae648fde8"},
-    {file = "pylint-2.15.2.tar.gz", hash = "sha256:f63404a2547edb5247da263748771ac9a806ed1de4174cda01293c08ddbc2999"},
+    {file = "pylint-2.15.3-py3-none-any.whl", hash = "sha256:7f6aad1d8d50807f7bc64f89ac75256a9baf8e6ed491cc9bc65592bc3f462cf1"},
+    {file = "pylint-2.15.3.tar.gz", hash = "sha256:5fdfd44af182866999e6123139d265334267339f29961f00c89783155eacc60b"},
 ]
 pyparsing = [
     {file = "pyparsing-3.0.9-py3-none-any.whl", hash = "sha256:5026bae9a10eeaefb61dab2f09052b9f4307d44aee4eda64b309723d8d206bbc"},
