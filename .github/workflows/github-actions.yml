@@ -161,7 +161,7 @@ jobs:
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Install doctl 🌊
-        uses: digitalocean/action-doctl@v2.1.1
+        uses: digitalocean/action-doctl@v2.2.0
         with:
           token: ${{ secrets.DIGITALOCEAN_TOKEN }}
 
