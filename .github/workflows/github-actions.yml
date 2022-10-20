@@ -44,10 +44,18 @@ jobs:
           pybabel compile -D pdf_bot -d locale
           pytest --cov=pdf_bot --cov-report=xml
 
-      - name: Upload coverage report 📡
-        uses: codecov/codecov-action@v3.1.1
-        with:
-          files: ./coverage.xml
+      # - name: Fix coverage path for SonarCloud 🛠️
+      #   run: |
+      #     echo $GITHUB_WORKSPACE
+      #     head -n 10 coverage.xml
+      #     sed -i "s/$GITHUB_WORKSPACE/\/github\/workspace\//g" coverage.xml
+      #     head -n 10 coverage.xml
+
+      - name: SonarCloud Scan 🧐
+        uses: sonarsource/sonarcloud-github-action@v1.7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   lint:
     name: Lint
