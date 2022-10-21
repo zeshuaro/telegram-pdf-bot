@@ -44,7 +44,7 @@ jobs:
           pybabel compile -D pdf_bot -d locale
           pytest --cov --cov-report=xml
 
-      - name: SonarCloud Scan 🧐
+      - name: SonarCloud Scan ☁️
         uses: sonarsource/sonarcloud-github-action@v1.7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
