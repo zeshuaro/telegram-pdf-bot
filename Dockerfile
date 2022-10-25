@@ -9,7 +9,7 @@ RUN pip install -U pip && pip install poetry
 COPY pyproject.toml poetry.lock ./
 
 RUN poetry config virtualenvs.in-project true \
-    && poetry install --no-dev --no-root --no-interaction
+    && poetry install --only main --no-root --no-interaction
 ENV PATH="/build/.venv/bin:${PATH}"
 
 COPY locale locale/
