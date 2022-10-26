@@ -84,9 +84,7 @@ jobs:
       - name: Run linting 🧪
         run: |
           source .venv/bin/activate
-          black --check --diff .
-          isort --check --diff .
-          pylint main.py pdf_bot tests
+          pre-commit run --all-files
 
   snyk-scan:
     name: Snyk Scan
