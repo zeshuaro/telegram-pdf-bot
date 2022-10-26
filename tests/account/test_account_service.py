@@ -1,49 +1,33 @@
-from typing import cast
 from unittest.mock import MagicMock
 
-import pytest
 from telegram import User
 
 from pdf_bot.account import AccountRepository, AccountService
 
-_LANGUAGE_CODE = "en_GB"
 
+class TestAccountService:
+    @classmethod
+    def setup_class(cls):
+        cls.lang_code = "en_GB"
+        cls.user_id = 0
 
-@pytest.fixture(name="account_repository")
-def fixture_account_repository() -> AccountRepository:
-    return cast(AccountRepository, MagicMock())
+    def setup_method(self):
+        self.user = MagicMock(spec=User)
+        self.user.id = self.user_id
 
+        self.repo = MagicMock(spec=AccountRepository)
+        self.service = AccountService(self.repo)
 
-@pytest.fixture(name="account_service")
-def fixture_account_service(account_repository: AccountRepository) -> AccountService:
-    return AccountService(account_repository)
+    def test_create_user(self):
+        self.service.create_user(self.user)
+        self.repo.upsert_user.assert_called_with(self.user_id, self.lang_code)
 
+    def test_create_user_with_language_code(self):
+        self.user.language_code = "it"
+        self.service.create_user(self.user)
+        self.repo.upsert_user.assert_called_with(self.user_id, "it_IT")
 
-def test_create_user(
-    account_service: AccountService,
-    account_repository: AccountRepository,
-    telegram_user: User,
-):
-    account_service.create_user(telegram_user)
-    account_repository.upsert_user.assert_called_with(telegram_user.id, _LANGUAGE_CODE)
-
-
-def test_create_user_with_language_code(
-    account_service: AccountService,
-    account_repository: AccountRepository,
-    telegram_user: User,
-):
-    telegram_user.language_code = "it"
-    account_service.create_user(telegram_user)
-    account_repository.upsert_user.assert_called_with(telegram_user.id, "it_IT")
-
-
-def test_create_user_with_invalid_language_code(
-    account_service: AccountService,
-    account_repository: AccountRepository,
-    telegram_user: User,
-):
-    lang_code = "clearly_invalid_code"
-    telegram_user.language_code = lang_code
-    account_service.create_user(telegram_user)
-    account_repository.upsert_user.assert_called_with(telegram_user.id, _LANGUAGE_CODE)
+    def test_create_user_with_invalid_language_code(self):
+        self.user.language_code.return_value = "clearly_invalid_code"
+        self.service.create_user(self.user)
+        self.repo.upsert_user.assert_called_with(self.user_id, self.lang_code)

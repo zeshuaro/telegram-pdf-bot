@@ -1,75 +1,42 @@
-from typing import cast
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
-import pytest
 from google.cloud.datastore import Client, Entity, Key
 
 from pdf_bot.account import AccountRepository
 
 
-@pytest.fixture(name="user_entity")
-def fixture_user_entity(user_id: int) -> Key:
-    key = Key("User", user_id, project="test")
-    return Entity(key)
+class TestAccountRepository:
+    @classmethod
+    def setup_class(cls):
+        cls.user_id = 0
+        cls.lang_code = "lang_code"
 
+    def setup_method(self):
+        key = Key("User", self.user_id, project="test")
+        self.user_entity = Entity(key)
 
-@pytest.fixture(name="db")
-def fixture_db() -> Client:
-    return cast(Client, MagicMock())
+        self.db_client = MagicMock(spec=Client)
+        self.repo = AccountRepository(self.db_client)
 
+    def test_get_user(self):
+        self.db_client.get.return_value = self.user_entity
+        actual = self.repo.get_user(self.user_id)
+        assert actual == self.user_entity
 
-@pytest.fixture(name="account_repository")
-def fixture_account_repository(db) -> AccountRepository:
-    return AccountRepository(db)
+    def test_get_user_null(self):
+        self.db_client.get.return_value = None
+        actual = self.repo.get_user(self.user_id)
+        assert actual is None
 
+    def test_upsert_user(self):
+        self.db_client.get.return_value = self.user_entity
 
-def test_get_user(
-    account_repository: AccountRepository,
-    db: Client,
-    user_id: int,
-    user_entity: Entity,
-):
-    db.get.return_value = user_entity
-    actual = account_repository.get_user(user_id)
-    assert actual == user_entity
+        self.repo.upsert_user(self.user_id, self.lang_code)
 
+        assert self.user_entity["language"] == self.lang_code
+        self.db_client.put.assert_called_with(self.user_entity)
 
-def test_get_user_null(
-    account_repository: AccountRepository,
-    db: Client,
-    user_id: int,
-):
-    db.get.return_value = None
-    actual = account_repository.get_user(user_id)
-    assert actual is None
-
-
-def test_upsert_user(
-    account_repository: AccountRepository,
-    db: Client,
-    user_id: int,
-    language_code: str,
-    user_entity: Entity,
-):
-    db.get.return_value = user_entity
-
-    account_repository.upsert_user(user_id, language_code)
-
-    assert user_entity["language"] == language_code
-    db.put.assert_called_with(user_entity)
-
-
-def test_upsert_user_new_user(
-    account_repository: AccountRepository,
-    db: Client,
-    user_id: int,
-    language_code: str,
-    user_entity: Entity,
-):
-    with patch("pdf_bot.account.account_repository.datastore") as datastore:
-        datastore.Entity.return_value = user_entity
-        db.get.return_value = None
-
-        account_repository.upsert_user(user_id, language_code)
-
-        db.put.assert_called_with(user_entity)
+    def test_upsert_user_new_user(self):
+        self.db_client.get.return_value = None
+        self.repo.upsert_user(self.user_id, self.lang_code)
+        self.db_client.put.assert_called_once()

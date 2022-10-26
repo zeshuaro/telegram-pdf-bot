@@ -65,3 +65,8 @@ disable = [
     "too-many-return-statements",
     "unspecified-encoding",
 ]
+
+[tool.pylint.tests]
+disable = [
+    "attribute-defined-outside-init"
+]
