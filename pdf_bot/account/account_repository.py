@@ -10,7 +10,7 @@ class AccountRepository:
 
     def get_user(self, user_id: int) -> Entity | None:
         key = self.db.key(USER, user_id)
-        return self.db.get(key)
+        return self.db.get(key)  # type: ignore
 
     def upsert_user(self, user_id: int, language_code: str) -> None:
         with self.db.transaction():
