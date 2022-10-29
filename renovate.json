@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:base", ":automergeMinor"],
   "labels": ["dependencies"],
   "lockFileMaintenance": { "enabled": true },
   "rangeStrategy": "update-lockfile",
@@ -17,7 +17,8 @@
       "groupName": "Python",
       "matchPaths": [".python-version", "Dockerfile"],
       "matchPackageNames": ["python"],
-      "semanticCommitScope": "python"
+      "semanticCommitScope": "python",
+      "automerge": false
     }
   ]
 }
