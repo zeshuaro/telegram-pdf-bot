@@ -1,7 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base", ":automergeMinor"],
-  "platformAutomerge": true,
   "labels": ["dependencies"],
   "lockFileMaintenance": { "enabled": true },
   "rangeStrategy": "update-lockfile",
