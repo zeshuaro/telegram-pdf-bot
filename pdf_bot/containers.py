@@ -16,6 +16,7 @@ from pdf_bot.encrypt import EncryptService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.io import IOService
+from pdf_bot.language_new import LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.pdf import PdfService
 from pdf_bot.rename import RenameService
@@ -43,6 +44,7 @@ class Core(containers.DeclarativeContainer):
 
 class Repositories(containers.DeclarativeContainer):
     account = providers.Singleton(AccountRepository)
+    language = providers.Singleton(LanguageRepository)
     text = providers.Singleton(TextRepository)
 
 
@@ -82,6 +84,9 @@ class Services(containers.DeclarativeContainer):
         file_task_service=file_task,
         pdf_service=pdf,
         telegram_service=telegram,
+    )
+    language = providers.Factory(
+        LanguageService, language_repository=repositories.language
     )
     merge = providers.Factory(MergeService, pdf_service=pdf, telegram_service=telegram)
     rename = providers.Factory(
