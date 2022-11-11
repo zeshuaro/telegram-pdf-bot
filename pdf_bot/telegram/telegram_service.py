@@ -1,12 +1,25 @@
 import gettext
+import os
 from contextlib import contextmanager
 from typing import Any, Generator, List
 
-from telegram import Bot, Document, Message, PhotoSize
-from telegram.constants import MAX_FILESIZE_DOWNLOAD
+from telegram import (
+    Bot,
+    ChatAction,
+    Document,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+    PhotoSize,
+    Update,
+)
+from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import CallbackContext, Updater
 
+from pdf_bot.analytics import EventAction, TaskType, send_event
+from pdf_bot.consts import CHANNEL_NAME, PAYMENT
 from pdf_bot.io import IOService
+from pdf_bot.language_new import LanguageService
 from pdf_bot.models import FileData
 from pdf_bot.telegram.exceptions import (
     TelegramFileMimeTypeError,
@@ -15,20 +28,23 @@ from pdf_bot.telegram.exceptions import (
     TelegramUserDataKeyError,
 )
 
-_ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gettext
+_ = gettext.gettext
 
 
 class TelegramService:
     IMAGE_MIME_TYPE_PREFIX = "image"
     PDF_MIME_TYPE_SUFFIX = "pdf"
+    PNG_SUFFIX = ".png"
 
     def __init__(
         self,
         io_service: IOService,
+        language_service: LanguageService,
         updater: Updater | None = None,
         bot: Bot | None = None,
     ) -> None:
         self.io_service = io_service
+        self.language_service = language_service
         self.bot = bot or updater.bot
 
     @staticmethod
@@ -38,10 +54,40 @@ class TelegramService:
                 _(
                     "Your file is too large for me to download and process, "
                     "please try again with a differnt file\n\n"
-                    "Note that this is a Telegram Bot limitation and there's "
-                    "nothing I can do unless Telegram changes this limit"
+                    "Note that this limit is enforced by Telegram and there's "
+                    "nothing I can do unless Telegram changes it"
                 )
             )
+
+    @staticmethod
+    def check_file_upload_size(path: str) -> None:
+        if os.path.getsize(path) > MAX_FILESIZE_UPLOAD:
+            raise TelegramFileTooLargeError(
+                _(
+                    "The file is too large for me to send to you\n\n"
+                    "Note that this limit is enforced by Telegram and there's "
+                    "nothing I can do unless Telegram changes it"
+                )
+            )
+
+    @staticmethod
+    def get_user_data(context: CallbackContext, key: str) -> Any:
+        """Get and pop value from user data by the provided key
+
+        Args:
+            context (CallbackContext): the Telegram callback context
+            key (str): the key for the value in user data
+
+        Raises:
+            TelegramUserDataKeyError: if the key does not exist in user data
+
+        Returns:
+            Any: the value for the key
+        """
+        data = context.user_data.pop(key, None)
+        if data is None:
+            raise TelegramUserDataKeyError(_("Something went wrong, please try again"))
+        return data
 
     def check_image(self, message: Message) -> Document | PhotoSize:
         img_file = message.document
@@ -85,24 +131,52 @@ class TelegramService:
                 file.download(custom_path=out_paths[i])
             yield out_paths
 
-    @staticmethod
-    def get_user_data(context: CallbackContext, key: str) -> Any:
-        """Get and pop value from user data by the provided key
+    def get_support_markup(
+        self, update: Update, context: CallbackContext
+    ) -> InlineKeyboardMarkup:
+        _ = self.language_service.set_app_language(update, context)
+        keyboard = [
+            [
+                InlineKeyboardButton(_("Join Channel"), f"https://t.me/{CHANNEL_NAME}"),
+                InlineKeyboardButton(_("Support PDF Bot"), callback_data=PAYMENT),
+            ]
+        ]
 
-        Args:
-            context (CallbackContext): the Telegram callback context
-            key (str): the key for the value in user data
+        return InlineKeyboardMarkup(keyboard)
 
-        Raises:
-            TelegramUserDataKeyError: if the key does not exist in user data
+    def reply_with_file(
+        self,
+        update: Update,
+        context: CallbackContext,
+        file_path: str,
+        task: TaskType,
+    ) -> None:
+        _ = self.language_service.set_app_language(update, context)
+        message = update.effective_message
+        reply_markup = self.get_support_markup(update, context)
 
-        Returns:
-            Any: the value for the key
-        """
-        data = context.user_data.pop(key, None)
-        if data is None:
-            raise TelegramUserDataKeyError(_("Something went wrong, please try again"))
-        return data
+        try:
+            self.check_file_upload_size(file_path)
+        except TelegramFileTooLargeError as e:
+            message.reply_text(_(str(e)))
+            return
+
+        if file_path.endswith(self.PNG_SUFFIX):
+            message.reply_chat_action(ChatAction.UPLOAD_PHOTO)
+            message.reply_photo(
+                open(file_path, "rb"),
+                caption=_("Here is your result file"),
+                reply_markup=reply_markup,
+            )
+        else:
+            message.reply_chat_action(ChatAction.UPLOAD_DOCUMENT)
+            message.reply_document(
+                document=open(file_path, "rb"),
+                caption=_("Here is your result file"),
+                reply_markup=reply_markup,
+            )
+
+        send_event(update, context, task, EventAction.complete)
 
     def send_file_names(
         self, chat_id: str, text: str, file_data_list: List[FileData]
