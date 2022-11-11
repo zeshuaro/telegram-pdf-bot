@@ -4,6 +4,7 @@ from unittest.mock import MagicMock, call, patch
 import pytest
 from telegram import ChatAction, File, InlineKeyboardMarkup
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
+from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.io import IOService
@@ -177,6 +178,14 @@ class TestTelegramRService(TelegramTestMixin):
                 file_and_path.file.download.assert_called_once_with(
                     custom_path=file_and_path.path
                 )
+
+    def test_cancel_conversation(self) -> None:
+        actual = self.sut.cancel_conversation(
+            self.telegram_update, self.telegram_context
+        )
+
+        assert actual == ConversationHandler.END
+        self.telegram_message.reply_text.assert_called_once()
 
     def test_get_support_markup(self) -> None:
         actual = self.sut.get_support_markup(

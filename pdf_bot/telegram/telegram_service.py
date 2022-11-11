@@ -11,10 +11,11 @@ from telegram import (
     InlineKeyboardMarkup,
     Message,
     PhotoSize,
+    ReplyKeyboardRemove,
     Update,
 )
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
-from telegram.ext import CallbackContext, Updater
+from telegram.ext import CallbackContext, ConversationHandler, Updater
 
 from pdf_bot.analytics import EventAction, TaskType, send_event
 from pdf_bot.consts import CHANNEL_NAME, PAYMENT
@@ -130,6 +131,13 @@ class TelegramService:
                 file = self.bot.get_file(file_id)
                 file.download(custom_path=out_paths[i])
             yield out_paths
+
+    def cancel_conversation(self, update: Update, context: CallbackContext) -> int:
+        _ = self.language_service.set_app_language(update, context)
+        update.effective_message.reply_text(
+            _("Action cancelled"), reply_markup=ReplyKeyboardRemove()
+        )
+        return ConversationHandler.END
 
     def get_support_markup(
         self, update: Update, context: CallbackContext
