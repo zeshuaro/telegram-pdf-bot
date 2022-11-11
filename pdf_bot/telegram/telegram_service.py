@@ -19,6 +19,9 @@ _ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gett
 
 
 class TelegramService:
+    IMAGE_MIME_TYPE_PREFIX = "image"
+    PDF_MIME_TYPE_SUFFIX = "pdf"
+
     def __init__(
         self,
         io_service: IOService,
@@ -42,7 +45,9 @@ class TelegramService:
 
     def check_image(self, message: Message) -> Document | PhotoSize:
         img_file = message.document
-        if img_file is not None and not img_file.mime_type.startswith("image"):
+        if img_file is not None and not img_file.mime_type.startswith(
+            self.IMAGE_MIME_TYPE_PREFIX
+        ):
             raise TelegramFileMimeTypeError(
                 _("Your file is not an image, please try again")
             )
@@ -58,7 +63,7 @@ class TelegramService:
 
     def check_pdf_document(self, message: Message) -> Document:
         doc = message.document
-        if not doc.mime_type.endswith("pdf"):
+        if not doc.mime_type.endswith(self.PDF_MIME_TYPE_SUFFIX):
             raise TelegramFileMimeTypeError(
                 _("Your file is not a PDF file, please try again")
             )
@@ -68,23 +73,17 @@ class TelegramService:
     @contextmanager
     def download_file(self, file_id: str) -> Generator[str, None, None]:
         with self.io_service.create_temp_file() as out_path:
-            try:
-                file = self.bot.get_file(file_id)
-                file.download(custom_path=out_path)
-                yield out_path
-            finally:
-                pass
+            file = self.bot.get_file(file_id)
+            file.download(custom_path=out_path)
+            yield out_path
 
     @contextmanager
     def download_files(self, file_ids: List[str]) -> Generator[List[str], None, None]:
         with self.io_service.create_temp_files(len(file_ids)) as out_paths:
-            try:
-                for i, file_id in enumerate(file_ids):
-                    file = self.bot.get_file(file_id)
-                    file.download(custom_path=out_paths[i])
-                yield out_paths
-            finally:
-                pass
+            for i, file_id in enumerate(file_ids):
+                file = self.bot.get_file(file_id)
+                file.download(custom_path=out_paths[i])
+            yield out_paths
 
     @staticmethod
     def get_user_data(context: CallbackContext, key: str) -> Any:
