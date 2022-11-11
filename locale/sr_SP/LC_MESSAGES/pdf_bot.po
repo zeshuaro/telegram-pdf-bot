@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 03:40+0000\n"
-"PO-Revision-Date: 2022-11-11 03:40\n"
+"POT-Creation-Date: 2022-11-11 04:04+0000\n"
+"PO-Revision-Date: 2022-11-11 04:04\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -151,11 +151,13 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "Постављање језичких 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:191
+#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:140
+#: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Придружи се каналу"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:192
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83
+#: pdf_bot/telegram/telegram_service.py:141 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Подршка ПДФ Боту"
 
@@ -296,7 +298,9 @@ msgstr "Датотека са резултатима је превелика д�
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
 
-#: pdf_bot/utils.py:168 pdf_bot/utils.py:175
+#: pdf_bot/telegram/telegram_service.py:168
+#: pdf_bot/telegram/telegram_service.py:175 pdf_bot/utils.py:168
+#: pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "Ово је твоја датотека са резултатима"
 
@@ -477,7 +481,7 @@ msgstr "Конвертовање ПДФ датотеке у слике"
 msgid "Extracting all the images in your PDF file"
 msgstr "Издвајање свих слика из ПДФ фајла"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:104
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:89
 msgid "Something went wrong, please try again"
 msgstr "Нешто је пошло наопако, молим вас покушајте поново"
 
@@ -681,21 +685,25 @@ msgstr "{range}  странице {pages}"
 msgid "The range is invalid, please try again"
 msgstr "Опсег је неважећи, покушајте поново"
 
-#: pdf_bot/telegram/telegram_service.py:38
+#: pdf_bot/telegram/telegram_service.py:54
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
-"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "Yоур филе ис тоо ларге фор ме то доwнлоад анд процесс, плеасе трy агаин wитх а дифферент филе\n\n"
-"Ноте тхат тхис ис а Телеграм Бот лимитатион анд тхере'с нотхинг цан до унлесс Телеграм цхангес тхис лимит"
+"Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
+msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:52
+#: pdf_bot/telegram/telegram_service.py:66
+msgid "The file is too large for me to send to you\n\n"
+"Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:98
 msgid "Your file is not an image, please try again"
 msgstr "Ваша датотека није слика, покушајте поново"
 
-#: pdf_bot/telegram/telegram_service.py:59
+#: pdf_bot/telegram/telegram_service.py:105
 msgid "No image found in your message"
 msgstr "У поруци није пронађена слика"
 
-#: pdf_bot/telegram/telegram_service.py:68
+#: pdf_bot/telegram/telegram_service.py:114
 msgid "Your file is not a PDF file, please try again"
 msgstr "Ваш фајл није ПДФ фајл, покушајте поново"
 
@@ -1531,5 +1539,16 @@ msgstr "Додавање воденог жига у ваш ПДФ фајл"
 #~ msgstr ""
 
 #~ msgid "Testing"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your file is too large for me "
+#~ "to download and process, please try "
+#~ "again with a differnt file\n"
+#~ "\n"
+#~ "Note that this is a Telegram Bot"
+#~ " limitation and there's nothing I can"
+#~ " do unless Telegram changes this "
+#~ "limit"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 03:40+0000\n"
-"PO-Revision-Date: 2022-11-11 03:40\n"
+"POT-Creation-Date: 2022-11-11 04:04+0000\n"
+"PO-Revision-Date: 2022-11-11 04:04\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -151,11 +151,13 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "Definir Idioma 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:191
+#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:140
+#: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Unirse al canal"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:192
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83
+#: pdf_bot/telegram/telegram_service.py:141 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Apoya a PDF Bot"
 
@@ -296,7 +298,9 @@ msgstr "El archivo resultado es demasiado grande para que te lo envíe"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Tenga en cuenta que esta es una limitación de Telegram Bot y no hay nada que pueda hacer a menos que Telegram cambie este límite"
 
-#: pdf_bot/utils.py:168 pdf_bot/utils.py:175
+#: pdf_bot/telegram/telegram_service.py:168
+#: pdf_bot/telegram/telegram_service.py:175 pdf_bot/utils.py:168
+#: pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "Este es tu archivo resultado"
 
@@ -477,7 +481,7 @@ msgstr "Convirtiendo tu archivo PDF en imágenes"
 msgid "Extracting all the images in your PDF file"
 msgstr "Extrayendo todas las imágenes de su archivo PDF"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:104
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:89
 msgid "Something went wrong, please try again"
 msgstr "Algo salió mal, por favor inténtalo de nuevo"
 
@@ -681,21 +685,25 @@ msgstr "{range}  páginas {pages}"
 msgid "The range is invalid, please try again"
 msgstr "El intervalo no es válido, inténtelo de nuevo"
 
-#: pdf_bot/telegram/telegram_service.py:38
+#: pdf_bot/telegram/telegram_service.py:54
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
-"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "Su archivo es demasiado grande para que lo descargue y procese, inténtelo de nuevo con un archivo diferente\n\n"
-"Tenga en cuenta que esta es una limitación de Telegram Bot y no hay nada que pueda hacer a menos que Telegram cambie este límite"
+"Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
+msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:52
+#: pdf_bot/telegram/telegram_service.py:66
+msgid "The file is too large for me to send to you\n\n"
+"Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:98
 msgid "Your file is not an image, please try again"
 msgstr "Su archivo no es una imagen, inténtelo de nuevo"
 
-#: pdf_bot/telegram/telegram_service.py:59
+#: pdf_bot/telegram/telegram_service.py:105
 msgid "No image found in your message"
 msgstr "No se ha encontrado ninguna imagen en el mensaje"
 
-#: pdf_bot/telegram/telegram_service.py:68
+#: pdf_bot/telegram/telegram_service.py:114
 msgid "Your file is not a PDF file, please try again"
 msgstr "Su archivo no es un archivo PDF, inténtelo de nuevo"
 
@@ -1531,5 +1539,16 @@ msgstr "Añadiendo la marca de agua a tu archivo PDF"
 #~ msgstr ""
 
 #~ msgid "Testing"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your file is too large for me "
+#~ "to download and process, please try "
+#~ "again with a differnt file\n"
+#~ "\n"
+#~ "Note that this is a Telegram Bot"
+#~ " limitation and there's nothing I can"
+#~ " do unless Telegram changes this "
+#~ "limit"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 03:40+0000\n"
-"PO-Revision-Date: 2022-11-11 03:40\n"
+"POT-Creation-Date: 2022-11-11 04:04+0000\n"
+"PO-Revision-Date: 2022-11-11 04:04\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: Uzbek\n"
@@ -151,11 +151,13 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "Tilni Tanlang 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:191
+#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:140
+#: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Kanalga qo'shilish"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:192
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83
+#: pdf_bot/telegram/telegram_service.py:141 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "PDF botni qo'llab-quvvatlash"
 
@@ -296,7 +298,9 @@ msgstr "Natija fayli yuborishim uchun juda katta"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "E'tibor bering, bu Telegram Bot cheklovidir va agar Telegram bu chegarani o'zgartirmasa, men hech narsa qila olmayman"
 
-#: pdf_bot/utils.py:168 pdf_bot/utils.py:175
+#: pdf_bot/telegram/telegram_service.py:168
+#: pdf_bot/telegram/telegram_service.py:175 pdf_bot/utils.py:168
+#: pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "Mana sizning faylingiz natijasi"
 
@@ -477,7 +481,7 @@ msgstr "PDF-faylingizni rasmga aylantirish"
 msgid "Extracting all the images in your PDF file"
 msgstr "PDF-faylingizdagi barcha fotosuratlarni chiqarib olish"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:104
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:89
 msgid "Something went wrong, please try again"
 msgstr "Xatolik yuz berdi, qaytadan urining"
 
@@ -681,20 +685,25 @@ msgstr "{range}  sahifalar {pages}"
 msgid "The range is invalid, please try again"
 msgstr "Diapazon yaroqsiz, qaytadan urining"
 
-#: pdf_bot/telegram/telegram_service.py:38
+#: pdf_bot/telegram/telegram_service.py:54
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
-"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+"Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:52
+#: pdf_bot/telegram/telegram_service.py:66
+msgid "The file is too large for me to send to you\n\n"
+"Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:98
 msgid "Your file is not an image, please try again"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:59
+#: pdf_bot/telegram/telegram_service.py:105
 msgid "No image found in your message"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:68
+#: pdf_bot/telegram/telegram_service.py:114
 msgid "Your file is not a PDF file, please try again"
 msgstr "Sizning faylingiz PDF -fayl emas, qaytadan urining"
 
@@ -1530,5 +1539,16 @@ msgstr "Sizning PDF faylingizga Watermark qo`yilmoqda"
 #~ msgstr ""
 
 #~ msgid "Testing"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your file is too large for me "
+#~ "to download and process, please try "
+#~ "again with a differnt file\n"
+#~ "\n"
+#~ "Note that this is a Telegram Bot"
+#~ " limitation and there's nothing I can"
+#~ " do unless Telegram changes this "
+#~ "limit"
 #~ msgstr ""
 

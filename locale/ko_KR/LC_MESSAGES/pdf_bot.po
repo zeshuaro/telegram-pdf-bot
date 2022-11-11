@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 03:40+0000\n"
-"PO-Revision-Date: 2022-11-11 03:40\n"
+"POT-Creation-Date: 2022-11-11 04:04+0000\n"
+"PO-Revision-Date: 2022-11-11 04:04\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -151,11 +151,13 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "언어 설정 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/utils.py:191
+#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:140
+#: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "채널 가입"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83 pdf_bot/utils.py:192
+#: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83
+#: pdf_bot/telegram/telegram_service.py:141 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "지원 PDF 봇"
 
@@ -296,7 +298,9 @@ msgstr "결과 파일이 너무 커서 전송할 수 없습니다."
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
 
-#: pdf_bot/utils.py:168 pdf_bot/utils.py:175
+#: pdf_bot/telegram/telegram_service.py:168
+#: pdf_bot/telegram/telegram_service.py:175 pdf_bot/utils.py:168
+#: pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "다음은 결과 파일입니다."
 
@@ -477,7 +481,7 @@ msgstr "PDF 파일을 이미지로 변환"
 msgid "Extracting all the images in your PDF file"
 msgstr "PDF 파일의 모든 이미지 추출"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:104
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:89
 msgid "Something went wrong, please try again"
 msgstr "뭔가 잘못, 다시 시도하십시오"
 
@@ -681,21 +685,25 @@ msgstr "{range}  페이지 {pages}"
 msgid "The range is invalid, please try again"
 msgstr "범위가 유효하지 않습니다, 다시 시도하십시오"
 
-#: pdf_bot/telegram/telegram_service.py:38
+#: pdf_bot/telegram/telegram_service.py:54
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
-"Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "파일이 너무 커서 다운로드하고 처리 할 수 없으므로 다른 파일로 다시 시도하십시오\n\n"
-"이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 할 수있는 일은 없습니다."
+"Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
+msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:52
+#: pdf_bot/telegram/telegram_service.py:66
+msgid "The file is too large for me to send to you\n\n"
+"Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
+msgstr ""
+
+#: pdf_bot/telegram/telegram_service.py:98
 msgid "Your file is not an image, please try again"
 msgstr "파일이 이미지가 아니므로 다시 시도하십시오."
 
-#: pdf_bot/telegram/telegram_service.py:59
+#: pdf_bot/telegram/telegram_service.py:105
 msgid "No image found in your message"
 msgstr "메시지에 이미지가 없습니다."
 
-#: pdf_bot/telegram/telegram_service.py:68
+#: pdf_bot/telegram/telegram_service.py:114
 msgid "Your file is not a PDF file, please try again"
 msgstr "파일은 PDF 파일이 아니며 다시 시도하십시오."
 
@@ -1531,5 +1539,16 @@ msgstr "PDF 파일에 워터마크 추가"
 #~ msgstr ""
 
 #~ msgid "Testing"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your file is too large for me "
+#~ "to download and process, please try "
+#~ "again with a differnt file\n"
+#~ "\n"
+#~ "Note that this is a Telegram Bot"
+#~ " limitation and there's nothing I can"
+#~ " do unless Telegram changes this "
+#~ "limit"
 #~ msgstr ""
 
