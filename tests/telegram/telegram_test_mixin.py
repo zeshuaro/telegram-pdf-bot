@@ -48,7 +48,9 @@ class TelegramTestMixin:
         self.telegram_update = MagicMock(spec=Update)
         self.telegram_update.effective_message = self.telegram_message
 
+        self.telegram_user_data = MagicMock(spec=dict)
         self.telegram_context = MagicMock(spec=CallbackContext)
+        self.telegram_context.user_data = self.telegram_user_data
 
         self.telegram_query = MagicMock(spec=CallbackQuery)
         self.telegram_query.from_user = self.telegram_user

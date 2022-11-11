@@ -33,22 +33,20 @@ class TestLanguageRService(TelegramTestMixin):
         actual = self.sut.get_user_language(self.telegram_update, self.telegram_context)
 
         assert actual == self.valid_lang_code
-        self.telegram_context.user_data.__setitem__.assert_called_once_with(
+        self.telegram_user_data.__setitem__.assert_called_once_with(
             self.sut.LANGUAGE, self.valid_lang_code
         )
 
     def test_get_user_language_cached(self) -> None:
         cached_lang = "cached_lang"
         user_data = {self.sut.LANGUAGE: cached_lang}
-        self.telegram_context.user_data.__getitem__.side_effect = user_data.__getitem__
-        self.telegram_context.user_data.__contains__.side_effect = (
-            user_data.__contains__
-        )
+        self.telegram_user_data.__getitem__.side_effect = user_data.__getitem__
+        self.telegram_user_data.__contains__.side_effect = user_data.__contains__
 
         actual = self.sut.get_user_language(self.telegram_update, self.telegram_context)
 
         assert actual == cached_lang
-        self.telegram_context.user_data.__setitem__.assert_not_called()
+        self.telegram_user_data.__setitem__.assert_not_called()
 
     def test_get_user_language_from_query(self) -> None:
         actual = self.sut.get_user_language(
@@ -56,17 +54,15 @@ class TestLanguageRService(TelegramTestMixin):
         )
 
         assert actual == self.valid_lang_code
-        self.telegram_context.user_data.__setitem__.assert_called_once_with(
+        self.telegram_user_data.__setitem__.assert_called_once_with(
             self.sut.LANGUAGE, self.valid_lang_code
         )
 
     def test_update_user_language(self) -> None:
         self.telegram_query.data = self.valid_lang
         user_data = {self.sut.LANGUAGE: self.valid_lang_code}
-        self.telegram_context.user_data.__getitem__.side_effect = user_data.__getitem__
-        self.telegram_context.user_data.__contains__.side_effect = (
-            user_data.__contains__
-        )
+        self.telegram_user_data.__getitem__.side_effect = user_data.__getitem__
+        self.telegram_user_data.__contains__.side_effect = user_data.__contains__
 
         self.sut.update_user_language(
             self.telegram_update, self.telegram_context, self.telegram_query
@@ -75,7 +71,7 @@ class TestLanguageRService(TelegramTestMixin):
         self.language_repository.upsert_language.assert_called_once_with(
             self.telegram_user_id, self.valid_lang_code
         )
-        self.telegram_context.user_data.__setitem__.assert_called_once_with(
+        self.telegram_user_data.__setitem__.assert_called_once_with(
             self.sut.LANGUAGE, self.valid_lang_code
         )
 
@@ -87,4 +83,4 @@ class TestLanguageRService(TelegramTestMixin):
         )
 
         self.language_repository.upsert_language.assert_not_called()
-        self.telegram_context.user_data.__setitem__.assert_not_called()
+        self.telegram_user_data.__setitem__.assert_not_called()
