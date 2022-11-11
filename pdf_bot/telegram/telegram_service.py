@@ -46,7 +46,7 @@ class TelegramService:
     ) -> None:
         self.io_service = io_service
         self.language_service = language_service
-        self.bot = bot or updater.bot
+        self.bot = bot or updater.bot  # type: ignore
 
     @staticmethod
     def check_file_size(file: Document | PhotoSize) -> None:
@@ -91,7 +91,7 @@ class TelegramService:
         return data
 
     def check_image(self, message: Message) -> Document | PhotoSize:
-        img_file = message.document
+        img_file: Document | None = message.document
         if img_file is not None and not img_file.mime_type.startswith(
             self.IMAGE_MIME_TYPE_PREFIX
         ):
