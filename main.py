@@ -27,7 +27,7 @@ def main(
     if SENTRY_DSN is not None:
         sentry_sdk.init(SENTRY_DSN, traces_sample_rate=1.0)
 
-    dispatcher = updater.dispatcher
+    dispatcher = updater.dispatcher  # type: ignore
     dp.setup_dispatcher(dispatcher)
 
     if APP_URL is not None:
