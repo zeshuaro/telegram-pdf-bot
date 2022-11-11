@@ -5,6 +5,7 @@ from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.compare import CompareService
+from pdf_bot.consts import BACK, CANCEL
 from pdf_bot.language_new import LanguageService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import (
@@ -106,3 +107,28 @@ class TestCompareService(TelegramTestMixin):
         assert actual == self.wait_second_pdf
         self.pdf_service.compare_pdfs.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()
+
+    def test_check_text_back(self):
+        self.language_service.set_app_language.return_value = lambda x: x
+        self.telegram_message.text = BACK
+
+        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+
+        assert actual == self.wait_first_pdf
+
+    def test_check_text_cancel(self):
+        self.language_service.set_app_language.return_value = lambda x: x
+        self.telegram_service.cancel_conversation.return_value = ConversationHandler.END
+        self.telegram_message.text = CANCEL
+
+        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+
+        assert actual == ConversationHandler.END
+
+    def test_check_text_unknown(self):
+        self.language_service.set_app_language.return_value = lambda x: x
+        self.telegram_message.text = "clearly_unknown"
+
+        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+
+        assert actual is None
