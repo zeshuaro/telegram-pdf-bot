@@ -1,145 +1,108 @@
-from typing import Iterator
-from unittest.mock import patch
+from unittest.mock import MagicMock
 
-import pytest
 from pdf_diff import NoDifferenceError
-from telegram import Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.compare import CompareService
+from pdf_bot.language_new import LanguageService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import (
     TelegramService,
     TelegramServiceError,
     TelegramUserDataKeyError,
 )
-
-WAIT_FIRST_PDF = 0
-WAIT_SECOND_PDF = 1
-COMPARE_ID = "compare_id"
+from tests.telegram.telegram_test_mixin import TelegramTestMixin
 
 
-@pytest.fixture(name="compare_service")
-def fixture_compare_service(
-    pdf_service: PdfService, telegram_service: TelegramService
-) -> CompareService:
-    return CompareService(pdf_service, telegram_service)
+class TestCompareService(TelegramTestMixin):
+    @classmethod
+    def setup_class(cls) -> None:
+        super().setup_class()
+        cls.file_path = "file_path"
+        cls.compare_id = "compare_id"
+        cls.wait_first_pdf = 0
+        cls.wait_second_pdf = 1
 
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.pdf_service = MagicMock(spec=PdfService)
+        self.language_service = MagicMock(spec=LanguageService)
 
-@pytest.fixture(scope="session", autouse=True)
-def set_lang() -> Iterator[None]:
-    with patch("pdf_bot.compare.compare_service.set_lang"):
-        yield
+        self.telegram_service = MagicMock(spec=TelegramService)
+        self.telegram_service.check_pdf_document.return_value = self.telegram_document
 
-
-def test_ask_first_pdf(
-    compare_service: CompareService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    actual = compare_service.ask_first_pdf(telegram_update, telegram_context)
-    assert actual == WAIT_FIRST_PDF
-    telegram_update.effective_message.reply_text.assert_called_once()
-
-
-def test_check_first_pdf(
-    compare_service: CompareService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    document_id: str,
-):
-    actual = compare_service.check_first_pdf(telegram_update, telegram_context)
-    assert actual == WAIT_SECOND_PDF
-    telegram_context.user_data.__setitem__.assert_called_with(COMPARE_ID, document_id)
-
-
-def test_check_first_pdf_invalid_pdf(
-    compare_service: CompareService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    telegram_service.check_pdf_document.side_effect = TelegramServiceError()
-
-    actual = compare_service.check_first_pdf(telegram_update, telegram_context)
-
-    assert actual == WAIT_FIRST_PDF
-    telegram_context.user_data.__setitem__.assert_not_called()
-
-
-def test_compare_pdfs(
-    compare_service: CompareService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    document_id: int,
-):
-    out_fn = "output"
-    telegram_service.get_user_data.return_value = document_id
-    pdf_service.compare_pdfs.return_value.__enter__.return_value = out_fn
-
-    with patch("pdf_bot.compare.compare_service.send_result_file") as send_result_file:
-        actual = compare_service.compare_pdfs(telegram_update, telegram_context)
-
-        assert actual == ConversationHandler.END
-        pdf_service.compare_pdfs.assert_called_with(document_id, document_id)
-        send_result_file.assert_called_once_with(
-            telegram_update, telegram_context, out_fn, TaskType.compare_pdf
+        self.sut = CompareService(
+            self.pdf_service, self.telegram_service, self.language_service
         )
 
+    def test_ask_first_pdf(self) -> None:
+        actual = self.sut.ask_first_pdf(self.telegram_update, self.telegram_context)
+        assert actual == self.wait_first_pdf
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
-def test_compare_pdfs_no_differences(
-    compare_service: CompareService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    document_id: int,
-):
-    telegram_service.get_user_data.return_value = document_id
-    with patch("pdf_bot.compare.compare_service.send_result_file") as send_result_file:
-        pdf_service.compare_pdfs.return_value.__enter__.side_effect = (
+    def test_check_first_pdf(self):
+        actual = self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
+        assert actual == self.wait_second_pdf
+        self.telegram_context.user_data.__setitem__.assert_called_with(
+            self.compare_id, self.telegram_document_id
+        )
+
+    def test_check_first_pdf_invalid_pdf(self):
+        self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
+
+        actual = self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
+
+        assert actual == self.wait_first_pdf
+        self.telegram_context.user_data.__setitem__.assert_not_called()
+
+    def test_compare_pdfs(self):
+        self.telegram_service.get_user_data.return_value = self.telegram_document_id
+        self.pdf_service.compare_pdfs.return_value.__enter__.return_value = (
+            self.file_path
+        )
+
+        actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
+
+        assert actual == ConversationHandler.END
+        self.pdf_service.compare_pdfs.assert_called_with(
+            self.telegram_document_id, self.telegram_document_id
+        )
+        self.telegram_service.reply_with_file.assert_called_once_with(
+            self.telegram_update,
+            self.telegram_context,
+            self.file_path,
+            TaskType.compare_pdf,
+        )
+
+    def test_compare_pdfs_no_differences(self):
+        self.telegram_service.get_user_data.return_value = self.telegram_document_id
+        self.pdf_service.compare_pdfs.return_value.__enter__.side_effect = (
             NoDifferenceError()
         )
 
-        actual = compare_service.compare_pdfs(telegram_update, telegram_context)
+        actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
-        pdf_service.compare_pdfs.assert_called_with(document_id, document_id)
-        send_result_file.assert_not_called()
+        self.pdf_service.compare_pdfs.assert_called_with(
+            self.telegram_document_id, self.telegram_document_id
+        )
+        self.telegram_service.reply_with_file.assert_not_called()
 
+    def test_compare_pdfs_invalid_user_data(self):
+        self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
 
-def test_compare_pdfs_invalid_user_data(
-    compare_service: CompareService,
-    telegram_service: TelegramService,
-    pdf_service: PdfService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
-    with patch("pdf_bot.compare.compare_service.send_result_file") as send_result_file:
-        actual = compare_service.compare_pdfs(telegram_update, telegram_context)
+        actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
-        pdf_service.compare_pdfs.assert_not_called()
-        send_result_file.assert_not_called()
+        self.pdf_service.compare_pdfs.assert_not_called()
+        self.telegram_service.reply_with_file.assert_not_called()
 
+    def test_compare_pdfs_invalid_pdf(self):
+        self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
-def test_compare_pdfs_invalid_pdf(
-    compare_service: CompareService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    with patch("pdf_bot.compare.compare_service.send_result_file") as send_result_file:
-        telegram_service.check_pdf_document.side_effect = TelegramServiceError()
+        actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
-        actual = compare_service.compare_pdfs(telegram_update, telegram_context)
-
-        assert actual == WAIT_SECOND_PDF
-        telegram_service.get_user_data.assert_not_called()
-        pdf_service.compare_pdfs.assert_not_called()
-        send_result_file.assert_not_called()
+        assert actual == self.wait_second_pdf
+        self.pdf_service.compare_pdfs.assert_not_called()
+        self.telegram_service.reply_with_file.assert_not_called()

@@ -1,7 +1,6 @@
 from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
 from pdf_bot.compare.compare_service import CompareService
-from pdf_bot.compare.constants import WAIT_FIRST_PDF, WAIT_SECOND_PDF
 from pdf_bot.consts import TEXT_FILTER
 from pdf_bot.utils import cancel
 
@@ -16,12 +15,12 @@ class CompareHandlers:
                 CommandHandler("compare", self.compare_service.ask_first_pdf)
             ],
             states={
-                WAIT_FIRST_PDF: [
+                CompareService.WAIT_FIRST_PDF: [
                     MessageHandler(
                         Filters.document, self.compare_service.check_first_pdf
                     )
                 ],
-                WAIT_SECOND_PDF: [
+                CompareService.WAIT_SECOND_PDF: [
                     MessageHandler(Filters.document, self.compare_service.compare_pdfs)
                 ],
             },
