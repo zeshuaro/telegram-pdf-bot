@@ -69,6 +69,11 @@ disable = [
 [tool.pylint.tests]
 disable = ["attribute-defined-outside-init"]
 
+[tool.pylint.tests.language.test_language_service]
+# For some reasons Pylint is behaving differently on GitHub Actions for this specific
+# test, so disabling this check
+disable = ["no-member"]
+
 [tool.mypy]
 warn_unused_configs = true
 warn_redundant_casts = true
