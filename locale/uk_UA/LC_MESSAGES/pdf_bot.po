@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 04:04+0000\n"
-"PO-Revision-Date: 2022-11-11 04:04\n"
+"POT-Creation-Date: 2022-11-11 04:14+0000\n"
+"PO-Revision-Date: 2022-11-11 04:14\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -151,13 +151,13 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "Вибрати мову 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:140
+#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:148
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Приєднатися до каналу"
 
 #: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83
-#: pdf_bot/telegram/telegram_service.py:141 pdf_bot/utils.py:192
+#: pdf_bot/telegram/telegram_service.py:149 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Підтримка PDF Bot"
 
@@ -265,7 +265,7 @@ msgstr "Не вдається отримати доступ до веб-стор
 msgid "Failed to convert your web page"
 msgstr "Не вдалося перетворити веб-сторінку"
 
-#: pdf_bot/utils.py:26
+#: pdf_bot/telegram/telegram_service.py:138 pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "Дію скасовано"
 
@@ -298,8 +298,8 @@ msgstr "Файл результату завеликий для мене, щоб
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Зверніть увагу, що це обмеження Telegram Bot, і я нічого не можу зробити, якщо Telegram не змінить це обмеження"
 
-#: pdf_bot/telegram/telegram_service.py:168
-#: pdf_bot/telegram/telegram_service.py:175 pdf_bot/utils.py:168
+#: pdf_bot/telegram/telegram_service.py:176
+#: pdf_bot/telegram/telegram_service.py:183 pdf_bot/utils.py:168
 #: pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "Ось ваш файл результатів"
@@ -481,7 +481,7 @@ msgstr "Перетворення PDF-файлу на зображення"
 msgid "Extracting all the images in your PDF file"
 msgstr "Вилучення всіх зображень у файлі PDF"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:89
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:90
 msgid "Something went wrong, please try again"
 msgstr "Щось пішло не так, будь ласка, спробуйте ще раз"
 
@@ -685,25 +685,25 @@ msgstr "{range}  сторінок {pages}"
 msgid "The range is invalid, please try again"
 msgstr "Неприпустимий діапазон."
 
-#: pdf_bot/telegram/telegram_service.py:54
+#: pdf_bot/telegram/telegram_service.py:55
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:66
+#: pdf_bot/telegram/telegram_service.py:67
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:98
+#: pdf_bot/telegram/telegram_service.py:99
 msgid "Your file is not an image, please try again"
 msgstr "Ваш файл не є зображенням, спробуйте ще раз"
 
-#: pdf_bot/telegram/telegram_service.py:105
+#: pdf_bot/telegram/telegram_service.py:106
 msgid "No image found in your message"
 msgstr "У повідомленні не знайдено жодного зображення"
 
-#: pdf_bot/telegram/telegram_service.py:114
+#: pdf_bot/telegram/telegram_service.py:115
 msgid "Your file is not a PDF file, please try again"
 msgstr "Ваш файл не є PDF-файлом, повторіть спробу"
 

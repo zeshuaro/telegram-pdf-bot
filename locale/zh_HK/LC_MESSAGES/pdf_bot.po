@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 04:04+0000\n"
-"PO-Revision-Date: 2022-11-11 04:04\n"
+"POT-Creation-Date: 2022-11-11 04:14+0000\n"
+"PO-Revision-Date: 2022-11-11 04:14\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -151,13 +151,13 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "設置語言 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:140
+#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:148
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "加入頻道"
 
 #: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83
-#: pdf_bot/telegram/telegram_service.py:141 pdf_bot/utils.py:192
+#: pdf_bot/telegram/telegram_service.py:149 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "支持PDF Bot"
 
@@ -265,7 +265,7 @@ msgstr "無法訪問你嘅網頁"
 msgid "Failed to convert your web page"
 msgstr ""
 
-#: pdf_bot/utils.py:26
+#: pdf_bot/telegram/telegram_service.py:138 pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "取消咗操作啦"
 
@@ -298,8 +298,8 @@ msgstr "個檔案太大啦，我send唔到俾你"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "留意番呢個係Telegram Bot嘅限制，呢個限唔係我嘅控制範圍，要等Telegram改呢個限制我先至可以處理你嘅檔案"
 
-#: pdf_bot/telegram/telegram_service.py:168
-#: pdf_bot/telegram/telegram_service.py:175 pdf_bot/utils.py:168
+#: pdf_bot/telegram/telegram_service.py:176
+#: pdf_bot/telegram/telegram_service.py:183 pdf_bot/utils.py:168
 #: pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "你嘅檔案"
@@ -481,7 +481,7 @@ msgstr ""
 msgid "Extracting all the images in your PDF file"
 msgstr ""
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:89
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:90
 msgid "Something went wrong, please try again"
 msgstr "發生咗未知嘅錯誤，唔該試多次"
 
@@ -685,25 +685,25 @@ msgstr "{range}  第{pages}頁"
 msgid "The range is invalid, please try again"
 msgstr "頁數無效，唔該試多次"
 
-#: pdf_bot/telegram/telegram_service.py:54
+#: pdf_bot/telegram/telegram_service.py:55
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:66
+#: pdf_bot/telegram/telegram_service.py:67
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:98
+#: pdf_bot/telegram/telegram_service.py:99
 msgid "Your file is not an image, please try again"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:105
+#: pdf_bot/telegram/telegram_service.py:106
 msgid "No image found in your message"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:114
+#: pdf_bot/telegram/telegram_service.py:115
 msgid "Your file is not a PDF file, please try again"
 msgstr "你嘅檔案唔係PDF檔案，唔該試多次"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 04:04+0000\n"
-"PO-Revision-Date: 2022-11-11 04:04\n"
+"POT-Creation-Date: 2022-11-11 04:14+0000\n"
+"PO-Revision-Date: 2022-11-11 04:14\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -151,13 +151,13 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "Taal instellen 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:140
+#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:148
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Abonneer op het kanaal"
 
 #: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83
-#: pdf_bot/telegram/telegram_service.py:141 pdf_bot/utils.py:192
+#: pdf_bot/telegram/telegram_service.py:149 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "PDF Bot ondersteunen"
 
@@ -265,7 +265,7 @@ msgstr "Kan uw webpagina niet bereiken"
 msgid "Failed to convert your web page"
 msgstr "Kan uw webpagina niet converteren"
 
-#: pdf_bot/utils.py:26
+#: pdf_bot/telegram/telegram_service.py:138 pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "Actie geannuleerd"
 
@@ -298,8 +298,8 @@ msgstr "Het bestand is te groot voor mij om naar u te verzenden"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen tenzij Telegram deze limiet wijzigt"
 
-#: pdf_bot/telegram/telegram_service.py:168
-#: pdf_bot/telegram/telegram_service.py:175 pdf_bot/utils.py:168
+#: pdf_bot/telegram/telegram_service.py:176
+#: pdf_bot/telegram/telegram_service.py:183 pdf_bot/utils.py:168
 #: pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "Hier is het bestand"
@@ -481,7 +481,7 @@ msgstr "Uw PDF-bestand converteren naar afbeeldingen"
 msgid "Extracting all the images in your PDF file"
 msgstr "Alle afbeeldingen in uw PDF-bestand extraheren"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:89
+#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:90
 msgid "Something went wrong, please try again"
 msgstr "Er is iets misgegaan, probeer het opnieuw."
 
@@ -685,25 +685,25 @@ msgstr "{range}  pagina's {pages}"
 msgid "The range is invalid, please try again"
 msgstr "Het bereik is ongeldig, probeer het opnieuw"
 
-#: pdf_bot/telegram/telegram_service.py:54
+#: pdf_bot/telegram/telegram_service.py:55
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:66
+#: pdf_bot/telegram/telegram_service.py:67
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr ""
 
-#: pdf_bot/telegram/telegram_service.py:98
+#: pdf_bot/telegram/telegram_service.py:99
 msgid "Your file is not an image, please try again"
 msgstr "Uw bestand is geen afbeelding, probeer het opnieuw"
 
-#: pdf_bot/telegram/telegram_service.py:105
+#: pdf_bot/telegram/telegram_service.py:106
 msgid "No image found in your message"
 msgstr "Geen afbeelding gevonden in uw bericht"
 
-#: pdf_bot/telegram/telegram_service.py:114
+#: pdf_bot/telegram/telegram_service.py:115
 msgid "Your file is not a PDF file, please try again"
 msgstr "Uw bestand is geen PDF-bestand, probeer het opnieuw"
 
