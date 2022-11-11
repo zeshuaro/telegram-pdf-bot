@@ -58,13 +58,21 @@ class Services(containers.DeclarativeContainer):
 
     account = providers.Factory(AccountService, account_repository=repositories.account)
     command = providers.Factory(CommandService, account_service=account)
-    telegram = providers.Factory(TelegramService, io_service=io, updater=core.updater)
+    language = providers.Factory(
+        LanguageService, language_repository=repositories.language
+    )
+    telegram = providers.Factory(
+        TelegramService, io_service=io, language_service=language, updater=core.updater
+    )
     pdf = providers.Factory(
         PdfService, cli_service=cli, io_service=io, telegram_service=telegram
     )
 
     compare = providers.Factory(
-        CompareService, pdf_service=pdf, telegram_service=telegram
+        CompareService,
+        pdf_service=pdf,
+        telegram_service=telegram,
+        language_service=language,
     )
     file = providers.Factory(FileService, pdf_service=pdf, telegram_service=telegram)
     crop = providers.Factory(
