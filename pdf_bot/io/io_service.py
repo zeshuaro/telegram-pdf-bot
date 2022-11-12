@@ -38,7 +38,9 @@ class IOService:
                 tf.close()
 
     @contextmanager
-    def create_temp_pdf_file(self, prefix: str) -> Generator[str, None, None]:
+    def create_temp_pdf_file(
+        self, prefix: str | None = None
+    ) -> Generator[str, None, None]:
         try:
             with self.create_temp_file(prefix=prefix, suffix=".pdf") as out_path:
                 yield out_path

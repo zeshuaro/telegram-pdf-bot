@@ -87,7 +87,7 @@ class PdfService:
     @contextmanager
     def black_and_white_pdf(self, file_id: str):
         with (
-            self.telegram_service.download_file(file_id) as file_path,
+            self.telegram_service.download_pdf_file(file_id) as file_path,
             self.io_service.create_temp_directory() as dir_name,
             self.io_service.create_temp_pdf_file(prefix="Black_and_White") as out_path,
         ):
@@ -110,9 +110,9 @@ class PdfService:
     def compare_pdfs(
         self, file_id_a: str, file_id_b: str
     ) -> Generator[str, None, None]:
-        with self.telegram_service.download_file(
+        with self.telegram_service.download_pdf_file(
             file_id_a
-        ) as file_name_a, self.telegram_service.download_file(
+        ) as file_name_a, self.telegram_service.download_pdf_file(
             file_id_b
         ) as file_name_b, self.io_service.create_temp_png_file(
             prefix="Differences"
@@ -125,7 +125,7 @@ class PdfService:
 
     @contextmanager
     def compress_pdf(self, file_id: str):
-        with self.telegram_service.download_file(
+        with self.telegram_service.download_pdf_file(
             file_id
         ) as file_path, self.io_service.create_temp_pdf_file(
             prefix="Compressed"
@@ -193,7 +193,7 @@ class PdfService:
         percentage: float | None = None,
         margin_size: float | None = None,
     ):
-        with self.telegram_service.download_file(
+        with self.telegram_service.download_pdf_file(
             file_id
         ) as file_path, self.io_service.create_temp_pdf_file(
             prefix="Cropped"
@@ -258,7 +258,7 @@ class PdfService:
 
     @contextmanager
     def extract_text_from_pdf(self, file_id: str):
-        with self.telegram_service.download_file(file_id) as file_path:
+        with self.telegram_service.download_pdf_file(file_id) as file_path:
             text = extract_text(file_path)
 
         if not text:
@@ -300,7 +300,7 @@ class PdfService:
 
     @contextmanager
     def ocr_pdf(self, file_id: str) -> Generator[str, None, None]:
-        with self.telegram_service.download_file(
+        with self.telegram_service.download_pdf_file(
             file_id
         ) as file_path, self.io_service.create_temp_pdf_file("OCR") as out_path:
             try:
@@ -313,7 +313,7 @@ class PdfService:
 
     @contextmanager
     def rename_pdf(self, file_id: str, file_name: str) -> Generator[str, None, None]:
-        with self.telegram_service.download_file(
+        with self.telegram_service.download_pdf_file(
             file_id
         ) as file_path, self.io_service.create_temp_directory() as dir_name:
             try:
@@ -382,7 +382,7 @@ class PdfService:
         return [x.id for x in file_data_list]
 
     def _open_pdf(self, file_id: str, allow_encrypted: bool = False) -> PdfFileReader:
-        with self.telegram_service.download_file(file_id) as file_name:
+        with self.telegram_service.download_pdf_file(file_id) as file_name:
             try:
                 pdf_reader = PdfFileReader(open(file_name, "rb"))
             except PyPdfReadError as e:

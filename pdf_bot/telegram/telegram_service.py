@@ -118,11 +118,11 @@ class TelegramService:
         return doc
 
     @contextmanager
-    def download_file(self, file_id: str) -> Generator[str, None, None]:
-        with self.io_service.create_temp_file() as out_path:
+    def download_pdf_file(self, file_id: str) -> Generator[str, None, None]:
+        with self.io_service.create_temp_pdf_file() as path:
             file = self.bot.get_file(file_id)
-            file.download(custom_path=out_path)
-            yield out_path
+            file.download(custom_path=path)
+            yield path
 
     @contextmanager
     def download_files(self, file_ids: List[str]) -> Generator[List[str], None, None]:
