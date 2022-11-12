@@ -50,7 +50,7 @@ python-versions = ">=3.5"
 dev = ["cloudpickle", "coverage[toml] (>=5.0.2)", "furo", "hypothesis", "mypy (>=0.900,!=0.940)", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "sphinx", "sphinx-notfound-page", "zope.interface"]
 docs = ["furo", "sphinx", "sphinx-notfound-page", "zope.interface"]
 tests = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "zope.interface"]
-tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
+tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
 
 [[package]]
 name = "babel"
@@ -148,7 +148,7 @@ optional = false
 python-versions = ">=3.6.0"
 
 [package.extras]
-unicode-backport = ["unicodedata2"]
+unicode_backport = ["unicodedata2"]
 
 [[package]]
 name = "click"
@@ -374,7 +374,7 @@ six = ">=1.9.0"
 
 [package.extras]
 aiohttp = ["aiohttp (>=3.6.2,<4.0.0dev)", "requests (>=2.20.0,<3.0.0dev)"]
-enterprise-cert = ["cryptography (==36.0.2)", "pyopenssl (==22.0.0)"]
+enterprise_cert = ["cryptography (==36.0.2)", "pyopenssl (==22.0.0)"]
 pyopenssl = ["pyopenssl (>=20.0.0)"]
 reauth = ["pyu2f (>=0.1.5)"]
 
@@ -543,9 +543,9 @@ python-versions = ">=3.6.1,<4.0"
 
 [package.extras]
 colors = ["colorama (>=0.4.3,<0.5.0)"]
-pipfile-deprecated-finder = ["pipreqs", "requirementslib"]
+pipfile_deprecated_finder = ["pipreqs", "requirementslib"]
 plugins = ["setuptools"]
-requirements-deprecated-finder = ["pip-api", "pipreqs"]
+requirements_deprecated_finder = ["pip-api", "pipreqs"]
 
 [[package]]
 name = "langdetect"
@@ -692,7 +692,7 @@ typing-extensions = {version = ">=4", markers = "python_version < \"3.10\""}
 
 [package.extras]
 docs = ["sphinx", "sphinx-issues", "sphinx-rtd-theme"]
-extended-test = ["PyMuPDF (==1.19.1)"]
+extended_test = ["PyMuPDF (==1.19.1)"]
 test = ["coverage[toml] (>=5)", "pytest (>=6.0.0)", "pytest-cov (>=2.11.1)", "pytest-xdist (>=2.2.0)", "python-xmp-toolkit (==2.0.1)", "types-Pillow", "types-humanfriendly"]
 watcher = ["watchdog (>=1.0.2)"]
 webservice = ["Flask (>=1)"]
@@ -749,27 +749,20 @@ pillow = "*"
 
 [[package]]
 name = "pdfCropMargins"
-version = "1.0.5"
+version = "1.0.9"
 description = "A command-line program to crop the margins of PDF files, with many options."
 category = "main"
 optional = false
 python-versions = "*"
-develop = false
 
 [package.dependencies]
-pillow = {version = ">=7.1.0", markers = "python_version >= \"3.0.0\""}
-PyPDF2 = ">=2.0.0"
+pillow = {version = ">=9.0.0", markers = "python_version >= \"3.0.0\""}
+PyPDF2 = ">=1.27.5"
 wheel = "*"
 
 [package.extras]
-gui = ["PyMuPDF (>=1.18.0)", "PySimpleGUI (>=4.28.0)", "PySimpleGUI27 (>=2.4.1)", "typing"]
-mupdf = ["PyMuPDF (>=1.18.0)"]
-
-[package.source]
-type = "git"
-url = "https://github.com/zeshuaro/pdfCropMargins"
-reference = "HEAD"
-resolved_reference = "9914aed5e78f01253769fe60aac4734b8bd783af"
+gui = ["PyMuPDF (>=1.20.0)", "PySimpleGUI (>=4.28.0)", "PySimpleGUI27 (>=2.4.1)", "typing"]
+mupdf = ["PyMuPDF (>=1.20.0)"]
 
 [[package]]
 name = "pdfminer-six"
@@ -1112,7 +1105,7 @@ urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)"]
-use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
+use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "rsa"
@@ -1164,7 +1157,7 @@ falcon = ["falcon (>=1.4)"]
 fastapi = ["fastapi (>=0.79.0)"]
 flask = ["blinker (>=1.1)", "flask (>=0.11)"]
 httpx = ["httpx (>=0.16.0)"]
-pure-eval = ["asttokens", "executing", "pure-eval"]
+pure_eval = ["asttokens", "executing", "pure-eval"]
 pyspark = ["pyspark (>=2.4.4)"]
 quart = ["blinker (>=1.1)", "quart (>=0.16.1)"]
 rq = ["rq (>=0.6)"]
@@ -1406,7 +1399,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "ef9d631a43aee3d89d7adb5d99b1c34e43cf217b0cf0dd4ec3926d56a7b3747d"
+content-hash = "2ffbd0898e11fcd1e0d30ba58d7e258a192eff52e3a436e090242e8253714629"
 
 [metadata.files]
 apscheduler = [
@@ -2083,7 +2076,9 @@ pdf2image = [
     {file = "pdf2image-1.16.0-py3-none-any.whl", hash = "sha256:84f79f2b8fad943e36323ea4e937fcb05f26ded0caa0a01181df66049e42fb65"},
     {file = "pdf2image-1.16.0.tar.gz", hash = "sha256:d58ed94d978a70c73c2bb7fdf8acbaf2a7089c29ff8141be5f45433c0c4293bb"},
 ]
-pdfCropMargins = []
+pdfCropMargins = [
+    {file = "pdfCropMargins-1.0.9.tar.gz", hash = "sha256:e9b1304e07955eeb0a3b440534f5ee8c0d849ff98dd433db0cee1346be4a05e2"},
+]
 pdfminer-six = [
     {file = "pdfminer.six-20221105-py3-none-any.whl", hash = "sha256:1eaddd712d5b2732f8ac8486824533514f8ba12a0787b3d5fe1e686cd826532d"},
     {file = "pdfminer.six-20221105.tar.gz", hash = "sha256:8448ab7b939d18b64820478ecac5394f482d7a79f5f7eaa7703c6c959c175e1d"},
