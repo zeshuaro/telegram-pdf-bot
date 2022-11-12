@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 04:44+0000\n"
-"PO-Revision-Date: 2022-11-11 04:44\n"
+"POT-Creation-Date: 2022-11-12 06:17+0000\n"
+"PO-Revision-Date: 2022-11-12 06:17\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -35,11 +35,11 @@ msgstr "අවසන් කරන්න"
 msgid "Back"
 msgstr "ආපසු"
 
-#: pdf_bot/consts.py:40 pdf_bot/crop/crop_constants.py:5
+#: pdf_bot/consts.py:40
 msgid "By Percentage"
 msgstr "ප්‍රතිශතය අනුව"
 
-#: pdf_bot/consts.py:41 pdf_bot/crop/crop_constants.py:6
+#: pdf_bot/consts.py:41
 msgid "By Margin Size"
 msgstr "මාර්ජින් ප්‍රමාණය අනුව"
 
@@ -408,33 +408,41 @@ msgstr "ඔබගේ PDF ගොනු සංසන්දනය කරමින�
 msgid "There are no text differences between your PDF files"
 msgstr "ඔබේ PDF ලිපිගොනු අතර පෙළ වෙනස්කම් නොමැත"
 
-#: pdf_bot/crop/crop_service.py:36
+#: pdf_bot/crop/crop_service.py:21
+msgid "By percentage"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:22
+msgid "By margin size"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:48
 msgid "Select the crop type that you'll like to perform"
 msgstr "ඔබ කැපීමට කැමති අදාළ වර්ගය තෝරන්න"
 
-#: pdf_bot/crop/crop_service.py:63
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "{min_percent} සහ {max_percent}අතර අංකයක් මට එවන්න"
-
-#: pdf_bot/crop/crop_service.py:69
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "ඔබේ PDF ගොනුවේ සහ පිටුවේ අන්තර්ගතය අතර තබා ගැනීමට ආන්තික අවකාශයේ ප්‍රතිශතය මෙයයි"
-
-#: pdf_bot/crop/crop_service.py:80
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "ආන්තික ප්‍රමාණය සකස් කිරීමට ඔබ කැමති අංකයක් මට එවන්න"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "ධන සංඛ්‍යා ආන්තික ප්‍රමාණය අඩු කරන අතර negativeණ සංඛ්‍යා එය වැඩි කරයි"
-
-#: pdf_bot/crop/crop_service.py:101
+#: pdf_bot/crop/crop_service.py:77
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
 msgstr ""
 
-#: pdf_bot/crop/crop_service.py:126
+#: pdf_bot/crop/crop_service.py:103
 msgid "The number {number} is invalid, please try again"
 msgstr ""
+
+#: pdf_bot/crop/crop_service.py:121
+msgid "Send me a number between {min_percent} and {max_percent}"
+msgstr "{min_percent} සහ {max_percent}අතර අංකයක් මට එවන්න"
+
+#: pdf_bot/crop/crop_service.py:127
+msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr "ඔබේ PDF ගොනුවේ සහ පිටුවේ අන්තර්ගතය අතර තබා ගැනීමට ආන්තික අවකාශයේ ප්‍රතිශතය මෙයයි"
+
+#: pdf_bot/crop/crop_service.py:138
+msgid "Send me a number that you'll like to adjust the margin size"
+msgstr "ආන්තික ප්‍රමාණය සකස් කිරීමට ඔබ කැමති අංකයක් මට එවන්න"
+
+#: pdf_bot/crop/crop_service.py:139
+msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr "ධන සංඛ්‍යා ආන්තික ප්‍රමාණය අඩු කරන අතර negativeණ සංඛ්‍යා එය වැඩි කරයි"
 
 #: pdf_bot/decrypt/decrypt_service.py:30
 msgid "Send me the password to decrypt your PDF file"

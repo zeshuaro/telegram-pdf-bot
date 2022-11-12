@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 04:44+0000\n"
-"PO-Revision-Date: 2022-11-11 04:44\n"
+"POT-Creation-Date: 2022-11-12 06:17+0000\n"
+"PO-Revision-Date: 2022-11-12 06:17\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -35,11 +35,11 @@ msgstr "Γίνει"
 msgid "Back"
 msgstr "Πίσω"
 
-#: pdf_bot/consts.py:40 pdf_bot/crop/crop_constants.py:5
+#: pdf_bot/consts.py:40
 msgid "By Percentage"
 msgstr "Κατά ποσοστό"
 
-#: pdf_bot/consts.py:41 pdf_bot/crop/crop_constants.py:6
+#: pdf_bot/consts.py:41
 msgid "By Margin Size"
 msgstr "Κατά μέγεθος περιθωρίου"
 
@@ -408,33 +408,41 @@ msgstr "Σύγκριση των αρχείων PDF"
 msgid "There are no text differences between your PDF files"
 msgstr "Δεν υπάρχουν διαφορές κειμένου μεταξύ των αρχείων PDF"
 
-#: pdf_bot/crop/crop_service.py:36
+#: pdf_bot/crop/crop_service.py:21
+msgid "By percentage"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:22
+msgid "By margin size"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:48
 msgid "Select the crop type that you'll like to perform"
 msgstr "Επιλέξτε τον τύπο περικοπής που θα θέλατε να εκτελέσετε"
 
-#: pdf_bot/crop/crop_service.py:63
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "Στείλε μου έναν αριθμό μεταξύ {min_percent} και {max_percent}"
-
-#: pdf_bot/crop/crop_service.py:69
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Αυτό είναι το ποσοστό του χώρου περιθωρίου που πρέπει να διατηρήσετε μεταξύ του περιεχομένου στο αρχείο PDF και της σελίδας"
-
-#: pdf_bot/crop/crop_service.py:80
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "Στείλτε μου έναν αριθμό που θα θέλατε να προσαρμόσετε το μέγεθος του περιθωρίου"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Οι θετικοί αριθμοί θα μειώσουν το μέγεθος του περιθωρίου και οι αρνητικοί αριθμοί θα το αυξήσουν"
-
-#: pdf_bot/crop/crop_service.py:101
+#: pdf_bot/crop/crop_service.py:77
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
 msgstr "Ο αριθμός {number} δεν είναι μεταξύ {min_percent} και {max_percent}, προσπαθήστε ξανά"
 
-#: pdf_bot/crop/crop_service.py:126
+#: pdf_bot/crop/crop_service.py:103
 msgid "The number {number} is invalid, please try again"
 msgstr "Ο αριθμός {number} δεν είναι έγκυρος, προσπαθήστε ξανά"
+
+#: pdf_bot/crop/crop_service.py:121
+msgid "Send me a number between {min_percent} and {max_percent}"
+msgstr "Στείλε μου έναν αριθμό μεταξύ {min_percent} και {max_percent}"
+
+#: pdf_bot/crop/crop_service.py:127
+msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr "Αυτό είναι το ποσοστό του χώρου περιθωρίου που πρέπει να διατηρήσετε μεταξύ του περιεχομένου στο αρχείο PDF και της σελίδας"
+
+#: pdf_bot/crop/crop_service.py:138
+msgid "Send me a number that you'll like to adjust the margin size"
+msgstr "Στείλτε μου έναν αριθμό που θα θέλατε να προσαρμόσετε το μέγεθος του περιθωρίου"
+
+#: pdf_bot/crop/crop_service.py:139
+msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr "Οι θετικοί αριθμοί θα μειώσουν το μέγεθος του περιθωρίου και οι αρνητικοί αριθμοί θα το αυξήσουν"
 
 #: pdf_bot/decrypt/decrypt_service.py:30
 msgid "Send me the password to decrypt your PDF file"

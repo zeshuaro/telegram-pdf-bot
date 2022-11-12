@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 04:44+0000\n"
-"PO-Revision-Date: 2022-11-11 04:44\n"
+"POT-Creation-Date: 2022-11-12 06:17+0000\n"
+"PO-Revision-Date: 2022-11-12 06:17\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -35,11 +35,11 @@ msgstr "搞掂"
 msgid "Back"
 msgstr "返去"
 
-#: pdf_bot/consts.py:40 pdf_bot/crop/crop_constants.py:5
+#: pdf_bot/consts.py:40
 msgid "By Percentage"
 msgstr "用百分比"
 
-#: pdf_bot/consts.py:41 pdf_bot/crop/crop_constants.py:6
+#: pdf_bot/consts.py:41
 msgid "By Margin Size"
 msgstr "用邊界大細"
 
@@ -408,33 +408,41 @@ msgstr "比較緊你嘅PDF檔案"
 msgid "There are no text differences between your PDF files"
 msgstr "你嘅PDF檔案係文字上冇分別"
 
-#: pdf_bot/crop/crop_service.py:36
+#: pdf_bot/crop/crop_service.py:21
+msgid "By percentage"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:22
+msgid "By margin size"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:48
 msgid "Select the crop type that you'll like to perform"
 msgstr "揀你想點樣裁剪"
 
-#: pdf_bot/crop/crop_service.py:63
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "Send一個係{min_percent}同{max_percent}之間嘅數字畀我"
-
-#: pdf_bot/crop/crop_service.py:69
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "呢個係你想保留嘅邊界空間嘅百分比"
-
-#: pdf_bot/crop/crop_service.py:80
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "Send一個你想調整邊界空間嘅數字畀我"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "正數會減小邊界空間，而負數就會增加邊界空間"
-
-#: pdf_bot/crop/crop_service.py:101
+#: pdf_bot/crop/crop_service.py:77
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
 msgstr ""
 
-#: pdf_bot/crop/crop_service.py:126
+#: pdf_bot/crop/crop_service.py:103
 msgid "The number {number} is invalid, please try again"
 msgstr ""
+
+#: pdf_bot/crop/crop_service.py:121
+msgid "Send me a number between {min_percent} and {max_percent}"
+msgstr "Send一個係{min_percent}同{max_percent}之間嘅數字畀我"
+
+#: pdf_bot/crop/crop_service.py:127
+msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr "呢個係你想保留嘅邊界空間嘅百分比"
+
+#: pdf_bot/crop/crop_service.py:138
+msgid "Send me a number that you'll like to adjust the margin size"
+msgstr "Send一個你想調整邊界空間嘅數字畀我"
+
+#: pdf_bot/crop/crop_service.py:139
+msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr "正數會減小邊界空間，而負數就會增加邊界空間"
 
 #: pdf_bot/decrypt/decrypt_service.py:30
 msgid "Send me the password to decrypt your PDF file"

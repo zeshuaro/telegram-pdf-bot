@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-11 04:44+0000\n"
-"PO-Revision-Date: 2022-11-11 04:44\n"
+"POT-Creation-Date: 2022-11-12 06:17+0000\n"
+"PO-Revision-Date: 2022-11-12 06:17\n"
 "Last-Translator: \n"
 "Language: sv\n"
 "Language-Team: Swedish\n"
@@ -35,11 +35,11 @@ msgstr "Gjort"
 msgid "Back"
 msgstr "Tillbaka"
 
-#: pdf_bot/consts.py:40 pdf_bot/crop/crop_constants.py:5
+#: pdf_bot/consts.py:40
 msgid "By Percentage"
 msgstr "Efter procent"
 
-#: pdf_bot/consts.py:41 pdf_bot/crop/crop_constants.py:6
+#: pdf_bot/consts.py:41
 msgid "By Margin Size"
 msgstr "Efter marginalstorlek"
 
@@ -408,33 +408,41 @@ msgstr "Jämföra dina PDF-filer"
 msgid "There are no text differences between your PDF files"
 msgstr "Det finns inga textskillnader mellan dina PDF-filer"
 
-#: pdf_bot/crop/crop_service.py:36
+#: pdf_bot/crop/crop_service.py:21
+msgid "By percentage"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:22
+msgid "By margin size"
+msgstr ""
+
+#: pdf_bot/crop/crop_service.py:48
 msgid "Select the crop type that you'll like to perform"
 msgstr "Välj den beskärningstyp som du ska vilja utföra"
 
-#: pdf_bot/crop/crop_service.py:63
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "Skicka mig ett nummer mellan {min_percent} och {max_percent}"
-
-#: pdf_bot/crop/crop_service.py:69
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Detta är procentandelen marginalutrymme som ska behållas mellan innehållet i din PDF-fil och sidan"
-
-#: pdf_bot/crop/crop_service.py:80
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "Skicka mig ett nummer som du vill justera marginalstorleken"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Positiva tal minskar marginalstorleken och negativa tal ökar den"
-
-#: pdf_bot/crop/crop_service.py:101
+#: pdf_bot/crop/crop_service.py:77
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
 msgstr "Antalet {number} är inte mellan {min_percent} och {max_percent}, försök igen"
 
-#: pdf_bot/crop/crop_service.py:126
+#: pdf_bot/crop/crop_service.py:103
 msgid "The number {number} is invalid, please try again"
 msgstr "Numret {number} är ogiltigt, försök igen"
+
+#: pdf_bot/crop/crop_service.py:121
+msgid "Send me a number between {min_percent} and {max_percent}"
+msgstr "Skicka mig ett nummer mellan {min_percent} och {max_percent}"
+
+#: pdf_bot/crop/crop_service.py:127
+msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr "Detta är procentandelen marginalutrymme som ska behållas mellan innehållet i din PDF-fil och sidan"
+
+#: pdf_bot/crop/crop_service.py:138
+msgid "Send me a number that you'll like to adjust the margin size"
+msgstr "Skicka mig ett nummer som du vill justera marginalstorleken"
+
+#: pdf_bot/crop/crop_service.py:139
+msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr "Positiva tal minskar marginalstorleken och negativa tal ökar den"
 
 #: pdf_bot/decrypt/decrypt_service.py:30
 msgid "Send me the password to decrypt your PDF file"
