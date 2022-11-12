@@ -28,7 +28,7 @@ from pdf_bot.consts import (
     WAIT_IMAGE_TASK,
     WAIT_TO_IMAGE_TYPE,
 )
-from pdf_bot.crop import CropService, crop_constants
+from pdf_bot.crop import CropService
 from pdf_bot.decrypt import DecryptService, decrypt_constants
 from pdf_bot.encrypt import EncryptService, encrypt_constants
 from pdf_bot.file.file_service import FileService
@@ -83,15 +83,15 @@ class FileHandlers:
                     MessageHandler(TEXT_FILTER, self.check_doc_task)
                 ],
                 WAIT_IMAGE_TASK: [MessageHandler(TEXT_FILTER, self.check_image_task)],
-                crop_constants.WAIT_CROP_TYPE: [
+                CropService.WAIT_CROP_TYPE: [
                     MessageHandler(TEXT_FILTER, self.crop_service.check_crop_type)
                 ],
-                crop_constants.WAIT_CROP_PERCENTAGE: [
+                CropService.WAIT_CROP_PERCENTAGE: [
                     MessageHandler(
                         TEXT_FILTER, self.crop_service.crop_pdf_by_percentage
                     )
                 ],
-                crop_constants.WAIT_CROP_MARGIN_SIZE: [
+                CropService.WAIT_CROP_MARGIN_SIZE: [
                     MessageHandler(
                         TEXT_FILTER, self.crop_service.crop_pdf_by_margin_size
                     )
