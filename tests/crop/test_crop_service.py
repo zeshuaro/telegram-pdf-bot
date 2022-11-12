@@ -101,7 +101,17 @@ class TestCropService(TelegramTestMixin):
         )
 
         assert actual == self.WAIT_CROP_PERCENTAGE
-        self._assert_crop_invalid_value()
+        self._assert_crop_services_not_called()
+
+    def test_crop_pdf_by_percentage_back(self) -> None:
+        self.telegram_message.text = self.BACK
+
+        actual = self.sut.crop_pdf_by_percentage(
+            self.telegram_update, self.telegram_context
+        )
+
+        assert actual == self.WAIT_CROP_TYPE
+        self._assert_crop_services_not_called()
 
     def test_crop_pdf_by_margin_size(self) -> None:
         self.telegram_message.text = self.MARGIN_SIZE
@@ -137,7 +147,17 @@ class TestCropService(TelegramTestMixin):
         )
 
         assert actual == self.WAIT_CROP_MARGIN_SIZE
-        self._assert_crop_invalid_value()
+        self._assert_crop_services_not_called()
+
+    def test_crop_pdf_by_margin_size_back(self) -> None:
+        self.telegram_message.text = self.BACK
+
+        actual = self.sut.crop_pdf_by_margin_size(
+            self.telegram_update, self.telegram_context
+        )
+
+        assert actual == self.WAIT_CROP_TYPE
+        self._assert_crop_services_not_called()
 
     def _assert_crop_success(
         self, percentage: float | None = None, margin_size: int | None = None
@@ -162,7 +182,7 @@ class TestCropService(TelegramTestMixin):
         self.pdf_service.crop_pdf.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()
 
-    def _assert_crop_invalid_value(self) -> None:
+    def _assert_crop_services_not_called(self) -> None:
         self.telegram_service.get_user_data.assert_not_called()
         self.pdf_service.crop_pdf.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()
