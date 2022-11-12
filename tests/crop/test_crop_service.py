@@ -1,220 +1,168 @@
-from random import randint
-from typing import Iterator
-from unittest.mock import patch
+from unittest.mock import MagicMock
 
 import pytest
-from telegram import Message, Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
-from pdf_bot.crop import CropService, crop_constants
+from pdf_bot.crop import CropService
 from pdf_bot.file_task import FileTaskService
+from pdf_bot.language_new import LanguageService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram import TelegramService, TelegramUserDataKeyError
+from tests.telegram.telegram_test_mixin import TelegramTestMixin
 
 
-@pytest.fixture(name="crop_service")
-def fixture_crop_service(
-    file_task_service: FileTaskService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-) -> CropService:
-    return CropService(file_task_service, pdf_service, telegram_service)
+class TestCropService(TelegramTestMixin):
+    WAIT_CROP_TYPE = "wait_crop_type"
+    WAIT_CROP_PERCENTAGE = "wait_crop_percentage"
+    WAIT_CROP_MARGIN_SIZE = "wait_crop_margin_size"
+    WAIT_PDF_TASK = "wait_pdf_task"
 
+    BY_PERCENTAGE = "By percentage"
+    BY_MARGIN_SIZE = "By margin size"
+    BACK = "Back"
 
-@pytest.fixture(scope="session", autouse=True)
-def set_lang() -> Iterator[None]:
-    with patch("pdf_bot.crop.crop_service.set_lang"):
-        yield
+    PERCENT = 0.1
+    MARGIN_SIZE = 10
+    FILE_PATH = "file_path"
 
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.pdf_service = MagicMock(spec=PdfService)
 
-@pytest.fixture(scope="session", autouse=True)
-def utils_set_lang() -> Iterator[None]:
-    with patch("pdf_bot.utils.set_lang"):
-        yield
+        self.file_task_service = MagicMock(spec=FileTaskService)
+        self.file_task_service.ask_pdf_task.return_value = self.WAIT_PDF_TASK
 
+        self.language_service = MagicMock(spec=LanguageService)
+        self.language_service.set_app_language.return_value = lambda x: x
 
-def test_ask_crop_type(
-    crop_service: CropService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    actual = crop_service.ask_crop_type(telegram_update, telegram_context)
-    assert actual == crop_constants.WAIT_CROP_TYPE
+        self.telegram_service = MagicMock(spec=TelegramService)
+        self.telegram_service.check_pdf_document.return_value = self.telegram_document
 
+        self.sut = CropService(
+            self.file_task_service,
+            self.pdf_service,
+            self.telegram_service,
+            self.language_service,
+        )
 
-def test_crop_pdf_by_percentage(
-    crop_service: CropService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-    percent = float(
-        randint(crop_constants.MIN_PERCENTAGE, crop_constants.MAX_PERCENTAGE)
+    def test_ask_crop_type(self) -> None:
+        actual = self.sut.ask_crop_type(self.telegram_update, self.telegram_context)
+
+        assert actual == self.WAIT_CROP_TYPE
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+
+    @pytest.mark.parametrize(
+        "text,expected",
+        [
+            (BY_PERCENTAGE, WAIT_CROP_PERCENTAGE),
+            (BY_MARGIN_SIZE, WAIT_CROP_MARGIN_SIZE),
+            (BACK, WAIT_PDF_TASK),
+            ("clearly_invalid", WAIT_CROP_TYPE),
+        ],
     )
+    def test_check_crop_type(self, text: str, expected: str) -> None:
+        self.telegram_message.text = text
+        actual = self.sut.check_crop_type(self.telegram_update, self.telegram_context)
+        assert actual == expected
 
-    telegram_message.text = percent
-    telegram_update.effective_message = telegram_message
+    def test_crop_pdf_by_percentage(self) -> None:
+        self.telegram_message.text = self.PERCENT
+        self.telegram_service.get_user_data.return_value = (
+            self.telegram_document_id,
+            "file_name",
+        )
+        self.pdf_service.crop_pdf.return_value.__enter__.return_value = self.FILE_PATH
 
-    telegram_service.get_user_data.return_value = (file_id, "file_name")
-    pdf_service.crop_pdf.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.crop.crop_service.send_result_file") as send_result_file:
-        actual = crop_service.crop_pdf_by_percentage(telegram_update, telegram_context)
+        actual = self.sut.crop_pdf_by_percentage(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
+        self._assert_crop_success(percentage=self.PERCENT)
+
+    def test_crop_pdf_by_percentage_invalid_user_data(self) -> None:
+        self.telegram_message.text = self.PERCENT
+        self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
+
+        actual = self.sut.crop_pdf_by_percentage(
+            self.telegram_update, self.telegram_context
         )
-        pdf_service.crop_pdf.assert_called_once_with(
-            file_id, percentage=percent, margin_size=None
-        )
-        send_result_file.assert_called_once_with(
-            telegram_update, telegram_context, out_path, TaskType.crop_pdf
-        )
-
-
-def test_crop_pdf_by_percentage_invalid_user_data(
-    crop_service: CropService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    percent = float(
-        randint(crop_constants.MIN_PERCENTAGE, crop_constants.MAX_PERCENTAGE)
-    )
-
-    telegram_message.text = percent
-    telegram_update.effective_message = telegram_message
-
-    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
-
-    with patch("pdf_bot.crop.crop_service.send_result_file") as send_result_file:
-        actual = crop_service.crop_pdf_by_percentage(telegram_update, telegram_context)
 
         assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
+        self._assert_crop_invalid_user_data()
+
+    def test_crop_pdf_by_percentage_invalid_value(self) -> None:
+        self.telegram_message.text = "clearly_invalid"
+
+        actual = self.sut.crop_pdf_by_percentage(
+            self.telegram_update, self.telegram_context
         )
-        pdf_service.crop_pdf.assert_not_called()
-        send_result_file.assert_not_called()
 
+        assert actual == self.WAIT_CROP_PERCENTAGE
+        self._assert_crop_invalid_value()
 
-def test_crop_pdf_by_percentage_invalid_value(
-    crop_service: CropService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-    percent = "clearly_invalid"
+    def test_crop_pdf_by_margin_size(self) -> None:
+        self.telegram_message.text = self.MARGIN_SIZE
+        self.telegram_service.get_user_data.return_value = (
+            self.telegram_document_id,
+            "file_name",
+        )
+        self.pdf_service.crop_pdf.return_value.__enter__.return_value = self.FILE_PATH
 
-    telegram_message.text = percent
-    telegram_update.effective_message = telegram_message
-
-    telegram_service.get_user_data.return_value = (file_id, "file_name")
-    pdf_service.crop_pdf.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.crop.crop_service.send_result_file") as send_result_file:
-        actual = crop_service.crop_pdf_by_percentage(telegram_update, telegram_context)
-
-        assert actual == crop_constants.WAIT_CROP_PERCENTAGE
-        telegram_service.get_user_data.assert_not_called()
-        pdf_service.crop_pdf.assert_not_called()
-        send_result_file.assert_not_called()
-
-
-def test_crop_pdf_by_margin_size(
-    crop_service: CropService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-    margin_size = float(randint(1, 10))
-
-    telegram_message.text = margin_size
-    telegram_update.effective_message = telegram_message
-
-    telegram_service.get_user_data.return_value = (file_id, "file_name")
-    pdf_service.crop_pdf.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.crop.crop_service.send_result_file") as send_result_file:
-        actual = crop_service.crop_pdf_by_margin_size(telegram_update, telegram_context)
+        actual = self.sut.crop_pdf_by_margin_size(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
+        self._assert_crop_success(margin_size=self.MARGIN_SIZE)
+
+    def test_crop_pdf_by_margin_size_invalid_user_data(self) -> None:
+        self.telegram_message.text = self.MARGIN_SIZE
+        self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
+
+        actual = self.sut.crop_pdf_by_margin_size(
+            self.telegram_update, self.telegram_context
         )
-        pdf_service.crop_pdf.assert_called_once_with(
-            file_id, percentage=None, margin_size=margin_size
-        )
-        send_result_file.assert_called_once_with(
-            telegram_update, telegram_context, out_path, TaskType.crop_pdf
-        )
-
-
-def test_crop_pdf_by_margin_size_invalid_user_data(
-    crop_service: CropService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    margin_size = float(randint(1, 10))
-
-    telegram_message.text = margin_size
-    telegram_update.effective_message = telegram_message
-
-    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
-
-    with patch("pdf_bot.crop.crop_service.send_result_file") as send_result_file:
-        actual = crop_service.crop_pdf_by_margin_size(telegram_update, telegram_context)
 
         assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
+        self._assert_crop_invalid_user_data()
+
+    def test_crop_pdf_by_margin_size_invalid_value(self) -> None:
+        self.telegram_message.text = "clearly_invalid"
+
+        actual = self.sut.crop_pdf_by_margin_size(
+            self.telegram_update, self.telegram_context
         )
-        pdf_service.crop_pdf.assert_not_called()
-        send_result_file.assert_not_called()
 
+        assert actual == self.WAIT_CROP_MARGIN_SIZE
+        self._assert_crop_invalid_value()
 
-def test_crop_pdf_by_margin_size_invalid_value(
-    crop_service: CropService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-    margin_size = "clearly_invalid"
+    def _assert_crop_success(
+        self, percentage: float | None = None, margin_size: int | None = None
+    ) -> None:
+        self.telegram_service.get_user_data.assert_called_once_with(
+            self.telegram_context, PDF_INFO
+        )
+        self.pdf_service.crop_pdf.assert_called_once_with(
+            self.telegram_document_id, percentage=percentage, margin_size=margin_size
+        )
+        self.telegram_service.reply_with_file.assert_called_once_with(
+            self.telegram_update,
+            self.telegram_context,
+            self.FILE_PATH,
+            TaskType.crop_pdf,
+        )
 
-    telegram_message.text = margin_size
-    telegram_update.effective_message = telegram_message
+    def _assert_crop_invalid_user_data(self) -> None:
+        self.telegram_service.get_user_data.assert_called_once_with(
+            self.telegram_context, PDF_INFO
+        )
+        self.pdf_service.crop_pdf.assert_not_called()
+        self.telegram_service.reply_with_file.assert_not_called()
 
-    telegram_service.get_user_data.return_value = (file_id, "file_name")
-    pdf_service.crop_pdf.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.crop.crop_service.send_result_file") as send_result_file:
-        actual = crop_service.crop_pdf_by_margin_size(telegram_update, telegram_context)
-
-        assert actual == crop_constants.WAIT_CROP_MARGIN_SIZE
-        telegram_service.get_user_data.assert_not_called()
-        pdf_service.crop_pdf.assert_not_called()
-        send_result_file.assert_not_called()
+    def _assert_crop_invalid_value(self) -> None:
+        self.telegram_service.get_user_data.assert_not_called()
+        self.pdf_service.crop_pdf.assert_not_called()
+        self.telegram_service.reply_with_file.assert_not_called()

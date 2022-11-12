@@ -8,7 +8,7 @@ from pdf_bot.language import set_lang
 
 class FileTaskService:
     @staticmethod
-    def ask_pdf_task(update: Update, context: CallbackContext):
+    def ask_pdf_task(update: Update, context: CallbackContext) -> str:
         _ = set_lang(update, context)
         keywords = [_(x) for x in file_task_constants.PDF_TASKS]
         keyboard_size = 3
