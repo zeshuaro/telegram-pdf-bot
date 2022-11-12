@@ -130,13 +130,13 @@ class TestTelegramRService(TelegramTestMixin):
         with pytest.raises(TelegramFileTooLargeError):
             self.sut.check_pdf_document(self.telegram_message)
 
-    def test_download_file(self) -> None:
-        self.io_service.create_temp_file.return_value.__enter__.return_value = (
+    def test_download_pdf_file(self) -> None:
+        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = (
             self.file_path
         )
         self.telegram_bot.get_file.return_value = self.telegram_file
 
-        with self.sut.download_file(self.telegram_file_id) as actual:
+        with self.sut.download_pdf_file(self.telegram_file_id) as actual:
             assert actual == self.file_path
             self.telegram_bot.get_file.assert_called_with(self.telegram_file_id)
             self.telegram_file.download.assert_called_once_with(

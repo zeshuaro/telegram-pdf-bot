@@ -73,7 +73,9 @@ def test_add_watermark_to_pdf(
     ) as pdf_file_reader, patch(
         "pdf_bot.pdf.pdf_service.PdfFileWriter"
     ) as pdf_file_writer:
-        telegram_service.download_file.side_effect = context_manager_side_effect_echo
+        telegram_service.download_pdf_file.side_effect = (
+            context_manager_side_effect_echo
+        )
         mock_open.side_effect = method_side_effect_echo
         pdf_file_reader.side_effect = pdf_file_reader_side_effect
         pdf_file_writer.return_value = writer
@@ -114,7 +116,7 @@ def test_black_and_white_pdf(
     ) as pdf2image, patch("pdf_bot.pdf.pdf_service.img2pdf") as img2pdf:
         pdf2image.convert_from_path.return_value = images
         with pdf_service.black_and_white_pdf(file_id):
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with(
                 prefix="Black_and_White"
             )
@@ -161,7 +163,7 @@ def test_compress_pdf(
             return old_size
         return new_size
 
-    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
     io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
 
     with patch("pdf_bot.pdf.pdf_service.os") as mock_os:
@@ -169,7 +171,7 @@ def test_compress_pdf(
         with pdf_service.compress_pdf(file_id) as compress_result:
             assert compress_result == CompressResult(old_size, new_size, out_path)
             cli_service.compress_pdf.assert_called_once_with(file_path, out_path)
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with(prefix="Compressed")
 
 
@@ -230,7 +232,7 @@ def test_drop_pdf_by_percentage(
     file_path = "file_path"
     out_path = "out_path"
 
-    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
     io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
 
     with pdf_service.crop_pdf(file_id, percentage=percent) as actual_path:
@@ -238,7 +240,7 @@ def test_drop_pdf_by_percentage(
         cli_service.crop_pdf_by_percentage.assert_called_once_with(
             file_path, out_path, percent
         )
-        telegram_service.download_file.assert_called_once_with(file_id)
+        telegram_service.download_pdf_file.assert_called_once_with(file_id)
         io_service.create_temp_pdf_file.assert_called_once_with(prefix="Cropped")
 
 
@@ -253,7 +255,7 @@ def test_crop_pdf_by_margin_size(
     file_path = "file_path"
     out_path = "out_path"
 
-    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
     io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
 
     with pdf_service.crop_pdf(file_id, margin_size=margin_size) as actual_path:
@@ -261,7 +263,7 @@ def test_crop_pdf_by_margin_size(
         cli_service.crop_pdf_by_margin_size.assert_called_once_with(
             file_path, out_path, margin_size
         )
-        telegram_service.download_file.assert_called_once_with(file_id)
+        telegram_service.download_pdf_file.assert_called_once_with(file_id)
         io_service.create_temp_pdf_file.assert_called_once_with(prefix="Cropped")
 
 
@@ -276,7 +278,7 @@ def test_compare_pdfs(
     ) as pdf_diff, pdf_service.compare_pdfs(*doc_ids):
         assert pdf_diff.main.called
         calls = [call(doc_id) for doc_id in doc_ids]
-        telegram_service.download_file.assert_has_calls(calls, any_order=True)
+        telegram_service.download_pdf_file.assert_has_calls(calls, any_order=True)
 
 
 def test_decrypt_pdf(
@@ -307,7 +309,7 @@ def test_decrypt_pdf(
 
         with pdf_service.decrypt_pdf(file_id, password) as actual_path:
             assert actual_path == out_path
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             reader.decrypt.assert_called_once_with(password)
             io_service.create_temp_pdf_file.assert_called_once_with("Decrypted")
 
@@ -331,7 +333,7 @@ def test_decrypt_pdf_already_encrypted(
     ) as pdf_file_reader:
         pdf_file_reader.return_value = reader
         with pytest.raises(PdfDecryptError), pdf_service.decrypt_pdf(file_id, password):
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             reader.decrypt.assert_not_called()
             io_service.create_temp_pdf_file.assert_not_called()
 
@@ -355,7 +357,7 @@ def test_decrypt_pdf_incorrect_password(
         with pytest.raises(PdfIncorrectPasswordError), pdf_service.decrypt_pdf(
             file_id, password
         ):
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             reader.decrypt.assert_called_once_with(password)
             io_service.create_temp_pdf_file.assert_not_called()
 
@@ -377,7 +379,7 @@ def test_decrypt_pdf_invalid_encryption_method(
     ) as pdf_file_reader:
         pdf_file_reader.return_value = reader
         with pytest.raises(PdfDecryptError), pdf_service.decrypt_pdf(file_id, password):
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             reader.decrypt.assert_called_once_with(password)
             io_service.create_temp_pdf_file.assert_not_called()
 
@@ -410,7 +412,7 @@ def test_encrypt_pdf(
 
         with pdf_service.encrypt_pdf(file_id, password) as actual_path:
             assert actual_path == out_path
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("Encrypted")
 
             calls = [call(page) for page in pages]
@@ -434,7 +436,7 @@ def test_encrypt_pdf_already_encrypted(
     ) as pdf_file_reader:
         pdf_file_reader.return_value = reader
         with pytest.raises(PdfEncryptError), pdf_service.encrypt_pdf(file_id, password):
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_not_called()
 
 
@@ -445,7 +447,7 @@ def test_extract_text_from_pdf(
 ):
     file_id = "file_id"
     file_path = "file_path"
-    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
 
     with patch("builtins.open"), patch(
         "pdf_bot.pdf.pdf_service.extract_text"
@@ -454,7 +456,7 @@ def test_extract_text_from_pdf(
     ), pdf_service.extract_text_from_pdf(
         file_id
     ):
-        telegram_service.download_file.assert_called_once_with(file_id)
+        telegram_service.download_pdf_file.assert_called_once_with(file_id)
         extract_text.assert_called_once_with(file_path)
         io_service.create_temp_txt_file.assert_called_once_with("PDF_text")
 
@@ -466,14 +468,14 @@ def test_extract_text_from_pdf_no_text(
 ):
     file_id = "file_id"
     file_path = "file_path"
-    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
 
     with patch("builtins.open"), patch(
         "pdf_bot.pdf.pdf_service.extract_text"
     ) as extract_text:
         extract_text.return_value = ""
         with pytest.raises(PdfNoTextError), pdf_service.extract_text_from_pdf(file_id):
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             extract_text.assert_called_once_with(file_path)
             io_service.create_temp_txt_file.assert_not_called()
 
@@ -534,14 +536,14 @@ def test_ocr_pdf(
     file_path = "file_path"
     out_path = "out_path"
 
-    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
     io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
 
     with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf, pdf_service.ocr_pdf(
         file_id
     ) as actual_path:
         assert actual_path == out_path
-        telegram_service.download_file.assert_called_once_with(file_id)
+        telegram_service.download_pdf_file.assert_called_once_with(file_id)
         io_service.create_temp_pdf_file.assert_called_once_with("OCR")
         ocrmypdf.ocr.assert_called_once_with(file_path, out_path, progress_bar=False)
 
@@ -555,13 +557,13 @@ def test_ocr_pdf_prior_ocr_found(
     file_path = "file_path"
     out_path = "out_path"
 
-    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
     io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
 
     with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf:
         ocrmypdf.ocr.side_effect = PriorOcrFoundError()
         with pytest.raises(PdfOcrError), pdf_service.ocr_pdf(file_id):
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("OCR")
             ocrmypdf.ocr.assert_called_once_with(
                 file_path, out_path, progress_bar=False
@@ -579,7 +581,7 @@ def test_rename_pdf(
     dir_name = "dir_name"
     out_path = os.path.join(dir_name, file_name)
 
-    telegram_service.download_file.return_value.__enter__.return_value = file_path
+    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
     io_service.create_temp_directory.return_value.__enter__.return_value = dir_name
 
     with patch("pdf_bot.pdf.pdf_service.shutil") as shutil, pdf_service.rename_pdf(
@@ -587,7 +589,7 @@ def test_rename_pdf(
     ) as actual_path:
         assert actual_path == out_path
 
-        telegram_service.download_file.assert_called_once_with(file_id)
+        telegram_service.download_pdf_file.assert_called_once_with(file_id)
         io_service.create_temp_directory.assert_called_once()
         shutil.copy.assert_called_once_with(file_path, out_path)
 
@@ -623,7 +625,7 @@ def test_rotate_pdf(
 
         with pdf_service.rotate_pdf(file_id, degree) as actual_path:
             assert actual_path == out_path
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("Rotated")
 
             for page in pages:
@@ -661,7 +663,7 @@ def test_scale_pdf_by_factor(
 
         with pdf_service.scale_pdf(file_id, scale_data) as actual_path:
             assert actual_path == out_path
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("Scaled")
 
             calls = []
@@ -699,7 +701,7 @@ def test_scale_pdf_to_dimension(
 
         with pdf_service.scale_pdf(file_id, scale_data) as actual_path:
             assert actual_path == out_path
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("Scaled")
 
             calls = []
@@ -761,6 +763,6 @@ def test_split_pdf(
 
         with pdf_service.split_pdf(file_id, split_range) as actual_path:
             assert actual_path == out_path
-            telegram_service.download_file.assert_called_once_with(file_id)
+            telegram_service.download_pdf_file.assert_called_once_with(file_id)
             io_service.create_temp_pdf_file.assert_called_once_with("Split")
             merger.append.assert_called_once_with(reader, pages=PageRange(split_range))
