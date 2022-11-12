@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from unittest.mock import MagicMock, call, patch
+from unittest.mock import ANY, MagicMock, call, patch
 
 import pytest
 from telegram import ChatAction, File, InlineKeyboardMarkup
@@ -21,14 +21,11 @@ from tests.telegram.telegram_test_mixin import TelegramTestMixin
 
 
 class TestTelegramRService(TelegramTestMixin):
-    @classmethod
-    def setup_class(cls) -> None:
-        super().setup_class()
-        cls.img_mime_type = "image"
-        cls.pdf_mime_type = "pdf"
-        cls.file_path = "file_path"
-        cls.user_data_key = "user_data_key"
-        cls.user_data_value = "user_data_value"
+    IMG_MIME_TYPE = "image"
+    PDF_MIME_TYPE = "pdf"
+    FILE_PATH = "file_path"
+    USER_DATA_KEY = "user_data_key"
+    USER_DATA_VALUE = "user_data_value"
 
     def setup_method(self) -> None:
         super().setup_method()
@@ -50,16 +47,16 @@ class TestTelegramRService(TelegramTestMixin):
     def test_check_file_upload_size(self) -> None:
         with patch("pdf_bot.telegram.telegram_service.os") as os:
             os.path.getsize.return_value = MAX_FILESIZE_UPLOAD
-            self.sut.check_file_upload_size(self.file_path)
+            self.sut.check_file_upload_size(self.FILE_PATH)
 
     def test_check_file_upload_size_too_large(self) -> None:
         with patch("pdf_bot.telegram.telegram_service.os") as os:
             os.path.getsize.return_value = MAX_FILESIZE_UPLOAD + 1
             with pytest.raises(TelegramFileTooLargeError):
-                self.sut.check_file_upload_size(self.file_path)
+                self.sut.check_file_upload_size(self.FILE_PATH)
 
     def test_check_image_document(self) -> None:
-        self.telegram_document.mime_type = self.img_mime_type
+        self.telegram_document.mime_type = self.IMG_MIME_TYPE
         self.telegram_document.file_size = MAX_FILESIZE_DOWNLOAD
         self.telegram_message.document = self.telegram_document
 
@@ -75,7 +72,7 @@ class TestTelegramRService(TelegramTestMixin):
             self.sut.check_image(self.telegram_message)
 
     def test_check_image_document_too_large(self) -> None:
-        self.telegram_document.mime_type = self.img_mime_type
+        self.telegram_document.mime_type = self.IMG_MIME_TYPE
         self.telegram_document.file_size = MAX_FILESIZE_DOWNLOAD + 1
         self.telegram_message.document = self.telegram_document
 
@@ -107,7 +104,7 @@ class TestTelegramRService(TelegramTestMixin):
             self.sut.check_image(self.telegram_message)
 
     def test_check_pdf_document(self) -> None:
-        self.telegram_document.mime_type = self.pdf_mime_type
+        self.telegram_document.mime_type = self.PDF_MIME_TYPE
         self.telegram_document.file_size = MAX_FILESIZE_DOWNLOAD
         self.telegram_message.document = self.telegram_document
 
@@ -123,7 +120,7 @@ class TestTelegramRService(TelegramTestMixin):
             self.sut.check_pdf_document(self.telegram_message)
 
     def test_check_pdf_document_too_large(self) -> None:
-        self.telegram_document.mime_type = self.pdf_mime_type
+        self.telegram_document.mime_type = self.PDF_MIME_TYPE
         self.telegram_document.file_size = MAX_FILESIZE_DOWNLOAD + 1
         self.telegram_message.document = self.telegram_document
 
@@ -132,15 +129,15 @@ class TestTelegramRService(TelegramTestMixin):
 
     def test_download_pdf_file(self) -> None:
         self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = (
-            self.file_path
+            self.FILE_PATH
         )
         self.telegram_bot.get_file.return_value = self.telegram_file
 
         with self.sut.download_pdf_file(self.telegram_file_id) as actual:
-            assert actual == self.file_path
+            assert actual == self.FILE_PATH
             self.telegram_bot.get_file.assert_called_with(self.telegram_file_id)
             self.telegram_file.download.assert_called_once_with(
-                custom_path=self.file_path
+                custom_path=self.FILE_PATH
             )
 
     @pytest.mark.parametrize("num_files", [1, 2, 5])
@@ -194,21 +191,29 @@ class TestTelegramRService(TelegramTestMixin):
         assert isinstance(actual, InlineKeyboardMarkup)
 
     def test_get_user_data(self) -> None:
-        self.telegram_context.user_data = {self.user_data_key: self.user_data_value}
+        self.telegram_context.user_data = {self.USER_DATA_KEY: self.USER_DATA_VALUE}
 
-        actual = self.sut.get_user_data(self.telegram_context, self.user_data_key)
+        actual = self.sut.get_user_data(self.telegram_context, self.USER_DATA_KEY)
 
-        assert actual == self.user_data_value
-        assert self.user_data_key not in self.telegram_context.user_data
+        assert actual == self.USER_DATA_VALUE
+        assert self.USER_DATA_KEY not in self.telegram_context.user_data
 
     def test_get_user_data_key_error(self) -> None:
         self.telegram_context.user_data = {}
 
         with pytest.raises(TelegramUserDataKeyError):
-            self.sut.get_user_data(self.telegram_context, self.user_data_key)
+            self.sut.get_user_data(self.telegram_context, self.USER_DATA_KEY)
+
+    def test_reply_with_back_markup(self) -> None:
+        self.sut.reply_with_back_markup(
+            self.telegram_update, self.telegram_context, self.telegram_text
+        )
+        self.telegram_message.reply_text.assert_called_once_with(
+            self.telegram_text, reply_markup=ANY
+        )
 
     def test_reply_with_file_document(self) -> None:
-        file_path = f"{self.file_path}.pdf"
+        file_path = f"{self.FILE_PATH}.pdf"
         with patch("pdf_bot.telegram.telegram_service.os") as os, patch(
             "builtins.open"
         ) as _mock_open, patch(
@@ -230,7 +235,7 @@ class TestTelegramRService(TelegramTestMixin):
             send_event.assert_called_once()
 
     def test_reply_with_file_image(self) -> None:
-        file_path = f"{self.file_path}.png"
+        file_path = f"{self.FILE_PATH}.png"
         with patch("pdf_bot.telegram.telegram_service.os") as os, patch(
             "builtins.open"
         ) as _mock_open, patch(
@@ -262,7 +267,7 @@ class TestTelegramRService(TelegramTestMixin):
             self.sut.reply_with_file(
                 self.telegram_update,
                 self.telegram_context,
-                self.file_path,
+                self.FILE_PATH,
                 TaskType.merge_pdf,
             )
 
