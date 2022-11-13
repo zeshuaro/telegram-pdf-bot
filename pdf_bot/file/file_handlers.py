@@ -29,7 +29,7 @@ from pdf_bot.consts import (
     WAIT_TO_IMAGE_TYPE,
 )
 from pdf_bot.crop import CropService
-from pdf_bot.decrypt import DecryptService, decrypt_constants
+from pdf_bot.decrypt import DecryptService
 from pdf_bot.encrypt import EncryptService, encrypt_constants
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService, file_task_constants
@@ -96,7 +96,7 @@ class FileHandlers:
                         TEXT_FILTER, self.crop_service.crop_pdf_by_margin_size
                     )
                 ],
-                decrypt_constants.WAIT_DECRYPT_PASSWORD: [
+                DecryptService.WAIT_DECRYPT_PASSWORD: [
                     MessageHandler(TEXT_FILTER, self.decrypt_service.decrypt_pdf)
                 ],
                 encrypt_constants.WAIT_ENCRYPT_PASSWORD: [
