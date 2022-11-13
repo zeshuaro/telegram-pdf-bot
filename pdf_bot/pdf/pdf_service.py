@@ -3,7 +3,7 @@ import os
 import shutil
 import textwrap
 from contextlib import contextmanager
-from typing import Generator, List
+from typing import ContextManager, Generator, List
 
 import img2pdf
 import noteshrink
@@ -212,7 +212,7 @@ class PdfService:
                 pass
 
     @contextmanager
-    def decrypt_pdf(self, file_id: str, password: str):
+    def decrypt_pdf(self, file_id: str, password: str) -> ContextManager[str]:
         reader = self._open_pdf(file_id, allow_encrypted=True)
         if not reader.is_encrypted:
             raise PdfDecryptError(_("Your PDF file is not encrypted"))
