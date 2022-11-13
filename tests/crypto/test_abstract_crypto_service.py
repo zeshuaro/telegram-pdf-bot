@@ -1,5 +1,5 @@
 from contextlib import contextmanager
-from typing import ContextManager, Type
+from typing import Generator, Type
 from unittest.mock import MagicMock
 
 from telegram import Update
@@ -31,19 +31,25 @@ class MockAbstractCryptoService(AbstractCryptoService):
         return MockAbstractCryptoService.TASK_TYPE
 
     @contextmanager
-    def process_pdf_task(self, _file_id: str, _password: str) -> ContextManager[str]:
+    def process_pdf_task(
+        self, _file_id: str, _password: str
+    ) -> Generator[str, None, None]:
         yield self.PROCESS_RESULT
 
 
 class MockAbstractCryptoServiceWithPDFServiceError(MockAbstractCryptoService):
     @contextmanager
-    def process_pdf_task(self, _file_id: str, _password: str) -> ContextManager[str]:
+    def process_pdf_task(
+        self, _file_id: str, _password: str
+    ) -> Generator[str, None, None]:
         raise PdfServiceError()
 
 
 class MockAbstractCryptoServiceWithCustomError(MockAbstractCryptoService):
     @contextmanager
-    def process_pdf_task(self, _file_id: str, _password: str) -> ContextManager[str]:
+    def process_pdf_task(
+        self, _file_id: str, _password: str
+    ) -> Generator[str, None, None]:
         raise RuntimeError()
 
     def get_custom_error_handlers(
@@ -64,7 +70,9 @@ class MockAbstractCryptoServiceWithCustomError(MockAbstractCryptoService):
 
 class MockAbstractCryptoServiceWithUnknownError(MockAbstractCryptoService):
     @contextmanager
-    def process_pdf_task(self, _file_id: str, _password: str) -> ContextManager[str]:
+    def process_pdf_task(
+        self, _file_id: str, _password: str
+    ) -> Generator[str, None, None]:
         raise RuntimeError()
 
 

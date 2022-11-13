@@ -29,8 +29,7 @@ from pdf_bot.consts import (
     WAIT_TO_IMAGE_TYPE,
 )
 from pdf_bot.crop import CropService
-from pdf_bot.crypto import DecryptService
-from pdf_bot.encrypt import EncryptService, encrypt_constants
+from pdf_bot.crypto import DecryptService, EncryptService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService, file_task_constants
 from pdf_bot.files.image import (
@@ -99,8 +98,8 @@ class FileHandlers:
                 self.decrypt_service.get_wait_password_state(): [
                     MessageHandler(TEXT_FILTER, self.decrypt_service.process_pdf)
                 ],
-                encrypt_constants.WAIT_ENCRYPT_PASSWORD: [
-                    MessageHandler(TEXT_FILTER, self.encrypt_service.encrypt_pdf)
+                self.encrypt_service.get_wait_password_state(): [
+                    MessageHandler(TEXT_FILTER, self.encrypt_service.process_pdf)
                 ],
                 rename_constants.WAIT_NEW_FILE_NAME: [
                     MessageHandler(TEXT_FILTER, self.rename_service.rename_pdf)

@@ -1,9 +1,8 @@
 from unittest.mock import MagicMock
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import PDF_INFO
-from pdf_bot.crypto import DecryptService
-from pdf_bot.pdf import PdfIncorrectPasswordError, PdfService
+from pdf_bot.crypto import EncryptService
+from pdf_bot.pdf import PdfService
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram import TelegramServiceTestMixin, TelegramTestMixin
@@ -15,8 +14,8 @@ class TestDecryptService(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    WAIT_PASSWORD_STATE = "wait_decrypt_password"
-    WAIT_PASSWORD_TEXT = "Send me the password to decrypt your PDF file"
+    WAIT_PASSWORD_STATE = "wait_encrypt_password"
+    WAIT_PASSWORD_TEXT = "Send me the password to encrypt your PDF file"
     FILE_PATH = "file_path"
 
     def setup_method(self) -> None:
@@ -26,7 +25,7 @@ class TestDecryptService(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = DecryptService(
+        self.sut = EncryptService(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,
@@ -43,30 +42,10 @@ class TestDecryptService(
 
     def test_get_task_type(self) -> None:
         actual = self.sut.get_task_type()
-        assert actual == TaskType.decrypt_pdf
-
-    def test_get_custom_error_handlers(self) -> None:
-        actual = self.sut.get_custom_error_handlers()
-
-        handler = actual.get(PdfIncorrectPasswordError)
-        assert handler is not None
-
-        actual = handler(
-            self.telegram_update,
-            self.telegram_context,
-            RuntimeError(),
-            self.telegram_document_id,
-            self.telegram_document_name,
-        )
-
-        assert actual == self.WAIT_PASSWORD_STATE
-        self.telegram_message.reply_text.assert_called_once()
-        self.telegram_context.user_data.__setitem__.assert_called_once_with(
-            PDF_INFO, (self.telegram_document_id, self.telegram_document_name)
-        )
+        assert actual == TaskType.encrypt_pdf
 
     def test_process_pdf_task(self) -> None:
-        self.pdf_service.decrypt_pdf.return_value.__enter__.return_value = (
+        self.pdf_service.encrypt_pdf.return_value.__enter__.return_value = (
             self.FILE_PATH
         )
 
@@ -74,6 +53,6 @@ class TestDecryptService(
             self.telegram_document_id, self.telegram_text
         ) as actual:
             assert actual == self.FILE_PATH
-            self.pdf_service.decrypt_pdf.assert_called_once_with(
+            self.pdf_service.encrypt_pdf.assert_called_once_with(
                 self.telegram_document_id, self.telegram_text
             )
