@@ -1,6 +1,6 @@
 import gettext
 from contextlib import contextmanager
-from typing import ContextManager, Type
+from typing import Generator, Type
 
 from telegram import Update
 from telegram.ext import CallbackContext
@@ -30,7 +30,9 @@ class DecryptService(AbstractCryptoService):
         return {PdfIncorrectPasswordError: self._handle_incorrect_password}
 
     @contextmanager
-    def process_pdf_task(self, file_id: str, password: str) -> ContextManager[str]:
+    def process_pdf_task(
+        self, file_id: str, password: str
+    ) -> Generator[str, None, None]:
         with self.pdf_service.decrypt_pdf(file_id, password) as path:
             yield path
 

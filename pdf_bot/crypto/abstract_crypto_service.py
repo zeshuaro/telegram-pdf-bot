@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from contextlib import contextmanager
-from typing import Callable, ContextManager, Type
+from typing import Callable, Generator, Type
 
 from telegram import Update
 from telegram.ext import CallbackContext, ConversationHandler
@@ -47,7 +47,9 @@ class AbstractCryptoService(ABC):
 
     @abstractmethod
     @contextmanager
-    def process_pdf_task(self, file_id: str, password: str) -> ContextManager[str]:
+    def process_pdf_task(
+        self, file_id: str, password: str
+    ) -> Generator[str, None, None]:
         pass
 
     def ask_password(self, update: Update, context: CallbackContext) -> str:
