@@ -6,17 +6,15 @@ from telegram.ext import ConversationHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.compare import CompareService
 from pdf_bot.consts import BACK, CANCEL
-from pdf_bot.language_new import LanguageService
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram import (
-    TelegramService,
-    TelegramServiceError,
-    TelegramUserDataKeyError,
-)
-from tests.telegram.telegram_test_mixin import TelegramTestMixin
+from pdf_bot.telegram import TelegramServiceError, TelegramUserDataKeyError
+from tests.language import LanguageServiceTestMixin
+from tests.telegram import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestCompareService(TelegramTestMixin):
+class TestCompareService(
+    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
+):
     @classmethod
     def setup_class(cls) -> None:
         super().setup_class()
@@ -28,10 +26,8 @@ class TestCompareService(TelegramTestMixin):
     def setup_method(self) -> None:
         super().setup_method()
         self.pdf_service = MagicMock(spec=PdfService)
-        self.language_service = MagicMock(spec=LanguageService)
-
-        self.telegram_service = MagicMock(spec=TelegramService)
-        self.telegram_service.check_pdf_document.return_value = self.telegram_document
+        self.language_service = self.mock_language_service()
+        self.telegram_service = self.mock_telegram_service()
 
         self.sut = CompareService(
             self.pdf_service, self.telegram_service, self.language_service
@@ -109,15 +105,11 @@ class TestCompareService(TelegramTestMixin):
         self.telegram_service.reply_with_file.assert_not_called()
 
     def test_check_text_back(self):
-        self.language_service.set_app_language.return_value = lambda x: x
         self.telegram_message.text = BACK
-
         actual = self.sut.check_text(self.telegram_update, self.telegram_context)
-
         assert actual == self.wait_first_pdf
 
     def test_check_text_cancel(self):
-        self.language_service.set_app_language.return_value = lambda x: x
         self.telegram_service.cancel_conversation.return_value = ConversationHandler.END
         self.telegram_message.text = CANCEL
 
@@ -126,9 +118,6 @@ class TestCompareService(TelegramTestMixin):
         assert actual == ConversationHandler.END
 
     def test_check_text_unknown(self):
-        self.language_service.set_app_language.return_value = lambda x: x
         self.telegram_message.text = "clearly_unknown"
-
         actual = self.sut.check_text(self.telegram_update, self.telegram_context)
-
         assert actual is None

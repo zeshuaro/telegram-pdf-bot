@@ -6,18 +6,22 @@ from telegram.ext import ConversationHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
 from pdf_bot.crop import CropService
-from pdf_bot.file_task import FileTaskService
-from pdf_bot.language_new import LanguageService
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram import TelegramService, TelegramUserDataKeyError
-from tests.telegram.telegram_test_mixin import TelegramTestMixin
+from pdf_bot.telegram import TelegramUserDataKeyError
+from tests.file_task import FileTaskServiceTestMixin
+from tests.language import LanguageServiceTestMixin
+from tests.telegram import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestCropService(TelegramTestMixin):
+class TestCropService(
+    FileTaskServiceTestMixin,
+    LanguageServiceTestMixin,
+    TelegramServiceTestMixin,
+    TelegramTestMixin,
+):
     WAIT_CROP_TYPE = "wait_crop_type"
     WAIT_CROP_PERCENTAGE = "wait_crop_percentage"
     WAIT_CROP_MARGIN_SIZE = "wait_crop_margin_size"
-    WAIT_PDF_TASK = "wait_pdf_task"
 
     BY_PERCENTAGE = "By percentage"
     BY_MARGIN_SIZE = "By margin size"
@@ -30,15 +34,9 @@ class TestCropService(TelegramTestMixin):
     def setup_method(self) -> None:
         super().setup_method()
         self.pdf_service = MagicMock(spec=PdfService)
-
-        self.file_task_service = MagicMock(spec=FileTaskService)
-        self.file_task_service.ask_pdf_task.return_value = self.WAIT_PDF_TASK
-
-        self.language_service = MagicMock(spec=LanguageService)
-        self.language_service.set_app_language.return_value = lambda x: x
-
-        self.telegram_service = MagicMock(spec=TelegramService)
-        self.telegram_service.check_pdf_document.return_value = self.telegram_document
+        self.file_task_service = self.mock_file_task_service()
+        self.language_service = self.mock_language_service()
+        self.telegram_service = self.mock_telegram_service()
 
         self.sut = CropService(
             self.file_task_service,
@@ -58,7 +56,7 @@ class TestCropService(TelegramTestMixin):
         [
             (BY_PERCENTAGE, WAIT_CROP_PERCENTAGE),
             (BY_MARGIN_SIZE, WAIT_CROP_MARGIN_SIZE),
-            (BACK, WAIT_PDF_TASK),
+            (BACK, FileTaskServiceTestMixin.WAIT_PDF_TASK),
             ("clearly_invalid", WAIT_CROP_TYPE),
         ],
     )
