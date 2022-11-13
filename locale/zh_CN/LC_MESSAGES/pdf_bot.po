@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-13 11:05+0000\n"
-"PO-Revision-Date: 2022-11-13 11:05\n"
+"POT-Creation-Date: 2022-11-13 11:35+0000\n"
+"PO-Revision-Date: 2022-11-13 11:35\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -293,7 +293,7 @@ msgstr "到目前为止， 你已经寄给我这些 {file_type} ："
 msgid "The result file is too large for me to send to you"
 msgstr "输出档案太大了，我无法发送给你"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:148
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
@@ -448,11 +448,11 @@ msgstr "正数将减少保证金大小，负数将增加"
 msgid "Send me the password to decrypt your PDF file"
 msgstr "把密码发给我来解密你的PDF档案"
 
-#: pdf_bot/encrypt/encrypt_service.py:30
+#: pdf_bot/crypto/encrypt_service.py:16
 msgid "Send me the password to encrypt your PDF file"
 msgstr "把密码发给我来加密你的PDF档案"
 
-#: pdf_bot/file/file_handlers.py:147
+#: pdf_bot/file/file_handlers.py:146
 msgid "Your file is too big for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 

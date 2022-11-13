@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-13 11:05+0000\n"
-"PO-Revision-Date: 2022-11-13 11:05\n"
+"POT-Creation-Date: 2022-11-13 11:35+0000\n"
+"PO-Revision-Date: 2022-11-13 11:35\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -293,7 +293,7 @@ msgstr "Bạn đã gửi cho tôi những {file_type} này cho đến nay:"
 msgid "The result file is too large for me to send to you"
 msgstr "Tệp kết quả quá lớn để tôi gửi cho bạn"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:148
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
@@ -448,11 +448,11 @@ msgstr "Những con số tích cực sẽ làm giảm kích thước ký quỹ v
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Gửi cho tôi mật khẩu để giải mã tệp PDF của bạn"
 
-#: pdf_bot/encrypt/encrypt_service.py:30
+#: pdf_bot/crypto/encrypt_service.py:16
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Gửi cho tôi mật khẩu để mã hóa tệp PDF của bạn"
 
-#: pdf_bot/file/file_handlers.py:147
+#: pdf_bot/file/file_handlers.py:146
 msgid "Your file is too big for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
