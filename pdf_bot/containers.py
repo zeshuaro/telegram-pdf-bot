@@ -11,7 +11,7 @@ from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.crop import CropService
-from pdf_bot.decrypt import DecryptService
+from pdf_bot.crypto import DecryptService
 from pdf_bot.encrypt import EncryptService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
