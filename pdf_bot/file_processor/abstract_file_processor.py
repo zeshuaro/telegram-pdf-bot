@@ -36,11 +36,6 @@ class AbstractFileProcessor(ABC):
     def should_process_back_option(self) -> bool:
         pass
 
-    def get_custom_error_handlers(
-        self,
-    ) -> dict[Type[Exception], ErrorHandlerType]:
-        return {}
-
     @abstractmethod
     @contextmanager
     def process_file_task(
@@ -71,6 +66,11 @@ class AbstractFileProcessor(ABC):
             if handler is not None:
                 return handler(update, context, e, file_id, file_name)
         return ConversationHandler.END
+
+    def get_custom_error_handlers(
+        self,
+    ) -> dict[Type[Exception], ErrorHandlerType]:
+        return {}
 
     def _get_error_handlers(
         self,
