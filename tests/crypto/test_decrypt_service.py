@@ -65,12 +65,12 @@ class TestDecryptService(
             PDF_INFO, (self.telegram_document_id, self.telegram_document_name)
         )
 
-    def test_process_pdf_task(self) -> None:
+    def test_process_file_task(self) -> None:
         self.pdf_service.decrypt_pdf.return_value.__enter__.return_value = (
             self.FILE_PATH
         )
 
-        with self.sut.process_pdf_task(
+        with self.sut.process_file_task(
             self.telegram_document_id, self.telegram_text
         ) as actual:
             assert actual == self.FILE_PATH

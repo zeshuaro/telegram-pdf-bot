@@ -1,11 +1,9 @@
-import gettext
 from contextlib import contextmanager
+from gettext import gettext as _
 from typing import Generator
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.crypto.abstract_crypto_service import AbstractCryptoService
-
-_ = gettext.gettext
 
 
 class EncryptService(AbstractCryptoService):
@@ -19,8 +17,8 @@ class EncryptService(AbstractCryptoService):
         return TaskType.encrypt_pdf
 
     @contextmanager
-    def process_pdf_task(
-        self, file_id: str, password: str
+    def process_file_task(
+        self, file_id: str, message_text: str
     ) -> Generator[str, None, None]:
-        with self.pdf_service.encrypt_pdf(file_id, password) as path:
+        with self.pdf_service.encrypt_pdf(file_id, message_text) as path:
             yield path

@@ -1,5 +1,5 @@
-import gettext
 from contextlib import contextmanager
+from gettext import gettext as _
 from typing import Generator, Type
 
 from telegram import Update
@@ -7,13 +7,9 @@ from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
-from pdf_bot.crypto.abstract_crypto_service import (
-    AbstractCryptoService,
-    ErrorHandlerType,
-)
+from pdf_bot.crypto.abstract_crypto_service import AbstractCryptoService
+from pdf_bot.file_processor import ErrorHandlerType
 from pdf_bot.pdf import PdfIncorrectPasswordError
-
-_ = gettext.gettext
 
 
 class DecryptService(AbstractCryptoService):
@@ -30,10 +26,10 @@ class DecryptService(AbstractCryptoService):
         return {PdfIncorrectPasswordError: self._handle_incorrect_password}
 
     @contextmanager
-    def process_pdf_task(
-        self, file_id: str, password: str
+    def process_file_task(
+        self, file_id: str, message_text: str
     ) -> Generator[str, None, None]:
-        with self.pdf_service.decrypt_pdf(file_id, password) as path:
+        with self.pdf_service.decrypt_pdf(file_id, message_text) as path:
             yield path
 
     def _handle_incorrect_password(
