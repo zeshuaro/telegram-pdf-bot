@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-14 07:54+0000\n"
-"PO-Revision-Date: 2022-11-14 07:54\n"
+"POT-Creation-Date: 2022-11-14 12:11+0000\n"
+"PO-Revision-Date: 2022-11-14 12:12\n"
 "Last-Translator: \n"
 "Language: am\n"
 "Language-Team: Amharic\n"
@@ -57,11 +57,11 @@ msgstr "ኢንክሪፕት"
 
 #: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_constants.py:8
 msgid "Extract Images"
-msgstr ""
+msgstr "ምስሎችን ማውጣት"
 
 #: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_constants.py:9
 msgid "To Images"
-msgstr ""
+msgstr "ወደ ምስሎች"
 
 #: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_constants.py:10
 msgid "Rotate"
@@ -97,7 +97,7 @@ msgstr "ተቀንሷል"
 
 #: pdf_bot/consts.py:55 pdf_bot/file_task/file_task_constants.py:18
 msgid "Images"
-msgstr ""
+msgstr "ምስሎች"
 
 #: pdf_bot/consts.py:56 pdf_bot/file_task/file_task_constants.py:19
 msgid "Remove Last File"
@@ -125,7 +125,7 @@ msgstr "መጭመቅ"
 
 #: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_constants.py:26
 msgid "Black & White"
-msgstr ""
+msgstr "ጥቁር & ነጭ"
 
 #: pdf_bot/consts.py:78
 msgid "Say Thanks"
@@ -171,7 +171,7 @@ msgstr "- ፒዲኤፍ ፋይሎች"
 
 #: pdf_bot/dispatcher.py:134
 msgid "- Images"
-msgstr ""
+msgstr "- ምስሎች"
 
 #: pdf_bot/dispatcher.py:135
 msgid "- Webpage links"
@@ -191,7 +191,7 @@ msgstr "{command} - የፒዲኤፍ ፋይሎችን ያዋህዱ"
 
 #: pdf_bot/dispatcher.py:142
 msgid "{command} - convert and combine multiple images into PDF files"
-msgstr ""
+msgstr "{command} - ብዙ ምስሎችን ወደ PDF ፋይሎች መቀየር እና ማቀናጀት"
 
 #: pdf_bot/dispatcher.py:145
 msgid "{command} - create PDF files from text messages"
@@ -203,7 +203,7 @@ msgstr "{command} - በፒዲኤፍ ፋይሎች ላይ የውሃ ምልክት �
 
 #: pdf_bot/dispatcher.py:183
 msgid "The button has expired, please try again with a new message/query then press the new button"
-msgstr ""
+msgstr "መተግበሪያው አብቅቷል, እባክዎ አዲስ መልዕክት/ጥያቄ ጋር እንደገና ይሞክሩ ከዚያም አዲሱን ቁልፍ ይጫኑ"
 
 #: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
@@ -247,7 +247,7 @@ msgstr "ለድጋፎት እናመሰግናለን!"
 
 #: pdf_bot/url.py:29
 msgid "Timed out processing your web page, your web page is probably too complex to process"
-msgstr ""
+msgstr "ድረ ገጻችሁን በሂደት ላይ ያለ ጊዜ፣ ድረ ገጻችሁ በጣም ውስብስብ ሳይሆን አይቀርም"
 
 #: pdf_bot/url.py:36
 msgid "You've sent me this web page already and I'm still converting it"
@@ -263,7 +263,7 @@ msgstr "የድር ገጽዎን መድረስ አልተቻለም"
 
 #: pdf_bot/url.py:53
 msgid "Failed to convert your web page"
-msgstr ""
+msgstr "የእርስዎን ድረ ገጽ መቀየር አልተቻለም"
 
 #: pdf_bot/telegram/telegram_service.py:139 pdf_bot/utils.py:26
 msgid "Action cancelled"
@@ -293,7 +293,7 @@ msgstr "እስካሁን እነዚህን {file_type} ልከውልኛል ፦"
 msgid "The result file is too large for me to send to you"
 msgstr "የውጤት ፋይል ለእርስዎ ልልክልኝ በጣም ትልቅ ነው"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ይህ የቴሌግራም ቦት ውስንነት መሆኑን እና ቴሌግራም ይህንን ገደብ ካልቀየረ የማደርገው ምንም ነገር የለም"
@@ -306,7 +306,7 @@ msgstr "የውጤት ፋይልዎ ይኸውና"
 
 #: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
-msgstr ""
+msgstr "ሂደቱን ማጠናቀቅ አልተቻለም"
 
 #: pdf_bot/command/command_service.py:30
 msgid "Welcome to PDF Bot!"
@@ -350,11 +350,11 @@ msgstr "ፒዲኤፍ ቦትን እንዴት እንደሚጠቀሙ ለማየት {
 
 #: pdf_bot/commands/image.py:79
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr ""
+msgstr "ማስዋብ ወይም ወደ PDF ፋይል መቀየር የምትወዱትን ምስሎች ላኩልኝ"
 
 #: pdf_bot/commands/image.py:83
 msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr ""
+msgstr "ምስሎቹ አንተ በምትልከኝ ቅደም ተከተል ውብ እንደሚሆኑና እንደሚለወጡ ልብ በል"
 
 #: pdf_bot/commands/image.py:110
 msgid "File name unavailable"
@@ -362,7 +362,7 @@ msgstr "የፋይል ስም አይገኝም"
 
 #: pdf_bot/commands/image.py:129
 msgid "Your file is not an image"
-msgstr ""
+msgstr "ፋይልህ ምስል አይደለም"
 
 #: pdf_bot/commands/image.py:137
 msgid "Your file is too large for me to download and process"
@@ -370,11 +370,11 @@ msgstr "ለማውረድ እና ለማስኬድ ፋይልዎ ለእኔ በጣም 
 
 #: pdf_bot/commands/image.py:150
 msgid "images"
-msgstr ""
+msgstr "ምስሎች"
 
 #: pdf_bot/commands/image.py:157
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr ""
+msgstr "ሁሉንም ምስሎች ልከውልኛል ከሆነ ከታች ያለውን ስራ ይምረጡ, ወይም ምስሎቹን መላክቀጥሉን ቀጥሉ"
 
 #: pdf_bot/commands/image.py:201
 msgid "{file_name} has been removed for beautifying or converting"
@@ -382,11 +382,11 @@ msgstr "ለማስዋብ ወይም ለመለወጥ {file_name}"
 
 #: pdf_bot/commands/image.py:238
 msgid "Beautifying and converting your images"
-msgstr ""
+msgstr "የእርስዎን ምስሎች ማስዋብ እና መቀየር"
 
 #: pdf_bot/commands/image.py:243
 msgid "Converting your images into PDF"
-msgstr ""
+msgstr "የእርስዎን ምስሎች ወደ PDF መቀየር"
 
 #: pdf_bot/compare/compare_service.py:38
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -410,11 +410,11 @@ msgstr "በፒዲኤፍ ፋይሎችዎ መካከል ምንም የጽሑፍ ል�
 
 #: pdf_bot/crop/crop_service.py:21
 msgid "By percentage"
-msgstr ""
+msgstr "በመቶ"
 
 #: pdf_bot/crop/crop_service.py:22
 msgid "By margin size"
-msgstr ""
+msgstr "በኅዳግ መጠን"
 
 #: pdf_bot/crop/crop_service.py:48
 msgid "Select the crop type that you'll like to perform"
@@ -422,11 +422,11 @@ msgstr "ማከናወን የሚወዱትን የሰብል ዓይነት ይምረ�
 
 #: pdf_bot/crop/crop_service.py:77
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr ""
+msgstr "{number} ቁጥር {min_percent} እና {max_percent}መካከል አይደለም እባክዎ እንደገና ይሞክሩ"
 
 #: pdf_bot/crop/crop_service.py:103
 msgid "The number {number} is invalid, please try again"
-msgstr ""
+msgstr "ቁጥሩ {number} ተቀባይነት የለውም, እባክዎ እንደገና ይሞክሩ"
 
 #: pdf_bot/crop/crop_service.py:121
 msgid "Send me a number between {min_percent} and {max_percent}"
@@ -452,17 +452,17 @@ msgstr "የፒዲኤፍ ፋይልዎን ዲክሪፕት ለማድረግ የይ�
 msgid "Send me the password to encrypt your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን ለማመስጠር የይለፍ ቃሉን ይላኩልኝ"
 
-#: pdf_bot/file/file_handlers.py:146
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "ለማውረድ እና ለማስኬድ ፋይልዎ ለእኔ በጣም ትልቅ ነው"
 
-#: pdf_bot/file/file_service.py:45
+#: pdf_bot/file/file_service.py:31
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "የፋይል መጠን በ {percent}ቀንሷል ፣ ከ {old_size} ወደ {new_size}"
 
-#: pdf_bot/file/file_service.py:77
+#: pdf_bot/file/file_service.py:63
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "በPDF ፋይልዎ ላይ የ OCR ጽሑፍ ንጣፍ መጨመር"
 
 #: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
@@ -471,7 +471,7 @@ msgstr "ማከናወን የሚወዱትን ተግባር ይምረጡ"
 
 #: pdf_bot/files/image.py:47
 msgid "Your image is too large for me to download and process"
-msgstr ""
+msgstr "የእርስዎ ምስል በጣም ትልቅ ነው ማውረድ እና ሂደት"
 
 #: pdf_bot/files/image.py:95
 msgid "Extracting a preview for your PDF file"
@@ -483,11 +483,11 @@ msgstr "የውጤቱን ፋይል ቅርጸት ይምረጡ"
 
 #: pdf_bot/files/image.py:155
 msgid "Converting your PDF file into images"
-msgstr ""
+msgstr "የእርስዎን የፒዲኤፍ ፋይል ወደ ምስሎች መቀየር"
 
 #: pdf_bot/files/image.py:193
 msgid "Extracting all the images in your PDF file"
-msgstr ""
+msgstr "በፒዲኤፍ ፋይልዎ ውስጥ ያሉ ምስሎችን በሙሉ ማውጣት"
 
 #: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:91
 msgid "Something went wrong, please try again"
@@ -495,11 +495,11 @@ msgstr "የሆነ ችግር ተፈጥሯል ፣ እባክዎ እንደገና ይ
 
 #: pdf_bot/files/image.py:213
 msgid "I couldn't find any images in your PDF file"
-msgstr ""
+msgstr "በእርስዎ የፒዲኤፍ ፋይል ውስጥ ምንም ምስሎች ማግኘት አልቻልኩም"
 
 #: pdf_bot/files/image.py:251
 msgid "See above for all your images"
-msgstr ""
+msgstr "ለምስልዎ ሁሉ ከላይ ይመልከቱ"
 
 #: pdf_bot/merge/merge_service.py:32
 msgid "Send me the PDF files that you'll like to merge"
@@ -511,7 +511,7 @@ msgstr "ልብ በሉኝ ቅደም ተከተል ውስጥ ፋይሎቹ እንደ
 
 #: pdf_bot/merge/merge_service.py:57
 msgid "You've sent me these PDF files so far:"
-msgstr ""
+msgstr "እስከ አሁን ድረስ እነዚህን የፒዲኤፍ ፋይሎች ልከኸኛል"
 
 #: pdf_bot/merge/merge_service.py:68
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
@@ -519,7 +519,7 @@ msgstr "የፒዲኤፍ ፋይሎችን ማዋሃድ ወይም መቀጠል የ�
 
 #: pdf_bot/merge/merge_service.py:109
 msgid "You've already removed all the PDF files you've sent me"
-msgstr ""
+msgstr "የላክኸኝን የፒዲኤፍ ፋይሎች በሙሉ አስወግደሃል"
 
 #: pdf_bot/merge/merge_service.py:114
 msgid "{file_name} has been removed for merging"
@@ -543,7 +543,7 @@ msgstr "የእርስዎ ፒዲኤፍ ፋይል አልተመሰጠረም"
 
 #: pdf_bot/pdf/pdf_service.py:223
 msgid "Incorrect password, please try again"
-msgstr ""
+msgstr "የተሳሳተ የይለፍ ቃል, እባክዎ እንደገና ይሞክሩ"
 
 #: pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
@@ -551,7 +551,7 @@ msgstr "የፒዲኤፍ ፋይልዎ ዲክሪፕት ማድረግ ባልችል �
 
 #: pdf_bot/pdf/pdf_service.py:265
 msgid "No text found in your PDF file"
-msgstr ""
+msgstr "በፒዲኤፍ ፋይልዎ ውስጥ ምንም ጽሑፍ አልተገኘም"
 
 #: pdf_bot/pdf/pdf_service.py:289
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
@@ -563,11 +563,11 @@ msgstr "የእርስዎ ፒዲኤፍ ፋይል ቀደም ሲል የጽሑፍ ን
 
 #: pdf_bot/pdf/pdf_service.py:389
 msgid "Your PDF file is invalid"
-msgstr ""
+msgstr "የእርስዎ የፒዲኤፍ ፋይል ዋጋ የለውም"
 
 #: pdf_bot/pdf/pdf_service.py:392
 msgid "Your PDF file is encrypted"
-msgstr ""
+msgstr "የእርስዎ የፒዲኤፍ ፋይል ኢንክሪፕት"
 
 #: pdf_bot/rename/rename_service.py:32
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -587,11 +587,11 @@ msgstr "ፒዲኤፍ ፋይልዎን አቅጣጫ ለማሽከርከር የሚ�
 
 #: pdf_bot/scale/scale_constants.py:5
 msgid "By scaling factor"
-msgstr ""
+msgstr "በመጠን መጠን"
 
 #: pdf_bot/scale/scale_constants.py:6
 msgid "To dimension"
-msgstr ""
+msgstr "ወደ ስፋት"
 
 #: pdf_bot/scale/scale_service.py:37
 msgid "Select the scale type that you'll like to perform"
@@ -696,20 +696,22 @@ msgstr "ክልሉ ልክ ያልሆነ ነው ፣ እባክዎ እንደገና �
 #: pdf_bot/telegram/telegram_service.py:56
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "የእርስዎ ፋይል በጣም ትልቅ ነው ማውረድ እና ሂደት, እባክዎ በተለየ ፋይል እንደገና ይሞክሩ\n\n"
+"ማስታወሻ ይህ ገደብ በቴሌግራም ተፈፃሚ ነው እና ቴሌግራም ካልቀየረ በስተቀር ምንም ማድረግ አልችልም"
 
 #: pdf_bot/telegram/telegram_service.py:68
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "ፋይሉ በጣም ትልቅ ነው ለእርስዎ ለመላክ\n\n"
+"ማስታወሻ ይህ ገደብ በቴሌግራም ተፈፃሚ ነው እና ቴሌግራም ካልቀየረ በስተቀር ምንም ማድረግ አልችልም"
 
 #: pdf_bot/telegram/telegram_service.py:100
 msgid "Your file is not an image, please try again"
-msgstr ""
+msgstr "ፋይልዎ ምስል አይደለም, እባክዎ እንደገና ይሞክሩ"
 
 #: pdf_bot/telegram/telegram_service.py:107
 msgid "No image found in your message"
-msgstr ""
+msgstr "በመልዕክትዎ ውስጥ ምስል አልተገኘም"
 
 #: pdf_bot/telegram/telegram_service.py:116
 msgid "Your file is not a PDF file, please try again"
@@ -717,7 +719,7 @@ msgstr "ፋይልዎ የፒዲኤፍ ፋይል አይደለም ፣ እባክዎ 
 
 #: pdf_bot/text/constants.py:10
 msgid "Skip"
-msgstr ""
+msgstr "ሽቅብ"
 
 #: pdf_bot/text/text_service.py:34
 msgid "Send me the text that you'll like to write into your PDF file"

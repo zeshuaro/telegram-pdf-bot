@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-14 07:54+0000\n"
-"PO-Revision-Date: 2022-11-14 07:54\n"
+"POT-Creation-Date: 2022-11-14 12:11+0000\n"
+"PO-Revision-Date: 2022-11-14 12:12\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -293,7 +293,7 @@ msgstr "நீங்கள் இதுவரை இந்த {file_type} என
 msgid "The result file is too large for me to send to you"
 msgstr "முடிவு கோப்பு எனக்கு உங்களுக்கு அனுப்ப மிகவும் பெரியது"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
@@ -410,11 +410,11 @@ msgstr "உங்கள் PTM கோப்புகளுக்கு இடை
 
 #: pdf_bot/crop/crop_service.py:21
 msgid "By percentage"
-msgstr ""
+msgstr "சதவீதம் வாரியாக"
 
 #: pdf_bot/crop/crop_service.py:22
 msgid "By margin size"
-msgstr ""
+msgstr "ஓர அளவு வாரியாக"
 
 #: pdf_bot/crop/crop_service.py:48
 msgid "Select the crop type that you'll like to perform"
@@ -452,15 +452,15 @@ msgstr "உங்கள் PPM கோப்பை மறைகுறிநீக
 msgid "Send me the password to encrypt your PDF file"
 msgstr "உங்கள் PPM கோப்பை குறியாக்க கடவுச்சொல்லை எனக்கு அனுப்பவும்"
 
-#: pdf_bot/file/file_handlers.py:146
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
 
-#: pdf_bot/file/file_service.py:45
+#: pdf_bot/file/file_service.py:31
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "கோப்பு அளவு {percent}மூலம் குறைக்கப்பட்டது, {old_size} இருந்து {new_size}"
 
-#: pdf_bot/file/file_service.py:77
+#: pdf_bot/file/file_service.py:63
 msgid "Adding an OCR text layer to your PDF file"
 msgstr "உங்கள் PDF கோப்பில் OCR உரை அடுக்கைச் சேர்த்தல்"
 
@@ -696,12 +696,14 @@ msgstr "வரம்பு செல்லுபடியாகாது, தய
 #: pdf_bot/telegram/telegram_service.py:56
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "உங்கள் கோப்பு எனக்குப் பதிவிறக்கவும் செயலாக்கவும் மிகப் பெரியதாக உள்ளது, தயவுசெய்து வேறொரு கோப்புடன் மீண்டும் முயற்சிக்கவும்\n\n"
+"இந்த வரம்பு டெலிகிராமால் செயல்படுத்தப்படுகிறது என்பதை நினைவில் கொள்க, டெலிகிராம் அதை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
 
 #: pdf_bot/telegram/telegram_service.py:68
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "இந்த கோப்பு எனக்கு அனுப்ப முடியாத அளவுக்கு மிகப் பெரியதாக உள்ளது\n\n"
+"இந்த வரம்பு டெலிகிராமால் செயல்படுத்தப்படுகிறது என்பதையும், டெலிகிராம் அதை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதையும் நினைவில் கொள்க"
 
 #: pdf_bot/telegram/telegram_service.py:100
 msgid "Your file is not an image, please try again"

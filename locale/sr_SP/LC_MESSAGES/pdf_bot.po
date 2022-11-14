@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-14 07:54+0000\n"
-"PO-Revision-Date: 2022-11-14 07:54\n"
+"POT-Creation-Date: 2022-11-14 12:11+0000\n"
+"PO-Revision-Date: 2022-11-14 12:12\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -293,7 +293,7 @@ msgstr "До сада си ми послао {file_type} ових година:"
 msgid "The result file is too large for me to send to you"
 msgstr "Датотека са резултатима је превелика да бих вам је послао"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
@@ -410,11 +410,11 @@ msgstr "Не постоје текстуалне разлике између В�
 
 #: pdf_bot/crop/crop_service.py:21
 msgid "By percentage"
-msgstr ""
+msgstr "По процентима"
 
 #: pdf_bot/crop/crop_service.py:22
 msgid "By margin size"
-msgstr ""
+msgstr "По величини маргине"
 
 #: pdf_bot/crop/crop_service.py:48
 msgid "Select the crop type that you'll like to perform"
@@ -452,15 +452,15 @@ msgstr "Пошаљи ми лозинку за дешифровање твог П
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Пошаљи ми лозинку да шифрујем твој ПДФ фајл"
 
-#: pdf_bot/file/file_handlers.py:146
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "Твој фајл је превелик да га преузмем и обрадим"
 
-#: pdf_bot/file/file_service.py:45
+#: pdf_bot/file/file_service.py:31
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Величина датотеке смањена за {percent}, са {old_size} на {new_size}"
 
-#: pdf_bot/file/file_service.py:77
+#: pdf_bot/file/file_service.py:63
 msgid "Adding an OCR text layer to your PDF file"
 msgstr "Додавање ОЦР слоја текста у ПДФ датотеку"
 
@@ -696,12 +696,14 @@ msgstr "Опсег је неважећи, покушајте поново"
 #: pdf_bot/telegram/telegram_service.py:56
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "Yоур филе ис тоо ларге фор ме то доwнлоад анд процесс, плеасе трy агаин wитх а дифферент филе\n\n"
+"Ноте тхат тхис лимит ис енфорцед бy Телеграм анд тхере'с нотхинг И цан до унлесс Телеграм цхангес ит"
 
 #: pdf_bot/telegram/telegram_service.py:68
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "Фајл је превелик да бих вам послао\n\n"
+"Имајте напомете да ово ограничење спроводи Телеграм и да не могу ништа да урадим ако га Телеграм не промени"
 
 #: pdf_bot/telegram/telegram_service.py:100
 msgid "Your file is not an image, please try again"

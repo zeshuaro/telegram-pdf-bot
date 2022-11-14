@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-14 07:54+0000\n"
-"PO-Revision-Date: 2022-11-14 07:54\n"
+"POT-Creation-Date: 2022-11-14 12:11+0000\n"
+"PO-Revision-Date: 2022-11-14 12:12\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: Uzbek\n"
@@ -203,7 +203,7 @@ msgstr "{command} - PDF -fayllarga suv belgisini qo'shing"
 
 #: pdf_bot/dispatcher.py:183
 msgid "The button has expired, please try again with a new message/query then press the new button"
-msgstr ""
+msgstr "Tugmaning amal qilish muddati tugadi, iltimos yangi xabar/soʻrov bilan qaytadan urinib koʻring va yangi tugmasini bosing"
 
 #: pdf_bot/feedback.py:48
 msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
@@ -263,7 +263,7 @@ msgstr "Veb-sahifangizga ulanib bo'lmadi"
 
 #: pdf_bot/url.py:53
 msgid "Failed to convert your web page"
-msgstr ""
+msgstr "Veb-sahifani konvertlash muvaffaqiyatsiz tugadi"
 
 #: pdf_bot/telegram/telegram_service.py:139 pdf_bot/utils.py:26
 msgid "Action cancelled"
@@ -293,7 +293,7 @@ msgstr "Siz menga shu paytgacha {file_type}"
 msgid "The result file is too large for me to send to you"
 msgstr "Natija fayli yuborishim uchun juda katta"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "E'tibor bering, bu Telegram Bot cheklovidir va agar Telegram bu chegarani o'zgartirmasa, men hech narsa qila olmayman"
@@ -306,7 +306,7 @@ msgstr "Mana sizning faylingiz natijasi"
 
 #: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
-msgstr ""
+msgstr "Jarayonni yakunlab boʻlmadi"
 
 #: pdf_bot/command/command_service.py:30
 msgid "Welcome to PDF Bot!"
@@ -410,11 +410,11 @@ msgstr "PDF -fayllaringiz o'rtasida matn farqlari yo'q"
 
 #: pdf_bot/crop/crop_service.py:21
 msgid "By percentage"
-msgstr ""
+msgstr "Foiz boʻyicha"
 
 #: pdf_bot/crop/crop_service.py:22
 msgid "By margin size"
-msgstr ""
+msgstr "Boʻsh oʻlchami boʻyicha"
 
 #: pdf_bot/crop/crop_service.py:48
 msgid "Select the crop type that you'll like to perform"
@@ -422,11 +422,11 @@ msgstr "Bajarishni xohlagan turni tanlang"
 
 #: pdf_bot/crop/crop_service.py:77
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr ""
+msgstr "{number} raqami {min_percent} va {max_percent}orasida emas , iltimos qaytadan urinib ko'ring"
 
 #: pdf_bot/crop/crop_service.py:103
 msgid "The number {number} is invalid, please try again"
-msgstr ""
+msgstr "{number} raqami xato, iltimos qaytadan urinib koʻring"
 
 #: pdf_bot/crop/crop_service.py:121
 msgid "Send me a number between {min_percent} and {max_percent}"
@@ -452,17 +452,17 @@ msgstr "PDF-faylingizni parolini ochish uchun menga parolni yuboring"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Faylingizni parol bilan himoyalash uchun parolni yuboring"
 
-#: pdf_bot/file/file_handlers.py:146
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "Faylingiz yuklab olish va qayta ishlashim uchun juda katta"
 
-#: pdf_bot/file/file_service.py:45
+#: pdf_bot/file/file_service.py:31
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Fayl hajmi {percent}, {old_size} dan {new_size}"
 
-#: pdf_bot/file/file_service.py:77
+#: pdf_bot/file/file_service.py:63
 msgid "Adding an OCR text layer to your PDF file"
-msgstr ""
+msgstr "PDF faylingizga OCR matn qatlamini qoʻshish"
 
 #: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
@@ -511,7 +511,7 @@ msgstr "E'tibor bering, fayllar siz yuborgan tartibda birlashtiriladi"
 
 #: pdf_bot/merge/merge_service.py:57
 msgid "You've sent me these PDF files so far:"
-msgstr ""
+msgstr "Siz menga shu paytgacha ushbu PDF fayllarni jo'natdingiz:"
 
 #: pdf_bot/merge/merge_service.py:68
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
@@ -519,7 +519,7 @@ msgstr "Agar siz menga PDF -fayllarni birlashtirmoqchi bo'lgan yoki menga yubori
 
 #: pdf_bot/merge/merge_service.py:109
 msgid "You've already removed all the PDF files you've sent me"
-msgstr ""
+msgstr "Siz allaqachon meni yuborgan barcha PDF fayllarni olib tashladingiz"
 
 #: pdf_bot/merge/merge_service.py:114
 msgid "{file_name} has been removed for merging"
@@ -543,7 +543,7 @@ msgstr "Sizning PDF faylingiz shifrlanmagan"
 
 #: pdf_bot/pdf/pdf_service.py:223
 msgid "Incorrect password, please try again"
-msgstr ""
+msgstr "Maxfiy soʻz notoʻgʻri, iltimos qaytadan urinib koʻring"
 
 #: pdf_bot/pdf/pdf_service.py:227
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
@@ -551,7 +551,7 @@ msgstr "Sizning PDF -faylingiz shifrlangan, men hal qila olmaydigan usul"
 
 #: pdf_bot/pdf/pdf_service.py:265
 msgid "No text found in your PDF file"
-msgstr ""
+msgstr "PDF faylingizda matn topilmadi"
 
 #: pdf_bot/pdf/pdf_service.py:289
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
@@ -563,11 +563,11 @@ msgstr "Sizning PDF faylingizda allaqachon matn qatlami mavjud"
 
 #: pdf_bot/pdf/pdf_service.py:389
 msgid "Your PDF file is invalid"
-msgstr ""
+msgstr "PDF faylingiz haqiqiy emas"
 
 #: pdf_bot/pdf/pdf_service.py:392
 msgid "Your PDF file is encrypted"
-msgstr ""
+msgstr "PDF faylingiz shifrlangan"
 
 #: pdf_bot/rename/rename_service.py:32
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -587,11 +587,11 @@ msgstr "PDF-faylingizni soat yo'nalishi bo'yicha aylantirishni xohlaydigan daraj
 
 #: pdf_bot/scale/scale_constants.py:5
 msgid "By scaling factor"
-msgstr ""
+msgstr "O'lchov omili bo'yicha"
 
 #: pdf_bot/scale/scale_constants.py:6
 msgid "To dimension"
-msgstr ""
+msgstr "O'lchamga"
 
 #: pdf_bot/scale/scale_service.py:37
 msgid "Select the scale type that you'll like to perform"
@@ -696,20 +696,22 @@ msgstr "Diapazon yaroqsiz, qaytadan urining"
 #: pdf_bot/telegram/telegram_service.py:56
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "Sizning faylingiz men uchun yuklab olish va qayta ishlash uchun juda katta, iltimos, boshqa fayl bilan qayta urinib ko'ring\n\n"
+"Bu limit Telegram tomonidan bajarilishiga e'tibor bering va Telegram uni o'zgartirmasa men hech narsa qila olmayman"
 
 #: pdf_bot/telegram/telegram_service.py:68
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "Fayl sizga jo'natish uchun juda katta\n\n"
+"Bu limit Telegram tomonidan majburiy bo'lganiga e'tibor bering va Telegram uni o'zgartirmasa hech narsa qila olmayman"
 
 #: pdf_bot/telegram/telegram_service.py:100
 msgid "Your file is not an image, please try again"
-msgstr ""
+msgstr "Sizning faylingiz rasm emas, iltimos qayta urinib koʻring"
 
 #: pdf_bot/telegram/telegram_service.py:107
 msgid "No image found in your message"
-msgstr ""
+msgstr "Xabaringizdagi rasm topilmadi"
 
 #: pdf_bot/telegram/telegram_service.py:116
 msgid "Your file is not a PDF file, please try again"
@@ -717,7 +719,7 @@ msgstr "Sizning faylingiz PDF -fayl emas, qaytadan urining"
 
 #: pdf_bot/text/constants.py:10
 msgid "Skip"
-msgstr ""
+msgstr "Oʻtish"
 
 #: pdf_bot/text/text_service.py:34
 msgid "Send me the text that you'll like to write into your PDF file"

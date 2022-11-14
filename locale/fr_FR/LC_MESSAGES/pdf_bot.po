@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-14 07:54+0000\n"
-"PO-Revision-Date: 2022-11-14 07:54\n"
+"POT-Creation-Date: 2022-11-14 12:11+0000\n"
+"PO-Revision-Date: 2022-11-14 12:12\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: French\n"
@@ -293,7 +293,7 @@ msgstr "Vous m’avez envoyé ces {file_type} jusqu’à présent:"
 msgid "The result file is too large for me to send to you"
 msgstr "Le fichier de résultat est trop volumineux pour que je puisse vous envoyer"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:147
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:150
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Notez qu’il s’agit d’une limitation de Telegram Bot et qu’il n’y a rien que je puisse faire à moins que Telegram ne modifie cette limite"
@@ -410,11 +410,11 @@ msgstr "Il n’y a pas de différences de texte entre vos fichiers PDF"
 
 #: pdf_bot/crop/crop_service.py:21
 msgid "By percentage"
-msgstr ""
+msgstr "En pourcentage"
 
 #: pdf_bot/crop/crop_service.py:22
 msgid "By margin size"
-msgstr ""
+msgstr "Par taille de marge"
 
 #: pdf_bot/crop/crop_service.py:48
 msgid "Select the crop type that you'll like to perform"
@@ -452,15 +452,15 @@ msgstr "Envoyez-moi le mot de passe pour décrypter votre fichier PDF"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Envoyez-moi le mot de passe pour crypter votre fichier PDF"
 
-#: pdf_bot/file/file_handlers.py:146
+#: pdf_bot/file/file_handlers.py:149
 msgid "Your file is too big for me to download and process"
 msgstr "Votre fichier est trop volumineux pour que je le télécharge et le traite"
 
-#: pdf_bot/file/file_service.py:45
+#: pdf_bot/file/file_service.py:31
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Taille du fichier réduite de {percent}, de {old_size} à {new_size}"
 
-#: pdf_bot/file/file_service.py:77
+#: pdf_bot/file/file_service.py:63
 msgid "Adding an OCR text layer to your PDF file"
 msgstr "Ajout d’un calque de texte OCR à votre fichier PDF"
 
@@ -696,12 +696,14 @@ msgstr "La plage n’est pas valide, veuillez réessayer"
 #: pdf_bot/telegram/telegram_service.py:56
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "Votre fichier est trop volumineux pour que je puisse le télécharger et le traiter, veuillez réessayer avec un autre fichier\n\n"
+"Notez que cette limite est appliquée par Telegram et que je ne peux rien faire à moins que Telegram ne la modifie"
 
 #: pdf_bot/telegram/telegram_service.py:68
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
+msgstr "Le fichier est trop volumineux pour que je puisse vous l’envoyer\n\n"
+"Notez que cette limite est appliquée par Telegram et que je ne peux rien faire à moins que Telegram ne la modifie."
 
 #: pdf_bot/telegram/telegram_service.py:100
 msgid "Your file is not an image, please try again"
