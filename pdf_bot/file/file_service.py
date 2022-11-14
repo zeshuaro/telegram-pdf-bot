@@ -16,20 +16,6 @@ class FileService:
         self.pdf_service = pdf_service
         self.telegram_service = telegram_service
 
-    def black_and_white_pdf(self, update: Update, context: CallbackContext):
-        _ = set_lang(update, context)
-        message = update.effective_message
-
-        try:
-            file_id, _file_name = self.telegram_service.get_user_data(context, PDF_INFO)
-        except TelegramServiceError as e:
-            message.reply_text(_(str(e)))
-            return ConversationHandler.END
-
-        with self.pdf_service.black_and_white_pdf(file_id) as out_path:
-            send_result_file(update, context, out_path, TaskType.black_and_white_pdf)
-        return ConversationHandler.END
-
     def compress_pdf(self, update: Update, context: CallbackContext):
         _ = set_lang(update, context)
         message = update.effective_message

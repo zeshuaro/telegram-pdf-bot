@@ -40,6 +40,7 @@ from pdf_bot.files.image import (
     pdf_to_images,
     process_image_task,
 )
+from pdf_bot.grayscale import GrayscaleService
 from pdf_bot.language import set_lang
 from pdf_bot.rename import RenameService, rename_constants
 from pdf_bot.rotate import RotateService, rotate_constants
@@ -56,6 +57,7 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_service: DecryptService,
         encrypt_service: EncryptService,
+        grayscale_service: GrayscaleService,
         rename_service: RenameService,
         rotate_service: RotateService,
         scale_service: ScaleService,
@@ -66,6 +68,7 @@ class FileHandlers:
         self.crop_service = crop_service
         self.decrypt_service = decrypt_service
         self.encrypt_service = encrypt_service
+        self.grayscale_service = grayscale_service
         self.rename_service = rename_service
         self.rotate_service = rotate_service
         self.scale_service = scale_service
@@ -189,7 +192,7 @@ class FileHandlers:
         if text == _(COMPRESS):
             return self.file_service.compress_pdf(update, context)
         if text == _(BLACK_AND_WHITE):
-            return self.file_service.black_and_white_pdf(update, context)
+            return self.grayscale_service.process_file(update, context)
         if text == _(CANCEL):
             return cancel(update, context)
 
