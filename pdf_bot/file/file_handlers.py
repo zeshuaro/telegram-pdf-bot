@@ -96,10 +96,10 @@ class FileHandlers:
                     )
                 ],
                 self.decrypt_service.get_wait_password_state(): [
-                    MessageHandler(TEXT_FILTER, self.decrypt_service.process_pdf)
+                    MessageHandler(TEXT_FILTER, self.decrypt_service.process_file)
                 ],
                 self.encrypt_service.get_wait_password_state(): [
-                    MessageHandler(TEXT_FILTER, self.encrypt_service.process_pdf)
+                    MessageHandler(TEXT_FILTER, self.encrypt_service.process_file)
                 ],
                 rename_constants.WAIT_NEW_FILE_NAME: [
                     MessageHandler(TEXT_FILTER, self.rename_service.rename_pdf)
