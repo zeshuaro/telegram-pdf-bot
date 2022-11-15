@@ -9,7 +9,7 @@ from pdf_bot.language import set_lang
 from pdf_bot.merge.constants import MERGE_PDF_DATA, WAIT_MERGE_PDF
 from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService, PdfServiceError
-from pdf_bot.telegram import TelegramService, TelegramServiceError
+from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 from pdf_bot.utils import cancel, reply_with_cancel_btn, send_result_file
 
 

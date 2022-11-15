@@ -6,7 +6,7 @@ from pdf_bot.consts import BACK, CANCEL
 from pdf_bot.language import set_lang
 from pdf_bot.pdf import PdfServiceError
 from pdf_bot.pdf.pdf_service import PdfService
-from pdf_bot.telegram import (
+from pdf_bot.telegram_internal import (
     TelegramService,
     TelegramServiceError,
     TelegramUserDataKeyError,

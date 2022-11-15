@@ -10,7 +10,7 @@ from pdf_bot.consts import BACK, PDF_INFO
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.language_new import LanguageService
 from pdf_bot.pdf import PdfService, PdfServiceError
-from pdf_bot.telegram import TelegramService, TelegramServiceError
+from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
 ErrorHandlerType = Callable[[Update, CallbackContext, Exception, str, str], str]
 

@@ -30,7 +30,7 @@ from pdf_bot.pdf.exceptions import (
     PdfReadError,
 )
 from pdf_bot.pdf.models import CompressResult, FontData, ScaleByData, ScaleData
-from pdf_bot.telegram import TelegramService
+from pdf_bot.telegram_internal import TelegramService
 
 _ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gettext
 

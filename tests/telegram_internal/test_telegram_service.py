@@ -10,14 +10,14 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageService
 from pdf_bot.models import FileData
-from pdf_bot.telegram import (
+from pdf_bot.telegram_internal import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
     TelegramImageNotFoundError,
     TelegramService,
 )
-from pdf_bot.telegram.exceptions import TelegramUserDataKeyError
-from tests.telegram.telegram_test_mixin import TelegramTestMixin
+from pdf_bot.telegram_internal.exceptions import TelegramUserDataKeyError
+from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
 
 class TestTelegramRService(TelegramTestMixin):
@@ -45,12 +45,12 @@ class TestTelegramRService(TelegramTestMixin):
             self.sut.check_file_size(self.telegram_document)
 
     def test_check_file_upload_size(self) -> None:
-        with patch("pdf_bot.telegram.telegram_service.os") as os:
+        with patch("pdf_bot.telegram_internal.telegram_service.os") as os:
             os.path.getsize.return_value = MAX_FILESIZE_UPLOAD
             self.sut.check_file_upload_size(self.FILE_PATH)
 
     def test_check_file_upload_size_too_large(self) -> None:
-        with patch("pdf_bot.telegram.telegram_service.os") as os:
+        with patch("pdf_bot.telegram_internal.telegram_service.os") as os:
             os.path.getsize.return_value = MAX_FILESIZE_UPLOAD + 1
             with pytest.raises(TelegramFileTooLargeError):
                 self.sut.check_file_upload_size(self.FILE_PATH)
@@ -214,10 +214,10 @@ class TestTelegramRService(TelegramTestMixin):
 
     def test_reply_with_file_document(self) -> None:
         file_path = f"{self.FILE_PATH}.pdf"
-        with patch("pdf_bot.telegram.telegram_service.os") as os, patch(
+        with patch("pdf_bot.telegram_internal.telegram_service.os") as os, patch(
             "builtins.open"
         ) as _mock_open, patch(
-            "pdf_bot.telegram.telegram_service.send_event"
+            "pdf_bot.telegram_internal.telegram_service.send_event"
         ) as send_event:
             os.path.getsize.return_value = MAX_FILESIZE_UPLOAD
 
@@ -236,10 +236,10 @@ class TestTelegramRService(TelegramTestMixin):
 
     def test_reply_with_file_image(self) -> None:
         file_path = f"{self.FILE_PATH}.png"
-        with patch("pdf_bot.telegram.telegram_service.os") as os, patch(
+        with patch("pdf_bot.telegram_internal.telegram_service.os") as os, patch(
             "builtins.open"
         ) as _mock_open, patch(
-            "pdf_bot.telegram.telegram_service.send_event"
+            "pdf_bot.telegram_internal.telegram_service.send_event"
         ) as send_event:
             os.path.getsize.return_value = MAX_FILESIZE_UPLOAD
 
@@ -257,10 +257,10 @@ class TestTelegramRService(TelegramTestMixin):
             send_event.assert_called_once()
 
     def test_reply_with_file_too_large(self) -> None:
-        with patch("pdf_bot.telegram.telegram_service.os") as os, patch(
+        with patch("pdf_bot.telegram_internal.telegram_service.os") as os, patch(
             "builtins.open"
         ) as _mock_open, patch(
-            "pdf_bot.telegram.telegram_service.send_event"
+            "pdf_bot.telegram_internal.telegram_service.send_event"
         ) as send_event:
             os.path.getsize.return_value = MAX_FILESIZE_UPLOAD + 1
 

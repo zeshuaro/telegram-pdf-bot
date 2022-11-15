@@ -10,7 +10,7 @@ from pdf_bot.files.utils import get_back_markup
 from pdf_bot.language import set_lang
 from pdf_bot.pdf import PdfService
 from pdf_bot.rename import rename_constants
-from pdf_bot.telegram import TelegramService, TelegramServiceError
+from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 from pdf_bot.utils import send_result_file
 
 

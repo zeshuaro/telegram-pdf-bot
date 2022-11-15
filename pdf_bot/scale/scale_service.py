@@ -8,7 +8,7 @@ from pdf_bot.language import set_lang
 from pdf_bot.pdf import PdfService, ScaleData
 from pdf_bot.pdf.models import ScaleByData, ScaleToData
 from pdf_bot.scale import scale_constants
-from pdf_bot.telegram import TelegramService, TelegramServiceError
+from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 from pdf_bot.utils import send_result_file
 
 

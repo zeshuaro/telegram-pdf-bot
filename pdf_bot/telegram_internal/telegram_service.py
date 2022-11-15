@@ -23,7 +23,7 @@ from pdf_bot.consts import BACK, CHANNEL_NAME, PAYMENT
 from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageService
 from pdf_bot.models import FileData
-from pdf_bot.telegram.exceptions import (
+from pdf_bot.telegram_internal.exceptions import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
     TelegramImageNotFoundError,

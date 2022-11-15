@@ -10,7 +10,7 @@ from pdf_bot.consts import PDF_INFO
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.pdf import PdfService
 from pdf_bot.rename import RenameService, rename_constants
-from pdf_bot.telegram import TelegramService, TelegramUserDataKeyError
+from pdf_bot.telegram_internal import TelegramService, TelegramUserDataKeyError
 
 
 @pytest.fixture(name="rename_service")
