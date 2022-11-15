@@ -12,7 +12,7 @@ from pdf_bot.file_task import FileTaskService
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf.models import ScaleData
 from pdf_bot.scale import ScaleService, scale_constants
-from pdf_bot.telegram import TelegramService, TelegramUserDataKeyError
+from pdf_bot.telegram_internal import TelegramService, TelegramUserDataKeyError
 
 
 @pytest.fixture(name="scale_service")

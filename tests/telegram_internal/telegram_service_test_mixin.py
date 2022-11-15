@@ -1,7 +1,7 @@
 from unittest.mock import MagicMock
 
-from pdf_bot.telegram import TelegramService
-from tests.telegram.telegram_test_mixin import TelegramTestMixin
+from pdf_bot.telegram_internal import TelegramService
+from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
 
 class TelegramServiceTestMixin(TelegramTestMixin):

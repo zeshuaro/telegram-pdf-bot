@@ -28,7 +28,7 @@ from pdf_bot.pdf.exceptions import (
     PdfIncorrectPasswordError,
     PdfNoTextError,
 )
-from pdf_bot.telegram import TelegramService
+from pdf_bot.telegram_internal import TelegramService
 
 
 @pytest.fixture(name="telegram_service")

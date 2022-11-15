@@ -1,7 +1,7 @@
 from unittest.mock import MagicMock, patch
 
 from pdf_bot.language_new import LanguageRepository, LanguageService
-from tests.telegram.telegram_test_mixin import TelegramTestMixin
+from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
 
 class TestLanguageRService(TelegramTestMixin):

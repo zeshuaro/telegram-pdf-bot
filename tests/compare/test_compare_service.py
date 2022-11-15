@@ -7,9 +7,9 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.compare import CompareService
 from pdf_bot.consts import BACK, CANCEL
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram import TelegramServiceError, TelegramUserDataKeyError
+from pdf_bot.telegram_internal import TelegramServiceError, TelegramUserDataKeyError
 from tests.language import LanguageServiceTestMixin
-from tests.telegram import TelegramServiceTestMixin, TelegramTestMixin
+from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
 class TestCompareService(

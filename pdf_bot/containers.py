@@ -23,7 +23,7 @@ from pdf_bot.rename import RenameService
 from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
 from pdf_bot.split import SplitService
-from pdf_bot.telegram import TelegramService
+from pdf_bot.telegram_internal import TelegramService
 from pdf_bot.text import TextHandlers, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
 

@@ -7,7 +7,7 @@ from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService, PdfServiceError
-from pdf_bot.telegram import (
+from pdf_bot.telegram_internal import (
     TelegramService,
     TelegramServiceError,
     TelegramUserDataKeyError,

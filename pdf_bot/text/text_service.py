@@ -7,7 +7,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.consts import CANCEL
 from pdf_bot.language import set_lang
 from pdf_bot.pdf import FontData, PdfService
-from pdf_bot.telegram import TelegramService, TelegramServiceError
+from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 from pdf_bot.text.constants import SKIP, TEXT_KEY, WAIT_FONT, WAIT_TEXT
 from pdf_bot.text.text_repository import TextRepository
 from pdf_bot.utils import cancel, send_result_file

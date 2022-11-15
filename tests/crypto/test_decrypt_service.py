@@ -6,7 +6,7 @@ from pdf_bot.crypto import DecryptService
 from pdf_bot.pdf import PdfIncorrectPasswordError, PdfService
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
-from tests.telegram import TelegramServiceTestMixin, TelegramTestMixin
+from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
 class TestDecryptService(

@@ -8,7 +8,7 @@ from telegram.ext import CallbackContext
 from pdf_bot.merge import MergeService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram import TelegramService, TelegramServiceError
+from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
 WAIT_MERGE_PDF = 0
 MERGE_PDF_DATA = "merge_pdf_data"

@@ -9,7 +9,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.file import FileService
 from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.pdf.models import CompressResult
-from pdf_bot.telegram import (
+from pdf_bot.telegram_internal import (
     TelegramService,
     TelegramServiceError,
     TelegramUserDataKeyError,

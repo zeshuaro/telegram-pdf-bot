@@ -5,7 +5,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
 from pdf_bot.language import set_lang
 from pdf_bot.pdf import PdfService, PdfServiceError
-from pdf_bot.telegram import TelegramService, TelegramServiceError
+from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 from pdf_bot.utils import send_result_file
 
 

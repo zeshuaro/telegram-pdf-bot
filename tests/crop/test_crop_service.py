@@ -7,10 +7,10 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
 from pdf_bot.crop import CropService
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram import TelegramUserDataKeyError
+from pdf_bot.telegram_internal import TelegramUserDataKeyError
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
-from tests.telegram import TelegramServiceTestMixin, TelegramTestMixin
+from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
 class TestCropService(

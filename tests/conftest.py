@@ -13,7 +13,7 @@ from pdf_bot.file_task import FileTaskService
 from pdf_bot.io import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram import TelegramService
+from pdf_bot.telegram_internal import TelegramService
 
 TEST_DATA_PATH = Path(__file__).parent.resolve() / "data"
 
