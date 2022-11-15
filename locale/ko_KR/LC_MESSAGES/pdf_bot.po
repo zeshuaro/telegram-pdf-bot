@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-14 12:11+0000\n"
-"PO-Revision-Date: 2022-11-14 12:12\n"
+"POT-Creation-Date: 2022-11-15 13:06+0000\n"
+"PO-Revision-Date: 2022-11-15 13:06\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -151,13 +151,13 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "언어 설정 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/telegram/telegram_service.py:149
+#: pdf_bot/dispatcher.py:120 pdf_bot/telegram_internal/telegram_service.py:149
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "채널 가입"
 
 #: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83
-#: pdf_bot/telegram/telegram_service.py:150 pdf_bot/utils.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:150 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "지원 PDF 봇"
 
@@ -265,7 +265,7 @@ msgstr "웹 페이지에 연결할 수 없습니다."
 msgid "Failed to convert your web page"
 msgstr "웹 페이지를 변환하지 못했습니다."
 
-#: pdf_bot/telegram/telegram_service.py:139 pdf_bot/utils.py:26
+#: pdf_bot/telegram_internal/telegram_service.py:139 pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "취소된 조치"
 
@@ -298,8 +298,8 @@ msgstr "결과 파일이 너무 커서 전송할 수 없습니다."
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
 
-#: pdf_bot/telegram/telegram_service.py:186
-#: pdf_bot/telegram/telegram_service.py:193 pdf_bot/utils.py:168
+#: pdf_bot/telegram_internal/telegram_service.py:186
+#: pdf_bot/telegram_internal/telegram_service.py:193 pdf_bot/utils.py:168
 #: pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "다음은 결과 파일입니다."
@@ -444,11 +444,11 @@ msgstr "여백 크기를 조정하려는 번호를 보내주십시오."
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "양수 로 마진 크기가 감소하고 음수로 증가합니다."
 
-#: pdf_bot/crypto/decrypt_service.py:20
+#: pdf_bot/crypto/decrypt_service.py:22
 msgid "Send me the password to decrypt your PDF file"
 msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
 
-#: pdf_bot/crypto/encrypt_service.py:14
+#: pdf_bot/crypto/encrypt_service.py:16
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDF 파일을 암호화하기 위해 암호를 보내주세요."
 
@@ -489,7 +489,7 @@ msgstr "PDF 파일을 이미지로 변환"
 msgid "Extracting all the images in your PDF file"
 msgstr "PDF 파일의 모든 이미지 추출"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram/telegram_service.py:91
+#: pdf_bot/files/image.py:208 pdf_bot/telegram_internal/telegram_service.py:91
 msgid "Something went wrong, please try again"
 msgstr "뭔가 잘못, 다시 시도하십시오"
 
@@ -693,27 +693,27 @@ msgstr "{range}  페이지 {pages}"
 msgid "The range is invalid, please try again"
 msgstr "범위가 유효하지 않습니다, 다시 시도하십시오"
 
-#: pdf_bot/telegram/telegram_service.py:56
+#: pdf_bot/telegram_internal/telegram_service.py:56
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "파일이 너무 커서 다운로드하여 처리 할 수 없습니다. 다른 파일로 다시 시도하십시오\n\n"
 "이 제한은 Telegram에 의해 적용되며 Telegram이 변경하지 않는 한 내가 할 수 있는 일은 없습니다."
 
-#: pdf_bot/telegram/telegram_service.py:68
+#: pdf_bot/telegram_internal/telegram_service.py:68
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "파일이 너무 커서 보낼 수 없습니다\n\n"
 "이 제한은 Telegram에 의해 적용되며 Telegram이 변경하지 않는 한 내가 할 수 있는 일은 없습니다."
 
-#: pdf_bot/telegram/telegram_service.py:100
+#: pdf_bot/telegram_internal/telegram_service.py:100
 msgid "Your file is not an image, please try again"
 msgstr "파일이 이미지가 아니므로 다시 시도하십시오."
 
-#: pdf_bot/telegram/telegram_service.py:107
+#: pdf_bot/telegram_internal/telegram_service.py:107
 msgid "No image found in your message"
 msgstr "메시지에 이미지가 없습니다."
 
-#: pdf_bot/telegram/telegram_service.py:116
+#: pdf_bot/telegram_internal/telegram_service.py:116
 msgid "Your file is not a PDF file, please try again"
 msgstr "파일은 PDF 파일이 아니며 다시 시도하십시오."
 
