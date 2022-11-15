@@ -98,10 +98,10 @@ class FileHandlers:
                         TEXT_FILTER, self.crop_service.crop_pdf_by_margin_size
                     )
                 ],
-                self.decrypt_service.get_wait_password_state(): [
+                self.decrypt_service.wait_password_state(): [
                     MessageHandler(TEXT_FILTER, self.decrypt_service.process_file)
                 ],
-                self.encrypt_service.get_wait_password_state(): [
+                self.encrypt_service.wait_password_state(): [
                     MessageHandler(TEXT_FILTER, self.encrypt_service.process_file)
                 ],
                 rename_constants.WAIT_NEW_FILE_NAME: [

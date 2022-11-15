@@ -13,13 +13,16 @@ from pdf_bot.pdf import PdfIncorrectPasswordError
 
 
 class DecryptService(AbstractCryptoService):
-    def get_wait_password_state(self) -> str:
+    @property
+    def wait_password_state(self) -> str:
         return "wait_decrypt_password"
 
-    def get_wait_password_text(self) -> str:
+    @property
+    def wait_password_text(self) -> str:
         return _("Send me the password to decrypt your PDF file")
 
-    def get_task_type(self) -> TaskType:
+    @property
+    def task_type(self) -> TaskType:
         return TaskType.decrypt_pdf
 
     def get_custom_error_handlers(self) -> dict[Type[Exception], ErrorHandlerType]:
@@ -43,4 +46,4 @@ class DecryptService(AbstractCryptoService):
         _ = self.language_service.set_app_language(update, context)
         update.effective_message.reply_text(_(str(exception)))
         context.user_data[PDF_INFO] = (file_id, file_name)
-        return self.get_wait_password_state()
+        return self.wait_password_state

@@ -13,13 +13,16 @@ from tests.telegram import TelegramServiceTestMixin, TelegramTestMixin
 class MockAbstractCryptoService(AbstractCryptoService):
     STATE = "state"
 
-    def get_wait_password_state(self) -> str:
+    @property
+    def wait_password_state(self) -> str:
         return self.STATE
 
-    def get_wait_password_text(self) -> str:
+    @property
+    def wait_password_text(self) -> str:
         return "text"
 
-    def get_task_type(self) -> TaskType:
+    @property
+    def task_type(self) -> TaskType:
         return TaskType.decrypt_pdf
 
     @contextmanager
@@ -50,7 +53,7 @@ class TestAbstractCryptoService(
         )
 
     def test_should_process_back_option(self) -> None:
-        actual = self.sut.should_process_back_option()
+        actual = self.sut.should_process_back_option
         assert actual is True
 
     def test_ask_password(self) -> None:

@@ -28,10 +28,12 @@ class AbstractFileProcessor(ABC):
         self.telegram_service = telegram_service
         self.language_service = language_service
 
+    @property
     @abstractmethod
-    def get_task_type(self) -> TaskType:
+    def task_type(self) -> TaskType:
         pass
 
+    @property
     @abstractmethod
     def should_process_back_option(self) -> bool:
         pass
@@ -47,7 +49,7 @@ class AbstractFileProcessor(ABC):
         _ = self.language_service.set_app_language(update, context)
         message = update.effective_message
 
-        if self.should_process_back_option() and message.text == _(BACK):
+        if self.should_process_back_option and message.text == _(BACK):
             return self.file_task_service.ask_pdf_task(update, context)
 
         try:
@@ -59,7 +61,7 @@ class AbstractFileProcessor(ABC):
         try:
             with self.process_file_task(file_id, message.text) as out_path:
                 self.telegram_service.reply_with_file(
-                    update, context, out_path, self.get_task_type()
+                    update, context, out_path, self.task_type
                 )
         except Exception as e:  # pylint: disable=broad-except
             handler = self._get_error_handlers().get(type(e))

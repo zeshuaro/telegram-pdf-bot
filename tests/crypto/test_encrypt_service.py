@@ -33,15 +33,15 @@ class TestDecryptService(
         )
 
     def test_get_wait_password_state(self) -> None:
-        actual = self.sut.get_wait_password_state()
+        actual = self.sut.wait_password_state
         assert actual == self.WAIT_PASSWORD_STATE
 
     def test_get_wait_password_text(self) -> None:
-        actual = self.sut.get_wait_password_text()
+        actual = self.sut.wait_password_text
         assert actual == self.WAIT_PASSWORD_TEXT
 
     def test_get_task_type(self) -> None:
-        actual = self.sut.get_task_type()
+        actual = self.sut.task_type
         assert actual == TaskType.encrypt_pdf
 
     def test_process_file_task(self) -> None:
