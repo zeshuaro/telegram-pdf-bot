@@ -19,9 +19,11 @@ class MockProcessor(AbstractFileProcessor):
     PROCESS_RESULT = "process_result"
     TASK_TYPE = TaskType.decrypt_pdf
 
-    def get_task_type(self) -> TaskType:
+    @property
+    def task_type(self) -> TaskType:
         return self.TASK_TYPE
 
+    @property
     def should_process_back_option(self) -> bool:
         return True
 
@@ -74,6 +76,7 @@ class MockProcessorWithoutErrorHandler(MockProcessor):
 
 
 class MockProcessorWithoutBackOption(MockProcessor):
+    @property
     def should_process_back_option(self) -> bool:
         return False
 

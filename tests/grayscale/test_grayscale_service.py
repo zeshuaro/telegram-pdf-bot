@@ -31,11 +31,11 @@ class TestGrayscaleService(
         )
 
     def test_get_task_type(self) -> None:
-        actual = self.sut.get_task_type()
+        actual = self.sut.task_type
         assert actual == TaskType.black_and_white_pdf
 
     def test_should_process_back_option(self) -> None:
-        actual = self.sut.should_process_back_option()
+        actual = self.sut.should_process_back_option
         assert actual is False
 
     def test_process_file_task(self) -> None:

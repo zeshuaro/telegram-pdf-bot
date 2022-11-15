@@ -6,9 +6,11 @@ from pdf_bot.file_processor import AbstractFileProcessor
 
 
 class GrayscaleService(AbstractFileProcessor):
-    def get_task_type(self) -> TaskType:
+    @property
+    def task_type(self) -> TaskType:
         return TaskType.black_and_white_pdf
 
+    @property
     def should_process_back_option(self) -> bool:
         return False
 
