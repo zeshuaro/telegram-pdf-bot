@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-17 10:39+0000\n"
-"PO-Revision-Date: 2022-11-17 10:40\n"
+"POT-Creation-Date: 2022-11-17 11:06+0000\n"
+"PO-Revision-Date: 2022-11-17 11:07\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -293,7 +293,7 @@ msgstr "До сада си ми послао {file_type} ових година:"
 msgid "The result file is too large for me to send to you"
 msgstr "Датотека са резултатима је превелика да бих вам је послао"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:153
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:155
 #: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
@@ -452,17 +452,13 @@ msgstr "Пошаљи ми лозинку за дешифровање твог П
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Пошаљи ми лозинку да шифрујем твој ПДФ фајл"
 
-#: pdf_bot/file/file_handlers.py:152
+#: pdf_bot/file/file_handlers.py:154
 msgid "Your file is too big for me to download and process"
 msgstr "Твој фајл је превелик да га преузмем и обрадим"
 
 #: pdf_bot/file/file_service.py:31
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Величина датотеке смањена за {percent}, са {old_size} на {new_size}"
-
-#: pdf_bot/file/file_service.py:49
-msgid "Adding an OCR text layer to your PDF file"
-msgstr "Додавање ОЦР слоја текста у ПДФ датотеку"
 
 #: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
