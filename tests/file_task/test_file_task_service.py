@@ -1,30 +1,18 @@
-from typing import Iterator
-from unittest.mock import patch
-
-import pytest
-from telegram import Update
-from telegram.ext import CallbackContext
-
-from pdf_bot.file_task import FileTaskService, file_task_constants
-
-PDF_INFO = "pdf_info"
+from pdf_bot.file_task import FileTaskService
+from tests.language import LanguageServiceTestMixin
+from tests.telegram_internal import TelegramTestMixin
 
 
-@pytest.fixture(name="file_task_service")
-def fixture_file_service() -> FileTaskService:
-    return FileTaskService()
+class TestFileTaskService(LanguageServiceTestMixin, TelegramTestMixin):
+    WAIT_PDF_TASK = "wait_pdf_task"
 
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.language_service = self.mock_language_service()
+        self.sut = FileTaskService(self.language_service)
 
-@pytest.fixture(scope="session", autouse=True)
-def set_lang() -> Iterator[None]:
-    with patch("pdf_bot.file_task.file_task_service.set_lang"):
-        yield
+    def test_ask_pdf_task(self) -> None:
+        actual = self.sut.ask_pdf_task(self.telegram_update, self.telegram_context)
 
-
-def test_ask_pdf_task(
-    file_task_service: FileTaskService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    actual = file_task_service.ask_pdf_task(telegram_update, telegram_context)
-    assert actual == file_task_constants.WAIT_PDF_TASK
+        assert actual == self.WAIT_PDF_TASK
+        self.telegram_update.effective_message.reply_text.assert_called_once()
