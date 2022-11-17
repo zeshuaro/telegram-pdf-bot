@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-17 11:06+0000\n"
-"PO-Revision-Date: 2022-11-17 11:07\n"
+"POT-Creation-Date: 2022-11-17 12:02+0000\n"
+"PO-Revision-Date: 2022-11-17 12:02\n"
 "Last-Translator: \n"
 "Language: pl\n"
 "Language-Team: Polish\n"
@@ -43,87 +43,87 @@ msgstr "Według wartości procentowej"
 msgid "By Margin Size"
 msgstr "Według rozmiaru marginesu"
 
-#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_constants.py:5
+#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:14
 msgid "Preview"
 msgstr "Podgląd"
 
-#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_constants.py:6
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:15
 msgid "Decrypt"
 msgstr "Odszyfrować"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_constants.py:7
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
 msgid "Encrypt"
 msgstr "Szyfrowania"
 
-#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_constants.py:8
+#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:17
 msgid "Extract Images"
 msgstr "Wyodrębnij obrazy"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_constants.py:9
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
 msgid "To Images"
 msgstr "Do obrazów"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_constants.py:10
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
 msgid "Rotate"
 msgstr "Obracać"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_constants.py:11
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
 msgid "Scale"
 msgstr "Skali"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_constants.py:12
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_constants.py:13
+#: pdf_bot/consts.py:50
 msgid "Beautify"
 msgstr "Upiększyć"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_constants.py:14
+#: pdf_bot/consts.py:51
 msgid "To PDF"
 msgstr "Do pliku PDF"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_constants.py:15
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
 msgid "Rename"
 msgstr "Zmienić nazwę"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_constants.py:16
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
 msgid "Crop"
 msgstr "Upraw"
 
-#: pdf_bot/consts.py:54 pdf_bot/file_task/file_task_constants.py:17
+#: pdf_bot/consts.py:54
 msgid "Compressed"
 msgstr "Skompresowane"
 
-#: pdf_bot/consts.py:55 pdf_bot/file_task/file_task_constants.py:18
+#: pdf_bot/consts.py:55
 msgid "Images"
 msgstr "Obrazów"
 
-#: pdf_bot/consts.py:56 pdf_bot/file_task/file_task_constants.py:19
+#: pdf_bot/consts.py:56
 msgid "Remove Last File"
 msgstr "Usuń ostatni plik"
 
-#: pdf_bot/consts.py:57 pdf_bot/file_task/file_task_constants.py:20
+#: pdf_bot/consts.py:57
 msgid "To Dimensions"
 msgstr "Do wymiarów"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_constants.py:21
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
 msgid "Extract Text"
 msgstr "Wyodrębnianie tekstu"
 
-#: pdf_bot/consts.py:59 pdf_bot/file_task/file_task_constants.py:22
+#: pdf_bot/consts.py:59
 msgid "Text Message"
 msgstr "Wiadomość tekstowa"
 
-#: pdf_bot/consts.py:60 pdf_bot/file_task/file_task_constants.py:23
+#: pdf_bot/consts.py:60
 msgid "Text File"
 msgstr "Plik tekstowy"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_constants.py:25
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
 msgid "Compress"
 msgstr "Kompresji"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_constants.py:26
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
 msgid "Black & White"
 msgstr "Czarno-biały"
 
@@ -460,7 +460,7 @@ msgstr "Twój plik jest zbyt duży, abym go pobrał i przetworzył"
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Rozmiar pliku zmniejszony o {percent}, z {old_size} do {new_size}"
 
-#: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
+#: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Wybierz zadanie, które chcesz wykonać"

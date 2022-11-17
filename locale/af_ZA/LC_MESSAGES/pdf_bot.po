@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-17 11:06+0000\n"
-"PO-Revision-Date: 2022-11-17 11:07\n"
+"POT-Creation-Date: 2022-11-17 12:02+0000\n"
+"PO-Revision-Date: 2022-11-17 12:02\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -43,87 +43,87 @@ msgstr "Deur Persentasie"
 msgid "By Margin Size"
 msgstr "Deur Marge Grootte"
 
-#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_constants.py:5
+#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:14
 msgid "Preview"
 msgstr "Voorskou"
 
-#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_constants.py:6
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:15
 msgid "Decrypt"
 msgstr "Dekripteer"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_constants.py:7
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
 msgid "Encrypt"
 msgstr "Enkripteer"
 
-#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_constants.py:8
+#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:17
 msgid "Extract Images"
 msgstr "Onttrek beelde"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_constants.py:9
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
 msgid "To Images"
 msgstr "Na beelde"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_constants.py:10
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
 msgid "Rotate"
 msgstr "Roteer"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_constants.py:11
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
 msgid "Scale"
 msgstr "Skaal"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_constants.py:12
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
 msgid "Split"
 msgstr "Verdeel"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_constants.py:13
+#: pdf_bot/consts.py:50
 msgid "Beautify"
 msgstr "Hierdie artikel is 'n weesbladsy"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_constants.py:14
+#: pdf_bot/consts.py:51
 msgid "To PDF"
 msgstr "Na PDF"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_constants.py:15
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
 msgid "Rename"
 msgstr "Hernoem"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_constants.py:16
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
 msgid "Crop"
 msgstr "Gewas"
 
-#: pdf_bot/consts.py:54 pdf_bot/file_task/file_task_constants.py:17
+#: pdf_bot/consts.py:54
 msgid "Compressed"
 msgstr "Gekompakteerde"
 
-#: pdf_bot/consts.py:55 pdf_bot/file_task/file_task_constants.py:18
+#: pdf_bot/consts.py:55
 msgid "Images"
 msgstr "Beelde"
 
-#: pdf_bot/consts.py:56 pdf_bot/file_task/file_task_constants.py:19
+#: pdf_bot/consts.py:56
 msgid "Remove Last File"
 msgstr "Verwyder laaste lêer"
 
-#: pdf_bot/consts.py:57 pdf_bot/file_task/file_task_constants.py:20
+#: pdf_bot/consts.py:57
 msgid "To Dimensions"
 msgstr "Na Afmetings"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_constants.py:21
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
 msgid "Extract Text"
 msgstr "Uittreksel teks"
 
-#: pdf_bot/consts.py:59 pdf_bot/file_task/file_task_constants.py:22
+#: pdf_bot/consts.py:59
 msgid "Text Message"
 msgstr "Teksboodskap"
 
-#: pdf_bot/consts.py:60 pdf_bot/file_task/file_task_constants.py:23
+#: pdf_bot/consts.py:60
 msgid "Text File"
 msgstr "Tekslêer"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_constants.py:25
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
 msgid "Compress"
 msgstr "Saamdruk"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_constants.py:26
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
 msgid "Black & White"
 msgstr "Swart & Wit"
 
@@ -460,7 +460,7 @@ msgstr "Jou lêer is te groot vir my om af te laai en te verwerk"
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Lêergrootte verminder met {percent}, van {old_size} tot {new_size}"
 
-#: pdf_bot/file_task/file_task_service.py:25 pdf_bot/files/document.py:54
+#: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/document.py:54
 #: pdf_bot/files/image.py:63
 msgid "Select the task that you'll like to perform"
 msgstr "Kies die taak wat jy wil uitvoer"
