@@ -46,7 +46,7 @@ from pdf_bot.rename import RenameService, rename_constants
 from pdf_bot.rotate import RotateService, rotate_constants
 from pdf_bot.scale import ScaleService, scale_constants
 from pdf_bot.split import SplitService, split_constants
-from pdf_bot.text import ExtractTextService
+from pdf_bot.text import ExtractTextService, OCRService
 from pdf_bot.utils import cancel
 
 
@@ -60,6 +60,7 @@ class FileHandlers:
         encrypt_service: EncryptService,
         extract_text_service: ExtractTextService,
         grayscale_service: GrayscaleService,
+        ocr_service: OCRService,
         rename_service: RenameService,
         rotate_service: RotateService,
         scale_service: ScaleService,
@@ -72,6 +73,7 @@ class FileHandlers:
         self.encrypt_service = encrypt_service
         self.extract_text_service = extract_text_service
         self.grayscale_service = grayscale_service
+        self.ocr_service = ocr_service
         self.rename_service = rename_service
         self.rotate_service = rotate_service
         self.scale_service = scale_service
@@ -191,7 +193,7 @@ class FileHandlers:
         if text == _(EXTRACT_TEXT):
             return self.extract_text_service.process_file(update, context)
         if text == OCR:
-            return self.file_service.ocr_pdf(update, context)
+            return self.ocr_service.process_file(update, context)
         if text == _(COMPRESS):
             return self.file_service.compress_pdf(update, context)
         if text == _(BLACK_AND_WHITE):
