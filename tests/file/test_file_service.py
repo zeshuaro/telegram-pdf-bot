@@ -73,45 +73,6 @@ def test_compress_pdf_invalid_user_data(
         send_result_file.assert_not_called()
 
 
-def test_extract_text_from_pdf(
-    file_service: FileService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    document_id: int,
-):
-    out_path = "out_path"
-    telegram_service.get_user_data.return_value = (document_id, 0)
-    pdf_service.extract_text_from_pdf.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.file.file_service.send_result_file") as send_result_file:
-        actual = file_service.extract_text_from_pdf(telegram_update, telegram_context)
-
-        assert actual == ConversationHandler.END
-        pdf_service.extract_text_from_pdf.assert_called_with(document_id)
-        send_result_file.assert_called_once_with(
-            telegram_update, telegram_context, out_path, TaskType.get_pdf_text
-        )
-
-
-def test_extract_text_from_pdf_invalid_user_data(
-    file_service: FileService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
-
-    with patch("pdf_bot.file.file_service.send_result_file") as send_result_file:
-        actual = file_service.extract_text_from_pdf(telegram_update, telegram_context)
-
-        assert actual == ConversationHandler.END
-        pdf_service.extract_text_from_pdf.assert_not_called()
-        send_result_file.assert_not_called()
-
-
 def test_ocr_pdf(
     file_service: FileService,
     pdf_service: PdfService,

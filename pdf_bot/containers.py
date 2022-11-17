@@ -24,7 +24,7 @@ from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
 from pdf_bot.split import SplitService
 from pdf_bot.telegram_internal import TelegramService
-from pdf_bot.text import TextHandlers, TextRepository, TextService
+from pdf_bot.text import ExtractTextService, TextHandlers, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
 
 load_dotenv()
@@ -96,6 +96,13 @@ class Services(containers.DeclarativeContainer):
         telegram_service=telegram,
         language_service=language,
     )
+    extract_text = providers.Factory(
+        ExtractTextService,
+        file_task_service=file_task,
+        pdf_service=pdf,
+        telegram_service=telegram,
+        language_service=language,
+    )
     grayscale = providers.Factory(
         GrayscaleService,
         file_task_service=file_task,
@@ -153,6 +160,7 @@ class Handlers(containers.DeclarativeContainer):
         crop_service=services.crop,
         decrypt_service=services.decrypt,
         encrypt_service=services.encrypt,
+        extract_text_service=services.extract_text,
         grayscale_service=services.grayscale,
         rename_service=services.rename,
         rotate_service=services.rotate,
