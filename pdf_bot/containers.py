@@ -60,13 +60,14 @@ class Services(containers.DeclarativeContainer):
 
     cli = providers.Factory(CLIService)
     io = providers.Factory(IOService)
-    file_task = providers.Factory(FileTaskService)
 
     account = providers.Factory(AccountService, account_repository=repositories.account)
     command = providers.Factory(CommandService, account_service=account)
     language = providers.Factory(
         LanguageService, language_repository=repositories.language
     )
+
+    file_task = providers.Factory(FileTaskService, language_service=language)
     telegram = providers.Factory(
         TelegramService, io_service=io, language_service=language, updater=core.updater
     )

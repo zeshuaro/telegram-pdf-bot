@@ -31,7 +31,7 @@ from pdf_bot.consts import (
 from pdf_bot.crop import CropService
 from pdf_bot.crypto import DecryptService, EncryptService
 from pdf_bot.file.file_service import FileService
-from pdf_bot.file_task import FileTaskService, file_task_constants
+from pdf_bot.file_task import FileTaskService
 from pdf_bot.files.image import (
     ask_image_results_type,
     ask_image_task,
@@ -86,7 +86,7 @@ class FileHandlers:
                 MessageHandler(Filters.photo, self.check_image),
             ],
             states={
-                file_task_constants.WAIT_PDF_TASK: [
+                FileTaskService.WAIT_PDF_TASK: [
                     MessageHandler(TEXT_FILTER, self.check_doc_task)
                 ],
                 WAIT_IMAGE_TASK: [MessageHandler(TEXT_FILTER, self.check_image_task)],
@@ -201,7 +201,7 @@ class FileHandlers:
         if text == _(CANCEL):
             return cancel(update, context)
 
-        return file_task_constants.WAIT_PDF_TASK
+        return FileTaskService.WAIT_PDF_TASK
 
     @staticmethod
     def check_image_task(update, context):
