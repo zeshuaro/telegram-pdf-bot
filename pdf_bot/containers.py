@@ -120,7 +120,12 @@ class Services(containers.DeclarativeContainer):
     language = providers.Factory(
         LanguageService, language_repository=repositories.language
     )
-    merge = providers.Factory(MergeService, pdf_service=pdf, telegram_service=telegram)
+    merge = providers.Factory(
+        MergeService,
+        pdf_service=pdf,
+        telegram_service=telegram,
+        language_service=language,
+    )
     ocr = providers.Factory(
         OCRService,
         file_task_service=file_task,
