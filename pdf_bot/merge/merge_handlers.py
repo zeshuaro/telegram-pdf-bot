@@ -10,7 +10,7 @@ class MergeHandlers:
     def __init__(self, merge_service: MergeService) -> None:
         self.merge_service = merge_service
 
-    def conversation_handler(self):
+    def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
             entry_points=[CommandHandler("merge", self.merge_service.ask_first_pdf)],
             states={

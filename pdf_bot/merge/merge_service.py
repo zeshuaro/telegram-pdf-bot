@@ -5,27 +5,30 @@ from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import CANCEL, DONE, REMOVE_LAST
-from pdf_bot.language import set_lang
-from pdf_bot.merge.constants import MERGE_PDF_DATA, WAIT_MERGE_PDF
+from pdf_bot.language_new import LanguageService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
-from pdf_bot.utils import cancel, reply_with_cancel_btn, send_result_file
 
 
 class MergeService:
+    WAIT_MERGE_PDF = 0
+    MERGE_PDF_DATA = "merge_pdf_data"
+
     def __init__(
-        self, pdf_service: PdfService, telegram_service: TelegramService
+        self,
+        pdf_service: PdfService,
+        telegram_service: TelegramService,
+        language_service: LanguageService,
     ) -> None:
         self.pdf_service = pdf_service
         self.telegram_service = telegram_service
+        self.language_service = language_service
 
-    @staticmethod
-    def ask_first_pdf(update: Update, context: CallbackContext) -> int:
-        context.user_data[MERGE_PDF_DATA] = []
-        _ = set_lang(update, context)
-
-        reply_with_cancel_btn(
+    def ask_first_pdf(self, update: Update, context: CallbackContext) -> int:
+        context.user_data[self.MERGE_PDF_DATA] = []
+        _ = self.language_service.set_app_language(update, context)
+        self.telegram_service.reply_with_cancel_markup(
             update,
             context,
             "{desc_1}\n\n{desc_2}".format(
@@ -36,27 +39,48 @@ class MergeService:
             ),
         )
 
-        return WAIT_MERGE_PDF
+        return self.WAIT_MERGE_PDF
 
     def check_pdf(self, update: Update, context: CallbackContext) -> int:
-        _ = set_lang(update, context)
+        _ = self.language_service.set_app_language(update, context)
         message = update.effective_message
 
         try:
             doc = self.telegram_service.check_pdf_document(message)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
-            return WAIT_MERGE_PDF
+            return self.WAIT_MERGE_PDF
 
         file_data = FileData.from_telegram_document(doc)
-        context.user_data[MERGE_PDF_DATA].append(file_data)
-        return self.ask_next_pdf(update, context)
+        context.user_data[self.MERGE_PDF_DATA].append(file_data)
+        return self._ask_next_pdf(update, context)
 
-    def ask_next_pdf(self, update: Update, context: CallbackContext) -> int:
-        _ = set_lang(update, context)
+    def check_text(self, update: Update, context: CallbackContext) -> int:
+        _ = self.language_service.set_app_language(update, context)
+        message = update.effective_message
+        text = message.text
+
+        if text in [_(REMOVE_LAST), _(DONE)]:
+            try:
+                file_data_list = self.telegram_service.get_user_data(
+                    context, self.MERGE_PDF_DATA
+                )
+            except TelegramServiceError as e:
+                message.reply_text(_(str(e)))
+                return ConversationHandler.END
+
+            if text == _(REMOVE_LAST):
+                return self._remove_last_pdf(update, context, file_data_list)
+            return self._preprocess_pdfs(update, context, file_data_list)
+        if text == _(CANCEL):
+            return self.telegram_service.cancel_conversation(update, context)
+        return self.WAIT_MERGE_PDF
+
+    def _ask_next_pdf(self, update: Update, context: CallbackContext) -> int:
+        _ = self.language_service.set_app_language(update, context)
         text = "{desc}\n".format(desc=_("You've sent me these PDF files so far:"))
         self.telegram_service.send_file_names(
-            update.effective_chat.id, text, context.user_data[MERGE_PDF_DATA]
+            update.effective_chat.id, text, context.user_data[self.MERGE_PDF_DATA]
         )
 
         reply_markup = ReplyKeyboardMarkup(
@@ -73,35 +97,12 @@ class MergeService:
             parse_mode=ParseMode.HTML,
         )
 
-        return WAIT_MERGE_PDF
+        return self.WAIT_MERGE_PDF
 
-    def check_text(self, update: Update, context: CallbackContext) -> int:
-        _ = set_lang(update, context)
-        message = update.effective_message
-        text = message.text
-
-        if text in [_(REMOVE_LAST), _(DONE)]:
-            try:
-                file_data_list = self.telegram_service.get_user_data(
-                    context, MERGE_PDF_DATA
-                )
-            except TelegramServiceError as e:
-                message.reply_text(_(str(e)))
-                return ConversationHandler.END
-
-            if text == _(REMOVE_LAST):
-                return self.remove_last_pdf(update, context, file_data_list)
-            if text == _(DONE):
-                return self.preprocess_pdfs(update, context, file_data_list)
-        elif text == _(CANCEL):
-            return cancel(update, context)
-
-        return WAIT_MERGE_PDF
-
-    def remove_last_pdf(
+    def _remove_last_pdf(
         self, update: Update, context: CallbackContext, file_data_list: List[FileData]
     ) -> int:
-        _ = set_lang(update, context)
+        _ = self.language_service.set_app_language(update, context)
         try:
             file_data = file_data_list.pop()
         except IndexError:
@@ -118,14 +119,14 @@ class MergeService:
         )
 
         if file_data_list:
-            context.user_data[MERGE_PDF_DATA] = file_data_list
-            return self.ask_next_pdf(update, context)
+            context.user_data[self.MERGE_PDF_DATA] = file_data_list
+            return self._ask_next_pdf(update, context)
         return self.ask_first_pdf(update, context)
 
-    def preprocess_pdfs(
+    def _preprocess_pdfs(
         self, update: Update, context: CallbackContext, file_data_list: List[FileData]
     ) -> int:
-        _ = set_lang(update, context)
+        _ = self.language_service.set_app_language(update, context)
         num_files = len(file_data_list)
 
         if num_files == 0:
@@ -133,21 +134,23 @@ class MergeService:
             return self.ask_first_pdf(update, context)
         if num_files == 1:
             update.effective_message.reply_text(_("You've only sent me one PDF file"))
-            context.user_data[MERGE_PDF_DATA] = file_data_list
-            return self.ask_next_pdf(update, context)
-        return self.merge_pdfs(update, context, file_data_list)
+            context.user_data[self.MERGE_PDF_DATA] = file_data_list
+            return self._ask_next_pdf(update, context)
+        return self._merge_pdfs(update, context, file_data_list)
 
-    def merge_pdfs(
+    def _merge_pdfs(
         self, update: Update, context: CallbackContext, file_data_list: List[FileData]
     ) -> int:
-        _ = set_lang(update, context)
+        _ = self.language_service.set_app_language(update, context)
         update.effective_message.reply_text(
             _("Merging your PDF files"), reply_markup=ReplyKeyboardRemove()
         )
 
         try:
             with self.pdf_service.merge_pdfs(file_data_list) as out_path:
-                send_result_file(update, context, out_path, TaskType.merge_pdf)
+                self.telegram_service.reply_with_file(
+                    update, context, out_path, TaskType.merge_pdf
+                )
         except PdfServiceError as e:
             update.effective_message.reply_text(_(str(e)))
 
