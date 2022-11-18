@@ -19,7 +19,7 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import CallbackContext, ConversationHandler, Updater
 
 from pdf_bot.analytics import EventAction, TaskType, send_event
-from pdf_bot.consts import BACK, CHANNEL_NAME, PAYMENT
+from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, PAYMENT
 from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageService
 from pdf_bot.models import FileData
@@ -156,11 +156,12 @@ class TelegramService:
     def reply_with_back_markup(
         self, update: Update, context: CallbackContext, text: str
     ) -> None:
-        _ = self.language_service.set_app_language(update, context)
-        reply_markup = ReplyKeyboardMarkup(
-            [[_(BACK)]], one_time_keyboard=True, resize_keyboard=True
-        )
-        update.effective_message.reply_text(text, reply_markup=reply_markup)
+        self._reply_with_markup(update, context, text, BACK)
+
+    def reply_with_cancel_markup(
+        self, update: Update, context: CallbackContext, text: str
+    ) -> None:
+        self._reply_with_markup(update, context, text, CANCEL)
 
     def reply_with_file(
         self,
@@ -202,3 +203,16 @@ class TelegramService:
         for i, file_data in enumerate(file_data_list):
             text += f"{i + 1}: {file_data.name}\n"
         self.bot.send_message(chat_id, text)
+
+    def _reply_with_markup(
+        self,
+        update: Update,
+        context: CallbackContext,
+        text: str,
+        markup_text: str,
+    ) -> None:
+        _ = self.language_service.set_app_language(update, context)
+        markup = ReplyKeyboardMarkup(
+            [[_(markup_text)]], one_time_keyboard=True, resize_keyboard=True
+        )
+        update.effective_message.reply_text(_(text), reply_markup=markup)
