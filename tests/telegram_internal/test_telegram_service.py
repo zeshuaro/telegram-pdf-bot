@@ -1,14 +1,13 @@
 from dataclasses import dataclass
-from unittest.mock import ANY, MagicMock, call, patch
+from unittest.mock import MagicMock, call, patch
 
 import pytest
-from telegram import ChatAction, File, InlineKeyboardMarkup
+from telegram import ChatAction, File, InlineKeyboardMarkup, ReplyKeyboardMarkup
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.io import IOService
-from pdf_bot.language_new import LanguageService
 from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import (
     TelegramFileMimeTypeError,
@@ -17,20 +16,23 @@ from pdf_bot.telegram_internal import (
     TelegramService,
 )
 from pdf_bot.telegram_internal.exceptions import TelegramUserDataKeyError
+from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
 
-class TestTelegramRService(TelegramTestMixin):
+class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     IMG_MIME_TYPE = "image"
     PDF_MIME_TYPE = "pdf"
     FILE_PATH = "file_path"
     USER_DATA_KEY = "user_data_key"
     USER_DATA_VALUE = "user_data_value"
+    BACK = "Back"
+    CANCEL = "Cancel"
 
     def setup_method(self) -> None:
         super().setup_method()
         self.io_service = MagicMock(spec=IOService)
-        self.language_service = MagicMock(spec=LanguageService)
+        self.language_service = self.mock_language_service()
         self.sut = TelegramService(
             self.io_service, self.language_service, bot=self.telegram_bot
         )
@@ -205,11 +207,25 @@ class TestTelegramRService(TelegramTestMixin):
             self.sut.get_user_data(self.telegram_context, self.USER_DATA_KEY)
 
     def test_reply_with_back_markup(self) -> None:
+        markup = ReplyKeyboardMarkup(
+            [[self.BACK]], one_time_keyboard=True, resize_keyboard=True
+        )
         self.sut.reply_with_back_markup(
             self.telegram_update, self.telegram_context, self.telegram_text
         )
         self.telegram_message.reply_text.assert_called_once_with(
-            self.telegram_text, reply_markup=ANY
+            self.telegram_text, reply_markup=markup
+        )
+
+    def test_reply_with_cancel_markup(self) -> None:
+        markup = ReplyKeyboardMarkup(
+            [[self.CANCEL]], one_time_keyboard=True, resize_keyboard=True
+        )
+        self.sut.reply_with_cancel_markup(
+            self.telegram_update, self.telegram_context, self.telegram_text
+        )
+        self.telegram_message.reply_text.assert_called_once_with(
+            self.telegram_text, reply_markup=markup
         )
 
     def test_reply_with_file_document(self) -> None:
