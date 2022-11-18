@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-18 08:15+0000\n"
-"PO-Revision-Date: 2022-11-18 08:15\n"
+"POT-Creation-Date: 2022-11-18 11:57+0000\n"
+"PO-Revision-Date: 2022-11-18 11:57\n"
 "Last-Translator: \n"
 "Language: de\n"
 "Language-Team: German\n"
@@ -100,8 +100,8 @@ msgid "Images"
 msgstr "Bilder"
 
 #: pdf_bot/consts.py:56
-msgid "Remove Last File"
-msgstr "Entfernen Letzte Datei"
+msgid "Remove last file"
+msgstr ""
 
 #: pdf_bot/consts.py:57
 msgid "To Dimensions"
@@ -497,39 +497,39 @@ msgstr "Ich konnte keine Bilder in Ihrer PDF-Datei finden"
 msgid "See above for all your images"
 msgstr "Siehe oben für alle Ihre Bilder"
 
-#: pdf_bot/merge/merge_service.py:32
+#: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Senden Sie mir die PDF-Dateien, die Sie zusammenführen möchten"
 
-#: pdf_bot/merge/merge_service.py:33
+#: pdf_bot/merge/merge_service.py:36
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Beachten Sie, dass die Dateien in der Reihenfolge zusammengeführt werden, in der Sie mich senden"
 
-#: pdf_bot/merge/merge_service.py:57
+#: pdf_bot/merge/merge_service.py:81
 msgid "You've sent me these PDF files so far:"
 msgstr "Sie haben mir bisher diese PDF-Dateien geschickt:"
 
-#: pdf_bot/merge/merge_service.py:68
+#: pdf_bot/merge/merge_service.py:92
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Drücken Sie {done} , wenn Sie mir alle PDF-Dateien gesendet haben, die Sie zusammenführen möchten, oder senden Sie mir weiterhin die PDF-Dateien"
 
-#: pdf_bot/merge/merge_service.py:109
+#: pdf_bot/merge/merge_service.py:110
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Sie haben bereits alle PDF-Dateien entfernt, die Sie mir gesendet haben"
 
-#: pdf_bot/merge/merge_service.py:114
+#: pdf_bot/merge/merge_service.py:115
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} wurde für die Zusammenführung entfernt"
 
-#: pdf_bot/merge/merge_service.py:132
+#: pdf_bot/merge/merge_service.py:133
 msgid "You haven't sent me any PDF files"
 msgstr "Sie haben mir keine PDF-Dateien gesendet"
 
-#: pdf_bot/merge/merge_service.py:135
+#: pdf_bot/merge/merge_service.py:136
 msgid "You've only sent me one PDF file"
 msgstr "Sie haben mir nur eine PDF-Datei geschickt"
 
-#: pdf_bot/merge/merge_service.py:145
+#: pdf_bot/merge/merge_service.py:146
 msgid "Merging your PDF files"
 msgstr "Zusammenführen Ihrer PDF-Dateien"
 
@@ -1556,5 +1556,8 @@ msgstr "Hinzufügen des Wasserzeichens zu Ihrer PDF-Datei"
 #~ " limitation and there's nothing I can"
 #~ " do unless Telegram changes this "
 #~ "limit"
+#~ msgstr ""
+
+#~ msgid "Remove Last File"
 #~ msgstr ""
 

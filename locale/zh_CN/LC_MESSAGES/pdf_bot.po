@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-18 08:15+0000\n"
-"PO-Revision-Date: 2022-11-18 08:15\n"
+"POT-Creation-Date: 2022-11-18 11:57+0000\n"
+"PO-Revision-Date: 2022-11-18 11:57\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -100,8 +100,8 @@ msgid "Images"
 msgstr "图像"
 
 #: pdf_bot/consts.py:56
-msgid "Remove Last File"
-msgstr "移除上一个档案"
+msgid "Remove last file"
+msgstr ""
 
 #: pdf_bot/consts.py:57
 msgid "To Dimensions"
@@ -497,39 +497,39 @@ msgstr "我在您的 PDF 文件中找不到任何图像"
 msgid "See above for all your images"
 msgstr "查看上文以获取所有图像"
 
-#: pdf_bot/merge/merge_service.py:32
+#: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "将您希望合并的 PDF 文件发送给我"
 
-#: pdf_bot/merge/merge_service.py:33
+#: pdf_bot/merge/merge_service.py:36
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "请注意，文件将按照您发送给我的顺序合并"
 
-#: pdf_bot/merge/merge_service.py:57
+#: pdf_bot/merge/merge_service.py:81
 msgid "You've sent me these PDF files so far:"
 msgstr "到目前为止，您已经向我发送了这些PDF文件："
 
-#: pdf_bot/merge/merge_service.py:68
+#: pdf_bot/merge/merge_service.py:92
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "按 {done} ，如果您已将您希望合并的所有 PDF 文件发送给我，或继续将 PDF 文件发送给我"
 
-#: pdf_bot/merge/merge_service.py:109
+#: pdf_bot/merge/merge_service.py:110
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "您已经删除了发送给我的所有PDF文件"
 
-#: pdf_bot/merge/merge_service.py:114
+#: pdf_bot/merge/merge_service.py:115
 msgid "{file_name} has been removed for merging"
 msgstr "合并 {file_name} 已被移除"
 
-#: pdf_bot/merge/merge_service.py:132
+#: pdf_bot/merge/merge_service.py:133
 msgid "You haven't sent me any PDF files"
 msgstr "你还没有向我发送任何PDF档案"
 
-#: pdf_bot/merge/merge_service.py:135
+#: pdf_bot/merge/merge_service.py:136
 msgid "You've only sent me one PDF file"
 msgstr "你只寄给我一个 Pdf 文件"
 
-#: pdf_bot/merge/merge_service.py:145
+#: pdf_bot/merge/merge_service.py:146
 msgid "Merging your PDF files"
 msgstr "正在合并你的PDF档案"
 
@@ -1556,5 +1556,8 @@ msgstr "正在添加水印到你的PDF档案中"
 #~ " limitation and there's nothing I can"
 #~ " do unless Telegram changes this "
 #~ "limit"
+#~ msgstr ""
+
+#~ msgid "Remove Last File"
 #~ msgstr ""
 

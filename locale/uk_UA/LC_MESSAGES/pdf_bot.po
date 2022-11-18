@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-18 08:15+0000\n"
-"PO-Revision-Date: 2022-11-18 08:15\n"
+"POT-Creation-Date: 2022-11-18 11:57+0000\n"
+"PO-Revision-Date: 2022-11-18 11:57\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -100,8 +100,8 @@ msgid "Images"
 msgstr "Зображення"
 
 #: pdf_bot/consts.py:56
-msgid "Remove Last File"
-msgstr "Вилучити останній файл"
+msgid "Remove last file"
+msgstr ""
 
 #: pdf_bot/consts.py:57
 msgid "To Dimensions"
@@ -497,39 +497,39 @@ msgstr "Не вдалося знайти зображення у вашому PD
 msgid "See above for all your images"
 msgstr "Дивіться вище для всіх ваших зображень"
 
-#: pdf_bot/merge/merge_service.py:32
+#: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Надіслати мені PDF-файли, які потрібно об'єднати"
 
-#: pdf_bot/merge/merge_service.py:33
+#: pdf_bot/merge/merge_service.py:36
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Зауважте, що файли буде об'єднано в тому порядку, в який ви надішлете мені"
 
-#: pdf_bot/merge/merge_service.py:57
+#: pdf_bot/merge/merge_service.py:81
 msgid "You've sent me these PDF files so far:"
 msgstr "Ви надіслали мені ці PDF-файли до цих пір:"
 
-#: pdf_bot/merge/merge_service.py:68
+#: pdf_bot/merge/merge_service.py:92
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Натисніть {done} , якщо ви надіслали мені всі PDF-файли, які ви хочете об'єднати, або продовжуйте надсилати мені PDF-файли"
 
-#: pdf_bot/merge/merge_service.py:109
+#: pdf_bot/merge/merge_service.py:110
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Ви вже видалили всі PDF-файли, які ви мені надіслали"
 
-#: pdf_bot/merge/merge_service.py:114
+#: pdf_bot/merge/merge_service.py:115
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} видалено для об'єднання"
 
-#: pdf_bot/merge/merge_service.py:132
+#: pdf_bot/merge/merge_service.py:133
 msgid "You haven't sent me any PDF files"
 msgstr "Ви не надіслали мені жодних PDF-файлів"
 
-#: pdf_bot/merge/merge_service.py:135
+#: pdf_bot/merge/merge_service.py:136
 msgid "You've only sent me one PDF file"
 msgstr "Ви надіслали мені лише один PDF-файл"
 
-#: pdf_bot/merge/merge_service.py:145
+#: pdf_bot/merge/merge_service.py:146
 msgid "Merging your PDF files"
 msgstr "Об'єміщення PDF-файлів"
 
@@ -1556,5 +1556,8 @@ msgstr "Додавання водяного знака до файлу PDF"
 #~ " limitation and there's nothing I can"
 #~ " do unless Telegram changes this "
 #~ "limit"
+#~ msgstr ""
+
+#~ msgid "Remove Last File"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-18 08:15+0000\n"
-"PO-Revision-Date: 2022-11-18 08:15\n"
+"POT-Creation-Date: 2022-11-18 11:57+0000\n"
+"PO-Revision-Date: 2022-11-18 11:57\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -100,8 +100,8 @@ msgid "Images"
 msgstr "이미지"
 
 #: pdf_bot/consts.py:56
-msgid "Remove Last File"
-msgstr "마지막 파일 제거"
+msgid "Remove last file"
+msgstr ""
 
 #: pdf_bot/consts.py:57
 msgid "To Dimensions"
@@ -497,39 +497,39 @@ msgstr "PDF 파일에서 이미지를 찾을 수 없습니다."
 msgid "See above for all your images"
 msgstr "모든 이미지에 대해 위 참조"
 
-#: pdf_bot/merge/merge_service.py:32
+#: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "병합하려는 PDF 파일 보내기"
 
-#: pdf_bot/merge/merge_service.py:33
+#: pdf_bot/merge/merge_service.py:36
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "파일을 보내주는 순서대로 병합됩니다."
 
-#: pdf_bot/merge/merge_service.py:57
+#: pdf_bot/merge/merge_service.py:81
 msgid "You've sent me these PDF files so far:"
 msgstr "지금까지 나에게 이러한 PDF 파일을 보냈습니다."
 
-#: pdf_bot/merge/merge_service.py:68
+#: pdf_bot/merge/merge_service.py:92
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "병합하거나 PDF 파일을 계속 보내려면 {done} 누르면"
 
-#: pdf_bot/merge/merge_service.py:109
+#: pdf_bot/merge/merge_service.py:110
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "나에게 보낸 모든 PDF 파일을 이미 제거했습니다."
 
-#: pdf_bot/merge/merge_service.py:114
+#: pdf_bot/merge/merge_service.py:115
 msgid "{file_name} has been removed for merging"
 msgstr "병합을 위해 {file_name} 제거되었습니다."
 
-#: pdf_bot/merge/merge_service.py:132
+#: pdf_bot/merge/merge_service.py:133
 msgid "You haven't sent me any PDF files"
 msgstr "PDF 파일을 보내지 않으셨나요?"
 
-#: pdf_bot/merge/merge_service.py:135
+#: pdf_bot/merge/merge_service.py:136
 msgid "You've only sent me one PDF file"
 msgstr "PDF 파일 하나만 보냈습니다."
 
-#: pdf_bot/merge/merge_service.py:145
+#: pdf_bot/merge/merge_service.py:146
 msgid "Merging your PDF files"
 msgstr "PDF 파일 병합"
 
@@ -1556,5 +1556,8 @@ msgstr "PDF 파일에 워터마크 추가"
 #~ " limitation and there's nothing I can"
 #~ " do unless Telegram changes this "
 #~ "limit"
+#~ msgstr ""
+
+#~ msgid "Remove Last File"
 #~ msgstr ""
 

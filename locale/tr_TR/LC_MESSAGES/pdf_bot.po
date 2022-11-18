@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-18 08:15+0000\n"
-"PO-Revision-Date: 2022-11-18 08:15\n"
+"POT-Creation-Date: 2022-11-18 11:57+0000\n"
+"PO-Revision-Date: 2022-11-18 11:57\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -100,8 +100,8 @@ msgid "Images"
 msgstr "Görseller"
 
 #: pdf_bot/consts.py:56
-msgid "Remove Last File"
-msgstr "Son Objeyi Kaldır"
+msgid "Remove last file"
+msgstr ""
 
 #: pdf_bot/consts.py:57
 msgid "To Dimensions"
@@ -497,39 +497,39 @@ msgstr "PDF dosyanızda görüntü bulamadım"
 msgid "See above for all your images"
 msgstr "Tüm resimleriniz için yukarıya bakın"
 
-#: pdf_bot/merge/merge_service.py:32
+#: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Birleştirmeyi istediğiniz PDF dosyalarını bana gönderin"
 
-#: pdf_bot/merge/merge_service.py:33
+#: pdf_bot/merge/merge_service.py:36
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Dosyaların bana gönderdiğiniz sırada birleştirileceğini unutmayın"
 
-#: pdf_bot/merge/merge_service.py:57
+#: pdf_bot/merge/merge_service.py:81
 msgid "You've sent me these PDF files so far:"
 msgstr "Şimdiye kadar bana şu PDF dosyalarını gönderdiniz:"
 
-#: pdf_bot/merge/merge_service.py:68
+#: pdf_bot/merge/merge_service.py:92
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Bana birleştirmek istediğiniz tüm PDF dosyalarını gönderdiyseniz veya PDF dosyalarını göndermeye devam ettiyseniz {done} basın"
 
-#: pdf_bot/merge/merge_service.py:109
+#: pdf_bot/merge/merge_service.py:110
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Bana gönderdiğiniz tüm PDF dosyalarını zaten kaldırdınız"
 
-#: pdf_bot/merge/merge_service.py:114
+#: pdf_bot/merge/merge_service.py:115
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} birleştirmek için kaldırıldı"
 
-#: pdf_bot/merge/merge_service.py:132
+#: pdf_bot/merge/merge_service.py:133
 msgid "You haven't sent me any PDF files"
 msgstr "Bana hiç PDF dosyası göndermedin"
 
-#: pdf_bot/merge/merge_service.py:135
+#: pdf_bot/merge/merge_service.py:136
 msgid "You've only sent me one PDF file"
 msgstr "Bana sadece bir PDF dosyası gönderdin"
 
-#: pdf_bot/merge/merge_service.py:145
+#: pdf_bot/merge/merge_service.py:146
 msgid "Merging your PDF files"
 msgstr "PDF dosyalarınızı birleştirme"
 
@@ -1556,5 +1556,8 @@ msgstr "PDF dosyanıza filigran ekleme"
 #~ " limitation and there's nothing I can"
 #~ " do unless Telegram changes this "
 #~ "limit"
+#~ msgstr ""
+
+#~ msgid "Remove Last File"
 #~ msgstr ""
 
