@@ -65,11 +65,18 @@ class TestPDFService(
             self.DOWNLOAD_PATH
         )
 
+        self.open_patcher = patch("builtins.open")
+        self.mock_open = self.open_patcher.start()
+
         self.sut = PdfService(
             self.cli_service,
             self.io_service,
             self.telegram_service,
         )
+
+    def teardown_method(self) -> None:
+        self.open_patcher.stop()
+        super().teardown_method()
 
     def test_add_watermark_to_pdf(self) -> None:
         src_file_id = "src_file_id"
@@ -154,10 +161,10 @@ class TestPDFService(
         file = MagicMock()
         image_bytes = "image_bytes"
 
-        with patch("builtins.open") as mock_open, patch(
-            "pdf_bot.pdf.pdf_service.pdf2image"
-        ) as pdf2image, patch("pdf_bot.pdf.pdf_service.img2pdf") as img2pdf:
-            mock_open.return_value.__enter__.return_value = file
+        with patch("pdf_bot.pdf.pdf_service.pdf2image") as pdf2image, patch(
+            "pdf_bot.pdf.pdf_service.img2pdf"
+        ) as img2pdf:
+            self.mock_open.return_value.__enter__.return_value = file
             pdf2image.convert_from_path.return_value = image_paths
             img2pdf.convert.return_value = image_bytes
 
@@ -173,7 +180,7 @@ class TestPDFService(
                     paths_only=True,
                 )
                 img2pdf.convert.assert_called_once_with(image_paths)
-                mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
+                self.mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
                 file.write.assert_called_once_with(image_bytes)
 
     def test_compare_pdfs(self) -> None:
@@ -220,10 +227,8 @@ class TestPDFService(
             file_paths
         )
 
-        with patch("builtins.open") as mock_open, patch(
-            "pdf_bot.pdf.pdf_service.img2pdf"
-        ) as img2pdf:
-            mock_open.return_value.__enter__.return_value = file
+        with patch("pdf_bot.pdf.pdf_service.img2pdf") as img2pdf:
+            self.mock_open.return_value.__enter__.return_value = file
             img2pdf.convert.return_value = image_bytes
 
             with self.sut.convert_images_to_pdf(file_data_list) as actual:
@@ -232,7 +237,7 @@ class TestPDFService(
                 self.io_service.create_temp_pdf_file.assert_called_once_with(
                     "Converted"
                 )
-                mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
+                self.mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
                 img2pdf.convert.assert_called_once_with(file_paths)
                 file.write.assert_called_once_with(image_bytes)
 
