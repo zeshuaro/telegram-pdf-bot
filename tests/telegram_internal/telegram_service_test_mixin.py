@@ -1,5 +1,7 @@
 from unittest.mock import MagicMock
 
+from telegram.ext import ConversationHandler
+
 from pdf_bot.telegram_internal import TelegramService
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
@@ -12,4 +14,6 @@ class TelegramServiceTestMixin(TelegramTestMixin):
             self.telegram_document_id,
             self.telegram_document_name,
         )
+        service.cancel_conversation.return_value = ConversationHandler.END
+
         return service

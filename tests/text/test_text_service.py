@@ -1,95 +1,145 @@
-from typing import Iterator, cast
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
-import pytest
-from telegram import Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram_internal import TelegramService, TelegramUserDataKeyError
+from pdf_bot.pdf.models import FontData
+from pdf_bot.telegram_internal import TelegramServiceError
 from pdf_bot.text import TextRepository, TextService
-
-WAIT_TEXT = 0
-WAIT_FONT = 1
-
-
-@pytest.fixture(name="text_repository")
-def fixture_text_repository() -> TextRepository:
-    return cast(TextRepository, MagicMock())
+from tests.language import LanguageServiceTestMixin
+from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-@pytest.fixture(name="text_service")
-def fixture_text_service(
-    text_repository: TextRepository,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-) -> TextService:
-    return TextService(text_repository, pdf_service, telegram_service)
-
-
-@pytest.fixture(scope="session", autouse=True)
-def set_lang() -> Iterator[None]:
-    with patch("pdf_bot.text.text_service.set_lang"):
-        yield
-
-
-def test_ask_pdf_text(
-    text_service: TextService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
+class TestTextService(
+    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
 ):
-    actual = text_service.ask_pdf_text(telegram_update, telegram_context)
-    assert actual == WAIT_TEXT
+    WAIT_TEXT = 0
+    WAIT_FONT = 1
+    FILE_PATH = "file_path"
+    TEXT_KEY = "text"
+    SKIP = "Skip"
+    PDF_TEXT = "pdf_text"
 
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.font_data = MagicMock(spec=FontData)
 
-def test_ask_pdf_font(
-    text_service: TextService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    actual = text_service.ask_pdf_font(telegram_update, telegram_context)
-    assert actual == WAIT_FONT
+        self.text_repository = MagicMock(spec=TextRepository)
+        self.text_repository.get_font.return_value = self.font_data
 
+        self.pdf_service = MagicMock(spec=PdfService)
+        self.language_service = self.mock_language_service()
 
-def test_check_text(
-    text_service: TextService,
-    pdf_service: PdfService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    out_path = "out_path"
-    pdf_service.create_pdf_from_text.return_value.__enter__.return_value = out_path
+        self.telegram_service = self.mock_telegram_service()
+        self.telegram_service.get_user_data.return_value = self.PDF_TEXT
 
-    with patch("pdf_bot.text.text_service.send_result_file") as send_result_file:
-        actual = text_service.check_text(telegram_update, telegram_context)
-        assert actual == ConversationHandler.END
-        send_result_file.assert_called_once_with(
-            telegram_update, telegram_context, out_path, TaskType.text_to_pdf
+        self.sut = TextService(
+            self.text_repository,
+            self.pdf_service,
+            self.telegram_service,
+            self.language_service,
         )
 
+    def test_ask_pdf_text(self) -> None:
+        actual = self.sut.ask_pdf_text(self.telegram_update, self.telegram_context)
+        assert actual == self.WAIT_TEXT
+        self.telegram_service.reply_with_cancel_markup.assert_called_once()
 
-def test_check_text_invalid_user_data(
-    text_service: TextService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
-    with patch("pdf_bot.text.text_service.send_result_file") as send_result_file:
-        actual = text_service.check_text(telegram_update, telegram_context)
+    def test_ask_pdf_font(self) -> None:
+        actual = self.sut.ask_pdf_font(self.telegram_update, self.telegram_context)
+
+        assert actual == self.WAIT_FONT
+        self.telegram_context.user_data.__setitem__.assert_called_once_with(
+            self.TEXT_KEY, self.telegram_text
+        )
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+
+    def test_ask_pdf_font_cancel_option(self) -> None:
+        self.telegram_message.text = "Cancel"
+
+        actual = self.sut.ask_pdf_font(self.telegram_update, self.telegram_context)
+
         assert actual == ConversationHandler.END
-        send_result_file.assert_not_called()
+        self.telegram_context.user_data.__setitem__.assert_not_called()
+        self.telegram_service.cancel_conversation.assert_called_once()
 
+    def test_check_text(self) -> None:
+        self.pdf_service.create_pdf_from_text.return_value.__enter__.return_value = (
+            self.FILE_PATH
+        )
 
-def test_check_text_unknown_font(
-    text_service: TextService,
-    text_repository: TextRepository,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    text_repository.get_font.return_value = None
-    with patch("pdf_bot.text.text_service.send_result_file") as send_result_file:
-        actual = text_service.check_text(telegram_update, telegram_context)
-        assert actual == WAIT_FONT
-        send_result_file.assert_not_called()
+        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+
+        assert actual == ConversationHandler.END
+        self.text_repository.get_font.assert_called_once_with(self.telegram_text)
+        self.telegram_service.get_user_data.assert_called_once_with(
+            self.telegram_context, self.TEXT_KEY
+        )
+        self.pdf_service.create_pdf_from_text.assert_called_once_with(
+            self.PDF_TEXT, self.font_data
+        )
+        self.telegram_service.reply_with_file.assert_called_once_with(
+            self.telegram_update,
+            self.telegram_context,
+            self.FILE_PATH,
+            TaskType.text_to_pdf,
+        )
+
+    def test_check_text_invalid_user_data(self) -> None:
+        self.telegram_service.get_user_data.side_effect = TelegramServiceError()
+
+        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+
+        assert actual == ConversationHandler.END
+        self.text_repository.get_font.assert_called_once_with(self.telegram_text)
+        self.telegram_service.get_user_data.assert_called_once_with(
+            self.telegram_context, self.TEXT_KEY
+        )
+        self.pdf_service.create_pdf_from_text.assert_not_called()
+        self.telegram_service.reply_with_file.assert_not_called()
+
+    def test_check_text_unknown_font(self) -> None:
+        self.text_repository.get_font.return_value = None
+
+        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+
+        assert actual == self.WAIT_FONT
+        self.text_repository.get_font.assert_called_once_with(self.telegram_text)
+        self.telegram_service.get_user_data.assert_not_called()
+        self.pdf_service.create_pdf_from_text.assert_not_called()
+        self.telegram_service.reply_with_file.assert_not_called()
+
+    def test_check_text_skip_option(self) -> None:
+        self.telegram_message.text = self.SKIP
+        self.pdf_service.create_pdf_from_text.return_value.__enter__.return_value = (
+            self.FILE_PATH
+        )
+
+        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+
+        assert actual == ConversationHandler.END
+        self.text_repository.get_font.assert_not_called()
+        self.telegram_service.get_user_data.assert_called_once_with(
+            self.telegram_context, self.TEXT_KEY
+        )
+        self.pdf_service.create_pdf_from_text.assert_called_once_with(
+            self.PDF_TEXT, None
+        )
+        self.telegram_service.reply_with_file.assert_called_once_with(
+            self.telegram_update,
+            self.telegram_context,
+            self.FILE_PATH,
+            TaskType.text_to_pdf,
+        )
+
+    def test_check_text_cancel_option(self) -> None:
+        self.telegram_message.text = "Cancel"
+
+        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+
+        assert actual == ConversationHandler.END
+        self.text_repository.get_font.assert_not_called()
+        self.telegram_service.get_user_data.assert_not_called()
+        self.pdf_service.create_pdf_from_text.assert_not_called()
+        self.telegram_service.reply_with_file.assert_not_called()
