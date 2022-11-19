@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-19 06:41+0000\n"
-"PO-Revision-Date: 2022-11-19 06:41\n"
+"POT-Creation-Date: 2022-11-19 07:18+0000\n"
+"PO-Revision-Date: 2022-11-19 07:18\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -585,39 +585,39 @@ msgstr "시계 방향으로 PDF 파일을 회전하려는 도를 선택합니다
 msgid "Invalid rotation degree, try again"
 msgstr ""
 
-#: pdf_bot/scale/scale_constants.py:5
+#: pdf_bot/scale/scale_service.py:16
 msgid "By scaling factor"
 msgstr "배율 조정"
 
-#: pdf_bot/scale/scale_constants.py:6
+#: pdf_bot/scale/scale_service.py:17
 msgid "To dimension"
 msgstr "치수로"
 
-#: pdf_bot/scale/scale_service.py:37
+#: pdf_bot/scale/scale_service.py:49
 msgid "Select the scale type that you'll like to perform"
 msgstr "수행하려는 배율 유형을 선택합니다."
 
-#: pdf_bot/scale/scale_service.py:68
+#: pdf_bot/scale/scale_service.py:82
 msgid "The scaling factors {values} are invalid, please try again"
 msgstr "{values} 배율 조정 요인이 유효하지 않습니다, 다시 시도하십시오"
 
-#: pdf_bot/scale/scale_service.py:88
+#: pdf_bot/scale/scale_service.py:106
 msgid "The dimensions {values} are invalid, please try again"
 msgstr "{values} 차원이 유효하지 않습니다, 다시 시도하십시오"
 
-#: pdf_bot/scale/scale_service.py:107
+#: pdf_bot/scale/scale_service.py:123
 msgid "Send me the scaling factors for the horizontal and vertical axes"
 msgstr "가로 축 및 수직 축의 배율 조정 계수 보내기"
 
-#: pdf_bot/scale/scale_service.py:112
+#: pdf_bot/scale/scale_service.py:128
 msgid "This will double the horizontal axis and halve the vertical axis"
 msgstr "이렇게 하면 가로 축이 두 배이고 세로 축의 절반입니다."
 
-#: pdf_bot/scale/scale_service.py:124
+#: pdf_bot/scale/scale_service.py:141
 msgid "Send me the width and height"
 msgstr "너비와 높이 보내기"
 
-#: pdf_bot/scale/scale_service.py:126
+#: pdf_bot/scale/scale_service.py:143
 msgid "This will set the width to 150 and height to 200"
 msgstr "이렇게 하면 너비가 150이고 높이는 200으로 설정됩니다."
 
