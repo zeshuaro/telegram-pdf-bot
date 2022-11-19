@@ -2,7 +2,13 @@ from dataclasses import dataclass
 from unittest.mock import MagicMock, call, patch
 
 import pytest
-from telegram import ChatAction, File, InlineKeyboardMarkup, ReplyKeyboardMarkup
+from telegram import (
+    ChatAction,
+    File,
+    InlineKeyboardMarkup,
+    ParseMode,
+    ReplyKeyboardMarkup,
+)
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import ConversationHandler
 
@@ -206,26 +212,28 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         with pytest.raises(TelegramUserDataKeyError):
             self.sut.get_user_data(self.telegram_context, self.USER_DATA_KEY)
 
-    def test_reply_with_back_markup(self) -> None:
+    @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])
+    def test_reply_with_back_markup(self, parse_mode: ParseMode | None) -> None:
         markup = ReplyKeyboardMarkup(
             [[self.BACK]], one_time_keyboard=True, resize_keyboard=True
         )
         self.sut.reply_with_back_markup(
-            self.telegram_update, self.telegram_context, self.telegram_text
+            self.telegram_update, self.telegram_context, self.telegram_text, parse_mode
         )
         self.telegram_message.reply_text.assert_called_once_with(
-            self.telegram_text, reply_markup=markup
+            self.telegram_text, reply_markup=markup, parse_mode=parse_mode
         )
 
-    def test_reply_with_cancel_markup(self) -> None:
+    @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])
+    def test_reply_with_cancel_markup(self, parse_mode: ParseMode | None) -> None:
         markup = ReplyKeyboardMarkup(
             [[self.CANCEL]], one_time_keyboard=True, resize_keyboard=True
         )
         self.sut.reply_with_cancel_markup(
-            self.telegram_update, self.telegram_context, self.telegram_text
+            self.telegram_update, self.telegram_context, self.telegram_text, parse_mode
         )
         self.telegram_message.reply_text.assert_called_once_with(
-            self.telegram_text, reply_markup=markup
+            self.telegram_text, reply_markup=markup, parse_mode=parse_mode
         )
 
     def test_reply_with_file_document(self) -> None:

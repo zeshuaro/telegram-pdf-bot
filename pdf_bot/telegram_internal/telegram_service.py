@@ -10,6 +10,7 @@ from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     Message,
+    ParseMode,
     PhotoSize,
     ReplyKeyboardMarkup,
     ReplyKeyboardRemove,
@@ -154,14 +155,22 @@ class TelegramService:
         return InlineKeyboardMarkup(keyboard)
 
     def reply_with_back_markup(
-        self, update: Update, context: CallbackContext, text: str
+        self,
+        update: Update,
+        context: CallbackContext,
+        text: str,
+        parse_mode: ParseMode | None = None,
     ) -> None:
-        self._reply_with_markup(update, context, text, BACK)
+        self._reply_with_markup(update, context, text, BACK, parse_mode)
 
     def reply_with_cancel_markup(
-        self, update: Update, context: CallbackContext, text: str
+        self,
+        update: Update,
+        context: CallbackContext,
+        text: str,
+        parse_mode: ParseMode | None = None,
     ) -> None:
-        self._reply_with_markup(update, context, text, CANCEL)
+        self._reply_with_markup(update, context, text, CANCEL, parse_mode)
 
     def reply_with_file(
         self,
@@ -210,9 +219,12 @@ class TelegramService:
         context: CallbackContext,
         text: str,
         markup_text: str,
+        parse_mode: ParseMode | None = None,
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
         markup = ReplyKeyboardMarkup(
             [[_(markup_text)]], one_time_keyboard=True, resize_keyboard=True
         )
-        update.effective_message.reply_text(_(text), reply_markup=markup)
+        update.effective_message.reply_text(
+            _(text), reply_markup=markup, parse_mode=parse_mode
+        )
