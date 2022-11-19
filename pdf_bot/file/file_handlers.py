@@ -42,7 +42,7 @@ from pdf_bot.files.image import (
 )
 from pdf_bot.grayscale import GrayscaleService
 from pdf_bot.language import set_lang
-from pdf_bot.rename import RenameService, rename_constants
+from pdf_bot.rename import RenameService
 from pdf_bot.rotate import RotateService, rotate_constants
 from pdf_bot.scale import ScaleService, scale_constants
 from pdf_bot.split import SplitService, split_constants
@@ -109,7 +109,7 @@ class FileHandlers:
                 self.encrypt_service.wait_password_state: [
                     MessageHandler(TEXT_FILTER, self.encrypt_service.process_file)
                 ],
-                rename_constants.WAIT_NEW_FILE_NAME: [
+                RenameService.WAIT_NEW_FILE_NAME: [
                     MessageHandler(TEXT_FILTER, self.rename_service.rename_pdf)
                 ],
                 rotate_constants.WAIT_ROTATE_DEGREE: [

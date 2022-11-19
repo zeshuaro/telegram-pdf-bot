@@ -1,115 +1,87 @@
-from typing import Iterator
-from unittest.mock import patch
+from unittest.mock import MagicMock
 
-import pytest
-from telegram import Message, Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import PDF_INFO
-from pdf_bot.file_task import FileTaskService
 from pdf_bot.pdf import PdfService
-from pdf_bot.rename import RenameService, rename_constants
-from pdf_bot.telegram_internal import TelegramService, TelegramUserDataKeyError
+from pdf_bot.rename import RenameService
+from tests.file_task import FileTaskServiceTestMixin
+from tests.language import LanguageServiceTestMixin
+from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-@pytest.fixture(name="rename_service")
-def fixture_rename_service(
-    file_task_service: FileTaskService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-) -> RenameService:
-    return RenameService(file_task_service, pdf_service, telegram_service)
-
-
-@pytest.fixture(scope="session", autouse=True)
-def set_lang() -> Iterator[None]:
-    with patch("pdf_bot.rename.rename_service.set_lang"):
-        yield
-
-
-@pytest.fixture(scope="session", autouse=True)
-def files_set_lang() -> Iterator[None]:
-    with patch("pdf_bot.files.utils.set_lang"):
-        yield
-
-
-@pytest.fixture(scope="session", autouse=True)
-def utils_set_lang() -> Iterator[None]:
-    with patch("pdf_bot.utils.set_lang"):
-        yield
-
-
-def test_ask_new_file_name(
-    rename_service: RenameService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
+class TestRenameService(
+    FileTaskServiceTestMixin,
+    LanguageServiceTestMixin,
+    TelegramServiceTestMixin,
+    TelegramTestMixin,
 ):
-    actual = rename_service.ask_new_file_name(telegram_update, telegram_context)
-    assert actual == rename_constants.WAIT_NEW_FILE_NAME
+    FILE_PATH = "file_path"
+    WAIT_NEW_FILE_NAME = "wait_new_file_name"
+    INVALID_CHARACTERS = r"\/*?:\'<>|"
 
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.pdf_service = MagicMock(spec=PdfService)
+        self.file_task_service = self.mock_file_task_service()
+        self.language_service = self.mock_language_service()
+        self.telegram_service = self.mock_telegram_service()
 
-def test_rename_pdf(
-    rename_service: RenameService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_text: str,
-):
-    file_id = "file_id"
-    out_path = "out_path"
+        self.sut = RenameService(
+            self.file_task_service,
+            self.pdf_service,
+            self.telegram_service,
+            self.language_service,
+        )
 
-    telegram_service.get_user_data.return_value = (file_id, "file_name")
-    pdf_service.rename_pdf.return_value.__enter__.return_value = out_path
+    def test_get_task_type(self) -> None:
+        actual = self.sut.task_type
+        assert actual == TaskType.rename_pdf
 
-    with patch("pdf_bot.rename.rename_service.send_result_file") as send_result_file:
-        actual = rename_service.rename_pdf(telegram_update, telegram_context)
+    def test_should_process_back_option(self) -> None:
+        actual = self.sut.should_process_back_option
+        assert actual is False
+
+    def test_process_file_task(self) -> None:
+        self.pdf_service.rename_pdf.return_value.__enter__.return_value = self.FILE_PATH
+
+        with self.sut.process_file_task(
+            self.telegram_document_id, self.telegram_text
+        ) as actual:
+            assert actual == self.FILE_PATH
+            self.pdf_service.rename_pdf.assert_called_once_with(
+                self.telegram_document_id, f"{self.telegram_text}.pdf"
+            )
+
+    def test_ask_new_file_name(self) -> None:
+        actual = self.sut.ask_new_file_name(self.telegram_update, self.telegram_context)
+
+        assert actual == self.WAIT_NEW_FILE_NAME
+        self.telegram_service.reply_with_back_markup.assert_called_once()
+
+    def test_rename_pdf(self) -> None:
+        self.pdf_service.rename_pdf.return_value.__enter__.return_value = self.FILE_PATH
+
+        actual = self.sut.rename_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
-        )
-        pdf_service.rename_pdf.assert_called_once_with(file_id, f"{telegram_text}.pdf")
-        send_result_file.assert_called_once_with(
-            telegram_update, telegram_context, out_path, TaskType.rename_pdf
+        self.pdf_service.rename_pdf.assert_called_once_with(
+            self.telegram_document_id, f"{self.telegram_text}.pdf"
         )
 
+    def test_rename_pdf_invalid_file_name(self) -> None:
+        self.telegram_message.text = "invalid/file?name"
 
-def test_rename_pdf_invalid_user_data(
-    rename_service: RenameService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
-    with patch("pdf_bot.rename.rename_service.send_result_file") as send_result_file:
-        actual = rename_service.rename_pdf(telegram_update, telegram_context)
+        actual = self.sut.rename_pdf(self.telegram_update, self.telegram_context)
 
-        assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
-        )
-        pdf_service.rename_pdf.assert_not_called()
-        send_result_file.assert_not_called()
+        assert actual == self.WAIT_NEW_FILE_NAME
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.pdf_service.rename_pdf.assert_not_called()
 
+    def test_rename_pdf_with_back_option(self) -> None:
+        self.telegram_message.text = "Back"
 
-def test_rename_pdf_invalid_file_name(
-    rename_service: RenameService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    telegram_message.text = "invalid/file?name"
-    telegram_update.effective_message = telegram_message
+        actual = self.sut.rename_pdf(self.telegram_update, self.telegram_context)
 
-    with patch("pdf_bot.rename.rename_service.send_result_file") as send_result_file:
-        actual = rename_service.rename_pdf(telegram_update, telegram_context)
-
-        assert actual == rename_constants.WAIT_NEW_FILE_NAME
-        telegram_service.get_user_data.assert_not_called()
-        pdf_service.rename_pdf.assert_not_called()
-        send_result_file.assert_not_called()
+        assert actual == self.WAIT_PDF_TASK
+        self.pdf_service.rename_pdf.assert_not_called()
