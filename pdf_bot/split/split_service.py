@@ -1,31 +1,35 @@
+from contextlib import contextmanager
+from typing import Generator
+
 from telegram import ParseMode, Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK, PDF_INFO
-from pdf_bot.file_task import FileTaskService
-from pdf_bot.files.utils import get_back_markup
-from pdf_bot.language import set_lang
-from pdf_bot.pdf import PdfService
-from pdf_bot.split import split_constants
-from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
-from pdf_bot.utils import send_result_file
+from pdf_bot.consts import BACK
+from pdf_bot.file_processor import AbstractFileProcessor
 
 
-class SplitService:
-    def __init__(
-        self,
-        file_task_service: FileTaskService,
-        pdf_service: PdfService,
-        telegram_service: TelegramService,
-    ) -> None:
-        self.file_task_service = file_task_service
-        self.pdf_service = pdf_service
-        self.telegram_service = telegram_service
+class SplitService(AbstractFileProcessor):
+    WAIT_SPLIT_RANGE = "wait_split_range"
 
-    @staticmethod
-    def ask_split_range(update: Update, context: CallbackContext):
-        _ = set_lang(update, context)
+    @property
+    def task_type(self) -> TaskType:
+        return TaskType.split_pdf
+
+    @property
+    def should_process_back_option(self) -> bool:
+        return False
+
+    @contextmanager
+    def process_file_task(
+        self, file_id: str, message_text: str
+    ) -> Generator[str, None, None]:
+        with self.pdf_service.split_pdf(file_id, message_text) as path:
+            yield path
+
+    def ask_split_range(self, update: Update, context: CallbackContext) -> str:
+        _ = self.language_service.set_app_language(update, context)
+
         # "{intro}\n\n"
         # "<b>{general}</b>\n"
         # "<code>:      {all}</code>\n"
@@ -94,36 +98,26 @@ class SplitService:
                 range="2::-1", pages="2 1 0"
             ),
         )
-        update.effective_message.reply_text(
-            text,
-            parse_mode=ParseMode.HTML,
-            reply_markup=get_back_markup(update, context),
+        self.telegram_service.reply_with_back_markup(
+            update, context, text, parse_mode=ParseMode.HTML
         )
 
-        return split_constants.WAIT_SPLIT_RANGE
+        return self.WAIT_SPLIT_RANGE
 
-    def split_pdf(self, update: Update, context: CallbackContext):
-        _ = set_lang(update, context)
+    def split_pdf(self, update: Update, context: CallbackContext) -> str | int:
+        _ = self.language_service.set_app_language(update, context)
         message = update.effective_message
+        text = message.text
 
-        if message.text == _(BACK):
+        if text == _(BACK):
             return self.file_task_service.ask_pdf_task(update, context)
 
-        split_range = message.text
-        if not self.pdf_service.split_range_valid(split_range):
-            message.reply_text(
+        if not self.pdf_service.split_range_valid(text):
+            self.telegram_service.reply_with_back_markup(
+                update,
+                context,
                 _("The range is invalid, please try again"),
-                reply_markup=get_back_markup(update, context),
             )
-            return split_constants.WAIT_SPLIT_RANGE
+            return self.WAIT_SPLIT_RANGE
 
-        try:
-            file_id, _file_name = self.telegram_service.get_user_data(context, PDF_INFO)
-        except TelegramServiceError as e:
-            message.reply_text(_(str(e)))
-            return ConversationHandler.END
-
-        with self.pdf_service.split_pdf(file_id, split_range) as out_path:
-            send_result_file(update, context, out_path, TaskType.split_pdf)
-
-        return ConversationHandler.END
+        return self.process_file(update, context)
