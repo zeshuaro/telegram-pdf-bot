@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-19 07:44+0000\n"
-"PO-Revision-Date: 2022-11-19 07:44\n"
+"POT-Creation-Date: 2022-11-19 10:21+0000\n"
+"PO-Revision-Date: 2022-11-19 10:22\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -717,27 +717,27 @@ msgstr "आपके संदेश में कोई छवि नहीं 
 msgid "Your file is not a PDF file, please try again"
 msgstr "आपकी फ़ाइल पीडीएफ फ़ाइल नहीं है, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/text/constants.py:10
+#: pdf_bot/text/text_service.py:21
 msgid "Skip"
 msgstr "कूद"
 
-#: pdf_bot/text/text_service.py:34
+#: pdf_bot/text/text_service.py:40
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "मुझे वह पाठ भेजें जिसे आप अपनी पीडीएफ फ़ाइल में लिखना चाहते हैं"
 
-#: pdf_bot/text/text_service.py:55
+#: pdf_bot/text/text_service.py:58
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "मुझे वह फ़ॉन्ट भेजें जिसका उपयोग आप पीडीएफ फ़ाइल के लिए करना चाहते हैं या डिफ़ॉल्ट फ़ॉन्ट का उपयोग करने के लिए {skip} दबाएंगे"
 
-#: pdf_bot/text/text_service.py:59
+#: pdf_bot/text/text_service.py:62
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "समर्थित फोंट की सूची के लिए यहां देखें: {fonts}"
 
-#: pdf_bot/text/text_service.py:87
+#: pdf_bot/text/text_service.py:90
 msgid "Unknown font, please try again"
 msgstr "अज्ञात फ़ॉन्ट, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/text/text_service.py:106
+#: pdf_bot/text/text_service.py:109
 msgid "Creating your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल बनाना"
 
