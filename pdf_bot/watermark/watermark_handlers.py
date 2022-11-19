@@ -2,7 +2,6 @@ from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHa
 
 from pdf_bot.consts import TEXT_FILTER
 from pdf_bot.utils import cancel
-from pdf_bot.watermark.constants import WAIT_SOURCE_PDF, WAIT_WATERMARK_PDF
 from pdf_bot.watermark.watermark_service import WatermarkService
 
 
@@ -16,12 +15,12 @@ class WatermarkHandlers:
                 CommandHandler("watermark", self.watermark_service.ask_source_pdf)
             ],
             states={
-                WAIT_SOURCE_PDF: [
+                WatermarkService.WAIT_SOURCE_PDF: [
                     MessageHandler(
                         Filters.document, self.watermark_service.check_source_pdf
                     )
                 ],
-                WAIT_WATERMARK_PDF: [
+                WatermarkService.WAIT_WATERMARK_PDF: [
                     MessageHandler(
                         Filters.document, self.watermark_service.add_watermark_to_pdf
                     )
