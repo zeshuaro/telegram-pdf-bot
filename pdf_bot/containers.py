@@ -169,7 +169,10 @@ class Services(containers.DeclarativeContainer):
         language_service=language,
     )
     watermark = providers.Factory(
-        WatermarkService, pdf_service=pdf, telegram_service=telegram
+        WatermarkService,
+        pdf_service=pdf,
+        telegram_service=telegram,
+        language_service=language,
     )
 
 
