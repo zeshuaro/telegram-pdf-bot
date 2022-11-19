@@ -38,14 +38,14 @@ class TestCompareService(
         assert actual == self.wait_first_pdf
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    def test_check_first_pdf(self):
+    def test_check_first_pdf(self) -> None:
         actual = self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
         assert actual == self.wait_second_pdf
         self.telegram_context.user_data.__setitem__.assert_called_with(
             self.compare_id, self.telegram_document_id
         )
 
-    def test_check_first_pdf_invalid_pdf(self):
+    def test_check_first_pdf_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
         actual = self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
@@ -53,7 +53,7 @@ class TestCompareService(
         assert actual == self.wait_first_pdf
         self.telegram_context.user_data.__setitem__.assert_not_called()
 
-    def test_compare_pdfs(self):
+    def test_compare_pdfs(self) -> None:
         self.telegram_service.get_user_data.return_value = self.telegram_document_id
         self.pdf_service.compare_pdfs.return_value.__enter__.return_value = (
             self.file_path
@@ -72,7 +72,7 @@ class TestCompareService(
             TaskType.compare_pdf,
         )
 
-    def test_compare_pdfs_no_differences(self):
+    def test_compare_pdfs_no_differences(self) -> None:
         self.telegram_service.get_user_data.return_value = self.telegram_document_id
         self.pdf_service.compare_pdfs.return_value.__enter__.side_effect = (
             NoDifferenceError()
@@ -86,7 +86,7 @@ class TestCompareService(
         )
         self.telegram_service.reply_with_file.assert_not_called()
 
-    def test_compare_pdfs_invalid_user_data(self):
+    def test_compare_pdfs_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
 
         actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
@@ -95,7 +95,7 @@ class TestCompareService(
         self.pdf_service.compare_pdfs.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()
 
-    def test_compare_pdfs_invalid_pdf(self):
+    def test_compare_pdfs_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
         actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
@@ -104,12 +104,12 @@ class TestCompareService(
         self.pdf_service.compare_pdfs.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()
 
-    def test_check_text_back(self):
+    def test_check_text_back(self) -> None:
         self.telegram_message.text = BACK
         actual = self.sut.check_text(self.telegram_update, self.telegram_context)
         assert actual == self.wait_first_pdf
 
-    def test_check_text_cancel(self):
+    def test_check_text_cancel(self) -> None:
         self.telegram_service.cancel_conversation.return_value = ConversationHandler.END
         self.telegram_message.text = CANCEL
 
@@ -117,7 +117,7 @@ class TestCompareService(
 
         assert actual == ConversationHandler.END
 
-    def test_check_text_unknown(self):
+    def test_check_text_unknown(self) -> None:
         self.telegram_message.text = "clearly_unknown"
         actual = self.sut.check_text(self.telegram_update, self.telegram_context)
         assert actual is None
