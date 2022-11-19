@@ -1,32 +1,21 @@
-from typing import cast
-from unittest.mock import MagicMock, patch
-
-import pytest
-from telegram import Update, User
-from telegram.ext import CallbackContext
+from unittest.mock import MagicMock
 
 from pdf_bot.account import AccountService
 from pdf_bot.command import CommandService
+from tests.language import LanguageServiceTestMixin
+from tests.telegram_internal import TelegramTestMixin
 
 
-@pytest.fixture(name="account_service")
-def fixture_account_service() -> AccountService:
-    return cast(AccountService, MagicMock())
+class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.account_service = MagicMock(spec=AccountService)
+        self.language_service = self.mock_language_service()
 
+        self.sut = CommandService(self.account_service, self.language_service)
 
-@pytest.fixture(name="command_service")
-def fixture_command_service(account_service: AccountService) -> CommandService:
-    return CommandService(account_service)
+    def test_send_start_message(self) -> None:
+        self.sut.send_start_message(self.telegram_update, self.telegram_context)
 
-
-def test_send_start_message(
-    command_service: CommandService,
-    account_service: AccountService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_user: User,
-):
-    with patch("pdf_bot.command.command_service.set_lang") as _:
-        command_service.send_start_message(telegram_update, telegram_context)
-        account_service.create_user.assert_called_with(telegram_user)
-        telegram_update.effective_message.reply_text.assert_called_once()
+        self.account_service.create_user.assert_called_once_with(self.telegram_user)
+        self.telegram_update.effective_message.reply_text.assert_called_once()
