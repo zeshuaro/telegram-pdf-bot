@@ -1,34 +1,41 @@
+from contextlib import contextmanager
+from typing import Generator
+
 from telegram import ReplyKeyboardMarkup, Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK, PDF_INFO
-from pdf_bot.file_task import FileTaskService
-from pdf_bot.language import set_lang
-from pdf_bot.pdf import PdfService
-from pdf_bot.rotate import rotate_constants
-from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
-from pdf_bot.utils import send_result_file
+from pdf_bot.consts import BACK
+from pdf_bot.file_processor import AbstractFileProcessor
 
 
-class RotateService:
-    def __init__(
-        self,
-        file_task_service: FileTaskService,
-        pdf_service: PdfService,
-        telegram_service: TelegramService,
-    ) -> None:
-        self.file_task_service = file_task_service
-        self.pdf_service = pdf_service
-        self.telegram_service = telegram_service
+class RotateService(AbstractFileProcessor):
+    WAIT_ROTATE_DEGREE = "wait_rotate_degree"
+    _ROTATE_90 = "90"
+    _ROTATE_180 = "180"
+    _ROTATE_270 = "270"
 
-    @staticmethod
-    def ask_degree(update: Update, context: CallbackContext):
-        _ = set_lang(update, context)
+    @property
+    def task_type(self) -> TaskType:
+        return TaskType.rotate_pdf
+
+    @property
+    def should_process_back_option(self) -> bool:
+        return False
+
+    @contextmanager
+    def process_file_task(
+        self, file_id: str, message_text: str
+    ) -> Generator[str, None, None]:
+        with self.pdf_service.rotate_pdf(file_id, int(message_text)) as path:
+            yield path
+
+    def ask_degree(self, update: Update, context: CallbackContext) -> str:
+        _ = self.language_service.set_app_language(update, context)
 
         keyboard = [
-            [rotate_constants.ROTATE_90, rotate_constants.ROTATE_180],
-            [rotate_constants.ROTATE_270, _(BACK)],
+            [self._ROTATE_90, self._ROTATE_180],
+            [self._ROTATE_270, _(BACK)],
         ]
         reply_markup = ReplyKeyboardMarkup(
             keyboard, resize_keyboard=True, one_time_keyboard=True
@@ -41,26 +48,21 @@ class RotateService:
             reply_markup=reply_markup,
         )
 
-        return rotate_constants.WAIT_ROTATE_DEGREE
+        return self.WAIT_ROTATE_DEGREE
 
-    def rotate_pdf(self, update: Update, context: CallbackContext):
-        _ = set_lang(update, context)
+    def rotate_pdf(self, update: Update, context: CallbackContext) -> str | int:
+        _ = self.language_service.set_app_language(update, context)
         message = update.effective_message
         text = message.text
 
         if text == _(BACK):
             return self.file_task_service.ask_pdf_task(update, context)
         if text not in {
-            rotate_constants.ROTATE_90,
-            rotate_constants.ROTATE_180,
-            rotate_constants.ROTATE_270,
+            self._ROTATE_90,
+            self._ROTATE_180,
+            self._ROTATE_270,
         }:
-            return None
+            message.reply_text(_("Invalid rotation degree, try again"))
+            return self.WAIT_ROTATE_DEGREE
 
-        try:
-            file_id, _file_name = self.telegram_service.get_user_data(context, PDF_INFO)
-            with self.pdf_service.rotate_pdf(file_id, int(text)) as out_path:
-                send_result_file(update, context, out_path, TaskType.rotate_pdf)
-        except TelegramServiceError as e:
-            message.reply_text(_(str(e)))
-        return ConversationHandler.END
+        return self.process_file(update, context)

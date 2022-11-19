@@ -1,4 +1,0 @@
-WAIT_ROTATE_DEGREE = "wait_rotate_degree"
-ROTATE_90 = "90"
-ROTATE_180 = "180"
-ROTATE_270 = "270"
