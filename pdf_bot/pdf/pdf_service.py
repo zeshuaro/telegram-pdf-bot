@@ -3,7 +3,7 @@ import shutil
 import textwrap
 from contextlib import contextmanager
 from gettext import gettext as _
-from typing import ContextManager, Generator, List
+from typing import Generator, List
 
 import img2pdf
 import noteshrink
@@ -139,7 +139,7 @@ class PdfService:
             string="<p>{content}</p>".format(content=text.replace("\n", "<br/>"))
         )
         font_config = FontConfiguration()
-        stylesheets: List[CSS] = None
+        stylesheets: List[CSS] | None = None
 
         if font_data is not None:
             stylesheets = [
@@ -180,7 +180,7 @@ class PdfService:
             yield out_path
 
     @contextmanager
-    def decrypt_pdf(self, file_id: str, password: str) -> ContextManager[str]:
+    def decrypt_pdf(self, file_id: str, password: str) -> Generator[str, None, None]:
         reader = self._open_pdf(file_id, allow_encrypted=True)
         if not reader.is_encrypted:
             raise PdfDecryptError(_("Your PDF file is not encrypted"))
