@@ -43,7 +43,7 @@ from pdf_bot.files.image import (
 from pdf_bot.grayscale import GrayscaleService
 from pdf_bot.language import set_lang
 from pdf_bot.rename import RenameService
-from pdf_bot.rotate import RotateService, rotate_constants
+from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService, scale_constants
 from pdf_bot.split import SplitService, split_constants
 from pdf_bot.text import ExtractTextService, OCRService
@@ -112,7 +112,7 @@ class FileHandlers:
                 RenameService.WAIT_NEW_FILE_NAME: [
                     MessageHandler(TEXT_FILTER, self.rename_service.rename_pdf)
                 ],
-                rotate_constants.WAIT_ROTATE_DEGREE: [
+                RotateService.WAIT_ROTATE_DEGREE: [
                     MessageHandler(TEXT_FILTER, self.rotate_service.rotate_pdf)
                 ],
                 scale_constants.WAIT_SCALE_TYPE: [
