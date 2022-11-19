@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-19 06:17+0000\n"
-"PO-Revision-Date: 2022-11-19 06:17\n"
+"POT-Creation-Date: 2022-11-19 06:41+0000\n"
+"PO-Revision-Date: 2022-11-19 06:41\n"
 "Last-Translator: \n"
 "Language: am\n"
 "Language-Team: Amharic\n"
@@ -151,13 +151,13 @@ msgstr "{message} {emoji} (${value})"
 msgid "Set Language 🌎"
 msgstr "ቋንቋ አዘጋጅ 🌎"
 
-#: pdf_bot/dispatcher.py:120 pdf_bot/telegram_internal/telegram_service.py:149
+#: pdf_bot/dispatcher.py:120 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "ቻናሉን ይቀላቀሉ"
 
 #: pdf_bot/dispatcher.py:121 pdf_bot/payment.py:83
-#: pdf_bot/telegram_internal/telegram_service.py:150 pdf_bot/utils.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "የፒዲኤፍ ቦትን ይደግፉ"
 
@@ -265,7 +265,7 @@ msgstr "የድር ገጽዎን መድረስ አልተቻለም"
 msgid "Failed to convert your web page"
 msgstr "የእርስዎን ድረ ገጽ መቀየር አልተቻለም"
 
-#: pdf_bot/telegram_internal/telegram_service.py:139 pdf_bot/utils.py:26
+#: pdf_bot/telegram_internal/telegram_service.py:140 pdf_bot/utils.py:26
 msgid "Action cancelled"
 msgstr "እርምጃ ተሰር .ል"
 
@@ -298,8 +298,8 @@ msgstr "የውጤት ፋይል ለእርስዎ ልልክልኝ በጣም ትል�
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ይህ የቴሌግራም ቦት ውስንነት መሆኑን እና ቴሌግራም ይህንን ገደብ ካልቀየረ የማደርገው ምንም ነገር የለም"
 
-#: pdf_bot/telegram_internal/telegram_service.py:187
-#: pdf_bot/telegram_internal/telegram_service.py:194 pdf_bot/utils.py:168
+#: pdf_bot/telegram_internal/telegram_service.py:196
+#: pdf_bot/telegram_internal/telegram_service.py:203 pdf_bot/utils.py:168
 #: pdf_bot/utils.py:175
 msgid "Here is your result file"
 msgstr "የውጤት ፋይልዎ ይኸውና"
@@ -485,7 +485,7 @@ msgstr "የእርስዎን የፒዲኤፍ ፋይል ወደ ምስሎች መቀ�
 msgid "Extracting all the images in your PDF file"
 msgstr "በፒዲኤፍ ፋይልዎ ውስጥ ያሉ ምስሎችን በሙሉ ማውጣት"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram_internal/telegram_service.py:91
+#: pdf_bot/files/image.py:208 pdf_bot/telegram_internal/telegram_service.py:92
 msgid "Something went wrong, please try again"
 msgstr "የሆነ ችግር ተፈጥሯል ፣ እባክዎ እንደገና ይሞክሩ"
 
@@ -693,27 +693,27 @@ msgstr "{range}  ገጾች {pages}"
 msgid "The range is invalid, please try again"
 msgstr "ክልሉ ልክ ያልሆነ ነው ፣ እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/telegram_internal/telegram_service.py:56
+#: pdf_bot/telegram_internal/telegram_service.py:57
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "የእርስዎ ፋይል በጣም ትልቅ ነው ማውረድ እና ሂደት, እባክዎ በተለየ ፋይል እንደገና ይሞክሩ\n\n"
 "ማስታወሻ ይህ ገደብ በቴሌግራም ተፈፃሚ ነው እና ቴሌግራም ካልቀየረ በስተቀር ምንም ማድረግ አልችልም"
 
-#: pdf_bot/telegram_internal/telegram_service.py:68
+#: pdf_bot/telegram_internal/telegram_service.py:69
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "ፋይሉ በጣም ትልቅ ነው ለእርስዎ ለመላክ\n\n"
 "ማስታወሻ ይህ ገደብ በቴሌግራም ተፈፃሚ ነው እና ቴሌግራም ካልቀየረ በስተቀር ምንም ማድረግ አልችልም"
 
-#: pdf_bot/telegram_internal/telegram_service.py:100
+#: pdf_bot/telegram_internal/telegram_service.py:101
 msgid "Your file is not an image, please try again"
 msgstr "ፋይልዎ ምስል አይደለም, እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/telegram_internal/telegram_service.py:107
+#: pdf_bot/telegram_internal/telegram_service.py:108
 msgid "No image found in your message"
 msgstr "በመልዕክትዎ ውስጥ ምስል አልተገኘም"
 
-#: pdf_bot/telegram_internal/telegram_service.py:116
+#: pdf_bot/telegram_internal/telegram_service.py:117
 msgid "Your file is not a PDF file, please try again"
 msgstr "ፋይልዎ የፒዲኤፍ ፋይል አይደለም ፣ እባክዎ እንደገና ይሞክሩ"
 
