@@ -3,12 +3,15 @@ from telegram.chataction import ChatAction
 from telegram.ext import CallbackContext
 
 from pdf_bot.account.account_service import AccountService
-from pdf_bot.language import set_lang
+from pdf_bot.language_new import LanguageService
 
 
 class CommandService:
-    def __init__(self, account_service: AccountService) -> None:
+    def __init__(
+        self, account_service: AccountService, language_service: LanguageService
+    ) -> None:
         self.account_service = account_service
+        self.language_service = language_service
 
     def send_start_message(self, update: Update, context: CallbackContext) -> None:
         update.effective_message.reply_chat_action(ChatAction.TYPING)
@@ -16,7 +19,7 @@ class CommandService:
         # Create the user entity in Datastore
         self.account_service.create_user(update.effective_message.from_user)
 
-        _ = set_lang(update, context)
+        _ = self.language_service.set_app_language(update, context)
         update.effective_message.reply_text(
             "{welcome}\n\n<b>{key_features}</b>\n"
             "{features_summary}\n"
