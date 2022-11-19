@@ -1,211 +1,170 @@
-from random import randint
-from typing import Iterator
-from unittest.mock import patch
+from unittest.mock import MagicMock
 
 import pytest
-from telegram import Message, Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import PDF_INFO
-from pdf_bot.file_task import FileTaskService
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf.models import ScaleData
-from pdf_bot.scale import ScaleService, scale_constants
-from pdf_bot.telegram_internal import TelegramService, TelegramUserDataKeyError
+from pdf_bot.scale import ScaleService
+from tests.file_task import FileTaskServiceTestMixin
+from tests.language import LanguageServiceTestMixin
+from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-@pytest.fixture(name="scale_service")
-def fixture_scale_service(
-    file_task_service: FileTaskService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-) -> ScaleService:
-    return ScaleService(file_task_service, pdf_service, telegram_service)
-
-
-@pytest.fixture(scope="session", autouse=True)
-def set_lang() -> Iterator[None]:
-    with patch("pdf_bot.scale.scale_service.set_lang"):
-        yield
-
-
-@pytest.fixture(scope="session", autouse=True)
-def utils_set_lang() -> Iterator[None]:
-    with patch("pdf_bot.utils.set_lang"):
-        yield
-
-
-def test_ask_scale_type(
-    scale_service: ScaleService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
+class TestScaleService(
+    FileTaskServiceTestMixin,
+    LanguageServiceTestMixin,
+    TelegramServiceTestMixin,
+    TelegramTestMixin,
 ):
-    actual = scale_service.ask_scale_type(telegram_update, telegram_context)
-    assert actual == scale_constants.WAIT_SCALE_TYPE
+    FILE_PATH = "file_path"
+    BY_SCALING_FACTOR = "By scaling factor"
+    TO_DIMENSION = "To dimension"
+    WAIT_SCALE_TYPE = "wait_scale_type"
+    WAIT_SCALE_FACTOR = "wait_scale_factor"
+    WAIT_SCALE_DIMENSION = "wait_scale_dimension"
+    SCALE_DATA_TEXT = "0.1 0.2"
+    SCALE_DATA = ScaleData(0.1, 0.2)
 
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.pdf_service = MagicMock(spec=PdfService)
+        self.file_task_service = self.mock_file_task_service()
+        self.language_service = self.mock_language_service()
+        self.telegram_service = self.mock_telegram_service()
 
-def test_scale_pdf_by_factor(
-    scale_service: ScaleService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-    scale_data = ScaleData(randint(1, 10), randint(1, 10))
+        self.sut = ScaleService(
+            self.file_task_service,
+            self.pdf_service,
+            self.telegram_service,
+            self.language_service,
+        )
 
-    telegram_message.text = str(scale_data)
-    telegram_update.effective_message = telegram_message
+    def test_task_type(self) -> None:
+        actual = self.sut.task_type
+        assert actual == TaskType.scale_pdf
 
-    telegram_service.get_user_data.return_value = (file_id, "file_name")
-    pdf_service.scale_pdf.return_value.__enter__.return_value = out_path
+    def test_should_process_back_option(self) -> None:
+        actual = self.sut.should_process_back_option
+        assert actual is False
 
-    with patch("pdf_bot.scale.scale_service.send_result_file") as send_result_file:
-        actual = scale_service.scale_pdf_by_factor(telegram_update, telegram_context)
+    def test_process_file_task(self) -> None:
+        self.pdf_service.scale_pdf.return_value.__enter__.return_value = self.FILE_PATH
+
+        with self.sut.process_file_task(
+            self.telegram_document_id, self.SCALE_DATA_TEXT
+        ) as actual:
+            assert actual == self.FILE_PATH
+            self.pdf_service.scale_pdf.assert_called_once_with(
+                self.telegram_document_id, self.SCALE_DATA
+            )
+
+    def test_ask_scale_type(self) -> None:
+        actual = self.sut.ask_scale_type(self.telegram_update, self.telegram_context)
+
+        assert actual == self.WAIT_SCALE_TYPE
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+
+    @pytest.mark.parametrize(
+        "scale_text,scale_state",
+        [(BY_SCALING_FACTOR, WAIT_SCALE_FACTOR), (TO_DIMENSION, WAIT_SCALE_DIMENSION)],
+    )
+    def test_check_scale_type_by_factor(
+        self, scale_text: str, scale_state: str
+    ) -> None:
+        self.telegram_message.text = scale_text
+
+        actual = self.sut.check_scale_type(self.telegram_update, self.telegram_context)
+
+        assert actual == scale_state
+        self.telegram_service.reply_with_back_markup.assert_called_once()
+
+    def test_check_scale_type_back_option(self) -> None:
+        self.telegram_message.text = "Back"
+
+        actual = self.sut.check_scale_type(self.telegram_update, self.telegram_context)
+
+        assert actual == self.WAIT_PDF_TASK
+        self.file_task_service.ask_pdf_task.assert_called_once()
+
+    def test_check_scale_type_unknown_text(self) -> None:
+        self.telegram_message.text = "clearly_unknown"
+        actual = self.sut.check_scale_type(self.telegram_update, self.telegram_context)
+        assert actual == self.WAIT_SCALE_TYPE
+
+    def test_scale_pdf_by_factor(self) -> None:
+        scale_text = "0.1 0.2"
+        scale_data = ScaleData.from_string(scale_text)
+
+        self.telegram_message.text = scale_text
+        self.pdf_service.scale_pdf.return_value.__enter__.return_value = self.FILE_PATH
+
+        actual = self.sut.scale_pdf_by_factor(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
-        )
-        pdf_service.scale_pdf.assert_called_once_with(file_id, scale_data)
-        send_result_file.assert_called_once_with(
-            telegram_update, telegram_context, out_path, TaskType.scale_pdf
+        self.pdf_service.scale_pdf.assert_called_once_with(
+            self.telegram_document_id, scale_data
         )
 
+    def test_scale_pdf_by_factor_invalid_value(self) -> None:
+        self.telegram_message.text = "clearly_invalid"
 
-def test_scale_pdf_by_factor_invalid_user_data(
-    scale_service: ScaleService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    scale_data = ScaleData(randint(1, 10), randint(1, 10))
+        actual = self.sut.scale_pdf_by_factor(
+            self.telegram_update, self.telegram_context
+        )
 
-    telegram_message.text = str(scale_data)
-    telegram_update.effective_message = telegram_message
+        assert actual == self.WAIT_SCALE_FACTOR
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.pdf_service.scale_pdf.assert_not_called()
 
-    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
+    def test_scale_pdf_by_factor_back_option(self) -> None:
+        self.telegram_message.text = "Back"
 
-    with patch("pdf_bot.scale.scale_service.send_result_file") as send_result_file:
-        actual = scale_service.scale_pdf_by_factor(telegram_update, telegram_context)
+        actual = self.sut.scale_pdf_by_factor(
+            self.telegram_update, self.telegram_context
+        )
+
+        assert actual == self.WAIT_SCALE_TYPE
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.pdf_service.scale_pdf.assert_not_called()
+
+    def test_scale_pdf_to_dimension(self) -> None:
+        scale_text = "10 20"
+        scale_data = ScaleData.from_string(scale_text)
+
+        self.telegram_message.text = scale_text
+        self.pdf_service.scale_pdf.return_value.__enter__.return_value = self.FILE_PATH
+
+        actual = self.sut.scale_pdf_to_dimension(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
-        )
-        pdf_service.scale_pdf.assert_not_called()
-        send_result_file.assert_not_called()
-
-
-def test_scale_pdf_by_factor_invalid_value(
-    scale_service: ScaleService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-
-    telegram_message.text = "clearly_invalid"
-    telegram_update.effective_message = telegram_message
-
-    telegram_service.get_user_data.return_value = (file_id, "file_name")
-    pdf_service.scale_pdf.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.scale.scale_service.send_result_file") as send_result_file:
-        actual = scale_service.scale_pdf_by_factor(telegram_update, telegram_context)
-
-        assert actual == scale_constants.WAIT_SCALE_FACTOR
-        telegram_service.get_user_data.assert_not_called()
-        pdf_service.scale_pdf.assert_not_called()
-        send_result_file.assert_not_called()
-
-
-def test_scale_pdf_to_dimension(
-    scale_service: ScaleService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-    scale_data = ScaleData(randint(1, 10), randint(1, 10))
-
-    telegram_message.text = str(scale_data)
-    telegram_update.effective_message = telegram_message
-
-    telegram_service.get_user_data.return_value = (file_id, "file_name")
-    pdf_service.scale_pdf.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.scale.scale_service.send_result_file") as send_result_file:
-        actual = scale_service.scale_pdf_to_dimension(telegram_update, telegram_context)
-
-        assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
-        )
-        pdf_service.scale_pdf.assert_called_once_with(file_id, scale_data)
-        send_result_file.assert_called_once_with(
-            telegram_update, telegram_context, out_path, TaskType.scale_pdf
+        self.pdf_service.scale_pdf.assert_called_once_with(
+            self.telegram_document_id, scale_data
         )
 
+    def test_scale_pdf_to_dimension_invalid_value(self) -> None:
+        self.telegram_message.text = "clearly_invalid"
 
-def test_scale_pdf_to_dimension_invalid_user_data(
-    scale_service: ScaleService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    scale_data = ScaleData(randint(1, 10), randint(1, 10))
-
-    telegram_message.text = str(scale_data)
-    telegram_update.effective_message = telegram_message
-
-    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
-
-    with patch("pdf_bot.scale.scale_service.send_result_file") as send_result_file:
-        actual = scale_service.scale_pdf_to_dimension(telegram_update, telegram_context)
-
-        assert actual == ConversationHandler.END
-        telegram_service.get_user_data.assert_called_once_with(
-            telegram_context, PDF_INFO
+        actual = self.sut.scale_pdf_to_dimension(
+            self.telegram_update, self.telegram_context
         )
-        pdf_service.scale_pdf.assert_not_called()
-        send_result_file.assert_not_called()
 
+        assert actual == self.WAIT_SCALE_DIMENSION
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.pdf_service.scale_pdf.assert_not_called()
 
-def test_scale_pdf_to_dimension_invalid_value(
-    scale_service: ScaleService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    telegram_message: Message,
-):
-    file_id = "file_id"
-    out_path = "out_path"
+    def test_scale_pdf_to_dimension_back_option(self) -> None:
+        self.telegram_message.text = "Back"
 
-    telegram_message.text = "clearly_invalid"
-    telegram_update.effective_message = telegram_message
+        actual = self.sut.scale_pdf_to_dimension(
+            self.telegram_update, self.telegram_context
+        )
 
-    telegram_service.get_user_data.return_value = (file_id, "file_name")
-    pdf_service.scale_pdf.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.scale.scale_service.send_result_file") as send_result_file:
-        actual = scale_service.scale_pdf_to_dimension(telegram_update, telegram_context)
-
-        assert actual == scale_constants.WAIT_SCALE_DIMENSION
-        telegram_service.get_user_data.assert_not_called()
-        pdf_service.scale_pdf.assert_not_called()
-        send_result_file.assert_not_called()
+        assert actual == self.WAIT_SCALE_TYPE
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.pdf_service.scale_pdf.assert_not_called()

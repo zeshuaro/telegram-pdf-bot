@@ -44,7 +44,7 @@ from pdf_bot.grayscale import GrayscaleService
 from pdf_bot.language import set_lang
 from pdf_bot.rename import RenameService
 from pdf_bot.rotate import RotateService
-from pdf_bot.scale import ScaleService, scale_constants
+from pdf_bot.scale import ScaleService
 from pdf_bot.split import SplitService, split_constants
 from pdf_bot.text import ExtractTextService, OCRService
 from pdf_bot.utils import cancel
@@ -115,13 +115,13 @@ class FileHandlers:
                 RotateService.WAIT_ROTATE_DEGREE: [
                     MessageHandler(TEXT_FILTER, self.rotate_service.rotate_pdf)
                 ],
-                scale_constants.WAIT_SCALE_TYPE: [
+                ScaleService.WAIT_SCALE_TYPE: [
                     MessageHandler(TEXT_FILTER, self.scale_service.check_scale_type)
                 ],
-                scale_constants.WAIT_SCALE_FACTOR: [
+                ScaleService.WAIT_SCALE_FACTOR: [
                     MessageHandler(TEXT_FILTER, self.scale_service.scale_pdf_by_factor)
                 ],
-                scale_constants.WAIT_SCALE_DIMENSION: [
+                ScaleService.WAIT_SCALE_DIMENSION: [
                     MessageHandler(
                         TEXT_FILTER, self.scale_service.scale_pdf_to_dimension
                     )

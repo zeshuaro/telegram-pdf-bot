@@ -152,6 +152,7 @@ class Services(containers.DeclarativeContainer):
         file_task_service=file_task,
         pdf_service=pdf,
         telegram_service=telegram,
+        language_service=language,
     )
     split = providers.Factory(
         SplitService,

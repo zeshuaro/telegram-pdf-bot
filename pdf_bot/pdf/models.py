@@ -34,8 +34,8 @@ class FontData:
 
 @dataclass
 class ScaleData:
-    x: str
-    y: str
+    x: float
+    y: float
 
     def __str__(self) -> str:
         return f"{self.x} {self.y}"
