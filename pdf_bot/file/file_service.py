@@ -3,21 +3,24 @@ from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
-from pdf_bot.language import set_lang
+from pdf_bot.language_new import LanguageService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
-from pdf_bot.utils import send_result_file
 
 
 class FileService:
     def __init__(
-        self, pdf_service: PdfService, telegram_service: TelegramService
+        self,
+        pdf_service: PdfService,
+        telegram_service: TelegramService,
+        language_service: LanguageService,
     ) -> None:
         self.pdf_service = pdf_service
         self.telegram_service = telegram_service
+        self.language_service = language_service
 
     def compress_pdf(self, update: Update, context: CallbackContext):
-        _ = set_lang(update, context)
+        _ = self.language_service.set_app_language(update, context)
         message = update.effective_message
 
         try:
@@ -37,7 +40,7 @@ class FileService:
                 ),
                 parse_mode=ParseMode.HTML,
             )
-            send_result_file(
+            self.telegram_service.reply_with_file(
                 update, context, compress_result.out_path, TaskType.compress_pdf
             )
         return ConversationHandler.END

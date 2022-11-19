@@ -1,69 +1,59 @@
-from typing import Iterator
-from unittest.mock import patch
+from unittest.mock import MagicMock
 
-import pytest
-from telegram import Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file import FileService
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf.models import CompressResult
-from pdf_bot.telegram_internal import TelegramService, TelegramUserDataKeyError
-
-PDF_INFO = "pdf_info"
-
-
-@pytest.fixture(name="file_service")
-def fixture_file_service(
-    pdf_service: PdfService, telegram_service: TelegramService
-) -> FileService:
-    return FileService(pdf_service, telegram_service)
+from pdf_bot.telegram_internal import TelegramServiceError
+from tests.language import LanguageServiceTestMixin
+from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-@pytest.fixture(scope="session", autouse=True)
-def set_lang() -> Iterator[None]:
-    with patch("pdf_bot.file.file_service.set_lang"):
-        yield
-
-
-def test_compress_pdf(
-    file_service: FileService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-    document_id: int,
+class TestDecryptService(
+    LanguageServiceTestMixin,
+    TelegramServiceTestMixin,
+    TelegramTestMixin,
 ):
-    compress_result = CompressResult(2, 1, "out_path")
-    telegram_service.get_user_data.return_value = (document_id, 0)
-    pdf_service.compress_pdf.return_value.__enter__.return_value = compress_result
+    FILE_PATH = "file_path"
+    COMPRESS_RESULT = CompressResult(2, 1, FILE_PATH)
 
-    with patch("pdf_bot.file.file_service.send_result_file") as send_result_file:
-        actual = file_service.compress_pdf(telegram_update, telegram_context)
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.pdf_service = MagicMock(spec=PdfService)
+        self.language_service = self.mock_language_service()
+        self.telegram_service = self.mock_telegram_service()
+
+        self.sut = FileService(
+            self.pdf_service,
+            self.telegram_service,
+            self.language_service,
+        )
+
+    def test_compress_pdf(self) -> None:
+        self.pdf_service.compress_pdf.return_value.__enter__.return_value = (
+            self.COMPRESS_RESULT
+        )
+
+        actual = self.sut.compress_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
-        pdf_service.compress_pdf.assert_called_with(document_id)
-        send_result_file.assert_called_once_with(
-            telegram_update,
-            telegram_context,
-            compress_result.out_path,
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.pdf_service.compress_pdf.assert_called_once_with(self.telegram_document_id)
+        self.telegram_service.reply_with_file.assert_called_once_with(
+            self.telegram_update,
+            self.telegram_context,
+            self.FILE_PATH,
             TaskType.compress_pdf,
         )
 
+    def test_compress_pdf_invalid_user_data(self) -> None:
+        self.telegram_service.get_user_data.side_effect = TelegramServiceError()
 
-def test_compress_pdf_invalid_user_data(
-    file_service: FileService,
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    telegram_update: Update,
-    telegram_context: CallbackContext,
-):
-    telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
-
-    with patch("pdf_bot.file.file_service.send_result_file") as send_result_file:
-        actual = file_service.compress_pdf(telegram_update, telegram_context)
+        actual = self.sut.compress_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
-        pdf_service.compress_pdf.assert_not_called()
-        send_result_file.assert_not_called()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.pdf_service.compress_pdf.assert_not_called()
+        self.telegram_service.reply_with_file.assert_not_called()

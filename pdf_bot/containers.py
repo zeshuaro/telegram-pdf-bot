@@ -83,7 +83,12 @@ class Services(containers.DeclarativeContainer):
         telegram_service=telegram,
         language_service=language,
     )
-    file = providers.Factory(FileService, pdf_service=pdf, telegram_service=telegram)
+    file = providers.Factory(
+        FileService,
+        pdf_service=pdf,
+        telegram_service=telegram,
+        language_service=language,
+    )
     crop = providers.Factory(
         CropService,
         file_task_service=file_task,
