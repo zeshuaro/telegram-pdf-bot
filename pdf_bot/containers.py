@@ -159,6 +159,7 @@ class Services(containers.DeclarativeContainer):
         file_task_service=file_task,
         pdf_service=pdf,
         telegram_service=telegram,
+        language_service=language,
     )
     text = providers.Factory(
         TextService,

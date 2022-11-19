@@ -45,7 +45,7 @@ from pdf_bot.language import set_lang
 from pdf_bot.rename import RenameService
 from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
-from pdf_bot.split import SplitService, split_constants
+from pdf_bot.split import SplitService
 from pdf_bot.text import ExtractTextService, OCRService
 from pdf_bot.utils import cancel
 
@@ -126,7 +126,7 @@ class FileHandlers:
                         TEXT_FILTER, self.scale_service.scale_pdf_to_dimension
                     )
                 ],
-                split_constants.WAIT_SPLIT_RANGE: [
+                SplitService.WAIT_SPLIT_RANGE: [
                     MessageHandler(TEXT_FILTER, self.split_service.split_pdf)
                 ],
                 WAIT_EXTRACT_IMAGE_TYPE: [
