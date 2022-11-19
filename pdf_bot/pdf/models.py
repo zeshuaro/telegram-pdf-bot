@@ -10,19 +10,19 @@ class CompressResult:
     out_path: str
 
     @property
-    def reduced_percentage(self):
+    def reduced_percentage(self) -> float:
         return 1 - self.new_size / self.old_size
 
     @property
-    def readable_old_size(self):
+    def readable_old_size(self) -> str:
         return self._readable_size(self.old_size)
 
     @property
-    def readable_new_size(self):
+    def readable_new_size(self) -> str:
         return self._readable_size(self.new_size)
 
     @staticmethod
-    def _readable_size(size: int):
+    def _readable_size(size: int) -> str:
         return humanize.naturalsize(size)
 
 

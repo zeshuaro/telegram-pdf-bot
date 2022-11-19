@@ -1,16 +1,16 @@
 import os
-from random import randint
-from typing import Callable, List, cast
-from unittest.mock import ANY, MagicMock, call, patch
+from typing import Any
+from unittest.mock import MagicMock, call, patch
 
 import pytest
 from ocrmypdf.exceptions import PriorOcrFoundError
-from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
+from PyPDF2 import PageObject, PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
 from PyPDF2.pagerange import PageRange
+from weasyprint import CSS, HTML
+from weasyprint.text.fonts import FontConfiguration
 
 from pdf_bot.cli import CLIService
-from pdf_bot.compare import CompareService
 from pdf_bot.io.io_service import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import (
@@ -28,741 +28,634 @@ from pdf_bot.pdf.exceptions import (
     PdfIncorrectPasswordError,
     PdfNoTextError,
 )
-from pdf_bot.telegram_internal import TelegramService
+from tests.language import LanguageServiceTestMixin
+from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-@pytest.fixture(name="telegram_service")
-def fixture_telegram_service() -> TelegramService:
-    return cast(TelegramService, MagicMock())
-
-
-@pytest.fixture(name="pdf_service")
-def fixture_pdf_service(
-    cli_service: CLIService, io_service: IOService, telegram_service: TelegramService
-) -> CompareService:
-    return PdfService(cli_service, io_service, telegram_service)
-
-
-def test_add_watermark_to_pdf(
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    io_service: IOService,
-    document_ids_generator: Callable[[int], List[str]],
-    context_manager_side_effect_echo: Callable[[str], MagicMock],
-    method_side_effect_echo: Callable[[str], MagicMock],
+class TestPDFService(
+    LanguageServiceTestMixin,
+    TelegramServiceTestMixin,
+    TelegramTestMixin,
 ):
-    src_file_id, wmk_file_id = document_ids_generator(2)
-    src_reader = cast(PdfFileReader, MagicMock())
-    wmk_reader = cast(PdfFileReader, MagicMock())
-    writer = cast(PdfFileWriter, MagicMock())
-    src_reader.is_encrypted = wmk_reader.is_encrypted = False
+    DOWNLOAD_PATH = "download_path"
+    DIR_NAME = "dir_name"
+    OUTPUT_PATH = "output_path"
+    PASSWORD = "password"
 
-    src_pages = [MagicMock() for _ in range(randint(2, 10))]
-    src_reader.pages = src_pages
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.cli_service = MagicMock(spec=CLIService)
 
-    wmk_page = MagicMock()
-    wmk_reader.pages = [wmk_page]
-
-    def pdf_file_reader_side_effect(file_id: str, *_args, **_kwargs):
-        if file_id == src_file_id:
-            return src_reader
-        return wmk_reader
-
-    with patch("builtins.open") as mock_open, patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader, patch(
-        "pdf_bot.pdf.pdf_service.PdfFileWriter"
-    ) as pdf_file_writer:
-        telegram_service.download_pdf_file.side_effect = (
-            context_manager_side_effect_echo
+        self.io_service = MagicMock(spec=IOService)
+        self.io_service.create_temp_directory.return_value.__enter__.return_value = (
+            self.DIR_NAME
         )
-        mock_open.side_effect = method_side_effect_echo
-        pdf_file_reader.side_effect = pdf_file_reader_side_effect
-        pdf_file_writer.return_value = writer
+        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = (
+            self.OUTPUT_PATH
+        )
+        self.io_service.create_temp_png_file.return_value.__enter__.return_value = (
+            self.OUTPUT_PATH
+        )
+        self.io_service.create_temp_txt_file.return_value.__enter__.return_value = (
+            self.OUTPUT_PATH
+        )
 
-        with pdf_service.add_watermark_to_pdf(src_file_id, wmk_file_id):
-            add_page_calls = []
-            for src_page in src_pages:
-                src_page.merge_page.assert_called_once_with(wmk_page)
-                add_page_calls.append(call(src_page))
+        self.telegram_service = self.mock_telegram_service()
+        self.telegram_service.download_pdf_file.return_value.__enter__.return_value = (
+            self.DOWNLOAD_PATH
+        )
 
-            writer.add_page.assert_has_calls(add_page_calls)
-            writer.write.assert_called_once()
-            io_service.create_temp_pdf_file.assert_called_once_with(
-                prefix="File_with_watermark"
+        self.sut = PdfService(
+            self.cli_service,
+            self.io_service,
+            self.telegram_service,
+        )
+
+    def test_add_watermark_to_pdf(self) -> None:
+        src_file_id = "src_file_id"
+        wmk_file_id = "wmk_file_id"
+
+        src_reader = MagicMock(spec=PdfFileReader)
+        wmk_reader = MagicMock(spec=PdfFileReader)
+        writer = MagicMock(spec=PdfFileWriter)
+        src_reader.is_encrypted = wmk_reader.is_encrypted = False
+
+        src_pages = [MagicMock(spec=PageObject) for _ in range(2)]
+        src_reader.pages = src_pages
+
+        wmk_page = MagicMock(spec=PageObject)
+        wmk_reader.pages = [wmk_page]
+
+        def pdf_file_reader_side_effect(
+            file_id: str, *_args: Any, **_kwargs: Any
+        ) -> PdfFileReader:
+            if file_id == src_file_id:
+                return src_reader
+            return wmk_reader
+
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls, patch(
+            "pdf_bot.pdf.pdf_service.PdfFileWriter"
+        ) as writer_cls:
+            self.telegram_service.download_pdf_file.side_effect = (
+                self._context_manager_side_effect_echo
+            )
+            reader_cls.side_effect = pdf_file_reader_side_effect
+            writer_cls.return_value = writer
+
+            with self.sut.add_watermark_to_pdf(src_file_id, wmk_file_id):
+                assert self.telegram_service.download_pdf_file.call_count == 2
+                download_calls = [call(src_file_id), call(wmk_file_id)]
+                self.telegram_service.download_pdf_file.assert_has_calls(download_calls)
+
+                add_page_calls = []
+                for src_page in src_pages:
+                    src_page.merge_page.assert_called_once_with(wmk_page)
+                    add_page_calls.append(call(src_page))
+
+                writer.add_page.assert_has_calls(add_page_calls)
+                writer.write.assert_called_once()
+                self.io_service.create_temp_pdf_file.assert_called_once_with(
+                    "File_with_watermark"
+                )
+
+    def test_add_watermark_to_pdf_read_error(self) -> None:
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls:
+            reader_cls.side_effect = PyPdfReadError()
+            with pytest.raises(PdfReadError), self.sut.add_watermark_to_pdf(
+                self.telegram_file_id, self.telegram_file_id
+            ):
+                self.telegram_service.download_pdf_file.assert_called_once_with(
+                    self.telegram_file_id
+                )
+
+    @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
+    def test_beautify_and_convert_images_to_pdf(self, num_files: int) -> None:
+        file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
+        self.telegram_service.download_files.return_value.__enter__.return_value = (
+            file_paths
+        )
+
+        with patch(
+            "pdf_bot.pdf.pdf_service.noteshrink"
+        ) as noteshrink, self.sut.beautify_and_convert_images_to_pdf(
+            file_data_list
+        ) as actual:
+            assert actual == self.OUTPUT_PATH
+            self.telegram_service.download_files.assert_called_once_with(file_ids)
+            self.io_service.create_temp_pdf_file.assert_called_once_with("Beautified")
+            noteshrink.notescan_main.assert_called_once_with(
+                file_paths,
+                basename=f"{self.OUTPUT_PATH}_page",
+                pdfname=self.OUTPUT_PATH,
             )
 
+    def test_black_and_white_pdf(self) -> None:
+        image_paths = "image_paths"
+        file = MagicMock()
+        image_bytes = "image_bytes"
 
-def test_add_watermark_to_pdf_read_error(pdf_service: PdfService):
-    file_id = "file_id"
-    with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as pdf_file_reader:
-        pdf_file_reader.side_effect = PyPdfReadError()
-        with pytest.raises(PdfReadError), pdf_service.add_watermark_to_pdf(
-            file_id, file_id
-        ):
-            pass
+        with patch("builtins.open") as mock_open, patch(
+            "pdf_bot.pdf.pdf_service.pdf2image"
+        ) as pdf2image, patch("pdf_bot.pdf.pdf_service.img2pdf") as img2pdf:
+            mock_open.return_value.__enter__.return_value = file
+            pdf2image.convert_from_path.return_value = image_paths
+            img2pdf.convert.return_value = image_bytes
 
+            with self.sut.black_and_white_pdf(self.telegram_file_id) as actual:
+                assert actual == self.OUTPUT_PATH
+                self._assert_telegram_and_io_services("Black_and_white")
+                self.io_service.create_temp_directory.assert_called_once()
+                pdf2image.convert_from_path.assert_called_once_with(
+                    self.DOWNLOAD_PATH,
+                    output_folder=self.DIR_NAME,
+                    fmt="png",
+                    grayscale=True,
+                    paths_only=True,
+                )
+                img2pdf.convert.assert_called_once_with(image_paths)
+                mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
+                file.write.assert_called_once_with(image_bytes)
 
-def test_black_and_white_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    images = "images"
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.pdf2image"
-    ) as pdf2image, patch("pdf_bot.pdf.pdf_service.img2pdf") as img2pdf:
-        pdf2image.convert_from_path.return_value = images
-        with pdf_service.black_and_white_pdf(file_id):
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            io_service.create_temp_pdf_file.assert_called_once_with(
-                prefix="Black_and_White"
+    def test_compare_pdfs(self) -> None:
+        file_ids = ["a", "b"]
+        with patch(
+            "pdf_bot.pdf.pdf_service.pdf_diff"
+        ) as pdf_diff, self.sut.compare_pdfs(*file_ids) as actual:
+            assert actual == self.OUTPUT_PATH
+            calls = [call(x) for x in file_ids]
+            self.telegram_service.download_pdf_file.assert_has_calls(
+                calls, any_order=True
             )
-            pdf2image.convert_from_path.assert_called_once()
-            img2pdf.convert.assert_called_once_with(images)
+            pdf_diff.main.assert_called_once_with(
+                files=[self.DOWNLOAD_PATH, self.DOWNLOAD_PATH],
+                out_file=self.OUTPUT_PATH,
+            )
 
+    def test_compress_pdf(self) -> None:
+        old_size = 20
+        new_size = 10
 
-def test_beautify_and_convert_images_to_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-    file_data_generator: Callable[[int], List[FileData]],
-):
-    num_files = randint(2, 10)
-    file_data_list = file_data_generator(num_files)
-    file_ids = [x.id for x in file_data_list]
-    telegram_service.download_files.return_value.__enter__.return_value = file_ids
+        def getsize_side_effect(path: str, *_args: Any, **_kwargs: Any) -> int:
+            if path == self.DOWNLOAD_PATH:
+                return old_size
+            return new_size
 
-    with patch(
-        "pdf_bot.pdf.pdf_service.noteshrink"
-    ) as noteshrink, pdf_service.beautify_and_convert_images_to_pdf(file_data_list):
-        telegram_service.download_files.assert_called_once_with(file_ids)
-        io_service.create_temp_pdf_file.assert_called_once_with(prefix="Beautified")
-        noteshrink.notescan_main.assert_called_once_with(
-            file_ids, basename=ANY, pdfname=ANY
+        with patch("pdf_bot.pdf.pdf_service.os") as mock_os:
+            mock_os.path.getsize.side_effect = getsize_side_effect
+            with self.sut.compress_pdf(self.telegram_file_id) as compress_result:
+                assert compress_result == CompressResult(
+                    old_size, new_size, self.OUTPUT_PATH
+                )
+                self.cli_service.compress_pdf.assert_called_once_with(
+                    self.DOWNLOAD_PATH, self.OUTPUT_PATH
+                )
+                self._assert_telegram_and_io_services("Compressed")
+
+    @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
+    def test_convert_images_to_pdf(self, num_files: int) -> None:
+        image_bytes = "image_bytes"
+        file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
+        file = MagicMock()
+        self.telegram_service.download_files.return_value.__enter__.return_value = (
+            file_paths
         )
 
+        with patch("builtins.open") as mock_open, patch(
+            "pdf_bot.pdf.pdf_service.img2pdf"
+        ) as img2pdf:
+            mock_open.return_value.__enter__.return_value = file
+            img2pdf.convert.return_value = image_bytes
 
-def test_compress_pdf(
-    pdf_service: PdfService,
-    cli_service: CLIService,
-    telegram_service: TelegramService,
-    io_service: IOService,
-):
-    file_id = "file_id"
-    file_path = "file_path"
-    out_path = "out_path"
+            with self.sut.convert_images_to_pdf(file_data_list) as actual:
+                assert actual == self.OUTPUT_PATH
+                self.telegram_service.download_files.assert_called_once_with(file_ids)
+                self.io_service.create_temp_pdf_file.assert_called_once_with(
+                    "Converted"
+                )
+                mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
+                img2pdf.convert.assert_called_once_with(file_paths)
+                file.write.assert_called_once_with(image_bytes)
 
-    old_size = randint(11, 20)
-    new_size = randint(1, 10)
+    @pytest.mark.parametrize("has_font_data", [True, False])
+    def test_create_pdf_from_text(self, has_font_data: bool) -> None:
+        font_data = stylesheets = None
+        html = MagicMock(spec=HTML)
+        css = MagicMock(spec=CSS)
+        font_config = MagicMock(spec=FontConfiguration)
 
-    def getsize_side_effect(path: str, *_args, **_kwargs):
-        if path == file_path:
-            return old_size
-        return new_size
+        if has_font_data:
+            font_data = FontData("family", "url")
+            stylesheets = [css]
 
-    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+        with patch("pdf_bot.pdf.pdf_service.HTML") as html_cls, patch(
+            "pdf_bot.pdf.pdf_service.CSS"
+        ) as css_cls, patch(
+            "pdf_bot.pdf.pdf_service.FontConfiguration"
+        ) as font_config_cls:
+            html_cls.return_value = html
+            css_cls.return_value = css
+            font_config_cls.return_value = font_config
 
-    with patch("pdf_bot.pdf.pdf_service.os") as mock_os:
-        mock_os.path.getsize.side_effect = getsize_side_effect
-        with pdf_service.compress_pdf(file_id) as compress_result:
-            assert compress_result == CompressResult(old_size, new_size, out_path)
-            cli_service.compress_pdf.assert_called_once_with(file_path, out_path)
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            io_service.create_temp_pdf_file.assert_called_once_with(prefix="Compressed")
+            with self.sut.create_pdf_from_text(self.telegram_text, font_data) as actual:
+                assert actual == self.OUTPUT_PATH
+                html.write_pdf.assert_called_once()
+                self.io_service.create_temp_pdf_file.assert_called_once_with("Text")
+                html.write_pdf.assert_called_once_with(
+                    self.OUTPUT_PATH, stylesheets=stylesheets, font_config=font_config
+                )
 
+                if has_font_data:
+                    css_cls.assert_called_once_with(
+                        string=(
+                            "@font-face {"
+                            f"font-family: {font_data.font_family};"
+                            f"src: url({font_data.font_url});"
+                            "}"
+                            "p {"
+                            f"font-family: {font_data.font_family};"
+                            "}"
+                        ),
+                        font_config=font_config,
+                    )
+                else:
+                    css_cls.assert_not_called()
 
-def test_convert_images_to_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-    file_data_generator: Callable[[int], List[FileData]],
-):
-    num_files = randint(2, 10)
-    file_data_list = file_data_generator(num_files)
-    file_ids = [x.id for x in file_data_list]
-    telegram_service.download_files.return_value.__enter__.return_value = file_ids
+    def test_crop_pdf_by_percentage(self) -> None:
+        percent = 0.1
+        with self.sut.crop_pdf(self.telegram_file_id, percentage=percent) as actual:
+            assert actual == self.OUTPUT_PATH
+            self.cli_service.crop_pdf_by_percentage.assert_called_once_with(
+                self.DOWNLOAD_PATH, self.OUTPUT_PATH, percent
+            )
+            self._assert_telegram_and_io_services("Cropped")
 
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.img2pdf"
-    ) as img2pdf, pdf_service.convert_images_to_pdf(file_data_list):
-        telegram_service.download_files.assert_called_once_with(file_ids)
-        io_service.create_temp_pdf_file.assert_called_once_with(prefix="Converted")
-        img2pdf.convert.assert_called_once_with(file_ids)
+    def test_crop_pdf_by_margin_size(self) -> None:
+        margin_size = 10
+        with self.sut.crop_pdf(
+            self.telegram_file_id, margin_size=margin_size
+        ) as actual:
+            assert actual == self.OUTPUT_PATH
+            self.cli_service.crop_pdf_by_margin_size.assert_called_once_with(
+                self.DOWNLOAD_PATH, self.OUTPUT_PATH, margin_size
+            )
+            self._assert_telegram_and_io_services("Cropped")
 
+    @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
+    def test_decrypt_pdf(self, num_pages: int) -> None:
+        reader = MagicMock(spec=PdfFileReader)
+        writer = MagicMock(spec=PdfFileWriter)
+        reader.is_encrypted = True
 
-def test_create_pdf_from_text(pdf_service: PdfService):
-    text = "text"
-    font_data = FontData("family", "url")
-    html_doc = MagicMock()
+        pages = [MagicMock() for _ in range(num_pages)]
+        reader.pages = pages
 
-    with patch("pdf_bot.pdf.pdf_service.HTML") as html_class, patch(
-        "pdf_bot.pdf.pdf_service.CSS"
-    ) as css_class:
-        html_class.return_value = html_doc
-        with pdf_service.create_pdf_from_text(text, font_data):
-            html_doc.write_pdf.assert_called_once()
-            css_class.assert_called_once()
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls, patch(
+            "pdf_bot.pdf.pdf_service.PdfFileWriter"
+        ) as writer_cls:
+            reader_cls.return_value = reader
+            writer_cls.return_value = writer
 
+            with self.sut.decrypt_pdf(self.telegram_file_id, self.PASSWORD) as actual:
+                assert actual == self.OUTPUT_PATH
+                self._assert_telegram_and_io_services("Decrypted")
+                reader.decrypt.assert_called_once_with(self.PASSWORD)
 
-def test_create_pdf_from_text_without_font_data(pdf_service: PdfService):
-    text = "text"
-    html_doc = MagicMock()
+                calls = [call(page) for page in pages]
+                writer.add_page.assert_has_calls(calls)
 
-    with patch("pdf_bot.pdf.pdf_service.HTML") as html_class, patch(
-        "pdf_bot.pdf.pdf_service.CSS"
-    ) as css_class:
-        html_class.return_value = html_doc
-        with pdf_service.create_pdf_from_text(text, None):
-            html_doc.write_pdf.assert_called_once()
-            css_class.assert_not_called()
+    def test_decrypt_pdf_not_encrypted(self) -> None:
+        reader = MagicMock(spec=PdfFileReader)
+        reader.is_encrypted = False
 
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls:
+            reader_cls.return_value = reader
+            with pytest.raises(PdfDecryptError), self.sut.decrypt_pdf(
+                self.telegram_file_id, self.PASSWORD
+            ):
+                self.telegram_service.download_pdf_file.assert_called_once_with(
+                    self.telegram_file_id
+                )
+                reader.decrypt.assert_not_called()
+                self.io_service.create_temp_pdf_file.assert_not_called()
 
-def test_drop_pdf_by_percentage(
-    pdf_service: PdfService,
-    io_service: IOService,
-    cli_service: CLIService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    percent = randint(1, 10)
-    file_path = "file_path"
-    out_path = "out_path"
+    def test_decrypt_pdf_incorrect_password(self) -> None:
+        reader = MagicMock(spec=PdfFileReader)
+        reader.is_encrypted = True
+        reader.decrypt.return_value = 0
 
-    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls:
+            reader_cls.return_value = reader
+            with pytest.raises(PdfIncorrectPasswordError), self.sut.decrypt_pdf(
+                self.telegram_file_id, self.PASSWORD
+            ):
+                self._assert_decrypt_failure(reader)
 
-    with pdf_service.crop_pdf(file_id, percentage=percent) as actual_path:
-        assert actual_path == out_path
-        cli_service.crop_pdf_by_percentage.assert_called_once_with(
-            file_path, out_path, percent
+    def test_decrypt_pdf_invalid_encryption_method(self) -> None:
+        reader = MagicMock(spec=PdfFileReader)
+        reader.is_encrypted = True
+        reader.decrypt.side_effect = NotImplementedError()
+
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls:
+            reader_cls.return_value = reader
+            with pytest.raises(PdfDecryptError), self.sut.decrypt_pdf(
+                self.telegram_file_id, self.PASSWORD
+            ):
+                self._assert_decrypt_failure(reader)
+
+    @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
+    def test_encrypt_pdf(self, num_pages: int) -> None:
+        reader = MagicMock(spec=PdfFileReader)
+        writer = MagicMock(spec=PdfFileWriter)
+        reader.is_encrypted = False
+
+        pages = [MagicMock() for _ in range(num_pages)]
+        reader.pages = pages
+
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls, patch(
+            "pdf_bot.pdf.pdf_service.PdfFileWriter"
+        ) as writer_cls:
+            reader_cls.return_value = reader
+            writer_cls.return_value = writer
+
+            with self.sut.encrypt_pdf(self.telegram_file_id, self.PASSWORD) as actual:
+                assert actual == self.OUTPUT_PATH
+                self._assert_telegram_and_io_services("Encrypted")
+                writer.encrypt.assert_called_once_with(self.PASSWORD)
+
+                calls = [call(page) for page in pages]
+                writer.add_page.assert_has_calls(calls)
+
+    def test_encrypt_pdf_already_encrypted(self) -> None:
+        reader = MagicMock(spec=PdfFileReader)
+        reader.is_encrypted = True
+
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls:
+            reader_cls.return_value = reader
+            with pytest.raises(PdfEncryptError), self.sut.encrypt_pdf(
+                self.telegram_file_id, self.PASSWORD
+            ):
+                self.telegram_service.download_pdf_file.assert_called_once_with(
+                    self.telegram_file_id
+                )
+                self.io_service.create_temp_pdf_file.assert_not_called()
+
+    def test_extract_text_from_pdf(self) -> None:
+        with patch("pdf_bot.pdf.pdf_service.extract_text") as extract_text, patch(
+            "pdf_bot.pdf.pdf_service.textwrap"
+        ), self.sut.extract_text_from_pdf(self.telegram_file_id) as actual:
+            assert actual == self.OUTPUT_PATH
+            self.telegram_service.download_pdf_file.assert_called_once_with(
+                self.telegram_file_id
+            )
+            self.io_service.create_temp_txt_file.assert_called_once_with("PDF_text")
+            extract_text.assert_called_once_with(self.DOWNLOAD_PATH)
+
+    def test_extract_text_from_pdf_no_text(self) -> None:
+        with patch("pdf_bot.pdf.pdf_service.extract_text") as extract_text:
+            extract_text.return_value = ""
+            with pytest.raises(PdfNoTextError), self.sut.extract_text_from_pdf(
+                self.telegram_file_id
+            ):
+                self.telegram_service.download_pdf_file.assert_called_once_with(
+                    self.telegram_file_id
+                )
+                self.io_service.create_temp_txt_file.assert_not_called()
+                extract_text.assert_called_once_with(self.DOWNLOAD_PATH)
+
+    @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
+    def test_merge_pdfs(self, num_files: int) -> None:
+        file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
+        merger = MagicMock(spec=PdfFileMerger)
+        self.telegram_service.download_files.return_value.__enter__.return_value = (
+            file_paths
         )
-        telegram_service.download_pdf_file.assert_called_once_with(file_id)
-        io_service.create_temp_pdf_file.assert_called_once_with(prefix="Cropped")
 
+        with patch("pdf_bot.pdf.pdf_service.PdfFileMerger") as merger_cls:
+            merger_cls.return_value = merger
+            with self.sut.merge_pdfs(file_data_list):
+                self.telegram_service.download_files.assert_called_once_with(file_ids)
+                calls = [call(x) for x in file_paths]
+                merger.append.assert_has_calls(calls)
+                self.io_service.create_temp_pdf_file.assert_called_once_with(
+                    "Merged_files"
+                )
+                merger.write.assert_called_once()
 
-def test_crop_pdf_by_margin_size(
-    pdf_service: PdfService,
-    io_service: IOService,
-    cli_service: CLIService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    margin_size = randint(1, 10)
-    file_path = "file_path"
-    out_path = "out_path"
-
-    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
-
-    with pdf_service.crop_pdf(file_id, margin_size=margin_size) as actual_path:
-        assert actual_path == out_path
-        cli_service.crop_pdf_by_margin_size.assert_called_once_with(
-            file_path, out_path, margin_size
+    @pytest.mark.parametrize("exception", [PyPdfReadError(), ValueError()])
+    def test_merge_pdfs_read_error(self, exception: Exception) -> None:
+        file_data_list, file_ids, file_paths = self._get_file_data_list(2)
+        merger = MagicMock(spec=PdfFileMerger)
+        merger.append.side_effect = exception
+        self.telegram_service.download_files.return_value.__enter__.return_value = (
+            file_paths
         )
-        telegram_service.download_pdf_file.assert_called_once_with(file_id)
-        io_service.create_temp_pdf_file.assert_called_once_with(prefix="Cropped")
 
+        with patch("pdf_bot.pdf.pdf_service.PdfFileMerger") as merger_cls:
+            merger_cls.return_value = merger
+            with pytest.raises(PdfReadError), self.sut.merge_pdfs(file_data_list):
+                self.telegram_service.download_files.assert_called_once_with(file_ids)
+                self.io_service.create_temp_pdf_file.assert_not_called()
+                merger.write.assert_not_called()
 
-def test_compare_pdfs(
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    document_ids_generator: Callable[[int], List[str]],
-):
-    doc_ids = document_ids_generator(2)
-    with patch(
-        "pdf_bot.pdf.pdf_service.pdf_diff"
-    ) as pdf_diff, pdf_service.compare_pdfs(*doc_ids):
-        assert pdf_diff.main.called
-        calls = [call(doc_id) for doc_id in doc_ids]
-        telegram_service.download_pdf_file.assert_has_calls(calls, any_order=True)
-
-
-def test_decrypt_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    password = "password"
-    out_path = "out_path"
-
-    reader = cast(PdfFileReader, MagicMock())
-    writer = cast(PdfFileWriter, MagicMock())
-    reader.is_encrypted = True
-
-    pages = [MagicMock() for _ in range(randint(2, 10))]
-    reader.pages = pages
-
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader, patch(
-        "pdf_bot.pdf.pdf_service.PdfFileWriter"
-    ) as pdf_file_writer:
-        pdf_file_reader.return_value = reader
-        pdf_file_writer.return_value = writer
-
-        with pdf_service.decrypt_pdf(file_id, password) as actual_path:
-            assert actual_path == out_path
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            reader.decrypt.assert_called_once_with(password)
-            io_service.create_temp_pdf_file.assert_called_once_with("Decrypted")
-
-            calls = [call(page) for page in pages]
-            writer.add_page.assert_has_calls(calls)
-
-
-def test_decrypt_pdf_already_encrypted(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    password = "password"
-
-    reader = cast(PdfFileReader, MagicMock())
-    reader.is_encrypted = False
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader:
-        pdf_file_reader.return_value = reader
-        with pytest.raises(PdfDecryptError), pdf_service.decrypt_pdf(file_id, password):
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            reader.decrypt.assert_not_called()
-            io_service.create_temp_pdf_file.assert_not_called()
-
-
-def test_decrypt_pdf_incorrect_password(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    password = "password"
-
-    reader = cast(PdfFileReader, MagicMock())
-    reader.is_encrypted = True
-    reader.decrypt.return_value = 0
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader:
-        pdf_file_reader.return_value = reader
-        with pytest.raises(PdfIncorrectPasswordError), pdf_service.decrypt_pdf(
-            file_id, password
-        ):
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            reader.decrypt.assert_called_once_with(password)
-            io_service.create_temp_pdf_file.assert_not_called()
-
-
-def test_decrypt_pdf_invalid_encryption_method(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    password = "password"
-
-    reader = cast(PdfFileReader, MagicMock())
-    reader.is_encrypted = True
-    reader.decrypt.side_effect = NotImplementedError()
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader:
-        pdf_file_reader.return_value = reader
-        with pytest.raises(PdfDecryptError), pdf_service.decrypt_pdf(file_id, password):
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            reader.decrypt.assert_called_once_with(password)
-            io_service.create_temp_pdf_file.assert_not_called()
-
-
-def test_encrypt_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    password = "password"
-    out_path = "out_path"
-
-    reader = cast(PdfFileReader, MagicMock())
-    writer = cast(PdfFileWriter, MagicMock())
-    reader.is_encrypted = False
-
-    pages = [MagicMock() for _ in range(randint(2, 10))]
-    reader.pages = pages
-
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader, patch(
-        "pdf_bot.pdf.pdf_service.PdfFileWriter"
-    ) as pdf_file_writer:
-        pdf_file_reader.return_value = reader
-        pdf_file_writer.return_value = writer
-
-        with pdf_service.encrypt_pdf(file_id, password) as actual_path:
-            assert actual_path == out_path
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            io_service.create_temp_pdf_file.assert_called_once_with("Encrypted")
-
-            calls = [call(page) for page in pages]
-            writer.add_page.assert_has_calls(calls)
-            writer.encrypt.assert_called_once_with(password)
-
-
-def test_encrypt_pdf_already_encrypted(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    password = "password"
-
-    reader = cast(PdfFileReader, MagicMock())
-    reader.is_encrypted = True
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader:
-        pdf_file_reader.return_value = reader
-        with pytest.raises(PdfEncryptError), pdf_service.encrypt_pdf(file_id, password):
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            io_service.create_temp_pdf_file.assert_not_called()
-
-
-def test_extract_text_from_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    file_path = "file_path"
-    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.extract_text"
-    ) as extract_text, patch(
-        "pdf_bot.pdf.pdf_service.textwrap"
-    ), pdf_service.extract_text_from_pdf(
-        file_id
-    ):
-        telegram_service.download_pdf_file.assert_called_once_with(file_id)
-        extract_text.assert_called_once_with(file_path)
-        io_service.create_temp_txt_file.assert_called_once_with("PDF_text")
-
-
-def test_extract_text_from_pdf_no_text(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    file_path = "file_path"
-    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.extract_text"
-    ) as extract_text:
-        extract_text.return_value = ""
-        with pytest.raises(PdfNoTextError), pdf_service.extract_text_from_pdf(file_id):
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            extract_text.assert_called_once_with(file_path)
-            io_service.create_temp_txt_file.assert_not_called()
-
-
-def test_merge_pdfs(
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    file_data_generator: Callable[[int], List[FileData]],
-):
-    num_files = randint(2, 10)
-    file_data_list = file_data_generator(num_files)
-    file_ids = [x.id for x in file_data_list]
-
-    telegram_service.download_files.return_value.__enter__.return_value = file_ids
-    merger = MagicMock()
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileMerger"
-    ) as pdf_file_merger:
-        pdf_file_merger.return_value = merger
-        with pdf_service.merge_pdfs(file_data_list):
-            telegram_service.download_files.assert_called_once_with(file_ids)
-            calls = [call(ANY) for _ in range(num_files)]
-            merger.append.assert_has_calls(calls)
-            merger.write.assert_called_once()
-
-
-@pytest.mark.parametrize("exception", [(PyPdfReadError()), (ValueError(),)])
-def test_merge_pdfs_read_error(
-    pdf_service: PdfService,
-    telegram_service: TelegramService,
-    file_data_generator: Callable[[int], List[FileData]],
-    exception: Exception,
-):
-    num_files = randint(1, 10)
-    file_data_list = file_data_generator(num_files)
-    file_ids = [x.id for x in file_data_list]
-
-    telegram_service.download_files.return_value.__enter__.return_value = file_ids
-    merger = cast(PdfFileMerger, MagicMock())
-    merger.append.side_effect = exception
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileMerger"
-    ) as pdf_file_merger:
-        pdf_file_merger.return_value = merger
-        with pytest.raises(PdfReadError), pdf_service.merge_pdfs(file_data_list):
-            telegram_service.download_files.assert_called_once_with(file_ids)
-            merger.write.assert_not_called()
-
-
-def test_ocr_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    file_path = "file_path"
-    out_path = "out_path"
-
-    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf, pdf_service.ocr_pdf(
-        file_id
-    ) as actual_path:
-        assert actual_path == out_path
-        telegram_service.download_pdf_file.assert_called_once_with(file_id)
-        io_service.create_temp_pdf_file.assert_called_once_with("OCR")
-        ocrmypdf.ocr.assert_called_once_with(file_path, out_path, progress_bar=False)
-
-
-def test_ocr_pdf_prior_ocr_found(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    file_path = "file_path"
-    out_path = "out_path"
-
-    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
-
-    with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf:
-        ocrmypdf.ocr.side_effect = PriorOcrFoundError()
-        with pytest.raises(PdfOcrError), pdf_service.ocr_pdf(file_id):
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            io_service.create_temp_pdf_file.assert_called_once_with("OCR")
+    def test_ocr_pdf(self) -> None:
+        with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf, self.sut.ocr_pdf(
+            self.telegram_file_id
+        ) as actual:
+            assert actual == self.OUTPUT_PATH
+            self._assert_telegram_and_io_services("OCR")
             ocrmypdf.ocr.assert_called_once_with(
-                file_path, out_path, progress_bar=False
+                self.DOWNLOAD_PATH, self.OUTPUT_PATH, progress_bar=False
             )
 
+    def test_ocr_pdf_prior_ocr_found(self) -> None:
+        with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf:
+            ocrmypdf.ocr.side_effect = PriorOcrFoundError()
+            with pytest.raises(PdfOcrError), self.sut.ocr_pdf(self.telegram_file_id):
+                self._assert_telegram_and_io_services("OCR")
+                ocrmypdf.ocr.assert_called_once_with(
+                    self.DOWNLOAD_PATH, self.OUTPUT_PATH, progress_bar=False
+                )
 
-def test_rename_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    file_name = "file_name"
-    file_path = "file_path"
-    dir_name = "dir_name"
-    out_path = os.path.join(dir_name, file_name)
+    def test_rename_pdf(self) -> None:
+        file_name = "file_name"
+        expected = os.path.join(self.DIR_NAME, file_name)
 
-    telegram_service.download_pdf_file.return_value.__enter__.return_value = file_path
-    io_service.create_temp_directory.return_value.__enter__.return_value = dir_name
+        with patch("pdf_bot.pdf.pdf_service.shutil") as shutil, self.sut.rename_pdf(
+            self.telegram_file_id, file_name
+        ) as actual:
+            assert actual == expected
+            self.telegram_service.download_pdf_file.assert_called_once_with(
+                self.telegram_file_id
+            )
+            self.io_service.create_temp_directory.assert_called_once()
+            shutil.copy.assert_called_once_with(self.DOWNLOAD_PATH, expected)
 
-    with patch("pdf_bot.pdf.pdf_service.shutil") as shutil, pdf_service.rename_pdf(
-        file_id, file_name
-    ) as actual_path:
-        assert actual_path == out_path
+    @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
+    def test_rotate_pdf(self, num_pages: int) -> None:
+        degree = 90
+        reader = MagicMock(spec=PdfFileReader)
+        writer = MagicMock(spec=PdfFileWriter)
+        reader.is_encrypted = False
 
-        telegram_service.download_pdf_file.assert_called_once_with(file_id)
-        io_service.create_temp_directory.assert_called_once()
-        shutil.copy.assert_called_once_with(file_path, out_path)
+        pages = [MagicMock() for _ in range(num_pages)]
+        rotated_pages = [MagicMock() for _ in pages]
+        for i, page in enumerate(pages):
+            page.rotate_clockwise.return_value = rotated_pages[i]
+        reader.pages = pages
 
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls, patch(
+            "pdf_bot.pdf.pdf_service.PdfFileWriter"
+        ) as writer_cls:
+            reader_cls.return_value = reader
+            writer_cls.return_value = writer
 
-def test_rotate_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    degree = 90
-    out_path = "out_path"
+            with self.sut.rotate_pdf(self.telegram_file_id, degree) as actual:
+                assert actual == self.OUTPUT_PATH
+                self._assert_telegram_and_io_services("Rotated")
 
-    reader = cast(PdfFileReader, MagicMock())
-    writer = cast(PdfFileWriter, MagicMock())
-    reader.is_encrypted = False
+                for page in pages:
+                    page.rotate_clockwise.assert_called_once_with(degree)
 
-    pages = [MagicMock() for _ in range(randint(2, 10))]
-    rotated_pages = [MagicMock() for _ in pages]
-    for i, page in enumerate(pages):
-        page.rotate_clockwise.return_value = rotated_pages[i]
-    reader.pages = pages
+                calls = [call(page) for page in rotated_pages]
+                writer.add_page.assert_has_calls(calls)
 
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+    @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
+    def test_scale_pdf_by_factor(self, num_pages: int) -> None:
+        scale_data = ScaleByData(1, 2)
 
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader, patch(
-        "pdf_bot.pdf.pdf_service.PdfFileWriter"
-    ) as pdf_file_writer:
-        pdf_file_reader.return_value = reader
-        pdf_file_writer.return_value = writer
+        reader = MagicMock(spec=PdfFileReader)
+        writer = MagicMock(spec=PdfFileWriter)
+        reader.is_encrypted = False
 
-        with pdf_service.rotate_pdf(file_id, degree) as actual_path:
-            assert actual_path == out_path
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            io_service.create_temp_pdf_file.assert_called_once_with("Rotated")
+        pages = [MagicMock() for _ in range(num_pages)]
+        reader.pages = pages
 
-            for page in pages:
-                page.rotate_clockwise.assert_called_once_with(degree)
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls, patch(
+            "pdf_bot.pdf.pdf_service.PdfFileWriter"
+        ) as writer_cls:
+            reader_cls.return_value = reader
+            writer_cls.return_value = writer
 
-            calls = [call(page) for page in rotated_pages]
-            writer.add_page.assert_has_calls(calls)
+            with self.sut.scale_pdf(self.telegram_file_id, scale_data) as actual:
+                assert actual == self.OUTPUT_PATH
+                self._assert_telegram_and_io_services("Scaled")
 
+                calls = []
+                for page in pages:
+                    page.scale.assert_called_once_with(scale_data.x, scale_data.y)
+                    calls.append(call(page))
+                writer.add_page.assert_has_calls(calls)
 
-def test_scale_pdf_by_factor(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-    scale_data = ScaleByData(randint(0, 10), randint(0, 10))
+    @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
+    def test_scale_pdf_to_dimension(self, num_pages: int) -> None:
+        scale_data = ScaleToData(1, 2)
 
-    reader = cast(PdfFileReader, MagicMock())
-    writer = cast(PdfFileWriter, MagicMock())
-    reader.is_encrypted = False
+        reader = MagicMock(spec=PdfFileReader)
+        writer = MagicMock(spec=PdfFileWriter)
+        reader.is_encrypted = False
 
-    pages = [MagicMock() for _ in range(randint(2, 10))]
-    reader.pages = pages
+        pages = [MagicMock() for _ in range(num_pages)]
+        reader.pages = pages
 
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls, patch(
+            "pdf_bot.pdf.pdf_service.PdfFileWriter"
+        ) as writer_cls:
+            reader_cls.return_value = reader
+            writer_cls.return_value = writer
 
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader, patch(
-        "pdf_bot.pdf.pdf_service.PdfFileWriter"
-    ) as pdf_file_writer:
-        pdf_file_reader.return_value = reader
-        pdf_file_writer.return_value = writer
+            with self.sut.scale_pdf(self.telegram_file_id, scale_data) as actual:
+                assert actual == self.OUTPUT_PATH
+                self._assert_telegram_and_io_services("Scaled")
 
-        with pdf_service.scale_pdf(file_id, scale_data) as actual_path:
-            assert actual_path == out_path
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            io_service.create_temp_pdf_file.assert_called_once_with("Scaled")
+                calls = []
+                for page in pages:
+                    page.scale_to.assert_called_once_with(scale_data.x, scale_data.y)
+                    calls.append(call(page))
+                writer.add_page.assert_has_calls(calls)
 
-            calls = []
-            for page in pages:
-                page.scale.assert_called_once_with(scale_data.x, scale_data.y)
-                calls.append(call(page))
-            writer.add_page.assert_has_calls(calls)
+    @pytest.mark.parametrize(
+        "split_range",
+        [
+            ":",
+            "7",
+            "0:3",
+            "7:",
+            "-1",
+            ":-1",
+            "-2",
+            "-2:",
+            "-3:-1",
+            "::2",
+            "1:10:2",
+            "::-1",
+            "3:0:-1",
+            "2:-1",
+        ],
+    )
+    def test_split_range_valid(self, split_range: str) -> None:
+        assert self.sut.split_range_valid(split_range) is True
 
+    def test_split_range_invalid(self) -> None:
+        assert self.sut.split_range_valid("clearly_invalid") is False
 
-def test_scale_pdf_to_dimension(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-    scale_data = ScaleToData(randint(0, 10), randint(0, 10))
+    def test_split_pdf(self) -> None:
+        split_range = "7:"
+        reader = MagicMock(spec=PdfFileReader)
+        merger = MagicMock(spec=PdfFileMerger)
+        reader.is_encrypted = False
 
-    reader = cast(PdfFileReader, MagicMock())
-    writer = cast(PdfFileWriter, MagicMock())
-    reader.is_encrypted = False
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls, patch(
+            "pdf_bot.pdf.pdf_service.PdfFileMerger"
+        ) as merger_cls:
+            reader_cls.return_value = reader
+            merger_cls.return_value = merger
 
-    pages = [MagicMock() for _ in range(randint(2, 10))]
-    reader.pages = pages
+            with self.sut.split_pdf(self.telegram_file_id, split_range) as actual:
+                assert actual == self.OUTPUT_PATH
+                self._assert_telegram_and_io_services("Split")
+                merger.append.assert_called_once_with(
+                    reader, pages=PageRange(split_range)
+                )
 
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
+    @staticmethod
+    def _context_manager_side_effect_echo(
+        return_value: str, *_args: Any, **_kwargs: Any
+    ) -> MagicMock:
+        mock = MagicMock()
+        mock.__enter__.return_value = return_value
+        return mock
 
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader, patch(
-        "pdf_bot.pdf.pdf_service.PdfFileWriter"
-    ) as pdf_file_writer:
-        pdf_file_reader.return_value = reader
-        pdf_file_writer.return_value = writer
+    @staticmethod
+    def _method_side_effect_echo(return_value: str, *_args: Any, **_kwargs: Any) -> str:
+        return return_value
 
-        with pdf_service.scale_pdf(file_id, scale_data) as actual_path:
-            assert actual_path == out_path
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            io_service.create_temp_pdf_file.assert_called_once_with("Scaled")
+    @staticmethod
+    def _get_file_data_list(
+        num_files: int,
+    ) -> tuple[list[FileData], list[str], list[str]]:
+        file_data_list = []
+        file_ids = []
+        file_paths = []
 
-            calls = []
-            for page in pages:
-                page.scale_to.assert_called_once_with(scale_data.x, scale_data.y)
-                calls.append(call(page))
-            writer.add_page.assert_has_calls(calls)
+        for i in range(num_files):
+            file_data = FileData(f"id_{i}", f"name_{i}")
+            file_data_list.append(file_data)
+            file_ids.append(file_data.id)
+            file_paths.append(f"path_{i}")
 
+        return file_data_list, file_ids, file_paths
 
-@pytest.mark.parametrize(
-    "split_range",
-    [
-        ":",
-        "7",
-        "0:3",
-        "7:",
-        "-1",
-        ":-1",
-        "-2",
-        "-2:",
-        "-3:-1",
-        "::2",
-        "1:10:2",
-        "::-1",
-        "3:0:-1",
-        "2:-1",
-    ],
-)
-def test_split_range_valid(pdf_service: PdfService, split_range: str):
-    assert pdf_service.split_range_valid(split_range)
+    def _assert_telegram_and_io_services(self, temp_pdf_file_prefix: str) -> None:
+        self.telegram_service.download_pdf_file.assert_called_once_with(
+            self.telegram_file_id
+        )
+        self.io_service.create_temp_pdf_file.assert_called_once_with(
+            temp_pdf_file_prefix
+        )
 
-
-def test_split_range_invalid(pdf_service: PdfService):
-    assert not pdf_service.split_range_valid("clearly_invalid")
-
-
-def test_split_pdf(
-    pdf_service: PdfService,
-    io_service: IOService,
-    telegram_service: TelegramService,
-):
-    file_id = "file_id"
-    out_path = "out_path"
-    split_range = "7:"
-
-    reader = cast(PdfFileReader, MagicMock())
-    merger = cast(PdfFileMerger, MagicMock())
-    reader.is_encrypted = False
-
-    io_service.create_temp_pdf_file.return_value.__enter__.return_value = out_path
-
-    with patch("builtins.open"), patch(
-        "pdf_bot.pdf.pdf_service.PdfFileReader"
-    ) as pdf_file_reader, patch(
-        "pdf_bot.pdf.pdf_service.PdfFileMerger"
-    ) as pdf_file_merger:
-        pdf_file_reader.return_value = reader
-        pdf_file_merger.return_value = merger
-
-        with pdf_service.split_pdf(file_id, split_range) as actual_path:
-            assert actual_path == out_path
-            telegram_service.download_pdf_file.assert_called_once_with(file_id)
-            io_service.create_temp_pdf_file.assert_called_once_with("Split")
-            merger.append.assert_called_once_with(reader, pages=PageRange(split_range))
+    def _assert_decrypt_failure(self, reader: PdfFileReader) -> None:
+        self.telegram_service.download_pdf_file.assert_called_once_with(
+            self.telegram_file_id
+        )
+        reader.decrypt.assert_called_once_with(self.PASSWORD)
+        self.io_service.create_temp_pdf_file.assert_not_called()

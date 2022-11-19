@@ -1,8 +1,8 @@
-import gettext
 import os
 import shutil
 import textwrap
 from contextlib import contextmanager
+from gettext import gettext as _
 from typing import ContextManager, Generator, List
 
 import img2pdf
@@ -32,8 +32,6 @@ from pdf_bot.pdf.exceptions import (
 from pdf_bot.pdf.models import CompressResult, FontData, ScaleByData, ScaleData
 from pdf_bot.telegram_internal import TelegramService
 
-_ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gettext
-
 
 class PdfService:
     def __init__(
@@ -47,7 +45,9 @@ class PdfService:
         self.telegram_service = telegram_service
 
     @contextmanager
-    def add_watermark_to_pdf(self, source_file_id, watermark_file_id):
+    def add_watermark_to_pdf(
+        self, source_file_id: str, watermark_file_id: str
+    ) -> Generator[str, None, None]:
         src_reader = self._open_pdf(source_file_id)
         wmk_reader = self._open_pdf(watermark_file_id)
         wmk_page = wmk_reader.pages[0]
@@ -57,54 +57,43 @@ class PdfService:
             page.merge_page(wmk_page)
             writer.add_page(page)
 
-        with self.io_service.create_temp_pdf_file(
-            prefix="File_with_watermark"
-        ) as out_path:
-            try:
-                with open(out_path, "wb") as f:
-                    writer.write(f)
-                yield out_path
-            finally:
-                pass
+        with self.io_service.create_temp_pdf_file("File_with_watermark") as out_path:
+            with open(out_path, "wb") as f:
+                writer.write(f)
+            yield out_path
 
     @contextmanager
-    def beautify_and_convert_images_to_pdf(self, file_data_list: List[FileData]):
+    def beautify_and_convert_images_to_pdf(
+        self, file_data_list: List[FileData]
+    ) -> Generator[str, None, None]:
         file_ids = self._get_file_ids(file_data_list)
         with self.telegram_service.download_files(
             file_ids
-        ) as file_paths, self.io_service.create_temp_pdf_file(
-            prefix="Beautified"
-        ) as out_path:
-            try:
-                out_path_base = os.path.splitext(out_path)[0]
-                noteshrink.notescan_main(
-                    file_paths, basename=f"{out_path_base}_page", pdfname=out_path
-                )
-                yield out_path
-            finally:
-                pass
+        ) as file_paths, self.io_service.create_temp_pdf_file("Beautified") as out_path:
+            out_path_base = os.path.splitext(out_path)[0]
+            noteshrink.notescan_main(
+                file_paths, basename=f"{out_path_base}_page", pdfname=out_path
+            )
+            yield out_path
 
     @contextmanager
-    def black_and_white_pdf(self, file_id: str):
+    def black_and_white_pdf(self, file_id: str) -> Generator[str, None, None]:
         with (
             self.telegram_service.download_pdf_file(file_id) as file_path,
             self.io_service.create_temp_directory() as dir_name,
-            self.io_service.create_temp_pdf_file(prefix="Black_and_White") as out_path,
+            self.io_service.create_temp_pdf_file("Black_and_white") as out_path,
         ):
-            try:
-                images = pdf2image.convert_from_path(
-                    file_path,
-                    output_folder=dir_name,
-                    fmt="png",
-                    grayscale=True,
-                    paths_only=True,
-                )
+            images = pdf2image.convert_from_path(
+                file_path,
+                output_folder=dir_name,
+                fmt="png",
+                grayscale=True,
+                paths_only=True,
+            )
 
-                with open(out_path, "wb") as f:
-                    f.write(img2pdf.convert(images))
-                yield out_path
-            finally:
-                pass
+            with open(out_path, "wb") as f:
+                f.write(img2pdf.convert(images))
+            yield out_path
 
     @contextmanager
     def compare_pdfs(
@@ -115,46 +104,37 @@ class PdfService:
         ) as file_name_a, self.telegram_service.download_pdf_file(
             file_id_b
         ) as file_name_b, self.io_service.create_temp_png_file(
-            prefix="Differences"
+            "Differences"
         ) as out_path:
-            try:
-                pdf_diff.main(files=[file_name_a, file_name_b], out_file=out_path)
-                yield out_path
-            finally:
-                pass
+            pdf_diff.main(files=[file_name_a, file_name_b], out_file=out_path)
+            yield out_path
 
     @contextmanager
-    def compress_pdf(self, file_id: str):
+    def compress_pdf(self, file_id: str) -> Generator[str, None, None]:
         with self.telegram_service.download_pdf_file(
             file_id
-        ) as file_path, self.io_service.create_temp_pdf_file(
-            prefix="Compressed"
-        ) as out_path:
-            try:
-                self.cli_service.compress_pdf(file_path, out_path)
-                old_size = os.path.getsize(file_path)
-                new_size = os.path.getsize(out_path)
-                yield CompressResult(old_size, new_size, out_path)
-            finally:
-                pass
+        ) as file_path, self.io_service.create_temp_pdf_file("Compressed") as out_path:
+            self.cli_service.compress_pdf(file_path, out_path)
+            old_size = os.path.getsize(file_path)
+            new_size = os.path.getsize(out_path)
+            yield CompressResult(old_size, new_size, out_path)
 
     @contextmanager
-    def convert_images_to_pdf(self, file_data_list: List[FileData]):
+    def convert_images_to_pdf(
+        self, file_data_list: List[FileData]
+    ) -> Generator[str, None, None]:
         file_ids = self._get_file_ids(file_data_list)
         with self.telegram_service.download_files(
             file_ids
-        ) as file_paths, self.io_service.create_temp_pdf_file(
-            prefix="Converted"
-        ) as out_path:
-            try:
-                with open(out_path, "wb") as f:
-                    f.write(img2pdf.convert(file_paths))
-                yield out_path
-            finally:
-                pass
+        ) as file_paths, self.io_service.create_temp_pdf_file("Converted") as out_path:
+            with open(out_path, "wb") as f:
+                f.write(img2pdf.convert(file_paths))
+            yield out_path
 
     @contextmanager
-    def create_pdf_from_text(self, text: str, font_data: FontData | None):
+    def create_pdf_from_text(
+        self, text: str, font_data: FontData | None
+    ) -> Generator[str, None, None]:
         html = HTML(
             string="<p>{content}</p>".format(content=text.replace("\n", "<br/>"))
         )
@@ -177,14 +157,9 @@ class PdfService:
                 )
             ]
 
-        try:
-            with self.io_service.create_temp_pdf_file(prefix="Text") as out_path:
-                html.write_pdf(
-                    out_path, stylesheets=stylesheets, font_config=font_config
-                )
-                yield out_path
-        finally:
-            pass
+        with self.io_service.create_temp_pdf_file("Text") as out_path:
+            html.write_pdf(out_path, stylesheets=stylesheets, font_config=font_config)
+            yield out_path
 
     @contextmanager
     def crop_pdf(
@@ -192,24 +167,17 @@ class PdfService:
         file_id: str,
         percentage: float | None = None,
         margin_size: float | None = None,
-    ):
+    ) -> Generator[str, None, None]:
         with self.telegram_service.download_pdf_file(
             file_id
-        ) as file_path, self.io_service.create_temp_pdf_file(
-            prefix="Cropped"
-        ) as out_path:
-            try:
-                if percentage is not None:
-                    self.cli_service.crop_pdf_by_percentage(
-                        file_path, out_path, percentage
-                    )
-                else:
-                    self.cli_service.crop_pdf_by_margin_size(
-                        file_path, out_path, margin_size
-                    )
-                yield out_path
-            finally:
-                pass
+        ) as file_path, self.io_service.create_temp_pdf_file("Cropped") as out_path:
+            if percentage is not None:
+                self.cli_service.crop_pdf_by_percentage(file_path, out_path, percentage)
+            else:
+                self.cli_service.crop_pdf_by_margin_size(
+                    file_path, out_path, margin_size
+                )
+            yield out_path
 
     @contextmanager
     def decrypt_pdf(self, file_id: str, password: str) -> ContextManager[str]:
@@ -232,15 +200,12 @@ class PdfService:
             writer.add_page(page)
 
         with self.io_service.create_temp_pdf_file("Decrypted") as out_path:
-            try:
-                with open(out_path, "wb") as f:
-                    writer.write(f)
-                yield out_path
-            finally:
-                pass
+            with open(out_path, "wb") as f:
+                writer.write(f)
+            yield out_path
 
     @contextmanager
-    def encrypt_pdf(self, file_id: str, password: str):
+    def encrypt_pdf(self, file_id: str, password: str) -> Generator[str, None, None]:
         reader = self._open_pdf(file_id)
         writer = PdfFileWriter()
 
@@ -249,15 +214,12 @@ class PdfService:
         writer.encrypt(password)
 
         with self.io_service.create_temp_pdf_file("Encrypted") as out_path:
-            try:
-                with open(out_path, "wb") as f:
-                    writer.write(f)
-                yield out_path
-            finally:
-                pass
+            with open(out_path, "wb") as f:
+                writer.write(f)
+            yield out_path
 
     @contextmanager
-    def extract_text_from_pdf(self, file_id: str):
+    def extract_text_from_pdf(self, file_id: str) -> Generator[str, None, None]:
         with self.telegram_service.download_pdf_file(file_id) as file_path:
             text = extract_text(file_path)
 
@@ -266,12 +228,9 @@ class PdfService:
 
         wrapped_text = textwrap.wrap(text)
         with self.io_service.create_temp_txt_file("PDF_text") as out_path:
-            try:
-                with open(out_path, "w") as f:
-                    f.write("\n".join(wrapped_text))
-                yield out_path
-            finally:
-                pass
+            with open(out_path, "w") as f:
+                f.write("\n".join(wrapped_text))
+            yield out_path
 
     @contextmanager
     def merge_pdfs(self, file_data_list: List[FileData]) -> Generator[str, None, None]:
@@ -281,7 +240,7 @@ class PdfService:
         with self.telegram_service.download_files(file_ids) as file_paths:
             for i, file_path in enumerate(file_paths):
                 try:
-                    merger.append(open(file_path, "rb"))
+                    merger.append(file_path)
                 except (PyPdfReadError, ValueError) as e:
                     raise PdfReadError(
                         _(
@@ -290,13 +249,10 @@ class PdfService:
                         )
                     ) from e
 
-        with self.io_service.create_temp_pdf_file(prefix="Merged_files") as out_path:
-            try:
-                with open(out_path, "wb") as f:
-                    merger.write(f)
-                yield out_path
-            finally:
-                pass
+        with self.io_service.create_temp_pdf_file("Merged_files") as out_path:
+            with open(out_path, "wb") as f:
+                merger.write(f)
+            yield out_path
 
     @contextmanager
     def ocr_pdf(self, file_id: str) -> Generator[str, None, None]:
@@ -308,23 +264,18 @@ class PdfService:
                 yield out_path
             except PriorOcrFoundError as e:
                 raise PdfOcrError(_("Your PDF file already has a text layer")) from e
-            finally:
-                pass
 
     @contextmanager
     def rename_pdf(self, file_id: str, file_name: str) -> Generator[str, None, None]:
         with self.telegram_service.download_pdf_file(
             file_id
         ) as file_path, self.io_service.create_temp_directory() as dir_name:
-            try:
-                out_path = os.path.join(dir_name, file_name)
-                shutil.copy(file_path, out_path)
-                yield out_path
-            finally:
-                pass
+            out_path = os.path.join(dir_name, file_name)
+            shutil.copy(file_path, out_path)
+            yield out_path
 
     @contextmanager
-    def rotate_pdf(self, file_id: str, degree: int):
+    def rotate_pdf(self, file_id: str, degree: int) -> Generator[str, None, None]:
         reader = self._open_pdf(file_id)
         writer = PdfFileWriter()
 
@@ -332,15 +283,14 @@ class PdfService:
             writer.add_page(page.rotate_clockwise(degree))
 
         with self.io_service.create_temp_pdf_file("Rotated") as out_path:
-            try:
-                with open(out_path, "wb") as f:
-                    writer.write(f)
-                yield out_path
-            finally:
-                pass
+            with open(out_path, "wb") as f:
+                writer.write(f)
+            yield out_path
 
     @contextmanager
-    def scale_pdf(self, file_id: str, scale_data: ScaleData):
+    def scale_pdf(
+        self, file_id: str, scale_data: ScaleData
+    ) -> Generator[str, None, None]:
         reader = self._open_pdf(file_id)
         writer = PdfFileWriter()
 
@@ -352,30 +302,24 @@ class PdfService:
             writer.add_page(page)
 
         with self.io_service.create_temp_pdf_file("Scaled") as out_path:
-            try:
-                with open(out_path, "wb") as f:
-                    writer.write(f)
-                yield out_path
-            finally:
-                pass
+            with open(out_path, "wb") as f:
+                writer.write(f)
+            yield out_path
 
     @staticmethod
     def split_range_valid(split_range: str) -> bool:
         return PageRange.valid(split_range)
 
     @contextmanager
-    def split_pdf(self, file_id: str, split_range: str):
+    def split_pdf(self, file_id: str, split_range: str) -> Generator[str, None, None]:
         reader = self._open_pdf(file_id)
         merger = PdfFileMerger()
         merger.append(reader, pages=PageRange(split_range))
 
         with self.io_service.create_temp_pdf_file("Split") as out_path:
-            try:
-                with open(out_path, "wb") as f:
-                    merger.write(f)
-                yield out_path
-            finally:
-                pass
+            with open(out_path, "wb") as f:
+                merger.write(f)
+            yield out_path
 
     @staticmethod
     def _get_file_ids(file_data_list: List[FileData]) -> List[str]:
@@ -384,7 +328,7 @@ class PdfService:
     def _open_pdf(self, file_id: str, allow_encrypted: bool = False) -> PdfFileReader:
         with self.telegram_service.download_pdf_file(file_id) as file_name:
             try:
-                pdf_reader = PdfFileReader(open(file_name, "rb"))
+                pdf_reader = PdfFileReader(file_name)
             except PyPdfReadError as e:
                 raise PdfReadError(_("Your PDF file is invalid")) from e
 
