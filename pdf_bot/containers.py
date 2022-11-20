@@ -23,8 +23,8 @@ from pdf_bot.pdf_processor import (
     GrayscalePDFProcessor,
     PreviewPDFProcessor,
     RenamePDFProcessor,
+    RotatePDFProcessor,
 )
-from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
 from pdf_bot.split import SplitService
 from pdf_bot.telegram_internal import TelegramService
@@ -123,13 +123,6 @@ class Services(containers.DeclarativeContainer):
         telegram_service=telegram,
         language_service=language,
     )
-    rotate = providers.Factory(
-        RotateService,
-        file_task_service=file_task,
-        pdf_service=pdf,
-        telegram_service=telegram,
-        language_service=language,
-    )
     scale = providers.Factory(
         ScaleService,
         file_task_service=file_task,
@@ -197,6 +190,13 @@ class Processors(containers.DeclarativeContainer):
         telegram_service=services.telegram,
         language_service=services.language,
     )
+    rotate = providers.Factory(
+        RotatePDFProcessor,
+        file_task_service=services.file_task,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
 
 
 class Handlers(containers.DeclarativeContainer):
@@ -216,7 +216,7 @@ class Handlers(containers.DeclarativeContainer):
         ocr_service=services.ocr,
         preview_pdf_processor=processors.preview_pdf,
         rename_pdf_processor=processors.rename,
-        rotate_service=services.rotate,
+        rotate_pdf_processor=processors.rotate,
         scale_service=services.scale,
         split_service=services.split,
     )

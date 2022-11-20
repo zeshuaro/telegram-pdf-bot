@@ -9,7 +9,7 @@ from pdf_bot.consts import BACK
 from pdf_bot.file_processor import AbstractFileProcessor
 
 
-class RotateService(AbstractFileProcessor):
+class RotatePDFProcessor(AbstractFileProcessor):
     WAIT_ROTATE_DEGREE = "wait_rotate_degree"
     _ROTATE_90 = "90"
     _ROTATE_180 = "180"
