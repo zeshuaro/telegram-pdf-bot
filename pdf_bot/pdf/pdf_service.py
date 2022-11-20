@@ -266,6 +266,25 @@ class PdfService:
                 raise PdfOcrError(_("Your PDF file already has a text layer")) from e
 
     @contextmanager
+    def preview_pdf(self, file_id: str) -> Generator[str, None, None]:
+        with (
+            self.io_service.create_temp_pdf_file() as pdf_path,
+            self.io_service.create_temp_png_file("Preview") as out_path,
+        ):
+            reader = self._open_pdf(file_id)
+            writer = PdfFileWriter()
+            writer.add_page(reader.pages[0])
+
+            # Write cover preview PDF file
+            with open(pdf_path, "wb") as f:
+                writer.write(f)
+
+            # Convert cover preview to image
+            imgs = pdf2image.convert_from_path(pdf_path, fmt="png")
+            imgs[0].save(out_path)
+            yield out_path
+
+    @contextmanager
     def rename_pdf(self, file_id: str, file_name: str) -> Generator[str, None, None]:
         with self.telegram_service.download_pdf_file(
             file_id

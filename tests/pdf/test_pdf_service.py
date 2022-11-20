@@ -481,6 +481,41 @@ class TestPDFService(
                     self.DOWNLOAD_PATH, self.OUTPUT_PATH, progress_bar=False
                 )
 
+    def test_preview_pdf(self) -> None:
+        pdf_path = "pdf_path"
+        out_path = "out_path"
+
+        reader = MagicMock(spec=PdfFileReader)
+        writer = MagicMock(spec=PdfFileWriter)
+        page = MagicMock(spec=PageObject)
+        reader.is_encrypted = False
+        reader.pages = [page]
+
+        image = MagicMock()
+
+        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = (
+            pdf_path
+        )
+        self.io_service.create_temp_png_file.return_value.__enter__.return_value = (
+            out_path
+        )
+
+        with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls, patch(
+            "pdf_bot.pdf.pdf_service.PdfFileWriter"
+        ) as writer_cls, patch("pdf_bot.pdf.pdf_service.pdf2image") as pdf2image:
+            reader_cls.return_value = reader
+            writer_cls.return_value = writer
+            pdf2image.convert_from_path.return_value = [image]
+
+            with self.sut.preview_pdf(self.telegram_file_id) as actual:
+                assert actual == out_path
+                self.telegram_service.download_pdf_file.assert_called_once_with(
+                    self.telegram_file_id
+                )
+                writer.add_page.assert_called_once_with(page)
+                pdf2image.convert_from_path.assert_called_once_with(pdf_path, fmt="png")
+                image.save.assert_called_once_with(out_path)
+
     def test_rename_pdf(self) -> None:
         file_name = "file_name"
         expected = os.path.join(self.DIR_NAME, file_name)
@@ -502,7 +537,7 @@ class TestPDFService(
         writer = MagicMock(spec=PdfFileWriter)
         reader.is_encrypted = False
 
-        pages = [MagicMock() for _ in range(num_pages)]
+        pages = [MagicMock(spec=PageObject) for _ in range(num_pages)]
         rotated_pages = [MagicMock() for _ in pages]
         for i, page in enumerate(pages):
             page.rotate_clockwise.return_value = rotated_pages[i]
