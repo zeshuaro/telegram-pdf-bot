@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 00:54+0000\n"
-"PO-Revision-Date: 2022-11-20 00:54\n"
+"POT-Creation-Date: 2022-11-20 01:10+0000\n"
+"PO-Revision-Date: 2022-11-20 01:10\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: French\n"
@@ -293,8 +293,8 @@ msgstr "Vous m’avez envoyé ces {file_type} jusqu’à présent:"
 msgid "The result file is too large for me to send to you"
 msgstr "Le fichier de résultat est trop volumineux pour que je puisse vous envoyer"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:155
-#: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:157
+#: pdf_bot/files/image.py:42 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Notez qu’il s’agit d’une limitation de Telegram Bot et qu’il n’y a rien que je puisse faire à moins que Telegram ne modifie cette limite"
 
@@ -452,7 +452,7 @@ msgstr "Envoyez-moi le mot de passe pour décrypter votre fichier PDF"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Envoyez-moi le mot de passe pour crypter votre fichier PDF"
 
-#: pdf_bot/file/file_handlers.py:154
+#: pdf_bot/file/file_handlers.py:156
 msgid "Your file is too big for me to download and process"
 msgstr "Votre fichier est trop volumineux pour que je le télécharge et le traite"
 
@@ -461,39 +461,35 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Taille du fichier réduite de {percent}, de {old_size} à {new_size}"
 
 #: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/document.py:54
-#: pdf_bot/files/image.py:63
+#: pdf_bot/files/image.py:57
 msgid "Select the task that you'll like to perform"
 msgstr "Sélectionner les actions que vous souhaitez effectuer"
 
-#: pdf_bot/files/image.py:47
+#: pdf_bot/files/image.py:41
 msgid "Your image is too large for me to download and process"
 msgstr "Votre image est trop grande pour que je puisse la télécharger et la traiter"
 
-#: pdf_bot/files/image.py:95
-msgid "Extracting a preview for your PDF file"
-msgstr "Extraction d'un aperçu pour votre fichier PDF"
-
-#: pdf_bot/files/image.py:143
+#: pdf_bot/files/image.py:94
 msgid "Select the result file format"
 msgstr "Sélectionnez le format du fichier final"
 
-#: pdf_bot/files/image.py:155
+#: pdf_bot/files/image.py:106
 msgid "Converting your PDF file into images"
 msgstr "Conversion de votre fichier PDF en images"
 
-#: pdf_bot/files/image.py:193
+#: pdf_bot/files/image.py:144
 msgid "Extracting all the images in your PDF file"
 msgstr "Extraction de toutes les images de votre fichier PDF"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram_internal/telegram_service.py:92
+#: pdf_bot/files/image.py:159 pdf_bot/telegram_internal/telegram_service.py:92
 msgid "Something went wrong, please try again"
 msgstr "Quelque chose s’est mal passé, s’il vous plaît essayer à nouveau"
 
-#: pdf_bot/files/image.py:213
+#: pdf_bot/files/image.py:164
 msgid "I couldn't find any images in your PDF file"
 msgstr "Je n’ai trouvé aucune image dans votre fichier PDF"
 
-#: pdf_bot/files/image.py:251
+#: pdf_bot/files/image.py:202
 msgid "See above for all your images"
 msgstr "Voir ci-dessus pour toutes vos images"
 
@@ -1563,5 +1559,8 @@ msgstr "Ajouter le filigrane à votre fichier PDF"
 #~ msgstr ""
 
 #~ msgid "Remove Last File"
+#~ msgstr ""
+
+#~ msgid "Extracting a preview for your PDF file"
 #~ msgstr ""
 

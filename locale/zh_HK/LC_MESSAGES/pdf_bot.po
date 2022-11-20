@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 00:54+0000\n"
-"PO-Revision-Date: 2022-11-20 00:54\n"
+"POT-Creation-Date: 2022-11-20 01:10+0000\n"
+"PO-Revision-Date: 2022-11-20 01:10\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -293,8 +293,8 @@ msgstr "你send咗呢啲{file_type}畀我："
 msgid "The result file is too large for me to send to you"
 msgstr "個檔案太大啦，我send唔到俾你"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:155
-#: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:157
+#: pdf_bot/files/image.py:42 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "留意番呢個係Telegram Bot嘅限制，呢個限唔係我嘅控制範圍，要等Telegram改呢個限制我先至可以處理你嘅檔案"
 
@@ -452,7 +452,7 @@ msgstr "Send解密密碼畀我嚟解密你嘅PDF檔案"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Send加密密碼畀我嚟加密你嘅PDF檔案"
 
-#: pdf_bot/file/file_handlers.py:154
+#: pdf_bot/file/file_handlers.py:156
 msgid "Your file is too big for me to download and process"
 msgstr "你嘅檔案太大啦，我下載唔到同處理唔到"
 
@@ -461,39 +461,35 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "檔案大小細咗{percent}，由{old_size}壓縮到{new_size}"
 
 #: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/document.py:54
-#: pdf_bot/files/image.py:63
+#: pdf_bot/files/image.py:57
 msgid "Select the task that you'll like to perform"
 msgstr "揀你想做啲乜"
 
-#: pdf_bot/files/image.py:47
+#: pdf_bot/files/image.py:41
 msgid "Your image is too large for me to download and process"
 msgstr ""
 
-#: pdf_bot/files/image.py:95
-msgid "Extracting a preview for your PDF file"
-msgstr "攞緊你PDF檔案嘅預覽"
-
-#: pdf_bot/files/image.py:143
+#: pdf_bot/files/image.py:94
 msgid "Select the result file format"
 msgstr "揀檔案格式"
 
-#: pdf_bot/files/image.py:155
+#: pdf_bot/files/image.py:106
 msgid "Converting your PDF file into images"
 msgstr ""
 
-#: pdf_bot/files/image.py:193
+#: pdf_bot/files/image.py:144
 msgid "Extracting all the images in your PDF file"
 msgstr ""
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram_internal/telegram_service.py:92
+#: pdf_bot/files/image.py:159 pdf_bot/telegram_internal/telegram_service.py:92
 msgid "Something went wrong, please try again"
 msgstr "發生咗未知嘅錯誤，唔該試多次"
 
-#: pdf_bot/files/image.py:213
+#: pdf_bot/files/image.py:164
 msgid "I couldn't find any images in your PDF file"
 msgstr ""
 
-#: pdf_bot/files/image.py:251
+#: pdf_bot/files/image.py:202
 msgid "See above for all your images"
 msgstr ""
 
@@ -1561,5 +1557,8 @@ msgstr "加緊水印去你個PDF檔案"
 #~ msgstr ""
 
 #~ msgid "Remove Last File"
+#~ msgstr ""
+
+#~ msgid "Extracting a preview for your PDF file"
 #~ msgstr ""
 

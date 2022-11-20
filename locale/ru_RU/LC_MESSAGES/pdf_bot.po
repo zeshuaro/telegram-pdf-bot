@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 00:54+0000\n"
-"PO-Revision-Date: 2022-11-20 00:54\n"
+"POT-Creation-Date: 2022-11-20 01:10+0000\n"
+"PO-Revision-Date: 2022-11-20 01:10\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -293,8 +293,8 @@ msgstr "На данный момент Вы прислали мне это {file
 msgid "The result file is too large for me to send to you"
 msgstr "Итоговый файл слишком велик, чтобы я мог отправить его вам"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:155
-#: pdf_bot/files/image.py:48 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:157
+#: pdf_bot/files/image.py:42 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Обратите внимание, что это ограничение Telegram Bot, и я ничего не могу сделать, если Telegram не изменит это ограничение."
 
@@ -452,7 +452,7 @@ msgstr "Пришлите мне пароль для расшифровки ва�
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Пришлите мне пароль для шифрования PDF-файла"
 
-#: pdf_bot/file/file_handlers.py:154
+#: pdf_bot/file/file_handlers.py:156
 msgid "Your file is too big for me to download and process"
 msgstr "Ваш файл слишком велик для загрузки и обработки"
 
@@ -461,39 +461,35 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Размер файла уменьшен на {percent}, с {old_size} до {new_size}"
 
 #: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/document.py:54
-#: pdf_bot/files/image.py:63
+#: pdf_bot/files/image.py:57
 msgid "Select the task that you'll like to perform"
 msgstr "Выберите задачу, которую вам нужно выполнить"
 
-#: pdf_bot/files/image.py:47
+#: pdf_bot/files/image.py:41
 msgid "Your image is too large for me to download and process"
 msgstr "Ваше изображение слишком велико для загрузки и обработки"
 
-#: pdf_bot/files/image.py:95
-msgid "Extracting a preview for your PDF file"
-msgstr "Извлечение предварительного просмотра PDF-файла"
-
-#: pdf_bot/files/image.py:143
+#: pdf_bot/files/image.py:94
 msgid "Select the result file format"
 msgstr "Выберите формат итогового файла"
 
-#: pdf_bot/files/image.py:155
+#: pdf_bot/files/image.py:106
 msgid "Converting your PDF file into images"
 msgstr "Преобразование PDF-файла в изображения"
 
-#: pdf_bot/files/image.py:193
+#: pdf_bot/files/image.py:144
 msgid "Extracting all the images in your PDF file"
 msgstr "Извлечение всех изображений из PDF-файла"
 
-#: pdf_bot/files/image.py:208 pdf_bot/telegram_internal/telegram_service.py:92
+#: pdf_bot/files/image.py:159 pdf_bot/telegram_internal/telegram_service.py:92
 msgid "Something went wrong, please try again"
 msgstr "Что-то пошло не так, пожалуйста, попробуйте еще раз"
 
-#: pdf_bot/files/image.py:213
+#: pdf_bot/files/image.py:164
 msgid "I couldn't find any images in your PDF file"
 msgstr "Не удалось найти изображения в PDF-файле"
 
-#: pdf_bot/files/image.py:251
+#: pdf_bot/files/image.py:202
 msgid "See above for all your images"
 msgstr "Смотрите выше для всех ваших изображений"
 
@@ -1563,5 +1559,8 @@ msgstr "Добавление водяного знака в ваш PDF-файл"
 #~ msgstr ""
 
 #~ msgid "Remove Last File"
+#~ msgstr ""
+
+#~ msgid "Extracting a preview for your PDF file"
 #~ msgstr ""
 
