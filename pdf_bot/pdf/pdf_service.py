@@ -105,6 +105,14 @@ class PdfService:
             yield CompressResult(old_size, new_size, out_path)
 
     @contextmanager
+    def convert_to_images(self, file_id: str) -> Generator[str, None, None]:
+        with self.telegram_service.download_pdf_file(
+            file_id
+        ) as file_path, self.io_service.create_temp_directory() as out_dir:
+            pdf2image.convert_from_path(file_path, output_folder=out_dir, fmt="png")
+            yield out_dir
+
+    @contextmanager
     def create_pdf_from_text(
         self, text: str, font_data: FontData | None
     ) -> Generator[str, None, None]:
