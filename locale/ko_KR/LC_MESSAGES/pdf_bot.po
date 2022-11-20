@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 04:58+0000\n"
-"PO-Revision-Date: 2022-11-20 04:59\n"
+"POT-Creation-Date: 2022-11-20 05:06+0000\n"
+"PO-Revision-Date: 2022-11-20 05:07\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -609,6 +609,78 @@ msgstr "너비와 높이 보내기"
 msgid "This will set the width to 150 and height to 200"
 msgstr "이렇게 하면 너비가 150이고 높이는 200으로 설정됩니다."
 
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "보관할 페이지 범위 보내기"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+msgid "General usage"
+msgstr "일반 사용"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
+msgid "{range}      all pages"
+msgstr "모든 페이지 {range}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:72
+msgid "{range}      page 8 only"
+msgstr "{range}      페이지 8만"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+msgid "{range}    first three pages"
+msgstr "처음 세 페이지 {range}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+msgid "{range}     from page 8 onward"
+msgstr "8페이지 이후의 {range}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+msgid "{range}     last page only"
+msgstr "{range}     마지막 페이지만"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:76
+msgid "{range}    all pages except the last page"
+msgstr "마지막 페이지를 제외한 모든 페이지를 {range}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+msgid "{range}     second last page only"
+msgstr "두 번째 마지막 페이지만 {range}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:80
+msgid "{range}    last two pages"
+msgstr "{range}    지난 두 페이지"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:81
+msgid "{range}  third and second last pages"
+msgstr "{range}  세 번째 및 두 번째 마지막 페이지"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:84
+msgid "Advanced usage"
+msgstr "고급 사용"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+msgid "{range}    pages {pages} and to the end"
+msgstr "{range}    페이지 {pages} 끝까지"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:88
+msgid "{range} pages {pages}"
+msgstr "{range} 페이지 {pages}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:91
+msgid "{range}   all pages in reversed order"
+msgstr "모든 페이지를 반전 순서로 {range}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:94
+msgid "{range} pages {pages} except {page}"
+msgstr "{range} 페이지 {pages} {page}제외"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:97
+msgid "{range}  pages {pages}"
+msgstr "{range}  페이지 {pages}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:119
+msgid "The range is invalid, please try again"
+msgstr "범위가 유효하지 않습니다, 다시 시도하십시오"
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
@@ -616,78 +688,6 @@ msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDF 파일을 암호화하기 위해 암호를 보내주세요."
-
-#: pdf_bot/split/split_service.py:69
-msgid "Send me the range of pages that you'll like to keep"
-msgstr "보관할 페이지 범위 보내기"
-
-#: pdf_bot/split/split_service.py:70
-msgid "General usage"
-msgstr "일반 사용"
-
-#: pdf_bot/split/split_service.py:71
-msgid "{range}      all pages"
-msgstr "모든 페이지 {range}"
-
-#: pdf_bot/split/split_service.py:72
-msgid "{range}      page 8 only"
-msgstr "{range}      페이지 8만"
-
-#: pdf_bot/split/split_service.py:73
-msgid "{range}    first three pages"
-msgstr "처음 세 페이지 {range}"
-
-#: pdf_bot/split/split_service.py:74
-msgid "{range}     from page 8 onward"
-msgstr "8페이지 이후의 {range}"
-
-#: pdf_bot/split/split_service.py:75
-msgid "{range}     last page only"
-msgstr "{range}     마지막 페이지만"
-
-#: pdf_bot/split/split_service.py:76
-msgid "{range}    all pages except the last page"
-msgstr "마지막 페이지를 제외한 모든 페이지를 {range}"
-
-#: pdf_bot/split/split_service.py:79
-msgid "{range}     second last page only"
-msgstr "두 번째 마지막 페이지만 {range}"
-
-#: pdf_bot/split/split_service.py:80
-msgid "{range}    last two pages"
-msgstr "{range}    지난 두 페이지"
-
-#: pdf_bot/split/split_service.py:81
-msgid "{range}  third and second last pages"
-msgstr "{range}  세 번째 및 두 번째 마지막 페이지"
-
-#: pdf_bot/split/split_service.py:84
-msgid "Advanced usage"
-msgstr "고급 사용"
-
-#: pdf_bot/split/split_service.py:85
-msgid "{range}    pages {pages} and to the end"
-msgstr "{range}    페이지 {pages} 끝까지"
-
-#: pdf_bot/split/split_service.py:88
-msgid "{range} pages {pages}"
-msgstr "{range} 페이지 {pages}"
-
-#: pdf_bot/split/split_service.py:91
-msgid "{range}   all pages in reversed order"
-msgstr "모든 페이지를 반전 순서로 {range}"
-
-#: pdf_bot/split/split_service.py:94
-msgid "{range} pages {pages} except {page}"
-msgstr "{range} 페이지 {pages} {page}제외"
-
-#: pdf_bot/split/split_service.py:97
-msgid "{range}  pages {pages}"
-msgstr "{range}  페이지 {pages}"
-
-#: pdf_bot/split/split_service.py:119
-msgid "The range is invalid, please try again"
-msgstr "범위가 유효하지 않습니다, 다시 시도하십시오"
 
 #: pdf_bot/telegram_internal/telegram_service.py:57
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"

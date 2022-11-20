@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 04:58+0000\n"
-"PO-Revision-Date: 2022-11-20 04:59\n"
+"POT-Creation-Date: 2022-11-20 05:06+0000\n"
+"PO-Revision-Date: 2022-11-20 05:07\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -609,6 +609,78 @@ msgstr "Enviarme el ancho y el alto"
 msgid "This will set the width to 150 and height to 200"
 msgstr "Esto establecerá el ancho en 150 y el alto en 200"
 
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+msgid "Send me the range of pages that you'll like to keep"
+msgstr "Envíame el rango de páginas que te gustaría mantener"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+msgid "General usage"
+msgstr "Uso general"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
+msgid "{range}      all pages"
+msgstr "{range}      todas las páginas"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:72
+msgid "{range}      page 8 only"
+msgstr "{range}      página 8 solamente"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+msgid "{range}    first three pages"
+msgstr "{range}    tres primeras páginas"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+msgid "{range}     from page 8 onward"
+msgstr "{range}     a partir de la página 8"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+msgid "{range}     last page only"
+msgstr "{range}     última página"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:76
+msgid "{range}    all pages except the last page"
+msgstr "{range}    todas las páginas excepto la última página"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+msgid "{range}     second last page only"
+msgstr "{range}     penúltima página"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:80
+msgid "{range}    last two pages"
+msgstr "{range}    dos últimas páginas"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:81
+msgid "{range}  third and second last pages"
+msgstr "{range}  tercera y penúltima página"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:84
+msgid "Advanced usage"
+msgstr "Uso avanzado"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+msgid "{range}    pages {pages} and to the end"
+msgstr "{range}    páginas {pages} y hasta el final"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:88
+msgid "{range} pages {pages}"
+msgstr "{range} páginas {pages}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:91
+msgid "{range}   all pages in reversed order"
+msgstr "{range}   todas las páginas en orden inverso"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:94
+msgid "{range} pages {pages} except {page}"
+msgstr "{range} páginas {pages} excepto {page}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:97
+msgid "{range}  pages {pages}"
+msgstr "{range}  páginas {pages}"
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:119
+msgid "The range is invalid, please try again"
+msgstr "El intervalo no es válido, inténtelo de nuevo"
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Envíame la contraseña para descifrar tu archivo PDF"
@@ -616,78 +688,6 @@ msgstr "Envíame la contraseña para descifrar tu archivo PDF"
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Envíame la contraseña para cifrar tu archivo PDF"
-
-#: pdf_bot/split/split_service.py:69
-msgid "Send me the range of pages that you'll like to keep"
-msgstr "Envíame el rango de páginas que te gustaría mantener"
-
-#: pdf_bot/split/split_service.py:70
-msgid "General usage"
-msgstr "Uso general"
-
-#: pdf_bot/split/split_service.py:71
-msgid "{range}      all pages"
-msgstr "{range}      todas las páginas"
-
-#: pdf_bot/split/split_service.py:72
-msgid "{range}      page 8 only"
-msgstr "{range}      página 8 solamente"
-
-#: pdf_bot/split/split_service.py:73
-msgid "{range}    first three pages"
-msgstr "{range}    tres primeras páginas"
-
-#: pdf_bot/split/split_service.py:74
-msgid "{range}     from page 8 onward"
-msgstr "{range}     a partir de la página 8"
-
-#: pdf_bot/split/split_service.py:75
-msgid "{range}     last page only"
-msgstr "{range}     última página"
-
-#: pdf_bot/split/split_service.py:76
-msgid "{range}    all pages except the last page"
-msgstr "{range}    todas las páginas excepto la última página"
-
-#: pdf_bot/split/split_service.py:79
-msgid "{range}     second last page only"
-msgstr "{range}     penúltima página"
-
-#: pdf_bot/split/split_service.py:80
-msgid "{range}    last two pages"
-msgstr "{range}    dos últimas páginas"
-
-#: pdf_bot/split/split_service.py:81
-msgid "{range}  third and second last pages"
-msgstr "{range}  tercera y penúltima página"
-
-#: pdf_bot/split/split_service.py:84
-msgid "Advanced usage"
-msgstr "Uso avanzado"
-
-#: pdf_bot/split/split_service.py:85
-msgid "{range}    pages {pages} and to the end"
-msgstr "{range}    páginas {pages} y hasta el final"
-
-#: pdf_bot/split/split_service.py:88
-msgid "{range} pages {pages}"
-msgstr "{range} páginas {pages}"
-
-#: pdf_bot/split/split_service.py:91
-msgid "{range}   all pages in reversed order"
-msgstr "{range}   todas las páginas en orden inverso"
-
-#: pdf_bot/split/split_service.py:94
-msgid "{range} pages {pages} except {page}"
-msgstr "{range} páginas {pages} excepto {page}"
-
-#: pdf_bot/split/split_service.py:97
-msgid "{range}  pages {pages}"
-msgstr "{range}  páginas {pages}"
-
-#: pdf_bot/split/split_service.py:119
-msgid "The range is invalid, please try again"
-msgstr "El intervalo no es válido, inténtelo de nuevo"
 
 #: pdf_bot/telegram_internal/telegram_service.py:57
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
