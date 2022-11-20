@@ -197,6 +197,18 @@ class TestPDFService(
                 )
                 self._assert_telegram_and_io_services("Compressed")
 
+    def test_convert_to_images(self) -> None:
+        with patch(
+            "pdf_bot.pdf.pdf_service.pdf2image"
+        ) as pdf2image, self.sut.convert_to_images(self.telegram_file_id) as actual:
+            assert actual == self.DIR_NAME
+            self.telegram_service.download_pdf_file.assert_called_once_with(
+                self.telegram_file_id
+            )
+            pdf2image.convert_from_path.assert_called_once_with(
+                self.DOWNLOAD_PATH, output_folder=self.DIR_NAME, fmt="png"
+            )
+
     @pytest.mark.parametrize("has_font_data", [True, False])
     def test_create_pdf_from_text(self, has_font_data: bool) -> None:
         font_data = stylesheets = None
