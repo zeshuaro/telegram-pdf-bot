@@ -6,7 +6,7 @@ from telegram.ext import CallbackContext
 from pdf_bot.file_processor import AbstractFileProcessor
 
 
-class AbstractCryptoService(AbstractFileProcessor, ABC):
+class AbstractCryptoPDFProcessor(AbstractFileProcessor, ABC):
     @property
     @abstractmethod
     def wait_password_state(self) -> str:
