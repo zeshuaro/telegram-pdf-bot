@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 01:10+0000\n"
-"PO-Revision-Date: 2022-11-20 01:10\n"
+"POT-Creation-Date: 2022-11-20 01:50+0000\n"
+"PO-Revision-Date: 2022-11-20 01:50\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -293,7 +293,7 @@ msgstr "Ви послали мені ці {file_type} до цих пір:"
 msgid "The result file is too large for me to send to you"
 msgstr "Файл результату завеликий для мене, щоб відправити вам"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:157
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:160
 #: pdf_bot/files/image.py:42 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Зверніть увагу, що це обмеження Telegram Bot, і я нічого не можу зробити, якщо Telegram не змінить це обмеження"
@@ -444,15 +444,7 @@ msgstr "Надішліть мені номер, який ви хочете зм�
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Додатні числа зменшать розмір поля, а від'ємні — збільшать його"
 
-#: pdf_bot/crypto/decrypt_service.py:22
-msgid "Send me the password to decrypt your PDF file"
-msgstr "Надішліть мені пароль для розшифрування pdf-файлу"
-
-#: pdf_bot/crypto/encrypt_service.py:16
-msgid "Send me the password to encrypt your PDF file"
-msgstr "Надішліть мені пароль для шифрування PDF-файлу"
-
-#: pdf_bot/file/file_handlers.py:156
+#: pdf_bot/file/file_handlers.py:159
 msgid "Your file is too big for me to download and process"
 msgstr "Ваш файл занадто великий для мене, щоб завантажити і обробити"
 
@@ -560,6 +552,14 @@ msgstr "Неприпустимий PDF-файл"
 #: pdf_bot/pdf/pdf_service.py:355
 msgid "Your PDF file is encrypted"
 msgstr "Ваш PDF-файл зашифровано"
+
+#: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
+msgid "Send me the password to decrypt your PDF file"
+msgstr "Надішліть мені пароль для розшифрування pdf-файлу"
+
+#: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
+msgid "Send me the password to encrypt your PDF file"
+msgstr "Надішліть мені пароль для шифрування PDF-файлу"
 
 #: pdf_bot/rename/rename_service.py:38
 msgid "Send me the file name that you'll like to rename your PDF file into"
