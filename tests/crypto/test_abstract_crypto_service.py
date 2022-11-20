@@ -3,14 +3,14 @@ from typing import Generator
 from unittest.mock import MagicMock
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.crypto import AbstractCryptoService
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import AbstractCryptoPDFProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class MockAbstractCryptoService(AbstractCryptoPDFProcessor):
+class MockAbstractCryptoService(AbstractCryptoService):
     STATE = "state"
 
     @property

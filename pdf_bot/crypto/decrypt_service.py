@@ -7,13 +7,12 @@ from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
+from pdf_bot.crypto.abstract_crypto_service import AbstractCryptoService
 from pdf_bot.file_processor import ErrorHandlerType
 from pdf_bot.pdf import PdfIncorrectPasswordError
 
-from .abstract_crypto_pdf_processor import AbstractCryptoPDFProcessor
 
-
-class DecryptPDFProcessor(AbstractCryptoPDFProcessor):
+class DecryptService(AbstractCryptoService):
     @property
     def wait_password_state(self) -> str:
         return "wait_decrypt_password"

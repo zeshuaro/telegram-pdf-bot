@@ -3,11 +3,10 @@ from gettext import gettext as _
 from typing import Generator
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.crypto.abstract_crypto_service import AbstractCryptoService
 
-from .abstract_crypto_pdf_processor import AbstractCryptoPDFProcessor
 
-
-class EncryptPDFProcessor(AbstractCryptoPDFProcessor):
+class EncryptService(AbstractCryptoService):
     @property
     def wait_password_state(self) -> str:
         return "wait_encrypt_password"

@@ -29,6 +29,7 @@ from pdf_bot.consts import (
     WAIT_TO_IMAGE_TYPE,
 )
 from pdf_bot.crop import CropService
+from pdf_bot.crypto import DecryptService, EncryptService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.files.image import (
@@ -40,11 +41,7 @@ from pdf_bot.files.image import (
 )
 from pdf_bot.grayscale import GrayscaleService
 from pdf_bot.language import set_lang
-from pdf_bot.pdf_processor import (
-    DecryptPDFProcessor,
-    EncryptPDFProcessor,
-    PreviewPDFProcessor,
-)
+from pdf_bot.pdf_processor import PreviewPDFProcessor
 from pdf_bot.rename import RenameService
 from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
@@ -59,8 +56,8 @@ class FileHandlers:
         file_task_service: FileTaskService,
         file_service: FileService,
         crop_service: CropService,
-        decrypt_pdf_processor: DecryptPDFProcessor,
-        encrypt_pdf_processor: EncryptPDFProcessor,
+        decrypt_service: DecryptService,
+        encrypt_service: EncryptService,
         extract_text_service: ExtractTextService,
         grayscale_service: GrayscaleService,
         ocr_service: OCRService,
@@ -73,8 +70,8 @@ class FileHandlers:
         self.file_task_service = file_task_service
         self.file_service = file_service
         self.crop_service = crop_service
-        self.decrypt_pdf_processor = decrypt_pdf_processor
-        self.encrypt_pdf_processor = encrypt_pdf_processor
+        self.decrypt_service = decrypt_service
+        self.encrypt_service = encrypt_service
         self.extract_text_service = extract_text_service
         self.grayscale_service = grayscale_service
         self.ocr_service = ocr_service
@@ -108,11 +105,11 @@ class FileHandlers:
                         TEXT_FILTER, self.crop_service.crop_pdf_by_margin_size
                     )
                 ],
-                self.decrypt_pdf_processor.wait_password_state: [
-                    MessageHandler(TEXT_FILTER, self.decrypt_pdf_processor.process_file)
+                self.decrypt_service.wait_password_state: [
+                    MessageHandler(TEXT_FILTER, self.decrypt_service.process_file)
                 ],
-                self.encrypt_pdf_processor.wait_password_state: [
-                    MessageHandler(TEXT_FILTER, self.encrypt_pdf_processor.process_file)
+                self.encrypt_service.wait_password_state: [
+                    MessageHandler(TEXT_FILTER, self.encrypt_service.process_file)
                 ],
                 RenameService.WAIT_NEW_FILE_NAME: [
                     MessageHandler(TEXT_FILTER, self.rename_service.rename_pdf)
@@ -180,9 +177,9 @@ class FileHandlers:
         if text == _(CROP):
             return self.crop_service.ask_crop_type(update, context)
         if text == _(DECRYPT):
-            return self.decrypt_pdf_processor.ask_password(update, context)
+            return self.decrypt_service.ask_password(update, context)
         if text == _(ENCRYPT):
-            return self.encrypt_pdf_processor.ask_password(update, context)
+            return self.encrypt_service.ask_password(update, context)
         if text in [_(EXTRACT_IMAGE), _(TO_IMAGES)]:
             return ask_image_results_type(update, context)
         if text == _(PREVIEW):
