@@ -5,7 +5,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileProcessor
 
 
-class OCRService(AbstractFileProcessor):
+class OCRPDFProcessor(AbstractFileProcessor):
     @property
     def task_type(self) -> TaskType:
         return TaskType.ocr_pdf

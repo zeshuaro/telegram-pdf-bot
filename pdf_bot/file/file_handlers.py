@@ -44,13 +44,13 @@ from pdf_bot.pdf_processor import (
     EncryptPDFProcessor,
     ExtractPDFTextProcessor,
     GrayscalePDFProcessor,
+    OCRPDFProcessor,
     PreviewPDFProcessor,
     RenamePDFProcessor,
     RotatePDFProcessor,
     ScalePDFProcessor,
     SplitPDFProcessor,
 )
-from pdf_bot.text import OCRService
 from pdf_bot.utils import cancel
 
 
@@ -64,7 +64,7 @@ class FileHandlers:
         encrypt_pdf_processor: EncryptPDFProcessor,
         extract_pdf_text_processor: ExtractPDFTextProcessor,
         grayscale_pdf_processor: GrayscalePDFProcessor,
-        ocr_service: OCRService,
+        ocr_pdf_processor: OCRPDFProcessor,
         preview_pdf_processor: PreviewPDFProcessor,
         rename_pdf_processor: RenamePDFProcessor,
         rotate_pdf_processor: RotatePDFProcessor,
@@ -78,7 +78,7 @@ class FileHandlers:
         self.encrypt_pdf_processor = encrypt_pdf_processor
         self.extract_pdf_text_processor = extract_pdf_text_processor
         self.grayscale_pdf_processor = grayscale_pdf_processor
-        self.ocr_service = ocr_service
+        self.ocr_pdf_processor = ocr_pdf_processor
         self.preview_pdf_processor = preview_pdf_processor
         self.rename_pdf_processor = rename_pdf_processor
         self.rotate_pdf_processor = rotate_pdf_processor
@@ -203,7 +203,7 @@ class FileHandlers:
         if text == _(EXTRACT_TEXT):
             return self.extract_pdf_text_processor.process_file(update, context)
         if text == OCR:
-            return self.ocr_service.process_file(update, context)
+            return self.ocr_pdf_processor.process_file(update, context)
         if text == _(COMPRESS):
             return self.file_service.compress_pdf(update, context)
         if text == _(BLACK_AND_WHITE):
