@@ -4,13 +4,13 @@ from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService
-from pdf_bot.rename import RenameService
+from pdf_bot.pdf_processor import RenamePDFProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestRenameService(
+class TestRenamePDFProcessor(
     FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
@@ -27,7 +27,7 @@ class TestRenameService(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = RenameService(
+        self.sut = RenamePDFProcessor(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,

@@ -44,8 +44,8 @@ from pdf_bot.pdf_processor import (
     EncryptPDFProcessor,
     GrayscalePDFProcessor,
     PreviewPDFProcessor,
+    RenamePDFProcessor,
 )
-from pdf_bot.rename import RenameService
 from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
 from pdf_bot.split import SplitService
@@ -65,7 +65,7 @@ class FileHandlers:
         grayscale_pdf_processor: GrayscalePDFProcessor,
         ocr_service: OCRService,
         preview_pdf_processor: PreviewPDFProcessor,
-        rename_service: RenameService,
+        rename_pdf_processor: RenamePDFProcessor,
         rotate_service: RotateService,
         scale_service: ScaleService,
         split_service: SplitService,
@@ -79,7 +79,7 @@ class FileHandlers:
         self.grayscale_pdf_processor = grayscale_pdf_processor
         self.ocr_service = ocr_service
         self.preview_pdf_processor = preview_pdf_processor
-        self.rename_service = rename_service
+        self.rename_pdf_processor = rename_pdf_processor
         self.rotate_service = rotate_service
         self.scale_service = scale_service
         self.split_service = split_service
@@ -114,8 +114,8 @@ class FileHandlers:
                 self.encrypt_pdf_processor.wait_password_state: [
                     MessageHandler(TEXT_FILTER, self.encrypt_pdf_processor.process_file)
                 ],
-                RenameService.WAIT_NEW_FILE_NAME: [
-                    MessageHandler(TEXT_FILTER, self.rename_service.rename_pdf)
+                RenamePDFProcessor.WAIT_NEW_FILE_NAME: [
+                    MessageHandler(TEXT_FILTER, self.rename_pdf_processor.rename_pdf)
                 ],
                 RotateService.WAIT_ROTATE_DEGREE: [
                     MessageHandler(TEXT_FILTER, self.rotate_service.rotate_pdf)
@@ -188,7 +188,7 @@ class FileHandlers:
         if text == _(PREVIEW):
             return self.preview_pdf_processor.process_file(update, context)
         if text == _(RENAME):
-            return self.rename_service.ask_new_file_name(update, context)
+            return self.rename_pdf_processor.ask_new_file_name(update, context)
         if text == _(ROTATE):
             return self.rotate_service.ask_degree(update, context)
         if text == _(SCALE):
