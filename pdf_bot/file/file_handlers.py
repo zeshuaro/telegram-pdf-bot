@@ -47,8 +47,8 @@ from pdf_bot.pdf_processor import (
     RenamePDFProcessor,
     RotatePDFProcessor,
     ScalePDFProcessor,
+    SplitPDFProcessor,
 )
-from pdf_bot.split import SplitService
 from pdf_bot.text import ExtractTextService, OCRService
 from pdf_bot.utils import cancel
 
@@ -68,7 +68,7 @@ class FileHandlers:
         rename_pdf_processor: RenamePDFProcessor,
         rotate_pdf_processor: RotatePDFProcessor,
         scale_pdf_processor: ScalePDFProcessor,
-        split_service: SplitService,
+        split_pdf_processor: SplitPDFProcessor,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
@@ -82,7 +82,7 @@ class FileHandlers:
         self.rename_pdf_processor = rename_pdf_processor
         self.rotate_pdf_processor = rotate_pdf_processor
         self.scale_pdf_processor = scale_pdf_processor
-        self.split_service = split_service
+        self.split_pdf_processor = split_pdf_processor
 
     def conversation_handler(self):
         return ConversationHandler(
@@ -135,8 +135,8 @@ class FileHandlers:
                         TEXT_FILTER, self.scale_pdf_processor.scale_pdf_to_dimension
                     )
                 ],
-                SplitService.WAIT_SPLIT_RANGE: [
-                    MessageHandler(TEXT_FILTER, self.split_service.split_pdf)
+                SplitPDFProcessor.WAIT_SPLIT_RANGE: [
+                    MessageHandler(TEXT_FILTER, self.split_pdf_processor.split_pdf)
                 ],
                 WAIT_EXTRACT_IMAGE_TYPE: [
                     MessageHandler(TEXT_FILTER, self.check_get_images_task)
@@ -198,7 +198,7 @@ class FileHandlers:
         if text == _(SCALE):
             return self.scale_pdf_processor.ask_scale_type(update, context)
         if text == _(SPLIT):
-            return self.split_service.ask_split_range(update, context)
+            return self.split_pdf_processor.ask_split_range(update, context)
         if text == _(EXTRACT_TEXT):
             return self.extract_text_service.process_file(update, context)
         if text == OCR:

@@ -9,7 +9,7 @@ from pdf_bot.consts import BACK
 from pdf_bot.file_processor import AbstractFileProcessor
 
 
-class SplitService(AbstractFileProcessor):
+class SplitPDFProcessor(AbstractFileProcessor):
     WAIT_SPLIT_RANGE = "wait_split_range"
 
     @property

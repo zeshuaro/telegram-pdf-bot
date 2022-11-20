@@ -4,6 +4,7 @@ from .preview_pdf_processor import PreviewPDFProcessor
 from .rename_pdf_processor import RenamePDFProcessor
 from .rotate_pdf_processor import RotatePDFProcessor
 from .scale_pdf_processor import ScalePDFProcessor
+from .split_pdf_processor import SplitPDFProcessor
 
 __all__ = [
     "AbstractCryptoPDFProcessor",
@@ -14,4 +15,5 @@ __all__ = [
     "RenamePDFProcessor",
     "RotatePDFProcessor",
     "ScalePDFProcessor",
+    "SplitPDFProcessor",
 ]
