@@ -42,6 +42,7 @@ from pdf_bot.language import set_lang
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
     EncryptPDFProcessor,
+    ExtractPDFTextProcessor,
     GrayscalePDFProcessor,
     PreviewPDFProcessor,
     RenamePDFProcessor,
@@ -49,7 +50,7 @@ from pdf_bot.pdf_processor import (
     ScalePDFProcessor,
     SplitPDFProcessor,
 )
-from pdf_bot.text import ExtractTextService, OCRService
+from pdf_bot.text import OCRService
 from pdf_bot.utils import cancel
 
 
@@ -61,7 +62,7 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPDFProcessor,
         encrypt_pdf_processor: EncryptPDFProcessor,
-        extract_text_service: ExtractTextService,
+        extract_pdf_text_processor: ExtractPDFTextProcessor,
         grayscale_pdf_processor: GrayscalePDFProcessor,
         ocr_service: OCRService,
         preview_pdf_processor: PreviewPDFProcessor,
@@ -75,7 +76,7 @@ class FileHandlers:
         self.crop_service = crop_service
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
-        self.extract_text_service = extract_text_service
+        self.extract_pdf_text_processor = extract_pdf_text_processor
         self.grayscale_pdf_processor = grayscale_pdf_processor
         self.ocr_service = ocr_service
         self.preview_pdf_processor = preview_pdf_processor
@@ -200,7 +201,7 @@ class FileHandlers:
         if text == _(SPLIT):
             return self.split_pdf_processor.ask_split_range(update, context)
         if text == _(EXTRACT_TEXT):
-            return self.extract_text_service.process_file(update, context)
+            return self.extract_pdf_text_processor.process_file(update, context)
         if text == OCR:
             return self.ocr_service.process_file(update, context)
         if text == _(COMPRESS):

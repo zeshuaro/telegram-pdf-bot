@@ -20,6 +20,7 @@ from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
     EncryptPDFProcessor,
+    ExtractPDFTextProcessor,
     GrayscalePDFProcessor,
     PreviewPDFProcessor,
     RenamePDFProcessor,
@@ -28,13 +29,7 @@ from pdf_bot.pdf_processor import (
     SplitPDFProcessor,
 )
 from pdf_bot.telegram_internal import TelegramService
-from pdf_bot.text import (
-    ExtractTextService,
-    OCRService,
-    TextHandlers,
-    TextRepository,
-    TextService,
-)
+from pdf_bot.text import OCRService, TextHandlers, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
 
 load_dotenv()
@@ -100,13 +95,6 @@ class Services(containers.DeclarativeContainer):
         telegram_service=telegram,
         language_service=language,
     )
-    extract_text = providers.Factory(
-        ExtractTextService,
-        file_task_service=file_task,
-        pdf_service=pdf,
-        telegram_service=telegram,
-        language_service=language,
-    )
     language = providers.Factory(
         LanguageService, language_repository=repositories.language
     )
@@ -150,6 +138,13 @@ class Processors(containers.DeclarativeContainer):
     )
     encrypt = providers.Factory(
         EncryptPDFProcessor,
+        file_task_service=services.file_task,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
+    extract_text = providers.Factory(
+        ExtractPDFTextProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
@@ -211,7 +206,7 @@ class Handlers(containers.DeclarativeContainer):
         crop_service=services.crop,
         decrypt_pdf_processor=processors.decrypt,
         encrypt_pdf_processor=processors.encrypt,
-        extract_text_service=services.extract_text,
+        extract_pdf_text_processor=processors.extract_text,
         grayscale_pdf_processor=processors.grayscale,
         ocr_service=services.ocr,
         preview_pdf_processor=processors.preview_pdf,
