@@ -11,7 +11,6 @@ from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.crop import CropService
-from pdf_bot.crypto import DecryptService, EncryptService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.grayscale import GrayscaleService
@@ -19,7 +18,11 @@ from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import PreviewPDFProcessor
+from pdf_bot.pdf_processor import (
+    DecryptPDFProcessor,
+    EncryptPDFProcessor,
+    PreviewPDFProcessor,
+)
 from pdf_bot.rename import RenameService
 from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
@@ -92,20 +95,6 @@ class Services(containers.DeclarativeContainer):
     )
     crop = providers.Factory(
         CropService,
-        file_task_service=file_task,
-        pdf_service=pdf,
-        telegram_service=telegram,
-        language_service=language,
-    )
-    decrypt = providers.Factory(
-        DecryptService,
-        file_task_service=file_task,
-        pdf_service=pdf,
-        telegram_service=telegram,
-        language_service=language,
-    )
-    encrypt = providers.Factory(
-        EncryptService,
         file_task_service=file_task,
         pdf_service=pdf,
         telegram_service=telegram,
@@ -187,6 +176,20 @@ class Services(containers.DeclarativeContainer):
 class Processors(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
 
+    decrypt = providers.Factory(
+        DecryptPDFProcessor,
+        file_task_service=services.file_task,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
+    encrypt = providers.Factory(
+        EncryptPDFProcessor,
+        file_task_service=services.file_task,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
     preview_pdf = providers.Factory(
         PreviewPDFProcessor,
         file_task_service=services.file_task,
@@ -206,8 +209,8 @@ class Handlers(containers.DeclarativeContainer):
         file_task_service=services.file_task,
         file_service=services.file,
         crop_service=services.crop,
-        decrypt_service=services.decrypt,
-        encrypt_service=services.encrypt,
+        decrypt_pdf_processor=processors.decrypt,
+        encrypt_pdf_processor=processors.encrypt,
         extract_text_service=services.extract_text,
         grayscale_service=services.grayscale,
         ocr_service=services.ocr,
