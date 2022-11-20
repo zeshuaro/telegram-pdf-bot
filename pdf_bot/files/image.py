@@ -3,7 +3,6 @@ import shutil
 import tempfile
 
 import pdf2image
-from PyPDF2 import PdfFileWriter
 from telegram import ChatAction, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.error import BadRequest
@@ -24,14 +23,9 @@ from pdf_bot.consts import (
     WAIT_IMAGE_TASK,
     WAIT_TO_IMAGE_TYPE,
 )
-from pdf_bot.files.utils import check_back_user_data, run_cmd
+from pdf_bot.files.utils import run_cmd
 from pdf_bot.language import set_lang
-from pdf_bot.utils import (
-    check_user_data,
-    get_support_markup,
-    open_pdf,
-    send_result_file,
-)
+from pdf_bot.utils import check_user_data, get_support_markup, send_result_file
 
 IMAGE_ID = "image_id"
 MAX_MEDIA_GROUP = 10
@@ -81,49 +75,6 @@ def process_image_task(update, context):
 
     if user_data[IMAGE_ID] == file_id:
         del user_data[IMAGE_ID]
-
-    return ConversationHandler.END
-
-
-def get_pdf_preview(update, context):
-    result = check_back_user_data(update, context)
-    if result is not None:
-        return result
-
-    _ = set_lang(update, context)
-    update.effective_message.reply_text(
-        _("Extracting a preview for your PDF file"), reply_markup=ReplyKeyboardRemove()
-    )
-
-    with tempfile.NamedTemporaryFile() as tf1:
-        user_data = context.user_data
-        file_id, file_name = user_data[PDF_INFO]
-        pdf_reader = open_pdf(update, context, file_id, tf1.name)
-
-        if pdf_reader:
-            # Get first page of PDF file
-            pdf_writer = PdfFileWriter()
-            pdf_writer.addPage(pdf_reader.getPage(0))
-
-            with tempfile.NamedTemporaryFile() as tf2:
-                # Write cover preview PDF file
-                with open(tf2.name, "wb") as f:
-                    pdf_writer.write(f)
-
-                with tempfile.TemporaryDirectory() as dir_name:
-                    # Convert cover preview to JPEG
-                    out_fn = os.path.join(
-                        dir_name, f"Preview_{os.path.splitext(file_name)[0]}.png"
-                    )
-                    imgs = pdf2image.convert_from_path(tf2.name, fmt="png")
-                    imgs[0].save(out_fn)
-
-                    # Send result file
-                    send_result_file(update, context, out_fn, TaskType.preview_pdf)
-
-    # Clean up memory and files
-    if user_data[PDF_INFO] == file_id:
-        del user_data[PDF_INFO]
 
     return ConversationHandler.END
 

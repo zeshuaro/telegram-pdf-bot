@@ -92,8 +92,8 @@ disable_error_code = [
 
 [[tool.mypy.overrides]]
 module = [
-    "pdf_bot.account.*",
     'tests.*',
+    "pdf_bot.account.*",
     'pdf_bot.language_new.*',
     'pdf_bot.telegram_internal.*',
     'pdf_bot.cli.*',
@@ -112,6 +112,7 @@ module = [
     'pdf_bot.text.*',
     'pdf_bot.watermark.*',
     'pdf_bot.command.*',
+    'pdf_bot.pdf_processor.*',
 ]
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
