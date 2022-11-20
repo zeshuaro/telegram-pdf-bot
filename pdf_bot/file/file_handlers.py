@@ -46,8 +46,8 @@ from pdf_bot.pdf_processor import (
     PreviewPDFProcessor,
     RenamePDFProcessor,
     RotatePDFProcessor,
+    ScalePDFProcessor,
 )
-from pdf_bot.scale import ScaleService
 from pdf_bot.split import SplitService
 from pdf_bot.text import ExtractTextService, OCRService
 from pdf_bot.utils import cancel
@@ -67,7 +67,7 @@ class FileHandlers:
         preview_pdf_processor: PreviewPDFProcessor,
         rename_pdf_processor: RenamePDFProcessor,
         rotate_pdf_processor: RotatePDFProcessor,
-        scale_service: ScaleService,
+        scale_pdf_processor: ScalePDFProcessor,
         split_service: SplitService,
     ) -> None:
         self.file_task_service = file_task_service
@@ -81,7 +81,7 @@ class FileHandlers:
         self.preview_pdf_processor = preview_pdf_processor
         self.rename_pdf_processor = rename_pdf_processor
         self.rotate_pdf_processor = rotate_pdf_processor
-        self.scale_service = scale_service
+        self.scale_pdf_processor = scale_pdf_processor
         self.split_service = split_service
 
     def conversation_handler(self):
@@ -120,15 +120,19 @@ class FileHandlers:
                 RotatePDFProcessor.WAIT_ROTATE_DEGREE: [
                     MessageHandler(TEXT_FILTER, self.rotate_pdf_processor.rotate_pdf)
                 ],
-                ScaleService.WAIT_SCALE_TYPE: [
-                    MessageHandler(TEXT_FILTER, self.scale_service.check_scale_type)
-                ],
-                ScaleService.WAIT_SCALE_FACTOR: [
-                    MessageHandler(TEXT_FILTER, self.scale_service.scale_pdf_by_factor)
-                ],
-                ScaleService.WAIT_SCALE_DIMENSION: [
+                ScalePDFProcessor.WAIT_SCALE_TYPE: [
                     MessageHandler(
-                        TEXT_FILTER, self.scale_service.scale_pdf_to_dimension
+                        TEXT_FILTER, self.scale_pdf_processor.check_scale_type
+                    )
+                ],
+                ScalePDFProcessor.WAIT_SCALE_FACTOR: [
+                    MessageHandler(
+                        TEXT_FILTER, self.scale_pdf_processor.scale_pdf_by_factor
+                    )
+                ],
+                ScalePDFProcessor.WAIT_SCALE_DIMENSION: [
+                    MessageHandler(
+                        TEXT_FILTER, self.scale_pdf_processor.scale_pdf_to_dimension
                     )
                 ],
                 SplitService.WAIT_SPLIT_RANGE: [
@@ -192,7 +196,7 @@ class FileHandlers:
         if text == _(ROTATE):
             return self.rotate_pdf_processor.ask_degree(update, context)
         if text == _(SCALE):
-            return self.scale_service.ask_scale_type(update, context)
+            return self.scale_pdf_processor.ask_scale_type(update, context)
         if text == _(SPLIT):
             return self.split_service.ask_split_range(update, context)
         if text == _(EXTRACT_TEXT):
