@@ -10,7 +10,7 @@ from pdf_bot.consts import BACK
 from pdf_bot.file_processor import AbstractFileProcessor
 
 
-class RenameService(AbstractFileProcessor):
+class RenamePDFProcessor(AbstractFileProcessor):
     WAIT_NEW_FILE_NAME = "wait_new_file_name"
     INVALID_CHARACTERS = r"\/*?:\'<>|"
 
