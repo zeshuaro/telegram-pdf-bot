@@ -45,8 +45,8 @@ from pdf_bot.pdf_processor import (
     GrayscalePDFProcessor,
     PreviewPDFProcessor,
     RenamePDFProcessor,
+    RotatePDFProcessor,
 )
-from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
 from pdf_bot.split import SplitService
 from pdf_bot.text import ExtractTextService, OCRService
@@ -66,7 +66,7 @@ class FileHandlers:
         ocr_service: OCRService,
         preview_pdf_processor: PreviewPDFProcessor,
         rename_pdf_processor: RenamePDFProcessor,
-        rotate_service: RotateService,
+        rotate_pdf_processor: RotatePDFProcessor,
         scale_service: ScaleService,
         split_service: SplitService,
     ) -> None:
@@ -80,7 +80,7 @@ class FileHandlers:
         self.ocr_service = ocr_service
         self.preview_pdf_processor = preview_pdf_processor
         self.rename_pdf_processor = rename_pdf_processor
-        self.rotate_service = rotate_service
+        self.rotate_pdf_processor = rotate_pdf_processor
         self.scale_service = scale_service
         self.split_service = split_service
 
@@ -117,8 +117,8 @@ class FileHandlers:
                 RenamePDFProcessor.WAIT_NEW_FILE_NAME: [
                     MessageHandler(TEXT_FILTER, self.rename_pdf_processor.rename_pdf)
                 ],
-                RotateService.WAIT_ROTATE_DEGREE: [
-                    MessageHandler(TEXT_FILTER, self.rotate_service.rotate_pdf)
+                RotatePDFProcessor.WAIT_ROTATE_DEGREE: [
+                    MessageHandler(TEXT_FILTER, self.rotate_pdf_processor.rotate_pdf)
                 ],
                 ScaleService.WAIT_SCALE_TYPE: [
                     MessageHandler(TEXT_FILTER, self.scale_service.check_scale_type)
@@ -190,7 +190,7 @@ class FileHandlers:
         if text == _(RENAME):
             return self.rename_pdf_processor.ask_new_file_name(update, context)
         if text == _(ROTATE):
-            return self.rotate_service.ask_degree(update, context)
+            return self.rotate_pdf_processor.ask_degree(update, context)
         if text == _(SCALE):
             return self.scale_service.ask_scale_type(update, context)
         if text == _(SPLIT):
