@@ -12,7 +12,7 @@ from pdf_bot.pdf import ScaleData
 from pdf_bot.pdf.models import ScaleByData, ScaleToData
 
 
-class ScaleService(AbstractFileProcessor):
+class ScalePDFProcessor(AbstractFileProcessor):
     BY_SCALING_FACTOR = _("By scaling factor")
     TO_DIMENSION = _("To dimension")
 

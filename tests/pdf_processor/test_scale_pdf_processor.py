@@ -6,13 +6,13 @@ from telegram.ext import ConversationHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf.models import ScaleData
-from pdf_bot.scale import ScaleService
+from pdf_bot.pdf_processor import ScalePDFProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestScaleService(
+class TestPDFProcessor(
     FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
@@ -34,7 +34,7 @@ class TestScaleService(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = ScaleService(
+        self.sut = ScalePDFProcessor(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,
