@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 04:43+0000\n"
-"PO-Revision-Date: 2022-11-20 04:44\n"
+"POT-Creation-Date: 2022-11-20 04:51+0000\n"
+"PO-Revision-Date: 2022-11-20 04:51\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -565,6 +565,14 @@ msgstr "ගොනු නාම වල පහත දැක්වෙන කිස�
 msgid "Please try again"
 msgstr "කරුණාකර නැවත උත්සාහ කරන්න"
 
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:44
+msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
+msgstr "ඔබේ PDF ගොනුව දක්ෂිණාවර්තව භ්‍රමණය කිරීමට ඔබ කැමති අංශක ප්‍රමාණය තෝරන්න"
+
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:65
+msgid "Invalid rotation degree, try again"
+msgstr ""
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "ඔබගේ PDF ගොනුව විකේතනය කිරීමට අවශ්‍ය මුරපදය මට එවන්න"
@@ -572,14 +580,6 @@ msgstr "ඔබගේ PDF ගොනුව විකේතනය කිරීම�
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "ඔබගේ PDF ගොනුව ආකේතනය කිරීමට මුරපදය එවන්න"
-
-#: pdf_bot/rotate/rotate_service.py:44
-msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "ඔබේ PDF ගොනුව දක්ෂිණාවර්තව භ්‍රමණය කිරීමට ඔබ කැමති අංශක ප්‍රමාණය තෝරන්න"
-
-#: pdf_bot/rotate/rotate_service.py:65
-msgid "Invalid rotation degree, try again"
-msgstr ""
 
 #: pdf_bot/scale/scale_service.py:16
 msgid "By scaling factor"

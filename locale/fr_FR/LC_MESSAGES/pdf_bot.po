@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 04:43+0000\n"
-"PO-Revision-Date: 2022-11-20 04:43\n"
+"POT-Creation-Date: 2022-11-20 04:51+0000\n"
+"PO-Revision-Date: 2022-11-20 04:51\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: French\n"
@@ -565,6 +565,14 @@ msgstr "Les noms de fichiers ne peuvent contenir aucun des caractères suivants 
 msgid "Please try again"
 msgstr "Veuillez réessayer"
 
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:44
+msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
+msgstr "Sélectionnez les degrés que vous voulez pour faire pivoter votre fichier PDF dans le sens des aiguilles d'une montre"
+
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:65
+msgid "Invalid rotation degree, try again"
+msgstr ""
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Envoyez-moi le mot de passe pour décrypter votre fichier PDF"
@@ -572,14 +580,6 @@ msgstr "Envoyez-moi le mot de passe pour décrypter votre fichier PDF"
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Envoyez-moi le mot de passe pour crypter votre fichier PDF"
-
-#: pdf_bot/rotate/rotate_service.py:44
-msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "Sélectionnez les degrés que vous voulez pour faire pivoter votre fichier PDF dans le sens des aiguilles d'une montre"
-
-#: pdf_bot/rotate/rotate_service.py:65
-msgid "Invalid rotation degree, try again"
-msgstr ""
 
 #: pdf_bot/scale/scale_service.py:16
 msgid "By scaling factor"

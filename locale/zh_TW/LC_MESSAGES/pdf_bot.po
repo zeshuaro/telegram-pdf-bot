@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 04:43+0000\n"
-"PO-Revision-Date: 2022-11-20 04:44\n"
+"POT-Creation-Date: 2022-11-20 04:51+0000\n"
+"PO-Revision-Date: 2022-11-20 04:51\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -565,6 +565,14 @@ msgstr "檔案名稱不能包含以下任何字元："
 msgid "Please try again"
 msgstr "請再試一次"
 
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:44
+msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
+msgstr "選擇你想要順時針旋轉你PDF檔案的度數"
+
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:65
+msgid "Invalid rotation degree, try again"
+msgstr ""
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "把密碼發給我來解密你的PDF檔案"
@@ -572,14 +580,6 @@ msgstr "把密碼發給我來解密你的PDF檔案"
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "把密碼發給我來加密你的PDF檔案"
-
-#: pdf_bot/rotate/rotate_service.py:44
-msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "選擇你想要順時針旋轉你PDF檔案的度數"
-
-#: pdf_bot/rotate/rotate_service.py:65
-msgid "Invalid rotation degree, try again"
-msgstr ""
 
 #: pdf_bot/scale/scale_service.py:16
 msgid "By scaling factor"

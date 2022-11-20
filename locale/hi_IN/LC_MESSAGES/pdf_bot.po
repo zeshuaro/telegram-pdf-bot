@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 04:43+0000\n"
-"PO-Revision-Date: 2022-11-20 04:44\n"
+"POT-Creation-Date: 2022-11-20 04:51+0000\n"
+"PO-Revision-Date: 2022-11-20 04:51\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -565,6 +565,14 @@ msgstr "फ़ाइल नामों में निम्नलिखित
 msgid "Please try again"
 msgstr "कृपया फिर से प्रयास करें"
 
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:44
+msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
+msgstr "उन डिग्रियों का चयन करें जिन्हें आप अपनी पीडीएफ फ़ाइल को दक्षिणावर्त में घुमाना चाहते हैं"
+
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:65
+msgid "Invalid rotation degree, try again"
+msgstr ""
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक्रिप्ट करने के लिए पासवर्ड भेजें"
@@ -572,14 +580,6 @@ msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक�
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को एन्क्रिप्ट करने के लिए मुझे पासवर्ड भेजें"
-
-#: pdf_bot/rotate/rotate_service.py:44
-msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
-msgstr "उन डिग्रियों का चयन करें जिन्हें आप अपनी पीडीएफ फ़ाइल को दक्षिणावर्त में घुमाना चाहते हैं"
-
-#: pdf_bot/rotate/rotate_service.py:65
-msgid "Invalid rotation degree, try again"
-msgstr ""
 
 #: pdf_bot/scale/scale_service.py:16
 msgid "By scaling factor"
