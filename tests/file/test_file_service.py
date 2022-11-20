@@ -11,7 +11,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestDecryptService(
+class TestFileService(
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
     TelegramTestMixin,

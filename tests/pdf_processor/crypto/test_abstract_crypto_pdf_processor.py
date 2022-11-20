@@ -3,14 +3,14 @@ from typing import Generator
 from unittest.mock import MagicMock
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.crypto import AbstractCryptoService
 from pdf_bot.pdf import PdfService
+from pdf_bot.pdf_processor import AbstractCryptoPDFProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class MockAbstractCryptoService(AbstractCryptoService):
+class MockAbstractCryptoPDFProcessor(AbstractCryptoPDFProcessor):
     STATE = "state"
 
     @property
@@ -45,7 +45,7 @@ class TestAbstractCryptoService(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = MockAbstractCryptoService(
+        self.sut = MockAbstractCryptoPDFProcessor(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,
@@ -58,5 +58,5 @@ class TestAbstractCryptoService(
 
     def test_ask_password(self) -> None:
         actual = self.sut.ask_password(self.telegram_update, self.telegram_context)
-        assert actual == MockAbstractCryptoService.STATE
+        assert actual == MockAbstractCryptoPDFProcessor.STATE
         self.telegram_service.reply_with_back_markup.assert_called_once()
