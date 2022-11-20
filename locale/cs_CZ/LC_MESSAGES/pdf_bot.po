@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 01:50+0000\n"
-"PO-Revision-Date: 2022-11-20 01:50\n"
+"POT-Creation-Date: 2022-11-20 04:43+0000\n"
+"PO-Revision-Date: 2022-11-20 04:43\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -553,6 +553,18 @@ msgstr "Soubor PDF je neplatný"
 msgid "Your PDF file is encrypted"
 msgstr "Soubor PDF je zašifrován"
 
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "Pošlete mi název souboru, do kterého chcete soubor PDF přejmenovat"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:53
+msgid "File names can't contain any of the following characters:"
+msgstr "Názvy souborů nemohou obsahovat žádný z následujících znaků:"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:57
+msgid "Please try again"
+msgstr "Opakujte akci."
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Pošlete mi heslo k dešifrování souboru PDF"
@@ -560,18 +572,6 @@ msgstr "Pošlete mi heslo k dešifrování souboru PDF"
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Pošlete mi heslo k šifrování souboru PDF"
-
-#: pdf_bot/rename/rename_service.py:38
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "Pošlete mi název souboru, do kterého chcete soubor PDF přejmenovat"
-
-#: pdf_bot/rename/rename_service.py:53
-msgid "File names can't contain any of the following characters:"
-msgstr "Názvy souborů nemohou obsahovat žádný z následujících znaků:"
-
-#: pdf_bot/rename/rename_service.py:57
-msgid "Please try again"
-msgstr "Opakujte akci."
 
 #: pdf_bot/rotate/rotate_service.py:44
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 01:50+0000\n"
-"PO-Revision-Date: 2022-11-20 01:50\n"
+"POT-Creation-Date: 2022-11-20 04:43+0000\n"
+"PO-Revision-Date: 2022-11-20 04:43\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -553,6 +553,18 @@ msgstr "Το αρχείο PDF δεν είναι έγκυρο"
 msgid "Your PDF file is encrypted"
 msgstr "Το αρχείο PDF είναι κρυπτογραφημένο"
 
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "Στείλτε μου το όνομα αρχείου στο οποίο θα θέλετε να μετονομάσετε το αρχείο PDF"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:53
+msgid "File names can't contain any of the following characters:"
+msgstr "Τα ονόματα αρχείων δεν μπορούν να περιέχουν κανέναν από τους ακόλουθους χαρακτήρες:"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:57
+msgid "Please try again"
+msgstr "Προσπαθήστε ξανά"
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Στείλτε μου τον κωδικό πρόσβασης για να αποκρυπτογραφήσετε το αρχείο PDF"
@@ -560,18 +572,6 @@ msgstr "Στείλτε μου τον κωδικό πρόσβασης για να
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Στείλτε μου τον κωδικό πρόσβασης για να κρυπτογραφήσω το αρχείο PDF"
-
-#: pdf_bot/rename/rename_service.py:38
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "Στείλτε μου το όνομα αρχείου στο οποίο θα θέλετε να μετονομάσετε το αρχείο PDF"
-
-#: pdf_bot/rename/rename_service.py:53
-msgid "File names can't contain any of the following characters:"
-msgstr "Τα ονόματα αρχείων δεν μπορούν να περιέχουν κανέναν από τους ακόλουθους χαρακτήρες:"
-
-#: pdf_bot/rename/rename_service.py:57
-msgid "Please try again"
-msgstr "Προσπαθήστε ξανά"
 
 #: pdf_bot/rotate/rotate_service.py:44
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"

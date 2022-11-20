@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 01:50+0000\n"
-"PO-Revision-Date: 2022-11-20 01:50\n"
+"POT-Creation-Date: 2022-11-20 04:43+0000\n"
+"PO-Revision-Date: 2022-11-20 04:44\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -553,6 +553,18 @@ msgstr "உங்கள் PDF கோப்பு செல்லுபடிய
 msgid "Your PDF file is encrypted"
 msgstr "உங்கள் PDF கோப்பு குறியாக்கம் செய்யப்பட்டுள்ளது"
 
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "உங்கள் PTM கோப்பை மறுபெயரிட விரும்பும் கோப்பு பெயரை எனக்கு அனுப்பவும்"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:53
+msgid "File names can't contain any of the following characters:"
+msgstr "கோப்பு பெயர்களில் பின்வரும் எழுத்துக்குறிகள் எதுவும் இருக்க முடியாது:"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:57
+msgid "Please try again"
+msgstr "தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "உங்கள் PPM கோப்பை மறைகுறிநீக்க கடவுச்சொல்லை எனக்கு அனுப்பவும்"
@@ -560,18 +572,6 @@ msgstr "உங்கள் PPM கோப்பை மறைகுறிநீக
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "உங்கள் PPM கோப்பை குறியாக்க கடவுச்சொல்லை எனக்கு அனுப்பவும்"
-
-#: pdf_bot/rename/rename_service.py:38
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "உங்கள் PTM கோப்பை மறுபெயரிட விரும்பும் கோப்பு பெயரை எனக்கு அனுப்பவும்"
-
-#: pdf_bot/rename/rename_service.py:53
-msgid "File names can't contain any of the following characters:"
-msgstr "கோப்பு பெயர்களில் பின்வரும் எழுத்துக்குறிகள் எதுவும் இருக்க முடியாது:"
-
-#: pdf_bot/rename/rename_service.py:57
-msgid "Please try again"
-msgstr "தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
 #: pdf_bot/rotate/rotate_service.py:44
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"

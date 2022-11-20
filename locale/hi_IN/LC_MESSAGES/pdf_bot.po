@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 01:50+0000\n"
-"PO-Revision-Date: 2022-11-20 01:50\n"
+"POT-Creation-Date: 2022-11-20 04:43+0000\n"
+"PO-Revision-Date: 2022-11-20 04:44\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -553,6 +553,18 @@ msgstr "आपकी PDF फ़ाइल अमान्य है"
 msgid "Your PDF file is encrypted"
 msgstr "आपकी PDF फ़ाइल एन्क्रिप्टेड है"
 
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "मुझे फ़ाइल का नाम भेजें जिसे आप अपनी पीडीएफ फ़ाइल का नाम बदलना चाहते हैं"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:53
+msgid "File names can't contain any of the following characters:"
+msgstr "फ़ाइल नामों में निम्नलिखित में से कोई भी वर्ण शामिल नहीं हो सकता है:"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:57
+msgid "Please try again"
+msgstr "कृपया फिर से प्रयास करें"
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक्रिप्ट करने के लिए पासवर्ड भेजें"
@@ -560,18 +572,6 @@ msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक�
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को एन्क्रिप्ट करने के लिए मुझे पासवर्ड भेजें"
-
-#: pdf_bot/rename/rename_service.py:38
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "मुझे फ़ाइल का नाम भेजें जिसे आप अपनी पीडीएफ फ़ाइल का नाम बदलना चाहते हैं"
-
-#: pdf_bot/rename/rename_service.py:53
-msgid "File names can't contain any of the following characters:"
-msgstr "फ़ाइल नामों में निम्नलिखित में से कोई भी वर्ण शामिल नहीं हो सकता है:"
-
-#: pdf_bot/rename/rename_service.py:57
-msgid "Please try again"
-msgstr "कृपया फिर से प्रयास करें"
 
 #: pdf_bot/rotate/rotate_service.py:44
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"

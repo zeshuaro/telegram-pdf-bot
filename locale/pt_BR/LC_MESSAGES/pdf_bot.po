@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 01:50+0000\n"
-"PO-Revision-Date: 2022-11-20 01:50\n"
+"POT-Creation-Date: 2022-11-20 04:43+0000\n"
+"PO-Revision-Date: 2022-11-20 04:44\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese, Brazilian\n"
@@ -553,6 +553,18 @@ msgstr "Seu arquivo PDF é inválido"
 msgid "Your PDF file is encrypted"
 msgstr "Seu arquivo PDF está criptografado"
 
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "Envie-me o nome do arquivo em que você gostaria de renomear seu arquivo PDF"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:53
+msgid "File names can't contain any of the following characters:"
+msgstr "Os nomes dos arquivos não podem conter nenhum dos seguintes caracteres:"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:57
+msgid "Please try again"
+msgstr "Por favor, tente de novo."
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Envie-me a senha para descriptografar seu arquivo PDF"
@@ -560,18 +572,6 @@ msgstr "Envie-me a senha para descriptografar seu arquivo PDF"
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Envie-me a senha para criptografar seu arquivo PDF"
-
-#: pdf_bot/rename/rename_service.py:38
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "Envie-me o nome do arquivo em que você gostaria de renomear seu arquivo PDF"
-
-#: pdf_bot/rename/rename_service.py:53
-msgid "File names can't contain any of the following characters:"
-msgstr "Os nomes dos arquivos não podem conter nenhum dos seguintes caracteres:"
-
-#: pdf_bot/rename/rename_service.py:57
-msgid "Please try again"
-msgstr "Por favor, tente de novo."
 
 #: pdf_bot/rotate/rotate_service.py:44
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"

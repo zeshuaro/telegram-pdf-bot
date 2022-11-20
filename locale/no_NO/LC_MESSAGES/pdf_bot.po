@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 01:50+0000\n"
-"PO-Revision-Date: 2022-11-20 01:50\n"
+"POT-Creation-Date: 2022-11-20 04:43+0000\n"
+"PO-Revision-Date: 2022-11-20 04:44\n"
 "Last-Translator: \n"
 "Language: no\n"
 "Language-Team: Norwegian\n"
@@ -553,6 +553,18 @@ msgstr "PDF-filen er ugyldig"
 msgid "Your PDF file is encrypted"
 msgstr "PDF-filen er kryptert"
 
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+msgid "Send me the file name that you'll like to rename your PDF file into"
+msgstr "Send meg filnavnet du vil gi nytt navn til PDF-filen til"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:53
+msgid "File names can't contain any of the following characters:"
+msgstr "Filnavn kan ikke inneholde følgende tegn:"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:57
+msgid "Please try again"
+msgstr "Prøv på nytt"
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Send meg passordet for å dekryptere PDF-filen"
@@ -560,18 +572,6 @@ msgstr "Send meg passordet for å dekryptere PDF-filen"
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Send meg passordet for å kryptere PDF-filen"
-
-#: pdf_bot/rename/rename_service.py:38
-msgid "Send me the file name that you'll like to rename your PDF file into"
-msgstr "Send meg filnavnet du vil gi nytt navn til PDF-filen til"
-
-#: pdf_bot/rename/rename_service.py:53
-msgid "File names can't contain any of the following characters:"
-msgstr "Filnavn kan ikke inneholde følgende tegn:"
-
-#: pdf_bot/rename/rename_service.py:57
-msgid "Please try again"
-msgstr "Prøv på nytt"
 
 #: pdf_bot/rotate/rotate_service.py:44
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
