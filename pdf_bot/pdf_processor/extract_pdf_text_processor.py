@@ -5,7 +5,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileProcessor
 
 
-class ExtractTextService(AbstractFileProcessor):
+class ExtractPDFTextProcessor(AbstractFileProcessor):
     @property
     def task_type(self) -> TaskType:
         return TaskType.get_pdf_text
