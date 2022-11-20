@@ -1,14 +1,14 @@
 from unittest.mock import MagicMock
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.grayscale import GrayscaleService
 from pdf_bot.pdf import PdfService
+from pdf_bot.pdf_processor import GrayscalePDFProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestGrayscaleService(
+class TestGrayscalePDFProcessor(
     FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
@@ -23,7 +23,7 @@ class TestGrayscaleService(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = GrayscaleService(
+        self.sut = GrayscalePDFProcessor(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,

@@ -13,7 +13,6 @@ from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.crop import CropService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
-from pdf_bot.grayscale import GrayscaleService
 from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
@@ -21,6 +20,7 @@ from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
     EncryptPDFProcessor,
+    GrayscalePDFProcessor,
     PreviewPDFProcessor,
 )
 from pdf_bot.rename import RenameService
@@ -107,13 +107,6 @@ class Services(containers.DeclarativeContainer):
         telegram_service=telegram,
         language_service=language,
     )
-    grayscale = providers.Factory(
-        GrayscaleService,
-        file_task_service=file_task,
-        pdf_service=pdf,
-        telegram_service=telegram,
-        language_service=language,
-    )
     language = providers.Factory(
         LanguageService, language_repository=repositories.language
     )
@@ -190,6 +183,13 @@ class Processors(containers.DeclarativeContainer):
         telegram_service=services.telegram,
         language_service=services.language,
     )
+    grayscale = providers.Factory(
+        GrayscalePDFProcessor,
+        file_task_service=services.file_task,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
     preview_pdf = providers.Factory(
         PreviewPDFProcessor,
         file_task_service=services.file_task,
@@ -212,7 +212,7 @@ class Handlers(containers.DeclarativeContainer):
         decrypt_pdf_processor=processors.decrypt,
         encrypt_pdf_processor=processors.encrypt,
         extract_text_service=services.extract_text,
-        grayscale_service=services.grayscale,
+        grayscale_pdf_processor=processors.grayscale,
         ocr_service=services.ocr,
         preview_pdf_processor=processors.preview_pdf,
         rename_service=services.rename,

@@ -5,7 +5,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileProcessor
 
 
-class GrayscaleService(AbstractFileProcessor):
+class GrayscalePDFProcessor(AbstractFileProcessor):
     @property
     def task_type(self) -> TaskType:
         return TaskType.black_and_white_pdf
