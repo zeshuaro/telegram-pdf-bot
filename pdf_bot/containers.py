@@ -19,6 +19,7 @@ from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.pdf import PdfService
+from pdf_bot.pdf_processor import PreviewPDFProcessor
 from pdf_bot.rename import RenameService
 from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
@@ -183,8 +184,21 @@ class Services(containers.DeclarativeContainer):
     )
 
 
+class Processors(containers.DeclarativeContainer):
+    services = providers.DependenciesContainer()
+
+    preview_pdf = providers.Factory(
+        PreviewPDFProcessor,
+        file_task_service=services.file_task,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
+
+
 class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
+    processors = providers.DependenciesContainer()
 
     compare = providers.Factory(CompareHandlers, compare_service=services.compare)
     file = providers.Factory(
@@ -197,6 +211,7 @@ class Handlers(containers.DeclarativeContainer):
         extract_text_service=services.extract_text,
         grayscale_service=services.grayscale,
         ocr_service=services.ocr,
+        preview_pdf_processor=processors.preview_pdf,
         rename_service=services.rename,
         rotate_service=services.rotate,
         scale_service=services.scale,
@@ -213,4 +228,5 @@ class Application(containers.DeclarativeContainer):
     core = providers.Container(Core)
     repositories = providers.Container(Repositories)
     services = providers.Container(Services, core=core, repositories=repositories)
-    handlers = providers.Container(Handlers, services=services)
+    processors = providers.Container(Processors, services=services)
+    handlers = providers.Container(Handlers, services=services, processors=processors)

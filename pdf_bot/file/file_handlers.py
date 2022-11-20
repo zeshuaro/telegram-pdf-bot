@@ -36,12 +36,12 @@ from pdf_bot.files.image import (
     ask_image_results_type,
     ask_image_task,
     get_pdf_images,
-    get_pdf_preview,
     pdf_to_images,
     process_image_task,
 )
 from pdf_bot.grayscale import GrayscaleService
 from pdf_bot.language import set_lang
+from pdf_bot.pdf_processor import PreviewPDFProcessor
 from pdf_bot.rename import RenameService
 from pdf_bot.rotate import RotateService
 from pdf_bot.scale import ScaleService
@@ -61,6 +61,7 @@ class FileHandlers:
         extract_text_service: ExtractTextService,
         grayscale_service: GrayscaleService,
         ocr_service: OCRService,
+        preview_pdf_processor: PreviewPDFProcessor,
         rename_service: RenameService,
         rotate_service: RotateService,
         scale_service: ScaleService,
@@ -74,6 +75,7 @@ class FileHandlers:
         self.extract_text_service = extract_text_service
         self.grayscale_service = grayscale_service
         self.ocr_service = ocr_service
+        self.preview_pdf_processor = preview_pdf_processor
         self.rename_service = rename_service
         self.rotate_service = rotate_service
         self.scale_service = scale_service
@@ -181,7 +183,7 @@ class FileHandlers:
         if text in [_(EXTRACT_IMAGE), _(TO_IMAGES)]:
             return ask_image_results_type(update, context)
         if text == _(PREVIEW):
-            return get_pdf_preview(update, context)
+            return self.preview_pdf_processor.process_file(update, context)
         if text == _(RENAME):
             return self.rename_service.ask_new_file_name(update, context)
         if text == _(ROTATE):
