@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 04:51+0000\n"
-"PO-Revision-Date: 2022-11-20 04:51\n"
+"POT-Creation-Date: 2022-11-20 04:58+0000\n"
+"PO-Revision-Date: 2022-11-20 04:59\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -293,7 +293,7 @@ msgstr "Jy het my hierdie {file_type} tot dusver gestuur:"
 msgid "The result file is too large for me to send to you"
 msgstr "Die resultaatlêer is te groot vir my om na u te stuur"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:160
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:164
 #: pdf_bot/files/image.py:42 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Let daarop dat dit 'n Telegram Bot beperking is en daar is niks wat ek kan doen nie, tensy Telegram hierdie limiet verander"
@@ -444,7 +444,7 @@ msgstr "Stuur vir my 'n nommer wat jy die margegrootte wil aanpas"
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Positiewe getalle sal die margegrootte verminder en negatiewe getalle sal dit verhoog"
 
-#: pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:163
 msgid "Your file is too big for me to download and process"
 msgstr "Jou lêer is te groot vir my om af te laai en te verwerk"
 
@@ -573,6 +573,42 @@ msgstr "Kies die grade wat jy jou PDF-lêer in kloksgewys wil draai"
 msgid "Invalid rotation degree, try again"
 msgstr ""
 
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:16
+msgid "By scaling factor"
+msgstr "Deur skaal faktor"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:17
+msgid "To dimension"
+msgstr "Om dimensie te dimensie"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:49
+msgid "Select the scale type that you'll like to perform"
+msgstr "Kies die skaal wat u wil uitvoer"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:82
+msgid "The scaling factors {values} are invalid, please try again"
+msgstr "Die skaalfaktore {values} ongeldig is, probeer asseblief weer"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:106
+msgid "The dimensions {values} are invalid, please try again"
+msgstr "Die dimensies {values} ongeldig is, probeer asseblief weer"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:123
+msgid "Send me the scaling factors for the horizontal and vertical axes"
+msgstr "Stuur vir my die skaalfaktore vir die horisontale en vertikale asse"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:128
+msgid "This will double the horizontal axis and halve the vertical axis"
+msgstr "Dit sal die horisontale as verdubbel en die vertikale as halveer"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:141
+msgid "Send me the width and height"
+msgstr "Stuur vir my die breedte en hoogte"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:143
+msgid "This will set the width to 150 and height to 200"
+msgstr "Dit sal die breedte op 150 en hoogte tot 200 stel"
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Stuur vir my die wagwoord om jou PDF-lêer te dekripteer"
@@ -580,42 +616,6 @@ msgstr "Stuur vir my die wagwoord om jou PDF-lêer te dekripteer"
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Stuur vir my die wagwoord om jou PDF-lêer te enkripteer"
-
-#: pdf_bot/scale/scale_service.py:16
-msgid "By scaling factor"
-msgstr "Deur skaal faktor"
-
-#: pdf_bot/scale/scale_service.py:17
-msgid "To dimension"
-msgstr "Om dimensie te dimensie"
-
-#: pdf_bot/scale/scale_service.py:49
-msgid "Select the scale type that you'll like to perform"
-msgstr "Kies die skaal wat u wil uitvoer"
-
-#: pdf_bot/scale/scale_service.py:82
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "Die skaalfaktore {values} ongeldig is, probeer asseblief weer"
-
-#: pdf_bot/scale/scale_service.py:106
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "Die dimensies {values} ongeldig is, probeer asseblief weer"
-
-#: pdf_bot/scale/scale_service.py:123
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "Stuur vir my die skaalfaktore vir die horisontale en vertikale asse"
-
-#: pdf_bot/scale/scale_service.py:128
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "Dit sal die horisontale as verdubbel en die vertikale as halveer"
-
-#: pdf_bot/scale/scale_service.py:141
-msgid "Send me the width and height"
-msgstr "Stuur vir my die breedte en hoogte"
-
-#: pdf_bot/scale/scale_service.py:143
-msgid "This will set the width to 150 and height to 200"
-msgstr "Dit sal die breedte op 150 en hoogte tot 200 stel"
 
 #: pdf_bot/split/split_service.py:69
 msgid "Send me the range of pages that you'll like to keep"

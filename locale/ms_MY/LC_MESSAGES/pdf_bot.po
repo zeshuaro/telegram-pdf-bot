@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 04:51+0000\n"
-"PO-Revision-Date: 2022-11-20 04:51\n"
+"POT-Creation-Date: 2022-11-20 04:58+0000\n"
+"PO-Revision-Date: 2022-11-20 04:59\n"
 "Last-Translator: \n"
 "Language: ms\n"
 "Language-Team: Malay\n"
@@ -293,7 +293,7 @@ msgstr "Anda telah menghantar saya {file_type} ini setakat ini:"
 msgid "The result file is too large for me to send to you"
 msgstr "Fail hasilnya terlalu besar untuk saya hantar kepada anda"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:160
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:164
 #: pdf_bot/files/image.py:42 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Ambil perhatian bahawa ini adalah batasan Bot Telegram dan tiada apa yang boleh saya lakukan melainkan Telegram mengubah had ini"
@@ -444,7 +444,7 @@ msgstr "Hantarkan nombor yang anda ingin laraskan saiz jidar"
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Nombor positif akan mengurangkan saiz margin dan nombor negatif akan meningkatkannya"
 
-#: pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:163
 msgid "Your file is too big for me to download and process"
 msgstr "Fail anda terlalu besar bagi saya untuk memuat turun dan memproses"
 
@@ -573,6 +573,42 @@ msgstr "Pilih darjah yang anda ingin putar fail PDF anda mengikut arah jam"
 msgid "Invalid rotation degree, try again"
 msgstr ""
 
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:16
+msgid "By scaling factor"
+msgstr "Dengan faktor penskalaan"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:17
+msgid "To dimension"
+msgstr "Ke dimensi"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:49
+msgid "Select the scale type that you'll like to perform"
+msgstr "Pilih jenis skala yang anda ingin laksanakan"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:82
+msgid "The scaling factors {values} are invalid, please try again"
+msgstr "Faktor penskalaan {values} tidak sah, sila cuba lagi"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:106
+msgid "The dimensions {values} are invalid, please try again"
+msgstr "Dimensi {values} tidak sah, sila cuba lagi"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:123
+msgid "Send me the scaling factors for the horizontal and vertical axes"
+msgstr "Hantar saya faktor penskalaan untuk paksi mendatar dan menegak"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:128
+msgid "This will double the horizontal axis and halve the vertical axis"
+msgstr "Ini akan menggandakan paksi mendatar dan menghentikan paksi menegak"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:141
+msgid "Send me the width and height"
+msgstr "Hantar saya lebar dan tinggi"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:143
+msgid "This will set the width to 150 and height to 200"
+msgstr "Ini akan menetapkan lebar ke 150 dan tinggi ke 200"
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Hantar kata laluan untuk menyahsulitkan fail PDF anda"
@@ -580,42 +616,6 @@ msgstr "Hantar kata laluan untuk menyahsulitkan fail PDF anda"
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Hantar kata laluan untuk menyulitkan fail PDF anda"
-
-#: pdf_bot/scale/scale_service.py:16
-msgid "By scaling factor"
-msgstr "Dengan faktor penskalaan"
-
-#: pdf_bot/scale/scale_service.py:17
-msgid "To dimension"
-msgstr "Ke dimensi"
-
-#: pdf_bot/scale/scale_service.py:49
-msgid "Select the scale type that you'll like to perform"
-msgstr "Pilih jenis skala yang anda ingin laksanakan"
-
-#: pdf_bot/scale/scale_service.py:82
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "Faktor penskalaan {values} tidak sah, sila cuba lagi"
-
-#: pdf_bot/scale/scale_service.py:106
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "Dimensi {values} tidak sah, sila cuba lagi"
-
-#: pdf_bot/scale/scale_service.py:123
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "Hantar saya faktor penskalaan untuk paksi mendatar dan menegak"
-
-#: pdf_bot/scale/scale_service.py:128
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "Ini akan menggandakan paksi mendatar dan menghentikan paksi menegak"
-
-#: pdf_bot/scale/scale_service.py:141
-msgid "Send me the width and height"
-msgstr "Hantar saya lebar dan tinggi"
-
-#: pdf_bot/scale/scale_service.py:143
-msgid "This will set the width to 150 and height to 200"
-msgstr "Ini akan menetapkan lebar ke 150 dan tinggi ke 200"
 
 #: pdf_bot/split/split_service.py:69
 msgid "Send me the range of pages that you'll like to keep"

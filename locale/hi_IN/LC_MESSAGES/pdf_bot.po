@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-20 04:51+0000\n"
-"PO-Revision-Date: 2022-11-20 04:51\n"
+"POT-Creation-Date: 2022-11-20 04:58+0000\n"
+"PO-Revision-Date: 2022-11-20 04:59\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -293,7 +293,7 @@ msgstr "तुम मुझे इन {file_type} अब तक भेजा ह
 msgid "The result file is too large for me to send to you"
 msgstr "परिणाम फ़ाइल मेरे लिए आप को भेजने के लिए बहुत बड़ी है"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:160
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:164
 #: pdf_bot/files/image.py:42 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ध्यान दें कि यह एक टेलीग्राम बॉट सीमा है और मैं ऐसा कुछ नहीं कर सकता जब तक कि टेलीग्राम इस सीमा को नहीं बदलता"
@@ -444,7 +444,7 @@ msgstr "मुझे एक नंबर भेजें जिसे आप म
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "सकारात्मक संख्या मार्जिन आकार कम हो जाएगा और नकारात्मक संख्या इसे बढ़ा देंगे"
 
-#: pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:163
 msgid "Your file is too big for me to download and process"
 msgstr "आपकी फ़ाइल डाउनलोड करने और प्रक्रिया करने के लिए मेरे लिए बहुत बड़ी है"
 
@@ -573,6 +573,42 @@ msgstr "उन डिग्रियों का चयन करें जि�
 msgid "Invalid rotation degree, try again"
 msgstr ""
 
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:16
+msgid "By scaling factor"
+msgstr "स्केलिंग गुणक द्वारा"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:17
+msgid "To dimension"
+msgstr "आयाम के लिए"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:49
+msgid "Select the scale type that you'll like to perform"
+msgstr "उस पैमाने के प्रकार का चयन करें जिसे आप करना चाहते हैं"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:82
+msgid "The scaling factors {values} are invalid, please try again"
+msgstr "स्केलिंग कारक {values} अमान्य हैं, कृपया फिर से प्रयास करें"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:106
+msgid "The dimensions {values} are invalid, please try again"
+msgstr "{values} आयाम अमान्य हैं, कृपया फिर से प्रयास करें"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:123
+msgid "Send me the scaling factors for the horizontal and vertical axes"
+msgstr "मुझे क्षैतिज और ऊर्ध्वाधर कुल्हाड़ियों के लिए स्केलिंग कारक भेजें"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:128
+msgid "This will double the horizontal axis and halve the vertical axis"
+msgstr "यह क्षैतिज धुरी को दोगुना कर देगा और ऊर्ध्वाधर धुरी को आधा कर देगा"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:141
+msgid "Send me the width and height"
+msgstr "मुझे चौड़ाई और ऊंचाई भेजें"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:143
+msgid "This will set the width to 150 and height to 200"
+msgstr "इससे चौड़ाई 150 और ऊंचाई 200 तय होगी।"
+
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:23
 msgid "Send me the password to decrypt your PDF file"
 msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक्रिप्ट करने के लिए पासवर्ड भेजें"
@@ -580,42 +616,6 @@ msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक�
 #: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
 msgid "Send me the password to encrypt your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को एन्क्रिप्ट करने के लिए मुझे पासवर्ड भेजें"
-
-#: pdf_bot/scale/scale_service.py:16
-msgid "By scaling factor"
-msgstr "स्केलिंग गुणक द्वारा"
-
-#: pdf_bot/scale/scale_service.py:17
-msgid "To dimension"
-msgstr "आयाम के लिए"
-
-#: pdf_bot/scale/scale_service.py:49
-msgid "Select the scale type that you'll like to perform"
-msgstr "उस पैमाने के प्रकार का चयन करें जिसे आप करना चाहते हैं"
-
-#: pdf_bot/scale/scale_service.py:82
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "स्केलिंग कारक {values} अमान्य हैं, कृपया फिर से प्रयास करें"
-
-#: pdf_bot/scale/scale_service.py:106
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "{values} आयाम अमान्य हैं, कृपया फिर से प्रयास करें"
-
-#: pdf_bot/scale/scale_service.py:123
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "मुझे क्षैतिज और ऊर्ध्वाधर कुल्हाड़ियों के लिए स्केलिंग कारक भेजें"
-
-#: pdf_bot/scale/scale_service.py:128
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "यह क्षैतिज धुरी को दोगुना कर देगा और ऊर्ध्वाधर धुरी को आधा कर देगा"
-
-#: pdf_bot/scale/scale_service.py:141
-msgid "Send me the width and height"
-msgstr "मुझे चौड़ाई और ऊंचाई भेजें"
-
-#: pdf_bot/scale/scale_service.py:143
-msgid "This will set the width to 150 and height to 200"
-msgstr "इससे चौड़ाई 150 और ऊंचाई 200 तय होगी।"
 
 #: pdf_bot/split/split_service.py:69
 msgid "Send me the range of pages that you'll like to keep"
