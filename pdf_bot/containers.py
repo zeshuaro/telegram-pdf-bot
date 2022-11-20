@@ -13,6 +13,7 @@ from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.crop import CropService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
+from pdf_bot.image import ImageService
 from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
@@ -72,6 +73,10 @@ class Services(containers.DeclarativeContainer):
     file_task = providers.Factory(FileTaskService, language_service=language)
     telegram = providers.Factory(
         TelegramService, io_service=io, language_service=language, updater=core.updater
+    )
+
+    image = providers.Factory(
+        ImageService, cli_service=cli, io_service=io, telegram_service=telegram
     )
     pdf = providers.Factory(
         PdfService, cli_service=cli, io_service=io, telegram_service=telegram

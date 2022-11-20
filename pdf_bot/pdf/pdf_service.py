@@ -6,7 +6,6 @@ from gettext import gettext as _
 from typing import Generator, List
 
 import img2pdf
-import noteshrink
 import ocrmypdf
 import pdf2image
 import pdf_diff
@@ -63,20 +62,6 @@ class PdfService:
             yield out_path
 
     @contextmanager
-    def beautify_and_convert_images_to_pdf(
-        self, file_data_list: List[FileData]
-    ) -> Generator[str, None, None]:
-        file_ids = self._get_file_ids(file_data_list)
-        with self.telegram_service.download_files(
-            file_ids
-        ) as file_paths, self.io_service.create_temp_pdf_file("Beautified") as out_path:
-            out_path_base = os.path.splitext(out_path)[0]
-            noteshrink.notescan_main(
-                file_paths, basename=f"{out_path_base}_page", pdfname=out_path
-            )
-            yield out_path
-
-    @contextmanager
     def black_and_white_pdf(self, file_id: str) -> Generator[str, None, None]:
         with (
             self.telegram_service.download_pdf_file(file_id) as file_path,
@@ -118,18 +103,6 @@ class PdfService:
             old_size = os.path.getsize(file_path)
             new_size = os.path.getsize(out_path)
             yield CompressResult(old_size, new_size, out_path)
-
-    @contextmanager
-    def convert_images_to_pdf(
-        self, file_data_list: List[FileData]
-    ) -> Generator[str, None, None]:
-        file_ids = self._get_file_ids(file_data_list)
-        with self.telegram_service.download_files(
-            file_ids
-        ) as file_paths, self.io_service.create_temp_pdf_file("Converted") as out_path:
-            with open(out_path, "wb") as f:
-                f.write(img2pdf.convert(file_paths))
-            yield out_path
 
     @contextmanager
     def create_pdf_from_text(

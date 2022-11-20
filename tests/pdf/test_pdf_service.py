@@ -135,27 +135,6 @@ class TestPDFService(
                     self.telegram_file_id
                 )
 
-    @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
-    def test_beautify_and_convert_images_to_pdf(self, num_files: int) -> None:
-        file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
-        self.telegram_service.download_files.return_value.__enter__.return_value = (
-            file_paths
-        )
-
-        with patch(
-            "pdf_bot.pdf.pdf_service.noteshrink"
-        ) as noteshrink, self.sut.beautify_and_convert_images_to_pdf(
-            file_data_list
-        ) as actual:
-            assert actual == self.OUTPUT_PATH
-            self.telegram_service.download_files.assert_called_once_with(file_ids)
-            self.io_service.create_temp_pdf_file.assert_called_once_with("Beautified")
-            noteshrink.notescan_main.assert_called_once_with(
-                file_paths,
-                basename=f"{self.OUTPUT_PATH}_page",
-                pdfname=self.OUTPUT_PATH,
-            )
-
     def test_black_and_white_pdf(self) -> None:
         image_paths = "image_paths"
         file = MagicMock()
@@ -217,29 +196,6 @@ class TestPDFService(
                     self.DOWNLOAD_PATH, self.OUTPUT_PATH
                 )
                 self._assert_telegram_and_io_services("Compressed")
-
-    @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
-    def test_convert_images_to_pdf(self, num_files: int) -> None:
-        image_bytes = "image_bytes"
-        file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
-        file = MagicMock()
-        self.telegram_service.download_files.return_value.__enter__.return_value = (
-            file_paths
-        )
-
-        with patch("pdf_bot.pdf.pdf_service.img2pdf") as img2pdf:
-            self.mock_open.return_value.__enter__.return_value = file
-            img2pdf.convert.return_value = image_bytes
-
-            with self.sut.convert_images_to_pdf(file_data_list) as actual:
-                assert actual == self.OUTPUT_PATH
-                self.telegram_service.download_files.assert_called_once_with(file_ids)
-                self.io_service.create_temp_pdf_file.assert_called_once_with(
-                    "Converted"
-                )
-                self.mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
-                img2pdf.convert.assert_called_once_with(file_paths)
-                file.write.assert_called_once_with(image_bytes)
 
     @pytest.mark.parametrize("has_font_data", [True, False])
     def test_create_pdf_from_text(self, has_font_data: bool) -> None:
