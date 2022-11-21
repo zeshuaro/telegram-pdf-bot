@@ -1,3 +1,5 @@
+import os
+import shutil
 from abc import ABC, abstractmethod
 from contextlib import contextmanager
 from typing import Callable, Generator, Type
@@ -60,8 +62,13 @@ class AbstractFileProcessor(ABC):
 
         try:
             with self.process_file_task(file_id, message.text) as out_path:
+                final_path = out_path
+                if os.path.isdir(out_path):
+                    shutil.make_archive(out_path, "zip", out_path)
+                    final_path = f"{out_path}.zip"
+
                 self.telegram_service.reply_with_file(
-                    update, context, out_path, self.task_type
+                    update, context, final_path, self.task_type
                 )
         except Exception as e:  # pylint: disable=broad-except
             handler = self._get_error_handlers().get(type(e))
