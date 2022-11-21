@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 from typing import Generator, Type
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 from telegram import Update
 from telegram.ext import CallbackContext, ConversationHandler
@@ -87,8 +87,6 @@ class TestAbstractTelegramFileProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    WAIT_DECRYPT_PASSWORD = "wait_decrypt_password"
-    FILE_PATH = "file_path"
     BACK = "Back"
 
     def setup_method(self) -> None:
@@ -110,6 +108,22 @@ class TestAbstractTelegramFileProcessor(
 
         assert actual == ConversationHandler.END
         self._assert_process_file_succeed()
+
+    def test_process_file_dir_output(self) -> None:
+        with patch(
+            "pdf_bot.file_processor.abstract_file_processor.os"
+        ) as mock_os, patch(
+            "pdf_bot.file_processor.abstract_file_processor.shutil"
+        ) as mock_shutil:
+            mock_os.path.is_dir.return_value = True
+
+            actual = self.sut.process_file(self.telegram_update, self.telegram_context)
+
+            assert actual == ConversationHandler.END
+            self._assert_process_file_succeed(f"{MockProcessor.PROCESS_RESULT}.zip")
+            mock_shutil.make_archive(
+                MockProcessor.PROCESS_RESULT, "zip", MockProcessor.PROCESS_RESULT
+            )
 
     def test_process_file_error(self) -> None:
         self.sut = MockProcessorWithPDFServiceError(
@@ -194,13 +208,15 @@ class TestAbstractTelegramFileProcessor(
         assert actual == ConversationHandler.END
         self._assert_process_file_succeed()
 
-    def _assert_process_file_succeed(self) -> None:
+    def _assert_process_file_succeed(
+        self, out_path: str = MockProcessor.PROCESS_RESULT
+    ) -> None:
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, PDF_INFO
         )
         self.telegram_service.reply_with_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            MockProcessor.PROCESS_RESULT,
+            out_path,
             MockProcessor.TASK_TYPE,
         )
