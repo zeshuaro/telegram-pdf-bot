@@ -200,11 +200,12 @@ class TestPDFService(
     def test_convert_to_images(self) -> None:
         with patch(
             "pdf_bot.pdf.pdf_service.pdf2image"
-        ) as pdf2image, self.sut.convert_to_images(self.telegram_file_id) as actual:
+        ) as pdf2image, self.sut.convert_pdf_to_images(self.telegram_file_id) as actual:
             assert actual == self.DIR_NAME
             self.telegram_service.download_pdf_file.assert_called_once_with(
                 self.telegram_file_id
             )
+            self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
             pdf2image.convert_from_path.assert_called_once_with(
                 self.DOWNLOAD_PATH, output_folder=self.DIR_NAME, fmt="png"
             )
