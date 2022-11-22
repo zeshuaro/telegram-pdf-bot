@@ -24,6 +24,7 @@ from pdf_bot.pdf_processor import (
     ExtractPDFTextProcessor,
     GrayscalePDFProcessor,
     OCRPDFProcessor,
+    PDFToImageProcessor,
     PreviewPDFProcessor,
     RenamePDFProcessor,
     RotatePDFProcessor,
@@ -165,6 +166,13 @@ class Processors(containers.DeclarativeContainer):
         telegram_service=services.telegram,
         language_service=services.language,
     )
+    pdf_to_image = providers.Singleton(
+        PDFToImageProcessor,
+        file_task_service=services.file_task,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
     preview_pdf = providers.Singleton(
         PreviewPDFProcessor,
         file_task_service=services.file_task,
@@ -217,6 +225,7 @@ class Handlers(containers.DeclarativeContainer):
         extract_pdf_text_processor=processors.extract_text,
         grayscale_pdf_processor=processors.grayscale,
         ocr_pdf_processor=processors.ocr,
+        pdf_to_image_processor=processors.pdf_to_image,
         preview_pdf_processor=processors.preview_pdf,
         rename_pdf_processor=processors.rename,
         rotate_pdf_processor=processors.rotate,

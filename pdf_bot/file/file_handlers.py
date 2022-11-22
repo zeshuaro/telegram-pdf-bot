@@ -26,7 +26,6 @@ from pdf_bot.consts import (
     TO_PDF,
     WAIT_EXTRACT_IMAGE_TYPE,
     WAIT_IMAGE_TASK,
-    WAIT_TO_IMAGE_TYPE,
 )
 from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
@@ -35,7 +34,6 @@ from pdf_bot.files.image import (
     ask_image_results_type,
     ask_image_task,
     get_pdf_images,
-    pdf_to_images,
     process_image_task,
 )
 from pdf_bot.language import set_lang
@@ -45,6 +43,7 @@ from pdf_bot.pdf_processor import (
     ExtractPDFTextProcessor,
     GrayscalePDFProcessor,
     OCRPDFProcessor,
+    PDFToImageProcessor,
     PreviewPDFProcessor,
     RenamePDFProcessor,
     RotatePDFProcessor,
@@ -65,6 +64,7 @@ class FileHandlers:
         extract_pdf_text_processor: ExtractPDFTextProcessor,
         grayscale_pdf_processor: GrayscalePDFProcessor,
         ocr_pdf_processor: OCRPDFProcessor,
+        pdf_to_image_processor: PDFToImageProcessor,
         preview_pdf_processor: PreviewPDFProcessor,
         rename_pdf_processor: RenamePDFProcessor,
         rotate_pdf_processor: RotatePDFProcessor,
@@ -79,6 +79,7 @@ class FileHandlers:
         self.extract_pdf_text_processor = extract_pdf_text_processor
         self.grayscale_pdf_processor = grayscale_pdf_processor
         self.ocr_pdf_processor = ocr_pdf_processor
+        self.pdf_to_image_processor = pdf_to_image_processor
         self.preview_pdf_processor = preview_pdf_processor
         self.rename_pdf_processor = rename_pdf_processor
         self.rotate_pdf_processor = rotate_pdf_processor
@@ -142,9 +143,6 @@ class FileHandlers:
                 WAIT_EXTRACT_IMAGE_TYPE: [
                     MessageHandler(TEXT_FILTER, self.check_get_images_task)
                 ],
-                WAIT_TO_IMAGE_TYPE: [
-                    MessageHandler(TEXT_FILTER, self.check_to_images_task)
-                ],
             },
             fallbacks=[CommandHandler("cancel", cancel)],
             allow_reentry=True,
@@ -188,7 +186,9 @@ class FileHandlers:
             return self.decrypt_pdf_processor.ask_password(update, context)
         if text == _(ENCRYPT):
             return self.encrypt_pdf_processor.ask_password(update, context)
-        if text in [_(EXTRACT_IMAGE), _(TO_IMAGES)]:
+        if text == _(TO_IMAGES):
+            return self.pdf_to_image_processor.process_file(update, context)
+        if text in [_(EXTRACT_IMAGE)]:
             return ask_image_results_type(update, context)
         if text == _(PREVIEW):
             return self.preview_pdf_processor.process_file(update, context)
@@ -235,14 +235,3 @@ class FileHandlers:
             return self.file_task_service.ask_pdf_task(update, context)
 
         return WAIT_EXTRACT_IMAGE_TYPE
-
-    def check_to_images_task(self, update, context):
-        _ = set_lang(update, context)
-        text = update.effective_message.text
-
-        if text in [_(IMAGES), _(COMPRESSED)]:
-            return pdf_to_images(update, context)
-        if text == _(BACK):
-            return self.file_task_service.ask_pdf_task(update, context)
-
-        return WAIT_TO_IMAGE_TYPE

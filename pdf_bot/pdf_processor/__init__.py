@@ -2,6 +2,7 @@ from .crypto import AbstractCryptoPDFProcessor, DecryptPDFProcessor, EncryptPDFP
 from .extract_pdf_text_processor import ExtractPDFTextProcessor
 from .grayscale_pdf_processor import GrayscalePDFProcessor
 from .ocr_pdf_processor import OCRPDFProcessor
+from .pdf_to_image_processor import PDFToImageProcessor
 from .preview_pdf_processor import PreviewPDFProcessor
 from .rename_pdf_processor import RenamePDFProcessor
 from .rotate_pdf_processor import RotatePDFProcessor
@@ -15,6 +16,7 @@ __all__ = [
     "ExtractPDFTextProcessor",
     "GrayscalePDFProcessor",
     "OCRPDFProcessor",
+    "PDFToImageProcessor",
     "PreviewPDFProcessor",
     "RenamePDFProcessor",
     "RotatePDFProcessor",
