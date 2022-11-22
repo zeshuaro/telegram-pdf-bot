@@ -27,16 +27,21 @@ class TestIOService:
     def teardown_method(self) -> None:
         self.tf_cls_patcher.stop()
 
-    def test_create_temp_directory(self) -> None:
+    @pytest.mark.parametrize("prefix", [None, FILE_PREFIX, FILE_PREFIX_UNDERSCORE])
+    def test_create_temp_directory(self, prefix: str | None) -> None:
         td = MagicMock(spec=TemporaryDirectory)
         with patch("pdf_bot.io.io_service.TemporaryDirectory") as td_cls:
             td_cls.return_value = td
             td.name = self.DIR_NAME
 
-            with self.sut.create_temp_directory() as actual:
+            with self.sut.create_temp_directory(prefix) as actual:
                 assert actual == self.DIR_NAME
 
-            td_cls.assert_called_once()
+            expected_prefix = prefix
+            if prefix is not None and not prefix.endswith("_"):
+                expected_prefix += "_"
+
+            td_cls.assert_called_once_with(prefix=expected_prefix)
             td.cleanup.assert_called_once()
 
     @pytest.mark.parametrize(

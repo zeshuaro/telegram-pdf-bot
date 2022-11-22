@@ -6,9 +6,12 @@ from typing import Generator, List
 class IOService:
     @staticmethod
     @contextmanager
-    def create_temp_directory() -> Generator[str, None, None]:
+    def create_temp_directory(prefix: str | None = None) -> Generator[str, None, None]:
+        if prefix is not None and not prefix.endswith("_"):
+            prefix += "_"
+
         try:
-            td = TemporaryDirectory()
+            td = TemporaryDirectory(prefix=prefix)
             yield td.name
         finally:
             td.cleanup()
