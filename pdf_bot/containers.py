@@ -59,65 +59,67 @@ class Services(containers.DeclarativeContainer):
     core = providers.DependenciesContainer()
     repositories = providers.DependenciesContainer()
 
-    cli = providers.Factory(CLIService)
-    io = providers.Factory(IOService)
+    cli = providers.Singleton(CLIService)
+    io = providers.Singleton(IOService)
 
-    account = providers.Factory(AccountService, account_repository=repositories.account)
-    language = providers.Factory(
+    account = providers.Singleton(
+        AccountService, account_repository=repositories.account
+    )
+    language = providers.Singleton(
         LanguageService, language_repository=repositories.language
     )
 
-    command = providers.Factory(
+    command = providers.Singleton(
         CommandService, account_service=account, language_service=language
     )
-    file_task = providers.Factory(FileTaskService, language_service=language)
-    telegram = providers.Factory(
+    file_task = providers.Singleton(FileTaskService, language_service=language)
+    telegram = providers.Singleton(
         TelegramService, io_service=io, language_service=language, updater=core.updater
     )
 
-    image = providers.Factory(
+    image = providers.Singleton(
         ImageService, cli_service=cli, io_service=io, telegram_service=telegram
     )
-    pdf = providers.Factory(
+    pdf = providers.Singleton(
         PdfService, cli_service=cli, io_service=io, telegram_service=telegram
     )
 
-    compare = providers.Factory(
+    compare = providers.Singleton(
         CompareService,
         pdf_service=pdf,
         telegram_service=telegram,
         language_service=language,
     )
-    file = providers.Factory(
+    file = providers.Singleton(
         FileService,
         pdf_service=pdf,
         telegram_service=telegram,
         language_service=language,
     )
-    crop = providers.Factory(
+    crop = providers.Singleton(
         CropService,
         file_task_service=file_task,
         pdf_service=pdf,
         telegram_service=telegram,
         language_service=language,
     )
-    language = providers.Factory(
+    language = providers.Singleton(
         LanguageService, language_repository=repositories.language
     )
-    merge = providers.Factory(
+    merge = providers.Singleton(
         MergeService,
         pdf_service=pdf,
         telegram_service=telegram,
         language_service=language,
     )
-    text = providers.Factory(
+    text = providers.Singleton(
         TextService,
         text_repository=repositories.text,
         pdf_service=pdf,
         telegram_service=telegram,
         language_service=language,
     )
-    watermark = providers.Factory(
+    watermark = providers.Singleton(
         WatermarkService,
         pdf_service=pdf,
         telegram_service=telegram,
@@ -128,70 +130,70 @@ class Services(containers.DeclarativeContainer):
 class Processors(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
 
-    decrypt = providers.Factory(
+    decrypt = providers.Singleton(
         DecryptPDFProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    encrypt = providers.Factory(
+    encrypt = providers.Singleton(
         EncryptPDFProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    extract_text = providers.Factory(
+    extract_text = providers.Singleton(
         ExtractPDFTextProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    grayscale = providers.Factory(
+    grayscale = providers.Singleton(
         GrayscalePDFProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    ocr = providers.Factory(
+    ocr = providers.Singleton(
         OCRPDFProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    preview_pdf = providers.Factory(
+    preview_pdf = providers.Singleton(
         PreviewPDFProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    rename = providers.Factory(
+    rename = providers.Singleton(
         RenamePDFProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    rotate = providers.Factory(
+    rotate = providers.Singleton(
         RotatePDFProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    scale = providers.Factory(
+    scale = providers.Singleton(
         ScalePDFProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    split = providers.Factory(
+    split = providers.Singleton(
         SplitPDFProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
@@ -204,8 +206,8 @@ class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
     processors = providers.DependenciesContainer()
 
-    compare = providers.Factory(CompareHandlers, compare_service=services.compare)
-    file = providers.Factory(
+    compare = providers.Singleton(CompareHandlers, compare_service=services.compare)
+    file = providers.Singleton(
         FileHandlers,
         file_task_service=services.file_task,
         file_service=services.file,
@@ -221,9 +223,9 @@ class Handlers(containers.DeclarativeContainer):
         scale_pdf_processor=processors.scale,
         split_pdf_processor=processors.split,
     )
-    merge = providers.Factory(MergeHandlers, merge_service=services.merge)
-    text = providers.Factory(TextHandlers, text_service=services.text)
-    watermark = providers.Factory(
+    merge = providers.Singleton(MergeHandlers, merge_service=services.merge)
+    text = providers.Singleton(TextHandlers, text_service=services.text)
+    watermark = providers.Singleton(
         WatermarkHandlers, watermark_service=services.watermark
     )
 
