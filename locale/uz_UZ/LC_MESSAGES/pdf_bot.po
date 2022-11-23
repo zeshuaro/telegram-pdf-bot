@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-23 08:14+0000\n"
-"PO-Revision-Date: 2022-11-23 08:14\n"
+"POT-Creation-Date: 2022-11-23 10:59+0000\n"
+"PO-Revision-Date: 2022-11-23 11:00\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: Uzbek\n"
@@ -517,35 +517,39 @@ msgstr "Siz menga faqat bitta PDF -fayl yubordingiz"
 msgid "Merging your PDF files"
 msgstr "PDF fayllarni birlashtirish"
 
-#: pdf_bot/pdf/pdf_service.py:167
+#: pdf_bot/pdf/pdf_service.py:169
 msgid "Your PDF file is not encrypted"
 msgstr "Sizning PDF faylingiz shifrlanmagan"
 
-#: pdf_bot/pdf/pdf_service.py:172
+#: pdf_bot/pdf/pdf_service.py:174
 msgid "Incorrect password, please try again"
 msgstr "Maxfiy soʻz notoʻgʻri, iltimos qaytadan urinib koʻring"
 
-#: pdf_bot/pdf/pdf_service.py:176
+#: pdf_bot/pdf/pdf_service.py:178
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Sizning PDF -faylingiz shifrlangan, men hal qila olmaydigan usul"
 
-#: pdf_bot/pdf/pdf_service.py:208
+#: pdf_bot/pdf/pdf_service.py:210
 msgid "No text found in your PDF file"
 msgstr "PDF faylingizda matn topilmadi"
 
 #: pdf_bot/pdf/pdf_service.py:229
+msgid "No images found in your PDF file"
+msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:245
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "PDF fayllaringizni birlashtira olmadim, chunki bu fayl yaroqsiz: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:247
+#: pdf_bot/pdf/pdf_service.py:263
 msgid "Your PDF file already has a text layer"
 msgstr "Sizning PDF faylingizda allaqachon matn qatlami mavjud"
 
-#: pdf_bot/pdf/pdf_service.py:333
+#: pdf_bot/pdf/pdf_service.py:349
 msgid "Your PDF file is invalid"
 msgstr "PDF faylingiz haqiqiy emas"
 
-#: pdf_bot/pdf/pdf_service.py:336
+#: pdf_bot/pdf/pdf_service.py:352
 msgid "Your PDF file is encrypted"
 msgstr "PDF faylingiz shifrlangan"
 
