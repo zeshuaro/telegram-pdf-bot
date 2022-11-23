@@ -8,7 +8,7 @@ from telegram.ext import CallbackContext, ConversationHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import PDF_INFO
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
-from pdf_bot.pdf import PdfService, PdfServiceError
+from pdf_bot.pdf import PdfReadError, PdfService, PdfServiceError
 from pdf_bot.telegram_internal import TelegramUserDataKeyError
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
@@ -49,12 +49,12 @@ class MockProcessorWithErrorHandler(MockProcessor):
     def process_file_task(
         self, _file_id: str, _password: str
     ) -> Generator[str, None, None]:
-        raise RuntimeError()
+        raise PdfReadError()
 
     def get_custom_error_handlers(
         self,
     ) -> dict[Type[Exception], ErrorHandlerType]:
-        return {RuntimeError: self._handle_runtime_error}
+        return {PdfReadError: self._handle_runtime_error}
 
     def _handle_runtime_error(
         self,
