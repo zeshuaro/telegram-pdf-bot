@@ -71,9 +71,14 @@ class AbstractFileProcessor(ABC):
                     update, context, final_path, self.task_type
                 )
         except Exception as e:  # pylint: disable=broad-except
-            handler = self._get_error_handlers().get(type(e))
-            if handler is not None:
-                return handler(update, context, e, file_id, file_name)
+            handlers = self._get_error_handlers()
+            error_handler: ErrorHandlerType | None = None
+            for error_type, handler in handlers.items():
+                if isinstance(e, error_type):
+                    error_handler = handler
+
+            if error_handler is not None:
+                return error_handler(update, context, e, file_id, file_name)
         return ConversationHandler.END
 
     def get_custom_error_handlers(
