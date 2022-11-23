@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-23 10:59+0000\n"
-"PO-Revision-Date: 2022-11-23 11:00\n"
+"POT-Creation-Date: 2022-11-23 11:59+0000\n"
+"PO-Revision-Date: 2022-11-23 11:59\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -293,8 +293,8 @@ msgstr "Bạn đã gửi cho tôi những {file_type} này cho đến nay:"
 msgid "The result file is too large for me to send to you"
 msgstr "Tệp kết quả quá lớn để tôi gửi cho bạn"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:163
-#: pdf_bot/files/image.py:41 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:154
+#: pdf_bot/files/image.py:22 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
 
@@ -444,7 +444,7 @@ msgstr "Gửi cho tôi một số mà bạn sẽ muốn điều chỉnh kích th
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Những con số tích cực sẽ làm giảm kích thước ký quỹ và số âm sẽ làm tăng nó"
 
-#: pdf_bot/file/file_handlers.py:162
+#: pdf_bot/file/file_handlers.py:153
 msgid "Your file is too big for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
@@ -453,33 +453,13 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Kích thước tệp giảm {percent}, từ {old_size} xuống {new_size}"
 
 #: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/document.py:54
-#: pdf_bot/files/image.py:56
+#: pdf_bot/files/image.py:37
 msgid "Select the task that you'll like to perform"
 msgstr "Chọn nhiệm vụ bạn muốn thực hiện"
 
-#: pdf_bot/files/image.py:40
+#: pdf_bot/files/image.py:21
 msgid "Your image is too large for me to download and process"
 msgstr "Hình ảnh của bạn quá lớn để tôi có thể tải xuống và xử lý"
-
-#: pdf_bot/files/image.py:93
-msgid "Select the result file format"
-msgstr "Chọn định dạng tệp kết quả"
-
-#: pdf_bot/files/image.py:105
-msgid "Extracting all the images in your PDF file"
-msgstr "Trích xuất tất cả các hình ảnh trong tệp PDF của bạn"
-
-#: pdf_bot/files/image.py:120 pdf_bot/telegram_internal/telegram_service.py:92
-msgid "Something went wrong, please try again"
-msgstr "Có điều gì đó không ổn, xin hãy thử lại"
-
-#: pdf_bot/files/image.py:125
-msgid "I couldn't find any images in your PDF file"
-msgstr "Tôi không thể tìm thấy bất kỳ hình ảnh nào trong tệp PDF của bạn"
-
-#: pdf_bot/files/image.py:163
-msgid "See above for all your images"
-msgstr "Xem ở trên cho tất cả các hình ảnh của bạn"
 
 #: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
@@ -529,13 +509,13 @@ msgstr "Mật khẩu không chính xác, vui lòng thử lại"
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Tệp PDF của bạn được mã hóa bằng một phương pháp mà tôi không thể giải mã"
 
-#: pdf_bot/pdf/pdf_service.py:210
-msgid "No text found in your PDF file"
-msgstr "Không tìm thấy văn bản trong tệp PDF của bạn"
-
-#: pdf_bot/pdf/pdf_service.py:229
+#: pdf_bot/pdf/pdf_service.py:215
 msgid "No images found in your PDF file"
 msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:224
+msgid "No text found in your PDF file"
+msgstr "Không tìm thấy văn bản trong tệp PDF của bạn"
 
 #: pdf_bot/pdf/pdf_service.py:245
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
@@ -700,6 +680,10 @@ msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Tệp quá lớn để tôi có thể gửi cho bạn\n\n"
 "Lưu ý rằng giới hạn này được thực thi bởi Telegram và tôi không thể làm gì trừ khi Telegram thay đổi nó"
+
+#: pdf_bot/telegram_internal/telegram_service.py:92
+msgid "Something went wrong, please try again"
+msgstr "Có điều gì đó không ổn, xin hãy thử lại"
 
 #: pdf_bot/telegram_internal/telegram_service.py:101
 msgid "Your file is not an image, please try again"
@@ -1565,5 +1549,17 @@ msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 #~ msgstr ""
 
 #~ msgid "Converting your PDF file into images"
+#~ msgstr ""
+
+#~ msgid "Select the result file format"
+#~ msgstr ""
+
+#~ msgid "Extracting all the images in your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any images in your PDF file"
+#~ msgstr ""
+
+#~ msgid "See above for all your images"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-23 10:59+0000\n"
-"PO-Revision-Date: 2022-11-23 11:00\n"
+"POT-Creation-Date: 2022-11-23 11:59+0000\n"
+"PO-Revision-Date: 2022-11-23 11:59\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -293,8 +293,8 @@ msgstr "到目前为止， 你已经寄给我这些 {file_type} ："
 msgid "The result file is too large for me to send to you"
 msgstr "输出档案太大了，我无法发送给你"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:163
-#: pdf_bot/files/image.py:41 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:154
+#: pdf_bot/files/image.py:22 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
 
@@ -444,7 +444,7 @@ msgstr "给我发个数字，您想调整保证金大小"
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "正数将减少保证金大小，负数将增加"
 
-#: pdf_bot/file/file_handlers.py:162
+#: pdf_bot/file/file_handlers.py:153
 msgid "Your file is too big for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
@@ -453,33 +453,13 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "文件大小减少 {percent}，从 {old_size} 减少到 {new_size}"
 
 #: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/document.py:54
-#: pdf_bot/files/image.py:56
+#: pdf_bot/files/image.py:37
 msgid "Select the task that you'll like to perform"
 msgstr "选择你想要做什么"
 
-#: pdf_bot/files/image.py:40
+#: pdf_bot/files/image.py:21
 msgid "Your image is too large for me to download and process"
 msgstr "您的图像太大，我无法下载和处理"
-
-#: pdf_bot/files/image.py:93
-msgid "Select the result file format"
-msgstr "选择档案格式"
-
-#: pdf_bot/files/image.py:105
-msgid "Extracting all the images in your PDF file"
-msgstr "提取 PDF 文件中的所有图像"
-
-#: pdf_bot/files/image.py:120 pdf_bot/telegram_internal/telegram_service.py:92
-msgid "Something went wrong, please try again"
-msgstr "出问题了，请再试一次"
-
-#: pdf_bot/files/image.py:125
-msgid "I couldn't find any images in your PDF file"
-msgstr "我在您的 PDF 文件中找不到任何图像"
-
-#: pdf_bot/files/image.py:163
-msgid "See above for all your images"
-msgstr "查看上文以获取所有图像"
 
 #: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
@@ -529,13 +509,13 @@ msgstr "密码不正确，请重试"
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "您的 PDF 文件使用一种无法解密的方法进行加密"
 
-#: pdf_bot/pdf/pdf_service.py:210
-msgid "No text found in your PDF file"
-msgstr "在 PDF 文件中找不到任何文本"
-
-#: pdf_bot/pdf/pdf_service.py:229
+#: pdf_bot/pdf/pdf_service.py:215
 msgid "No images found in your PDF file"
 msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:224
+msgid "No text found in your PDF file"
+msgstr "在 PDF 文件中找不到任何文本"
 
 #: pdf_bot/pdf/pdf_service.py:245
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
@@ -700,6 +680,10 @@ msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "文件太大，我无法发送给您\n\n"
 "请注意，此限制是由电报强制执行的，除非电报更改它，否则我无能为力"
+
+#: pdf_bot/telegram_internal/telegram_service.py:92
+msgid "Something went wrong, please try again"
+msgstr "出问题了，请再试一次"
 
 #: pdf_bot/telegram_internal/telegram_service.py:101
 msgid "Your file is not an image, please try again"
@@ -1565,5 +1549,17 @@ msgstr "正在添加水印到你的PDF档案中"
 #~ msgstr ""
 
 #~ msgid "Converting your PDF file into images"
+#~ msgstr ""
+
+#~ msgid "Select the result file format"
+#~ msgstr ""
+
+#~ msgid "Extracting all the images in your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any images in your PDF file"
+#~ msgstr ""
+
+#~ msgid "See above for all your images"
 #~ msgstr ""
 

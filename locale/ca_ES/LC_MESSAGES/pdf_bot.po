@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-23 10:59+0000\n"
-"PO-Revision-Date: 2022-11-23 11:00\n"
+"POT-Creation-Date: 2022-11-23 11:59+0000\n"
+"PO-Revision-Date: 2022-11-23 11:59\n"
 "Last-Translator: \n"
 "Language: ca\n"
 "Language-Team: Catalan\n"
@@ -293,8 +293,8 @@ msgstr "M'has enviat aquestes {file_type} fins ara:"
 msgid "The result file is too large for me to send to you"
 msgstr "L’arxiu resultant és massa gran per enviar-te’l"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:163
-#: pdf_bot/files/image.py:41 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:154
+#: pdf_bot/files/image.py:22 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Tingueu en compte que això és una limitació de Telegram Bot i no hi ha res que pugui fer a menys que Telegram canviï aquest límit"
 
@@ -444,7 +444,7 @@ msgstr "Envia'm un número que t'agradaria ajustar la mida del marge"
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Els nombres positius disminuiran la mida del marge i els números negatius l'augmentaran."
 
-#: pdf_bot/file/file_handlers.py:162
+#: pdf_bot/file/file_handlers.py:153
 msgid "Your file is too big for me to download and process"
 msgstr "El teu arxiu és massa gran per a mi per descarregar-lo i processar-lo"
 
@@ -453,33 +453,13 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Mida del fitxer reduïda en {percent}, de {old_size} a {new_size}"
 
 #: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/document.py:54
-#: pdf_bot/files/image.py:56
+#: pdf_bot/files/image.py:37
 msgid "Select the task that you'll like to perform"
 msgstr "Seleccioneu la tasca que voleu dur a terme"
 
-#: pdf_bot/files/image.py:40
+#: pdf_bot/files/image.py:21
 msgid "Your image is too large for me to download and process"
 msgstr "La vostra imatge és massa gran per descarregar-la i processar-la"
-
-#: pdf_bot/files/image.py:93
-msgid "Select the result file format"
-msgstr "Seleccioneu el format del fitxer de resultats"
-
-#: pdf_bot/files/image.py:105
-msgid "Extracting all the images in your PDF file"
-msgstr "S'estan extraient totes les imatges del fitxer PDF"
-
-#: pdf_bot/files/image.py:120 pdf_bot/telegram_internal/telegram_service.py:92
-msgid "Something went wrong, please try again"
-msgstr "Alguna cosa ha fallat, si us plau, torneu-ho a provar."
-
-#: pdf_bot/files/image.py:125
-msgid "I couldn't find any images in your PDF file"
-msgstr "No he pogut trobar cap imatge al teu arxiu PDF"
-
-#: pdf_bot/files/image.py:163
-msgid "See above for all your images"
-msgstr "Veure més amunt per a totes les seves imatges"
 
 #: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
@@ -529,13 +509,13 @@ msgstr "Contrasenya incorrecta, torneu-ho a provar"
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "El fitxer PDF està xifrat amb un mètode que no puc desxifrar"
 
-#: pdf_bot/pdf/pdf_service.py:210
-msgid "No text found in your PDF file"
-msgstr "No s'ha trobat cap text al fitxer PDF"
-
-#: pdf_bot/pdf/pdf_service.py:229
+#: pdf_bot/pdf/pdf_service.py:215
 msgid "No images found in your PDF file"
 msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:224
+msgid "No text found in your PDF file"
+msgstr "No s'ha trobat cap text al fitxer PDF"
 
 #: pdf_bot/pdf/pdf_service.py:245
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
@@ -700,6 +680,10 @@ msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "El fitxer és massa gran per enviar-vos\n\n"
 "Tingueu en compte que Telegram aplica aquest límit i no hi ha res que pugui fer tret que Telegram el canviï"
+
+#: pdf_bot/telegram_internal/telegram_service.py:92
+msgid "Something went wrong, please try again"
+msgstr "Alguna cosa ha fallat, si us plau, torneu-ho a provar."
 
 #: pdf_bot/telegram_internal/telegram_service.py:101
 msgid "Your file is not an image, please try again"
@@ -1565,5 +1549,17 @@ msgstr "Addició de la filigrana al fitxer PDF"
 #~ msgstr ""
 
 #~ msgid "Converting your PDF file into images"
+#~ msgstr ""
+
+#~ msgid "Select the result file format"
+#~ msgstr ""
+
+#~ msgid "Extracting all the images in your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any images in your PDF file"
+#~ msgstr ""
+
+#~ msgid "See above for all your images"
 #~ msgstr ""
 

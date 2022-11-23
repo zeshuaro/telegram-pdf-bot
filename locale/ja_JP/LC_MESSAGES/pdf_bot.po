@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-23 10:59+0000\n"
-"PO-Revision-Date: 2022-11-23 11:00\n"
+"POT-Creation-Date: 2022-11-23 11:59+0000\n"
+"PO-Revision-Date: 2022-11-23 11:59\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -293,8 +293,8 @@ msgstr "あなたは今まで私にこれらの {file_type} を送ってきま�
 msgid "The result file is too large for me to send to you"
 msgstr "結果ファイルが大きすぎて、私はあなたに送れなくてはいい"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:163
-#: pdf_bot/files/image.py:41 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:154
+#: pdf_bot/files/image.py:22 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "これは電報ボットの制限であり、テレグラムがこの制限を変更しない限り、私は何もできませんのでご注意ください"
 
@@ -444,7 +444,7 @@ msgstr "余白のサイズを調整したい番号を送ってください"
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "正の数値は余白のサイズを小さくし、負の数は増加します"
 
-#: pdf_bot/file/file_handlers.py:162
+#: pdf_bot/file/file_handlers.py:153
 msgid "Your file is too big for me to download and process"
 msgstr "ファイルが大きすぎてダウンロードして処理できません"
 
@@ -453,33 +453,13 @@ msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "ファイル サイズを {percent}減らして、 {old_size} から {new_size}に"
 
 #: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/document.py:54
-#: pdf_bot/files/image.py:56
+#: pdf_bot/files/image.py:37
 msgid "Select the task that you'll like to perform"
 msgstr "実行するタスクを選択します。"
 
-#: pdf_bot/files/image.py:40
+#: pdf_bot/files/image.py:21
 msgid "Your image is too large for me to download and process"
 msgstr "あなたのイメージは大きすぎてダウンロードして処理できません"
-
-#: pdf_bot/files/image.py:93
-msgid "Select the result file format"
-msgstr "結果ファイル形式を選択します"
-
-#: pdf_bot/files/image.py:105
-msgid "Extracting all the images in your PDF file"
-msgstr "PDF ファイル内のすべての画像を抽出する"
-
-#: pdf_bot/files/image.py:120 pdf_bot/telegram_internal/telegram_service.py:92
-msgid "Something went wrong, please try again"
-msgstr "何かが間違っていた、もう一度やり直してください"
-
-#: pdf_bot/files/image.py:125
-msgid "I couldn't find any images in your PDF file"
-msgstr "PDF ファイルに画像が見つかりませんでした"
-
-#: pdf_bot/files/image.py:163
-msgid "See above for all your images"
-msgstr "すべての画像については、上記を参照してください。"
 
 #: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
@@ -529,13 +509,13 @@ msgstr "パスワードが正しくありません。もう一度やり直して
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "PDFファイルが暗号化されていない方法で暗号化されています"
 
-#: pdf_bot/pdf/pdf_service.py:210
-msgid "No text found in your PDF file"
-msgstr "PDF ファイルにテキストが見つかりません"
-
-#: pdf_bot/pdf/pdf_service.py:229
+#: pdf_bot/pdf/pdf_service.py:215
 msgid "No images found in your PDF file"
 msgstr ""
+
+#: pdf_bot/pdf/pdf_service.py:224
+msgid "No text found in your PDF file"
+msgstr "PDF ファイルにテキストが見つかりません"
 
 #: pdf_bot/pdf/pdf_service.py:245
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
@@ -700,6 +680,10 @@ msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "ファイルが大きすぎて送信できません\n\n"
 "この制限はTelegramによって強制されており、Telegramが変更しない限り私にできることは何もないことに注意してください"
+
+#: pdf_bot/telegram_internal/telegram_service.py:92
+msgid "Something went wrong, please try again"
+msgstr "何かが間違っていた、もう一度やり直してください"
 
 #: pdf_bot/telegram_internal/telegram_service.py:101
 msgid "Your file is not an image, please try again"
@@ -1565,5 +1549,17 @@ msgstr "PDF ファイルにウォーターマークを追加する"
 #~ msgstr ""
 
 #~ msgid "Converting your PDF file into images"
+#~ msgstr ""
+
+#~ msgid "Select the result file format"
+#~ msgstr ""
+
+#~ msgid "Extracting all the images in your PDF file"
+#~ msgstr ""
+
+#~ msgid "I couldn't find any images in your PDF file"
+#~ msgstr ""
+
+#~ msgid "See above for all your images"
 #~ msgstr ""
 
