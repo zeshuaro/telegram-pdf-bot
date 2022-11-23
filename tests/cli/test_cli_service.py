@@ -75,16 +75,16 @@ class TestCLIService:
 
         self._assert_crop_pdf_margin_size_command()
 
-    def test_get_pdf_images(self) -> None:
+    def test_extract_pdf_images(self) -> None:
         self.process.returncode = 0
-        self.sut.get_pdf_images(self.INPUT_PATH, self.OUTPUT_PATH)
+        self.sut.extract_pdf_images(self.INPUT_PATH, self.OUTPUT_PATH)
         self._assert_get_pdf_images_command()
 
-    def test_get_pdf_images_error(self) -> None:
+    def test_extract_pdf_images_error(self) -> None:
         self.process.returncode = 1
 
         with pytest.raises(CLIServiceError):
-            self.sut.get_pdf_images(self.INPUT_PATH, self.OUTPUT_PATH)
+            self.sut.extract_pdf_images(self.INPUT_PATH, self.OUTPUT_PATH)
 
         self._assert_get_pdf_images_command()
 
@@ -113,5 +113,5 @@ class TestCLIService:
     def _assert_get_pdf_images_command(self) -> None:
         args = self.popen.call_args.args[0]
         assert args == shlex.split(
-            f'pdfimages -png "{self.INPUT_PATH}" "{self.OUTPUT_PATH}"'
+            f'pdfimages -png "{self.INPUT_PATH}" "{self.OUTPUT_PATH}/images"'
         )

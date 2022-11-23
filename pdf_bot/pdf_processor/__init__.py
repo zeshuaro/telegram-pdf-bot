@@ -1,4 +1,5 @@
 from .crypto import AbstractCryptoPDFProcessor, DecryptPDFProcessor, EncryptPDFProcessor
+from .extract_pdf_image_processor import ExtractPDFImageProcessor
 from .extract_pdf_text_processor import ExtractPDFTextProcessor
 from .grayscale_pdf_processor import GrayscalePDFProcessor
 from .ocr_pdf_processor import OCRPDFProcessor
@@ -13,6 +14,7 @@ __all__ = [
     "AbstractCryptoPDFProcessor",
     "DecryptPDFProcessor",
     "EncryptPDFProcessor",
+    "ExtractPDFImageProcessor",
     "ExtractPDFTextProcessor",
     "GrayscalePDFProcessor",
     "OCRPDFProcessor",

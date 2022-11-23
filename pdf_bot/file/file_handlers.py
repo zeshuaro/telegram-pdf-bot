@@ -2,18 +2,15 @@ from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
 from pdf_bot.consts import (
-    BACK,
     BEAUTIFY,
     BLACK_AND_WHITE,
     CANCEL,
     COMPRESS,
-    COMPRESSED,
     CROP,
     DECRYPT,
     ENCRYPT,
     EXTRACT_IMAGE,
     EXTRACT_TEXT,
-    IMAGES,
     OCR,
     PDF_INFO,
     PREVIEW,
@@ -24,22 +21,17 @@ from pdf_bot.consts import (
     TEXT_FILTER,
     TO_IMAGES,
     TO_PDF,
-    WAIT_EXTRACT_IMAGE_TYPE,
     WAIT_IMAGE_TASK,
 )
 from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService
-from pdf_bot.files.image import (
-    ask_image_results_type,
-    ask_image_task,
-    get_pdf_images,
-    process_image_task,
-)
+from pdf_bot.files.image import ask_image_task, process_image_task
 from pdf_bot.language import set_lang
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
     EncryptPDFProcessor,
+    ExtractPDFImageProcessor,
     ExtractPDFTextProcessor,
     GrayscalePDFProcessor,
     OCRPDFProcessor,
@@ -61,6 +53,7 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPDFProcessor,
         encrypt_pdf_processor: EncryptPDFProcessor,
+        extract_pdf_image_processor: ExtractPDFImageProcessor,
         extract_pdf_text_processor: ExtractPDFTextProcessor,
         grayscale_pdf_processor: GrayscalePDFProcessor,
         ocr_pdf_processor: OCRPDFProcessor,
@@ -76,6 +69,7 @@ class FileHandlers:
         self.crop_service = crop_service
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
+        self.extract_pdf_image_processor = extract_pdf_image_processor
         self.extract_pdf_text_processor = extract_pdf_text_processor
         self.grayscale_pdf_processor = grayscale_pdf_processor
         self.ocr_pdf_processor = ocr_pdf_processor
@@ -140,9 +134,6 @@ class FileHandlers:
                 SplitPDFProcessor.WAIT_SPLIT_RANGE: [
                     MessageHandler(TEXT_FILTER, self.split_pdf_processor.split_pdf)
                 ],
-                WAIT_EXTRACT_IMAGE_TYPE: [
-                    MessageHandler(TEXT_FILTER, self.check_get_images_task)
-                ],
             },
             fallbacks=[CommandHandler("cancel", cancel)],
             allow_reentry=True,
@@ -188,8 +179,8 @@ class FileHandlers:
             return self.encrypt_pdf_processor.ask_password(update, context)
         if text == _(TO_IMAGES):
             return self.pdf_to_image_processor.process_file(update, context)
-        if text in [_(EXTRACT_IMAGE)]:
-            return ask_image_results_type(update, context)
+        if text == _(EXTRACT_IMAGE):
+            return self.extract_pdf_image_processor.process_file(update, context)
         if text == _(PREVIEW):
             return self.preview_pdf_processor.process_file(update, context)
         if text == _(RENAME):
@@ -224,14 +215,3 @@ class FileHandlers:
             return cancel(update, context)
 
         return WAIT_IMAGE_TASK
-
-    def check_get_images_task(self, update, context):
-        _ = set_lang(update, context)
-        text = update.effective_message.text
-
-        if text in [_(IMAGES), _(COMPRESSED)]:
-            return get_pdf_images(update, context)
-        if text == _(BACK):
-            return self.file_task_service.ask_pdf_task(update, context)
-
-        return WAIT_EXTRACT_IMAGE_TYPE

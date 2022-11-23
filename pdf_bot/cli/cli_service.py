@@ -25,8 +25,8 @@ class CLIService:
     ) -> None:
         self._crop_pdf(input_path, output_path, margin_size=margin_size)
 
-    def get_pdf_images(self, input_path: str, output_path: str) -> None:
-        command = f'pdfimages -png "{input_path}" "{output_path}"'
+    def extract_pdf_images(self, input_path: str, output_path: str) -> None:
+        command = f'pdfimages -png "{input_path}" "{output_path}/images"'
         self._run_command(command)
 
     def _crop_pdf(
