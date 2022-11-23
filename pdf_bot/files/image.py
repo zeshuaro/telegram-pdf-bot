@@ -1,30 +1,11 @@
-import os
-import shutil
-import tempfile
-
-from telegram import ChatAction, ReplyKeyboardMarkup, ReplyKeyboardRemove
-from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
-from telegram.error import BadRequest
+from telegram import ReplyKeyboardMarkup
+from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler
 
-from pdf_bot.analytics import EventAction, TaskType, send_event
 from pdf_bot.commands import process_image
-from pdf_bot.consts import (
-    BACK,
-    BEAUTIFY,
-    CANCEL,
-    COMPRESSED,
-    EXTRACT_IMAGE,
-    IMAGES,
-    PDF_INFO,
-    TO_PDF,
-    WAIT_EXTRACT_IMAGE_TYPE,
-    WAIT_IMAGE_TASK,
-    WAIT_TO_IMAGE_TYPE,
-)
-from pdf_bot.files.utils import run_cmd
+from pdf_bot.consts import BEAUTIFY, CANCEL, TO_PDF, WAIT_IMAGE_TASK
 from pdf_bot.language import set_lang
-from pdf_bot.utils import check_user_data, get_support_markup, send_result_file
+from pdf_bot.utils import check_user_data
 
 IMAGE_ID = "image_id"
 MAX_MEDIA_GROUP = 10
@@ -76,94 +57,3 @@ def process_image_task(update, context):
         del user_data[IMAGE_ID]
 
     return ConversationHandler.END
-
-
-def ask_image_results_type(update, context):
-    _ = set_lang(update, context)
-    if update.effective_message.text == _(EXTRACT_IMAGE):
-        return_type = WAIT_EXTRACT_IMAGE_TYPE
-    else:
-        return_type = WAIT_TO_IMAGE_TYPE
-
-    keyboard = [[_(IMAGES), _(COMPRESSED)], [_(BACK)]]
-    reply_markup = ReplyKeyboardMarkup(
-        keyboard, resize_keyboard=True, one_time_keyboard=True
-    )
-    update.effective_message.reply_text(
-        _("Select the result file format"), reply_markup=reply_markup
-    )
-
-    return return_type
-
-
-def get_pdf_images(update, context):
-    if not check_user_data(update, context, PDF_INFO):
-        return ConversationHandler.END
-
-    _ = set_lang(update, context)
-    update.effective_message.reply_text(
-        _("Extracting all the images in your PDF file"),
-        reply_markup=ReplyKeyboardRemove(),
-    )
-
-    with tempfile.NamedTemporaryFile() as tf:
-        user_data = context.user_data
-        file_id, file_name = user_data[PDF_INFO]
-        pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=tf.name)
-
-        with tempfile.TemporaryDirectory() as tmp_dir_name:
-            dir_name = os.path.join(tmp_dir_name, "Images_In_PDF")
-            os.mkdir(dir_name)
-            if not write_images_in_pdf(tf.name, dir_name, file_name):
-                update.effective_message.reply_text(
-                    _("Something went wrong, please try again")
-                )
-            else:
-                if not os.listdir(dir_name):
-                    update.effective_message.reply_text(
-                        _("I couldn't find any images in your PDF file")
-                    )
-                else:
-                    send_result_images(
-                        update, context, dir_name, TaskType.get_pdf_image
-                    )
-
-    # Clean up memory
-    if user_data[PDF_INFO] == file_id:
-        del user_data[PDF_INFO]
-
-    return ConversationHandler.END
-
-
-def write_images_in_pdf(input_fn, dir_name, file_name):
-    root_file_name = os.path.splitext(file_name)[0]
-    image_prefix = os.path.join(dir_name, root_file_name)
-    command = f'pdfimages -png "{input_fn}" "{image_prefix}"'
-
-    return run_cmd(command)
-
-
-def send_result_images(update, context, dir_name, task: TaskType):
-    _ = set_lang(update, context)
-    message = update.effective_message
-
-    if message.text == _(IMAGES):
-        for image_name in sorted(os.listdir(dir_name)):
-            image_path = os.path.join(dir_name, image_name)
-            if os.path.getsize(image_path) <= MAX_FILESIZE_UPLOAD:
-                try:
-                    message.chat.send_action(ChatAction.UPLOAD_PHOTO)
-                    message.reply_photo(open(image_path, "rb"))
-                except BadRequest:
-                    message.chat.send_action(ChatAction.UPLOAD_DOCUMENT)
-                    message.reply_document(open(image_path, "rb"))
-
-        message.reply_text(
-            _("See above for all your images"),
-            reply_markup=get_support_markup(update, context),
-        )
-        send_event(update, context, task, EventAction.complete)
-    else:
-        shutil.make_archive(dir_name, "zip", dir_name)
-        send_result_file(update, context, f"{dir_name}.zip", task)

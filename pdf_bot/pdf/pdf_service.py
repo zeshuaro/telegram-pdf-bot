@@ -202,6 +202,20 @@ class PdfService:
             yield out_path
 
     @contextmanager
+    def extract_pdf_images(self, file_id: str) -> Generator[str, None, None]:
+        with self.telegram_service.download_pdf_file(
+            file_id
+        ) as file_path, self.io_service.create_temp_directory("PDF_images") as out_dir:
+            try:
+                self.cli_service.extract_pdf_images(file_path, out_dir)
+            except CLIServiceError as e:
+                raise PdfServiceError(e) from e
+
+            if not os.listdir(out_dir):
+                raise PdfNoImagesError(_("No images found in your PDF file"))
+            yield out_dir
+
+    @contextmanager
     def extract_text_from_pdf(self, file_id: str) -> Generator[str, None, None]:
         with self.telegram_service.download_pdf_file(file_id) as file_path:
             text = extract_text(file_path)
@@ -214,20 +228,6 @@ class PdfService:
             with open(out_path, "w") as f:
                 f.write("\n".join(wrapped_text))
             yield out_path
-
-    @contextmanager
-    def get_pdf_images(self, file_id: str) -> Generator[str, None, None]:
-        with self.telegram_service.download_pdf_file(
-            file_id
-        ) as file_path, self.io_service.create_temp_directory("PDF_images") as out_dir:
-            try:
-                self.cli_service.get_pdf_images(file_path, out_dir)
-            except CLIServiceError as e:
-                raise PdfServiceError(e) from e
-
-            if not os.listdir(out_dir):
-                raise PdfNoImagesError(_("No images found in your PDF file"))
-            yield out_dir
 
     @contextmanager
     def merge_pdfs(self, file_data_list: List[FileData]) -> Generator[str, None, None]:

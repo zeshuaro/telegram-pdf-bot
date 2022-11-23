@@ -401,44 +401,44 @@ class TestPDFService(
                 self.io_service.create_temp_txt_file.assert_not_called()
                 extract_text.assert_called_once_with(self.DOWNLOAD_PATH)
 
-    def test_get_pdf_images(self) -> None:
-        with self.sut.get_pdf_images(self.telegram_file_id) as actual:
+    def test_extract_pdf_images(self) -> None:
+        with self.sut.extract_pdf_images(self.telegram_file_id) as actual:
             assert actual == self.DIR_NAME
             self.telegram_service.download_pdf_file.assert_called_once_with(
                 self.telegram_file_id
             )
             self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
-            self.cli_service.get_pdf_images.assert_called_once_with(
+            self.cli_service.extract_pdf_images.assert_called_once_with(
                 self.DOWNLOAD_PATH, self.DIR_NAME
             )
             self.mock_os.listdir.assert_called_once_with(self.DIR_NAME)
 
-    def test_get_pdf_images_no_images(self) -> None:
+    def test_extract_pdf_images_no_images(self) -> None:
         self.mock_os.listdir.return_value = []
 
-        with pytest.raises(PdfNoImagesError), self.sut.get_pdf_images(
+        with pytest.raises(PdfNoImagesError), self.sut.extract_pdf_images(
             self.telegram_file_id
         ):
             self.telegram_service.download_pdf_file.assert_called_once_with(
                 self.telegram_file_id
             )
             self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
-            self.cli_service.get_pdf_images.assert_called_once_with(
+            self.cli_service.extract_pdf_images.assert_called_once_with(
                 self.DOWNLOAD_PATH, self.DIR_NAME
             )
             self.mock_os.listdir.assert_called_once_with(self.DIR_NAME)
 
-    def test_get_pdf_images_cli_error(self) -> None:
-        self.cli_service.get_pdf_images.side_effect = CLIServiceError()
+    def test_extract_pdf_images_cli_error(self) -> None:
+        self.cli_service.extract_pdf_images.side_effect = CLIServiceError()
 
-        with pytest.raises(PdfServiceError), self.sut.get_pdf_images(
+        with pytest.raises(PdfServiceError), self.sut.extract_pdf_images(
             self.telegram_file_id
         ):
             self.telegram_service.download_pdf_file.assert_called_once_with(
                 self.telegram_file_id
             )
             self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
-            self.cli_service.get_pdf_images.assert_called_once_with(
+            self.cli_service.extract_pdf_images.assert_called_once_with(
                 self.DOWNLOAD_PATH, self.DIR_NAME
             )
             self.mock_os.listdir.assert_not_called()

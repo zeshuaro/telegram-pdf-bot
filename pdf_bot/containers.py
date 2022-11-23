@@ -21,6 +21,7 @@ from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
     EncryptPDFProcessor,
+    ExtractPDFImageProcessor,
     ExtractPDFTextProcessor,
     GrayscalePDFProcessor,
     OCRPDFProcessor,
@@ -145,6 +146,13 @@ class Processors(containers.DeclarativeContainer):
         telegram_service=services.telegram,
         language_service=services.language,
     )
+    extract_image = providers.Singleton(
+        ExtractPDFImageProcessor,
+        file_task_service=services.file_task,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
     extract_text = providers.Singleton(
         ExtractPDFTextProcessor,
         file_task_service=services.file_task,
@@ -222,6 +230,7 @@ class Handlers(containers.DeclarativeContainer):
         crop_service=services.crop,
         decrypt_pdf_processor=processors.decrypt,
         encrypt_pdf_processor=processors.encrypt,
+        extract_pdf_image_processor=processors.extract_image,
         extract_pdf_text_processor=processors.extract_text,
         grayscale_pdf_processor=processors.grayscale,
         ocr_pdf_processor=processors.ocr,
