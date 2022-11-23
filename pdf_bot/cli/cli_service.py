@@ -1,12 +1,10 @@
-import gettext
 import shlex
+from gettext import gettext as _
 from subprocess import PIPE, Popen
 
 from loguru import logger
 
 from pdf_bot.cli.exceptions import CLINonZeroExitStatusError
-
-_ = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"]).gettext
 
 
 class CLIService:
@@ -26,6 +24,10 @@ class CLIService:
         self, input_path: str, output_path: str, margin_size: float
     ) -> None:
         self._crop_pdf(input_path, output_path, margin_size=margin_size)
+
+    def get_pdf_images(self, input_path: str, output_path: str) -> None:
+        command = f'pdfimages -png "{input_path}" "{output_path}"'
+        self._run_command(command)
 
     def _crop_pdf(
         self,
