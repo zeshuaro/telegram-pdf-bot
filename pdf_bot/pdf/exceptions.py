@@ -24,3 +24,7 @@ class PdfOcrError(PdfServiceError):
 
 class PdfNoTextError(PdfServiceError):
     pass
+
+
+class PdfNoImagesError(PdfServiceError):
+    pass
