@@ -2,7 +2,6 @@ import os
 import shutil
 import tempfile
 
-import pdf2image
 from telegram import ChatAction, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.error import BadRequest
@@ -95,44 +94,6 @@ def ask_image_results_type(update, context):
     )
 
     return return_type
-
-
-def pdf_to_images(update, context):
-    if not check_user_data(update, context, PDF_INFO):
-        return ConversationHandler.END
-
-    _ = set_lang(update, context)
-    update.effective_message.reply_text(
-        _("Converting your PDF file into images"), reply_markup=ReplyKeyboardRemove()
-    )
-
-    with tempfile.NamedTemporaryFile() as tf:
-        user_data = context.user_data
-        file_id, file_name = user_data[PDF_INFO]
-        pdf_file = context.bot.get_file(file_id)
-        pdf_file.download(custom_path=tf.name)
-
-        with tempfile.TemporaryDirectory() as tmp_dir_name:
-            # Setup the directory for the images
-            dir_name = os.path.join(tmp_dir_name, "PDF_Images")
-            os.mkdir(dir_name)
-
-            # Convert the PDF file into images
-            pdf2image.convert_from_path(
-                tf.name,
-                output_folder=dir_name,
-                output_file=os.path.splitext(file_name)[0],
-                fmt="png",
-            )
-
-            # Handle the result images
-            send_result_images(update, context, dir_name, TaskType.pdf_to_image)
-
-    # Clean up memory
-    if user_data[PDF_INFO] == file_id:
-        del user_data[PDF_INFO]
-
-    return ConversationHandler.END
 
 
 def get_pdf_images(update, context):
