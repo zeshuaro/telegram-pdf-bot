@@ -1,4 +1,3 @@
-import os
 from typing import Any
 from unittest.mock import MagicMock, call, patch
 
@@ -10,7 +9,7 @@ from PyPDF2.pagerange import PageRange
 from weasyprint import CSS, HTML
 from weasyprint.text.fonts import FontConfiguration
 
-from pdf_bot.cli import CLIService
+from pdf_bot.cli import CLIService, CLIServiceError
 from pdf_bot.io.io_service import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import (
@@ -26,7 +25,9 @@ from pdf_bot.pdf import (
 from pdf_bot.pdf.exceptions import (
     PdfEncryptError,
     PdfIncorrectPasswordError,
+    PdfNoImagesError,
     PdfNoTextError,
+    PdfServiceError,
 )
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
@@ -68,6 +69,9 @@ class TestPDFService(
         self.open_patcher = patch("builtins.open")
         self.mock_open = self.open_patcher.start()
 
+        self.os_patcher = patch("pdf_bot.pdf.pdf_service.os")
+        self.mock_os = self.os_patcher.start()
+
         self.sut = PdfService(
             self.cli_service,
             self.io_service,
@@ -76,6 +80,7 @@ class TestPDFService(
 
     def teardown_method(self) -> None:
         self.open_patcher.stop()
+        self.os_patcher.stop()
         super().teardown_method()
 
     def test_add_watermark_to_pdf(self) -> None:
@@ -396,6 +401,48 @@ class TestPDFService(
                 self.io_service.create_temp_txt_file.assert_not_called()
                 extract_text.assert_called_once_with(self.DOWNLOAD_PATH)
 
+    def test_get_pdf_images(self) -> None:
+        with self.sut.get_pdf_images(self.telegram_file_id) as actual:
+            assert actual == self.DIR_NAME
+            self.telegram_service.download_pdf_file.assert_called_once_with(
+                self.telegram_file_id
+            )
+            self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
+            self.cli_service.get_pdf_images.assert_called_once_with(
+                self.DOWNLOAD_PATH, self.DIR_NAME
+            )
+            self.mock_os.listdir.assert_called_once_with(self.DIR_NAME)
+
+    def test_get_pdf_images_no_images(self) -> None:
+        self.mock_os.listdir.return_value = []
+
+        with pytest.raises(PdfNoImagesError), self.sut.get_pdf_images(
+            self.telegram_file_id
+        ):
+            self.telegram_service.download_pdf_file.assert_called_once_with(
+                self.telegram_file_id
+            )
+            self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
+            self.cli_service.get_pdf_images.assert_called_once_with(
+                self.DOWNLOAD_PATH, self.DIR_NAME
+            )
+            self.mock_os.listdir.assert_called_once_with(self.DIR_NAME)
+
+    def test_get_pdf_images_cli_error(self) -> None:
+        self.cli_service.get_pdf_images.side_effect = CLIServiceError()
+
+        with pytest.raises(PdfServiceError), self.sut.get_pdf_images(
+            self.telegram_file_id
+        ):
+            self.telegram_service.download_pdf_file.assert_called_once_with(
+                self.telegram_file_id
+            )
+            self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
+            self.cli_service.get_pdf_images.assert_called_once_with(
+                self.DOWNLOAD_PATH, self.DIR_NAME
+            )
+            self.mock_os.listdir.assert_not_called()
+
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
     def test_merge_pdfs(self, num_files: int) -> None:
         file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
@@ -487,17 +534,18 @@ class TestPDFService(
 
     def test_rename_pdf(self) -> None:
         file_name = "file_name"
-        expected = os.path.join(self.DIR_NAME, file_name)
+        self.mock_os.path.join.return_value = self.OUTPUT_PATH
 
         with patch("pdf_bot.pdf.pdf_service.shutil") as shutil, self.sut.rename_pdf(
             self.telegram_file_id, file_name
         ) as actual:
-            assert actual == expected
+            assert actual == self.OUTPUT_PATH
             self.telegram_service.download_pdf_file.assert_called_once_with(
                 self.telegram_file_id
             )
             self.io_service.create_temp_directory.assert_called_once()
-            shutil.copy.assert_called_once_with(self.DOWNLOAD_PATH, expected)
+            self.mock_os.path.join.assert_called_once_with(self.DIR_NAME, file_name)
+            shutil.copy.assert_called_once_with(self.DOWNLOAD_PATH, self.OUTPUT_PATH)
 
     @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
     def test_rotate_pdf(self, num_pages: int) -> None:
