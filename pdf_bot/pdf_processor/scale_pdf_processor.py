@@ -7,12 +7,13 @@ from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK
-from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.pdf import ScaleData
 from pdf_bot.pdf.models import ScaleByData, ScaleToData
 
+from .abstract_pdf_processor import AbstractPDFProcessor
 
-class ScalePDFProcessor(AbstractFileProcessor):
+
+class ScalePDFProcessor(AbstractPDFProcessor):
     BY_SCALING_FACTOR = _("By scaling factor")
     TO_DIMENSION = _("To dimension")
 
