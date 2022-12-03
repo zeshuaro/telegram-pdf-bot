@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-11-23 12:06+0000\n"
-"PO-Revision-Date: 2022-11-26 10:46\n"
+"POT-Creation-Date: 2022-12-03 01:45+0000\n"
+"PO-Revision-Date: 2022-12-03 01:45\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -532,131 +532,131 @@ msgstr "PDF-tiedosto ei kelpaa"
 msgid "Your PDF file is encrypted"
 msgstr "PDF-tiedostosi on salattu"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Lähetä tiedostonimi, jonka haluat nimetä PDF-tiedostoksi"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:53
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:54
 msgid "File names can't contain any of the following characters:"
 msgstr "Tiedostonimet eivät voi sisältää seuraavia merkkejä:"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:57
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:58
 msgid "Please try again"
 msgstr "Yritä uudelleen."
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:44
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:45
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Valitse asteet, joita haluat kiertää PDF-tiedostoa myötäpäivään"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:65
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:66
 msgid "Invalid rotation degree, try again"
 msgstr "Virheellinen kiertoaste, yritä uudelleen"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:16
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:17
 msgid "By scaling factor"
 msgstr "Skaalaamalla kerrointa"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:17
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:18
 msgid "To dimension"
 msgstr "Dimensioon"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:49
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:50
 msgid "Select the scale type that you'll like to perform"
 msgstr "Valitse asteikkotyyppi, jonka haluat suorittaa"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:82
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:83
 msgid "The scaling factors {values} are invalid, please try again"
 msgstr "Skaalauskertoimet, {values} eivät kelpaa, yritä uudelleen"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:106
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:107
 msgid "The dimensions {values} are invalid, please try again"
 msgstr "Dimensiot {values} virheellisiä, yritä uudelleen"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:123
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:124
 msgid "Send me the scaling factors for the horizontal and vertical axes"
 msgstr "Lähetä vaaka- ja pystyakselien skaalauskertoimet"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:128
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:129
 msgid "This will double the horizontal axis and halve the vertical axis"
 msgstr "Tämä kaksinkertaistaa vaaka-akselin ja puolittaa pystyakselin"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:141
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:142
 msgid "Send me the width and height"
 msgstr "Lähetä minulle leveys ja korkeus."
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:143
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:144
 msgid "This will set the width to 150 and height to 200"
 msgstr "Tämä asettaa leveydeksi 150 ja korkeudeksi 200"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Lähetä minulle sivualue, jonka haluat säilyttää"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "General usage"
 msgstr "Yleinen käyttö"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#: pdf_bot/pdf_processor/split_pdf_processor.py:72
 msgid "{range}      all pages"
 msgstr "{range}      kaikki sivut"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#: pdf_bot/pdf_processor/split_pdf_processor.py:73
 msgid "{range}      page 8 only"
 msgstr "{range}      vain sivu 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "{range}    first three pages"
 msgstr "{range}    kolme ensimmäistä sivua"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}     from page 8 onward"
 msgstr "{range}     sivulta 8 eteenpäin"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#: pdf_bot/pdf_processor/split_pdf_processor.py:76
 msgid "{range}     last page only"
 msgstr "{range}     viimeinen sivu"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:76
+#: pdf_bot/pdf_processor/split_pdf_processor.py:77
 msgid "{range}    all pages except the last page"
 msgstr "{range}    sivut viimeistä sivua lukuun ottamatta"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+#: pdf_bot/pdf_processor/split_pdf_processor.py:80
 msgid "{range}     second last page only"
 msgstr "{range}     toiseksi viimeinen sivu"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:80
+#: pdf_bot/pdf_processor/split_pdf_processor.py:81
 msgid "{range}    last two pages"
 msgstr "{range}    kaksi viimeistä sivua"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:81
+#: pdf_bot/pdf_processor/split_pdf_processor.py:82
 msgid "{range}  third and second last pages"
 msgstr "{range}  ja toiseksi viimeiset sivut"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:84
+#: pdf_bot/pdf_processor/split_pdf_processor.py:85
 msgid "Advanced usage"
 msgstr "Käytön lisäasetukset"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+#: pdf_bot/pdf_processor/split_pdf_processor.py:86
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    sivut {pages} loppuun asti"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:88
+#: pdf_bot/pdf_processor/split_pdf_processor.py:89
 msgid "{range} pages {pages}"
 msgstr "{range} sivut {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:91
+#: pdf_bot/pdf_processor/split_pdf_processor.py:92
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   kaikki sivut käänteisessä järjestyksessä"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:94
+#: pdf_bot/pdf_processor/split_pdf_processor.py:95
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} sivut {pages} paitsi {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:97
+#: pdf_bot/pdf_processor/split_pdf_processor.py:98
 msgid "{range}  pages {pages}"
 msgstr "{range}  sivut {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:119
+#: pdf_bot/pdf_processor/split_pdf_processor.py:120
 msgid "The range is invalid, please try again"
 msgstr "Alue ei kelpaa, yritä uudelleen"
 
