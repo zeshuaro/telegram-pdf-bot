@@ -2,10 +2,11 @@ from contextlib import contextmanager
 from typing import Generator
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.file_processor import AbstractFileProcessor
+
+from .abstract_pdf_processor import AbstractPDFProcessor
 
 
-class PreviewPDFProcessor(AbstractFileProcessor):
+class PreviewPDFProcessor(AbstractPDFProcessor):
     @property
     def task_type(self) -> TaskType:
         return TaskType.preview_pdf

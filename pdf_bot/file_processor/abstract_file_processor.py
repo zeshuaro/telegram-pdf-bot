@@ -11,7 +11,6 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK, PDF_INFO
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.language_new import LanguageService
-from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
 ErrorHandlerType = Callable[[Update, CallbackContext, Exception, str, str], str]
@@ -21,12 +20,10 @@ class AbstractFileProcessor(ABC):
     def __init__(
         self,
         file_task_service: FileTaskService,
-        pdf_service: PdfService,
         telegram_service: TelegramService,
         language_service: LanguageService,
     ) -> None:
         self.file_task_service = file_task_service
-        self.pdf_service = pdf_service
         self.telegram_service = telegram_service
         self.language_service = language_service
 
@@ -45,6 +42,10 @@ class AbstractFileProcessor(ABC):
     def process_file_task(
         self, file_id: str, message_text: str
     ) -> Generator[str, None, None]:
+        pass
+
+    @abstractmethod
+    def get_base_error_handlers(self) -> dict[Type[Exception], ErrorHandlerType]:
         pass
 
     def process_file(self, update: Update, context: CallbackContext) -> str | int:
@@ -89,18 +90,6 @@ class AbstractFileProcessor(ABC):
     def _get_error_handlers(
         self,
     ) -> dict[Type[Exception], ErrorHandlerType]:
-        handlers = {PdfServiceError: self._handle_pdf_service_error}
+        handlers = self.get_base_error_handlers()
         handlers.update(self.get_custom_error_handlers())
         return handlers
-
-    def _handle_pdf_service_error(
-        self,
-        update: Update,
-        context: CallbackContext,
-        exception: Exception,
-        _file_id: str,
-        _file_name: str,
-    ) -> int:
-        _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(_(str(exception)))
-        return ConversationHandler.END
