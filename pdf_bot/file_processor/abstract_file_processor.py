@@ -44,9 +44,15 @@ class AbstractFileProcessor(ABC):
     ) -> Generator[str, None, None]:
         pass
 
-    @abstractmethod
-    def get_base_error_handlers(self) -> dict[Type[Exception], ErrorHandlerType]:
-        pass
+    @property
+    def generic_error_types(self) -> set[Type[Exception]]:
+        return set()
+
+    @property
+    def custom_error_handlers(
+        self,
+    ) -> dict[Type[Exception], ErrorHandlerType]:
+        return {}
 
     def process_file(self, update: Update, context: CallbackContext) -> str | int:
         _ = self.language_service.set_app_language(update, context)
@@ -82,14 +88,21 @@ class AbstractFileProcessor(ABC):
                 return error_handler(update, context, e, file_id, file_name)
         return ConversationHandler.END
 
-    def get_custom_error_handlers(
-        self,
-    ) -> dict[Type[Exception], ErrorHandlerType]:
-        return {}
-
     def _get_error_handlers(
         self,
     ) -> dict[Type[Exception], ErrorHandlerType]:
-        handlers = self.get_base_error_handlers()
-        handlers.update(self.get_custom_error_handlers())
+        handlers = {x: self._handle_generic_error for x in self.generic_error_types}
+        handlers.update(self.custom_error_handlers)
         return handlers
+
+    def _handle_generic_error(
+        self,
+        update: Update,
+        context: CallbackContext,
+        exception: Exception,
+        _file_id: str,
+        _file_name: str,
+    ) -> int:
+        _ = self.language_service.set_app_language(update, context)
+        update.effective_message.reply_text(_(str(exception)))
+        return ConversationHandler.END

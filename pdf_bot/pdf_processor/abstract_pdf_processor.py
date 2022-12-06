@@ -1,7 +1,7 @@
 from typing import Callable, Type
 
 from telegram import Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import CallbackContext
 
 from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.file_task import FileTaskService
@@ -23,19 +23,6 @@ class AbstractPDFProcessor(AbstractFileProcessor):
         self.pdf_service = pdf_service
         super().__init__(file_task_service, telegram_service, language_service)
 
-    def get_base_error_handlers(
-        self,
-    ) -> dict[Type[Exception], ErrorHandlerType]:
-        return {PdfServiceError: self._handle_pdf_service_error}
-
-    def _handle_pdf_service_error(
-        self,
-        update: Update,
-        context: CallbackContext,
-        exception: Exception,
-        _file_id: str,
-        _file_name: str,
-    ) -> int:
-        _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(_(str(exception)))
-        return ConversationHandler.END
+    @property
+    def generic_error_types(self) -> set[Type[Exception]]:
+        return {PdfServiceError}

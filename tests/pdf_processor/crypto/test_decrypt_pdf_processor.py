@@ -46,7 +46,7 @@ class TestDecryptPDFProcessor(
         assert actual == TaskType.decrypt_pdf
 
     def test_get_custom_error_handlers(self) -> None:
-        actual = self.sut.get_custom_error_handlers()
+        actual = self.sut.custom_error_handlers
 
         handler = actual.get(PdfIncorrectPasswordError)
         assert handler is not None

@@ -26,7 +26,8 @@ class DecryptPDFProcessor(AbstractCryptoPDFProcessor):
     def task_type(self) -> TaskType:
         return TaskType.decrypt_pdf
 
-    def get_custom_error_handlers(self) -> dict[Type[Exception], ErrorHandlerType]:
+    @property
+    def custom_error_handlers(self) -> dict[Type[Exception], ErrorHandlerType]:
         return {PdfIncorrectPasswordError: self._handle_incorrect_password}
 
     @contextmanager
