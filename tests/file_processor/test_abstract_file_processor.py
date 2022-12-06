@@ -14,7 +14,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class BaseError(Exception):
+class GenericError(Exception):
     pass
 
 
@@ -22,10 +22,13 @@ class CustomError(Exception):
     pass
 
 
+class UnknownError(Exception):
+    pass
+
+
 class MockProcessor(AbstractFileProcessor):
     PROCESS_RESULT = "process_result"
     TASK_TYPE = TaskType.decrypt_pdf
-    BASE_ERROR_STATE = "base_error_state"
 
     @property
     def task_type(self) -> TaskType:
@@ -41,29 +44,30 @@ class MockProcessor(AbstractFileProcessor):
     ) -> Generator[str, None, None]:
         yield self.PROCESS_RESULT
 
-    def get_base_error_handlers(self) -> dict[Type[Exception], ErrorHandlerType]:
-        return {BaseError: self._handle_base_error}
 
-    def _handle_base_error(
-        self,
-        _update: Update,
-        _context: CallbackContext,
-        _exception: Exception,
-        _file_id: str,
-        _file_name: str,
-    ) -> str:
-        return self.BASE_ERROR_STATE
-
-
-class MockProcessorWithBaseError(MockProcessor):
+class MockProcessorRaiseGenericErrorWithoutRegisteringGenericError(MockProcessor):
     @contextmanager
     def process_file_task(
         self, _file_id: str, _password: str
     ) -> Generator[str, None, None]:
-        raise BaseError()
+        raise GenericError()
 
 
-class MockProcessorWithErrorHandler(MockProcessor):
+class MockProcessorWithGenericError(MockProcessor):
+    @property
+    def generic_error_types(self) -> set[Type[Exception]]:
+        return {GenericError}
+
+
+class MockProcessorRaiseGenericError(MockProcessorWithGenericError):
+    @contextmanager
+    def process_file_task(
+        self, _file_id: str, _password: str
+    ) -> Generator[str, None, None]:
+        raise GenericError()
+
+
+class MockProcessorWithCustomErrorHandler(MockProcessor):
     CUSTOM_ERROR_STATE = "custom_error_state"
 
     @contextmanager
@@ -72,12 +76,13 @@ class MockProcessorWithErrorHandler(MockProcessor):
     ) -> Generator[str, None, None]:
         raise CustomError()
 
-    def get_custom_error_handlers(
+    @property
+    def custom_error_handlers(
         self,
     ) -> dict[Type[Exception], ErrorHandlerType]:
-        return {CustomError: self._handle_runtime_error}
+        return {CustomError: self._handle_custom_error}
 
-    def _handle_runtime_error(
+    def _handle_custom_error(
         self,
         _update: Update,
         _context: CallbackContext,
@@ -88,12 +93,12 @@ class MockProcessorWithErrorHandler(MockProcessor):
         return self.CUSTOM_ERROR_STATE
 
 
-class MockProcessorWithoutErrorHandler(MockProcessor):
+class MockProcessorWithUnknownErrorHandler(MockProcessorWithCustomErrorHandler):
     @contextmanager
     def process_file_task(
         self, _file_id: str, _password: str
     ) -> Generator[str, None, None]:
-        raise RuntimeError()
+        raise UnknownError()
 
 
 class MockProcessorWithoutBackOption(MockProcessor):
@@ -144,8 +149,8 @@ class TestAbstractFileProcessor(
                 MockProcessor.PROCESS_RESULT, "zip", MockProcessor.PROCESS_RESULT
             )
 
-    def test_process_file_error(self) -> None:
-        self.sut = MockProcessorWithBaseError(
+    def test_process_file_generic_error_not_registered(self) -> None:
+        self.sut = MockProcessorRaiseGenericErrorWithoutRegisteringGenericError(
             self.file_task_service,
             self.telegram_service,
             self.language_service,
@@ -153,14 +158,15 @@ class TestAbstractFileProcessor(
 
         actual = self.sut.process_file(self.telegram_update, self.telegram_context)
 
-        assert actual == self.sut.BASE_ERROR_STATE
+        assert actual == ConversationHandler.END
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, PDF_INFO
         )
+        self.telegram_update.effective_message.reply_text.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()
 
-    def test_process_file_custom_error(self) -> None:
-        self.sut = MockProcessorWithErrorHandler(
+    def test_process_file_error(self) -> None:
+        self.sut = MockProcessorRaiseGenericError(
             self.file_task_service,
             self.telegram_service,
             self.language_service,
@@ -168,14 +174,30 @@ class TestAbstractFileProcessor(
 
         actual = self.sut.process_file(self.telegram_update, self.telegram_context)
 
-        assert actual == MockProcessorWithErrorHandler.CUSTOM_ERROR_STATE
+        assert actual == ConversationHandler.END
+        self.telegram_service.get_user_data.assert_called_once_with(
+            self.telegram_context, PDF_INFO
+        )
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_service.reply_with_file.assert_not_called()
+
+    def test_process_file_custom_error(self) -> None:
+        self.sut = MockProcessorWithCustomErrorHandler(
+            self.file_task_service,
+            self.telegram_service,
+            self.language_service,
+        )
+
+        actual = self.sut.process_file(self.telegram_update, self.telegram_context)
+
+        assert actual == MockProcessorWithCustomErrorHandler.CUSTOM_ERROR_STATE
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, PDF_INFO
         )
         self.telegram_service.reply_with_file.assert_not_called()
 
     def test_process_file_unknown_error(self) -> None:
-        self.sut = MockProcessorWithoutErrorHandler(
+        self.sut = MockProcessorWithUnknownErrorHandler(
             self.file_task_service,
             self.telegram_service,
             self.language_service,

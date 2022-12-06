@@ -2,8 +2,6 @@ from contextlib import contextmanager
 from typing import Generator
 from unittest.mock import MagicMock
 
-from telegram.ext import ConversationHandler
-
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.pdf_processor import AbstractPDFProcessor
@@ -50,22 +48,6 @@ class TestAbstractTelegramFileProcessor(
             self.language_service,
         )
 
-    def test_get_base_error_handlers(self) -> None:
-        actual = self.sut.get_base_error_handlers()
-
-        assert PdfServiceError in actual
-
-        error = PdfServiceError("PDF error")
-        handler = actual[type(error)]
-        handler_result = handler(
-            self.telegram_update,
-            self.telegram_context,
-            error,
-            "file_id",
-            "file_name",
-        )
-
-        assert handler_result == ConversationHandler.END
-        self.telegram_update.effective_message.reply_text.assert_called_once_with(
-            str(error)
-        )
+    def test_generic_error_types(self) -> None:
+        actual = self.sut.generic_error_types
+        assert actual == {PdfServiceError}
