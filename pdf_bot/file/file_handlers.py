@@ -33,8 +33,7 @@ from pdf_bot.consts import (
 from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService
-from pdf_bot.files.image import process_image_task
-from pdf_bot.image_processor import BeautifyImageProcessor
+from pdf_bot.image_processor import BeautifyImageProcessor, ImageToPDFProcessor
 from pdf_bot.language import set_lang
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
@@ -59,7 +58,6 @@ class FileHandlers:
         file_task_service: FileTaskService,
         file_service: FileService,
         crop_service: CropService,
-        beautify_image_processor: BeautifyImageProcessor,
         decrypt_pdf_processor: DecryptPDFProcessor,
         encrypt_pdf_processor: EncryptPDFProcessor,
         extract_pdf_image_processor: ExtractPDFImageProcessor,
@@ -72,12 +70,12 @@ class FileHandlers:
         rotate_pdf_processor: RotatePDFProcessor,
         scale_pdf_processor: ScalePDFProcessor,
         split_pdf_processor: SplitPDFProcessor,
+        beautify_image_processor: BeautifyImageProcessor,
+        image_to_pdf_processor: ImageToPDFProcessor,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
         self.crop_service = crop_service
-
-        self.beautify_image_processor = beautify_image_processor
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
@@ -91,6 +89,9 @@ class FileHandlers:
         self.rotate_pdf_processor = rotate_pdf_processor
         self.scale_pdf_processor = scale_pdf_processor
         self.split_pdf_processor = split_pdf_processor
+
+        self.beautify_image_processor = beautify_image_processor
+        self.image_to_pdf_processor = image_to_pdf_processor
 
     def conversation_handler(self):
         return ConversationHandler(
@@ -241,7 +242,7 @@ class FileHandlers:
         if text == _(BEAUTIFY):
             return self.beautify_image_processor.process_file(update, context)
         if text == _(TO_PDF):
-            return process_image_task(update, context)
+            return self.image_to_pdf_processor.process_file(update, context)
         if text == _(CANCEL):
             return cancel(update, context)
 
