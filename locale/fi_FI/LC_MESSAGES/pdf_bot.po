@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-03 01:45+0000\n"
-"PO-Revision-Date: 2022-12-03 01:45\n"
+"POT-Creation-Date: 2022-12-09 10:21+0000\n"
+"PO-Revision-Date: 2022-12-09 10:21\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -43,51 +43,51 @@ msgstr "Prosentteina"
 msgid "By Margin Size"
 msgstr "Reunuksen koon mukaan"
 
-#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:14
+#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:15
 msgid "Preview"
 msgstr "Esikatselu"
 
-#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:16
 msgid "Decrypt"
 msgstr "Purkaa"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:17
 msgid "Encrypt"
 msgstr "Salata"
 
-#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:18
 msgid "Extract Images"
 msgstr "Pura kuvat"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:19
 msgid "To Images"
 msgstr "Kuviin"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:20
 msgid "Rotate"
 msgstr "Kiertää"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:21
 msgid "Scale"
 msgstr "Mittakaavassa"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:22
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/consts.py:50
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
 msgid "Beautify"
 msgstr "Kaunistaa"
 
-#: pdf_bot/consts.py:51
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
 msgid "To PDF"
 msgstr "PDF-tiedostoon"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:23
 msgid "Rename"
 msgstr "Nimeä"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:24
 msgid "Crop"
 msgstr "Rajata"
 
@@ -107,7 +107,7 @@ msgstr "Poista viimeinen tiedosto"
 msgid "To Dimensions"
 msgstr "Dimensioihin"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:25
 msgid "Extract Text"
 msgstr "Pura teksti"
 
@@ -119,11 +119,11 @@ msgstr "Tekstiviesti"
 msgid "Text File"
 msgstr "Tekstitiedosto"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:27
 msgid "Compress"
 msgstr "Pakata"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:28
 msgid "Black & White"
 msgstr "Mustavalkoinen"
 
@@ -293,8 +293,8 @@ msgstr "Olet lähettänyt minulle nämä {file_type} asti:"
 msgid "The result file is too large for me to send to you"
 msgstr "Tulostiedosto on liian suuri lähetettäväksi sinulle"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:154
-#: pdf_bot/files/image.py:22 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:184 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Huomaa, että tämä on Telegram Bot -rajoitus, enkä voi tehdä mitään, ellei Telegram muuta tätä rajaa"
 
@@ -444,7 +444,7 @@ msgstr "Lähetä minulle numero, jonka haluat muuttaa reunuksen kokoa"
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Positiiviset luvut pienenevät marginaalin kokoa ja negatiiviset luvut kasvattavat sitä"
 
-#: pdf_bot/file/file_handlers.py:153
+#: pdf_bot/file/file_handlers.py:158 pdf_bot/file/file_handlers.py:183
 msgid "Your file is too big for me to download and process"
 msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
@@ -452,13 +452,9 @@ msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Tiedoston kokoa pienennetty {percent}, {old_size} {new_size}"
 
-#: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/image.py:37
+#: pdf_bot/file_task/file_task_service.py:80
 msgid "Select the task that you'll like to perform"
 msgstr "Valitse tehtävä, jonka haluat suorittaa"
-
-#: pdf_bot/files/image.py:21
-msgid "Your image is too large for me to download and process"
-msgstr "Kuvasi on liian suuri, jotta voin ladata ja käsitellä"
 
 #: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
@@ -1560,5 +1556,8 @@ msgstr "Vesileiman lisääminen PDF-tiedostoon"
 #~ msgstr ""
 
 #~ msgid "See above for all your images"
+#~ msgstr ""
+
+#~ msgid "Your image is too large for me to download and process"
 #~ msgstr ""
 

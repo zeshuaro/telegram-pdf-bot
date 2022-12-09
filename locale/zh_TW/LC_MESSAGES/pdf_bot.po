@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-03 01:45+0000\n"
-"PO-Revision-Date: 2022-12-03 01:45\n"
+"POT-Creation-Date: 2022-12-09 10:21+0000\n"
+"PO-Revision-Date: 2022-12-09 10:21\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -43,51 +43,51 @@ msgstr "按百分比"
 msgid "By Margin Size"
 msgstr "按邊界大小"
 
-#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:14
+#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:15
 msgid "Preview"
 msgstr "預覽"
 
-#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:16
 msgid "Decrypt"
 msgstr "解密"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:17
 msgid "Encrypt"
 msgstr "加密"
 
-#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:18
 msgid "Extract Images"
 msgstr "提取圖像"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:19
 msgid "To Images"
 msgstr "轉至圖像"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:20
 msgid "Rotate"
 msgstr "旋轉"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:21
 msgid "Scale"
 msgstr "縮放"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:22
 msgid "Split"
 msgstr "分割"
 
-#: pdf_bot/consts.py:50
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
 msgid "Beautify"
 msgstr "美化"
 
-#: pdf_bot/consts.py:51
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
 msgid "To PDF"
 msgstr "轉換到PDF檔案"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:23
 msgid "Rename"
 msgstr "重新命名"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:24
 msgid "Crop"
 msgstr "裁剪"
 
@@ -107,7 +107,7 @@ msgstr "刪除最後一個檔"
 msgid "To Dimensions"
 msgstr "自訂尺寸"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:25
 msgid "Extract Text"
 msgstr "提取文字"
 
@@ -119,11 +119,11 @@ msgstr "訊息"
 msgid "Text File"
 msgstr "文字檔案"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:27
 msgid "Compress"
 msgstr "壓縮"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:28
 msgid "Black & White"
 msgstr "黑與白"
 
@@ -293,8 +293,8 @@ msgstr "到目前為止， 你已經寄給我這些 {file_type} ："
 msgid "The result file is too large for me to send to you"
 msgstr "輸出檔案太大了，我無法發送給你"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:154
-#: pdf_bot/files/image.py:22 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:184 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "請注意，這是一個電報機器人的限制，我什麼也做不了，除非電報改變這個限制"
 
@@ -444,7 +444,7 @@ msgstr "給我發個數位，您想調整保證金大小"
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "正數將減少保證金大小，負數將增加"
 
-#: pdf_bot/file/file_handlers.py:153
+#: pdf_bot/file/file_handlers.py:158 pdf_bot/file/file_handlers.py:183
 msgid "Your file is too big for me to download and process"
 msgstr "您的檔太大，我無法下載和處理"
 
@@ -452,13 +452,9 @@ msgstr "您的檔太大，我無法下載和處理"
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "檔大小減少 {percent}，從 {old_size} 減少到 {new_size}"
 
-#: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/image.py:37
+#: pdf_bot/file_task/file_task_service.py:80
 msgid "Select the task that you'll like to perform"
 msgstr "選擇你想要做什麼"
-
-#: pdf_bot/files/image.py:21
-msgid "Your image is too large for me to download and process"
-msgstr "您的圖像太大，我無法下載和處理"
 
 #: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
@@ -1560,5 +1556,8 @@ msgstr "正在添加水印到你的PDF檔案中"
 #~ msgstr ""
 
 #~ msgid "See above for all your images"
+#~ msgstr ""
+
+#~ msgid "Your image is too large for me to download and process"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-03 01:45+0000\n"
-"PO-Revision-Date: 2022-12-03 01:45\n"
+"POT-Creation-Date: 2022-12-09 10:21+0000\n"
+"PO-Revision-Date: 2022-12-09 10:21\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -43,51 +43,51 @@ msgstr "प्रतिशत के आधार पर"
 msgid "By Margin Size"
 msgstr "मार्जिन के आकार से"
 
-#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:14
+#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:15
 msgid "Preview"
 msgstr "पूर्वावलोकन"
 
-#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:16
 msgid "Decrypt"
 msgstr "डिक्रिप्ट"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:17
 msgid "Encrypt"
 msgstr "एन्क्रिप्ट"
 
-#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:18
 msgid "Extract Images"
 msgstr "छवियाँ निकालें"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:19
 msgid "To Images"
 msgstr "छवियों के लिए"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:20
 msgid "Rotate"
 msgstr "घुमाएँ"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:21
 msgid "Scale"
 msgstr "परिमाण"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:22
 msgid "Split"
 msgstr "विभाजिन"
 
-#: pdf_bot/consts.py:50
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
 msgid "Beautify"
 msgstr "सुशोभित"
 
-#: pdf_bot/consts.py:51
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
 msgid "To PDF"
 msgstr "पीडीएफ में"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:23
 msgid "Rename"
 msgstr "नाम बदलें"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:24
 msgid "Crop"
 msgstr "क्रॉप"
 
@@ -107,7 +107,7 @@ msgstr "अंतिम फ़ाइल निकालें"
 msgid "To Dimensions"
 msgstr "आयामों के लिए"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:25
 msgid "Extract Text"
 msgstr "टेक्स्ट निकालें"
 
@@ -119,11 +119,11 @@ msgstr "टेक्स्ट मैसेज"
 msgid "Text File"
 msgstr "टेक्स्ट फाइल"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:27
 msgid "Compress"
 msgstr "संपीड़ित"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:28
 msgid "Black & White"
 msgstr "काला और सफेद"
 
@@ -293,8 +293,8 @@ msgstr "तुम मुझे इन {file_type} अब तक भेजा ह
 msgid "The result file is too large for me to send to you"
 msgstr "परिणाम फ़ाइल मेरे लिए आप को भेजने के लिए बहुत बड़ी है"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:154
-#: pdf_bot/files/image.py:22 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:184 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ध्यान दें कि यह एक टेलीग्राम बॉट सीमा है और मैं ऐसा कुछ नहीं कर सकता जब तक कि टेलीग्राम इस सीमा को नहीं बदलता"
 
@@ -444,7 +444,7 @@ msgstr "मुझे एक नंबर भेजें जिसे आप म
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "सकारात्मक संख्या मार्जिन आकार कम हो जाएगा और नकारात्मक संख्या इसे बढ़ा देंगे"
 
-#: pdf_bot/file/file_handlers.py:153
+#: pdf_bot/file/file_handlers.py:158 pdf_bot/file/file_handlers.py:183
 msgid "Your file is too big for me to download and process"
 msgstr "आपकी फ़ाइल डाउनलोड करने और प्रक्रिया करने के लिए मेरे लिए बहुत बड़ी है"
 
@@ -452,13 +452,9 @@ msgstr "आपकी फ़ाइल डाउनलोड करने और �
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "फाइल का आकार {percent}से घटाकर {old_size} से {new_size}"
 
-#: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/image.py:37
+#: pdf_bot/file_task/file_task_service.py:80
 msgid "Select the task that you'll like to perform"
 msgstr "उस कार्य का चयन करें जिसे आप करना चाहते हैं"
-
-#: pdf_bot/files/image.py:21
-msgid "Your image is too large for me to download and process"
-msgstr "आपकी छवि मेरे लिए डाउनलोड और प्रक्रिया करने के लिए बहुत बड़ी है"
 
 #: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
@@ -1560,5 +1556,8 @@ msgstr "अपनी पीडीएफ फ़ाइल पर वॉटरम�
 #~ msgstr ""
 
 #~ msgid "See above for all your images"
+#~ msgstr ""
+
+#~ msgid "Your image is too large for me to download and process"
 #~ msgstr ""
 

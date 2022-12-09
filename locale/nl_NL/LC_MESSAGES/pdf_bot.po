@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-03 01:45+0000\n"
-"PO-Revision-Date: 2022-12-03 01:45\n"
+"POT-Creation-Date: 2022-12-09 10:21+0000\n"
+"PO-Revision-Date: 2022-12-09 10:21\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -43,51 +43,51 @@ msgstr "Met percentage"
 msgid "By Margin Size"
 msgstr "Op Marge grootte"
 
-#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:14
+#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:15
 msgid "Preview"
 msgstr "Voorbeeld"
 
-#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:16
 msgid "Decrypt"
 msgstr "Decodeer"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:17
 msgid "Encrypt"
 msgstr "Versleutelen"
 
-#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:18
 msgid "Extract Images"
 msgstr "Afbeeldingen extraheren"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:19
 msgid "To Images"
 msgstr "Naar afbeeldingen"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:20
 msgid "Rotate"
 msgstr "Draaien"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:21
 msgid "Scale"
 msgstr "Grootte"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:22
 msgid "Split"
 msgstr "Splitsen"
 
-#: pdf_bot/consts.py:50
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
 msgid "Beautify"
 msgstr "Verfraaien"
 
-#: pdf_bot/consts.py:51
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
 msgid "To PDF"
 msgstr "Naar PDF"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:23
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:24
 msgid "Crop"
 msgstr "Bijsnijden"
 
@@ -107,7 +107,7 @@ msgstr "Laatste bestand verwijderen"
 msgid "To Dimensions"
 msgstr "Afmetingen"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:25
 msgid "Extract Text"
 msgstr "Extracten van text"
 
@@ -119,11 +119,11 @@ msgstr "Tekstbericht"
 msgid "Text File"
 msgstr "Tekst bestand"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:27
 msgid "Compress"
 msgstr "Comprimeren"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:28
 msgid "Black & White"
 msgstr "Zwart-wit"
 
@@ -293,8 +293,8 @@ msgstr "Je hebt me tot nu toe deze {file_type} gestuurd:"
 msgid "The result file is too large for me to send to you"
 msgstr "Het bestand is te groot voor mij om naar u te verzenden"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:154
-#: pdf_bot/files/image.py:22 pdf_bot/utils.py:156
+#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:184 pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen tenzij Telegram deze limiet wijzigt"
 
@@ -444,7 +444,7 @@ msgstr "Stuur me een nummer dat je de margegrootte wilt aanpassen"
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Positieve getallen zullen de margegrootte verminderen en negatieve getallen zullen deze verhogen"
 
-#: pdf_bot/file/file_handlers.py:153
+#: pdf_bot/file/file_handlers.py:158 pdf_bot/file/file_handlers.py:183
 msgid "Your file is too big for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 
@@ -452,13 +452,9 @@ msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Bestandsgrootte verminderd met {percent}, van {old_size} tot {new_size}"
 
-#: pdf_bot/file_task/file_task_service.py:64 pdf_bot/files/image.py:37
+#: pdf_bot/file_task/file_task_service.py:80
 msgid "Select the task that you'll like to perform"
 msgstr "Selecteer de taak die u wilt uitvoeren"
-
-#: pdf_bot/files/image.py:21
-msgid "Your image is too large for me to download and process"
-msgstr "Uw afbeelding is te groot voor mij om te downloaden en te verwerken"
 
 #: pdf_bot/merge/merge_service.py:35
 msgid "Send me the PDF files that you'll like to merge"
@@ -1560,5 +1556,8 @@ msgstr "Watermerk toevoegen aan het PDF bestand"
 #~ msgstr ""
 
 #~ msgid "See above for all your images"
+#~ msgstr ""
+
+#~ msgid "Your image is too large for me to download and process"
 #~ msgstr ""
 
