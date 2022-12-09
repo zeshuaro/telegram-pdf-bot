@@ -32,8 +32,6 @@ class TestAbstractTelegramFileProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    BACK = "Back"
-
     def setup_method(self) -> None:
         super().setup_method()
         self.pdf_service = MagicMock(spec=PdfService)

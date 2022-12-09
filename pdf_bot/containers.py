@@ -14,6 +14,7 @@ from pdf_bot.crop import CropService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.image import ImageService
+from pdf_bot.image_processor import BeautifyImageProcessor
 from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
@@ -132,6 +133,14 @@ class Services(containers.DeclarativeContainer):
 class Processors(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
 
+    beautify = providers.Singleton(
+        BeautifyImageProcessor,
+        file_task_service=services.file_task,
+        image_service=services.image,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
+
     decrypt = providers.Singleton(
         DecryptPDFProcessor,
         file_task_service=services.file_task,
@@ -228,6 +237,7 @@ class Handlers(containers.DeclarativeContainer):
         file_task_service=services.file_task,
         file_service=services.file,
         crop_service=services.crop,
+        beautify_image_processor=processors.beautify,
         decrypt_pdf_processor=processors.decrypt,
         encrypt_pdf_processor=processors.encrypt,
         extract_pdf_image_processor=processors.extract_image,
