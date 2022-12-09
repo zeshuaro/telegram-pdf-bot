@@ -1,43 +1,12 @@
-from telegram import ReplyKeyboardMarkup
-from telegram.constants import MAX_FILESIZE_DOWNLOAD
 from telegram.ext import ConversationHandler
 
 from pdf_bot.commands import process_image
-from pdf_bot.consts import BEAUTIFY, CANCEL, TO_PDF, WAIT_IMAGE_TASK
+from pdf_bot.consts import BEAUTIFY
 from pdf_bot.language import set_lang
 from pdf_bot.utils import check_user_data
 
 IMAGE_ID = "image_id"
 MAX_MEDIA_GROUP = 10
-
-
-def ask_image_task(update, context, image_file):
-    _ = set_lang(update, context)
-    message = update.effective_message
-
-    if image_file.file_size >= MAX_FILESIZE_DOWNLOAD:
-        message.reply_text(
-            "{desc_1}\n\n{desc_2}".format(
-                desc_1=_("Your image is too large for me to download and process"),
-                desc_2=_(
-                    "Note that this is a Telegram Bot limitation and there's "
-                    "nothing I can do unless Telegram changes this limit"
-                ),
-            ),
-        )
-
-        return ConversationHandler.END
-
-    context.user_data[IMAGE_ID] = image_file.file_id
-    keyboard = [[_(BEAUTIFY), _(TO_PDF)], [_(CANCEL)]]
-    reply_markup = ReplyKeyboardMarkup(
-        keyboard, resize_keyboard=True, one_time_keyboard=True
-    )
-    message.reply_text(
-        _("Select the task that you'll like to perform"), reply_markup=reply_markup
-    )
-
-    return WAIT_IMAGE_TASK
 
 
 def process_image_task(update, context):

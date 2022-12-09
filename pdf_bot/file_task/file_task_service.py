@@ -9,6 +9,7 @@ from pdf_bot.language_new import LanguageService
 
 class FileTaskService:
     WAIT_PDF_TASK = "wait_pdf_task"
+    WAIT_IMAGE_TASK = "wait_image_task"
     KEYBOARD_SIZE = 3
 
     PREVIEW = _("Preview")
@@ -25,6 +26,9 @@ class FileTaskService:
     OCR = "OCR"
     COMPRESS = _("Compress")
     BLACK_AND_WHITE = _("Black & White")
+
+    BEAUTIFY = _("Beautify")
+    TO_PDF = _("To PDF")
 
     PDF_TASKS = sorted(
         [
@@ -45,15 +49,27 @@ class FileTaskService:
         ]
     )
 
+    IMAGE_TASKS = sorted([BEAUTIFY, TO_PDF])
+
     def __init__(self, language_service: LanguageService) -> None:
         self.language_service = language_service
 
     def ask_pdf_task(self, update: Update, context: CallbackContext) -> str:
+        self._reply_with_tasks(update, context, self.PDF_TASKS)
+        return self.WAIT_PDF_TASK
+
+    def ask_image_task(self, update: Update, context: CallbackContext) -> str:
+        self._reply_with_tasks(update, context, self.IMAGE_TASKS)
+        return self.WAIT_IMAGE_TASK
+
+    def _reply_with_tasks(
+        self, update: Update, context: CallbackContext, tasks: list[str]
+    ) -> None:
         _ = self.language_service.set_app_language(update, context)
-        keywords = [_(x) for x in self.PDF_TASKS]
+        translated_tasks = [_(x) for x in tasks]
         keyboard = [
-            keywords[i : i + self.KEYBOARD_SIZE]
-            for i in range(0, len(keywords), self.KEYBOARD_SIZE)
+            translated_tasks[i : i + self.KEYBOARD_SIZE]
+            for i in range(0, len(translated_tasks), self.KEYBOARD_SIZE)
         ]
         keyboard.append([_(CANCEL)])
 
@@ -63,5 +79,3 @@ class FileTaskService:
         update.effective_message.reply_text(
             _("Select the task that you'll like to perform"), reply_markup=reply_markup
         )
-
-        return self.WAIT_PDF_TASK

@@ -1,5 +1,12 @@
+from telegram import Update
 from telegram.constants import MAX_FILESIZE_DOWNLOAD
-from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
+from telegram.ext import (
+    CallbackContext,
+    CommandHandler,
+    ConversationHandler,
+    Filters,
+    MessageHandler,
+)
 
 from pdf_bot.consts import (
     BEAUTIFY,
@@ -26,7 +33,7 @@ from pdf_bot.consts import (
 from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService
-from pdf_bot.files.image import ask_image_task, process_image_task
+from pdf_bot.files.image import IMAGE_ID, process_image_task
 from pdf_bot.language import set_lang
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
@@ -90,7 +97,9 @@ class FileHandlers:
                 FileTaskService.WAIT_PDF_TASK: [
                     MessageHandler(TEXT_FILTER, self.check_doc_task)
                 ],
-                WAIT_IMAGE_TASK: [MessageHandler(TEXT_FILTER, self.check_image_task)],
+                FileTaskService.WAIT_IMAGE_TASK: [
+                    MessageHandler(TEXT_FILTER, self.check_image_task)
+                ],
                 CropService.WAIT_CROP_TYPE: [
                     MessageHandler(TEXT_FILTER, self.crop_service.check_crop_type)
                 ],
@@ -142,10 +151,6 @@ class FileHandlers:
 
     def check_doc(self, update, context):
         doc = update.effective_message.document
-        if doc.mime_type.startswith("image"):
-            return ask_image_task(update, context, doc)
-        if not doc.mime_type.endswith("pdf"):
-            return ConversationHandler.END
         if doc.file_size >= MAX_FILESIZE_DOWNLOAD:
             _ = set_lang(update, context)
             update.effective_message.reply_text(
@@ -160,12 +165,33 @@ class FileHandlers:
 
             return ConversationHandler.END
 
+        if doc.mime_type.startswith("image"):
+            context.user_data[IMAGE_ID] = doc.file_id
+            return self.file_task_service.ask_image_task(update, context)
+        if not doc.mime_type.endswith("pdf"):
+            return ConversationHandler.END
+
         context.user_data[PDF_INFO] = doc.file_id, doc.file_name
         return self.file_task_service.ask_pdf_task(update, context)
 
-    @staticmethod
-    def check_image(update, context):
-        return ask_image_task(update, context, update.effective_message.photo[-1])
+    def check_image(self, update: Update, context: CallbackContext):
+        image = update.effective_message.photo[-1]
+        if image.file_size >= MAX_FILESIZE_DOWNLOAD:
+            _ = set_lang(update, context)
+            update.effective_message.reply_text(
+                "{desc_1}\n\n{desc_2}".format(
+                    desc_1=_("Your file is too big for me to download and process"),
+                    desc_2=_(
+                        "Note that this is a Telegram Bot limitation and there's "
+                        "nothing I can do unless Telegram changes this limit"
+                    ),
+                ),
+            )
+
+            return ConversationHandler.END
+
+        context.user_data[IMAGE_ID] = image.file_id
+        return self.file_task_service.ask_image_task(update, context)
 
     def check_doc_task(self, update, context):
         _ = set_lang(update, context)
