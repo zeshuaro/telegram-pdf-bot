@@ -6,7 +6,7 @@ from telegram import Document
 @dataclass
 class FileData:
     id: str
-    name: str
+    name: str | None = None
 
     @staticmethod
     def from_telegram_document(document: Document) -> "FileData":
