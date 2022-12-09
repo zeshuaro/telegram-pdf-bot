@@ -99,14 +99,14 @@ class TestCLIService:
     def _assert_crop_pdf_percentage_command(self) -> None:
         args = self.popen.call_args.args[0]
         assert args == shlex.split(
-            f'pdf-crop-margins -o "{self.OUTPUT_PATH}" "{self.INPUT_PATH}" '
+            f'pdfCropMargins -o "{self.OUTPUT_PATH}" "{self.INPUT_PATH}" '
             f"-p {self.PERCENT}"
         )
 
     def _assert_crop_pdf_margin_size_command(self) -> None:
         args = self.popen.call_args.args[0]
         assert args == shlex.split(
-            f'pdf-crop-margins -o "{self.OUTPUT_PATH}" "{self.INPUT_PATH}" '
+            f'pdfCropMargins -o "{self.OUTPUT_PATH}" "{self.INPUT_PATH}" '
             f"-a {self.MARGIN_SIZE}"
         )
 

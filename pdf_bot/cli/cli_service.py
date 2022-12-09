@@ -36,7 +36,7 @@ class CLIService:
         percentage: float | None = None,
         margin_size: float | None = None,
     ) -> None:
-        command = f'pdf-crop-margins -o "{output_path}" "{input_path}"'
+        command = f'pdfCropMargins -o "{output_path}" "{input_path}"'
         if percentage is not None:
             command += f" -p {percentage}"
         else:
