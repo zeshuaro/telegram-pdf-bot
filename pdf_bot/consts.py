@@ -68,7 +68,7 @@ ROTATE_180 = "180"
 ROTATE_270 = "270"
 
 # User data constants
-PDF_INFO = "pdf_info"
+FILE_DATA = "file_data"
 
 # Payment Constants
 PAYMENT = "payment"

@@ -18,8 +18,8 @@ from pdf_bot.consts import (
     ENCRYPT,
     EXTRACT_IMAGE,
     EXTRACT_TEXT,
+    FILE_DATA,
     OCR,
-    PDF_INFO,
     PREVIEW,
     RENAME,
     ROTATE,
@@ -33,7 +33,7 @@ from pdf_bot.consts import (
 from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService
-from pdf_bot.files.image import IMAGE_ID, process_image_task
+from pdf_bot.files.image import process_image_task
 from pdf_bot.language import set_lang
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
@@ -166,12 +166,12 @@ class FileHandlers:
             return ConversationHandler.END
 
         if doc.mime_type.startswith("image"):
-            context.user_data[IMAGE_ID] = doc.file_id
+            context.user_data[FILE_DATA] = doc.file_id, doc.file_name
             return self.file_task_service.ask_image_task(update, context)
         if not doc.mime_type.endswith("pdf"):
             return ConversationHandler.END
 
-        context.user_data[PDF_INFO] = doc.file_id, doc.file_name
+        context.user_data[FILE_DATA] = doc.file_id, doc.file_name
         return self.file_task_service.ask_pdf_task(update, context)
 
     def check_image(self, update: Update, context: CallbackContext):
@@ -190,7 +190,7 @@ class FileHandlers:
 
             return ConversationHandler.END
 
-        context.user_data[IMAGE_ID] = image.file_id
+        context.user_data[FILE_DATA] = image.file_id, None
         return self.file_task_service.ask_image_task(update, context)
 
     def check_doc_task(self, update, context):

@@ -4,7 +4,7 @@ import pytest
 from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import PDF_INFO
+from pdf_bot.consts import FILE_DATA
 from pdf_bot.crop import CropService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram_internal import TelegramUserDataKeyError
@@ -161,7 +161,7 @@ class TestCropService(
         self, percentage: float | None = None, margin_size: int | None = None
     ) -> None:
         self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, PDF_INFO
+            self.telegram_context, FILE_DATA
         )
         self.pdf_service.crop_pdf.assert_called_once_with(
             self.telegram_document_id, percentage=percentage, margin_size=margin_size
@@ -175,7 +175,7 @@ class TestCropService(
 
     def _assert_crop_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, PDF_INFO
+            self.telegram_context, FILE_DATA
         )
         self.pdf_service.crop_pdf.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()

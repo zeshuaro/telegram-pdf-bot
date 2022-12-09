@@ -6,7 +6,7 @@ from telegram import Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import PDF_INFO
+from pdf_bot.consts import FILE_DATA
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
 from pdf_bot.telegram_internal import TelegramUserDataKeyError
 from tests.file_task import FileTaskServiceTestMixin
@@ -160,7 +160,7 @@ class TestAbstractFileProcessor(
 
         assert actual == ConversationHandler.END
         self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, PDF_INFO
+            self.telegram_context, FILE_DATA
         )
         self.telegram_update.effective_message.reply_text.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()
@@ -176,7 +176,7 @@ class TestAbstractFileProcessor(
 
         assert actual == ConversationHandler.END
         self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, PDF_INFO
+            self.telegram_context, FILE_DATA
         )
         self.telegram_update.effective_message.reply_text.assert_called_once()
         self.telegram_service.reply_with_file.assert_not_called()
@@ -192,7 +192,7 @@ class TestAbstractFileProcessor(
 
         assert actual == MockProcessorWithCustomErrorHandler.CUSTOM_ERROR_STATE
         self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, PDF_INFO
+            self.telegram_context, FILE_DATA
         )
         self.telegram_service.reply_with_file.assert_not_called()
 
@@ -207,7 +207,7 @@ class TestAbstractFileProcessor(
 
         assert actual == ConversationHandler.END
         self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, PDF_INFO
+            self.telegram_context, FILE_DATA
         )
         self.telegram_service.reply_with_file.assert_not_called()
 
@@ -218,7 +218,7 @@ class TestAbstractFileProcessor(
 
         assert actual == ConversationHandler.END
         self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, PDF_INFO
+            self.telegram_context, FILE_DATA
         )
         self.telegram_service.reply_with_file.assert_not_called()
 
@@ -248,7 +248,7 @@ class TestAbstractFileProcessor(
         self, out_path: str = MockProcessor.PROCESS_RESULT
     ) -> None:
         self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, PDF_INFO
+            self.telegram_context, FILE_DATA
         )
         self.telegram_service.reply_with_file.assert_called_once_with(
             self.telegram_update,

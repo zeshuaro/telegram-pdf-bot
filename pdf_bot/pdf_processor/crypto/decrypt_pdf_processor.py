@@ -6,7 +6,7 @@ from telegram import Update
 from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import PDF_INFO
+from pdf_bot.consts import FILE_DATA
 from pdf_bot.file_processor import ErrorHandlerType
 from pdf_bot.pdf import PdfIncorrectPasswordError
 
@@ -47,5 +47,5 @@ class DecryptPDFProcessor(AbstractCryptoPDFProcessor):
     ) -> str:
         _ = self.language_service.set_app_language(update, context)
         update.effective_message.reply_text(_(str(exception)))
-        context.user_data[PDF_INFO] = (file_id, file_name)
+        context.user_data[FILE_DATA] = (file_id, file_name)
         return self.wait_password_state
