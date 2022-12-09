@@ -8,7 +8,7 @@ from telegram import Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK, PDF_INFO
+from pdf_bot.consts import BACK, FILE_DATA
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.language_new import LanguageService
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
@@ -62,7 +62,7 @@ class AbstractFileProcessor(ABC):
             return self.file_task_service.ask_pdf_task(update, context)
 
         try:
-            file_id, file_name = self.telegram_service.get_user_data(context, PDF_INFO)
+            file_id, file_name = self.telegram_service.get_user_data(context, FILE_DATA)
         except TelegramServiceError as e:
             message.reply_text(_(str(e)))
             return ConversationHandler.END

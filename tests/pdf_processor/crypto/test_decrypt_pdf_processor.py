@@ -1,7 +1,7 @@
 from unittest.mock import MagicMock
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import PDF_INFO
+from pdf_bot.consts import FILE_DATA
 from pdf_bot.pdf import PdfIncorrectPasswordError, PdfService
 from pdf_bot.pdf_processor import DecryptPDFProcessor
 from tests.file_task import FileTaskServiceTestMixin
@@ -62,7 +62,7 @@ class TestDecryptPDFProcessor(
         assert actual == self.WAIT_PASSWORD_STATE
         self.telegram_message.reply_text.assert_called_once()
         self.telegram_context.user_data.__setitem__.assert_called_once_with(
-            PDF_INFO, (self.telegram_document_id, self.telegram_document_name)
+            FILE_DATA, (self.telegram_document_id, self.telegram_document_name)
         )
 
     def test_process_file_task(self) -> None:
