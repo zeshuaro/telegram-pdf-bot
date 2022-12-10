@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 04:15+0000\n"
-"PO-Revision-Date: 2022-12-10 04:57\n"
+"POT-Creation-Date: 2022-12-10 05:34+0000\n"
+"PO-Revision-Date: 2022-12-10 05:34\n"
 "Last-Translator: \n"
 "Language: fa\n"
 "Language-Team: Persian\n"
@@ -147,75 +147,63 @@ msgstr "وعده غذایی"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:122
+#: pdf_bot/dispatcher.py:125
 msgid "Set Language 🌎"
 msgstr "تنظیم زبان 🌎"
 
-#: pdf_bot/dispatcher.py:124 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:127 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "پیوستن به کانال"
 
-#: pdf_bot/dispatcher.py:125 pdf_bot/payment.py:83
+#: pdf_bot/dispatcher.py:128 pdf_bot/payment.py:83
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "پشتیبانی پی دی اف ربات"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:137
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "شما می توانید بیشتر کارها را با ارسال یکی از موارد زیر برای من انجام دهید:"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "- PDF files"
 msgstr "- فایل های پی دی اف"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:141
 msgid "- Images"
 msgstr "-تصاویر"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:142
 msgid "- Webpage links"
 msgstr "- پیوندهای صفحه وب"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:143
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "بقیه کارها را می توان با استفاده از دستورات زیر انجام داد:"
 
-#: pdf_bot/dispatcher.py:144
+#: pdf_bot/dispatcher.py:147
 msgid "{command} - compare PDF files"
 msgstr "{command} -- مقایسه فایل های پی دی اف"
 
-#: pdf_bot/dispatcher.py:145
+#: pdf_bot/dispatcher.py:148
 msgid "{command} - merge PDF files"
 msgstr "{command} -- ادغام فایل های پی دی اف"
 
-#: pdf_bot/dispatcher.py:146
+#: pdf_bot/dispatcher.py:149
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} -- تبدیل و ترکیب تصاویر متعدد را به فایل های پی دی اف"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:152
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} -- ایجاد فایل های پی دی اف از پیام های متنی"
 
-#: pdf_bot/dispatcher.py:152
+#: pdf_bot/dispatcher.py:155
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} -- اضافه کردن watermark به فایل های پی دی اف"
 
-#: pdf_bot/dispatcher.py:187
+#: pdf_bot/dispatcher.py:190
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "دکمه منقضی شده است، لطفا دوباره سعی کنید با یک پیام جدید / پرس و جو و سپس دکمه جدید را فشار دهید"
-
-#: pdf_bot/feedback.py:48
-msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
-msgstr "بازخورد خود را برایم ارسال کنید (فقط بازخورد انگلیسی به توسعه دهنده من ارسال خواهد شد)"
-
-#: pdf_bot/feedback.py:83
-msgid "Thank you for your feedback, I've already forwarded it to my developer"
-msgstr "با تشکر از شما برای بازخورد خود را، من در حال حاضر آن را به توسعه دهنده من جلو"
-
-#: pdf_bot/feedback.py:87
-msgid "The feedback is not in English, try again"
-msgstr "بازخورد به زبان انگلیسی نیست، دوباره سعی کنید"
 
 #: pdf_bot/language.py:26 pdf_bot/language_new/language_service.py:79
 msgid "Select your language"
@@ -403,6 +391,18 @@ msgstr "برای من شماره ای بفرستید که دوست دارید ا
 #: pdf_bot/crop/crop_service.py:139
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "اعداد مثبت اندازه حاشیه را کاهش خواهند داد و اعداد منفی آن را افزایش خواهند داد"
+
+#: pdf_bot/feedback/feedback_handler.py:46
+msgid "Send me your feedback in English"
+msgstr ""
+
+#: pdf_bot/feedback/feedback_handler.py:66
+msgid "Thank you for your feedback, I've forwarded it to my developer"
+msgstr ""
+
+#: pdf_bot/feedback/feedback_service.py:21
+msgid "The feedback is not in English, try again"
+msgstr "بازخورد به زبان انگلیسی نیست، دوباره سعی کنید"
 
 #: pdf_bot/file/file_handlers.py:164 pdf_bot/file/file_handlers.py:189
 msgid "Your file is too big for me to download and process"
@@ -1580,5 +1580,14 @@ msgstr "اضافه کردن علامت آب بر روی فایل پی دی اف 
 #~ msgstr ""
 
 #~ msgid "Converting your images into PDF"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me your feedback (only English "
+#~ "feedback will be forwarded to my "
+#~ "developer)"
+#~ msgstr ""
+
+#~ msgid "Thank you for your feedback, I've already forwarded it to my developer"
 #~ msgstr ""
 

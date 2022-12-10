@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 04:15+0000\n"
-"PO-Revision-Date: 2022-12-10 04:57\n"
+"POT-Creation-Date: 2022-12-10 05:34+0000\n"
+"PO-Revision-Date: 2022-12-10 05:34\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -147,75 +147,63 @@ msgstr "Maaltijd"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:122
+#: pdf_bot/dispatcher.py:125
 msgid "Set Language 🌎"
 msgstr "Taal instellen 🌎"
 
-#: pdf_bot/dispatcher.py:124 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:127 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Abonneer op het kanaal"
 
-#: pdf_bot/dispatcher.py:125 pdf_bot/payment.py:83
+#: pdf_bot/dispatcher.py:128 pdf_bot/payment.py:83
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "PDF Bot ondersteunen"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:137
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "U kunt de meeste taken uitvoeren door mij een van de volgende handelingen te sturen:"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "- PDF files"
 msgstr "- PDF-bestanden"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:141
 msgid "- Images"
 msgstr "- Afbeeldingen"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:142
 msgid "- Webpage links"
 msgstr "- Webpagina links"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:143
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "De rest van de taken kan worden uitgevoerd met behulp van de volgende opdrachten:"
 
-#: pdf_bot/dispatcher.py:144
+#: pdf_bot/dispatcher.py:147
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF-bestanden vergelijken"
 
-#: pdf_bot/dispatcher.py:145
+#: pdf_bot/dispatcher.py:148
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF-bestanden samenvoegen"
 
-#: pdf_bot/dispatcher.py:146
+#: pdf_bot/dispatcher.py:149
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - converteer en combineer meerdere afbeeldingen naar PDF-bestanden"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:152
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - PDF-bestanden maken op tekstberichten"
 
-#: pdf_bot/dispatcher.py:152
+#: pdf_bot/dispatcher.py:155
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - watermerk toevoegen aan PDF-bestanden"
 
-#: pdf_bot/dispatcher.py:187
+#: pdf_bot/dispatcher.py:190
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "De knop is verlopen, probeer het opnieuw met een nieuw bericht / query en druk vervolgens op de nieuwe knop"
-
-#: pdf_bot/feedback.py:48
-msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
-msgstr "Stuur mij uw feedback (alleen Engelse feedback wordt doorgestuurd naar mijn ontwikkelaar)"
-
-#: pdf_bot/feedback.py:83
-msgid "Thank you for your feedback, I've already forwarded it to my developer"
-msgstr "Bedankt voor je feedback, ik heb het al doorgestuurd naar mijn ontwikkelaar"
-
-#: pdf_bot/feedback.py:87
-msgid "The feedback is not in English, try again"
-msgstr "De feedback is niet in het Engels, probeer het opnieuw"
 
 #: pdf_bot/language.py:26 pdf_bot/language_new/language_service.py:79
 msgid "Select your language"
@@ -403,6 +391,18 @@ msgstr "Stuur me een nummer dat je de margegrootte wilt aanpassen"
 #: pdf_bot/crop/crop_service.py:139
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Positieve getallen zullen de margegrootte verminderen en negatieve getallen zullen deze verhogen"
+
+#: pdf_bot/feedback/feedback_handler.py:46
+msgid "Send me your feedback in English"
+msgstr ""
+
+#: pdf_bot/feedback/feedback_handler.py:66
+msgid "Thank you for your feedback, I've forwarded it to my developer"
+msgstr ""
+
+#: pdf_bot/feedback/feedback_service.py:21
+msgid "The feedback is not in English, try again"
+msgstr "De feedback is niet in het Engels, probeer het opnieuw"
 
 #: pdf_bot/file/file_handlers.py:164 pdf_bot/file/file_handlers.py:189
 msgid "Your file is too big for me to download and process"
@@ -1580,5 +1580,14 @@ msgstr "Watermerk toevoegen aan het PDF bestand"
 #~ msgstr ""
 
 #~ msgid "Converting your images into PDF"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me your feedback (only English "
+#~ "feedback will be forwarded to my "
+#~ "developer)"
+#~ msgstr ""
+
+#~ msgid "Thank you for your feedback, I've already forwarded it to my developer"
 #~ msgstr ""
 

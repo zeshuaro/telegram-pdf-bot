@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 04:15+0000\n"
-"PO-Revision-Date: 2022-12-10 04:57\n"
+"POT-Creation-Date: 2022-12-10 05:34+0000\n"
+"PO-Revision-Date: 2022-12-10 05:34\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -147,75 +147,63 @@ msgstr "மாவு"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:122
+#: pdf_bot/dispatcher.py:125
 msgid "Set Language 🌎"
 msgstr "மொழி 🌎 அமை"
 
-#: pdf_bot/dispatcher.py:124 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:127 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "சேனலில் சேரவும்"
 
-#: pdf_bot/dispatcher.py:125 pdf_bot/payment.py:83
+#: pdf_bot/dispatcher.py:128 pdf_bot/payment.py:83
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "PTM போட் ஆதரவு"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:137
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "பின்வருவனவற்றில் ஒன்றை எனக்கு அனுப்புவதன் மூலம் பெரும்பாலான பணிகளை நீங்கள் செய்யலாம்:"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "- PDF files"
 msgstr "- PTM கோப்புகள்"
 
-#: pdf_bot/dispatcher.py:138
+#: pdf_bot/dispatcher.py:141
 msgid "- Images"
 msgstr "- படங்கள்"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:142
 msgid "- Webpage links"
 msgstr "- வலைப்பக்க இணைப்புகள்"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:143
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "மீதமுள்ள பணிகளை பின்வரும் கட்டளைகளைப் பயன்படுத்தி செய்ய முடியும்:"
 
-#: pdf_bot/dispatcher.py:144
+#: pdf_bot/dispatcher.py:147
 msgid "{command} - compare PDF files"
 msgstr "{command} - PTM கோப்புகளை ஒப்பிடு"
 
-#: pdf_bot/dispatcher.py:145
+#: pdf_bot/dispatcher.py:148
 msgid "{command} - merge PDF files"
 msgstr "{command} - PTM கோப்புகளை ஒன்றிணைக்கவும்"
 
-#: pdf_bot/dispatcher.py:146
+#: pdf_bot/dispatcher.py:149
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - PTM கோப்புகளில் பல படங்களை மாற்றி இணைக்கவும்"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:152
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - உரை செய்திகளில் இருந்து PPM கோப்புகளை உருவாக்கவும்"
 
-#: pdf_bot/dispatcher.py:152
+#: pdf_bot/dispatcher.py:155
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PTM கோப்புகளில் வாட்டர்மார்க் சேர்க்கவும்"
 
-#: pdf_bot/dispatcher.py:187
+#: pdf_bot/dispatcher.py:190
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "பொத்தான் காலாவதியாகிவிட்டது, தயவுசெய்து ஒரு புதிய செய்தி/கேள்வியுடன் மீண்டும் முயற்சிக்கவும், பின்னர் புதிய பொத்தானை அழுத்தவும்"
-
-#: pdf_bot/feedback.py:48
-msgid "Send me your feedback (only English feedback will be forwarded to my developer)"
-msgstr "உங்கள் கருத்தை எனக்கு அனுப்பவும் (ஆங்கில பின்னூட்டம் மட்டுமே எனது டெவலப்பருக்கு அனுப்பப்படும்)"
-
-#: pdf_bot/feedback.py:83
-msgid "Thank you for your feedback, I've already forwarded it to my developer"
-msgstr "உங்கள் பின்னூட்டத்திற்கு நன்றி, நான் ஏற்கனவே அதை என் டெவலப்பருக்கு அனுப்பிவிட்டேன்"
-
-#: pdf_bot/feedback.py:87
-msgid "The feedback is not in English, try again"
-msgstr "பின்னூட்டம் ஆங்கிலத்தில் இல்லை, மீண்டும் முயற்சிக்கவும்"
 
 #: pdf_bot/language.py:26 pdf_bot/language_new/language_service.py:79
 msgid "Select your language"
@@ -403,6 +391,18 @@ msgstr "விளிம்பு அளவை சரிசெய்ய விர
 #: pdf_bot/crop/crop_service.py:139
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "நேர்மறை எண்கள் விளிம்பு அளவு குறையும் மற்றும் எதிர்மறை எண்கள் அதை அதிகரிக்கும்"
+
+#: pdf_bot/feedback/feedback_handler.py:46
+msgid "Send me your feedback in English"
+msgstr ""
+
+#: pdf_bot/feedback/feedback_handler.py:66
+msgid "Thank you for your feedback, I've forwarded it to my developer"
+msgstr ""
+
+#: pdf_bot/feedback/feedback_service.py:21
+msgid "The feedback is not in English, try again"
+msgstr "பின்னூட்டம் ஆங்கிலத்தில் இல்லை, மீண்டும் முயற்சிக்கவும்"
 
 #: pdf_bot/file/file_handlers.py:164 pdf_bot/file/file_handlers.py:189
 msgid "Your file is too big for me to download and process"
@@ -1580,5 +1580,14 @@ msgstr "உங்கள் PTM கோப்பில் வாட்டர்ம
 #~ msgstr ""
 
 #~ msgid "Converting your images into PDF"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Send me your feedback (only English "
+#~ "feedback will be forwarded to my "
+#~ "developer)"
+#~ msgstr ""
+
+#~ msgid "Thank you for your feedback, I've already forwarded it to my developer"
 #~ msgstr ""
 
