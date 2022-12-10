@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 10:30+0000\n"
-"PO-Revision-Date: 2022-12-10 10:30\n"
+"POT-Creation-Date: 2022-12-10 11:24+0000\n"
+"PO-Revision-Date: 2022-12-10 11:24\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -147,61 +147,61 @@ msgstr "Jídlo"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:139
+#: pdf_bot/dispatcher.py:146
 msgid "Set Language 🌎"
 msgstr "Nastavit jazyk 🌎"
 
-#: pdf_bot/dispatcher.py:141 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:148 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Připojit se k kanálu"
 
-#: pdf_bot/dispatcher.py:142 pdf_bot/payment/payment_service.py:87
+#: pdf_bot/dispatcher.py:149 pdf_bot/payment/payment_service.py:87
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Podpora PDF Bot"
 
-#: pdf_bot/dispatcher.py:151
+#: pdf_bot/dispatcher.py:158
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Většinu úkolů můžete provést zasláním jedné z následujících akcí:"
 
-#: pdf_bot/dispatcher.py:154
+#: pdf_bot/dispatcher.py:161
 msgid "- PDF files"
 msgstr "- Soubory PDF"
 
-#: pdf_bot/dispatcher.py:155
+#: pdf_bot/dispatcher.py:162
 msgid "- Images"
 msgstr "- Obrázky"
 
-#: pdf_bot/dispatcher.py:156
+#: pdf_bot/dispatcher.py:163
 msgid "- Webpage links"
 msgstr "- Odkazy na webové stránky"
 
-#: pdf_bot/dispatcher.py:157
+#: pdf_bot/dispatcher.py:164
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Zbytek úkolů lze provést pomocí následujících příkazů:"
 
-#: pdf_bot/dispatcher.py:161
+#: pdf_bot/dispatcher.py:168
 msgid "{command} - compare PDF files"
 msgstr "{command} - porovnat soubory PDF"
 
-#: pdf_bot/dispatcher.py:162
+#: pdf_bot/dispatcher.py:169
 msgid "{command} - merge PDF files"
 msgstr "{command} - sloučit soubory PDF"
 
-#: pdf_bot/dispatcher.py:163
+#: pdf_bot/dispatcher.py:170
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - převést a kombinovat více obrázků do souborů PDF"
 
-#: pdf_bot/dispatcher.py:166
+#: pdf_bot/dispatcher.py:173
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - vytváření souborů PDF z textových zpráv"
 
-#: pdf_bot/dispatcher.py:169
+#: pdf_bot/dispatcher.py:176
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - přidání vodoznaku do souborů PDF"
 
-#: pdf_bot/dispatcher.py:206
+#: pdf_bot/dispatcher.py:213
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Platnost tlačítka vypršela, zkuste to prosím znovu s novou zprávou/dotazem a stiskněte tlačítko Nový"
 
@@ -212,26 +212,6 @@ msgstr "Vyberte si jazyk"
 #: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
 msgid "Your language has been set to {language}"
 msgstr "Váš jazyk byl nastaven na {language}"
-
-#: pdf_bot/url.py:29
-msgid "Timed out processing your web page, your web page is probably too complex to process"
-msgstr "Vypršel časový limit zpracování vaší webové stránky, vaše webová stránka je pravděpodobně příliš složitá na zpracování"
-
-#: pdf_bot/url.py:36
-msgid "You've sent me this web page already and I'm still converting it"
-msgstr "Už jsi mi poslal tuhle webovou stránku a já ji pořád převádím"
-
-#: pdf_bot/url.py:39
-msgid "Converting your web page into a PDF file"
-msgstr "Převedení webové stránky na soubor PDF"
-
-#: pdf_bot/url.py:51
-msgid "Unable to reach your web page"
-msgstr "Nelze se dostat na webovou stránku"
-
-#: pdf_bot/url.py:53
-msgid "Failed to convert your web page"
-msgstr "Převod webové stránky se nezdařil"
 
 #: pdf_bot/telegram_internal/telegram_service.py:140 pdf_bot/utils.py:26
 msgid "Action cancelled"
@@ -727,6 +707,22 @@ msgstr "Pošlete mi soubor PDF s vodoznakem"
 #: pdf_bot/watermark/watermark_service.py:76
 msgid "Adding the watermark onto your PDF file"
 msgstr "Přidání vodoznaku do souboru PDF"
+
+#: pdf_bot/webpage/webpage_handler.py:41
+msgid "You've sent me this web page already and I'm still converting it"
+msgstr "Už jsi mi poslal tuhle webovou stránku a já ji pořád převádím"
+
+#: pdf_bot/webpage/webpage_handler.py:45
+msgid "Converting your web page into a PDF file"
+msgstr "Převedení webové stránky na soubor PDF"
+
+#: pdf_bot/webpage/webpage_service.py:26
+msgid "Unable to reach your web page"
+msgstr "Nelze se dostat na webovou stránku"
+
+#: pdf_bot/webpage/webpage_service.py:28
+msgid "Failed to convert your web page"
+msgstr "Převod webové stránky se nezdařil"
 
 #~ msgid ""
 #~ "Send me the first photo that "
@@ -1592,5 +1588,11 @@ msgstr "Přidání vodoznaku do souboru PDF"
 #~ msgstr ""
 
 #~ msgid "Something went wrong"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Timed out processing your web page, "
+#~ "your web page is probably too "
+#~ "complex to process"
 #~ msgstr ""
 
