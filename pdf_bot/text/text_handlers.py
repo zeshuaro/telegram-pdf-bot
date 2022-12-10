@@ -1,13 +1,16 @@
 from telegram.ext import CommandHandler, ConversationHandler, MessageHandler
 
 from pdf_bot.consts import TEXT_FILTER
+from pdf_bot.telegram_internal import TelegramService
 from pdf_bot.text.text_service import TextService
-from pdf_bot.utils import cancel
 
 
 class TextHandlers:
-    def __init__(self, text_service: TextService) -> None:
+    def __init__(
+        self, text_service: TextService, telegram_service: TelegramService
+    ) -> None:
         self.text_service = text_service
+        self.telegram_service = telegram_service
 
     def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
@@ -21,7 +24,7 @@ class TextHandlers:
                 ],
             },
             fallbacks=[
-                CommandHandler("cancel", cancel),
+                CommandHandler("cancel", self.telegram_service.cancel_conversation),
             ],
             allow_reentry=True,
             run_async=True,

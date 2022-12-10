@@ -49,7 +49,7 @@ from pdf_bot.pdf_processor import (
     ScalePDFProcessor,
     SplitPDFProcessor,
 )
-from pdf_bot.utils import cancel
+from pdf_bot.telegram_internal import TelegramService
 
 
 class FileHandlers:
@@ -72,10 +72,12 @@ class FileHandlers:
         split_pdf_processor: SplitPDFProcessor,
         beautify_image_processor: BeautifyImageProcessor,
         image_to_pdf_processor: ImageToPDFProcessor,
+        telegram_service: TelegramService,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
         self.crop_service = crop_service
+        self.telegram_service = telegram_service
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
@@ -150,7 +152,9 @@ class FileHandlers:
                     MessageHandler(TEXT_FILTER, self.split_pdf_processor.split_pdf)
                 ],
             },
-            fallbacks=[CommandHandler("cancel", cancel)],
+            fallbacks=[
+                CommandHandler("cancel", self.telegram_service.cancel_conversation)
+            ],
             allow_reentry=True,
             run_async=True,
         )
@@ -232,7 +236,7 @@ class FileHandlers:
         if text == _(BLACK_AND_WHITE):
             return self.grayscale_pdf_processor.process_file(update, context)
         if text == _(CANCEL):
-            return cancel(update, context)
+            return self.telegram_service.cancel_conversation(update, context)
 
         return FileTaskService.WAIT_PDF_TASK
 
@@ -244,6 +248,6 @@ class FileHandlers:
         if text == _(TO_PDF):
             return self.image_to_pdf_processor.process_file(update, context)
         if text == _(CANCEL):
-            return cancel(update, context)
+            return self.telegram_service.cancel_conversation(update, context)
 
         return WAIT_IMAGE_TASK

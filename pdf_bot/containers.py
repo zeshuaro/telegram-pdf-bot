@@ -278,9 +278,14 @@ class Handlers(containers.DeclarativeContainer):
         split_pdf_processor=processors.split,
         beautify_image_processor=processors.beautify,
         image_to_pdf_processor=processors.image_to_pdf,
+        telegram_service=services.telegram,
     )
 
-    compare = providers.Singleton(CompareHandlers, compare_service=services.compare)
+    compare = providers.Singleton(
+        CompareHandlers,
+        compare_service=services.compare,
+        telegram_service=services.telegram,
+    )
     feedback = providers.Singleton(
         FeedbackHandler,
         feedback_service=services.feedback,
@@ -293,10 +298,16 @@ class Handlers(containers.DeclarativeContainer):
         telegram_service=services.telegram,
         language_service=services.language,
     )
-    merge = providers.Singleton(MergeHandlers, merge_service=services.merge)
-    text = providers.Singleton(TextHandlers, text_service=services.text)
+    merge = providers.Singleton(
+        MergeHandlers, merge_service=services.merge, telegram_service=services.telegram
+    )
+    text = providers.Singleton(
+        TextHandlers, text_service=services.text, telegram_service=services.telegram
+    )
     watermark = providers.Singleton(
-        WatermarkHandlers, watermark_service=services.watermark
+        WatermarkHandlers,
+        watermark_service=services.watermark,
+        telegram_service=services.telegram,
     )
     webpage = providers.Singleton(
         WebpageHandler,

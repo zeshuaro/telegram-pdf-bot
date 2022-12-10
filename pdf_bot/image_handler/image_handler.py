@@ -13,7 +13,6 @@ from pdf_bot.image import ImageService
 from pdf_bot.language_new import LanguageService
 from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
-from pdf_bot.utils import cancel
 
 
 class ImageHandler:
@@ -39,7 +38,9 @@ class ImageHandler:
                     MessageHandler(TEXT_FILTER, self.check_text),
                 ]
             },
-            fallbacks=[CommandHandler("cancel", cancel)],
+            fallbacks=[
+                CommandHandler("cancel", self.telegram_service.cancel_conversation)
+            ],
             allow_reentry=True,
             run_async=True,
         )
