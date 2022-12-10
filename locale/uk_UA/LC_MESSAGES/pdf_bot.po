@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 05:34+0000\n"
-"PO-Revision-Date: 2022-12-10 05:34\n"
+"POT-Creation-Date: 2022-12-10 10:30+0000\n"
+"PO-Revision-Date: 2022-12-10 10:30\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -127,81 +127,81 @@ msgstr "Стиснути"
 msgid "Black & White"
 msgstr "Чорний і білий"
 
-#: pdf_bot/consts.py:78
+#: pdf_bot/consts.py:78 pdf_bot/payment/payment_service.py:30
 msgid "Say Thanks"
 msgstr "Скажи спасибі"
 
-#: pdf_bot/consts.py:79
+#: pdf_bot/consts.py:79 pdf_bot/payment/payment_service.py:31
 msgid "Coffee"
 msgstr "Кава"
 
-#: pdf_bot/consts.py:80
+#: pdf_bot/consts.py:80 pdf_bot/payment/payment_service.py:32
 msgid "Beer"
 msgstr "Пиво"
 
-#: pdf_bot/consts.py:81
+#: pdf_bot/consts.py:81 pdf_bot/payment/payment_service.py:33
 msgid "Meal"
 msgstr "Їжа"
 
-#: pdf_bot/consts.py:82
+#: pdf_bot/consts.py:82 pdf_bot/payment/payment_service.py:26
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:139
 msgid "Set Language 🌎"
 msgstr "Вибрати мову 🌎"
 
-#: pdf_bot/dispatcher.py:127 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:141 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Приєднатися до каналу"
 
-#: pdf_bot/dispatcher.py:128 pdf_bot/payment.py:83
+#: pdf_bot/dispatcher.py:142 pdf_bot/payment/payment_service.py:87
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Підтримка PDF Bot"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:151
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Більшість завдань можна виконати, надіславши одну з наведених нижче дій."
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:154
 msgid "- PDF files"
 msgstr "- PDF-файли"
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:155
 msgid "- Images"
 msgstr "- Зображення"
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:156
 msgid "- Webpage links"
 msgstr "- Посилання на веб-сторінки"
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:157
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Решту завдань можна виконати за допомогою таких команд:"
 
-#: pdf_bot/dispatcher.py:147
+#: pdf_bot/dispatcher.py:161
 msgid "{command} - compare PDF files"
 msgstr "{command} - порівняння PDF-файлів"
 
-#: pdf_bot/dispatcher.py:148
+#: pdf_bot/dispatcher.py:162
 msgid "{command} - merge PDF files"
 msgstr "{command} - об'єднати PDF-файли"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:163
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - конвертувати та об'єднувати кілька зображень у ФАЙЛИ PDF"
 
-#: pdf_bot/dispatcher.py:152
+#: pdf_bot/dispatcher.py:166
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - створення PDF-файлів з текстових повідомлень"
 
-#: pdf_bot/dispatcher.py:155
+#: pdf_bot/dispatcher.py:169
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - додати водяний знак до PDF-файлів"
 
-#: pdf_bot/dispatcher.py:190
+#: pdf_bot/dispatcher.py:206
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Термін дії кнопки минув, спробуйте ще раз з новим повідомленням / запитом, а потім натисніть нову кнопку"
 
@@ -212,26 +212,6 @@ msgstr "Виберіть мову"
 #: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
 msgid "Your language has been set to {language}"
 msgstr "Для вашої мови встановлено значення {language}"
-
-#: pdf_bot/payment.py:56
-msgid "Help translate PDF Bot"
-msgstr "Як перекласти PDF-бот"
-
-#: pdf_bot/payment.py:68
-msgid "Select how you want to support PDF Bot"
-msgstr "Виберіть спосіб підтримки PDF-бота"
-
-#: pdf_bot/payment.py:84
-msgid "Say thanks to PDF Bot and help keep it running"
-msgstr "Скажімо, завдяки PDF Bot і допомогти тримати його працює"
-
-#: pdf_bot/payment.py:105
-msgid "Something went wrong"
-msgstr "Щось пішло не так"
-
-#: pdf_bot/payment.py:113
-msgid "Thank you for your support!"
-msgstr "Дякуємо за підтримку!"
 
 #: pdf_bot/url.py:29
 msgid "Timed out processing your web page, your web page is probably too complex to process"
@@ -491,6 +471,26 @@ msgstr "Ви надіслали мені лише один PDF-файл"
 #: pdf_bot/merge/merge_service.py:144
 msgid "Merging your PDF files"
 msgstr "Об'єміщення PDF-файлів"
+
+#: pdf_bot/payment/payment_service.py:58
+msgid "Help translate PDF Bot"
+msgstr "Як перекласти PDF-бот"
+
+#: pdf_bot/payment/payment_service.py:71
+msgid "Select how you want to support PDF Bot"
+msgstr "Виберіть спосіб підтримки PDF-бота"
+
+#: pdf_bot/payment/payment_service.py:88
+msgid "Say thanks to PDF Bot and help keep it running"
+msgstr "Скажімо, завдяки PDF Bot і допомогти тримати його працює"
+
+#: pdf_bot/payment/payment_service.py:102
+msgid "Something went wrong, try again"
+msgstr ""
+
+#: pdf_bot/payment/payment_service.py:109
+msgid "Thank you for your support!"
+msgstr "Дякуємо за підтримку!"
 
 #: pdf_bot/pdf/pdf_service.py:169
 msgid "Your PDF file is not encrypted"
@@ -1589,5 +1589,8 @@ msgstr "Додавання водяного знака до файлу PDF"
 #~ msgstr ""
 
 #~ msgid "Thank you for your feedback, I've already forwarded it to my developer"
+#~ msgstr ""
+
+#~ msgid "Something went wrong"
 #~ msgstr ""
 

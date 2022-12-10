@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 05:34+0000\n"
-"PO-Revision-Date: 2022-12-10 05:34\n"
+"POT-Creation-Date: 2022-12-10 10:30+0000\n"
+"PO-Revision-Date: 2022-12-10 10:30\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -127,81 +127,81 @@ msgstr "Συμπίεση"
 msgid "Black & White"
 msgstr "Μαύρο και Λευκό"
 
-#: pdf_bot/consts.py:78
+#: pdf_bot/consts.py:78 pdf_bot/payment/payment_service.py:30
 msgid "Say Thanks"
 msgstr "Πες ευχαριστώ."
 
-#: pdf_bot/consts.py:79
+#: pdf_bot/consts.py:79 pdf_bot/payment/payment_service.py:31
 msgid "Coffee"
 msgstr "Καφές"
 
-#: pdf_bot/consts.py:80
+#: pdf_bot/consts.py:80 pdf_bot/payment/payment_service.py:32
 msgid "Beer"
 msgstr "Μπύρα"
 
-#: pdf_bot/consts.py:81
+#: pdf_bot/consts.py:81 pdf_bot/payment/payment_service.py:33
 msgid "Meal"
 msgstr "Γεύμα"
 
-#: pdf_bot/consts.py:82
+#: pdf_bot/consts.py:82 pdf_bot/payment/payment_service.py:26
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:125
+#: pdf_bot/dispatcher.py:139
 msgid "Set Language 🌎"
 msgstr "Ορισμός γλώσσας 🌎"
 
-#: pdf_bot/dispatcher.py:127 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:141 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Είσοδος στο Κανάλι"
 
-#: pdf_bot/dispatcher.py:128 pdf_bot/payment.py:83
+#: pdf_bot/dispatcher.py:142 pdf_bot/payment/payment_service.py:87
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Υποστήριξη BOT PDF"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:151
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Μπορείτε να εκτελέσετε τις περισσότερες από τις εργασίες στέλνοντας μου ένα από τα εξής:"
 
-#: pdf_bot/dispatcher.py:140
+#: pdf_bot/dispatcher.py:154
 msgid "- PDF files"
 msgstr "- Αρχεία PDF"
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:155
 msgid "- Images"
 msgstr "- Εικόνες"
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:156
 msgid "- Webpage links"
 msgstr "- Σύνδεσμοι ιστοσελίδων"
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:157
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Οι υπόλοιπες εργασίες μπορούν να εκτελεστούν χρησιμοποιώντας τις ακόλουθες εντολές:"
 
-#: pdf_bot/dispatcher.py:147
+#: pdf_bot/dispatcher.py:161
 msgid "{command} - compare PDF files"
 msgstr "{command} - σύγκριση αρχείων PDF"
 
-#: pdf_bot/dispatcher.py:148
+#: pdf_bot/dispatcher.py:162
 msgid "{command} - merge PDF files"
 msgstr "{command} - συγχώνευση αρχείων PDF"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:163
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - μετατρέψτε και συνδυάστε πολλές εικόνες σε αρχεία PDF"
 
-#: pdf_bot/dispatcher.py:152
+#: pdf_bot/dispatcher.py:166
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - δημιουργία αρχείων PDF από μηνύματα κειμένου"
 
-#: pdf_bot/dispatcher.py:155
+#: pdf_bot/dispatcher.py:169
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - προσθήκη υδατογραφήματος σε αρχεία PDF"
 
-#: pdf_bot/dispatcher.py:190
+#: pdf_bot/dispatcher.py:206
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Το κουμπί έχει λήξει, προσπαθήστε ξανά με ένα νέο μήνυμα/ερώτημα και, στη συνέχεια, πατήστε το νέο κουμπί"
 
@@ -212,26 +212,6 @@ msgstr "Επιλέξτε τη γλώσσα σας"
 #: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
 msgid "Your language has been set to {language}"
 msgstr "Η γλώσσα σας έχει ρυθμιστεί σε {language}"
-
-#: pdf_bot/payment.py:56
-msgid "Help translate PDF Bot"
-msgstr "Βοήθεια για τη μετάφραση του BOT PDF"
-
-#: pdf_bot/payment.py:68
-msgid "Select how you want to support PDF Bot"
-msgstr "Επιλέξτε τον τρόπο με τον οποίο θέλετε να υποστηρίξετε το PDF Bot"
-
-#: pdf_bot/payment.py:84
-msgid "Say thanks to PDF Bot and help keep it running"
-msgstr "Πείτε ευχαριστώ στο PDF Bot και να βοηθήσει να κρατήσει το τρέξιμο"
-
-#: pdf_bot/payment.py:105
-msgid "Something went wrong"
-msgstr "Κάτι πήγε στραβά"
-
-#: pdf_bot/payment.py:113
-msgid "Thank you for your support!"
-msgstr "Σας ευχαριστούμε για την υποστήριξή σας!"
 
 #: pdf_bot/url.py:29
 msgid "Timed out processing your web page, your web page is probably too complex to process"
@@ -491,6 +471,26 @@ msgstr "Μου έστειλες μόνο ένα αρχείο PDF."
 #: pdf_bot/merge/merge_service.py:144
 msgid "Merging your PDF files"
 msgstr "Συγχώνευση των αρχείων PDF"
+
+#: pdf_bot/payment/payment_service.py:58
+msgid "Help translate PDF Bot"
+msgstr "Βοήθεια για τη μετάφραση του BOT PDF"
+
+#: pdf_bot/payment/payment_service.py:71
+msgid "Select how you want to support PDF Bot"
+msgstr "Επιλέξτε τον τρόπο με τον οποίο θέλετε να υποστηρίξετε το PDF Bot"
+
+#: pdf_bot/payment/payment_service.py:88
+msgid "Say thanks to PDF Bot and help keep it running"
+msgstr "Πείτε ευχαριστώ στο PDF Bot και να βοηθήσει να κρατήσει το τρέξιμο"
+
+#: pdf_bot/payment/payment_service.py:102
+msgid "Something went wrong, try again"
+msgstr ""
+
+#: pdf_bot/payment/payment_service.py:109
+msgid "Thank you for your support!"
+msgstr "Σας ευχαριστούμε για την υποστήριξή σας!"
 
 #: pdf_bot/pdf/pdf_service.py:169
 msgid "Your PDF file is not encrypted"
@@ -1589,5 +1589,8 @@ msgstr "Προσθήκη του υδατογραφήματος στο αρχεί
 #~ msgstr ""
 
 #~ msgid "Thank you for your feedback, I've already forwarded it to my developer"
+#~ msgstr ""
+
+#~ msgid "Something went wrong"
 #~ msgstr ""
 
