@@ -12,7 +12,7 @@ from telegram import (
 from telegram.callbackquery import CallbackQuery
 from telegram.ext import CallbackContext
 
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 
 from .models import PaymentData
 

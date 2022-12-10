@@ -7,7 +7,7 @@ from telegram.parsemode import ParseMode
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import CANCEL
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 from pdf_bot.pdf import FontData, PdfService
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 from pdf_bot.text.text_repository import TextRepository

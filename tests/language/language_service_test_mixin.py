@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 
 
 class LanguageServiceTestMixin:

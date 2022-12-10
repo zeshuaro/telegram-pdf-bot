@@ -4,7 +4,7 @@ from typing import Callable
 from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext
 
-from pdf_bot.language_new.language_repository import LanguageRepository
+from pdf_bot.language.language_repository import LanguageRepository
 
 
 class LanguageService:

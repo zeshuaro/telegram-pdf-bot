@@ -3,7 +3,7 @@ from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import CANCEL, DONE, REMOVE_LAST
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
