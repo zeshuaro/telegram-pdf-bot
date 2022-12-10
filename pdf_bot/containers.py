@@ -295,6 +295,7 @@ class Handlers(containers.DeclarativeContainer):
         beautify_image_processor=processors.beautify,
         image_to_pdf_processor=processors.image_to_pdf,
         telegram_service=services.telegram,
+        language_service=services.language,
     )
 
     compare = providers.Singleton(
