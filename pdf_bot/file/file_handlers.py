@@ -34,7 +34,7 @@ from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.image_processor import BeautifyImageProcessor, ImageToPDFProcessor
-from pdf_bot.language import set_lang
+from pdf_bot.language_new import LanguageService
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
     EncryptPDFProcessor,
@@ -73,11 +73,13 @@ class FileHandlers:
         beautify_image_processor: BeautifyImageProcessor,
         image_to_pdf_processor: ImageToPDFProcessor,
         telegram_service: TelegramService,
+        language_service: LanguageService,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
         self.crop_service = crop_service
         self.telegram_service = telegram_service
+        self.language_service = language_service
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
@@ -162,7 +164,7 @@ class FileHandlers:
     def check_doc(self, update, context):
         doc = update.effective_message.document
         if doc.file_size >= MAX_FILESIZE_DOWNLOAD:
-            _ = set_lang(update, context)
+            _ = self.language_service.set_app_language(update, context)
             update.effective_message.reply_text(
                 "{desc_1}\n\n{desc_2}".format(
                     desc_1=_("Your file is too big for me to download and process"),
@@ -187,7 +189,7 @@ class FileHandlers:
     def check_image(self, update: Update, context: CallbackContext):
         image = update.effective_message.photo[-1]
         if image.file_size >= MAX_FILESIZE_DOWNLOAD:
-            _ = set_lang(update, context)
+            _ = self.language_service.set_app_language(update, context)
             update.effective_message.reply_text(
                 "{desc_1}\n\n{desc_2}".format(
                     desc_1=_("Your file is too big for me to download and process"),
@@ -204,7 +206,7 @@ class FileHandlers:
         return self.file_task_service.ask_image_task(update, context)
 
     def check_doc_task(self, update, context):
-        _ = set_lang(update, context)
+        _ = self.language_service.set_app_language(update, context)
         text = update.effective_message.text
 
         if text == _(CROP):
@@ -241,7 +243,7 @@ class FileHandlers:
         return FileTaskService.WAIT_PDF_TASK
 
     def check_image_task(self, update, context):
-        _ = set_lang(update, context)
+        _ = self.language_service.set_app_language(update, context)
         text = update.effective_message.text
         if text == _(BEAUTIFY):
             return self.beautify_image_processor.process_file(update, context)

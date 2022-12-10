@@ -22,7 +22,7 @@ from pdf_bot.containers import Application
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file import FileHandlers
 from pdf_bot.image_handler import ImageHandler
-from pdf_bot.language import send_lang, set_lang, store_lang
+from pdf_bot.language_new import LanguageService
 from pdf_bot.merge import MergeHandlers
 from pdf_bot.payment import PaymentService
 from pdf_bot.text import TextHandlers
@@ -52,6 +52,9 @@ def setup_dispatcher(
     image_handler: ImageHandler = Provide[
         Application.handlers.image  # pylint: disable=no-member
     ],
+    language_service: LanguageService = Provide[
+        Application.services.language  # pylint: disable=no-member
+    ],
     merge_handlers: MergeHandlers = Provide[
         Application.handlers.merge  # pylint: disable=no-member
     ],
@@ -80,8 +83,18 @@ def setup_dispatcher(
         CommandHandler("start", command_service.send_start_message, run_async=True)
     )
 
-    dispatcher.add_handler(CommandHandler("help", help_msg, run_async=True))
-    dispatcher.add_handler(CommandHandler("setlang", send_lang, run_async=True))
+    dispatcher.add_handler(
+        CommandHandler(
+            "help",
+            lambda update, context: help_msg(update, context, language_service),
+            run_async=True,
+        )
+    )
+    dispatcher.add_handler(
+        CommandHandler(
+            "setlang", language_service.send_language_options, run_async=True
+        )
+    )
     dispatcher.add_handler(
         CommandHandler("support", payment_service.send_support_options, run_async=True)
     )
@@ -90,7 +103,7 @@ def setup_dispatcher(
     dispatcher.add_handler(
         CallbackQueryHandler(
             lambda update, context: process_callback_query(
-                update, context, payment_service
+                update, context, language_service, payment_service
             ),
             run_async=True,
         )
@@ -140,8 +153,10 @@ def setup_dispatcher(
     dispatcher.add_error_handler(error_callback)
 
 
-def help_msg(update, context):
-    _ = set_lang(update, context)
+def help_msg(
+    update: Update, context: CallbackContext, language_service: LanguageService
+):
+    _ = language_service.set_app_language(update, context)
     keyboard = [
         [InlineKeyboardButton(_("Set Language 🌎"), callback_data=SET_LANG)],
         [
@@ -182,9 +197,12 @@ def help_msg(update, context):
 
 
 def process_callback_query(
-    update: Update, context: CallbackContext, payment_service: PaymentService
+    update: Update,
+    context: CallbackContext,
+    language_service: LanguageService,
+    payment_service: PaymentService,
 ):
-    _ = set_lang(update, context)
+    _ = language_service.set_app_language(update, context)
     query = update.callback_query
     data = query.data
 
@@ -194,9 +212,9 @@ def process_callback_query(
     if data not in context.user_data[CALLBACK_DATA]:
         context.user_data[CALLBACK_DATA].add(data)
         if data == SET_LANG:
-            send_lang(update, context, query)
+            language_service.send_language_options(update, context, query)
         elif data in LANGUAGES:
-            store_lang(update, context, query)
+            language_service.update_user_language(update, context, query)
         if data == PAYMENT:
             payment_service.send_support_options(update, context, query)
         elif data.startswith("payment,"):
