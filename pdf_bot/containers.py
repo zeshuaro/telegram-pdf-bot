@@ -21,7 +21,7 @@ from pdf_bot.image import ImageService
 from pdf_bot.image_handler import ImageHandler
 from pdf_bot.image_processor import BeautifyImageProcessor, ImageToPDFProcessor
 from pdf_bot.io import IOService
-from pdf_bot.language_new import LanguageRepository, LanguageService
+from pdf_bot.language import LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.payment import PaymentService
 from pdf_bot.pdf import PdfService

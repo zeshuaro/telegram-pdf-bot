@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock, patch
 
-from pdf_bot.language_new import LanguageRepository, LanguageService
+from pdf_bot.language import LanguageRepository, LanguageService
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
 
@@ -10,7 +10,7 @@ class TestLanguageRService(TelegramTestMixin):
         super().setup_class()
         cls.valid_lang = "🇺🇸 English (US)"
         cls.valid_lang_code = "en_US"
-        cls.gettext_patcher = patch("pdf_bot.language_new.language_service.gettext")
+        cls.gettext_patcher = patch("pdf_bot.language.language_service.gettext")
         cls.gettext_patcher.start()
 
     @classmethod

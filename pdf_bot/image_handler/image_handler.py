@@ -10,7 +10,7 @@ from telegram.ext import (
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BEAUTIFY, CANCEL, REMOVE_LAST, TEXT_FILTER, TO_PDF
 from pdf_bot.image import ImageService
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 

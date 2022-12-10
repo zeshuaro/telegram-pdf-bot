@@ -4,7 +4,7 @@ from telegram import Update
 from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 from pdf_bot.telegram_internal import TelegramService
 
 from .exceptions import WebpageServiceError

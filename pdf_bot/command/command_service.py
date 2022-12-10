@@ -3,7 +3,7 @@ from telegram.chataction import ChatAction
 from telegram.ext import CallbackContext
 
 from pdf_bot.account.account_service import AccountService
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 
 
 class CommandService:

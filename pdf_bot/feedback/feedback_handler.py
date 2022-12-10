@@ -7,7 +7,7 @@ from telegram.ext import (
 )
 
 from pdf_bot.consts import CANCEL, TEXT_FILTER
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 from pdf_bot.telegram_internal.telegram_service import TelegramService
 
 from .exceptions import FeedbackInvalidLanguageError

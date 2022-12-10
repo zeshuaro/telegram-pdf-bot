@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 from google.cloud.datastore import Client, Entity
 
 from pdf_bot.consts import LANGUAGE
-from pdf_bot.language_new import LanguageRepository
+from pdf_bot.language import LanguageRepository
 
 
 class TestLanguageRepository:
@@ -58,7 +58,7 @@ class TestLanguageRepository:
     def test_upsert_language_without_user(self) -> None:
         self.db_client.get.return_value = None
 
-        with patch("pdf_bot.language_new.language_repository.Entity") as entity_cls:
+        with patch("pdf_bot.language.language_repository.Entity") as entity_cls:
             entity_cls.return_value = self.user_entity
             self.sut.upsert_language(self.user_id, self.lang_code)
 

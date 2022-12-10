@@ -22,7 +22,7 @@ from pdf_bot.containers import Application
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file import FileHandlers
 from pdf_bot.image_handler import ImageHandler
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 from pdf_bot.merge import MergeHandlers
 from pdf_bot.payment import PaymentService
 from pdf_bot.text import TextHandlers

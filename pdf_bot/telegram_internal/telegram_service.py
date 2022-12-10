@@ -22,7 +22,7 @@ from telegram.ext import CallbackContext, ConversationHandler, Updater
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
 from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, PAYMENT
 from pdf_bot.io import IOService
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData
 from pdf_bot.telegram_internal.exceptions import (
     TelegramFileMimeTypeError,

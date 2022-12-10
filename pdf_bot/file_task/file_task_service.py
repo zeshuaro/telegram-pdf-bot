@@ -4,7 +4,7 @@ from telegram import ReplyKeyboardMarkup, Update
 from telegram.ext import CallbackContext
 
 from pdf_bot.consts import CANCEL
-from pdf_bot.language_new import LanguageService
+from pdf_bot.language import LanguageService
 
 
 class FileTaskService:
