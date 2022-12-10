@@ -2,12 +2,15 @@ from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHa
 
 from pdf_bot.consts import TEXT_FILTER
 from pdf_bot.merge.merge_service import MergeService
-from pdf_bot.utils import cancel
+from pdf_bot.telegram_internal import TelegramService
 
 
 class MergeHandlers:
-    def __init__(self, merge_service: MergeService) -> None:
+    def __init__(
+        self, merge_service: MergeService, telegram_service: TelegramService
+    ) -> None:
         self.merge_service = merge_service
+        self.telegram_service = telegram_service
 
     def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
@@ -18,7 +21,9 @@ class MergeHandlers:
                     MessageHandler(TEXT_FILTER, self.merge_service.check_text),
                 ],
             },
-            fallbacks=[CommandHandler("cancel", cancel)],
+            fallbacks=[
+                CommandHandler("cancel", self.telegram_service.cancel_conversation)
+            ],
             allow_reentry=True,
             run_async=True,
         )
