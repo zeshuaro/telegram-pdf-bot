@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 11:24+0000\n"
-"PO-Revision-Date: 2022-12-10 11:24\n"
+"POT-Creation-Date: 2022-12-10 11:43+0000\n"
+"PO-Revision-Date: 2022-12-10 11:43\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -152,12 +152,11 @@ msgid "Set Language 🌎"
 msgstr "Постављање језичких 🌎"
 
 #: pdf_bot/dispatcher.py:148 pdf_bot/telegram_internal/telegram_service.py:150
-#: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Придружи се каналу"
 
 #: pdf_bot/dispatcher.py:149 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:151
 msgid "Support PDF Bot"
 msgstr "Подршка ПДФ Боту"
 
@@ -212,45 +211,6 @@ msgstr "Изаберите ваш језик"
 #: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
 msgid "Your language has been set to {language}"
 msgstr "Ваш језик је подешен на {language}"
-
-#: pdf_bot/telegram_internal/telegram_service.py:140 pdf_bot/utils.py:26
-msgid "Action cancelled"
-msgstr "Радња је отказана"
-
-#: pdf_bot/utils.py:61
-msgid "Something went wrong, please start over again"
-msgstr "Нешто је пошло наопако, молим те почни испочетка"
-
-#: pdf_bot/utils.py:92
-msgid "Your file is invalid and I couldn't open and process it"
-msgstr "Ваш фајл је неважећи и нисам могао да га отворим и обрадим"
-
-#: pdf_bot/utils.py:98
-msgid "Your PDF file is already encrypted"
-msgstr "Ваш ПДФ фајл је већ шифрован"
-
-#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
-msgid "Your PDF file is encrypted and you'll have to decrypt it first"
-msgstr "Ваш ПДФ фајл је шифрован и мораћете прво да га дешифрујете"
-
-#: pdf_bot/utils.py:126
-msgid "You've sent me these {file_type} so far:"
-msgstr "До сада си ми послао {file_type} ових година:"
-
-#: pdf_bot/utils.py:155
-msgid "The result file is too large for me to send to you"
-msgstr "Датотека са резултатима је превелика да бих вам је послао"
-
-#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:190
-#: pdf_bot/utils.py:156
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
-
-#: pdf_bot/telegram_internal/telegram_service.py:196
-#: pdf_bot/telegram_internal/telegram_service.py:203 pdf_bot/utils.py:168
-#: pdf_bot/utils.py:175
-msgid "Here is your result file"
-msgstr "Ово је твоја датотека са резултатима"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -364,9 +324,13 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Повратне информације нису на енглеском, покушајте поново"
 
-#: pdf_bot/file/file_handlers.py:164 pdf_bot/file/file_handlers.py:189
+#: pdf_bot/file/file_handlers.py:168 pdf_bot/file/file_handlers.py:193
 msgid "Your file is too big for me to download and process"
 msgstr "Твој фајл је превелик да га преузмем и обрадим"
+
+#: pdf_bot/file/file_handlers.py:169 pdf_bot/file/file_handlers.py:194
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
 
 #: pdf_bot/file/file_service.py:36
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
@@ -376,43 +340,43 @@ msgstr "Величина датотеке смањена за {percent}, са {o
 msgid "Select the task that you'll like to perform"
 msgstr "Изаберите задатак који ћете хтети да извршите"
 
-#: pdf_bot/image_handler/image_handler.py:54
+#: pdf_bot/image_handler/image_handler.py:55
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Пошаљите ми слике које ћете хтети да улепшате или претворите у ПДФ фајл"
 
-#: pdf_bot/image_handler/image_handler.py:58
+#: pdf_bot/image_handler/image_handler.py:59
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Имајте науда ће слике бити улепшане и конвертоване редоследом којим ми шаљете"
 
-#: pdf_bot/image_handler/image_handler.py:104
+#: pdf_bot/image_handler/image_handler.py:105
 msgid "You've sent me these images so far:"
 msgstr "До сада сте ми послали ове слике:"
 
-#: pdf_bot/image_handler/image_handler.py:115
+#: pdf_bot/image_handler/image_handler.py:116
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Изабери задатак одоздо ако си ми послао све слике, или настави да ми шаљеш слике"
 
-#: pdf_bot/image_handler/image_handler.py:132
+#: pdf_bot/image_handler/image_handler.py:133
 msgid "You've already removed all the images you've sent me"
 msgstr "Већ си уклонио све слике које си ми послао"
 
-#: pdf_bot/image_handler/image_handler.py:137
+#: pdf_bot/image_handler/image_handler.py:138
 msgid "{file_name} has been removed"
 msgstr "{file_name} је уклоњен"
 
-#: pdf_bot/image_handler/image_handler.py:155
+#: pdf_bot/image_handler/image_handler.py:156
 msgid "You haven't sent me any images"
 msgstr "Ниси ми послао никакве слике"
 
-#: pdf_bot/image_handler/image_handler.py:158
+#: pdf_bot/image_handler/image_handler.py:159
 msgid "You've only sent me one image"
 msgstr "Послао си ми само једну слику."
 
-#: pdf_bot/image_handler/image_handler.py:172
+#: pdf_bot/image_handler/image_handler.py:173
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "Улепшавање и конвертовање слика у ПДФ фајл"
 
-#: pdf_bot/image_handler/image_handler.py:174
+#: pdf_bot/image_handler/image_handler.py:175
 msgid "Converting your images into a PDF file"
 msgstr "Конвертовање слика у ПДФ датотеку"
 
@@ -671,6 +635,15 @@ msgstr "У поруци није пронађена слика"
 #: pdf_bot/telegram_internal/telegram_service.py:117
 msgid "Your file is not a PDF file, please try again"
 msgstr "Ваш фајл није ПДФ фајл, покушајте поново"
+
+#: pdf_bot/telegram_internal/telegram_service.py:140
+msgid "Action cancelled"
+msgstr "Радња је отказана"
+
+#: pdf_bot/telegram_internal/telegram_service.py:196
+#: pdf_bot/telegram_internal/telegram_service.py:203
+msgid "Here is your result file"
+msgstr "Ово је твоја датотека са резултатима"
 
 #: pdf_bot/text/text_service.py:21
 msgid "Skip"
@@ -1594,5 +1567,23 @@ msgstr "Конвертовање Wеб странице није успело"
 #~ "Timed out processing your web page, "
 #~ "your web page is probably too "
 #~ "complex to process"
+#~ msgstr ""
+
+#~ msgid "Something went wrong, please start over again"
+#~ msgstr ""
+
+#~ msgid "Your file is invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is already encrypted"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is encrypted and you'll have to decrypt it first"
+#~ msgstr ""
+
+#~ msgid "You've sent me these {file_type} so far:"
+#~ msgstr ""
+
+#~ msgid "The result file is too large for me to send to you"
 #~ msgstr ""
 

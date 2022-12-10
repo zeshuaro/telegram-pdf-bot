@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 11:24+0000\n"
-"PO-Revision-Date: 2022-12-10 11:24\n"
+"POT-Creation-Date: 2022-12-10 11:43+0000\n"
+"PO-Revision-Date: 2022-12-10 11:43\n"
 "Last-Translator: \n"
 "Language: ms\n"
 "Language-Team: Malay\n"
@@ -152,12 +152,11 @@ msgid "Set Language 🌎"
 msgstr "Set bahasa 🌎"
 
 #: pdf_bot/dispatcher.py:148 pdf_bot/telegram_internal/telegram_service.py:150
-#: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Sertai Saluran"
 
 #: pdf_bot/dispatcher.py:149 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:151
 msgid "Support PDF Bot"
 msgstr "Sokong PDF Bot"
 
@@ -212,45 +211,6 @@ msgstr "Pilih bahasa anda"
 #: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
 msgid "Your language has been set to {language}"
 msgstr "Bahasa anda telah disetkan ke {language}"
-
-#: pdf_bot/telegram_internal/telegram_service.py:140 pdf_bot/utils.py:26
-msgid "Action cancelled"
-msgstr "Tindakan dibatalkan"
-
-#: pdf_bot/utils.py:61
-msgid "Something went wrong, please start over again"
-msgstr "Ada sesuatu yang tidak kena, sila mulakan semula"
-
-#: pdf_bot/utils.py:92
-msgid "Your file is invalid and I couldn't open and process it"
-msgstr "Fail anda tidak sah dan saya tidak dapat membuka dan memprosesnya"
-
-#: pdf_bot/utils.py:98
-msgid "Your PDF file is already encrypted"
-msgstr "Fail PDF anda telah disulitkan"
-
-#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
-msgid "Your PDF file is encrypted and you'll have to decrypt it first"
-msgstr "Fail PDF anda disulitkan dan anda perlu menyahsulitkannya terlebih dahulu"
-
-#: pdf_bot/utils.py:126
-msgid "You've sent me these {file_type} so far:"
-msgstr "Anda telah menghantar saya {file_type} ini setakat ini:"
-
-#: pdf_bot/utils.py:155
-msgid "The result file is too large for me to send to you"
-msgstr "Fail hasilnya terlalu besar untuk saya hantar kepada anda"
-
-#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:190
-#: pdf_bot/utils.py:156
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "Ambil perhatian bahawa ini adalah batasan Bot Telegram dan tiada apa yang boleh saya lakukan melainkan Telegram mengubah had ini"
-
-#: pdf_bot/telegram_internal/telegram_service.py:196
-#: pdf_bot/telegram_internal/telegram_service.py:203 pdf_bot/utils.py:168
-#: pdf_bot/utils.py:175
-msgid "Here is your result file"
-msgstr "Berikut adalah fail keputusan anda"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -364,9 +324,13 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Maklum balas tidak ditulis dalam Bahasa Inggeris, sila cuba lagi"
 
-#: pdf_bot/file/file_handlers.py:164 pdf_bot/file/file_handlers.py:189
+#: pdf_bot/file/file_handlers.py:168 pdf_bot/file/file_handlers.py:193
 msgid "Your file is too big for me to download and process"
 msgstr "Fail anda terlalu besar bagi saya untuk memuat turun dan memproses"
+
+#: pdf_bot/file/file_handlers.py:169 pdf_bot/file/file_handlers.py:194
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "Ambil perhatian bahawa ini adalah batasan Bot Telegram dan tiada apa yang boleh saya lakukan melainkan Telegram mengubah had ini"
 
 #: pdf_bot/file/file_service.py:36
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
@@ -376,43 +340,43 @@ msgstr "Saiz fail dikurangkan sebanyak {percent}, dari {old_size} ke {new_size}"
 msgid "Select the task that you'll like to perform"
 msgstr "Pilih tugas yang anda ingin laksanakan"
 
-#: pdf_bot/image_handler/image_handler.py:54
+#: pdf_bot/image_handler/image_handler.py:55
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Hantarkan saya imej yang anda ingin cantikkan atau tukar menjadi fail PDF"
 
-#: pdf_bot/image_handler/image_handler.py:58
+#: pdf_bot/image_handler/image_handler.py:59
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Ambil perhatian bahawa imej akan dicantikkan dan ditukar mengikut urutan yang anda hantar kepada saya"
 
-#: pdf_bot/image_handler/image_handler.py:104
+#: pdf_bot/image_handler/image_handler.py:105
 msgid "You've sent me these images so far:"
 msgstr "Anda telah menghantar imej ini kepada saya setakat ini:"
 
-#: pdf_bot/image_handler/image_handler.py:115
+#: pdf_bot/image_handler/image_handler.py:116
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Pilih tugas dari bawah jika anda telah menghantar semua imej kepada saya, atau terus menghantar imej kepada saya"
 
-#: pdf_bot/image_handler/image_handler.py:132
+#: pdf_bot/image_handler/image_handler.py:133
 msgid "You've already removed all the images you've sent me"
 msgstr "Anda telah mengalih keluar semua imej yang anda hantar kepada saya"
 
-#: pdf_bot/image_handler/image_handler.py:137
+#: pdf_bot/image_handler/image_handler.py:138
 msgid "{file_name} has been removed"
 msgstr "{file_name} telah dikeluarkan"
 
-#: pdf_bot/image_handler/image_handler.py:155
+#: pdf_bot/image_handler/image_handler.py:156
 msgid "You haven't sent me any images"
 msgstr "Anda belum menghantar sebarang imej kepada saya"
 
-#: pdf_bot/image_handler/image_handler.py:158
+#: pdf_bot/image_handler/image_handler.py:159
 msgid "You've only sent me one image"
 msgstr "Anda hanya menghantar satu imej kepada saya"
 
-#: pdf_bot/image_handler/image_handler.py:172
+#: pdf_bot/image_handler/image_handler.py:173
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "Mencantikkan dan menukar imej anda menjadi fail PDF"
 
-#: pdf_bot/image_handler/image_handler.py:174
+#: pdf_bot/image_handler/image_handler.py:175
 msgid "Converting your images into a PDF file"
 msgstr "Menukar imej anda kepada fail PDF"
 
@@ -671,6 +635,15 @@ msgstr "Tiada imej ditemui dalam mesej anda"
 #: pdf_bot/telegram_internal/telegram_service.py:117
 msgid "Your file is not a PDF file, please try again"
 msgstr "Fail anda bukan fail PDF, sila cuba lagi"
+
+#: pdf_bot/telegram_internal/telegram_service.py:140
+msgid "Action cancelled"
+msgstr "Tindakan dibatalkan"
+
+#: pdf_bot/telegram_internal/telegram_service.py:196
+#: pdf_bot/telegram_internal/telegram_service.py:203
+msgid "Here is your result file"
+msgstr "Berikut adalah fail keputusan anda"
 
 #: pdf_bot/text/text_service.py:21
 msgid "Skip"
@@ -1594,5 +1567,23 @@ msgstr "Gagal menukar laman web anda"
 #~ "Timed out processing your web page, "
 #~ "your web page is probably too "
 #~ "complex to process"
+#~ msgstr ""
+
+#~ msgid "Something went wrong, please start over again"
+#~ msgstr ""
+
+#~ msgid "Your file is invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is already encrypted"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is encrypted and you'll have to decrypt it first"
+#~ msgstr ""
+
+#~ msgid "You've sent me these {file_type} so far:"
+#~ msgstr ""
+
+#~ msgid "The result file is too large for me to send to you"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 11:24+0000\n"
-"PO-Revision-Date: 2022-12-10 11:24\n"
+"POT-Creation-Date: 2022-12-10 11:43+0000\n"
+"PO-Revision-Date: 2022-12-10 11:43\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -152,12 +152,11 @@ msgid "Set Language 🌎"
 msgstr "Definir Idioma 🌎"
 
 #: pdf_bot/dispatcher.py:148 pdf_bot/telegram_internal/telegram_service.py:150
-#: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Unirse al canal"
 
 #: pdf_bot/dispatcher.py:149 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:151
 msgid "Support PDF Bot"
 msgstr "Apoya a PDF Bot"
 
@@ -212,45 +211,6 @@ msgstr "Selecciona tu idioma"
 #: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
 msgid "Your language has been set to {language}"
 msgstr "Su idioma se ha establecido en {language}"
-
-#: pdf_bot/telegram_internal/telegram_service.py:140 pdf_bot/utils.py:26
-msgid "Action cancelled"
-msgstr "Acción cancelada"
-
-#: pdf_bot/utils.py:61
-msgid "Something went wrong, please start over again"
-msgstr "Algo salió mal, por favor vuelve a empezar de nuevo"
-
-#: pdf_bot/utils.py:92
-msgid "Your file is invalid and I couldn't open and process it"
-msgstr "Su archivo no es válido y no pude abrirlo y procesarlo"
-
-#: pdf_bot/utils.py:98
-msgid "Your PDF file is already encrypted"
-msgstr "Tu archivo PDF ya está cifrado"
-
-#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
-msgid "Your PDF file is encrypted and you'll have to decrypt it first"
-msgstr "Su archivo PDF está encriptado y primero tendrá que descifrarlo"
-
-#: pdf_bot/utils.py:126
-msgid "You've sent me these {file_type} so far:"
-msgstr "Me has enviado estas {file_type} hasta ahora:"
-
-#: pdf_bot/utils.py:155
-msgid "The result file is too large for me to send to you"
-msgstr "El archivo resultado es demasiado grande para que te lo envíe"
-
-#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:190
-#: pdf_bot/utils.py:156
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "Tenga en cuenta que esta es una limitación de Telegram Bot y no hay nada que pueda hacer a menos que Telegram cambie este límite"
-
-#: pdf_bot/telegram_internal/telegram_service.py:196
-#: pdf_bot/telegram_internal/telegram_service.py:203 pdf_bot/utils.py:168
-#: pdf_bot/utils.py:175
-msgid "Here is your result file"
-msgstr "Este es tu archivo resultado"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -364,9 +324,13 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "El comentario no está en inglés, inténtalo de nuevo"
 
-#: pdf_bot/file/file_handlers.py:164 pdf_bot/file/file_handlers.py:189
+#: pdf_bot/file/file_handlers.py:168 pdf_bot/file/file_handlers.py:193
 msgid "Your file is too big for me to download and process"
 msgstr "Su archivo es demasiado grande para que yo lo descargue y procese"
+
+#: pdf_bot/file/file_handlers.py:169 pdf_bot/file/file_handlers.py:194
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "Tenga en cuenta que esta es una limitación de Telegram Bot y no hay nada que pueda hacer a menos que Telegram cambie este límite"
 
 #: pdf_bot/file/file_service.py:36
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
@@ -376,43 +340,43 @@ msgstr "Tamaño del archivo reducido un {percent}, ha pasado de {old_size} a {ne
 msgid "Select the task that you'll like to perform"
 msgstr "Elegir la tarea a realizar"
 
-#: pdf_bot/image_handler/image_handler.py:54
+#: pdf_bot/image_handler/image_handler.py:55
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Envíame las imágenes que te gustaría embellecer o convertir en un archivo PDF"
 
-#: pdf_bot/image_handler/image_handler.py:58
+#: pdf_bot/image_handler/image_handler.py:59
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Ten en cuenta que las imágenes serán embellecidas y convertidas en el orden que me envíes"
 
-#: pdf_bot/image_handler/image_handler.py:104
+#: pdf_bot/image_handler/image_handler.py:105
 msgid "You've sent me these images so far:"
 msgstr "Me has enviado estas imágenes hasta ahora:"
 
-#: pdf_bot/image_handler/image_handler.py:115
+#: pdf_bot/image_handler/image_handler.py:116
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Seleccione la tarea de abajo si me ha enviado todas las imágenes, o siga enviándome las imágenes"
 
-#: pdf_bot/image_handler/image_handler.py:132
+#: pdf_bot/image_handler/image_handler.py:133
 msgid "You've already removed all the images you've sent me"
 msgstr "Ya has eliminado todas las imágenes que me has enviado"
 
-#: pdf_bot/image_handler/image_handler.py:137
+#: pdf_bot/image_handler/image_handler.py:138
 msgid "{file_name} has been removed"
 msgstr "{file_name} se ha eliminado"
 
-#: pdf_bot/image_handler/image_handler.py:155
+#: pdf_bot/image_handler/image_handler.py:156
 msgid "You haven't sent me any images"
 msgstr "No me has enviado ninguna imagen"
 
-#: pdf_bot/image_handler/image_handler.py:158
+#: pdf_bot/image_handler/image_handler.py:159
 msgid "You've only sent me one image"
 msgstr "Solo me has enviado una imagen"
 
-#: pdf_bot/image_handler/image_handler.py:172
+#: pdf_bot/image_handler/image_handler.py:173
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "Embellecer y convertir sus imágenes en un archivo PDF"
 
-#: pdf_bot/image_handler/image_handler.py:174
+#: pdf_bot/image_handler/image_handler.py:175
 msgid "Converting your images into a PDF file"
 msgstr "Convertir las imágenes en un archivo PDF"
 
@@ -671,6 +635,15 @@ msgstr "No se ha encontrado ninguna imagen en el mensaje"
 #: pdf_bot/telegram_internal/telegram_service.py:117
 msgid "Your file is not a PDF file, please try again"
 msgstr "Su archivo no es un archivo PDF, inténtelo de nuevo"
+
+#: pdf_bot/telegram_internal/telegram_service.py:140
+msgid "Action cancelled"
+msgstr "Acción cancelada"
+
+#: pdf_bot/telegram_internal/telegram_service.py:196
+#: pdf_bot/telegram_internal/telegram_service.py:203
+msgid "Here is your result file"
+msgstr "Este es tu archivo resultado"
 
 #: pdf_bot/text/text_service.py:21
 msgid "Skip"
@@ -1594,5 +1567,23 @@ msgstr "Error al convertir su página web"
 #~ "Timed out processing your web page, "
 #~ "your web page is probably too "
 #~ "complex to process"
+#~ msgstr ""
+
+#~ msgid "Something went wrong, please start over again"
+#~ msgstr ""
+
+#~ msgid "Your file is invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is already encrypted"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is encrypted and you'll have to decrypt it first"
+#~ msgstr ""
+
+#~ msgid "You've sent me these {file_type} so far:"
+#~ msgstr ""
+
+#~ msgid "The result file is too large for me to send to you"
 #~ msgstr ""
 

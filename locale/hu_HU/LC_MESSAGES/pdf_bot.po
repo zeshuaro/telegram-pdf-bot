@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 11:24+0000\n"
-"PO-Revision-Date: 2022-12-10 11:24\n"
+"POT-Creation-Date: 2022-12-10 11:43+0000\n"
+"PO-Revision-Date: 2022-12-10 11:43\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -152,12 +152,11 @@ msgid "Set Language 🌎"
 msgstr "Nyelv beállítása 🌎"
 
 #: pdf_bot/dispatcher.py:148 pdf_bot/telegram_internal/telegram_service.py:150
-#: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Csatlakozás a csatornához"
 
 #: pdf_bot/dispatcher.py:149 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:151
 msgid "Support PDF Bot"
 msgstr "Támogatás PDF Bot"
 
@@ -212,45 +211,6 @@ msgstr "Válassza ki a nyelvet"
 #: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
 msgid "Your language has been set to {language}"
 msgstr "A nyelved {language}"
-
-#: pdf_bot/telegram_internal/telegram_service.py:140 pdf_bot/utils.py:26
-msgid "Action cancelled"
-msgstr "Művelet megszakítva"
-
-#: pdf_bot/utils.py:61
-msgid "Something went wrong, please start over again"
-msgstr "Valami elromlott, kérem, kezdje újra."
-
-#: pdf_bot/utils.py:92
-msgid "Your file is invalid and I couldn't open and process it"
-msgstr "A fájl érvénytelen, és nem tudtam megnyitni és feldolgozni"
-
-#: pdf_bot/utils.py:98
-msgid "Your PDF file is already encrypted"
-msgstr "A PDF-fájl már titkosítva van"
-
-#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
-msgid "Your PDF file is encrypted and you'll have to decrypt it first"
-msgstr "A PDF-fájl titkosítva van, és először vissza kell fejteniük"
-
-#: pdf_bot/utils.py:126
-msgid "You've sent me these {file_type} so far:"
-msgstr "Eddig ezeket a {file_type} küldted nekem:"
-
-#: pdf_bot/utils.py:155
-msgid "The result file is too large for me to send to you"
-msgstr "Az eredményfájl túl nagy ahhoz, hogy elküldhessem neked"
-
-#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:190
-#: pdf_bot/utils.py:156
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "Ne feledje, hogy ez egy Telegram Bot korlátozás, és semmit sem tehetek, ha a Telegram nem változtatja meg ezt a korlátot"
-
-#: pdf_bot/telegram_internal/telegram_service.py:196
-#: pdf_bot/telegram_internal/telegram_service.py:203 pdf_bot/utils.py:168
-#: pdf_bot/utils.py:175
-msgid "Here is your result file"
-msgstr "Itt van az eredményfájl"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -364,9 +324,13 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "A visszajelzés nem angol nyelvű, próbálkozzon újra"
 
-#: pdf_bot/file/file_handlers.py:164 pdf_bot/file/file_handlers.py:189
+#: pdf_bot/file/file_handlers.py:168 pdf_bot/file/file_handlers.py:193
 msgid "Your file is too big for me to download and process"
 msgstr "A fájl túl nagy nekem, hogy töltse le és feldolgozza"
+
+#: pdf_bot/file/file_handlers.py:169 pdf_bot/file/file_handlers.py:194
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "Ne feledje, hogy ez egy Telegram Bot korlátozás, és semmit sem tehetek, ha a Telegram nem változtatja meg ezt a korlátot"
 
 #: pdf_bot/file/file_service.py:36
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
@@ -376,43 +340,43 @@ msgstr "Fájlméret {percent}-kal csökkentve – {old_size} -ről {new_size}-re
 msgid "Select the task that you'll like to perform"
 msgstr "Válassza ki a végrehajtani kívánt feladatot"
 
-#: pdf_bot/image_handler/image_handler.py:54
+#: pdf_bot/image_handler/image_handler.py:55
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Küldje el nekem azokat a képeket, amelyeket meg szeretne szépíteni vagy PDF-fájllá konvertálni"
 
-#: pdf_bot/image_handler/image_handler.py:58
+#: pdf_bot/image_handler/image_handler.py:59
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Ne feledje, hogy a képeket a küldés sorrendjében szépítik és konvertálják"
 
-#: pdf_bot/image_handler/image_handler.py:104
+#: pdf_bot/image_handler/image_handler.py:105
 msgid "You've sent me these images so far:"
 msgstr "Ezeket a képeket küldted nekem eddig:"
 
-#: pdf_bot/image_handler/image_handler.py:115
+#: pdf_bot/image_handler/image_handler.py:116
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Válassza ki a feladatot alulról, ha elküldte nekem az összes képet, vagy küldje el nekem a képeket"
 
-#: pdf_bot/image_handler/image_handler.py:132
+#: pdf_bot/image_handler/image_handler.py:133
 msgid "You've already removed all the images you've sent me"
 msgstr "Már eltávolítottad az összes képet, amit küldtél nekem"
 
-#: pdf_bot/image_handler/image_handler.py:137
+#: pdf_bot/image_handler/image_handler.py:138
 msgid "{file_name} has been removed"
 msgstr "{file_name} eltávolították"
 
-#: pdf_bot/image_handler/image_handler.py:155
+#: pdf_bot/image_handler/image_handler.py:156
 msgid "You haven't sent me any images"
 msgstr "Nem küldtél nekem képeket"
 
-#: pdf_bot/image_handler/image_handler.py:158
+#: pdf_bot/image_handler/image_handler.py:159
 msgid "You've only sent me one image"
 msgstr "Csak egy képet küldtél nekem"
 
-#: pdf_bot/image_handler/image_handler.py:172
+#: pdf_bot/image_handler/image_handler.py:173
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "A képek szépítése és konvertálása PDF-fájllá"
 
-#: pdf_bot/image_handler/image_handler.py:174
+#: pdf_bot/image_handler/image_handler.py:175
 msgid "Converting your images into a PDF file"
 msgstr "Képek konvertálása PDF-fájllá"
 
@@ -671,6 +635,15 @@ msgstr "Nem található kép az üzenetben"
 #: pdf_bot/telegram_internal/telegram_service.py:117
 msgid "Your file is not a PDF file, please try again"
 msgstr "A fájl nem PDF-fájl, próbálkozzon újra"
+
+#: pdf_bot/telegram_internal/telegram_service.py:140
+msgid "Action cancelled"
+msgstr "Művelet megszakítva"
+
+#: pdf_bot/telegram_internal/telegram_service.py:196
+#: pdf_bot/telegram_internal/telegram_service.py:203
+msgid "Here is your result file"
+msgstr "Itt van az eredményfájl"
 
 #: pdf_bot/text/text_service.py:21
 msgid "Skip"
@@ -1594,5 +1567,23 @@ msgstr "Nem sikerült konvertálni a weblapot"
 #~ "Timed out processing your web page, "
 #~ "your web page is probably too "
 #~ "complex to process"
+#~ msgstr ""
+
+#~ msgid "Something went wrong, please start over again"
+#~ msgstr ""
+
+#~ msgid "Your file is invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is already encrypted"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is encrypted and you'll have to decrypt it first"
+#~ msgstr ""
+
+#~ msgid "You've sent me these {file_type} so far:"
+#~ msgstr ""
+
+#~ msgid "The result file is too large for me to send to you"
 #~ msgstr ""
 

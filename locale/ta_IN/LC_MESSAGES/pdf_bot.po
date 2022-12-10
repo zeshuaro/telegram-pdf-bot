@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 11:24+0000\n"
-"PO-Revision-Date: 2022-12-10 11:24\n"
+"POT-Creation-Date: 2022-12-10 11:43+0000\n"
+"PO-Revision-Date: 2022-12-10 11:43\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -152,12 +152,11 @@ msgid "Set Language 🌎"
 msgstr "மொழி 🌎 அமை"
 
 #: pdf_bot/dispatcher.py:148 pdf_bot/telegram_internal/telegram_service.py:150
-#: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "சேனலில் சேரவும்"
 
 #: pdf_bot/dispatcher.py:149 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:151
 msgid "Support PDF Bot"
 msgstr "PTM போட் ஆதரவு"
 
@@ -212,45 +211,6 @@ msgstr "உங்கள் மொழியைத் தேர்ந்தெட�
 #: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
 msgid "Your language has been set to {language}"
 msgstr "உங்கள் மொழி {language}"
-
-#: pdf_bot/telegram_internal/telegram_service.py:140 pdf_bot/utils.py:26
-msgid "Action cancelled"
-msgstr "நடவடிக்கை ரத்து"
-
-#: pdf_bot/utils.py:61
-msgid "Something went wrong, please start over again"
-msgstr "ஏதோ தவறு நடந்தது, தயவுசெய்து மீண்டும் தொடங்குங்கள்"
-
-#: pdf_bot/utils.py:92
-msgid "Your file is invalid and I couldn't open and process it"
-msgstr "உங்கள் கோப்பு செல்லுபடியாகாது, அதை என்னால் திறந்து செயலாக்க முடியவில்லை"
-
-#: pdf_bot/utils.py:98
-msgid "Your PDF file is already encrypted"
-msgstr "உங்கள் PPM கோப்பு ஏற்கனவே குறியாக்கம் செய்யப்பட்டுள்ளது"
-
-#: pdf_bot/utils.py:100 pdf_bot/utils.py:104
-msgid "Your PDF file is encrypted and you'll have to decrypt it first"
-msgstr "உங்கள் PPM கோப்பு குறியாக்கம் செய்யப்பட்டது மற்றும் நீங்கள் முதலில் அதை மறைகுறிநீக்க வேண்டும்"
-
-#: pdf_bot/utils.py:126
-msgid "You've sent me these {file_type} so far:"
-msgstr "நீங்கள் இதுவரை இந்த {file_type} எனக்கு அனுப்பியுள்ளீர்கள்:"
-
-#: pdf_bot/utils.py:155
-msgid "The result file is too large for me to send to you"
-msgstr "முடிவு கோப்பு எனக்கு உங்களுக்கு அனுப்ப மிகவும் பெரியது"
-
-#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:190
-#: pdf_bot/utils.py:156
-msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
-
-#: pdf_bot/telegram_internal/telegram_service.py:196
-#: pdf_bot/telegram_internal/telegram_service.py:203 pdf_bot/utils.py:168
-#: pdf_bot/utils.py:175
-msgid "Here is your result file"
-msgstr "இங்கே உங்கள் விளைவாக கோப்பு உள்ளது"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -364,9 +324,13 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "பின்னூட்டம் ஆங்கிலத்தில் இல்லை, மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/file/file_handlers.py:164 pdf_bot/file/file_handlers.py:189
+#: pdf_bot/file/file_handlers.py:168 pdf_bot/file/file_handlers.py:193
 msgid "Your file is too big for me to download and process"
 msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
+
+#: pdf_bot/file/file_handlers.py:169 pdf_bot/file/file_handlers.py:194
+msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
+msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
 
 #: pdf_bot/file/file_service.py:36
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
@@ -376,43 +340,43 @@ msgstr "கோப்பு அளவு {percent}மூலம் குறைக
 msgid "Select the task that you'll like to perform"
 msgstr "நீங்கள் செய்ய விரும்பும் பணியைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/image_handler/image_handler.py:54
+#: pdf_bot/image_handler/image_handler.py:55
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "நீங்கள் அழகுபடுத்த அல்லது PTM கோப்பு மாற்ற விரும்பும் படங்களை எனக்கு அனுப்பவும்"
 
-#: pdf_bot/image_handler/image_handler.py:58
+#: pdf_bot/image_handler/image_handler.py:59
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "நீங்கள் எனக்கு அனுப்பும் வரிசையில் படங்கள் அழகுபடுத்தப்பட்டு மாற்றப்படும் என்பதை நினைவில் கொள்க"
 
-#: pdf_bot/image_handler/image_handler.py:104
+#: pdf_bot/image_handler/image_handler.py:105
 msgid "You've sent me these images so far:"
 msgstr "நீங்கள் இதுவரை இந்த படங்களை எனக்கு அனுப்பியுள்ளீர்கள்:"
 
-#: pdf_bot/image_handler/image_handler.py:115
+#: pdf_bot/image_handler/image_handler.py:116
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "நீங்கள் எனக்கு அனைத்து படங்களையும் அனுப்பியிருந்தால், அல்லது படங்களை எனக்கு அனுப்பினால் கீழே இருந்து பணியைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/image_handler/image_handler.py:132
+#: pdf_bot/image_handler/image_handler.py:133
 msgid "You've already removed all the images you've sent me"
 msgstr "நீங்கள் எனக்கு அனுப்பிய அனைத்து படங்களையும் ஏற்கனவே நீக்கிவிட்டீர்கள்"
 
-#: pdf_bot/image_handler/image_handler.py:137
+#: pdf_bot/image_handler/image_handler.py:138
 msgid "{file_name} has been removed"
 msgstr "{file_name} அகற்றப்பட்டது"
 
-#: pdf_bot/image_handler/image_handler.py:155
+#: pdf_bot/image_handler/image_handler.py:156
 msgid "You haven't sent me any images"
 msgstr "நீங்கள் எனக்கு எந்த படங்களையும் அனுப்பவில்லை"
 
-#: pdf_bot/image_handler/image_handler.py:158
+#: pdf_bot/image_handler/image_handler.py:159
 msgid "You've only sent me one image"
 msgstr "நீங்கள் எனக்கு ஒரே ஒரு படத்தை மட்டுமே அனுப்பியுள்ளீர்கள்"
 
-#: pdf_bot/image_handler/image_handler.py:172
+#: pdf_bot/image_handler/image_handler.py:173
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "உங்கள் படங்களை அழகுபடுத்துதல் மற்றும் PDF கோப்பாக மாற்றுதல்"
 
-#: pdf_bot/image_handler/image_handler.py:174
+#: pdf_bot/image_handler/image_handler.py:175
 msgid "Converting your images into a PDF file"
 msgstr "உங்கள் படங்களை PDF கோப்பாக மாற்றுதல்"
 
@@ -671,6 +635,15 @@ msgstr "உங்கள் செய்தியில் எந்த படம
 #: pdf_bot/telegram_internal/telegram_service.py:117
 msgid "Your file is not a PDF file, please try again"
 msgstr "உங்கள் கோப்பு PPM கோப்பு அல்ல, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
+
+#: pdf_bot/telegram_internal/telegram_service.py:140
+msgid "Action cancelled"
+msgstr "நடவடிக்கை ரத்து"
+
+#: pdf_bot/telegram_internal/telegram_service.py:196
+#: pdf_bot/telegram_internal/telegram_service.py:203
+msgid "Here is your result file"
+msgstr "இங்கே உங்கள் விளைவாக கோப்பு உள்ளது"
 
 #: pdf_bot/text/text_service.py:21
 msgid "Skip"
@@ -1594,5 +1567,23 @@ msgstr "உங்கள் வலைப்பக்கத்தை மாற்�
 #~ "Timed out processing your web page, "
 #~ "your web page is probably too "
 #~ "complex to process"
+#~ msgstr ""
+
+#~ msgid "Something went wrong, please start over again"
+#~ msgstr ""
+
+#~ msgid "Your file is invalid and I couldn't open and process it"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is already encrypted"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is encrypted and you'll have to decrypt it first"
+#~ msgstr ""
+
+#~ msgid "You've sent me these {file_type} so far:"
+#~ msgstr ""
+
+#~ msgid "The result file is too large for me to send to you"
 #~ msgstr ""
 
