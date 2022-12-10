@@ -4,6 +4,7 @@ import os
 
 from dependency_injector import containers, providers
 from dotenv import load_dotenv
+from slack_sdk import WebClient
 from telegram.ext import Updater
 
 from pdf_bot.account import AccountRepository, AccountService
@@ -11,6 +12,7 @@ from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.crop import CropService
+from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.image import ImageService
@@ -41,6 +43,7 @@ from pdf_bot.watermark import WatermarkHandlers, WatermarkService
 load_dotenv()
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
 TIMEOUT = 45
 
 
@@ -53,8 +56,15 @@ class Core(containers.DeclarativeContainer):
     )
 
 
+class Clients(containers.DeclarativeContainer):
+    slack = providers.Object(WebClient(SLACK_TOKEN))
+
+
 class Repositories(containers.DeclarativeContainer):
+    clients = providers.DependenciesContainer()
+
     account = providers.Singleton(AccountRepository)
+    feedback = providers.Singleton(FeedbackRepository, slack_client=clients.slack)
     language = providers.Singleton(LanguageRepository)
     text = providers.Singleton(TextRepository)
 
@@ -93,6 +103,9 @@ class Services(containers.DeclarativeContainer):
         pdf_service=pdf,
         telegram_service=telegram,
         language_service=language,
+    )
+    feedback = providers.Singleton(
+        FeedbackService, feedback_repository=repositories.feedback
     )
     file = providers.Singleton(
         FileService,
@@ -261,6 +274,12 @@ class Handlers(containers.DeclarativeContainer):
     )
 
     compare = providers.Singleton(CompareHandlers, compare_service=services.compare)
+    feedback = providers.Singleton(
+        FeedbackHandler,
+        feedback_service=services.feedback,
+        language_service=services.language,
+        telegram_service=services.telegram,
+    )
     image = providers.Singleton(
         ImageHandler,
         image_service=services.image,
@@ -276,7 +295,8 @@ class Handlers(containers.DeclarativeContainer):
 
 class Application(containers.DeclarativeContainer):
     core = providers.Container(Core)
-    repositories = providers.Container(Repositories)
+    clients = providers.Container(Clients)
+    repositories = providers.Container(Repositories, clients=clients)
     services = providers.Container(Services, core=core, repositories=repositories)
     processors = providers.Container(Processors, services=services)
     handlers = providers.Container(Handlers, services=services, processors=processors)

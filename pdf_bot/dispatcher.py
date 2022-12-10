@@ -19,7 +19,7 @@ from pdf_bot.command.command_service import CommandService
 from pdf_bot.compare import CompareHandlers
 from pdf_bot.consts import CHANNEL_NAME, LANGUAGES, PAYMENT, SET_LANG
 from pdf_bot.containers import Application
-from pdf_bot.feedback import feedback_cov_handler
+from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file import FileHandlers
 from pdf_bot.image_handler import ImageHandler
 from pdf_bot.language import send_lang, set_lang, store_lang
@@ -47,6 +47,9 @@ def setup_dispatcher(
     ],
     compare_handlers: CompareHandlers = Provide[
         Application.handlers.compare  # pylint: disable=no-member
+    ],
+    feedback_handler: FeedbackHandler = Provide[
+        Application.handlers.feedback  # pylint: disable=no-member
     ],
     file_handlers: FileHandlers = Provide[
         Application.handlers.file  # pylint: disable=no-member
@@ -104,7 +107,7 @@ def setup_dispatcher(
     dispatcher.add_handler(file_handlers.conversation_handler())
 
     # Feedback handler
-    dispatcher.add_handler(feedback_cov_handler())
+    dispatcher.add_handler(feedback_handler.conversation_handler())
 
     # Admin commands handlers
     if ADMIN_TELEGRAM_ID is not None:
