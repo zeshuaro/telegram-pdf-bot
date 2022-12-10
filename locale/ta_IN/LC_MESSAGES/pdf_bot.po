@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 12:35+0000\n"
-"PO-Revision-Date: 2022-12-10 12:36\n"
+"POT-Creation-Date: 2022-12-10 12:41+0000\n"
+"PO-Revision-Date: 2022-12-10 12:41\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -204,14 +204,6 @@ msgstr "{command} - PTM கோப்புகளில் வாட்டர்�
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "பொத்தான் காலாவதியாகிவிட்டது, தயவுசெய்து ஒரு புதிய செய்தி/கேள்வியுடன் மீண்டும் முயற்சிக்கவும், பின்னர் புதிய பொத்தானை அழுத்தவும்"
 
-#: pdf_bot/language.py:26 pdf_bot/language_new/language_service.py:79
-msgid "Select your language"
-msgstr "உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்"
-
-#: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
-msgid "Your language has been set to {language}"
-msgstr "உங்கள் மொழி {language}"
-
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
 msgstr "செயலாக்கத்தை நிறைவுசெய்வது தோல்வியுற்றது"
@@ -379,6 +371,14 @@ msgstr "உங்கள் படங்களை அழகுபடுத்த�
 #: pdf_bot/image_handler/image_handler.py:175
 msgid "Converting your images into a PDF file"
 msgstr "உங்கள் படங்களை PDF கோப்பாக மாற்றுதல்"
+
+#: pdf_bot/language/language_service.py:79
+msgid "Select your language"
+msgstr "உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்"
+
+#: pdf_bot/language/language_service.py:118
+msgid "Your language has been set to {language}"
+msgstr "உங்கள் மொழி {language}"
 
 #: pdf_bot/merge/merge_service.py:33
 msgid "Send me the PDF files that you'll like to merge"

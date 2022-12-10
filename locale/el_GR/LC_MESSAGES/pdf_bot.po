@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 12:35+0000\n"
-"PO-Revision-Date: 2022-12-10 12:36\n"
+"POT-Creation-Date: 2022-12-10 12:41+0000\n"
+"PO-Revision-Date: 2022-12-10 12:41\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -204,14 +204,6 @@ msgstr "{command} - προσθήκη υδατογραφήματος σε αρχ�
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Το κουμπί έχει λήξει, προσπαθήστε ξανά με ένα νέο μήνυμα/ερώτημα και, στη συνέχεια, πατήστε το νέο κουμπί"
 
-#: pdf_bot/language.py:26 pdf_bot/language_new/language_service.py:79
-msgid "Select your language"
-msgstr "Επιλέξτε τη γλώσσα σας"
-
-#: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
-msgid "Your language has been set to {language}"
-msgstr "Η γλώσσα σας έχει ρυθμιστεί σε {language}"
-
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
 msgstr "Απέτυχε η ολοκλήρωση της διαδικασίας"
@@ -379,6 +371,14 @@ msgstr "Καλλωπισμός και μετατροπή των εικόνων �
 #: pdf_bot/image_handler/image_handler.py:175
 msgid "Converting your images into a PDF file"
 msgstr "Μετατροπή των εικόνων σας σε αρχείο PDF"
+
+#: pdf_bot/language/language_service.py:79
+msgid "Select your language"
+msgstr "Επιλέξτε τη γλώσσα σας"
+
+#: pdf_bot/language/language_service.py:118
+msgid "Your language has been set to {language}"
+msgstr "Η γλώσσα σας έχει ρυθμιστεί σε {language}"
 
 #: pdf_bot/merge/merge_service.py:33
 msgid "Send me the PDF files that you'll like to merge"

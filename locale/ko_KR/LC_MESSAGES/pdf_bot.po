@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 12:35+0000\n"
-"PO-Revision-Date: 2022-12-10 12:36\n"
+"POT-Creation-Date: 2022-12-10 12:41+0000\n"
+"PO-Revision-Date: 2022-12-10 12:41\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -204,14 +204,6 @@ msgstr "{command} - PDF 파일에 워터 마크 추가"
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "버튼이 만료되었으므로 새 메시지 / 쿼리로 다시 시도한 다음 새 버튼을 누르십시오."
 
-#: pdf_bot/language.py:26 pdf_bot/language_new/language_service.py:79
-msgid "Select your language"
-msgstr "언어 선택"
-
-#: pdf_bot/language.py:69 pdf_bot/language_new/language_service.py:118
-msgid "Your language has been set to {language}"
-msgstr "언어가 {language}설정되었습니다."
-
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
 msgstr "프로세스를 완료하지 못했습니다."
@@ -379,6 +371,14 @@ msgstr "이미지를 아름답게 만들고 PDF 파일로 변환"
 #: pdf_bot/image_handler/image_handler.py:175
 msgid "Converting your images into a PDF file"
 msgstr "이미지를 PDF 파일로 변환"
+
+#: pdf_bot/language/language_service.py:79
+msgid "Select your language"
+msgstr "언어 선택"
+
+#: pdf_bot/language/language_service.py:118
+msgid "Your language has been set to {language}"
+msgstr "언어가 {language}설정되었습니다."
 
 #: pdf_bot/merge/merge_service.py:33
 msgid "Send me the PDF files that you'll like to merge"
