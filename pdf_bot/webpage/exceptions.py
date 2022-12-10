@@ -1,0 +1,2 @@
+class WebpageServiceError(Exception):
+    pass
