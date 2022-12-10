@@ -24,12 +24,7 @@ from pdf_bot.file import FileHandlers
 from pdf_bot.image_handler import ImageHandler
 from pdf_bot.language import send_lang, set_lang, store_lang
 from pdf_bot.merge import MergeHandlers
-from pdf_bot.payment import (
-    precheckout_check,
-    send_payment_invoice,
-    send_support_options,
-    successful_payment,
-)
+from pdf_bot.payment import PaymentService
 from pdf_bot.text import TextHandlers
 from pdf_bot.url import url_to_pdf
 from pdf_bot.watermark import WatermarkHandlers
@@ -60,6 +55,9 @@ def setup_dispatcher(
     merge_handlers: MergeHandlers = Provide[
         Application.handlers.merge  # pylint: disable=no-member
     ],
+    payment_service: PaymentService = Provide[
+        Application.services.payment  # pylint: disable=no-member
+    ],
     text_handlers: TextHandlers = Provide[
         Application.handlers.text  # pylint: disable=no-member
     ],
@@ -69,7 +67,10 @@ def setup_dispatcher(
 ):
     dispatcher.add_handler(
         CommandHandler(
-            "start", send_support_options, Filters.regex("support"), run_async=True
+            "start",
+            payment_service.send_support_options,
+            Filters.regex("support"),
+            run_async=True,
         )
     )
     dispatcher.add_handler(
@@ -79,16 +80,29 @@ def setup_dispatcher(
     dispatcher.add_handler(CommandHandler("help", help_msg, run_async=True))
     dispatcher.add_handler(CommandHandler("setlang", send_lang, run_async=True))
     dispatcher.add_handler(
-        CommandHandler("support", send_support_options, run_async=True)
+        CommandHandler("support", payment_service.send_support_options, run_async=True)
     )
 
     # Callback query handler
-    dispatcher.add_handler(CallbackQueryHandler(process_callback_query, run_async=True))
+    dispatcher.add_handler(
+        CallbackQueryHandler(
+            lambda update, context: process_callback_query(
+                update, context, payment_service
+            ),
+            run_async=True,
+        )
+    )
 
     # Payment handlers
-    dispatcher.add_handler(PreCheckoutQueryHandler(precheckout_check, run_async=True))
     dispatcher.add_handler(
-        MessageHandler(Filters.successful_payment, successful_payment, run_async=True)
+        PreCheckoutQueryHandler(payment_service.precheckout_check, run_async=True)
+    )
+    dispatcher.add_handler(
+        MessageHandler(
+            Filters.successful_payment,
+            payment_service.successful_payment,
+            run_async=True,
+        )
     )
 
     # URL handler
@@ -160,7 +174,9 @@ def help_msg(update, context):
     )
 
 
-def process_callback_query(update: Update, context: CallbackContext):
+def process_callback_query(
+    update: Update, context: CallbackContext, payment_service: PaymentService
+):
     _ = set_lang(update, context)
     query = update.callback_query
     data = query.data
@@ -175,9 +191,9 @@ def process_callback_query(update: Update, context: CallbackContext):
         elif data in LANGUAGES:
             store_lang(update, context, query)
         if data == PAYMENT:
-            send_support_options(update, context, query)
+            payment_service.send_support_options(update, context, query)
         elif data.startswith("payment,"):
-            send_payment_invoice(update, context, query)
+            payment_service.send_invoice(update, context, query)
 
         context.user_data[CALLBACK_DATA].remove(data)
 

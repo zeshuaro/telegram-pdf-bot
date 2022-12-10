@@ -8,6 +8,7 @@ from telegram import (
     File,
     Message,
     PhotoSize,
+    PreCheckoutQuery,
     Update,
     User,
 )
@@ -18,6 +19,7 @@ class TelegramTestMixin:
     @classmethod
     def setup_class(cls) -> None:
         cls.telegram_user_id = 0
+        cls.telegram_query_user_id = 1
         cls.telegram_username = "username"
         cls.telegram_file_id = "file_id"
         cls.telegram_document_id = "document_id"
@@ -31,9 +33,14 @@ class TelegramTestMixin:
         pass
 
     def setup_method(self) -> None:
+        self.telegram_bot = MagicMock(spec=Bot)
+
         self.telegram_user = MagicMock(spec=User)
         self.telegram_user.id = self.telegram_user_id
         self.telegram_user.username = self.telegram_username
+
+        self.telegram_query_user = MagicMock(spec=User)
+        self.telegram_query_user.id = self.telegram_query_user_id
 
         self.telegram_chat = MagicMock(spec=Chat)
         self.telegram_chat.id = self.telegram_chat_id
@@ -54,17 +61,19 @@ class TelegramTestMixin:
         self.telegram_message.document = self.telegram_document
         self.telegram_message.text = self.telegram_text
 
+        self.telegram_pre_checkout_query = MagicMock(spec=PreCheckoutQuery)
+
         self.telegram_update = MagicMock(spec=Update)
         self.telegram_update.effective_message = self.telegram_message
+        self.telegram_update.pre_checkout_query = self.telegram_pre_checkout_query
 
         self.telegram_user_data = MagicMock(spec=dict)
         self.telegram_context = MagicMock(spec=CallbackContext)
+        self.telegram_context.bot = self.telegram_bot
         self.telegram_context.user_data = self.telegram_user_data
 
-        self.telegram_query = MagicMock(spec=CallbackQuery)
-        self.telegram_query.from_user = self.telegram_user
-
-        self.telegram_bot = MagicMock(spec=Bot)
+        self.telegram_callback_query = MagicMock(spec=CallbackQuery)
+        self.telegram_callback_query.from_user = self.telegram_query_user
 
     def teardown_method(self) -> None:
         pass

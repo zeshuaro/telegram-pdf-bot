@@ -50,7 +50,7 @@ class TestLanguageRService(TelegramTestMixin):
 
     def test_get_user_language_from_query(self) -> None:
         actual = self.sut.get_user_language(
-            self.telegram_update, self.telegram_context, self.telegram_query
+            self.telegram_update, self.telegram_context, self.telegram_callback_query
         )
 
         assert actual == self.valid_lang_code
@@ -59,27 +59,27 @@ class TestLanguageRService(TelegramTestMixin):
         )
 
     def test_update_user_language(self) -> None:
-        self.telegram_query.data = self.valid_lang
+        self.telegram_callback_query.data = self.valid_lang
         user_data = {self.sut.LANGUAGE: self.valid_lang_code}
         self.telegram_user_data.__getitem__.side_effect = user_data.__getitem__
         self.telegram_user_data.__contains__.side_effect = user_data.__contains__
 
         self.sut.update_user_language(
-            self.telegram_update, self.telegram_context, self.telegram_query
+            self.telegram_update, self.telegram_context, self.telegram_callback_query
         )
 
         self.language_repository.upsert_language.assert_called_once_with(
-            self.telegram_user_id, self.valid_lang_code
+            self.telegram_query_user_id, self.valid_lang_code
         )
         self.telegram_user_data.__setitem__.assert_called_once_with(
             self.sut.LANGUAGE, self.valid_lang_code
         )
 
     def test_update_user_language_invalid_language(self) -> None:
-        self.telegram_query.data = "clearly_invalid"
+        self.telegram_callback_query.data = "clearly_invalid"
 
         self.sut.update_user_language(
-            self.telegram_update, self.telegram_context, self.telegram_query
+            self.telegram_update, self.telegram_context, self.telegram_callback_query
         )
 
         self.language_repository.upsert_language.assert_not_called()

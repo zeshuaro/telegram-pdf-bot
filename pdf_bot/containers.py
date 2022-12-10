@@ -21,6 +21,7 @@ from pdf_bot.image_processor import BeautifyImageProcessor, ImageToPDFProcessor
 from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
+from pdf_bot.payment import PaymentService
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
@@ -127,6 +128,10 @@ class Services(containers.DeclarativeContainer):
         MergeService,
         pdf_service=pdf,
         telegram_service=telegram,
+        language_service=language,
+    )
+    payment = providers.Singleton(
+        PaymentService,
         language_service=language,
     )
     text = providers.Singleton(
