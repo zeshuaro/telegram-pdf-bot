@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 from telegram import (
     Bot,
     CallbackQuery,
+    Chat,
     Document,
     File,
     Message,
@@ -17,6 +18,7 @@ class TelegramTestMixin:
     @classmethod
     def setup_class(cls) -> None:
         cls.telegram_user_id = 0
+        cls.telegram_username = "username"
         cls.telegram_file_id = "file_id"
         cls.telegram_document_id = "document_id"
         cls.telegram_document_name = "document_name"
@@ -31,6 +33,10 @@ class TelegramTestMixin:
     def setup_method(self) -> None:
         self.telegram_user = MagicMock(spec=User)
         self.telegram_user.id = self.telegram_user_id
+        self.telegram_user.username = self.telegram_username
+
+        self.telegram_chat = MagicMock(spec=Chat)
+        self.telegram_chat.id = self.telegram_chat_id
 
         self.telegram_file = MagicMock(spec=File)
         self.telegram_file.file_id = self.telegram_file_id
@@ -43,6 +49,7 @@ class TelegramTestMixin:
         self.telegram_photo_size.file_id = self.telegram_photo_size_id
 
         self.telegram_message = MagicMock(spec=Message)
+        self.telegram_message.chat = self.telegram_chat
         self.telegram_message.from_user = self.telegram_user
         self.telegram_message.document = self.telegram_document
         self.telegram_message.text = self.telegram_text
