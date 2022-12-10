@@ -4,10 +4,12 @@ import os
 
 from dependency_injector import containers, providers
 from dotenv import load_dotenv
+from requests import Session
 from slack_sdk import WebClient
 from telegram.ext import Updater
 
 from pdf_bot.account import AccountRepository, AccountService
+from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
 from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
@@ -59,6 +61,10 @@ class Core(containers.DeclarativeContainer):
 
 
 class Clients(containers.DeclarativeContainer):
+    session = Session()
+    session.hooks = {"response": lambda r, *args, **kwargs: r.raise_for_status()}
+
+    api = providers.Object(session)
     slack = providers.Object(WebClient(SLACK_TOKEN))
 
 
@@ -66,6 +72,7 @@ class Repositories(containers.DeclarativeContainer):
     clients = providers.DependenciesContainer()
 
     account = providers.Singleton(AccountRepository)
+    analytics = providers.Singleton(AnalyticsRepository, api_client=clients.api)
     feedback = providers.Singleton(FeedbackRepository, slack_client=clients.slack)
     language = providers.Singleton(LanguageRepository)
     text = providers.Singleton(TextRepository)
@@ -85,12 +92,21 @@ class Services(containers.DeclarativeContainer):
         LanguageService, language_repository=repositories.language
     )
 
+    analytics = providers.Singleton(
+        AnalyticsService,
+        analytics_repository=repositories.analytics,
+        language_service=language,
+    )
     command = providers.Singleton(
         CommandService, account_service=account, language_service=language
     )
     file_task = providers.Singleton(FileTaskService, language_service=language)
     telegram = providers.Singleton(
-        TelegramService, io_service=io, language_service=language, updater=core.updater
+        TelegramService,
+        io_service=io,
+        language_service=language,
+        analytics_service=analytics,
+        updater=core.updater,
     )
 
     image = providers.Singleton(

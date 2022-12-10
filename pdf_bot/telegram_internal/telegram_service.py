@@ -19,7 +19,7 @@ from telegram import (
 from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
 from telegram.ext import CallbackContext, ConversationHandler, Updater
 
-from pdf_bot.analytics import EventAction, TaskType, send_event
+from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
 from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, PAYMENT
 from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageService
@@ -43,11 +43,13 @@ class TelegramService:
         self,
         io_service: IOService,
         language_service: LanguageService,
+        analytics_service: AnalyticsService,
         updater: Updater | None = None,
         bot: Bot | None = None,
     ) -> None:
         self.io_service = io_service
         self.language_service = language_service
+        self.analytics_service = analytics_service
         self.bot = bot or updater.bot  # type: ignore
 
     @staticmethod
@@ -204,7 +206,7 @@ class TelegramService:
                 reply_markup=reply_markup,
             )
 
-        send_event(update, context, task, EventAction.complete)
+        self.analytics_service.send_event(update, context, task, EventAction.complete)
 
     def send_file_names(
         self, chat_id: str, text: str, file_data_list: List[FileData]
