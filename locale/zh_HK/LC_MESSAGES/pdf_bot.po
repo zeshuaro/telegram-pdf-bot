@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 00:37+0000\n"
-"PO-Revision-Date: 2022-12-10 00:38\n"
+"POT-Creation-Date: 2022-12-10 04:15+0000\n"
+"PO-Revision-Date: 2022-12-10 04:15\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -147,61 +147,61 @@ msgstr "一餐飯"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:119
+#: pdf_bot/dispatcher.py:122
 msgid "Set Language 🌎"
 msgstr "設置語言 🌎"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:124 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: pdf_bot/dispatcher.py:122 pdf_bot/payment.py:83
+#: pdf_bot/dispatcher.py:125 pdf_bot/payment.py:83
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "支持PDF Bot"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:134
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Send以下其中一樣畀我就可以用到大部分嘅功能："
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:137
 msgid "- PDF files"
 msgstr "- PDF檔案"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:138
 msgid "- Images"
 msgstr ""
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:139
 msgid "- Webpage links"
 msgstr "- 網頁連結"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "靜低嘅功能就要用以下呢啲嘅指令："
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:144
 msgid "{command} - compare PDF files"
 msgstr "{command} - 對比PDF檔案"
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - merge PDF files"
 msgstr "{command} - 合併PDF檔案"
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:146
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr ""
 
-#: pdf_bot/dispatcher.py:146
+#: pdf_bot/dispatcher.py:149
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - 用文字訊息嚟創建PDF檔案"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:152
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - 加水印去PDF檔案"
 
-#: pdf_bot/dispatcher.py:184
+#: pdf_bot/dispatcher.py:187
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr ""
 
@@ -293,8 +293,8 @@ msgstr "你send咗呢啲{file_type}畀我："
 msgid "The result file is too large for me to send to you"
 msgstr "個檔案太大啦，我send唔到俾你"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:165
-#: pdf_bot/file/file_handlers.py:190 pdf_bot/utils.py:156
+#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:190
+#: pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "留意番呢個係Telegram Bot嘅限制，呢個限唔係我嘅控制範圍，要等Telegram改呢個限制我先至可以處理你嘅檔案"
 
@@ -347,46 +347,6 @@ msgstr "- 仲有更多功能..."
 #: pdf_bot/command/command_service.py:45
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "用 {command} 嚟睇下點用PDF Bot"
-
-#: pdf_bot/commands/image.py:79
-msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr ""
-
-#: pdf_bot/commands/image.py:83
-msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr ""
-
-#: pdf_bot/commands/image.py:110
-msgid "File name unavailable"
-msgstr "冇檔案名"
-
-#: pdf_bot/commands/image.py:129
-msgid "Your file is not an image"
-msgstr ""
-
-#: pdf_bot/commands/image.py:137
-msgid "Your file is too large for me to download and process"
-msgstr "你嘅PDF檔案太大啦，我下載唔到同處理唔到"
-
-#: pdf_bot/commands/image.py:150
-msgid "images"
-msgstr ""
-
-#: pdf_bot/commands/image.py:157
-msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr ""
-
-#: pdf_bot/commands/image.py:201
-msgid "{file_name} has been removed for beautifying or converting"
-msgstr "Del咗{file_name}，呢個檔案唔會攞嚟美化同轉換"
-
-#: pdf_bot/commands/image.py:238
-msgid "Beautifying and converting your images"
-msgstr ""
-
-#: pdf_bot/commands/image.py:243
-msgid "Converting your images into PDF"
-msgstr ""
 
 #: pdf_bot/compare/compare_service.py:38
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -456,39 +416,79 @@ msgstr "檔案大小細咗{percent}，由{old_size}壓縮到{new_size}"
 msgid "Select the task that you'll like to perform"
 msgstr "揀你想做啲乜"
 
-#: pdf_bot/merge/merge_service.py:35
+#: pdf_bot/image_handler/image_handler.py:54
+msgid "Send me the images that you'll like to beautify or convert into a PDF file"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:58
+msgid "Note that the images will be beautified and converted in the order that you send me"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:104
+msgid "You've sent me these images so far:"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:115
+msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:132
+msgid "You've already removed all the images you've sent me"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:137
+msgid "{file_name} has been removed"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:155
+msgid "You haven't sent me any images"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:158
+msgid "You've only sent me one image"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:172
+msgid "Beautifying and converting your images into a PDF file"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:174
+msgid "Converting your images into a PDF file"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:33
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Send你想合併嘅PDF檔案畀我"
 
-#: pdf_bot/merge/merge_service.py:36
+#: pdf_bot/merge/merge_service.py:34
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "留意返，我會根據你send畀我嘅順序嚟合併你啲檔案"
 
-#: pdf_bot/merge/merge_service.py:81
+#: pdf_bot/merge/merge_service.py:79
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:92
+#: pdf_bot/merge/merge_service.py:90
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "如果你已經send晒你想合併嘅PDF檔案畀我就噤{done}，唔係嘅話就繼續send啲檔案畀我"
 
-#: pdf_bot/merge/merge_service.py:110
+#: pdf_bot/merge/merge_service.py:108
 msgid "You've already removed all the PDF files you've sent me"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:115
+#: pdf_bot/merge/merge_service.py:113
 msgid "{file_name} has been removed for merging"
 msgstr "Del咗{file_name}，呢個檔案唔會攞嚟合併"
 
-#: pdf_bot/merge/merge_service.py:133
+#: pdf_bot/merge/merge_service.py:131
 msgid "You haven't sent me any PDF files"
 msgstr "你都未send PDF檔案畀我"
 
-#: pdf_bot/merge/merge_service.py:136
+#: pdf_bot/merge/merge_service.py:134
 msgid "You've only sent me one PDF file"
 msgstr "你淨係send咗一個PDF檔案畀我咋"
 
-#: pdf_bot/merge/merge_service.py:146
+#: pdf_bot/merge/merge_service.py:144
 msgid "Merging your PDF files"
 msgstr "合併緊你嘅PDF檔案"
 
@@ -1557,5 +1557,26 @@ msgstr "加緊水印去你個PDF檔案"
 #~ msgstr ""
 
 #~ msgid "Your image is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "File name unavailable"
+#~ msgstr ""
+
+#~ msgid "Your file is not an image"
+#~ msgstr ""
+
+#~ msgid "Your file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "images"
+#~ msgstr ""
+
+#~ msgid "{file_name} has been removed for beautifying or converting"
+#~ msgstr ""
+
+#~ msgid "Beautifying and converting your images"
+#~ msgstr ""
+
+#~ msgid "Converting your images into PDF"
 #~ msgstr ""
 

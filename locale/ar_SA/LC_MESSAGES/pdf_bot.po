@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 00:37+0000\n"
-"PO-Revision-Date: 2022-12-10 00:38\n"
+"POT-Creation-Date: 2022-12-10 04:15+0000\n"
+"PO-Revision-Date: 2022-12-10 04:15\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: Arabic\n"
@@ -147,61 +147,61 @@ msgstr "طعام"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:119
+#: pdf_bot/dispatcher.py:122
 msgid "Set Language 🌎"
 msgstr "تغير اللغه 🌎"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:124 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "انضم إلى القناة"
 
-#: pdf_bot/dispatcher.py:122 pdf_bot/payment.py:83
+#: pdf_bot/dispatcher.py:125 pdf_bot/payment.py:83
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "ادعم بوت ال PDF"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:134
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "يمكنك تنفيذ معظم المهام عن طريق إرسال أحد ما يلي:"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:137
 msgid "- PDF files"
 msgstr "- ملفات PDF"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:138
 msgid "- Images"
 msgstr "- صور"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:139
 msgid "- Webpage links"
 msgstr "- روابط صفحة ويب"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "يمكن تنفيذ باقي المهام باستخدام الأوامر التالية:"
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:144
 msgid "{command} - compare PDF files"
 msgstr "{command} - مقارنة ملفات PDF"
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - merge PDF files"
 msgstr "{command} - دمج ملفات PDF"
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:146
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - تحويل ودمج صور متعددة في ملفات PDF"
 
-#: pdf_bot/dispatcher.py:146
+#: pdf_bot/dispatcher.py:149
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} -- إنشاء ملفات PDF من الرسائل النصية"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:152
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - إضافة علامة مائية لملفات PDF"
 
-#: pdf_bot/dispatcher.py:184
+#: pdf_bot/dispatcher.py:187
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "انتهت صلاحية الزر ، يرجى المحاولة مرة أخرى برسالة / استعلام جديد ثم الضغط على الزر الجديد"
 
@@ -293,8 +293,8 @@ msgstr "لقد أرسلت لي هذه {file_type} حتى الآن:"
 msgid "The result file is too large for me to send to you"
 msgstr "الملف الناتج كبير جدا لارساله"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:165
-#: pdf_bot/file/file_handlers.py:190 pdf_bot/utils.py:156
+#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:190
+#: pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "لاحظ أن هذا هو تقييد تيليجرام بوت وليس هناك شيء يمكنني القيام به ما لم تغير تيليجرام هذا الحد"
 
@@ -347,46 +347,6 @@ msgstr "-وأكثر من ذلك ..."
 #: pdf_bot/command/command_service.py:45
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "اكتب {command} لمعرفة كيفية استخدام PDF Bot"
-
-#: pdf_bot/commands/image.py:79
-msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr "أرسل لي الصور التي تريد تجميلها أو تحويلها إلى ملف PDF"
-
-#: pdf_bot/commands/image.py:83
-msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr "لاحظ أن الصور سيتم تجميلها وتحويلها بالترتيب الذي ترسله لي"
-
-#: pdf_bot/commands/image.py:110
-msgid "File name unavailable"
-msgstr "ان هذا الاسم غير متاح حاليا"
-
-#: pdf_bot/commands/image.py:129
-msgid "Your file is not an image"
-msgstr "الملف ليس صورة"
-
-#: pdf_bot/commands/image.py:137
-msgid "Your file is too large for me to download and process"
-msgstr "ملفك كبير جدا بالنسبة لي لتحميل ومعالجة"
-
-#: pdf_bot/commands/image.py:150
-msgid "images"
-msgstr "الصور"
-
-#: pdf_bot/commands/image.py:157
-msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr "حدد المهمة من الأسفل إذا كنت قد أرسلت لي جميع الصور ، أو استمر في إرسال الصور لي"
-
-#: pdf_bot/commands/image.py:201
-msgid "{file_name} has been removed for beautifying or converting"
-msgstr "تمت إزالة {file_name} للتجميل أو التحويل"
-
-#: pdf_bot/commands/image.py:238
-msgid "Beautifying and converting your images"
-msgstr "تجميل الصور وتحويلها"
-
-#: pdf_bot/commands/image.py:243
-msgid "Converting your images into PDF"
-msgstr "تحويل صورك إلى PDF"
 
 #: pdf_bot/compare/compare_service.py:38
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -456,39 +416,79 @@ msgstr "حجم الملف الذي تم تخفيضه بمقدار {percent}، م
 msgid "Select the task that you'll like to perform"
 msgstr "حدد نوع المهمة التي تريد تنفيذها"
 
-#: pdf_bot/merge/merge_service.py:35
+#: pdf_bot/image_handler/image_handler.py:54
+msgid "Send me the images that you'll like to beautify or convert into a PDF file"
+msgstr "أرسل لي الصور التي تريد تجميلها أو تحويلها إلى ملف PDF"
+
+#: pdf_bot/image_handler/image_handler.py:58
+msgid "Note that the images will be beautified and converted in the order that you send me"
+msgstr "لاحظ أن الصور سيتم تجميلها وتحويلها بالترتيب الذي ترسله لي"
+
+#: pdf_bot/image_handler/image_handler.py:104
+msgid "You've sent me these images so far:"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:115
+msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
+msgstr "حدد المهمة من الأسفل إذا كنت قد أرسلت لي جميع الصور ، أو استمر في إرسال الصور لي"
+
+#: pdf_bot/image_handler/image_handler.py:132
+msgid "You've already removed all the images you've sent me"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:137
+msgid "{file_name} has been removed"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:155
+msgid "You haven't sent me any images"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:158
+msgid "You've only sent me one image"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:172
+msgid "Beautifying and converting your images into a PDF file"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:174
+msgid "Converting your images into a PDF file"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:33
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "أرسل لي ملفات PDF التي تريد دمجها"
 
-#: pdf_bot/merge/merge_service.py:36
+#: pdf_bot/merge/merge_service.py:34
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "لاحظ أنه سيتم دمج الملفات بالترتيب الذي ترسله لي"
 
-#: pdf_bot/merge/merge_service.py:81
+#: pdf_bot/merge/merge_service.py:79
 msgid "You've sent me these PDF files so far:"
 msgstr "لقد أرسلت لي ملفات PDF هذه حتى الآن:"
 
-#: pdf_bot/merge/merge_service.py:92
+#: pdf_bot/merge/merge_service.py:90
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "اضغط {done} إذا كنت قد أرسلت لي جميع ملفات PDF التي تريد دمجها أو الاستمرار في إرسال ملفات PDF لي"
 
-#: pdf_bot/merge/merge_service.py:110
+#: pdf_bot/merge/merge_service.py:108
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "لقد قمت بالفعل بإزالة جميع ملفات PDF التي أرسلتها إلي"
 
-#: pdf_bot/merge/merge_service.py:115
+#: pdf_bot/merge/merge_service.py:113
 msgid "{file_name} has been removed for merging"
 msgstr "تمت إزالة {file_name} للدمج"
 
-#: pdf_bot/merge/merge_service.py:133
+#: pdf_bot/merge/merge_service.py:131
 msgid "You haven't sent me any PDF files"
 msgstr "لم ترسل لي أي ملفات PDF"
 
-#: pdf_bot/merge/merge_service.py:136
+#: pdf_bot/merge/merge_service.py:134
 msgid "You've only sent me one PDF file"
 msgstr "لقد أرسلت لي ملف PDF واحد فقط"
 
-#: pdf_bot/merge/merge_service.py:146
+#: pdf_bot/merge/merge_service.py:144
 msgid "Merging your PDF files"
 msgstr "جاري دمج المفات"
 
@@ -1559,5 +1559,26 @@ msgstr "جاري اضافة العلامة المائية"
 #~ msgstr ""
 
 #~ msgid "Your image is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "File name unavailable"
+#~ msgstr ""
+
+#~ msgid "Your file is not an image"
+#~ msgstr ""
+
+#~ msgid "Your file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "images"
+#~ msgstr ""
+
+#~ msgid "{file_name} has been removed for beautifying or converting"
+#~ msgstr ""
+
+#~ msgid "Beautifying and converting your images"
+#~ msgstr ""
+
+#~ msgid "Converting your images into PDF"
 #~ msgstr ""
 

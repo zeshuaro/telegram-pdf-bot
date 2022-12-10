@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 00:37+0000\n"
-"PO-Revision-Date: 2022-12-10 00:38\n"
+"POT-Creation-Date: 2022-12-10 04:15+0000\n"
+"PO-Revision-Date: 2022-12-10 04:15\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -147,61 +147,61 @@ msgstr "식사"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:119
+#: pdf_bot/dispatcher.py:122
 msgid "Set Language 🌎"
 msgstr "언어 설정 🌎"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:124 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "채널 가입"
 
-#: pdf_bot/dispatcher.py:122 pdf_bot/payment.py:83
+#: pdf_bot/dispatcher.py:125 pdf_bot/payment.py:83
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "지원 PDF 봇"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:134
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "다음 중 하나를 보내서 대부분의 작업을 수행할 수 있습니다."
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:137
 msgid "- PDF files"
 msgstr "- PDF 파일"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:138
 msgid "- Images"
 msgstr "- 이미지"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:139
 msgid "- Webpage links"
 msgstr "- 웹 페이지 링크"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "나머지 작업은 다음 명령을 사용하여 수행할 수 있습니다."
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:144
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF 파일을 비교"
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF 파일 병합"
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:146
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 변환및 PDF 파일로 여러 이미지를 결합"
 
-#: pdf_bot/dispatcher.py:146
+#: pdf_bot/dispatcher.py:149
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - 문자 메시지에서 PDF 파일을 만듭니다."
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:152
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF 파일에 워터 마크 추가"
 
-#: pdf_bot/dispatcher.py:184
+#: pdf_bot/dispatcher.py:187
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "버튼이 만료되었으므로 새 메시지 / 쿼리로 다시 시도한 다음 새 버튼을 누르십시오."
 
@@ -293,8 +293,8 @@ msgstr "당신은 지금까지 나에게 이러한 {file_type} 보냈습니다 :
 msgid "The result file is too large for me to send to you"
 msgstr "결과 파일이 너무 커서 전송할 수 없습니다."
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:165
-#: pdf_bot/file/file_handlers.py:190 pdf_bot/utils.py:156
+#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:190
+#: pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
 
@@ -347,46 +347,6 @@ msgstr "- 그리고 더 많은 ..."
 #: pdf_bot/command/command_service.py:45
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "PDF 봇 사용 방법을 보려면 {command} 입력"
-
-#: pdf_bot/commands/image.py:79
-msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr "PDF 파일로 아름답게 변환하거나 변환하려는 이미지를 보내주십시오."
-
-#: pdf_bot/commands/image.py:83
-msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr "이미지를 아름답게 만들고 보내주는 순서대로 변환됩니다."
-
-#: pdf_bot/commands/image.py:110
-msgid "File name unavailable"
-msgstr "파일 이름을 사용할 수 없음"
-
-#: pdf_bot/commands/image.py:129
-msgid "Your file is not an image"
-msgstr "파일은 이미지가 아닙니다."
-
-#: pdf_bot/commands/image.py:137
-msgid "Your file is too large for me to download and process"
-msgstr "파일이 너무 커서 다운로드하고 처리할 수 없습니다."
-
-#: pdf_bot/commands/image.py:150
-msgid "images"
-msgstr "이미지"
-
-#: pdf_bot/commands/image.py:157
-msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr "모든 이미지를 보낸 경우 아래에서 작업을 선택하거나 이미지를 계속 전송합니다."
-
-#: pdf_bot/commands/image.py:201
-msgid "{file_name} has been removed for beautifying or converting"
-msgstr "{file_name} 미화 또는 변환을 위해 제거되었습니다."
-
-#: pdf_bot/commands/image.py:238
-msgid "Beautifying and converting your images"
-msgstr "이미지 의 미화 및 변환"
-
-#: pdf_bot/commands/image.py:243
-msgid "Converting your images into PDF"
-msgstr "이미지 변환 PDF"
 
 #: pdf_bot/compare/compare_service.py:38
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -456,39 +416,79 @@ msgstr "{old_size} {new_size}파일 크기가 {percent}감소했습니다."
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
 
-#: pdf_bot/merge/merge_service.py:35
+#: pdf_bot/image_handler/image_handler.py:54
+msgid "Send me the images that you'll like to beautify or convert into a PDF file"
+msgstr "PDF 파일로 아름답게 변환하거나 변환하려는 이미지를 보내주십시오."
+
+#: pdf_bot/image_handler/image_handler.py:58
+msgid "Note that the images will be beautified and converted in the order that you send me"
+msgstr "이미지를 아름답게 만들고 보내주는 순서대로 변환됩니다."
+
+#: pdf_bot/image_handler/image_handler.py:104
+msgid "You've sent me these images so far:"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:115
+msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
+msgstr "모든 이미지를 보낸 경우 아래에서 작업을 선택하거나 이미지를 계속 전송합니다."
+
+#: pdf_bot/image_handler/image_handler.py:132
+msgid "You've already removed all the images you've sent me"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:137
+msgid "{file_name} has been removed"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:155
+msgid "You haven't sent me any images"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:158
+msgid "You've only sent me one image"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:172
+msgid "Beautifying and converting your images into a PDF file"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:174
+msgid "Converting your images into a PDF file"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:33
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "병합하려는 PDF 파일 보내기"
 
-#: pdf_bot/merge/merge_service.py:36
+#: pdf_bot/merge/merge_service.py:34
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "파일을 보내주는 순서대로 병합됩니다."
 
-#: pdf_bot/merge/merge_service.py:81
+#: pdf_bot/merge/merge_service.py:79
 msgid "You've sent me these PDF files so far:"
 msgstr "지금까지 나에게 이러한 PDF 파일을 보냈습니다."
 
-#: pdf_bot/merge/merge_service.py:92
+#: pdf_bot/merge/merge_service.py:90
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "병합하거나 PDF 파일을 계속 보내려면 {done} 누르면"
 
-#: pdf_bot/merge/merge_service.py:110
+#: pdf_bot/merge/merge_service.py:108
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "나에게 보낸 모든 PDF 파일을 이미 제거했습니다."
 
-#: pdf_bot/merge/merge_service.py:115
+#: pdf_bot/merge/merge_service.py:113
 msgid "{file_name} has been removed for merging"
 msgstr "병합을 위해 {file_name} 제거되었습니다."
 
-#: pdf_bot/merge/merge_service.py:133
+#: pdf_bot/merge/merge_service.py:131
 msgid "You haven't sent me any PDF files"
 msgstr "PDF 파일을 보내지 않으셨나요?"
 
-#: pdf_bot/merge/merge_service.py:136
+#: pdf_bot/merge/merge_service.py:134
 msgid "You've only sent me one PDF file"
 msgstr "PDF 파일 하나만 보냈습니다."
 
-#: pdf_bot/merge/merge_service.py:146
+#: pdf_bot/merge/merge_service.py:144
 msgid "Merging your PDF files"
 msgstr "PDF 파일 병합"
 
@@ -1559,5 +1559,26 @@ msgstr "PDF 파일에 워터마크 추가"
 #~ msgstr ""
 
 #~ msgid "Your image is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "File name unavailable"
+#~ msgstr ""
+
+#~ msgid "Your file is not an image"
+#~ msgstr ""
+
+#~ msgid "Your file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "images"
+#~ msgstr ""
+
+#~ msgid "{file_name} has been removed for beautifying or converting"
+#~ msgstr ""
+
+#~ msgid "Beautifying and converting your images"
+#~ msgstr ""
+
+#~ msgid "Converting your images into PDF"
 #~ msgstr ""
 

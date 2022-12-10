@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-10 00:37+0000\n"
-"PO-Revision-Date: 2022-12-10 00:38\n"
+"POT-Creation-Date: 2022-12-10 04:15+0000\n"
+"PO-Revision-Date: 2022-12-10 04:15\n"
 "Last-Translator: \n"
 "Language: id\n"
 "Language-Team: Indonesian\n"
@@ -147,61 +147,61 @@ msgstr "Makanan"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:119
+#: pdf_bot/dispatcher.py:122
 msgid "Set Language 🌎"
 msgstr "Atur Pengaturan 🌎"
 
-#: pdf_bot/dispatcher.py:121 pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/dispatcher.py:124 pdf_bot/telegram_internal/telegram_service.py:150
 #: pdf_bot/utils.py:191
 msgid "Join Channel"
 msgstr "Gabung Kanal"
 
-#: pdf_bot/dispatcher.py:122 pdf_bot/payment.py:83
+#: pdf_bot/dispatcher.py:125 pdf_bot/payment.py:83
 #: pdf_bot/telegram_internal/telegram_service.py:151 pdf_bot/utils.py:192
 msgid "Support PDF Bot"
 msgstr "Dukung PDF Bot"
 
-#: pdf_bot/dispatcher.py:131
+#: pdf_bot/dispatcher.py:134
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Anda dapat melakukan sebagian besar tugas dengan mengirimi saya salah satu hal berikut:"
 
-#: pdf_bot/dispatcher.py:134
+#: pdf_bot/dispatcher.py:137
 msgid "- PDF files"
 msgstr "- Berkas PDF"
 
-#: pdf_bot/dispatcher.py:135
+#: pdf_bot/dispatcher.py:138
 msgid "- Images"
 msgstr "- Gambar"
 
-#: pdf_bot/dispatcher.py:136
+#: pdf_bot/dispatcher.py:139
 msgid "- Webpage links"
 msgstr "- Link halaman web"
 
-#: pdf_bot/dispatcher.py:137
+#: pdf_bot/dispatcher.py:140
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Sisa tugas dapat dilakukan dengan menggunakan perintah berikut:"
 
-#: pdf_bot/dispatcher.py:141
+#: pdf_bot/dispatcher.py:144
 msgid "{command} - compare PDF files"
 msgstr "{command} - bandingkan file PDF"
 
-#: pdf_bot/dispatcher.py:142
+#: pdf_bot/dispatcher.py:145
 msgid "{command} - merge PDF files"
 msgstr "{command} - menggabungkan file PDF"
 
-#: pdf_bot/dispatcher.py:143
+#: pdf_bot/dispatcher.py:146
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - mengonversi dan menggabungkan beberapa gambar menjadi file PDF"
 
-#: pdf_bot/dispatcher.py:146
+#: pdf_bot/dispatcher.py:149
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - buat file PDF dari pesan teks"
 
-#: pdf_bot/dispatcher.py:149
+#: pdf_bot/dispatcher.py:152
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - tambahkan cap air ke file PDF"
 
-#: pdf_bot/dispatcher.py:184
+#: pdf_bot/dispatcher.py:187
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Tombol telah kedaluwarsa, silakan coba lagi dengan pesan / kueri baru lalu tekan tombol baru"
 
@@ -293,8 +293,8 @@ msgstr "Anda telah mengirimi saya {file_type} ini sejauh ini:"
 msgid "The result file is too large for me to send to you"
 msgstr "Berkas hasil terlalu besar untuk saya kirimkan kepada Anda"
 
-#: pdf_bot/commands/image.py:138 pdf_bot/file/file_handlers.py:165
-#: pdf_bot/file/file_handlers.py:190 pdf_bot/utils.py:156
+#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:190
+#: pdf_bot/utils.py:156
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Perhatikan bahwa ini adalah batasan Telegram Bot dan tidak ada yang bisa saya lakukan kecuali Telegram mengubah batas ini."
 
@@ -347,46 +347,6 @@ msgstr "- Dan banyak lagi..."
 #: pdf_bot/command/command_service.py:45
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Ketik {command} untuk melihat cara menggunakan BOT PDF"
-
-#: pdf_bot/commands/image.py:79
-msgid "Send me the images that you'll like to beautify or convert into a PDF file"
-msgstr "Kirimkan gambar yang ingin Anda percantik atau ubah menjadi file PDF"
-
-#: pdf_bot/commands/image.py:83
-msgid "Note that the images will be beautified and converted in the order that you send me"
-msgstr "Perhatikan bahwa gambar akan dipercantik dan dikonversi dalam urutan yang Anda kirimkan kepada saya"
-
-#: pdf_bot/commands/image.py:110
-msgid "File name unavailable"
-msgstr "Nama berkas tidak tersedia"
-
-#: pdf_bot/commands/image.py:129
-msgid "Your file is not an image"
-msgstr "File Anda bukan gambar"
-
-#: pdf_bot/commands/image.py:137
-msgid "Your file is too large for me to download and process"
-msgstr "File Anda terlalu besar bagi saya untuk diunduh dan diproses"
-
-#: pdf_bot/commands/image.py:150
-msgid "images"
-msgstr "Gambar"
-
-#: pdf_bot/commands/image.py:157
-msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
-msgstr "Pilih tugas dari bawah jika Anda telah mengirimi saya semua gambar, atau terus mengirimi saya gambar"
-
-#: pdf_bot/commands/image.py:201
-msgid "{file_name} has been removed for beautifying or converting"
-msgstr "{file_name} telah dihapus untuk mempercantik atau mengkonversi"
-
-#: pdf_bot/commands/image.py:238
-msgid "Beautifying and converting your images"
-msgstr "Mempercantik dan mengonversi gambar Anda"
-
-#: pdf_bot/commands/image.py:243
-msgid "Converting your images into PDF"
-msgstr "Mengubah gambar Anda menjadi PDF"
 
 #: pdf_bot/compare/compare_service.py:38
 msgid "Send me one of the PDF files that you'll like to compare"
@@ -456,39 +416,79 @@ msgstr "Ukuran file dikurangi {percent}, dari {old_size} ke {new_size}"
 msgid "Select the task that you'll like to perform"
 msgstr "Pilih tugas yang ingin Anda jalankan"
 
-#: pdf_bot/merge/merge_service.py:35
+#: pdf_bot/image_handler/image_handler.py:54
+msgid "Send me the images that you'll like to beautify or convert into a PDF file"
+msgstr "Kirimkan gambar yang ingin Anda percantik atau ubah menjadi file PDF"
+
+#: pdf_bot/image_handler/image_handler.py:58
+msgid "Note that the images will be beautified and converted in the order that you send me"
+msgstr "Perhatikan bahwa gambar akan dipercantik dan dikonversi dalam urutan yang Anda kirimkan kepada saya"
+
+#: pdf_bot/image_handler/image_handler.py:104
+msgid "You've sent me these images so far:"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:115
+msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
+msgstr "Pilih tugas dari bawah jika Anda telah mengirimi saya semua gambar, atau terus mengirimi saya gambar"
+
+#: pdf_bot/image_handler/image_handler.py:132
+msgid "You've already removed all the images you've sent me"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:137
+msgid "{file_name} has been removed"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:155
+msgid "You haven't sent me any images"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:158
+msgid "You've only sent me one image"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:172
+msgid "Beautifying and converting your images into a PDF file"
+msgstr ""
+
+#: pdf_bot/image_handler/image_handler.py:174
+msgid "Converting your images into a PDF file"
+msgstr ""
+
+#: pdf_bot/merge/merge_service.py:33
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Kirimi saya file PDF yang ingin Anda gabungkan"
 
-#: pdf_bot/merge/merge_service.py:36
+#: pdf_bot/merge/merge_service.py:34
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Perhatikan bahwa file akan digabungkan dalam urutan yang Anda kirimkan kepada saya"
 
-#: pdf_bot/merge/merge_service.py:81
+#: pdf_bot/merge/merge_service.py:79
 msgid "You've sent me these PDF files so far:"
 msgstr "Anda telah mengirimi saya file PDF ini sejauh ini:"
 
-#: pdf_bot/merge/merge_service.py:92
+#: pdf_bot/merge/merge_service.py:90
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Tekan {done} jika Anda telah mengirimi saya semua file PDF yang ingin Anda gabungkan atau terus kirimi saya file PDF"
 
-#: pdf_bot/merge/merge_service.py:110
+#: pdf_bot/merge/merge_service.py:108
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Anda telah menghapus semua file PDF yang Telah Anda kirimkan kepada saya"
 
-#: pdf_bot/merge/merge_service.py:115
+#: pdf_bot/merge/merge_service.py:113
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} telah dihapus untuk penggabungan"
 
-#: pdf_bot/merge/merge_service.py:133
+#: pdf_bot/merge/merge_service.py:131
 msgid "You haven't sent me any PDF files"
 msgstr "Anda belum mengirimi saya file PDF"
 
-#: pdf_bot/merge/merge_service.py:136
+#: pdf_bot/merge/merge_service.py:134
 msgid "You've only sent me one PDF file"
 msgstr "Anda hanya mengirimi saya satu file PDF"
 
-#: pdf_bot/merge/merge_service.py:146
+#: pdf_bot/merge/merge_service.py:144
 msgid "Merging your PDF files"
 msgstr "Menggabungkan file PDF Anda"
 
@@ -1559,5 +1559,26 @@ msgstr "Menambahkan cap air ke file PDF Anda"
 #~ msgstr ""
 
 #~ msgid "Your image is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "File name unavailable"
+#~ msgstr ""
+
+#~ msgid "Your file is not an image"
+#~ msgstr ""
+
+#~ msgid "Your file is too large for me to download and process"
+#~ msgstr ""
+
+#~ msgid "images"
+#~ msgstr ""
+
+#~ msgid "{file_name} has been removed for beautifying or converting"
+#~ msgstr ""
+
+#~ msgid "Beautifying and converting your images"
+#~ msgstr ""
+
+#~ msgid "Converting your images into PDF"
 #~ msgstr ""
 
