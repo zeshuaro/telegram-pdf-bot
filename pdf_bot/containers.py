@@ -14,6 +14,7 @@ from pdf_bot.crop import CropService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.image import ImageService
+from pdf_bot.image_handler import ImageHandler
 from pdf_bot.image_processor import BeautifyImageProcessor, ImageToPDFProcessor
 from pdf_bot.io import IOService
 from pdf_bot.language_new import LanguageRepository, LanguageService
@@ -238,7 +239,6 @@ class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
     processors = providers.DependenciesContainer()
 
-    compare = providers.Singleton(CompareHandlers, compare_service=services.compare)
     file = providers.Singleton(
         FileHandlers,
         file_task_service=services.file_task,
@@ -258,6 +258,14 @@ class Handlers(containers.DeclarativeContainer):
         split_pdf_processor=processors.split,
         beautify_image_processor=processors.beautify,
         image_to_pdf_processor=processors.image_to_pdf,
+    )
+
+    compare = providers.Singleton(CompareHandlers, compare_service=services.compare)
+    image = providers.Singleton(
+        ImageHandler,
+        image_service=services.image,
+        telegram_service=services.telegram,
+        language_service=services.language,
     )
     merge = providers.Singleton(MergeHandlers, merge_service=services.merge)
     text = providers.Singleton(TextHandlers, text_service=services.text)
