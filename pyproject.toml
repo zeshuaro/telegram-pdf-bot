@@ -119,3 +119,12 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_return_any = true
 warn_unreachable = true
+
+[tool.coverage.run]
+relative_files = true
+branch = true
+source = ["pdf_bot"]
+omit = ["tests", 'pdf_bot/logging.py']
+
+[tool.coverage.report]
+exclude_lines = ["@abstractmethod"]
