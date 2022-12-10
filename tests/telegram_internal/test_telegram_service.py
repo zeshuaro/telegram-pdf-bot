@@ -301,12 +301,13 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             send_event.assert_not_called()
 
     def test_send_file_names(self) -> None:
-        file_data_list = [FileData("a", "a"), FileData("b", "b")]
+        file_data_list = [FileData("a", "a"), FileData("b")]
 
         self.sut.send_file_names(
             self.telegram_chat_id, self.telegram_text, file_data_list
         )
 
         self.telegram_bot.send_message.assert_called_once_with(
-            self.telegram_chat_id, f"{self.telegram_text}1: a\n2: b\n"
+            self.telegram_chat_id,
+            f"{self.telegram_text}1: a\n2: File name unavailable\n",
         )

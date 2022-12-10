@@ -210,7 +210,10 @@ class TelegramService:
         self, chat_id: str, text: str, file_data_list: List[FileData]
     ) -> None:
         for i, file_data in enumerate(file_data_list):
-            text += f"{i + 1}: {file_data.name}\n"
+            file_name = file_data.name
+            if file_name is None:
+                file_name = "File name unavailable"
+            text += f"{i + 1}: {file_name}\n"
         self.bot.send_message(chat_id, text)
 
     def _reply_with_markup(

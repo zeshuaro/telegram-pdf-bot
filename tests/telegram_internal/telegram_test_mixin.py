@@ -20,6 +20,7 @@ class TelegramTestMixin:
         cls.telegram_file_id = "file_id"
         cls.telegram_document_id = "document_id"
         cls.telegram_document_name = "document_name"
+        cls.telegram_photo_size_id = "photo_size_id"
         cls.telegram_text = "text"
         cls.telegram_chat_id = "chat_id"
 
@@ -39,6 +40,7 @@ class TelegramTestMixin:
         self.telegram_document.file_name = self.telegram_document_name
 
         self.telegram_photo_size = MagicMock(spec=PhotoSize)
+        self.telegram_photo_size.file_id = self.telegram_photo_size_id
 
         self.telegram_message = MagicMock(spec=Message)
         self.telegram_message.from_user = self.telegram_user

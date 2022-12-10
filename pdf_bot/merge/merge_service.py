@@ -1,5 +1,3 @@
-from typing import List
-
 from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
@@ -51,7 +49,7 @@ class MergeService:
             message.reply_text(_(str(e)))
             return self.WAIT_MERGE_PDF
 
-        file_data = FileData.from_telegram_document(doc)
+        file_data = FileData.from_telegram_object(doc)
         context.user_data[self.MERGE_PDF_DATA].append(file_data)
         return self._ask_next_pdf(update, context)
 
@@ -100,7 +98,7 @@ class MergeService:
         return self.WAIT_MERGE_PDF
 
     def _remove_last_pdf(
-        self, update: Update, context: CallbackContext, file_data_list: List[FileData]
+        self, update: Update, context: CallbackContext, file_data_list: list[FileData]
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
         try:
@@ -124,7 +122,7 @@ class MergeService:
         return self.ask_first_pdf(update, context)
 
     def _preprocess_pdfs(
-        self, update: Update, context: CallbackContext, file_data_list: List[FileData]
+        self, update: Update, context: CallbackContext, file_data_list: list[FileData]
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
         num_files = len(file_data_list)
@@ -139,7 +137,7 @@ class MergeService:
         return self._merge_pdfs(update, context, file_data_list)
 
     def _merge_pdfs(
-        self, update: Update, context: CallbackContext, file_data_list: List[FileData]
+        self, update: Update, context: CallbackContext, file_data_list: list[FileData]
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
         update.effective_message.reply_text(
