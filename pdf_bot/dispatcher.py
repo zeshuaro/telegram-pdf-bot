@@ -26,8 +26,8 @@ from pdf_bot.language import send_lang, set_lang, store_lang
 from pdf_bot.merge import MergeHandlers
 from pdf_bot.payment import PaymentService
 from pdf_bot.text import TextHandlers
-from pdf_bot.url import url_to_pdf
 from pdf_bot.watermark import WatermarkHandlers
+from pdf_bot.webpage import WebpageHandler
 
 load_dotenv()
 ADMIN_TELEGRAM_ID = os.environ.get("ADMIN_TELEGRAM_ID")
@@ -63,6 +63,9 @@ def setup_dispatcher(
     ],
     watermark_handlers: WatermarkHandlers = Provide[
         Application.handlers.watermark  # pylint: disable=no-member
+    ],
+    webpage_handler: WebpageHandler = Provide[
+        Application.handlers.webpage  # pylint: disable=no-member
     ],
 ):
     dispatcher.add_handler(
@@ -107,7 +110,11 @@ def setup_dispatcher(
 
     # URL handler
     dispatcher.add_handler(
-        MessageHandler(Filters.entity(MessageEntity.URL), url_to_pdf, run_async=True)
+        MessageHandler(
+            Filters.entity(MessageEntity.URL),
+            webpage_handler.url_to_pdf,
+            run_async=True,
+        )
     )
 
     # PDF commands handlers

@@ -40,6 +40,7 @@ from pdf_bot.pdf_processor import (
 from pdf_bot.telegram_internal import TelegramService
 from pdf_bot.text import TextHandlers, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
+from pdf_bot.webpage import WebpageHandler, WebpageService
 
 load_dotenv()
 
@@ -147,6 +148,7 @@ class Services(containers.DeclarativeContainer):
         telegram_service=telegram,
         language_service=language,
     )
+    webpage = providers.Singleton(WebpageService, io_service=io)
 
 
 class Processors(containers.DeclarativeContainer):
@@ -295,6 +297,12 @@ class Handlers(containers.DeclarativeContainer):
     text = providers.Singleton(TextHandlers, text_service=services.text)
     watermark = providers.Singleton(
         WatermarkHandlers, watermark_service=services.watermark
+    )
+    webpage = providers.Singleton(
+        WebpageHandler,
+        webpage_service=services.webpage,
+        language_service=services.language,
+        telegram_service=services.telegram,
     )
 
 

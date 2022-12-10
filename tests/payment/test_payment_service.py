@@ -7,7 +7,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramTestMixin
 
 
-class TestFeedbackService(LanguageServiceTestMixin, TelegramTestMixin):
+class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
     INVOICE_PAYLOAD = "invoice_payload"
     CURRENCY = "USD"
     KEYBOARD_SIZE = 2
