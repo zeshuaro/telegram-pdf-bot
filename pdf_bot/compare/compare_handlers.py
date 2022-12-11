@@ -12,7 +12,7 @@ class CompareHandlers:
         self.compare_service = compare_service
         self.telegram_service = telegram_service
 
-    def conversation_handler(self):
+    def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
             entry_points=[
                 CommandHandler("compare", self.compare_service.ask_first_pdf)

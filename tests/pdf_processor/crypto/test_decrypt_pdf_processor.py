@@ -51,18 +51,18 @@ class TestDecryptPDFProcessor(
         handler = actual.get(PdfIncorrectPasswordError)
         assert handler is not None
 
-        actual = handler(
+        actual = handler(  # type: ignore
             self.telegram_update,
             self.telegram_context,
             RuntimeError(),
-            self.telegram_document_id,
-            self.telegram_document_name,
+            self.TELEGRAM_DOCUMENT_ID,
+            self.TELEGRAM_DOCUMENT_NAME,
         )
 
         assert actual == self.WAIT_PASSWORD_STATE
         self.telegram_message.reply_text.assert_called_once()
         self.telegram_context.user_data.__setitem__.assert_called_once_with(
-            FILE_DATA, (self.telegram_document_id, self.telegram_document_name)
+            FILE_DATA, (self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
         )
 
     def test_process_file_task(self) -> None:
@@ -71,9 +71,9 @@ class TestDecryptPDFProcessor(
         )
 
         with self.sut.process_file_task(
-            self.telegram_document_id, self.telegram_text
+            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.decrypt_pdf.assert_called_once_with(
-                self.telegram_document_id, self.telegram_text
+                self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
             )

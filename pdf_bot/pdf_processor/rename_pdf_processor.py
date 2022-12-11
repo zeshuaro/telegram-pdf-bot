@@ -2,7 +2,7 @@ import re
 from contextlib import contextmanager
 from typing import Generator
 
-from telegram import Update
+from telegram import Message, Update
 from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
@@ -42,7 +42,7 @@ class RenamePDFProcessor(AbstractPDFProcessor):
 
     def rename_pdf(self, update: Update, context: CallbackContext) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         if message.text == _(BACK):
             return self.file_task_service.ask_pdf_task(update, context)

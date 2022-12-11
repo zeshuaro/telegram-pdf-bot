@@ -53,11 +53,11 @@ class TestPDFProcessor(
         self.pdf_service.scale_pdf.return_value.__enter__.return_value = self.FILE_PATH
 
         with self.sut.process_file_task(
-            self.telegram_document_id, self.SCALE_DATA_TEXT
+            self.TELEGRAM_DOCUMENT_ID, self.SCALE_DATA_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.scale_pdf.assert_called_once_with(
-                self.telegram_document_id, self.SCALE_DATA
+                self.TELEGRAM_DOCUMENT_ID, self.SCALE_DATA
             )
 
     def test_ask_scale_type(self) -> None:
@@ -106,7 +106,7 @@ class TestPDFProcessor(
 
         assert actual == ConversationHandler.END
         self.pdf_service.scale_pdf.assert_called_once_with(
-            self.telegram_document_id, scale_data
+            self.TELEGRAM_DOCUMENT_ID, scale_data
         )
 
     def test_scale_pdf_by_factor_invalid_value(self) -> None:
@@ -144,7 +144,7 @@ class TestPDFProcessor(
 
         assert actual == ConversationHandler.END
         self.pdf_service.scale_pdf.assert_called_once_with(
-            self.telegram_document_id, scale_data
+            self.TELEGRAM_DOCUMENT_ID, scale_data
         )
 
     def test_scale_pdf_to_dimension_invalid_value(self) -> None:

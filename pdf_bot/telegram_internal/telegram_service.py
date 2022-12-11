@@ -89,15 +89,17 @@ class TelegramService:
         Returns:
             Any: the value for the key
         """
-        data = context.user_data.pop(key, None)
+        data = context.user_data.pop(key, None)  # type: ignore
         if data is None:
             raise TelegramUserDataKeyError(_("Something went wrong, please try again"))
         return data
 
     def check_image(self, message: Message) -> Document | PhotoSize:
-        img_file: Document | None = message.document
-        if img_file is not None and not img_file.mime_type.startswith(
-            self.IMAGE_MIME_TYPE_PREFIX
+        img_file: Document | PhotoSize | None = message.document
+        if (
+            img_file is not None
+            and isinstance(img_file, Document)
+            and not img_file.mime_type.startswith(self.IMAGE_MIME_TYPE_PREFIX)
         ):
             raise TelegramFileMimeTypeError(
                 _("Your file is not an image, please try again")
@@ -138,7 +140,7 @@ class TelegramService:
 
     def cancel_conversation(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _("Action cancelled"), reply_markup=ReplyKeyboardRemove()
         )
         return ConversationHandler.END
@@ -182,7 +184,7 @@ class TelegramService:
         task: TaskType,
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         reply_markup = self.get_support_markup(update, context)
 
         try:
@@ -209,7 +211,7 @@ class TelegramService:
         self.analytics_service.send_event(update, context, task, EventAction.complete)
 
     def send_file_names(
-        self, chat_id: str, text: str, file_data_list: List[FileData]
+        self, chat_id: int, text: str, file_data_list: List[FileData]
     ) -> None:
         for i, file_data in enumerate(file_data_list):
             file_name = file_data.name
@@ -230,6 +232,6 @@ class TelegramService:
         markup = ReplyKeyboardMarkup(
             [[_(markup_text)]], one_time_keyboard=True, resize_keyboard=True
         )
-        update.effective_message.reply_text(
-            _(text), reply_markup=markup, parse_mode=parse_mode
+        update.effective_message.reply_text(  # type: ignore
+            _(text), reply_markup=markup, parse_mode=parse_mode  # type: ignore
         )

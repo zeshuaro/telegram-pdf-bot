@@ -20,7 +20,7 @@ class TestContainer:
             self._test_providers(app.handlers)
 
     def _test_providers(self, container: Container) -> None:
-        for provider in container.providers.values():
+        for provider in container.providers.values():  # type: ignore
             if isinstance(provider, Singleton):
                 provided = provider()
                 assert isinstance(provided, provider.cls)

@@ -31,12 +31,12 @@ class TestFeedbackRepository(TelegramTestMixin):
 
     def _save_feedback_and_assert_slack_client(self) -> None:
         self.sut.save_feedback(
-            self.telegram_chat_id, self.telegram_username, self.telegram_text
+            self.TELEGRAM_CHAT_ID, self.TELEGRAM_USERNAME, self.TELEGRAM_TEXT
         )
         self.slack_client.chat_postMessage.assert_called_once_with(
             channel=self.SLACK_CHANNEL,
             text=(
                 "Feedback received from"
-                f" @{self.telegram_username} ({self.telegram_chat_id}):\n\n{self.telegram_text}"
+                f" @{self.TELEGRAM_USERNAME} ({self.TELEGRAM_CHAT_ID}):\n\n{self.TELEGRAM_TEXT}"
             ),
         )

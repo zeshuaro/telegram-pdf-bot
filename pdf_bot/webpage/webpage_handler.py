@@ -1,6 +1,7 @@
 import logging
+from typing import Any
 
-from telegram import Update
+from telegram import Message, Update
 from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
@@ -28,9 +29,9 @@ class WebpageHandler:
 
     def url_to_pdf(self, update: Update, context: CallbackContext) -> None:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         url = message.text
-        user_data = context.user_data
+        user_data: dict[str, Any] = context.user_data  # type: ignore
 
         if (
             user_data is not None

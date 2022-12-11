@@ -1,3 +1,5 @@
+from typing import cast
+
 from google.cloud.datastore import Client, Entity
 
 from pdf_bot.consts import LANGUAGE, USER
@@ -9,7 +11,7 @@ class LanguageRepository:
     EN_CODE = "en"
 
     def __init__(self, database_client: Client | None = None):
-        self.db = database_client or default_db
+        self.db = cast(Client, database_client or default_db)
 
     def get_language(self, user_id: int) -> str:
         user_key = self.db.key(USER, user_id)

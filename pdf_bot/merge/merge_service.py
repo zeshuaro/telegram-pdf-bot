@@ -1,4 +1,10 @@
-from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram import (
+    Message,
+    ParseMode,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    Update,
+)
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -24,7 +30,7 @@ class MergeService:
         self.language_service = language_service
 
     def ask_first_pdf(self, update: Update, context: CallbackContext) -> int:
-        context.user_data[self.MERGE_PDF_DATA] = []
+        context.user_data[self.MERGE_PDF_DATA] = []  # type: ignore
         _ = self.language_service.set_app_language(update, context)
         self.telegram_service.reply_with_cancel_markup(
             update,
@@ -41,7 +47,7 @@ class MergeService:
 
     def check_pdf(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             doc = self.telegram_service.check_pdf_document(message)
@@ -50,12 +56,12 @@ class MergeService:
             return self.WAIT_MERGE_PDF
 
         file_data = FileData.from_telegram_object(doc)
-        context.user_data[self.MERGE_PDF_DATA].append(file_data)
+        context.user_data[self.MERGE_PDF_DATA].append(file_data)  # type: ignore
         return self._ask_next_pdf(update, context)
 
     def check_text(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text in [_(REMOVE_LAST), _(DONE)]:
@@ -78,7 +84,7 @@ class MergeService:
         _ = self.language_service.set_app_language(update, context)
         text = "{desc}\n".format(desc=_("You've sent me these PDF files so far:"))
         self.telegram_service.send_file_names(
-            update.effective_chat.id, text, context.user_data[self.MERGE_PDF_DATA]
+            update.effective_chat.id, text, context.user_data[self.MERGE_PDF_DATA]  # type: ignore
         )
 
         reply_markup = ReplyKeyboardMarkup(
@@ -86,7 +92,7 @@ class MergeService:
             resize_keyboard=True,
             one_time_keyboard=True,
         )
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _(
                 "Press {done} if you've sent me all the PDF files that "
                 "you'll like to merge or keep sending me the PDF files"
@@ -104,12 +110,12 @@ class MergeService:
         try:
             file_data = file_data_list.pop()
         except IndexError:
-            update.effective_message.reply_text(
+            update.effective_message.reply_text(  # type: ignore
                 _("You've already removed all the PDF files you've sent me")
             )
             return self.ask_first_pdf(update, context)
 
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _("{file_name} has been removed for merging").format(
                 file_name=f"<b>{file_data.name}</b>"
             ),
@@ -117,7 +123,7 @@ class MergeService:
         )
 
         if file_data_list:
-            context.user_data[self.MERGE_PDF_DATA] = file_data_list
+            context.user_data[self.MERGE_PDF_DATA] = file_data_list  # type: ignore
             return self._ask_next_pdf(update, context)
         return self.ask_first_pdf(update, context)
 
@@ -128,11 +134,15 @@ class MergeService:
         num_files = len(file_data_list)
 
         if num_files == 0:
-            update.effective_message.reply_text(_("You haven't sent me any PDF files"))
+            update.effective_message.reply_text(  # type: ignore
+                _("You haven't sent me any PDF files")
+            )
             return self.ask_first_pdf(update, context)
         if num_files == 1:
-            update.effective_message.reply_text(_("You've only sent me one PDF file"))
-            context.user_data[self.MERGE_PDF_DATA] = file_data_list
+            update.effective_message.reply_text(  # type: ignore
+                _("You've only sent me one PDF file")
+            )
+            context.user_data[self.MERGE_PDF_DATA] = file_data_list  # type: ignore
             return self._ask_next_pdf(update, context)
         return self._merge_pdfs(update, context, file_data_list)
 
@@ -140,7 +150,7 @@ class MergeService:
         self, update: Update, context: CallbackContext, file_data_list: list[FileData]
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _("Merging your PDF files"), reply_markup=ReplyKeyboardRemove()
         )
 
@@ -150,6 +160,6 @@ class MergeService:
                     update, context, out_path, TaskType.merge_pdf
                 )
         except PdfServiceError as e:
-            update.effective_message.reply_text(_(str(e)))
+            update.effective_message.reply_text(_(str(e)))  # type: ignore
 
         return ConversationHandler.END

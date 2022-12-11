@@ -97,7 +97,7 @@ class PdfService:
             yield out_path
 
     @contextmanager
-    def compress_pdf(self, file_id: str) -> Generator[str, None, None]:
+    def compress_pdf(self, file_id: str) -> Generator[CompressResult, None, None]:
         with self.telegram_service.download_pdf_file(
             file_id
         ) as file_path, self.io_service.create_temp_pdf_file("Compressed") as out_path:
@@ -156,9 +156,13 @@ class PdfService:
         ) as file_path, self.io_service.create_temp_pdf_file("Cropped") as out_path:
             if percentage is not None:
                 self.cli_service.crop_pdf_by_percentage(file_path, out_path, percentage)
-            else:
+            elif margin_size is not None:
                 self.cli_service.crop_pdf_by_margin_size(
                     file_path, out_path, margin_size
+                )
+            else:
+                raise PdfServiceError(
+                    "Crop percentage or margin size must be specified"
                 )
             yield out_path
 

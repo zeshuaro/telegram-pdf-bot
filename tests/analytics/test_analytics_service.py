@@ -52,7 +52,7 @@ class TestAnalyticsService(LanguageServiceTestMixin, TelegramTestMixin):
         )
 
         event = {
-            "client_id": str(UUID(int=self.telegram_user_id)),
+            "client_id": str(UUID(int=self.TELEGRAM_USER_ID)),
             "user_properties": {"bot_language": {"value": self.LANGUAGE}},
             "events": [
                 {

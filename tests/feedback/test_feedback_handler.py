@@ -71,6 +71,6 @@ class TestFeedbackHandler(
 
     def _assert_save_feedback_and_reply_text(self) -> None:
         self.feedback_service.save_feedback.assert_called_once_with(
-            self.telegram_chat_id, self.telegram_username, self.FEEDBACK_TEXT
+            self.TELEGRAM_CHAT_ID, self.TELEGRAM_USERNAME, self.FEEDBACK_TEXT
         )
         self.telegram_update.effective_message.reply_text.assert_called_once()

@@ -1,4 +1,10 @@
-from telegram import ParseMode, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram import (
+    Message,
+    ParseMode,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
+    Update,
+)
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
@@ -46,7 +52,7 @@ class BatchImageHandler:
         )
 
     def ask_first_image(self, update: Update, context: CallbackContext) -> int:
-        context.user_data[self.IMAGE_DATA] = []
+        context.user_data[self.IMAGE_DATA] = []  # type: ignore
         _ = self.language_service.set_app_language(update, context)
         self.telegram_service.reply_with_cancel_markup(
             update,
@@ -67,7 +73,7 @@ class BatchImageHandler:
 
     def check_image(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             image = self.telegram_service.check_image(message)
@@ -76,12 +82,12 @@ class BatchImageHandler:
             return self.WAIT_IMAGE
 
         file_data = FileData.from_telegram_object(image)
-        context.user_data[self.IMAGE_DATA].append(file_data)
+        context.user_data[self.IMAGE_DATA].append(file_data)  # type: ignore
         return self._ask_next_image(update, context)
 
     def check_text(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text in [_(REMOVE_LAST), _(BEAUTIFY), _(TO_PDF)]:
@@ -104,7 +110,7 @@ class BatchImageHandler:
         _ = self.language_service.set_app_language(update, context)
         text = "{desc}\n".format(desc=_("You've sent me these images so far:"))
         self.telegram_service.send_file_names(
-            update.effective_chat.id, text, context.user_data[self.IMAGE_DATA]
+            update.effective_chat.id, text, context.user_data[self.IMAGE_DATA]  # type: ignore
         )
 
         reply_markup = ReplyKeyboardMarkup(
@@ -112,7 +118,7 @@ class BatchImageHandler:
             resize_keyboard=True,
             one_time_keyboard=True,
         )
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _(
                 "Select the task from below if you've sent me all the images, or keep"
                 " sending me the images"
@@ -129,12 +135,12 @@ class BatchImageHandler:
         try:
             file_data = file_data_list.pop()
         except IndexError:
-            update.effective_message.reply_text(
+            update.effective_message.reply_text(  # type: ignore
                 _("You've already removed all the images you've sent me")
             )
             return self.ask_first_image(update, context)
 
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _("{file_name} has been removed").format(
                 file_name=f"<b>{file_data.name}</b>"
             ),
@@ -142,7 +148,7 @@ class BatchImageHandler:
         )
 
         if file_data_list:
-            context.user_data[self.IMAGE_DATA] = file_data_list
+            context.user_data[self.IMAGE_DATA] = file_data_list  # type: ignore
             return self._ask_next_image(update, context)
         return self.ask_first_image(update, context)
 
@@ -153,11 +159,11 @@ class BatchImageHandler:
         num_files = len(file_data_list)
 
         if num_files == 0:
-            update.effective_message.reply_text(_("You haven't sent me any images"))
+            update.effective_message.reply_text(_("You haven't sent me any images"))  # type: ignore
             return self.ask_first_image(update, context)
         if num_files == 1:
-            update.effective_message.reply_text(_("You've only sent me one image"))
-            context.user_data[self.IMAGE_DATA] = file_data_list
+            update.effective_message.reply_text(_("You've only sent me one image"))  # type: ignore
+            context.user_data[self.IMAGE_DATA] = file_data_list  # type: ignore
             return self._ask_next_image(update, context)
         return self._process_images(update, context, file_data_list)
 
@@ -165,7 +171,7 @@ class BatchImageHandler:
         self, update: Update, context: CallbackContext, file_data_list: list[FileData]
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         is_beautify = False
 
         if message.text == _(BEAUTIFY):

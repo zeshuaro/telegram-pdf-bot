@@ -46,11 +46,11 @@ class TestRenamePDFProcessor(
         self.pdf_service.rename_pdf.return_value.__enter__.return_value = self.FILE_PATH
 
         with self.sut.process_file_task(
-            self.telegram_document_id, self.telegram_text
+            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.rename_pdf.assert_called_once_with(
-                self.telegram_document_id, f"{self.telegram_text}.pdf"
+                self.TELEGRAM_DOCUMENT_ID, f"{self.TELEGRAM_TEXT}.pdf"
             )
 
     def test_ask_new_file_name(self) -> None:
@@ -66,7 +66,7 @@ class TestRenamePDFProcessor(
 
         assert actual == ConversationHandler.END
         self.pdf_service.rename_pdf.assert_called_once_with(
-            self.telegram_document_id, f"{self.telegram_text}.pdf"
+            self.TELEGRAM_DOCUMENT_ID, f"{self.TELEGRAM_TEXT}.pdf"
         )
 
     def test_rename_pdf_invalid_file_name(self) -> None:

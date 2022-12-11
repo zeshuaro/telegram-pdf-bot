@@ -42,7 +42,7 @@ class TestOCRPDFProcessor(
         self.pdf_service.ocr_pdf.return_value.__enter__.return_value = self.FILE_PATH
 
         with self.sut.process_file_task(
-            self.telegram_document_id, self.telegram_text
+            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
-            self.pdf_service.ocr_pdf.assert_called_once_with(self.telegram_document_id)
+            self.pdf_service.ocr_pdf.assert_called_once_with(self.TELEGRAM_DOCUMENT_ID)

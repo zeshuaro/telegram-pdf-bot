@@ -68,7 +68,7 @@ class TestCropService(
     def test_crop_pdf_by_percentage(self) -> None:
         self.telegram_message.text = self.PERCENT
         self.telegram_service.get_user_data.return_value = (
-            self.telegram_document_id,
+            self.TELEGRAM_DOCUMENT_ID,
             "file_name",
         )
         self.pdf_service.crop_pdf.return_value.__enter__.return_value = self.FILE_PATH
@@ -114,7 +114,7 @@ class TestCropService(
     def test_crop_pdf_by_margin_size(self) -> None:
         self.telegram_message.text = self.MARGIN_SIZE
         self.telegram_service.get_user_data.return_value = (
-            self.telegram_document_id,
+            self.TELEGRAM_DOCUMENT_ID,
             "file_name",
         )
         self.pdf_service.crop_pdf.return_value.__enter__.return_value = self.FILE_PATH
@@ -164,7 +164,7 @@ class TestCropService(
             self.telegram_context, FILE_DATA
         )
         self.pdf_service.crop_pdf.assert_called_once_with(
-            self.telegram_document_id, percentage=percentage, margin_size=margin_size
+            self.TELEGRAM_DOCUMENT_ID, percentage=percentage, margin_size=margin_size
         )
         self.telegram_service.reply_with_file.assert_called_once_with(
             self.telegram_update,

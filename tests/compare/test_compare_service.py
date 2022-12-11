@@ -15,13 +15,10 @@ from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 class TestCompareService(
     LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
 ):
-    @classmethod
-    def setup_class(cls) -> None:
-        super().setup_class()
-        cls.file_path = "file_path"
-        cls.compare_id = "compare_id"
-        cls.wait_first_pdf = 0
-        cls.wait_second_pdf = 1
+    FILE_PATH = "file_path"
+    COMPARE_ID = "compare_id"
+    WAIT_FIRST_PDF = 0
+    WAIT_SECOND_PDF = 1
 
     def setup_method(self) -> None:
         super().setup_method()
@@ -35,14 +32,14 @@ class TestCompareService(
 
     def test_ask_first_pdf(self) -> None:
         actual = self.sut.ask_first_pdf(self.telegram_update, self.telegram_context)
-        assert actual == self.wait_first_pdf
+        assert actual == self.WAIT_FIRST_PDF
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     def test_check_first_pdf(self) -> None:
         actual = self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
-        assert actual == self.wait_second_pdf
+        assert actual == self.WAIT_SECOND_PDF
         self.telegram_context.user_data.__setitem__.assert_called_with(
-            self.compare_id, self.telegram_document_id
+            self.COMPARE_ID, self.TELEGRAM_DOCUMENT_ID
         )
 
     def test_check_first_pdf_invalid_pdf(self) -> None:
@@ -50,30 +47,30 @@ class TestCompareService(
 
         actual = self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
 
-        assert actual == self.wait_first_pdf
+        assert actual == self.WAIT_FIRST_PDF
         self.telegram_context.user_data.__setitem__.assert_not_called()
 
     def test_compare_pdfs(self) -> None:
-        self.telegram_service.get_user_data.return_value = self.telegram_document_id
+        self.telegram_service.get_user_data.return_value = self.TELEGRAM_DOCUMENT_ID
         self.pdf_service.compare_pdfs.return_value.__enter__.return_value = (
-            self.file_path
+            self.FILE_PATH
         )
 
         actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.pdf_service.compare_pdfs.assert_called_with(
-            self.telegram_document_id, self.telegram_document_id
+            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_ID
         )
         self.telegram_service.reply_with_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            self.file_path,
+            self.FILE_PATH,
             TaskType.compare_pdf,
         )
 
     def test_compare_pdfs_no_differences(self) -> None:
-        self.telegram_service.get_user_data.return_value = self.telegram_document_id
+        self.telegram_service.get_user_data.return_value = self.TELEGRAM_DOCUMENT_ID
         self.pdf_service.compare_pdfs.return_value.__enter__.side_effect = (
             NoDifferenceError()
         )
@@ -82,7 +79,7 @@ class TestCompareService(
 
         assert actual == ConversationHandler.END
         self.pdf_service.compare_pdfs.assert_called_with(
-            self.telegram_document_id, self.telegram_document_id
+            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_ID
         )
         self.telegram_service.reply_with_file.assert_not_called()
 
@@ -100,14 +97,14 @@ class TestCompareService(
 
         actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
-        assert actual == self.wait_second_pdf
+        assert actual == self.WAIT_SECOND_PDF
         self.pdf_service.compare_pdfs.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()
 
     def test_check_text_back(self) -> None:
         self.telegram_message.text = BACK
         actual = self.sut.check_text(self.telegram_update, self.telegram_context)
-        assert actual == self.wait_first_pdf
+        assert actual == self.WAIT_FIRST_PDF
 
     def test_check_text_cancel(self) -> None:
         self.telegram_service.cancel_conversation.return_value = ConversationHandler.END

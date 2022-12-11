@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from contextlib import contextmanager
 from typing import Callable, Generator, Type
 
-from telegram import Update
+from telegram import Message, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -13,7 +13,7 @@ from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
-ErrorHandlerType = Callable[[Update, CallbackContext, Exception, str, str], str]
+ErrorHandlerType = Callable[[Update, CallbackContext, Exception, str, str], str | int]
 
 
 class AbstractFileProcessor(ABC):
@@ -56,7 +56,7 @@ class AbstractFileProcessor(ABC):
 
     def process_file(self, update: Update, context: CallbackContext) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         if self.should_process_back_option and message.text == _(BACK):
             return self.file_task_service.ask_pdf_task(update, context)
@@ -91,7 +91,9 @@ class AbstractFileProcessor(ABC):
     def _get_error_handlers(
         self,
     ) -> dict[Type[Exception], ErrorHandlerType]:
-        handlers = {x: self._handle_generic_error for x in self.generic_error_types}
+        handlers: dict[Type[Exception], ErrorHandlerType] = {
+            x: self._handle_generic_error for x in self.generic_error_types
+        }
         handlers.update(self.custom_error_handlers)
         return handlers
 
@@ -104,5 +106,5 @@ class AbstractFileProcessor(ABC):
         _file_name: str,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(_(str(exception)))
+        update.effective_message.reply_text(_(str(exception)))  # type: ignore
         return ConversationHandler.END

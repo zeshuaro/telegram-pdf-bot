@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 from typing import Generator
 
-from telegram import ParseMode, Update
+from telegram import Message, ParseMode, Update
 from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
@@ -100,14 +100,14 @@ class SplitPDFProcessor(AbstractPDFProcessor):
             ),
         )
         self.telegram_service.reply_with_back_markup(
-            update, context, text, parse_mode=ParseMode.HTML
+            update, context, text, parse_mode=ParseMode.HTML  # type: ignore
         )
 
         return self.WAIT_SPLIT_RANGE
 
     def split_pdf(self, update: Update, context: CallbackContext) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text == _(BACK):

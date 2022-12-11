@@ -37,8 +37,11 @@ class PaymentService:
         self.language_service = language_service
 
     def send_support_options(
-        self, update: Update, context: CallbackContext, query: CallbackQuery = None
-    ):
+        self,
+        update: Update,
+        context: CallbackContext,
+        query: CallbackQuery | None = None,
+    ) -> None:
         _ = self.language_service.set_app_language(update, context, query)
         keyboard = [
             [
@@ -62,7 +65,7 @@ class PaymentService:
         reply_markup = InlineKeyboardMarkup(keyboard)
 
         if query is None:
-            user_id = update.effective_message.from_user.id
+            user_id = update.effective_message.from_user.id  # type: ignore
         else:
             user_id = query.from_user.id
 
@@ -77,7 +80,7 @@ class PaymentService:
         update: Update,
         context: CallbackContext,
         query: CallbackQuery,
-    ):
+    ) -> None:
         _ = self.language_service.set_app_language(update, context)
         support_message, price = query.data.split(",")[1:]
         prices = [LabeledPrice(support_message, int(price) * 100)]
@@ -94,7 +97,7 @@ class PaymentService:
             suggested_tip_amounts=[100, 300, 500, 1000],
         )
 
-    def precheckout_check(self, update: Update, context: CallbackContext):
+    def precheckout_check(self, update: Update, context: CallbackContext) -> None:
         _ = self.language_service.set_app_language(update, context)
         query = update.pre_checkout_query
 
@@ -103,8 +106,8 @@ class PaymentService:
         else:
             query.answer(ok=True)
 
-    def successful_payment(self, update: Update, context: CallbackContext):
+    def successful_payment(self, update: Update, context: CallbackContext) -> None:
         _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _("Thank you for your support!"), reply_markup=ReplyKeyboardRemove()
         )

@@ -1,4 +1,4 @@
-from telegram import Update
+from telegram import Message, Update
 from telegram.ext import (
     CallbackContext,
     CommandHandler,
@@ -50,14 +50,14 @@ class FeedbackHandler:
 
     def check_text(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        if update.effective_message.text == _(CANCEL):
+        if update.effective_message.text == _(CANCEL):  # type: ignore
             return self.telegram_service.cancel_conversation(update, context)
 
         return self._save_feedback(update, context)
 
     def _save_feedback(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         try:
             self.feedback_service.save_feedback(
                 message.chat.id, message.from_user.username, message.text

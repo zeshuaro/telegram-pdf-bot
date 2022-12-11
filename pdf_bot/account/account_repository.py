@@ -1,3 +1,5 @@
+from typing import cast
+
 from google.cloud.datastore import Client, Entity
 
 from pdf_bot.consts import LANGUAGE, USER
@@ -6,7 +8,7 @@ from pdf_bot.db import db as default_db
 
 class AccountRepository:
     def __init__(self, database_client: Client | None = None):
-        self.db = database_client or default_db
+        self.db = cast(Client, database_client or default_db)
 
     def get_user(self, user_id: int) -> Entity | None:
         key = self.db.key(USER, user_id)

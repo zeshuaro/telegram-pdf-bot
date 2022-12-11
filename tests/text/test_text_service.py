@@ -51,7 +51,7 @@ class TestTextService(
 
         assert actual == self.WAIT_FONT
         self.telegram_context.user_data.__setitem__.assert_called_once_with(
-            self.TEXT_KEY, self.telegram_text
+            self.TEXT_KEY, self.TELEGRAM_TEXT
         )
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
@@ -72,7 +72,7 @@ class TestTextService(
         actual = self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
-        self.text_repository.get_font.assert_called_once_with(self.telegram_text)
+        self.text_repository.get_font.assert_called_once_with(self.TELEGRAM_TEXT)
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.TEXT_KEY
         )
@@ -92,7 +92,7 @@ class TestTextService(
         actual = self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
-        self.text_repository.get_font.assert_called_once_with(self.telegram_text)
+        self.text_repository.get_font.assert_called_once_with(self.TELEGRAM_TEXT)
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.TEXT_KEY
         )
@@ -105,7 +105,7 @@ class TestTextService(
         actual = self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_FONT
-        self.text_repository.get_font.assert_called_once_with(self.telegram_text)
+        self.text_repository.get_font.assert_called_once_with(self.TELEGRAM_TEXT)
         self.telegram_service.get_user_data.assert_not_called()
         self.pdf_service.create_pdf_from_text.assert_not_called()
         self.telegram_service.reply_with_file.assert_not_called()

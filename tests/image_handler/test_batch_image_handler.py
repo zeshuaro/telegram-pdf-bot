@@ -58,7 +58,7 @@ class TestBatchImageHandler(
 
         file_data = self.file_data_list.append.call_args.args[0]
         assert file_data == FileData(
-            self.telegram_document_id, self.telegram_document_name
+            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME
         )
 
         self.telegram_service.send_file_names.assert_called_once()

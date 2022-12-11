@@ -40,7 +40,7 @@ class TestFileService(
 
         assert actual == ConversationHandler.END
         self.telegram_update.effective_message.reply_text.assert_called_once()
-        self.pdf_service.compress_pdf.assert_called_once_with(self.telegram_document_id)
+        self.pdf_service.compress_pdf.assert_called_once_with(self.TELEGRAM_DOCUMENT_ID)
         self.telegram_service.reply_with_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,

@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 from typing import Generator
 
-from telegram import ReplyKeyboardMarkup, Update
+from telegram import Message, ReplyKeyboardMarkup, Update
 from telegram.ext import CallbackContext
 
 from pdf_bot.analytics import TaskType
@@ -41,7 +41,7 @@ class RotatePDFProcessor(AbstractPDFProcessor):
         reply_markup = ReplyKeyboardMarkup(
             keyboard, resize_keyboard=True, one_time_keyboard=True
         )
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _(
                 "Select the degrees that you'll like to "
                 "rotate your PDF file in clockwise"
@@ -53,7 +53,7 @@ class RotatePDFProcessor(AbstractPDFProcessor):
 
     def rotate_pdf(self, update: Update, context: CallbackContext) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text == _(BACK):

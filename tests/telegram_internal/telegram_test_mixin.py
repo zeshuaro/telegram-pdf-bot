@@ -16,50 +16,44 @@ from telegram.ext import CallbackContext
 
 
 class TelegramTestMixin:
-    @classmethod
-    def setup_class(cls) -> None:
-        cls.telegram_user_id = 0
-        cls.telegram_query_user_id = 1
-        cls.telegram_username = "username"
-        cls.telegram_file_id = "file_id"
-        cls.telegram_document_id = "document_id"
-        cls.telegram_document_name = "document_name"
-        cls.telegram_photo_size_id = "photo_size_id"
-        cls.telegram_text = "text"
-        cls.telegram_chat_id = "chat_id"
-
-    @classmethod
-    def teardown_class(cls) -> None:
-        pass
+    TELEGRAM_USER_ID = 0
+    TELEGRAM_QUERY_USER_ID = 1
+    TELEGRAM_USERNAME = "username"
+    TELEGRAM_FILE_ID = "file_id"
+    TELEGRAM_DOCUMENT_ID = "document_id"
+    TELEGRAM_DOCUMENT_NAME = "document_name"
+    TELEGRAM_PHOTO_SIZE_ID = "photo_size_id"
+    TELEGRAM_TEXT = "text"
+    TELEGRAM_CHAT_ID = 2
 
     def setup_method(self) -> None:
         self.telegram_bot = MagicMock(spec=Bot)
 
         self.telegram_user = MagicMock(spec=User)
-        self.telegram_user.id = self.telegram_user_id
-        self.telegram_user.username = self.telegram_username
+        self.telegram_user.id = self.TELEGRAM_USER_ID
+        self.telegram_user.username = self.TELEGRAM_USERNAME
 
         self.telegram_query_user = MagicMock(spec=User)
-        self.telegram_query_user.id = self.telegram_query_user_id
+        self.telegram_query_user.id = self.TELEGRAM_QUERY_USER_ID
 
         self.telegram_chat = MagicMock(spec=Chat)
-        self.telegram_chat.id = self.telegram_chat_id
+        self.telegram_chat.id = self.TELEGRAM_CHAT_ID
 
         self.telegram_file = MagicMock(spec=File)
-        self.telegram_file.file_id = self.telegram_file_id
+        self.telegram_file.file_id = self.TELEGRAM_FILE_ID
 
         self.telegram_document = MagicMock(spec=Document)
-        self.telegram_document.file_id = self.telegram_document_id
-        self.telegram_document.file_name = self.telegram_document_name
+        self.telegram_document.file_id = self.TELEGRAM_DOCUMENT_ID
+        self.telegram_document.file_name = self.TELEGRAM_DOCUMENT_NAME
 
         self.telegram_photo_size = MagicMock(spec=PhotoSize)
-        self.telegram_photo_size.file_id = self.telegram_photo_size_id
+        self.telegram_photo_size.file_id = self.TELEGRAM_PHOTO_SIZE_ID
 
         self.telegram_message = MagicMock(spec=Message)
         self.telegram_message.chat = self.telegram_chat
         self.telegram_message.from_user = self.telegram_user
         self.telegram_message.document = self.telegram_document
-        self.telegram_message.text = self.telegram_text
+        self.telegram_message.text = self.TELEGRAM_TEXT
 
         self.telegram_callback_query = MagicMock(spec=CallbackQuery)
         self.telegram_callback_query.from_user = self.telegram_query_user

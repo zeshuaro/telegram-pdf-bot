@@ -44,9 +44,9 @@ class TestPDFToImageProcessor(
         )
 
         with self.sut.process_file_task(
-            self.telegram_document_id, self.telegram_text
+            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.convert_pdf_to_images.assert_called_once_with(
-                self.telegram_document_id
+                self.TELEGRAM_DOCUMENT_ID
             )

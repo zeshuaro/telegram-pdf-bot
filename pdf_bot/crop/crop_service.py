@@ -1,6 +1,6 @@
 import gettext
 
-from telegram import ReplyKeyboardMarkup, Update
+from telegram import Message, ReplyKeyboardMarkup, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -44,7 +44,7 @@ class CropService:
         reply_markup = ReplyKeyboardMarkup(
             keyboard, one_time_keyboard=True, resize_keyboard=True
         )
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _("Select the crop type that you'll like to perform"),
             reply_markup=reply_markup,
         )
@@ -53,7 +53,7 @@ class CropService:
 
     def check_crop_type(self, update: Update, context: CallbackContext) -> str:
         _ = self.language_service.set_app_language(update, context)
-        text = update.effective_message.text
+        text = update.effective_message.text  # type: ignore
 
         if text in [_(self._BY_PERCENTAGE), _(self._BY_MARGIN_SIZE)]:
             return self._ask_crop_value(update, context)
@@ -65,7 +65,7 @@ class CropService:
         self, update: Update, context: CallbackContext
     ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         if message.text == _(BACK):
             return self.ask_crop_type(update, context)
@@ -91,7 +91,7 @@ class CropService:
         self, update: Update, context: CallbackContext
     ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         if message.text == _(BACK):
             return self.ask_crop_type(update, context)
@@ -110,7 +110,7 @@ class CropService:
 
     def _ask_crop_value(self, update: Update, context: CallbackContext) -> str:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         reply_markup = ReplyKeyboardMarkup(
             [[_(BACK)]], one_time_keyboard=True, resize_keyboard=True
         )
@@ -153,7 +153,7 @@ class CropService:
         margin_size: float | None = None,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             file_id, _file_name = self.telegram_service.get_user_data(

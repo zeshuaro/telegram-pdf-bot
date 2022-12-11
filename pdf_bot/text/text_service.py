@@ -1,6 +1,6 @@
 from gettext import gettext as _
 
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.chataction import ChatAction
 from telegram.ext import CallbackContext, ConversationHandler
 from telegram.parsemode import ParseMode
@@ -43,13 +43,13 @@ class TextService:
 
     def ask_pdf_font(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text == _(CANCEL):
             return self.telegram_service.cancel_conversation(update, context)
 
-        context.user_data[self.TEXT_KEY] = text
+        context.user_data[self.TEXT_KEY] = text  # type: ignore
         reply_markup = ReplyKeyboardMarkup(
             [[_(self.SKIP)]], resize_keyboard=True, one_time_keyboard=True
         )
@@ -71,7 +71,7 @@ class TextService:
         return self.WAIT_FONT
 
     def check_text(self, update: Update, context: CallbackContext) -> int:
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         message.reply_chat_action(ChatAction.TYPING)
 
         _ = self.language_service.set_app_language(update, context)
@@ -97,7 +97,7 @@ class TextService:
         font_data: FontData | None = None,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             text = self.telegram_service.get_user_data(context, self.TEXT_KEY)

@@ -1,4 +1,4 @@
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -39,7 +39,7 @@ class WatermarkService:
 
     def check_source_pdf(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             doc = self.telegram_service.check_pdf_document(message)
@@ -47,7 +47,7 @@ class WatermarkService:
             message.reply_text(_(str(e)))
             return self.WAIT_SOURCE_PDF
 
-        context.user_data[self.WATERMARK_KEY] = doc.file_id
+        context.user_data[self.WATERMARK_KEY] = doc.file_id  # type: ignore
         reply_markup = ReplyKeyboardMarkup(
             [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
@@ -59,7 +59,7 @@ class WatermarkService:
 
     def add_watermark_to_pdf(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             doc = self.telegram_service.check_pdf_document(message)
@@ -91,7 +91,7 @@ class WatermarkService:
 
     def check_text(self, update: Update, context: CallbackContext) -> int | None:
         _ = self.language_service.set_app_language(update, context)
-        text = update.effective_message.text
+        text = update.effective_message.text  # type: ignore
 
         if text == _(BACK):
             return self.ask_source_pdf(update, context)

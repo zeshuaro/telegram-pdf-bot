@@ -37,10 +37,7 @@ class TestIOService:
             with self.sut.create_temp_directory(prefix) as actual:
                 assert actual == self.DIR_NAME
 
-            expected_prefix = prefix
-            if prefix is not None and not prefix.endswith("_"):
-                expected_prefix += "_"
-
+            expected_prefix = self._get_expected_prefix(prefix)
             td_cls.assert_called_once_with(prefix=expected_prefix)
             td.cleanup.assert_called_once()
 
@@ -59,9 +56,7 @@ class TestIOService:
         with self.sut.create_temp_file(prefix, suffix) as actual:
             assert actual == self.FILE_NAME
 
-        expected_prefix = prefix
-        if prefix is not None and not prefix.endswith("_"):
-            expected_prefix += "_"
+        expected_prefix = self._get_expected_prefix(prefix)
         self._assert_temp_file(expected_prefix, suffix)
 
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
@@ -98,9 +93,7 @@ class TestIOService:
         with self.sut.create_temp_pdf_file(prefix) as actual:
             assert actual == self.FILE_NAME
 
-        expected_prefix = prefix
-        if prefix is not None and not prefix.endswith("_"):
-            expected_prefix += "_"
+        expected_prefix = self._get_expected_prefix(prefix)
         self._assert_temp_file(expected_prefix, ".pdf")
 
     def test_create_temp_png_file(self) -> None:
@@ -116,3 +109,11 @@ class TestIOService:
     def _assert_temp_file(self, prefix: str | None, suffix: str | None) -> None:
         self.tf_cls.assert_called_once_with(prefix=prefix, suffix=suffix)
         self.tf.close.assert_called_once()
+
+    def _get_expected_prefix(self, prefix: str | None) -> str | None:
+        expected_prefix: str | None
+        if prefix is not None and not prefix.endswith("_"):
+            expected_prefix = f"{prefix}_"
+        else:
+            expected_prefix = prefix
+        return expected_prefix

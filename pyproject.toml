@@ -37,6 +37,7 @@ pytest = "7.2.0"
 pytest-cov = "4.0.0"
 pre-commit = "2.20.0"
 mypy = "0.991"
+types-requests = "2.28.11.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -73,44 +74,8 @@ disable = ["attribute-defined-outside-init", "too-many-public-methods"]
 [tool.mypy]
 warn_unused_configs = true
 warn_redundant_casts = true
-
 show_error_codes = true
-disable_error_code = [
-    'arg-type',
-    'attr-defined',
-    'union-attr',
-    'operator',
-    'assignment',
-    'return-value',
-    'import',
-    'misc',
-    'index',
-    'str-bytes-safe',
-    'var-annotated',
-    'dict-item',
-]
 
-
-[[tool.mypy.overrides]]
-module = [
-    'tests.*',
-    "pdf_bot.account.*",
-    'pdf_bot.language_new.*',
-    'pdf_bot.telegram_internal.*',
-    'pdf_bot.cli.*',
-    'pdf_bot.crop.*',
-    'pdf_bot.file_processor.*',
-    'pdf_bot.file_task.*',
-    'pdf_bot.io.*',
-    'pdf_bot.merge.*',
-    'pdf_bot.pdf.*',
-    'pdf_bot.text.*',
-    'pdf_bot.watermark.*',
-    'pdf_bot.command.*',
-    'pdf_bot.pdf_processor.*',
-    'pdf_bot.image.*',
-    'pdf_bot.image_processor.*',
-]
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 check_untyped_defs = true
@@ -120,6 +85,17 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_return_any = true
 warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = [
+    'weasyprint.*',
+    'langdetect.*',
+    'img2pdf.*',
+    'pdf2image.*',
+    'pdf_diff.*',
+    'noteshrink.*',
+]
+ignore_missing_imports = true
 
 [tool.coverage.run]
 relative_files = true

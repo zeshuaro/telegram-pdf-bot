@@ -49,11 +49,11 @@ class TestRotatePDFProcessor(
         self.pdf_service.rotate_pdf.return_value.__enter__.return_value = self.FILE_PATH
 
         with self.sut.process_file_task(
-            self.telegram_document_id, self.ROTATE_90
+            self.TELEGRAM_DOCUMENT_ID, self.ROTATE_90
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.rotate_pdf.assert_called_once_with(
-                self.telegram_document_id, int(self.ROTATE_90)
+                self.TELEGRAM_DOCUMENT_ID, int(self.ROTATE_90)
             )
 
     def test_ask_degree(self) -> None:
@@ -71,7 +71,7 @@ class TestRotatePDFProcessor(
 
         assert actual == ConversationHandler.END
         self.pdf_service.rotate_pdf.assert_called_once_with(
-            self.telegram_document_id, int(degree)
+            self.TELEGRAM_DOCUMENT_ID, int(degree)
         )
 
     def test_rename_pdf_invalid_degree(self) -> None:

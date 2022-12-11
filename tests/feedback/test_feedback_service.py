@@ -31,7 +31,7 @@ class TestFeedbackService(TelegramTestMixin):
     def test_save_feedback(self) -> None:
         self._save_feedback()
         self.feedback_repository.save_feedback.assert_called_once_with(
-            self.telegram_chat_id, self.telegram_username, self.telegram_text
+            self.TELEGRAM_CHAT_ID, self.TELEGRAM_USERNAME, self.TELEGRAM_TEXT
         )
 
     def test_save_feedback_invalid_language(self) -> None:
@@ -42,5 +42,5 @@ class TestFeedbackService(TelegramTestMixin):
 
     def _save_feedback(self) -> None:
         self.sut.save_feedback(
-            self.telegram_chat_id, self.telegram_username, self.telegram_text
+            self.TELEGRAM_CHAT_ID, self.TELEGRAM_USERNAME, self.TELEGRAM_TEXT
         )
