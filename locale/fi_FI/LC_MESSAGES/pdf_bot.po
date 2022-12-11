@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-11 06:32+0000\n"
-"PO-Revision-Date: 2022-12-11 06:33\n"
+"POT-Creation-Date: 2022-12-11 08:13+0000\n"
+"PO-Revision-Date: 2022-12-11 08:14\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -196,12 +196,12 @@ msgid "Set Language 🌎"
 msgstr "Aseta Kieli 🌎"
 
 #: pdf_bot/command/command_service.py:59
-#: pdf_bot/telegram_internal/telegram_service.py:152
+#: pdf_bot/telegram_internal/telegram_service.py:154
 msgid "Join Channel"
 msgstr "Liity kanavaan"
 
-#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:153
+#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:90
+#: pdf_bot/telegram_internal/telegram_service.py:155
 msgid "Support PDF Bot"
 msgstr "Tuki PDF Bot"
 
@@ -329,43 +329,43 @@ msgstr "Tiedoston kokoa pienennetty {percent}, {old_size} {new_size}"
 msgid "Select the task that you'll like to perform"
 msgstr "Valitse tehtävä, jonka haluat suorittaa"
 
-#: pdf_bot/image_handler/batch_image_handler.py:55
+#: pdf_bot/image_handler/batch_image_handler.py:61
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Lähetä minulle kuvat, jotka haluat kaunistaa tai muuntaa PDF-tiedostoksi"
 
-#: pdf_bot/image_handler/batch_image_handler.py:59
+#: pdf_bot/image_handler/batch_image_handler.py:65
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Huomaa, että kuvat kaunistavat ja muunnetaan siinä järjestyksessä, jonka lähetät minulle"
 
-#: pdf_bot/image_handler/batch_image_handler.py:105
+#: pdf_bot/image_handler/batch_image_handler.py:111
 msgid "You've sent me these images so far:"
 msgstr "Olet lähettänyt minulle nämä kuvat tähän mennessä:"
 
-#: pdf_bot/image_handler/batch_image_handler.py:116
+#: pdf_bot/image_handler/batch_image_handler.py:122
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Valitse tehtävä alapuolelta, jos olet lähettänyt minulle kaikki kuvat, tai jatka kuvien lähettämistä minulle"
 
-#: pdf_bot/image_handler/batch_image_handler.py:133
+#: pdf_bot/image_handler/batch_image_handler.py:139
 msgid "You've already removed all the images you've sent me"
 msgstr "Olet jo poistanut kaikki minulle lähettämäsi kuvat"
 
-#: pdf_bot/image_handler/batch_image_handler.py:138
+#: pdf_bot/image_handler/batch_image_handler.py:144
 msgid "{file_name} has been removed"
 msgstr "{file_name} on poistettu"
 
-#: pdf_bot/image_handler/batch_image_handler.py:156
+#: pdf_bot/image_handler/batch_image_handler.py:162
 msgid "You haven't sent me any images"
 msgstr "Et ole lähettänyt minulle kuvia"
 
-#: pdf_bot/image_handler/batch_image_handler.py:159
+#: pdf_bot/image_handler/batch_image_handler.py:165
 msgid "You've only sent me one image"
 msgstr "Olet lähettänyt minulle vain yhden kuvan"
 
-#: pdf_bot/image_handler/batch_image_handler.py:173
+#: pdf_bot/image_handler/batch_image_handler.py:179
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "Kuvien kaunistaminen ja muuntaminen PDF-tiedostoksi"
 
-#: pdf_bot/image_handler/batch_image_handler.py:175
+#: pdf_bot/image_handler/batch_image_handler.py:181
 msgid "Converting your images into a PDF file"
 msgstr "Kuvien muuntaminen PDF-tiedostoksi"
 
@@ -377,95 +377,95 @@ msgstr "Valitse kieli"
 msgid "Your language has been set to {language}"
 msgstr "Kielesi on määritetty {language}"
 
-#: pdf_bot/merge/merge_service.py:33
+#: pdf_bot/merge/merge_service.py:39
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Lähetä pdf-tiedostot, jotka haluat yhdistää"
 
-#: pdf_bot/merge/merge_service.py:34
+#: pdf_bot/merge/merge_service.py:40
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Huomaa, että tiedostot yhdistetään lähettämissäsi järjestyksessä"
 
-#: pdf_bot/merge/merge_service.py:79
+#: pdf_bot/merge/merge_service.py:85
 msgid "You've sent me these PDF files so far:"
 msgstr "Olet lähettänyt minulle nämä PDF-tiedostot tähän mennessä:"
 
-#: pdf_bot/merge/merge_service.py:90
+#: pdf_bot/merge/merge_service.py:96
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Paina {done} jos olet lähettänyt minulle kaikki PDF-tiedostot, jotka haluat yhdistää, tai jatka PDF-tiedostojen lähettämistä"
 
-#: pdf_bot/merge/merge_service.py:108
+#: pdf_bot/merge/merge_service.py:114
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Olet jo poistanut kaikki lähettämäsi PDF-tiedostot"
 
-#: pdf_bot/merge/merge_service.py:113
+#: pdf_bot/merge/merge_service.py:119
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} on poistettu yhdistämistä"
 
-#: pdf_bot/merge/merge_service.py:131
+#: pdf_bot/merge/merge_service.py:138
 msgid "You haven't sent me any PDF files"
 msgstr "Et ole lähettänyt minulle PDF-tiedostoja"
 
-#: pdf_bot/merge/merge_service.py:134
+#: pdf_bot/merge/merge_service.py:143
 msgid "You've only sent me one PDF file"
 msgstr "Lähetit minulle vain yhden PDF-tiedoston."
 
-#: pdf_bot/merge/merge_service.py:144
+#: pdf_bot/merge/merge_service.py:154
 msgid "Merging your PDF files"
 msgstr "PDF-tiedostojen yhdistäminen"
 
-#: pdf_bot/payment/payment_service.py:58
+#: pdf_bot/payment/payment_service.py:61
 msgid "Help translate PDF Bot"
 msgstr "Auta kääntämään PDF-botti"
 
-#: pdf_bot/payment/payment_service.py:71
+#: pdf_bot/payment/payment_service.py:74
 msgid "Select how you want to support PDF Bot"
 msgstr "Valitse, miten haluat tukea PDF Botia"
 
-#: pdf_bot/payment/payment_service.py:88
+#: pdf_bot/payment/payment_service.py:91
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Kiitä PDF Botia ja auta pitämään se käynnissä"
 
-#: pdf_bot/payment/payment_service.py:102
+#: pdf_bot/payment/payment_service.py:105
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: pdf_bot/payment/payment_service.py:109
+#: pdf_bot/payment/payment_service.py:112
 msgid "Thank you for your support!"
 msgstr "Kiitos tuestanne!"
 
-#: pdf_bot/pdf/pdf_service.py:169
+#: pdf_bot/pdf/pdf_service.py:173
 msgid "Your PDF file is not encrypted"
 msgstr "PDF-tiedostoa ei ole salattu"
 
-#: pdf_bot/pdf/pdf_service.py:174
+#: pdf_bot/pdf/pdf_service.py:178
 msgid "Incorrect password, please try again"
 msgstr "Väärä salasana, yritä uudelleen"
 
-#: pdf_bot/pdf/pdf_service.py:178
+#: pdf_bot/pdf/pdf_service.py:182
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "PDF-tiedostosi salataan menetelmällä, jonka salausta en voi purkaa"
 
-#: pdf_bot/pdf/pdf_service.py:215
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "PDF-tiedostosta ei löytynyt kuvia"
 
-#: pdf_bot/pdf/pdf_service.py:224
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "PDF-tiedostosta ei löytynyt tekstiä"
 
-#: pdf_bot/pdf/pdf_service.py:245
+#: pdf_bot/pdf/pdf_service.py:249
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "PDF-tiedostoja ei voi yhdistää, koska tämä tiedosto ei kelpaa: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:263
+#: pdf_bot/pdf/pdf_service.py:267
 msgid "Your PDF file already has a text layer"
 msgstr "PDF-tiedostossa on jo tekstikerros"
 
-#: pdf_bot/pdf/pdf_service.py:349
+#: pdf_bot/pdf/pdf_service.py:353
 msgid "Your PDF file is invalid"
 msgstr "PDF-tiedosto ei kelpaa"
 
-#: pdf_bot/pdf/pdf_service.py:352
+#: pdf_bot/pdf/pdf_service.py:356
 msgid "Your PDF file is encrypted"
 msgstr "PDF-tiedostosi on salattu"
 
@@ -609,7 +609,7 @@ msgstr "Lähetä minulle salasana PDF-tiedoston salaamista vastaan"
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Painike on vanhentunut, yritä uudelleen uudella viestillä/kyselyllä ja paina sitten uutta painiketta"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:195
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:196
 #: pdf_bot/telegram_internal/telegram_service.py:94
 msgid "Something went wrong, please try again"
 msgstr "Jokin meni vikaan."
@@ -626,24 +626,24 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "Tiedosto on liian suuri, jotta voisin lähettää sen sinulle\n\n"
 "Huomaa, että Telegram valvoo tätä rajoitusta, enkä voi tehdä mitään, ellei Telegram muuta sitä"
 
-#: pdf_bot/telegram_internal/telegram_service.py:103
+#: pdf_bot/telegram_internal/telegram_service.py:105
 msgid "Your file is not an image, please try again"
 msgstr "Tiedostosi ei ole kuva, yritä uudelleen"
 
-#: pdf_bot/telegram_internal/telegram_service.py:110
+#: pdf_bot/telegram_internal/telegram_service.py:112
 msgid "No image found in your message"
 msgstr "Viestistä ei löytynyt kuvaa"
 
-#: pdf_bot/telegram_internal/telegram_service.py:119
+#: pdf_bot/telegram_internal/telegram_service.py:121
 msgid "Your file is not a PDF file, please try again"
 msgstr "Tiedostosi ei ole PDF-tiedosto, yritä uudelleen"
 
-#: pdf_bot/telegram_internal/telegram_service.py:142
+#: pdf_bot/telegram_internal/telegram_service.py:144
 msgid "Action cancelled"
 msgstr "Toiminto peruutettu"
 
-#: pdf_bot/telegram_internal/telegram_service.py:198
-#: pdf_bot/telegram_internal/telegram_service.py:205
+#: pdf_bot/telegram_internal/telegram_service.py:200
+#: pdf_bot/telegram_internal/telegram_service.py:207
 msgid "Here is your result file"
 msgstr "Tässä on tulostiedostosi"
 
@@ -683,11 +683,11 @@ msgstr "Lähetä minulle vesileiman PDF-tiedosto"
 msgid "Adding the watermark onto your PDF file"
 msgstr "Vesileiman lisääminen PDF-tiedostoon"
 
-#: pdf_bot/webpage/webpage_handler.py:41
+#: pdf_bot/webpage/webpage_handler.py:42
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "Olet jo lähettänyt minulle tämän verkkosivun, ja muunnan sitä yhä"
 
-#: pdf_bot/webpage/webpage_handler.py:45
+#: pdf_bot/webpage/webpage_handler.py:46
 msgid "Converting your web page into a PDF file"
 msgstr "Verkkosivun muuntaminen PDF-tiedostoksi"
 

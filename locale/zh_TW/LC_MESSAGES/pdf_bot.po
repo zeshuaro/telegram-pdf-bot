@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-11 06:32+0000\n"
-"PO-Revision-Date: 2022-12-11 06:33\n"
+"POT-Creation-Date: 2022-12-11 08:13+0000\n"
+"PO-Revision-Date: 2022-12-11 08:14\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -196,12 +196,12 @@ msgid "Set Language 🌎"
 msgstr "設定語言 🌎"
 
 #: pdf_bot/command/command_service.py:59
-#: pdf_bot/telegram_internal/telegram_service.py:152
+#: pdf_bot/telegram_internal/telegram_service.py:154
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:153
+#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:90
+#: pdf_bot/telegram_internal/telegram_service.py:155
 msgid "Support PDF Bot"
 msgstr "支持PDF Bot"
 
@@ -329,43 +329,43 @@ msgstr "檔大小減少 {percent}，從 {old_size} 減少到 {new_size}"
 msgid "Select the task that you'll like to perform"
 msgstr "選擇你想要做什麼"
 
-#: pdf_bot/image_handler/batch_image_handler.py:55
+#: pdf_bot/image_handler/batch_image_handler.py:61
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "向我發送您想要美化或轉換為PDF檔的圖像"
 
-#: pdf_bot/image_handler/batch_image_handler.py:59
+#: pdf_bot/image_handler/batch_image_handler.py:65
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "請注意，圖像將按照您發送給我的順序進行美化和轉換"
 
-#: pdf_bot/image_handler/batch_image_handler.py:105
+#: pdf_bot/image_handler/batch_image_handler.py:111
 msgid "You've sent me these images so far:"
 msgstr "到目前為止，您已經向我發送了這些圖像："
 
-#: pdf_bot/image_handler/batch_image_handler.py:116
+#: pdf_bot/image_handler/batch_image_handler.py:122
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "如果您已將所有圖像發送給我，請從下面選擇任務，或者繼續向我發送圖像"
 
-#: pdf_bot/image_handler/batch_image_handler.py:133
+#: pdf_bot/image_handler/batch_image_handler.py:139
 msgid "You've already removed all the images you've sent me"
 msgstr "您已經刪除了發送給我的所有影像"
 
-#: pdf_bot/image_handler/batch_image_handler.py:138
+#: pdf_bot/image_handler/batch_image_handler.py:144
 msgid "{file_name} has been removed"
 msgstr "{file_name} 已被刪除"
 
-#: pdf_bot/image_handler/batch_image_handler.py:156
+#: pdf_bot/image_handler/batch_image_handler.py:162
 msgid "You haven't sent me any images"
 msgstr "你還沒有給我發任何圖片"
 
-#: pdf_bot/image_handler/batch_image_handler.py:159
+#: pdf_bot/image_handler/batch_image_handler.py:165
 msgid "You've only sent me one image"
 msgstr "你只給我發了一張圖片"
 
-#: pdf_bot/image_handler/batch_image_handler.py:173
+#: pdf_bot/image_handler/batch_image_handler.py:179
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "美化圖像並將其轉換為PDF檔"
 
-#: pdf_bot/image_handler/batch_image_handler.py:175
+#: pdf_bot/image_handler/batch_image_handler.py:181
 msgid "Converting your images into a PDF file"
 msgstr "將影像轉換為 PDF 檔"
 
@@ -377,95 +377,95 @@ msgstr "選擇你的語言"
 msgid "Your language has been set to {language}"
 msgstr "您的語言已設定為 {language}"
 
-#: pdf_bot/merge/merge_service.py:33
+#: pdf_bot/merge/merge_service.py:39
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "將您希望合併的 PDF 檔案發送給我"
 
-#: pdf_bot/merge/merge_service.py:34
+#: pdf_bot/merge/merge_service.py:40
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "請注意，檔將按照您發送給我的順序合併"
 
-#: pdf_bot/merge/merge_service.py:79
+#: pdf_bot/merge/merge_service.py:85
 msgid "You've sent me these PDF files so far:"
 msgstr "到目前為止，您已經向我發送了這些PDF檔："
 
-#: pdf_bot/merge/merge_service.py:90
+#: pdf_bot/merge/merge_service.py:96
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "按 {done} ，如果您已將您希望合併的所有 PDF 檔發送給我，或繼續將 PDF 檔發送給我"
 
-#: pdf_bot/merge/merge_service.py:108
+#: pdf_bot/merge/merge_service.py:114
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "您已經刪除了發送給我的所有PDF檔"
 
-#: pdf_bot/merge/merge_service.py:113
+#: pdf_bot/merge/merge_service.py:119
 msgid "{file_name} has been removed for merging"
 msgstr "合併 {file_name} 已被移除"
 
-#: pdf_bot/merge/merge_service.py:131
+#: pdf_bot/merge/merge_service.py:138
 msgid "You haven't sent me any PDF files"
 msgstr "你還沒有向我發送任何PDF檔案"
 
-#: pdf_bot/merge/merge_service.py:134
+#: pdf_bot/merge/merge_service.py:143
 msgid "You've only sent me one PDF file"
 msgstr "你只寄給我一個 Pdf 檔"
 
-#: pdf_bot/merge/merge_service.py:144
+#: pdf_bot/merge/merge_service.py:154
 msgid "Merging your PDF files"
 msgstr "正在合併你的PDF檔案"
 
-#: pdf_bot/payment/payment_service.py:58
+#: pdf_bot/payment/payment_service.py:61
 msgid "Help translate PDF Bot"
 msgstr "幫助翻譯PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:71
+#: pdf_bot/payment/payment_service.py:74
 msgid "Select how you want to support PDF Bot"
 msgstr "選擇你支持PDF Bot的方式"
 
-#: pdf_bot/payment/payment_service.py:88
+#: pdf_bot/payment/payment_service.py:91
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "跟PDF Bot說謝謝並幫助它繼續運行"
 
-#: pdf_bot/payment/payment_service.py:102
+#: pdf_bot/payment/payment_service.py:105
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: pdf_bot/payment/payment_service.py:109
+#: pdf_bot/payment/payment_service.py:112
 msgid "Thank you for your support!"
 msgstr "感謝你的支持！"
 
-#: pdf_bot/pdf/pdf_service.py:169
+#: pdf_bot/pdf/pdf_service.py:173
 msgid "Your PDF file is not encrypted"
 msgstr "你的PDF檔案並沒有加密"
 
-#: pdf_bot/pdf/pdf_service.py:174
+#: pdf_bot/pdf/pdf_service.py:178
 msgid "Incorrect password, please try again"
 msgstr "密碼不正確，請重試"
 
-#: pdf_bot/pdf/pdf_service.py:178
+#: pdf_bot/pdf/pdf_service.py:182
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "您的 PDF 檔使用一種無法解密的方法進行加密"
 
-#: pdf_bot/pdf/pdf_service.py:215
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "在 PDF 檔中找不到影像"
 
-#: pdf_bot/pdf/pdf_service.py:224
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "在 PDF 檔中找不到任何文字"
 
-#: pdf_bot/pdf/pdf_service.py:245
+#: pdf_bot/pdf/pdf_service.py:249
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "我不能合併您的 PDF 檔，因為此文件無效： {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:263
+#: pdf_bot/pdf/pdf_service.py:267
 msgid "Your PDF file already has a text layer"
 msgstr "你的PDF檔案已經有一層文字"
 
-#: pdf_bot/pdf/pdf_service.py:349
+#: pdf_bot/pdf/pdf_service.py:353
 msgid "Your PDF file is invalid"
 msgstr "您的 PDF 檔無效"
 
-#: pdf_bot/pdf/pdf_service.py:352
+#: pdf_bot/pdf/pdf_service.py:356
 msgid "Your PDF file is encrypted"
 msgstr "您的 PDF 檔已加密"
 
@@ -609,7 +609,7 @@ msgstr "把密碼發給我來加密你的PDF檔案"
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "按鈕已過期，請使用新消息/查詢重試，然後按新按鈕"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:195
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:196
 #: pdf_bot/telegram_internal/telegram_service.py:94
 msgid "Something went wrong, please try again"
 msgstr "出問題了，請再試一次"
@@ -626,24 +626,24 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "檔太大，我無法發送給您\n\n"
 "請注意，此限制是由電報強制執行的，除非電報更改它，否則我無能為力"
 
-#: pdf_bot/telegram_internal/telegram_service.py:103
+#: pdf_bot/telegram_internal/telegram_service.py:105
 msgid "Your file is not an image, please try again"
 msgstr "您的檔不是圖像，請重試"
 
-#: pdf_bot/telegram_internal/telegram_service.py:110
+#: pdf_bot/telegram_internal/telegram_service.py:112
 msgid "No image found in your message"
 msgstr "在郵件中未找到圖像"
 
-#: pdf_bot/telegram_internal/telegram_service.py:119
+#: pdf_bot/telegram_internal/telegram_service.py:121
 msgid "Your file is not a PDF file, please try again"
 msgstr "您的檔不是 PDF 檔，請再試一次"
 
-#: pdf_bot/telegram_internal/telegram_service.py:142
+#: pdf_bot/telegram_internal/telegram_service.py:144
 msgid "Action cancelled"
 msgstr "操作取消"
 
-#: pdf_bot/telegram_internal/telegram_service.py:198
-#: pdf_bot/telegram_internal/telegram_service.py:205
+#: pdf_bot/telegram_internal/telegram_service.py:200
+#: pdf_bot/telegram_internal/telegram_service.py:207
 msgid "Here is your result file"
 msgstr "你的輸出檔案"
 
@@ -683,11 +683,11 @@ msgstr "發給我水印PDF檔案"
 msgid "Adding the watermark onto your PDF file"
 msgstr "正在添加水印到你的PDF檔案中"
 
-#: pdf_bot/webpage/webpage_handler.py:41
+#: pdf_bot/webpage/webpage_handler.py:42
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "你已經把這個網頁發給我了，我還在轉換它"
 
-#: pdf_bot/webpage/webpage_handler.py:45
+#: pdf_bot/webpage/webpage_handler.py:46
 msgid "Converting your web page into a PDF file"
 msgstr "正在轉換你的網頁為PDF檔案"
 

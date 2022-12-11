@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-11 06:32+0000\n"
-"PO-Revision-Date: 2022-12-11 06:33\n"
+"POT-Creation-Date: 2022-12-11 08:13+0000\n"
+"PO-Revision-Date: 2022-12-11 08:14\n"
 "Last-Translator: \n"
 "Language: de\n"
 "Language-Team: German\n"
@@ -196,12 +196,12 @@ msgid "Set Language 🌎"
 msgstr "Sprache festlegen 🌎"
 
 #: pdf_bot/command/command_service.py:59
-#: pdf_bot/telegram_internal/telegram_service.py:152
+#: pdf_bot/telegram_internal/telegram_service.py:154
 msgid "Join Channel"
 msgstr "Join Channel"
 
-#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:153
+#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:90
+#: pdf_bot/telegram_internal/telegram_service.py:155
 msgid "Support PDF Bot"
 msgstr "Unterstützung PDF Bot"
 
@@ -329,43 +329,43 @@ msgstr "Dateigröße um {percent}reduziert, von {old_size} auf {new_size}"
 msgid "Select the task that you'll like to perform"
 msgstr "Wählen Sie die Aufgabe aus, die Sie ausführen möchten"
 
-#: pdf_bot/image_handler/batch_image_handler.py:55
+#: pdf_bot/image_handler/batch_image_handler.py:61
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Senden Sie mir die Bilder, die Sie verschönern oder in eine PDF-Datei konvertieren möchten"
 
-#: pdf_bot/image_handler/batch_image_handler.py:59
+#: pdf_bot/image_handler/batch_image_handler.py:65
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Beachten Sie, dass die Bilder in der Reihenfolge, in der Sie mir senden, verschönert und konvertiert werden"
 
-#: pdf_bot/image_handler/batch_image_handler.py:105
+#: pdf_bot/image_handler/batch_image_handler.py:111
 msgid "You've sent me these images so far:"
 msgstr "Ihr habt mir bisher diese Bilder geschickt:"
 
-#: pdf_bot/image_handler/batch_image_handler.py:116
+#: pdf_bot/image_handler/batch_image_handler.py:122
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Wählen Sie die Aufgabe von unten aus, wenn Sie mir alle Bilder geschickt haben, oder senden Sie mir weiterhin die Bilder"
 
-#: pdf_bot/image_handler/batch_image_handler.py:133
+#: pdf_bot/image_handler/batch_image_handler.py:139
 msgid "You've already removed all the images you've sent me"
 msgstr "Sie haben bereits alle Bilder entfernt, die Sie mir gesendet haben"
 
-#: pdf_bot/image_handler/batch_image_handler.py:138
+#: pdf_bot/image_handler/batch_image_handler.py:144
 msgid "{file_name} has been removed"
 msgstr "{file_name} wurde entfernt"
 
-#: pdf_bot/image_handler/batch_image_handler.py:156
+#: pdf_bot/image_handler/batch_image_handler.py:162
 msgid "You haven't sent me any images"
 msgstr "Sie haben mir keine Bilder geschickt"
 
-#: pdf_bot/image_handler/batch_image_handler.py:159
+#: pdf_bot/image_handler/batch_image_handler.py:165
 msgid "You've only sent me one image"
 msgstr "Sie haben mir nur ein Bild geschickt"
 
-#: pdf_bot/image_handler/batch_image_handler.py:173
+#: pdf_bot/image_handler/batch_image_handler.py:179
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "Verschönern und Konvertieren Ihrer Bilder in eine PDF-Datei"
 
-#: pdf_bot/image_handler/batch_image_handler.py:175
+#: pdf_bot/image_handler/batch_image_handler.py:181
 msgid "Converting your images into a PDF file"
 msgstr "Konvertieren Sie Ihre Bilder in eine PDF-Datei"
 
@@ -377,95 +377,95 @@ msgstr "Wählen Sie Ihre Sprache"
 msgid "Your language has been set to {language}"
 msgstr "Ihre Sprache wurde auf {language}eingestellt"
 
-#: pdf_bot/merge/merge_service.py:33
+#: pdf_bot/merge/merge_service.py:39
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Senden Sie mir die PDF-Dateien, die Sie zusammenführen möchten"
 
-#: pdf_bot/merge/merge_service.py:34
+#: pdf_bot/merge/merge_service.py:40
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Beachten Sie, dass die Dateien in der Reihenfolge zusammengeführt werden, in der Sie mich senden"
 
-#: pdf_bot/merge/merge_service.py:79
+#: pdf_bot/merge/merge_service.py:85
 msgid "You've sent me these PDF files so far:"
 msgstr "Sie haben mir bisher diese PDF-Dateien geschickt:"
 
-#: pdf_bot/merge/merge_service.py:90
+#: pdf_bot/merge/merge_service.py:96
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Drücken Sie {done} , wenn Sie mir alle PDF-Dateien gesendet haben, die Sie zusammenführen möchten, oder senden Sie mir weiterhin die PDF-Dateien"
 
-#: pdf_bot/merge/merge_service.py:108
+#: pdf_bot/merge/merge_service.py:114
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Sie haben bereits alle PDF-Dateien entfernt, die Sie mir gesendet haben"
 
-#: pdf_bot/merge/merge_service.py:113
+#: pdf_bot/merge/merge_service.py:119
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} wurde für die Zusammenführung entfernt"
 
-#: pdf_bot/merge/merge_service.py:131
+#: pdf_bot/merge/merge_service.py:138
 msgid "You haven't sent me any PDF files"
 msgstr "Sie haben mir keine PDF-Dateien gesendet"
 
-#: pdf_bot/merge/merge_service.py:134
+#: pdf_bot/merge/merge_service.py:143
 msgid "You've only sent me one PDF file"
 msgstr "Sie haben mir nur eine PDF-Datei geschickt"
 
-#: pdf_bot/merge/merge_service.py:144
+#: pdf_bot/merge/merge_service.py:154
 msgid "Merging your PDF files"
 msgstr "Zusammenführen Ihrer PDF-Dateien"
 
-#: pdf_bot/payment/payment_service.py:58
+#: pdf_bot/payment/payment_service.py:61
 msgid "Help translate PDF Bot"
 msgstr "Hilfe beim Übersetzen von PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:71
+#: pdf_bot/payment/payment_service.py:74
 msgid "Select how you want to support PDF Bot"
 msgstr "Wählen Sie aus, wie Sie PDF Bot unterstützen möchten"
 
-#: pdf_bot/payment/payment_service.py:88
+#: pdf_bot/payment/payment_service.py:91
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Sagen Sie danke an PDF Bot und helfen Sie, es am Laufen zu halten"
 
-#: pdf_bot/payment/payment_service.py:102
+#: pdf_bot/payment/payment_service.py:105
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: pdf_bot/payment/payment_service.py:109
+#: pdf_bot/payment/payment_service.py:112
 msgid "Thank you for your support!"
 msgstr "Vielen Dank für Ihre Unterstützung!"
 
-#: pdf_bot/pdf/pdf_service.py:169
+#: pdf_bot/pdf/pdf_service.py:173
 msgid "Your PDF file is not encrypted"
 msgstr "Ihre PDF-Datei ist nicht verschlüsselt"
 
-#: pdf_bot/pdf/pdf_service.py:174
+#: pdf_bot/pdf/pdf_service.py:178
 msgid "Incorrect password, please try again"
 msgstr "Falsches Passwort, bitte versuchen Sie es erneut"
 
-#: pdf_bot/pdf/pdf_service.py:178
+#: pdf_bot/pdf/pdf_service.py:182
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Ihre PDF-Datei wird mit einer Methode verschlüsselt, die ich nicht entschlüsseln kann"
 
-#: pdf_bot/pdf/pdf_service.py:215
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "Keine Bilder in Ihrer PDF-Datei gefunden"
 
-#: pdf_bot/pdf/pdf_service.py:224
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "Kein Text in Ihrer PDF-Datei gefunden"
 
-#: pdf_bot/pdf/pdf_service.py:245
+#: pdf_bot/pdf/pdf_service.py:249
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Ich konnte Ihre PDF-Dateien nicht zusammenführen, da diese Datei ungültig ist: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:263
+#: pdf_bot/pdf/pdf_service.py:267
 msgid "Your PDF file already has a text layer"
 msgstr "Ihre PDF-Datei hat bereits eine Textebene"
 
-#: pdf_bot/pdf/pdf_service.py:349
+#: pdf_bot/pdf/pdf_service.py:353
 msgid "Your PDF file is invalid"
 msgstr "Ihre PDF-Datei ist ungültig"
 
-#: pdf_bot/pdf/pdf_service.py:352
+#: pdf_bot/pdf/pdf_service.py:356
 msgid "Your PDF file is encrypted"
 msgstr "Ihre PDF-Datei ist verschlüsselt"
 
@@ -609,7 +609,7 @@ msgstr "Senden Sie mir das Passwort, um Ihre PDF-Datei zu verschlüsseln"
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Die Schaltfläche ist abgelaufen, bitte versuchen Sie es erneut mit einer neuen Nachricht / Abfrage und drücken Sie dann die neue Schaltfläche"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:195
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:196
 #: pdf_bot/telegram_internal/telegram_service.py:94
 msgid "Something went wrong, please try again"
 msgstr "Etwas ist schief gelaufen, bitte versuchen Sie es erneut"
@@ -626,24 +626,24 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "Die Datei ist zu groß, als dass ich sie Ihnen senden\n\n"
 "Beachten Sie, dass dieses Limit von Telegram erzwungen wird und ich nichts tun kann, es sei denn, Telegram ändert es"
 
-#: pdf_bot/telegram_internal/telegram_service.py:103
+#: pdf_bot/telegram_internal/telegram_service.py:105
 msgid "Your file is not an image, please try again"
 msgstr "Ihre Datei ist kein Bild, bitte versuchen Sie es erneut"
 
-#: pdf_bot/telegram_internal/telegram_service.py:110
+#: pdf_bot/telegram_internal/telegram_service.py:112
 msgid "No image found in your message"
 msgstr "In Ihrer Nachricht wurde kein Bild gefunden"
 
-#: pdf_bot/telegram_internal/telegram_service.py:119
+#: pdf_bot/telegram_internal/telegram_service.py:121
 msgid "Your file is not a PDF file, please try again"
 msgstr "Ihre Datei ist keine PDF-Datei, bitte versuchen Sie es erneut"
 
-#: pdf_bot/telegram_internal/telegram_service.py:142
+#: pdf_bot/telegram_internal/telegram_service.py:144
 msgid "Action cancelled"
 msgstr "Aktion abgebrochen"
 
-#: pdf_bot/telegram_internal/telegram_service.py:198
-#: pdf_bot/telegram_internal/telegram_service.py:205
+#: pdf_bot/telegram_internal/telegram_service.py:200
+#: pdf_bot/telegram_internal/telegram_service.py:207
 msgid "Here is your result file"
 msgstr "Hier ist Ihre Ergebnisdatei"
 
@@ -683,11 +683,11 @@ msgstr "Schicken Sie mir die Wasserzeichen-PDF-Datei"
 msgid "Adding the watermark onto your PDF file"
 msgstr "Hinzufügen des Wasserzeichens zu Ihrer PDF-Datei"
 
-#: pdf_bot/webpage/webpage_handler.py:41
+#: pdf_bot/webpage/webpage_handler.py:42
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "Sie haben mir diese Webseite bereits geschickt und ich bin immer noch konvertieren"
 
-#: pdf_bot/webpage/webpage_handler.py:45
+#: pdf_bot/webpage/webpage_handler.py:46
 msgid "Converting your web page into a PDF file"
 msgstr "Konvertieren Ihrer Webseite in eine PDF-Datei"
 

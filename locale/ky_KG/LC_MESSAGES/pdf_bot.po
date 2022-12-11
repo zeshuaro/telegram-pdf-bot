@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-11 06:32+0000\n"
-"PO-Revision-Date: 2022-12-11 06:33\n"
+"POT-Creation-Date: 2022-12-11 08:13+0000\n"
+"PO-Revision-Date: 2022-12-11 08:14\n"
 "Last-Translator: \n"
 "Language: ky\n"
 "Language-Team: Kyrgyz\n"
@@ -196,12 +196,12 @@ msgid "Set Language 🌎"
 msgstr "Тилди орнотуу 🌎"
 
 #: pdf_bot/command/command_service.py:59
-#: pdf_bot/telegram_internal/telegram_service.py:152
+#: pdf_bot/telegram_internal/telegram_service.py:154
 msgid "Join Channel"
 msgstr "Каналга кошулуу"
 
-#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:153
+#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:90
+#: pdf_bot/telegram_internal/telegram_service.py:155
 msgid "Support PDF Bot"
 msgstr "PDF Bot колдоо"
 
@@ -329,43 +329,43 @@ msgstr "File көлөмү кыскарган {percent}, тартып {old_size} 
 msgid "Select the task that you'll like to perform"
 msgstr "Сиз аткара турган тапшырманы тандаңыз"
 
-#: pdf_bot/image_handler/batch_image_handler.py:55
+#: pdf_bot/image_handler/batch_image_handler.py:61
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Сиз жасалгалгыңар келген сүрөттөрдү жөнөтүү же PDF файлына айлантуу"
 
-#: pdf_bot/image_handler/batch_image_handler.py:59
+#: pdf_bot/image_handler/batch_image_handler.py:65
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Белгилей кетчү нерсе , сүрөттөрдү сиз жиберген тартипте сулуу болуп, конвертацияланат"
 
-#: pdf_bot/image_handler/batch_image_handler.py:105
+#: pdf_bot/image_handler/batch_image_handler.py:111
 msgid "You've sent me these images so far:"
 msgstr "Сен мага ушул убакка чейин бул сүрөттөрдү жөнөттүм:"
 
-#: pdf_bot/image_handler/batch_image_handler.py:116
+#: pdf_bot/image_handler/batch_image_handler.py:122
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Эгер мага бардык сүрөттөрдү жиберген болсо, төмөндөн тапшырманы тандап, же мага сүрөттөрдү жөнөтүп улантуу"
 
-#: pdf_bot/image_handler/batch_image_handler.py:133
+#: pdf_bot/image_handler/batch_image_handler.py:139
 msgid "You've already removed all the images you've sent me"
 msgstr "Сен мага жөнөткөн бардык сүрөттөрдү алып салдың"
 
-#: pdf_bot/image_handler/batch_image_handler.py:138
+#: pdf_bot/image_handler/batch_image_handler.py:144
 msgid "{file_name} has been removed"
 msgstr "{file_name} алынып салынган"
 
-#: pdf_bot/image_handler/batch_image_handler.py:156
+#: pdf_bot/image_handler/batch_image_handler.py:162
 msgid "You haven't sent me any images"
 msgstr "Сен мага эч кандай сүрөт жөнөткөн жок"
 
-#: pdf_bot/image_handler/batch_image_handler.py:159
+#: pdf_bot/image_handler/batch_image_handler.py:165
 msgid "You've only sent me one image"
 msgstr "Сен мага бир эле сүрөттү жибердиң"
 
-#: pdf_bot/image_handler/batch_image_handler.py:173
+#: pdf_bot/image_handler/batch_image_handler.py:179
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "Сүрөттөрдү PDF файлына айлантуу жана сулуулоо"
 
-#: pdf_bot/image_handler/batch_image_handler.py:175
+#: pdf_bot/image_handler/batch_image_handler.py:181
 msgid "Converting your images into a PDF file"
 msgstr "Сүрөттөрдү PDF файлына айлантуу"
 
@@ -377,95 +377,95 @@ msgstr "Тилиңизди тандаңыз"
 msgid "Your language has been set to {language}"
 msgstr "Сиздин тилиңиз {language}"
 
-#: pdf_bot/merge/merge_service.py:33
+#: pdf_bot/merge/merge_service.py:39
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Мага бириктирүүнү жактырган PDF файлдарын жөнөтүңүз"
 
-#: pdf_bot/merge/merge_service.py:34
+#: pdf_bot/merge/merge_service.py:40
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Файлдар сиз мага жөнөткөн тартипте бириктирилерин эске алыңыз"
 
-#: pdf_bot/merge/merge_service.py:79
+#: pdf_bot/merge/merge_service.py:85
 msgid "You've sent me these PDF files so far:"
 msgstr "Сиз мага ушул убакка чейин бул PDF файлдарын жибердиңиз:"
 
-#: pdf_bot/merge/merge_service.py:90
+#: pdf_bot/merge/merge_service.py:96
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Эгерде сиз мага PDF файлдарын бириктиргиңиз келген же жөнөтө бергиңиз келген бардык PDF файлдарын жөнөтсөңүз {done} баскычын басыңыз"
 
-#: pdf_bot/merge/merge_service.py:108
+#: pdf_bot/merge/merge_service.py:114
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Сиз мага жөнөткөн бардык PDF файлдарын алып салдыңыз"
 
-#: pdf_bot/merge/merge_service.py:113
+#: pdf_bot/merge/merge_service.py:119
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} биригүү үчүн алынып салынды"
 
-#: pdf_bot/merge/merge_service.py:131
+#: pdf_bot/merge/merge_service.py:138
 msgid "You haven't sent me any PDF files"
 msgstr "Сиз мага PDF файлдарын жөнөткөн жоксуз"
 
-#: pdf_bot/merge/merge_service.py:134
+#: pdf_bot/merge/merge_service.py:143
 msgid "You've only sent me one PDF file"
 msgstr "Сиз мага бир гана PDF файлын жөнөттүңүз"
 
-#: pdf_bot/merge/merge_service.py:144
+#: pdf_bot/merge/merge_service.py:154
 msgid "Merging your PDF files"
 msgstr "PDF файлдарыңызды бириктирүү"
 
-#: pdf_bot/payment/payment_service.py:58
+#: pdf_bot/payment/payment_service.py:61
 msgid "Help translate PDF Bot"
 msgstr "PDF Bot которууга жардам бериңиз"
 
-#: pdf_bot/payment/payment_service.py:71
+#: pdf_bot/payment/payment_service.py:74
 msgid "Select how you want to support PDF Bot"
 msgstr "PDF Botту кантип колдоону каалаарыңызды тандаңыз"
 
-#: pdf_bot/payment/payment_service.py:88
+#: pdf_bot/payment/payment_service.py:91
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PDF Botко рахмат айтыңыз жана анын иштешине жардам бериңиз"
 
-#: pdf_bot/payment/payment_service.py:102
+#: pdf_bot/payment/payment_service.py:105
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: pdf_bot/payment/payment_service.py:109
+#: pdf_bot/payment/payment_service.py:112
 msgid "Thank you for your support!"
 msgstr "Колдооңуз үчүн рахмат!"
 
-#: pdf_bot/pdf/pdf_service.py:169
+#: pdf_bot/pdf/pdf_service.py:173
 msgid "Your PDF file is not encrypted"
 msgstr "Сиздин PDF файлыңыз шифрленген эмес"
 
-#: pdf_bot/pdf/pdf_service.py:174
+#: pdf_bot/pdf/pdf_service.py:178
 msgid "Incorrect password, please try again"
 msgstr "Туура эмес сырсөз, сураныч, кайра аракет"
 
-#: pdf_bot/pdf/pdf_service.py:178
+#: pdf_bot/pdf/pdf_service.py:182
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Сиздин PDF файлыңыз шифрленген, мен чече албайм"
 
-#: pdf_bot/pdf/pdf_service.py:215
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "PDF файлыңыздан сүрөттөр табылган жок"
 
-#: pdf_bot/pdf/pdf_service.py:224
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "PDF файлыңыздан текст табылган жок"
 
-#: pdf_bot/pdf/pdf_service.py:245
+#: pdf_bot/pdf/pdf_service.py:249
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "PDF файлдарыңызды бириктире алган жокмун, анткени бул файл жараксыз: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:263
+#: pdf_bot/pdf/pdf_service.py:267
 msgid "Your PDF file already has a text layer"
 msgstr "Сиздин PDF файлыңызда текст катмары бар"
 
-#: pdf_bot/pdf/pdf_service.py:349
+#: pdf_bot/pdf/pdf_service.py:353
 msgid "Your PDF file is invalid"
 msgstr "Сиздин PDF файлыңыз жараксыз"
 
-#: pdf_bot/pdf/pdf_service.py:352
+#: pdf_bot/pdf/pdf_service.py:356
 msgid "Your PDF file is encrypted"
 msgstr "Сиздин PDF файлы шифрленген"
 
@@ -609,7 +609,7 @@ msgstr "PDF файлыңызды шифрлөө үчүн мага сырсөзд
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "баскычы аяктады, сураныч, жаңы билдирүү / суроо менен кайра аракет, андан кийин жаңы баскычын басуу"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:195
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:196
 #: pdf_bot/telegram_internal/telegram_service.py:94
 msgid "Something went wrong, please try again"
 msgstr "Бир жерден ката кетти, кайра аракет кылыңыз"
@@ -626,24 +626,24 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "Файл мен силерге жөнөтүү үчүн өтө чоң\n\n"
 "Белгилей кетчү нерсе, бул лимит Телеграмма менен аткарылат жана Телеграмма өзгөртпөсө, мен эч нерсе кыла албайм"
 
-#: pdf_bot/telegram_internal/telegram_service.py:103
+#: pdf_bot/telegram_internal/telegram_service.py:105
 msgid "Your file is not an image, please try again"
 msgstr "Сиздин файл сүрөт эмес, сураныч, кайра аракет"
 
-#: pdf_bot/telegram_internal/telegram_service.py:110
+#: pdf_bot/telegram_internal/telegram_service.py:112
 msgid "No image found in your message"
 msgstr "Кабарыңыздан эч кандай сүрөт табылган жок"
 
-#: pdf_bot/telegram_internal/telegram_service.py:119
+#: pdf_bot/telegram_internal/telegram_service.py:121
 msgid "Your file is not a PDF file, please try again"
 msgstr "Сиздин файл PDF файлы эмес, кайра аракет кылыңыз"
 
-#: pdf_bot/telegram_internal/telegram_service.py:142
+#: pdf_bot/telegram_internal/telegram_service.py:144
 msgid "Action cancelled"
 msgstr "Аракет жокко чыгарылды"
 
-#: pdf_bot/telegram_internal/telegram_service.py:198
-#: pdf_bot/telegram_internal/telegram_service.py:205
+#: pdf_bot/telegram_internal/telegram_service.py:200
+#: pdf_bot/telegram_internal/telegram_service.py:207
 msgid "Here is your result file"
 msgstr "Мына сиздин жыйынтык файлыңыз"
 
@@ -683,11 +683,11 @@ msgstr "Мага суу белгиси PDF файлын жөнөтүңүз"
 msgid "Adding the watermark onto your PDF file"
 msgstr "PDF белгисиңизге суу белгисин кошуу"
 
-#: pdf_bot/webpage/webpage_handler.py:41
+#: pdf_bot/webpage/webpage_handler.py:42
 msgid "You've sent me this web page already and I'm still converting it"
 msgstr "Сиз мага бул веб -баракчаны мурунтан эле жибергенсиз, мен дагы эле аны өзгөртүп жатам"
 
-#: pdf_bot/webpage/webpage_handler.py:45
+#: pdf_bot/webpage/webpage_handler.py:46
 msgid "Converting your web page into a PDF file"
 msgstr "Веб баракчаңызды PDF файлына айландыруу"
 
