@@ -10,17 +10,14 @@ GOOGLE_FONTS_TOKEN = os.environ.get("GOOGLE_FONTS_TOKEN")
 
 
 class TextRepository:
-    def __init__(self, session: Session | None = None) -> None:
-        self.session = session or Session()
-        self.session.hooks = {
-            "response": lambda r, *args, **kwargs: r.raise_for_status()
-        }
+    def __init__(self, api_client: Session) -> None:
+        self.api_client = api_client
 
     def get_font(self, font: str) -> FontData | None:
         font_data: FontData | None = None
         font = font.lower()
 
-        r = self.session.get(
+        r = self.api_client.get(
             f"https://www.googleapis.com/webfonts/v1/webfonts?key={GOOGLE_FONTS_TOKEN}"
         )
 
