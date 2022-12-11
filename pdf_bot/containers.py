@@ -39,6 +39,7 @@ from pdf_bot.pdf_processor import (
     ScalePDFProcessor,
     SplitPDFProcessor,
 )
+from pdf_bot.telegram_dispatcher import TelegramDispatcher
 from pdf_bot.telegram_internal import TelegramService
 from pdf_bot.text import TextHandlers, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
@@ -334,6 +335,27 @@ class Handlers(containers.DeclarativeContainer):
     )
 
 
+class TelegramBot(containers.DeclarativeContainer):
+    core = providers.DependenciesContainer()
+    services = providers.DependenciesContainer()
+    handlers = providers.DependenciesContainer()
+
+    dispatcher = providers.Singleton(
+        TelegramDispatcher,
+        command_service=services.command,
+        compare_handlers=handlers.compare,
+        feedback_handler=handlers.feedback,
+        file_handlers=handlers.file,
+        image_handler=handlers.image,
+        language_service=services.language,
+        merge_handlers=handlers.merge,
+        payment_service=services.payment,
+        text_handlers=handlers.text,
+        watermark_handlers=handlers.watermark,
+        webpage_handler=handlers.webpage,
+    )
+
+
 class Application(containers.DeclarativeContainer):
     core = providers.Container(Core)
     clients = providers.Container(Clients)
@@ -341,3 +363,6 @@ class Application(containers.DeclarativeContainer):
     services = providers.Container(Services, core=core, repositories=repositories)
     processors = providers.Container(Processors, services=services)
     handlers = providers.Container(Handlers, services=services, processors=processors)
+    telegram_bot = providers.Container(
+        TelegramBot, services=services, handlers=handlers
+    )

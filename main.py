@@ -6,9 +6,9 @@ from dotenv import load_dotenv
 from loguru import logger
 from telegram.ext import Updater
 
-import pdf_bot.dispatcher as dp
 import pdf_bot.logging as pdf_bot_logging
 from pdf_bot.containers import Application
+from pdf_bot.telegram_dispatcher import TelegramDispatcher
 
 load_dotenv()
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
@@ -22,14 +22,15 @@ TIMEOUT = 45
 @inject
 def main(
     updater: Updater = Provide[Application.core.updater],  # pylint: disable=no-member
+    telegram_dispatcher: TelegramDispatcher = Provide[
+        Application.telegram_bot.dispatcher  # pylint: disable=no-member
+    ],
 ):
     pdf_bot_logging.setup_logging()
     if SENTRY_DSN is not None:
         sentry_sdk.init(SENTRY_DSN, traces_sample_rate=1.0)
 
-    dispatcher = updater.dispatcher  # type: ignore
-    dp.setup_dispatcher(dispatcher)
-
+    telegram_dispatcher.setup(updater.dispatcher)  # type: ignore
     if APP_URL is not None:
         updater.start_webhook(
             listen="0.0.0.0",
@@ -47,7 +48,6 @@ def main(
 
 if __name__ == "__main__":
     application = Application()
-    application.core.init_resources()
-    application.wire(modules=[__name__, "pdf_bot.dispatcher"])
+    application.wire(modules=[__name__])
 
     main()
