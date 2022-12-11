@@ -61,19 +61,20 @@ class TelegramTestMixin:
         self.telegram_message.document = self.telegram_document
         self.telegram_message.text = self.telegram_text
 
+        self.telegram_callback_query = MagicMock(spec=CallbackQuery)
+        self.telegram_callback_query.from_user = self.telegram_query_user
+
         self.telegram_pre_checkout_query = MagicMock(spec=PreCheckoutQuery)
 
         self.telegram_update = MagicMock(spec=Update)
         self.telegram_update.effective_message = self.telegram_message
+        self.telegram_update.callback_query = self.telegram_callback_query
         self.telegram_update.pre_checkout_query = self.telegram_pre_checkout_query
 
         self.telegram_user_data = MagicMock(spec=dict)
         self.telegram_context = MagicMock(spec=CallbackContext)
         self.telegram_context.bot = self.telegram_bot
         self.telegram_context.user_data = self.telegram_user_data
-
-        self.telegram_callback_query = MagicMock(spec=CallbackQuery)
-        self.telegram_callback_query.from_user = self.telegram_query_user
 
     def teardown_method(self) -> None:
         pass
