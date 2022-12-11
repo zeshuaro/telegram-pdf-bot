@@ -1,7 +1,9 @@
+from typing import Type
 from unittest.mock import MagicMock, patch
 
 import pytest
 from weasyprint import HTML
+from weasyprint.css.utils import InvalidValues
 from weasyprint.urls import URLFetchingError
 
 from pdf_bot.io import IOService
@@ -34,8 +36,21 @@ class TestWebpageService:
             assert actual == self.FILE_PATH
             self._assert_io_service_and_html()
 
-    @pytest.mark.parametrize("exception", [URLFetchingError(), AssertionError()])
-    def test_url_to_pdf_error(self, exception: Exception) -> None:
+    @pytest.mark.parametrize(
+        "exception",
+        [
+            URLFetchingError,
+            AssertionError,
+            AttributeError,
+            IndexError,
+            InvalidValues,
+            KeyError,
+            OverflowError,
+            RuntimeError,
+            ValueError,
+        ],
+    )
+    def test_url_to_pdf_error(self, exception: Type[Exception]) -> None:
         self.html.write_pdf.side_effect = exception
         with pytest.raises(WebpageServiceError), self.sut.url_to_pdf(self.URL):
             self._assert_io_service_and_html()

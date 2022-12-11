@@ -4,6 +4,7 @@ from typing import Generator
 from urllib.parse import urlparse
 
 from weasyprint import HTML
+from weasyprint.css.utils import InvalidValues
 from weasyprint.urls import URLFetchingError
 
 from pdf_bot.io import IOService
@@ -24,5 +25,14 @@ class WebpageService:
                 yield out_path
             except URLFetchingError as e:
                 raise WebpageServiceError(_("Unable to reach your web page")) from e
-            except AssertionError as e:
+            except (
+                AssertionError,
+                AttributeError,
+                IndexError,
+                InvalidValues,
+                KeyError,
+                OverflowError,
+                RuntimeError,
+                ValueError,
+            ) as e:
                 raise WebpageServiceError(_("Failed to convert your web page")) from e
