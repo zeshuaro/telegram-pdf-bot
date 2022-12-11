@@ -4,8 +4,9 @@ import os
 
 from dependency_injector import containers, providers
 from dotenv import load_dotenv
+from google.cloud.datastore import Client as DatastoreClient
 from requests import Session
-from slack_sdk import WebClient
+from slack_sdk import WebClient as SlackClient
 from telegram.ext import Updater
 
 from pdf_bot.account import AccountRepository, AccountService
@@ -51,6 +52,13 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
 TIMEOUT = 45
 
+GCP_KEY_FILE = os.environ.get("GCP_KEY_FILE")
+GCP_CRED = os.environ.get("GCP_CRED")
+
+if GCP_CRED is not None:
+    with open(GCP_KEY_FILE, "w") as f:
+        f.write(GCP_CRED)
+
 
 class Core(containers.DeclarativeContainer):
     updater = providers.Resource(
@@ -65,17 +73,25 @@ class Clients(containers.DeclarativeContainer):
     session = Session()
     session.hooks = {"response": lambda r, *args, **kwargs: r.raise_for_status()}
 
+    if GCP_KEY_FILE is not None:
+        datastore_client = DatastoreClient.from_service_account_json(GCP_KEY_FILE)
+    else:
+        datastore_client = DatastoreClient()
+
     api = providers.Object(session)
-    slack = providers.Object(WebClient(SLACK_TOKEN))
+    datastore = providers.Object(datastore_client)
+    slack = providers.Object(SlackClient(SLACK_TOKEN))
 
 
 class Repositories(containers.DeclarativeContainer):
     clients = providers.DependenciesContainer()
 
-    account = providers.Singleton(AccountRepository)
+    account = providers.Singleton(AccountRepository, datastore_client=clients.datastore)
     analytics = providers.Singleton(AnalyticsRepository, api_client=clients.api)
     feedback = providers.Singleton(FeedbackRepository, slack_client=clients.slack)
-    language = providers.Singleton(LanguageRepository)
+    language = providers.Singleton(
+        LanguageRepository, datastore_client=clients.datastore
+    )
     text = providers.Singleton(TextRepository)
 
 
