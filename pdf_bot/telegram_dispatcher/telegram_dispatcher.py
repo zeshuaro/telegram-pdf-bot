@@ -143,7 +143,7 @@ class TelegramDispatcher:
             )
 
         # Log all errors
-        dispatcher.add_error_handler(self.error_callback)
+        dispatcher.add_error_handler(self.error_callback)  # type: ignore
 
     def process_callback_query(
         self,
@@ -154,11 +154,11 @@ class TelegramDispatcher:
         query = update.callback_query
         data = query.data
 
-        if self._CALLBACK_DATA not in context.user_data:
-            context.user_data[self._CALLBACK_DATA] = set()
+        if self._CALLBACK_DATA not in context.user_data:  # type: ignore
+            context.user_data[self._CALLBACK_DATA] = set()  # type: ignore
 
-        if data not in context.user_data[self._CALLBACK_DATA]:
-            context.user_data[self._CALLBACK_DATA].add(data)
+        if data not in context.user_data[self._CALLBACK_DATA]:  # type: ignore
+            context.user_data[self._CALLBACK_DATA].add(data)  # type: ignore
             if data == SET_LANG:
                 self.language_service.send_language_options(update, context, query)
             elif data in LANGUAGES:
@@ -168,7 +168,7 @@ class TelegramDispatcher:
             elif data.startswith("payment,"):
                 self.payment_service.send_invoice(update, context, query)
 
-            context.user_data[self._CALLBACK_DATA].remove(data)
+            context.user_data[self._CALLBACK_DATA].remove(data)  # type: ignore
 
         try:
             query.answer()
@@ -185,13 +185,14 @@ class TelegramDispatcher:
                 raise
 
     def error_callback(self, update: Update, context: CallbackContext) -> None:
-        _ = self.language_service.set_app_language(update, context)
         try:
-            raise context.error
+            if context.error is not None:
+                raise context.error
         except Unauthorized:
             pass
         except Exception as e:  # pylint: disable=broad-except
-            update.effective_message.reply_text(
+            _ = self.language_service.set_app_language(update, context)
+            update.effective_message.reply_text(  # type: ignore
                 _("Something went wrong, please try again")
             )
             sentry_sdk.capture_exception(e)

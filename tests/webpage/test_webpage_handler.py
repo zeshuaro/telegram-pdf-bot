@@ -1,3 +1,4 @@
+from typing import Any
 from unittest.mock import MagicMock
 
 from pdf_bot.analytics import TaskType
@@ -53,7 +54,7 @@ class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
         self.telegram_service.reply_with_file.assert_not_called()
 
     def test_url_to_pdf_url_set_exists(self) -> None:
-        user_data = {self.URLS: set()}
+        user_data: dict[str, Any] = {self.URLS: set()}
         self.telegram_user_data.__contains__.side_effect = user_data.__contains__
 
         self.sut.url_to_pdf(self.telegram_update, self.telegram_context)

@@ -16,13 +16,13 @@ class CommandService:
         self.language_service = language_service
 
     def send_start_message(self, update: Update, context: CallbackContext) -> None:
-        update.effective_message.reply_chat_action(ChatAction.TYPING)
+        update.effective_message.reply_chat_action(ChatAction.TYPING)  # type: ignore
 
         # Create the user entity in Datastore
-        self.account_service.create_user(update.effective_message.from_user)
+        self.account_service.create_user(update.effective_message.from_user)  # type: ignore
 
         _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             "{welcome}\n\n<b>{key_features}</b>\n"
             "{features_summary}\n"
             "{pdf_from_text}\n"
@@ -62,7 +62,7 @@ class CommandService:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             "{desc_1}\n{pdf_files}\n{images}\n{webpage_links}\n\n{desc_2}\n"
             "{compare_desc}\n{merge_desc}\n{image_desc}\n{text_desc}\n"
             "{watermark_desc}".format(
@@ -95,11 +95,11 @@ class CommandService:
         )
 
     def send_message_to_user(self, update: Update, context: CallbackContext) -> None:
-        user_id = int(context.args[0])
-        message = " ".join(context.args[1:])
+        user_id = int(context.args[0])  # type: ignore
+        message = " ".join(context.args[1:])  # type: ignore
 
         try:
             context.bot.send_message(user_id, message)
-            update.effective_message.reply_text("Message sent")
+            update.effective_message.reply_text("Message sent")  # type: ignore
         except Unauthorized:
-            update.effective_message.reply_text("User has blocked the bot")
+            update.effective_message.reply_text("User has blocked the bot")  # type: ignore

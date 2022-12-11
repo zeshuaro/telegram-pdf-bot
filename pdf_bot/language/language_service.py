@@ -75,7 +75,7 @@ class LanguageService:
         reply_markup = InlineKeyboardMarkup(keyboard)
 
         _ = self.set_app_language(update, context)
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _("Select your language"), reply_markup=reply_markup
         )
 
@@ -91,8 +91,8 @@ class LanguageService:
             return lang
 
         if query is None:
-            sender = update.effective_message.from_user or update.effective_chat
-            user_id = sender.id
+            sender = update.effective_message.from_user or update.effective_chat  # type: ignore
+            user_id = sender.id  # type: ignore
         else:
             user_id = query.from_user.id
 
@@ -112,7 +112,7 @@ class LanguageService:
             return
 
         self.language_repository.upsert_language(query.from_user.id, lang_code)
-        context.user_data[self.LANGUAGE] = lang_code
+        context.user_data[self.LANGUAGE] = lang_code  # type: ignore
         _ = self.set_app_language(update, context)
         query.message.edit_text(
             _("Your language has been set to {language}").format(language=query.data)

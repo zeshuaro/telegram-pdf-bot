@@ -120,7 +120,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_callback_query.answer.side_effect = BadRequest("Query is too old")
         self.sut.process_callback_query(self.telegram_update, self.telegram_context)
         self.telegram_context.bot.send_message.assert_called_once_with(
-            self.telegram_query_user_id, ANY
+            self.TELEGRAM_QUERY_USER_ID, ANY
         )
 
     def test_process_callback_query_answer_unknown_bad_request(self) -> None:

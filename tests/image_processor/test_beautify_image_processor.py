@@ -44,10 +44,10 @@ class TestBeautifyImageProcessor(
         )
 
         with self.sut.process_file_task(
-            self.telegram_document_id, self.telegram_text
+            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             args = self.image_service.beautify_and_convert_images_to_pdf.call_args.args[
                 0
             ]
-            assert args[0].id == self.telegram_document_id
+            assert args[0].id == self.TELEGRAM_DOCUMENT_ID

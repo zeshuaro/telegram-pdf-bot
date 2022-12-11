@@ -25,7 +25,10 @@ def main(
     telegram_dispatcher: TelegramDispatcher = Provide[
         Application.telegram_bot.dispatcher  # pylint: disable=no-member
     ],
-):
+) -> None:
+    if TELEGRAM_TOKEN is None:
+        raise RuntimeError("Telegram token not specified")
+
     pdf_bot_logging.setup_logging()
     if SENTRY_DSN is not None:
         sentry_sdk.init(SENTRY_DSN, traces_sample_rate=1.0)

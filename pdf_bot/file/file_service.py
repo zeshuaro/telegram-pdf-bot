@@ -1,4 +1,4 @@
-from telegram import ParseMode, Update
+from telegram import Message, ParseMode, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -19,9 +19,9 @@ class FileService:
         self.telegram_service = telegram_service
         self.language_service = language_service
 
-    def compress_pdf(self, update: Update, context: CallbackContext):
+    def compress_pdf(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             file_id, _file_name = self.telegram_service.get_user_data(

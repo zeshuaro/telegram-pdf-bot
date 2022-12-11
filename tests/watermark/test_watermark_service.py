@@ -47,7 +47,7 @@ class TestWatermarkService(
             self.telegram_message
         )
         self.telegram_context.user_data.__setitem__.assert_called_once_with(
-            self.WATERMARK_KEY, self.telegram_document_id
+            self.WATERMARK_KEY, self.TELEGRAM_DOCUMENT_ID
         )
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
@@ -80,7 +80,7 @@ class TestWatermarkService(
             self.telegram_context, self.WATERMARK_KEY
         )
         self.pdf_service.add_watermark_to_pdf.assert_called_once_with(
-            self.SOURCE_FILE_ID, self.telegram_document_id
+            self.SOURCE_FILE_ID, self.TELEGRAM_DOCUMENT_ID
         )
         self.telegram_service.reply_with_file.assert_called_once_with(
             self.telegram_update,
@@ -104,7 +104,7 @@ class TestWatermarkService(
             self.telegram_context, self.WATERMARK_KEY
         )
         self.pdf_service.add_watermark_to_pdf.assert_called_once_with(
-            self.SOURCE_FILE_ID, self.telegram_document_id
+            self.SOURCE_FILE_ID, self.TELEGRAM_DOCUMENT_ID
         )
         self.telegram_service.reply_with_file.assert_not_called()
 

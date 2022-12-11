@@ -145,9 +145,9 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         )
         self.telegram_bot.get_file.return_value = self.telegram_file
 
-        with self.sut.download_pdf_file(self.telegram_file_id) as actual:
+        with self.sut.download_pdf_file(self.TELEGRAM_FILE_ID) as actual:
             assert actual == self.FILE_PATH
-            self.telegram_bot.get_file.assert_called_with(self.telegram_file_id)
+            self.telegram_bot.get_file.assert_called_with(self.TELEGRAM_FILE_ID)
             self.telegram_file.download.assert_called_once_with(
                 custom_path=self.FILE_PATH
             )
@@ -184,7 +184,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             self.telegram_bot.get_file.assert_has_calls(get_file_calls)
 
             for file_and_path in files.values():
-                file_and_path.file.download.assert_called_once_with(
+                file_and_path.file.download.assert_called_once_with(  # type: ignore
                     custom_path=file_and_path.path
                 )
 
@@ -222,10 +222,10 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             [[self.BACK]], one_time_keyboard=True, resize_keyboard=True
         )
         self.sut.reply_with_back_markup(
-            self.telegram_update, self.telegram_context, self.telegram_text, parse_mode
+            self.telegram_update, self.telegram_context, self.TELEGRAM_TEXT, parse_mode
         )
         self.telegram_message.reply_text.assert_called_once_with(
-            self.telegram_text, reply_markup=markup, parse_mode=parse_mode
+            self.TELEGRAM_TEXT, reply_markup=markup, parse_mode=parse_mode
         )
 
     @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])
@@ -234,10 +234,10 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             [[self.CANCEL]], one_time_keyboard=True, resize_keyboard=True
         )
         self.sut.reply_with_cancel_markup(
-            self.telegram_update, self.telegram_context, self.telegram_text, parse_mode
+            self.telegram_update, self.telegram_context, self.TELEGRAM_TEXT, parse_mode
         )
         self.telegram_message.reply_text.assert_called_once_with(
-            self.telegram_text, reply_markup=markup, parse_mode=parse_mode
+            self.TELEGRAM_TEXT, reply_markup=markup, parse_mode=parse_mode
         )
 
     def test_reply_with_file_document(self) -> None:
@@ -312,10 +312,10 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         file_data_list = [FileData("a", "a"), FileData("b")]
 
         self.sut.send_file_names(
-            self.telegram_chat_id, self.telegram_text, file_data_list
+            self.TELEGRAM_CHAT_ID, self.TELEGRAM_TEXT, file_data_list
         )
 
         self.telegram_bot.send_message.assert_called_once_with(
-            self.telegram_chat_id,
-            f"{self.telegram_text}1: a\n2: File name unavailable\n",
+            self.TELEGRAM_CHAT_ID,
+            f"{self.TELEGRAM_TEXT}1: a\n2: File name unavailable\n",
         )

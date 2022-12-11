@@ -1,5 +1,5 @@
 from pdf_diff import NoDifferenceError
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -33,7 +33,7 @@ class CompareService:
         reply_markup = ReplyKeyboardMarkup(
             [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             "{desc_1}\n\n{desc_2}".format(
                 desc_1=_("Send me one of the PDF files that you'll like to compare"),
                 desc_2=_("Note that I can only look for text differences"),
@@ -45,7 +45,7 @@ class CompareService:
 
     def check_first_pdf(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             doc = self.telegram_service.check_pdf_document(message)
@@ -53,7 +53,7 @@ class CompareService:
             message.reply_text(_(str(e)))
             return self.WAIT_FIRST_PDF
 
-        context.user_data[self._COMPARE_ID] = doc.file_id
+        context.user_data[self._COMPARE_ID] = doc.file_id  # type: ignore
         reply_markup = ReplyKeyboardMarkup(
             [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
@@ -66,7 +66,7 @@ class CompareService:
 
     def compare_pdfs(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             doc = self.telegram_service.check_pdf_document(message)
@@ -95,7 +95,7 @@ class CompareService:
 
     def check_text(self, update: Update, context: CallbackContext) -> int | None:
         _ = self.language_service.set_app_language(update, context)
-        text = update.effective_message.text
+        text = update.effective_message.text  # type: ignore
 
         if text == _(BACK):
             return self.ask_first_pdf(update, context)

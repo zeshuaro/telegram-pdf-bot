@@ -2,7 +2,7 @@ from contextlib import contextmanager
 from gettext import gettext as _
 from typing import Generator
 
-from telegram import ParseMode, ReplyKeyboardMarkup, Update
+from telegram import Message, ParseMode, ReplyKeyboardMarkup, Update
 from telegram.ext import CallbackContext, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -46,7 +46,7 @@ class ScalePDFProcessor(AbstractPDFProcessor):
         reply_markup = ReplyKeyboardMarkup(
             keyboard, one_time_keyboard=True, resize_keyboard=True
         )
-        update.effective_message.reply_text(
+        update.effective_message.reply_text(  # type: ignore
             _("Select the scale type that you'll like to perform"),
             reply_markup=reply_markup,
         )
@@ -55,7 +55,7 @@ class ScalePDFProcessor(AbstractPDFProcessor):
 
     def check_scale_type(self, update: Update, context: CallbackContext) -> str:
         _ = self.language_service.set_app_language(update, context)
-        text = update.effective_message.text
+        text = update.effective_message.text  # type: ignore
 
         if text in {
             _(self.BY_SCALING_FACTOR),
@@ -70,7 +70,7 @@ class ScalePDFProcessor(AbstractPDFProcessor):
         self, update: Update, context: CallbackContext
     ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text == _(BACK):
@@ -94,7 +94,7 @@ class ScalePDFProcessor(AbstractPDFProcessor):
         self, update: Update, context: CallbackContext
     ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message = update.effective_message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if message.text == _(BACK):
@@ -116,7 +116,7 @@ class ScalePDFProcessor(AbstractPDFProcessor):
 
     def _ask_scale_value(self, update: Update, context: CallbackContext) -> str:
         _ = self.language_service.set_app_language(update, context)
-        if update.effective_message.text == _(self.BY_SCALING_FACTOR):
+        if update.effective_message.text == _(self.BY_SCALING_FACTOR):  # type: ignore
             self.telegram_service.reply_with_back_markup(
                 update,
                 context,
@@ -131,7 +131,7 @@ class ScalePDFProcessor(AbstractPDFProcessor):
                         "and halve the vertical axis"
                     ),
                 ),
-                parse_mode=ParseMode.HTML,
+                parse_mode=ParseMode.HTML,  # type: ignore
             )
             return self.WAIT_SCALE_FACTOR
 
@@ -143,6 +143,6 @@ class ScalePDFProcessor(AbstractPDFProcessor):
                 desc_2=f"<b>{_('Example: 150 200')}</b>",
                 desc_3=_("This will set the width to 150 and height to 200"),
             ),
-            parse_mode=ParseMode.HTML,
+            parse_mode=ParseMode.HTML,  # type: ignore
         )
         return self.WAIT_SCALE_DIMENSION

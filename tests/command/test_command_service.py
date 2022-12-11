@@ -30,12 +30,12 @@ class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     def test_send_message_to_user(self) -> None:
-        self.telegram_context.args = [self.telegram_user_id, self.telegram_text]
+        self.telegram_context.args = [self.TELEGRAM_USER_ID, self.TELEGRAM_TEXT]
         self.sut.send_message_to_user(self.telegram_update, self.telegram_context)
         self._assert_send_message_to_user("Message sent")
 
     def test_send_message_to_user_unauthorized(self) -> None:
-        self.telegram_context.args = [self.telegram_user_id, self.telegram_text]
+        self.telegram_context.args = [self.TELEGRAM_USER_ID, self.TELEGRAM_TEXT]
         self.telegram_bot.send_message.side_effect = Unauthorized("Error")
 
         self.sut.send_message_to_user(self.telegram_update, self.telegram_context)
@@ -44,7 +44,7 @@ class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
 
     def _assert_send_message_to_user(self, message: str) -> None:
         self.telegram_context.bot.send_message.assert_called_once_with(
-            self.telegram_user_id, self.telegram_text
+            self.TELEGRAM_USER_ID, self.TELEGRAM_TEXT
         )
         self.telegram_update.effective_message.reply_text.assert_called_once_with(
             message

@@ -1,4 +1,5 @@
 import re
+from typing import cast
 
 from telegram import InlineKeyboardMarkup
 
@@ -23,7 +24,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
         self.sut.send_support_options(self.telegram_update, self.telegram_context)
 
         args, kwargs = self.telegram_bot.send_message.call_args
-        assert args[0] == self.telegram_user_id
+        assert args[0] == self.TELEGRAM_USER_ID
 
         reply_markup: InlineKeyboardMarkup | None = kwargs.get("reply_markup")
         assert reply_markup is not None
@@ -35,7 +36,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
         )
 
         args, kwargs = self.telegram_bot.send_message.call_args
-        assert args[0] == self.telegram_query_user_id
+        assert args[0] == self.TELEGRAM_QUERY_USER_ID
 
         reply_markup: InlineKeyboardMarkup | None = kwargs.get("reply_markup")
         assert reply_markup is not None
@@ -70,7 +71,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
         index = 0
         for keyboard_list in reply_markup.inline_keyboard:
             for keyboard in keyboard_list:
-                data: str = keyboard.callback_data
+                data: str = cast(str, keyboard.callback_data)
                 assert (
                     re.match(
                         f"payment,.*,{self.PAYMENT_AMOUNTS[index]}",
