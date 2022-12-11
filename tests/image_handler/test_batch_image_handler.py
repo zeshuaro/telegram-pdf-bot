@@ -5,14 +5,14 @@ from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.image import ImageService
-from pdf_bot.image_handler import ImageHandler
+from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import TelegramServiceError
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestImageHandler(
+class TestBatchImageHandler(
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
     TelegramTestMixin,
@@ -33,7 +33,7 @@ class TestImageHandler(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = ImageHandler(
+        self.sut = BatchImageHandler(
             self.image_service,
             self.telegram_service,
             self.language_service,

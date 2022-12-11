@@ -15,7 +15,7 @@ from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
 
-class ImageHandler:
+class BatchImageHandler:
     WAIT_IMAGE = 0
     IMAGE_DATA = "image_data"
 

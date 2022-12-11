@@ -21,7 +21,7 @@ from pdf_bot.consts import CHANNEL_NAME, LANGUAGES, PAYMENT, SET_LANG
 from pdf_bot.containers import Application
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file import FileHandlers
-from pdf_bot.image_handler import ImageHandler
+from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.language import LanguageService
 from pdf_bot.merge import MergeHandlers
 from pdf_bot.payment import PaymentService
@@ -49,7 +49,7 @@ def setup_dispatcher(
     file_handlers: FileHandlers = Provide[
         Application.handlers.file  # pylint: disable=no-member
     ],
-    image_handler: ImageHandler = Provide[
+    image_handler: BatchImageHandler = Provide[
         Application.handlers.image  # pylint: disable=no-member
     ],
     language_service: LanguageService = Provide[

@@ -18,7 +18,7 @@ from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackServic
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.image import ImageService
-from pdf_bot.image_handler import ImageHandler
+from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.image_processor import BeautifyImageProcessor, ImageToPDFProcessor
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageRepository, LanguageService
@@ -310,7 +310,7 @@ class Handlers(containers.DeclarativeContainer):
         telegram_service=services.telegram,
     )
     image = providers.Singleton(
-        ImageHandler,
+        BatchImageHandler,
         image_service=services.image,
         telegram_service=services.telegram,
         language_service=services.language,
