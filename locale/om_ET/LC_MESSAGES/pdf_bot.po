@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-11 02:40+0000\n"
-"PO-Revision-Date: 2022-12-11 02:40\n"
+"POT-Creation-Date: 2022-12-11 06:32+0000\n"
+"PO-Revision-Date: 2022-12-11 06:33\n"
 "Last-Translator: \n"
 "Language: om\n"
 "Language-Team: Oromo\n"
@@ -145,10 +145,6 @@ msgstr ""
 
 #: pdf_bot/consts.py:82 pdf_bot/payment/payment_service.py:26
 msgid "{message} {emoji} (${value})"
-msgstr ""
-
-#: pdf_bot/dispatcher.py:188
-msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr ""
 
 #: pdf_bot/cli/cli_service.py:57
@@ -609,6 +605,15 @@ msgstr ""
 msgid "Send me the password to encrypt your PDF file"
 msgstr ""
 
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:179
+msgid "The button has expired, please try again with a new message/query then press the new button"
+msgstr ""
+
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:195
+#: pdf_bot/telegram_internal/telegram_service.py:94
+msgid "Something went wrong, please try again"
+msgstr ""
+
 #: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
@@ -617,10 +622,6 @@ msgstr ""
 #: pdf_bot/telegram_internal/telegram_service.py:71
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr ""
-
-#: pdf_bot/telegram_internal/telegram_service.py:94
-msgid "Something went wrong, please try again"
 msgstr ""
 
 #: pdf_bot/telegram_internal/telegram_service.py:103

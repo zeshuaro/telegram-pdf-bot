@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-11 02:40+0000\n"
-"PO-Revision-Date: 2022-12-11 02:40\n"
+"POT-Creation-Date: 2022-12-11 06:32+0000\n"
+"PO-Revision-Date: 2022-12-11 06:33\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -146,10 +146,6 @@ msgstr "식사"
 #: pdf_bot/consts.py:82 pdf_bot/payment/payment_service.py:26
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
-
-#: pdf_bot/dispatcher.py:188
-msgid "The button has expired, please try again with a new message/query then press the new button"
-msgstr "버튼이 만료되었으므로 새 메시지 / 쿼리로 다시 시도한 다음 새 버튼을 누르십시오."
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -609,6 +605,15 @@ msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDF 파일을 암호화하기 위해 암호를 보내주세요."
 
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:179
+msgid "The button has expired, please try again with a new message/query then press the new button"
+msgstr "버튼이 만료되었으므로 새 메시지 / 쿼리로 다시 시도한 다음 새 버튼을 누르십시오."
+
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:195
+#: pdf_bot/telegram_internal/telegram_service.py:94
+msgid "Something went wrong, please try again"
+msgstr "뭔가 잘못, 다시 시도하십시오"
+
 #: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
@@ -620,10 +625,6 @@ msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "파일이 너무 커서 보낼 수 없습니다\n\n"
 "이 제한은 Telegram에 의해 적용되며 Telegram이 변경하지 않는 한 내가 할 수 있는 일은 없습니다."
-
-#: pdf_bot/telegram_internal/telegram_service.py:94
-msgid "Something went wrong, please try again"
-msgstr "뭔가 잘못, 다시 시도하십시오"
 
 #: pdf_bot/telegram_internal/telegram_service.py:103
 msgid "Your file is not an image, please try again"

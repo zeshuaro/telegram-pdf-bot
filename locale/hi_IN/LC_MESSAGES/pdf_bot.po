@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-11 02:40+0000\n"
-"PO-Revision-Date: 2022-12-11 02:40\n"
+"POT-Creation-Date: 2022-12-11 06:32+0000\n"
+"PO-Revision-Date: 2022-12-11 06:33\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -146,10 +146,6 @@ msgstr "भोजन"
 #: pdf_bot/consts.py:82 pdf_bot/payment/payment_service.py:26
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
-
-#: pdf_bot/dispatcher.py:188
-msgid "The button has expired, please try again with a new message/query then press the new button"
-msgstr "बटन की समय सीमा समाप्त हो गई है, कृपया एक नए संदेश/क्वेरी के साथ फिर से प्रयास करें फिर नया बटन दबाएँ"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -609,6 +605,15 @@ msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक�
 msgid "Send me the password to encrypt your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को एन्क्रिप्ट करने के लिए मुझे पासवर्ड भेजें"
 
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:179
+msgid "The button has expired, please try again with a new message/query then press the new button"
+msgstr "बटन की समय सीमा समाप्त हो गई है, कृपया एक नए संदेश/क्वेरी के साथ फिर से प्रयास करें फिर नया बटन दबाएँ"
+
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:195
+#: pdf_bot/telegram_internal/telegram_service.py:94
+msgid "Something went wrong, please try again"
+msgstr "कुछ गलत हो गया, कृपया फिर से प्रयास करें"
+
 #: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
@@ -620,10 +625,6 @@ msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "फ़ाइल मेरे लिए आपको भेजने के लिए बहुत बड़ी है\n\n"
 "ध्यान दें कि यह सीमा टेलीग्राम द्वारा लागू की गई है और जब तक टेलीग्राम इसे नहीं बदलता है तब तक मैं कुछ भी नहीं कर सकता।"
-
-#: pdf_bot/telegram_internal/telegram_service.py:94
-msgid "Something went wrong, please try again"
-msgstr "कुछ गलत हो गया, कृपया फिर से प्रयास करें"
 
 #: pdf_bot/telegram_internal/telegram_service.py:103
 msgid "Your file is not an image, please try again"
