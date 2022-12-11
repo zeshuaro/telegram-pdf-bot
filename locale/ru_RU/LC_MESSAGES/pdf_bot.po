@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-11 02:13+0000\n"
-"PO-Revision-Date: 2022-12-11 02:13\n"
+"POT-Creation-Date: 2022-12-11 02:40+0000\n"
+"PO-Revision-Date: 2022-12-11 02:40\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -147,60 +147,7 @@ msgstr "Еда"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:161
-msgid "Set Language 🌎"
-msgstr "Установить язык 🌎"
-
-#: pdf_bot/dispatcher.py:163 pdf_bot/telegram_internal/telegram_service.py:152
-msgid "Join Channel"
-msgstr "Присоединиться к каналу"
-
-#: pdf_bot/dispatcher.py:164 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:153
-msgid "Support PDF Bot"
-msgstr "Поддержать PDF Bot"
-
-#: pdf_bot/dispatcher.py:173
-msgid "You can perform most of the tasks by sending me one of the followings:"
-msgstr "Вы можете выполнить большинство задач, отправив мне один из следующих вариантов:"
-
-#: pdf_bot/dispatcher.py:176
-msgid "- PDF files"
-msgstr "- PDF файлы"
-
-#: pdf_bot/dispatcher.py:177
-msgid "- Images"
-msgstr "- Изображения"
-
-#: pdf_bot/dispatcher.py:178
-msgid "- Webpage links"
-msgstr "- Ссылки на веб-страницы"
-
-#: pdf_bot/dispatcher.py:179
-msgid "The rest of the tasks can be performed by using the following commands:"
-msgstr "Остальные задачи можно выполнить с помощью следующих команд:"
-
-#: pdf_bot/dispatcher.py:183
-msgid "{command} - compare PDF files"
-msgstr "{command} - сравнить PDF файлы"
-
-#: pdf_bot/dispatcher.py:184
-msgid "{command} - merge PDF files"
-msgstr "{command} - объединение PDF файлов"
-
-#: pdf_bot/dispatcher.py:185
-msgid "{command} - convert and combine multiple images into PDF files"
-msgstr "{command} - конвертируйте и объединяйте несколько изображений в PDF-файлы"
-
 #: pdf_bot/dispatcher.py:188
-msgid "{command} - create PDF files from text messages"
-msgstr "{command} - создание PDF файлов из текстовых сообщений"
-
-#: pdf_bot/dispatcher.py:191
-msgid "{command} - add watermark to PDF files"
-msgstr "{command} - добавление водяного знака в PDF-файлы"
-
-#: pdf_bot/dispatcher.py:231
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "Срок действия кнопки истек, повторите попытку с новым сообщением/запросом, затем нажмите новую кнопку"
 
@@ -208,45 +155,99 @@ msgstr "Срок действия кнопки истек, повторите п
 msgid "Failed to complete process"
 msgstr "Не удалось завершить процесс"
 
-#: pdf_bot/command/command_service.py:33
+#: pdf_bot/command/command_service.py:35
 msgid "Welcome to PDF Bot!"
 msgstr "Добро пожаловать в PDF Bot!"
 
-#: pdf_bot/command/command_service.py:34
+#: pdf_bot/command/command_service.py:36
 msgid "Key features:"
 msgstr "Ключевые возможности:"
 
-#: pdf_bot/command/command_service.py:35
+#: pdf_bot/command/command_service.py:37
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- Сжатие, слияние, предварительный просмотр, переименование, разделение и добавление водяного знака в PDF-файлы"
 
-#: pdf_bot/command/command_service.py:39
+#: pdf_bot/command/command_service.py:41
 msgid "- Create PDF files from text messages"
 msgstr "- Создание PDF файлов из текстовых сообщений"
 
-#: pdf_bot/command/command_service.py:40
+#: pdf_bot/command/command_service.py:42
 msgid "- Extract images and text from PDF files"
 msgstr "- Извлечение изображений и текста из PDF файлов"
 
-#: pdf_bot/command/command_service.py:41
+#: pdf_bot/command/command_service.py:43
 msgid "- Convert PDF files into images"
 msgstr "- Преобразование PDF файлов в изображения"
 
-#: pdf_bot/command/command_service.py:42
+#: pdf_bot/command/command_service.py:44
 msgid "- Convert webpages and images into PDF files"
 msgstr "- Преобразование веб-страниц и изображений в PDF-файлы"
 
-#: pdf_bot/command/command_service.py:43
+#: pdf_bot/command/command_service.py:45
 msgid "- Beautify handwritten notes images into PDF files"
 msgstr "- Украшение рукописных заметок в PDF-файлы"
 
-#: pdf_bot/command/command_service.py:44
+#: pdf_bot/command/command_service.py:46
 msgid "- And more..."
 msgstr "- И многое другое..."
 
-#: pdf_bot/command/command_service.py:45
+#: pdf_bot/command/command_service.py:47
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Введите {command} , чтобы узнать, как использовать PDF Bot"
+
+#: pdf_bot/command/command_service.py:57
+msgid "Set Language 🌎"
+msgstr "Установить язык 🌎"
+
+#: pdf_bot/command/command_service.py:59
+#: pdf_bot/telegram_internal/telegram_service.py:152
+msgid "Join Channel"
+msgstr "Присоединиться к каналу"
+
+#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:87
+#: pdf_bot/telegram_internal/telegram_service.py:153
+msgid "Support PDF Bot"
+msgstr "Поддержать PDF Bot"
+
+#: pdf_bot/command/command_service.py:69
+msgid "You can perform most of the tasks by sending me one of the followings:"
+msgstr "Вы можете выполнить большинство задач, отправив мне один из следующих вариантов:"
+
+#: pdf_bot/command/command_service.py:73
+msgid "- PDF files"
+msgstr "- PDF файлы"
+
+#: pdf_bot/command/command_service.py:74
+msgid "- Images"
+msgstr "- Изображения"
+
+#: pdf_bot/command/command_service.py:75
+msgid "- Webpage links"
+msgstr "- Ссылки на веб-страницы"
+
+#: pdf_bot/command/command_service.py:76
+msgid "The rest of the tasks can be performed by using the following commands:"
+msgstr "Остальные задачи можно выполнить с помощью следующих команд:"
+
+#: pdf_bot/command/command_service.py:80
+msgid "{command} - compare PDF files"
+msgstr "{command} - сравнить PDF файлы"
+
+#: pdf_bot/command/command_service.py:83
+msgid "{command} - merge PDF files"
+msgstr "{command} - объединение PDF файлов"
+
+#: pdf_bot/command/command_service.py:84
+msgid "{command} - convert and combine multiple images into PDF files"
+msgstr "{command} - конвертируйте и объединяйте несколько изображений в PDF-файлы"
+
+#: pdf_bot/command/command_service.py:87
+msgid "{command} - create PDF files from text messages"
+msgstr "{command} - создание PDF файлов из текстовых сообщений"
+
+#: pdf_bot/command/command_service.py:90
+msgid "{command} - add watermark to PDF files"
+msgstr "{command} - добавление водяного знака в PDF-файлы"
 
 #: pdf_bot/compare/compare_service.py:38
 msgid "Send me one of the PDF files that you'll like to compare"

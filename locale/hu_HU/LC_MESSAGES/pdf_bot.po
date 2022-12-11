@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-11 02:13+0000\n"
-"PO-Revision-Date: 2022-12-11 02:13\n"
+"POT-Creation-Date: 2022-12-11 02:40+0000\n"
+"PO-Revision-Date: 2022-12-11 02:40\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -147,60 +147,7 @@ msgstr "Étkezés"
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/dispatcher.py:161
-msgid "Set Language 🌎"
-msgstr "Nyelv beállítása 🌎"
-
-#: pdf_bot/dispatcher.py:163 pdf_bot/telegram_internal/telegram_service.py:152
-msgid "Join Channel"
-msgstr "Csatlakozás a csatornához"
-
-#: pdf_bot/dispatcher.py:164 pdf_bot/payment/payment_service.py:87
-#: pdf_bot/telegram_internal/telegram_service.py:153
-msgid "Support PDF Bot"
-msgstr "Támogatás PDF Bot"
-
-#: pdf_bot/dispatcher.py:173
-msgid "You can perform most of the tasks by sending me one of the followings:"
-msgstr "A legtöbb feladatot az alábbiak egyikének elküldésével végezheti el:"
-
-#: pdf_bot/dispatcher.py:176
-msgid "- PDF files"
-msgstr "- PDF fájlok"
-
-#: pdf_bot/dispatcher.py:177
-msgid "- Images"
-msgstr "- Képek"
-
-#: pdf_bot/dispatcher.py:178
-msgid "- Webpage links"
-msgstr "- Weboldal linkek"
-
-#: pdf_bot/dispatcher.py:179
-msgid "The rest of the tasks can be performed by using the following commands:"
-msgstr "A többi feladat a következő parancsokkal végezhető el:"
-
-#: pdf_bot/dispatcher.py:183
-msgid "{command} - compare PDF files"
-msgstr "{command} - PDF fájlok összehasonlítása"
-
-#: pdf_bot/dispatcher.py:184
-msgid "{command} - merge PDF files"
-msgstr "{command} - PDF fájlok egyesítése"
-
-#: pdf_bot/dispatcher.py:185
-msgid "{command} - convert and combine multiple images into PDF files"
-msgstr "{command} - több kép konvertálása és kombinálása PDF-fájlokká"
-
 #: pdf_bot/dispatcher.py:188
-msgid "{command} - create PDF files from text messages"
-msgstr "{command} - PDF fájlok létrehozása szöveges üzenetekből"
-
-#: pdf_bot/dispatcher.py:191
-msgid "{command} - add watermark to PDF files"
-msgstr "{command} - vízjel hozzáadása PDF fájlokhoz"
-
-#: pdf_bot/dispatcher.py:231
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "A gomb lejárt, próbálkozzon újra egy új üzenettel/lekérdezéssel, majd nyomja meg az új gombot"
 
@@ -208,45 +155,99 @@ msgstr "A gomb lejárt, próbálkozzon újra egy új üzenettel/lekérdezéssel,
 msgid "Failed to complete process"
 msgstr "Nem sikerült befejezni a folyamatot"
 
-#: pdf_bot/command/command_service.py:33
+#: pdf_bot/command/command_service.py:35
 msgid "Welcome to PDF Bot!"
 msgstr "Üdvözöljük a PDF Bot!"
 
-#: pdf_bot/command/command_service.py:34
+#: pdf_bot/command/command_service.py:36
 msgid "Key features:"
 msgstr "Főbb jellemzők:"
 
-#: pdf_bot/command/command_service.py:35
+#: pdf_bot/command/command_service.py:37
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- Vízjel tömörítése, összevonása, előnézete, átnevezése, felosztása és vízjel hozzáadása PDF fájlokhoz"
 
-#: pdf_bot/command/command_service.py:39
+#: pdf_bot/command/command_service.py:41
 msgid "- Create PDF files from text messages"
 msgstr "- PDF fájlok létrehozása szöveges üzenetekből"
 
-#: pdf_bot/command/command_service.py:40
+#: pdf_bot/command/command_service.py:42
 msgid "- Extract images and text from PDF files"
 msgstr "- Képek és szöveg kinyerés PDF fájlokból"
 
-#: pdf_bot/command/command_service.py:41
+#: pdf_bot/command/command_service.py:43
 msgid "- Convert PDF files into images"
 msgstr "- PDF fájlok konvertálása képekké"
 
-#: pdf_bot/command/command_service.py:42
+#: pdf_bot/command/command_service.py:44
 msgid "- Convert webpages and images into PDF files"
 msgstr "- Weboldalak és képek konvertálása PDF fájlokká"
 
-#: pdf_bot/command/command_service.py:43
+#: pdf_bot/command/command_service.py:45
 msgid "- Beautify handwritten notes images into PDF files"
 msgstr "- Szépítse a kézzel írt jegyzetek képeit PDF fájlokba"
 
-#: pdf_bot/command/command_service.py:44
+#: pdf_bot/command/command_service.py:46
 msgid "- And more..."
 msgstr "- És még sok más..."
 
-#: pdf_bot/command/command_service.py:45
+#: pdf_bot/command/command_service.py:47
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Írja be {command} , hogy hogyan kell használni a PDF Bot"
+
+#: pdf_bot/command/command_service.py:57
+msgid "Set Language 🌎"
+msgstr "Nyelv beállítása 🌎"
+
+#: pdf_bot/command/command_service.py:59
+#: pdf_bot/telegram_internal/telegram_service.py:152
+msgid "Join Channel"
+msgstr "Csatlakozás a csatornához"
+
+#: pdf_bot/command/command_service.py:60 pdf_bot/payment/payment_service.py:87
+#: pdf_bot/telegram_internal/telegram_service.py:153
+msgid "Support PDF Bot"
+msgstr "Támogatás PDF Bot"
+
+#: pdf_bot/command/command_service.py:69
+msgid "You can perform most of the tasks by sending me one of the followings:"
+msgstr "A legtöbb feladatot az alábbiak egyikének elküldésével végezheti el:"
+
+#: pdf_bot/command/command_service.py:73
+msgid "- PDF files"
+msgstr "- PDF fájlok"
+
+#: pdf_bot/command/command_service.py:74
+msgid "- Images"
+msgstr "- Képek"
+
+#: pdf_bot/command/command_service.py:75
+msgid "- Webpage links"
+msgstr "- Weboldal linkek"
+
+#: pdf_bot/command/command_service.py:76
+msgid "The rest of the tasks can be performed by using the following commands:"
+msgstr "A többi feladat a következő parancsokkal végezhető el:"
+
+#: pdf_bot/command/command_service.py:80
+msgid "{command} - compare PDF files"
+msgstr "{command} - PDF fájlok összehasonlítása"
+
+#: pdf_bot/command/command_service.py:83
+msgid "{command} - merge PDF files"
+msgstr "{command} - PDF fájlok egyesítése"
+
+#: pdf_bot/command/command_service.py:84
+msgid "{command} - convert and combine multiple images into PDF files"
+msgstr "{command} - több kép konvertálása és kombinálása PDF-fájlokká"
+
+#: pdf_bot/command/command_service.py:87
+msgid "{command} - create PDF files from text messages"
+msgstr "{command} - PDF fájlok létrehozása szöveges üzenetekből"
+
+#: pdf_bot/command/command_service.py:90
+msgid "{command} - add watermark to PDF files"
+msgstr "{command} - vízjel hozzáadása PDF fájlokhoz"
 
 #: pdf_bot/compare/compare_service.py:38
 msgid "Send me one of the PDF files that you'll like to compare"
