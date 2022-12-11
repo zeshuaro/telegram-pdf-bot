@@ -1,8 +1,10 @@
-from telegram import ParseMode, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.chataction import ChatAction
+from telegram.error import Unauthorized
 from telegram.ext import CallbackContext
 
 from pdf_bot.account.account_service import AccountService
+from pdf_bot.consts import CHANNEL_NAME, PAYMENT, SET_LANG
 from pdf_bot.language import LanguageService
 
 
@@ -48,3 +50,56 @@ class CommandService:
             ),
             parse_mode=ParseMode.HTML,
         )
+
+    def send_help_message(self, update: Update, context: CallbackContext) -> None:
+        _ = self.language_service.set_app_language(update, context)
+        keyboard = [
+            [InlineKeyboardButton(_("Set Language 🌎"), callback_data=SET_LANG)],
+            [
+                InlineKeyboardButton(_("Join Channel"), f"https://t.me/{CHANNEL_NAME}"),
+                InlineKeyboardButton(_("Support PDF Bot"), callback_data=PAYMENT),
+            ],
+        ]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+
+        update.effective_message.reply_text(
+            "{desc_1}\n{pdf_files}\n{images}\n{webpage_links}\n\n{desc_2}\n"
+            "{compare_desc}\n{merge_desc}\n{image_desc}\n{text_desc}\n"
+            "{watermark_desc}".format(
+                desc_1=_(
+                    "You can perform most of the tasks by sending me one of the"
+                    " followings:"
+                ),
+                pdf_files=_("- PDF files"),
+                images=_("- Images"),
+                webpage_links=_("- Webpage links"),
+                desc_2=_(
+                    "The rest of the tasks can be performed by using the following "
+                    "commands:"
+                ),
+                compare_desc=_("{command} - compare PDF files").format(
+                    command="/compare"
+                ),
+                merge_desc=_("{command} - merge PDF files").format(command="/merge"),
+                image_desc=_(
+                    "{command} - convert and combine multiple images into PDF files"
+                ).format(command="/image"),
+                text_desc=_("{command} - create PDF files from text messages").format(
+                    command="/text"
+                ),
+                watermark_desc=_("{command} - add watermark to PDF files").format(
+                    command="/watermark"
+                ),
+            ),
+            reply_markup=reply_markup,
+        )
+
+    def send_message_to_user(self, update: Update, context: CallbackContext) -> None:
+        user_id = int(context.args[0])
+        message = " ".join(context.args[1:])
+
+        try:
+            context.bot.send_message(user_id, message)
+            update.effective_message.reply_text("Message sent")
+        except Unauthorized:
+            update.effective_message.reply_text("User has blocked the bot")
