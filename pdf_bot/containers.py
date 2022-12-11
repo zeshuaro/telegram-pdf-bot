@@ -76,7 +76,7 @@ class Repositories(containers.DeclarativeContainer):
     analytics = providers.Singleton(AnalyticsRepository, api_client=clients.api)
     feedback = providers.Singleton(FeedbackRepository, slack_client=clients.slack)
     language = providers.Singleton(LanguageRepository)
-    text = providers.Singleton(TextRepository)
+    text = providers.Singleton(TextRepository, api_client=clients.api)
 
 
 class Services(containers.DeclarativeContainer):
