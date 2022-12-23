@@ -82,7 +82,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.sut.process_callback_query(self.telegram_update, self.telegram_context)
 
         self.language_service.send_language_options.assert_called_once_with(
-            self.telegram_update, self.telegram_context, self.telegram_callback_query
+            self.telegram_update, self.telegram_context
         )
         self.telegram_callback_query.answer.assert_called_once()
 

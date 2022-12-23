@@ -27,6 +27,8 @@ class TestLanguageService(TelegramTestMixin):
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     def test_get_user_language(self) -> None:
+        self.telegram_user_data.get.return_value = None
+
         actual = self.sut.get_user_language(self.telegram_update, self.telegram_context)
 
         assert actual == self.VALID_LANGUAGE_CODE
@@ -35,20 +37,26 @@ class TestLanguageService(TelegramTestMixin):
         )
 
     def test_get_user_language_cached(self) -> None:
-        cached_lang = "cached_lang"
-        user_data = {self.sut.LANGUAGE: cached_lang}
-        self.telegram_user_data.__getitem__.side_effect = user_data.__getitem__
-        self.telegram_user_data.__contains__.side_effect = user_data.__contains__
+        self.telegram_user_data.get.return_value = self.VALID_LANGUAGE_CODE
 
         actual = self.sut.get_user_language(self.telegram_update, self.telegram_context)
 
-        assert actual == cached_lang
+        assert actual == self.VALID_LANGUAGE_CODE
         self.telegram_user_data.__setitem__.assert_not_called()
 
-    def test_get_user_language_from_query(self) -> None:
-        actual = self.sut.get_user_language(
-            self.telegram_update, self.telegram_context, self.telegram_callback_query
-        )
+    def test_get_user_language_without_user_data(self) -> None:
+        self.telegram_context.user_data = None
+
+        actual = self.sut.get_user_language(self.telegram_update, self.telegram_context)
+
+        assert actual == self.VALID_LANGUAGE_CODE
+        self.telegram_user_data.__setitem__.assert_not_called()
+
+    def test_get_user_language_without_callback_query(self) -> None:
+        self.telegram_user_data.get.return_value = None
+        self.telegram_update.callback_query = None
+
+        actual = self.sut.get_user_language(self.telegram_update, self.telegram_context)
 
         assert actual == self.VALID_LANGUAGE_CODE
         self.telegram_user_data.__setitem__.assert_called_once_with(

@@ -160,7 +160,7 @@ class TelegramDispatcher:
         if data not in context.user_data[self._CALLBACK_DATA]:  # type: ignore
             context.user_data[self._CALLBACK_DATA].add(data)  # type: ignore
             if data == SET_LANG:
-                self.language_service.send_language_options(update, context, query)
+                self.language_service.send_language_options(update, context)
             elif data in LANGUAGES:
                 self.language_service.update_user_language(update, context, query)
             elif data == PAYMENT:

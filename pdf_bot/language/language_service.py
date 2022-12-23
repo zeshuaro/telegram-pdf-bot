@@ -56,13 +56,8 @@ class LanguageService:
     def __init__(self, language_repository: LanguageRepository) -> None:
         self.language_repository = language_repository
 
-    def send_language_options(
-        self,
-        update: Update,
-        context: CallbackContext,
-        query: CallbackQuery | None = None,
-    ) -> None:
-        user_lang = self.get_user_language(update, context, query)
+    def send_language_options(self, update: Update, context: CallbackContext) -> None:
+        user_lang = self.get_user_language(update, context)
         btns = [
             InlineKeyboardButton(key, callback_data=key)
             for key, value in sorted(self.LANGUAGE_CODES.items(), key=lambda x: x[1])
@@ -79,17 +74,13 @@ class LanguageService:
             _("Select your language"), reply_markup=reply_markup
         )
 
-    def get_user_language(
-        self,
-        update: Update,
-        context: CallbackContext,
-        query: CallbackQuery | None = None,
-    ) -> str:
-        lang: str
-        if context.user_data is not None and self.LANGUAGE in context.user_data:
-            lang = context.user_data[self.LANGUAGE]
-            return lang
+    def get_user_language(self, update: Update, context: CallbackContext) -> str:
+        if context.user_data is not None:
+            lang: str | None = context.user_data.get(self.LANGUAGE)
+            if lang is not None:
+                return lang
 
+        query: CallbackQuery | None = update.callback_query
         if query is None:
             sender = update.effective_message.from_user or update.effective_chat  # type: ignore
             user_id = sender.id  # type: ignore
@@ -119,12 +110,9 @@ class LanguageService:
         )
 
     def set_app_language(
-        self,
-        update: Update,
-        context: CallbackContext,
-        query: CallbackQuery | None = None,
+        self, update: Update, context: CallbackContext
     ) -> Callable[[str], str]:
-        lang = self.get_user_language(update, context, query)
+        lang = self.get_user_language(update, context)
         t = gettext.translation("pdf_bot", localedir="locale", languages=[lang])
 
         return t.gettext
