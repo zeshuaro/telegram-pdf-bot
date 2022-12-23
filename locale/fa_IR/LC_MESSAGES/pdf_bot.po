@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-23 11:09+0000\n"
-"PO-Revision-Date: 2022-12-23 11:09\n"
+"POT-Creation-Date: 2022-12-23 12:50+0000\n"
+"PO-Revision-Date: 2022-12-23 12:50\n"
 "Last-Translator: \n"
 "Language: fa\n"
 "Language-Team: Persian\n"
@@ -29,7 +29,7 @@ msgstr "لغو"
 
 #: pdf_bot/consts.py:38
 msgid "Done"
-msgstr "انجام"
+msgstr "انجام شد."
 
 #: pdf_bot/consts.py:39
 msgid "Back"
@@ -85,11 +85,11 @@ msgstr "به پی دی اف"
 
 #: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:23
 msgid "Rename"
-msgstr "نام"
+msgstr "تغییر نام"
 
 #: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:24
 msgid "Crop"
-msgstr "محصول"
+msgstr "برش"
 
 #: pdf_bot/consts.py:54
 msgid "Compressed"
@@ -101,7 +101,7 @@ msgstr "تصاویر"
 
 #: pdf_bot/consts.py:56
 msgid "Remove last file"
-msgstr "حذف پرونده آخر"
+msgstr "حذف اخرین فایل"
 
 #: pdf_bot/consts.py:57
 msgid "To Dimensions"
@@ -109,7 +109,7 @@ msgstr "به ابعاد"
 
 #: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:25
 msgid "Extract Text"
-msgstr "متن عصاره"
+msgstr "استخراج متن"
 
 #: pdf_bot/consts.py:59
 msgid "Text Message"
@@ -125,11 +125,11 @@ msgstr "فشرده سازی"
 
 #: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:28
 msgid "Black & White"
-msgstr "Black & White"
+msgstr "سیاه و سفید"
 
 #: pdf_bot/consts.py:78 pdf_bot/payment/payment_service.py:30
 msgid "Say Thanks"
-msgstr "بگو با تشکر"
+msgstr "تشکر کنید"
 
 #: pdf_bot/consts.py:79 pdf_bot/payment/payment_service.py:31
 msgid "Coffee"
@@ -141,19 +141,19 @@ msgstr "آبجو"
 
 #: pdf_bot/consts.py:81 pdf_bot/payment/payment_service.py:33
 msgid "Meal"
-msgstr "وعده غذایی"
+msgstr "غذا"
 
 #: pdf_bot/consts.py:82 pdf_bot/payment/payment_service.py:26
 msgid "{message} {emoji} (${value})"
-msgstr "{message} {emoji} (${value})"
+msgstr "{پیام}{ایموجی}${اعتبار}"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
-msgstr "موفق به تکمیل فرایند نشد"
+msgstr "فارایند تکمیل نشد"
 
 #: pdf_bot/command/command_service.py:35
 msgid "Welcome to PDF Bot!"
-msgstr "به پی دی اف بوت خوش آمدید!"
+msgstr "به ربات پی‌دی‌اف خوش آمدید!"
 
 #: pdf_bot/command/command_service.py:36
 msgid "Key features:"
@@ -303,11 +303,12 @@ msgstr "اعداد مثبت اندازه حاشیه را کاهش خواهند �
 
 #: pdf_bot/feedback/feedback_handler.py:46
 msgid "Send me your feedback in English"
-msgstr ""
+msgstr "بازخورد خود را به زبان انگلیسی ارسال کنید"
 
 #: pdf_bot/feedback/feedback_handler.py:66
 msgid "Thank you for your feedback, I've forwarded it to my developer"
-msgstr ""
+msgstr "با تشکر از بازخورد شما.\n"
+"بازخورد شما به توسعه دهنده ارسال خواهد شد."
 
 #: pdf_bot/feedback/feedback_service.py:21
 msgid "The feedback is not in English, try again"
@@ -369,11 +370,11 @@ msgstr "زیبا سازی و تبدیل تصاویر خود را به یک فا�
 msgid "Converting your images into a PDF file"
 msgstr "تبدیل تصاویر خود را به یک فایل پی دی اف"
 
-#: pdf_bot/language/language_service.py:79
+#: pdf_bot/language/language_service.py:74
 msgid "Select your language"
 msgstr "زبان خود را انتخاب کنید"
 
-#: pdf_bot/language/language_service.py:118
+#: pdf_bot/language/language_service.py:109
 msgid "Your language has been set to {language}"
 msgstr "زبان شما تنظیم شده {language}"
 
@@ -427,7 +428,7 @@ msgstr "می گویند با تشکر از ربات پی دی اف و کمک ب�
 
 #: pdf_bot/payment/payment_service.py:105
 msgid "Something went wrong, try again"
-msgstr ""
+msgstr "مشکلی پیش آمد، لطفا دوباره امتحان کنید."
 
 #: pdf_bot/payment/payment_service.py:112
 msgid "Thank you for your support!"
