@@ -79,7 +79,7 @@ class TestTextService(
         self.pdf_service.create_pdf_from_text.assert_called_once_with(
             self.PDF_TEXT, self.font_data
         )
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -97,7 +97,7 @@ class TestTextService(
             self.telegram_context, self.TEXT_KEY
         )
         self.pdf_service.create_pdf_from_text.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_check_text_unknown_font(self) -> None:
         self.text_repository.get_font.return_value = None
@@ -108,7 +108,7 @@ class TestTextService(
         self.text_repository.get_font.assert_called_once_with(self.TELEGRAM_TEXT)
         self.telegram_service.get_user_data.assert_not_called()
         self.pdf_service.create_pdf_from_text.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_check_text_skip_option(self) -> None:
         self.telegram_message.text = self.SKIP
@@ -126,7 +126,7 @@ class TestTextService(
         self.pdf_service.create_pdf_from_text.assert_called_once_with(
             self.PDF_TEXT, None
         )
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -142,4 +142,4 @@ class TestTextService(
         self.text_repository.get_font.assert_not_called()
         self.telegram_service.get_user_data.assert_not_called()
         self.pdf_service.create_pdf_from_text.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()

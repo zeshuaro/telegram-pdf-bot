@@ -156,7 +156,7 @@ class MergeService:
 
         try:
             with self.pdf_service.merge_pdfs(file_data_list) as out_path:
-                self.telegram_service.reply_with_file(
+                self.telegram_service.send_file(
                     update, context, out_path, TaskType.merge_pdf
                 )
         except PdfServiceError as e:

@@ -62,7 +62,7 @@ class TestCompareService(
         self.pdf_service.compare_pdfs.assert_called_with(
             self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_ID
         )
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -81,7 +81,7 @@ class TestCompareService(
         self.pdf_service.compare_pdfs.assert_called_with(
             self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_ID
         )
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_compare_pdfs_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
@@ -90,7 +90,7 @@ class TestCompareService(
 
         assert actual == ConversationHandler.END
         self.pdf_service.compare_pdfs.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_compare_pdfs_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
@@ -99,7 +99,7 @@ class TestCompareService(
 
         assert actual == self.WAIT_SECOND_PDF
         self.pdf_service.compare_pdfs.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_check_text_back(self) -> None:
         self.telegram_message.text = BACK

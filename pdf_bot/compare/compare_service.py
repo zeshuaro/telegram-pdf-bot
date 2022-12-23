@@ -83,7 +83,7 @@ class CompareService:
 
         try:
             with self.pdf_service.compare_pdfs(file_id, doc.file_id) as out_path:
-                self.telegram_service.reply_with_file(
+                self.telegram_service.send_file(
                     update, context, out_path, TaskType.compare_pdf
                 )
         except NoDifferenceError:

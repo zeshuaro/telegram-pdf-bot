@@ -185,12 +185,12 @@ class BatchImageHandler:
             with self.image_service.beautify_and_convert_images_to_pdf(
                 file_data_list
             ) as out_path:
-                self.telegram_service.reply_with_file(
+                self.telegram_service.send_file(
                     update, context, out_path, TaskType.beautify_image
                 )
         else:
             with self.image_service.convert_images_to_pdf(file_data_list) as out_path:
-                self.telegram_service.reply_with_file(
+                self.telegram_service.send_file(
                     update, context, out_path, TaskType.image_to_pdf
                 )
 

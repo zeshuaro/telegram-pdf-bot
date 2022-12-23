@@ -81,7 +81,7 @@ class WatermarkService:
             with self.pdf_service.add_watermark_to_pdf(
                 src_file_id, doc.file_id
             ) as out_path:
-                self.telegram_service.reply_with_file(
+                self.telegram_service.send_file(
                     update, context, out_path, TaskType.watermark_pdf
                 )
         except PdfServiceError as e:

@@ -166,7 +166,7 @@ class TestCropService(
         self.pdf_service.crop_pdf.assert_called_once_with(
             self.TELEGRAM_DOCUMENT_ID, percentage=percentage, margin_size=margin_size
         )
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -178,9 +178,9 @@ class TestCropService(
             self.telegram_context, FILE_DATA
         )
         self.pdf_service.crop_pdf.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def _assert_crop_services_not_called(self) -> None:
         self.telegram_service.get_user_data.assert_not_called()
         self.pdf_service.crop_pdf.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()

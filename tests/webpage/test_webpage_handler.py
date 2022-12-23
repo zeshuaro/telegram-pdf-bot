@@ -35,7 +35,7 @@ class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
             self.URLS, {self.URL}
         )
         self.webpage_service.url_to_pdf.assert_called_once_with(self.URL)
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -51,7 +51,7 @@ class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
             self.URLS, {self.URL}
         )
         self.webpage_service.url_to_pdf.assert_called_once_with(self.URL)
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_url_to_pdf_url_set_exists(self) -> None:
         user_data: dict[str, Any] = {self.URLS: set()}
@@ -61,7 +61,7 @@ class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
 
         self.telegram_user_data.__setitem__.assert_not_called()
         self.webpage_service.url_to_pdf.assert_called_once_with(self.URL)
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -76,4 +76,4 @@ class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
 
         self.telegram_user_data.__setitem__.assert_not_called()
         self.webpage_service.url_to_pdf.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()

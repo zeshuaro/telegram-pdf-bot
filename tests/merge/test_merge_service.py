@@ -129,7 +129,7 @@ class TestMergeService(
             self.telegram_context, self.MERGE_PDF_DATA
         )
         self.pdf_service.merge_pdfs.assert_called_once_with(self.file_data_list)
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -149,7 +149,7 @@ class TestMergeService(
             self.telegram_context, self.MERGE_PDF_DATA
         )
         self.pdf_service.merge_pdfs.assert_called_once_with(self.file_data_list)
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_check_text_done_with_one_file_only(self) -> None:
         self.telegram_message.text = self.DONE
@@ -163,7 +163,7 @@ class TestMergeService(
             self.telegram_context, self.MERGE_PDF_DATA
         )
         self.pdf_service.merge_pdfs.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_check_text_done_without_files(self) -> None:
         self.telegram_message.text = self.DONE
@@ -177,7 +177,7 @@ class TestMergeService(
             self.telegram_context, self.MERGE_PDF_DATA
         )
         self.pdf_service.merge_pdfs.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
         self._assert_ask_first_pdf()
 
     def test_check_text_cancel(self) -> None:
