@@ -42,7 +42,7 @@ class PaymentService:
         context: CallbackContext,
         query: CallbackQuery | None = None,
     ) -> None:
-        _ = self.language_service.set_app_language(update, context, query)
+        _ = self.language_service.set_app_language(update, context)
         keyboard = [
             [
                 InlineKeyboardButton(
