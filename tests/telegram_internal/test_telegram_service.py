@@ -6,6 +6,7 @@ from telegram import (
     ChatAction,
     File,
     InlineKeyboardMarkup,
+    Message,
     ParseMode,
     ReplyKeyboardMarkup,
 )
@@ -46,6 +47,19 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             self.analytics_service,
             bot=self.telegram_bot,
         )
+
+        self.os_patcher = patch("pdf_bot.telegram_internal.telegram_service.os")
+        self.open_patcher = patch("builtins.open")
+
+        self.os = self.os_patcher.start()
+        self.open_patcher.start()
+
+        self.os.path.getsize.return_value = MAX_FILESIZE_UPLOAD
+
+    def teardown_method(self) -> None:
+        self.os_patcher.stop()
+        self.open_patcher.stop()
+        super().teardown_method()
 
     def test_check_file_size(self) -> None:
         self.telegram_document.file_size = MAX_FILESIZE_DOWNLOAD
@@ -240,73 +254,90 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             self.TELEGRAM_TEXT, reply_markup=markup, parse_mode=parse_mode
         )
 
-    def test_reply_with_file_document(self) -> None:
+    def test_send_file_document(self) -> None:
         file_path = f"{self.FILE_PATH}.pdf"
-        with patch("pdf_bot.telegram_internal.telegram_service.os") as os, patch(
-            "builtins.open"
-        ) as _mock_open:
-            os.path.getsize.return_value = MAX_FILESIZE_UPLOAD
+        self.telegram_update.callback_query = None
 
-            self.sut.reply_with_file(
-                self.telegram_update,
-                self.telegram_context,
-                file_path,
-                TaskType.merge_pdf,
-            )
+        self.sut.send_file(
+            self.telegram_update,
+            self.telegram_context,
+            file_path,
+            TaskType.merge_pdf,
+        )
 
-            self.telegram_message.reply_chat_action.assert_called_once_with(
-                ChatAction.UPLOAD_DOCUMENT
-            )
-            self.telegram_message.reply_document.assert_called_once()
-            self.analytics_service.send_event.assert_called_once_with(
-                self.telegram_update,
-                self.telegram_context,
-                TaskType.merge_pdf,
-                EventAction.complete,
-            )
+        self.telegram_bot.send_chat_action.assert_called_once_with(
+            self.TELEGRAM_CHAT_ID, ChatAction.UPLOAD_DOCUMENT
+        )
+        self.telegram_bot.send_document.assert_called_once()
+        self.analytics_service.send_event.assert_called_once_with(
+            self.telegram_update,
+            self.telegram_context,
+            TaskType.merge_pdf,
+            EventAction.complete,
+        )
 
-    def test_reply_with_file_image(self) -> None:
+    def test_send_file_image(self) -> None:
         file_path = f"{self.FILE_PATH}.png"
-        with patch("pdf_bot.telegram_internal.telegram_service.os") as os, patch(
-            "builtins.open"
-        ) as _mock_open:
-            os.path.getsize.return_value = MAX_FILESIZE_UPLOAD
+        self.telegram_update.callback_query = None
 
-            self.sut.reply_with_file(
-                self.telegram_update,
-                self.telegram_context,
-                file_path,
-                TaskType.merge_pdf,
-            )
+        self.sut.send_file(
+            self.telegram_update,
+            self.telegram_context,
+            file_path,
+            TaskType.merge_pdf,
+        )
 
-            self.telegram_message.reply_chat_action.assert_called_once_with(
-                ChatAction.UPLOAD_PHOTO
-            )
-            self.telegram_message.reply_photo.assert_called_once()
-            self.analytics_service.send_event.assert_called_once_with(
-                self.telegram_update,
-                self.telegram_context,
-                TaskType.merge_pdf,
-                EventAction.complete,
-            )
+        self.telegram_bot.send_chat_action.assert_called_once_with(
+            self.TELEGRAM_CHAT_ID, ChatAction.UPLOAD_PHOTO
+        )
+        self.telegram_bot.send_photo.assert_called_once()
+        self.analytics_service.send_event.assert_called_once_with(
+            self.telegram_update,
+            self.telegram_context,
+            TaskType.merge_pdf,
+            EventAction.complete,
+        )
 
-    def test_reply_with_file_too_large(self) -> None:
-        with patch("pdf_bot.telegram_internal.telegram_service.os") as os, patch(
-            "builtins.open"
-        ) as _mock_open:
-            os.path.getsize.return_value = MAX_FILESIZE_UPLOAD + 1
+    def test_send_file_document_with_query(self) -> None:
+        chat_id = 10
+        file_path = f"{self.FILE_PATH}.pdf"
+        message = MagicMock(spec=Message)
+        message.chat_id = chat_id
+        self.telegram_callback_query.message = message
+        self.telegram_update.callback_query = self.telegram_callback_query
 
-            self.sut.reply_with_file(
-                self.telegram_update,
-                self.telegram_context,
-                self.FILE_PATH,
-                TaskType.merge_pdf,
-            )
+        self.sut.send_file(
+            self.telegram_update,
+            self.telegram_context,
+            file_path,
+            TaskType.merge_pdf,
+        )
 
-            self.telegram_message.reply_chat_action.assert_not_called()
-            self.telegram_message.reply_document.assert_not_called()
-            self.telegram_message.reply_photo.assert_not_called()
-            self.analytics_service.send_event.assert_not_called()
+        self.telegram_bot.send_chat_action.assert_called_once_with(
+            chat_id, ChatAction.UPLOAD_DOCUMENT
+        )
+        self.telegram_bot.send_document.assert_called_once()
+        self.analytics_service.send_event.assert_called_once_with(
+            self.telegram_update,
+            self.telegram_context,
+            TaskType.merge_pdf,
+            EventAction.complete,
+        )
+
+    def test_send_file_too_large(self) -> None:
+        self.os.path.getsize.return_value = MAX_FILESIZE_UPLOAD + 1
+
+        self.sut.send_file(
+            self.telegram_update,
+            self.telegram_context,
+            self.FILE_PATH,
+            TaskType.merge_pdf,
+        )
+
+        self.telegram_bot.send_chat_action.assert_not_called()
+        self.telegram_bot.send_document.assert_not_called()
+        self.telegram_bot.send_photo.assert_not_called()
+        self.analytics_service.send_event.assert_not_called()
 
     def test_send_file_names(self) -> None:
         file_data_list = [FileData("a", "a"), FileData("b")]

@@ -166,7 +166,7 @@ class CropService:
         with self.pdf_service.crop_pdf(
             file_id, percentage=percentage, margin_size=margin_size
         ) as out_path:
-            self.telegram_service.reply_with_file(
+            self.telegram_service.send_file(
                 update, context, out_path, TaskType.crop_pdf
             )
         return ConversationHandler.END

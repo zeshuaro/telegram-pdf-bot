@@ -42,7 +42,7 @@ class FileService:
                 ),
                 parse_mode=ParseMode.HTML,
             )
-            self.telegram_service.reply_with_file(
+            self.telegram_service.send_file(
                 update, context, compress_result.out_path, TaskType.compress_pdf
             )
         return ConversationHandler.END

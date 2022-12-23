@@ -5,6 +5,7 @@ from typing import Any, Generator, List
 
 from telegram import (
     Bot,
+    CallbackQuery,
     ChatAction,
     Document,
     InlineKeyboardButton,
@@ -176,7 +177,7 @@ class TelegramService:
     ) -> None:
         self._reply_with_markup(update, context, text, CANCEL, parse_mode)
 
-    def reply_with_file(
+    def send_file(
         self,
         update: Update,
         context: CallbackContext,
@@ -184,25 +185,27 @@ class TelegramService:
         task: TaskType,
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
-        reply_markup = self.get_support_markup(update, context)
+        chat_id = self._get_chat_id(update)
 
         try:
             self.check_file_upload_size(file_path)
         except TelegramFileTooLargeError as e:
-            message.reply_text(_(str(e)))
+            self.bot.send_message(chat_id, _(str(e)))
             return
 
+        reply_markup = self.get_support_markup(update, context)
         if file_path.endswith(self.PNG_SUFFIX):
-            message.reply_chat_action(ChatAction.UPLOAD_PHOTO)
-            message.reply_photo(
+            self.bot.send_chat_action(chat_id, ChatAction.UPLOAD_PHOTO)
+            self.bot.send_photo(
+                chat_id,
                 open(file_path, "rb"),
                 caption=_("Here is your result file"),
                 reply_markup=reply_markup,
             )
         else:
-            message.reply_chat_action(ChatAction.UPLOAD_DOCUMENT)
-            message.reply_document(
+            self.bot.send_chat_action(chat_id, ChatAction.UPLOAD_DOCUMENT)
+            self.bot.send_document(
+                chat_id,
                 document=open(file_path, "rb"),
                 caption=_("Here is your result file"),
                 reply_markup=reply_markup,
@@ -219,6 +222,13 @@ class TelegramService:
                 file_name = "File name unavailable"
             text += f"{i + 1}: {file_name}\n"
         self.bot.send_message(chat_id, text)
+
+    @staticmethod
+    def _get_chat_id(update: Update) -> int:
+        query: CallbackQuery | None = update.callback_query
+        if query is not None:
+            return query.message.chat_id
+        return update.message.chat_id
 
     def _reply_with_markup(
         self,

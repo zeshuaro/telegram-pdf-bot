@@ -51,6 +51,7 @@ class TelegramTestMixin:
 
         self.telegram_message = MagicMock(spec=Message)
         self.telegram_message.chat = self.telegram_chat
+        self.telegram_message.chat_id = self.TELEGRAM_CHAT_ID
         self.telegram_message.from_user = self.telegram_user
         self.telegram_message.document = self.telegram_document
         self.telegram_message.text = self.TELEGRAM_TEXT
@@ -61,6 +62,7 @@ class TelegramTestMixin:
         self.telegram_pre_checkout_query = MagicMock(spec=PreCheckoutQuery)
 
         self.telegram_update = MagicMock(spec=Update)
+        self.telegram_update.message = self.telegram_message
         self.telegram_update.effective_message = self.telegram_message
         self.telegram_update.callback_query = self.telegram_callback_query
         self.telegram_update.pre_checkout_query = self.telegram_pre_checkout_query

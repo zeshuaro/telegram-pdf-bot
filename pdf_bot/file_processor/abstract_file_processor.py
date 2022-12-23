@@ -74,7 +74,7 @@ class AbstractFileProcessor(ABC):
                     shutil.make_archive(out_path, "zip", out_path)
                     final_path = f"{out_path}.zip"
 
-                self.telegram_service.reply_with_file(
+                self.telegram_service.send_file(
                     update, context, final_path, self.task_type
                 )
         except Exception as e:  # pylint: disable=broad-except

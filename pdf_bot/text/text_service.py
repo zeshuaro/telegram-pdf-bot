@@ -109,7 +109,7 @@ class TextService:
             _("Creating your PDF file"), reply_markup=ReplyKeyboardRemove()
         )
         with self.pdf_service.create_pdf_from_text(text, font_data) as out_path:
-            self.telegram_service.reply_with_file(
+            self.telegram_service.send_file(
                 update, context, out_path, TaskType.text_to_pdf
             )
 

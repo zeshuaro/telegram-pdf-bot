@@ -82,7 +82,7 @@ class TestWatermarkService(
         self.pdf_service.add_watermark_to_pdf.assert_called_once_with(
             self.SOURCE_FILE_ID, self.TELEGRAM_DOCUMENT_ID
         )
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -106,7 +106,7 @@ class TestWatermarkService(
         self.pdf_service.add_watermark_to_pdf.assert_called_once_with(
             self.SOURCE_FILE_ID, self.TELEGRAM_DOCUMENT_ID
         )
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_add_watermark_to_pdf_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
@@ -123,7 +123,7 @@ class TestWatermarkService(
             self.telegram_context, self.WATERMARK_KEY
         )
         self.pdf_service.add_watermark_to_pdf.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_add_watermark_to_pdf_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
@@ -138,7 +138,7 @@ class TestWatermarkService(
         )
         self.telegram_service.get_user_data.assert_not_called()
         self.pdf_service.add_watermark_to_pdf.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_check_text_back_option(self) -> None:
         self.telegram_message.text = "Back"

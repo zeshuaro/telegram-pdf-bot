@@ -138,7 +138,7 @@ class TestBatchImageHandler(
         self.image_service.beautify_and_convert_images_to_pdf.assert_called_once_with(
             self.file_data_list
         )
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -162,7 +162,7 @@ class TestBatchImageHandler(
         self.image_service.convert_images_to_pdf.assert_called_once_with(
             self.file_data_list
         )
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             self.FILE_PATH,
@@ -182,7 +182,7 @@ class TestBatchImageHandler(
         )
         self.image_service.beautify_and_convert_images_to_pdf.assert_not_called()
         self.image_service.convert_images_to_pdf.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_check_text_process_without_files(self) -> None:
         self.telegram_message.text = self.BEAUTIFY
@@ -197,7 +197,7 @@ class TestBatchImageHandler(
         )
         self.image_service.beautify_and_convert_images_to_pdf.assert_not_called()
         self.image_service.convert_images_to_pdf.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
         self._assert_ask_first_image()
 
     def test_check_text_cancel(self) -> None:

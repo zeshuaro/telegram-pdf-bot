@@ -51,7 +51,7 @@ class WebpageHandler:
 
         try:
             with self.webpage_service.url_to_pdf(url) as out_path:
-                self.telegram_service.reply_with_file(
+                self.telegram_service.send_file(
                     update, context, out_path, TaskType.url_to_pdf
                 )
         except WebpageServiceError as e:

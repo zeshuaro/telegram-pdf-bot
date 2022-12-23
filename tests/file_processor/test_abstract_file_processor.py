@@ -163,7 +163,7 @@ class TestAbstractFileProcessor(
             self.telegram_context, FILE_DATA
         )
         self.telegram_update.effective_message.reply_text.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_process_file_error(self) -> None:
         self.sut = MockProcessorRaiseGenericError(
@@ -179,7 +179,7 @@ class TestAbstractFileProcessor(
             self.telegram_context, FILE_DATA
         )
         self.telegram_update.effective_message.reply_text.assert_called_once()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_process_file_custom_error(self) -> None:
         self.sut = MockProcessorWithCustomErrorHandler(
@@ -194,7 +194,7 @@ class TestAbstractFileProcessor(
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, FILE_DATA
         )
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_process_file_unknown_error(self) -> None:
         self.sut = MockProcessorWithUnknownErrorHandler(
@@ -209,7 +209,7 @@ class TestAbstractFileProcessor(
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, FILE_DATA
         )
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_process_file_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
@@ -220,7 +220,7 @@ class TestAbstractFileProcessor(
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, FILE_DATA
         )
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_process_file_with_back_option(self) -> None:
         self.telegram_message.text = self.BACK
@@ -229,7 +229,7 @@ class TestAbstractFileProcessor(
 
         assert actual == FileTaskServiceTestMixin.WAIT_PDF_TASK
         self.telegram_service.get_user_data.assert_not_called()
-        self.telegram_service.reply_with_file.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     def test_process_file_without_back_option(self) -> None:
         self.sut = MockProcessorWithoutBackOption(
@@ -250,7 +250,7 @@ class TestAbstractFileProcessor(
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, FILE_DATA
         )
-        self.telegram_service.reply_with_file.assert_called_once_with(
+        self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
             out_path,
