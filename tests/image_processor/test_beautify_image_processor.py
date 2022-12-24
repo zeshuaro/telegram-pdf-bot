@@ -50,4 +50,4 @@ class TestBeautifyImageProcessor(
             args = self.image_service.beautify_and_convert_images_to_pdf.call_args.args[
                 0
             ]
-            assert args[0].id == self.TELEGRAM_DOCUMENT_ID
+            assert args[0].file_id == self.TELEGRAM_DOCUMENT_ID

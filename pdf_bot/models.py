@@ -5,8 +5,8 @@ from telegram import Document, PhotoSize
 
 @dataclass
 class FileData:
-    id: str
-    name: str | None = None
+    file_id: str
+    file_name: str | None = None
 
     @staticmethod
     def from_telegram_object(obj: Document | PhotoSize) -> "FileData":

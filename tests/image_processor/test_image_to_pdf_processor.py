@@ -48,4 +48,4 @@ class TestImageToPDFProcessorProcessor(
         ) as actual:
             assert actual == self.FILE_PATH
             args = self.image_service.convert_images_to_pdf.call_args.args[0]
-            assert args[0].id == self.TELEGRAM_DOCUMENT_ID
+            assert args[0].file_id == self.TELEGRAM_DOCUMENT_ID

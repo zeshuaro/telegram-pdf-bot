@@ -50,4 +50,4 @@ class ImageService:
 
     @staticmethod
     def _get_file_ids(file_data_list: list[FileData]) -> list[str]:
-        return [x.id for x in file_data_list]
+        return [x.file_id for x in file_data_list]

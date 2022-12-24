@@ -102,7 +102,7 @@ class TestImageService(
         for i in range(num_files):
             file_data = FileData(f"id_{i}", f"name_{i}")
             file_data_list.append(file_data)
-            file_ids.append(file_data.id)
+            file_ids.append(file_data.file_id)
             file_paths.append(f"path_{i}")
 
         return file_data_list, file_ids, file_paths

@@ -224,7 +224,7 @@ class TelegramService:
         self, chat_id: int, text: str, file_data_list: List[FileData]
     ) -> None:
         for i, file_data in enumerate(file_data_list):
-            file_name = file_data.name
+            file_name = file_data.file_name
             if file_name is None:
                 file_name = "File name unavailable"
             text += f"{i + 1}: {file_name}\n"

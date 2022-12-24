@@ -246,7 +246,7 @@ class PdfService:
                     raise PdfReadError(
                         _(
                             "I couldn't merge your PDF files as this file is invalid: "
-                            "{file_name}".format(file_name=file_data_list[i].name)
+                            "{file_name}".format(file_name=file_data_list[i].file_name)
                         )
                     ) from e
 
@@ -343,7 +343,7 @@ class PdfService:
 
     @staticmethod
     def _get_file_ids(file_data_list: List[FileData]) -> List[str]:
-        return [x.id for x in file_data_list]
+        return [x.file_id for x in file_data_list]
 
     def _open_pdf(self, file_id: str, allow_encrypted: bool = False) -> PdfFileReader:
         with self.telegram_service.download_pdf_file(file_id) as file_name:

@@ -117,7 +117,7 @@ class MergeService:
 
         update.effective_message.reply_text(  # type: ignore
             _("{file_name} has been removed for merging").format(
-                file_name=f"<b>{file_data.name}</b>"
+                file_name=f"<b>{file_data.file_name}</b>"
             ),
             parse_mode=ParseMode.HTML,
         )
