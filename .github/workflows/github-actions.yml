@@ -152,10 +152,8 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
         with:
+          ref: origin/HEAD
           token: ${{ secrets.PAT }}
-
-      - name: Checkout HEAD^ 👑
-        run: git checkout HEAD^
 
       - name: Setup Python 🐍
         id: setup-python
