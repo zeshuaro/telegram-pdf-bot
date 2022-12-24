@@ -152,10 +152,11 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
         with:
+          fetch-depth: 2
           token: ${{ secrets.PAT }}
 
       - name: Checkout HEAD 👑
-        run: git checkout origin/HEAD
+        run: git checkout HEAD^
 
       - name: Setup Python 🐍
         id: setup-python
