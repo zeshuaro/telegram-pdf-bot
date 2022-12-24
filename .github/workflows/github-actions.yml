@@ -154,6 +154,9 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
 
+      - name: Checkout HEAD^ 👑
+        run: git checkout HEAD^
+
       - name: Setup Python 🐍
         id: setup-python
         uses: actions/setup-python@v4
