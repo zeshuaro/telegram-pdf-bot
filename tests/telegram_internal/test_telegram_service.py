@@ -203,12 +203,26 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
                 )
 
     def test_cancel_conversation(self) -> None:
+        self.telegram_update.callback_query = None
+
         actual = self.sut.cancel_conversation(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == ConversationHandler.END
         self.telegram_message.reply_text.assert_called_once()
+        self.telegram_callback_query.answer.assert_not_called()
+        self.telegram_callback_query.edit_message_text.assert_not_called()
+
+    def test_cancel_conversation_with_callback_query(self) -> None:
+        actual = self.sut.cancel_conversation(
+            self.telegram_update, self.telegram_context
+        )
+
+        assert actual == ConversationHandler.END
+        self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_callback_query.edit_message_text.assert_called_once()
+        self.telegram_message.reply_text.assert_not_called()
 
     def test_get_support_markup(self) -> None:
         actual = self.sut.get_support_markup(

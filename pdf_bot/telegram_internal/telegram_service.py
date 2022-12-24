@@ -141,9 +141,16 @@ class TelegramService:
 
     def cancel_conversation(self, update: Update, context: CallbackContext) -> int:
         _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(  # type: ignore
-            _("Action cancelled"), reply_markup=ReplyKeyboardRemove()
-        )
+        query: CallbackQuery | None = update.callback_query
+
+        if query is not None:
+            query.answer()
+            query.edit_message_text(_("Action cancelled"))
+        else:
+            update.message.reply_text(
+                _("Action cancelled"), reply_markup=ReplyKeyboardRemove()
+            )
+
         return ConversationHandler.END
 
     def get_support_markup(
