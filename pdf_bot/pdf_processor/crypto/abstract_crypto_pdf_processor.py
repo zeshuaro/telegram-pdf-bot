@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from telegram import Update
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 from ..abstract_pdf_processor import AbstractPDFProcessor
 
@@ -21,9 +21,11 @@ class AbstractCryptoPDFProcessor(AbstractPDFProcessor, ABC):
     def should_process_back_option(self) -> bool:
         return True
 
-    def ask_password(self, update: Update, context: CallbackContext) -> str:
+    async def ask_password(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str:
         _ = self.language_service.set_app_language(update, context)
-        self.telegram_service.reply_with_back_markup(
+        await self.telegram_service.reply_with_back_markup(
             update, context, _(self.wait_password_text)
         )
 

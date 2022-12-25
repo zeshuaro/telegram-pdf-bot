@@ -1,7 +1,7 @@
 from telegram import Message, Update
 from telegram.ext import (
-    CallbackContext,
     CommandHandler,
+    ContextTypes,
     ConversationHandler,
     MessageHandler,
 )
@@ -37,36 +37,41 @@ class FeedbackHandler:
             fallbacks=[
                 CommandHandler("cancel", self.telegram_service.cancel_conversation)
             ],
-            run_async=True,
         )
 
-    def ask_feedback(self, update: Update, context: CallbackContext) -> int:
+    async def ask_feedback(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        self.telegram_service.reply_with_cancel_markup(
+        await self.telegram_service.reply_with_cancel_markup(
             update, context, _("Send me your feedback in English")
         )
 
         return self._WAIT_FEEDBACK
 
-    def check_text(self, update: Update, context: CallbackContext) -> int:
+    async def check_text(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        if update.effective_message.text == _(CANCEL):  # type: ignore
-            return self.telegram_service.cancel_conversation(update, context)
+        if update.message.text == _(CANCEL):
+            return await self.telegram_service.cancel_conversation(update, context)
 
-        return self._save_feedback(update, context)
+        return await self._save_feedback(update, context)
 
-    def _save_feedback(self, update: Update, context: CallbackContext) -> int:
+    async def _save_feedback(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        message: Message = update.message
         try:
             self.feedback_service.save_feedback(
                 message.chat.id, message.from_user.username, message.text
             )
-            message.reply_text(
+            await message.reply_text(
                 _("Thank you for your feedback, I've forwarded it to my developer")
             )
         except FeedbackInvalidLanguageError as e:
-            message.reply_text(_(str(e)))
+            await message.reply_text(_(str(e)))
             return self._WAIT_FEEDBACK
 
         return ConversationHandler.END

@@ -1,6 +1,6 @@
 import os
-from contextlib import contextmanager
-from typing import Generator
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
 import img2pdf
 import noteshrink
@@ -22,31 +22,29 @@ class ImageService:
         self.io_service = io_service
         self.telegram_service = telegram_service
 
-    @contextmanager
-    def beautify_and_convert_images_to_pdf(
+    @asynccontextmanager
+    async def beautify_and_convert_images_to_pdf(
         self, file_data_list: list[FileData]
-    ) -> Generator[str, None, None]:
+    ) -> AsyncGenerator[str, None]:
         file_ids = self._get_file_ids(file_data_list)
-        with self.telegram_service.download_files(
-            file_ids
-        ) as file_paths, self.io_service.create_temp_pdf_file("Beautified") as out_path:
-            out_path_base = os.path.splitext(out_path)[0]
-            noteshrink.notescan_main(
-                file_paths, basename=f"{out_path_base}_page", pdfname=out_path
-            )
-            yield out_path
+        async with self.telegram_service.download_files(file_ids) as file_paths:
+            with self.io_service.create_temp_pdf_file("Beautified") as out_path:
+                out_path_base = os.path.splitext(out_path)[0]
+                noteshrink.notescan_main(
+                    file_paths, basename=f"{out_path_base}_page", pdfname=out_path
+                )
+                yield out_path
 
-    @contextmanager
-    def convert_images_to_pdf(
+    @asynccontextmanager
+    async def convert_images_to_pdf(
         self, file_data_list: list[FileData]
-    ) -> Generator[str, None, None]:
+    ) -> AsyncGenerator[str, None]:
         file_ids = self._get_file_ids(file_data_list)
-        with self.telegram_service.download_files(
-            file_ids
-        ) as file_paths, self.io_service.create_temp_pdf_file("Converted") as out_path:
-            with open(out_path, "wb") as f:
-                f.write(img2pdf.convert(file_paths))
-            yield out_path
+        async with self.telegram_service.download_files(file_ids) as file_paths:
+            with self.io_service.create_temp_pdf_file("Converted") as out_path:
+                with open(out_path, "wb") as f:
+                    f.write(img2pdf.convert(file_paths))
+                yield out_path
 
     @staticmethod
     def _get_file_ids(file_data_list: list[FileData]) -> list[str]:

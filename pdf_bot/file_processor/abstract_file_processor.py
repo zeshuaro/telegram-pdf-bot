@@ -1,11 +1,11 @@
 import os
 import shutil
 from abc import ABC, abstractmethod
-from contextlib import contextmanager
-from typing import Callable, Generator, Type
+from contextlib import asynccontextmanager
+from typing import Any, AsyncGenerator, Callable, Coroutine, Type
 
 from telegram import Message, Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK, FILE_DATA
@@ -13,7 +13,10 @@ from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
-ErrorHandlerType = Callable[[Update, CallbackContext, Exception, str, str], str | int]
+ErrorHandlerType = Callable[
+    [Update, ContextTypes.DEFAULT_TYPE, Exception, str, str],
+    Coroutine[Any, Any, str | int],
+]
 
 
 class AbstractFileProcessor(ABC):
@@ -37,12 +40,12 @@ class AbstractFileProcessor(ABC):
     def should_process_back_option(self) -> bool:
         pass
 
+    @asynccontextmanager
     @abstractmethod
-    @contextmanager
-    def process_file_task(
+    async def process_file_task(
         self, file_id: str, message_text: str
-    ) -> Generator[str, None, None]:
-        pass
+    ) -> AsyncGenerator[str, None]:
+        yield ""
 
     @property
     def generic_error_types(self) -> set[Type[Exception]]:
@@ -54,27 +57,29 @@ class AbstractFileProcessor(ABC):
     ) -> dict[Type[Exception], ErrorHandlerType]:
         return {}
 
-    def process_file(self, update: Update, context: CallbackContext) -> str | int:
+    async def process_file(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        message: Message = update.message
 
         if self.should_process_back_option and message.text == _(BACK):
-            return self.file_task_service.ask_pdf_task(update, context)
+            return await self.file_task_service.ask_pdf_task(update, context)
 
         try:
             file_id, file_name = self.telegram_service.get_user_data(context, FILE_DATA)
         except TelegramServiceError as e:
-            message.reply_text(_(str(e)))
+            await message.reply_text(_(str(e)))
             return ConversationHandler.END
 
         try:
-            with self.process_file_task(file_id, message.text) as out_path:
+            async with self.process_file_task(file_id, message.text) as out_path:
                 final_path = out_path
                 if os.path.isdir(out_path):
                     shutil.make_archive(out_path, "zip", out_path)
                     final_path = f"{out_path}.zip"
 
-                self.telegram_service.send_file(
+                await self.telegram_service.send_file(
                     update, context, final_path, self.task_type
                 )
         except Exception as e:  # pylint: disable=broad-except
@@ -85,7 +90,7 @@ class AbstractFileProcessor(ABC):
                     error_handler = handler
 
             if error_handler is not None:
-                return error_handler(update, context, e, file_id, file_name)
+                return await error_handler(update, context, e, file_id, file_name)
         return ConversationHandler.END
 
     def _get_error_handlers(
@@ -97,14 +102,14 @@ class AbstractFileProcessor(ABC):
         handlers.update(self.custom_error_handlers)
         return handlers
 
-    def _handle_generic_error(
+    async def _handle_generic_error(
         self,
         update: Update,
-        context: CallbackContext,
+        context: ContextTypes.DEFAULT_TYPE,
         exception: Exception,
         _file_id: str,
         _file_name: str,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(_(str(exception)))  # type: ignore
+        await update.message.reply_text(_(str(exception)))
         return ConversationHandler.END

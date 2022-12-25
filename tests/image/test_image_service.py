@@ -30,7 +30,7 @@ class TestImageService(
         )
 
         self.telegram_service = self.mock_telegram_service()
-        self.telegram_service.download_pdf_file.return_value.__enter__.return_value = (
+        self.telegram_service.download_pdf_file.return_value.__aenter__.return_value = (
             self.DOWNLOAD_PATH
         )
 
@@ -47,33 +47,36 @@ class TestImageService(
         self.open_patcher.stop()
         super().teardown_method()
 
+    @pytest.mark.asyncio
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
-    def test_beautify_and_convert_images_to_pdf(self, num_files: int) -> None:
+    async def test_beautify_and_convert_images_to_pdf(self, num_files: int) -> None:
         file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
-        self.telegram_service.download_files.return_value.__enter__.return_value = (
+        self.telegram_service.download_files.return_value.__aenter__.return_value = (
             file_paths
         )
 
-        with patch(
-            "pdf_bot.image.image_service.noteshrink"
-        ) as noteshrink, self.sut.beautify_and_convert_images_to_pdf(
-            file_data_list
-        ) as actual:
-            assert actual == self.OUTPUT_PATH
-            self.telegram_service.download_files.assert_called_once_with(file_ids)
-            self.io_service.create_temp_pdf_file.assert_called_once_with("Beautified")
-            noteshrink.notescan_main.assert_called_once_with(
-                file_paths,
-                basename=f"{self.OUTPUT_PATH}_page",
-                pdfname=self.OUTPUT_PATH,
-            )
+        with patch("pdf_bot.image.image_service.noteshrink") as noteshrink:
+            async with self.sut.beautify_and_convert_images_to_pdf(
+                file_data_list
+            ) as actual:
+                assert actual == self.OUTPUT_PATH
+                self.telegram_service.download_files.assert_called_once_with(file_ids)
+                self.io_service.create_temp_pdf_file.assert_called_once_with(
+                    "Beautified"
+                )
+                noteshrink.notescan_main.assert_called_once_with(
+                    file_paths,
+                    basename=f"{self.OUTPUT_PATH}_page",
+                    pdfname=self.OUTPUT_PATH,
+                )
 
+    @pytest.mark.asyncio
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
-    def test_convert_images_to_pdf(self, num_files: int) -> None:
+    async def test_convert_images_to_pdf(self, num_files: int) -> None:
         image_bytes = "image_bytes"
         file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
         file = MagicMock()
-        self.telegram_service.download_files.return_value.__enter__.return_value = (
+        self.telegram_service.download_files.return_value.__aenter__.return_value = (
             file_paths
         )
 
@@ -81,7 +84,7 @@ class TestImageService(
             self.mock_open.return_value.__enter__.return_value = file
             img2pdf.convert.return_value = image_bytes
 
-            with self.sut.convert_images_to_pdf(file_data_list) as actual:
+            async with self.sut.convert_images_to_pdf(file_data_list) as actual:
                 assert actual == self.OUTPUT_PATH
                 self.telegram_service.download_files.assert_called_once_with(file_ids)
                 self.io_service.create_temp_pdf_file.assert_called_once_with(

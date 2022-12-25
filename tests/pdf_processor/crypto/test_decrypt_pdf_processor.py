@@ -1,5 +1,7 @@
 from unittest.mock import MagicMock
 
+import pytest
+
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
 from pdf_bot.pdf import PdfIncorrectPasswordError, PdfService
@@ -45,13 +47,14 @@ class TestDecryptPDFProcessor(
         actual = self.sut.task_type
         assert actual == TaskType.decrypt_pdf
 
-    def test_get_custom_error_handlers(self) -> None:
-        actual = self.sut.custom_error_handlers
+    @pytest.mark.asyncio
+    async def test_get_custom_error_handlers(self) -> None:
+        handlers = self.sut.custom_error_handlers
 
-        handler = actual.get(PdfIncorrectPasswordError)
+        handler = handlers.get(PdfIncorrectPasswordError)
         assert handler is not None
 
-        actual = handler(  # type: ignore
+        actual = await handler(
             self.telegram_update,
             self.telegram_context,
             RuntimeError(),
@@ -65,12 +68,13 @@ class TestDecryptPDFProcessor(
             FILE_DATA, (self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
         )
 
-    def test_process_file_task(self) -> None:
-        self.pdf_service.decrypt_pdf.return_value.__enter__.return_value = (
+    @pytest.mark.asyncio
+    async def test_process_file_task(self) -> None:
+        self.pdf_service.decrypt_pdf.return_value.__aenter__.return_value = (
             self.FILE_PATH
         )
 
-        with self.sut.process_file_task(
+        async with self.sut.process_file_task(
             self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH

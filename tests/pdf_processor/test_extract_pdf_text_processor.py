@@ -1,5 +1,7 @@
 from unittest.mock import MagicMock
 
+import pytest
+
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import ExtractPDFTextProcessor
@@ -38,12 +40,13 @@ class TestExtractPDFTextProcessor(
         actual = self.sut.should_process_back_option
         assert actual is False
 
-    def test_process_file_task(self) -> None:
-        self.pdf_service.extract_text_from_pdf.return_value.__enter__.return_value = (
+    @pytest.mark.asyncio
+    async def test_process_file_task(self) -> None:
+        self.pdf_service.extract_text_from_pdf.return_value.__aenter__.return_value = (
             self.FILE_PATH
         )
 
-        with self.sut.process_file_task(
+        async with self.sut.process_file_task(
             self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH

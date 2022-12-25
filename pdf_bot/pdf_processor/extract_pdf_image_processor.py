@@ -1,5 +1,5 @@
-from contextlib import contextmanager
-from typing import Generator
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
 from pdf_bot.analytics import TaskType
 
@@ -15,9 +15,9 @@ class ExtractPDFImageProcessor(AbstractPDFProcessor):
     def should_process_back_option(self) -> bool:
         return False
 
-    @contextmanager
-    def process_file_task(
+    @asynccontextmanager
+    async def process_file_task(
         self, file_id: str, _message_text: str
-    ) -> Generator[str, None, None]:
-        with self.pdf_service.extract_pdf_images(file_id) as path:
+    ) -> AsyncGenerator[str, None]:
+        async with self.pdf_service.extract_pdf_images(file_id) as path:
             yield path

@@ -45,11 +45,14 @@ class TestCropService(
             self.language_service,
         )
 
-    def test_ask_crop_type(self) -> None:
-        actual = self.sut.ask_crop_type(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_crop_type(self) -> None:
+        actual = await self.sut.ask_crop_type(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_CROP_TYPE
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
 
     @pytest.mark.parametrize(
         "text,expected",
@@ -60,97 +63,108 @@ class TestCropService(
             ("clearly_invalid", WAIT_CROP_TYPE),
         ],
     )
-    def test_check_crop_type(self, text: str, expected: str) -> None:
+    @pytest.mark.asyncio
+    async def test_check_crop_type(self, text: str, expected: str) -> None:
         self.telegram_message.text = text
-        actual = self.sut.check_crop_type(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_crop_type(
+            self.telegram_update, self.telegram_context
+        )
         assert actual == expected
 
-    def test_crop_pdf_by_percentage(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_percentage(self) -> None:
         self.telegram_message.text = self.PERCENT
         self.telegram_service.get_user_data.return_value = (
             self.TELEGRAM_DOCUMENT_ID,
             "file_name",
         )
-        self.pdf_service.crop_pdf.return_value.__enter__.return_value = self.FILE_PATH
+        self.pdf_service.crop_pdf.return_value.__aenter__.return_value = self.FILE_PATH
 
-        actual = self.sut.crop_pdf_by_percentage(
+        actual = await self.sut.crop_pdf_by_percentage(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == ConversationHandler.END
         self._assert_crop_success(percentage=self.PERCENT)
 
-    def test_crop_pdf_by_percentage_invalid_user_data(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_percentage_invalid_user_data(self) -> None:
         self.telegram_message.text = self.PERCENT
         self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
 
-        actual = self.sut.crop_pdf_by_percentage(
+        actual = await self.sut.crop_pdf_by_percentage(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == ConversationHandler.END
         self._assert_crop_invalid_user_data()
 
-    def test_crop_pdf_by_percentage_invalid_value(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_percentage_invalid_value(self) -> None:
         self.telegram_message.text = "clearly_invalid"
 
-        actual = self.sut.crop_pdf_by_percentage(
+        actual = await self.sut.crop_pdf_by_percentage(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == self.WAIT_CROP_PERCENTAGE
         self._assert_crop_services_not_called()
 
-    def test_crop_pdf_by_percentage_back(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_percentage_back(self) -> None:
         self.telegram_message.text = self.BACK
 
-        actual = self.sut.crop_pdf_by_percentage(
+        actual = await self.sut.crop_pdf_by_percentage(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == self.WAIT_CROP_TYPE
         self._assert_crop_services_not_called()
 
-    def test_crop_pdf_by_margin_size(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_margin_size(self) -> None:
         self.telegram_message.text = self.MARGIN_SIZE
         self.telegram_service.get_user_data.return_value = (
             self.TELEGRAM_DOCUMENT_ID,
             "file_name",
         )
-        self.pdf_service.crop_pdf.return_value.__enter__.return_value = self.FILE_PATH
+        self.pdf_service.crop_pdf.return_value.__aenter__.return_value = self.FILE_PATH
 
-        actual = self.sut.crop_pdf_by_margin_size(
+        actual = await self.sut.crop_pdf_by_margin_size(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == ConversationHandler.END
         self._assert_crop_success(margin_size=self.MARGIN_SIZE)
 
-    def test_crop_pdf_by_margin_size_invalid_user_data(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_margin_size_invalid_user_data(self) -> None:
         self.telegram_message.text = self.MARGIN_SIZE
         self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
 
-        actual = self.sut.crop_pdf_by_margin_size(
+        actual = await self.sut.crop_pdf_by_margin_size(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == ConversationHandler.END
         self._assert_crop_invalid_user_data()
 
-    def test_crop_pdf_by_margin_size_invalid_value(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_margin_size_invalid_value(self) -> None:
         self.telegram_message.text = "clearly_invalid"
 
-        actual = self.sut.crop_pdf_by_margin_size(
+        actual = await self.sut.crop_pdf_by_margin_size(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == self.WAIT_CROP_MARGIN_SIZE
         self._assert_crop_services_not_called()
 
-    def test_crop_pdf_by_margin_size_back(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_margin_size_back(self) -> None:
         self.telegram_message.text = self.BACK
 
-        actual = self.sut.crop_pdf_by_margin_size(
+        actual = await self.sut.crop_pdf_by_margin_size(
             self.telegram_update, self.telegram_context
         )
 

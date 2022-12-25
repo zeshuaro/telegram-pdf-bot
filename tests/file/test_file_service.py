@@ -1,5 +1,6 @@
 from unittest.mock import MagicMock
 
+import pytest
 from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -31,15 +32,18 @@ class TestFileService(
             self.language_service,
         )
 
-    def test_compress_pdf(self) -> None:
-        self.pdf_service.compress_pdf.return_value.__enter__.return_value = (
+    @pytest.mark.asyncio
+    async def test_compress_pdf(self) -> None:
+        self.pdf_service.compress_pdf.return_value.__aenter__.return_value = (
             self.COMPRESS_RESULT
         )
 
-        actual = self.sut.compress_pdf(self.telegram_update, self.telegram_context)
+        actual = await self.sut.compress_pdf(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self.pdf_service.compress_pdf.assert_called_once_with(self.TELEGRAM_DOCUMENT_ID)
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
@@ -48,12 +52,15 @@ class TestFileService(
             TaskType.compress_pdf,
         )
 
-    def test_compress_pdf_invalid_user_data(self) -> None:
+    @pytest.mark.asyncio
+    async def test_compress_pdf_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramServiceError()
 
-        actual = self.sut.compress_pdf(self.telegram_update, self.telegram_context)
+        actual = await self.sut.compress_pdf(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self.pdf_service.compress_pdf.assert_not_called()
         self.telegram_service.send_file.assert_not_called()

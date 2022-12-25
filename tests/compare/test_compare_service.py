@@ -1,5 +1,6 @@
 from unittest.mock import MagicMock
 
+import pytest
 from pdf_diff import NoDifferenceError
 from telegram.ext import ConversationHandler
 
@@ -30,33 +31,45 @@ class TestCompareService(
             self.pdf_service, self.telegram_service, self.language_service
         )
 
-    def test_ask_first_pdf(self) -> None:
-        actual = self.sut.ask_first_pdf(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_first_pdf(self) -> None:
+        actual = await self.sut.ask_first_pdf(
+            self.telegram_update, self.telegram_context
+        )
         assert actual == self.WAIT_FIRST_PDF
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
 
-    def test_check_first_pdf(self) -> None:
-        actual = self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_check_first_pdf(self) -> None:
+        actual = await self.sut.check_first_pdf(
+            self.telegram_update, self.telegram_context
+        )
         assert actual == self.WAIT_SECOND_PDF
         self.telegram_context.user_data.__setitem__.assert_called_with(
             self.COMPARE_ID, self.TELEGRAM_DOCUMENT_ID
         )
 
-    def test_check_first_pdf_invalid_pdf(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_first_pdf_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
-        actual = self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_first_pdf(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_FIRST_PDF
         self.telegram_context.user_data.__setitem__.assert_not_called()
 
-    def test_compare_pdfs(self) -> None:
+    @pytest.mark.asyncio
+    async def test_compare_pdfs(self) -> None:
         self.telegram_service.get_user_data.return_value = self.TELEGRAM_DOCUMENT_ID
-        self.pdf_service.compare_pdfs.return_value.__enter__.return_value = (
+        self.pdf_service.compare_pdfs.return_value.__aenter__.return_value = (
             self.FILE_PATH
         )
 
-        actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
+        actual = await self.sut.compare_pdfs(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
         self.pdf_service.compare_pdfs.assert_called_with(
@@ -69,13 +82,16 @@ class TestCompareService(
             TaskType.compare_pdf,
         )
 
-    def test_compare_pdfs_no_differences(self) -> None:
+    @pytest.mark.asyncio
+    async def test_compare_pdfs_no_differences(self) -> None:
         self.telegram_service.get_user_data.return_value = self.TELEGRAM_DOCUMENT_ID
-        self.pdf_service.compare_pdfs.return_value.__enter__.side_effect = (
+        self.pdf_service.compare_pdfs.return_value.__aenter__.side_effect = (
             NoDifferenceError()
         )
 
-        actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
+        actual = await self.sut.compare_pdfs(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
         self.pdf_service.compare_pdfs.assert_called_with(
@@ -83,38 +99,47 @@ class TestCompareService(
         )
         self.telegram_service.send_file.assert_not_called()
 
-    def test_compare_pdfs_invalid_user_data(self) -> None:
+    @pytest.mark.asyncio
+    async def test_compare_pdfs_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
 
-        actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
+        actual = await self.sut.compare_pdfs(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
         self.pdf_service.compare_pdfs.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    def test_compare_pdfs_invalid_pdf(self) -> None:
+    @pytest.mark.asyncio
+    async def test_compare_pdfs_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
-        actual = self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
+        actual = await self.sut.compare_pdfs(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_SECOND_PDF
         self.pdf_service.compare_pdfs.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    def test_check_text_back(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_back(self) -> None:
         self.telegram_message.text = BACK
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_FIRST_PDF
 
-    def test_check_text_cancel(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_cancel(self) -> None:
         self.telegram_service.cancel_conversation.return_value = ConversationHandler.END
         self.telegram_message.text = CANCEL
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
 
-    def test_check_text_unknown(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_unknown(self) -> None:
         self.telegram_message.text = "clearly_unknown"
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
         assert actual is None

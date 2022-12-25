@@ -43,16 +43,20 @@ class TestBatchImageHandler(
         actual = self.sut.conversation_handler()
         assert isinstance(actual, ConversationHandler)
 
-    def test_ask_first_image(self) -> None:
-        actual = self.sut.ask_first_image(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_first_image(self) -> None:
+        actual = await self.sut.ask_first_image(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_IMAGE
         self._assert_ask_first_image()
 
-    def test_check_image(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_image(self) -> None:
         self.telegram_context.user_data.__getitem__.return_value = self.file_data_list
 
-        actual = self.sut.check_image(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_image(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
 
@@ -62,74 +66,79 @@ class TestBatchImageHandler(
         )
 
         self.telegram_service.send_file_names.assert_called_once()
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
 
-    def test_check_image_invlid_image(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_image_invlid_image(self) -> None:
         self.telegram_service.check_image.side_effect = TelegramServiceError()
 
-        actual = self.sut.check_image(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_image(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
         self.telegram_context.user_data.__getitem__.assert_not_called()
         self.telegram_service.send_file_names.assert_not_called()
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
 
-    def test_check_text_remove_last(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_remove_last(self) -> None:
         self.telegram_message.text = self.REMOVE_LAST_FILE
         self.telegram_service.get_user_data.return_value = self.file_data_list
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.IMAGE_DATA
         )
         self.file_data_list.pop.assert_called_once()
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self._assert_ask_first_image()
 
-    def test_check_text_remove_last_with_existing_file(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_remove_last_with_existing_file(self) -> None:
         self.telegram_message.text = self.REMOVE_LAST_FILE
         self.file_data_list.__len__.return_value = 1
         self.telegram_service.get_user_data.return_value = self.file_data_list
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.IMAGE_DATA
         )
         self.file_data_list.pop.assert_called_once()
-        assert self.telegram_update.effective_message.reply_text.call_count == 2
+        assert self.telegram_update.message.reply_text.call_count == 2
         self.telegram_context.user_data.__setitem__.assert_called_with(
             self.IMAGE_DATA, self.file_data_list
         )
         self.telegram_service.send_file_names.assert_called_once()
 
-    def test_check_text_remove_last_remove_error(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_remove_last_remove_error(self) -> None:
         self.telegram_message.text = self.REMOVE_LAST_FILE
         self.file_data_list.pop.side_effect = IndexError()
         self.telegram_service.get_user_data.return_value = self.file_data_list
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.IMAGE_DATA
         )
         self.file_data_list.pop.assert_called_once()
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self._assert_ask_first_image()
 
-    def test_check_text_beautify(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_beautify(self) -> None:
         self.telegram_message.text = self.BEAUTIFY
         self.file_data_list.__len__.return_value = 2
         self.telegram_service.get_user_data.return_value = self.file_data_list
-        self.image_service.beautify_and_convert_images_to_pdf.return_value.__enter__.return_value = (  # pylint: disable=line-too-long
+        self.image_service.beautify_and_convert_images_to_pdf.return_value.__aenter__.return_value = (  # pylint: disable=line-too-long
             self.FILE_PATH
         )
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.telegram_service.get_user_data.assert_called_once_with(
@@ -145,15 +154,16 @@ class TestBatchImageHandler(
             TaskType.beautify_image,
         )
 
-    def test_check_text_to_pdf(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_to_pdf(self) -> None:
         self.telegram_message.text = self.TO_PDF
         self.file_data_list.__len__.return_value = 2
         self.telegram_service.get_user_data.return_value = self.file_data_list
-        self.image_service.convert_images_to_pdf.return_value.__enter__.return_value = (
+        self.image_service.convert_images_to_pdf.return_value.__aenter__.return_value = (
             self.FILE_PATH
         )
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.telegram_service.get_user_data.assert_called_once_with(
@@ -169,12 +179,13 @@ class TestBatchImageHandler(
             TaskType.image_to_pdf,
         )
 
-    def test_check_text_process_with_one_file_only(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_process_with_one_file_only(self) -> None:
         self.telegram_message.text = self.BEAUTIFY
         self.file_data_list.__len__.return_value = 1
         self.telegram_service.get_user_data.return_value = self.file_data_list
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
         self.telegram_service.get_user_data.assert_called_once_with(
@@ -184,12 +195,13 @@ class TestBatchImageHandler(
         self.image_service.convert_images_to_pdf.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    def test_check_text_process_without_files(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_process_without_files(self) -> None:
         self.telegram_message.text = self.BEAUTIFY
         self.file_data_list.__len__.return_value = 0
         self.telegram_service.get_user_data.return_value = self.file_data_list
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
         self.telegram_service.get_user_data.assert_called_once_with(
@@ -200,34 +212,37 @@ class TestBatchImageHandler(
         self.telegram_service.send_file.assert_not_called()
         self._assert_ask_first_image()
 
-    def test_check_text_cancel(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_cancel(self) -> None:
         self.telegram_message.text = self.CANCEL
         self.telegram_service.cancel_conversation.return_value = ConversationHandler.END
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.telegram_service.cancel_conversation.assert_called_once_with(
             self.telegram_update, self.telegram_context
         )
 
-    def test_check_text_unknown_text(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_unknown_text(self) -> None:
         self.telegram_message.text = "clearly_unknown"
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_IMAGE
 
     @pytest.mark.parametrize("text", [REMOVE_LAST_FILE, BEAUTIFY])
-    def test_check_text_telegram_service_error(self, text: str) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_telegram_service_error(self, text: str) -> None:
         self.telegram_message.text = text
         self.telegram_service.get_user_data.side_effect = TelegramServiceError()
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.IMAGE_DATA
         )
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
 
     def _assert_ask_first_image(self) -> None:
         self.telegram_context.user_data.__setitem__.assert_called_with(

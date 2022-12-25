@@ -31,7 +31,8 @@ class TestWebpageService:
     def teardown_method(self) -> None:
         self.html_cls_patcher.stop()
 
-    def test_url_to_pdf(self) -> None:
+    @pytest.mark.asyncio
+    async def test_url_to_pdf(self) -> None:
         with self.sut.url_to_pdf(self.URL) as actual:
             assert actual == self.FILE_PATH
             self._assert_io_service_and_html()
@@ -50,7 +51,8 @@ class TestWebpageService:
             ValueError,
         ],
     )
-    def test_url_to_pdf_error(self, exception: Type[Exception]) -> None:
+    @pytest.mark.asyncio
+    async def test_url_to_pdf_error(self, exception: Type[Exception]) -> None:
         self.html.write_pdf.side_effect = exception
         with pytest.raises(WebpageServiceError), self.sut.url_to_pdf(self.URL):
             self._assert_io_service_and_html()

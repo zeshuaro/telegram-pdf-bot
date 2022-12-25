@@ -1,9 +1,9 @@
 import re
-from contextlib import contextmanager
-from typing import Generator
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
 from telegram import Message, Update
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK
@@ -23,33 +23,37 @@ class RenamePDFProcessor(AbstractPDFProcessor):
     def should_process_back_option(self) -> bool:
         return False
 
-    @contextmanager
-    def process_file_task(
+    @asynccontextmanager
+    async def process_file_task(
         self, file_id: str, message_text: str
-    ) -> Generator[str, None, None]:
+    ) -> AsyncGenerator[str, None]:
         file_name = re.sub(r"\.pdf$", "", message_text)
-        with self.pdf_service.rename_pdf(file_id, f"{file_name}.pdf") as path:
+        async with self.pdf_service.rename_pdf(file_id, f"{file_name}.pdf") as path:
             yield path
 
-    def ask_new_file_name(self, update: Update, context: CallbackContext) -> str:
+    async def ask_new_file_name(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str:
         _ = self.language_service.set_app_language(update, context)
-        self.telegram_service.reply_with_back_markup(
+        await self.telegram_service.reply_with_back_markup(
             update,
             context,
             _("Send me the file name that you'll like to rename your PDF file into"),
         )
         return self.WAIT_NEW_FILE_NAME
 
-    def rename_pdf(self, update: Update, context: CallbackContext) -> str | int:
+    async def rename_pdf(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        message: Message = update.message
 
         if message.text == _(BACK):
-            return self.file_task_service.ask_pdf_task(update, context)
+            return await self.file_task_service.ask_pdf_task(update, context)
 
         text = re.sub(r"\.pdf$", "", message.text)
         if set(text) & set(self.INVALID_CHARACTERS):
-            message.reply_text(
+            await message.reply_text(
                 "{desc_1}\n{invalid_chars}\n{desc_2}".format(
                     desc_1=_(
                         "File names can't contain any of the following characters:"
@@ -60,4 +64,4 @@ class RenamePDFProcessor(AbstractPDFProcessor):
             )
             return self.WAIT_NEW_FILE_NAME
 
-        return self.process_file(update, context)
+        return await self.process_file(update, context)

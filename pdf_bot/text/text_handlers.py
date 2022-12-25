@@ -27,5 +27,4 @@ class TextHandlers:
                 CommandHandler("cancel", self.telegram_service.cancel_conversation),
             ],
             allow_reentry=True,
-            run_async=True,
         )

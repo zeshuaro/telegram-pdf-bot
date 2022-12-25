@@ -1,8 +1,8 @@
-from contextlib import contextmanager
-from typing import Generator
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
 from telegram import Message, ReplyKeyboardMarkup, Update
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK
@@ -24,14 +24,16 @@ class RotatePDFProcessor(AbstractPDFProcessor):
     def should_process_back_option(self) -> bool:
         return False
 
-    @contextmanager
-    def process_file_task(
+    @asynccontextmanager
+    async def process_file_task(
         self, file_id: str, message_text: str
-    ) -> Generator[str, None, None]:
-        with self.pdf_service.rotate_pdf(file_id, int(message_text)) as path:
+    ) -> AsyncGenerator[str, None]:
+        async with self.pdf_service.rotate_pdf(file_id, int(message_text)) as path:
             yield path
 
-    def ask_degree(self, update: Update, context: CallbackContext) -> str:
+    async def ask_degree(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str:
         _ = self.language_service.set_app_language(update, context)
 
         keyboard = [
@@ -41,7 +43,7 @@ class RotatePDFProcessor(AbstractPDFProcessor):
         reply_markup = ReplyKeyboardMarkup(
             keyboard, resize_keyboard=True, one_time_keyboard=True
         )
-        update.effective_message.reply_text(  # type: ignore
+        await update.message.reply_text(
             _(
                 "Select the degrees that you'll like to "
                 "rotate your PDF file in clockwise"
@@ -51,19 +53,21 @@ class RotatePDFProcessor(AbstractPDFProcessor):
 
         return self.WAIT_ROTATE_DEGREE
 
-    def rotate_pdf(self, update: Update, context: CallbackContext) -> str | int:
+    async def rotate_pdf(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        message: Message = update.message
         text = message.text
 
         if text == _(BACK):
-            return self.file_task_service.ask_pdf_task(update, context)
+            return await self.file_task_service.ask_pdf_task(update, context)
         if text not in {
             self._ROTATE_90,
             self._ROTATE_180,
             self._ROTATE_270,
         }:
-            message.reply_text(_("Invalid rotation degree, try again"))
+            await message.reply_text(_("Invalid rotation degree, try again"))
             return self.WAIT_ROTATE_DEGREE
 
-        return self.process_file(update, context)
+        return await self.process_file(update, context)

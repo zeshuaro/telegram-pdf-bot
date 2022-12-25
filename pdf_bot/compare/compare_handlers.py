@@ -1,4 +1,4 @@
-from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
+from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, filters
 
 from pdf_bot.compare.compare_service import CompareService
 from pdf_bot.consts import TEXT_FILTER
@@ -20,11 +20,13 @@ class CompareHandlers:
             states={
                 CompareService.WAIT_FIRST_PDF: [
                     MessageHandler(
-                        Filters.document, self.compare_service.check_first_pdf
+                        filters.Document.PDF, self.compare_service.check_first_pdf
                     )
                 ],
                 CompareService.WAIT_SECOND_PDF: [
-                    MessageHandler(Filters.document, self.compare_service.compare_pdfs)
+                    MessageHandler(
+                        filters.Document.PDF, self.compare_service.compare_pdfs
+                    )
                 ],
             },
             fallbacks=[
@@ -32,5 +34,4 @@ class CompareHandlers:
                 MessageHandler(TEXT_FILTER, self.compare_service.check_text),
             ],
             allow_reentry=True,
-            run_async=True,
         )

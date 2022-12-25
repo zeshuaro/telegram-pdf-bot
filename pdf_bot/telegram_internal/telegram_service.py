@@ -1,24 +1,22 @@
 import gettext
 import os
-from contextlib import contextmanager
-from typing import Any, Generator, List
+from contextlib import asynccontextmanager
+from typing import Any, AsyncGenerator, Coroutine, List
 
 from telegram import (
     Bot,
     CallbackQuery,
-    ChatAction,
     Document,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     Message,
-    ParseMode,
     PhotoSize,
     ReplyKeyboardMarkup,
     ReplyKeyboardRemove,
     Update,
 )
-from telegram.constants import MAX_FILESIZE_DOWNLOAD, MAX_FILESIZE_UPLOAD
-from telegram.ext import CallbackContext, ConversationHandler, Updater
+from telegram.constants import ChatAction, FileSizeLimit, ParseMode
+from telegram.ext import Application, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
 from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, PAYMENT
@@ -45,17 +43,17 @@ class TelegramService:
         io_service: IOService,
         language_service: LanguageService,
         analytics_service: AnalyticsService,
-        updater: Updater | None = None,
+        telegram_app: Application | None = None,
         bot: Bot | None = None,
     ) -> None:
         self.io_service = io_service
         self.language_service = language_service
         self.analytics_service = analytics_service
-        self.bot = bot or updater.bot  # type: ignore
+        self.bot = bot or telegram_app.bot  # type: ignore
 
     @staticmethod
     def check_file_size(file: Document | PhotoSize) -> None:
-        if file.file_size > MAX_FILESIZE_DOWNLOAD:
+        if file.file_size > FileSizeLimit.FILESIZE_DOWNLOAD:
             raise TelegramFileTooLargeError(
                 _(
                     "Your file is too large for me to download and process, "
@@ -67,7 +65,7 @@ class TelegramService:
 
     @staticmethod
     def check_file_upload_size(path: str) -> None:
-        if os.path.getsize(path) > MAX_FILESIZE_UPLOAD:
+        if os.path.getsize(path) > FileSizeLimit.FILESIZE_UPLOAD:
             raise TelegramFileTooLargeError(
                 _(
                     "The file is too large for me to send to you\n\n"
@@ -77,7 +75,7 @@ class TelegramService:
             )
 
     @staticmethod
-    def get_user_data(context: CallbackContext, key: str) -> Any:
+    def get_user_data(context: ContextTypes.DEFAULT_TYPE, key: str) -> Any:
         """Get and pop value from user data by the provided key
 
         Args:
@@ -124,37 +122,41 @@ class TelegramService:
         self.check_file_size(doc)
         return doc
 
-    @contextmanager
-    def download_pdf_file(self, file_id: str) -> Generator[str, None, None]:
+    @asynccontextmanager
+    async def download_pdf_file(self, file_id: str) -> AsyncGenerator[str, None]:
         with self.io_service.create_temp_pdf_file() as path:
-            file = self.bot.get_file(file_id)
-            file.download(custom_path=path)
+            file = await self.bot.get_file(file_id)
+            await file.download_to_drive(custom_path=path)
             yield path
 
-    @contextmanager
-    def download_files(self, file_ids: List[str]) -> Generator[List[str], None, None]:
+    @asynccontextmanager
+    async def download_files(
+        self, file_ids: List[str]
+    ) -> AsyncGenerator[list[str], None]:
         with self.io_service.create_temp_files(len(file_ids)) as out_paths:
             for i, file_id in enumerate(file_ids):
-                file = self.bot.get_file(file_id)
-                file.download(custom_path=out_paths[i])
+                file = await self.bot.get_file(file_id)
+                await file.download_to_drive(custom_path=out_paths[i])
             yield out_paths
 
-    def cancel_conversation(self, update: Update, context: CallbackContext) -> int:
+    async def cancel_conversation(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> int:
         _ = self.language_service.set_app_language(update, context)
         query: CallbackQuery | None = update.callback_query
 
         if query is not None:
-            query.answer()
-            query.edit_message_text(_("Action cancelled"))
+            await query.answer()
+            await query.edit_message_text(_("Action cancelled"))
         else:
-            update.message.reply_text(
+            await update.message.reply_text(
                 _("Action cancelled"), reply_markup=ReplyKeyboardRemove()
             )
 
         return ConversationHandler.END
 
     def get_support_markup(
-        self, update: Update, context: CallbackContext
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> InlineKeyboardMarkup:
         _ = self.language_service.set_app_language(update, context)
         keyboard = [
@@ -169,25 +171,25 @@ class TelegramService:
     def reply_with_back_markup(
         self,
         update: Update,
-        context: CallbackContext,
+        context: ContextTypes.DEFAULT_TYPE,
         text: str,
         parse_mode: ParseMode | None = None,
-    ) -> None:
-        self._reply_with_markup(update, context, text, BACK, parse_mode)
+    ) -> Coroutine[Any, Any, Message]:
+        return self._reply_with_markup(update, context, text, BACK, parse_mode)
 
     def reply_with_cancel_markup(
         self,
         update: Update,
-        context: CallbackContext,
+        context: ContextTypes.DEFAULT_TYPE,
         text: str,
         parse_mode: ParseMode | None = None,
-    ) -> None:
-        self._reply_with_markup(update, context, text, CANCEL, parse_mode)
+    ) -> Coroutine[Any, Any, Message]:
+        return self._reply_with_markup(update, context, text, CANCEL, parse_mode)
 
-    def send_file(
+    async def send_file(
         self,
         update: Update,
-        context: CallbackContext,
+        context: ContextTypes.DEFAULT_TYPE,
         file_path: str,
         task: TaskType,
     ) -> None:
@@ -197,21 +199,21 @@ class TelegramService:
         try:
             self.check_file_upload_size(file_path)
         except TelegramFileTooLargeError as e:
-            self.bot.send_message(chat_id, _(str(e)))
+            await self.bot.send_message(chat_id, _(str(e)))
             return
 
         reply_markup = self.get_support_markup(update, context)
         if file_path.endswith(self.PNG_SUFFIX):
-            self.bot.send_chat_action(chat_id, ChatAction.UPLOAD_PHOTO)
-            self.bot.send_photo(
+            await self.bot.send_chat_action(chat_id, ChatAction.UPLOAD_PHOTO)
+            await self.bot.send_photo(
                 chat_id,
                 open(file_path, "rb"),
                 caption=_("Here is your result file"),
                 reply_markup=reply_markup,
             )
         else:
-            self.bot.send_chat_action(chat_id, ChatAction.UPLOAD_DOCUMENT)
-            self.bot.send_document(
+            await self.bot.send_chat_action(chat_id, ChatAction.UPLOAD_DOCUMENT)
+            await self.bot.send_document(
                 chat_id,
                 document=open(file_path, "rb"),
                 caption=_("Here is your result file"),
@@ -220,7 +222,7 @@ class TelegramService:
 
         self.analytics_service.send_event(update, context, task, EventAction.complete)
 
-    def send_file_names(
+    async def send_file_names(
         self, chat_id: int, text: str, file_data_list: List[FileData]
     ) -> None:
         for i, file_data in enumerate(file_data_list):
@@ -228,7 +230,7 @@ class TelegramService:
             if file_name is None:
                 file_name = "File name unavailable"
             text += f"{i + 1}: {file_name}\n"
-        self.bot.send_message(chat_id, text)
+        await self.bot.send_message(chat_id, text)
 
     @staticmethod
     def _get_chat_id(update: Update) -> int:
@@ -240,15 +242,15 @@ class TelegramService:
     def _reply_with_markup(
         self,
         update: Update,
-        context: CallbackContext,
+        context: ContextTypes.DEFAULT_TYPE,
         text: str,
         markup_text: str,
         parse_mode: ParseMode | None = None,
-    ) -> None:
+    ) -> Coroutine[Any, Any, Message]:
         _ = self.language_service.set_app_language(update, context)
         markup = ReplyKeyboardMarkup(
             [[_(markup_text)]], one_time_keyboard=True, resize_keyboard=True
         )
-        update.effective_message.reply_text(  # type: ignore
-            _(text), reply_markup=markup, parse_mode=parse_mode  # type: ignore
+        return update.message.reply_text(
+            _(text), reply_markup=markup, parse_mode=parse_mode
         )
