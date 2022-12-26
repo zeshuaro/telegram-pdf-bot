@@ -3,7 +3,6 @@ from enum import Enum
 
 class TaskType(Enum):
     beautify_image = "beautify_image"
-    black_and_white_pdf = "black_and_white_pdf"
     compare_pdf = "compare_pdf"
     compress_pdf = "compress_pdf"
     crop_pdf = "crop_pdf"
@@ -11,6 +10,7 @@ class TaskType(Enum):
     encrypt_pdf = "encrypt_pdf"
     get_pdf_image = "get_pdf_image"
     get_pdf_text = "get_pdf_text"
+    grayscale_pdf = "grayscale_pdf"
     image_to_pdf = "image_to_pdf"
     merge_pdf = "merge_pdf"
     ocr_pdf = "ocr_pdf"

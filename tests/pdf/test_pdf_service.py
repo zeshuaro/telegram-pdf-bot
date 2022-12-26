@@ -144,7 +144,7 @@ class TestPDFService(
                     )
 
     @pytest.mark.asyncio
-    async def test_black_and_white_pdf(self) -> None:
+    async def test_grayscale_pdf(self) -> None:
         image_paths = "image_paths"
         file = MagicMock()
         image_bytes = "image_bytes"
@@ -156,9 +156,9 @@ class TestPDFService(
             pdf2image.convert_from_path.return_value = image_paths
             img2pdf.convert.return_value = image_bytes
 
-            async with self.sut.black_and_white_pdf(self.TELEGRAM_FILE_ID) as actual:
+            async with self.sut.grayscale_pdf(self.TELEGRAM_FILE_ID) as actual:
                 assert actual == self.OUTPUT_PATH
-                self._assert_telegram_and_io_services("Black_and_white")
+                self._assert_telegram_and_io_services("Grayscale")
                 self.io_service.create_temp_directory.assert_called_once()
                 pdf2image.convert_from_path.assert_called_once_with(
                     self.DOWNLOAD_PATH,

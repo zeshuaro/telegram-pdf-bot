@@ -66,11 +66,11 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def black_and_white_pdf(self, file_id: str) -> AsyncGenerator[str, None]:
+    async def grayscale_pdf(self, file_id: str) -> AsyncGenerator[str, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with (
                 self.io_service.create_temp_directory() as dir_name,
-                self.io_service.create_temp_pdf_file("Black_and_white") as out_path,
+                self.io_service.create_temp_pdf_file("Grayscale") as out_path,
             ):
                 images = pdf2image.convert_from_path(
                     file_path,
