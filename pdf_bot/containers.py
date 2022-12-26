@@ -20,7 +20,7 @@ from pdf_bot.image import ImageService
 from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.image_processor import (
     BeautifyImageProcessor,
-    ImageProcessor,
+    ImageTaskProcessor,
     ImageToPDFProcessor,
 )
 from pdf_bot.io import IOService
@@ -181,8 +181,8 @@ class Services(containers.DeclarativeContainer):
 class Processors(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
 
-    image = providers.Singleton(
-        ImageProcessor,
+    image_task = providers.Singleton(
+        ImageTaskProcessor,
         language_service=services.language,
     )
 
@@ -310,7 +310,7 @@ class Handlers(containers.DeclarativeContainer):
         split_pdf_processor=processors.split,
         telegram_service=services.telegram,
         language_service=services.language,
-        image_processor=processors.image,
+        image_task_processor=processors.image_task,
     )
 
     compare = providers.Singleton(

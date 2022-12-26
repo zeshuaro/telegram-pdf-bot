@@ -40,6 +40,11 @@ class AbstractFileProcessor(ABC):
         self._FILE_PROCESSORS[cls_name] = self
 
     @classmethod
+    @abstractmethod
+    def get_task_data_list(cls) -> list[TaskData]:
+        pass
+
+    @classmethod
     def get_handlers(cls) -> list[BaseHandler]:
         return [
             x.handler for x in cls._FILE_PROCESSORS.values() if x.handler is not None

@@ -9,7 +9,7 @@ from telegram.ext import ContextTypes, ConversationHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
-from pdf_bot.models import FileData
+from pdf_bot.models import FileData, TaskData
 from pdf_bot.telegram_internal import TelegramUserDataKeyError
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
@@ -31,6 +31,10 @@ class UnknownError(Exception):
 class MockProcessor(AbstractFileProcessor):
     PROCESS_RESULT = "process_result"
     TASK_TYPE = TaskType.decrypt_pdf
+
+    @classmethod
+    def get_task_data_list(cls) -> list[TaskData]:
+        return []
 
     @property
     def task_type(self) -> TaskType:
