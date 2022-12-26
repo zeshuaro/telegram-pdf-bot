@@ -46,7 +46,7 @@ class CropService:
         reply_markup = ReplyKeyboardMarkup(
             keyboard, one_time_keyboard=True, resize_keyboard=True
         )
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _("Select the crop type that you'll like to perform"),
             reply_markup=reply_markup,
         )
@@ -57,7 +57,7 @@ class CropService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str:
         _ = self.language_service.set_app_language(update, context)
-        text = update.message.text
+        text = update.effective_message.text  # type: ignore
 
         if text in [_(self._BY_PERCENTAGE), _(self._BY_MARGIN_SIZE)]:
             return await self._ask_crop_value(update, context)

@@ -29,7 +29,7 @@ class TestLanguageService(TelegramTestMixin):
         await self.sut.send_language_options(
             self.telegram_update, self.telegram_context
         )
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_get_user_language(self) -> None:

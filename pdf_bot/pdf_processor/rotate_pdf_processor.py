@@ -43,7 +43,7 @@ class RotatePDFProcessor(AbstractPDFProcessor):
         reply_markup = ReplyKeyboardMarkup(
             keyboard, resize_keyboard=True, one_time_keyboard=True
         )
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _(
                 "Select the degrees that you'll like to "
                 "rotate your PDF file in clockwise"

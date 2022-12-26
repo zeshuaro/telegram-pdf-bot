@@ -125,5 +125,5 @@ class AbstractFileProcessor(ABC):
         _file_name: str | None,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        await update.message.reply_text(_(str(exception)))
+        await update.effective_message.reply_text(_(str(exception)))  # type: ignore
         return ConversationHandler.END

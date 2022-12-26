@@ -66,7 +66,7 @@ class TestRotatePDFProcessor(
         actual = await self.sut.ask_degree(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_ROTATE_DEGREE
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.parametrize("degree", [ROTATE_90, ROTATE_180, ROTATE_270])
     @pytest.mark.asyncio
@@ -90,7 +90,7 @@ class TestRotatePDFProcessor(
         actual = await self.sut.rotate_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_ROTATE_DEGREE
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
         self.pdf_service.rotate_pdf.assert_not_called()
 
     @pytest.mark.asyncio

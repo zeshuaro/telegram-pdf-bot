@@ -149,7 +149,7 @@ class TelegramService:
             await query.answer()
             await query.edit_message_text(_("Action cancelled"))
         else:
-            await update.message.reply_text(
+            await update.effective_message.reply_text(  # type: ignore
                 _("Action cancelled"), reply_markup=ReplyKeyboardRemove()
             )
 
@@ -237,7 +237,7 @@ class TelegramService:
         query: CallbackQuery | None = update.callback_query
         if query is not None:
             return query.message.chat_id
-        return update.message.chat_id
+        return update.effective_message.chat_id  # type: ignore
 
     def _reply_with_markup(
         self,
@@ -251,6 +251,6 @@ class TelegramService:
         markup = ReplyKeyboardMarkup(
             [[_(markup_text)]], one_time_keyboard=True, resize_keyboard=True
         )
-        return update.message.reply_text(
+        return update.effective_message.reply_text(  # type: ignore
             _(text), reply_markup=markup, parse_mode=parse_mode
         )

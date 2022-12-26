@@ -70,7 +70,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
     @pytest.mark.asyncio
     async def test_successful_payment(self) -> None:
         await self.sut.successful_payment(self.telegram_update, self.telegram_context)
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     def _assert_keyboard_payment_callback_data(
         self, reply_markup: InlineKeyboardMarkup

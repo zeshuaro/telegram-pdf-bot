@@ -60,7 +60,7 @@ class TestTextService(
         self.telegram_context.user_data.__setitem__.assert_called_once_with(
             self.TEXT_KEY, self.TELEGRAM_TEXT
         )
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_ask_pdf_font_cancel_option(self) -> None:

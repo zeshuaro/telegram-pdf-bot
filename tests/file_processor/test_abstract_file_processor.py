@@ -179,7 +179,7 @@ class TestAbstractFileProcessor(
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, FILE_DATA
         )
-        self.telegram_update.message.reply_text.assert_not_called()
+        self.telegram_update.effective_message.reply_text.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio

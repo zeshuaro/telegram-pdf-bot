@@ -122,7 +122,7 @@ class BatchImageHandler:
             resize_keyboard=True,
             one_time_keyboard=True,
         )
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _(
                 "Select the task from below if you've sent me all the images, or keep"
                 " sending me the images"
@@ -142,12 +142,12 @@ class BatchImageHandler:
         try:
             file_data = file_data_list.pop()
         except IndexError:
-            await update.message.reply_text(
+            await update.effective_message.reply_text(  # type: ignore
                 _("You've already removed all the images you've sent me")
             )
             return await self.ask_first_image(update, context)
 
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _("{file_name} has been removed").format(
                 file_name=f"<b>{file_data.name}</b>"
             ),
@@ -169,10 +169,14 @@ class BatchImageHandler:
         num_files = len(file_data_list)
 
         if num_files == 0:
-            await update.message.reply_text(_("You haven't sent me any images"))
+            await update.effective_message.reply_text(  # type: ignore
+                _("You haven't sent me any images")
+            )
             return await self.ask_first_image(update, context)
         if num_files == 1:
-            await update.message.reply_text(_("You've only sent me one image"))
+            await update.effective_message.reply_text(  # type: ignore
+                _("You've only sent me one image")
+            )
             context.user_data[self.IMAGE_DATA] = file_data_list  # type: ignore
             return await self._ask_next_image(update, context)
         return await self._process_images(update, context, file_data_list)

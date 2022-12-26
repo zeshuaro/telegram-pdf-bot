@@ -23,14 +23,14 @@ class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
         await self.sut.send_start_message(self.telegram_update, self.telegram_context)
 
         self.account_service.create_user.assert_called_once_with(self.telegram_user)
-        self.telegram_update.message.reply_text.assert_called_once_with(
+        self.telegram_update.effective_message.reply_text.assert_called_once_with(
             ANY, parse_mode=ParseMode.HTML
         )
 
     @pytest.mark.asyncio
     async def test_send_help_message(self) -> None:
         await self.sut.send_help_message(self.telegram_update, self.telegram_context)
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_send_message_to_user(self) -> None:
@@ -51,4 +51,6 @@ class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_called_once_with(
             self.TELEGRAM_USER_ID, self.TELEGRAM_TEXT
         )
-        self.telegram_update.message.reply_text.assert_called_once_with(message)
+        self.telegram_update.effective_message.reply_text.assert_called_once_with(
+            message
+        )

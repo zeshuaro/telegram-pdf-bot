@@ -56,7 +56,7 @@ class TestWatermarkService(
         self.telegram_context.user_data.__setitem__.assert_called_once_with(
             self.WATERMARK_KEY, self.TELEGRAM_DOCUMENT_ID
         )
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_check_source_pdf_invalid_pdf(self) -> None:
@@ -71,7 +71,7 @@ class TestWatermarkService(
             self.telegram_message
         )
         self.telegram_context.user_data.__setitem__.assert_not_called()
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_add_watermark_to_pdf(self) -> None:

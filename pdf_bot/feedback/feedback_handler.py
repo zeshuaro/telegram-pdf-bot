@@ -53,7 +53,7 @@ class FeedbackHandler:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        if update.message.text == _(CANCEL):
+        if update.effective_message.text == _(CANCEL):  # type: ignore
             return await self.telegram_service.cancel_conversation(update, context)
 
         return await self._save_feedback(update, context)

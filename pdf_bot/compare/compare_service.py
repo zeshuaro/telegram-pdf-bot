@@ -35,7 +35,7 @@ class CompareService:
         reply_markup = ReplyKeyboardMarkup(
             [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             "{desc_1}\n\n{desc_2}".format(
                 desc_1=_("Send me one of the PDF files that you'll like to compare"),
                 desc_2=_("Note that I can only look for text differences"),
@@ -103,7 +103,7 @@ class CompareService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int | None:
         _ = self.language_service.set_app_language(update, context)
-        text = update.message.text
+        text = update.effective_message.text  # type: ignore
 
         if text == _(BACK):
             return await self.ask_first_pdf(update, context)

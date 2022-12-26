@@ -46,6 +46,6 @@ class DecryptPDFProcessor(AbstractCryptoPDFProcessor):
         file_name: str | None,
     ) -> str:
         _ = self.language_service.set_app_language(update, context)
-        await update.message.reply_text(_(str(exception)))
+        await update.effective_message.reply_text(_(str(exception)))  # type: ignore
         context.user_data[FILE_DATA] = (file_id, file_name)  # type: ignore
         return self.wait_password_state
