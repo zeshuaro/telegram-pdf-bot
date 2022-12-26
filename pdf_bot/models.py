@@ -20,7 +20,6 @@ class FileData:
 @dataclass
 class TaskData:
     label: str
-    value: str
     data_type: type[FileData]
 
     def get_file_data(self, obj: Document | PhotoSize) -> FileData:

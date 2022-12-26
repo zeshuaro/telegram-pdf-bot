@@ -31,7 +31,7 @@ class TestTaskData(TelegramTestMixin):
         expected = MagicMock()
         mock_data_type = MagicMock(spec=FileData)
         mock_data_type.from_telegram_object.return_value = expected
-        sut = TaskData("label", "value", mock_data_type)
+        sut = TaskData("label", mock_data_type)
 
         actual = sut.get_file_data(self.telegram_document)
 

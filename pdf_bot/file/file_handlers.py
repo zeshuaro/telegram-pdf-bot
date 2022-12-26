@@ -1,4 +1,4 @@
-from telegram import Update
+from telegram import Message, Update
 from telegram.constants import FileSizeLimit
 from telegram.ext import (
     CallbackQueryHandler,
@@ -52,6 +52,8 @@ from pdf_bot.telegram_internal import TelegramService
 
 
 class FileHandlers:
+    WAIT_FILE_TASK = "wait_file_task"
+
     def __init__(
         self,
         file_task_service: FileTaskService,
@@ -96,16 +98,16 @@ class FileHandlers:
     def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
             entry_points=[
+                MessageHandler(filters.Document.PDF, self.check_doc),
                 MessageHandler(
-                    filters.Document.PDF | filters.Document.IMAGE, self.check_doc
+                    filters.PHOTO | filters.Document.IMAGE, self.check_image
                 ),
-                MessageHandler(filters.PHOTO, self.check_image),
             ],
             states={
                 FileTaskService.WAIT_PDF_TASK: [
                     MessageHandler(TEXT_FILTER, self.check_doc_task)
                 ],
-                FileTaskService.WAIT_IMAGE_TASK: AbstractFileProcessor.get_handlers()
+                self.WAIT_FILE_TASK: AbstractFileProcessor.get_handlers()
                 + [
                     CallbackQueryHandler(
                         self.telegram_service.cancel_conversation,
@@ -180,9 +182,6 @@ class FileHandlers:
 
             return ConversationHandler.END
 
-        if doc.mime_type.startswith("image"):
-            context.user_data[FILE_DATA] = doc.file_id, doc.file_name  # type: ignore
-            return await self.image_processor.ask_image_task(update, context)
         if not doc.mime_type.endswith("pdf"):
             return ConversationHandler.END
 
@@ -192,8 +191,10 @@ class FileHandlers:
     async def check_image(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int | str:
-        image = update.effective_message.photo[-1]  # type: ignore
-        if image.file_size >= FileSizeLimit.FILESIZE_DOWNLOAD:
+        message: Message = update.effective_message  # type: ignore
+        file = message.document or message.photo[-1]
+
+        if file.file_size >= FileSizeLimit.FILESIZE_DOWNLOAD:
             _ = self.language_service.set_app_language(update, context)
             await update.effective_message.reply_text(  # type: ignore
                 "{desc_1}\n\n{desc_2}".format(
@@ -207,7 +208,6 @@ class FileHandlers:
 
             return ConversationHandler.END
 
-        context.user_data[FILE_DATA] = image.file_id, None  # type: ignore
         return await self.image_processor.ask_image_task(update, context)
 
     async def check_doc_task(
