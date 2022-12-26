@@ -185,10 +185,10 @@ class FileHandlers:
     async def check_doc(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
-        doc = update.message.document
+        doc = update.effective_message.document  # type: ignore
         if doc.file_size >= FileSizeLimit.FILESIZE_DOWNLOAD:
             _ = self.language_service.set_app_language(update, context)
-            await update.message.reply_text(
+            await update.effective_message.reply_text(  # type: ignore
                 "{desc_1}\n\n{desc_2}".format(
                     desc_1=_("Your file is too big for me to download and process"),
                     desc_2=_(
@@ -212,10 +212,10 @@ class FileHandlers:
     async def check_image(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int | str:
-        image = update.message.photo[-1]
+        image = update.effective_message.photo[-1]  # type: ignore
         if image.file_size >= FileSizeLimit.FILESIZE_DOWNLOAD:
             _ = self.language_service.set_app_language(update, context)
-            await update.message.reply_text(
+            await update.effective_message.reply_text(  # type: ignore
                 "{desc_1}\n\n{desc_2}".format(
                     desc_1=_("Your file is too big for me to download and process"),
                     desc_2=_(
@@ -234,7 +234,7 @@ class FileHandlers:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int | str:
         _ = self.language_service.set_app_language(update, context)
-        text = update.message.text
+        text = update.effective_message.text  # type: ignore
 
         if text == _(CROP):
             return await self.crop_service.ask_crop_type(update, context)
@@ -273,7 +273,7 @@ class FileHandlers:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int | str:
         _ = self.language_service.set_app_language(update, context)
-        text = update.message.text
+        text = update.effective_message.text  # type: ignore
         if text == _(BEAUTIFY):
             return await self.beautify_image_processor.process_file(update, context)
         if text == _(TO_PDF):

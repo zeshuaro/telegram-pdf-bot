@@ -52,7 +52,7 @@ class TestCropService(
         )
 
         assert actual == self.WAIT_CROP_TYPE
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.parametrize(
         "text,expected",

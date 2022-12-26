@@ -65,7 +65,7 @@ class PaymentService:
         reply_markup = InlineKeyboardMarkup(keyboard)
 
         if query is None:
-            user_id = update.message.from_user.id
+            user_id = update.effective_message.from_user.id  # type: ignore
         else:
             user_id = query.from_user.id
 
@@ -118,6 +118,6 @@ class PaymentService:
         context: ContextTypes.DEFAULT_TYPE,
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _("Thank you for your support!"), reply_markup=ReplyKeyboardRemove()
         )

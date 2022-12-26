@@ -72,7 +72,7 @@ class LanguageService:
         reply_markup = InlineKeyboardMarkup(keyboard)
 
         _ = self.set_app_language(update, context)
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _("Select your language"), reply_markup=reply_markup
         )
 

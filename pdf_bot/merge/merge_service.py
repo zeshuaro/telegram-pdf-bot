@@ -95,7 +95,7 @@ class MergeService:
             resize_keyboard=True,
             one_time_keyboard=True,
         )
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _(
                 "Press {done} if you've sent me all the PDF files that "
                 "you'll like to merge or keep sending me the PDF files"
@@ -116,12 +116,12 @@ class MergeService:
         try:
             file_data = file_data_list.pop()
         except IndexError:
-            await update.message.reply_text(
+            await update.effective_message.reply_text(  # type: ignore
                 _("You've already removed all the PDF files you've sent me")
             )
             return await self.ask_first_pdf(update, context)
 
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _("{file_name} has been removed for merging").format(
                 file_name=f"<b>{file_data.name}</b>"
             ),
@@ -143,10 +143,14 @@ class MergeService:
         num_files = len(file_data_list)
 
         if num_files == 0:
-            await update.message.reply_text(_("You haven't sent me any PDF files"))
+            await update.effective_message.reply_text(  # type: ignore
+                _("You haven't sent me any PDF files")
+            )
             return await self.ask_first_pdf(update, context)
         if num_files == 1:
-            await update.message.reply_text(_("You've only sent me one PDF file"))
+            await update.effective_message.reply_text(  # type: ignore
+                _("You've only sent me one PDF file")
+            )
             context.user_data[self.MERGE_PDF_DATA] = file_data_list  # type: ignore
             return await self._ask_next_pdf(update, context)
         return await self._merge_pdfs(update, context, file_data_list)
@@ -158,7 +162,7 @@ class MergeService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _("Merging your PDF files"), reply_markup=ReplyKeyboardRemove()
         )
 
@@ -168,6 +172,6 @@ class MergeService:
                     update, context, out_path, TaskType.merge_pdf
                 )
         except PdfServiceError as e:
-            await update.message.reply_text(_(str(e)))
+            await update.effective_message.reply_text(_(str(e)))  # type: ignore
 
         return ConversationHandler.END

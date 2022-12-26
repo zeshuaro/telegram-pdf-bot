@@ -66,7 +66,7 @@ class TestBatchImageHandler(
         )
 
         self.telegram_service.send_file_names.assert_called_once()
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_check_image_invlid_image(self) -> None:
@@ -77,7 +77,7 @@ class TestBatchImageHandler(
         assert actual == self.WAIT_IMAGE
         self.telegram_context.user_data.__getitem__.assert_not_called()
         self.telegram_service.send_file_names.assert_not_called()
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_check_text_remove_last(self) -> None:
@@ -91,7 +91,7 @@ class TestBatchImageHandler(
             self.telegram_context, self.IMAGE_DATA
         )
         self.file_data_list.pop.assert_called_once()
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
         self._assert_ask_first_image()
 
     @pytest.mark.asyncio
@@ -107,7 +107,7 @@ class TestBatchImageHandler(
             self.telegram_context, self.IMAGE_DATA
         )
         self.file_data_list.pop.assert_called_once()
-        assert self.telegram_update.message.reply_text.call_count == 2
+        assert self.telegram_update.effective_message.reply_text.call_count == 2
         self.telegram_context.user_data.__setitem__.assert_called_with(
             self.IMAGE_DATA, self.file_data_list
         )
@@ -126,7 +126,7 @@ class TestBatchImageHandler(
             self.telegram_context, self.IMAGE_DATA
         )
         self.file_data_list.pop.assert_called_once()
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
         self._assert_ask_first_image()
 
     @pytest.mark.asyncio
@@ -242,7 +242,7 @@ class TestBatchImageHandler(
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.IMAGE_DATA
         )
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     def _assert_ask_first_image(self) -> None:
         self.telegram_context.user_data.__setitem__.assert_called_with(

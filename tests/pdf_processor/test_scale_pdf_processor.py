@@ -70,7 +70,7 @@ class TestPDFProcessor(
         )
 
         assert actual == self.WAIT_SCALE_TYPE
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.parametrize(
         "scale_text,scale_state",
@@ -134,7 +134,7 @@ class TestPDFProcessor(
         )
 
         assert actual == self.WAIT_SCALE_FACTOR
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
         self.pdf_service.scale_pdf.assert_not_called()
 
     @pytest.mark.asyncio
@@ -146,7 +146,7 @@ class TestPDFProcessor(
         )
 
         assert actual == self.WAIT_SCALE_TYPE
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
         self.pdf_service.scale_pdf.assert_not_called()
 
     @pytest.mark.asyncio
@@ -175,7 +175,7 @@ class TestPDFProcessor(
         )
 
         assert actual == self.WAIT_SCALE_DIMENSION
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
         self.pdf_service.scale_pdf.assert_not_called()
 
     @pytest.mark.asyncio
@@ -187,5 +187,5 @@ class TestPDFProcessor(
         )
 
         assert actual == self.WAIT_SCALE_TYPE
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
         self.pdf_service.scale_pdf.assert_not_called()

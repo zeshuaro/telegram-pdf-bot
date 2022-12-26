@@ -21,7 +21,7 @@ class TestFileTaskService(LanguageServiceTestMixin, TelegramTestMixin):
         )
 
         assert actual == self.WAIT_PDF_TASK
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_ask_image_task(self) -> None:
@@ -30,4 +30,4 @@ class TestFileTaskService(LanguageServiceTestMixin, TelegramTestMixin):
         )
 
         assert actual == self.WAIT_IMAGE_TASK
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()

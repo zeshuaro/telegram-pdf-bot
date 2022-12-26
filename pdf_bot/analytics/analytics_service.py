@@ -28,7 +28,7 @@ class AnalyticsService:
         action: EventAction,
     ) -> None:
         lang = self.language_service.get_user_language(update, context)
-        user_id = update.message.from_user.id
+        user_id = update.effective_message.from_user.id  # type: ignore
         event = {
             "client_id": str(UUID(int=user_id)),
             "user_properties": {"bot_language": {"value": lang}},

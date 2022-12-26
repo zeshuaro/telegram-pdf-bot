@@ -49,7 +49,7 @@ class ScalePDFProcessor(AbstractPDFProcessor):
         reply_markup = ReplyKeyboardMarkup(
             keyboard, one_time_keyboard=True, resize_keyboard=True
         )
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             _("Select the scale type that you'll like to perform"),
             reply_markup=reply_markup,
         )
@@ -60,7 +60,7 @@ class ScalePDFProcessor(AbstractPDFProcessor):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str:
         _ = self.language_service.set_app_language(update, context)
-        text = update.message.text
+        text = update.effective_message.text  # type: ignore
 
         if text in {
             _(self.BY_SCALING_FACTOR),
@@ -123,7 +123,7 @@ class ScalePDFProcessor(AbstractPDFProcessor):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str:
         _ = self.language_service.set_app_language(update, context)
-        if update.message.text == _(self.BY_SCALING_FACTOR):
+        if update.effective_message.text == _(self.BY_SCALING_FACTOR):  # type: ignore
             await self.telegram_service.reply_with_back_markup(
                 update,
                 context,

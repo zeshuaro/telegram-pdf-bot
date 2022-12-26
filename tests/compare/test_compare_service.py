@@ -37,7 +37,7 @@ class TestCompareService(
             self.telegram_update, self.telegram_context
         )
         assert actual == self.WAIT_FIRST_PDF
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_check_first_pdf(self) -> None:

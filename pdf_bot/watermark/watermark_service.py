@@ -99,7 +99,7 @@ class WatermarkService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int | None:
         _ = self.language_service.set_app_language(update, context)
-        text = update.message.text
+        text = update.effective_message.text  # type: ignore
 
         if text == _(BACK):
             return await self.ask_source_pdf(update, context)

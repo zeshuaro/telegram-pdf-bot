@@ -18,13 +18,13 @@ class CommandService:
     async def send_start_message(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
-        await update.message.reply_chat_action(ChatAction.TYPING)
+        await update.effective_message.reply_chat_action(ChatAction.TYPING)  # type: ignore
 
         # Create the user entity in Datastore
-        self.account_service.create_user(update.message.from_user)
+        self.account_service.create_user(update.effective_message.from_user)  # type: ignore
 
         _ = self.language_service.set_app_language(update, context)
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             "{welcome}\n\n<b>{key_features}</b>\n"
             "{features_summary}\n"
             "{pdf_from_text}\n"
@@ -66,7 +66,7 @@ class CommandService:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
-        await update.message.reply_text(
+        await update.effective_message.reply_text(  # type: ignore
             "{desc_1}\n{pdf_files}\n{images}\n{webpage_links}\n\n{desc_2}\n"
             "{compare_desc}\n{merge_desc}\n{image_desc}\n{text_desc}\n"
             "{watermark_desc}".format(
@@ -108,8 +108,10 @@ class CommandService:
 
             try:
                 await context.bot.send_message(user_id, message)
-                await update.message.reply_text("Message sent")
+                await update.effective_message.reply_text("Message sent")  # type: ignore
             except Forbidden:
-                await update.message.reply_text("User has blocked the bot")
+                await update.effective_message.reply_text(  # type: ignore
+                    "User has blocked the bot"
+                )
         else:
-            await update.message.reply_text(f"Invalid arguments: {args}")
+            await update.effective_message.reply_text(f"Invalid arguments: {args}")  # type: ignore

@@ -81,4 +81,4 @@ class TestFeedbackHandler(
         self.feedback_service.save_feedback.assert_called_once_with(
             self.TELEGRAM_CHAT_ID, self.TELEGRAM_USERNAME, self.FEEDBACK_TEXT
         )
-        self.telegram_update.message.reply_text.assert_called_once()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
