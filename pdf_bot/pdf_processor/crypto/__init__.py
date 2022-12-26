@@ -1,9 +1,9 @@
-from .abstract_crypto_pdf_processor import AbstractCryptoPDFProcessor
-from .decrypt_pdf_processor import DecryptPDFProcessor
-from .encrypt_pdf_processor import EncryptPDFProcessor
+from .abstract_crypto_pdf_processor import AbstractCryptoPdfProcessor
+from .decrypt_pdf_processor import DecryptPdfProcessor
+from .encrypt_pdf_processor import EncryptPdfProcessor
 
 __all__ = [
-    "AbstractCryptoPDFProcessor",
-    "DecryptPDFProcessor",
-    "EncryptPDFProcessor",
+    "AbstractCryptoPdfProcessor",
+    "DecryptPdfProcessor",
+    "EncryptPdfProcessor",
 ]

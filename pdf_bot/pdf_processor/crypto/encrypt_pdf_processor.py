@@ -4,10 +4,10 @@ from typing import AsyncGenerator
 
 from pdf_bot.analytics import TaskType
 
-from .abstract_crypto_pdf_processor import AbstractCryptoPDFProcessor
+from .abstract_crypto_pdf_processor import AbstractCryptoPdfProcessor
 
 
-class EncryptPDFProcessor(AbstractCryptoPDFProcessor):
+class EncryptPdfProcessor(AbstractCryptoPdfProcessor):
     @property
     def wait_password_state(self) -> str:
         return "wait_encrypt_password"

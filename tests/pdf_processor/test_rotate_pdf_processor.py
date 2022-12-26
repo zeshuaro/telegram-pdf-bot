@@ -5,13 +5,13 @@ from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import RotatePDFProcessor
+from pdf_bot.pdf_processor import RotatePdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestRotatePDFProcessor(
+class TestRotatePdfProcessor(
     FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
@@ -32,7 +32,7 @@ class TestRotatePDFProcessor(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = RotatePDFProcessor(
+        self.sut = RotatePdfProcessor(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,

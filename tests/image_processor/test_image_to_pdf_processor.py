@@ -5,7 +5,7 @@ from telegram.ext import CallbackQueryHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.image import ImageService
-from pdf_bot.image_processor import ImageToPDFProcessor
+from pdf_bot.image_processor import ImageToPdfProcessor
 from pdf_bot.image_processor.image_to_pdf_processor import ImageToPdfData
 from pdf_bot.models import TaskData
 from tests.file_task import FileTaskServiceTestMixin
@@ -13,7 +13,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestImageToPDFProcessorProcessor(
+class TestImageToPdfProcessorProcessor(
     FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
@@ -28,7 +28,7 @@ class TestImageToPDFProcessorProcessor(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = ImageToPDFProcessor(
+        self.sut = ImageToPdfProcessor(
             self.file_task_service,
             self.image_service,
             self.telegram_service,

@@ -35,18 +35,18 @@ from pdf_bot.file_task import FileTaskService
 from pdf_bot.image_processor import ImageTaskProcessor
 from pdf_bot.language import LanguageService
 from pdf_bot.pdf_processor import (
-    DecryptPDFProcessor,
-    EncryptPDFProcessor,
+    DecryptPdfProcessor,
+    EncryptPdfProcessor,
     ExtractPDFImageProcessor,
     ExtractPDFTextProcessor,
-    GrayscalePDFProcessor,
-    OCRPDFProcessor,
+    GrayscalePdfProcessor,
+    OCRPdfProcessor,
     PDFToImageProcessor,
-    PreviewPDFProcessor,
-    RenamePDFProcessor,
-    RotatePDFProcessor,
-    ScalePDFProcessor,
-    SplitPDFProcessor,
+    PreviewPdfProcessor,
+    RenamePdfProcessor,
+    RotatePdfProcessor,
+    ScalePdfProcessor,
+    SplitPdfProcessor,
 )
 from pdf_bot.telegram_internal import TelegramService
 
@@ -59,18 +59,18 @@ class FileHandlers:
         file_task_service: FileTaskService,
         file_service: FileService,
         crop_service: CropService,
-        decrypt_pdf_processor: DecryptPDFProcessor,
-        encrypt_pdf_processor: EncryptPDFProcessor,
+        decrypt_pdf_processor: DecryptPdfProcessor,
+        encrypt_pdf_processor: EncryptPdfProcessor,
         extract_pdf_image_processor: ExtractPDFImageProcessor,
         extract_pdf_text_processor: ExtractPDFTextProcessor,
-        grayscale_pdf_processor: GrayscalePDFProcessor,
-        ocr_pdf_processor: OCRPDFProcessor,
+        grayscale_pdf_processor: GrayscalePdfProcessor,
+        ocr_pdf_processor: OCRPdfProcessor,
         pdf_to_image_processor: PDFToImageProcessor,
-        preview_pdf_processor: PreviewPDFProcessor,
-        rename_pdf_processor: RenamePDFProcessor,
-        rotate_pdf_processor: RotatePDFProcessor,
-        scale_pdf_processor: ScalePDFProcessor,
-        split_pdf_processor: SplitPDFProcessor,
+        preview_pdf_processor: PreviewPdfProcessor,
+        rename_pdf_processor: RenamePdfProcessor,
+        rotate_pdf_processor: RotatePdfProcessor,
+        scale_pdf_processor: ScalePdfProcessor,
+        split_pdf_processor: SplitPdfProcessor,
         telegram_service: TelegramService,
         language_service: LanguageService,
         image_task_processor: ImageTaskProcessor,
@@ -133,28 +133,28 @@ class FileHandlers:
                 self.encrypt_pdf_processor.wait_password_state: [
                     MessageHandler(TEXT_FILTER, self.encrypt_pdf_processor.process_file)
                 ],
-                RenamePDFProcessor.WAIT_NEW_FILE_NAME: [
+                RenamePdfProcessor.WAIT_NEW_FILE_NAME: [
                     MessageHandler(TEXT_FILTER, self.rename_pdf_processor.rename_pdf)
                 ],
-                RotatePDFProcessor.WAIT_ROTATE_DEGREE: [
+                RotatePdfProcessor.WAIT_ROTATE_DEGREE: [
                     MessageHandler(TEXT_FILTER, self.rotate_pdf_processor.rotate_pdf)
                 ],
-                ScalePDFProcessor.WAIT_SCALE_TYPE: [
+                ScalePdfProcessor.WAIT_SCALE_TYPE: [
                     MessageHandler(
                         TEXT_FILTER, self.scale_pdf_processor.check_scale_type
                     )
                 ],
-                ScalePDFProcessor.WAIT_SCALE_FACTOR: [
+                ScalePdfProcessor.WAIT_SCALE_FACTOR: [
                     MessageHandler(
                         TEXT_FILTER, self.scale_pdf_processor.scale_pdf_by_factor
                     )
                 ],
-                ScalePDFProcessor.WAIT_SCALE_DIMENSION: [
+                ScalePdfProcessor.WAIT_SCALE_DIMENSION: [
                     MessageHandler(
                         TEXT_FILTER, self.scale_pdf_processor.scale_pdf_to_dimension
                     )
                 ],
-                SplitPDFProcessor.WAIT_SPLIT_RANGE: [
+                SplitPdfProcessor.WAIT_SPLIT_RANGE: [
                     MessageHandler(TEXT_FILTER, self.split_pdf_processor.split_pdf)
                 ],
             },

@@ -3,10 +3,10 @@ from abc import ABC, abstractmethod
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from ..abstract_pdf_processor import AbstractPDFProcessor
+from ..abstract_pdf_processor import AbstractPdfProcessor
 
 
-class AbstractCryptoPDFProcessor(AbstractPDFProcessor, ABC):
+class AbstractCryptoPdfProcessor(AbstractPdfProcessor, ABC):
     @property
     @abstractmethod
     def wait_password_state(self) -> str:

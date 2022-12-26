@@ -8,10 +8,10 @@ from telegram.ext import ContextTypes
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK
 
-from .abstract_pdf_processor import AbstractPDFProcessor
+from .abstract_pdf_processor import AbstractPdfProcessor
 
 
-class SplitPDFProcessor(AbstractPDFProcessor):
+class SplitPdfProcessor(AbstractPdfProcessor):
     WAIT_SPLIT_RANGE = "wait_split_range"
 
     @property
