@@ -8,14 +8,13 @@ from pdf_bot.language import LanguageService
 
 
 class FileTaskService:
-    WAIT_PDF_TASK = "wait_pdf_task"
+    WAIT_FILE_TASK = "wait_file_task"
     WAIT_IMAGE_TASK = "wait_image_task"
     KEYBOARD_SIZE = 3
 
     PREVIEW = _("Preview")
     DECRYPT = _("Decrypt")
     ENCRYPT = _("Encrypt")
-    EXTRACT_IMAGE = _("Extract Images")
     TO_IMAGES = _("To Images")
     ROTATE = _("Rotate")
     SCALE = _("Scale")
@@ -39,7 +38,6 @@ class FileTaskService:
             SPLIT,
             PREVIEW,
             TO_IMAGES,
-            EXTRACT_IMAGE,
             RENAME,
             CROP,
             EXTRACT_TEXT,
@@ -58,7 +56,7 @@ class FileTaskService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str:
         await self._reply_with_tasks(update, context, self.PDF_TASKS)
-        return self.WAIT_PDF_TASK
+        return self.WAIT_FILE_TASK
 
     async def ask_image_task(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
@@ -81,5 +79,9 @@ class FileTaskService:
             keyboard, resize_keyboard=True, one_time_keyboard=True
         )
         await update.effective_message.reply_text(  # type: ignore
-            _("Select the task that you'll like to perform"), reply_markup=reply_markup
+            _(
+                "Select the task that you'll like to perform from below or select from"
+                " the buttons"
+            ),
+            reply_markup=reply_markup,
         )

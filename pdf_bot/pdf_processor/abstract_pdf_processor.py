@@ -9,6 +9,8 @@ from pdf_bot.telegram_internal import TelegramService
 
 
 class AbstractPdfProcessor(AbstractFileProcessor):
+    _PDF_PROCESSORS: dict[str, "AbstractPdfProcessor"] = {}
+
     def __init__(
         self,
         file_task_service: FileTaskService,
@@ -17,14 +19,22 @@ class AbstractPdfProcessor(AbstractFileProcessor):
         language_service: LanguageService,
         bypass_init_check: bool = False,
     ) -> None:
-        self.pdf_service = pdf_service
         super().__init__(
             file_task_service, telegram_service, language_service, bypass_init_check
         )
 
+        self.pdf_service = pdf_service
+        cls_name = self.__class__.__name__
+
+        if not bypass_init_check and cls_name in self._PDF_PROCESSORS:
+            raise ValueError(f"Class has already been initialised: {cls_name}")
+        self._PDF_PROCESSORS[cls_name] = self
+
     @classmethod
     def get_task_data_list(cls) -> list[TaskData]:
-        return []
+        return [
+            x.task_data for x in cls._PDF_PROCESSORS.values() if x.task_data is not None
+        ]
 
     @property
     def generic_error_types(self) -> set[Type[Exception]]:
