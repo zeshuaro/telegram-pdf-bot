@@ -6,8 +6,7 @@ from telegram.ext import CallbackQueryHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import ExtractPdfImageProcessor
-from pdf_bot.pdf_processor.extract_pdf_image_processor import ExtractPdfImageData
+from pdf_bot.pdf_processor import ExtractPdfImageData, ExtractPdfImageProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin

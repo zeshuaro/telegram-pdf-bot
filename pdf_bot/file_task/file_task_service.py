@@ -21,7 +21,6 @@ class FileTaskService:
     SPLIT = _("Split")
     RENAME = _("Rename")
     CROP = _("Crop")
-    EXTRACT_TEXT = _("Extract Text")
     OCR = "OCR"
     COMPRESS = _("Compress")
     BLACK_AND_WHITE = _("Black & White")
@@ -40,7 +39,6 @@ class FileTaskService:
             TO_IMAGES,
             RENAME,
             CROP,
-            EXTRACT_TEXT,
             OCR,
             COMPRESS,
             BLACK_AND_WHITE,
