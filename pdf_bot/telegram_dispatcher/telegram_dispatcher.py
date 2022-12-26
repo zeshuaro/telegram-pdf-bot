@@ -3,16 +3,16 @@ import os
 import sentry_sdk
 from dotenv import load_dotenv
 from telegram import MessageEntity, Update
-from telegram.error import BadRequest, Unauthorized
+from telegram.error import BadRequest, Forbidden
 from telegram.ext import (
-    CallbackContext,
+    Application,
     CallbackQueryHandler,
     CommandHandler,
-    Filters,
+    ContextTypes,
     MessageHandler,
     PreCheckoutQueryHandler,
+    filters,
 )
-from telegram.ext.dispatcher import Dispatcher
 
 from pdf_bot.command.command_service import CommandService
 from pdf_bot.compare import CompareHandlers
@@ -59,122 +59,98 @@ class TelegramDispatcher:
         self.watermark_handlers = watermark_handlers
         self.webpage_handler = webpage_handler
 
-    def setup(self, dispatcher: Dispatcher) -> None:
-        dispatcher.add_handler(
+    def setup(self, telegram_app: Application) -> None:
+        telegram_app.add_handler(
             CommandHandler(
                 "start",
                 self.payment_service.send_support_options,
-                Filters.regex("support"),
-                run_async=True,
+                filters.Regex("support"),
             )
         )
-        dispatcher.add_handler(
-            CommandHandler(
-                "start", self.command_service.send_start_message, run_async=True
-            )
+        telegram_app.add_handler(
+            CommandHandler("start", self.command_service.send_start_message)
         )
 
-        dispatcher.add_handler(
-            CommandHandler(
-                "help", self.command_service.send_help_message, run_async=True
-            )
+        telegram_app.add_handler(
+            CommandHandler("help", self.command_service.send_help_message)
         )
-        dispatcher.add_handler(
-            CommandHandler(
-                "setlang", self.language_service.send_language_options, run_async=True
-            )
+        telegram_app.add_handler(
+            CommandHandler("setlang", self.language_service.send_language_options)
         )
-        dispatcher.add_handler(
-            CommandHandler(
-                "support", self.payment_service.send_support_options, run_async=True
-            )
+        telegram_app.add_handler(
+            CommandHandler("support", self.payment_service.send_support_options)
         )
 
         # Callback query handler
-        dispatcher.add_handler(
-            CallbackQueryHandler(self.process_callback_query, run_async=True)
-        )
+        telegram_app.add_handler(CallbackQueryHandler(self.process_callback_query))
 
         # Payment handlers
-        dispatcher.add_handler(
-            PreCheckoutQueryHandler(
-                self.payment_service.precheckout_check, run_async=True
-            )
+        telegram_app.add_handler(
+            PreCheckoutQueryHandler(self.payment_service.precheckout_check)
         )
-        dispatcher.add_handler(
+        telegram_app.add_handler(
             MessageHandler(
-                Filters.successful_payment,
-                self.payment_service.successful_payment,
-                run_async=True,
+                filters.SUCCESSFUL_PAYMENT, self.payment_service.successful_payment
             )
         )
 
         # URL handler
-        dispatcher.add_handler(
+        telegram_app.add_handler(
             MessageHandler(
-                Filters.entity(MessageEntity.URL),
-                self.webpage_handler.url_to_pdf,
-                run_async=True,
+                filters.Entity(MessageEntity.URL), self.webpage_handler.url_to_pdf
             )
         )
 
         # PDF commands handlers
-        dispatcher.add_handler(self.compare_handlers.conversation_handler())
-        dispatcher.add_handler(self.merge_handlers.conversation_handler())
-        dispatcher.add_handler(self.image_handler.conversation_handler())
-        dispatcher.add_handler(self.text_handlers.conversation_handler())
-        dispatcher.add_handler(self.watermark_handlers.conversation_handler())
+        telegram_app.add_handler(self.compare_handlers.conversation_handler())
+        telegram_app.add_handler(self.merge_handlers.conversation_handler())
+        telegram_app.add_handler(self.image_handler.conversation_handler())
+        telegram_app.add_handler(self.text_handlers.conversation_handler())
+        telegram_app.add_handler(self.watermark_handlers.conversation_handler())
 
         # PDF file handler
-        dispatcher.add_handler(self.file_handlers.conversation_handler())
+        telegram_app.add_handler(self.file_handlers.conversation_handler())
 
         # Feedback handler
-        dispatcher.add_handler(self.feedback_handler.conversation_handler())
+        telegram_app.add_handler(self.feedback_handler.conversation_handler())
 
         # Admin commands handlers
         ADMIN_TELEGRAM_ID = os.environ.get("ADMIN_TELEGRAM_ID")
         if ADMIN_TELEGRAM_ID is not None:
-            dispatcher.add_handler(
+            telegram_app.add_handler(
                 CommandHandler(
                     "send",
                     self.command_service.send_message_to_user,
-                    Filters.user(int(ADMIN_TELEGRAM_ID)),
+                    filters.User(int(ADMIN_TELEGRAM_ID)),
                 )
             )
 
         # Log all errors
-        dispatcher.add_error_handler(self.error_callback)  # type: ignore
+        telegram_app.add_error_handler(self.error_callback)
 
-    def process_callback_query(
+    async def process_callback_query(
         self,
         update: Update,
-        context: CallbackContext,
+        context: ContextTypes.DEFAULT_TYPE,
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
         query = update.callback_query
         data = query.data
 
-        if self._CALLBACK_DATA not in context.user_data:  # type: ignore
-            context.user_data[self._CALLBACK_DATA] = set()  # type: ignore
-
-        if data not in context.user_data[self._CALLBACK_DATA]:  # type: ignore
-            context.user_data[self._CALLBACK_DATA].add(data)  # type: ignore
-            if data == SET_LANG:
-                self.language_service.send_language_options(update, context)
-            elif data in LANGUAGES:
-                self.language_service.update_user_language(update, context, query)
-            elif data == PAYMENT:
-                self.payment_service.send_support_options(update, context, query)
-            elif data.startswith("payment,"):
-                self.payment_service.send_invoice(update, context, query)
-
-            context.user_data[self._CALLBACK_DATA].remove(data)  # type: ignore
+        if data == SET_LANG:
+            await self.language_service.send_language_options(update, context)
+        elif data in LANGUAGES:
+            await self.language_service.update_user_language(update, context, query)
+        elif data == PAYMENT:
+            await self.payment_service.send_support_options(update, context, query)
+        elif data.startswith("payment,"):
+            await self.payment_service.send_invoice(update, context, query)
 
         try:
-            query.answer()
+            await query.answer()
         except BadRequest as e:
             if e.message.startswith("Query is too old"):
-                context.bot.send_message(
+                await context.bot.send_message(
                     query.from_user.id,
                     _(
                         "The button has expired, please try again with a new"
@@ -184,15 +160,18 @@ class TelegramDispatcher:
             else:
                 raise
 
-    def error_callback(self, update: Update, context: CallbackContext) -> None:
+    async def error_callback(
+        self, update: object, context: ContextTypes.DEFAULT_TYPE
+    ) -> None:
         try:
             if context.error is not None:
                 raise context.error
-        except Unauthorized:
+        except Forbidden:
             pass
         except Exception as e:  # pylint: disable=broad-except
-            _ = self.language_service.set_app_language(update, context)
-            update.effective_message.reply_text(  # type: ignore
-                _("Something went wrong, please try again")
-            )
+            if isinstance(update, Update):
+                _ = self.language_service.set_app_language(update, context)
+                await update.message.reply_text(
+                    _("Something went wrong, please try again")
+                )
             sentry_sdk.capture_exception(e)

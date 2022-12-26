@@ -1,5 +1,6 @@
-from telegram import Message, ParseMode, Update
-from telegram.ext import CallbackContext, ConversationHandler
+from telegram import Message, Update
+from telegram.constants import ParseMode
+from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
@@ -19,20 +20,22 @@ class FileService:
         self.telegram_service = telegram_service
         self.language_service = language_service
 
-    def compress_pdf(self, update: Update, context: CallbackContext) -> int:
+    async def compress_pdf(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        message: Message = update.message
 
         try:
             file_id, _file_name = self.telegram_service.get_user_data(
                 context, FILE_DATA
             )
         except TelegramServiceError as e:
-            message.reply_text(_(str(e)))
+            await message.reply_text(_(str(e)))
             return ConversationHandler.END
 
-        with self.pdf_service.compress_pdf(file_id) as compress_result:
-            message.reply_text(
+        async with self.pdf_service.compress_pdf(file_id) as compress_result:
+            await message.reply_text(
                 _(
                     "File size reduced by {percent}, from {old_size} to {new_size}"
                 ).format(
@@ -42,7 +45,7 @@ class FileService:
                 ),
                 parse_mode=ParseMode.HTML,
             )
-            self.telegram_service.send_file(
+            await self.telegram_service.send_file(
                 update, context, compress_result.out_path, TaskType.compress_pdf
             )
         return ConversationHandler.END

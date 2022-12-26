@@ -49,10 +49,11 @@ class TestPDFProcessor(
         actual = self.sut.should_process_back_option
         assert actual is False
 
-    def test_process_file_task(self) -> None:
-        self.pdf_service.scale_pdf.return_value.__enter__.return_value = self.FILE_PATH
+    @pytest.mark.asyncio
+    async def test_process_file_task(self) -> None:
+        self.pdf_service.scale_pdf.return_value.__aenter__.return_value = self.FILE_PATH
 
-        with self.sut.process_file_task(
+        async with self.sut.process_file_task(
             self.TELEGRAM_DOCUMENT_ID, self.SCALE_DATA_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
@@ -60,47 +61,60 @@ class TestPDFProcessor(
                 self.TELEGRAM_DOCUMENT_ID, self.SCALE_DATA
             )
 
-    def test_ask_scale_type(self) -> None:
-        actual = self.sut.ask_scale_type(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_scale_type(self) -> None:
+        actual = await self.sut.ask_scale_type(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_SCALE_TYPE
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
 
     @pytest.mark.parametrize(
         "scale_text,scale_state",
         [(BY_SCALING_FACTOR, WAIT_SCALE_FACTOR), (TO_DIMENSION, WAIT_SCALE_DIMENSION)],
     )
-    def test_check_scale_type_by_factor(
+    @pytest.mark.asyncio
+    async def test_check_scale_type_by_factor(
         self, scale_text: str, scale_state: str
     ) -> None:
         self.telegram_message.text = scale_text
 
-        actual = self.sut.check_scale_type(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_scale_type(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == scale_state
         self.telegram_service.reply_with_back_markup.assert_called_once()
 
-    def test_check_scale_type_back_option(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_scale_type_back_option(self) -> None:
         self.telegram_message.text = "Back"
 
-        actual = self.sut.check_scale_type(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_scale_type(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_PDF_TASK
         self.file_task_service.ask_pdf_task.assert_called_once()
 
-    def test_check_scale_type_unknown_text(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_scale_type_unknown_text(self) -> None:
         self.telegram_message.text = "clearly_unknown"
-        actual = self.sut.check_scale_type(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_scale_type(
+            self.telegram_update, self.telegram_context
+        )
         assert actual == self.WAIT_SCALE_TYPE
 
-    def test_scale_pdf_by_factor(self) -> None:
+    @pytest.mark.asyncio
+    async def test_scale_pdf_by_factor(self) -> None:
         scale_text = "0.1 0.2"
         scale_data = ScaleData.from_string(scale_text)
 
         self.telegram_message.text = scale_text
         self.pdf_service.scale_pdf.return_value.__enter__.return_value = self.FILE_PATH
 
-        actual = self.sut.scale_pdf_by_factor(
+        actual = await self.sut.scale_pdf_by_factor(
             self.telegram_update, self.telegram_context
         )
 
@@ -109,36 +123,39 @@ class TestPDFProcessor(
             self.TELEGRAM_DOCUMENT_ID, scale_data
         )
 
-    def test_scale_pdf_by_factor_invalid_value(self) -> None:
+    @pytest.mark.asyncio
+    async def test_scale_pdf_by_factor_invalid_value(self) -> None:
         self.telegram_message.text = "clearly_invalid"
 
-        actual = self.sut.scale_pdf_by_factor(
+        actual = await self.sut.scale_pdf_by_factor(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == self.WAIT_SCALE_FACTOR
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self.pdf_service.scale_pdf.assert_not_called()
 
-    def test_scale_pdf_by_factor_back_option(self) -> None:
+    @pytest.mark.asyncio
+    async def test_scale_pdf_by_factor_back_option(self) -> None:
         self.telegram_message.text = "Back"
 
-        actual = self.sut.scale_pdf_by_factor(
+        actual = await self.sut.scale_pdf_by_factor(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == self.WAIT_SCALE_TYPE
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self.pdf_service.scale_pdf.assert_not_called()
 
-    def test_scale_pdf_to_dimension(self) -> None:
+    @pytest.mark.asyncio
+    async def test_scale_pdf_to_dimension(self) -> None:
         scale_text = "10 20"
         scale_data = ScaleData.from_string(scale_text)
 
         self.telegram_message.text = scale_text
         self.pdf_service.scale_pdf.return_value.__enter__.return_value = self.FILE_PATH
 
-        actual = self.sut.scale_pdf_to_dimension(
+        actual = await self.sut.scale_pdf_to_dimension(
             self.telegram_update, self.telegram_context
         )
 
@@ -147,24 +164,26 @@ class TestPDFProcessor(
             self.TELEGRAM_DOCUMENT_ID, scale_data
         )
 
-    def test_scale_pdf_to_dimension_invalid_value(self) -> None:
+    @pytest.mark.asyncio
+    async def test_scale_pdf_to_dimension_invalid_value(self) -> None:
         self.telegram_message.text = "clearly_invalid"
 
-        actual = self.sut.scale_pdf_to_dimension(
+        actual = await self.sut.scale_pdf_to_dimension(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == self.WAIT_SCALE_DIMENSION
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self.pdf_service.scale_pdf.assert_not_called()
 
-    def test_scale_pdf_to_dimension_back_option(self) -> None:
+    @pytest.mark.asyncio
+    async def test_scale_pdf_to_dimension_back_option(self) -> None:
         self.telegram_message.text = "Back"
 
-        actual = self.sut.scale_pdf_to_dimension(
+        actual = await self.sut.scale_pdf_to_dimension(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == self.WAIT_SCALE_TYPE
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self.pdf_service.scale_pdf.assert_not_called()

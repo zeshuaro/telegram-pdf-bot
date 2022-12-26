@@ -30,12 +30,14 @@ class TestCLIService:
     def teardown_method(self) -> None:
         self.popen_patcher.stop()
 
-    def test_compress_pdf(self) -> None:
+    @pytest.mark.asyncio
+    async def test_compress_pdf(self) -> None:
         self.process.returncode = 0
         self.sut.compress_pdf(self.INPUT_PATH, self.OUTPUT_PATH)
         self._assert_compress_command()
 
-    def test_compress_pdf_error(self) -> None:
+    @pytest.mark.asyncio
+    async def test_compress_pdf_error(self) -> None:
         self.process.returncode = 1
 
         with pytest.raises(CLIServiceError):
@@ -43,12 +45,14 @@ class TestCLIService:
 
         self._assert_compress_command()
 
-    def test_crop_pdf_by_percentage(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_percentage(self) -> None:
         self.process.returncode = 0
         self.sut.crop_pdf_by_percentage(self.INPUT_PATH, self.OUTPUT_PATH, self.PERCENT)
         self._assert_crop_pdf_percentage_command()
 
-    def test_crop_pdf_by_percentage_error(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_percentage_error(self) -> None:
         self.process.returncode = 1
 
         with pytest.raises(CLIServiceError):
@@ -58,14 +62,16 @@ class TestCLIService:
 
         self._assert_crop_pdf_percentage_command()
 
-    def test_crop_pdf_by_margin_size(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_margin_size(self) -> None:
         self.process.returncode = 0
         self.sut.crop_pdf_by_margin_size(
             self.INPUT_PATH, self.OUTPUT_PATH, self.MARGIN_SIZE
         )
         self._assert_crop_pdf_margin_size_command()
 
-    def test_crop_pdf_by_margin_size_error(self) -> None:
+    @pytest.mark.asyncio
+    async def test_crop_pdf_by_margin_size_error(self) -> None:
         self.process.returncode = 1
 
         with pytest.raises(CLIServiceError):
@@ -75,12 +81,14 @@ class TestCLIService:
 
         self._assert_crop_pdf_margin_size_command()
 
-    def test_extract_pdf_images(self) -> None:
+    @pytest.mark.asyncio
+    async def test_extract_pdf_images(self) -> None:
         self.process.returncode = 0
         self.sut.extract_pdf_images(self.INPUT_PATH, self.OUTPUT_PATH)
         self._assert_get_pdf_images_command()
 
-    def test_extract_pdf_images_error(self) -> None:
+    @pytest.mark.asyncio
+    async def test_extract_pdf_images_error(self) -> None:
         self.process.returncode = 1
 
         with pytest.raises(CLIServiceError):

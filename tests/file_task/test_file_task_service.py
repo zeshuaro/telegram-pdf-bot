@@ -1,3 +1,5 @@
+import pytest
+
 from pdf_bot.file_task import FileTaskService
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramTestMixin
@@ -12,14 +14,20 @@ class TestFileTaskService(LanguageServiceTestMixin, TelegramTestMixin):
         self.language_service = self.mock_language_service()
         self.sut = FileTaskService(self.language_service)
 
-    def test_ask_pdf_task(self) -> None:
-        actual = self.sut.ask_pdf_task(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_pdf_task(self) -> None:
+        actual = await self.sut.ask_pdf_task(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_PDF_TASK
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
 
-    def test_ask_image_task(self) -> None:
-        actual = self.sut.ask_image_task(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_image_task(self) -> None:
+        actual = await self.sut.ask_image_task(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_IMAGE_TASK
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()

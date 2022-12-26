@@ -1,4 +1,4 @@
-from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
+from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, filters
 
 from pdf_bot.consts import TEXT_FILTER
 from pdf_bot.telegram_internal import TelegramService
@@ -20,12 +20,13 @@ class WatermarkHandlers:
             states={
                 WatermarkService.WAIT_SOURCE_PDF: [
                     MessageHandler(
-                        Filters.document, self.watermark_service.check_source_pdf
+                        filters.Document.PDF, self.watermark_service.check_source_pdf
                     )
                 ],
                 WatermarkService.WAIT_WATERMARK_PDF: [
                     MessageHandler(
-                        Filters.document, self.watermark_service.add_watermark_to_pdf
+                        filters.Document.PDF,
+                        self.watermark_service.add_watermark_to_pdf,
                     )
                 ],
             },
@@ -34,5 +35,4 @@ class WatermarkHandlers:
                 MessageHandler(TEXT_FILTER, self.watermark_service.check_text),
             ],
             allow_reentry=True,
-            run_async=True,
         )

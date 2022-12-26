@@ -1,5 +1,5 @@
-from contextlib import contextmanager
-from typing import Generator
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 from unittest.mock import MagicMock
 
 from pdf_bot.analytics import TaskType
@@ -19,10 +19,10 @@ class MockProcessor(AbstractPDFProcessor):
     def should_process_back_option(self) -> bool:
         return True
 
-    @contextmanager
-    def process_file_task(
+    @asynccontextmanager
+    async def process_file_task(
         self, _file_id: str, _message_text: str
-    ) -> Generator[str, None, None]:
+    ) -> AsyncGenerator[str, None]:
         yield "process_result"
 
 

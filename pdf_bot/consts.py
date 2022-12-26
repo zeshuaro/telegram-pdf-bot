@@ -1,11 +1,11 @@
 import gettext
 
-from telegram.ext import Filters
+from telegram.ext import filters
 
 t = gettext.translation("pdf_bot", localedir="locale", languages=["en_GB"])
 _ = t.gettext
 
-TEXT_FILTER = Filters.text & ~Filters.command
+TEXT_FILTER = filters.TEXT & ~filters.COMMAND
 
 # Bot constants
 CHANNEL_NAME = "pdf2botdev"

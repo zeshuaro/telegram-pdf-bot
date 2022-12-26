@@ -2,7 +2,7 @@ import gettext
 from typing import Callable
 
 from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 from pdf_bot.language.language_repository import LanguageRepository
 
@@ -56,7 +56,9 @@ class LanguageService:
     def __init__(self, language_repository: LanguageRepository) -> None:
         self.language_repository = language_repository
 
-    def send_language_options(self, update: Update, context: CallbackContext) -> None:
+    async def send_language_options(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> None:
         user_lang = self.get_user_language(update, context)
         btns = [
             InlineKeyboardButton(key, callback_data=key)
@@ -70,11 +72,13 @@ class LanguageService:
         reply_markup = InlineKeyboardMarkup(keyboard)
 
         _ = self.set_app_language(update, context)
-        update.effective_message.reply_text(  # type: ignore
+        await update.message.reply_text(
             _("Select your language"), reply_markup=reply_markup
         )
 
-    def get_user_language(self, update: Update, context: CallbackContext) -> str:
+    def get_user_language(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str:
         if context.user_data is not None:
             lang: str | None = context.user_data.get(self.LANGUAGE)
             if lang is not None:
@@ -92,10 +96,10 @@ class LanguageService:
             context.user_data[self.LANGUAGE] = lang
         return lang
 
-    def update_user_language(
+    async def update_user_language(
         self,
         update: Update,
-        context: CallbackContext,
+        context: ContextTypes.DEFAULT_TYPE,
         query: CallbackQuery,
     ) -> None:
         lang_code = self.LANGUAGE_CODES.get(query.data)
@@ -105,12 +109,12 @@ class LanguageService:
         self.language_repository.upsert_language(query.from_user.id, lang_code)
         context.user_data[self.LANGUAGE] = lang_code  # type: ignore
         _ = self.set_app_language(update, context)
-        query.message.edit_text(
+        await query.message.edit_text(
             _("Your language has been set to {language}").format(language=query.data)
         )
 
     def set_app_language(
-        self, update: Update, context: CallbackContext
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> Callable[[str], str]:
         lang = self.get_user_language(update, context)
         t = gettext.translation("pdf_bot", localedir="locale", languages=[lang])

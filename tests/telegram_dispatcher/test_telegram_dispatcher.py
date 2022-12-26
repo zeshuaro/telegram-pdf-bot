@@ -1,8 +1,8 @@
 from unittest.mock import ANY, MagicMock, patch
 
 import pytest
-from telegram.error import BadRequest, Unauthorized
-from telegram.ext import Dispatcher
+from telegram.error import BadRequest, Forbidden
+from telegram.ext import Application
 
 from pdf_bot.command.command_service import CommandService
 from pdf_bot.compare import CompareHandlers
@@ -28,7 +28,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
 
     def setup_method(self) -> None:
         super().setup_method()
-        self.dispatcher = MagicMock(spec=Dispatcher)
+        self.app = MagicMock(spec=Application)
         self.command_service = MagicMock(spec=CommandService)
         self.compare_handlers = MagicMock(spec=CompareHandlers)
         self.feedback_handler = MagicMock(spec=FeedbackHandler)
@@ -60,87 +60,109 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
     def teardown_method(self) -> None:
         self.os_patcher.stop()
 
-    def test_setup(self) -> None:
+    @pytest.mark.asyncio
+    async def test_setup(self) -> None:
         self.os.environ = {"ADMIN_TELEGRAM_ID": 123}
 
-        self.sut.setup(self.dispatcher)
+        self.sut.setup(self.app)
 
-        assert self.dispatcher.add_handler.call_count == 17
-        self.dispatcher.add_error_handler.assert_called_once()
+        assert self.app.add_handler.call_count == 17
+        self.app.add_error_handler.assert_called_once()
 
-    def test_setup_without_admin_id(self) -> None:
+    @pytest.mark.asyncio
+    async def test_setup_without_admin_id(self) -> None:
         self.os.environ = {}
 
-        self.sut.setup(self.dispatcher)
+        self.sut.setup(self.app)
 
-        assert self.dispatcher.add_handler.call_count == 16
-        self.dispatcher.add_error_handler.assert_called_once()
+        assert self.app.add_handler.call_count == 16
+        self.app.add_error_handler.assert_called_once()
 
-    def test_process_callback_query_set_language(self) -> None:
+    @pytest.mark.asyncio
+    async def test_process_callback_query_set_language(self) -> None:
         self.telegram_callback_query.data = self.SET_LANGUAGE
 
-        self.sut.process_callback_query(self.telegram_update, self.telegram_context)
+        await self.sut.process_callback_query(
+            self.telegram_update, self.telegram_context
+        )
 
         self.language_service.send_language_options.assert_called_once_with(
             self.telegram_update, self.telegram_context
         )
         self.telegram_callback_query.answer.assert_called_once()
 
-    def test_process_callback_query_update_language(self) -> None:
+    @pytest.mark.asyncio
+    async def test_process_callback_query_update_language(self) -> None:
         self.telegram_callback_query.data = self.LANGUAGE
 
-        self.sut.process_callback_query(self.telegram_update, self.telegram_context)
+        await self.sut.process_callback_query(
+            self.telegram_update, self.telegram_context
+        )
 
         self.language_service.update_user_language.assert_called_once_with(
             self.telegram_update, self.telegram_context, self.telegram_callback_query
         )
         self.telegram_callback_query.answer.assert_called_once()
 
-    def test_process_callback_query_payment(self) -> None:
+    @pytest.mark.asyncio
+    async def test_process_callback_query_payment(self) -> None:
         self.telegram_callback_query.data = self.PAYMENT
 
-        self.sut.process_callback_query(self.telegram_update, self.telegram_context)
+        await self.sut.process_callback_query(
+            self.telegram_update, self.telegram_context
+        )
 
         self.payment_service.send_support_options.assert_called_once_with(
             self.telegram_update, self.telegram_context, self.telegram_callback_query
         )
         self.telegram_callback_query.answer.assert_called_once()
 
-    def test_process_callback_query_payment_invoice(self) -> None:
+    @pytest.mark.asyncio
+    async def test_process_callback_query_payment_invoice(self) -> None:
         self.telegram_callback_query.data = self.PAYMENT_INVOICE
 
-        self.sut.process_callback_query(self.telegram_update, self.telegram_context)
+        await self.sut.process_callback_query(
+            self.telegram_update, self.telegram_context
+        )
 
         self.payment_service.send_invoice.assert_called_once_with(
             self.telegram_update, self.telegram_context, self.telegram_callback_query
         )
         self.telegram_callback_query.answer.assert_called_once()
 
-    def test_process_callback_query_answer_outdated(self) -> None:
+    @pytest.mark.asyncio
+    async def test_process_callback_query_answer_outdated(self) -> None:
         self.telegram_callback_query.answer.side_effect = BadRequest("Query is too old")
-        self.sut.process_callback_query(self.telegram_update, self.telegram_context)
+        await self.sut.process_callback_query(
+            self.telegram_update, self.telegram_context
+        )
         self.telegram_context.bot.send_message.assert_called_once_with(
             self.TELEGRAM_QUERY_USER_ID, ANY
         )
 
-    def test_process_callback_query_answer_unknown_bad_request(self) -> None:
+    @pytest.mark.asyncio
+    async def test_process_callback_query_answer_unknown_bad_request(self) -> None:
         self.telegram_callback_query.answer.side_effect = BadRequest("Unknown error")
         with pytest.raises(BadRequest):
-            self.sut.process_callback_query(self.telegram_update, self.telegram_context)
+            await self.sut.process_callback_query(
+                self.telegram_update, self.telegram_context
+            )
             self.telegram_context.bot.send_message.assert_not_called()
 
-    def test_error_callback_known_error(self) -> None:
-        self.telegram_context.error = Unauthorized("Error")
-        self.sut.error_callback(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_error_callback_known_error(self) -> None:
+        self.telegram_context.error = Forbidden("Error")
+        await self.sut.error_callback(self.telegram_update, self.telegram_context)
 
-    def test_error_callback_unknown_error(self) -> None:
+    @pytest.mark.asyncio
+    async def test_error_callback_unknown_error(self) -> None:
         exception = RuntimeError()
         self.telegram_context.error = exception
 
         with patch(
             "pdf_bot.telegram_dispatcher.telegram_dispatcher.sentry_sdk"
         ) as sentry_sdk:
-            self.sut.error_callback(self.telegram_update, self.telegram_context)
+            await self.sut.error_callback(self.telegram_update, self.telegram_context)
 
-            self.telegram_update.effective_message.reply_text.assert_called_once()
+            self.telegram_update.message.reply_text.assert_called_once()
             sentry_sdk.capture_exception.assert_called_once_with(exception)

@@ -1,4 +1,4 @@
-from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
+from telegram.ext import CommandHandler, ConversationHandler, MessageHandler, filters
 
 from pdf_bot.consts import TEXT_FILTER
 from pdf_bot.merge.merge_service import MergeService
@@ -17,7 +17,7 @@ class MergeHandlers:
             entry_points=[CommandHandler("merge", self.merge_service.ask_first_pdf)],
             states={
                 MergeService.WAIT_MERGE_PDF: [
-                    MessageHandler(Filters.document, self.merge_service.check_pdf),
+                    MessageHandler(filters.Document.PDF, self.merge_service.check_pdf),
                     MessageHandler(TEXT_FILTER, self.merge_service.check_text),
                 ],
             },
@@ -25,5 +25,4 @@ class MergeHandlers:
                 CommandHandler("cancel", self.telegram_service.cancel_conversation)
             ],
             allow_reentry=True,
-            run_async=True,
         )

@@ -6,7 +6,7 @@ from dependency_injector import containers, providers
 from dotenv import load_dotenv
 from requests import Session
 from slack_sdk import WebClient
-from telegram.ext import Updater
+from telegram.ext import Application as TelegramApp
 
 from pdf_bot.account import AccountRepository, AccountService
 from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
@@ -53,11 +53,13 @@ TIMEOUT = 45
 
 
 class Core(containers.DeclarativeContainer):
-    updater = providers.Resource(
-        Updater,
-        token=TELEGRAM_TOKEN,
-        request_kwargs={"connect_timeout": TIMEOUT, "read_timeout": TIMEOUT},
-        workers=8,
+    telegram_app = providers.Object(
+        TelegramApp.builder()
+        .token(TELEGRAM_TOKEN)  # type: ignore
+        .concurrent_updates(True)
+        .connect_timeout(TIMEOUT)
+        .read_timeout(TIMEOUT)
+        .build()
     )
 
 
@@ -107,7 +109,7 @@ class Services(containers.DeclarativeContainer):
         io_service=io,
         language_service=language,
         analytics_service=analytics,
-        updater=core.updater,
+        telegram_app=core.telegram_app,
     )
 
     image = providers.Singleton(

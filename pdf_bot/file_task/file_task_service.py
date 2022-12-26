@@ -1,7 +1,7 @@
 from gettext import gettext as _
 
 from telegram import ReplyKeyboardMarkup, Update
-from telegram.ext import CallbackContext
+from telegram.ext import ContextTypes
 
 from pdf_bot.consts import CANCEL
 from pdf_bot.language import LanguageService
@@ -54,16 +54,20 @@ class FileTaskService:
     def __init__(self, language_service: LanguageService) -> None:
         self.language_service = language_service
 
-    def ask_pdf_task(self, update: Update, context: CallbackContext) -> str:
-        self._reply_with_tasks(update, context, self.PDF_TASKS)
+    async def ask_pdf_task(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str:
+        await self._reply_with_tasks(update, context, self.PDF_TASKS)
         return self.WAIT_PDF_TASK
 
-    def ask_image_task(self, update: Update, context: CallbackContext) -> str:
-        self._reply_with_tasks(update, context, self.IMAGE_TASKS)
+    async def ask_image_task(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str:
+        await self._reply_with_tasks(update, context, self.IMAGE_TASKS)
         return self.WAIT_IMAGE_TASK
 
-    def _reply_with_tasks(
-        self, update: Update, context: CallbackContext, tasks: list[str]
+    async def _reply_with_tasks(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE, tasks: list[str]
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
         translated_tasks = [_(x) for x in tasks]
@@ -76,6 +80,6 @@ class FileTaskService:
         reply_markup = ReplyKeyboardMarkup(
             keyboard, resize_keyboard=True, one_time_keyboard=True
         )
-        update.effective_message.reply_text(  # type: ignore
+        await update.message.reply_text(
             _("Select the task that you'll like to perform"), reply_markup=reply_markup
         )

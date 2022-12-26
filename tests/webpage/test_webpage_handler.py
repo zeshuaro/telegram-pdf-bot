@@ -1,6 +1,8 @@
 from typing import Any
 from unittest.mock import MagicMock
 
+import pytest
+
 from pdf_bot.analytics import TaskType
 from pdf_bot.webpage import WebpageHandler, WebpageService, WebpageServiceError
 from tests.language import LanguageServiceTestMixin
@@ -28,8 +30,9 @@ class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
             self.webpage_service, self.language_service, self.telegram_service
         )
 
-    def test_url_to_pdf(self) -> None:
-        self.sut.url_to_pdf(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_url_to_pdf(self) -> None:
+        await self.sut.url_to_pdf(self.telegram_update, self.telegram_context)
 
         self.telegram_user_data.__setitem__.assert_called_once_with(
             self.URLS, {self.URL}
@@ -42,10 +45,11 @@ class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
             TaskType.url_to_pdf,
         )
 
-    def test_url_to_pdf_webpage_service_error(self) -> None:
+    @pytest.mark.asyncio
+    async def test_url_to_pdf_webpage_service_error(self) -> None:
         self.webpage_service.url_to_pdf.side_effect = WebpageServiceError()
 
-        self.sut.url_to_pdf(self.telegram_update, self.telegram_context)
+        await self.sut.url_to_pdf(self.telegram_update, self.telegram_context)
 
         self.telegram_user_data.__setitem__.assert_called_once_with(
             self.URLS, {self.URL}
@@ -53,11 +57,12 @@ class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
         self.webpage_service.url_to_pdf.assert_called_once_with(self.URL)
         self.telegram_service.send_file.assert_not_called()
 
-    def test_url_to_pdf_url_set_exists(self) -> None:
+    @pytest.mark.asyncio
+    async def test_url_to_pdf_url_set_exists(self) -> None:
         user_data: dict[str, Any] = {self.URLS: set()}
         self.telegram_user_data.__contains__.side_effect = user_data.__contains__
 
-        self.sut.url_to_pdf(self.telegram_update, self.telegram_context)
+        await self.sut.url_to_pdf(self.telegram_update, self.telegram_context)
 
         self.telegram_user_data.__setitem__.assert_not_called()
         self.webpage_service.url_to_pdf.assert_called_once_with(self.URL)
@@ -68,11 +73,12 @@ class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
             TaskType.url_to_pdf,
         )
 
-    def test_url_to_pdf_url_in_process(self) -> None:
+    @pytest.mark.asyncio
+    async def test_url_to_pdf_url_in_process(self) -> None:
         user_data = {self.URLS: {self.URL}}
         self.telegram_context.user_data = user_data
 
-        self.sut.url_to_pdf(self.telegram_update, self.telegram_context)
+        await self.sut.url_to_pdf(self.telegram_update, self.telegram_context)
 
         self.telegram_user_data.__setitem__.assert_not_called()
         self.webpage_service.url_to_pdf.assert_not_called()

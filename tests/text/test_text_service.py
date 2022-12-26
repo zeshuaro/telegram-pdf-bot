@@ -1,5 +1,6 @@
 from unittest.mock import MagicMock
 
+import pytest
 from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -41,35 +42,45 @@ class TestTextService(
             self.language_service,
         )
 
-    def test_ask_pdf_text(self) -> None:
-        actual = self.sut.ask_pdf_text(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_pdf_text(self) -> None:
+        actual = await self.sut.ask_pdf_text(
+            self.telegram_update, self.telegram_context
+        )
         assert actual == self.WAIT_TEXT
         self.telegram_service.reply_with_cancel_markup.assert_called_once()
 
-    def test_ask_pdf_font(self) -> None:
-        actual = self.sut.ask_pdf_font(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_pdf_font(self) -> None:
+        actual = await self.sut.ask_pdf_font(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_FONT
         self.telegram_context.user_data.__setitem__.assert_called_once_with(
             self.TEXT_KEY, self.TELEGRAM_TEXT
         )
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
 
-    def test_ask_pdf_font_cancel_option(self) -> None:
+    @pytest.mark.asyncio
+    async def test_ask_pdf_font_cancel_option(self) -> None:
         self.telegram_message.text = "Cancel"
 
-        actual = self.sut.ask_pdf_font(self.telegram_update, self.telegram_context)
+        actual = await self.sut.ask_pdf_font(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == ConversationHandler.END
         self.telegram_context.user_data.__setitem__.assert_not_called()
         self.telegram_service.cancel_conversation.assert_called_once()
 
-    def test_check_text(self) -> None:
-        self.pdf_service.create_pdf_from_text.return_value.__enter__.return_value = (
+    @pytest.mark.asyncio
+    async def test_check_text(self) -> None:
+        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = (
             self.FILE_PATH
         )
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.text_repository.get_font.assert_called_once_with(self.TELEGRAM_TEXT)
@@ -86,10 +97,11 @@ class TestTextService(
             TaskType.text_to_pdf,
         )
 
-    def test_check_text_invalid_user_data(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramServiceError()
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.text_repository.get_font.assert_called_once_with(self.TELEGRAM_TEXT)
@@ -99,10 +111,11 @@ class TestTextService(
         self.pdf_service.create_pdf_from_text.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    def test_check_text_unknown_font(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_unknown_font(self) -> None:
         self.text_repository.get_font.return_value = None
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_FONT
         self.text_repository.get_font.assert_called_once_with(self.TELEGRAM_TEXT)
@@ -110,13 +123,14 @@ class TestTextService(
         self.pdf_service.create_pdf_from_text.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    def test_check_text_skip_option(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_skip_option(self) -> None:
         self.telegram_message.text = self.SKIP
-        self.pdf_service.create_pdf_from_text.return_value.__enter__.return_value = (
+        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = (
             self.FILE_PATH
         )
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.text_repository.get_font.assert_not_called()
@@ -133,10 +147,11 @@ class TestTextService(
             TaskType.text_to_pdf,
         )
 
-    def test_check_text_cancel_option(self) -> None:
+    @pytest.mark.asyncio
+    async def test_check_text_cancel_option(self) -> None:
         self.telegram_message.text = "Cancel"
 
-        actual = self.sut.check_text(self.telegram_update, self.telegram_context)
+        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.text_repository.get_font.assert_not_called()

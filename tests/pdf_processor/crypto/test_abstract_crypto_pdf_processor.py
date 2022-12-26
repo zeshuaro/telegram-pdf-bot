@@ -1,6 +1,8 @@
-from contextlib import contextmanager
-from typing import Generator
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 from unittest.mock import MagicMock
+
+import pytest
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService
@@ -25,10 +27,10 @@ class MockAbstractCryptoPDFProcessor(AbstractCryptoPDFProcessor):
     def task_type(self) -> TaskType:
         return TaskType.decrypt_pdf
 
-    @contextmanager
-    def process_file_task(
+    @asynccontextmanager
+    async def process_file_task(
         self, _file_id: str, _password: str
-    ) -> Generator[str, None, None]:
+    ) -> AsyncGenerator[str, None]:
         yield "result"
 
 
@@ -56,7 +58,10 @@ class TestAbstractCryptoService(
         actual = self.sut.should_process_back_option
         assert actual is True
 
-    def test_ask_password(self) -> None:
-        actual = self.sut.ask_password(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_password(self) -> None:
+        actual = await self.sut.ask_password(
+            self.telegram_update, self.telegram_context
+        )
         assert actual == MockAbstractCryptoPDFProcessor.STATE
         self.telegram_service.reply_with_back_markup.assert_called_once()

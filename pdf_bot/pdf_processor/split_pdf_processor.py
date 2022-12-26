@@ -1,8 +1,9 @@
-from contextlib import contextmanager
-from typing import Generator
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
-from telegram import Message, ParseMode, Update
-from telegram.ext import CallbackContext
+from telegram import Message, Update
+from telegram.constants import ParseMode
+from telegram.ext import ContextTypes
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK
@@ -21,14 +22,16 @@ class SplitPDFProcessor(AbstractPDFProcessor):
     def should_process_back_option(self) -> bool:
         return False
 
-    @contextmanager
-    def process_file_task(
+    @asynccontextmanager
+    async def process_file_task(
         self, file_id: str, message_text: str
-    ) -> Generator[str, None, None]:
-        with self.pdf_service.split_pdf(file_id, message_text) as path:
+    ) -> AsyncGenerator[str, None]:
+        async with self.pdf_service.split_pdf(file_id, message_text) as path:
             yield path
 
-    def ask_split_range(self, update: Update, context: CallbackContext) -> str:
+    async def ask_split_range(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str:
         _ = self.language_service.set_app_language(update, context)
 
         # "{intro}\n\n"
@@ -99,26 +102,28 @@ class SplitPDFProcessor(AbstractPDFProcessor):
                 range="2::-1", pages="2 1 0"
             ),
         )
-        self.telegram_service.reply_with_back_markup(
-            update, context, text, parse_mode=ParseMode.HTML  # type: ignore
+        await self.telegram_service.reply_with_back_markup(
+            update, context, text, parse_mode=ParseMode.HTML
         )
 
         return self.WAIT_SPLIT_RANGE
 
-    def split_pdf(self, update: Update, context: CallbackContext) -> str | int:
+    async def split_pdf(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        message: Message = update.message
         text = message.text
 
         if text == _(BACK):
-            return self.file_task_service.ask_pdf_task(update, context)
+            return await self.file_task_service.ask_pdf_task(update, context)
 
         if not self.pdf_service.split_range_valid(text):
-            self.telegram_service.reply_with_back_markup(
+            await self.telegram_service.reply_with_back_markup(
                 update,
                 context,
                 _("The range is invalid, please try again"),
             )
             return self.WAIT_SPLIT_RANGE
 
-        return self.process_file(update, context)
+        return await self.process_file(update, context)

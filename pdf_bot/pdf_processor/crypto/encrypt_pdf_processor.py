@@ -1,6 +1,6 @@
-from contextlib import contextmanager
+from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import Generator
+from typing import AsyncGenerator
 
 from pdf_bot.analytics import TaskType
 
@@ -20,9 +20,9 @@ class EncryptPDFProcessor(AbstractCryptoPDFProcessor):
     def task_type(self) -> TaskType:
         return TaskType.encrypt_pdf
 
-    @contextmanager
-    def process_file_task(
+    @asynccontextmanager
+    async def process_file_task(
         self, file_id: str, message_text: str
-    ) -> Generator[str, None, None]:
-        with self.pdf_service.encrypt_pdf(file_id, message_text) as path:
+    ) -> AsyncGenerator[str, None]:
+        async with self.pdf_service.encrypt_pdf(file_id, message_text) as path:
             yield path

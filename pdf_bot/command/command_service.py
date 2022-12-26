@@ -1,7 +1,7 @@
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
-from telegram.chataction import ChatAction
-from telegram.error import Unauthorized
-from telegram.ext import CallbackContext
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.constants import ChatAction, ParseMode
+from telegram.error import Forbidden
+from telegram.ext import ContextTypes
 
 from pdf_bot.account.account_service import AccountService
 from pdf_bot.consts import CHANNEL_NAME, PAYMENT, SET_LANG
@@ -15,14 +15,16 @@ class CommandService:
         self.account_service = account_service
         self.language_service = language_service
 
-    def send_start_message(self, update: Update, context: CallbackContext) -> None:
-        update.effective_message.reply_chat_action(ChatAction.TYPING)  # type: ignore
+    async def send_start_message(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> None:
+        await update.message.reply_chat_action(ChatAction.TYPING)
 
         # Create the user entity in Datastore
-        self.account_service.create_user(update.effective_message.from_user)  # type: ignore
+        self.account_service.create_user(update.message.from_user)
 
         _ = self.language_service.set_app_language(update, context)
-        update.effective_message.reply_text(  # type: ignore
+        await update.message.reply_text(
             "{welcome}\n\n<b>{key_features}</b>\n"
             "{features_summary}\n"
             "{pdf_from_text}\n"
@@ -51,7 +53,9 @@ class CommandService:
             parse_mode=ParseMode.HTML,
         )
 
-    def send_help_message(self, update: Update, context: CallbackContext) -> None:
+    async def send_help_message(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> None:
         _ = self.language_service.set_app_language(update, context)
         keyboard = [
             [InlineKeyboardButton(_("Set Language 🌎"), callback_data=SET_LANG)],
@@ -62,7 +66,7 @@ class CommandService:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
-        update.effective_message.reply_text(  # type: ignore
+        await update.message.reply_text(
             "{desc_1}\n{pdf_files}\n{images}\n{webpage_links}\n\n{desc_2}\n"
             "{compare_desc}\n{merge_desc}\n{image_desc}\n{text_desc}\n"
             "{watermark_desc}".format(
@@ -94,12 +98,18 @@ class CommandService:
             reply_markup=reply_markup,
         )
 
-    def send_message_to_user(self, update: Update, context: CallbackContext) -> None:
-        user_id = int(context.args[0])  # type: ignore
-        message = " ".join(context.args[1:])  # type: ignore
+    async def send_message_to_user(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> None:
+        args = context.args
+        if args is not None:
+            user_id = int(args[0])
+            message = " ".join(args[1:])
 
-        try:
-            context.bot.send_message(user_id, message)
-            update.effective_message.reply_text("Message sent")  # type: ignore
-        except Unauthorized:
-            update.effective_message.reply_text("User has blocked the bot")  # type: ignore
+            try:
+                await context.bot.send_message(user_id, message)
+                await update.message.reply_text("Message sent")
+            except Forbidden:
+                await update.message.reply_text("User has blocked the bot")
+        else:
+            await update.message.reply_text(f"Invalid arguments: {args}")

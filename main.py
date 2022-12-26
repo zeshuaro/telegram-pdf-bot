@@ -4,7 +4,7 @@ import sentry_sdk
 from dependency_injector.wiring import Provide, inject
 from dotenv import load_dotenv
 from loguru import logger
-from telegram.ext import Updater
+from telegram.ext import Application as TelegramApp
 
 import pdf_bot.logging as pdf_bot_logging
 from pdf_bot.containers import Application
@@ -21,7 +21,9 @@ TIMEOUT = 45
 
 @inject
 def main(
-    updater: Updater = Provide[Application.core.updater],  # pylint: disable=no-member
+    telegram_app: TelegramApp = Provide[
+        Application.core.telegram_app  # pylint: disable=no-member
+    ],
     telegram_dispatcher: TelegramDispatcher = Provide[
         Application.telegram_bot.dispatcher  # pylint: disable=no-member
     ],
@@ -33,9 +35,9 @@ def main(
     if SENTRY_DSN is not None:
         sentry_sdk.init(SENTRY_DSN, traces_sample_rate=1.0)
 
-    telegram_dispatcher.setup(updater.dispatcher)  # type: ignore
+    telegram_dispatcher.setup(telegram_app)
     if APP_URL is not None:
-        updater.start_webhook(
+        telegram_app.run_webhook(
             listen="0.0.0.0",
             port=PORT,
             url_path=TELEGRAM_TOKEN,
@@ -43,10 +45,8 @@ def main(
         )
         logger.info("Bot started webhook")
     else:
-        updater.start_polling()
+        telegram_app.run_polling()
         logger.info("Bot started polling")
-
-    updater.idle()
 
 
 if __name__ == "__main__":

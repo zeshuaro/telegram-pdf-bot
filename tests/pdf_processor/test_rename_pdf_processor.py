@@ -1,5 +1,6 @@
 from unittest.mock import MagicMock
 
+import pytest
 from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -42,10 +43,13 @@ class TestRenamePDFProcessor(
         actual = self.sut.should_process_back_option
         assert actual is False
 
-    def test_process_file_task(self) -> None:
-        self.pdf_service.rename_pdf.return_value.__enter__.return_value = self.FILE_PATH
+    @pytest.mark.asyncio
+    async def test_process_file_task(self) -> None:
+        self.pdf_service.rename_pdf.return_value.__aenter__.return_value = (
+            self.FILE_PATH
+        )
 
-        with self.sut.process_file_task(
+        async with self.sut.process_file_task(
             self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
@@ -53,35 +57,43 @@ class TestRenamePDFProcessor(
                 self.TELEGRAM_DOCUMENT_ID, f"{self.TELEGRAM_TEXT}.pdf"
             )
 
-    def test_ask_new_file_name(self) -> None:
-        actual = self.sut.ask_new_file_name(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_new_file_name(self) -> None:
+        actual = await self.sut.ask_new_file_name(
+            self.telegram_update, self.telegram_context
+        )
 
         assert actual == self.WAIT_NEW_FILE_NAME
         self.telegram_service.reply_with_back_markup.assert_called_once()
 
-    def test_rename_pdf(self) -> None:
-        self.pdf_service.rename_pdf.return_value.__enter__.return_value = self.FILE_PATH
+    @pytest.mark.asyncio
+    async def test_rename_pdf(self) -> None:
+        self.pdf_service.rename_pdf.return_value.__aenter__.return_value = (
+            self.FILE_PATH
+        )
 
-        actual = self.sut.rename_pdf(self.telegram_update, self.telegram_context)
+        actual = await self.sut.rename_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.pdf_service.rename_pdf.assert_called_once_with(
             self.TELEGRAM_DOCUMENT_ID, f"{self.TELEGRAM_TEXT}.pdf"
         )
 
-    def test_rename_pdf_invalid_file_name(self) -> None:
+    @pytest.mark.asyncio
+    async def test_rename_pdf_invalid_file_name(self) -> None:
         self.telegram_message.text = "invalid/file?name"
 
-        actual = self.sut.rename_pdf(self.telegram_update, self.telegram_context)
+        actual = await self.sut.rename_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_NEW_FILE_NAME
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self.pdf_service.rename_pdf.assert_not_called()
 
-    def test_rename_pdf_with_back_option(self) -> None:
+    @pytest.mark.asyncio
+    async def test_rename_pdf_with_back_option(self) -> None:
         self.telegram_message.text = "Back"
 
-        actual = self.sut.rename_pdf(self.telegram_update, self.telegram_context)
+        actual = await self.sut.rename_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_PDF_TASK
         self.pdf_service.rename_pdf.assert_not_called()

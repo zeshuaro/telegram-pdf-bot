@@ -1,11 +1,11 @@
 from telegram import Update
-from telegram.constants import MAX_FILESIZE_DOWNLOAD
+from telegram.constants import FileSizeLimit
 from telegram.ext import (
-    CallbackContext,
     CommandHandler,
+    ContextTypes,
     ConversationHandler,
-    Filters,
     MessageHandler,
+    filters,
 )
 
 from pdf_bot.consts import (
@@ -100,8 +100,10 @@ class FileHandlers:
     def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
             entry_points=[
-                MessageHandler(Filters.document, self.check_doc),
-                MessageHandler(Filters.photo, self.check_image),
+                MessageHandler(
+                    filters.Document.PDF | filters.Document.IMAGE, self.check_doc
+                ),
+                MessageHandler(filters.PHOTO, self.check_image),
             ],
             states={
                 FileTaskService.WAIT_PDF_TASK: [
@@ -158,14 +160,15 @@ class FileHandlers:
                 CommandHandler("cancel", self.telegram_service.cancel_conversation)
             ],
             allow_reentry=True,
-            run_async=True,
         )
 
-    def check_doc(self, update: Update, context: CallbackContext) -> str | int:
-        doc = update.effective_message.document  # type: ignore
-        if doc.file_size >= MAX_FILESIZE_DOWNLOAD:
+    async def check_doc(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> str | int:
+        doc = update.message.document
+        if doc.file_size >= FileSizeLimit.FILESIZE_DOWNLOAD:
             _ = self.language_service.set_app_language(update, context)
-            update.effective_message.reply_text(  # type: ignore
+            await update.message.reply_text(
                 "{desc_1}\n\n{desc_2}".format(
                     desc_1=_("Your file is too big for me to download and process"),
                     desc_2=_(
@@ -179,18 +182,20 @@ class FileHandlers:
 
         if doc.mime_type.startswith("image"):
             context.user_data[FILE_DATA] = doc.file_id, doc.file_name  # type: ignore
-            return self.file_task_service.ask_image_task(update, context)
+            return await self.file_task_service.ask_image_task(update, context)
         if not doc.mime_type.endswith("pdf"):
             return ConversationHandler.END
 
         context.user_data[FILE_DATA] = doc.file_id, doc.file_name  # type: ignore
-        return self.file_task_service.ask_pdf_task(update, context)
+        return await self.file_task_service.ask_pdf_task(update, context)
 
-    def check_image(self, update: Update, context: CallbackContext) -> int | str:
-        image = update.effective_message.photo[-1]  # type: ignore
-        if image.file_size >= MAX_FILESIZE_DOWNLOAD:
+    async def check_image(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> int | str:
+        image = update.message.photo[-1]
+        if image.file_size >= FileSizeLimit.FILESIZE_DOWNLOAD:
             _ = self.language_service.set_app_language(update, context)
-            update.effective_message.reply_text(  # type: ignore
+            await update.message.reply_text(
                 "{desc_1}\n\n{desc_2}".format(
                     desc_1=_("Your file is too big for me to download and process"),
                     desc_2=_(
@@ -203,53 +208,57 @@ class FileHandlers:
             return ConversationHandler.END
 
         context.user_data[FILE_DATA] = image.file_id, None  # type: ignore
-        return self.file_task_service.ask_image_task(update, context)
+        return await self.file_task_service.ask_image_task(update, context)
 
-    def check_doc_task(self, update: Update, context: CallbackContext) -> int | str:
+    async def check_doc_task(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> int | str:
         _ = self.language_service.set_app_language(update, context)
-        text = update.effective_message.text  # type: ignore
+        text = update.message.text
 
         if text == _(CROP):
-            return self.crop_service.ask_crop_type(update, context)
+            return await self.crop_service.ask_crop_type(update, context)
         if text == _(DECRYPT):
-            return self.decrypt_pdf_processor.ask_password(update, context)
+            return await self.decrypt_pdf_processor.ask_password(update, context)
         if text == _(ENCRYPT):
-            return self.encrypt_pdf_processor.ask_password(update, context)
+            return await self.encrypt_pdf_processor.ask_password(update, context)
         if text == _(TO_IMAGES):
-            return self.pdf_to_image_processor.process_file(update, context)
+            return await self.pdf_to_image_processor.process_file(update, context)
         if text == _(EXTRACT_IMAGE):
-            return self.extract_pdf_image_processor.process_file(update, context)
+            return await self.extract_pdf_image_processor.process_file(update, context)
         if text == _(PREVIEW):
-            return self.preview_pdf_processor.process_file(update, context)
+            return await self.preview_pdf_processor.process_file(update, context)
         if text == _(RENAME):
-            return self.rename_pdf_processor.ask_new_file_name(update, context)
+            return await self.rename_pdf_processor.ask_new_file_name(update, context)
         if text == _(ROTATE):
-            return self.rotate_pdf_processor.ask_degree(update, context)
+            return await self.rotate_pdf_processor.ask_degree(update, context)
         if text == _(SCALE):
-            return self.scale_pdf_processor.ask_scale_type(update, context)
+            return await self.scale_pdf_processor.ask_scale_type(update, context)
         if text == _(SPLIT):
-            return self.split_pdf_processor.ask_split_range(update, context)
+            return await self.split_pdf_processor.ask_split_range(update, context)
         if text == _(EXTRACT_TEXT):
-            return self.extract_pdf_text_processor.process_file(update, context)
+            return await self.extract_pdf_text_processor.process_file(update, context)
         if text == OCR:
-            return self.ocr_pdf_processor.process_file(update, context)
+            return await self.ocr_pdf_processor.process_file(update, context)
         if text == _(COMPRESS):
-            return self.file_service.compress_pdf(update, context)
+            return await self.file_service.compress_pdf(update, context)
         if text == _(BLACK_AND_WHITE):
-            return self.grayscale_pdf_processor.process_file(update, context)
+            return await self.grayscale_pdf_processor.process_file(update, context)
         if text == _(CANCEL):
-            return self.telegram_service.cancel_conversation(update, context)
+            return await self.telegram_service.cancel_conversation(update, context)
 
         return FileTaskService.WAIT_PDF_TASK
 
-    def check_image_task(self, update: Update, context: CallbackContext) -> int | str:
+    async def check_image_task(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> int | str:
         _ = self.language_service.set_app_language(update, context)
-        text = update.effective_message.text  # type: ignore
+        text = update.message.text
         if text == _(BEAUTIFY):
-            return self.beautify_image_processor.process_file(update, context)
+            return await self.beautify_image_processor.process_file(update, context)
         if text == _(TO_PDF):
-            return self.image_to_pdf_processor.process_file(update, context)
+            return await self.image_to_pdf_processor.process_file(update, context)
         if text == _(CANCEL):
-            return self.telegram_service.cancel_conversation(update, context)
+            return await self.telegram_service.cancel_conversation(update, context)
 
         return WAIT_IMAGE_TASK

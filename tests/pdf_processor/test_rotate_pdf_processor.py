@@ -45,10 +45,13 @@ class TestRotatePDFProcessor(
         actual = self.sut.should_process_back_option
         assert actual is False
 
-    def test_process_file_task(self) -> None:
-        self.pdf_service.rotate_pdf.return_value.__enter__.return_value = self.FILE_PATH
+    @pytest.mark.asyncio
+    async def test_process_file_task(self) -> None:
+        self.pdf_service.rotate_pdf.return_value.__aenter__.return_value = (
+            self.FILE_PATH
+        )
 
-        with self.sut.process_file_task(
+        async with self.sut.process_file_task(
             self.TELEGRAM_DOCUMENT_ID, self.ROTATE_90
         ) as actual:
             assert actual == self.FILE_PATH
@@ -56,37 +59,43 @@ class TestRotatePDFProcessor(
                 self.TELEGRAM_DOCUMENT_ID, int(self.ROTATE_90)
             )
 
-    def test_ask_degree(self) -> None:
-        actual = self.sut.ask_degree(self.telegram_update, self.telegram_context)
+    @pytest.mark.asyncio
+    async def test_ask_degree(self) -> None:
+        actual = await self.sut.ask_degree(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_ROTATE_DEGREE
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
 
     @pytest.mark.parametrize("degree", [ROTATE_90, ROTATE_180, ROTATE_270])
-    def test_rotate_pdf(self, degree: str) -> None:
+    @pytest.mark.asyncio
+    async def test_rotate_pdf(self, degree: str) -> None:
         self.telegram_message.text = degree
-        self.pdf_service.rotate_pdf.return_value.__enter__.return_value = self.FILE_PATH
+        self.pdf_service.rotate_pdf.return_value.__aenter__.return_value = (
+            self.FILE_PATH
+        )
 
-        actual = self.sut.rotate_pdf(self.telegram_update, self.telegram_context)
+        actual = await self.sut.rotate_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.pdf_service.rotate_pdf.assert_called_once_with(
             self.TELEGRAM_DOCUMENT_ID, int(degree)
         )
 
-    def test_rename_pdf_invalid_degree(self) -> None:
+    @pytest.mark.asyncio
+    async def test_rename_pdf_invalid_degree(self) -> None:
         self.telegram_message.text = "clearly_invalid"
 
-        actual = self.sut.rotate_pdf(self.telegram_update, self.telegram_context)
+        actual = await self.sut.rotate_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_ROTATE_DEGREE
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.telegram_update.message.reply_text.assert_called_once()
         self.pdf_service.rotate_pdf.assert_not_called()
 
-    def test_rotate_pdf_with_back_option(self) -> None:
+    @pytest.mark.asyncio
+    async def test_rotate_pdf_with_back_option(self) -> None:
         self.telegram_message.text = "Back"
 
-        actual = self.sut.rotate_pdf(self.telegram_update, self.telegram_context)
+        actual = await self.sut.rotate_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_PDF_TASK
         self.pdf_service.rename_pdf.assert_not_called()
