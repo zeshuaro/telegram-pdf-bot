@@ -44,6 +44,7 @@ class TestAbstractTelegramFileProcessor(
             self.file_task_service,
             self.telegram_service,
             self.language_service,
+            bypass_init_check=True,
         )
 
     def test_generic_error_types(self) -> None:

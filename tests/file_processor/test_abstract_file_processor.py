@@ -133,6 +133,7 @@ class TestAbstractFileProcessor(
             self.file_task_service,
             self.telegram_service,
             self.language_service,
+            bypass_init_check=True,
         )
 
     @pytest.mark.asyncio

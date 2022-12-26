@@ -21,7 +21,7 @@ ErrorHandlerType = Callable[
 
 
 class AbstractFileProcessor(ABC):
-    _HANDLERS: dict[str, BaseHandler] = {}
+    _FILE_PROCESSORS: dict[str, "AbstractFileProcessor"] = {}
 
     def __init__(
         self,
@@ -35,15 +35,15 @@ class AbstractFileProcessor(ABC):
         self.language_service = language_service
 
         cls_name = self.__class__.__name__
-        if not bypass_init_check and cls_name in self._HANDLERS:
+        if not bypass_init_check and cls_name in self._FILE_PROCESSORS:
             raise ValueError(f"Class has already been initialised: {cls_name}")
-
-        if self.handler is not None:
-            self._HANDLERS[cls_name] = self.handler
+        self._FILE_PROCESSORS[cls_name] = self
 
     @classmethod
     def get_handlers(cls) -> list[BaseHandler]:
-        return list(cls._HANDLERS.values())
+        return [
+            x.handler for x in cls._FILE_PROCESSORS.values() if x.handler is not None
+        ]
 
     @property
     @abstractmethod
