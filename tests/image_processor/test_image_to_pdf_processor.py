@@ -6,7 +6,8 @@ from telegram.ext import CallbackQueryHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.image import ImageService
 from pdf_bot.image_processor import ImageToPDFProcessor
-from pdf_bot.image_processor.models import ImageToPdfData
+from pdf_bot.image_processor.image_to_pdf_processor import ImageToPdfData
+from pdf_bot.models import TaskData
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
@@ -42,6 +43,10 @@ class TestImageToPDFProcessorProcessor(
     def test_should_process_back_option(self) -> None:
         actual = self.sut.should_process_back_option
         assert actual is False
+
+    def test_task_data(self) -> None:
+        actual = self.sut.task_data
+        assert actual == TaskData("To PDF", ImageToPdfData)
 
     def test_handler(self) -> None:
         actual = self.sut.handler

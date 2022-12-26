@@ -1,19 +1,27 @@
 from contextlib import asynccontextmanager
+from gettext import gettext as _
 from typing import AsyncGenerator
 
 from telegram.ext import BaseHandler, CallbackQueryHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.image_processor.models import BeautifyImageData
-from pdf_bot.models import FileData
+from pdf_bot.models import FileData, TaskData
 
 from .abstract_image_processor import AbstractImageProcessor
+
+
+class BeautifyImageData(FileData):
+    pass
 
 
 class BeautifyImageProcessor(AbstractImageProcessor):
     @property
     def task_type(self) -> TaskType:
         return TaskType.beautify_image
+
+    @property
+    def task_data(self) -> TaskData | None:
+        return TaskData(_("Beautify"), BeautifyImageData)
 
     @property
     def should_process_back_option(self) -> bool:

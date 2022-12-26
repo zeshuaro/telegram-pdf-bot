@@ -11,7 +11,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK, FILE_DATA
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
-from pdf_bot.models import FileData
+from pdf_bot.models import FileData, TaskData
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
 ErrorHandlerType = Callable[
@@ -54,6 +54,10 @@ class AbstractFileProcessor(ABC):
     @abstractmethod
     def should_process_back_option(self) -> bool:
         pass
+
+    @property
+    def task_data(self) -> TaskData | None:
+        return None
 
     @property
     def handler(self) -> BaseHandler | None:
