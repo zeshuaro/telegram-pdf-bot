@@ -1,6 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", ":automergeMinor"],
+  "extends": [
+    "config:base",
+    ":automergeMinor",
+    ":pinAllExceptPeerDependencies"
+  ],
   "labels": ["dependencies"],
   "lockFileMaintenance": { "enabled": true },
   "rangeStrategy": "update-lockfile",
@@ -9,16 +13,16 @@
   "timezone": "Australia/Sydney",
   "packageRules": [
     {
-      "groupName": "GitHub Actions Dependencies",
-      "matchPaths": [".github/workflows/*.yml"],
-      "addLabels": ["ci"]
-    },
-    {
       "groupName": "Python",
       "matchPaths": [".python-version", "Dockerfile"],
       "matchPackageNames": ["python"],
       "semanticCommitScope": "python",
       "automerge": false
+    },
+    {
+      "groupName": "GitHub Actions Dependencies",
+      "matchPaths": [".github/workflows/*.yml"],
+      "addLabels": ["ci"]
     }
   ]
 }
