@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 11:59+0000\n"
-"PO-Revision-Date: 2022-12-26 11:59\n"
+"POT-Creation-Date: 2022-12-26 22:57+0000\n"
+"PO-Revision-Date: 2022-12-26 22:58\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -55,41 +55,41 @@ msgstr "해독"
 msgid "Encrypt"
 msgstr "암호화"
 
-#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:45
 msgid "Extract Images"
 msgstr "이미지 추출"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
 msgid "To Images"
 msgstr "이미지에"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
 msgid "Rotate"
 msgstr "회전"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
 msgid "Scale"
 msgstr "규모"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
 msgid "Split"
 msgstr "분할"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:29
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "아름 답게"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:30
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDF로"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
 msgid "Rename"
 msgstr "이름을 바꿀"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
 msgid "Crop"
 msgstr "자르기"
 
@@ -109,7 +109,7 @@ msgstr "마지막 파일 제거"
 msgid "To Dimensions"
 msgstr "치수에"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:25
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
 msgid "Extract Text"
 msgstr "텍스트 추출"
 
@@ -121,11 +121,11 @@ msgstr "문자 메시지"
 msgid "Text File"
 msgstr "텍스트 파일"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
 msgid "Compress"
 msgstr "압축"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:28
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
 msgid "Black & White"
 msgstr "흑백"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "피드백은 영어로되지 않습니다, 다시 시도"
 
-#: pdf_bot/file/file_handlers.py:175 pdf_bot/file/file_handlers.py:201
+#: pdf_bot/file/file_handlers.py:172 pdf_bot/file/file_handlers.py:199
 msgid "Your file is too big for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리하지 않습니다."
 
-#: pdf_bot/file/file_handlers.py:176 pdf_bot/file/file_handlers.py:202
+#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
 
@@ -332,9 +332,12 @@ msgid "Processing your file"
 msgstr ""
 
 #: pdf_bot/file_processor/abstract_file_task_processor.py:46
-#: pdf_bot/file_task/file_task_service.py:84
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
+
+#: pdf_bot/file_task/file_task_service.py:82
+msgid "Select the task that you'll like to perform from below or select from the buttons"
+msgstr ""
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -475,6 +478,10 @@ msgstr "PDF 파일이 잘못되었습니다."
 #: pdf_bot/pdf/pdf_service.py:367
 msgid "Your PDF file is encrypted"
 msgstr "PDF 파일이 암호화되었습니다."
+
+#: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
+msgid "Extract images"
+msgstr ""
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:41
 msgid "Send me the file name that you'll like to rename your PDF file into"

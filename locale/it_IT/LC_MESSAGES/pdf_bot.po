@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 11:59+0000\n"
-"PO-Revision-Date: 2022-12-26 11:59\n"
+"POT-Creation-Date: 2022-12-26 22:57+0000\n"
+"PO-Revision-Date: 2022-12-26 22:58\n"
 "Last-Translator: \n"
 "Language: it\n"
 "Language-Team: Italian\n"
@@ -55,41 +55,41 @@ msgstr "Decifra"
 msgid "Encrypt"
 msgstr "Cifra"
 
-#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:45
 msgid "Extract Images"
 msgstr "Estrai immagini"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
 msgid "To Images"
 msgstr "Alle immagini"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
 msgid "Rotate"
 msgstr "Ruotare"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
 msgid "Scale"
 msgstr "Ridimensiona"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
 msgid "Split"
 msgstr "Dividi"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:29
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Abbellire"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:30
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "In PDF"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
 msgid "Rename"
 msgstr "Rinomina"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
 msgid "Crop"
 msgstr "Ritaglia"
 
@@ -109,7 +109,7 @@ msgstr "Rimuovi ultimo file"
 msgid "To Dimensions"
 msgstr "Alle Dimensioni"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:25
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
 msgid "Extract Text"
 msgstr "Estrai il testo"
 
@@ -121,11 +121,11 @@ msgstr "Messaggio di testo"
 msgid "Text File"
 msgstr "File di testo"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
 msgid "Compress"
 msgstr "Comprimi"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:28
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
 msgid "Black & White"
 msgstr "Bianco & Nero"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Il feedback non è in inglese, riprova"
 
-#: pdf_bot/file/file_handlers.py:175 pdf_bot/file/file_handlers.py:201
+#: pdf_bot/file/file_handlers.py:172 pdf_bot/file/file_handlers.py:199
 msgid "Your file is too big for me to download and process"
 msgstr "Il tuo file è troppo grande per essere scaricato ed elaborare"
 
-#: pdf_bot/file/file_handlers.py:176 pdf_bot/file/file_handlers.py:202
+#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Si noti che questa è una limitazione di Telegram Bot e non c'è niente che io possa fare a meno che Telegram non cambi questo limite"
 
@@ -332,9 +332,12 @@ msgid "Processing your file"
 msgstr ""
 
 #: pdf_bot/file_processor/abstract_file_task_processor.py:46
-#: pdf_bot/file_task/file_task_service.py:84
 msgid "Select the task that you'll like to perform"
 msgstr "Seleziona l'operazione che vuoi eseguire"
+
+#: pdf_bot/file_task/file_task_service.py:82
+msgid "Select the task that you'll like to perform from below or select from the buttons"
+msgstr ""
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -475,6 +478,10 @@ msgstr "Il file PDF non è valido"
 #: pdf_bot/pdf/pdf_service.py:367
 msgid "Your PDF file is encrypted"
 msgstr "Il tuo file PDF è crittografato"
+
+#: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
+msgid "Extract images"
+msgstr ""
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:41
 msgid "Send me the file name that you'll like to rename your PDF file into"

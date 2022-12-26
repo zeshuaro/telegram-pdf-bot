@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 11:59+0000\n"
-"PO-Revision-Date: 2022-12-26 11:59\n"
+"POT-Creation-Date: 2022-12-26 22:57+0000\n"
+"PO-Revision-Date: 2022-12-26 22:58\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -55,41 +55,41 @@ msgstr "Αποκρυπτογραφήσει"
 msgid "Encrypt"
 msgstr "Κρυπτογράφηση"
 
-#: pdf_bot/consts.py:45 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:45
 msgid "Extract Images"
 msgstr "Εξαγωγή εικόνων"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
 msgid "To Images"
 msgstr "Σε εικόνες"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
 msgid "Rotate"
 msgstr "Γυρίζω"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
 msgid "Scale"
 msgstr "Κλίμακα"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
 msgid "Split"
 msgstr "Σπλιτ"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:29
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Ομορφύνει"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:30
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "Σε PDF"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
 msgid "Rename"
 msgstr "Μετονομάσετε"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
 msgid "Crop"
 msgstr "Καλλιέργεια"
 
@@ -109,7 +109,7 @@ msgstr "Κατάργηση τελευταίου αρχείου"
 msgid "To Dimensions"
 msgstr "Σε διαστάσεις"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:25
+#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
 msgid "Extract Text"
 msgstr "Εξαγωγή κειμένου"
 
@@ -121,11 +121,11 @@ msgstr "Μήνυμα κειμένου"
 msgid "Text File"
 msgstr "Αρχείο κειμένου"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
 msgid "Compress"
 msgstr "Συμπίεση"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:28
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
 msgid "Black & White"
 msgstr "Μαύρο και Λευκό"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Τα σχόλια δεν είναι στα Αγγλικά, δοκιμάστε ξανά"
 
-#: pdf_bot/file/file_handlers.py:175 pdf_bot/file/file_handlers.py:201
+#: pdf_bot/file/file_handlers.py:172 pdf_bot/file/file_handlers.py:199
 msgid "Your file is too big for me to download and process"
 msgstr "Το αρχείο σας είναι πολύ μεγάλο για να το κατεβάσω και να το επεξεργαστώ."
 
-#: pdf_bot/file/file_handlers.py:176 pdf_bot/file/file_handlers.py:202
+#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Σημειώστε ότι αυτός είναι ένας περιορισμός Bot τηλεγραφήματος και δεν μπορώ να κάνω τίποτα αν το Telegram αλλάξει αυτό το όριο"
 
@@ -332,9 +332,12 @@ msgid "Processing your file"
 msgstr ""
 
 #: pdf_bot/file_processor/abstract_file_task_processor.py:46
-#: pdf_bot/file_task/file_task_service.py:84
 msgid "Select the task that you'll like to perform"
 msgstr "Επιλέξτε την εργασία που θα θέλατε να εκτελέσετε"
+
+#: pdf_bot/file_task/file_task_service.py:82
+msgid "Select the task that you'll like to perform from below or select from the buttons"
+msgstr ""
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -475,6 +478,10 @@ msgstr "Το αρχείο PDF δεν είναι έγκυρο"
 #: pdf_bot/pdf/pdf_service.py:367
 msgid "Your PDF file is encrypted"
 msgstr "Το αρχείο PDF είναι κρυπτογραφημένο"
+
+#: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
+msgid "Extract images"
+msgstr ""
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:41
 msgid "Send me the file name that you'll like to rename your PDF file into"
