@@ -64,7 +64,7 @@ class TelegramTestMixin:
 
         self.telegram_update = AsyncMock(spec=Update)
         self.telegram_update.message = self.telegram_message
-        self.telegram_update.message = self.telegram_message
+        self.telegram_update.effective_message = self.telegram_message
         self.telegram_update.callback_query = self.telegram_callback_query
         self.telegram_update.pre_checkout_query = self.telegram_pre_checkout_query
 

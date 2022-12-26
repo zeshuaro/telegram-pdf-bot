@@ -8,10 +8,20 @@ class FileData:
     id: str
     name: str | None = None
 
-    @staticmethod
-    def from_telegram_object(obj: Document | PhotoSize) -> "FileData":
+    @classmethod
+    def from_telegram_object(cls, obj: Document | PhotoSize) -> "FileData":
         if isinstance(obj, Document):
-            return FileData(obj.file_id, obj.file_name)
+            return cls(obj.file_id, obj.file_name)
         if isinstance(obj, PhotoSize):
-            return FileData(obj.file_id)
+            return cls(obj.file_id)
         raise ValueError(f"Unknown Telegram object type: {type(obj)}")
+
+
+@dataclass
+class TaskData:
+    label: str
+    value: str
+    data_type: type[FileData]
+
+    def get_file_data(self, obj: Document | PhotoSize) -> FileData:
+        return self.data_type.from_telegram_object(obj)

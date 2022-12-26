@@ -43,7 +43,7 @@ class DecryptPDFProcessor(AbstractCryptoPDFProcessor):
         context: ContextTypes.DEFAULT_TYPE,
         exception: Exception,
         file_id: str,
-        file_name: str,
+        file_name: str | None,
     ) -> str:
         _ = self.language_service.set_app_language(update, context)
         await update.message.reply_text(_(str(exception)))

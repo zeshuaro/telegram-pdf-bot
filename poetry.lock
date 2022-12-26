@@ -225,14 +225,14 @@ cffi = ">=1.0.0"
 
 [[package]]
 name = "cachetools"
-version = "4.2.2"
+version = "5.2.0"
 description = "Extensible memoizing collections and decorators"
 category = "main"
 optional = false
-python-versions = "~=3.5"
+python-versions = "~=3.7"
 files = [
-    {file = "cachetools-4.2.2-py3-none-any.whl", hash = "sha256:2cc0b89715337ab6dbba85b5b50effe2b0c74e035d83ee8ed637cf52f12ae001"},
-    {file = "cachetools-4.2.2.tar.gz", hash = "sha256:61b5ed1e22a0924aed1d23b478f37e8d52549ff8a961de2909c69bf950020cff"},
+    {file = "cachetools-5.2.0-py3-none-any.whl", hash = "sha256:f9f17d2aec496a9aa6b76f53e3b614c965223c061982d434d160f930c698a9db"},
+    {file = "cachetools-5.2.0.tar.gz", hash = "sha256:6a94c6402995a99c3970cc7e4884bb60b4a8639938157eeed436098bf9831757"},
 ]
 
 [[package]]
@@ -2125,6 +2125,7 @@ files = [
 ]
 
 [package.dependencies]
+cachetools = {version = ">=5.2.0,<5.3.0", optional = true, markers = "extra == \"callback-data\""}
 httpx = ">=0.23.1,<0.24.0"
 tornado = {version = ">=6.2,<7.0", optional = true, markers = "extra == \"webhooks\""}
 
@@ -2845,4 +2846,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "385a83d2edf3b3697b9423eddfe3b2856053cddba48ce2fa4cc07dd7b606ff35"
+content-hash = "699f637b9685e9bb32bd647a946901ec020d8f8ba6ab1dd1cc07680fe66fbc83"

@@ -1,6 +1,7 @@
 from telegram import Update
 from telegram.constants import FileSizeLimit
 from telegram.ext import (
+    CallbackQueryHandler,
     CommandHandler,
     ContextTypes,
     ConversationHandler,
@@ -33,7 +34,13 @@ from pdf_bot.consts import (
 from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_task import FileTaskService
-from pdf_bot.image_processor import BeautifyImageProcessor, ImageToPDFProcessor
+from pdf_bot.image_processor import (
+    BeautifyImageData,
+    BeautifyImageProcessor,
+    ImageProcessor,
+    ImageToPdfData,
+    ImageToPDFProcessor,
+)
 from pdf_bot.language import LanguageService
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
@@ -74,11 +81,13 @@ class FileHandlers:
         image_to_pdf_processor: ImageToPDFProcessor,
         telegram_service: TelegramService,
         language_service: LanguageService,
+        image_processor: ImageProcessor,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
         self.crop_service = crop_service
         self.telegram_service = telegram_service
+        self.image_processor = image_processor
         self.language_service = language_service
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
@@ -110,7 +119,18 @@ class FileHandlers:
                     MessageHandler(TEXT_FILTER, self.check_doc_task)
                 ],
                 FileTaskService.WAIT_IMAGE_TASK: [
-                    MessageHandler(TEXT_FILTER, self.check_image_task)
+                    CallbackQueryHandler(
+                        self.beautify_image_processor.process_file,
+                        pattern=BeautifyImageData,
+                    ),
+                    CallbackQueryHandler(
+                        self.image_to_pdf_processor.process_file,
+                        pattern=ImageToPdfData,
+                    ),
+                    CallbackQueryHandler(
+                        self.telegram_service.cancel_conversation,
+                        pattern=r"^cancel$",
+                    ),
                 ],
                 CropService.WAIT_CROP_TYPE: [
                     MessageHandler(TEXT_FILTER, self.crop_service.check_crop_type)
@@ -182,7 +202,7 @@ class FileHandlers:
 
         if doc.mime_type.startswith("image"):
             context.user_data[FILE_DATA] = doc.file_id, doc.file_name  # type: ignore
-            return await self.file_task_service.ask_image_task(update, context)
+            return await self.image_processor.ask_image_task(update, context)
         if not doc.mime_type.endswith("pdf"):
             return ConversationHandler.END
 
@@ -208,7 +228,7 @@ class FileHandlers:
             return ConversationHandler.END
 
         context.user_data[FILE_DATA] = image.file_id, None  # type: ignore
-        return await self.file_task_service.ask_image_task(update, context)
+        return await self.image_processor.ask_image_task(update, context)
 
     async def check_doc_task(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE

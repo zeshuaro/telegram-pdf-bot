@@ -22,6 +22,8 @@ class TestSplitPDFProcessor(
 
     def setup_method(self) -> None:
         super().setup_method()
+        self.telegram_update.callback_query = None
+
         self.pdf_service = MagicMock(spec=PdfService)
         self.file_task_service = self.mock_file_task_service()
         self.language_service = self.mock_language_service()
