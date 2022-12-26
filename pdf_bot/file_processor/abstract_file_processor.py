@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator, Callable, Coroutine, Type
 
 from telegram import CallbackQuery, Message, Update
-from telegram.ext import ContextTypes, ConversationHandler
+from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK, FILE_DATA
@@ -21,15 +21,29 @@ ErrorHandlerType = Callable[
 
 
 class AbstractFileProcessor(ABC):
+    _HANDLERS: dict[str, BaseHandler] = {}
+
     def __init__(
         self,
         file_task_service: FileTaskService,
         telegram_service: TelegramService,
         language_service: LanguageService,
+        bypass_init_check: bool = False,
     ) -> None:
         self.file_task_service = file_task_service
         self.telegram_service = telegram_service
         self.language_service = language_service
+
+        cls_name = self.__class__.__name__
+        if not bypass_init_check and cls_name in self._HANDLERS:
+            raise ValueError(f"Class has already been initialised: {cls_name}")
+
+        if self.handler is not None:
+            self._HANDLERS[cls_name] = self.handler
+
+    @classmethod
+    def get_handlers(cls) -> list[BaseHandler]:
+        return list(cls._HANDLERS.values())
 
     @property
     @abstractmethod
@@ -40,6 +54,10 @@ class AbstractFileProcessor(ABC):
     @abstractmethod
     def should_process_back_option(self) -> bool:
         pass
+
+    @property
+    def handler(self) -> BaseHandler | None:
+        return None
 
     @asynccontextmanager
     @abstractmethod

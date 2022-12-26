@@ -1,10 +1,12 @@
 from unittest.mock import MagicMock
 
 import pytest
+from telegram.ext import CallbackQueryHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.image import ImageService
 from pdf_bot.image_processor import ImageToPDFProcessor
+from pdf_bot.image_processor.models import ImageToPdfData
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
@@ -30,15 +32,22 @@ class TestImageToPDFProcessorProcessor(
             self.image_service,
             self.telegram_service,
             self.language_service,
+            bypass_init_check=True,
         )
 
-    def test_get_task_type(self) -> None:
+    def test_task_type(self) -> None:
         actual = self.sut.task_type
         assert actual == TaskType.image_to_pdf
 
     def test_should_process_back_option(self) -> None:
         actual = self.sut.should_process_back_option
         assert actual is False
+
+    def test_handler(self) -> None:
+        actual = self.sut.handler
+
+        assert isinstance(actual, CallbackQueryHandler)
+        assert actual.pattern == ImageToPdfData
 
     @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:

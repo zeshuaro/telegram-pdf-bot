@@ -12,6 +12,9 @@ class AbstractImageProcessor(AbstractFileProcessor):
         image_service: ImageService,
         telegram_service: TelegramService,
         language_service: LanguageService,
+        bypass_init_check: bool = False,
     ) -> None:
         self.image_service = image_service
-        super().__init__(file_task_service, telegram_service, language_service)
+        super().__init__(
+            file_task_service, telegram_service, language_service, bypass_init_check
+        )
