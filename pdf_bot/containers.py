@@ -308,8 +308,6 @@ class Handlers(containers.DeclarativeContainer):
         rotate_pdf_processor=processors.rotate,
         scale_pdf_processor=processors.scale,
         split_pdf_processor=processors.split,
-        beautify_image_processor=processors.beautify,
-        image_to_pdf_processor=processors.image_to_pdf,
         telegram_service=services.telegram,
         language_service=services.language,
         image_processor=processors.image,

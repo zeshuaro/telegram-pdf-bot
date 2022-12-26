@@ -1,7 +1,10 @@
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
+from telegram.ext import BaseHandler, CallbackQueryHandler
+
 from pdf_bot.analytics import TaskType
+from pdf_bot.image_processor.models import ImageToPdfData
 from pdf_bot.models import FileData
 
 from .abstract_image_processor import AbstractImageProcessor
@@ -15,6 +18,10 @@ class ImageToPDFProcessor(AbstractImageProcessor):
     @property
     def should_process_back_option(self) -> bool:
         return False
+
+    @property
+    def handler(self) -> BaseHandler | None:
+        return CallbackQueryHandler(self.process_file, pattern=ImageToPdfData)
 
     @asynccontextmanager
     async def process_file_task(

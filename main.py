@@ -1,4 +1,5 @@
 import sentry_sdk
+from dependency_injector.providers import Singleton
 from dependency_injector.wiring import Provide, inject
 from loguru import logger
 from telegram.ext import Application as TelegramApp
@@ -49,5 +50,12 @@ if __name__ == "__main__":
         .concurrent_updates(True)
         .build()
     )
+
+    # Dependency injectior only initialises the classes if they are referenced. Since
+    # the processors are not referenced anywhere, we need to explicitly initialise them
+    # so that they're registered under AbstractFileProcessor
+    for provider in app.processors.providers.values():  # type: ignore
+        if isinstance(provider, Singleton):
+            provider()
 
     main(_telegram_app)

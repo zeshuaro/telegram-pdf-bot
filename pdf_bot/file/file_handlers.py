@@ -10,7 +10,6 @@ from telegram.ext import (
 )
 
 from pdf_bot.consts import (
-    BEAUTIFY,
     BLACK_AND_WHITE,
     CANCEL,
     COMPRESS,
@@ -28,19 +27,12 @@ from pdf_bot.consts import (
     SPLIT,
     TEXT_FILTER,
     TO_IMAGES,
-    TO_PDF,
-    WAIT_IMAGE_TASK,
 )
 from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
+from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.file_task import FileTaskService
-from pdf_bot.image_processor import (
-    BeautifyImageData,
-    BeautifyImageProcessor,
-    ImageProcessor,
-    ImageToPdfData,
-    ImageToPDFProcessor,
-)
+from pdf_bot.image_processor import ImageProcessor
 from pdf_bot.language import LanguageService
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
@@ -77,8 +69,6 @@ class FileHandlers:
         rotate_pdf_processor: RotatePDFProcessor,
         scale_pdf_processor: ScalePDFProcessor,
         split_pdf_processor: SplitPDFProcessor,
-        beautify_image_processor: BeautifyImageProcessor,
-        image_to_pdf_processor: ImageToPDFProcessor,
         telegram_service: TelegramService,
         language_service: LanguageService,
         image_processor: ImageProcessor,
@@ -103,9 +93,6 @@ class FileHandlers:
         self.scale_pdf_processor = scale_pdf_processor
         self.split_pdf_processor = split_pdf_processor
 
-        self.beautify_image_processor = beautify_image_processor
-        self.image_to_pdf_processor = image_to_pdf_processor
-
     def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
             entry_points=[
@@ -118,15 +105,8 @@ class FileHandlers:
                 FileTaskService.WAIT_PDF_TASK: [
                     MessageHandler(TEXT_FILTER, self.check_doc_task)
                 ],
-                FileTaskService.WAIT_IMAGE_TASK: [
-                    CallbackQueryHandler(
-                        self.beautify_image_processor.process_file,
-                        pattern=BeautifyImageData,
-                    ),
-                    CallbackQueryHandler(
-                        self.image_to_pdf_processor.process_file,
-                        pattern=ImageToPdfData,
-                    ),
+                FileTaskService.WAIT_IMAGE_TASK: AbstractFileProcessor.get_handlers()
+                + [
                     CallbackQueryHandler(
                         self.telegram_service.cancel_conversation,
                         pattern=r"^cancel$",
@@ -268,17 +248,3 @@ class FileHandlers:
             return await self.telegram_service.cancel_conversation(update, context)
 
         return FileTaskService.WAIT_PDF_TASK
-
-    async def check_image_task(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int | str:
-        _ = self.language_service.set_app_language(update, context)
-        text = update.effective_message.text  # type: ignore
-        if text == _(BEAUTIFY):
-            return await self.beautify_image_processor.process_file(update, context)
-        if text == _(TO_PDF):
-            return await self.image_to_pdf_processor.process_file(update, context)
-        if text == _(CANCEL):
-            return await self.telegram_service.cancel_conversation(update, context)
-
-        return WAIT_IMAGE_TASK
