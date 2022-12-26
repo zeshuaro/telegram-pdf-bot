@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 10:00+0000\n"
-"PO-Revision-Date: 2022-12-26 10:00\n"
+"POT-Creation-Date: 2022-12-26 10:27+0000\n"
+"PO-Revision-Date: 2022-12-26 10:28\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -76,12 +76,12 @@ msgid "Split"
 msgstr "பிரி"
 
 #: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
-#: pdf_bot/image_processor/image_processor.py:17
+#: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "அழகுபடுத்தல்"
 
 #: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
-#: pdf_bot/image_processor/image_processor.py:18
+#: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDF க்கு"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "பின்னூட்டம் ஆங்கிலத்தில் இல்லை, மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
+#: pdf_bot/file/file_handlers.py:175 pdf_bot/file/file_handlers.py:201
 msgid "Your file is too big for me to download and process"
 msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
 
-#: pdf_bot/file/file_handlers.py:174 pdf_bot/file/file_handlers.py:201
+#: pdf_bot/file/file_handlers.py:176 pdf_bot/file/file_handlers.py:202
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
 
@@ -327,12 +327,12 @@ msgstr "இது ஒரு தந்தி பாட் வரம்பு ம�
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "கோப்பு அளவு {percent}மூலம் குறைக்கப்பட்டது, {old_size} இருந்து {new_size}"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:95
+#: pdf_bot/file_processor/abstract_file_processor.py:99
 msgid "Processing your file"
 msgstr ""
 
 #: pdf_bot/file_task/file_task_service.py:84
-#: pdf_bot/image_processor/image_processor.py:43
+#: pdf_bot/image_processor/image_processor.py:38
 msgid "Select the task that you'll like to perform"
 msgstr "நீங்கள் செய்ய விரும்பும் பணியைத் தேர்ந்தெடுக்கவும்"
 

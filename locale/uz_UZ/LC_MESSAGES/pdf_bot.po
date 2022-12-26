@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 10:00+0000\n"
-"PO-Revision-Date: 2022-12-26 10:00\n"
+"POT-Creation-Date: 2022-12-26 10:27+0000\n"
+"PO-Revision-Date: 2022-12-26 10:28\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: Uzbek\n"
@@ -76,12 +76,12 @@ msgid "Split"
 msgstr "Ajratmoq"
 
 #: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
-#: pdf_bot/image_processor/image_processor.py:17
+#: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Bezash"
 
 #: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
-#: pdf_bot/image_processor/image_processor.py:18
+#: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDF ga"
 
@@ -315,11 +315,11 @@ msgstr "Fikr-mulohazangiz uchun rahmat, men uni ishlab chiqaruvchimga etkazdim"
 msgid "The feedback is not in English, try again"
 msgstr "Fikr ingliz tilida emas, qaytadan urunib ko'ring"
 
-#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
+#: pdf_bot/file/file_handlers.py:175 pdf_bot/file/file_handlers.py:201
 msgid "Your file is too big for me to download and process"
 msgstr "Faylingiz yuklab olish va qayta ishlashim uchun juda katta"
 
-#: pdf_bot/file/file_handlers.py:174 pdf_bot/file/file_handlers.py:201
+#: pdf_bot/file/file_handlers.py:176 pdf_bot/file/file_handlers.py:202
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "E'tibor bering, bu Telegram Bot cheklovidir va agar Telegram bu chegarani o'zgartirmasa, men hech narsa qila olmayman"
 
@@ -327,12 +327,12 @@ msgstr "E'tibor bering, bu Telegram Bot cheklovidir va agar Telegram bu chegaran
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Fayl hajmi {percent}, {old_size} dan {new_size}"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:95
+#: pdf_bot/file_processor/abstract_file_processor.py:99
 msgid "Processing your file"
 msgstr "Fayl qayta ishlanmoqda"
 
 #: pdf_bot/file_task/file_task_service.py:84
-#: pdf_bot/image_processor/image_processor.py:43
+#: pdf_bot/image_processor/image_processor.py:38
 msgid "Select the task that you'll like to perform"
 msgstr "Bajarmoqchi bo'lgan harakatni tanlang"
 
