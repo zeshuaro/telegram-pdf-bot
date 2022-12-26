@@ -30,6 +30,7 @@ class TestExtractPDFTextProcessor(
             self.pdf_service,
             self.telegram_service,
             self.language_service,
+            bypass_init_check=True,
         )
 
     def test_get_task_type(self) -> None:

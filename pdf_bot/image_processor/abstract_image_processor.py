@@ -6,7 +6,7 @@ from pdf_bot.telegram_internal import TelegramService
 
 
 class AbstractImageProcessor(AbstractFileProcessor):
-    _PROCESSORS: dict[str, "AbstractImageProcessor"] = {}
+    _IMAGE_PROCESSORS: dict[str, "AbstractImageProcessor"] = {}
 
     def __init__(
         self,
@@ -19,9 +19,9 @@ class AbstractImageProcessor(AbstractFileProcessor):
         self.image_service = image_service
         cls_name = self.__class__.__name__
 
-        if not bypass_init_check and cls_name in self._PROCESSORS:
+        if not bypass_init_check and cls_name in self._IMAGE_PROCESSORS:
             raise ValueError(f"Class has already been initialised: {cls_name}")
-        self._PROCESSORS[cls_name] = self
+        self._IMAGE_PROCESSORS[cls_name] = self
 
         super().__init__(
             file_task_service, telegram_service, language_service, bypass_init_check
@@ -29,4 +29,4 @@ class AbstractImageProcessor(AbstractFileProcessor):
 
     @classmethod
     def get_processors(cls) -> list["AbstractImageProcessor"]:
-        return list(cls._PROCESSORS.values())
+        return list(cls._IMAGE_PROCESSORS.values())
