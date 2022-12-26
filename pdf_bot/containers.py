@@ -1,12 +1,10 @@
 # pylint: disable=no-member
 
-import os
 
 from dependency_injector import containers, providers
-from dotenv import load_dotenv
 from requests import Session
 from slack_sdk import WebClient
-from telegram.ext import Application as TelegramApp
+from telegram import Bot
 
 from pdf_bot.account import AccountRepository, AccountService
 from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
@@ -39,36 +37,28 @@ from pdf_bot.pdf_processor import (
     ScalePDFProcessor,
     SplitPDFProcessor,
 )
+from pdf_bot.settings import Settings
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
 from pdf_bot.telegram_internal import TelegramService
 from pdf_bot.text import TextHandlers, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
 from pdf_bot.webpage import WebpageHandler, WebpageService
 
-load_dotenv()
-
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-SLACK_TOKEN = os.environ.get("SLACK_TOKEN")
-TIMEOUT = 45
-
 
 class Core(containers.DeclarativeContainer):
-    telegram_app = providers.Object(
-        TelegramApp.builder()
-        .token(TELEGRAM_TOKEN)  # type: ignore
-        .concurrent_updates(True)
-        .connect_timeout(TIMEOUT)
-        .read_timeout(TIMEOUT)
-        .build()
-    )
+    settings = providers.Configuration(pydantic_settings=[Settings()])
+
+    telegram_bot = providers.Singleton(Bot, token=settings.telegram_token)
 
 
 class Clients(containers.DeclarativeContainer):
+    _settings = providers.Configuration(pydantic_settings=[Settings()])
+
     session = Session()
     session.hooks = {"response": lambda r, *args, **kwargs: r.raise_for_status()}
 
     api = providers.Object(session)
-    slack = providers.Object(WebClient(SLACK_TOKEN))
+    slack = providers.Singleton(WebClient, token=_settings.slack_token)
 
 
 class Repositories(containers.DeclarativeContainer):
@@ -109,7 +99,7 @@ class Services(containers.DeclarativeContainer):
         io_service=io,
         language_service=language,
         analytics_service=analytics,
-        telegram_app=core.telegram_app,
+        bot=core.telegram_bot,
     )
 
     image = providers.Singleton(

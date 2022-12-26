@@ -1,47 +1,37 @@
-import os
-
 import sentry_sdk
 from dependency_injector.wiring import Provide, inject
-from dotenv import load_dotenv
 from loguru import logger
 from telegram.ext import Application as TelegramApp
 
 import pdf_bot.logging as pdf_bot_logging
 from pdf_bot.containers import Application
+from pdf_bot.settings import Settings
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
-
-load_dotenv()
-TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
-SENTRY_DSN = os.environ.get("SENTRY_DSN")
-APP_URL = os.environ.get("APP_URL")
-PORT = int(os.environ.get("PORT", "8443"))
-
-TIMEOUT = 45
 
 
 @inject
 def main(
-    telegram_app: TelegramApp = Provide[
-        Application.core.telegram_app  # pylint: disable=no-member
+    telegram_app: TelegramApp,
+    settings: Settings = Provide[
+        Application.core.settings  # pylint: disable=no-member
     ],
     telegram_dispatcher: TelegramDispatcher = Provide[
         Application.telegram_bot.dispatcher  # pylint: disable=no-member
     ],
 ) -> None:
-    if TELEGRAM_TOKEN is None:
-        raise RuntimeError("Telegram token not specified")
-
     pdf_bot_logging.setup_logging()
-    if SENTRY_DSN is not None:
-        sentry_sdk.init(SENTRY_DSN, traces_sample_rate=1.0)
+    if settings["sentry_dsn"] is not None:  # type: ignore
+        sentry_sdk.init(settings["sentry_dsn"], traces_sample_rate=1.0)  # type: ignore
+    else:
+        logger.warning("SENTRY_DSN not set")
 
     telegram_dispatcher.setup(telegram_app)
-    if APP_URL is not None:
+    if settings["app_url"] is not None:  # type: ignore
         telegram_app.run_webhook(
             listen="0.0.0.0",
-            port=PORT,
-            url_path=TELEGRAM_TOKEN,
-            webhook_url=f"{APP_URL}/{TELEGRAM_TOKEN}",
+            port=settings.port,
+            url_path=settings.telegram_token,
+            webhook_url=f"{settings['app_url']}/{settings.telegram_token}",  # type: ignore
         )
         logger.info("Bot started webhook")
     else:
@@ -50,7 +40,14 @@ def main(
 
 
 if __name__ == "__main__":
-    application = Application()
-    application.wire(modules=[__name__])
+    app = Application()
+    app.wire(modules=[__name__])
 
-    main()
+    _telegram_app = (
+        TelegramApp.builder()
+        .bot(app.core.telegram_bot())
+        .concurrent_updates(True)
+        .build()
+    )
+
+    main(_telegram_app)
