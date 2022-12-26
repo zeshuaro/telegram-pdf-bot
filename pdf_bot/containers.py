@@ -5,6 +5,7 @@ from dependency_injector import containers, providers
 from requests import Session
 from slack_sdk import WebClient
 from telegram import Bot
+from telegram.request import HTTPXRequest
 
 from pdf_bot.account import AccountRepository, AccountService
 from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
@@ -48,7 +49,17 @@ from pdf_bot.webpage import WebpageHandler, WebpageService
 class Core(containers.DeclarativeContainer):
     settings = providers.Configuration(pydantic_settings=[Settings()])
 
-    telegram_bot = providers.Singleton(Bot, token=settings.telegram_token)
+    httpx_request = providers.Singleton(
+        HTTPXRequest,
+        connection_pool_size=settings.request_connection_pool_size,
+        read_timeout=settings.request_read_timeout,
+        write_timeout=settings.request_write_timeout,
+        connect_timeout=settings.request_connect_timeout,
+        pool_timeout=settings.request_pool_timeout,
+    )
+    telegram_bot = providers.Singleton(
+        Bot, token=settings.telegram_token, request=httpx_request
+    )
 
 
 class Clients(containers.DeclarativeContainer):
