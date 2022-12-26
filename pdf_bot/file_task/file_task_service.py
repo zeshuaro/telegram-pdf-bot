@@ -23,7 +23,6 @@ class FileTaskService:
     CROP = _("Crop")
     OCR = "OCR"
     COMPRESS = _("Compress")
-    BLACK_AND_WHITE = _("Black & White")
 
     BEAUTIFY = _("Beautify")
     TO_PDF = _("To PDF")
@@ -41,7 +40,6 @@ class FileTaskService:
             CROP,
             OCR,
             COMPRESS,
-            BLACK_AND_WHITE,
         ]
     )
 

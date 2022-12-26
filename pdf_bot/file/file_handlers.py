@@ -10,7 +10,6 @@ from telegram.ext import (
 )
 
 from pdf_bot.consts import (
-    BLACK_AND_WHITE,
     CANCEL,
     COMPRESS,
     CROP,
@@ -35,7 +34,6 @@ from pdf_bot.language import LanguageService
 from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
-    GrayscalePdfProcessor,
     OCRPdfProcessor,
     PdfTaskProcessor,
     PDFToImageProcessor,
@@ -58,7 +56,6 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPdfProcessor,
         encrypt_pdf_processor: EncryptPdfProcessor,
-        grayscale_pdf_processor: GrayscalePdfProcessor,
         ocr_pdf_processor: OCRPdfProcessor,
         pdf_to_image_processor: PDFToImageProcessor,
         preview_pdf_processor: PreviewPdfProcessor,
@@ -81,7 +78,6 @@ class FileHandlers:
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
-        self.grayscale_pdf_processor = grayscale_pdf_processor
         self.ocr_pdf_processor = ocr_pdf_processor
         self.pdf_to_image_processor = pdf_to_image_processor
         self.preview_pdf_processor = preview_pdf_processor
@@ -232,8 +228,6 @@ class FileHandlers:
             return await self.ocr_pdf_processor.process_file(update, context)
         if text == _(COMPRESS):
             return await self.file_service.compress_pdf(update, context)
-        if text == _(BLACK_AND_WHITE):
-            return await self.grayscale_pdf_processor.process_file(update, context)
         if text == _(CANCEL):
             return await self.telegram_service.cancel_conversation(update, context)
 
