@@ -29,7 +29,7 @@ def main(
     if settings["app_url"] is not None:  # type: ignore
         telegram_app.run_webhook(
             listen="0.0.0.0",
-            port=settings.port,
+            port=settings["port"],  # type: ignore
             url_path=settings.telegram_token,
             webhook_url=f"{settings['app_url']}/{settings.telegram_token}",  # type: ignore
         )
