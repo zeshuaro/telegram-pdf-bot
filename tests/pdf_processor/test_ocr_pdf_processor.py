@@ -4,13 +4,13 @@ import pytest
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import OCRPDFProcessor
+from pdf_bot.pdf_processor import OCRPdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestOCRPDFProcessor(
+class TestOCRPdfProcessor(
     FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
@@ -25,7 +25,7 @@ class TestOCRPDFProcessor(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = OCRPDFProcessor(
+        self.sut = OCRPdfProcessor(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,

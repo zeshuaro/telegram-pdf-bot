@@ -10,10 +10,10 @@ from pdf_bot.consts import FILE_DATA
 from pdf_bot.file_processor import ErrorHandlerType
 from pdf_bot.pdf import PdfIncorrectPasswordError
 
-from .abstract_crypto_pdf_processor import AbstractCryptoPDFProcessor
+from .abstract_crypto_pdf_processor import AbstractCryptoPdfProcessor
 
 
-class DecryptPDFProcessor(AbstractCryptoPDFProcessor):
+class DecryptPdfProcessor(AbstractCryptoPdfProcessor):
     @property
     def wait_password_state(self) -> str:
         return "wait_decrypt_password"

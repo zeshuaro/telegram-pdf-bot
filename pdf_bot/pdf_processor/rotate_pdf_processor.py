@@ -7,10 +7,10 @@ from telegram.ext import ContextTypes
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK
 
-from .abstract_pdf_processor import AbstractPDFProcessor
+from .abstract_pdf_processor import AbstractPdfProcessor
 
 
-class RotatePDFProcessor(AbstractPDFProcessor):
+class RotatePdfProcessor(AbstractPdfProcessor):
     WAIT_ROTATE_DEGREE = "wait_rotate_degree"
     _ROTATE_90 = "90"
     _ROTATE_180 = "180"

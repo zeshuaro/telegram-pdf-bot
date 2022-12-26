@@ -4,13 +4,13 @@ from unittest.mock import MagicMock
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService, PdfServiceError
-from pdf_bot.pdf_processor import AbstractPDFProcessor
+from pdf_bot.pdf_processor import AbstractPdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class MockProcessor(AbstractPDFProcessor):
+class MockProcessor(AbstractPdfProcessor):
     @property
     def task_type(self) -> TaskType:
         return TaskType.decrypt_pdf

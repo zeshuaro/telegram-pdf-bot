@@ -8,7 +8,7 @@ from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.telegram_internal import TelegramService
 
 
-class AbstractPDFProcessor(AbstractFileProcessor):
+class AbstractPdfProcessor(AbstractFileProcessor):
     def __init__(
         self,
         file_task_service: FileTaskService,

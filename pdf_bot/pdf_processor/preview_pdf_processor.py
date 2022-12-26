@@ -3,10 +3,10 @@ from typing import AsyncGenerator
 
 from pdf_bot.analytics import TaskType
 
-from .abstract_pdf_processor import AbstractPDFProcessor
+from .abstract_pdf_processor import AbstractPdfProcessor
 
 
-class PreviewPDFProcessor(AbstractPDFProcessor):
+class PreviewPdfProcessor(AbstractPdfProcessor):
     @property
     def task_type(self) -> TaskType:
         return TaskType.preview_pdf

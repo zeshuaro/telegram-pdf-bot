@@ -5,13 +5,13 @@ import pytest
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
 from pdf_bot.pdf import PdfIncorrectPasswordError, PdfService
-from pdf_bot.pdf_processor import DecryptPDFProcessor
+from pdf_bot.pdf_processor import DecryptPdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestDecryptPDFProcessor(
+class TestDecryptPdfProcessor(
     FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
@@ -28,7 +28,7 @@ class TestDecryptPDFProcessor(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = DecryptPDFProcessor(
+        self.sut = DecryptPdfProcessor(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,

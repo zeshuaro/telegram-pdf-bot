@@ -6,13 +6,13 @@ import pytest
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import AbstractCryptoPDFProcessor
+from pdf_bot.pdf_processor import AbstractCryptoPdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class MockAbstractCryptoPDFProcessor(AbstractCryptoPDFProcessor):
+class MockAbstractCryptoPdfProcessor(AbstractCryptoPdfProcessor):
     STATE = "state"
 
     @property
@@ -47,7 +47,7 @@ class TestAbstractCryptoService(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = MockAbstractCryptoPDFProcessor(
+        self.sut = MockAbstractCryptoPdfProcessor(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,
@@ -64,5 +64,5 @@ class TestAbstractCryptoService(
         actual = await self.sut.ask_password(
             self.telegram_update, self.telegram_context
         )
-        assert actual == MockAbstractCryptoPDFProcessor.STATE
+        assert actual == MockAbstractCryptoPdfProcessor.STATE
         self.telegram_service.reply_with_back_markup.assert_called_once()

@@ -21,7 +21,7 @@ from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.image_processor import (
     BeautifyImageProcessor,
     ImageTaskProcessor,
-    ImageToPDFProcessor,
+    ImageToPdfProcessor,
 )
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageRepository, LanguageService
@@ -29,18 +29,18 @@ from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.payment import PaymentService
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
-    DecryptPDFProcessor,
-    EncryptPDFProcessor,
+    DecryptPdfProcessor,
+    EncryptPdfProcessor,
     ExtractPDFImageProcessor,
     ExtractPDFTextProcessor,
-    GrayscalePDFProcessor,
-    OCRPDFProcessor,
+    GrayscalePdfProcessor,
+    OCRPdfProcessor,
     PDFToImageProcessor,
-    PreviewPDFProcessor,
-    RenamePDFProcessor,
-    RotatePDFProcessor,
-    ScalePDFProcessor,
-    SplitPDFProcessor,
+    PreviewPdfProcessor,
+    RenamePdfProcessor,
+    RotatePdfProcessor,
+    ScalePdfProcessor,
+    SplitPdfProcessor,
 )
 from pdf_bot.settings import Settings
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
@@ -187,14 +187,14 @@ class Processors(containers.DeclarativeContainer):
     )
 
     decrypt = providers.Singleton(
-        DecryptPDFProcessor,
+        DecryptPdfProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     encrypt = providers.Singleton(
-        EncryptPDFProcessor,
+        EncryptPdfProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
@@ -215,14 +215,14 @@ class Processors(containers.DeclarativeContainer):
         language_service=services.language,
     )
     grayscale = providers.Singleton(
-        GrayscalePDFProcessor,
+        GrayscalePdfProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     ocr = providers.Singleton(
-        OCRPDFProcessor,
+        OCRPdfProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
@@ -236,35 +236,35 @@ class Processors(containers.DeclarativeContainer):
         language_service=services.language,
     )
     preview_pdf = providers.Singleton(
-        PreviewPDFProcessor,
+        PreviewPdfProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     rename = providers.Singleton(
-        RenamePDFProcessor,
+        RenamePdfProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     rotate = providers.Singleton(
-        RotatePDFProcessor,
+        RotatePdfProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     scale = providers.Singleton(
-        ScalePDFProcessor,
+        ScalePdfProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     split = providers.Singleton(
-        SplitPDFProcessor,
+        SplitPdfProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
@@ -279,7 +279,7 @@ class Processors(containers.DeclarativeContainer):
         language_service=services.language,
     )
     image_to_pdf = providers.Singleton(
-        ImageToPDFProcessor,
+        ImageToPdfProcessor,
         file_task_service=services.file_task,
         image_service=services.image,
         telegram_service=services.telegram,

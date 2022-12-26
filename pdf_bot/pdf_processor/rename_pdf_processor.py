@@ -8,10 +8,10 @@ from telegram.ext import ContextTypes
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK
 
-from .abstract_pdf_processor import AbstractPDFProcessor
+from .abstract_pdf_processor import AbstractPdfProcessor
 
 
-class RenamePDFProcessor(AbstractPDFProcessor):
+class RenamePdfProcessor(AbstractPdfProcessor):
     WAIT_NEW_FILE_NAME = "wait_new_file_name"
     INVALID_CHARACTERS = r"\/*?:\'<>|"
 

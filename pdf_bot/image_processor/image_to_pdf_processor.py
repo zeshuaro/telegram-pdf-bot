@@ -14,7 +14,7 @@ class ImageToPdfData(FileData):
     pass
 
 
-class ImageToPDFProcessor(AbstractImageProcessor):
+class ImageToPdfProcessor(AbstractImageProcessor):
     @property
     def task_type(self) -> TaskType:
         return TaskType.image_to_pdf

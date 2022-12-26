@@ -11,10 +11,10 @@ from pdf_bot.consts import BACK
 from pdf_bot.pdf import ScaleData
 from pdf_bot.pdf.models import ScaleByData, ScaleToData
 
-from .abstract_pdf_processor import AbstractPDFProcessor
+from .abstract_pdf_processor import AbstractPdfProcessor
 
 
-class ScalePDFProcessor(AbstractPDFProcessor):
+class ScalePdfProcessor(AbstractPdfProcessor):
     BY_SCALING_FACTOR = _("By scaling factor")
     TO_DIMENSION = _("To dimension")
 
