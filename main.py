@@ -30,8 +30,8 @@ def main(
         telegram_app.run_webhook(
             listen="0.0.0.0",
             port=settings["port"],  # type: ignore
-            url_path=settings.telegram_token,
-            webhook_url=f"{settings['app_url']}/{settings.telegram_token}",  # type: ignore
+            url_path=settings["telegram_token"],  # type: ignore
+            webhook_url=f"{settings['app_url']}/{settings['telegram_token']}",  # type: ignore
         )
         logger.info("Bot started webhook")
     else:
