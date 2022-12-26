@@ -81,9 +81,6 @@ class TelegramDispatcher:
             CommandHandler("support", self.payment_service.send_support_options)
         )
 
-        # Callback query handler
-        telegram_app.add_handler(CallbackQueryHandler(self.process_callback_query))
-
         # Payment handlers
         telegram_app.add_handler(
             PreCheckoutQueryHandler(self.payment_service.precheckout_check)
@@ -114,6 +111,9 @@ class TelegramDispatcher:
         # Feedback handler
         telegram_app.add_handler(self.feedback_handler.conversation_handler())
 
+        # Callback query handler
+        telegram_app.add_handler(CallbackQueryHandler(self.process_callback_query))
+
         # Admin commands handlers
         ADMIN_TELEGRAM_ID = os.environ.get("ADMIN_TELEGRAM_ID")
         if ADMIN_TELEGRAM_ID is not None:
@@ -137,28 +137,29 @@ class TelegramDispatcher:
         query = update.callback_query
         data = query.data
 
-        if data == SET_LANG:
-            await self.language_service.send_language_options(update, context)
-        elif data in LANGUAGES:
-            await self.language_service.update_user_language(update, context, query)
-        elif data == PAYMENT:
-            await self.payment_service.send_support_options(update, context, query)
-        elif data.startswith("payment,"):
-            await self.payment_service.send_invoice(update, context, query)
+        if isinstance(data, str):
+            if data == SET_LANG:
+                await self.language_service.send_language_options(update, context)
+            elif data in LANGUAGES:
+                await self.language_service.update_user_language(update, context, query)
+            elif data == PAYMENT:
+                await self.payment_service.send_support_options(update, context, query)
+            elif data.startswith("payment,"):
+                await self.payment_service.send_invoice(update, context, query)
 
-        try:
-            await query.answer()
-        except BadRequest as e:
-            if e.message.startswith("Query is too old"):
-                await context.bot.send_message(
-                    query.from_user.id,
-                    _(
-                        "The button has expired, please try again with a new"
-                        " message/query then press the new button"
-                    ),
-                )
-            else:
-                raise
+            try:
+                await query.answer()
+            except BadRequest as e:
+                if e.message.startswith("Query is too old"):
+                    await context.bot.send_message(
+                        query.from_user.id,
+                        _(
+                            "The button has expired, please try again with a new"
+                            " message/query then press the new button"
+                        ),
+                    )
+                else:
+                    raise
 
     async def error_callback(
         self, update: object, context: ContextTypes.DEFAULT_TYPE
@@ -171,7 +172,15 @@ class TelegramDispatcher:
         except Exception as e:  # pylint: disable=broad-except
             if isinstance(update, Update):
                 _ = self.language_service.set_app_language(update, context)
-                await update.message.reply_text(
-                    _("Something went wrong, please try again")
-                )
+                chat_id = None
+
+                if update.effective_message is not None:
+                    chat_id = update.effective_message.chat_id
+                elif update.effective_chat is not None:
+                    chat_id = update.effective_chat.id
+                if chat_id is not None:
+                    await context.bot.send_message(
+                        chat_id,
+                        _("Something went wrong, please try again"),
+                    )
             sentry_sdk.capture_exception(e)

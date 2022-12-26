@@ -4,17 +4,18 @@ from abc import ABC, abstractmethod
 from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator, Callable, Coroutine, Type
 
-from telegram import Message, Update
+from telegram import CallbackQuery, Message, Update
 from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK, FILE_DATA
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
+from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
 ErrorHandlerType = Callable[
-    [Update, ContextTypes.DEFAULT_TYPE, Exception, str, str],
+    [Update, ContextTypes.DEFAULT_TYPE, Exception, str, str | None],
     Coroutine[Any, Any, str | int],
 ]
 
@@ -61,16 +62,29 @@ class AbstractFileProcessor(ABC):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        query: CallbackQuery | None = update.callback_query
+        message: Message = update.effective_message  # type: ignore
 
         if self.should_process_back_option and message.text == _(BACK):
             return await self.file_task_service.ask_pdf_task(update, context)
 
-        try:
-            file_id, file_name = self.telegram_service.get_user_data(context, FILE_DATA)
-        except TelegramServiceError as e:
-            await message.reply_text(_(str(e)))
-            return ConversationHandler.END
+        if query is not None:
+            data = query.data
+            if not isinstance(data, FileData):
+                raise ValueError(f"Unknown query data type: {type(query.data)}")
+
+            await query.answer()
+            await query.edit_message_text(_("Processing your file"))
+            context.drop_callback_data(query)
+            file_id, file_name = data.id, data.name
+        else:
+            try:
+                file_id, file_name = self.telegram_service.get_user_data(
+                    context, FILE_DATA
+                )
+            except TelegramServiceError as e:
+                await message.reply_text(_(str(e)))
+                return ConversationHandler.END
 
         try:
             async with self.process_file_task(file_id, message.text) as out_path:
@@ -108,7 +122,7 @@ class AbstractFileProcessor(ABC):
         context: ContextTypes.DEFAULT_TYPE,
         exception: Exception,
         _file_id: str,
-        _file_name: str,
+        _file_name: str | None,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
         await update.message.reply_text(_(str(exception)))

@@ -54,11 +54,18 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
             self.watermark_handlers,
             self.webpage_handler,
         )
+
         self.os_patcher = patch("pdf_bot.telegram_dispatcher.telegram_dispatcher.os")
         self.os = self.os_patcher.start()
 
+        self.sentry_sdk_patcher = patch(
+            "pdf_bot.telegram_dispatcher.telegram_dispatcher.sentry_sdk"
+        )
+        self.sentry_sdk = self.sentry_sdk_patcher.start()
+
     def teardown_method(self) -> None:
         self.os_patcher.stop()
+        self.sentry_sdk_patcher.stop()
 
     @pytest.mark.asyncio
     async def test_setup(self) -> None:
@@ -132,17 +139,22 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_process_callback_query_answer_outdated(self) -> None:
+        self.telegram_callback_query.data = self.LANGUAGE
         self.telegram_callback_query.answer.side_effect = BadRequest("Query is too old")
+
         await self.sut.process_callback_query(
             self.telegram_update, self.telegram_context
         )
+
         self.telegram_context.bot.send_message.assert_called_once_with(
             self.TELEGRAM_QUERY_USER_ID, ANY
         )
 
     @pytest.mark.asyncio
     async def test_process_callback_query_answer_unknown_bad_request(self) -> None:
+        self.telegram_callback_query.data = self.LANGUAGE
         self.telegram_callback_query.answer.side_effect = BadRequest("Unknown error")
+
         with pytest.raises(BadRequest):
             await self.sut.process_callback_query(
                 self.telegram_update, self.telegram_context
@@ -159,10 +171,50 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         exception = RuntimeError()
         self.telegram_context.error = exception
 
-        with patch(
-            "pdf_bot.telegram_dispatcher.telegram_dispatcher.sentry_sdk"
-        ) as sentry_sdk:
-            await self.sut.error_callback(self.telegram_update, self.telegram_context)
+        await self.sut.error_callback(self.telegram_update, self.telegram_context)
 
-            self.telegram_update.message.reply_text.assert_called_once()
-            sentry_sdk.capture_exception.assert_called_once_with(exception)
+        self.telegram_context.bot.send_message.assert_called_once()
+        self.sentry_sdk.capture_exception.assert_called_once_with(exception)
+
+    @pytest.mark.asyncio
+    async def test_error_callback_unknown_error_and_without_chat_id(self) -> None:
+        exception = RuntimeError()
+        self.telegram_context.error = exception
+        self.telegram_update.effective_message = None
+        self.telegram_update.effective_chat = None
+
+        await self.sut.error_callback(self.telegram_update, self.telegram_context)
+
+        self.telegram_context.bot.send_message.assert_not_called()
+        self.sentry_sdk.capture_exception.assert_called_once_with(exception)
+
+    @pytest.mark.asyncio
+    async def test_error_callback_unknown_error_and_effective_chat(self) -> None:
+        exception = RuntimeError()
+        self.telegram_context.error = exception
+        self.telegram_update.effective_message = None
+        self.telegram_update.effective_chat = self.telegram_chat
+
+        await self.sut.error_callback(self.telegram_update, self.telegram_context)
+
+        self.telegram_context.bot.send_message.assert_called_once()
+        self.sentry_sdk.capture_exception.assert_called_once_with(exception)
+
+    @pytest.mark.asyncio
+    async def test_error_callback_unknown_error_and_not_update(self) -> None:
+        exception = RuntimeError()
+        self.telegram_context.error = exception
+
+        await self.sut.error_callback(None, self.telegram_context)
+
+        self.telegram_context.bot.send_message.assert_not_called()
+        self.sentry_sdk.capture_exception.assert_called_once_with(exception)
+
+    @pytest.mark.asyncio
+    async def test_error_callback_without_error(self) -> None:
+        self.telegram_context.error = None
+
+        await self.sut.error_callback(self.telegram_update, self.telegram_context)
+
+        self.telegram_context.bot.send_message.assert_not_called()
+        self.sentry_sdk.capture_exception.assert_not_called()

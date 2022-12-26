@@ -4,7 +4,7 @@
 from dependency_injector import containers, providers
 from requests import Session
 from slack_sdk import WebClient
-from telegram import Bot
+from telegram.ext import ExtBot
 from telegram.request import HTTPXRequest
 
 from pdf_bot.account import AccountRepository, AccountService
@@ -18,7 +18,11 @@ from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.image import ImageService
 from pdf_bot.image_handler import BatchImageHandler
-from pdf_bot.image_processor import BeautifyImageProcessor, ImageToPDFProcessor
+from pdf_bot.image_processor import (
+    BeautifyImageProcessor,
+    ImageProcessor,
+    ImageToPDFProcessor,
+)
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
@@ -58,7 +62,10 @@ class Core(containers.DeclarativeContainer):
         pool_timeout=settings.request_pool_timeout,
     )
     telegram_bot = providers.Singleton(
-        Bot, token=settings.telegram_token, request=httpx_request
+        ExtBot,
+        token=settings.telegram_token,
+        arbitrary_callback_data=True,
+        request=httpx_request,
     )
 
 
@@ -173,6 +180,11 @@ class Services(containers.DeclarativeContainer):
 
 class Processors(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
+
+    image = providers.Singleton(
+        ImageProcessor,
+        language_service=services.language,
+    )
 
     decrypt = providers.Singleton(
         DecryptPDFProcessor,
@@ -300,6 +312,7 @@ class Handlers(containers.DeclarativeContainer):
         image_to_pdf_processor=processors.image_to_pdf,
         telegram_service=services.telegram,
         language_service=services.language,
+        image_processor=processors.image,
     )
 
     compare = providers.Singleton(

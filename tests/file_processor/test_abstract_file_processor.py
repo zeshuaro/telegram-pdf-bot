@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator, Type
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 from telegram import Update
@@ -9,6 +9,7 @@ from telegram.ext import ContextTypes, ConversationHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
+from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import TelegramUserDataKeyError
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
@@ -92,7 +93,7 @@ class MockProcessorWithCustomErrorHandler(MockProcessor):
         _context: ContextTypes.DEFAULT_TYPE,
         _exception: Exception,
         _file_id: str,
-        _file_name: str,
+        _file_name: str | None,
     ) -> str:
         return self.CUSTOM_ERROR_STATE
 
@@ -122,6 +123,8 @@ class TestAbstractFileProcessor(
 
     def setup_method(self) -> None:
         super().setup_method()
+        self.telegram_update.callback_query = None
+
         self.file_task_service = self.mock_file_task_service()
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
@@ -275,6 +278,35 @@ class TestAbstractFileProcessor(
 
         assert actual == ConversationHandler.END
         self._assert_process_file_succeed()
+
+    @pytest.mark.asyncio
+    async def test_process_file_with_callback_query(self) -> None:
+        file_data = MagicMock(spec=FileData)
+        file_data.id = self.TELEGRAM_DOCUMENT_ID
+        file_data.name = self.TELEGRAM_DOCUMENT_NAME
+        self.telegram_callback_query.data = file_data
+        self.telegram_update.callback_query = self.telegram_callback_query
+
+        actual = await self.sut.process_file(
+            self.telegram_update, self.telegram_context
+        )
+
+        assert actual == ConversationHandler.END
+        self.telegram_service.send_file.assert_called_once_with(
+            self.telegram_update,
+            self.telegram_context,
+            MockProcessor.PROCESS_RESULT,
+            MockProcessor.TASK_TYPE,
+        )
+
+    @pytest.mark.asyncio
+    async def test_process_file_with_callback_query_unknown_data(self) -> None:
+        self.telegram_callback_query.data = None
+        self.telegram_update.callback_query = self.telegram_callback_query
+
+        with pytest.raises(ValueError):
+            await self.sut.process_file(self.telegram_update, self.telegram_context)
+            self.telegram_service.send_file.assert_not_called()
 
     def _assert_process_file_succeed(
         self, out_path: str = MockProcessor.PROCESS_RESULT
