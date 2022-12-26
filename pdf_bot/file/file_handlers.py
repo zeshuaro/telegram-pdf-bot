@@ -16,7 +16,6 @@ from pdf_bot.consts import (
     CROP,
     DECRYPT,
     ENCRYPT,
-    EXTRACT_IMAGE,
     EXTRACT_TEXT,
     FILE_DATA,
     OCR,
@@ -37,10 +36,10 @@ from pdf_bot.language import LanguageService
 from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
-    ExtractPDFImageProcessor,
     ExtractPDFTextProcessor,
     GrayscalePdfProcessor,
     OCRPdfProcessor,
+    PdfTaskProcessor,
     PDFToImageProcessor,
     PreviewPdfProcessor,
     RenamePdfProcessor,
@@ -61,7 +60,6 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPdfProcessor,
         encrypt_pdf_processor: EncryptPdfProcessor,
-        extract_pdf_image_processor: ExtractPDFImageProcessor,
         extract_pdf_text_processor: ExtractPDFTextProcessor,
         grayscale_pdf_processor: GrayscalePdfProcessor,
         ocr_pdf_processor: OCRPdfProcessor,
@@ -74,17 +72,18 @@ class FileHandlers:
         telegram_service: TelegramService,
         language_service: LanguageService,
         image_task_processor: ImageTaskProcessor,
+        pdf_task_processor: PdfTaskProcessor,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
         self.crop_service = crop_service
         self.telegram_service = telegram_service
         self.image_task_processor = image_task_processor
+        self.pdf_task_processor = pdf_task_processor
         self.language_service = language_service
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
-        self.extract_pdf_image_processor = extract_pdf_image_processor
         self.extract_pdf_text_processor = extract_pdf_text_processor
         self.grayscale_pdf_processor = grayscale_pdf_processor
         self.ocr_pdf_processor = ocr_pdf_processor
@@ -104,15 +103,13 @@ class FileHandlers:
                 ),
             ],
             states={
-                FileTaskService.WAIT_PDF_TASK: [
-                    MessageHandler(TEXT_FILTER, self.check_doc_task)
-                ],
                 self.WAIT_FILE_TASK: AbstractFileProcessor.get_handlers()
                 + [
                     CallbackQueryHandler(
                         self.telegram_service.cancel_conversation,
                         pattern=r"^cancel$",
                     ),
+                    MessageHandler(TEXT_FILTER, self.check_doc_task),
                 ],
                 CropService.WAIT_CROP_TYPE: [
                     MessageHandler(TEXT_FILTER, self.crop_service.check_crop_type)
@@ -186,7 +183,8 @@ class FileHandlers:
             return ConversationHandler.END
 
         context.user_data[FILE_DATA] = doc.file_id, doc.file_name  # type: ignore
-        return await self.file_task_service.ask_pdf_task(update, context)
+        await self.file_task_service.ask_pdf_task(update, context)
+        return await self.pdf_task_processor.ask_task(update, context)
 
     async def check_image(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
@@ -224,8 +222,6 @@ class FileHandlers:
             return await self.encrypt_pdf_processor.ask_password(update, context)
         if text == _(TO_IMAGES):
             return await self.pdf_to_image_processor.process_file(update, context)
-        if text == _(EXTRACT_IMAGE):
-            return await self.extract_pdf_image_processor.process_file(update, context)
         if text == _(PREVIEW):
             return await self.preview_pdf_processor.process_file(update, context)
         if text == _(RENAME):
@@ -247,4 +243,4 @@ class FileHandlers:
         if text == _(CANCEL):
             return await self.telegram_service.cancel_conversation(update, context)
 
-        return FileTaskService.WAIT_PDF_TASK
+        return FileTaskService.WAIT_FILE_TASK

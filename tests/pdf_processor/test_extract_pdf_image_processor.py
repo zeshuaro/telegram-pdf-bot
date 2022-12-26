@@ -1,16 +1,19 @@
 from unittest.mock import MagicMock
 
 import pytest
+from telegram.ext import CallbackQueryHandler
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import ExtractPDFImageProcessor
+from pdf_bot.pdf_processor import ExtractPdfImageProcessor
+from pdf_bot.pdf_processor.extract_pdf_image_processor import ExtractPdfImageData
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestExtractPDFImageProcessor(
+class TestExtractPdfImageProcessor(
     FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
@@ -25,7 +28,7 @@ class TestExtractPDFImageProcessor(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = ExtractPDFImageProcessor(
+        self.sut = ExtractPdfImageProcessor(
             self.file_task_service,
             self.pdf_service,
             self.telegram_service,
@@ -40,6 +43,16 @@ class TestExtractPDFImageProcessor(
     def test_should_process_back_option(self) -> None:
         actual = self.sut.should_process_back_option
         assert actual is False
+
+    def test_task_data(self) -> None:
+        actual = self.sut.task_data
+        assert actual == TaskData("Extract images", ExtractPdfImageData)
+
+    def test_handler(self) -> None:
+        actual = self.sut.handler
+
+        assert isinstance(actual, CallbackQueryHandler)
+        assert actual.pattern == ExtractPdfImageData
 
     @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:

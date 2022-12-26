@@ -6,7 +6,7 @@ from tests.telegram_internal import TelegramTestMixin
 
 
 class TestFileTaskService(LanguageServiceTestMixin, TelegramTestMixin):
-    WAIT_PDF_TASK = "wait_pdf_task"
+    WAIT_FILE_TASK = "wait_file_task"
     WAIT_IMAGE_TASK = "wait_image_task"
 
     def setup_method(self) -> None:
@@ -20,7 +20,7 @@ class TestFileTaskService(LanguageServiceTestMixin, TelegramTestMixin):
             self.telegram_update, self.telegram_context
         )
 
-        assert actual == self.WAIT_PDF_TASK
+        assert actual == self.WAIT_FILE_TASK
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
