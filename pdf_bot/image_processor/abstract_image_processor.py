@@ -2,6 +2,7 @@ from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.image import ImageService
 from pdf_bot.language import LanguageService
+from pdf_bot.models import TaskData
 from pdf_bot.telegram_internal import TelegramService
 
 
@@ -28,5 +29,9 @@ class AbstractImageProcessor(AbstractFileProcessor):
         )
 
     @classmethod
-    def get_processors(cls) -> list["AbstractImageProcessor"]:
-        return list(cls._IMAGE_PROCESSORS.values())
+    def get_task_data_list(cls) -> list[TaskData]:
+        return [
+            x.task_data
+            for x in cls._IMAGE_PROCESSORS.values()
+            if x.task_data is not None
+        ]

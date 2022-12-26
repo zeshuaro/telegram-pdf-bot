@@ -32,7 +32,7 @@ from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.file_task import FileTaskService
-from pdf_bot.image_processor import ImageProcessor
+from pdf_bot.image_processor import ImageTaskProcessor
 from pdf_bot.language import LanguageService
 from pdf_bot.pdf_processor import (
     DecryptPDFProcessor,
@@ -73,13 +73,13 @@ class FileHandlers:
         split_pdf_processor: SplitPDFProcessor,
         telegram_service: TelegramService,
         language_service: LanguageService,
-        image_processor: ImageProcessor,
+        image_task_processor: ImageTaskProcessor,
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
         self.crop_service = crop_service
         self.telegram_service = telegram_service
-        self.image_processor = image_processor
+        self.image_task_processor = image_task_processor
         self.language_service = language_service
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
@@ -208,7 +208,7 @@ class FileHandlers:
 
             return ConversationHandler.END
 
-        return await self.image_processor.ask_image_task(update, context)
+        return await self.image_task_processor.ask_task(update, context)
 
     async def check_doc_task(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
