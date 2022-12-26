@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 01:25+0000\n"
-"PO-Revision-Date: 2022-12-26 01:26\n"
+"POT-Creation-Date: 2022-12-26 06:02+0000\n"
+"PO-Revision-Date: 2022-12-26 06:02\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -76,10 +76,12 @@ msgid "Split"
 msgstr "பிரி"
 
 #: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
+#: pdf_bot/image_processor/image_processor.py:17
 msgid "Beautify"
 msgstr "அழகுபடுத்தல்"
 
 #: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
+#: pdf_bot/image_processor/image_processor.py:18
 msgid "To PDF"
 msgstr "PDF க்கு"
 
@@ -313,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "பின்னூட்டம் ஆங்கிலத்தில் இல்லை, மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
+#: pdf_bot/file/file_handlers.py:193 pdf_bot/file/file_handlers.py:220
 msgid "Your file is too big for me to download and process"
 msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
 
-#: pdf_bot/file/file_handlers.py:174 pdf_bot/file/file_handlers.py:201
+#: pdf_bot/file/file_handlers.py:194 pdf_bot/file/file_handlers.py:221
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
 
@@ -325,7 +327,12 @@ msgstr "இது ஒரு தந்தி பாட் வரம்பு ம�
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "கோப்பு அளவு {percent}மூலம் குறைக்கப்பட்டது, {old_size} இருந்து {new_size}"
 
+#: pdf_bot/file_processor/abstract_file_processor.py:77
+msgid "Processing your file"
+msgstr ""
+
 #: pdf_bot/file_task/file_task_service.py:84
+#: pdf_bot/image_processor/image_processor.py:43
 msgid "Select the task that you'll like to perform"
 msgstr "நீங்கள் செய்ய விரும்பும் பணியைத் தேர்ந்தெடுக்கவும்"
 
@@ -605,11 +612,11 @@ msgstr "உங்கள் PPM கோப்பை மறைகுறிநீக
 msgid "Send me the password to encrypt your PDF file"
 msgstr "உங்கள் PPM கோப்பை குறியாக்க கடவுச்சொல்லை எனக்கு அனுப்பவும்"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:155
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:156
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "பொத்தான் காலாவதியாகிவிட்டது, தயவுசெய்து ஒரு புதிய செய்தி/கேள்வியுடன் மீண்டும் முயற்சிக்கவும், பின்னர் புதிய பொத்தானை அழுத்தவும்"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:175
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:184
 #: pdf_bot/telegram_internal/telegram_service.py:93
 msgid "Something went wrong, please try again"
 msgstr "ஏதோ தவறு நடந்தது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 01:25+0000\n"
-"PO-Revision-Date: 2022-12-26 01:25\n"
+"POT-Creation-Date: 2022-12-26 06:02+0000\n"
+"PO-Revision-Date: 2022-12-26 06:02\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -76,10 +76,12 @@ msgid "Split"
 msgstr "Splitsen"
 
 #: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
+#: pdf_bot/image_processor/image_processor.py:17
 msgid "Beautify"
 msgstr "Verfraaien"
 
 #: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
+#: pdf_bot/image_processor/image_processor.py:18
 msgid "To PDF"
 msgstr "Naar PDF"
 
@@ -313,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "De feedback is niet in het Engels, probeer het opnieuw"
 
-#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
+#: pdf_bot/file/file_handlers.py:193 pdf_bot/file/file_handlers.py:220
 msgid "Your file is too big for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 
-#: pdf_bot/file/file_handlers.py:174 pdf_bot/file/file_handlers.py:201
+#: pdf_bot/file/file_handlers.py:194 pdf_bot/file/file_handlers.py:221
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen tenzij Telegram deze limiet wijzigt"
 
@@ -325,7 +327,12 @@ msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen t
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Bestandsgrootte verminderd met {percent}, van {old_size} tot {new_size}"
 
+#: pdf_bot/file_processor/abstract_file_processor.py:77
+msgid "Processing your file"
+msgstr ""
+
 #: pdf_bot/file_task/file_task_service.py:84
+#: pdf_bot/image_processor/image_processor.py:43
 msgid "Select the task that you'll like to perform"
 msgstr "Selecteer de taak die u wilt uitvoeren"
 
@@ -605,11 +612,11 @@ msgstr "Stuur me het wachtwoord om uw PDF bestand te decoderen"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Stuur mij het wachtwoord om uw PDF bestand te versleutelen"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:155
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:156
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "De knop is verlopen, probeer het opnieuw met een nieuw bericht / query en druk vervolgens op de nieuwe knop"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:175
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:184
 #: pdf_bot/telegram_internal/telegram_service.py:93
 msgid "Something went wrong, please try again"
 msgstr "Er is iets misgegaan, probeer het opnieuw."

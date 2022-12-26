@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 01:25+0000\n"
-"PO-Revision-Date: 2022-12-26 01:26\n"
+"POT-Creation-Date: 2022-12-26 06:02+0000\n"
+"PO-Revision-Date: 2022-12-26 06:02\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -76,10 +76,12 @@ msgid "Split"
 msgstr "विभाजिन"
 
 #: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:30
+#: pdf_bot/image_processor/image_processor.py:17
 msgid "Beautify"
 msgstr "सुशोभित"
 
 #: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:31
+#: pdf_bot/image_processor/image_processor.py:18
 msgid "To PDF"
 msgstr "पीडीएफ में"
 
@@ -313,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "प्रतिक्रिया अंग्रेजी में नहीं है, फिर से प्रयास करें"
 
-#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
+#: pdf_bot/file/file_handlers.py:193 pdf_bot/file/file_handlers.py:220
 msgid "Your file is too big for me to download and process"
 msgstr "आपकी फ़ाइल डाउनलोड करने और प्रक्रिया करने के लिए मेरे लिए बहुत बड़ी है"
 
-#: pdf_bot/file/file_handlers.py:174 pdf_bot/file/file_handlers.py:201
+#: pdf_bot/file/file_handlers.py:194 pdf_bot/file/file_handlers.py:221
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ध्यान दें कि यह एक टेलीग्राम बॉट सीमा है और मैं ऐसा कुछ नहीं कर सकता जब तक कि टेलीग्राम इस सीमा को नहीं बदलता"
 
@@ -325,7 +327,12 @@ msgstr "ध्यान दें कि यह एक टेलीग्रा�
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "फाइल का आकार {percent}से घटाकर {old_size} से {new_size}"
 
+#: pdf_bot/file_processor/abstract_file_processor.py:77
+msgid "Processing your file"
+msgstr ""
+
 #: pdf_bot/file_task/file_task_service.py:84
+#: pdf_bot/image_processor/image_processor.py:43
 msgid "Select the task that you'll like to perform"
 msgstr "उस कार्य का चयन करें जिसे आप करना चाहते हैं"
 
@@ -605,11 +612,11 @@ msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक�
 msgid "Send me the password to encrypt your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को एन्क्रिप्ट करने के लिए मुझे पासवर्ड भेजें"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:155
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:156
 msgid "The button has expired, please try again with a new message/query then press the new button"
 msgstr "बटन की समय सीमा समाप्त हो गई है, कृपया एक नए संदेश/क्वेरी के साथ फिर से प्रयास करें फिर नया बटन दबाएँ"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:175
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:184
 #: pdf_bot/telegram_internal/telegram_service.py:93
 msgid "Something went wrong, please try again"
 msgstr "कुछ गलत हो गया, कृपया फिर से प्रयास करें"
