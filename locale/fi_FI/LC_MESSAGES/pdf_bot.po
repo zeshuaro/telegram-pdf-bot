@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 22:57+0000\n"
-"PO-Revision-Date: 2022-12-26 22:58\n"
+"POT-Creation-Date: 2022-12-26 23:47+0000\n"
+"PO-Revision-Date: 2022-12-26 23:47\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -75,12 +75,12 @@ msgstr "Mittakaavassa"
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:29
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:28
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Kaunistaa"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:30
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:29
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDF-tiedostoon"
@@ -109,7 +109,7 @@ msgstr "Poista viimeinen tiedosto"
 msgid "To Dimensions"
 msgstr "Dimensioihin"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:58
 msgid "Extract Text"
 msgstr "Pura teksti"
 
@@ -121,11 +121,11 @@ msgstr "Tekstiviesti"
 msgid "Text File"
 msgstr "Tekstitiedosto"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:25
 msgid "Compress"
 msgstr "Pakata"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:26
 msgid "Black & White"
 msgstr "Mustavalkoinen"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Palaute ei ole englanniksi, yritä uudelleen"
 
-#: pdf_bot/file/file_handlers.py:172 pdf_bot/file/file_handlers.py:199
+#: pdf_bot/file/file_handlers.py:168 pdf_bot/file/file_handlers.py:195
 msgid "Your file is too big for me to download and process"
 msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
-#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
+#: pdf_bot/file/file_handlers.py:169 pdf_bot/file/file_handlers.py:196
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Huomaa, että tämä on Telegram Bot -rajoitus, enkä voi tehdä mitään, ellei Telegram muuta tätä rajaa"
 
@@ -335,7 +335,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "Valitse tehtävä, jonka haluat suorittaa"
 
-#: pdf_bot/file_task/file_task_service.py:82
+#: pdf_bot/file_task/file_task_service.py:80
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -481,6 +481,10 @@ msgstr "PDF-tiedostosi on salattu"
 
 #: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
 msgid "Extract images"
+msgstr ""
+
+#: pdf_bot/pdf_processor/extract_pdf_text_processor.py:24
+msgid "Extract text"
 msgstr ""
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:41

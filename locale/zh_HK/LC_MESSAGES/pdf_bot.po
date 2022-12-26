@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 22:57+0000\n"
-"PO-Revision-Date: 2022-12-26 22:58\n"
+"POT-Creation-Date: 2022-12-26 23:47+0000\n"
+"PO-Revision-Date: 2022-12-26 23:48\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -75,12 +75,12 @@ msgstr "縮放"
 msgid "Split"
 msgstr "分割"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:29
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:28
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "美化"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:30
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:29
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "轉做PDF"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "To Dimensions"
 msgstr "自訂尺寸"
 
-#: pdf_bot/consts.py:58 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:58
 msgid "Extract Text"
 msgstr "攞文字出嚟"
 
@@ -121,11 +121,11 @@ msgstr "訊息"
 msgid "Text File"
 msgstr "文字檔"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:25
 msgid "Compress"
 msgstr "壓縮"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:26
 msgid "Black & White"
 msgstr ""
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "你畀嘅意見唔係英文，試多次"
 
-#: pdf_bot/file/file_handlers.py:172 pdf_bot/file/file_handlers.py:199
+#: pdf_bot/file/file_handlers.py:168 pdf_bot/file/file_handlers.py:195
 msgid "Your file is too big for me to download and process"
 msgstr "你嘅檔案太大啦，我下載唔到同處理唔到"
 
-#: pdf_bot/file/file_handlers.py:173 pdf_bot/file/file_handlers.py:200
+#: pdf_bot/file/file_handlers.py:169 pdf_bot/file/file_handlers.py:196
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "留意番呢個係Telegram Bot嘅限制，呢個限唔係我嘅控制範圍，要等Telegram改呢個限制我先至可以處理你嘅檔案"
 
@@ -335,7 +335,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "揀你想做啲乜"
 
-#: pdf_bot/file_task/file_task_service.py:82
+#: pdf_bot/file_task/file_task_service.py:80
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -481,6 +481,10 @@ msgstr ""
 
 #: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
 msgid "Extract images"
+msgstr ""
+
+#: pdf_bot/pdf_processor/extract_pdf_text_processor.py:24
+msgid "Extract text"
 msgstr ""
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:41
