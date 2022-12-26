@@ -32,7 +32,7 @@ from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
     ExtractPdfImageProcessor,
-    ExtractPDFTextProcessor,
+    ExtractPdfTextProcessor,
     GrayscalePdfProcessor,
     OCRPdfProcessor,
     PdfTaskProcessor,
@@ -214,7 +214,7 @@ class Processors(containers.DeclarativeContainer):
         language_service=services.language,
     )
     extract_text = providers.Singleton(
-        ExtractPDFTextProcessor,
+        ExtractPdfTextProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
@@ -304,7 +304,6 @@ class Handlers(containers.DeclarativeContainer):
         crop_service=services.crop,
         decrypt_pdf_processor=processors.decrypt,
         encrypt_pdf_processor=processors.encrypt,
-        extract_pdf_text_processor=processors.extract_text,
         grayscale_pdf_processor=processors.grayscale,
         ocr_pdf_processor=processors.ocr,
         pdf_to_image_processor=processors.pdf_to_image,
