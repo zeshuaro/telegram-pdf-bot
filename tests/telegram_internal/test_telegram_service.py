@@ -15,7 +15,7 @@ from pdf_bot.telegram_internal import (
     TelegramImageNotFoundError,
     TelegramService,
 )
-from pdf_bot.telegram_internal.exceptions import TelegramUserDataKeyError
+from pdf_bot.telegram_internal.exceptions import TelegramGetUserDataError
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
@@ -261,8 +261,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         )
         assert isinstance(actual, InlineKeyboardMarkup)
 
-    @pytest.mark.asyncio
-    async def test_get_user_data(self) -> None:
+    def test_get_user_data(self) -> None:
         self.telegram_context.user_data = {self.USER_DATA_KEY: self.USER_DATA_VALUE}
 
         actual = self.sut.get_user_data(self.telegram_context, self.USER_DATA_KEY)
@@ -270,11 +269,11 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         assert actual == self.USER_DATA_VALUE
         assert self.USER_DATA_KEY not in self.telegram_context.user_data
 
-    @pytest.mark.asyncio
-    async def test_get_user_data_key_error(self) -> None:
-        self.telegram_context.user_data = {}
+    @pytest.mark.parametrize("user_data", [None, {}])
+    def test_get_user_data_key_error(self, user_data: dict | None) -> None:
+        self.telegram_context.user_data = user_data
 
-        with pytest.raises(TelegramUserDataKeyError):
+        with pytest.raises(TelegramGetUserDataError):
             self.sut.get_user_data(self.telegram_context, self.USER_DATA_KEY)
 
     @pytest.mark.asyncio

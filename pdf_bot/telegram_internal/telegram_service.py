@@ -26,8 +26,8 @@ from pdf_bot.models import BackData, FileData
 from pdf_bot.telegram_internal.exceptions import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
+    TelegramGetUserDataError,
     TelegramImageNotFoundError,
-    TelegramUserDataKeyError,
 )
 
 
@@ -82,14 +82,19 @@ class TelegramService:
             key (str): the key for the value in user data
 
         Raises:
-            TelegramUserDataKeyError: if the key does not exist in user data
+            TelegramUserDataError: if user_data does not exist or the key does not exist
+                in user data
 
         Returns:
             Any: the value for the key
         """
-        data = context.user_data.pop(key, None)  # type: ignore
+        err = TelegramGetUserDataError(_("Something went wrong, please try again"))
+        if context.user_data is None:
+            raise err
+
+        data = context.user_data.pop(key, None)
         if data is None:
-            raise TelegramUserDataKeyError(_("Something went wrong, please try again"))
+            raise err
         return data
 
     def check_image(self, message: Message) -> Document | PhotoSize:

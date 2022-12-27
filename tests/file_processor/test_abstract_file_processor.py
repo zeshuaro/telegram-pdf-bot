@@ -10,7 +10,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
 from pdf_bot.models import FileData, TaskData
-from pdf_bot.telegram_internal import TelegramUserDataKeyError
+from pdf_bot.telegram_internal import TelegramGetUserDataError
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
@@ -285,7 +285,7 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_invalid_user_data(self) -> None:
-        self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
+        self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
 
         actual = await self.sut.process_file(
             self.telegram_update, self.telegram_context
