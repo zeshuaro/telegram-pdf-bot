@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 10:30+0000\n"
-"PO-Revision-Date: 2022-12-27 10:30\n"
+"POT-Creation-Date: 2022-12-27 11:01+0000\n"
+"PO-Revision-Date: 2022-12-27 11:01\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -71,16 +71,16 @@ msgstr "回転"
 msgid "Scale"
 msgstr "スケール"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:38
 msgid "Split"
 msgstr "分割"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:21
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "美化"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:22
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDFへ"
@@ -89,7 +89,7 @@ msgstr "PDFへ"
 msgid "Rename"
 msgstr "変更"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:18
 msgid "Crop"
 msgstr "作物"
 
@@ -121,7 +121,7 @@ msgstr "テキストメッセージ"
 msgid "Text File"
 msgstr "テキスト ファイル"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:19
 msgid "Compress"
 msgstr "圧縮"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "フィードバックは英語ではありません、もう一度やり直してください"
 
-#: pdf_bot/file/file_handlers.py:139 pdf_bot/file/file_handlers.py:166
+#: pdf_bot/file/file_handlers.py:132 pdf_bot/file/file_handlers.py:159
 msgid "Your file is too big for me to download and process"
 msgstr "ファイルが大きすぎてダウンロードして処理できません"
 
-#: pdf_bot/file/file_handlers.py:140 pdf_bot/file/file_handlers.py:167
+#: pdf_bot/file/file_handlers.py:133 pdf_bot/file/file_handlers.py:160
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "これは電報ボットの制限であり、テレグラムがこの制限を変更しない限り、私は何もできませんのでご注意ください"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "実行するタスクを選択します。"
 
-#: pdf_bot/file_task/file_task_service.py:68
+#: pdf_bot/file_task/file_task_service.py:66
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -548,75 +548,75 @@ msgstr "私に幅と高さを送ってください"
 msgid "This will set the width to 150 and height to 200"
 msgstr "幅を 150 に、高さを 200 に設定します。"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:116
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "あなたが保持したいページの範囲を私に送ってください"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#: pdf_bot/pdf_processor/split_pdf_processor.py:117
 msgid "General usage"
 msgstr "一般的な使用法"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:76
+#: pdf_bot/pdf_processor/split_pdf_processor.py:118
 msgid "{range}      all pages"
 msgstr "すべてのページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:119
 msgid "{range}      page 8 only"
 msgstr "{range}      ページ 8 のみ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:78
+#: pdf_bot/pdf_processor/split_pdf_processor.py:120
 msgid "{range}    first three pages"
 msgstr "最初の 3 ページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+#: pdf_bot/pdf_processor/split_pdf_processor.py:121
 msgid "{range}     from page 8 onward"
 msgstr "{range}     8 ページ以降"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:80
+#: pdf_bot/pdf_processor/split_pdf_processor.py:122
 msgid "{range}     last page only"
 msgstr "最後のページのみ{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:81
+#: pdf_bot/pdf_processor/split_pdf_processor.py:123
 msgid "{range}    all pages except the last page"
 msgstr "最後のページを除くすべてのページを {range}    する"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:84
+#: pdf_bot/pdf_processor/split_pdf_processor.py:126
 msgid "{range}     second last page only"
 msgstr "最後のページの2番目のページのみ{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+#: pdf_bot/pdf_processor/split_pdf_processor.py:127
 msgid "{range}    last two pages"
 msgstr "最後の2ページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:86
+#: pdf_bot/pdf_processor/split_pdf_processor.py:128
 msgid "{range}  third and second last pages"
 msgstr "最後のページと最後のページの3番目と2番目のページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:89
+#: pdf_bot/pdf_processor/split_pdf_processor.py:131
 msgid "Advanced usage"
 msgstr "高度な使用法"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:90
+#: pdf_bot/pdf_processor/split_pdf_processor.py:132
 msgid "{range}    pages {pages} and to the end"
 msgstr "ページ {pages} をし、最後まで{range}    する"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:93
+#: pdf_bot/pdf_processor/split_pdf_processor.py:135
 msgid "{range} pages {pages}"
 msgstr "{range} ページ {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:96
+#: pdf_bot/pdf_processor/split_pdf_processor.py:138
 msgid "{range}   all pages in reversed order"
 msgstr "すべてのページを逆順に{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:99
+#: pdf_bot/pdf_processor/split_pdf_processor.py:141
 msgid "{range} pages {pages} except {page}"
 msgstr "{page}を除くページ {pages} を{range} します。"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:102
+#: pdf_bot/pdf_processor/split_pdf_processor.py:144
 msgid "{range}  pages {pages}"
 msgstr "{range}  ページ {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:126
+#: pdf_bot/pdf_processor/split_pdf_processor.py:163
 msgid "The range is invalid, please try again"
 msgstr "範囲が無効です。"
 

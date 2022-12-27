@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 10:30+0000\n"
-"PO-Revision-Date: 2022-12-27 10:30\n"
+"POT-Creation-Date: 2022-12-27 11:01+0000\n"
+"PO-Revision-Date: 2022-12-27 11:01\n"
 "Last-Translator: \n"
 "Language: fa\n"
 "Language-Team: Persian\n"
@@ -71,16 +71,16 @@ msgstr "چرخش"
 msgid "Scale"
 msgstr "مقیاس"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:38
 msgid "Split"
 msgstr "تقسیم"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:21
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "زیباسازی"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:22
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "به پی دی اف"
@@ -89,7 +89,7 @@ msgstr "به پی دی اف"
 msgid "Rename"
 msgstr "نام"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:18
 msgid "Crop"
 msgstr "محصول"
 
@@ -121,7 +121,7 @@ msgstr "پیام متنی"
 msgid "Text File"
 msgstr "پرونده متنی"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:19
 msgid "Compress"
 msgstr "فشرده سازی"
 
@@ -316,11 +316,11 @@ msgstr "با تشکر از بازخورد شما.\n"
 msgid "The feedback is not in English, try again"
 msgstr "بازخورد به زبان انگلیسی نیست، دوباره سعی کنید"
 
-#: pdf_bot/file/file_handlers.py:139 pdf_bot/file/file_handlers.py:166
+#: pdf_bot/file/file_handlers.py:132 pdf_bot/file/file_handlers.py:159
 msgid "Your file is too big for me to download and process"
 msgstr "فایل شما برای دانلود و پردازش برای من خیلی بزرگ است"
 
-#: pdf_bot/file/file_handlers.py:140 pdf_bot/file/file_handlers.py:167
+#: pdf_bot/file/file_handlers.py:133 pdf_bot/file/file_handlers.py:160
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "توجه داشته باشید که این محدودیت تلگرام ربات است و هیچ کاری نمی توانم انجام دهم مگر اینکه تلگرام این حد را تغییر دهد"
 
@@ -337,7 +337,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "وظیفه ای را که می خواهید انجام دهد انتخاب کنید"
 
-#: pdf_bot/file_task/file_task_service.py:68
+#: pdf_bot/file_task/file_task_service.py:66
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -549,75 +549,75 @@ msgstr "عرض و ارتفاع را برایم بفرست"
 msgid "This will set the width to 150 and height to 200"
 msgstr "این عرض را به 150 و ارتفاع به 200 تنظیم"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:116
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "دامنه صفحاتی را که دوست دارید نگه دارید برایم بفرستید"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#: pdf_bot/pdf_processor/split_pdf_processor.py:117
 msgid "General usage"
 msgstr "استفاده عمومی"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:76
+#: pdf_bot/pdf_processor/split_pdf_processor.py:118
 msgid "{range}      all pages"
 msgstr "{range}      تمام صفحات"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:119
 msgid "{range}      page 8 only"
 msgstr "{range}      صفحه 8 تنها"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:78
+#: pdf_bot/pdf_processor/split_pdf_processor.py:120
 msgid "{range}    first three pages"
 msgstr "{range}    صفحه اول"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+#: pdf_bot/pdf_processor/split_pdf_processor.py:121
 msgid "{range}     from page 8 onward"
 msgstr "{range}     از صفحه 8 به بعد"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:80
+#: pdf_bot/pdf_processor/split_pdf_processor.py:122
 msgid "{range}     last page only"
 msgstr "{range}     صفحه آخر فقط"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:81
+#: pdf_bot/pdf_processor/split_pdf_processor.py:123
 msgid "{range}    all pages except the last page"
 msgstr "{range}    تمام صفحات به جز صفحه آخر"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:84
+#: pdf_bot/pdf_processor/split_pdf_processor.py:126
 msgid "{range}     second last page only"
 msgstr "{range}     صفحه آخر فقط"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+#: pdf_bot/pdf_processor/split_pdf_processor.py:127
 msgid "{range}    last two pages"
 msgstr "{range}    دو صفحه آخر"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:86
+#: pdf_bot/pdf_processor/split_pdf_processor.py:128
 msgid "{range}  third and second last pages"
 msgstr "{range}  و دوم آخرین صفحات"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:89
+#: pdf_bot/pdf_processor/split_pdf_processor.py:131
 msgid "Advanced usage"
 msgstr "استفاده پیشرفته"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:90
+#: pdf_bot/pdf_processor/split_pdf_processor.py:132
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    صفحات {pages} و تا آخر"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:93
+#: pdf_bot/pdf_processor/split_pdf_processor.py:135
 msgid "{range} pages {pages}"
 msgstr "{range} صفحات {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:96
+#: pdf_bot/pdf_processor/split_pdf_processor.py:138
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   صفحات را به ترتیب معکوس"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:99
+#: pdf_bot/pdf_processor/split_pdf_processor.py:141
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} صفحه {pages} جز {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:102
+#: pdf_bot/pdf_processor/split_pdf_processor.py:144
 msgid "{range}  pages {pages}"
 msgstr "{range}  صفحات {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:126
+#: pdf_bot/pdf_processor/split_pdf_processor.py:163
 msgid "The range is invalid, please try again"
 msgstr "محدوده نامعتبر است، لطفا دوباره امتحان کنید"
 

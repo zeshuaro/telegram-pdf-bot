@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 10:30+0000\n"
-"PO-Revision-Date: 2022-12-27 10:30\n"
+"POT-Creation-Date: 2022-12-27 11:01+0000\n"
+"PO-Revision-Date: 2022-12-27 11:01\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -71,16 +71,16 @@ msgstr "Draaien"
 msgid "Scale"
 msgstr "Grootte"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:38
 msgid "Split"
 msgstr "Splitsen"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:21
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Verfraaien"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:22
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "Naar PDF"
@@ -89,7 +89,7 @@ msgstr "Naar PDF"
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:18
 msgid "Crop"
 msgstr "Bijsnijden"
 
@@ -121,7 +121,7 @@ msgstr "Tekstbericht"
 msgid "Text File"
 msgstr "Tekst bestand"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:19
 msgid "Compress"
 msgstr "Comprimeren"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "De feedback is niet in het Engels, probeer het opnieuw"
 
-#: pdf_bot/file/file_handlers.py:139 pdf_bot/file/file_handlers.py:166
+#: pdf_bot/file/file_handlers.py:132 pdf_bot/file/file_handlers.py:159
 msgid "Your file is too big for me to download and process"
 msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 
-#: pdf_bot/file/file_handlers.py:140 pdf_bot/file/file_handlers.py:167
+#: pdf_bot/file/file_handlers.py:133 pdf_bot/file/file_handlers.py:160
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen tenzij Telegram deze limiet wijzigt"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "Selecteer de taak die u wilt uitvoeren"
 
-#: pdf_bot/file_task/file_task_service.py:68
+#: pdf_bot/file_task/file_task_service.py:66
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -548,75 +548,75 @@ msgstr "Stuur me de breedte en hoogte"
 msgid "This will set the width to 150 and height to 200"
 msgstr "Hiermee wordt de breedte ingesteld op 150 en de hoogte op 200"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:116
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Stuur me het bereik van de pagina's die u wilt houden"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#: pdf_bot/pdf_processor/split_pdf_processor.py:117
 msgid "General usage"
 msgstr "Algemeen gebruik"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:76
+#: pdf_bot/pdf_processor/split_pdf_processor.py:118
 msgid "{range}      all pages"
 msgstr "{range}      alle pagina's"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:119
 msgid "{range}      page 8 only"
 msgstr "alleen {range}      pagina 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:78
+#: pdf_bot/pdf_processor/split_pdf_processor.py:120
 msgid "{range}    first three pages"
 msgstr "{range}    eerste drie pagina's"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+#: pdf_bot/pdf_processor/split_pdf_processor.py:121
 msgid "{range}     from page 8 onward"
 msgstr "{range}     vanaf pagina 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:80
+#: pdf_bot/pdf_processor/split_pdf_processor.py:122
 msgid "{range}     last page only"
 msgstr "alleen {range}     laatste pagina"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:81
+#: pdf_bot/pdf_processor/split_pdf_processor.py:123
 msgid "{range}    all pages except the last page"
 msgstr "{range}    alle pagina's behalve de laatste pagina"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:84
+#: pdf_bot/pdf_processor/split_pdf_processor.py:126
 msgid "{range}     second last page only"
 msgstr "alleen {range}     op één na laatste pagina"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+#: pdf_bot/pdf_processor/split_pdf_processor.py:127
 msgid "{range}    last two pages"
 msgstr "{range}    laatste twee pagina's"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:86
+#: pdf_bot/pdf_processor/split_pdf_processor.py:128
 msgid "{range}  third and second last pages"
 msgstr "{range}  derde en een na laatste pagina"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:89
+#: pdf_bot/pdf_processor/split_pdf_processor.py:131
 msgid "Advanced usage"
 msgstr "Geavanceerd gebruik"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:90
+#: pdf_bot/pdf_processor/split_pdf_processor.py:132
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    pagina's {pages} en tot het einde"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:93
+#: pdf_bot/pdf_processor/split_pdf_processor.py:135
 msgid "{range} pages {pages}"
 msgstr "{range} pagina's {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:96
+#: pdf_bot/pdf_processor/split_pdf_processor.py:138
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   alle pagina's in omgekeerde volgorde"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:99
+#: pdf_bot/pdf_processor/split_pdf_processor.py:141
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} pagina's {pages} behalve {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:102
+#: pdf_bot/pdf_processor/split_pdf_processor.py:144
 msgid "{range}  pages {pages}"
 msgstr "{range}  pagina's {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:126
+#: pdf_bot/pdf_processor/split_pdf_processor.py:163
 msgid "The range is invalid, please try again"
 msgstr "Het bereik is ongeldig, probeer het opnieuw"
 

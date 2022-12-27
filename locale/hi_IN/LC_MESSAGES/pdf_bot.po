@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 10:30+0000\n"
-"PO-Revision-Date: 2022-12-27 10:30\n"
+"POT-Creation-Date: 2022-12-27 11:01+0000\n"
+"PO-Revision-Date: 2022-12-27 11:01\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -71,16 +71,16 @@ msgstr "घुमाएँ"
 msgid "Scale"
 msgstr "परिमाण"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:38
 msgid "Split"
 msgstr "विभाजिन"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:21
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "सुशोभित"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:22
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "पीडीएफ में"
@@ -89,7 +89,7 @@ msgstr "पीडीएफ में"
 msgid "Rename"
 msgstr "नाम बदलें"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:18
 msgid "Crop"
 msgstr "क्रॉप"
 
@@ -121,7 +121,7 @@ msgstr "टेक्स्ट मैसेज"
 msgid "Text File"
 msgstr "टेक्स्ट फाइल"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:19
 msgid "Compress"
 msgstr "संपीड़ित"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "प्रतिक्रिया अंग्रेजी में नहीं है, फिर से प्रयास करें"
 
-#: pdf_bot/file/file_handlers.py:139 pdf_bot/file/file_handlers.py:166
+#: pdf_bot/file/file_handlers.py:132 pdf_bot/file/file_handlers.py:159
 msgid "Your file is too big for me to download and process"
 msgstr "आपकी फ़ाइल डाउनलोड करने और प्रक्रिया करने के लिए मेरे लिए बहुत बड़ी है"
 
-#: pdf_bot/file/file_handlers.py:140 pdf_bot/file/file_handlers.py:167
+#: pdf_bot/file/file_handlers.py:133 pdf_bot/file/file_handlers.py:160
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ध्यान दें कि यह एक टेलीग्राम बॉट सीमा है और मैं ऐसा कुछ नहीं कर सकता जब तक कि टेलीग्राम इस सीमा को नहीं बदलता"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "उस कार्य का चयन करें जिसे आप करना चाहते हैं"
 
-#: pdf_bot/file_task/file_task_service.py:68
+#: pdf_bot/file_task/file_task_service.py:66
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -548,75 +548,75 @@ msgstr "मुझे चौड़ाई और ऊंचाई भेजें"
 msgid "This will set the width to 150 and height to 200"
 msgstr "इससे चौड़ाई 150 और ऊंचाई 200 तय होगी।"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:116
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "मुझे उन पृष्ठों की सीमा भेजें जिन्हें आप रखना चाहते हैं"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#: pdf_bot/pdf_processor/split_pdf_processor.py:117
 msgid "General usage"
 msgstr "सामान्य उपयोग"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:76
+#: pdf_bot/pdf_processor/split_pdf_processor.py:118
 msgid "{range}      all pages"
 msgstr "सभी पृष्ठों {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:119
 msgid "{range}      page 8 only"
 msgstr "{range}      पेज 8 ही"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:78
+#: pdf_bot/pdf_processor/split_pdf_processor.py:120
 msgid "{range}    first three pages"
 msgstr "{range}    पहले तीन पृष्ठ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+#: pdf_bot/pdf_processor/split_pdf_processor.py:121
 msgid "{range}     from page 8 onward"
 msgstr "पेज 8 से आगे {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:80
+#: pdf_bot/pdf_processor/split_pdf_processor.py:122
 msgid "{range}     last page only"
 msgstr "केवल अंतिम पृष्ठ {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:81
+#: pdf_bot/pdf_processor/split_pdf_processor.py:123
 msgid "{range}    all pages except the last page"
 msgstr "अंतिम पृष्ठ को छोड़कर सभी पृष्ठों को {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:84
+#: pdf_bot/pdf_processor/split_pdf_processor.py:126
 msgid "{range}     second last page only"
 msgstr "{range}     दूसरा अंतिम पृष्ठ ही"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+#: pdf_bot/pdf_processor/split_pdf_processor.py:127
 msgid "{range}    last two pages"
 msgstr "पिछले दो पृष्ठों {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:86
+#: pdf_bot/pdf_processor/split_pdf_processor.py:128
 msgid "{range}  third and second last pages"
 msgstr "{range}  तीसरे और दूसरे अंतिम पृष्ठ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:89
+#: pdf_bot/pdf_processor/split_pdf_processor.py:131
 msgid "Advanced usage"
 msgstr "उन्नत उपयोग"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:90
+#: pdf_bot/pdf_processor/split_pdf_processor.py:132
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    पृष्ठ {pages} और अंत तक"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:93
+#: pdf_bot/pdf_processor/split_pdf_processor.py:135
 msgid "{range} pages {pages}"
 msgstr "{range} पेज {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:96
+#: pdf_bot/pdf_processor/split_pdf_processor.py:138
 msgid "{range}   all pages in reversed order"
 msgstr "उलट क्रम में सभी पृष्ठों {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:99
+#: pdf_bot/pdf_processor/split_pdf_processor.py:141
 msgid "{range} pages {pages} except {page}"
 msgstr "{page}को छोड़कर {range} पेज {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:102
+#: pdf_bot/pdf_processor/split_pdf_processor.py:144
 msgid "{range}  pages {pages}"
 msgstr "{range}  पेज {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:126
+#: pdf_bot/pdf_processor/split_pdf_processor.py:163
 msgid "The range is invalid, please try again"
 msgstr "सीमा अमान्य है, कृपया फिर से प्रयास करें"
 
