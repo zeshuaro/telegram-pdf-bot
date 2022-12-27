@@ -3,7 +3,7 @@ from .crypto import AbstractCryptoPdfProcessor, DecryptPdfProcessor, EncryptPdfP
 from .extract_pdf_image_processor import ExtractPdfImageData, ExtractPdfImageProcessor
 from .extract_pdf_text_processor import ExtractPdfTextData, ExtractPdfTextProcessor
 from .grayscale_pdf_processor import GrayscalePdfData, GrayscalePdfProcessor
-from .ocr_pdf_processor import OCRPdfProcessor
+from .ocr_pdf_processor import OcrPdfData, OcrPdfProcessor
 from .pdf_task_processor import PdfTaskProcessor
 from .pdf_to_image_processor import PDFToImageProcessor
 from .preview_pdf_processor import PreviewPdfProcessor
@@ -23,7 +23,8 @@ __all__ = [
     "ExtractPdfTextProcessor",
     "GrayscalePdfData",
     "GrayscalePdfProcessor",
-    "OCRPdfProcessor",
+    "OcrPdfData",
+    "OcrPdfProcessor",
     "PdfTaskProcessor",
     "PDFToImageProcessor",
     "PreviewPdfProcessor",
