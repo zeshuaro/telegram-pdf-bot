@@ -74,9 +74,9 @@ class TestDecryptPdfProcessor(
         )
 
         async with self.sut.process_file_task(
-            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
+            self.FILE_DATA, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.decrypt_pdf.assert_called_once_with(
-                self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
+                self.FILE_DATA.id, self.TELEGRAM_TEXT
             )

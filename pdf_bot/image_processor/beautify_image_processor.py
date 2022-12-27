@@ -33,9 +33,9 @@ class BeautifyImageProcessor(AbstractImageProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_id: str, _message_text: str
+        self, file_data: FileData, _message_text: str
     ) -> AsyncGenerator[str, None]:
         async with self.image_service.beautify_and_convert_images_to_pdf(
-            [FileData(file_id)]
+            [file_data]
         ) as path:
             yield path

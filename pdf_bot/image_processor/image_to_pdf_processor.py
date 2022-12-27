@@ -33,9 +33,7 @@ class ImageToPdfProcessor(AbstractImageProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_id: str, _message_text: str
+        self, file_data: FileData, _message_text: str
     ) -> AsyncGenerator[str, None]:
-        async with self.image_service.convert_images_to_pdf(
-            [FileData(file_id)]
-        ) as path:
+        async with self.image_service.convert_images_to_pdf([file_data]) as path:
             yield path

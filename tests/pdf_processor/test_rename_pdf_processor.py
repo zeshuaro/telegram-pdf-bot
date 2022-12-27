@@ -95,11 +95,11 @@ class TestRenamePdfProcessor(
         )
 
         async with self.sut.process_file_task(
-            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
+            self.FILE_DATA, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.rename_pdf.assert_called_once_with(
-                self.TELEGRAM_DOCUMENT_ID, f"{self.TELEGRAM_TEXT}.pdf"
+                self.FILE_DATA.id, f"{self.TELEGRAM_TEXT}.pdf"
             )
 
     @pytest.mark.asyncio
@@ -130,7 +130,7 @@ class TestRenamePdfProcessor(
 
         assert actual == ConversationHandler.END
         self.pdf_service.rename_pdf.assert_called_once_with(
-            self.TELEGRAM_DOCUMENT_ID, f"{self.TELEGRAM_TEXT}.pdf"
+            self.FILE_DATA.id, f"{self.TELEGRAM_TEXT}.pdf"
         )
 
     @pytest.mark.asyncio

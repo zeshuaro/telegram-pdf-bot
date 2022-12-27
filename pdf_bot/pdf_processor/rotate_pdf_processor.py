@@ -6,6 +6,7 @@ from telegram.ext import ContextTypes
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK
+from pdf_bot.models import FileData
 
 from .abstract_pdf_processor import AbstractPdfProcessor
 
@@ -26,9 +27,9 @@ class RotatePdfProcessor(AbstractPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_id: str, message_text: str
+        self, file_data: FileData, message_text: str
     ) -> AsyncGenerator[str, None]:
-        async with self.pdf_service.rotate_pdf(file_id, int(message_text)) as path:
+        async with self.pdf_service.rotate_pdf(file_data.id, int(message_text)) as path:
             yield path
 
     async def ask_degree(

@@ -3,6 +3,7 @@ from gettext import gettext as _
 from typing import AsyncGenerator
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.models import FileData
 
 from .abstract_crypto_pdf_processor import AbstractCryptoPdfProcessor
 
@@ -22,7 +23,7 @@ class EncryptPdfProcessor(AbstractCryptoPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_id: str, message_text: str
+        self, file_data: FileData, message_text: str
     ) -> AsyncGenerator[str, None]:
-        async with self.pdf_service.encrypt_pdf(file_id, message_text) as path:
+        async with self.pdf_service.encrypt_pdf(file_data.id, message_text) as path:
             yield path

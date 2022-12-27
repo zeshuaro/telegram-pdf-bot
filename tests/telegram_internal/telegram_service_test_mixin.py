@@ -4,7 +4,7 @@ from unittest.mock import AsyncMock
 from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.consts import FILE_DATA, MESSAGE_DATA
-from pdf_bot.models import FileData, MessageData
+from pdf_bot.models import MessageData
 from pdf_bot.telegram_internal import TelegramService
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
@@ -20,7 +20,7 @@ class TelegramServiceTestMixin(TelegramTestMixin):
 
         def get_user_data(_context: ContextTypes.DEFAULT_TYPE, key: str) -> Any:
             if key == FILE_DATA:
-                return FileData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
+                return self.FILE_DATA
             if key == MESSAGE_DATA:
                 return MessageData(self.TELEGRAM_CHAT_ID, self.TELEGRAM_MESSAGE_ID)
             return None

@@ -54,12 +54,10 @@ class TestRotatePdfProcessor(
             self.FILE_PATH
         )
 
-        async with self.sut.process_file_task(
-            self.TELEGRAM_DOCUMENT_ID, self.ROTATE_90
-        ) as actual:
+        async with self.sut.process_file_task(self.FILE_DATA, self.ROTATE_90) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.rotate_pdf.assert_called_once_with(
-                self.TELEGRAM_DOCUMENT_ID, int(self.ROTATE_90)
+                self.FILE_DATA.id, int(self.ROTATE_90)
             )
 
     @pytest.mark.asyncio

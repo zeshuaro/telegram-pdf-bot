@@ -14,6 +14,8 @@ from telegram import (
 )
 from telegram.ext import ContextTypes
 
+from pdf_bot.models import FileData
+
 
 class TelegramTestMixin:
     TELEGRAM_USER_ID = 0
@@ -26,6 +28,8 @@ class TelegramTestMixin:
     TELEGRAM_DOCUMENT_NAME = "document_name"
     TELEGRAM_PHOTO_SIZE_ID = "photo_size_id"
     TELEGRAM_TEXT = "text"
+
+    FILE_DATA = FileData(TELEGRAM_DOCUMENT_ID, TELEGRAM_DOCUMENT_NAME)
 
     def setup_method(self) -> None:
         self.telegram_bot = MagicMock(spec=Bot)

@@ -47,7 +47,7 @@ class MockProcessor(AbstractFileProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, _file_id: str, _message_text: str
+        self, _file_data: FileData, _message_text: str
     ) -> AsyncGenerator[str, None]:
         yield self.PROCESS_RESULT
 
@@ -55,7 +55,7 @@ class MockProcessor(AbstractFileProcessor):
 class MockProcessorRaiseGenericErrorWithoutRegisteringGenericError(MockProcessor):
     @asynccontextmanager
     async def process_file_task(
-        self, _file_id: str, _password: str
+        self, _file_data: FileData, _password: str
     ) -> AsyncGenerator[str, None]:
         raise GenericError()
         yield self.PROCESS_RESULT  # type: ignore # pylint: disable=unreachable
@@ -70,7 +70,7 @@ class MockProcessorWithGenericError(MockProcessor):
 class MockProcessorRaiseGenericError(MockProcessorWithGenericError):
     @asynccontextmanager
     async def process_file_task(
-        self, _file_id: str, _password: str
+        self, _file_data: FileData, _password: str
     ) -> AsyncGenerator[str, None]:
         raise GenericError()
         yield self.PROCESS_RESULT  # type: ignore # pylint: disable=unreachable
@@ -81,7 +81,7 @@ class MockProcessorWithCustomErrorHandler(MockProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, _file_id: str, _password: str
+        self, _file_data: FileData, _password: str
     ) -> AsyncGenerator[str, None]:
         raise CustomError()
         yield self.PROCESS_RESULT  # type: ignore # pylint: disable=unreachable
@@ -105,7 +105,7 @@ class MockProcessorWithCustomErrorHandler(MockProcessor):
 class MockProcessorWithUnknownErrorHandler(MockProcessorWithCustomErrorHandler):
     @asynccontextmanager
     async def process_file_task(
-        self, _file_id: str, _password: str
+        self, _file_data: FileData, _password: str
     ) -> AsyncGenerator[str, None]:
         raise UnknownError()
         yield self.PROCESS_RESULT  # type: ignore # pylint: disable=unreachable

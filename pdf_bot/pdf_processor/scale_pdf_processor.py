@@ -8,6 +8,7 @@ from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK
+from pdf_bot.models import FileData
 from pdf_bot.pdf import ScaleData
 from pdf_bot.pdf.models import ScaleByData, ScaleToData
 
@@ -32,10 +33,10 @@ class ScalePdfProcessor(AbstractPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_id: str, message_text: str
+        self, file_data: FileData, message_text: str
     ) -> AsyncGenerator[str, None]:
         scale_data = ScaleData.from_string(message_text)
-        async with self.pdf_service.scale_pdf(file_id, scale_data) as path:
+        async with self.pdf_service.scale_pdf(file_data.id, scale_data) as path:
             yield path
 
     async def ask_scale_type(

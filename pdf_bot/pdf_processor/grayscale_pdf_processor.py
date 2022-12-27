@@ -33,7 +33,7 @@ class GrayscalePdfProcessor(AbstractPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_id: str, _message_text: str
+        self, file_data: FileData, _message_text: str
     ) -> AsyncGenerator[str, None]:
-        async with self.pdf_service.grayscale_pdf(file_id) as path:
+        async with self.pdf_service.grayscale_pdf(file_data.id) as path:
             yield path

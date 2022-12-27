@@ -3,6 +3,7 @@ from typing import AsyncGenerator
 from unittest.mock import MagicMock
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.pdf_processor import AbstractPdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
@@ -21,7 +22,7 @@ class MockProcessor(AbstractPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, _file_id: str, _message_text: str
+        self, _file_data: FileData, _message_text: str
     ) -> AsyncGenerator[str, None]:
         yield "process_result"
 

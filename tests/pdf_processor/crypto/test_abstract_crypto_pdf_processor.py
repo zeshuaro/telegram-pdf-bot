@@ -5,6 +5,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import AbstractCryptoPdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
@@ -29,7 +30,7 @@ class MockAbstractCryptoPdfProcessor(AbstractCryptoPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, _file_id: str, _password: str
+        self, _file_data: FileData, _password: str
     ) -> AsyncGenerator[str, None]:
         yield "result"
 
