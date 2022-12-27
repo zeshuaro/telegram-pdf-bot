@@ -14,13 +14,15 @@ from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData, TaskData
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
+from .file_task_mixin import FileTaskMixin
+
 ErrorHandlerType = Callable[
     [Update, ContextTypes.DEFAULT_TYPE, Exception, FileData],
     Coroutine[Any, Any, str | int],
 ]
 
 
-class AbstractFileProcessor(ABC):
+class AbstractFileProcessor(FileTaskMixin, ABC):
     _FILE_PROCESSORS: dict[str, "AbstractFileProcessor"] = {}
 
     def __init__(
@@ -84,6 +86,11 @@ class AbstractFileProcessor(ABC):
         self,
     ) -> dict[Type[Exception], ErrorHandlerType]:
         return {}
+
+    async def ask_task(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
+        return await self.ask_task_helper(
+            self.language_service, update, context, self.get_task_data_list()
+        )
 
     async def process_file(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
