@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 00:34+0000\n"
-"PO-Revision-Date: 2022-12-27 00:34\n"
+"POT-Creation-Date: 2022-12-27 00:40+0000\n"
+"PO-Revision-Date: 2022-12-27 00:41\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: French\n"
@@ -43,15 +43,15 @@ msgstr "Par pourcentage"
 msgid "By Margin Size"
 msgstr "Par taille de marge"
 
-#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:42 pdf_bot/pdf_processor/preview_pdf_processor.py:24
 msgid "Preview"
 msgstr "Prévisualiser"
 
-#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:15
 msgid "Decrypt"
 msgstr "Décrypter"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
 msgid "Encrypt"
 msgstr "Crypter"
 
@@ -63,33 +63,33 @@ msgstr "Extraire des images"
 msgid "To Images"
 msgstr "Vers les images"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:17
 msgid "Rotate"
 msgstr "Rotation"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:18
 msgid "Scale"
 msgstr "Échelle"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:19
 msgid "Split"
 msgstr "Diviser"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:25
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:24
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Embellir"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:25
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "En PDF"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:20
 msgid "Rename"
 msgstr "Renommer"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:21
 msgid "Crop"
 msgstr "Rogner"
 
@@ -121,7 +121,7 @@ msgstr "Message texte"
 msgid "Text File"
 msgstr "Fichier texte"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:22
 msgid "Compress"
 msgstr "Compresser"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Le commentaire n'est pas en anglais, réessayez"
 
-#: pdf_bot/file/file_handlers.py:156 pdf_bot/file/file_handlers.py:183
+#: pdf_bot/file/file_handlers.py:152 pdf_bot/file/file_handlers.py:179
 msgid "Your file is too big for me to download and process"
 msgstr "Votre fichier est trop volumineux pour que je le télécharge et le traite"
 
-#: pdf_bot/file/file_handlers.py:157 pdf_bot/file/file_handlers.py:184
+#: pdf_bot/file/file_handlers.py:153 pdf_bot/file/file_handlers.py:180
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Notez qu’il s’agit d’une limitation de Telegram Bot et qu’il n’y a rien que je puisse faire à moins que Telegram ne modifie cette limite"
 
@@ -335,7 +335,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "Sélectionner les actions que vous souhaitez effectuer"
 
-#: pdf_bot/file_task/file_task_service.py:74
+#: pdf_bot/file_task/file_task_service.py:72
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 

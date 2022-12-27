@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 00:34+0000\n"
-"PO-Revision-Date: 2022-12-27 00:34\n"
+"POT-Creation-Date: 2022-12-27 00:40+0000\n"
+"PO-Revision-Date: 2022-12-27 00:41\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -43,15 +43,15 @@ msgstr "백분율별"
 msgid "By Margin Size"
 msgstr "마진 크기별"
 
-#: pdf_bot/consts.py:42 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:42 pdf_bot/pdf_processor/preview_pdf_processor.py:24
 msgid "Preview"
 msgstr "미리 보기"
 
-#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:15
 msgid "Decrypt"
 msgstr "해독"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
 msgid "Encrypt"
 msgstr "암호화"
 
@@ -63,33 +63,33 @@ msgstr "이미지 추출"
 msgid "To Images"
 msgstr "이미지에"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:17
 msgid "Rotate"
 msgstr "회전"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:18
 msgid "Scale"
 msgstr "규모"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:19
 msgid "Split"
 msgstr "분할"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:25
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:24
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "아름 답게"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:25
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDF로"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:20
 msgid "Rename"
 msgstr "이름을 바꿀"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:21
 msgid "Crop"
 msgstr "자르기"
 
@@ -121,7 +121,7 @@ msgstr "문자 메시지"
 msgid "Text File"
 msgstr "텍스트 파일"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:22
 msgid "Compress"
 msgstr "압축"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "피드백은 영어로되지 않습니다, 다시 시도"
 
-#: pdf_bot/file/file_handlers.py:156 pdf_bot/file/file_handlers.py:183
+#: pdf_bot/file/file_handlers.py:152 pdf_bot/file/file_handlers.py:179
 msgid "Your file is too big for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리하지 않습니다."
 
-#: pdf_bot/file/file_handlers.py:157 pdf_bot/file/file_handlers.py:184
+#: pdf_bot/file/file_handlers.py:153 pdf_bot/file/file_handlers.py:180
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
 
@@ -335,7 +335,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
 
-#: pdf_bot/file_task/file_task_service.py:74
+#: pdf_bot/file_task/file_task_service.py:72
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
