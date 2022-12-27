@@ -22,7 +22,6 @@ from pdf_bot.consts import (
     SCALE,
     SPLIT,
     TEXT_FILTER,
-    TO_IMAGES,
 )
 from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
@@ -34,7 +33,6 @@ from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
     PdfTaskProcessor,
-    PDFToImageProcessor,
     PreviewPdfProcessor,
     RenamePdfProcessor,
     RotatePdfProcessor,
@@ -54,7 +52,6 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPdfProcessor,
         encrypt_pdf_processor: EncryptPdfProcessor,
-        pdf_to_image_processor: PDFToImageProcessor,
         preview_pdf_processor: PreviewPdfProcessor,
         rename_pdf_processor: RenamePdfProcessor,
         rotate_pdf_processor: RotatePdfProcessor,
@@ -75,7 +72,6 @@ class FileHandlers:
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
-        self.pdf_to_image_processor = pdf_to_image_processor
         self.preview_pdf_processor = preview_pdf_processor
         self.rename_pdf_processor = rename_pdf_processor
         self.rotate_pdf_processor = rotate_pdf_processor
@@ -208,8 +204,6 @@ class FileHandlers:
             return await self.decrypt_pdf_processor.ask_password(update, context)
         if text == _(ENCRYPT):
             return await self.encrypt_pdf_processor.ask_password(update, context)
-        if text == _(TO_IMAGES):
-            return await self.pdf_to_image_processor.process_file(update, context)
         if text == _(PREVIEW):
             return await self.preview_pdf_processor.process_file(update, context)
         if text == _(RENAME):
