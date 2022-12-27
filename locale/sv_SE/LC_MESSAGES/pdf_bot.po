@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-26 23:47+0000\n"
-"PO-Revision-Date: 2022-12-26 23:47\n"
+"POT-Creation-Date: 2022-12-27 00:00+0000\n"
+"PO-Revision-Date: 2022-12-27 00:01\n"
 "Last-Translator: \n"
 "Language: sv\n"
 "Language-Team: Swedish\n"
@@ -75,12 +75,12 @@ msgstr "Skala"
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:28
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:27
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Försköna"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:29
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:28
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "Till PDF"
@@ -125,7 +125,7 @@ msgstr "Textfil"
 msgid "Compress"
 msgstr "Komprimera"
 
-#: pdf_bot/consts.py:63 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:63
 msgid "Black & White"
 msgstr "Svartvitt"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Återkopplingen är inte på engelska, försök igen"
 
-#: pdf_bot/file/file_handlers.py:168 pdf_bot/file/file_handlers.py:195
+#: pdf_bot/file/file_handlers.py:164 pdf_bot/file/file_handlers.py:191
 msgid "Your file is too big for me to download and process"
 msgstr "Din fil är för stor för mig att ladda ner och bearbeta"
 
-#: pdf_bot/file/file_handlers.py:169 pdf_bot/file/file_handlers.py:196
+#: pdf_bot/file/file_handlers.py:165 pdf_bot/file/file_handlers.py:192
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Observera att detta är en Telegram Bot-begränsning och det finns inget jag kan göra om inte Telegram ändrar denna gräns"
 
@@ -335,7 +335,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "Välj den uppgift som du ska vilja utföra"
 
-#: pdf_bot/file_task/file_task_service.py:80
+#: pdf_bot/file_task/file_task_service.py:78
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -485,6 +485,10 @@ msgstr ""
 
 #: pdf_bot/pdf_processor/extract_pdf_text_processor.py:24
 msgid "Extract text"
+msgstr ""
+
+#: pdf_bot/pdf_processor/grayscale_pdf_processor.py:24
+msgid "Grayscale"
 msgstr ""
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:41
