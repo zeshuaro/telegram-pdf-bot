@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from telegram import Document, PhotoSize
+from telegram import Document, Message, PhotoSize
 
 
 class BackData:
@@ -34,3 +34,7 @@ class TaskData:
 class MessageData:
     chat_id: int | str
     message_id: int
+
+    @classmethod
+    def from_telegram_message(cls, message: Message) -> "MessageData":
+        return cls(message.chat_id, message.id)
