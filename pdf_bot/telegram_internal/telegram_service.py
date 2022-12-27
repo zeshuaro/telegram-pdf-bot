@@ -19,10 +19,10 @@ from telegram.constants import ChatAction, FileSizeLimit, ParseMode
 from telegram.ext import Application, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
-from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, PAYMENT
+from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, MESSAGE_DATA, PAYMENT
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageService
-from pdf_bot.models import BackData, FileData
+from pdf_bot.models import BackData, FileData, MessageData
 
 from .exceptions import (
     TelegramFileMimeTypeError,
@@ -108,6 +108,19 @@ class TelegramService:
                 _("Something went wrong, please try again")
             )
         context.user_data[key] = value
+
+    def cache_message_data(
+        self, context: ContextTypes.DEFAULT_TYPE, message: Message | bool
+    ) -> None:
+        if not isinstance(message, Message):
+            return
+
+        try:
+            self.update_user_data(
+                context, MESSAGE_DATA, MessageData.from_telegram_message(message)
+            )
+        except TelegramUpdateUserDataError:
+            pass
 
     def check_image(self, message: Message) -> Document | PhotoSize:
         img_file: Document | PhotoSize | None = message.document

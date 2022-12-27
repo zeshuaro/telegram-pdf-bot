@@ -7,8 +7,9 @@ from telegram.constants import ChatAction, FileSizeLimit, ParseMode
 from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
+from pdf_bot.consts import MESSAGE_DATA
 from pdf_bot.io import IOService
-from pdf_bot.models import BackData, FileData
+from pdf_bot.models import BackData, FileData, MessageData
 from pdf_bot.telegram_internal import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
@@ -292,6 +293,22 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             self.sut.update_user_data(
                 self.telegram_context, self.USER_DATA_KEY, self.USER_DATA_VALUE
             )
+
+    def test_cache_message_data(self) -> None:
+        self.telegram_context.user_data = {}
+        self.sut.cache_message_data(self.telegram_context, self.telegram_message)
+        assert self.telegram_context.user_data[
+            MESSAGE_DATA
+        ] == MessageData.from_telegram_message(self.telegram_message)
+
+    def test_cache_message_data_error(self) -> None:
+        self.telegram_context.user_data = None
+        self.sut.cache_message_data(self.telegram_context, self.telegram_message)
+
+    def test_cache_message_data_not_message(self) -> None:
+        self.telegram_context.user_data = {}
+        self.sut.cache_message_data(self.telegram_context, True)
+        assert MESSAGE_DATA not in self.telegram_context.user_data
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])
