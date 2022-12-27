@@ -149,6 +149,17 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.sentry_sdk.capture_exception.assert_called_once_with(error)
 
     @pytest.mark.asyncio
+    async def test_error_callback_unknown_error_and_send_message_error(self) -> None:
+        error = RuntimeError()
+        self.telegram_context.error = error
+        self.telegram_context.bot.send_message.side_effect = Exception
+
+        await self.sut.error_callback(self.telegram_update, self.telegram_context)
+
+        self.telegram_context.bot.send_message.assert_called_once()
+        self.sentry_sdk.capture_exception.assert_called_once_with(error)
+
+    @pytest.mark.asyncio
     async def test_error_callback_unknown_error_and_without_chat_id(self) -> None:
         error = RuntimeError()
         self.telegram_context.error = error

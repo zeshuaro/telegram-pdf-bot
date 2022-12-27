@@ -175,13 +175,20 @@ class TelegramDispatcher:
     async def _send_message(
         self, update: object, context: ContextTypes.DEFAULT_TYPE, text: str
     ) -> None:
-        if isinstance(update, Update):
-            chat_id = None
-            if update.effective_message is not None:
-                chat_id = update.effective_message.chat_id
-            elif update.effective_chat is not None:
-                chat_id = update.effective_chat.id
+        if not isinstance(update, Update):
+            return
 
-            if chat_id is not None:
-                _ = self.language_service.set_app_language(update, context)
-                await context.bot.send_message(chat_id, _(text))
+        chat_id = None
+        if update.effective_message is not None:
+            chat_id = update.effective_message.chat_id
+        elif update.effective_chat is not None:
+            chat_id = update.effective_chat.id
+
+        if chat_id is None:
+            return
+
+        try:
+            _ = self.language_service.set_app_language(update, context)
+            await context.bot.send_message(chat_id, _(text))
+        except Exception:  # pylint: disable=broad-except
+            pass
