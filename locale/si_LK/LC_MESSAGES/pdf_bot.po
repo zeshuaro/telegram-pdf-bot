@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 06:44+0000\n"
-"PO-Revision-Date: 2022-12-27 06:45\n"
+"POT-Creation-Date: 2022-12-27 07:18+0000\n"
+"PO-Revision-Date: 2022-12-27 07:19\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -75,21 +75,21 @@ msgstr "පරිමාණය"
 msgid "Split"
 msgstr "කොටස් කරන්න"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:23
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "අලංකාර කරන්න"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:25
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:24
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDF වෙත"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:52 pdf_bot/pdf_processor/rename_pdf_processor.py:39
 msgid "Rename"
 msgstr "නම වෙනස් කරන්න"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:20
 msgid "Crop"
 msgstr "අනවශ්‍ය කොටස් කපා දමන්න"
 
@@ -121,7 +121,7 @@ msgstr "කෙටි පණිවුඩය"
 msgid "Text File"
 msgstr "අකුරු සහිත ගොනුව"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:21
 msgid "Compress"
 msgstr "හකුලන්න"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "මෙම ෆීඩ්බැක් එක ඉංග්‍රීසි නොවන බව හදුනා ගෙන ඇත, නැවත උත්සාහ කරන්න"
 
-#: pdf_bot/file/file_handlers.py:153 pdf_bot/file/file_handlers.py:180
+#: pdf_bot/file/file_handlers.py:146 pdf_bot/file/file_handlers.py:173
 msgid "Your file is too big for me to download and process"
 msgstr "ඔබේ ගොනුව මට බාගත කර සැකසීමට නොහැකි තරම් විශාල ය"
 
-#: pdf_bot/file/file_handlers.py:154 pdf_bot/file/file_handlers.py:181
+#: pdf_bot/file/file_handlers.py:147 pdf_bot/file/file_handlers.py:174
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "මෙය ටෙලිග්‍රාම් බොට් සීමාවක් බව සලකන්න, ටෙලිග්‍රාම් මෙම සීමාව වෙනස් නොකළහොත් මට කළ හැකි කිසිවක් නැත"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "ඔබ ඉටු කිරීමට කැමති කාර්යය තෝරන්න"
 
-#: pdf_bot/file_task/file_task_service.py:72
+#: pdf_bot/file_task/file_task_service.py:70
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -496,15 +496,15 @@ msgstr ""
 msgid "To images"
 msgstr ""
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:41
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:84
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "ඔබගේ PDF ගොනුවේ නාමය වෙනස් කිරීමට ඔබ කැමති ගොනු නාමය මට එවන්න"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:58
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:101
 msgid "File names can't contain any of the following characters:"
 msgstr "ගොනු නාම වල පහත දැක්වෙන කිසිදු අකුරක් අඩංගු විය නොහැක:"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:62
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:105
 msgid "Please try again"
 msgstr "කරුණාකර නැවත උත්සාහ කරන්න"
 

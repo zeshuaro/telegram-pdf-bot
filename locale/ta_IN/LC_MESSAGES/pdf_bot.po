@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 06:44+0000\n"
-"PO-Revision-Date: 2022-12-27 06:45\n"
+"POT-Creation-Date: 2022-12-27 07:18+0000\n"
+"PO-Revision-Date: 2022-12-27 07:19\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -75,21 +75,21 @@ msgstr "பெரிதாக்கு"
 msgid "Split"
 msgstr "பிரி"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:23
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "அழகுபடுத்தல்"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:25
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:24
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDF க்கு"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:52 pdf_bot/pdf_processor/rename_pdf_processor.py:39
 msgid "Rename"
 msgstr "பெயர் மாற்று"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:20
 msgid "Crop"
 msgstr "சாட்டைக்கோல்"
 
@@ -121,7 +121,7 @@ msgstr "உரைச் செய்தி"
 msgid "Text File"
 msgstr "உரை கோப்பு"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:21
 msgid "Compress"
 msgstr "நெருங்கி அழுத்து"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "பின்னூட்டம் ஆங்கிலத்தில் இல்லை, மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/file/file_handlers.py:153 pdf_bot/file/file_handlers.py:180
+#: pdf_bot/file/file_handlers.py:146 pdf_bot/file/file_handlers.py:173
 msgid "Your file is too big for me to download and process"
 msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
 
-#: pdf_bot/file/file_handlers.py:154 pdf_bot/file/file_handlers.py:181
+#: pdf_bot/file/file_handlers.py:147 pdf_bot/file/file_handlers.py:174
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "நீங்கள் செய்ய விரும்பும் பணியைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/file_task/file_task_service.py:72
+#: pdf_bot/file_task/file_task_service.py:70
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -496,15 +496,15 @@ msgstr ""
 msgid "To images"
 msgstr ""
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:41
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:84
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "உங்கள் PTM கோப்பை மறுபெயரிட விரும்பும் கோப்பு பெயரை எனக்கு அனுப்பவும்"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:58
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:101
 msgid "File names can't contain any of the following characters:"
 msgstr "கோப்பு பெயர்களில் பின்வரும் எழுத்துக்குறிகள் எதுவும் இருக்க முடியாது:"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:62
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:105
 msgid "Please try again"
 msgstr "தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
