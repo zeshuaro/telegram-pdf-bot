@@ -304,7 +304,6 @@ class Handlers(containers.DeclarativeContainer):
         crop_service=services.crop,
         decrypt_pdf_processor=processors.decrypt,
         encrypt_pdf_processor=processors.encrypt,
-        rename_pdf_processor=processors.rename,
         rotate_pdf_processor=processors.rotate,
         scale_pdf_processor=processors.scale,
         split_pdf_processor=processors.split,

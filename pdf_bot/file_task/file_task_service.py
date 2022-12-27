@@ -17,7 +17,6 @@ class FileTaskService:
     ROTATE = _("Rotate")
     SCALE = _("Scale")
     SPLIT = _("Split")
-    RENAME = _("Rename")
     CROP = _("Crop")
     COMPRESS = _("Compress")
 
@@ -31,7 +30,6 @@ class FileTaskService:
             ROTATE,
             SCALE,
             SPLIT,
-            RENAME,
             CROP,
             COMPRESS,
         ]
