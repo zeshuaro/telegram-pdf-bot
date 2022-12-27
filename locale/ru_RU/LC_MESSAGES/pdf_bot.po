@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 09:41+0000\n"
-"PO-Revision-Date: 2022-12-27 09:41\n"
+"POT-Creation-Date: 2022-12-27 10:30+0000\n"
+"PO-Revision-Date: 2022-12-27 10:30\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -63,24 +63,24 @@ msgstr "Извлечение изображений"
 msgid "To Images"
 msgstr "К изображениям"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:42
 msgid "Rotate"
 msgstr "Повернуть"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:17
 msgid "Scale"
 msgstr "Масштаб"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:18
 msgid "Split"
 msgstr "Разделить"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:22
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Улучшить"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:23
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "В PDF"
@@ -89,7 +89,7 @@ msgstr "В PDF"
 msgid "Rename"
 msgstr "Переименовать"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:19
 msgid "Crop"
 msgstr "Обрезать"
 
@@ -121,7 +121,7 @@ msgstr "Текстовое сообщение"
 msgid "Text File"
 msgstr "Текстовый файл"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:20
 msgid "Compress"
 msgstr "Сжать"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Отзыв не на английском языке, попробуйте еще раз"
 
-#: pdf_bot/file/file_handlers.py:146 pdf_bot/file/file_handlers.py:173
+#: pdf_bot/file/file_handlers.py:139 pdf_bot/file/file_handlers.py:166
 msgid "Your file is too big for me to download and process"
 msgstr "Ваш файл слишком велик для загрузки и обработки"
 
-#: pdf_bot/file/file_handlers.py:147 pdf_bot/file/file_handlers.py:174
+#: pdf_bot/file/file_handlers.py:140 pdf_bot/file/file_handlers.py:167
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Обратите внимание, что это ограничение Telegram Bot, и я ничего не могу сделать, если Telegram не изменит это ограничение."
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "Выберите задачу, которую вам нужно выполнить"
 
-#: pdf_bot/file_task/file_task_service.py:70
+#: pdf_bot/file_task/file_task_service.py:68
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -508,13 +508,9 @@ msgstr "Имена файлов не могут содержать следую�
 msgid "Please try again"
 msgstr "Пожалуйста, попробуйте еще раз"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:48
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:90
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Выберите градусы, на которые вы хотели бы повернуть PDF-файл по часовой стрелке"
-
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:71
-msgid "Invalid rotation degree, try again"
-msgstr "Недопустимая степень поворота, повторите попытку"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:19
 msgid "By scaling factor"
@@ -1622,5 +1618,8 @@ msgstr "Не удалось преобразовать веб-страницу"
 #~ "The button has expired, please try "
 #~ "again with a new message/query then "
 #~ "press the new button"
+#~ msgstr ""
+
+#~ msgid "Invalid rotation degree, try again"
 #~ msgstr ""
 
