@@ -3,6 +3,10 @@ from dataclasses import dataclass
 from telegram import Document, PhotoSize
 
 
+class BackData:
+    ...
+
+
 @dataclass
 class FileData:
     id: str

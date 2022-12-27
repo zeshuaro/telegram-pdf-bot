@@ -1,6 +1,6 @@
-import gettext
 import os
 from contextlib import asynccontextmanager
+from gettext import gettext as _
 from typing import Any, AsyncGenerator, Coroutine, List
 
 from telegram import (
@@ -22,7 +22,7 @@ from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
 from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, PAYMENT
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageService
-from pdf_bot.models import FileData
+from pdf_bot.models import BackData, FileData
 from pdf_bot.telegram_internal.exceptions import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
@@ -30,13 +30,12 @@ from pdf_bot.telegram_internal.exceptions import (
     TelegramUserDataKeyError,
 )
 
-_ = gettext.gettext
-
 
 class TelegramService:
     IMAGE_MIME_TYPE_PREFIX = "image"
     PDF_MIME_TYPE_SUFFIX = "pdf"
     PNG_SUFFIX = ".png"
+    BACK = _("Back")
 
     def __init__(
         self,
@@ -154,6 +153,18 @@ class TelegramService:
             )
 
         return ConversationHandler.END
+
+    def get_back_button(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> InlineKeyboardButton:
+        _ = self.language_service.set_app_language(update, context)
+        return InlineKeyboardButton(_(self.BACK), callback_data=BackData())
+
+    def get_back_inline_markup(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> InlineKeyboardMarkup:
+        keyboard = [[self.get_back_button(update, context)]]
+        return InlineKeyboardMarkup(keyboard)
 
     def get_support_markup(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
