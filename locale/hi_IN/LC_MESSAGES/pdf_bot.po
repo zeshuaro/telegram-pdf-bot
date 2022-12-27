@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 05:56+0000\n"
-"PO-Revision-Date: 2022-12-27 05:56\n"
+"POT-Creation-Date: 2022-12-27 06:10+0000\n"
+"PO-Revision-Date: 2022-12-27 06:11\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -31,7 +31,7 @@ msgstr "रद्द"
 msgid "Done"
 msgstr "पूर्ण"
 
-#: pdf_bot/consts.py:39 pdf_bot/telegram_internal/telegram_service.py:38
+#: pdf_bot/consts.py:39 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "वापस"
 
@@ -198,12 +198,12 @@ msgid "Set Language 🌎"
 msgstr "भाषा चुने 🌎"
 
 #: pdf_bot/command/command_service.py:63
-#: pdf_bot/telegram_internal/telegram_service.py:180
+#: pdf_bot/telegram_internal/telegram_service.py:192
 msgid "Join Channel"
 msgstr "चैनल से जुड़े"
 
 #: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
-#: pdf_bot/telegram_internal/telegram_service.py:181
+#: pdf_bot/telegram_internal/telegram_service.py:193
 msgid "Support PDF Bot"
 msgstr "पीडीएफ बॉट का सहयोग करे"
 
@@ -632,7 +632,8 @@ msgid "Send me the password to encrypt your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को एन्क्रिप्ट करने के लिए मुझे पासवर्ड भेजें"
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
-#: pdf_bot/telegram_internal/telegram_service.py:91
+#: pdf_bot/telegram_internal/telegram_service.py:93
+#: pdf_bot/telegram_internal/telegram_service.py:108
 msgid "Something went wrong, please try again"
 msgstr "कुछ गलत हो गया, कृपया फिर से प्रयास करें"
 
@@ -640,37 +641,37 @@ msgstr "कुछ गलत हो गया, कृपया फिर से �
 msgid "The button has expired, start over with your file or command"
 msgstr ""
 
-#: pdf_bot/telegram_internal/telegram_service.py:57
+#: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "आपकी फ़ाइल मेरे लिए डाउनलोड और संसाधित करने के लिए बहुत बड़ी है, कृपया एक अलग फ़ाइल के साथ फिर से प्रयास करें\n\n"
 "ध्यान दें कि यह सीमा टेलीग्राम द्वारा लागू की गई है और जब तक टेलीग्राम इसे नहीं बदलता तब तक मैं कुछ भी नहीं कर सकता।"
 
-#: pdf_bot/telegram_internal/telegram_service.py:69
+#: pdf_bot/telegram_internal/telegram_service.py:71
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "फ़ाइल मेरे लिए आपको भेजने के लिए बहुत बड़ी है\n\n"
 "ध्यान दें कि यह सीमा टेलीग्राम द्वारा लागू की गई है और जब तक टेलीग्राम इसे नहीं बदलता है तब तक मैं कुछ भी नहीं कर सकता।"
 
-#: pdf_bot/telegram_internal/telegram_service.py:108
+#: pdf_bot/telegram_internal/telegram_service.py:120
 msgid "Your file is not an image, please try again"
 msgstr "आपकी फ़ाइल कोई छवि नहीं है, कृपया पुन: प्रयास करें"
 
-#: pdf_bot/telegram_internal/telegram_service.py:115
+#: pdf_bot/telegram_internal/telegram_service.py:127
 msgid "No image found in your message"
 msgstr "आपके संदेश में कोई छवि नहीं मिली"
 
-#: pdf_bot/telegram_internal/telegram_service.py:124
+#: pdf_bot/telegram_internal/telegram_service.py:136
 msgid "Your file is not a PDF file, please try again"
 msgstr "आपकी फ़ाइल पीडीएफ फ़ाइल नहीं है, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/telegram_internal/telegram_service.py:154
-#: pdf_bot/telegram_internal/telegram_service.py:157
+#: pdf_bot/telegram_internal/telegram_service.py:166
+#: pdf_bot/telegram_internal/telegram_service.py:169
 msgid "Action cancelled"
 msgstr "कार्रवाई रद्द"
 
-#: pdf_bot/telegram_internal/telegram_service.py:227
-#: pdf_bot/telegram_internal/telegram_service.py:235
+#: pdf_bot/telegram_internal/telegram_service.py:239
+#: pdf_bot/telegram_internal/telegram_service.py:247
 msgid "Here is your result file"
 msgstr "यहां आपकी रिजल्ट फाइल है"
 

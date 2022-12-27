@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 05:56+0000\n"
-"PO-Revision-Date: 2022-12-27 05:56\n"
+"POT-Creation-Date: 2022-12-27 06:10+0000\n"
+"PO-Revision-Date: 2022-12-27 06:11\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: French\n"
@@ -31,7 +31,7 @@ msgstr "Annuler"
 msgid "Done"
 msgstr "Terminé"
 
-#: pdf_bot/consts.py:39 pdf_bot/telegram_internal/telegram_service.py:38
+#: pdf_bot/consts.py:39 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "Retour"
 
@@ -198,12 +198,12 @@ msgid "Set Language 🌎"
 msgstr "Définir la langue 🌎"
 
 #: pdf_bot/command/command_service.py:63
-#: pdf_bot/telegram_internal/telegram_service.py:180
+#: pdf_bot/telegram_internal/telegram_service.py:192
 msgid "Join Channel"
 msgstr "Rejoindre la chaîne"
 
 #: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
-#: pdf_bot/telegram_internal/telegram_service.py:181
+#: pdf_bot/telegram_internal/telegram_service.py:193
 msgid "Support PDF Bot"
 msgstr "Support PDF Bot"
 
@@ -632,7 +632,8 @@ msgid "Send me the password to encrypt your PDF file"
 msgstr "Envoyez-moi le mot de passe pour crypter votre fichier PDF"
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
-#: pdf_bot/telegram_internal/telegram_service.py:91
+#: pdf_bot/telegram_internal/telegram_service.py:93
+#: pdf_bot/telegram_internal/telegram_service.py:108
 msgid "Something went wrong, please try again"
 msgstr "Quelque chose s’est mal passé, s’il vous plaît essayer à nouveau"
 
@@ -640,37 +641,37 @@ msgstr "Quelque chose s’est mal passé, s’il vous plaît essayer à nouveau"
 msgid "The button has expired, start over with your file or command"
 msgstr ""
 
-#: pdf_bot/telegram_internal/telegram_service.py:57
+#: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Votre fichier est trop volumineux pour que je puisse le télécharger et le traiter, veuillez réessayer avec un autre fichier\n\n"
 "Notez que cette limite est appliquée par Telegram et que je ne peux rien faire à moins que Telegram ne la modifie"
 
-#: pdf_bot/telegram_internal/telegram_service.py:69
+#: pdf_bot/telegram_internal/telegram_service.py:71
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Le fichier est trop volumineux pour que je puisse vous l’envoyer\n\n"
 "Notez que cette limite est appliquée par Telegram et que je ne peux rien faire à moins que Telegram ne la modifie."
 
-#: pdf_bot/telegram_internal/telegram_service.py:108
+#: pdf_bot/telegram_internal/telegram_service.py:120
 msgid "Your file is not an image, please try again"
 msgstr "Votre fichier n’est pas une image, veuillez réessayer"
 
-#: pdf_bot/telegram_internal/telegram_service.py:115
+#: pdf_bot/telegram_internal/telegram_service.py:127
 msgid "No image found in your message"
 msgstr "Aucune image trouvée dans votre message"
 
-#: pdf_bot/telegram_internal/telegram_service.py:124
+#: pdf_bot/telegram_internal/telegram_service.py:136
 msgid "Your file is not a PDF file, please try again"
 msgstr "Votre fichier n’est pas un fichier PDF, veuillez réessayer"
 
-#: pdf_bot/telegram_internal/telegram_service.py:154
-#: pdf_bot/telegram_internal/telegram_service.py:157
+#: pdf_bot/telegram_internal/telegram_service.py:166
+#: pdf_bot/telegram_internal/telegram_service.py:169
 msgid "Action cancelled"
 msgstr "Action annulée"
 
-#: pdf_bot/telegram_internal/telegram_service.py:227
-#: pdf_bot/telegram_internal/telegram_service.py:235
+#: pdf_bot/telegram_internal/telegram_service.py:239
+#: pdf_bot/telegram_internal/telegram_service.py:247
 msgid "Here is your result file"
 msgstr "Voici votre fichier final"
 
