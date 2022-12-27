@@ -16,7 +16,6 @@ from pdf_bot.consts import (
     DECRYPT,
     ENCRYPT,
     FILE_DATA,
-    PREVIEW,
     RENAME,
     ROTATE,
     SCALE,
@@ -33,7 +32,6 @@ from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
     PdfTaskProcessor,
-    PreviewPdfProcessor,
     RenamePdfProcessor,
     RotatePdfProcessor,
     ScalePdfProcessor,
@@ -52,7 +50,6 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPdfProcessor,
         encrypt_pdf_processor: EncryptPdfProcessor,
-        preview_pdf_processor: PreviewPdfProcessor,
         rename_pdf_processor: RenamePdfProcessor,
         rotate_pdf_processor: RotatePdfProcessor,
         scale_pdf_processor: ScalePdfProcessor,
@@ -72,7 +69,6 @@ class FileHandlers:
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
-        self.preview_pdf_processor = preview_pdf_processor
         self.rename_pdf_processor = rename_pdf_processor
         self.rotate_pdf_processor = rotate_pdf_processor
         self.scale_pdf_processor = scale_pdf_processor
@@ -204,8 +200,6 @@ class FileHandlers:
             return await self.decrypt_pdf_processor.ask_password(update, context)
         if text == _(ENCRYPT):
             return await self.encrypt_pdf_processor.ask_password(update, context)
-        if text == _(PREVIEW):
-            return await self.preview_pdf_processor.process_file(update, context)
         if text == _(RENAME):
             return await self.rename_pdf_processor.ask_new_file_name(update, context)
         if text == _(ROTATE):
