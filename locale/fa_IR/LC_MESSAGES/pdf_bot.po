@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 00:09+0000\n"
-"PO-Revision-Date: 2022-12-27 00:09\n"
+"POT-Creation-Date: 2022-12-27 00:16+0000\n"
+"PO-Revision-Date: 2022-12-27 00:17\n"
 "Last-Translator: \n"
 "Language: fa\n"
 "Language-Team: Persian\n"
@@ -59,37 +59,37 @@ msgstr "رمزگذاری"
 msgid "Extract Images"
 msgstr "استخراج تصاویر"
 
-#: pdf_bot/consts.py:46 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:46
 msgid "To Images"
 msgstr "به تصاویر"
 
-#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:47 pdf_bot/file_task/file_task_service.py:18
 msgid "Rotate"
 msgstr "چرخش"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:19
 msgid "Scale"
 msgstr "مقیاس"
 
-#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:49 pdf_bot/file_task/file_task_service.py:20
 msgid "Split"
 msgstr "تقسیم"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:26
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:25
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "زیباسازی"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:27
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:26
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "به پی دی اف"
 
-#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:52 pdf_bot/file_task/file_task_service.py:21
 msgid "Rename"
 msgstr "نام"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:23
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:22
 msgid "Crop"
 msgstr "محصول"
 
@@ -121,7 +121,7 @@ msgstr "پیام متنی"
 msgid "Text File"
 msgstr "پرونده متنی"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:24
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:23
 msgid "Compress"
 msgstr "فشرده سازی"
 
@@ -316,11 +316,11 @@ msgstr "با تشکر از بازخورد شما.\n"
 msgid "The feedback is not in English, try again"
 msgstr "بازخورد به زبان انگلیسی نیست، دوباره سعی کنید"
 
-#: pdf_bot/file/file_handlers.py:160 pdf_bot/file/file_handlers.py:187
+#: pdf_bot/file/file_handlers.py:156 pdf_bot/file/file_handlers.py:183
 msgid "Your file is too big for me to download and process"
 msgstr "فایل شما برای دانلود و پردازش برای من خیلی بزرگ است"
 
-#: pdf_bot/file/file_handlers.py:161 pdf_bot/file/file_handlers.py:188
+#: pdf_bot/file/file_handlers.py:157 pdf_bot/file/file_handlers.py:184
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "توجه داشته باشید که این محدودیت تلگرام ربات است و هیچ کاری نمی توانم انجام دهم مگر اینکه تلگرام این حد را تغییر دهد"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "وظیفه ای را که می خواهید انجام دهد انتخاب کنید"
 
-#: pdf_bot/file_task/file_task_service.py:76
+#: pdf_bot/file_task/file_task_service.py:74
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -490,6 +490,10 @@ msgstr ""
 
 #: pdf_bot/pdf_processor/grayscale_pdf_processor.py:24
 msgid "Grayscale"
+msgstr ""
+
+#: pdf_bot/pdf_processor/pdf_to_image_processor.py:24
+msgid "To images"
 msgstr ""
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:41
