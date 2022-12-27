@@ -7,14 +7,14 @@
   ],
   "labels": ["dependencies"],
   "lockFileMaintenance": { "enabled": true },
-  "rangeStrategy": "update-lockfile",
+  "rangeStrategy": "replace",
   "semanticCommits": "enabled",
   "schedule": ["after 6pm every weekday", "every weekend"],
   "timezone": "Australia/Sydney",
   "packageRules": [
     {
       "groupName": "Python",
-      "matchPaths": [".python-version", "Dockerfile"],
+      "matchFiles": [".python-version", "Dockerfile"],
       "matchPackageNames": ["python"],
       "semanticCommitScope": "python",
       "automerge": false,
