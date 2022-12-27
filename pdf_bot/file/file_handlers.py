@@ -16,7 +16,6 @@ from pdf_bot.consts import (
     DECRYPT,
     ENCRYPT,
     FILE_DATA,
-    ROTATE,
     SCALE,
     SPLIT,
     TEXT_FILTER,
@@ -32,7 +31,6 @@ from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
     PdfTaskProcessor,
-    RotatePdfProcessor,
     ScalePdfProcessor,
     SplitPdfProcessor,
 )
@@ -49,7 +47,6 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPdfProcessor,
         encrypt_pdf_processor: EncryptPdfProcessor,
-        rotate_pdf_processor: RotatePdfProcessor,
         scale_pdf_processor: ScalePdfProcessor,
         split_pdf_processor: SplitPdfProcessor,
         telegram_service: TelegramService,
@@ -67,7 +64,6 @@ class FileHandlers:
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
-        self.rotate_pdf_processor = rotate_pdf_processor
         self.scale_pdf_processor = scale_pdf_processor
         self.split_pdf_processor = split_pdf_processor
 
@@ -106,9 +102,6 @@ class FileHandlers:
                 ],
                 self.encrypt_pdf_processor.wait_password_state: [
                     MessageHandler(TEXT_FILTER, self.encrypt_pdf_processor.process_file)
-                ],
-                RotatePdfProcessor.WAIT_ROTATE_DEGREE: [
-                    MessageHandler(TEXT_FILTER, self.rotate_pdf_processor.rotate_pdf)
                 ],
                 ScalePdfProcessor.WAIT_SCALE_TYPE: [
                     MessageHandler(
@@ -194,8 +187,6 @@ class FileHandlers:
             return await self.decrypt_pdf_processor.ask_password(update, context)
         if text == _(ENCRYPT):
             return await self.encrypt_pdf_processor.ask_password(update, context)
-        if text == _(ROTATE):
-            return await self.rotate_pdf_processor.ask_degree(update, context)
         if text == _(SCALE):
             return await self.scale_pdf_processor.ask_scale_type(update, context)
         if text == _(SPLIT):
