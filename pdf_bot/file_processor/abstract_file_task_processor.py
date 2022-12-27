@@ -11,9 +11,6 @@ from .file_task_mixin import FileTaskMixin
 
 
 class AbstractFileTaskProcessor(FileTaskMixin, ABC):
-    WAIT_FILE_TASK = "wait_file_task"
-    _KEYBOARD_SIZE = 3
-
     def __init__(self, language_service: LanguageService) -> None:
         self.language_service = language_service
 

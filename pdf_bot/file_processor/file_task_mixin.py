@@ -8,7 +8,7 @@ from pdf_bot.models import FileData, TaskData
 
 class FileTaskMixin:
     WAIT_FILE_TASK = "wait_file_task"
-    _KEYBOARD_SIZE = 3
+    _KEYBOARD_SIZE = 2
 
     async def ask_task_helper(
         self,
