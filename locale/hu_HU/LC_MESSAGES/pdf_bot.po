@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 07:18+0000\n"
-"PO-Revision-Date: 2022-12-27 07:19\n"
+"POT-Creation-Date: 2022-12-27 09:41+0000\n"
+"PO-Revision-Date: 2022-12-27 09:41\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -496,131 +496,131 @@ msgstr ""
 msgid "To images"
 msgstr ""
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:84
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:86
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Küldje el nekem azt a fájlnevet, amelyre át szeretné nevezni a PDF-fájlt"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:101
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:103
 msgid "File names can't contain any of the following characters:"
 msgstr "A fájlnevek nem tartalmazhatják a következő karakterek egyikét sem:"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:105
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:107
 msgid "Please try again"
 msgstr "Próbálkozzon újra"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:47
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:48
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Válassza ki, hogy milyen mértékben szeretné elforgatni a PDF-fájlt az óramutató járásával megegyező irányban"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:70
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:71
 msgid "Invalid rotation degree, try again"
 msgstr "Érvénytelen elforgatási fok, próbálkozzon újra"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:18
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:19
 msgid "By scaling factor"
 msgstr "Méretezési tényező szerint"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:19
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:20
 msgid "To dimension"
 msgstr "Méretre"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:53
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:54
 msgid "Select the scale type that you'll like to perform"
 msgstr "Válassza ki a végrehajtani kívánt léptéktípust"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:88
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:89
 msgid "The scaling factors {values} are invalid, please try again"
 msgstr "A {values} skálázási tényezők érvénytelenek, próbálkozzon újra"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:112
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:113
 msgid "The dimensions {values} are invalid, please try again"
 msgstr "A {values} méretek érvénytelenek, próbálkozzon újra"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:131
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:132
 msgid "Send me the scaling factors for the horizontal and vertical axes"
 msgstr "Küldje el a vízszintes és függőleges tengelyek méretezési tényezőit"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:136
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:137
 msgid "This will double the horizontal axis and halve the vertical axis"
 msgstr "Ez megduplázza a vízszintes tengelyt, és felére csökkenti a függőleges tengelyt"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:149
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:150
 msgid "Send me the width and height"
 msgstr "Küldje el nekem a szélességét és magasságát"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:151
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:152
 msgid "This will set the width to 150 and height to 200"
 msgstr "Ez a szélességet 150-re, a magasságot pedig 200-ra"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Küldje el nekem a tartomány oldalak, hogy szeretné tartani"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "General usage"
 msgstr "Általános használat"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#: pdf_bot/pdf_processor/split_pdf_processor.py:76
 msgid "{range}      all pages"
 msgstr "{range}      összes oldal"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:76
+#: pdf_bot/pdf_processor/split_pdf_processor.py:77
 msgid "{range}      page 8 only"
 msgstr "{range}      csak a 8. oldal"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:78
 msgid "{range}    first three pages"
 msgstr "{range}    első három oldal"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:78
+#: pdf_bot/pdf_processor/split_pdf_processor.py:79
 msgid "{range}     from page 8 onward"
 msgstr "{range}     a 8. oldaltól"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+#: pdf_bot/pdf_processor/split_pdf_processor.py:80
 msgid "{range}     last page only"
 msgstr "csak az utolsó oldal {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:80
+#: pdf_bot/pdf_processor/split_pdf_processor.py:81
 msgid "{range}    all pages except the last page"
 msgstr "{range}    az utolsó oldal kivételével az összes oldalt"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:83
+#: pdf_bot/pdf_processor/split_pdf_processor.py:84
 msgid "{range}     second last page only"
 msgstr "csak {range}     második utolsó oldal"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:84
+#: pdf_bot/pdf_processor/split_pdf_processor.py:85
 msgid "{range}    last two pages"
 msgstr "{range}    utolsó két oldal"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+#: pdf_bot/pdf_processor/split_pdf_processor.py:86
 msgid "{range}  third and second last pages"
 msgstr "{range}  harmadik és második utolsó oldal"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:88
+#: pdf_bot/pdf_processor/split_pdf_processor.py:89
 msgid "Advanced usage"
 msgstr "Speciális használat"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:89
+#: pdf_bot/pdf_processor/split_pdf_processor.py:90
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    oldalak {pages} és a végéig"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:92
+#: pdf_bot/pdf_processor/split_pdf_processor.py:93
 msgid "{range} pages {pages}"
 msgstr "{range} oldalak {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:95
+#: pdf_bot/pdf_processor/split_pdf_processor.py:96
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   az összes oldalt fordított sorrendben"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:98
+#: pdf_bot/pdf_processor/split_pdf_processor.py:99
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} oldalak {pages} , kivéve {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:101
+#: pdf_bot/pdf_processor/split_pdf_processor.py:102
 msgid "{range}  pages {pages}"
 msgstr "{range}  oldalak {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:125
+#: pdf_bot/pdf_processor/split_pdf_processor.py:126
 msgid "The range is invalid, please try again"
 msgstr "A tartomány érvénytelen, próbálkozzon újra"
 
@@ -628,7 +628,7 @@ msgstr "A tartomány érvénytelen, próbálkozzon újra"
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Küldje el a jelszót a PDF-fájl visszafejtéséhez"
 
-#: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
+#: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:18
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Küldje el a jelszót a PDF-fájl titkosításához"
 

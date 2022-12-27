@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 07:18+0000\n"
-"PO-Revision-Date: 2022-12-27 07:19\n"
+"POT-Creation-Date: 2022-12-27 09:41+0000\n"
+"PO-Revision-Date: 2022-12-27 09:41\n"
 "Last-Translator: \n"
 "Language: ky\n"
 "Language-Team: Kyrgyz\n"
@@ -496,131 +496,131 @@ msgstr ""
 msgid "To images"
 msgstr ""
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:84
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:86
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Мага PDF файлыңыздын атын өзгөрткүңүз келген файлдын атын жөнөтүңүз"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:101
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:103
 msgid "File names can't contain any of the following characters:"
 msgstr "Файл аттары төмөнкү символдордун бирин да камтый албайт:"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:105
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:107
 msgid "Please try again"
 msgstr "Кайра аракет кылыңыз"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:47
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:48
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "PDF файлыңызды саат жебеси боюнча бурууну каалаган даражаларды тандаңыз"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:70
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:71
 msgid "Invalid rotation degree, try again"
 msgstr "жараксыз айлануу даражасы, кайра аракет"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:18
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:19
 msgid "By scaling factor"
 msgstr "Масштабдоо фактору боюнча"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:19
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:20
 msgid "To dimension"
 msgstr "Өлчөмгө чейин"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:53
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:54
 msgid "Select the scale type that you'll like to perform"
 msgstr "Сиз аткарууну каалаган масштаб түрүн тандаңыз"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:88
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:89
 msgid "The scaling factors {values} are invalid, please try again"
 msgstr "{values} масштабдоо факторлору жараксыз, кайра аракет кылыңыз"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:112
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:113
 msgid "The dimensions {values} are invalid, please try again"
 msgstr "{values} өлчөмдөрү жараксыз, кайра аракет кылыңыз"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:131
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:132
 msgid "Send me the scaling factors for the horizontal and vertical axes"
 msgstr "Мага горизонталдык жана вертикалдуу октордун масштабдоо факторлорун жөнөтүңүз"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:136
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:137
 msgid "This will double the horizontal axis and halve the vertical axis"
 msgstr "Бул горизонталдык огун эки эсе көбөйтөт жана вертикалдуу огун эки эсе азайтат"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:149
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:150
 msgid "Send me the width and height"
 msgstr "Мага туурасын жана бийиктигин жөнөтүңүз"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:151
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:152
 msgid "This will set the width to 150 and height to 200"
 msgstr "Бул туурасын 150гө, бийиктигин 200гө чейин орнотот"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Мага сактоону жактырган барактардын катарын мага жөнөтүңүз"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "General usage"
 msgstr "Жалпы колдонуу"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#: pdf_bot/pdf_processor/split_pdf_processor.py:76
 msgid "{range}      all pages"
 msgstr "{range}      бардык баракчалар"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:76
+#: pdf_bot/pdf_processor/split_pdf_processor.py:77
 msgid "{range}      page 8 only"
 msgstr "{range}      бет 8 гана"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:78
 msgid "{range}    first three pages"
 msgstr "{range}    биринчи үч барак"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:78
+#: pdf_bot/pdf_processor/split_pdf_processor.py:79
 msgid "{range}     from page 8 onward"
 msgstr "{range}     8 -беттен баштап"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+#: pdf_bot/pdf_processor/split_pdf_processor.py:80
 msgid "{range}     last page only"
 msgstr "{range}     акыркы барак гана"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:80
+#: pdf_bot/pdf_processor/split_pdf_processor.py:81
 msgid "{range}    all pages except the last page"
 msgstr "{range}    акыркы баракчадан башка бардык барактар"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:83
+#: pdf_bot/pdf_processor/split_pdf_processor.py:84
 msgid "{range}     second last page only"
 msgstr "{range}     экинчи акыркы бет гана"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:84
+#: pdf_bot/pdf_processor/split_pdf_processor.py:85
 msgid "{range}    last two pages"
 msgstr "{range}    акыркы эки барак"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+#: pdf_bot/pdf_processor/split_pdf_processor.py:86
 msgid "{range}  third and second last pages"
 msgstr "{range}  үчүнчү жана экинчи акыркы барактар"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:88
+#: pdf_bot/pdf_processor/split_pdf_processor.py:89
 msgid "Advanced usage"
 msgstr "Өркүндөтүлгөн колдонуу"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:89
+#: pdf_bot/pdf_processor/split_pdf_processor.py:90
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    бет {pages} жана аягына чейин"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:92
+#: pdf_bot/pdf_processor/split_pdf_processor.py:93
 msgid "{range} pages {pages}"
 msgstr "{range} барактар {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:95
+#: pdf_bot/pdf_processor/split_pdf_processor.py:96
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   бардык барактар тескери тартипте"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:98
+#: pdf_bot/pdf_processor/split_pdf_processor.py:99
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} барак {pages} башка {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:101
+#: pdf_bot/pdf_processor/split_pdf_processor.py:102
 msgid "{range}  pages {pages}"
 msgstr "{range}  барактар {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:125
+#: pdf_bot/pdf_processor/split_pdf_processor.py:126
 msgid "The range is invalid, please try again"
 msgstr "Диапазон жараксыз, кайра аракет кылыңыз"
 
@@ -628,7 +628,7 @@ msgstr "Диапазон жараксыз, кайра аракет кылыңы�
 msgid "Send me the password to decrypt your PDF file"
 msgstr "PDF файлыңызды чечүү үчүн мага сырсөздү жөнөтүңүз"
 
-#: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:17
+#: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:18
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDF файлыңызды шифрлөө үчүн мага сырсөздү жөнөтүңүз"
 
