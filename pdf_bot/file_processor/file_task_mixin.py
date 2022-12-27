@@ -1,9 +1,9 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
 from telegram.ext import ContextTypes
 
-from pdf_bot.consts import CANCEL
+from pdf_bot.consts import CANCEL, FILE_DATA
 from pdf_bot.language import LanguageService
-from pdf_bot.models import TaskData
+from pdf_bot.models import FileData, TaskData
 
 
 class FileTaskMixin:
@@ -19,13 +19,27 @@ class FileTaskMixin:
     ) -> str:
         _ = language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
-        file = message.document or message.photo[-1]
+        file_data: FileData | None = None
+
+        # Try to retrieve the file data cached in user data first
+        if context.user_data is not None:
+            file_data = context.user_data.get(FILE_DATA)
+
+        # If we can't retrieve the file data, then we get the document/photo attached to
+        # the message
+        if file_data is None:
+            file = message.document or message.photo[-1]
+
+        def get_callback_data(data_type: type[FileData]) -> FileData:
+            if file_data is not None:
+                return data_type(file_data.id, file_data.name)
+            return data_type.from_telegram_object(file)
 
         keyboard = [
             [
                 InlineKeyboardButton(
                     _(task.label),
-                    callback_data=task.get_file_data(file),
+                    callback_data=get_callback_data(task.data_type),
                 )
                 for task in tasks[i : i + self._KEYBOARD_SIZE]
                 if task is not None
