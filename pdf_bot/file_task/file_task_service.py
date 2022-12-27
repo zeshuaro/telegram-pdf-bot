@@ -12,7 +12,6 @@ class FileTaskService:
     WAIT_IMAGE_TASK = "wait_image_task"
     KEYBOARD_SIZE = 3
 
-    PREVIEW = _("Preview")
     DECRYPT = _("Decrypt")
     ENCRYPT = _("Encrypt")
     ROTATE = _("Rotate")
@@ -32,7 +31,6 @@ class FileTaskService:
             ROTATE,
             SCALE,
             SPLIT,
-            PREVIEW,
             RENAME,
             CROP,
             COMPRESS,
