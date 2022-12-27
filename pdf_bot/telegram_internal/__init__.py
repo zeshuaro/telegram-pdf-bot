@@ -4,6 +4,7 @@ from .exceptions import (
     TelegramGetUserDataError,
     TelegramImageNotFoundError,
     TelegramServiceError,
+    TelegramUpdateUserDataError,
 )
 from .telegram_service import TelegramService
 
@@ -14,4 +15,5 @@ __all__ = [
     "TelegramFileTooLargeError",
     "TelegramGetUserDataError",
     "TelegramImageNotFoundError",
+    "TelegramUpdateUserDataError",
 ]

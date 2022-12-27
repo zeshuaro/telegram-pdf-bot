@@ -23,11 +23,13 @@ from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, PAYMENT
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageService
 from pdf_bot.models import BackData, FileData
-from pdf_bot.telegram_internal.exceptions import (
+
+from .exceptions import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
     TelegramGetUserDataError,
     TelegramImageNotFoundError,
+    TelegramUpdateUserDataError,
 )
 
 
@@ -96,6 +98,16 @@ class TelegramService:
         if data is None:
             raise err
         return data
+
+    @staticmethod
+    def update_user_data(
+        context: ContextTypes.DEFAULT_TYPE, key: str, value: Any
+    ) -> None:
+        if context.user_data is None:
+            raise TelegramUpdateUserDataError(
+                _("Something went wrong, please try again")
+            )
+        context.user_data[key] = value
 
     def check_image(self, message: Message) -> Document | PhotoSize:
         img_file: Document | PhotoSize | None = message.document

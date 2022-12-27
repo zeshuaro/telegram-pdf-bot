@@ -14,5 +14,9 @@ class TelegramGetUserDataError(TelegramServiceError):
     ...
 
 
+class TelegramUpdateUserDataError(TelegramServiceError):
+    ...
+
+
 class TelegramImageNotFoundError(TelegramServiceError):
     ...

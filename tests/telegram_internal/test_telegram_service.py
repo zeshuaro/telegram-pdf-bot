@@ -12,10 +12,11 @@ from pdf_bot.models import BackData, FileData
 from pdf_bot.telegram_internal import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
+    TelegramGetUserDataError,
     TelegramImageNotFoundError,
     TelegramService,
+    TelegramUpdateUserDataError,
 )
-from pdf_bot.telegram_internal.exceptions import TelegramGetUserDataError
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
@@ -275,6 +276,22 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
         with pytest.raises(TelegramGetUserDataError):
             self.sut.get_user_data(self.telegram_context, self.USER_DATA_KEY)
+
+    def test_update_user_data(self) -> None:
+        self.telegram_context.user_data = {}
+        self.sut.update_user_data(
+            self.telegram_context, self.USER_DATA_KEY, self.USER_DATA_VALUE
+        )
+        assert (
+            self.telegram_context.user_data[self.USER_DATA_KEY] == self.USER_DATA_VALUE
+        )
+
+    def test_update_user_data_error(self) -> None:
+        self.telegram_context.user_data = None
+        with pytest.raises(TelegramUpdateUserDataError):
+            self.sut.update_user_data(
+                self.telegram_context, self.USER_DATA_KEY, self.USER_DATA_VALUE
+            )
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])
