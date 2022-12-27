@@ -15,7 +15,7 @@ from pdf_bot.models import FileData, TaskData
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
 ErrorHandlerType = Callable[
-    [Update, ContextTypes.DEFAULT_TYPE, Exception, str, str | None],
+    [Update, ContextTypes.DEFAULT_TYPE, Exception, FileData],
     Coroutine[Any, Any, str | int],
 ]
 
@@ -96,17 +96,16 @@ class AbstractFileProcessor(ABC):
             return await self.file_task_service.ask_pdf_task(update, context)
 
         if query is not None:
-            data = query.data
-            if not isinstance(data, FileData):
+            file_data = query.data
+            if not isinstance(file_data, FileData):
                 raise ValueError(f"Unknown query data type: {type(query.data)}")
 
             await query.answer()
             await query.edit_message_text(_("Processing your file"))
             context.drop_callback_data(query)
-            file_id, file_name = data.id, data.name
         else:
             try:
-                file_id, file_name = self.telegram_service.get_user_data(
+                file_data: FileData = self.telegram_service.get_user_data(  # type: ignore
                     context, FILE_DATA
                 )
             except TelegramServiceError as e:
@@ -114,7 +113,9 @@ class AbstractFileProcessor(ABC):
                 return ConversationHandler.END
 
         try:
-            async with self.process_file_task(file_id, message.text) as out_path:
+            async with self.process_file_task(
+                file_data.id, message.text  # type: ignore
+            ) as out_path:
                 final_path = out_path
                 if os.path.isdir(out_path):
                     shutil.make_archive(out_path, "zip", out_path)
@@ -131,7 +132,7 @@ class AbstractFileProcessor(ABC):
                     error_handler = handler
 
             if error_handler is not None:
-                return await error_handler(update, context, e, file_id, file_name)
+                return await error_handler(update, context, e, file_data)  # type: ignore
         return ConversationHandler.END
 
     def _get_error_handlers(
@@ -148,8 +149,7 @@ class AbstractFileProcessor(ABC):
         update: Update,
         context: ContextTypes.DEFAULT_TYPE,
         exception: Exception,
-        _file_id: str,
-        _file_name: str | None,
+        _file_data: FileData,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
         await update.effective_message.reply_text(_(str(exception)))  # type: ignore

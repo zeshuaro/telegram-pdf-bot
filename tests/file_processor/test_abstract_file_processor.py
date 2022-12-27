@@ -96,8 +96,7 @@ class MockProcessorWithCustomErrorHandler(MockProcessor):
         _update: Update,
         _context: ContextTypes.DEFAULT_TYPE,
         _exception: Exception,
-        _file_id: str,
-        _file_name: str | None,
+        _file_data: FileData,
     ) -> str:
         return self.CUSTOM_ERROR_STATE
 

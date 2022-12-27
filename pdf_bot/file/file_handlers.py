@@ -28,6 +28,7 @@ from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.image_processor import ImageTaskProcessor
 from pdf_bot.language import LanguageService
+from pdf_bot.models import FileData
 from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
@@ -162,7 +163,7 @@ class FileHandlers:
         if not doc.mime_type.endswith("pdf"):
             return ConversationHandler.END
 
-        context.user_data[FILE_DATA] = doc.file_id, doc.file_name  # type: ignore
+        context.user_data[FILE_DATA] = FileData.from_telegram_object(doc)  # type: ignore
         await self.file_task_service.ask_pdf_task(update, context)
         return await self.pdf_task_processor.ask_task(update, context)
 

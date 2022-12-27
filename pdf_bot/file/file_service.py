@@ -5,6 +5,7 @@ from telegram.ext import ContextTypes, ConversationHandler
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
 from pdf_bot.language import LanguageService
+from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
@@ -27,14 +28,14 @@ class FileService:
         message: Message = update.message
 
         try:
-            file_id, _file_name = self.telegram_service.get_user_data(
+            file_data: FileData = self.telegram_service.get_user_data(
                 context, FILE_DATA
             )
         except TelegramServiceError as e:
             await message.reply_text(_(str(e)))
             return ConversationHandler.END
 
-        async with self.pdf_service.compress_pdf(file_id) as compress_result:
+        async with self.pdf_service.compress_pdf(file_data.id) as compress_result:
             await message.reply_text(
                 _(
                     "File size reduced by {percent}, from {old_size} to {new_size}"

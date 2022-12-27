@@ -8,6 +8,7 @@ from telegram.ext import ContextTypes
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
 from pdf_bot.file_processor import ErrorHandlerType
+from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfIncorrectPasswordError
 
 from .abstract_crypto_pdf_processor import AbstractCryptoPdfProcessor
@@ -42,10 +43,9 @@ class DecryptPdfProcessor(AbstractCryptoPdfProcessor):
         update: Update,
         context: ContextTypes.DEFAULT_TYPE,
         exception: Exception,
-        file_id: str,
-        file_name: str | None,
+        file_data: FileData,
     ) -> str:
         _ = self.language_service.set_app_language(update, context)
         await update.effective_message.reply_text(_(str(exception)))  # type: ignore
-        context.user_data[FILE_DATA] = (file_id, file_name)  # type: ignore
+        context.user_data[FILE_DATA] = file_data  # type: ignore
         return self.wait_password_state
