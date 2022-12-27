@@ -21,7 +21,6 @@ class FileTaskService:
     SPLIT = _("Split")
     RENAME = _("Rename")
     CROP = _("Crop")
-    OCR = "OCR"
     COMPRESS = _("Compress")
 
     BEAUTIFY = _("Beautify")
@@ -38,7 +37,6 @@ class FileTaskService:
             TO_IMAGES,
             RENAME,
             CROP,
-            OCR,
             COMPRESS,
         ]
     )

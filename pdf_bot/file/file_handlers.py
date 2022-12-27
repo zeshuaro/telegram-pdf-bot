@@ -16,7 +16,6 @@ from pdf_bot.consts import (
     DECRYPT,
     ENCRYPT,
     FILE_DATA,
-    OCR,
     PREVIEW,
     RENAME,
     ROTATE,
@@ -34,7 +33,6 @@ from pdf_bot.language import LanguageService
 from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
-    OCRPdfProcessor,
     PdfTaskProcessor,
     PDFToImageProcessor,
     PreviewPdfProcessor,
@@ -56,7 +54,6 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPdfProcessor,
         encrypt_pdf_processor: EncryptPdfProcessor,
-        ocr_pdf_processor: OCRPdfProcessor,
         pdf_to_image_processor: PDFToImageProcessor,
         preview_pdf_processor: PreviewPdfProcessor,
         rename_pdf_processor: RenamePdfProcessor,
@@ -78,7 +75,6 @@ class FileHandlers:
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
-        self.ocr_pdf_processor = ocr_pdf_processor
         self.pdf_to_image_processor = pdf_to_image_processor
         self.preview_pdf_processor = preview_pdf_processor
         self.rename_pdf_processor = rename_pdf_processor
@@ -224,8 +220,6 @@ class FileHandlers:
             return await self.scale_pdf_processor.ask_scale_type(update, context)
         if text == _(SPLIT):
             return await self.split_pdf_processor.ask_split_range(update, context)
-        if text == OCR:
-            return await self.ocr_pdf_processor.process_file(update, context)
         if text == _(COMPRESS):
             return await self.file_service.compress_pdf(update, context)
         if text == _(CANCEL):
