@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 05:16+0000\n"
-"PO-Revision-Date: 2022-12-27 05:16\n"
+"POT-Creation-Date: 2022-12-27 05:25+0000\n"
+"PO-Revision-Date: 2022-12-27 05:26\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -31,7 +31,7 @@ msgstr "Отмена"
 msgid "Done"
 msgstr "Готово"
 
-#: pdf_bot/consts.py:39
+#: pdf_bot/consts.py:39 pdf_bot/telegram_internal/telegram_service.py:38
 msgid "Back"
 msgstr "Назад"
 
@@ -198,12 +198,12 @@ msgid "Set Language 🌎"
 msgstr "Установить язык 🌎"
 
 #: pdf_bot/command/command_service.py:63
-#: pdf_bot/telegram_internal/telegram_service.py:164
+#: pdf_bot/telegram_internal/telegram_service.py:175
 msgid "Join Channel"
 msgstr "Присоединиться к каналу"
 
 #: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
-#: pdf_bot/telegram_internal/telegram_service.py:165
+#: pdf_bot/telegram_internal/telegram_service.py:176
 msgid "Support PDF Bot"
 msgstr "Поддержать PDF Bot"
 
@@ -632,7 +632,7 @@ msgid "Send me the password to encrypt your PDF file"
 msgstr "Пришлите мне пароль для шифрования PDF-файла"
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
-#: pdf_bot/telegram_internal/telegram_service.py:93
+#: pdf_bot/telegram_internal/telegram_service.py:92
 msgid "Something went wrong, please try again"
 msgstr "Что-то пошло не так, пожалуйста, попробуйте еще раз"
 
@@ -640,37 +640,37 @@ msgstr "Что-то пошло не так, пожалуйста, попробу
 msgid "The button has expired, start over with your file or command"
 msgstr ""
 
-#: pdf_bot/telegram_internal/telegram_service.py:58
+#: pdf_bot/telegram_internal/telegram_service.py:57
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Ваш файл слишком велик для загрузки и обработки, пожалуйста, повторите попытку с другим файлом\n\n"
 "Обратите внимание, что это ограничение применяется Telegram, и я ничего не могу сделать, если Telegram не изменит его"
 
-#: pdf_bot/telegram_internal/telegram_service.py:70
+#: pdf_bot/telegram_internal/telegram_service.py:69
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Файл слишком велик для меня, чтобы отправить вам\n\n"
 "Обратите внимание, что это ограничение применяется Telegram, и я ничего не могу сделать, если Telegram не изменит его."
 
-#: pdf_bot/telegram_internal/telegram_service.py:104
+#: pdf_bot/telegram_internal/telegram_service.py:103
 msgid "Your file is not an image, please try again"
 msgstr "Ваш файл не является изображением, попробуйте еще раз"
 
-#: pdf_bot/telegram_internal/telegram_service.py:111
+#: pdf_bot/telegram_internal/telegram_service.py:110
 msgid "No image found in your message"
 msgstr "В сообщении не найдено изображения"
 
-#: pdf_bot/telegram_internal/telegram_service.py:120
+#: pdf_bot/telegram_internal/telegram_service.py:119
 msgid "Your file is not a PDF file, please try again"
 msgstr "Ваш файл не является PDF-файлом, повторите попытку"
 
-#: pdf_bot/telegram_internal/telegram_service.py:150
-#: pdf_bot/telegram_internal/telegram_service.py:153
+#: pdf_bot/telegram_internal/telegram_service.py:149
+#: pdf_bot/telegram_internal/telegram_service.py:152
 msgid "Action cancelled"
 msgstr "Действие отменено"
 
-#: pdf_bot/telegram_internal/telegram_service.py:211
-#: pdf_bot/telegram_internal/telegram_service.py:219
+#: pdf_bot/telegram_internal/telegram_service.py:222
+#: pdf_bot/telegram_internal/telegram_service.py:230
 msgid "Here is your result file"
 msgstr "Вот ваш итоговый файл"
 
