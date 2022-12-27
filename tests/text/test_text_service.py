@@ -33,6 +33,7 @@ class TestTextService(
         self.language_service = self.mock_language_service()
 
         self.telegram_service = self.mock_telegram_service()
+        self.telegram_service.get_user_data.side_effect = None
         self.telegram_service.get_user_data.return_value = self.PDF_TEXT
 
         self.sut = TextService(

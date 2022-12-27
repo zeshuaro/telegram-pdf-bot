@@ -18,13 +18,14 @@ from telegram.ext import ContextTypes
 class TelegramTestMixin:
     TELEGRAM_USER_ID = 0
     TELEGRAM_QUERY_USER_ID = 1
+    TELEGRAM_CHAT_ID = 2
+    TELEGRAM_MESSAGE_ID = 3
     TELEGRAM_USERNAME = "username"
     TELEGRAM_FILE_ID = "file_id"
     TELEGRAM_DOCUMENT_ID = "document_id"
     TELEGRAM_DOCUMENT_NAME = "document_name"
     TELEGRAM_PHOTO_SIZE_ID = "photo_size_id"
     TELEGRAM_TEXT = "text"
-    TELEGRAM_CHAT_ID = 2
 
     def setup_method(self) -> None:
         self.telegram_bot = MagicMock(spec=Bot)

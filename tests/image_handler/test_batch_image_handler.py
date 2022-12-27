@@ -32,6 +32,7 @@ class TestBatchImageHandler(
         self.image_service = MagicMock(spec=ImageService)
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
+        self.telegram_service.get_user_data.side_effect = None
 
         self.sut = BatchImageHandler(
             self.image_service,
