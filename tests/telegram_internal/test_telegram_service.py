@@ -8,7 +8,7 @@ from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
 from pdf_bot.io import IOService
-from pdf_bot.models import FileData
+from pdf_bot.models import BackData, FileData
 from pdf_bot.telegram_internal import (
     TelegramFileMimeTypeError,
     TelegramFileTooLargeError,
@@ -233,6 +233,26 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_callback_query.answer.assert_called_once()
         self.telegram_callback_query.edit_message_text.assert_called_once()
         self.telegram_message.reply_text.assert_not_called()
+
+    @pytest.mark.asyncio
+    async def test_get_back_button(self) -> None:
+        actual = self.sut.get_back_button(self.telegram_update, self.telegram_context)
+
+        assert actual.text == self.BACK
+        assert isinstance(actual.callback_data, BackData)
+
+    @pytest.mark.asyncio
+    async def test_get_back_inline_markup(self) -> None:
+        actual = self.sut.get_back_inline_markup(
+            self.telegram_update, self.telegram_context
+        )
+
+        assert len(actual.inline_keyboard) == 1
+        assert len(actual.inline_keyboard[0]) == 1
+
+        button = actual.inline_keyboard[0][0]
+        assert button.text == self.BACK
+        assert isinstance(button.callback_data, BackData)
 
     @pytest.mark.asyncio
     async def test_get_support_markup(self) -> None:
