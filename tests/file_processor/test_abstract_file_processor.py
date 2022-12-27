@@ -143,6 +143,8 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     async def test_ask_task(self) -> None:
+        self.telegram_update.callback_query = self.telegram_callback_query
+
         with patch.object(
             self.sut, "ask_task_helper", return_value=self.WAIT_FILE_TASK
         ) as ask_task_helper:
@@ -151,6 +153,27 @@ class TestAbstractFileProcessor(
             )
 
             assert actual == self.WAIT_FILE_TASK
+            self.telegram_callback_query.delete_message.assert_called_once()
+            ask_task_helper.assert_called_once_with(
+                self.language_service,
+                self.telegram_update,
+                self.telegram_context,
+                MockProcessor.TASK_DATA_LIST,
+            )
+
+    @pytest.mark.asyncio
+    async def test_ask_task_without_callback_query(self) -> None:
+        self.telegram_update.callback_query = None
+
+        with patch.object(
+            self.sut, "ask_task_helper", return_value=self.WAIT_FILE_TASK
+        ) as ask_task_helper:
+            actual = await self.sut.ask_task(
+                self.telegram_update, self.telegram_context
+            )
+
+            assert actual == self.WAIT_FILE_TASK
+            self.telegram_callback_query.delete_message.assert_not_called()
             ask_task_helper.assert_called_once_with(
                 self.language_service,
                 self.telegram_update,
