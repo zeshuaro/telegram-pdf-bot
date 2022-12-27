@@ -17,17 +17,33 @@ class TestFileTaskMixin(LanguageServiceTestMixin, TelegramTestMixin):
         self.sut = FileTaskMixin()
 
     @pytest.mark.asyncio
-    async def test_ask_task(self) -> None:
-        tasks = self.TASK_DATA_LIST
+    async def test_ask_task_helper(self) -> None:
+        actual = await self.sut.ask_task_helper(
+            self.language_service,
+            self.telegram_update,
+            self.telegram_context,
+            self.TASK_DATA_LIST,
+        )
+
+        assert actual == self.WAIT_FILE_TASK
+        self._assert_inline_keyboard()
+
+    @pytest.mark.asyncio
+    async def test_ask_task_helper_without_user_data(self) -> None:
+        self.telegram_context.user_data = None
 
         actual = await self.sut.ask_task_helper(
             self.language_service,
             self.telegram_update,
             self.telegram_context,
-            tasks,
+            self.TASK_DATA_LIST,
         )
 
         assert actual == self.WAIT_FILE_TASK
+        self._assert_inline_keyboard()
+
+    def _assert_inline_keyboard(self) -> None:
+        tasks = self.TASK_DATA_LIST
         _args, kwargs = self.telegram_update.effective_message.reply_text.call_args
 
         reply_markup: InlineKeyboardMarkup | None = kwargs.get("reply_markup")
