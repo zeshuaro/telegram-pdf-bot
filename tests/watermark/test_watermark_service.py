@@ -5,7 +5,7 @@ from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.pdf import PdfService, PdfServiceError
-from pdf_bot.telegram_internal import TelegramServiceError, TelegramUserDataKeyError
+from pdf_bot.telegram_internal import TelegramGetUserDataError, TelegramServiceError
 from pdf_bot.watermark import WatermarkService
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
@@ -122,7 +122,7 @@ class TestWatermarkService(
 
     @pytest.mark.asyncio
     async def test_add_watermark_to_pdf_invalid_user_data(self) -> None:
-        self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
+        self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
 
         actual = await self.sut.add_watermark_to_pdf(
             self.telegram_update, self.telegram_context

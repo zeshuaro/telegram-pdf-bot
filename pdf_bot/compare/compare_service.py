@@ -7,9 +7,9 @@ from pdf_bot.consts import BACK, CANCEL
 from pdf_bot.language import LanguageService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram_internal import (
+    TelegramGetUserDataError,
     TelegramService,
     TelegramServiceError,
-    TelegramUserDataKeyError,
 )
 
 
@@ -79,7 +79,7 @@ class CompareService:
             file_id = self.telegram_service.get_user_data(context, self._COMPARE_ID)
         except TelegramServiceError as e:
             await message.reply_text(_(str(e)))
-            if isinstance(e, TelegramUserDataKeyError):
+            if isinstance(e, TelegramGetUserDataError):
                 return ConversationHandler.END
             return self.WAIT_SECOND_PDF
 

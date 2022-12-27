@@ -7,7 +7,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
 from pdf_bot.crop import CropService
 from pdf_bot.pdf import PdfService
-from pdf_bot.telegram_internal import TelegramUserDataKeyError
+from pdf_bot.telegram_internal import TelegramGetUserDataError
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
@@ -86,7 +86,7 @@ class TestCropService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_percentage_invalid_user_data(self) -> None:
         self.telegram_message.text = self.PERCENT
-        self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
+        self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
 
         actual = await self.sut.crop_pdf_by_percentage(
             self.telegram_update, self.telegram_context
@@ -132,7 +132,7 @@ class TestCropService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_margin_size_invalid_user_data(self) -> None:
         self.telegram_message.text = self.MARGIN_SIZE
-        self.telegram_service.get_user_data.side_effect = TelegramUserDataKeyError()
+        self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
 
         actual = await self.sut.crop_pdf_by_margin_size(
             self.telegram_update, self.telegram_context

@@ -7,9 +7,9 @@ from pdf_bot.language import LanguageService
 from pdf_bot.pdf import PdfServiceError
 from pdf_bot.pdf.pdf_service import PdfService
 from pdf_bot.telegram_internal import (
+    TelegramGetUserDataError,
     TelegramService,
     TelegramServiceError,
-    TelegramUserDataKeyError,
 )
 
 
@@ -74,7 +74,7 @@ class WatermarkService:
             )
         except TelegramServiceError as e:
             await message.reply_text(_(str(e)))
-            if isinstance(e, TelegramUserDataKeyError):
+            if isinstance(e, TelegramGetUserDataError):
                 return ConversationHandler.END
             return self.WAIT_WATERMARK_PDF
 
