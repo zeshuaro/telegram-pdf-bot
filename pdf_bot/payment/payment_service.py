@@ -42,6 +42,9 @@ class PaymentService:
         context: ContextTypes.DEFAULT_TYPE,
         query: CallbackQuery | None = None,
     ) -> None:
+        if query is not None:
+            await query.answer()
+
         _ = self.language_service.set_app_language(update, context)
         keyboard = [
             [
@@ -81,6 +84,7 @@ class PaymentService:
         context: ContextTypes.DEFAULT_TYPE,
         query: CallbackQuery,
     ) -> None:
+        await query.answer()
         _ = self.language_service.set_app_language(update, context)
         support_message, price = query.data.split(",")[1:]
         prices = [LabeledPrice(support_message, int(price) * 100)]
