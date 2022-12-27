@@ -36,7 +36,7 @@ from pdf_bot.pdf_processor import (
     GrayscalePdfProcessor,
     OcrPdfProcessor,
     PdfTaskProcessor,
-    PDFToImageProcessor,
+    PdfToImageProcessor,
     PreviewPdfProcessor,
     RenamePdfProcessor,
     RotatePdfProcessor,
@@ -235,7 +235,7 @@ class Processors(containers.DeclarativeContainer):
         language_service=services.language,
     )
     pdf_to_image = providers.Singleton(
-        PDFToImageProcessor,
+        PdfToImageProcessor,
         file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
@@ -304,7 +304,6 @@ class Handlers(containers.DeclarativeContainer):
         crop_service=services.crop,
         decrypt_pdf_processor=processors.decrypt,
         encrypt_pdf_processor=processors.encrypt,
-        pdf_to_image_processor=processors.pdf_to_image,
         preview_pdf_processor=processors.preview_pdf,
         rename_pdf_processor=processors.rename,
         rotate_pdf_processor=processors.rotate,

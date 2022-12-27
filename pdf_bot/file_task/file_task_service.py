@@ -15,7 +15,6 @@ class FileTaskService:
     PREVIEW = _("Preview")
     DECRYPT = _("Decrypt")
     ENCRYPT = _("Encrypt")
-    TO_IMAGES = _("To Images")
     ROTATE = _("Rotate")
     SCALE = _("Scale")
     SPLIT = _("Split")
@@ -34,7 +33,6 @@ class FileTaskService:
             SCALE,
             SPLIT,
             PREVIEW,
-            TO_IMAGES,
             RENAME,
             CROP,
             COMPRESS,

@@ -5,7 +5,7 @@ from .extract_pdf_text_processor import ExtractPdfTextData, ExtractPdfTextProces
 from .grayscale_pdf_processor import GrayscalePdfData, GrayscalePdfProcessor
 from .ocr_pdf_processor import OcrPdfData, OcrPdfProcessor
 from .pdf_task_processor import PdfTaskProcessor
-from .pdf_to_image_processor import PDFToImageProcessor
+from .pdf_to_image_processor import PdfToImageData, PdfToImageProcessor
 from .preview_pdf_processor import PreviewPdfProcessor
 from .rename_pdf_processor import RenamePdfProcessor
 from .rotate_pdf_processor import RotatePdfProcessor
@@ -26,7 +26,8 @@ __all__ = [
     "OcrPdfData",
     "OcrPdfProcessor",
     "PdfTaskProcessor",
-    "PDFToImageProcessor",
+    "PdfToImageData",
+    "PdfToImageProcessor",
     "PreviewPdfProcessor",
     "RenamePdfProcessor",
     "RotatePdfProcessor",
