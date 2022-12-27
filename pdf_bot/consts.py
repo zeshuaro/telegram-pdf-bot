@@ -69,6 +69,7 @@ ROTATE_270 = "270"
 
 # User data constants
 FILE_DATA = "file_data"
+MESSAGE_DATA = "message_data"
 
 # Payment Constants
 PAYMENT = "payment"

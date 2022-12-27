@@ -28,3 +28,9 @@ class TaskData:
 
     def get_file_data(self, obj: Document | PhotoSize) -> FileData:
         return self.data_type.from_telegram_object(obj)
+
+
+@dataclass
+class MessageData:
+    chat_id: int | str
+    message_id: int

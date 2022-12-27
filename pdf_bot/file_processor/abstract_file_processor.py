@@ -8,11 +8,11 @@ from telegram import CallbackQuery, Message, Update
 from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK, FILE_DATA
+from pdf_bot.consts import BACK, FILE_DATA, MESSAGE_DATA
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
-from pdf_bot.models import FileData, TaskData
-from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
+from pdf_bot.models import FileData, MessageData, TaskData
+from pdf_bot.telegram_internal import TelegramGetUserDataError, TelegramService
 
 from .file_task_mixin import FileTaskMixin
 
@@ -119,9 +119,12 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
                 file_data: FileData = self.telegram_service.get_user_data(  # type: ignore
                     context, FILE_DATA
                 )
-            except TelegramServiceError as e:
+            except TelegramGetUserDataError as e:
                 await message.reply_text(_(str(e)))
                 return ConversationHandler.END
+
+        # Edit the previous message for processors with nested conversation
+        await self._edit_previous_message(update, context)
 
         try:
             async with self.process_file_task(
@@ -145,6 +148,23 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
             if error_handler is not None:
                 return await error_handler(update, context, e, file_data)  # type: ignore
         return ConversationHandler.END
+
+    async def _edit_previous_message(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> None:
+        try:
+            message_data: MessageData = self.telegram_service.get_user_data(
+                context, MESSAGE_DATA
+            )
+        except TelegramGetUserDataError:
+            return
+
+        _ = self.language_service.set_app_language(update, context)
+        await context.bot.edit_message_text(
+            _("Processing your file"),
+            chat_id=message_data.chat_id,
+            message_id=message_data.message_id,
+        )
 
     def _get_error_handlers(
         self,
