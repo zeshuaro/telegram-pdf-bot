@@ -7,7 +7,7 @@ from .ocr_pdf_processor import OcrPdfData, OcrPdfProcessor
 from .pdf_task_processor import PdfTaskProcessor
 from .pdf_to_image_processor import PdfToImageData, PdfToImageProcessor
 from .preview_pdf_processor import PreviewPdfData, PreviewPdfProcessor
-from .rename_pdf_processor import RenamePdfProcessor
+from .rename_pdf_processor import RenamePdfData, RenamePdfProcessor
 from .rotate_pdf_processor import RotatePdfProcessor
 from .scale_pdf_processor import ScalePdfProcessor
 from .split_pdf_processor import SplitPdfProcessor
@@ -30,6 +30,7 @@ __all__ = [
     "PdfToImageProcessor",
     "PreviewPdfData",
     "PreviewPdfProcessor",
+    "RenamePdfData",
     "RenamePdfProcessor",
     "RotatePdfProcessor",
     "ScalePdfProcessor",

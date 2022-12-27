@@ -16,7 +16,6 @@ from pdf_bot.consts import (
     DECRYPT,
     ENCRYPT,
     FILE_DATA,
-    RENAME,
     ROTATE,
     SCALE,
     SPLIT,
@@ -33,7 +32,6 @@ from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
     PdfTaskProcessor,
-    RenamePdfProcessor,
     RotatePdfProcessor,
     ScalePdfProcessor,
     SplitPdfProcessor,
@@ -51,7 +49,6 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPdfProcessor,
         encrypt_pdf_processor: EncryptPdfProcessor,
-        rename_pdf_processor: RenamePdfProcessor,
         rotate_pdf_processor: RotatePdfProcessor,
         scale_pdf_processor: ScalePdfProcessor,
         split_pdf_processor: SplitPdfProcessor,
@@ -70,7 +67,6 @@ class FileHandlers:
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
-        self.rename_pdf_processor = rename_pdf_processor
         self.rotate_pdf_processor = rotate_pdf_processor
         self.scale_pdf_processor = scale_pdf_processor
         self.split_pdf_processor = split_pdf_processor
@@ -110,9 +106,6 @@ class FileHandlers:
                 ],
                 self.encrypt_pdf_processor.wait_password_state: [
                     MessageHandler(TEXT_FILTER, self.encrypt_pdf_processor.process_file)
-                ],
-                RenamePdfProcessor.WAIT_NEW_FILE_NAME: [
-                    MessageHandler(TEXT_FILTER, self.rename_pdf_processor.rename_pdf)
                 ],
                 RotatePdfProcessor.WAIT_ROTATE_DEGREE: [
                     MessageHandler(TEXT_FILTER, self.rotate_pdf_processor.rotate_pdf)
@@ -201,8 +194,6 @@ class FileHandlers:
             return await self.decrypt_pdf_processor.ask_password(update, context)
         if text == _(ENCRYPT):
             return await self.encrypt_pdf_processor.ask_password(update, context)
-        if text == _(RENAME):
-            return await self.rename_pdf_processor.ask_new_file_name(update, context)
         if text == _(ROTATE):
             return await self.rotate_pdf_processor.ask_degree(update, context)
         if text == _(SCALE):

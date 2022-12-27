@@ -6,9 +6,10 @@ from .exceptions import (
     TelegramServiceError,
     TelegramUpdateUserDataError,
 )
-from .telegram_service import TelegramService
+from .telegram_service import BackData, TelegramService
 
 __all__ = [
+    "BackData",
     "TelegramService",
     "TelegramServiceError",
     "TelegramFileMimeTypeError",
