@@ -17,7 +17,6 @@ from pdf_bot.consts import (
     ENCRYPT,
     FILE_DATA,
     SCALE,
-    SPLIT,
     TEXT_FILTER,
 )
 from pdf_bot.crop import CropService
@@ -32,7 +31,6 @@ from pdf_bot.pdf_processor import (
     EncryptPdfProcessor,
     PdfTaskProcessor,
     ScalePdfProcessor,
-    SplitPdfProcessor,
 )
 from pdf_bot.telegram_internal import TelegramService
 
@@ -48,7 +46,6 @@ class FileHandlers:
         decrypt_pdf_processor: DecryptPdfProcessor,
         encrypt_pdf_processor: EncryptPdfProcessor,
         scale_pdf_processor: ScalePdfProcessor,
-        split_pdf_processor: SplitPdfProcessor,
         telegram_service: TelegramService,
         language_service: LanguageService,
         image_task_processor: ImageTaskProcessor,
@@ -65,7 +62,6 @@ class FileHandlers:
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
         self.scale_pdf_processor = scale_pdf_processor
-        self.split_pdf_processor = split_pdf_processor
 
     def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
@@ -117,9 +113,6 @@ class FileHandlers:
                     MessageHandler(
                         TEXT_FILTER, self.scale_pdf_processor.scale_pdf_to_dimension
                     )
-                ],
-                SplitPdfProcessor.WAIT_SPLIT_RANGE: [
-                    MessageHandler(TEXT_FILTER, self.split_pdf_processor.split_pdf)
                 ],
             },
             fallbacks=[
@@ -189,8 +182,6 @@ class FileHandlers:
             return await self.encrypt_pdf_processor.ask_password(update, context)
         if text == _(SCALE):
             return await self.scale_pdf_processor.ask_scale_type(update, context)
-        if text == _(SPLIT):
-            return await self.split_pdf_processor.ask_split_range(update, context)
         if text == _(COMPRESS):
             return await self.file_service.compress_pdf(update, context)
         if text == _(CANCEL):

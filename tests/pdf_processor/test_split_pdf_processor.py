@@ -1,11 +1,18 @@
 from unittest.mock import MagicMock
 
 import pytest
-from telegram.ext import ConversationHandler
+from telegram.ext import (
+    CallbackQueryHandler,
+    CommandHandler,
+    ConversationHandler,
+    MessageHandler,
+)
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.file_processor import AbstractFileTaskProcessor
+from pdf_bot.models import BackData, TaskData
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import SplitPdfProcessor
+from pdf_bot.pdf_processor import SplitPdfData, SplitPdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
@@ -45,6 +52,41 @@ class TestSplitPdfProcessor(
         actual = self.sut.should_process_back_option
         assert actual is False
 
+    def test_task_data(self) -> None:
+        actual = self.sut.task_data
+        assert actual == TaskData("Split", SplitPdfData)
+
+    def test_handler(self) -> None:
+        actual = self.sut.handler
+
+        assert isinstance(actual, ConversationHandler)
+
+        entry_points = actual.entry_points
+        assert len(entry_points) == 1
+        assert isinstance(entry_points[0], CallbackQueryHandler)
+        assert entry_points[0].pattern == SplitPdfData
+
+        assert self.WAIT_SPLIT_RANGE in actual.states
+        wait_file_name_state = actual.states[self.WAIT_SPLIT_RANGE]
+        assert len(wait_file_name_state) == 2
+
+        assert isinstance(wait_file_name_state[0], MessageHandler)
+        assert isinstance(wait_file_name_state[1], CallbackQueryHandler)
+        assert wait_file_name_state[1].pattern == BackData
+
+        fallbacks = actual.fallbacks
+        assert len(fallbacks) == 1
+        assert isinstance(fallbacks[0], CommandHandler)
+        assert fallbacks[0].commands == {"cancel"}
+
+        map_to_parent = actual.map_to_parent
+        assert map_to_parent is not None
+        assert AbstractFileTaskProcessor.WAIT_FILE_TASK in map_to_parent
+        assert (
+            map_to_parent[AbstractFileTaskProcessor.WAIT_FILE_TASK]
+            == AbstractFileTaskProcessor.WAIT_FILE_TASK
+        )
+
     @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
         self.pdf_service.split_pdf.return_value.__aenter__.return_value = self.FILE_PATH
@@ -59,12 +101,21 @@ class TestSplitPdfProcessor(
 
     @pytest.mark.asyncio
     async def test_ask_split_range(self) -> None:
+        self.telegram_update.callback_query = self.telegram_callback_query
+        self.telegram_callback_query.edit_message_text.return_value = (
+            self.telegram_message
+        )
+
         actual = await self.sut.ask_split_range(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == self.WAIT_SPLIT_RANGE
-        self.telegram_service.reply_with_back_markup.assert_called_once()
+        self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_callback_query.edit_message_text.assert_called_once()
+        self.telegram_service.cache_message_data.assert_called_once_with(
+            self.telegram_context, self.telegram_message
+        )
 
     @pytest.mark.asyncio
     async def test_split_pdf(self) -> None:
@@ -84,15 +135,5 @@ class TestSplitPdfProcessor(
         actual = await self.sut.split_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_SPLIT_RANGE
-        self.telegram_service.reply_with_back_markup.assert_called_once()
-        self.pdf_service.split_pdf.assert_not_called()
-
-    @pytest.mark.asyncio
-    async def test_split_pdf_back_option(self) -> None:
-        self.telegram_message.text = "Back"
-
-        actual = await self.sut.split_pdf(self.telegram_update, self.telegram_context)
-
-        assert actual == self.WAIT_PDF_TASK
-        self.file_task_service.ask_pdf_task.assert_called_once()
+        self.telegram_message.reply_text.assert_called_once()
         self.pdf_service.split_pdf.assert_not_called()
