@@ -1,4 +1,5 @@
 import os
+from gettext import gettext as _
 
 import sentry_sdk
 from dotenv import load_dotenv
@@ -147,40 +148,40 @@ class TelegramDispatcher:
             elif data.startswith("payment,"):
                 await self.payment_service.send_invoice(update, context, query)
 
-            try:
-                await query.answer()
-            except BadRequest as e:
-                if e.message.startswith("Query is too old"):
-                    await context.bot.send_message(
-                        query.from_user.id,
-                        _(
-                            "The button has expired, please try again with a new"
-                            " message/query then press the new button"
-                        ),
-                    )
-                else:
-                    raise
-
     async def error_callback(
         self, update: object, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
+        error_text = _("Something went wrong, please try again")
         try:
             if context.error is not None:
                 raise context.error
         except Forbidden:
             pass
-        except Exception as e:  # pylint: disable=broad-except
-            if isinstance(update, Update):
-                _ = self.language_service.set_app_language(update, context)
-                chat_id = None
+        except BadRequest as e:
+            if e.message.lower().startswith(
+                "query is too old and response timeout expired"
+            ):
+                error_text = _(
+                    "The button has expired, start over with your file or command"
+                )
+            else:
+                sentry_sdk.capture_exception(e)
 
-                if update.effective_message is not None:
-                    chat_id = update.effective_message.chat_id
-                elif update.effective_chat is not None:
-                    chat_id = update.effective_chat.id
-                if chat_id is not None:
-                    await context.bot.send_message(
-                        chat_id,
-                        _("Something went wrong, please try again"),
-                    )
+            await self._send_message(update, context, error_text)
+        except Exception as e:  # pylint: disable=broad-except
+            await self._send_message(update, context, error_text)
             sentry_sdk.capture_exception(e)
+
+    async def _send_message(
+        self, update: object, context: ContextTypes.DEFAULT_TYPE, text: str
+    ) -> None:
+        if isinstance(update, Update):
+            chat_id = None
+            if update.effective_message is not None:
+                chat_id = update.effective_message.chat_id
+            elif update.effective_chat is not None:
+                chat_id = update.effective_chat.id
+
+            if chat_id is not None:
+                _ = self.language_service.set_app_language(update, context)
+                await context.bot.send_message(chat_id, _(text))

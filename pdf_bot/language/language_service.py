@@ -59,6 +59,10 @@ class LanguageService:
     async def send_language_options(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
+        query = update.callback_query
+        if query is not None:
+            await query.answer()
+
         user_lang = self.get_user_language(update, context)
         btns = [
             InlineKeyboardButton(key, callback_data=key)
@@ -102,7 +106,9 @@ class LanguageService:
         context: ContextTypes.DEFAULT_TYPE,
         query: CallbackQuery,
     ) -> None:
+        await query.answer()
         lang_code = self.LANGUAGE_CODES.get(query.data)
+
         if lang_code is None:
             return
 
