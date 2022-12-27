@@ -57,11 +57,11 @@ class TestPdfProcessor(
         self.pdf_service.scale_pdf.return_value.__aenter__.return_value = self.FILE_PATH
 
         async with self.sut.process_file_task(
-            self.TELEGRAM_DOCUMENT_ID, self.SCALE_DATA_TEXT
+            self.FILE_DATA, self.SCALE_DATA_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.scale_pdf.assert_called_once_with(
-                self.TELEGRAM_DOCUMENT_ID, self.SCALE_DATA
+                self.FILE_DATA.id, self.SCALE_DATA
             )
 
     @pytest.mark.asyncio

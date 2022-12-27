@@ -65,10 +65,12 @@ class RenamePdfProcessor(AbstractPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_id: str, message_text: str
+        self, file_data: FileData, message_text: str
     ) -> AsyncGenerator[str, None]:
         file_name = re.sub(r"\.pdf$", "", message_text)
-        async with self.pdf_service.rename_pdf(file_id, f"{file_name}.pdf") as path:
+        async with self.pdf_service.rename_pdf(
+            file_data.id, f"{file_name}.pdf"
+        ) as path:
             yield path
 
     async def ask_file_name(

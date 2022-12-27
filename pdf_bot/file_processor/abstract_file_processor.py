@@ -73,7 +73,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
     @asynccontextmanager
     @abstractmethod
     async def process_file_task(
-        self, file_id: str, message_text: str
+        self, file_data: FileData, message_text: str
     ) -> AsyncGenerator[str, None]:
         yield ""
 
@@ -128,7 +128,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
 
         try:
             async with self.process_file_task(
-                file_data.id, message.text  # type: ignore
+                file_data, message.text  # type: ignore
             ) as out_path:
                 final_path = out_path
                 if os.path.isdir(out_path):

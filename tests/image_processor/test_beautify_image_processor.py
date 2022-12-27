@@ -61,10 +61,9 @@ class TestBeautifyImageProcessor(
         )
 
         async with self.sut.process_file_task(
-            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
+            self.FILE_DATA, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
-            args = self.image_service.beautify_and_convert_images_to_pdf.call_args.args[
-                0
-            ]
-            assert args[0].id == self.TELEGRAM_DOCUMENT_ID
+            self.image_service.beautify_and_convert_images_to_pdf.assert_called_once_with(
+                [self.FILE_DATA]
+            )
