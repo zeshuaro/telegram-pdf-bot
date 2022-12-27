@@ -1,15 +1,29 @@
 from contextlib import asynccontextmanager
+from gettext import gettext as _
 from typing import AsyncGenerator
 
 from telegram import Message, Update
 from telegram.constants import ParseMode
-from telegram.ext import ContextTypes
+from telegram.ext import (
+    BaseHandler,
+    CallbackQueryHandler,
+    CommandHandler,
+    ContextTypes,
+    ConversationHandler,
+    MessageHandler,
+)
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK
-from pdf_bot.models import FileData
+from pdf_bot.consts import TEXT_FILTER
+from pdf_bot.file_processor import AbstractFileTaskProcessor
+from pdf_bot.models import FileData, TaskData
+from pdf_bot.telegram_internal import BackData
 
 from .abstract_pdf_processor import AbstractPdfProcessor
+
+
+class SplitPdfData(FileData):
+    pass
 
 
 class SplitPdfProcessor(AbstractPdfProcessor):
@@ -20,8 +34,33 @@ class SplitPdfProcessor(AbstractPdfProcessor):
         return TaskType.split_pdf
 
     @property
+    def task_data(self) -> TaskData | None:
+        return TaskData(_("Split"), SplitPdfData)
+
+    @property
     def should_process_back_option(self) -> bool:
         return False
+
+    @property
+    def handler(self) -> BaseHandler | None:
+        return ConversationHandler(
+            entry_points=[
+                CallbackQueryHandler(self.ask_split_range, pattern=SplitPdfData)
+            ],
+            states={
+                self.WAIT_SPLIT_RANGE: [
+                    MessageHandler(TEXT_FILTER, self.split_pdf),
+                    CallbackQueryHandler(self.ask_task, pattern=BackData),
+                ]
+            },
+            fallbacks=[
+                CommandHandler("cancel", self.telegram_service.cancel_conversation)
+            ],
+            map_to_parent={
+                # Return to wait file task state
+                AbstractFileTaskProcessor.WAIT_FILE_TASK: AbstractFileTaskProcessor.WAIT_FILE_TASK,
+            },
+        )
 
     @asynccontextmanager
     async def process_file_task(
@@ -33,7 +72,10 @@ class SplitPdfProcessor(AbstractPdfProcessor):
     async def ask_split_range(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str:
+        query = update.callback_query
+        await query.answer()
         _ = self.language_service.set_app_language(update, context)
+        reply_markup = self.telegram_service.get_back_inline_markup(update, context)
 
         # "{intro}\n\n"
         # "<b>{general}</b>\n"
@@ -103,9 +145,10 @@ class SplitPdfProcessor(AbstractPdfProcessor):
                 range="2::-1", pages="2 1 0"
             ),
         )
-        await self.telegram_service.reply_with_back_markup(
-            update, context, text, parse_mode=ParseMode.HTML
+        message = await query.edit_message_text(
+            text, parse_mode=ParseMode.HTML, reply_markup=reply_markup
         )
+        self.telegram_service.cache_message_data(context, message)
 
         return self.WAIT_SPLIT_RANGE
 
@@ -113,18 +156,11 @@ class SplitPdfProcessor(AbstractPdfProcessor):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
-        if text == _(BACK):
-            return await self.file_task_service.ask_pdf_task(update, context)
-
         if not self.pdf_service.split_range_valid(text):
-            await self.telegram_service.reply_with_back_markup(
-                update,
-                context,
-                _("The range is invalid, please try again"),
-            )
+            await message.reply_text(_("The range is invalid, please try again"))
             return self.WAIT_SPLIT_RANGE
 
         return await self.process_file(update, context)

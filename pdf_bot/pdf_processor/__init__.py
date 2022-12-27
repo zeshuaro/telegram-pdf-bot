@@ -10,7 +10,7 @@ from .preview_pdf_processor import PreviewPdfData, PreviewPdfProcessor
 from .rename_pdf_processor import RenamePdfData, RenamePdfProcessor
 from .rotate_pdf_processor import RotateDegreeData, RotatePdfData, RotatePdfProcessor
 from .scale_pdf_processor import ScalePdfProcessor
-from .split_pdf_processor import SplitPdfProcessor
+from .split_pdf_processor import SplitPdfData, SplitPdfProcessor
 
 __all__ = [
     "AbstractPdfProcessor",
@@ -36,5 +36,6 @@ __all__ = [
     "RotatePdfData",
     "RotatePdfProcessor",
     "ScalePdfProcessor",
+    "SplitPdfData",
     "SplitPdfProcessor",
 ]
