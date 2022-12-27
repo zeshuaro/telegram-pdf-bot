@@ -14,7 +14,6 @@ class FileTaskService:
 
     DECRYPT = _("Decrypt")
     ENCRYPT = _("Encrypt")
-    ROTATE = _("Rotate")
     SCALE = _("Scale")
     SPLIT = _("Split")
     CROP = _("Crop")
@@ -27,7 +26,6 @@ class FileTaskService:
         [
             DECRYPT,
             ENCRYPT,
-            ROTATE,
             SCALE,
             SPLIT,
             CROP,

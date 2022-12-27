@@ -1,74 +1,119 @@
 from contextlib import asynccontextmanager
+from dataclasses import dataclass
+from gettext import gettext as _
 from typing import AsyncGenerator
 
-from telegram import Message, ReplyKeyboardMarkup, Update
-from telegram.ext import ContextTypes
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import (
+    BaseHandler,
+    CallbackQueryHandler,
+    CommandHandler,
+    ContextTypes,
+    ConversationHandler,
+)
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK
-from pdf_bot.models import FileData
+from pdf_bot.file_processor import AbstractFileTaskProcessor
+from pdf_bot.models import FileData, TaskData
+from pdf_bot.telegram_internal import BackData
 
 from .abstract_pdf_processor import AbstractPdfProcessor
 
 
+class RotatePdfData(FileData):
+    ...
+
+
+@dataclass(kw_only=True)
+class RotateDegreeData(RotatePdfData):
+    degree: int
+
+
 class RotatePdfProcessor(AbstractPdfProcessor):
-    WAIT_ROTATE_DEGREE = "wait_rotate_degree"
-    _ROTATE_90 = "90"
-    _ROTATE_180 = "180"
-    _ROTATE_270 = "270"
+    _WAIT_DEGREE = "wait_degree"
+    _DEGREES = [90, 180, 270]
 
     @property
     def task_type(self) -> TaskType:
         return TaskType.rotate_pdf
 
     @property
+    def task_data(self) -> TaskData | None:
+        return TaskData(_("Rotate"), RotatePdfData)
+
+    @property
     def should_process_back_option(self) -> bool:
         return False
+
+    @property
+    def handler(self) -> BaseHandler | None:
+        return ConversationHandler(
+            entry_points=[CallbackQueryHandler(self.ask_degree, pattern=RotatePdfData)],
+            states={
+                self._WAIT_DEGREE: [
+                    CallbackQueryHandler(self.process_file, pattern=RotateDegreeData),
+                    CallbackQueryHandler(self.ask_task, pattern=BackData),
+                ]
+            },
+            fallbacks=[
+                CommandHandler("cancel", self.telegram_service.cancel_conversation)
+            ],
+            map_to_parent={
+                # Return to wait file task state
+                AbstractFileTaskProcessor.WAIT_FILE_TASK: AbstractFileTaskProcessor.WAIT_FILE_TASK,
+            },
+        )
 
     @asynccontextmanager
     async def process_file_task(
         self, file_data: FileData, message_text: str
     ) -> AsyncGenerator[str, None]:
-        async with self.pdf_service.rotate_pdf(file_data.id, int(message_text)) as path:
+        if not isinstance(file_data, RotateDegreeData):
+            raise TypeError(f"Invalid file data type: {type(file_data)}")
+
+        async with self.pdf_service.rotate_pdf(file_data.id, file_data.degree) as path:
             yield path
 
     async def ask_degree(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str:
-        _ = self.language_service.set_app_language(update, context)
+        query = update.callback_query
+        await query.answer()
+        data = query.data
 
-        keyboard = [
-            [self._ROTATE_90, self._ROTATE_180],
-            [self._ROTATE_270, _(BACK)],
-        ]
-        reply_markup = ReplyKeyboardMarkup(
-            keyboard, resize_keyboard=True, one_time_keyboard=True
-        )
-        await update.effective_message.reply_text(  # type: ignore
+        if not isinstance(data, RotatePdfData):
+            raise TypeError(f"Invalid callback query data type: {type(data)}")
+
+        reply_markup = self._get_ask_degree_reply_markup(update, context, data)
+        _ = self.language_service.set_app_language(update, context)
+        await query.edit_message_text(
             _(
-                "Select the degrees that you'll like to "
-                "rotate your PDF file in clockwise"
+                "Select the degrees that you'll like to rotate your PDF file in"
+                " clockwise"
             ),
             reply_markup=reply_markup,
         )
 
-        return self.WAIT_ROTATE_DEGREE
+        return self._WAIT_DEGREE
 
-    async def rotate_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> str | int:
-        _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
-        text = message.text
+    def _get_ask_degree_reply_markup(
+        self,
+        update: Update,
+        context: ContextTypes.DEFAULT_TYPE,
+        rotate_data: RotatePdfData,
+    ) -> InlineKeyboardMarkup:
+        back_button = self.telegram_service.get_back_button(update, context)
+        keyboard = [
+            [
+                InlineKeyboardButton(
+                    str(degree),
+                    callback_data=RotateDegreeData(
+                        id=rotate_data.id, name=rotate_data.name, degree=degree
+                    ),
+                )
+                for degree in self._DEGREES
+            ],
+            [back_button],
+        ]
 
-        if text == _(BACK):
-            return await self.file_task_service.ask_pdf_task(update, context)
-        if text not in {
-            self._ROTATE_90,
-            self._ROTATE_180,
-            self._ROTATE_270,
-        }:
-            await message.reply_text(_("Invalid rotation degree, try again"))
-            return self.WAIT_ROTATE_DEGREE
-
-        return await self.process_file(update, context)
+        return InlineKeyboardMarkup(keyboard)
