@@ -31,10 +31,11 @@ class UnknownError(Exception):
 class MockProcessor(AbstractFileProcessor):
     PROCESS_RESULT = "process_result"
     TASK_TYPE = TaskType.decrypt_pdf
+    TASK_DATA_LIST = [TaskData("a", FileData), TaskData("b", FileData)]
 
     @classmethod
     def get_task_data_list(cls) -> list[TaskData]:
-        return []
+        return cls.TASK_DATA_LIST
 
     @property
     def task_type(self) -> TaskType:
@@ -123,6 +124,7 @@ class TestAbstractFileProcessor(
     TelegramTestMixin,
 ):
     BACK = "Back"
+    WAIT_FILE_TASK = "wait_file_task"
 
     def setup_method(self) -> None:
         super().setup_method()
@@ -138,6 +140,23 @@ class TestAbstractFileProcessor(
             self.language_service,
             bypass_init_check=True,
         )
+
+    @pytest.mark.asyncio
+    async def test_ask_task(self) -> None:
+        with patch.object(
+            self.sut, "ask_task_helper", return_value=self.WAIT_FILE_TASK
+        ) as ask_task_helper:
+            actual = await self.sut.ask_task(
+                self.telegram_update, self.telegram_context
+            )
+
+            assert actual == self.WAIT_FILE_TASK
+            ask_task_helper.assert_called_once_with(
+                self.language_service,
+                self.telegram_update,
+                self.telegram_context,
+                MockProcessor.TASK_DATA_LIST,
+            )
 
     @pytest.mark.asyncio
     async def test_process_file(self) -> None:

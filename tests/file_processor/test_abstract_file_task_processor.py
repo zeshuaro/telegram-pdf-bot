@@ -1,8 +1,7 @@
 from typing import Type
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 import pytest
-from telegram import InlineKeyboardMarkup
 
 from pdf_bot.file_processor import AbstractFileProcessor, AbstractFileTaskProcessor
 from pdf_bot.models import FileData, TaskData
@@ -30,24 +29,17 @@ class TestAbstractFileTaskProcessor(LanguageServiceTestMixin, TelegramTestMixin)
 
     @pytest.mark.asyncio
     async def test_ask_task(self) -> None:
-        tasks = MockProcessor.TASK_DATA_LIST
+        with patch.object(
+            self.sut, "ask_task_helper", return_value=self.WAIT_FILE_TASK
+        ) as ask_task_helper:
+            actual = await self.sut.ask_task(
+                self.telegram_update, self.telegram_context
+            )
 
-        actual = await self.sut.ask_task(self.telegram_update, self.telegram_context)
-
-        assert actual == self.WAIT_FILE_TASK
-        _args, kwargs = self.telegram_update.effective_message.reply_text.call_args
-
-        reply_markup: InlineKeyboardMarkup | None = kwargs.get("reply_markup")
-        assert reply_markup is not None
-
-        index = 0
-        for keyboard_list in reply_markup.inline_keyboard:
-            for keyboard in keyboard_list:
-                assert keyboard.text == tasks[index].label
-                assert isinstance(keyboard.callback_data, tasks[index].data_type)
-                index += 1
-            if index >= len(tasks):
-                break
-
-        # Ensure that we've checked all tasks
-        assert index == len(tasks)
+            assert actual == self.WAIT_FILE_TASK
+            ask_task_helper.assert_called_once_with(
+                self.language_service,
+                self.telegram_update,
+                self.telegram_context,
+                MockProcessor.TASK_DATA_LIST,
+            )
