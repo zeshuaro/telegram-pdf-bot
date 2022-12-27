@@ -4,6 +4,7 @@ import pytest
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.consts import FILE_DATA
+from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfIncorrectPasswordError, PdfService
 from pdf_bot.pdf_processor import DecryptPdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
@@ -50,23 +51,20 @@ class TestDecryptPdfProcessor(
 
     @pytest.mark.asyncio
     async def test_get_custom_error_handlers(self) -> None:
+        file_data = FileData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
         handlers = self.sut.custom_error_handlers
 
         handler = handlers.get(PdfIncorrectPasswordError)
         assert handler is not None
 
         actual = await handler(
-            self.telegram_update,
-            self.telegram_context,
-            RuntimeError(),
-            self.TELEGRAM_DOCUMENT_ID,
-            self.TELEGRAM_DOCUMENT_NAME,
+            self.telegram_update, self.telegram_context, RuntimeError(), file_data
         )
 
         assert actual == self.WAIT_PASSWORD_STATE
         self.telegram_message.reply_text.assert_called_once()
         self.telegram_context.user_data.__setitem__.assert_called_once_with(
-            FILE_DATA, (self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
+            FILE_DATA, file_data
         )
 
     @pytest.mark.asyncio

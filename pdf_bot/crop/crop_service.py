@@ -7,6 +7,7 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.consts import BACK, FILE_DATA
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
+from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
@@ -162,7 +163,7 @@ class CropService:
         message: Message = update.message
 
         try:
-            file_id, _file_name = self.telegram_service.get_user_data(
+            file_data: FileData = self.telegram_service.get_user_data(
                 context, FILE_DATA
             )
         except TelegramServiceError as e:
@@ -170,7 +171,7 @@ class CropService:
             return ConversationHandler.END
 
         async with self.pdf_service.crop_pdf(
-            file_id, percentage=percentage, margin_size=margin_size
+            file_data.id, percentage=percentage, margin_size=margin_size
         ) as out_path:
             await self.telegram_service.send_file(
                 update, context, out_path, TaskType.crop_pdf

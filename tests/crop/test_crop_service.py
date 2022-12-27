@@ -74,10 +74,6 @@ class TestCropService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_percentage(self) -> None:
         self.telegram_message.text = self.PERCENT
-        self.telegram_service.get_user_data.return_value = (
-            self.TELEGRAM_DOCUMENT_ID,
-            "file_name",
-        )
         self.pdf_service.crop_pdf.return_value.__aenter__.return_value = self.FILE_PATH
 
         actual = await self.sut.crop_pdf_by_percentage(
@@ -124,10 +120,6 @@ class TestCropService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_margin_size(self) -> None:
         self.telegram_message.text = self.MARGIN_SIZE
-        self.telegram_service.get_user_data.return_value = (
-            self.TELEGRAM_DOCUMENT_ID,
-            "file_name",
-        )
         self.pdf_service.crop_pdf.return_value.__aenter__.return_value = self.FILE_PATH
 
         actual = await self.sut.crop_pdf_by_margin_size(
