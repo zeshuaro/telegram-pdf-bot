@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 00:16+0000\n"
-"PO-Revision-Date: 2022-12-27 00:17\n"
+"POT-Creation-Date: 2022-12-27 00:34+0000\n"
+"PO-Revision-Date: 2022-12-27 00:34\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -202,7 +202,7 @@ msgstr "设置语言 🌎"
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:90
+#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:165
 msgid "Support PDF Bot"
 msgstr "支持 PDF Bot"
@@ -379,11 +379,11 @@ msgstr "美化图像并将其转换为PDF文件"
 msgid "Converting your images into a PDF file"
 msgstr "将图像转换为 PDF 文件"
 
-#: pdf_bot/language/language_service.py:76
+#: pdf_bot/language/language_service.py:80
 msgid "Select your language"
 msgstr "选择你的语言"
 
-#: pdf_bot/language/language_service.py:113
+#: pdf_bot/language/language_service.py:119
 msgid "Your language has been set to {language}"
 msgstr "您的语言已设置为 {language}"
 
@@ -423,23 +423,23 @@ msgstr "你只寄给我一个 Pdf 文件"
 msgid "Merging your PDF files"
 msgstr "正在合并你的PDF档案"
 
-#: pdf_bot/payment/payment_service.py:61
+#: pdf_bot/payment/payment_service.py:64
 msgid "Help translate PDF Bot"
 msgstr "帮助翻译PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:74
+#: pdf_bot/payment/payment_service.py:77
 msgid "Select how you want to support PDF Bot"
 msgstr "选择你支持PDF Bot的方式"
 
-#: pdf_bot/payment/payment_service.py:91
+#: pdf_bot/payment/payment_service.py:95
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "跟PDF Bot说谢谢并帮助它继续运行"
 
-#: pdf_bot/payment/payment_service.py:110
+#: pdf_bot/payment/payment_service.py:114
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: pdf_bot/payment/payment_service.py:122
+#: pdf_bot/payment/payment_service.py:126
 msgid "Thank you for your support!"
 msgstr "感谢你的支持！"
 
@@ -631,14 +631,14 @@ msgstr "把密码发给我来解密你的PDF档案"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "把密码发给我来加密你的PDF档案"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:156
-msgid "The button has expired, please try again with a new message/query then press the new button"
-msgstr "按钮已过期，请使用新消息/查询重试，然后按新按钮"
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:184
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
 #: pdf_bot/telegram_internal/telegram_service.py:93
 msgid "Something went wrong, please try again"
 msgstr "出问题了，请再试一次"
+
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:164
+msgid "The button has expired, start over with your file or command"
+msgstr ""
 
 #: pdf_bot/telegram_internal/telegram_service.py:58
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
@@ -1614,5 +1614,11 @@ msgstr "无法转换您的网页"
 #~ msgstr ""
 
 #~ msgid "The result file is too large for me to send to you"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The button has expired, please try "
+#~ "again with a new message/query then "
+#~ "press the new button"
 #~ msgstr ""
 

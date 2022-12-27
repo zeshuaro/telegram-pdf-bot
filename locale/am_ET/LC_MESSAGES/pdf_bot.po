@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 00:16+0000\n"
-"PO-Revision-Date: 2022-12-27 00:17\n"
+"POT-Creation-Date: 2022-12-27 00:34+0000\n"
+"PO-Revision-Date: 2022-12-27 00:34\n"
 "Last-Translator: \n"
 "Language: am\n"
 "Language-Team: Amharic\n"
@@ -202,7 +202,7 @@ msgstr "ቋንቋ አዘጋጅ 🌎"
 msgid "Join Channel"
 msgstr "ቻናሉን ይቀላቀሉ"
 
-#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:90
+#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:165
 msgid "Support PDF Bot"
 msgstr "የፒዲኤፍ ቦትን ይደግፉ"
@@ -379,11 +379,11 @@ msgstr "የእርስዎን ምስሎች ወደ PDF ፋይል መቀየር እና
 msgid "Converting your images into a PDF file"
 msgstr "የእርስዎን ምስሎች ወደ PDF ፋይል መቀየር"
 
-#: pdf_bot/language/language_service.py:76
+#: pdf_bot/language/language_service.py:80
 msgid "Select your language"
 msgstr "ቋንቋዎን ይምረጡ"
 
-#: pdf_bot/language/language_service.py:113
+#: pdf_bot/language/language_service.py:119
 msgid "Your language has been set to {language}"
 msgstr "ቋንቋዎ ወደ {language}"
 
@@ -423,23 +423,23 @@ msgstr "አንድ የፒዲኤፍ ፋይል ብቻ ልከውልኛል"
 msgid "Merging your PDF files"
 msgstr "የፒዲኤፍ ፋይሎችዎን ማዋሃድ"
 
-#: pdf_bot/payment/payment_service.py:61
+#: pdf_bot/payment/payment_service.py:64
 msgid "Help translate PDF Bot"
 msgstr "ፒዲኤፍ ቦትን ለመተርጎም ያግዙ"
 
-#: pdf_bot/payment/payment_service.py:74
+#: pdf_bot/payment/payment_service.py:77
 msgid "Select how you want to support PDF Bot"
 msgstr "ፒዲኤፍ ቦትን እንዴት መደገፍ እንደሚፈልጉ ይምረጡ"
 
-#: pdf_bot/payment/payment_service.py:91
+#: pdf_bot/payment/payment_service.py:95
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "ለፒዲኤፍ ቦት ምስጋና ይናገሩ እና እንዲሠራ ያግዙ"
 
-#: pdf_bot/payment/payment_service.py:110
+#: pdf_bot/payment/payment_service.py:114
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: pdf_bot/payment/payment_service.py:122
+#: pdf_bot/payment/payment_service.py:126
 msgid "Thank you for your support!"
 msgstr "ለድጋፎት እናመሰግናለን!"
 
@@ -631,14 +631,14 @@ msgstr "የፒዲኤፍ ፋይልዎን ዲክሪፕት ለማድረግ የይ�
 msgid "Send me the password to encrypt your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን ለማመስጠር የይለፍ ቃሉን ይላኩልኝ"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:156
-msgid "The button has expired, please try again with a new message/query then press the new button"
-msgstr "መተግበሪያው አብቅቷል, እባክዎ አዲስ መልዕክት/ጥያቄ ጋር እንደገና ይሞክሩ ከዚያም አዲሱን ቁልፍ ይጫኑ"
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:184
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
 #: pdf_bot/telegram_internal/telegram_service.py:93
 msgid "Something went wrong, please try again"
 msgstr "የሆነ ችግር ተፈጥሯል ፣ እባክዎ እንደገና ይሞክሩ"
+
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:164
+msgid "The button has expired, start over with your file or command"
+msgstr ""
 
 #: pdf_bot/telegram_internal/telegram_service.py:58
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
@@ -1614,5 +1614,11 @@ msgstr "የእርስዎን ድረ ገጽ መቀየር አልተቻለም"
 #~ msgstr ""
 
 #~ msgid "The result file is too large for me to send to you"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The button has expired, please try "
+#~ "again with a new message/query then "
+#~ "press the new button"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 00:16+0000\n"
-"PO-Revision-Date: 2022-12-27 00:17\n"
+"POT-Creation-Date: 2022-12-27 00:34+0000\n"
+"PO-Revision-Date: 2022-12-27 00:34\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -202,7 +202,7 @@ msgstr "भाषा चुने 🌎"
 msgid "Join Channel"
 msgstr "चैनल से जुड़े"
 
-#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:90
+#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:165
 msgid "Support PDF Bot"
 msgstr "पीडीएफ बॉट का सहयोग करे"
@@ -379,11 +379,11 @@ msgstr "अपनी छवियों को एक पीडीएफ फा�
 msgid "Converting your images into a PDF file"
 msgstr "अपनी छवियों को एक पीडीएफ फाइल में बदलना"
 
-#: pdf_bot/language/language_service.py:76
+#: pdf_bot/language/language_service.py:80
 msgid "Select your language"
 msgstr "अपनी भाषा चुनें"
 
-#: pdf_bot/language/language_service.py:113
+#: pdf_bot/language/language_service.py:119
 msgid "Your language has been set to {language}"
 msgstr "आपकी भाषा को {language}के लिए सेट किया गया है"
 
@@ -423,23 +423,23 @@ msgstr "आपने मुझे केवल एक पीडीएफ फा�
 msgid "Merging your PDF files"
 msgstr "अपनी पीडीएफ फाइलों का विलय"
 
-#: pdf_bot/payment/payment_service.py:61
+#: pdf_bot/payment/payment_service.py:64
 msgid "Help translate PDF Bot"
 msgstr "पीडीएफ बॉट का अनुवाद करने में मदद करें"
 
-#: pdf_bot/payment/payment_service.py:74
+#: pdf_bot/payment/payment_service.py:77
 msgid "Select how you want to support PDF Bot"
 msgstr "आप पीडीएफ बॉट का समर्थन कैसे करना चाहते हैं"
 
-#: pdf_bot/payment/payment_service.py:91
+#: pdf_bot/payment/payment_service.py:95
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "पीडीएफ बॉट के लिए धन्यवाद कहें और इसे चालू रखने में मदद करें"
 
-#: pdf_bot/payment/payment_service.py:110
+#: pdf_bot/payment/payment_service.py:114
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: pdf_bot/payment/payment_service.py:122
+#: pdf_bot/payment/payment_service.py:126
 msgid "Thank you for your support!"
 msgstr "आपके समर्थन के लिए धन्यवाद!"
 
@@ -631,14 +631,14 @@ msgstr "मुझे अपनी पीडीएफ फ़ाइल डिक�
 msgid "Send me the password to encrypt your PDF file"
 msgstr "अपनी पीडीएफ फ़ाइल को एन्क्रिप्ट करने के लिए मुझे पासवर्ड भेजें"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:156
-msgid "The button has expired, please try again with a new message/query then press the new button"
-msgstr "बटन की समय सीमा समाप्त हो गई है, कृपया एक नए संदेश/क्वेरी के साथ फिर से प्रयास करें फिर नया बटन दबाएँ"
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:184
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
 #: pdf_bot/telegram_internal/telegram_service.py:93
 msgid "Something went wrong, please try again"
 msgstr "कुछ गलत हो गया, कृपया फिर से प्रयास करें"
+
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:164
+msgid "The button has expired, start over with your file or command"
+msgstr ""
 
 #: pdf_bot/telegram_internal/telegram_service.py:58
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
@@ -1614,5 +1614,11 @@ msgstr "आपके वेब पेज को कनवर्ट करने 
 #~ msgstr ""
 
 #~ msgid "The result file is too large for me to send to you"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The button has expired, please try "
+#~ "again with a new message/query then "
+#~ "press the new button"
 #~ msgstr ""
 

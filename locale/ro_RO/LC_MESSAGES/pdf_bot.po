@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-27 00:16+0000\n"
-"PO-Revision-Date: 2022-12-27 00:17\n"
+"POT-Creation-Date: 2022-12-27 00:34+0000\n"
+"PO-Revision-Date: 2022-12-27 00:34\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -202,7 +202,7 @@ msgstr "Setează Limba 🌎"
 msgid "Join Channel"
 msgstr "Alăturați-vă canalului"
 
-#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:90
+#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:165
 msgid "Support PDF Bot"
 msgstr "Suport PDF Bot"
@@ -379,11 +379,11 @@ msgstr "Înfrumusețarea și conversia imaginilor într-un fișier PDF"
 msgid "Converting your images into a PDF file"
 msgstr "Conversia imaginilor într-un fișier PDF"
 
-#: pdf_bot/language/language_service.py:76
+#: pdf_bot/language/language_service.py:80
 msgid "Select your language"
 msgstr "Selectați limba dvs."
 
-#: pdf_bot/language/language_service.py:113
+#: pdf_bot/language/language_service.py:119
 msgid "Your language has been set to {language}"
 msgstr "Limba ta a fost setată la {language}"
 
@@ -423,23 +423,23 @@ msgstr "Mi-ați trimis un singur fișier PDF"
 msgid "Merging your PDF files"
 msgstr "Îmbinarea fișierelor PDF"
 
-#: pdf_bot/payment/payment_service.py:61
+#: pdf_bot/payment/payment_service.py:64
 msgid "Help translate PDF Bot"
 msgstr "Ajutor pentru traducerea PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:74
+#: pdf_bot/payment/payment_service.py:77
 msgid "Select how you want to support PDF Bot"
 msgstr "Selectați modul în care doriți să acceptați PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:91
+#: pdf_bot/payment/payment_service.py:95
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Spune datorită PDF Bot și de a ajuta la menținerea acestuia rulează"
 
-#: pdf_bot/payment/payment_service.py:110
+#: pdf_bot/payment/payment_service.py:114
 msgid "Something went wrong, try again"
 msgstr ""
 
-#: pdf_bot/payment/payment_service.py:122
+#: pdf_bot/payment/payment_service.py:126
 msgid "Thank you for your support!"
 msgstr "Vă mulțumim pentru sprijin!"
 
@@ -631,14 +631,14 @@ msgstr "Trimite-mi parola pentru a decripta fișierul PDF"
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Trimite-mi parola pentru criptarea fișierului PDF"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:156
-msgid "The button has expired, please try again with a new message/query then press the new button"
-msgstr "Butonul a expirat, vă rugăm să încercați din nou cu un nou mesaj / interogare, apoi apăsați noul buton"
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:184
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
 #: pdf_bot/telegram_internal/telegram_service.py:93
 msgid "Something went wrong, please try again"
 msgstr "Ceva nu a mers bine, vă rugăm să încercați din nou"
+
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:164
+msgid "The button has expired, start over with your file or command"
+msgstr ""
 
 #: pdf_bot/telegram_internal/telegram_service.py:58
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
@@ -1614,5 +1614,11 @@ msgstr "Nu a reușit să convertească pagina web"
 #~ msgstr ""
 
 #~ msgid "The result file is too large for me to send to you"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The button has expired, please try "
+#~ "again with a new message/query then "
+#~ "press the new button"
 #~ msgstr ""
 
