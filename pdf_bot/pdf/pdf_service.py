@@ -31,7 +31,7 @@ from pdf_bot.pdf.exceptions import (
     PdfReadError,
     PdfServiceError,
 )
-from pdf_bot.pdf.models import CompressResult, FontData, ScaleByData, ScaleData
+from pdf_bot.pdf.models import CompressResult, FontData, ScaleData
 from pdf_bot.telegram_internal import TelegramService
 
 
@@ -315,17 +315,30 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def scale_pdf(
+    async def scale_pdf_by_factor(
         self, file_id: str, scale_data: ScaleData
     ) -> AsyncGenerator[str, None]:
         reader = await self._open_pdf(file_id)
         writer = PdfFileWriter()
 
         for page in reader.pages:
-            if isinstance(scale_data, ScaleByData):
-                page.scale(scale_data.x, scale_data.y)
-            else:
-                page.scale_to(scale_data.x, scale_data.y)
+            page.scale(scale_data.x, scale_data.y)
+            writer.add_page(page)
+
+        with self.io_service.create_temp_pdf_file("Scaled") as out_path:
+            with open(out_path, "wb") as f:
+                writer.write(f)
+            yield out_path
+
+    @asynccontextmanager
+    async def scale_pdf_to_dimension(
+        self, file_id: str, scale_data: ScaleData
+    ) -> AsyncGenerator[str, None]:
+        reader = await self._open_pdf(file_id)
+        writer = PdfFileWriter()
+
+        for page in reader.pages:
+            page.scale_to(scale_data.x, scale_data.y)
             writer.add_page(page)
 
         with self.io_service.create_temp_pdf_file("Scaled") as out_path:

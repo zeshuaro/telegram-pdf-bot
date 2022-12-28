@@ -14,7 +14,6 @@ class FileTaskService:
 
     DECRYPT = _("Decrypt")
     ENCRYPT = _("Encrypt")
-    SCALE = _("Scale")
     CROP = _("Crop")
     COMPRESS = _("Compress")
 
@@ -25,7 +24,6 @@ class FileTaskService:
         [
             DECRYPT,
             ENCRYPT,
-            SCALE,
             CROP,
             COMPRESS,
         ]
