@@ -9,7 +9,13 @@ from .pdf_to_image_processor import PdfToImageData, PdfToImageProcessor
 from .preview_pdf_processor import PreviewPdfData, PreviewPdfProcessor
 from .rename_pdf_processor import RenamePdfData, RenamePdfProcessor
 from .rotate_pdf_processor import RotateDegreeData, RotatePdfData, RotatePdfProcessor
-from .scale_pdf_processor import ScalePdfProcessor
+from .scale_pdf_processor import (
+    ScalePdfData,
+    ScalePdfProcessor,
+    ScalePdfType,
+    ScaleTypeAndValueData,
+    ScaleTypeData,
+)
 from .split_pdf_processor import SplitPdfData, SplitPdfProcessor
 
 __all__ = [
@@ -35,7 +41,11 @@ __all__ = [
     "RotateDegreeData",
     "RotatePdfData",
     "RotatePdfProcessor",
+    "ScalePdfData",
     "ScalePdfProcessor",
+    "ScalePdfType",
+    "ScaleTypeAndValueData",
+    "ScaleTypeData",
     "SplitPdfData",
     "SplitPdfProcessor",
 ]

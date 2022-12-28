@@ -16,7 +16,6 @@ from pdf_bot.consts import (
     DECRYPT,
     ENCRYPT,
     FILE_DATA,
-    SCALE,
     TEXT_FILTER,
 )
 from pdf_bot.crop import CropService
@@ -30,7 +29,6 @@ from pdf_bot.pdf_processor import (
     DecryptPdfProcessor,
     EncryptPdfProcessor,
     PdfTaskProcessor,
-    ScalePdfProcessor,
 )
 from pdf_bot.telegram_internal import TelegramService
 
@@ -45,7 +43,6 @@ class FileHandlers:
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPdfProcessor,
         encrypt_pdf_processor: EncryptPdfProcessor,
-        scale_pdf_processor: ScalePdfProcessor,
         telegram_service: TelegramService,
         language_service: LanguageService,
         image_task_processor: ImageTaskProcessor,
@@ -61,7 +58,6 @@ class FileHandlers:
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
         self.encrypt_pdf_processor = encrypt_pdf_processor
-        self.scale_pdf_processor = scale_pdf_processor
 
     def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
@@ -98,21 +94,6 @@ class FileHandlers:
                 ],
                 self.encrypt_pdf_processor.wait_password_state: [
                     MessageHandler(TEXT_FILTER, self.encrypt_pdf_processor.process_file)
-                ],
-                ScalePdfProcessor.WAIT_SCALE_TYPE: [
-                    MessageHandler(
-                        TEXT_FILTER, self.scale_pdf_processor.check_scale_type
-                    )
-                ],
-                ScalePdfProcessor.WAIT_SCALE_FACTOR: [
-                    MessageHandler(
-                        TEXT_FILTER, self.scale_pdf_processor.scale_pdf_by_factor
-                    )
-                ],
-                ScalePdfProcessor.WAIT_SCALE_DIMENSION: [
-                    MessageHandler(
-                        TEXT_FILTER, self.scale_pdf_processor.scale_pdf_to_dimension
-                    )
                 ],
             },
             fallbacks=[
@@ -180,8 +161,6 @@ class FileHandlers:
             return await self.decrypt_pdf_processor.ask_password(update, context)
         if text == _(ENCRYPT):
             return await self.encrypt_pdf_processor.ask_password(update, context)
-        if text == _(SCALE):
-            return await self.scale_pdf_processor.ask_scale_type(update, context)
         if text == _(COMPRESS):
             return await self.file_service.compress_pdf(update, context)
         if text == _(CANCEL):

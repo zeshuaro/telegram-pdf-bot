@@ -632,7 +632,9 @@ class TestPDFService(
             reader_cls.return_value = reader
             writer_cls.return_value = writer
 
-            async with self.sut.scale_pdf(self.TELEGRAM_FILE_ID, scale_data) as actual:
+            async with self.sut.scale_pdf_by_factor(
+                self.TELEGRAM_FILE_ID, scale_data
+            ) as actual:
                 assert actual == self.OUTPUT_PATH
                 self._assert_telegram_and_io_services("Scaled")
 
@@ -660,7 +662,9 @@ class TestPDFService(
             reader_cls.return_value = reader
             writer_cls.return_value = writer
 
-            async with self.sut.scale_pdf(self.TELEGRAM_FILE_ID, scale_data) as actual:
+            async with self.sut.scale_pdf_to_dimension(
+                self.TELEGRAM_FILE_ID, scale_data
+            ) as actual:
                 assert actual == self.OUTPUT_PATH
                 self._assert_telegram_and_io_services("Scaled")
 

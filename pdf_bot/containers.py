@@ -304,7 +304,6 @@ class Handlers(containers.DeclarativeContainer):
         crop_service=services.crop,
         decrypt_pdf_processor=processors.decrypt,
         encrypt_pdf_processor=processors.encrypt,
-        scale_pdf_processor=processors.scale,
         telegram_service=services.telegram,
         language_service=services.language,
         image_task_processor=processors.image_task,
