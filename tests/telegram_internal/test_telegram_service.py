@@ -294,10 +294,26 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
                 self.telegram_context, self.USER_DATA_KEY, self.USER_DATA_VALUE
             )
 
+    def test_get_file_data(self) -> None:
+        self.telegram_context.user_data = {FILE_DATA: self.FILE_DATA}
+
+        actual = self.sut.get_file_data(self.telegram_context)
+
+        assert actual == self.FILE_DATA
+        assert FILE_DATA not in self.telegram_context.user_data
+
     def test_cache_file_data(self) -> None:
         self.telegram_context.user_data = {}
         self.sut.cache_file_data(self.telegram_context, self.FILE_DATA)
         assert self.telegram_context.user_data[FILE_DATA] == self.FILE_DATA
+
+    def test_get_message_data(self) -> None:
+        self.telegram_context.user_data = {MESSAGE_DATA: self.MESSAGE_DATA}
+
+        actual = self.sut.get_message_data(self.telegram_context)
+
+        assert actual == self.MESSAGE_DATA
+        assert MESSAGE_DATA not in self.telegram_context.user_data
 
     def test_cache_message_data(self) -> None:
         self.telegram_context.user_data = {}
