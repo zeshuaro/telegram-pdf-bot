@@ -4,7 +4,6 @@ import pytest
 from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import FILE_DATA
 from pdf_bot.crop import CropService
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram_internal import TelegramGetUserDataError
@@ -86,7 +85,7 @@ class TestCropService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_percentage_invalid_user_data(self) -> None:
         self.telegram_message.text = self.PERCENT
-        self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
+        self.telegram_service.get_file_data.side_effect = TelegramGetUserDataError()
 
         actual = await self.sut.crop_pdf_by_percentage(
             self.telegram_update, self.telegram_context
@@ -132,7 +131,7 @@ class TestCropService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_margin_size_invalid_user_data(self) -> None:
         self.telegram_message.text = self.MARGIN_SIZE
-        self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
+        self.telegram_service.get_file_data.side_effect = TelegramGetUserDataError()
 
         actual = await self.sut.crop_pdf_by_margin_size(
             self.telegram_update, self.telegram_context
@@ -166,8 +165,8 @@ class TestCropService(
     def _assert_crop_success(
         self, percentage: float | None = None, margin_size: int | None = None
     ) -> None:
-        self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, FILE_DATA
+        self.telegram_service.get_file_data.assert_called_once_with(
+            self.telegram_context
         )
         self.pdf_service.crop_pdf.assert_called_once_with(
             self.TELEGRAM_DOCUMENT_ID, percentage=percentage, margin_size=margin_size
@@ -180,13 +179,13 @@ class TestCropService(
         )
 
     def _assert_crop_invalid_user_data(self) -> None:
-        self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, FILE_DATA
+        self.telegram_service.get_file_data.assert_called_once_with(
+            self.telegram_context
         )
         self.pdf_service.crop_pdf.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
     def _assert_crop_services_not_called(self) -> None:
-        self.telegram_service.get_user_data.assert_not_called()
+        self.telegram_service.get_file_data.assert_not_called()
         self.pdf_service.crop_pdf.assert_not_called()
         self.telegram_service.send_file.assert_not_called()

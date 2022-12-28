@@ -54,7 +54,7 @@ class TestFileService(
 
     @pytest.mark.asyncio
     async def test_compress_pdf_invalid_user_data(self) -> None:
-        self.telegram_service.get_user_data.side_effect = TelegramServiceError()
+        self.telegram_service.get_file_data.side_effect = TelegramServiceError()
 
         actual = await self.sut.compress_pdf(
             self.telegram_update, self.telegram_context
