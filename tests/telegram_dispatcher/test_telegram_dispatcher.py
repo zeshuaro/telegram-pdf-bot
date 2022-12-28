@@ -203,6 +203,15 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.sentry_sdk.capture_exception.assert_not_called()
 
     @pytest.mark.asyncio
+    async def test_error_callback_bad_request_message_not_modified(self) -> None:
+        self.telegram_context.error = BadRequest("Message is not modified")
+
+        await self.sut.error_callback(self.telegram_update, self.telegram_context)
+
+        self.telegram_context.bot.send_message.assert_not_called()
+        self.sentry_sdk.capture_exception.assert_not_called()
+
+    @pytest.mark.asyncio
     async def test_error_callback_bad_request_query_outdated(self) -> None:
         self.telegram_context.error = BadRequest(
             "Query is too old and response timeout expired"
