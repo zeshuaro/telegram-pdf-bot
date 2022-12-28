@@ -7,7 +7,7 @@ from telegram.constants import ChatAction, FileSizeLimit, ParseMode
 from telegram.ext import ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
-from pdf_bot.consts import MESSAGE_DATA
+from pdf_bot.consts import FILE_DATA, MESSAGE_DATA
 from pdf_bot.io import IOService
 from pdf_bot.models import BackData, FileData, MessageData
 from pdf_bot.telegram_internal import (
@@ -293,6 +293,11 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             self.sut.update_user_data(
                 self.telegram_context, self.USER_DATA_KEY, self.USER_DATA_VALUE
             )
+
+    def test_cache_file_data(self) -> None:
+        self.telegram_context.user_data = {}
+        self.sut.cache_file_data(self.telegram_context, self.FILE_DATA)
+        assert self.telegram_context.user_data[FILE_DATA] == self.FILE_DATA
 
     def test_cache_message_data(self) -> None:
         self.telegram_context.user_data = {}
