@@ -19,7 +19,7 @@ from telegram.constants import ChatAction, FileSizeLimit, ParseMode
 from telegram.ext import Application, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
-from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, MESSAGE_DATA, PAYMENT
+from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, FILE_DATA, MESSAGE_DATA, PAYMENT
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageService
 from pdf_bot.models import BackData, FileData, MessageData
@@ -108,6 +108,11 @@ class TelegramService:
                 _("Something went wrong, please try again")
             )
         context.user_data[key] = value
+
+    def cache_file_data(
+        self, context: ContextTypes.DEFAULT_TYPE, file_data: FileData
+    ) -> None:
+        self.update_user_data(context, FILE_DATA, file_data)
 
     def cache_message_data(
         self, context: ContextTypes.DEFAULT_TYPE, message: Message | bool
