@@ -1,13 +1,12 @@
 from contextlib import asynccontextmanager
-from typing import Any, AsyncGenerator, Type
-from unittest.mock import MagicMock, call, patch
+from typing import AsyncGenerator, Type
+from unittest.mock import MagicMock, patch
 
 import pytest
 from telegram import Update
 from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import FILE_DATA, MESSAGE_DATA
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
 from pdf_bot.models import FileData, TaskData
 from pdf_bot.telegram_internal import TelegramGetUserDataError
@@ -222,7 +221,7 @@ class TestAbstractFileProcessor(
         )
 
         assert actual == ConversationHandler.END
-        self._assert_get_user_data()
+        self._assert_get_file_and_messsage_data()
         self.telegram_update.effective_message.reply_text.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
@@ -239,7 +238,7 @@ class TestAbstractFileProcessor(
         )
 
         assert actual == ConversationHandler.END
-        self._assert_get_user_data()
+        self._assert_get_file_and_messsage_data()
         self.telegram_message.reply_text.assert_called_once()
         self.telegram_service.send_file.assert_not_called()
 
@@ -256,7 +255,7 @@ class TestAbstractFileProcessor(
         )
 
         assert actual == MockProcessorWithCustomErrorHandler.CUSTOM_ERROR_STATE
-        self._assert_get_user_data()
+        self._assert_get_file_and_messsage_data()
         self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio
@@ -272,20 +271,20 @@ class TestAbstractFileProcessor(
         )
 
         assert actual == ConversationHandler.END
-        self._assert_get_user_data()
+        self._assert_get_file_and_messsage_data()
         self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_process_file_invalid_user_data(self) -> None:
-        self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
+    async def test_process_file_invalid_file_data(self) -> None:
+        self.telegram_service.get_file_data.side_effect = TelegramGetUserDataError()
 
         actual = await self.sut.process_file(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == ConversationHandler.END
-        self.telegram_service.get_user_data.assert_called_once_with(
-            self.telegram_context, FILE_DATA
+        self.telegram_service.get_file_data.assert_called_once_with(
+            self.telegram_context
         )
         self.telegram_service.send_file.assert_not_called()
 
@@ -348,14 +347,7 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_edit_previous_message_error(self) -> None:
-        def get_user_data(_context: ContextTypes.DEFAULT_TYPE, key: str) -> Any:
-            if key == FILE_DATA:
-                return FileData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
-            if key == MESSAGE_DATA:
-                raise TelegramGetUserDataError()
-            return None
-
-        self.telegram_service.get_user_data.side_effect = get_user_data
+        self.telegram_service.get_message_data.side_effect = TelegramGetUserDataError
 
         actual = await self.sut.process_file(
             self.telegram_update, self.telegram_context
@@ -368,7 +360,7 @@ class TestAbstractFileProcessor(
     def _assert_process_file_succeed(
         self, out_path: str = MockProcessor.PROCESS_RESULT
     ) -> None:
-        self._assert_get_user_data()
+        self._assert_get_file_and_messsage_data()
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
@@ -376,9 +368,10 @@ class TestAbstractFileProcessor(
             MockProcessor.TASK_TYPE,
         )
 
-    def _assert_get_user_data(self) -> None:
-        calls = [
-            call(self.telegram_context, FILE_DATA),
-            call(self.telegram_context, MESSAGE_DATA),
-        ]
-        self.telegram_service.get_user_data.assert_has_calls(calls)
+    def _assert_get_file_and_messsage_data(self) -> None:
+        self.telegram_service.get_file_data.assert_called_once_with(
+            self.telegram_context
+        )
+        self.telegram_service.get_message_data.assert_called_once_with(
+            self.telegram_context
+        )

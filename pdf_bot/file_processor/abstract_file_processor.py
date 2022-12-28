@@ -8,10 +8,10 @@ from telegram import CallbackQuery, Message, Update
 from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK, FILE_DATA, MESSAGE_DATA
+from pdf_bot.consts import BACK
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
-from pdf_bot.models import FileData, MessageData, TaskData
+from pdf_bot.models import FileData, TaskData
 from pdf_bot.telegram_internal import TelegramGetUserDataError, TelegramService
 
 from .file_task_mixin import FileTaskMixin
@@ -116,9 +116,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
             context.drop_callback_data(query)
         else:
             try:
-                file_data: FileData = self.telegram_service.get_user_data(  # type: ignore
-                    context, FILE_DATA
-                )
+                file_data = self.telegram_service.get_file_data(context)  # type: ignore
             except TelegramGetUserDataError as e:
                 await message.reply_text(_(str(e)))
                 return ConversationHandler.END
@@ -153,9 +151,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
         try:
-            message_data: MessageData = self.telegram_service.get_user_data(
-                context, MESSAGE_DATA
-            )
+            message_data = self.telegram_service.get_message_data(context)
         except TelegramGetUserDataError:
             return
 

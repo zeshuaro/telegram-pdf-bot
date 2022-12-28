@@ -4,10 +4,9 @@ from telegram import Message, ReplyKeyboardMarkup, Update
 from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK, FILE_DATA
+from pdf_bot.consts import BACK
 from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
-from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService
 from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 
@@ -163,9 +162,7 @@ class CropService:
         message: Message = update.message
 
         try:
-            file_data: FileData = self.telegram_service.get_user_data(
-                context, FILE_DATA
-            )
+            file_data = self.telegram_service.get_file_data(context)
         except TelegramServiceError as e:
             await message.reply_text(_(str(e)))
             return ConversationHandler.END

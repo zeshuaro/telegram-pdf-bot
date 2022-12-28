@@ -1,10 +1,7 @@
-from typing import Any
 from unittest.mock import AsyncMock
 
-from telegram.ext import ContextTypes, ConversationHandler
+from telegram.ext import ConversationHandler
 
-from pdf_bot.consts import FILE_DATA, MESSAGE_DATA
-from pdf_bot.models import MessageData
 from pdf_bot.telegram_internal import TelegramService
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
@@ -17,14 +14,7 @@ class TelegramServiceTestMixin(TelegramTestMixin):
         service.cancel_conversation.return_value = ConversationHandler.END
         service.reply_with_cancel_markup.side_effect = self.telegram_message
         service.reply_with_back_markup.side_effect = self.telegram_message
-
-        def get_user_data(_context: ContextTypes.DEFAULT_TYPE, key: str) -> Any:
-            if key == FILE_DATA:
-                return self.FILE_DATA
-            if key == MESSAGE_DATA:
-                return MessageData(self.TELEGRAM_CHAT_ID, self.TELEGRAM_MESSAGE_ID)
-            return None
-
-        service.get_user_data.side_effect = get_user_data
+        service.get_file_data.return_value = self.FILE_DATA
+        service.get_message_data.return_value = self.MESSAGE_DATA
 
         return service
