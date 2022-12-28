@@ -151,25 +151,26 @@ class TelegramDispatcher:
     async def error_callback(
         self, update: object, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
-        error_text = _("Something went wrong, please try again")
+        err_text = _("Something went wrong, please try again")
         try:
             if context.error is not None:
                 raise context.error
         except Forbidden:
             pass
         except BadRequest as e:
-            if e.message.lower().startswith(
-                "query is too old and response timeout expired"
-            ):
-                error_text = _(
+            err_msg = e.message.lower()
+            if err_msg.startswith("message is not modified"):
+                return
+            if err_msg.startswith("query is too old and response timeout expired"):
+                err_text = _(
                     "The button has expired, start over with your file or command"
                 )
             else:
                 sentry_sdk.capture_exception(e)
 
-            await self._send_message(update, context, error_text)
+            await self._send_message(update, context, err_text)
         except Exception as e:  # pylint: disable=broad-except
-            await self._send_message(update, context, error_text)
+            await self._send_message(update, context, err_text)
             sentry_sdk.capture_exception(e)
 
     async def _send_message(
