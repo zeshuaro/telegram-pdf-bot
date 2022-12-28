@@ -109,10 +109,18 @@ class TelegramService:
             )
         context.user_data[key] = value
 
+    def get_file_data(self, context: ContextTypes.DEFAULT_TYPE) -> FileData:
+        data: FileData = self.get_user_data(context, FILE_DATA)
+        return data
+
     def cache_file_data(
         self, context: ContextTypes.DEFAULT_TYPE, file_data: FileData
     ) -> None:
         self.update_user_data(context, FILE_DATA, file_data)
+
+    def get_message_data(self, context: ContextTypes.DEFAULT_TYPE) -> MessageData:
+        data: MessageData = self.get_user_data(context, MESSAGE_DATA)
+        return data
 
     def cache_message_data(
         self, context: ContextTypes.DEFAULT_TYPE, message: Message | bool
