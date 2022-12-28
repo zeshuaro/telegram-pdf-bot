@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-28 11:31+0000\n"
-"PO-Revision-Date: 2022-12-28 11:31\n"
+"POT-Creation-Date: 2022-12-28 11:48+0000\n"
+"PO-Revision-Date: 2022-12-28 11:48\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -67,7 +67,7 @@ msgstr "Σε εικόνες"
 msgid "Rotate"
 msgstr "Γυρίζω"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:75
 msgid "Scale"
 msgstr "Κλίμακα"
 
@@ -75,12 +75,12 @@ msgstr "Κλίμακα"
 msgid "Split"
 msgstr "Σπλιτ"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:20
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Ομορφύνει"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:21
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "Σε PDF"
@@ -89,7 +89,7 @@ msgstr "Σε PDF"
 msgid "Rename"
 msgstr "Μετονομάσετε"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:17
 msgid "Crop"
 msgstr "Καλλιέργεια"
 
@@ -121,7 +121,7 @@ msgstr "Μήνυμα κειμένου"
 msgid "Text File"
 msgstr "Αρχείο κειμένου"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:18
 msgid "Compress"
 msgstr "Συμπίεση"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Τα σχόλια δεν είναι στα Αγγλικά, δοκιμάστε ξανά"
 
-#: pdf_bot/file/file_handlers.py:132 pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:113 pdf_bot/file/file_handlers.py:140
 msgid "Your file is too big for me to download and process"
 msgstr "Το αρχείο σας είναι πολύ μεγάλο για να το κατεβάσω και να το επεξεργαστώ."
 
-#: pdf_bot/file/file_handlers.py:133 pdf_bot/file/file_handlers.py:160
+#: pdf_bot/file/file_handlers.py:114 pdf_bot/file/file_handlers.py:141
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Σημειώστε ότι αυτός είναι ένας περιορισμός Bot τηλεγραφήματος και δεν μπορώ να κάνω τίποτα αν το Telegram αλλάξει αυτό το όριο"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "Επιλέξτε την εργασία που θα θέλατε να εκτελέσετε"
 
-#: pdf_bot/file_task/file_task_service.py:66
+#: pdf_bot/file_task/file_task_service.py:64
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -472,11 +472,11 @@ msgstr "Δεν ήταν δυνατή η συγχώνευση των αρχείω
 msgid "Your PDF file already has a text layer"
 msgstr "Το αρχείο PDF έχει ήδη ένα επίπεδο κειμένου"
 
-#: pdf_bot/pdf/pdf_service.py:364
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is invalid"
 msgstr "Το αρχείο PDF δεν είναι έγκυρο"
 
-#: pdf_bot/pdf/pdf_service.py:367
+#: pdf_bot/pdf/pdf_service.py:380
 msgid "Your PDF file is encrypted"
 msgstr "Το αρχείο PDF είναι κρυπτογραφημένο"
 
@@ -512,41 +512,36 @@ msgstr "Προσπαθήστε ξανά"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Επιλέξτε τους βαθμούς που θέλετε να περιστρέψετε το αρχείο PDF δεξιόστροφα"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:19
-msgid "By scaling factor"
-msgstr "Με συντελεστή κλιμάκωσης"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+msgid "By factor"
+msgstr ""
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:20
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:64
 msgid "To dimension"
 msgstr "Στη διάσταση"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:54
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:36
+msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
+"Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
+msgstr ""
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:42
+msgid "Send me the width and height\n\n"
+"Example: 150 200 - this will set the width to 150 and height to 200"
+msgstr ""
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+msgid "By scaling factor"
+msgstr "Με συντελεστή κλιμάκωσης"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:140
 msgid "Select the scale type that you'll like to perform"
 msgstr "Επιλέξτε τον τύπο κλίμακας που θα θέλατε να εκτελέσετε"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:89
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "Οι παράγοντες κλιμάκωσης {values} δεν είναι έγκυροι, προσπαθήστε ξανά"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:113
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "Οι διαστάσεις {values} δεν είναι έγκυρες, προσπαθήστε ξανά"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:132
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "Στείλτε μου τους παράγοντες κλιμάκωσης για τους οριζόντιους και κάθετους άξονες"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:137
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "Αυτό θα διπλασιάσει τον οριζόντιο άξονα και θα μειώσει κατά το ήμισυ τον κατακόρυφο άξονα"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:150
-msgid "Send me the width and height"
-msgstr "Στείλε μου το πλάτος και το ύψος"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:152
-msgid "This will set the width to 150 and height to 200"
-msgstr "Αυτό θα ορίσει το πλάτος σε 150 και το ύψος σε 200"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:178
+msgid "The values {values} are invalid, please try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:116
 msgid "Send me the range of pages that you'll like to keep"
@@ -1621,5 +1616,23 @@ msgstr "Απέτυχε η μετατροπή της ιστοσελίδας σα�
 #~ msgstr ""
 
 #~ msgid "Invalid rotation degree, try again"
+#~ msgstr ""
+
+#~ msgid "The scaling factors {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "The dimensions {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me the scaling factors for the horizontal and vertical axes"
+#~ msgstr ""
+
+#~ msgid "This will double the horizontal axis and halve the vertical axis"
+#~ msgstr ""
+
+#~ msgid "Send me the width and height"
+#~ msgstr ""
+
+#~ msgid "This will set the width to 150 and height to 200"
 #~ msgstr ""
 

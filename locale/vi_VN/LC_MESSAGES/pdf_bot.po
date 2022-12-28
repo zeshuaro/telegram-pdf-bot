@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-28 11:31+0000\n"
-"PO-Revision-Date: 2022-12-28 11:31\n"
+"POT-Creation-Date: 2022-12-28 11:48+0000\n"
+"PO-Revision-Date: 2022-12-28 11:48\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -67,7 +67,7 @@ msgstr "Đến Hình ảnh"
 msgid "Rotate"
 msgstr "Xoay"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:75
 msgid "Scale"
 msgstr "Quy mô"
 
@@ -75,12 +75,12 @@ msgstr "Quy mô"
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:20
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Làm đẹp"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:21
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "Sang PDF"
@@ -89,7 +89,7 @@ msgstr "Sang PDF"
 msgid "Rename"
 msgstr "Rename"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:17
 msgid "Crop"
 msgstr "Cây trồng"
 
@@ -121,7 +121,7 @@ msgstr "Tin nhắn Văn bản"
 msgid "Text File"
 msgstr "Tệp Văn bản"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:18
 msgid "Compress"
 msgstr "Nén"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Phản hồi không phải bằng tiếng Anh, hãy thử lại"
 
-#: pdf_bot/file/file_handlers.py:132 pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:113 pdf_bot/file/file_handlers.py:140
 msgid "Your file is too big for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
-#: pdf_bot/file/file_handlers.py:133 pdf_bot/file/file_handlers.py:160
+#: pdf_bot/file/file_handlers.py:114 pdf_bot/file/file_handlers.py:141
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "Chọn nhiệm vụ bạn muốn thực hiện"
 
-#: pdf_bot/file_task/file_task_service.py:66
+#: pdf_bot/file_task/file_task_service.py:64
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -472,11 +472,11 @@ msgstr "Tôi không thể hợp nhất các tệp PDF của bạn vì tệp này
 msgid "Your PDF file already has a text layer"
 msgstr "Tệp PDF của bạn đã có một lớp văn bản"
 
-#: pdf_bot/pdf/pdf_service.py:364
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is invalid"
 msgstr "Tệp PDF của bạn không hợp lệ"
 
-#: pdf_bot/pdf/pdf_service.py:367
+#: pdf_bot/pdf/pdf_service.py:380
 msgid "Your PDF file is encrypted"
 msgstr "Tệp PDF của bạn được mã hóa"
 
@@ -512,41 +512,36 @@ msgstr "Vui lòng thử lại"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Chọn độ bạn muốn xoay tệp PDF theo chiều kim đồng hồ"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:19
-msgid "By scaling factor"
-msgstr "Theo hệ số mở rộng quy mô"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+msgid "By factor"
+msgstr ""
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:20
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:64
 msgid "To dimension"
 msgstr "Đến kích thước"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:54
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:36
+msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
+"Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
+msgstr ""
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:42
+msgid "Send me the width and height\n\n"
+"Example: 150 200 - this will set the width to 150 and height to 200"
+msgstr ""
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+msgid "By scaling factor"
+msgstr "Theo hệ số mở rộng quy mô"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:140
 msgid "Select the scale type that you'll like to perform"
 msgstr "Chọn loại tỷ lệ bạn muốn thực hiện"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:89
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "Các yếu tố mở rộng {values} không hợp lệ, vui lòng thử lại"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:113
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "Kích thước {values} không hợp lệ, vui lòng thử lại"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:132
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "Gửi cho tôi các yếu tố mở rộng cho các trục ngang và dọc"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:137
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "Điều này sẽ tăng gấp đôi trục ngang và giảm một nửa trục dọc"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:150
-msgid "Send me the width and height"
-msgstr "Gửi cho tôi chiều rộng và chiều cao"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:152
-msgid "This will set the width to 150 and height to 200"
-msgstr "Điều này sẽ đặt chiều rộng đến 150 và chiều cao đến 200"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:178
+msgid "The values {values} are invalid, please try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:116
 msgid "Send me the range of pages that you'll like to keep"
@@ -1621,5 +1616,23 @@ msgstr "Thất bại trong việc chuyển đổi trang web của bạn"
 #~ msgstr ""
 
 #~ msgid "Invalid rotation degree, try again"
+#~ msgstr ""
+
+#~ msgid "The scaling factors {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "The dimensions {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me the scaling factors for the horizontal and vertical axes"
+#~ msgstr ""
+
+#~ msgid "This will double the horizontal axis and halve the vertical axis"
+#~ msgstr ""
+
+#~ msgid "Send me the width and height"
+#~ msgstr ""
+
+#~ msgid "This will set the width to 150 and height to 200"
 #~ msgstr ""
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-28 11:31+0000\n"
-"PO-Revision-Date: 2022-12-28 11:31\n"
+"POT-Creation-Date: 2022-12-28 11:48+0000\n"
+"PO-Revision-Date: 2022-12-28 11:48\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -67,7 +67,7 @@ msgstr "На слике"
 msgid "Rotate"
 msgstr "Ротирај"
 
-#: pdf_bot/consts.py:48 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:75
 msgid "Scale"
 msgstr "Скали"
 
@@ -75,12 +75,12 @@ msgstr "Скали"
 msgid "Split"
 msgstr "Поделимо"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:20
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Улепшавање"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:22
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:21
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "У ПДФ"
@@ -89,7 +89,7 @@ msgstr "У ПДФ"
 msgid "Rename"
 msgstr "Преименујете"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:17
 msgid "Crop"
 msgstr "Изрезивање"
 
@@ -121,7 +121,7 @@ msgstr "Текстуална порука"
 msgid "Text File"
 msgstr "Текстуална датотека"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:18
 msgid "Compress"
 msgstr "Компримовање"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Повратне информације нису на енглеском, покушајте поново"
 
-#: pdf_bot/file/file_handlers.py:132 pdf_bot/file/file_handlers.py:159
+#: pdf_bot/file/file_handlers.py:113 pdf_bot/file/file_handlers.py:140
 msgid "Your file is too big for me to download and process"
 msgstr "Твој фајл је превелик да га преузмем и обрадим"
 
-#: pdf_bot/file/file_handlers.py:133 pdf_bot/file/file_handlers.py:160
+#: pdf_bot/file/file_handlers.py:114 pdf_bot/file/file_handlers.py:141
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "Изаберите задатак који ћете хтети да извршите"
 
-#: pdf_bot/file_task/file_task_service.py:66
+#: pdf_bot/file_task/file_task_service.py:64
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -472,11 +472,11 @@ msgstr "Нисам могао да објединим ваше ПДФ датот
 msgid "Your PDF file already has a text layer"
 msgstr "Ваш ПДФ фајл већ има слој текста"
 
-#: pdf_bot/pdf/pdf_service.py:364
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is invalid"
 msgstr "Ваша ПДФ датотека је неважећа"
 
-#: pdf_bot/pdf/pdf_service.py:367
+#: pdf_bot/pdf/pdf_service.py:380
 msgid "Your PDF file is encrypted"
 msgstr "Ваш ПДФ фајл је шифрован"
 
@@ -512,41 +512,36 @@ msgstr "Покушајте поново"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Изаберите степене које ћете хтети да ротирајте ПДФ фајл у смеру казаљке на сату"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:19
-msgid "By scaling factor"
-msgstr "Подешавањем размере фактора"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+msgid "By factor"
+msgstr ""
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:20
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:64
 msgid "To dimension"
 msgstr "У димензију"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:54
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:36
+msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
+"Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
+msgstr ""
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:42
+msgid "Send me the width and height\n\n"
+"Example: 150 200 - this will set the width to 150 and height to 200"
+msgstr ""
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+msgid "By scaling factor"
+msgstr "Подешавањем размере фактора"
+
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:140
 msgid "Select the scale type that you'll like to perform"
 msgstr "Изаберите тип размере који ћете хтети да извршите"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:89
-msgid "The scaling factors {values} are invalid, please try again"
-msgstr "Фактори размере {values} неважећи, покушајте поново"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:113
-msgid "The dimensions {values} are invalid, please try again"
-msgstr "Димензије {values} неважеће, покушајте поново"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:132
-msgid "Send me the scaling factors for the horizontal and vertical axes"
-msgstr "Пошаљи ми факторе размере хоризонталних и вертикалних оса"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:137
-msgid "This will double the horizontal axis and halve the vertical axis"
-msgstr "Ово ће удвостручити хоризонталну осу и преполовити вертикалну осу"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:150
-msgid "Send me the width and height"
-msgstr "Пошаљи ми ширину и висину"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:152
-msgid "This will set the width to 150 and height to 200"
-msgstr "То ће поставити ширину на 150, а висину на 200"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:178
+msgid "The values {values} are invalid, please try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:116
 msgid "Send me the range of pages that you'll like to keep"
@@ -1621,5 +1616,23 @@ msgstr "Конвертовање Wеб странице није успело"
 #~ msgstr ""
 
 #~ msgid "Invalid rotation degree, try again"
+#~ msgstr ""
+
+#~ msgid "The scaling factors {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "The dimensions {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me the scaling factors for the horizontal and vertical axes"
+#~ msgstr ""
+
+#~ msgid "This will double the horizontal axis and halve the vertical axis"
+#~ msgstr ""
+
+#~ msgid "Send me the width and height"
+#~ msgstr ""
+
+#~ msgid "This will set the width to 150 and height to 200"
 #~ msgstr ""
 
