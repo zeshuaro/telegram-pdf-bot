@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator, Callable, Coroutine, Type
 
 from telegram import CallbackQuery, Message, Update
+from telegram.error import BadRequest
 from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -121,8 +122,9 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
                 await message.reply_text(_(str(e)))
                 return ConversationHandler.END
 
-        # Edit the previous message for processors with nested conversation
-        await self._edit_previous_message(update, context)
+        # Delete the previous message and send processing message for processors with
+        # nested conversation
+        await self._process_previous_message(update, context)
 
         try:
             async with self.process_file_task(
@@ -147,20 +149,23 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
                 return await error_handler(update, context, e, file_data)  # type: ignore
         return ConversationHandler.END
 
-    async def _edit_previous_message(
+    async def _process_previous_message(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
+        message_data = None
         try:
             message_data = self.telegram_service.get_message_data(context)
-        except TelegramGetUserDataError:
+            await context.bot.delete_message(
+                message_data.chat_id, message_data.message_id
+            )
+        except (TelegramGetUserDataError, BadRequest):
+            pass
+
+        if message_data is None:
             return
 
         _ = self.language_service.set_app_language(update, context)
-        await context.bot.edit_message_text(
-            _("Processing your file"),
-            chat_id=message_data.chat_id,
-            message_id=message_data.message_id,
-        )
+        await context.bot.send_message(message_data.chat_id, _("Processing your file"))
 
     def _get_error_handlers(
         self,

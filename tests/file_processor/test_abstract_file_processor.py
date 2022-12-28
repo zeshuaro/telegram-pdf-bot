@@ -4,6 +4,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 from telegram import Update
+from telegram.error import BadRequest
 from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -346,8 +347,11 @@ class TestAbstractFileProcessor(
             self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_process_file_edit_previous_message_error(self) -> None:
-        self.telegram_service.get_message_data.side_effect = TelegramGetUserDataError
+    @pytest.mark.parametrize("error", [TelegramGetUserDataError, BadRequest("Error")])
+    async def test_process_file_process_previous_message_error(
+        self, error: Exception
+    ) -> None:
+        self.telegram_service.get_message_data.side_effect = error
 
         actual = await self.sut.process_file(
             self.telegram_update, self.telegram_context
@@ -355,7 +359,7 @@ class TestAbstractFileProcessor(
 
         assert actual == ConversationHandler.END
         self._assert_process_file_succeed()
-        self.telegram_context.bot.edit_message_text.assert_not_called()
+        self.telegram_context.bot.delete_message.assert_not_called()
 
     def _assert_process_file_succeed(
         self, out_path: str = MockProcessor.PROCESS_RESULT
