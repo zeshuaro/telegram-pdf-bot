@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-28 09:50+0000\n"
-"PO-Revision-Date: 2022-12-28 09:50\n"
+"POT-Creation-Date: 2022-12-28 11:31+0000\n"
+"PO-Revision-Date: 2022-12-28 11:31\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -267,39 +267,39 @@ msgstr "正在比较你的PDF档案"
 msgid "There are no text differences between your PDF files"
 msgstr "您的 PDF 文件之间没有文本差异"
 
-#: pdf_bot/crop/crop_service.py:22
+#: pdf_bot/crop/crop_service.py:21
 msgid "By percentage"
 msgstr "按百分比"
 
-#: pdf_bot/crop/crop_service.py:23
+#: pdf_bot/crop/crop_service.py:22
 msgid "By margin size"
 msgstr "按边距大小"
 
-#: pdf_bot/crop/crop_service.py:51
+#: pdf_bot/crop/crop_service.py:50
 msgid "Select the crop type that you'll like to perform"
 msgstr "选择你要怎样裁剪"
 
-#: pdf_bot/crop/crop_service.py:82
+#: pdf_bot/crop/crop_service.py:81
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
 msgstr "{number} 号不在 {min_percent} 和 {max_percent}之间，请重试"
 
-#: pdf_bot/crop/crop_service.py:108
+#: pdf_bot/crop/crop_service.py:107
 msgid "The number {number} is invalid, please try again"
 msgstr "号码 {number} 无效，请重试"
 
-#: pdf_bot/crop/crop_service.py:128
+#: pdf_bot/crop/crop_service.py:127
 msgid "Send me a number between {min_percent} and {max_percent}"
 msgstr "在 {min_percent} 和 {max_percent}之间给我发个号码"
 
-#: pdf_bot/crop/crop_service.py:134
+#: pdf_bot/crop/crop_service.py:133
 msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "这是在 PDF 文件和页面中的内容之间保留的边距空间的百分比"
 
-#: pdf_bot/crop/crop_service.py:145
+#: pdf_bot/crop/crop_service.py:144
 msgid "Send me a number that you'll like to adjust the margin size"
 msgstr "给我发个数字，您想调整保证金大小"
 
-#: pdf_bot/crop/crop_service.py:146
+#: pdf_bot/crop/crop_service.py:145
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "正数将减少保证金大小，负数将增加"
 
@@ -323,12 +323,12 @@ msgstr "您的文件太大，我无法下载和处理"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
 
-#: pdf_bot/file/file_service.py:40
+#: pdf_bot/file/file_service.py:36
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "文件大小减少 {percent}，从 {old_size} 减少到 {new_size}"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:115
-#: pdf_bot/file_processor/abstract_file_processor.py:164
+#: pdf_bot/file_processor/abstract_file_processor.py:160
 msgid "Processing your file"
 msgstr ""
 

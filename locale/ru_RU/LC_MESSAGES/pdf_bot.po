@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-28 09:50+0000\n"
-"PO-Revision-Date: 2022-12-28 09:50\n"
+"POT-Creation-Date: 2022-12-28 11:31+0000\n"
+"PO-Revision-Date: 2022-12-28 11:31\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -267,39 +267,39 @@ msgstr "Сравнение ваших PDF-файлов"
 msgid "There are no text differences between your PDF files"
 msgstr "Нет различий в тексте между файлами PDF"
 
-#: pdf_bot/crop/crop_service.py:22
+#: pdf_bot/crop/crop_service.py:21
 msgid "By percentage"
 msgstr "В процентах"
 
-#: pdf_bot/crop/crop_service.py:23
+#: pdf_bot/crop/crop_service.py:22
 msgid "By margin size"
 msgstr "По размеру поля"
 
-#: pdf_bot/crop/crop_service.py:51
+#: pdf_bot/crop/crop_service.py:50
 msgid "Select the crop type that you'll like to perform"
 msgstr "Выберите тип обрезки, которую вам нужно выполнить"
 
-#: pdf_bot/crop/crop_service.py:82
+#: pdf_bot/crop/crop_service.py:81
 msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
 msgstr "Число {number} не между {min_percent} и {max_percent}, пожалуйста, повторите попытку"
 
-#: pdf_bot/crop/crop_service.py:108
+#: pdf_bot/crop/crop_service.py:107
 msgid "The number {number} is invalid, please try again"
 msgstr "Номер {number} недействителен, повторите попытку"
 
-#: pdf_bot/crop/crop_service.py:128
+#: pdf_bot/crop/crop_service.py:127
 msgid "Send me a number between {min_percent} and {max_percent}"
 msgstr "Пришлите мне номер между {min_percent} и {max_percent}"
 
-#: pdf_bot/crop/crop_service.py:134
+#: pdf_bot/crop/crop_service.py:133
 msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Это процент поля, который необходимо сохранить между содержимым PDF-файла и страницей."
 
-#: pdf_bot/crop/crop_service.py:145
+#: pdf_bot/crop/crop_service.py:144
 msgid "Send me a number that you'll like to adjust the margin size"
 msgstr "Пришлите мне номер, который вы хотите настроить для размера поля"
 
-#: pdf_bot/crop/crop_service.py:146
+#: pdf_bot/crop/crop_service.py:145
 msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Положительные числа уменьшат размер маржи, а отрицательные цифры увеличат ее"
 
@@ -323,12 +323,12 @@ msgstr "Ваш файл слишком велик для загрузки и о�
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Обратите внимание, что это ограничение Telegram Bot, и я ничего не могу сделать, если Telegram не изменит это ограничение."
 
-#: pdf_bot/file/file_service.py:40
+#: pdf_bot/file/file_service.py:36
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Размер файла уменьшен на {percent}, с {old_size} до {new_size}"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:115
-#: pdf_bot/file_processor/abstract_file_processor.py:164
+#: pdf_bot/file_processor/abstract_file_processor.py:160
 msgid "Processing your file"
 msgstr ""
 
