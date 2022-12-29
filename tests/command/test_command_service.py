@@ -45,7 +45,19 @@ class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
 
         await self.sut.send_message_to_user(self.telegram_update, self.telegram_context)
 
-        self._assert_send_message_to_user("User has blocked the bot")
+        self._assert_send_message_to_user("Bot is blocked by the user")
+
+    @pytest.mark.asyncio
+    async def test_send_message_to_user_invalid_args(self) -> None:
+        args = None
+        self.telegram_context.args = args
+
+        await self.sut.send_message_to_user(self.telegram_update, self.telegram_context)
+
+        self.telegram_context.bot.send_message.assert_not_called()
+        self.telegram_update.effective_message.reply_text.assert_called_once_with(
+            f"Invalid arguments: {args}"
+        )
 
     def _assert_send_message_to_user(self, message: str) -> None:
         self.telegram_context.bot.send_message.assert_called_once_with(

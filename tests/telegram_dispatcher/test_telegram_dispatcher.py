@@ -4,7 +4,6 @@ import pytest
 from telegram.error import BadRequest, Forbidden
 from telegram.ext import Application
 
-from pdf_bot.command.command_service import CommandService
 from pdf_bot.compare import CompareHandlers
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
@@ -28,7 +27,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
     def setup_method(self) -> None:
         super().setup_method()
         self.app = MagicMock(spec=Application)
-        self.command_service = MagicMock(spec=CommandService)
         self.compare_handlers = MagicMock(spec=CompareHandlers)
         self.feedback_handler = MagicMock(spec=FeedbackHandler)
         self.file_handlers = MagicMock(spec=FileHandler)
@@ -40,7 +38,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.webpage_handler = MagicMock(spec=WebpageHandler)
 
         self.sut = TelegramDispatcher(
-            self.command_service,
             self.compare_handlers,
             self.feedback_handler,
             self.file_handlers,
@@ -52,34 +49,19 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
             self.webpage_handler,
         )
 
-        self.os_patcher = patch("pdf_bot.telegram_dispatcher.telegram_dispatcher.os")
-        self.os = self.os_patcher.start()
-
         self.sentry_sdk_patcher = patch(
             "pdf_bot.telegram_dispatcher.telegram_dispatcher.sentry_sdk"
         )
         self.sentry_sdk = self.sentry_sdk_patcher.start()
 
     def teardown_method(self) -> None:
-        self.os_patcher.stop()
         self.sentry_sdk_patcher.stop()
 
     @pytest.mark.asyncio
     async def test_setup(self) -> None:
-        self.os.environ = {"ADMIN_TELEGRAM_ID": 123}
-
         self.sut.setup(self.app)
 
-        assert self.app.add_handler.call_count == 11
-        self.app.add_error_handler.assert_called_once()
-
-    @pytest.mark.asyncio
-    async def test_setup_without_admin_id(self) -> None:
-        self.os.environ = {}
-
-        self.sut.setup(self.app)
-
-        assert self.app.add_handler.call_count == 10
+        assert self.app.add_handler.call_count == 8
         self.app.add_error_handler.assert_called_once()
 
     @pytest.mark.asyncio

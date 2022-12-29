@@ -1,19 +1,10 @@
-import os
 from gettext import gettext as _
 
 import sentry_sdk
-from dotenv import load_dotenv
 from telegram import MessageEntity, Update
 from telegram.error import BadRequest, Forbidden
-from telegram.ext import (
-    Application,
-    CommandHandler,
-    ContextTypes,
-    MessageHandler,
-    filters,
-)
+from telegram.ext import Application, ContextTypes, MessageHandler, filters
 
-from pdf_bot.command.command_service import CommandService
 from pdf_bot.compare import CompareHandlers
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
@@ -24,15 +15,12 @@ from pdf_bot.text import TextHandlers
 from pdf_bot.watermark import WatermarkHandlers
 from pdf_bot.webpage import WebpageHandler
 
-load_dotenv()
-
 
 class TelegramDispatcher:
     _CALLBACK_DATA = "callback_data"
 
     def __init__(
         self,
-        command_service: CommandService,
         compare_handlers: CompareHandlers,
         feedback_handler: FeedbackHandler,
         file_handlers: FileHandler,
@@ -43,7 +31,6 @@ class TelegramDispatcher:
         watermark_handlers: WatermarkHandlers,
         webpage_handler: WebpageHandler,
     ) -> None:
-        self.command_service = command_service
         self.compare_handlers = compare_handlers
         self.feedback_handler = feedback_handler
         self.file_handlers = file_handlers
@@ -55,14 +42,6 @@ class TelegramDispatcher:
         self.webpage_handler = webpage_handler
 
     def setup(self, telegram_app: Application) -> None:
-        telegram_app.add_handler(
-            CommandHandler("start", self.command_service.send_start_message)
-        )
-
-        telegram_app.add_handler(
-            CommandHandler("help", self.command_service.send_help_message)
-        )
-
         # URL handler
         telegram_app.add_handler(
             MessageHandler(
@@ -82,17 +61,6 @@ class TelegramDispatcher:
 
         # Feedback handler
         telegram_app.add_handler(self.feedback_handler.conversation_handler())
-
-        # Admin commands handlers
-        ADMIN_TELEGRAM_ID = os.environ.get("ADMIN_TELEGRAM_ID")
-        if ADMIN_TELEGRAM_ID is not None:
-            telegram_app.add_handler(
-                CommandHandler(
-                    "send",
-                    self.command_service.send_message_to_user,
-                    filters.User(int(ADMIN_TELEGRAM_ID)),
-                )
-            )
 
         # Log all errors
         telegram_app.add_error_handler(self.error_callback)
