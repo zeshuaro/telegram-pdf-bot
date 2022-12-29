@@ -58,4 +58,7 @@ class WebpageHandler:
         except WebpageServiceError as e:
             await message.reply_text(_(str(e)))
 
-        user_data[self.URLS].remove(url)  # type: ignore
+        try:
+            user_data[self.URLS].remove(url)  # type: ignore
+        except KeyError:
+            pass
