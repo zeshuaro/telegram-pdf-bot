@@ -9,6 +9,7 @@ from .abstract_pdf_text_input_processor import (
     AbstractPdfTextInputProcessor,
     TextInputData,
 )
+from .compress_pdf_processor import CompressPdfData, CompressPdfProcessor
 from .crop_pdf_processor import (
     CropOptionAndInputData,
     CropPdfData,
@@ -42,6 +43,8 @@ __all__ = [
     "SelectOptionData",
     "AbstractPdfTextInputProcessor",
     "TextInputData",
+    "CompressPdfData",
+    "CompressPdfProcessor",
     "CropOptionAndInputData",
     "CropPdfData",
     "CropPdfProcessor",

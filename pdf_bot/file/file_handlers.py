@@ -9,10 +9,8 @@ from telegram.ext import (
     filters,
 )
 
-from pdf_bot.consts import CANCEL, COMPRESS, FILE_DATA, TEXT_FILTER
-from pdf_bot.file.file_service import FileService
+from pdf_bot.consts import FILE_DATA
 from pdf_bot.file_processor import AbstractFileProcessor
-from pdf_bot.file_task import FileTaskService
 from pdf_bot.image_processor import ImageTaskProcessor
 from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData
@@ -25,15 +23,11 @@ class FileHandlers:
 
     def __init__(
         self,
-        file_task_service: FileTaskService,
-        file_service: FileService,
         telegram_service: TelegramService,
         language_service: LanguageService,
         image_task_processor: ImageTaskProcessor,
         pdf_task_processor: PdfTaskProcessor,
     ) -> None:
-        self.file_task_service = file_task_service
-        self.file_service = file_service
         self.telegram_service = telegram_service
         self.image_task_processor = image_task_processor
         self.pdf_task_processor = pdf_task_processor
@@ -53,8 +47,7 @@ class FileHandlers:
                     CallbackQueryHandler(
                         self.telegram_service.cancel_conversation,
                         pattern=r"^cancel$",
-                    ),
-                    MessageHandler(TEXT_FILTER, self.check_doc_task),
+                    )
                 ],
             },
             fallbacks=[
@@ -85,7 +78,6 @@ class FileHandlers:
             return ConversationHandler.END
 
         context.user_data[FILE_DATA] = FileData.from_telegram_object(doc)  # type: ignore
-        await self.file_task_service.ask_pdf_task(update, context)
         return await self.pdf_task_processor.ask_task(update, context)
 
     async def check_image(
@@ -109,16 +101,3 @@ class FileHandlers:
             return ConversationHandler.END
 
         return await self.image_task_processor.ask_task(update, context)
-
-    async def check_doc_task(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int | str:
-        _ = self.language_service.set_app_language(update, context)
-        text = update.effective_message.text  # type: ignore
-
-        if text == _(COMPRESS):
-            return await self.file_service.compress_pdf(update, context)
-        if text == _(CANCEL):
-            return await self.telegram_service.cancel_conversation(update, context)
-
-        return FileTaskService.WAIT_FILE_TASK
