@@ -13,7 +13,7 @@ from telegram.ext import (
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileTaskProcessor
-from pdf_bot.models import BackData, FileData, TaskData
+from pdf_bot.models import BackData, FileData, FileTaskResult, TaskData
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import AbstractPdfTextInputProcessor, TextInputData
 from tests.language import LanguageServiceTestMixin
@@ -22,6 +22,7 @@ from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 class MockProcessor(AbstractPdfTextInputProcessor):
     FILE_NAME = "file_name"
+    FILE_TASK_RESULT = FileTaskResult("path")
 
     @property
     def entry_point_data_type(self) -> type[FileData]:
@@ -47,9 +48,9 @@ class MockProcessor(AbstractPdfTextInputProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, _file_data: FileData, _message_text: str
-    ) -> AsyncGenerator[str, None]:
-        yield "process_result"
+        self, _file_data: FileData
+    ) -> AsyncGenerator[FileTaskResult, None]:
+        yield self.FILE_TASK_RESULT
 
 
 class TestAbstractPdfTextInputProcessor(

@@ -16,8 +16,6 @@ class TestExtractPdfImageProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    FILE_PATH = "file_path"
-
     def setup_method(self) -> None:
         super().setup_method()
         self.pdf_service = MagicMock(spec=PdfService)
@@ -51,10 +49,8 @@ class TestExtractPdfImageProcessor(
             self.FILE_PATH
         )
 
-        async with self.sut.process_file_task(
-            self.FILE_DATA, self.TELEGRAM_TEXT
-        ) as actual:
-            assert actual == self.FILE_PATH
+        async with self.sut.process_file_task(self.FILE_DATA) as actual:
+            assert actual == self.FILE_TASK_RESULT
             self.pdf_service.extract_pdf_images.assert_called_once_with(
                 self.FILE_DATA.id
             )

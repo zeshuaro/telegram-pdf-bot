@@ -19,7 +19,7 @@ class TestMergeService(
 ):
     WAIT_MERGE_PDF = 0
     MERGE_PDF_DATA = "merge_pdf_data"
-    FILE_PATH = "file_path"
+
     REMOVE_LAST_FILE = "Remove last file"
     DONE = "Done"
     CANCEL = "Cancel"

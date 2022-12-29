@@ -5,7 +5,7 @@ from typing import AsyncGenerator
 from telegram.ext import CallbackQueryHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.models import FileData, TaskData
+from pdf_bot.models import FileData, FileTaskResult, TaskData
 
 from .abstract_pdf_processor import AbstractPdfProcessor
 
@@ -29,7 +29,7 @@ class ExtractPdfImageProcessor(AbstractPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_data: FileData, _message_text: str
-    ) -> AsyncGenerator[str, None]:
+        self, file_data: FileData
+    ) -> AsyncGenerator[FileTaskResult, None]:
         async with self.pdf_service.extract_pdf_images(file_data.id) as path:
-            yield path
+            yield FileTaskResult(path)

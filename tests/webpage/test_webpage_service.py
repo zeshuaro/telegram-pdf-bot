@@ -8,11 +8,11 @@ from weasyprint.urls import URLFetchingError
 
 from pdf_bot.io import IOService
 from pdf_bot.webpage import WebpageService, WebpageServiceError
+from tests.telegram_internal import TelegramTestMixin
 
 
-class TestWebpageService:
+class TestWebpageService(TelegramTestMixin):
     URL = "https://example.com"
-    FILE_PATH = "file_path"
 
     def setup_method(self) -> None:
         self.io_service = MagicMock(spec=IOService)

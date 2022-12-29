@@ -10,7 +10,7 @@ from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.language import LanguageService
-from pdf_bot.models import FileData, TaskData
+from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.telegram_internal import TelegramGetUserDataError, TelegramService
 
 from .file_task_mixin import FileTaskMixin
@@ -67,9 +67,9 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
     @asynccontextmanager
     @abstractmethod
     async def process_file_task(
-        self, file_data: FileData, message_text: str
-    ) -> AsyncGenerator[str, None]:
-        yield ""
+        self, file_data: FileData
+    ) -> AsyncGenerator[FileTaskResult, None]:
+        yield FileTaskResult("")
 
     @property
     def generic_error_types(self) -> set[Type[Exception]]:
@@ -116,11 +116,25 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         # nested conversation
         await self._process_previous_message(update, context)
 
+        state = await self._process_file_task(update, context, file_data)  # type: ignore
+        if state is not None:
+            return state
+
+        return ConversationHandler.END
+
+    async def _process_file_task(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE, file_data: FileData
+    ) -> str | int | None:
         try:
-            async with self.process_file_task(
-                file_data, message.text  # type: ignore
-            ) as out_path:
+            async with self.process_file_task(file_data) as result:
+                if result.message is not None:
+                    await self.telegram_service.send_message(
+                        update, context, result.message
+                    )
+
+                out_path = final_path = result.path
                 final_path = out_path
+
                 if os.path.isdir(out_path):
                     shutil.make_archive(out_path, "zip", out_path)
                     final_path = f"{out_path}.zip"
@@ -136,8 +150,8 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
                     error_handler = handler
 
             if error_handler is not None:
-                return await error_handler(update, context, e, file_data)  # type: ignore
-        return ConversationHandler.END
+                return await error_handler(update, context, e, file_data)
+        return None
 
     async def _process_previous_message(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE

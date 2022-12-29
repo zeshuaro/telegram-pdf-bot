@@ -25,7 +25,7 @@ from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     IMG_MIME_TYPE = "image"
     PDF_MIME_TYPE = "pdf"
-    FILE_PATH = "file_path"
+
     USER_DATA_KEY = "user_data_key"
     USER_DATA_VALUE = "user_data_value"
     BACK = "Back"

@@ -19,7 +19,7 @@ class TestBatchImageHandler(
 ):
     WAIT_IMAGE = 0
     IMAGE_DATA = "image_data"
-    FILE_PATH = "file_path"
+
     REMOVE_LAST_FILE = "Remove last file"
     BEAUTIFY = "Beautify"
     TO_PDF = "To PDF"

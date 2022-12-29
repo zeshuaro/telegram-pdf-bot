@@ -17,7 +17,7 @@ class TestTextService(
 ):
     WAIT_TEXT = 0
     WAIT_FONT = 1
-    FILE_PATH = "file_path"
+
     TEXT_KEY = "text"
     SKIP = "Skip"
     PDF_TEXT = "pdf_text"

@@ -16,7 +16,7 @@ from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 class TestCompareService(
     LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
 ):
-    FILE_PATH = "file_path"
+
     COMPARE_ID = "compare_id"
     WAIT_FIRST_PDF = 0
     WAIT_SECOND_PDF = 1

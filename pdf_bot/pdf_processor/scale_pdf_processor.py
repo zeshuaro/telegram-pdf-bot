@@ -3,7 +3,7 @@ from gettext import gettext as _
 from typing import AsyncGenerator
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.models import FileData, TaskData
+from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.pdf import ScaleData
 
 from .abstract_pdf_select_and_text_processor import (
@@ -78,8 +78,8 @@ class ScalePdfProcessor(AbstractPdfSelectAndTextProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_data: FileData, _message_text: str
-    ) -> AsyncGenerator[str, None]:
+        self, file_data: FileData
+    ) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, ScaleOptionAndInputData):
             raise TypeError(f"Invalid file data type: {type(file_data)}")
 
@@ -88,11 +88,11 @@ class ScalePdfProcessor(AbstractPdfSelectAndTextProcessor):
                 async with self.pdf_service.scale_pdf_by_factor(
                     file_data.id, file_data.text
                 ) as path:
-                    yield path
+                    yield FileTaskResult(path)
             case ScaleType.to_dimension:
                 async with self.pdf_service.scale_pdf_to_dimension(
                     file_data.id, file_data.text
                 ) as path:
-                    yield path
+                    yield FileTaskResult(path)
             case _:
                 raise ValueError(f"Invalid file data option: {file_data.option}")

@@ -7,7 +7,7 @@ from telegram.ext import ContextTypes
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import ErrorHandlerType
-from pdf_bot.models import FileData, TaskData
+from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.pdf import PdfIncorrectPasswordError
 
 from .abstract_pdf_text_input_processor import (
@@ -51,13 +51,13 @@ class DecryptPdfProcessor(AbstractPdfTextInputProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_data: FileData, message_text: str
-    ) -> AsyncGenerator[str, None]:
+        self, file_data: FileData
+    ) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, TextInputData):
             raise TypeError(f"Invalid file data: {type(file_data)}")
 
-        async with self.pdf_service.decrypt_pdf(file_data.id, message_text) as path:
-            yield path
+        async with self.pdf_service.decrypt_pdf(file_data.id, file_data.text) as path:
+            yield FileTaskResult(path)
 
     async def _handle_incorrect_password(
         self,

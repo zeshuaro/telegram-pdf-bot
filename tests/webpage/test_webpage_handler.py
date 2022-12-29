@@ -11,7 +11,7 @@ from tests.telegram_internal import TelegramServiceTestMixin
 
 class TestWebpageHandler(LanguageServiceTestMixin, TelegramServiceTestMixin):
     URL = "https://example.com"
-    FILE_PATH = "file_path"
+
     URLS = "urls"
 
     def setup_method(self) -> None:

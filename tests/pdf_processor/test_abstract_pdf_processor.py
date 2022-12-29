@@ -5,7 +5,7 @@ from unittest.mock import MagicMock
 from telegram.ext import BaseHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.models import FileData, TaskData
+from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.pdf_processor import AbstractPdfProcessor
 from tests.language import LanguageServiceTestMixin
@@ -13,6 +13,8 @@ from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
 class MockProcessor(AbstractPdfProcessor):
+    FILE_TASK_RESULT = FileTaskResult("path")
+
     @property
     def task_type(self) -> TaskType:
         return TaskType.decrypt_pdf
@@ -27,9 +29,9 @@ class MockProcessor(AbstractPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, _file_data: FileData, _message_text: str
-    ) -> AsyncGenerator[str, None]:
-        yield "process_result"
+        self, _file_data: FileData
+    ) -> AsyncGenerator[FileTaskResult, None]:
+        yield self.FILE_TASK_RESULT
 
 
 class TestAbstractPdfProcessor(

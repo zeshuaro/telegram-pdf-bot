@@ -15,7 +15,7 @@ class TestDecryptPdfProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    FILE_PATH = "file_path"
+
     WAIT_TEXT_INPUT = "wait_text_input"
 
     def setup_method(self) -> None:
@@ -69,10 +69,8 @@ class TestDecryptPdfProcessor(
             self.FILE_PATH
         )
 
-        async with self.sut.process_file_task(
-            self.TEXT_INPUT_DATA, self.TELEGRAM_TEXT
-        ) as actual:
-            assert actual == self.FILE_PATH
+        async with self.sut.process_file_task(self.TEXT_INPUT_DATA) as actual:
+            assert actual == self.FILE_TASK_RESULT
             self.pdf_service.decrypt_pdf.assert_called_once_with(
                 self.TEXT_INPUT_DATA.id, self.TEXT_INPUT_DATA.text
             )
@@ -80,5 +78,5 @@ class TestDecryptPdfProcessor(
     @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(TypeError):
-            async with self.sut.process_file_task(self.FILE_DATA, self.TELEGRAM_TEXT):
+            async with self.sut.process_file_task(self.FILE_DATA):
                 self.pdf_service.decrypt_pdf.assert_not_called()
