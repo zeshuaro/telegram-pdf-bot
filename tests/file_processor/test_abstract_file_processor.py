@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 from telegram import Update
 from telegram.error import BadRequest
-from telegram.ext import ContextTypes, ConversationHandler
+from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
@@ -41,8 +41,12 @@ class MockProcessor(AbstractFileProcessor):
         return self.TASK_TYPE
 
     @property
-    def should_process_back_option(self) -> bool:
-        return True
+    def task_data(self) -> TaskData:
+        return MagicMock(spec=TaskData)
+
+    @property
+    def handler(self) -> BaseHandler:
+        return MagicMock(spec=BaseHandler)
 
     @asynccontextmanager
     async def process_file_task(

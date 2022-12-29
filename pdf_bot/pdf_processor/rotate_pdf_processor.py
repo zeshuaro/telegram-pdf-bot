@@ -5,7 +5,6 @@ from typing import AsyncGenerator
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import (
-    BaseHandler,
     CallbackQueryHandler,
     CommandHandler,
     ContextTypes,
@@ -38,11 +37,11 @@ class RotatePdfProcessor(AbstractPdfProcessor):
         return TaskType.rotate_pdf
 
     @property
-    def task_data(self) -> TaskData | None:
+    def task_data(self) -> TaskData:
         return TaskData(_("Rotate"), RotatePdfData)
 
     @property
-    def handler(self) -> BaseHandler | None:
+    def handler(self) -> ConversationHandler:
         return ConversationHandler(
             entry_points=[CallbackQueryHandler(self.ask_degree, pattern=RotatePdfData)],
             states={
