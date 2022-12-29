@@ -52,9 +52,16 @@ class LanguageService:
         "🇪🇹 አማርኛ": "am_ET",
         "🇰🇬 Кыргызча": "ky_KG",
     }
+    LANGUAGE_SHORT_CODES = {x.split("_")[0]: x for x in LANGUAGE_CODES.values()}
 
     def __init__(self, language_repository: LanguageRepository) -> None:
         self.language_repository = language_repository
+
+    def is_valid_language_value(self, value: str) -> bool:
+        return value in self.LANGUAGE_CODES
+
+    def get_language_code_from_short_code(self, short_code: str) -> str | None:
+        return self.LANGUAGE_SHORT_CODES.get(short_code)
 
     async def send_language_options(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE

@@ -97,13 +97,15 @@ class Services(containers.DeclarativeContainer):
     cli = providers.Singleton(CLIService)
     io = providers.Singleton(IOService)
 
-    account = providers.Singleton(
-        AccountService, account_repository=repositories.account
-    )
     language = providers.Singleton(
         LanguageService, language_repository=repositories.language
     )
 
+    account = providers.Singleton(
+        AccountService,
+        account_repository=repositories.account,
+        language_service=language,
+    )
     analytics = providers.Singleton(
         AnalyticsService,
         analytics_repository=repositories.analytics,

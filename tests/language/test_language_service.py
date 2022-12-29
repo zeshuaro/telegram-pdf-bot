@@ -24,6 +24,22 @@ class TestLanguageService(TelegramTestMixin):
         self.gettext_patcher.stop()
         super().teardown_method()
 
+    @pytest.mark.parametrize(
+        "value,expected", [("🇪🇸 español", True), ("clearly_invalid", False)]
+    )
+    def test_is_valid_language_value(self, value: str, expected: bool) -> None:
+        actual = self.sut.is_valid_language_value(value)
+        assert actual == expected
+
+    @pytest.mark.parametrize(
+        "value,expected", [("es", "es_ES"), ("clearly_invalid", None)]
+    )
+    def test_iget_language_code_from_short_code(
+        self, value: str, expected: str | None
+    ) -> None:
+        actual = self.sut.get_language_code_from_short_code(value)
+        assert actual == expected
+
     @pytest.mark.asyncio
     async def test_send_language_options(self) -> None:
         await self.sut.send_language_options(
