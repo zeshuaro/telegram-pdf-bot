@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-28 12:08+0000\n"
-"PO-Revision-Date: 2022-12-28 12:08\n"
+"POT-Creation-Date: 2022-12-29 01:07+0000\n"
+"PO-Revision-Date: 2022-12-29 01:07\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -85,7 +85,7 @@ msgstr "අලංකාර කරන්න"
 msgid "To PDF"
 msgstr "PDF වෙත"
 
-#: pdf_bot/consts.py:52 pdf_bot/pdf_processor/rename_pdf_processor.py:39
+#: pdf_bot/consts.py:52 pdf_bot/pdf_processor/rename_pdf_processor.py:32
 msgid "Rename"
 msgstr "නම වෙනස් කරන්න"
 
@@ -496,17 +496,14 @@ msgstr ""
 msgid "To images"
 msgstr ""
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:86
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "ඔබගේ PDF ගොනුවේ නාමය වෙනස් කිරීමට ඔබ කැමති ගොනු නාමය මට එවන්න"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:103
-msgid "File names can't contain any of the following characters:"
-msgstr "ගොනු නාම වල පහත දැක්වෙන කිසිදු අකුරක් අඩංගු විය නොහැක:"
-
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:107
-msgid "Please try again"
-msgstr "කරුණාකර නැවත උත්සාහ කරන්න"
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:46
+msgid "File names can't contain any of the following characters, please try again:\n"
+"{invalid_chars}"
+msgstr ""
 
 #: pdf_bot/pdf_processor/rotate_pdf_processor.py:90
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -1632,5 +1629,11 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "This will set the width to 150 and height to 200"
+#~ msgstr ""
+
+#~ msgid "File names can't contain any of the following characters:"
+#~ msgstr ""
+
+#~ msgid "Please try again"
 #~ msgstr ""
 
