@@ -1,7 +1,7 @@
 import re
 from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import AsyncGenerator
+from typing import AsyncGenerator, Callable
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.models import FileData, TaskData
@@ -36,17 +36,16 @@ class RenamePdfProcessor(AbstractPdfTextInputProcessor):
         return False
 
     @property
-    def ask_text_input_text(self) -> str:  # pragma: no cover
-        return _("Send me the file name that you'll like to rename your PDF file into")
-
-    @property
     def invalid_text_input_error(self) -> str:  # pragma: no cover
         return _(
             "File names can't contain any of the following characters, please try"
-            " again:\n{invalid_chars}".format(
-                invalid_chars=self.INVALID_CHARACTERS,
-            )
+            " again:\n{invalid_chars}".format(invalid_chars=self.INVALID_CHARACTERS)
         )
+
+    def get_ask_text_input_text(  # pragma: no cover
+        self, _: Callable[[str], str]
+    ) -> str:
+        return _("Send me the file name that you'll like to rename your PDF file into")
 
     def get_cleaned_text_input(self, text: str) -> str | None:
         cleaned_text = re.sub(r"\.pdf$", "", text)

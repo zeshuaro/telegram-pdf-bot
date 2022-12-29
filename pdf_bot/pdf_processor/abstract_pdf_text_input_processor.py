@@ -1,5 +1,6 @@
 from abc import abstractmethod
 from dataclasses import dataclass
+from typing import Callable
 
 from telegram import Message, Update
 from telegram.constants import ParseMode
@@ -32,9 +33,8 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
     def entry_point_data_type(self) -> type[FileData]:
         pass
 
-    @property
     @abstractmethod
-    def ask_text_input_text(self) -> str:
+    def get_ask_text_input_text(self, _: Callable[[str], str]) -> str:
         pass
 
     @abstractmethod
@@ -78,7 +78,7 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
         _ = self.language_service.set_app_language(update, context)
         reply_markup = self.telegram_service.get_back_inline_markup(update, context)
         message = await query.edit_message_text(
-            _(self.ask_text_input_text),
+            self.get_ask_text_input_text(_),
             parse_mode=ParseMode.HTML,
             reply_markup=reply_markup,
         )

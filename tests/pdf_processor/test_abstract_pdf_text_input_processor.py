@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from typing import AsyncGenerator
+from typing import AsyncGenerator, Callable
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -32,8 +32,7 @@ class MockProcessor(AbstractPdfTextInputProcessor):
     def task_type(self) -> TaskType:
         return TaskType.decrypt_pdf
 
-    @property
-    def ask_text_input_text(self) -> str:
+    def get_ask_text_input_text(self, _: Callable[[str], str]) -> str:
         return "ask_text_input_text"
 
     @property
@@ -128,7 +127,7 @@ class TestAbstractPdfTextInputProcessor(
         assert actual == self.WAIT_TEXT_INPUT
         self.telegram_callback_query.answer.assert_called_once()
         self.telegram_callback_query.edit_message_text.assert_called_once_with(
-            self.sut.ask_text_input_text,
+            self.sut.get_ask_text_input_text(self.language_service.set_app_language()),
             parse_mode=ParseMode.HTML,
             reply_markup=self.BACK_INLINE_MARKUP,
         )
