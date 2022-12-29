@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 05:05+0000\n"
-"PO-Revision-Date: 2022-12-29 05:05\n"
+"POT-Creation-Date: 2022-12-29 05:29+0000\n"
+"PO-Revision-Date: 2022-12-29 05:29\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -75,12 +75,12 @@ msgstr "규모"
 msgid "Split"
 msgstr "분할"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "아름 답게"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "PDF로"
@@ -89,7 +89,7 @@ msgstr "PDF로"
 msgid "Rename"
 msgstr "이름을 바꿀"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
 msgid "Crop"
 msgstr "자르기"
 
@@ -121,7 +121,7 @@ msgstr "문자 메시지"
 msgid "Text File"
 msgstr "텍스트 파일"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
 msgid "Compress"
 msgstr "압축"
 
@@ -267,42 +267,6 @@ msgstr "PDF 파일 비교"
 msgid "There are no text differences between your PDF files"
 msgstr "PDF 파일 간에 텍스트 차이가 없습니다."
 
-#: pdf_bot/crop/crop_service.py:21
-msgid "By percentage"
-msgstr "백분율로"
-
-#: pdf_bot/crop/crop_service.py:22
-msgid "By margin size"
-msgstr "여백 크기 기준"
-
-#: pdf_bot/crop/crop_service.py:50
-msgid "Select the crop type that you'll like to perform"
-msgstr "수행하려는 자르기 유형 선택"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr "{number} 번호는 {min_percent} 와 {max_percent}사이에 있지 않으므로 다시 시도하십시오."
-
-#: pdf_bot/crop/crop_service.py:107
-msgid "The number {number} is invalid, please try again"
-msgstr "번호가 {number} 유효하지 않으므로 다시 시도하십시오."
-
-#: pdf_bot/crop/crop_service.py:127
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "{min_percent} {max_percent}사이에 번호를 보내주세요."
-
-#: pdf_bot/crop/crop_service.py:133
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "이는 PDF 파일의 콘텐츠와 페이지 간에 유지할 여백 공간의 백분율입니다."
-
-#: pdf_bot/crop/crop_service.py:144
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "여백 크기를 조정하려는 번호를 보내주십시오."
-
-#: pdf_bot/crop/crop_service.py:145
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "양수 로 마진 크기가 감소하고 음수로 증가합니다."
-
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
 msgstr "영어로 피드백 보내기"
@@ -315,11 +279,11 @@ msgstr "의견을 보내 주셔서 감사합니다."
 msgid "The feedback is not in English, try again"
 msgstr "피드백은 영어로되지 않습니다, 다시 시도"
 
-#: pdf_bot/file/file_handlers.py:90 pdf_bot/file/file_handlers.py:117
+#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
 msgid "Your file is too big for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리하지 않습니다."
 
-#: pdf_bot/file/file_handlers.py:91 pdf_bot/file/file_handlers.py:118
+#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
 
@@ -336,7 +300,7 @@ msgstr "파일 처리"
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
 
-#: pdf_bot/file_task/file_task_service.py:55
+#: pdf_bot/file_task/file_task_service.py:54
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr "아래에서 수행하려는 작업을 선택하거나 버튼에서 선택하십시오."
 
@@ -444,41 +408,67 @@ msgstr "문제가 발생했습니다. 다시 시도하십시오."
 msgid "Thank you for your support!"
 msgstr "당신의 지원에 감사드립니다!"
 
-#: pdf_bot/pdf/pdf_service.py:175
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is not encrypted"
 msgstr "PDF 파일이 암호화되지 않음"
 
-#: pdf_bot/pdf/pdf_service.py:180
+#: pdf_bot/pdf/pdf_service.py:177
 msgid "Incorrect password, please try again"
 msgstr "잘못된 암호, 다시 시도하십시오."
 
-#: pdf_bot/pdf/pdf_service.py:184
+#: pdf_bot/pdf/pdf_service.py:181
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "PDF 파일은 해독할 수 없는 방법으로 암호화됩니다."
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "PDF 파일에 이미지가 없습니다."
 
-#: pdf_bot/pdf/pdf_service.py:231
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "PDF 파일에 텍스트가 없습니다."
 
-#: pdf_bot/pdf/pdf_service.py:254
+#: pdf_bot/pdf/pdf_service.py:251
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "이 파일이 유효하지 않으므로 PDF 파일을 병합할 수 없습니다 {file_name}."
 
-#: pdf_bot/pdf/pdf_service.py:272
+#: pdf_bot/pdf/pdf_service.py:269
 msgid "Your PDF file already has a text layer"
 msgstr "PDF 파일에 이미 텍스트 레이어가 있습니다."
 
-#: pdf_bot/pdf/pdf_service.py:377
+#: pdf_bot/pdf/pdf_service.py:374
 msgid "Your PDF file is invalid"
 msgstr "PDF 파일이 잘못되었습니다."
 
-#: pdf_bot/pdf/pdf_service.py:380
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "PDF 파일이 암호화되었습니다."
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:16
+msgid "By percentage"
+msgstr "백분율로"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:17
+msgid "To margin size"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+msgid "Send me a number between 0 and 100\n\n"
+"This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+msgid "Send me a number that you'll like to adjust the margin size\n\n"
+"Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:59
+msgid "Select the crop type you'll like to perform"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:67
+msgid "The crop values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
@@ -1647,5 +1637,38 @@ msgstr "웹 페이지를 변환하지 못했습니다."
 #~ msgstr ""
 
 #~ msgid "The values {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By margin size"
+#~ msgstr ""
+
+#~ msgid "Select the crop type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number {number} is not between "
+#~ "{min_percent} and {max_percent}, please try"
+#~ " again"
+#~ msgstr ""
+
+#~ msgid "The number {number} is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me a number between {min_percent} and {max_percent}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is the percentage of margin "
+#~ "space to retain between the content "
+#~ "in your PDF file and the page"
+#~ msgstr ""
+
+#~ msgid "Send me a number that you'll like to adjust the margin size"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Positive numbers will decrease the "
+#~ "margin size and negative numbers will"
+#~ " increase it"
 #~ msgstr ""
 

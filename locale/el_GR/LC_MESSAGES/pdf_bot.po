@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 05:05+0000\n"
-"PO-Revision-Date: 2022-12-29 05:05\n"
+"POT-Creation-Date: 2022-12-29 05:29+0000\n"
+"PO-Revision-Date: 2022-12-29 05:29\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: Greek\n"
@@ -75,12 +75,12 @@ msgstr "Κλίμακα"
 msgid "Split"
 msgstr "Σπλιτ"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Ομορφύνει"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "Σε PDF"
@@ -89,7 +89,7 @@ msgstr "Σε PDF"
 msgid "Rename"
 msgstr "Μετονομάσετε"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
 msgid "Crop"
 msgstr "Καλλιέργεια"
 
@@ -121,7 +121,7 @@ msgstr "Μήνυμα κειμένου"
 msgid "Text File"
 msgstr "Αρχείο κειμένου"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
 msgid "Compress"
 msgstr "Συμπίεση"
 
@@ -267,42 +267,6 @@ msgstr "Σύγκριση των αρχείων PDF"
 msgid "There are no text differences between your PDF files"
 msgstr "Δεν υπάρχουν διαφορές κειμένου μεταξύ των αρχείων PDF"
 
-#: pdf_bot/crop/crop_service.py:21
-msgid "By percentage"
-msgstr "Κατά ποσοστό"
-
-#: pdf_bot/crop/crop_service.py:22
-msgid "By margin size"
-msgstr "Κατά μέγεθος περιθωρίου"
-
-#: pdf_bot/crop/crop_service.py:50
-msgid "Select the crop type that you'll like to perform"
-msgstr "Επιλέξτε τον τύπο περικοπής που θα θέλατε να εκτελέσετε"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr "Ο αριθμός {number} δεν είναι μεταξύ {min_percent} και {max_percent}, προσπαθήστε ξανά"
-
-#: pdf_bot/crop/crop_service.py:107
-msgid "The number {number} is invalid, please try again"
-msgstr "Ο αριθμός {number} δεν είναι έγκυρος, προσπαθήστε ξανά"
-
-#: pdf_bot/crop/crop_service.py:127
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "Στείλε μου έναν αριθμό μεταξύ {min_percent} και {max_percent}"
-
-#: pdf_bot/crop/crop_service.py:133
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Αυτό είναι το ποσοστό του χώρου περιθωρίου που πρέπει να διατηρήσετε μεταξύ του περιεχομένου στο αρχείο PDF και της σελίδας"
-
-#: pdf_bot/crop/crop_service.py:144
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "Στείλτε μου έναν αριθμό που θα θέλατε να προσαρμόσετε το μέγεθος του περιθωρίου"
-
-#: pdf_bot/crop/crop_service.py:145
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Οι θετικοί αριθμοί θα μειώσουν το μέγεθος του περιθωρίου και οι αρνητικοί αριθμοί θα το αυξήσουν"
-
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
 msgstr "Στείλτε μου τα σχόλιά σας στα Αγγλικά"
@@ -315,11 +279,11 @@ msgstr "Σας ευχαριστώ για τα σχόλιά σας, τα προώ
 msgid "The feedback is not in English, try again"
 msgstr "Τα σχόλια δεν είναι στα Αγγλικά, δοκιμάστε ξανά"
 
-#: pdf_bot/file/file_handlers.py:90 pdf_bot/file/file_handlers.py:117
+#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
 msgid "Your file is too big for me to download and process"
 msgstr "Το αρχείο σας είναι πολύ μεγάλο για να το κατεβάσω και να το επεξεργαστώ."
 
-#: pdf_bot/file/file_handlers.py:91 pdf_bot/file/file_handlers.py:118
+#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Σημειώστε ότι αυτός είναι ένας περιορισμός Bot τηλεγραφήματος και δεν μπορώ να κάνω τίποτα αν το Telegram αλλάξει αυτό το όριο"
 
@@ -336,7 +300,7 @@ msgstr "Επεξεργασία του αρχείου σας"
 msgid "Select the task that you'll like to perform"
 msgstr "Επιλέξτε την εργασία που θα θέλατε να εκτελέσετε"
 
-#: pdf_bot/file_task/file_task_service.py:55
+#: pdf_bot/file_task/file_task_service.py:54
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr "Επιλέξτε την εργασία που θέλετε να εκτελέσετε από κάτω ή επιλέξτε από τα κουμπιά"
 
@@ -444,41 +408,67 @@ msgstr "Παρουσιάστηκε κάποιο πρόβλημα, προσπαθ
 msgid "Thank you for your support!"
 msgstr "Σας ευχαριστούμε για την υποστήριξή σας!"
 
-#: pdf_bot/pdf/pdf_service.py:175
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is not encrypted"
 msgstr "Το αρχείο PDF δεν είναι κρυπτογραφημένο"
 
-#: pdf_bot/pdf/pdf_service.py:180
+#: pdf_bot/pdf/pdf_service.py:177
 msgid "Incorrect password, please try again"
 msgstr "Εσφαλμένος κωδικός πρόσβασης, προσπαθήστε ξανά"
 
-#: pdf_bot/pdf/pdf_service.py:184
+#: pdf_bot/pdf/pdf_service.py:181
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Το αρχείο PDF κρυπτογραφείται με μια μέθοδο που δεν μπορώ να αποκρυπτογραφήσω"
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "Δεν βρέθηκαν εικόνες στο αρχείο PDF"
 
-#: pdf_bot/pdf/pdf_service.py:231
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "Δεν βρέθηκε κείμενο στο αρχείο PDF"
 
-#: pdf_bot/pdf/pdf_service.py:254
+#: pdf_bot/pdf/pdf_service.py:251
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Δεν ήταν δυνατή η συγχώνευση των αρχείων PDF, καθώς αυτό το αρχείο δεν είναι έγκυρο: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:272
+#: pdf_bot/pdf/pdf_service.py:269
 msgid "Your PDF file already has a text layer"
 msgstr "Το αρχείο PDF έχει ήδη ένα επίπεδο κειμένου"
 
-#: pdf_bot/pdf/pdf_service.py:377
+#: pdf_bot/pdf/pdf_service.py:374
 msgid "Your PDF file is invalid"
 msgstr "Το αρχείο PDF δεν είναι έγκυρο"
 
-#: pdf_bot/pdf/pdf_service.py:380
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "Το αρχείο PDF είναι κρυπτογραφημένο"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:16
+msgid "By percentage"
+msgstr "Κατά ποσοστό"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:17
+msgid "To margin size"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+msgid "Send me a number between 0 and 100\n\n"
+"This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+msgid "Send me a number that you'll like to adjust the margin size\n\n"
+"Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:59
+msgid "Select the crop type you'll like to perform"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:67
+msgid "The crop values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
@@ -1647,5 +1637,38 @@ msgstr "Απέτυχε η μετατροπή της ιστοσελίδας σα�
 #~ msgstr ""
 
 #~ msgid "The values {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By margin size"
+#~ msgstr ""
+
+#~ msgid "Select the crop type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number {number} is not between "
+#~ "{min_percent} and {max_percent}, please try"
+#~ " again"
+#~ msgstr ""
+
+#~ msgid "The number {number} is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me a number between {min_percent} and {max_percent}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is the percentage of margin "
+#~ "space to retain between the content "
+#~ "in your PDF file and the page"
+#~ msgstr ""
+
+#~ msgid "Send me a number that you'll like to adjust the margin size"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Positive numbers will decrease the "
+#~ "margin size and negative numbers will"
+#~ " increase it"
 #~ msgstr ""
 

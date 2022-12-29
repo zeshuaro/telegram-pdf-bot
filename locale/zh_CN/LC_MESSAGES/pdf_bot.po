@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 05:05+0000\n"
-"PO-Revision-Date: 2022-12-29 05:05\n"
+"POT-Creation-Date: 2022-12-29 05:29+0000\n"
+"PO-Revision-Date: 2022-12-29 05:29\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -75,12 +75,12 @@ msgstr "缩放"
 msgid "Split"
 msgstr "分割"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "美化"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "转换到PDF档案"
@@ -89,7 +89,7 @@ msgstr "转换到PDF档案"
 msgid "Rename"
 msgstr "重新命名"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
 msgid "Crop"
 msgstr "裁剪"
 
@@ -121,7 +121,7 @@ msgstr "讯息"
 msgid "Text File"
 msgstr "文字档案"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
 msgid "Compress"
 msgstr "压缩"
 
@@ -267,42 +267,6 @@ msgstr "正在比较你的PDF档案"
 msgid "There are no text differences between your PDF files"
 msgstr "您的 PDF 文件之间没有文本差异"
 
-#: pdf_bot/crop/crop_service.py:21
-msgid "By percentage"
-msgstr "按百分比"
-
-#: pdf_bot/crop/crop_service.py:22
-msgid "By margin size"
-msgstr "按边距大小"
-
-#: pdf_bot/crop/crop_service.py:50
-msgid "Select the crop type that you'll like to perform"
-msgstr "选择你要怎样裁剪"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr "{number} 号不在 {min_percent} 和 {max_percent}之间，请重试"
-
-#: pdf_bot/crop/crop_service.py:107
-msgid "The number {number} is invalid, please try again"
-msgstr "号码 {number} 无效，请重试"
-
-#: pdf_bot/crop/crop_service.py:127
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "在 {min_percent} 和 {max_percent}之间给我发个号码"
-
-#: pdf_bot/crop/crop_service.py:133
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "这是在 PDF 文件和页面中的内容之间保留的边距空间的百分比"
-
-#: pdf_bot/crop/crop_service.py:144
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "给我发个数字，您想调整保证金大小"
-
-#: pdf_bot/crop/crop_service.py:145
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "正数将减少保证金大小，负数将增加"
-
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
 msgstr "用英语向我发送您的反馈"
@@ -315,11 +279,11 @@ msgstr "感谢您的反馈，我已将其转发给我的开发人员"
 msgid "The feedback is not in English, try again"
 msgstr "反馈不是英文，再试一次"
 
-#: pdf_bot/file/file_handlers.py:90 pdf_bot/file/file_handlers.py:117
+#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
 msgid "Your file is too big for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
-#: pdf_bot/file/file_handlers.py:91 pdf_bot/file/file_handlers.py:118
+#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
 
@@ -336,7 +300,7 @@ msgstr "处理您的文件"
 msgid "Select the task that you'll like to perform"
 msgstr "选择你想要做什么"
 
-#: pdf_bot/file_task/file_task_service.py:55
+#: pdf_bot/file_task/file_task_service.py:54
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr "从下方选择要执行的任务，或从按钮中进行选择"
 
@@ -444,41 +408,67 @@ msgstr "出错了，再试一次"
 msgid "Thank you for your support!"
 msgstr "感谢你的支持！"
 
-#: pdf_bot/pdf/pdf_service.py:175
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is not encrypted"
 msgstr "你的PDF档案并没有加密"
 
-#: pdf_bot/pdf/pdf_service.py:180
+#: pdf_bot/pdf/pdf_service.py:177
 msgid "Incorrect password, please try again"
 msgstr "密码不正确，请重试"
 
-#: pdf_bot/pdf/pdf_service.py:184
+#: pdf_bot/pdf/pdf_service.py:181
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "您的 PDF 文件使用一种无法解密的方法进行加密"
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "在 PDF 文件中找不到图像"
 
-#: pdf_bot/pdf/pdf_service.py:231
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "在 PDF 文件中找不到任何文本"
 
-#: pdf_bot/pdf/pdf_service.py:254
+#: pdf_bot/pdf/pdf_service.py:251
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "我不能合并您的 PDF 文件，因为此文件无效： {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:272
+#: pdf_bot/pdf/pdf_service.py:269
 msgid "Your PDF file already has a text layer"
 msgstr "你的PDF档案已经有一层文字"
 
-#: pdf_bot/pdf/pdf_service.py:377
+#: pdf_bot/pdf/pdf_service.py:374
 msgid "Your PDF file is invalid"
 msgstr "您的 PDF 文件无效"
 
-#: pdf_bot/pdf/pdf_service.py:380
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "您的 PDF 文件已加密"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:16
+msgid "By percentage"
+msgstr "按百分比"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:17
+msgid "To margin size"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+msgid "Send me a number between 0 and 100\n\n"
+"This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+msgid "Send me a number that you'll like to adjust the margin size\n\n"
+"Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:59
+msgid "Select the crop type you'll like to perform"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:67
+msgid "The crop values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
@@ -1647,5 +1637,38 @@ msgstr "无法转换您的网页"
 #~ msgstr ""
 
 #~ msgid "The values {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By margin size"
+#~ msgstr ""
+
+#~ msgid "Select the crop type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number {number} is not between "
+#~ "{min_percent} and {max_percent}, please try"
+#~ " again"
+#~ msgstr ""
+
+#~ msgid "The number {number} is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me a number between {min_percent} and {max_percent}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is the percentage of margin "
+#~ "space to retain between the content "
+#~ "in your PDF file and the page"
+#~ msgstr ""
+
+#~ msgid "Send me a number that you'll like to adjust the margin size"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Positive numbers will decrease the "
+#~ "margin size and negative numbers will"
+#~ " increase it"
 #~ msgstr ""
 

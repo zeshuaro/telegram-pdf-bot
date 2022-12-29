@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 05:05+0000\n"
-"PO-Revision-Date: 2022-12-29 05:05\n"
+"POT-Creation-Date: 2022-12-29 05:29+0000\n"
+"PO-Revision-Date: 2022-12-29 05:29\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -75,12 +75,12 @@ msgstr "परिमाण"
 msgid "Split"
 msgstr "विभाजिन"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "सुशोभित"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "पीडीएफ में"
@@ -89,7 +89,7 @@ msgstr "पीडीएफ में"
 msgid "Rename"
 msgstr "नाम बदलें"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
 msgid "Crop"
 msgstr "क्रॉप"
 
@@ -121,7 +121,7 @@ msgstr "टेक्स्ट मैसेज"
 msgid "Text File"
 msgstr "टेक्स्ट फाइल"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
 msgid "Compress"
 msgstr "संपीड़ित"
 
@@ -267,42 +267,6 @@ msgstr "अपनी पीडीएफ फाइलों की तुलन�
 msgid "There are no text differences between your PDF files"
 msgstr "आपकी पीडीएफ फ़ाइलों के बीच कोई पाठ अंतर नहीं है"
 
-#: pdf_bot/crop/crop_service.py:21
-msgid "By percentage"
-msgstr "प्रतिशत के आधार पर"
-
-#: pdf_bot/crop/crop_service.py:22
-msgid "By margin size"
-msgstr "मार्जिन आकार के अनुसार"
-
-#: pdf_bot/crop/crop_service.py:50
-msgid "Select the crop type that you'll like to perform"
-msgstr "उस क्रॉप टाइप का चयन करें जिसे आप करना चाहते हैं"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr "{number} संख्या {min_percent} और {max_percent}के बीच नहीं है, कृपया पुन: प्रयास करें"
-
-#: pdf_bot/crop/crop_service.py:107
-msgid "The number {number} is invalid, please try again"
-msgstr "वह संख्या {number} अमान्य है, कृपया पुन: प्रयास करें"
-
-#: pdf_bot/crop/crop_service.py:127
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "मुझे {min_percent} और {max_percent}के बीच एक नंबर भेजें"
-
-#: pdf_bot/crop/crop_service.py:133
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "यह आपकी पीडीएफ फ़ाइल और पृष्ठ में सामग्री के बीच बनाए रखने के लिए मार्जिन स्पेस का प्रतिशत है"
-
-#: pdf_bot/crop/crop_service.py:144
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "मुझे एक नंबर भेजें जिसे आप मार्जिन आकार को समायोजित करना चाहते हैं"
-
-#: pdf_bot/crop/crop_service.py:145
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "सकारात्मक संख्या मार्जिन आकार कम हो जाएगा और नकारात्मक संख्या इसे बढ़ा देंगे"
-
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
 msgstr "मुझे अंग्रेजी में अपनी प्रतिक्रिया भेजें"
@@ -315,11 +279,11 @@ msgstr "आपकी प्रतिक्रिया के लिए धन�
 msgid "The feedback is not in English, try again"
 msgstr "प्रतिक्रिया अंग्रेजी में नहीं है, फिर से प्रयास करें"
 
-#: pdf_bot/file/file_handlers.py:90 pdf_bot/file/file_handlers.py:117
+#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
 msgid "Your file is too big for me to download and process"
 msgstr "आपकी फ़ाइल डाउनलोड करने और प्रक्रिया करने के लिए मेरे लिए बहुत बड़ी है"
 
-#: pdf_bot/file/file_handlers.py:91 pdf_bot/file/file_handlers.py:118
+#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ध्यान दें कि यह एक टेलीग्राम बॉट सीमा है और मैं ऐसा कुछ नहीं कर सकता जब तक कि टेलीग्राम इस सीमा को नहीं बदलता"
 
@@ -336,7 +300,7 @@ msgstr "अपनी फ़ाइल संसाधित करना"
 msgid "Select the task that you'll like to perform"
 msgstr "उस कार्य का चयन करें जिसे आप करना चाहते हैं"
 
-#: pdf_bot/file_task/file_task_service.py:55
+#: pdf_bot/file_task/file_task_service.py:54
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr "उस कार्य का चयन करें जिसे आप नीचे से करना चाहते हैं या बटन से चयन करना चाहते हैं"
 
@@ -444,41 +408,67 @@ msgstr "कुछ गलत हो गया, फिर से प्रया�
 msgid "Thank you for your support!"
 msgstr "आपके समर्थन के लिए धन्यवाद!"
 
-#: pdf_bot/pdf/pdf_service.py:175
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is not encrypted"
 msgstr "आपकी पीडीएफ फाइल एन्क्रिप्टेड नहीं है"
 
-#: pdf_bot/pdf/pdf_service.py:180
+#: pdf_bot/pdf/pdf_service.py:177
 msgid "Incorrect password, please try again"
 msgstr "गलत पासवर्ड, कृपया पुन: प्रयास करें"
 
-#: pdf_bot/pdf/pdf_service.py:184
+#: pdf_bot/pdf/pdf_service.py:181
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "आपकी पीडीएफ फ़ाइल एक विधि के साथ एन्क्रिप्टेड है जिसे मैं डिक्रिप्ट नहीं कर सकता"
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "आपकी PDF फाइल में कोई चित्र नहीं मिला"
 
-#: pdf_bot/pdf/pdf_service.py:231
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "आपकी PDF फ़ाइल में कोई पाठ नहीं मिला"
 
-#: pdf_bot/pdf/pdf_service.py:254
+#: pdf_bot/pdf/pdf_service.py:251
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "मैं आपकी पीडीएफ फाइलों को मर्ज नहीं कर सका क्योंकि यह फ़ाइल अमान्य है: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:272
+#: pdf_bot/pdf/pdf_service.py:269
 msgid "Your PDF file already has a text layer"
 msgstr "आपकी पीडीएफ फ़ाइल में पहले से ही एक टेक्स्ट लेयर है"
 
-#: pdf_bot/pdf/pdf_service.py:377
+#: pdf_bot/pdf/pdf_service.py:374
 msgid "Your PDF file is invalid"
 msgstr "आपकी PDF फ़ाइल अमान्य है"
 
-#: pdf_bot/pdf/pdf_service.py:380
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "आपकी PDF फ़ाइल एन्क्रिप्टेड है"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:16
+msgid "By percentage"
+msgstr "प्रतिशत के आधार पर"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:17
+msgid "To margin size"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+msgid "Send me a number between 0 and 100\n\n"
+"This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+msgid "Send me a number that you'll like to adjust the margin size\n\n"
+"Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:59
+msgid "Select the crop type you'll like to perform"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:67
+msgid "The crop values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
@@ -1647,5 +1637,38 @@ msgstr "आपके वेब पेज को कनवर्ट करने 
 #~ msgstr ""
 
 #~ msgid "The values {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By margin size"
+#~ msgstr ""
+
+#~ msgid "Select the crop type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number {number} is not between "
+#~ "{min_percent} and {max_percent}, please try"
+#~ " again"
+#~ msgstr ""
+
+#~ msgid "The number {number} is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me a number between {min_percent} and {max_percent}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is the percentage of margin "
+#~ "space to retain between the content "
+#~ "in your PDF file and the page"
+#~ msgstr ""
+
+#~ msgid "Send me a number that you'll like to adjust the margin size"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Positive numbers will decrease the "
+#~ "margin size and negative numbers will"
+#~ " increase it"
 #~ msgstr ""
 

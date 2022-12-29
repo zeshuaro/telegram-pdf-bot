@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 05:05+0000\n"
-"PO-Revision-Date: 2022-12-29 05:05\n"
+"POT-Creation-Date: 2022-12-29 05:29+0000\n"
+"PO-Revision-Date: 2022-12-29 05:29\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -75,12 +75,12 @@ msgstr "Скали"
 msgid "Split"
 msgstr "Поделимо"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Улепшавање"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "У ПДФ"
@@ -89,7 +89,7 @@ msgstr "У ПДФ"
 msgid "Rename"
 msgstr "Преименујете"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
 msgid "Crop"
 msgstr "Изрезивање"
 
@@ -121,7 +121,7 @@ msgstr "Текстуална порука"
 msgid "Text File"
 msgstr "Текстуална датотека"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
 msgid "Compress"
 msgstr "Компримовање"
 
@@ -267,42 +267,6 @@ msgstr "Поређење ПДФ датотека"
 msgid "There are no text differences between your PDF files"
 msgstr "Не постоје текстуалне разлике између ВАШИХ ПДФ фајлова"
 
-#: pdf_bot/crop/crop_service.py:21
-msgid "By percentage"
-msgstr "По процентима"
-
-#: pdf_bot/crop/crop_service.py:22
-msgid "By margin size"
-msgstr "По величини маргине"
-
-#: pdf_bot/crop/crop_service.py:50
-msgid "Select the crop type that you'll like to perform"
-msgstr "Изаберите тип изрези који желите да извршите"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr "Број {number} између {min_percent} {max_percent}, покушајте поново"
-
-#: pdf_bot/crop/crop_service.py:107
-msgid "The number {number} is invalid, please try again"
-msgstr "Број {number} неважећи, покушајте поново"
-
-#: pdf_bot/crop/crop_service.py:127
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "Пошаљи ми број између {min_percent} и {max_percent}"
-
-#: pdf_bot/crop/crop_service.py:133
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Ово је проценат простора на маргинама који треба задржати између садржаја у ПДФ фајлу и странице"
-
-#: pdf_bot/crop/crop_service.py:144
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "Пошаљите ми број који желите да подесите величину маргине"
-
-#: pdf_bot/crop/crop_service.py:145
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Позитивни бројеви ће смањити величину маргине и негативни бројеви ће је повећати"
-
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
 msgstr "Пошаљи ми повратне информације на енглеском"
@@ -315,11 +279,11 @@ msgstr "Хвала вам на повратним информацијама, п
 msgid "The feedback is not in English, try again"
 msgstr "Повратне информације нису на енглеском, покушајте поново"
 
-#: pdf_bot/file/file_handlers.py:90 pdf_bot/file/file_handlers.py:117
+#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
 msgid "Your file is too big for me to download and process"
 msgstr "Твој фајл је превелик да га преузмем и обрадим"
 
-#: pdf_bot/file/file_handlers.py:91 pdf_bot/file/file_handlers.py:118
+#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
 
@@ -336,7 +300,7 @@ msgstr "Обрада датотеке"
 msgid "Select the task that you'll like to perform"
 msgstr "Изаберите задатак који ћете хтети да извршите"
 
-#: pdf_bot/file_task/file_task_service.py:55
+#: pdf_bot/file_task/file_task_service.py:54
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr "Изаберите задатак који ћете хтети да извршите одоздо или га изаберите са дугмади"
 
@@ -444,41 +408,67 @@ msgstr "Нешто је пошло наопако, покушај поново"
 msgid "Thank you for your support!"
 msgstr "Хвала вам на подршци!"
 
-#: pdf_bot/pdf/pdf_service.py:175
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is not encrypted"
 msgstr "Ваша ПДФ датотека није шифрована"
 
-#: pdf_bot/pdf/pdf_service.py:180
+#: pdf_bot/pdf/pdf_service.py:177
 msgid "Incorrect password, please try again"
 msgstr "Нетачна лозинка, покушајте поново"
 
-#: pdf_bot/pdf/pdf_service.py:184
+#: pdf_bot/pdf/pdf_service.py:181
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Ваш ПДФ фајл је шифрован методом који не могу да дешифрујем"
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "Нема пронађених слика у ПДФ фајлу"
 
-#: pdf_bot/pdf/pdf_service.py:231
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "Није пронађен текст у ПДФ фајлу"
 
-#: pdf_bot/pdf/pdf_service.py:254
+#: pdf_bot/pdf/pdf_service.py:251
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Нисам могао да објединим ваше ПДФ датотеке јер је ова датотека неважећа: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:272
+#: pdf_bot/pdf/pdf_service.py:269
 msgid "Your PDF file already has a text layer"
 msgstr "Ваш ПДФ фајл већ има слој текста"
 
-#: pdf_bot/pdf/pdf_service.py:377
+#: pdf_bot/pdf/pdf_service.py:374
 msgid "Your PDF file is invalid"
 msgstr "Ваша ПДФ датотека је неважећа"
 
-#: pdf_bot/pdf/pdf_service.py:380
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "Ваш ПДФ фајл је шифрован"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:16
+msgid "By percentage"
+msgstr "По процентима"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:17
+msgid "To margin size"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+msgid "Send me a number between 0 and 100\n\n"
+"This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+msgid "Send me a number that you'll like to adjust the margin size\n\n"
+"Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:59
+msgid "Select the crop type you'll like to perform"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:67
+msgid "The crop values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
@@ -1647,5 +1637,38 @@ msgstr "Конвертовање Wеб странице није успело"
 #~ msgstr ""
 
 #~ msgid "The values {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By margin size"
+#~ msgstr ""
+
+#~ msgid "Select the crop type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number {number} is not between "
+#~ "{min_percent} and {max_percent}, please try"
+#~ " again"
+#~ msgstr ""
+
+#~ msgid "The number {number} is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me a number between {min_percent} and {max_percent}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is the percentage of margin "
+#~ "space to retain between the content "
+#~ "in your PDF file and the page"
+#~ msgstr ""
+
+#~ msgid "Send me a number that you'll like to adjust the margin size"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Positive numbers will decrease the "
+#~ "margin size and negative numbers will"
+#~ " increase it"
 #~ msgstr ""
 

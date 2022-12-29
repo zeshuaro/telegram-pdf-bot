@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 05:05+0000\n"
-"PO-Revision-Date: 2022-12-29 05:05\n"
+"POT-Creation-Date: 2022-12-29 05:29+0000\n"
+"PO-Revision-Date: 2022-12-29 05:29\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -75,12 +75,12 @@ msgstr "பெரிதாக்கு"
 msgid "Split"
 msgstr "பிரி"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "அழகுபடுத்தல்"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "PDF க்கு"
@@ -89,7 +89,7 @@ msgstr "PDF க்கு"
 msgid "Rename"
 msgstr "பெயர் மாற்று"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
 msgid "Crop"
 msgstr "சாட்டைக்கோல்"
 
@@ -121,7 +121,7 @@ msgstr "உரைச் செய்தி"
 msgid "Text File"
 msgstr "உரை கோப்பு"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
 msgid "Compress"
 msgstr "நெருங்கி அழுத்து"
 
@@ -267,42 +267,6 @@ msgstr "உங்கள் PTM கோப்புகளை ஒப்பிடு
 msgid "There are no text differences between your PDF files"
 msgstr "உங்கள் PTM கோப்புகளுக்கு இடையே உரை வேறுபாடுகள் இல்லை"
 
-#: pdf_bot/crop/crop_service.py:21
-msgid "By percentage"
-msgstr "சதவீதம் வாரியாக"
-
-#: pdf_bot/crop/crop_service.py:22
-msgid "By margin size"
-msgstr "ஓர அளவு வாரியாக"
-
-#: pdf_bot/crop/crop_service.py:50
-msgid "Select the crop type that you'll like to perform"
-msgstr "நீங்கள் செய்ய விரும்பும் பயிர் வகையைத் தேர்ந்தெடுக்கவும்"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr "{number} எண் {min_percent} மற்றும் {max_percent}இடையே இல்லை, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
-
-#: pdf_bot/crop/crop_service.py:107
-msgid "The number {number} is invalid, please try again"
-msgstr "{number} எண் செல்லுபடியாகாது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
-
-#: pdf_bot/crop/crop_service.py:127
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "{min_percent} மற்றும் {max_percent}இடையே எனக்கு ஒரு எண்ணை அனுப்பவும்"
-
-#: pdf_bot/crop/crop_service.py:133
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "இது உங்கள் PPM கோப்பிலும் பக்கத்திலும் உள்ள உள்ளடக்கத்திற்கு இடையில் தக்கவைத்துக்கொள்ள மார்ஜின் இடத்தின் சதவீதம் ஆகும்"
-
-#: pdf_bot/crop/crop_service.py:144
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "விளிம்பு அளவை சரிசெய்ய விரும்பும் எண்ணை எனக்கு அனுப்பவும்"
-
-#: pdf_bot/crop/crop_service.py:145
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "நேர்மறை எண்கள் விளிம்பு அளவு குறையும் மற்றும் எதிர்மறை எண்கள் அதை அதிகரிக்கும்"
-
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
 msgstr "உங்கள் கருத்தை ஆங்கிலத்தில் எனக்கு அனுப்பவும்"
@@ -315,11 +279,11 @@ msgstr "உங்கள் கருத்துக்கு நன்றி, �
 msgid "The feedback is not in English, try again"
 msgstr "பின்னூட்டம் ஆங்கிலத்தில் இல்லை, மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/file/file_handlers.py:90 pdf_bot/file/file_handlers.py:117
+#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
 msgid "Your file is too big for me to download and process"
 msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
 
-#: pdf_bot/file/file_handlers.py:91 pdf_bot/file/file_handlers.py:118
+#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
 
@@ -336,7 +300,7 @@ msgstr "உங்கள் கோப்பை செயலாக்கம்"
 msgid "Select the task that you'll like to perform"
 msgstr "நீங்கள் செய்ய விரும்பும் பணியைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/file_task/file_task_service.py:55
+#: pdf_bot/file_task/file_task_service.py:54
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr "நீங்கள் கீழே இருந்து செய்ய விரும்பும் பணியைத் தேர்ந்தெடுக்கவும் அல்லது பொத்தான்களிலிருந்து தேர்ந்தெடுக்கவும்"
 
@@ -444,41 +408,67 @@ msgstr "ஏதோ தவறு நடந்தது, மீண்டும் �
 msgid "Thank you for your support!"
 msgstr "உங்கள் ஆதரவுக்கு நன்றி!"
 
-#: pdf_bot/pdf/pdf_service.py:175
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is not encrypted"
 msgstr "உங்கள் PPM கோப்பு குறியாக்கம் செய்யப்படவில்லை"
 
-#: pdf_bot/pdf/pdf_service.py:180
+#: pdf_bot/pdf/pdf_service.py:177
 msgid "Incorrect password, please try again"
 msgstr "தவறான கடவுச்சொல், தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/pdf/pdf_service.py:184
+#: pdf_bot/pdf/pdf_service.py:181
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "உங்கள் PPM கோப்பு குறியாக்கம் செய்யப்பட்டது, நான் மறைகுறிநீக்க முடியாது என்று ஒரு முறை"
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "உங்கள் PDF கோப்பில் படங்கள் எதுவும் காணப்படவில்லை"
 
-#: pdf_bot/pdf/pdf_service.py:231
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "உங்கள் PDF கோப்பில் எந்த உரையும் காணப்படவில்லை"
 
-#: pdf_bot/pdf/pdf_service.py:254
+#: pdf_bot/pdf/pdf_service.py:251
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "இந்தக் கோப்பு செல்லுபடியாகாது என்பதால் உங்கள் PPM கோப்புகளை என்னால் இணைக்க முடியவில்லை: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:272
+#: pdf_bot/pdf/pdf_service.py:269
 msgid "Your PDF file already has a text layer"
 msgstr "உங்கள் PPM கோப்பு ஏற்கனவே உரை அடுக்கு உள்ளது"
 
-#: pdf_bot/pdf/pdf_service.py:377
+#: pdf_bot/pdf/pdf_service.py:374
 msgid "Your PDF file is invalid"
 msgstr "உங்கள் PDF கோப்பு செல்லுபடியாகாது"
 
-#: pdf_bot/pdf/pdf_service.py:380
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "உங்கள் PDF கோப்பு குறியாக்கம் செய்யப்பட்டுள்ளது"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:16
+msgid "By percentage"
+msgstr "சதவீதம் வாரியாக"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:17
+msgid "To margin size"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+msgid "Send me a number between 0 and 100\n\n"
+"This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+msgid "Send me a number that you'll like to adjust the margin size\n\n"
+"Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:59
+msgid "Select the crop type you'll like to perform"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:67
+msgid "The crop values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
@@ -1647,5 +1637,38 @@ msgstr "உங்கள் வலைப்பக்கத்தை மாற்�
 #~ msgstr ""
 
 #~ msgid "The values {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By margin size"
+#~ msgstr ""
+
+#~ msgid "Select the crop type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number {number} is not between "
+#~ "{min_percent} and {max_percent}, please try"
+#~ " again"
+#~ msgstr ""
+
+#~ msgid "The number {number} is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me a number between {min_percent} and {max_percent}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is the percentage of margin "
+#~ "space to retain between the content "
+#~ "in your PDF file and the page"
+#~ msgstr ""
+
+#~ msgid "Send me a number that you'll like to adjust the margin size"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Positive numbers will decrease the "
+#~ "margin size and negative numbers will"
+#~ " increase it"
 #~ msgstr ""
 

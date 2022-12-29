@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 05:05+0000\n"
-"PO-Revision-Date: 2022-12-29 05:05\n"
+"POT-Creation-Date: 2022-12-29 05:29+0000\n"
+"PO-Revision-Date: 2022-12-29 05:29\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -75,12 +75,12 @@ msgstr "Quy mô"
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Làm đẹp"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "Sang PDF"
@@ -89,7 +89,7 @@ msgstr "Sang PDF"
 msgid "Rename"
 msgstr "Rename"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
 msgid "Crop"
 msgstr "Cây trồng"
 
@@ -121,7 +121,7 @@ msgstr "Tin nhắn Văn bản"
 msgid "Text File"
 msgstr "Tệp Văn bản"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
 msgid "Compress"
 msgstr "Nén"
 
@@ -267,42 +267,6 @@ msgstr "So sánh các tệp PDF của bạn"
 msgid "There are no text differences between your PDF files"
 msgstr "Không có sự khác biệt văn bản giữa các tệp PDF của bạn"
 
-#: pdf_bot/crop/crop_service.py:21
-msgid "By percentage"
-msgstr "Theo tỷ lệ phần trăm"
-
-#: pdf_bot/crop/crop_service.py:22
-msgid "By margin size"
-msgstr "Theo kích thước lề"
-
-#: pdf_bot/crop/crop_service.py:50
-msgid "Select the crop type that you'll like to perform"
-msgstr "Chọn loại xén bạn muốn thực hiện"
-
-#: pdf_bot/crop/crop_service.py:81
-msgid "The number {number} is not between {min_percent} and {max_percent}, please try again"
-msgstr "Số {number} không nằm trong khoảng từ {min_percent} đến {max_percent}, vui lòng thử lại"
-
-#: pdf_bot/crop/crop_service.py:107
-msgid "The number {number} is invalid, please try again"
-msgstr "Số {number} không hợp lệ, vui lòng thử lại"
-
-#: pdf_bot/crop/crop_service.py:127
-msgid "Send me a number between {min_percent} and {max_percent}"
-msgstr "Gửi cho tôi một số giữa {min_percent} và {max_percent}"
-
-#: pdf_bot/crop/crop_service.py:133
-msgid "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "Đây là tỷ lệ phần trăm không gian lề để giữ lại giữa nội dung trong tệp PDF của bạn và trang"
-
-#: pdf_bot/crop/crop_service.py:144
-msgid "Send me a number that you'll like to adjust the margin size"
-msgstr "Gửi cho tôi một số mà bạn sẽ muốn điều chỉnh kích thước lề"
-
-#: pdf_bot/crop/crop_service.py:145
-msgid "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "Những con số tích cực sẽ làm giảm kích thước ký quỹ và số âm sẽ làm tăng nó"
-
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
 msgstr "Gửi cho tôi phản hồi của bạn bằng tiếng Anh"
@@ -315,11 +279,11 @@ msgstr "Cảm ơn bạn đã phản hồi của bạn, tôi đã chuyển tiếp
 msgid "The feedback is not in English, try again"
 msgstr "Phản hồi không phải bằng tiếng Anh, hãy thử lại"
 
-#: pdf_bot/file/file_handlers.py:90 pdf_bot/file/file_handlers.py:117
+#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
 msgid "Your file is too big for me to download and process"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý"
 
-#: pdf_bot/file/file_handlers.py:91 pdf_bot/file/file_handlers.py:118
+#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
 
@@ -336,7 +300,7 @@ msgstr "Xử lý tệp của bạn"
 msgid "Select the task that you'll like to perform"
 msgstr "Chọn nhiệm vụ bạn muốn thực hiện"
 
-#: pdf_bot/file_task/file_task_service.py:55
+#: pdf_bot/file_task/file_task_service.py:54
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr "Chọn tác vụ mà bạn muốn thực hiện từ bên dưới hoặc chọn từ các nút"
 
@@ -444,41 +408,67 @@ msgstr "Đã xảy ra lỗi, hãy thử lại"
 msgid "Thank you for your support!"
 msgstr "Cảm ơn bạn đã hỗ trợ của bạn!"
 
-#: pdf_bot/pdf/pdf_service.py:175
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is not encrypted"
 msgstr "Tệp PDF của bạn không được mã hóa"
 
-#: pdf_bot/pdf/pdf_service.py:180
+#: pdf_bot/pdf/pdf_service.py:177
 msgid "Incorrect password, please try again"
 msgstr "Mật khẩu không chính xác, vui lòng thử lại"
 
-#: pdf_bot/pdf/pdf_service.py:184
+#: pdf_bot/pdf/pdf_service.py:181
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Tệp PDF của bạn được mã hóa bằng một phương pháp mà tôi không thể giải mã"
 
-#: pdf_bot/pdf/pdf_service.py:222
+#: pdf_bot/pdf/pdf_service.py:219
 msgid "No images found in your PDF file"
 msgstr "Không tìm thấy hình ảnh nào trong tệp PDF của bạn"
 
-#: pdf_bot/pdf/pdf_service.py:231
+#: pdf_bot/pdf/pdf_service.py:228
 msgid "No text found in your PDF file"
 msgstr "Không tìm thấy văn bản trong tệp PDF của bạn"
 
-#: pdf_bot/pdf/pdf_service.py:254
+#: pdf_bot/pdf/pdf_service.py:251
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Tôi không thể hợp nhất các tệp PDF của bạn vì tệp này không hợp lệ: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:272
+#: pdf_bot/pdf/pdf_service.py:269
 msgid "Your PDF file already has a text layer"
 msgstr "Tệp PDF của bạn đã có một lớp văn bản"
 
-#: pdf_bot/pdf/pdf_service.py:377
+#: pdf_bot/pdf/pdf_service.py:374
 msgid "Your PDF file is invalid"
 msgstr "Tệp PDF của bạn không hợp lệ"
 
-#: pdf_bot/pdf/pdf_service.py:380
+#: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "Tệp PDF của bạn được mã hóa"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:16
+msgid "By percentage"
+msgstr "Theo tỷ lệ phần trăm"
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:17
+msgid "To margin size"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+msgid "Send me a number between 0 and 100\n\n"
+"This is the percentage of margin space to retain between the content in your PDF file and the page"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+msgid "Send me a number that you'll like to adjust the margin size\n\n"
+"Positive numbers will decrease the margin size and negative numbers will increase it"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:59
+msgid "Select the crop type you'll like to perform"
+msgstr ""
+
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:67
+msgid "The crop values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
@@ -1647,5 +1637,38 @@ msgstr "Thất bại trong việc chuyển đổi trang web của bạn"
 #~ msgstr ""
 
 #~ msgid "The values {values} are invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By margin size"
+#~ msgstr ""
+
+#~ msgid "Select the crop type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The number {number} is not between "
+#~ "{min_percent} and {max_percent}, please try"
+#~ " again"
+#~ msgstr ""
+
+#~ msgid "The number {number} is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "Send me a number between {min_percent} and {max_percent}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This is the percentage of margin "
+#~ "space to retain between the content "
+#~ "in your PDF file and the page"
+#~ msgstr ""
+
+#~ msgid "Send me a number that you'll like to adjust the margin size"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Positive numbers will decrease the "
+#~ "margin size and negative numbers will"
+#~ " increase it"
 #~ msgstr ""
 
