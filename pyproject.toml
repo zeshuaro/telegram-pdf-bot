@@ -74,7 +74,11 @@ disable = [
 ]
 
 [tool.pylint.tests]
-disable = ["attribute-defined-outside-init", "too-many-public-methods"]
+disable = [
+    "attribute-defined-outside-init",
+    "too-many-public-methods",
+    "protected-access",
+]
 
 [tool.mypy]
 warn_unused_configs = true

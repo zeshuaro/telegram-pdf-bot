@@ -1,4 +1,8 @@
 from .abstract_pdf_processor import AbstractPdfProcessor
+from .abstract_pdf_text_input_processor import (
+    AbstractPdfTextInputProcessor,
+    TextInputData,
+)
 from .crypto import AbstractCryptoPdfProcessor, DecryptPdfProcessor, EncryptPdfProcessor
 from .extract_pdf_image_processor import ExtractPdfImageData, ExtractPdfImageProcessor
 from .extract_pdf_text_processor import ExtractPdfTextData, ExtractPdfTextProcessor
@@ -20,6 +24,8 @@ from .split_pdf_processor import SplitPdfData, SplitPdfProcessor
 
 __all__ = [
     "AbstractPdfProcessor",
+    "AbstractPdfTextInputProcessor",
+    "TextInputData",
     "AbstractCryptoPdfProcessor",
     "DecryptPdfProcessor",
     "EncryptPdfProcessor",
