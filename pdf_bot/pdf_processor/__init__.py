@@ -1,4 +1,10 @@
 from .abstract_pdf_processor import AbstractPdfProcessor
+from .abstract_pdf_select_and_text_processor import (
+    AbstractPdfSelectAndTextProcessor,
+    OptionAndInputData,
+    SelectOption,
+    SelectOptionData,
+)
 from .abstract_pdf_text_input_processor import (
     AbstractPdfTextInputProcessor,
     TextInputData,
@@ -15,16 +21,19 @@ from .preview_pdf_processor import PreviewPdfData, PreviewPdfProcessor
 from .rename_pdf_processor import RenamePdfData, RenamePdfProcessor
 from .rotate_pdf_processor import RotateDegreeData, RotatePdfData, RotatePdfProcessor
 from .scale_pdf_processor import (
+    ScaleOptionAndInputData,
     ScalePdfData,
     ScalePdfProcessor,
-    ScalePdfType,
-    ScaleTypeAndValueData,
-    ScaleTypeData,
+    ScaleType,
 )
 from .split_pdf_processor import SplitPdfData, SplitPdfProcessor
 
 __all__ = [
     "AbstractPdfProcessor",
+    "AbstractPdfSelectAndTextProcessor",
+    "OptionAndInputData",
+    "SelectOption",
+    "SelectOptionData",
     "AbstractPdfTextInputProcessor",
     "TextInputData",
     "DecryptPdfData",
@@ -49,11 +58,10 @@ __all__ = [
     "RotateDegreeData",
     "RotatePdfData",
     "RotatePdfProcessor",
+    "ScaleOptionAndInputData",
     "ScalePdfData",
     "ScalePdfProcessor",
-    "ScalePdfType",
-    "ScaleTypeAndValueData",
-    "ScaleTypeData",
+    "ScaleType",
     "SplitPdfData",
     "SplitPdfProcessor",
 ]
