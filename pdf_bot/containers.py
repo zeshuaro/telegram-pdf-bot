@@ -303,7 +303,6 @@ class Handlers(containers.DeclarativeContainer):
         file_service=services.file,
         crop_service=services.crop,
         decrypt_pdf_processor=processors.decrypt,
-        encrypt_pdf_processor=processors.encrypt,
         telegram_service=services.telegram,
         language_service=services.language,
         image_task_processor=processors.image_task,

@@ -9,15 +9,7 @@ from telegram.ext import (
     filters,
 )
 
-from pdf_bot.consts import (
-    CANCEL,
-    COMPRESS,
-    CROP,
-    DECRYPT,
-    ENCRYPT,
-    FILE_DATA,
-    TEXT_FILTER,
-)
+from pdf_bot.consts import CANCEL, COMPRESS, CROP, DECRYPT, FILE_DATA, TEXT_FILTER
 from pdf_bot.crop import CropService
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_processor import AbstractFileProcessor
@@ -25,11 +17,7 @@ from pdf_bot.file_task import FileTaskService
 from pdf_bot.image_processor import ImageTaskProcessor
 from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData
-from pdf_bot.pdf_processor import (
-    DecryptPdfProcessor,
-    EncryptPdfProcessor,
-    PdfTaskProcessor,
-)
+from pdf_bot.pdf_processor import DecryptPdfProcessor, PdfTaskProcessor
 from pdf_bot.telegram_internal import TelegramService
 
 
@@ -42,7 +30,6 @@ class FileHandlers:
         file_service: FileService,
         crop_service: CropService,
         decrypt_pdf_processor: DecryptPdfProcessor,
-        encrypt_pdf_processor: EncryptPdfProcessor,
         telegram_service: TelegramService,
         language_service: LanguageService,
         image_task_processor: ImageTaskProcessor,
@@ -57,7 +44,6 @@ class FileHandlers:
         self.language_service = language_service
 
         self.decrypt_pdf_processor = decrypt_pdf_processor
-        self.encrypt_pdf_processor = encrypt_pdf_processor
 
     def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
@@ -91,9 +77,6 @@ class FileHandlers:
                 ],
                 self.decrypt_pdf_processor.wait_password_state: [
                     MessageHandler(TEXT_FILTER, self.decrypt_pdf_processor.process_file)
-                ],
-                self.encrypt_pdf_processor.wait_password_state: [
-                    MessageHandler(TEXT_FILTER, self.encrypt_pdf_processor.process_file)
                 ],
             },
             fallbacks=[
@@ -159,8 +142,6 @@ class FileHandlers:
             return await self.crop_service.ask_crop_type(update, context)
         if text == _(DECRYPT):
             return await self.decrypt_pdf_processor.ask_password(update, context)
-        if text == _(ENCRYPT):
-            return await self.encrypt_pdf_processor.ask_password(update, context)
         if text == _(COMPRESS):
             return await self.file_service.compress_pdf(update, context)
         if text == _(CANCEL):
