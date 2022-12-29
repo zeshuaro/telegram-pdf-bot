@@ -46,7 +46,7 @@ class TextService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text == _(CANCEL):
@@ -76,7 +76,7 @@ class TextService:
     async def check_text(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int:
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
         await message.reply_chat_action(ChatAction.TYPING)
 
         _ = self.language_service.set_app_language(update, context)
@@ -102,7 +102,7 @@ class TextService:
         font_data: FontData | None = None,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             text = self.telegram_service.get_user_data(context, self.TEXT_KEY)
