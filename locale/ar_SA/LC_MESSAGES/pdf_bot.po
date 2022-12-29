@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 02:09+0000\n"
-"PO-Revision-Date: 2022-12-29 02:19\n"
+"POT-Creation-Date: 2022-12-29 03:40+0000\n"
+"PO-Revision-Date: 2022-12-29 03:40\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: Arabic\n"
@@ -81,7 +81,7 @@ msgid "Beautify"
 msgstr "تجميل"
 
 #: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
-#: pdf_bot/image_processor/image_to_pdf_processor.py:28
+#: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "الى PDF"
 
@@ -327,8 +327,8 @@ msgstr "لاحظ أن هذا هو تقييد تيليجرام بوت وليس ه
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "حجم الملف الذي تم تخفيضه بمقدار {percent}، من {old_size} إلى {new_size}"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:116
-#: pdf_bot/file_processor/abstract_file_processor.py:168
+#: pdf_bot/file_processor/abstract_file_processor.py:104
+#: pdf_bot/file_processor/abstract_file_processor.py:156
 msgid "Processing your file"
 msgstr "معالجة ملفك"
 
@@ -480,11 +480,11 @@ msgstr "ملف PDF غير صالح"
 msgid "Your PDF file is encrypted"
 msgstr "ملف PDF الخاص بك مشفر"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:47
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
 msgstr "أرسل كلمة السر لفك تشفير الملف"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:42
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:38
 msgid "Send me the password to encrypt your PDF file"
 msgstr "أرسل كلمة السر ل تشفير الملف"
 
@@ -504,17 +504,17 @@ msgstr "تدرج الرمادي"
 msgid "To images"
 msgstr "إلى الصور"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:42
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "لا يمكن أن تحتوي أسماء الملفات على أي من الأحرف التالية، يرجى المحاولة مرة أخرى:\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:48
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:44
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "ارسل لي اسمالكي اغير ملفك له"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:90
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:86
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "حدد الدرجة التي تريد تدوير الملف بهاحسب حركة عقارب الساعة"
 
@@ -543,83 +543,83 @@ msgstr "أرسل لي العرض والارتفاع\n\n"
 msgid "By scaling factor"
 msgstr "بواسطة عامل التحجيم"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:140
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:136
 msgid "Select the scale type that you'll like to perform"
 msgstr "حدد نوع المقياس الذي تريد تنفيذه"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:178
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:174
 msgid "The values {values} are invalid, please try again"
 msgstr "القيم {values} غير صالحة، يرجى المحاولة مرة أخرى"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:39
+#: pdf_bot/pdf_processor/split_pdf_processor.py:35
 msgid "The split range is invalid, please try again"
 msgstr "النطاق المقسم غير صالح ، يرجى المحاولة مرة أخرى"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "أرسل لي مجموعة من الصفحات التي ستحب الاحتفاظ بها"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "General usage"
 msgstr "الاستخدام العام"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}      all pages"
 msgstr "{range}      جميع الصفحات"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}      page 8 only"
 msgstr "{range}      الصفحة 8 فقط"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}    first three pages"
 msgstr "{range}    الصفحات الثلاث الأولى"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:68
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}     from page 8 onward"
 msgstr "{range}     من الصفحة 8 فصاعدا"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}     last page only"
 msgstr "{range}     الصفحة الأخيرة فقط"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}    all pages except the last page"
 msgstr "{range}    جميع الصفحات باستثناء الصفحة الأخيرة"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range}     second last page only"
 msgstr "{range}     الصفحة الأخيرة الثانية فقط"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}    last two pages"
 msgstr "{range}    آخر صفحتين"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range}  third and second last pages"
 msgstr "{range}  الصفحتين الثالثة والثانية الأخيرة"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:78
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "Advanced usage"
 msgstr "الاستخدام المتقدم"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    صفحات {pages} وحتى النهاية"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:82
+#: pdf_bot/pdf_processor/split_pdf_processor.py:78
 msgid "{range} pages {pages}"
 msgstr "صفحات {range} {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+#: pdf_bot/pdf_processor/split_pdf_processor.py:81
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   جميع الصفحات بترتيب معكوس"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:88
+#: pdf_bot/pdf_processor/split_pdf_processor.py:84
 msgid "{range} pages {pages} except {page}"
 msgstr "{pages} الصفحات {range} باستثناء {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:91
+#: pdf_bot/pdf_processor/split_pdf_processor.py:87
 msgid "{range}  pages {pages}"
 msgstr "صفحات {range} {pages}"
 

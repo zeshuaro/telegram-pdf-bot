@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 02:09+0000\n"
-"PO-Revision-Date: 2022-12-29 02:19\n"
+"POT-Creation-Date: 2022-12-29 03:40+0000\n"
+"PO-Revision-Date: 2022-12-29 03:40\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -81,7 +81,7 @@ msgid "Beautify"
 msgstr "அழகுபடுத்தல்"
 
 #: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
-#: pdf_bot/image_processor/image_to_pdf_processor.py:28
+#: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "PDF க்கு"
 
@@ -327,8 +327,8 @@ msgstr "இது ஒரு தந்தி பாட் வரம்பு ம�
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "கோப்பு அளவு {percent}மூலம் குறைக்கப்பட்டது, {old_size} இருந்து {new_size}"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:116
-#: pdf_bot/file_processor/abstract_file_processor.py:168
+#: pdf_bot/file_processor/abstract_file_processor.py:104
+#: pdf_bot/file_processor/abstract_file_processor.py:156
 msgid "Processing your file"
 msgstr "உங்கள் கோப்பை செயலாக்கம்"
 
@@ -480,11 +480,11 @@ msgstr "உங்கள் PDF கோப்பு செல்லுபடிய
 msgid "Your PDF file is encrypted"
 msgstr "உங்கள் PDF கோப்பு குறியாக்கம் செய்யப்பட்டுள்ளது"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:47
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
 msgstr "உங்கள் PPM கோப்பை மறைகுறிநீக்க கடவுச்சொல்லை எனக்கு அனுப்பவும்"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:42
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:38
 msgid "Send me the password to encrypt your PDF file"
 msgstr "உங்கள் PPM கோப்பை குறியாக்க கடவுச்சொல்லை எனக்கு அனுப்பவும்"
 
@@ -504,17 +504,17 @@ msgstr "கிரேஸ்கேல்"
 msgid "To images"
 msgstr "படங்களுக்கு"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:42
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "கோப்பு பெயர்களில் பின்வரும் எழுத்துக்குறிகள் எதுவும் இல்லை, தயவுசெய்து மீண்டும் முயற்சிக்கவும்:\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:48
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:44
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "உங்கள் PTM கோப்பை மறுபெயரிட விரும்பும் கோப்பு பெயரை எனக்கு அனுப்பவும்"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:90
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:86
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "உங்கள் PP1 கோப்பை கடிகாரதிசையில் சுழற்ற விரும்பும் டிகிரியைத் தேர்ந்தெடுக்கவும்"
 
@@ -543,83 +543,83 @@ msgstr "அகலம் மற்றும் உயரத்தை எனக்
 msgid "By scaling factor"
 msgstr "அளவிடுதல் காரணி மூலம்"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:140
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:136
 msgid "Select the scale type that you'll like to perform"
 msgstr "நீங்கள் செய்ய விரும்பும் அளவு வகையைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:178
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:174
 msgid "The values {values} are invalid, please try again"
 msgstr "{values} மதிப்புகள் செல்லாதவை, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:39
+#: pdf_bot/pdf_processor/split_pdf_processor.py:35
 msgid "The split range is invalid, please try again"
 msgstr "பிளவு வரம்பு தவறானது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "நீங்கள் வைத்திருக்க விரும்பும் பக்கங்களின் வரம்பை எனக்கு அனுப்பவும்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "General usage"
 msgstr "பொதுவான பயன்பாடு"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}      all pages"
 msgstr "{range}      அனைத்து பக்கங்களிலும்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}      page 8 only"
 msgstr "{range}      பக்கம் 8 மட்டும்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}    first three pages"
 msgstr "{range}    முதல் மூன்று பக்கங்கள்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:68
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}     from page 8 onward"
 msgstr "{range}     பக்கம் 8 முதல்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}     last page only"
 msgstr "{range}     கடைசி பக்கம் மட்டும்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}    all pages except the last page"
 msgstr "கடைசி பக்கத்தைத் தவிர மற்ற அனைத்து பக்கங்களையும் {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range}     second last page only"
 msgstr "{range}     இரண்டாவது கடைசி பக்கம் மட்டும்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}    last two pages"
 msgstr "கடைசி இரண்டு பக்கங்களை {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range}  third and second last pages"
 msgstr "{range}  மூன்றாவது மற்றும் இரண்டாவது கடைசி பக்கங்கள்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:78
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "Advanced usage"
 msgstr "மேம்பட்ட பயன்பாடு"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:79
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    பக்கங்கள் {pages} மற்றும் இறுதி வரை"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:82
+#: pdf_bot/pdf_processor/split_pdf_processor.py:78
 msgid "{range} pages {pages}"
 msgstr "{range} பக்கங்கள் {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:85
+#: pdf_bot/pdf_processor/split_pdf_processor.py:81
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   அனைத்து பக்கங்களையும் தலைகீழ் வரிசையில்"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:88
+#: pdf_bot/pdf_processor/split_pdf_processor.py:84
 msgid "{range} pages {pages} except {page}"
 msgstr "{page}தவிர {range} பக்கங்கள் {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:91
+#: pdf_bot/pdf_processor/split_pdf_processor.py:87
 msgid "{range}  pages {pages}"
 msgstr "{range}  பக்கங்கள் {pages}"
 
