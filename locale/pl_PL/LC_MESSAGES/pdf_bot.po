@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 03:40+0000\n"
-"PO-Revision-Date: 2022-12-29 03:40\n"
+"POT-Creation-Date: 2022-12-29 03:53+0000\n"
+"PO-Revision-Date: 2022-12-29 03:54\n"
 "Last-Translator: \n"
 "Language: pl\n"
 "Language-Team: Polish\n"
@@ -63,11 +63,11 @@ msgstr "Wyodrębnij obrazy"
 msgid "To Images"
 msgstr "Do obrazów"
 
-#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:42
+#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:41
 msgid "Rotate"
 msgstr "Obracać"
 
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:75
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:74
 msgid "Scale"
 msgstr "Skali"
 
@@ -327,8 +327,8 @@ msgstr "Zauważ, że jest to ograniczenie Bota Telegrama i nic nie mogę zrobić
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Rozmiar pliku zmniejszony o {percent}, z {old_size} do {new_size}"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:104
-#: pdf_bot/file_processor/abstract_file_processor.py:156
+#: pdf_bot/file_processor/abstract_file_processor.py:106
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "Przetwarzanie pliku"
 
@@ -514,40 +514,40 @@ msgstr "Nazwy plików nie mogą zawierać żadnego z następujących znaków, sp
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Wyślij mi nazwę pliku, którą chcesz zmienić nazwę pliku PDF na"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:86
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:85
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Wybierz stopnie, które chcesz obrócić plik PDF zgodnie z ruchem wskazówek zegara"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:28
 msgid "By factor"
 msgstr "Według współczynnika"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:64
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
 msgid "To dimension"
 msgstr "Do wymiaru"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:36
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:35
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "Wyślij mi współczynniki skalowania dla osi poziomej i pionowej\n\n"
 "Przykład: 2 0,5 - podwoi oś poziomą i zmniejszy oś pionową o połowę"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:42
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:41
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "Wyślij mi szerokość i wysokość\n\n"
 "Przykład: 150 200 - spowoduje to ustawienie szerokości na 150 i wysokości na 200"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:62
 msgid "By scaling factor"
 msgstr "Według współczynnika skalowania"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:136
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:135
 msgid "Select the scale type that you'll like to perform"
 msgstr "Wybierz typ skali, który chcesz wykonać"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:174
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:173
 msgid "The values {values} are invalid, please try again"
 msgstr "Wartości {values} są nieprawidłowe, spróbuj ponownie"
 

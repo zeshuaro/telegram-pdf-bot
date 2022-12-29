@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 03:40+0000\n"
-"PO-Revision-Date: 2022-12-29 03:40\n"
+"POT-Creation-Date: 2022-12-29 03:53+0000\n"
+"PO-Revision-Date: 2022-12-29 03:54\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -63,11 +63,11 @@ msgstr "提取圖像"
 msgid "To Images"
 msgstr "轉至圖像"
 
-#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:42
+#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:41
 msgid "Rotate"
 msgstr "旋轉"
 
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:75
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:74
 msgid "Scale"
 msgstr "縮放"
 
@@ -327,8 +327,8 @@ msgstr "請注意，這是一個電報機器人的限制，我什麼也做不了
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "檔大小減少 {percent}，從 {old_size} 減少到 {new_size}"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:104
-#: pdf_bot/file_processor/abstract_file_processor.py:156
+#: pdf_bot/file_processor/abstract_file_processor.py:106
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "處理您的檔案"
 
@@ -514,40 +514,40 @@ msgstr "檔案名不能包含以下任何字元，請重試：\n"
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "向我發送你想要用來命名的PDF檔案名稱"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:86
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:85
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "選擇你想要順時針旋轉你PDF檔案的度數"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:28
 msgid "By factor"
 msgstr "按因素"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:64
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
 msgid "To dimension"
 msgstr "到尺寸"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:36
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:35
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "將水平軸和垂直軸的比例因數發送給我\n\n"
 "示例：2 0.5 - 這將使水平軸加倍，垂直軸減半"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:42
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:41
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "將寬度和高度發送給我\n\n"
 "示例：150 200 - 這會將寬度設置為150，將高度設置為200"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:62
 msgid "By scaling factor"
 msgstr "按比例因數"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:136
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:135
 msgid "Select the scale type that you'll like to perform"
 msgstr "選擇你要怎樣縮放"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:174
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:173
 msgid "The values {values} are invalid, please try again"
 msgstr "{values} 的值無效，請重試"
 

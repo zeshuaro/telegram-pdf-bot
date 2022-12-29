@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 03:40+0000\n"
-"PO-Revision-Date: 2022-12-29 03:40\n"
+"POT-Creation-Date: 2022-12-29 03:53+0000\n"
+"PO-Revision-Date: 2022-12-29 03:54\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -63,11 +63,11 @@ msgstr "Pura kuvat"
 msgid "To Images"
 msgstr "Kuviin"
 
-#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:42
+#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:41
 msgid "Rotate"
 msgstr "Kiertää"
 
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:75
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:74
 msgid "Scale"
 msgstr "Mittakaavassa"
 
@@ -327,8 +327,8 @@ msgstr "Huomaa, että tämä on Telegram Bot -rajoitus, enkä voi tehdä mitää
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Tiedoston kokoa pienennetty {percent}, {old_size} {new_size}"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:104
-#: pdf_bot/file_processor/abstract_file_processor.py:156
+#: pdf_bot/file_processor/abstract_file_processor.py:106
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "Tiedoston käsittely"
 
@@ -514,40 +514,40 @@ msgstr "Tiedostonimissä ei saa olla mitään seuraavista merkeistä, yritä uud
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Lähetä tiedostonimi, jonka haluat nimetä PDF-tiedostoksi"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:86
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:85
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Valitse asteet, joita haluat kiertää PDF-tiedostoa myötäpäivään"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:28
 msgid "By factor"
 msgstr "Tekijän mukaan"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:64
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
 msgid "To dimension"
 msgstr "Dimensioon"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:36
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:35
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "Lähetä minulle vaaka- ja pystyakselien skaalauskertoimet\n\n"
 "Esimerkki: 2 0,5 - tämä kaksinkertaistaa vaaka-akselin ja puolittaa pystyakselin"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:42
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:41
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "Lähetä minulle leveys ja korkeus\n\n"
 "Esimerkki: 150 200 - tämä asettaa leveydeksi 150 ja korkeudeksi 200"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:62
 msgid "By scaling factor"
 msgstr "Skaalaamalla kerrointa"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:136
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:135
 msgid "Select the scale type that you'll like to perform"
 msgstr "Valitse asteikkotyyppi, jonka haluat suorittaa"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:174
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:173
 msgid "The values {values} are invalid, please try again"
 msgstr "Arvot {values} ovat virheellisiä, yritä uudelleen"
 

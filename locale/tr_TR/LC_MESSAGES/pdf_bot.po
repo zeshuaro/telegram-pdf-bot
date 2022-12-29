@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 03:40+0000\n"
-"PO-Revision-Date: 2022-12-29 03:40\n"
+"POT-Creation-Date: 2022-12-29 03:53+0000\n"
+"PO-Revision-Date: 2022-12-29 03:54\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -63,11 +63,11 @@ msgstr "Resimleri Ayıkla"
 msgid "To Images"
 msgstr "Resimlere"
 
-#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:42
+#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:41
 msgid "Rotate"
 msgstr "Döndür"
 
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:75
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:74
 msgid "Scale"
 msgstr "Ölçekleme"
 
@@ -327,8 +327,8 @@ msgstr "Bunun bir Telegram Bot sınırlaması olduğunu ve Telegram bu sınırı
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Dosya boyutu {percent} azaltıldı, {old_size} 'den {new_size}"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:104
-#: pdf_bot/file_processor/abstract_file_processor.py:156
+#: pdf_bot/file_processor/abstract_file_processor.py:106
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "Dosyanızı işleme"
 
@@ -514,40 +514,40 @@ msgstr "Dosya adları aşağıdaki karakterlerden hiçbirini içeremez, lütfen 
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "PDF dosyanızı yeniden adlandırmak istediğiniz dosya adını bana gönderin"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:86
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:85
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Select the degrees that you'll like to rotate your PDF file in clockwise"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:28
 msgid "By factor"
 msgstr "Faktöre göre"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:64
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
 msgid "To dimension"
 msgstr "Boyuta"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:36
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:35
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "Bana yatay ve dikey eksenler için ölçekleme faktörlerini gönderin\n\n"
 "Örnek: 2 0.5 - bu yatay ekseni iki katına çıkaracak ve dikey ekseni yarıya indirecektir"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:42
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:41
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "Bana genişlik ve yüksekliği gönder\n\n"
 "Örnek: 150 200 - bu, genişliği 150'ye ve yüksekliği 200'e ayarlayacaktır."
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:62
 msgid "By scaling factor"
 msgstr "Ölçekleme faktörüne göre"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:136
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:135
 msgid "Select the scale type that you'll like to perform"
 msgstr "Uygulamak istediğiniz ebatlandırma şeklini seçin"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:174
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:173
 msgid "The values {values} are invalid, please try again"
 msgstr "{values} değerler geçersiz, lütfen tekrar deneyin"
 

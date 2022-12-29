@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 03:40+0000\n"
-"PO-Revision-Date: 2022-12-29 03:40\n"
+"POT-Creation-Date: 2022-12-29 03:53+0000\n"
+"PO-Revision-Date: 2022-12-29 03:54\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -63,11 +63,11 @@ msgstr "छवियाँ निकालें"
 msgid "To Images"
 msgstr "छवियों के लिए"
 
-#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:42
+#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:41
 msgid "Rotate"
 msgstr "घुमाएँ"
 
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:75
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:74
 msgid "Scale"
 msgstr "परिमाण"
 
@@ -327,8 +327,8 @@ msgstr "ध्यान दें कि यह एक टेलीग्रा�
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "फाइल का आकार {percent}से घटाकर {old_size} से {new_size}"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:104
-#: pdf_bot/file_processor/abstract_file_processor.py:156
+#: pdf_bot/file_processor/abstract_file_processor.py:106
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "अपनी फ़ाइल संसाधित करना"
 
@@ -514,40 +514,40 @@ msgstr "फ़ाइल नामों में निम्न वर्ण�
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "मुझे फ़ाइल का नाम भेजें जिसे आप अपनी पीडीएफ फ़ाइल का नाम बदलना चाहते हैं"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:86
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:85
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "उन डिग्रियों का चयन करें जिन्हें आप अपनी पीडीएफ फ़ाइल को दक्षिणावर्त में घुमाना चाहते हैं"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:28
 msgid "By factor"
 msgstr "कारक के आधार पर"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:64
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
 msgid "To dimension"
 msgstr "आयाम के लिए"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:36
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:35
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "मुझे क्षैतिज और ऊर्ध्वाधर अक्षों के लिए स्केलिंग कारक भेजें\n\n"
 "उदाहरण: 2 0.5 - यह क्षैतिज अक्ष को दोगुना कर देगा और ऊर्ध्वाधर अक्ष को आधा कर देगा"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:42
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:41
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "मुझे चौड़ाई और ऊंचाई भेजें उदाहरण\n\n"
 ": 150 200 - यह चौड़ाई को 150 और ऊंचाई को 200 पर सेट करेगा"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:62
 msgid "By scaling factor"
 msgstr "स्केलिंग गुणक द्वारा"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:136
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:135
 msgid "Select the scale type that you'll like to perform"
 msgstr "उस पैमाने के प्रकार का चयन करें जिसे आप करना चाहते हैं"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:174
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:173
 msgid "The values {values} are invalid, please try again"
 msgstr "मान {values} अमान्य हैं, कृपया पुन: प्रयास करें"
 
