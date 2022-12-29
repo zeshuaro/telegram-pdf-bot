@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 07:24+0000\n"
-"PO-Revision-Date: 2022-12-29 07:25\n"
+"POT-Creation-Date: 2022-12-29 07:50+0000\n"
+"PO-Revision-Date: 2022-12-29 07:50\n"
 "Last-Translator: \n"
 "Language: ca\n"
 "Language-Team: Catalan\n"
@@ -23,129 +23,17 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/consts.py:37
+#: pdf_bot/consts.py:12
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: pdf_bot/consts.py:38
+#: pdf_bot/consts.py:13
 msgid "Done"
 msgstr "Fet"
 
-#: pdf_bot/consts.py:39 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:14 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "Enrera"
-
-#: pdf_bot/consts.py:40
-msgid "By Percentage"
-msgstr "Tant per cent"
-
-#: pdf_bot/consts.py:41
-msgid "By Margin Size"
-msgstr "Per tamany de marge"
-
-#: pdf_bot/consts.py:42 pdf_bot/pdf_processor/preview_pdf_processor.py:24
-msgid "Preview"
-msgstr "Previsualitzar"
-
-#: pdf_bot/consts.py:43 pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
-msgid "Decrypt"
-msgstr "Desxifrar"
-
-#: pdf_bot/consts.py:44 pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
-msgid "Encrypt"
-msgstr "Encriptar"
-
-#: pdf_bot/consts.py:45
-msgid "Extract Images"
-msgstr "Extreu imatges"
-
-#: pdf_bot/consts.py:46
-msgid "To Images"
-msgstr "A les imatges"
-
-#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:41
-msgid "Rotate"
-msgstr "Girar"
-
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:55
-msgid "Scale"
-msgstr "Escalar"
-
-#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:31
-msgid "Split"
-msgstr "Divideix"
-
-#: pdf_bot/consts.py:50 pdf_bot/image_processor/beautify_image_processor.py:24
-msgid "Beautify"
-msgstr "Millorar"
-
-#: pdf_bot/consts.py:51 pdf_bot/image_processor/image_to_pdf_processor.py:24
-msgid "To PDF"
-msgstr "A un PDF"
-
-#: pdf_bot/consts.py:52 pdf_bot/pdf_processor/rename_pdf_processor.py:32
-msgid "Rename"
-msgstr "Renombrar"
-
-#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
-msgid "Crop"
-msgstr "Retallar"
-
-#: pdf_bot/consts.py:54
-msgid "Compressed"
-msgstr "Comprimir"
-
-#: pdf_bot/consts.py:55
-msgid "Images"
-msgstr "Imatges"
-
-#: pdf_bot/consts.py:56
-msgid "Remove last file"
-msgstr "Suprimeix l'últim fitxer"
-
-#: pdf_bot/consts.py:57
-msgid "To Dimensions"
-msgstr "Mides"
-
-#: pdf_bot/consts.py:58
-msgid "Extract Text"
-msgstr "Extreure text"
-
-#: pdf_bot/consts.py:59
-msgid "Text Message"
-msgstr "Missatge de text"
-
-#: pdf_bot/consts.py:60
-msgid "Text File"
-msgstr "Arxiu de text"
-
-#: pdf_bot/consts.py:62 pdf_bot/pdf_processor/compress_pdf_processor.py:24
-msgid "Compress"
-msgstr "Comprimir"
-
-#: pdf_bot/consts.py:63
-msgid "Black & White"
-msgstr "Blanc i negre"
-
-#: pdf_bot/consts.py:79 pdf_bot/payment/payment_service.py:30
-msgid "Say Thanks"
-msgstr "Digues gràcies"
-
-#: pdf_bot/consts.py:80 pdf_bot/payment/payment_service.py:31
-msgid "Coffee"
-msgstr "Cafè"
-
-#: pdf_bot/consts.py:81 pdf_bot/payment/payment_service.py:32
-msgid "Beer"
-msgstr "Cervesa"
-
-#: pdf_bot/consts.py:82 pdf_bot/payment/payment_service.py:33
-msgid "Meal"
-msgstr "Àpat"
-
-#: pdf_bot/consts.py:83 pdf_bot/payment/payment_service.py:26
-msgid "{message} {emoji} (${value})"
-msgstr "{message} {emoji} (${value})"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -294,89 +182,124 @@ msgstr "Tramitació de l'expedient"
 msgid "Select the task that you'll like to perform"
 msgstr "Seleccioneu la tasca que voleu dur a terme"
 
-#: pdf_bot/image_handler/batch_image_handler.py:59
+#: pdf_bot/image_handler/batch_image_handler.py:25
+#: pdf_bot/image_processor/beautify_image_processor.py:24
+msgid "Beautify"
+msgstr "Millorar"
+
+#: pdf_bot/image_handler/batch_image_handler.py:26
+#: pdf_bot/image_processor/image_to_pdf_processor.py:24
+msgid "To PDF"
+msgstr "A un PDF"
+
+#: pdf_bot/image_handler/batch_image_handler.py:27
+#: pdf_bot/merge/merge_service.py:18
+msgid "Remove last file"
+msgstr "Suprimeix l'últim fitxer"
+
+#: pdf_bot/image_handler/batch_image_handler.py:65
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Envia'm les imatges que t'agradaria embellir o convertir en un arxiu PDF"
 
-#: pdf_bot/image_handler/batch_image_handler.py:63
+#: pdf_bot/image_handler/batch_image_handler.py:69
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Tingueu en compte que les imatges s'embelliran i es convertiran en l'ordre que m'envieu"
 
-#: pdf_bot/image_handler/batch_image_handler.py:115
+#: pdf_bot/image_handler/batch_image_handler.py:121
 msgid "You've sent me these images so far:"
 msgstr "M'has enviat aquestes imatges fins ara:"
 
-#: pdf_bot/image_handler/batch_image_handler.py:126
+#: pdf_bot/image_handler/batch_image_handler.py:132
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Seleccioneu la tasca des de baix si m'heu enviat totes les imatges o seguiu enviant-me les imatges"
 
-#: pdf_bot/image_handler/batch_image_handler.py:146
+#: pdf_bot/image_handler/batch_image_handler.py:152
 msgid "You've already removed all the images you've sent me"
 msgstr "Ja has eliminat totes les imatges que m'has enviat"
 
-#: pdf_bot/image_handler/batch_image_handler.py:151
+#: pdf_bot/image_handler/batch_image_handler.py:157
 msgid "{file_name} has been removed"
 msgstr "{file_name} s'ha suprimit"
 
-#: pdf_bot/image_handler/batch_image_handler.py:173
+#: pdf_bot/image_handler/batch_image_handler.py:179
 msgid "You haven't sent me any images"
 msgstr "No m'has enviat cap imatge"
 
-#: pdf_bot/image_handler/batch_image_handler.py:178
+#: pdf_bot/image_handler/batch_image_handler.py:184
 msgid "You've only sent me one image"
 msgstr "Només m'has enviat una imatge"
 
-#: pdf_bot/image_handler/batch_image_handler.py:196
+#: pdf_bot/image_handler/batch_image_handler.py:202
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "Embellir i convertir les teves imatges en un arxiu PDF"
 
-#: pdf_bot/image_handler/batch_image_handler.py:198
+#: pdf_bot/image_handler/batch_image_handler.py:204
 msgid "Converting your images into a PDF file"
 msgstr "Conversió de les vostres imatges en un fitxer PDF"
 
-#: pdf_bot/language/language_service.py:80
+#: pdf_bot/language/language_service.py:87
 msgid "Select your language"
 msgstr "Selecciona l'idioma"
 
-#: pdf_bot/language/language_service.py:119
+#: pdf_bot/language/language_service.py:126
 msgid "Your language has been set to {language}"
 msgstr "La teva llengua està preparada per {language}"
 
-#: pdf_bot/merge/merge_service.py:36
+#: pdf_bot/merge/merge_service.py:39
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Envia'm els fitxers PDF que t'agradaria combinar"
 
-#: pdf_bot/merge/merge_service.py:37
+#: pdf_bot/merge/merge_service.py:40
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Tingueu en compte que els fitxers es combinaran en l'ordre que m'envieu"
 
-#: pdf_bot/merge/merge_service.py:88
+#: pdf_bot/merge/merge_service.py:91
 msgid "You've sent me these PDF files so far:"
 msgstr "M'has enviat aquests arxius PDF fins ara:"
 
-#: pdf_bot/merge/merge_service.py:99
+#: pdf_bot/merge/merge_service.py:102
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Premeu {done} si m'heu enviat tots els fitxers PDF que voleu combinar o continueu enviant-me els fitxers PDF"
 
-#: pdf_bot/merge/merge_service.py:120
+#: pdf_bot/merge/merge_service.py:123
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Ja has suprimit tots els arxius PDF que m'has enviat"
 
-#: pdf_bot/merge/merge_service.py:125
+#: pdf_bot/merge/merge_service.py:128
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} s'ha suprimit per combinar"
 
-#: pdf_bot/merge/merge_service.py:147
+#: pdf_bot/merge/merge_service.py:150
 msgid "You haven't sent me any PDF files"
 msgstr "No has enviat cap arxiu PDF"
 
-#: pdf_bot/merge/merge_service.py:152
+#: pdf_bot/merge/merge_service.py:155
 msgid "You've only sent me one PDF file"
 msgstr "Només m'has enviat un arxiu PDF"
 
-#: pdf_bot/merge/merge_service.py:166
+#: pdf_bot/merge/merge_service.py:169
 msgid "Merging your PDF files"
 msgstr "Unint els teus arxius PDF"
+
+#: pdf_bot/payment/payment_service.py:26
+msgid "{message} {emoji} (${value})"
+msgstr "{message} {emoji} (${value})"
+
+#: pdf_bot/payment/payment_service.py:30
+msgid "Say Thanks"
+msgstr "Digues gràcies"
+
+#: pdf_bot/payment/payment_service.py:31
+msgid "Coffee"
+msgstr "Cafè"
+
+#: pdf_bot/payment/payment_service.py:32
+msgid "Beer"
+msgstr "Cervesa"
+
+#: pdf_bot/payment/payment_service.py:33
+msgid "Meal"
+msgstr "Àpat"
 
 #: pdf_bot/payment/payment_service.py:64
 msgid "Help translate PDF Bot"
@@ -434,6 +357,10 @@ msgstr "El fitxer PDF no és vàlid"
 msgid "Your PDF file is encrypted"
 msgstr "El fitxer PDF està xifrat"
 
+#: pdf_bot/pdf_processor/compress_pdf_processor.py:24
+msgid "Compress"
+msgstr "Comprimir"
+
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:37
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Mida del fitxer reduïda en {percent}, de {old_size} a {new_size}"
@@ -456,6 +383,10 @@ msgid "Send me a number that you'll like to adjust the margin size\n\n"
 "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr ""
 
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:55
+msgid "Crop"
+msgstr "Retallar"
+
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:59
 msgid "Select the crop type you'll like to perform"
 msgstr ""
@@ -464,9 +395,17 @@ msgstr ""
 msgid "The crop values are invalid, try again"
 msgstr ""
 
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
+msgid "Decrypt"
+msgstr "Desxifrar"
+
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Enviï'm la contrasenya per desxifrar el seu arxiu pdf"
+
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
+msgid "Encrypt"
+msgstr "Encriptar"
 
 #: pdf_bot/pdf_processor/encrypt_pdf_processor.py:38
 msgid "Send me the password to encrypt your PDF file"
@@ -488,6 +427,14 @@ msgstr "Escala de grisos"
 msgid "To images"
 msgstr "A les imatges"
 
+#: pdf_bot/pdf_processor/preview_pdf_processor.py:24
+msgid "Preview"
+msgstr "Previsualitzar"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:32
+msgid "Rename"
+msgstr "Renombrar"
+
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:38
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
@@ -497,6 +444,10 @@ msgstr "Els noms dels fitxers no poden contenir cap dels caràcters següents, t
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:44
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Enviï'm el nom d'arxiu que li agradarà rebatejar el seu arxiu pdf a"
+
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:41
+msgid "Rotate"
+msgstr "Girar"
 
 #: pdf_bot/pdf_processor/rotate_pdf_processor.py:85
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -522,6 +473,10 @@ msgid "Send me the width and height\n\n"
 msgstr "Envieu-me l'amplada i l'alçada\n\n"
 "Exemple: 150 200: això establirà l'amplada a 150 i l'alçada a 200"
 
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:55
+msgid "Scale"
+msgstr "Escalar"
+
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:59
 msgid "Select the scale type you'll like to perform"
 msgstr ""
@@ -529,6 +484,10 @@ msgstr ""
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:67
 msgid "The scale values are invalid, try again"
 msgstr ""
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:31
+msgid "Split"
+msgstr "Divideix"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:35
 msgid "The split range is invalid, please try again"
@@ -1670,5 +1629,38 @@ msgstr "No s'ha pogut convertir la pàgina web"
 #~ "Select the task that you'll like "
 #~ "to perform from below or select "
 #~ "from the buttons"
+#~ msgstr ""
+
+#~ msgid "By Percentage"
+#~ msgstr ""
+
+#~ msgid "By Margin Size"
+#~ msgstr ""
+
+#~ msgid "Extract Images"
+#~ msgstr ""
+
+#~ msgid "To Images"
+#~ msgstr ""
+
+#~ msgid "Compressed"
+#~ msgstr ""
+
+#~ msgid "Images"
+#~ msgstr ""
+
+#~ msgid "To Dimensions"
+#~ msgstr ""
+
+#~ msgid "Extract Text"
+#~ msgstr ""
+
+#~ msgid "Text Message"
+#~ msgstr ""
+
+#~ msgid "Text File"
+#~ msgstr ""
+
+#~ msgid "Black & White"
 #~ msgstr ""
 

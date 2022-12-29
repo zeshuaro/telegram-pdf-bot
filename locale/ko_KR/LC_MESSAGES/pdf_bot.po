@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 07:24+0000\n"
-"PO-Revision-Date: 2022-12-29 07:25\n"
+"POT-Creation-Date: 2022-12-29 07:50+0000\n"
+"PO-Revision-Date: 2022-12-29 07:50\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -23,129 +23,17 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/consts.py:37
+#: pdf_bot/consts.py:12
 msgid "Cancel"
 msgstr "취소"
 
-#: pdf_bot/consts.py:38
+#: pdf_bot/consts.py:13
 msgid "Done"
 msgstr "수행"
 
-#: pdf_bot/consts.py:39 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:14 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "뒤로"
-
-#: pdf_bot/consts.py:40
-msgid "By Percentage"
-msgstr "백분율별"
-
-#: pdf_bot/consts.py:41
-msgid "By Margin Size"
-msgstr "마진 크기별"
-
-#: pdf_bot/consts.py:42 pdf_bot/pdf_processor/preview_pdf_processor.py:24
-msgid "Preview"
-msgstr "미리 보기"
-
-#: pdf_bot/consts.py:43 pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
-msgid "Decrypt"
-msgstr "해독"
-
-#: pdf_bot/consts.py:44 pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
-msgid "Encrypt"
-msgstr "암호화"
-
-#: pdf_bot/consts.py:45
-msgid "Extract Images"
-msgstr "이미지 추출"
-
-#: pdf_bot/consts.py:46
-msgid "To Images"
-msgstr "이미지에"
-
-#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:41
-msgid "Rotate"
-msgstr "회전"
-
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:55
-msgid "Scale"
-msgstr "규모"
-
-#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:31
-msgid "Split"
-msgstr "분할"
-
-#: pdf_bot/consts.py:50 pdf_bot/image_processor/beautify_image_processor.py:24
-msgid "Beautify"
-msgstr "아름 답게"
-
-#: pdf_bot/consts.py:51 pdf_bot/image_processor/image_to_pdf_processor.py:24
-msgid "To PDF"
-msgstr "PDF로"
-
-#: pdf_bot/consts.py:52 pdf_bot/pdf_processor/rename_pdf_processor.py:32
-msgid "Rename"
-msgstr "이름을 바꿀"
-
-#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
-msgid "Crop"
-msgstr "자르기"
-
-#: pdf_bot/consts.py:54
-msgid "Compressed"
-msgstr "압축"
-
-#: pdf_bot/consts.py:55
-msgid "Images"
-msgstr "이미지"
-
-#: pdf_bot/consts.py:56
-msgid "Remove last file"
-msgstr "마지막 파일 제거"
-
-#: pdf_bot/consts.py:57
-msgid "To Dimensions"
-msgstr "치수에"
-
-#: pdf_bot/consts.py:58
-msgid "Extract Text"
-msgstr "텍스트 추출"
-
-#: pdf_bot/consts.py:59
-msgid "Text Message"
-msgstr "문자 메시지"
-
-#: pdf_bot/consts.py:60
-msgid "Text File"
-msgstr "텍스트 파일"
-
-#: pdf_bot/consts.py:62 pdf_bot/pdf_processor/compress_pdf_processor.py:24
-msgid "Compress"
-msgstr "압축"
-
-#: pdf_bot/consts.py:63
-msgid "Black & White"
-msgstr "흑백"
-
-#: pdf_bot/consts.py:79 pdf_bot/payment/payment_service.py:30
-msgid "Say Thanks"
-msgstr "고마워요 말"
-
-#: pdf_bot/consts.py:80 pdf_bot/payment/payment_service.py:31
-msgid "Coffee"
-msgstr "커피"
-
-#: pdf_bot/consts.py:81 pdf_bot/payment/payment_service.py:32
-msgid "Beer"
-msgstr "맥주"
-
-#: pdf_bot/consts.py:82 pdf_bot/payment/payment_service.py:33
-msgid "Meal"
-msgstr "식사"
-
-#: pdf_bot/consts.py:83 pdf_bot/payment/payment_service.py:26
-msgid "{message} {emoji} (${value})"
-msgstr "{message} {emoji} (${value})"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -294,89 +182,124 @@ msgstr "파일 처리"
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
 
-#: pdf_bot/image_handler/batch_image_handler.py:59
+#: pdf_bot/image_handler/batch_image_handler.py:25
+#: pdf_bot/image_processor/beautify_image_processor.py:24
+msgid "Beautify"
+msgstr "아름 답게"
+
+#: pdf_bot/image_handler/batch_image_handler.py:26
+#: pdf_bot/image_processor/image_to_pdf_processor.py:24
+msgid "To PDF"
+msgstr "PDF로"
+
+#: pdf_bot/image_handler/batch_image_handler.py:27
+#: pdf_bot/merge/merge_service.py:18
+msgid "Remove last file"
+msgstr "마지막 파일 제거"
+
+#: pdf_bot/image_handler/batch_image_handler.py:65
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "PDF 파일로 아름답게 변환하거나 변환하려는 이미지를 보내주십시오."
 
-#: pdf_bot/image_handler/batch_image_handler.py:63
+#: pdf_bot/image_handler/batch_image_handler.py:69
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "이미지를 아름답게 만들고 보내주는 순서대로 변환됩니다."
 
-#: pdf_bot/image_handler/batch_image_handler.py:115
+#: pdf_bot/image_handler/batch_image_handler.py:121
 msgid "You've sent me these images so far:"
 msgstr "지금까지 다음 이미지를 보냈습니다."
 
-#: pdf_bot/image_handler/batch_image_handler.py:126
+#: pdf_bot/image_handler/batch_image_handler.py:132
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "모든 이미지를 보낸 경우 아래에서 작업을 선택하거나 이미지를 계속 전송합니다."
 
-#: pdf_bot/image_handler/batch_image_handler.py:146
+#: pdf_bot/image_handler/batch_image_handler.py:152
 msgid "You've already removed all the images you've sent me"
 msgstr "나에게 보낸 모든 이미지를 이미 삭제했습니다."
 
-#: pdf_bot/image_handler/batch_image_handler.py:151
+#: pdf_bot/image_handler/batch_image_handler.py:157
 msgid "{file_name} has been removed"
 msgstr "{file_name} 제거되었습니다."
 
-#: pdf_bot/image_handler/batch_image_handler.py:173
+#: pdf_bot/image_handler/batch_image_handler.py:179
 msgid "You haven't sent me any images"
 msgstr "당신은 나에게 어떤 이미지도 보내지 않았습니다"
 
-#: pdf_bot/image_handler/batch_image_handler.py:178
+#: pdf_bot/image_handler/batch_image_handler.py:184
 msgid "You've only sent me one image"
 msgstr "당신은 나에게 하나의 이미지 만 보냈습니다"
 
-#: pdf_bot/image_handler/batch_image_handler.py:196
+#: pdf_bot/image_handler/batch_image_handler.py:202
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "이미지를 아름답게 만들고 PDF 파일로 변환"
 
-#: pdf_bot/image_handler/batch_image_handler.py:198
+#: pdf_bot/image_handler/batch_image_handler.py:204
 msgid "Converting your images into a PDF file"
 msgstr "이미지를 PDF 파일로 변환"
 
-#: pdf_bot/language/language_service.py:80
+#: pdf_bot/language/language_service.py:87
 msgid "Select your language"
 msgstr "언어 선택"
 
-#: pdf_bot/language/language_service.py:119
+#: pdf_bot/language/language_service.py:126
 msgid "Your language has been set to {language}"
 msgstr "언어가 {language}설정되었습니다."
 
-#: pdf_bot/merge/merge_service.py:36
+#: pdf_bot/merge/merge_service.py:39
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "병합하려는 PDF 파일 보내기"
 
-#: pdf_bot/merge/merge_service.py:37
+#: pdf_bot/merge/merge_service.py:40
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "파일을 보내주는 순서대로 병합됩니다."
 
-#: pdf_bot/merge/merge_service.py:88
+#: pdf_bot/merge/merge_service.py:91
 msgid "You've sent me these PDF files so far:"
 msgstr "지금까지 나에게 이러한 PDF 파일을 보냈습니다."
 
-#: pdf_bot/merge/merge_service.py:99
+#: pdf_bot/merge/merge_service.py:102
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "병합하거나 PDF 파일을 계속 보내려면 {done} 누르면"
 
-#: pdf_bot/merge/merge_service.py:120
+#: pdf_bot/merge/merge_service.py:123
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "나에게 보낸 모든 PDF 파일을 이미 제거했습니다."
 
-#: pdf_bot/merge/merge_service.py:125
+#: pdf_bot/merge/merge_service.py:128
 msgid "{file_name} has been removed for merging"
 msgstr "병합을 위해 {file_name} 제거되었습니다."
 
-#: pdf_bot/merge/merge_service.py:147
+#: pdf_bot/merge/merge_service.py:150
 msgid "You haven't sent me any PDF files"
 msgstr "PDF 파일을 보내지 않으셨나요?"
 
-#: pdf_bot/merge/merge_service.py:152
+#: pdf_bot/merge/merge_service.py:155
 msgid "You've only sent me one PDF file"
 msgstr "PDF 파일 하나만 보냈습니다."
 
-#: pdf_bot/merge/merge_service.py:166
+#: pdf_bot/merge/merge_service.py:169
 msgid "Merging your PDF files"
 msgstr "PDF 파일 병합"
+
+#: pdf_bot/payment/payment_service.py:26
+msgid "{message} {emoji} (${value})"
+msgstr "{message} {emoji} (${value})"
+
+#: pdf_bot/payment/payment_service.py:30
+msgid "Say Thanks"
+msgstr "고마워요 말"
+
+#: pdf_bot/payment/payment_service.py:31
+msgid "Coffee"
+msgstr "커피"
+
+#: pdf_bot/payment/payment_service.py:32
+msgid "Beer"
+msgstr "맥주"
+
+#: pdf_bot/payment/payment_service.py:33
+msgid "Meal"
+msgstr "식사"
 
 #: pdf_bot/payment/payment_service.py:64
 msgid "Help translate PDF Bot"
@@ -434,6 +357,10 @@ msgstr "PDF 파일이 잘못되었습니다."
 msgid "Your PDF file is encrypted"
 msgstr "PDF 파일이 암호화되었습니다."
 
+#: pdf_bot/pdf_processor/compress_pdf_processor.py:24
+msgid "Compress"
+msgstr "압축"
+
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:37
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "{old_size} {new_size}파일 크기가 {percent}감소했습니다."
@@ -456,6 +383,10 @@ msgid "Send me a number that you'll like to adjust the margin size\n\n"
 "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr ""
 
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:55
+msgid "Crop"
+msgstr "자르기"
+
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:59
 msgid "Select the crop type you'll like to perform"
 msgstr ""
@@ -464,9 +395,17 @@ msgstr ""
 msgid "The crop values are invalid, try again"
 msgstr ""
 
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
+msgid "Decrypt"
+msgstr "해독"
+
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
 msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
+
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
+msgid "Encrypt"
+msgstr "암호화"
 
 #: pdf_bot/pdf_processor/encrypt_pdf_processor.py:38
 msgid "Send me the password to encrypt your PDF file"
@@ -488,6 +427,14 @@ msgstr "그레이스케일"
 msgid "To images"
 msgstr "이미지로 이동"
 
+#: pdf_bot/pdf_processor/preview_pdf_processor.py:24
+msgid "Preview"
+msgstr "미리 보기"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:32
+msgid "Rename"
+msgstr "이름을 바꿀"
+
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:38
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
@@ -497,6 +444,10 @@ msgstr "파일 이름에는 다음 문자를 사용할 수 없습니다. 다시 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:44
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "PDF 파일의 이름을 변경하려는 파일 이름을 보내"
+
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:41
+msgid "Rotate"
+msgstr "회전"
 
 #: pdf_bot/pdf_processor/rotate_pdf_processor.py:85
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -522,6 +473,10 @@ msgid "Send me the width and height\n\n"
 msgstr "너비와 높이를 보내주세요\n\n"
 "예: 150 200 - 너비를 150으로, 높이를 200으로 설정합니다."
 
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:55
+msgid "Scale"
+msgstr "규모"
+
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:59
 msgid "Select the scale type you'll like to perform"
 msgstr ""
@@ -529,6 +484,10 @@ msgstr ""
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:67
 msgid "The scale values are invalid, try again"
 msgstr ""
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:31
+msgid "Split"
+msgstr "분할"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:35
 msgid "The split range is invalid, please try again"
@@ -1670,5 +1629,38 @@ msgstr "웹 페이지를 변환하지 못했습니다."
 #~ "Select the task that you'll like "
 #~ "to perform from below or select "
 #~ "from the buttons"
+#~ msgstr ""
+
+#~ msgid "By Percentage"
+#~ msgstr ""
+
+#~ msgid "By Margin Size"
+#~ msgstr ""
+
+#~ msgid "Extract Images"
+#~ msgstr ""
+
+#~ msgid "To Images"
+#~ msgstr ""
+
+#~ msgid "Compressed"
+#~ msgstr ""
+
+#~ msgid "Images"
+#~ msgstr ""
+
+#~ msgid "To Dimensions"
+#~ msgstr ""
+
+#~ msgid "Extract Text"
+#~ msgstr ""
+
+#~ msgid "Text Message"
+#~ msgstr ""
+
+#~ msgid "Text File"
+#~ msgstr ""
+
+#~ msgid "Black & White"
 #~ msgstr ""
 

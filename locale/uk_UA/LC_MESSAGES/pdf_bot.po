@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 07:24+0000\n"
-"PO-Revision-Date: 2022-12-29 07:25\n"
+"POT-Creation-Date: 2022-12-29 07:50+0000\n"
+"PO-Revision-Date: 2022-12-29 07:50\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -23,129 +23,17 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/consts.py:37
+#: pdf_bot/consts.py:12
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: pdf_bot/consts.py:38
+#: pdf_bot/consts.py:13
 msgid "Done"
 msgstr "Зробити"
 
-#: pdf_bot/consts.py:39 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:14 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "Назад"
-
-#: pdf_bot/consts.py:40
-msgid "By Percentage"
-msgstr "За відсотками"
-
-#: pdf_bot/consts.py:41
-msgid "By Margin Size"
-msgstr "За розміром поля"
-
-#: pdf_bot/consts.py:42 pdf_bot/pdf_processor/preview_pdf_processor.py:24
-msgid "Preview"
-msgstr "Попередній перегляд"
-
-#: pdf_bot/consts.py:43 pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
-msgid "Decrypt"
-msgstr "Розшифрувати"
-
-#: pdf_bot/consts.py:44 pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
-msgid "Encrypt"
-msgstr "Шифрування"
-
-#: pdf_bot/consts.py:45
-msgid "Extract Images"
-msgstr "Витяг зображень"
-
-#: pdf_bot/consts.py:46
-msgid "To Images"
-msgstr "До зображень"
-
-#: pdf_bot/consts.py:47 pdf_bot/pdf_processor/rotate_pdf_processor.py:41
-msgid "Rotate"
-msgstr "Повернути"
-
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:55
-msgid "Scale"
-msgstr "Масштабу"
-
-#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:31
-msgid "Split"
-msgstr "Розділити"
-
-#: pdf_bot/consts.py:50 pdf_bot/image_processor/beautify_image_processor.py:24
-msgid "Beautify"
-msgstr "Прикрасити"
-
-#: pdf_bot/consts.py:51 pdf_bot/image_processor/image_to_pdf_processor.py:24
-msgid "To PDF"
-msgstr "У форматі PDF"
-
-#: pdf_bot/consts.py:52 pdf_bot/pdf_processor/rename_pdf_processor.py:32
-msgid "Rename"
-msgstr "Перейменувати"
-
-#: pdf_bot/consts.py:53 pdf_bot/pdf_processor/crop_pdf_processor.py:55
-msgid "Crop"
-msgstr "Культур"
-
-#: pdf_bot/consts.py:54
-msgid "Compressed"
-msgstr "Стисненого"
-
-#: pdf_bot/consts.py:55
-msgid "Images"
-msgstr "Зображення"
-
-#: pdf_bot/consts.py:56
-msgid "Remove last file"
-msgstr "Видалення останнього файлу"
-
-#: pdf_bot/consts.py:57
-msgid "To Dimensions"
-msgstr "До розмірів"
-
-#: pdf_bot/consts.py:58
-msgid "Extract Text"
-msgstr "Видобути текст"
-
-#: pdf_bot/consts.py:59
-msgid "Text Message"
-msgstr "Текстове повідомлення"
-
-#: pdf_bot/consts.py:60
-msgid "Text File"
-msgstr "Текстовий файл"
-
-#: pdf_bot/consts.py:62 pdf_bot/pdf_processor/compress_pdf_processor.py:24
-msgid "Compress"
-msgstr "Стиснути"
-
-#: pdf_bot/consts.py:63
-msgid "Black & White"
-msgstr "Чорний і білий"
-
-#: pdf_bot/consts.py:79 pdf_bot/payment/payment_service.py:30
-msgid "Say Thanks"
-msgstr "Скажи спасибі"
-
-#: pdf_bot/consts.py:80 pdf_bot/payment/payment_service.py:31
-msgid "Coffee"
-msgstr "Кава"
-
-#: pdf_bot/consts.py:81 pdf_bot/payment/payment_service.py:32
-msgid "Beer"
-msgstr "Пиво"
-
-#: pdf_bot/consts.py:82 pdf_bot/payment/payment_service.py:33
-msgid "Meal"
-msgstr "Їжа"
-
-#: pdf_bot/consts.py:83 pdf_bot/payment/payment_service.py:26
-msgid "{message} {emoji} (${value})"
-msgstr "{message} {emoji} (${value})"
 
 #: pdf_bot/cli/cli_service.py:57
 msgid "Failed to complete process"
@@ -294,89 +182,124 @@ msgstr "Обробка файлу"
 msgid "Select the task that you'll like to perform"
 msgstr "Виберіть завдання, яке потрібно виконати"
 
-#: pdf_bot/image_handler/batch_image_handler.py:59
+#: pdf_bot/image_handler/batch_image_handler.py:25
+#: pdf_bot/image_processor/beautify_image_processor.py:24
+msgid "Beautify"
+msgstr "Прикрасити"
+
+#: pdf_bot/image_handler/batch_image_handler.py:26
+#: pdf_bot/image_processor/image_to_pdf_processor.py:24
+msgid "To PDF"
+msgstr "У форматі PDF"
+
+#: pdf_bot/image_handler/batch_image_handler.py:27
+#: pdf_bot/merge/merge_service.py:18
+msgid "Remove last file"
+msgstr "Видалення останнього файлу"
+
+#: pdf_bot/image_handler/batch_image_handler.py:65
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Надішліть мені зображення, які ви хотіли б прикрасити або перетворити в PDF-файл"
 
-#: pdf_bot/image_handler/batch_image_handler.py:63
+#: pdf_bot/image_handler/batch_image_handler.py:69
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Зверніть увагу, що зображення будуть прикрашені і перетворені в тому порядку, в якому ви надішлете мені"
 
-#: pdf_bot/image_handler/batch_image_handler.py:115
+#: pdf_bot/image_handler/batch_image_handler.py:121
 msgid "You've sent me these images so far:"
 msgstr "Ви надіслали мені ці зображення:"
 
-#: pdf_bot/image_handler/batch_image_handler.py:126
+#: pdf_bot/image_handler/batch_image_handler.py:132
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Виберіть завдання знизу, якщо ви надіслали мені всі зображення, або продовжуйте надсилати мені зображення"
 
-#: pdf_bot/image_handler/batch_image_handler.py:146
+#: pdf_bot/image_handler/batch_image_handler.py:152
 msgid "You've already removed all the images you've sent me"
 msgstr "Ви вже видалили всі надіслані мені зображення"
 
-#: pdf_bot/image_handler/batch_image_handler.py:151
+#: pdf_bot/image_handler/batch_image_handler.py:157
 msgid "{file_name} has been removed"
 msgstr "{file_name} видалено"
 
-#: pdf_bot/image_handler/batch_image_handler.py:173
+#: pdf_bot/image_handler/batch_image_handler.py:179
 msgid "You haven't sent me any images"
 msgstr "Ви не надіслали мені жодних зображень"
 
-#: pdf_bot/image_handler/batch_image_handler.py:178
+#: pdf_bot/image_handler/batch_image_handler.py:184
 msgid "You've only sent me one image"
 msgstr "Ви надіслали мені лише одне зображення"
 
-#: pdf_bot/image_handler/batch_image_handler.py:196
+#: pdf_bot/image_handler/batch_image_handler.py:202
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "Прикрашання та перетворення зображень на PDF-файл"
 
-#: pdf_bot/image_handler/batch_image_handler.py:198
+#: pdf_bot/image_handler/batch_image_handler.py:204
 msgid "Converting your images into a PDF file"
 msgstr "Перетворення зображень на PDF-файл"
 
-#: pdf_bot/language/language_service.py:80
+#: pdf_bot/language/language_service.py:87
 msgid "Select your language"
 msgstr "Виберіть мову"
 
-#: pdf_bot/language/language_service.py:119
+#: pdf_bot/language/language_service.py:126
 msgid "Your language has been set to {language}"
 msgstr "Для вашої мови встановлено значення {language}"
 
-#: pdf_bot/merge/merge_service.py:36
+#: pdf_bot/merge/merge_service.py:39
 msgid "Send me the PDF files that you'll like to merge"
 msgstr "Надіслати мені PDF-файли, які потрібно об'єднати"
 
-#: pdf_bot/merge/merge_service.py:37
+#: pdf_bot/merge/merge_service.py:40
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Зауважте, що файли буде об'єднано в тому порядку, в який ви надішлете мені"
 
-#: pdf_bot/merge/merge_service.py:88
+#: pdf_bot/merge/merge_service.py:91
 msgid "You've sent me these PDF files so far:"
 msgstr "Ви надіслали мені ці PDF-файли до цих пір:"
 
-#: pdf_bot/merge/merge_service.py:99
+#: pdf_bot/merge/merge_service.py:102
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Натисніть {done} , якщо ви надіслали мені всі PDF-файли, які ви хочете об'єднати, або продовжуйте надсилати мені PDF-файли"
 
-#: pdf_bot/merge/merge_service.py:120
+#: pdf_bot/merge/merge_service.py:123
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Ви вже видалили всі PDF-файли, які ви мені надіслали"
 
-#: pdf_bot/merge/merge_service.py:125
+#: pdf_bot/merge/merge_service.py:128
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} видалено для об'єднання"
 
-#: pdf_bot/merge/merge_service.py:147
+#: pdf_bot/merge/merge_service.py:150
 msgid "You haven't sent me any PDF files"
 msgstr "Ви не надіслали мені жодних PDF-файлів"
 
-#: pdf_bot/merge/merge_service.py:152
+#: pdf_bot/merge/merge_service.py:155
 msgid "You've only sent me one PDF file"
 msgstr "Ви надіслали мені лише один PDF-файл"
 
-#: pdf_bot/merge/merge_service.py:166
+#: pdf_bot/merge/merge_service.py:169
 msgid "Merging your PDF files"
 msgstr "Об'єміщення PDF-файлів"
+
+#: pdf_bot/payment/payment_service.py:26
+msgid "{message} {emoji} (${value})"
+msgstr "{message} {emoji} (${value})"
+
+#: pdf_bot/payment/payment_service.py:30
+msgid "Say Thanks"
+msgstr "Скажи спасибі"
+
+#: pdf_bot/payment/payment_service.py:31
+msgid "Coffee"
+msgstr "Кава"
+
+#: pdf_bot/payment/payment_service.py:32
+msgid "Beer"
+msgstr "Пиво"
+
+#: pdf_bot/payment/payment_service.py:33
+msgid "Meal"
+msgstr "Їжа"
 
 #: pdf_bot/payment/payment_service.py:64
 msgid "Help translate PDF Bot"
@@ -434,6 +357,10 @@ msgstr "Неприпустимий PDF-файл"
 msgid "Your PDF file is encrypted"
 msgstr "Ваш PDF-файл зашифровано"
 
+#: pdf_bot/pdf_processor/compress_pdf_processor.py:24
+msgid "Compress"
+msgstr "Стиснути"
+
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:37
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Розмір файлу зменшено {percent}, з {old_size} до {new_size}"
@@ -456,6 +383,10 @@ msgid "Send me a number that you'll like to adjust the margin size\n\n"
 "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr ""
 
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:55
+msgid "Crop"
+msgstr "Культур"
+
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:59
 msgid "Select the crop type you'll like to perform"
 msgstr ""
@@ -464,9 +395,17 @@ msgstr ""
 msgid "The crop values are invalid, try again"
 msgstr ""
 
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
+msgid "Decrypt"
+msgstr "Розшифрувати"
+
 #: pdf_bot/pdf_processor/decrypt_pdf_processor.py:43
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Надішліть мені пароль для розшифрування pdf-файлу"
+
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
+msgid "Encrypt"
+msgstr "Шифрування"
 
 #: pdf_bot/pdf_processor/encrypt_pdf_processor.py:38
 msgid "Send me the password to encrypt your PDF file"
@@ -488,6 +427,14 @@ msgstr "Градації сірого"
 msgid "To images"
 msgstr "До зображень"
 
+#: pdf_bot/pdf_processor/preview_pdf_processor.py:24
+msgid "Preview"
+msgstr "Попередній перегляд"
+
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:32
+msgid "Rename"
+msgstr "Перейменувати"
+
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:38
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
@@ -497,6 +444,10 @@ msgstr "Імена файлів не можуть містити жодного 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:44
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Надішліть мені ім'я файлу, на який потрібно перейменувати файл PDF"
+
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:41
+msgid "Rotate"
+msgstr "Повернути"
 
 #: pdf_bot/pdf_processor/rotate_pdf_processor.py:85
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
@@ -522,6 +473,10 @@ msgid "Send me the width and height\n\n"
 msgstr "Надішліть мені ширину і висоту\n\n"
 "Приклад: 150 200 - це встановить ширину на 150 і висоту на 200"
 
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:55
+msgid "Scale"
+msgstr "Масштабу"
+
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:59
 msgid "Select the scale type you'll like to perform"
 msgstr ""
@@ -529,6 +484,10 @@ msgstr ""
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:67
 msgid "The scale values are invalid, try again"
 msgstr ""
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:31
+msgid "Split"
+msgstr "Розділити"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:35
 msgid "The split range is invalid, please try again"
@@ -1670,5 +1629,38 @@ msgstr "Не вдалося перетворити веб-сторінку"
 #~ "Select the task that you'll like "
 #~ "to perform from below or select "
 #~ "from the buttons"
+#~ msgstr ""
+
+#~ msgid "By Percentage"
+#~ msgstr ""
+
+#~ msgid "By Margin Size"
+#~ msgstr ""
+
+#~ msgid "Extract Images"
+#~ msgstr ""
+
+#~ msgid "To Images"
+#~ msgstr ""
+
+#~ msgid "Compressed"
+#~ msgstr ""
+
+#~ msgid "Images"
+#~ msgstr ""
+
+#~ msgid "To Dimensions"
+#~ msgstr ""
+
+#~ msgid "Extract Text"
+#~ msgstr ""
+
+#~ msgid "Text Message"
+#~ msgstr ""
+
+#~ msgid "Text File"
+#~ msgstr ""
+
+#~ msgid "Black & White"
 #~ msgstr ""
 
