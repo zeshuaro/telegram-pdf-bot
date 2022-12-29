@@ -9,8 +9,7 @@ from telegram.ext import (
     filters,
 )
 
-from pdf_bot.consts import CANCEL, COMPRESS, CROP, FILE_DATA, TEXT_FILTER
-from pdf_bot.crop import CropService
+from pdf_bot.consts import CANCEL, COMPRESS, FILE_DATA, TEXT_FILTER
 from pdf_bot.file.file_service import FileService
 from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.file_task import FileTaskService
@@ -28,7 +27,6 @@ class FileHandlers:
         self,
         file_task_service: FileTaskService,
         file_service: FileService,
-        crop_service: CropService,
         telegram_service: TelegramService,
         language_service: LanguageService,
         image_task_processor: ImageTaskProcessor,
@@ -36,7 +34,6 @@ class FileHandlers:
     ) -> None:
         self.file_task_service = file_task_service
         self.file_service = file_service
-        self.crop_service = crop_service
         self.telegram_service = telegram_service
         self.image_task_processor = image_task_processor
         self.pdf_task_processor = pdf_task_processor
@@ -58,19 +55,6 @@ class FileHandlers:
                         pattern=r"^cancel$",
                     ),
                     MessageHandler(TEXT_FILTER, self.check_doc_task),
-                ],
-                CropService.WAIT_CROP_TYPE: [
-                    MessageHandler(TEXT_FILTER, self.crop_service.check_crop_type)
-                ],
-                CropService.WAIT_CROP_PERCENTAGE: [
-                    MessageHandler(
-                        TEXT_FILTER, self.crop_service.crop_pdf_by_percentage
-                    )
-                ],
-                CropService.WAIT_CROP_MARGIN_SIZE: [
-                    MessageHandler(
-                        TEXT_FILTER, self.crop_service.crop_pdf_by_margin_size
-                    )
                 ],
             },
             fallbacks=[
@@ -132,8 +116,6 @@ class FileHandlers:
         _ = self.language_service.set_app_language(update, context)
         text = update.effective_message.text  # type: ignore
 
-        if text == _(CROP):
-            return await self.crop_service.ask_crop_type(update, context)
         if text == _(COMPRESS):
             return await self.file_service.compress_pdf(update, context)
         if text == _(CANCEL):

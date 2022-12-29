@@ -144,26 +144,23 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def crop_pdf(
-        self,
-        file_id: str,
-        percentage: float | None = None,
-        margin_size: float | None = None,
+    async def crop_pdf_by_percentage(
+        self, file_id: str, percentage: float
     ) -> AsyncGenerator[str, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("Cropped") as out_path:
-                if percentage is not None:
-                    self.cli_service.crop_pdf_by_percentage(
-                        file_path, out_path, percentage
-                    )
-                elif margin_size is not None:
-                    self.cli_service.crop_pdf_by_margin_size(
-                        file_path, out_path, margin_size
-                    )
-                else:
-                    raise PdfServiceError(
-                        "Crop percentage or margin size must be specified"
-                    )
+                self.cli_service.crop_pdf_by_percentage(file_path, out_path, percentage)
+                yield out_path
+
+    @asynccontextmanager
+    async def crop_pdf_by_margin_size(
+        self, file_id: str, margin_size: float
+    ) -> AsyncGenerator[str, None]:
+        async with self.telegram_service.download_pdf_file(file_id) as file_path:
+            with self.io_service.create_temp_pdf_file("Cropped") as out_path:
+                self.cli_service.crop_pdf_by_margin_size(
+                    file_path, out_path, margin_size
+                )
                 yield out_path
 
     @asynccontextmanager

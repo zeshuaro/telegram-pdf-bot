@@ -272,8 +272,8 @@ class TestPDFService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_percentage(self) -> None:
         percent = 0.1
-        async with self.sut.crop_pdf(
-            self.TELEGRAM_FILE_ID, percentage=percent
+        async with self.sut.crop_pdf_by_percentage(
+            self.TELEGRAM_FILE_ID, percent
         ) as actual:
             assert actual == self.OUTPUT_PATH
             self.cli_service.crop_pdf_by_percentage.assert_called_once_with(
@@ -284,8 +284,8 @@ class TestPDFService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_margin_size(self) -> None:
         margin_size = 10
-        async with self.sut.crop_pdf(
-            self.TELEGRAM_FILE_ID, margin_size=margin_size
+        async with self.sut.crop_pdf_by_margin_size(
+            self.TELEGRAM_FILE_ID, margin_size
         ) as actual:
             assert actual == self.OUTPUT_PATH
             self.cli_service.crop_pdf_by_margin_size.assert_called_once_with(
