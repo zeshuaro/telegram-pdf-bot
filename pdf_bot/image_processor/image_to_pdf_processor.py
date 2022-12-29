@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from gettext import gettext as _
 from typing import AsyncGenerator
 
-from telegram.ext import BaseHandler, CallbackQueryHandler
+from telegram.ext import CallbackQueryHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.models import FileData, TaskData
@@ -20,11 +20,11 @@ class ImageToPdfProcessor(AbstractImageProcessor):
         return TaskType.image_to_pdf
 
     @property
-    def task_data(self) -> TaskData | None:
+    def task_data(self) -> TaskData:
         return TaskData(_("To PDF"), ImageToPdfData)
 
     @property
-    def handler(self) -> BaseHandler | None:
+    def handler(self) -> CallbackQueryHandler:
         return CallbackQueryHandler(self.process_file, pattern=ImageToPdfData)
 
     @asynccontextmanager

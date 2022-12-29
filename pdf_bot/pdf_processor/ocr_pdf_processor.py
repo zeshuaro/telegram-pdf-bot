@@ -1,7 +1,7 @@
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
-from telegram.ext import BaseHandler, CallbackQueryHandler
+from telegram.ext import CallbackQueryHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.models import FileData, TaskData
@@ -19,11 +19,11 @@ class OcrPdfProcessor(AbstractPdfProcessor):
         return TaskType.ocr_pdf
 
     @property
-    def task_data(self) -> TaskData | None:
+    def task_data(self) -> TaskData:
         return TaskData("OCR", OcrPdfData)
 
     @property
-    def handler(self) -> BaseHandler | None:
+    def handler(self) -> CallbackQueryHandler:
         return CallbackQueryHandler(self.process_file, pattern=OcrPdfData)
 
     @asynccontextmanager

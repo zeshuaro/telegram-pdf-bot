@@ -13,7 +13,7 @@ from telegram.ext import (
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileTaskProcessor
-from pdf_bot.models import BackData, FileData
+from pdf_bot.models import BackData, FileData, TaskData
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import AbstractPdfTextInputProcessor, TextInputData
 from tests.language import LanguageServiceTestMixin
@@ -31,16 +31,16 @@ class MockProcessor(AbstractPdfTextInputProcessor):
     def task_type(self) -> TaskType:
         return TaskType.decrypt_pdf
 
+    @property
+    def task_data(self) -> TaskData:
+        return MagicMock(spec=TaskData)
+
     def get_ask_text_input_text(self, _: Callable[[str], str]) -> str:
         return "ask_text_input_text"
 
     @property
     def invalid_text_input_error(self) -> str:
         return "invalid_text_input_error"
-
-    @property
-    def should_process_back_option(self) -> bool:
-        return True
 
     def get_cleaned_text_input(self, _text: str) -> str | None:
         return self.FILE_NAME

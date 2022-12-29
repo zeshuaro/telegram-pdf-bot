@@ -27,7 +27,7 @@ class SplitPdfProcessor(AbstractPdfTextInputProcessor):
         return SplitPdfData
 
     @property
-    def task_data(self) -> TaskData | None:
+    def task_data(self) -> TaskData:
         return TaskData(_("Split"), self.entry_point_data_type)
 
     @property

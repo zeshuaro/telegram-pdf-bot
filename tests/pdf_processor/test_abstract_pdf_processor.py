@@ -2,8 +2,10 @@ from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from unittest.mock import MagicMock
 
+from telegram.ext import BaseHandler
+
 from pdf_bot.analytics import TaskType
-from pdf_bot.models import FileData
+from pdf_bot.models import FileData, TaskData
 from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.pdf_processor import AbstractPdfProcessor
 from tests.language import LanguageServiceTestMixin
@@ -16,8 +18,12 @@ class MockProcessor(AbstractPdfProcessor):
         return TaskType.decrypt_pdf
 
     @property
-    def should_process_back_option(self) -> bool:
-        return True
+    def task_data(self) -> TaskData:
+        return MagicMock(spec=TaskData)
+
+    @property
+    def handler(self) -> BaseHandler:
+        return MagicMock(spec=BaseHandler)
 
     @asynccontextmanager
     async def process_file_task(

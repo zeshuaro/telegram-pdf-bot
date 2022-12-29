@@ -55,12 +55,14 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         pass
 
     @property
-    def task_data(self) -> TaskData | None:
-        return None
+    @abstractmethod
+    def task_data(self) -> TaskData:
+        pass
 
     @property
-    def handler(self) -> BaseHandler | None:
-        return None
+    @abstractmethod
+    def handler(self) -> BaseHandler:
+        pass
 
     @asynccontextmanager
     @abstractmethod
