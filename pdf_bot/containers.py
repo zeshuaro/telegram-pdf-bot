@@ -13,8 +13,7 @@ from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
-from pdf_bot.file import FileHandlers, FileService
-from pdf_bot.file_task import FileTaskService
+from pdf_bot.file import FileHandlers
 from pdf_bot.image import ImageService
 from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.image_processor import (
@@ -28,6 +27,7 @@ from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.payment import PaymentService
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
+    CompressPdfProcessor,
     CropPdfProcessor,
     DecryptPdfProcessor,
     EncryptPdfProcessor,
@@ -112,7 +112,6 @@ class Services(containers.DeclarativeContainer):
     command = providers.Singleton(
         CommandService, account_service=account, language_service=language
     )
-    file_task = providers.Singleton(FileTaskService, language_service=language)
     telegram = providers.Singleton(
         TelegramService,
         io_service=io,
@@ -136,12 +135,6 @@ class Services(containers.DeclarativeContainer):
     )
     feedback = providers.Singleton(
         FeedbackService, feedback_repository=repositories.feedback
-    )
-    file = providers.Singleton(
-        FileService,
-        pdf_service=pdf,
-        telegram_service=telegram,
-        language_service=language,
     )
     language = providers.Singleton(
         LanguageService, language_repository=repositories.language
@@ -179,12 +172,17 @@ class Processors(containers.DeclarativeContainer):
         ImageTaskProcessor,
         language_service=services.language,
     )
-
     pdf_task = providers.Singleton(
         PdfTaskProcessor,
         language_service=services.language,
     )
 
+    compress = providers.Singleton(
+        CompressPdfProcessor,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
     crop = providers.Singleton(
         CropPdfProcessor,
         pdf_service=services.pdf,
@@ -284,8 +282,6 @@ class Handlers(containers.DeclarativeContainer):
 
     file = providers.Singleton(
         FileHandlers,
-        file_task_service=services.file_task,
-        file_service=services.file,
         telegram_service=services.telegram,
         language_service=services.language,
         image_task_processor=processors.image_task,
