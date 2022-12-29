@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 01:44+0000\n"
-"PO-Revision-Date: 2022-12-29 01:44\n"
+"POT-Creation-Date: 2022-12-29 01:58+0000\n"
+"PO-Revision-Date: 2022-12-29 01:58\n"
 "Last-Translator: \n"
 "Language: ky\n"
 "Language-Team: Kyrgyz\n"
@@ -51,7 +51,7 @@ msgstr "Алдын ала көрүү"
 msgid "Decrypt"
 msgstr "Шифрин чечүү"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:44 pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
 msgid "Encrypt"
 msgstr "Шифрлөө"
 
@@ -75,12 +75,12 @@ msgstr "Өлчөм"
 msgid "Split"
 msgstr "Ажыратуу"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:19
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Кооздоо"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:20
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDFке"
@@ -89,7 +89,7 @@ msgstr "PDFке"
 msgid "Rename"
 msgstr "Өзгөртүү"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:16
 msgid "Crop"
 msgstr "Кесүү"
 
@@ -121,7 +121,7 @@ msgstr "Текст билдирүүсү"
 msgid "Text File"
 msgstr "Текст файлы"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:17
 msgid "Compress"
 msgstr "Кысуу"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "Пикир англис тилинде эмес, кайра аракет кылыңыз"
 
-#: pdf_bot/file/file_handlers.py:113 pdf_bot/file/file_handlers.py:140
+#: pdf_bot/file/file_handlers.py:96 pdf_bot/file/file_handlers.py:123
 msgid "Your file is too big for me to download and process"
 msgstr "Сиздин файлыңыз мен үчүн өтө чоң, жүктөп алуу жана иштетүү үчүн"
 
-#: pdf_bot/file/file_handlers.py:114 pdf_bot/file/file_handlers.py:141
+#: pdf_bot/file/file_handlers.py:97 pdf_bot/file/file_handlers.py:124
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Бул Telegram Botтун чектөөсү экенин эске алыңыз жана Telegram бул чекти өзгөртмөйүнчө, мен эч нерсе кыла албайм"
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "Сиз аткара турган тапшырманы тандаңыз"
 
-#: pdf_bot/file_task/file_task_service.py:64
+#: pdf_bot/file_task/file_task_service.py:56
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -480,6 +480,10 @@ msgstr "Сиздин PDF файлыңыз жараксыз"
 msgid "Your PDF file is encrypted"
 msgstr "Сиздин PDF файлы шифрленген"
 
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:42
+msgid "Send me the password to encrypt your PDF file"
+msgstr "PDF файлыңызды шифрлөө үчүн мага сырсөздү жөнөтүңүз"
+
 #: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
 msgid "Extract images"
 msgstr ""
@@ -615,10 +619,6 @@ msgstr "{range}  барактар {pages}"
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:24
 msgid "Send me the password to decrypt your PDF file"
 msgstr "PDF файлыңызды чечүү үчүн мага сырсөздү жөнөтүңүз"
-
-#: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:18
-msgid "Send me the password to encrypt your PDF file"
-msgstr "PDF файлыңызды шифрлөө үчүн мага сырсөздү жөнөтүңүз"
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
 #: pdf_bot/telegram_internal/telegram_service.py:93

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 01:44+0000\n"
-"PO-Revision-Date: 2022-12-29 01:44\n"
+"POT-Creation-Date: 2022-12-29 01:58+0000\n"
+"PO-Revision-Date: 2022-12-29 01:58\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -51,7 +51,7 @@ msgstr "미리 보기"
 msgid "Decrypt"
 msgstr "해독"
 
-#: pdf_bot/consts.py:44 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:44 pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
 msgid "Encrypt"
 msgstr "암호화"
 
@@ -75,12 +75,12 @@ msgstr "규모"
 msgid "Split"
 msgstr "분할"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:19
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "아름 답게"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:21
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:20
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr "PDF로"
@@ -89,7 +89,7 @@ msgstr "PDF로"
 msgid "Rename"
 msgstr "이름을 바꿀"
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:16
 msgid "Crop"
 msgstr "자르기"
 
@@ -121,7 +121,7 @@ msgstr "문자 메시지"
 msgid "Text File"
 msgstr "텍스트 파일"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:18
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:17
 msgid "Compress"
 msgstr "압축"
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr "피드백은 영어로되지 않습니다, 다시 시도"
 
-#: pdf_bot/file/file_handlers.py:113 pdf_bot/file/file_handlers.py:140
+#: pdf_bot/file/file_handlers.py:96 pdf_bot/file/file_handlers.py:123
 msgid "Your file is too big for me to download and process"
 msgstr "파일이 너무 커서 다운로드하고 처리하지 않습니다."
 
-#: pdf_bot/file/file_handlers.py:114 pdf_bot/file/file_handlers.py:141
+#: pdf_bot/file/file_handlers.py:97 pdf_bot/file/file_handlers.py:124
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "이것은 전보 봇 제한이며 전보가이 제한을 변경하지 않는 한 내가 할 수있는 것은 아무것도 없다는 것을 유의하십시오."
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr "수행하려는 작업 선택"
 
-#: pdf_bot/file_task/file_task_service.py:64
+#: pdf_bot/file_task/file_task_service.py:56
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -480,6 +480,10 @@ msgstr "PDF 파일이 잘못되었습니다."
 msgid "Your PDF file is encrypted"
 msgstr "PDF 파일이 암호화되었습니다."
 
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:42
+msgid "Send me the password to encrypt your PDF file"
+msgstr "PDF 파일을 암호화하기 위해 암호를 보내주세요."
+
 #: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
 msgid "Extract images"
 msgstr ""
@@ -615,10 +619,6 @@ msgstr "{range}  페이지 {pages}"
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:24
 msgid "Send me the password to decrypt your PDF file"
 msgstr "PDF 파일의 암호를 해독하기 위해 암호를 보내주세요."
-
-#: pdf_bot/pdf_processor/crypto/encrypt_pdf_processor.py:18
-msgid "Send me the password to encrypt your PDF file"
-msgstr "PDF 파일을 암호화하기 위해 암호를 보내주세요."
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
 #: pdf_bot/telegram_internal/telegram_service.py:93
