@@ -286,6 +286,13 @@ class TelegramService:
             text += f"{i + 1}: {file_name}\n"
         await self.bot.send_message(chat_id, text)
 
+    async def send_message(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE, text: str
+    ) -> None:
+        _ = self.language_service.set_app_language(update, context)
+        chat_id = self._get_chat_id(update)
+        await self.bot.send_message(chat_id, _(text))
+
     @staticmethod
     def _get_chat_id(update: Update) -> int:
         query: CallbackQuery | None = update.callback_query
