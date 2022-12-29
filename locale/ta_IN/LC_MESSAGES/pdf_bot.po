@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-12-29 02:09+0000\n"
-"PO-Revision-Date: 2022-12-29 02:10\n"
+"PO-Revision-Date: 2022-12-29 02:19\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -305,11 +305,11 @@ msgstr "நேர்மறை எண்கள் விளிம்பு அள
 
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
-msgstr ""
+msgstr "உங்கள் கருத்தை ஆங்கிலத்தில் எனக்கு அனுப்பவும்"
 
 #: pdf_bot/feedback/feedback_handler.py:71
 msgid "Thank you for your feedback, I've forwarded it to my developer"
-msgstr ""
+msgstr "உங்கள் கருத்துக்கு நன்றி, நான் அதை என் டெவலப்பருக்கு அனுப்பியுள்ளேன்"
 
 #: pdf_bot/feedback/feedback_service.py:21
 msgid "The feedback is not in English, try again"
@@ -330,7 +330,7 @@ msgstr "கோப்பு அளவு {percent}மூலம் குறைக
 #: pdf_bot/file_processor/abstract_file_processor.py:116
 #: pdf_bot/file_processor/abstract_file_processor.py:168
 msgid "Processing your file"
-msgstr ""
+msgstr "உங்கள் கோப்பை செயலாக்கம்"
 
 #: pdf_bot/file_processor/file_task_mixin.py:53
 msgid "Select the task that you'll like to perform"
@@ -338,7 +338,7 @@ msgstr "நீங்கள் செய்ய விரும்பும் ப
 
 #: pdf_bot/file_task/file_task_service.py:55
 msgid "Select the task that you'll like to perform from below or select from the buttons"
-msgstr ""
+msgstr "நீங்கள் கீழே இருந்து செய்ய விரும்பும் பணியைத் தேர்ந்தெடுக்கவும் அல்லது பொத்தான்களிலிருந்து தேர்ந்தெடுக்கவும்"
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -438,7 +438,7 @@ msgstr "PTM பாட் நன்றி சொல்ல மற்றும் �
 
 #: pdf_bot/payment/payment_service.py:114
 msgid "Something went wrong, try again"
-msgstr ""
+msgstr "ஏதோ தவறு நடந்தது, மீண்டும் முயற்சிக்கவும்"
 
 #: pdf_bot/payment/payment_service.py:126
 msgid "Thank you for your support!"
@@ -490,24 +490,25 @@ msgstr "உங்கள் PPM கோப்பை குறியாக்க �
 
 #: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
 msgid "Extract images"
-msgstr ""
+msgstr "படங்களைப் பிரித்தெடுக்கவும்"
 
 #: pdf_bot/pdf_processor/extract_pdf_text_processor.py:24
 msgid "Extract text"
-msgstr ""
+msgstr "உரையை பிரித்தெடுக்கவும்"
 
 #: pdf_bot/pdf_processor/grayscale_pdf_processor.py:24
 msgid "Grayscale"
-msgstr ""
+msgstr "கிரேஸ்கேல்"
 
 #: pdf_bot/pdf_processor/pdf_to_image_processor.py:24
 msgid "To images"
-msgstr ""
+msgstr "படங்களுக்கு"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:42
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
-msgstr ""
+msgstr "கோப்பு பெயர்களில் பின்வரும் எழுத்துக்குறிகள் எதுவும் இல்லை, தயவுசெய்து மீண்டும் முயற்சிக்கவும்:\n"
+"{invalid_chars}"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:48
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -519,7 +520,7 @@ msgstr "உங்கள் PP1 கோப்பை கடிகாரதிசை
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:29
 msgid "By factor"
-msgstr ""
+msgstr "காரணி அடிப்படையில்"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:30
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:64
@@ -529,12 +530,14 @@ msgstr "பரிமாணத்திற்கு"
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:36
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
-msgstr ""
+msgstr "கிடைமட்ட மற்றும் செங்குத்து அச்சுகளுக்கான அளவிடல் காரணிகளை எனக்கு அனுப்பவும்\n\n"
+"எடுத்துக்காட்டு: 2 0.5 - இது கிடைமட்ட அச்சை இரட்டிப்பாக்கும் மற்றும் செங்குத்து அச்சை பாதியாகக் குறைக்கும்"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:42
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
-msgstr ""
+msgstr "அகலம் மற்றும் உயரத்தை எனக்கு அனுப்பவும்\n\n"
+"எடுத்துக்காட்டு: 150 200 - இது அகலத்தை 150 ஆகவும் உயரத்தை 200 ஆகவும் அமைக்கும்"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:63
 msgid "By scaling factor"
@@ -546,11 +549,11 @@ msgstr "நீங்கள் செய்ய விரும்பும் அ
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:178
 msgid "The values {values} are invalid, please try again"
-msgstr ""
+msgstr "{values} மதிப்புகள் செல்லாதவை, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:39
 msgid "The split range is invalid, please try again"
-msgstr ""
+msgstr "பிளவு வரம்பு தவறானது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "Send me the range of pages that you'll like to keep"
@@ -628,7 +631,7 @@ msgstr "ஏதோ தவறு நடந்தது, தயவுசெய்�
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:165
 msgid "The button has expired, start over with your file or command"
-msgstr ""
+msgstr "பொத்தான் காலாவதியாகிவிட்டது, உங்கள் கோப்பு அல்லது கட்டளையுடன் தொடங்கவும்"
 
 #: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"

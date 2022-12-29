@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-12-29 02:09+0000\n"
-"PO-Revision-Date: 2022-12-29 02:09\n"
+"PO-Revision-Date: 2022-12-29 02:19\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -305,11 +305,11 @@ msgstr "Los números positivos disminuirán el tamaño del margen y los números
 
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
-msgstr ""
+msgstr "Envíame tus comentarios en inglés"
 
 #: pdf_bot/feedback/feedback_handler.py:71
 msgid "Thank you for your feedback, I've forwarded it to my developer"
-msgstr ""
+msgstr "Gracias por sus comentarios, se los he enviado a mi desarrollador"
 
 #: pdf_bot/feedback/feedback_service.py:21
 msgid "The feedback is not in English, try again"
@@ -330,7 +330,7 @@ msgstr "Tamaño del archivo reducido un {percent}, ha pasado de {old_size} a {ne
 #: pdf_bot/file_processor/abstract_file_processor.py:116
 #: pdf_bot/file_processor/abstract_file_processor.py:168
 msgid "Processing your file"
-msgstr ""
+msgstr "Procesamiento de su archivo"
 
 #: pdf_bot/file_processor/file_task_mixin.py:53
 msgid "Select the task that you'll like to perform"
@@ -338,7 +338,7 @@ msgstr "Elegir la tarea a realizar"
 
 #: pdf_bot/file_task/file_task_service.py:55
 msgid "Select the task that you'll like to perform from below or select from the buttons"
-msgstr ""
+msgstr "Seleccione la tarea que desea realizar desde abajo o seleccione uno de los botones"
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -438,7 +438,7 @@ msgstr "Agradece a PDF Bot y ayuda a mantenerlo funcionando"
 
 #: pdf_bot/payment/payment_service.py:114
 msgid "Something went wrong, try again"
-msgstr ""
+msgstr "Algo salió mal, inténtalo de nuevo"
 
 #: pdf_bot/payment/payment_service.py:126
 msgid "Thank you for your support!"
@@ -490,24 +490,25 @@ msgstr "Envíame la contraseña para cifrar tu archivo PDF"
 
 #: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
 msgid "Extract images"
-msgstr ""
+msgstr "Extraer imágenes"
 
 #: pdf_bot/pdf_processor/extract_pdf_text_processor.py:24
 msgid "Extract text"
-msgstr ""
+msgstr "Extraer texto"
 
 #: pdf_bot/pdf_processor/grayscale_pdf_processor.py:24
 msgid "Grayscale"
-msgstr ""
+msgstr "Escala de grises"
 
 #: pdf_bot/pdf_processor/pdf_to_image_processor.py:24
 msgid "To images"
-msgstr ""
+msgstr "Ir a imágenes"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:42
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
-msgstr ""
+msgstr "Los nombres de archivo no pueden contener ninguno de los siguientes caracteres, inténtelo de nuevo:\n"
+"{invalid_chars}"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:48
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -519,7 +520,7 @@ msgstr "Selecciona los grados que te gustaría rotar tu archivo PDF en sentido h
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:29
 msgid "By factor"
-msgstr ""
+msgstr "Por factor"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:30
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:64
@@ -529,12 +530,14 @@ msgstr "A dimensión"
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:36
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
-msgstr ""
+msgstr "Envíenme los factores de escala para los ejes horizontal y vertical\n\n"
+"Ejemplo: 2 0.5 - esto duplicará el eje horizontal y reducirá a la mitad el eje vertical"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:42
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
-msgstr ""
+msgstr "Envíame el ancho y el alto\n\n"
+"Ejemplo: 150 200 - esto establecerá el ancho en 150 y el alto en 200"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:63
 msgid "By scaling factor"
@@ -546,11 +549,11 @@ msgstr "Seleccione el tipo de escala que le gustaría realizar"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:178
 msgid "The values {values} are invalid, please try again"
-msgstr ""
+msgstr "Los valores {values} no son válidos, inténtelo de nuevo"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:39
 msgid "The split range is invalid, please try again"
-msgstr ""
+msgstr "El rango dividido no es válido, inténtelo de nuevo"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "Send me the range of pages that you'll like to keep"
@@ -628,7 +631,7 @@ msgstr "Algo salió mal, por favor inténtalo de nuevo"
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:165
 msgid "The button has expired, start over with your file or command"
-msgstr ""
+msgstr "El botón ha caducado, comience de nuevo con su archivo o comando"
 
 #: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
