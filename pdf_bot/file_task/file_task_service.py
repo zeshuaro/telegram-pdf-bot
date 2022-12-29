@@ -12,14 +12,13 @@ class FileTaskService:
     WAIT_IMAGE_TASK = "wait_image_task"
     KEYBOARD_SIZE = 3
 
-    DECRYPT = _("Decrypt")
     CROP = _("Crop")
     COMPRESS = _("Compress")
 
     BEAUTIFY = _("Beautify")
     TO_PDF = _("To PDF")
 
-    PDF_TASKS = sorted([DECRYPT, CROP, COMPRESS])
+    PDF_TASKS = sorted([CROP, COMPRESS])
 
     IMAGE_TASKS = sorted([BEAUTIFY, TO_PDF])
 
