@@ -10,7 +10,7 @@ from telegram.request import HTTPXRequest
 from pdf_bot.account import AccountRepository, AccountService
 from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
 from pdf_bot.cli import CLIService
-from pdf_bot.command import CommandService
+from pdf_bot.command import CommandHandler, CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
 from pdf_bot.file_handler import FileHandler
@@ -279,11 +279,17 @@ class Processors(containers.DeclarativeContainer):
 
 
 class Handlers(containers.DeclarativeContainer):
+    _settings = providers.Configuration(pydantic_settings=[Settings()])
     services = providers.DependenciesContainer()
     processors = providers.DependenciesContainer()
 
     # Make sure payment handler comes first as it contains handlers to be priortised
     payment = providers.Singleton(PaymentHandler, payment_service=services.payment)
+    command = providers.Singleton(
+        CommandHandler,
+        command_service=services.command,
+        admin_telegram_id=_settings.admin_telegram_id,
+    )
     language = providers.Singleton(LanguageHandler, language_service=services.language)
 
     file = providers.Singleton(
@@ -337,7 +343,6 @@ class TelegramBot(containers.DeclarativeContainer):
 
     dispatcher = providers.Singleton(
         TelegramDispatcher,
-        command_service=services.command,
         compare_handlers=handlers.compare,
         feedback_handler=handlers.feedback,
         file_handlers=handlers.file,

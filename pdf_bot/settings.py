@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     slack_token: str = Field(..., env="slack_token")
     stripe_token: str = Field(..., env="stripe_token")
 
+    admin_telegram_id: int = Field(..., env="admin_telegram_id")
+
     app_url: str | None = Field(default=None, env="app_url")
     port: int = Field(default=8443, env="port")
 

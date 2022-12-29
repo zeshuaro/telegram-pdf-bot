@@ -1,4 +1,4 @@
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
 from telegram.constants import ChatAction, ParseMode
 from telegram.error import Forbidden
 from telegram.ext import ContextTypes
@@ -19,13 +19,14 @@ class CommandService:
     async def send_start_message(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
-        await update.effective_message.reply_chat_action(ChatAction.TYPING)  # type: ignore
+        message: Message = update.effective_message  # type: ignore
+        await message.reply_chat_action(ChatAction.TYPING)
 
         # Create the user entity in Datastore
-        self.account_service.create_user(update.effective_message.from_user)  # type: ignore
+        self.account_service.create_user(message.from_user)
 
         _ = self.language_service.set_app_language(update, context)
-        await update.effective_message.reply_text(  # type: ignore
+        await message.reply_text(
             "{welcome}\n\n<b>{key_features}</b>\n"
             "{features_summary}\n"
             "{pdf_from_text}\n"
@@ -106,17 +107,17 @@ class CommandService:
     async def send_message_to_user(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
+        message: Message = update.effective_message  # type: ignore
         args = context.args
+
         if args is not None:
             user_id = int(args[0])
-            message = " ".join(args[1:])
+            text = " ".join(args[1:])
 
             try:
-                await context.bot.send_message(user_id, message)
-                await update.effective_message.reply_text("Message sent")  # type: ignore
+                await context.bot.send_message(user_id, text)
+                await message.reply_text("Message sent")
             except Forbidden:
-                await update.effective_message.reply_text(  # type: ignore
-                    "User has blocked the bot"
-                )
+                await message.reply_text("Bot is blocked by the user")
         else:
-            await update.effective_message.reply_text(f"Invalid arguments: {args}")  # type: ignore
+            await message.reply_text(f"Invalid arguments: {args}")
