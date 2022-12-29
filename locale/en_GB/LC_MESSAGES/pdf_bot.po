@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot VERSION\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-28 12:08+0000\n"
+"POT-Creation-Date: 2022-12-29 01:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: locale\n"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "To PDF"
 msgstr ""
 
-#: pdf_bot/consts.py:52 pdf_bot/pdf_processor/rename_pdf_processor.py:39
+#: pdf_bot/consts.py:52 pdf_bot/pdf_processor/rename_pdf_processor.py:32
 msgid "Rename"
 msgstr ""
 
@@ -506,16 +506,15 @@ msgstr ""
 msgid "To images"
 msgstr ""
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:86
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr ""
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:103
-msgid "File names can't contain any of the following characters:"
-msgstr ""
-
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:107
-msgid "Please try again"
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:46
+msgid ""
+"File names can't contain any of the following characters, please try "
+"again:\n"
+"{invalid_chars}"
 msgstr ""
 
 #: pdf_bot/pdf_processor/rotate_pdf_processor.py:90
@@ -1656,5 +1655,11 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "This will set the width to 150 and height to 200"
+#~ msgstr ""
+
+#~ msgid "File names can't contain any of the following characters:"
+#~ msgstr ""
+
+#~ msgid "Please try again"
 #~ msgstr ""
 
