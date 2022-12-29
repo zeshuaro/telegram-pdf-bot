@@ -35,7 +35,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.file_handlers = MagicMock(spec=FileHandler)
         self.image_handler = MagicMock(spec=BatchImageHandler)
         self.language_service = self.mock_language_service()
-        self.language_service.is_valid_language_value.return_value = False
         self.merge_handlers = MagicMock(spec=MergeHandlers)
         self.payment_service = MagicMock(spec=PaymentService)
         self.text_handlers = MagicMock(spec=TextHandlers)
@@ -74,7 +73,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
 
         self.sut.setup(self.app)
 
-        assert self.app.add_handler.call_count == 17
+        assert self.app.add_handler.call_count == 16
         self.app.add_error_handler.assert_called_once()
 
     @pytest.mark.asyncio
@@ -83,33 +82,8 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
 
         self.sut.setup(self.app)
 
-        assert self.app.add_handler.call_count == 16
+        assert self.app.add_handler.call_count == 15
         self.app.add_error_handler.assert_called_once()
-
-    @pytest.mark.asyncio
-    async def test_process_callback_query_set_language(self) -> None:
-        self.telegram_callback_query.data = self.SET_LANGUAGE
-
-        await self.sut.process_callback_query(
-            self.telegram_update, self.telegram_context
-        )
-
-        self.language_service.send_language_options.assert_called_once_with(
-            self.telegram_update, self.telegram_context
-        )
-
-    @pytest.mark.asyncio
-    async def test_process_callback_query_update_language(self) -> None:
-        self.telegram_callback_query.data = self.LANGUAGE
-        self.language_service.is_valid_language_value.return_value = True
-
-        await self.sut.process_callback_query(
-            self.telegram_update, self.telegram_context
-        )
-
-        self.language_service.update_user_language.assert_called_once_with(
-            self.telegram_update, self.telegram_context, self.telegram_callback_query
-        )
 
     @pytest.mark.asyncio
     async def test_process_callback_query_payment(self) -> None:

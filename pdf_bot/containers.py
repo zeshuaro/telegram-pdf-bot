@@ -22,7 +22,7 @@ from pdf_bot.image_processor import (
     ImageToPdfProcessor,
 )
 from pdf_bot.io import IOService
-from pdf_bot.language import LanguageRepository, LanguageService
+from pdf_bot.language import LanguageHandler, LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.payment import PaymentService
 from pdf_bot.pdf import PdfService
@@ -282,6 +282,7 @@ class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
     processors = providers.DependenciesContainer()
 
+    language = providers.Singleton(LanguageHandler, language_service=services.language)
     file = providers.Singleton(
         FileHandler,
         telegram_service=services.telegram,

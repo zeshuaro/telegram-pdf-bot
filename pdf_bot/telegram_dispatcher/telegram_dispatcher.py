@@ -17,7 +17,7 @@ from telegram.ext import (
 
 from pdf_bot.command.command_service import CommandService
 from pdf_bot.compare import CompareHandlers
-from pdf_bot.consts import PAYMENT, SET_LANG
+from pdf_bot.consts import PAYMENT
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.image_handler import BatchImageHandler
@@ -74,9 +74,6 @@ class TelegramDispatcher:
 
         telegram_app.add_handler(
             CommandHandler("help", self.command_service.send_help_message)
-        )
-        telegram_app.add_handler(
-            CommandHandler("setlang", self.language_service.send_language_options)
         )
         telegram_app.add_handler(
             CommandHandler("support", self.payment_service.send_support_options)
@@ -139,11 +136,7 @@ class TelegramDispatcher:
         data = query.data
 
         if isinstance(data, str):
-            if data == SET_LANG:
-                await self.language_service.send_language_options(update, context)
-            elif self.language_service.is_valid_language_value(data):
-                await self.language_service.update_user_language(update, context, query)
-            elif data == PAYMENT:
+            if data == PAYMENT:
                 await self.payment_service.send_support_options(update, context, query)
             elif data.startswith("payment,"):
                 await self.payment_service.send_invoice(update, context, query)
