@@ -5,7 +5,7 @@ import pytest
 from pdf_bot.analytics import TaskType
 from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import RenamePdfData, RenamePdfProcessor, TextInputData
+from pdf_bot.pdf_processor import RenamePdfData, RenamePdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
@@ -18,16 +18,9 @@ class TestRenamePdfProcessor(
     TelegramTestMixin,
 ):
     FILE_PATH = "file_path"
-    FILE_NAME = "file_name"
 
     def setup_method(self) -> None:
         super().setup_method()
-
-        self.text_input_data = TextInputData(
-            id=self.TELEGRAM_DOCUMENT_ID,
-            name=self.TELEGRAM_DOCUMENT_NAME,
-            text=self.FILE_NAME,
-        )
 
         self.pdf_service = MagicMock(spec=PdfService)
         self.file_task_service = self.mock_file_task_service()
@@ -75,11 +68,11 @@ class TestRenamePdfProcessor(
         )
 
         async with self.sut.process_file_task(
-            self.text_input_data, self.TELEGRAM_TEXT
+            self.TEXT_INPUT_DATA, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.rename_pdf.assert_called_once_with(
-                self.FILE_DATA.id, self.FILE_NAME
+                self.TEXT_INPUT_DATA.id, self.TEXT_INPUT_DATA.text
             )
 
     @pytest.mark.asyncio
