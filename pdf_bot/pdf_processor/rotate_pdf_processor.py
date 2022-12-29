@@ -42,10 +42,6 @@ class RotatePdfProcessor(AbstractPdfProcessor):
         return TaskData(_("Rotate"), RotatePdfData)
 
     @property
-    def should_process_back_option(self) -> bool:
-        return False
-
-    @property
     def handler(self) -> BaseHandler | None:
         return ConversationHandler(
             entry_points=[CallbackQueryHandler(self.ask_degree, pattern=RotatePdfData)],

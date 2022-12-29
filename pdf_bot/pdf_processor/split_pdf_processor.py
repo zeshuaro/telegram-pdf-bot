@@ -31,10 +31,6 @@ class SplitPdfProcessor(AbstractPdfTextInputProcessor):
         return TaskData(_("Split"), self.entry_point_data_type)
 
     @property
-    def should_process_back_option(self) -> bool:
-        return False
-
-    @property
     def invalid_text_input_error(self) -> str:  # pragma: no cover
         return _("The split range is invalid, please try again")
 

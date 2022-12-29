@@ -24,10 +24,6 @@ class ExtractPdfTextProcessor(AbstractPdfProcessor):
         return TaskData(_("Extract text"), ExtractPdfTextData)
 
     @property
-    def should_process_back_option(self) -> bool:
-        return False
-
-    @property
     def handler(self) -> BaseHandler | None:
         return CallbackQueryHandler(self.process_file, pattern=ExtractPdfTextData)
 

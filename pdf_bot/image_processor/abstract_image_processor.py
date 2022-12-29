@@ -1,5 +1,4 @@
 from pdf_bot.file_processor import AbstractFileProcessor
-from pdf_bot.file_task import FileTaskService
 from pdf_bot.image import ImageService
 from pdf_bot.language import LanguageService
 from pdf_bot.models import TaskData
@@ -11,7 +10,6 @@ class AbstractImageProcessor(AbstractFileProcessor):
 
     def __init__(
         self,
-        file_task_service: FileTaskService,
         image_service: ImageService,
         telegram_service: TelegramService,
         language_service: LanguageService,
@@ -24,9 +22,7 @@ class AbstractImageProcessor(AbstractFileProcessor):
             raise ValueError(f"Class has already been initialised: {cls_name}")
         self._IMAGE_PROCESSORS[cls_name] = self
 
-        super().__init__(
-            file_task_service, telegram_service, language_service, bypass_init_check
-        )
+        super().__init__(telegram_service, language_service, bypass_init_check)
 
     @classmethod
     def get_task_data_list(cls) -> list[TaskData]:

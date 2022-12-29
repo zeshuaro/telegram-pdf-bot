@@ -194,84 +194,72 @@ class Processors(containers.DeclarativeContainer):
 
     decrypt = providers.Singleton(
         DecryptPdfProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     encrypt = providers.Singleton(
         EncryptPdfProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     extract_image = providers.Singleton(
         ExtractPdfImageProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     extract_text = providers.Singleton(
         ExtractPdfTextProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     grayscale = providers.Singleton(
         GrayscalePdfProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     ocr = providers.Singleton(
         OcrPdfProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     pdf_to_image = providers.Singleton(
         PdfToImageProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     preview_pdf = providers.Singleton(
         PreviewPdfProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     rename = providers.Singleton(
         RenamePdfProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     rotate = providers.Singleton(
         RotatePdfProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     scale = providers.Singleton(
         ScalePdfProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     split = providers.Singleton(
         SplitPdfProcessor,
-        file_task_service=services.file_task,
         pdf_service=services.pdf,
         telegram_service=services.telegram,
         language_service=services.language,
@@ -279,14 +267,12 @@ class Processors(containers.DeclarativeContainer):
 
     beautify = providers.Singleton(
         BeautifyImageProcessor,
-        file_task_service=services.file_task,
         image_service=services.image,
         telegram_service=services.telegram,
         language_service=services.language,
     )
     image_to_pdf = providers.Singleton(
         ImageToPdfProcessor,
-        file_task_service=services.file_task,
         image_service=services.image,
         telegram_service=services.telegram,
         language_service=services.language,

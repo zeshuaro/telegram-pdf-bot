@@ -11,7 +11,6 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
 from pdf_bot.models import FileData, TaskData
 from pdf_bot.telegram_internal import TelegramGetUserDataError
-from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
@@ -111,14 +110,7 @@ class MockProcessorWithUnknownErrorHandler(MockProcessorWithCustomErrorHandler):
         yield self.PROCESS_RESULT  # type: ignore # pylint: disable=unreachable
 
 
-class MockProcessorWithoutBackOption(MockProcessor):
-    @property
-    def should_process_back_option(self) -> bool:
-        return False
-
-
 class TestAbstractFileProcessor(
-    FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
     TelegramTestMixin,
@@ -130,12 +122,10 @@ class TestAbstractFileProcessor(
         super().setup_method()
         self.telegram_update.callback_query = None
 
-        self.file_task_service = self.mock_file_task_service()
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
         self.sut = MockProcessor(
-            self.file_task_service,
             self.telegram_service,
             self.language_service,
             bypass_init_check=True,
@@ -212,7 +202,6 @@ class TestAbstractFileProcessor(
     @pytest.mark.asyncio
     async def test_process_file_generic_error_not_registered(self) -> None:
         self.sut = MockProcessorRaiseGenericErrorWithoutRegisteringGenericError(
-            self.file_task_service,
             self.telegram_service,
             self.language_service,
         )
@@ -229,7 +218,6 @@ class TestAbstractFileProcessor(
     @pytest.mark.asyncio
     async def test_process_file_error(self) -> None:
         self.sut = MockProcessorRaiseGenericError(
-            self.file_task_service,
             self.telegram_service,
             self.language_service,
         )
@@ -246,7 +234,6 @@ class TestAbstractFileProcessor(
     @pytest.mark.asyncio
     async def test_process_file_custom_error(self) -> None:
         self.sut = MockProcessorWithCustomErrorHandler(
-            self.file_task_service,
             self.telegram_service,
             self.language_service,
         )
@@ -262,7 +249,6 @@ class TestAbstractFileProcessor(
     @pytest.mark.asyncio
     async def test_process_file_unknown_error(self) -> None:
         self.sut = MockProcessorWithUnknownErrorHandler(
-            self.file_task_service,
             self.telegram_service,
             self.language_service,
         )
@@ -288,34 +274,6 @@ class TestAbstractFileProcessor(
             self.telegram_context
         )
         self.telegram_service.send_file.assert_not_called()
-
-    @pytest.mark.asyncio
-    async def test_process_file_with_back_option(self) -> None:
-        self.telegram_message.text = self.BACK
-
-        actual = await self.sut.process_file(
-            self.telegram_update, self.telegram_context
-        )
-
-        assert actual == FileTaskServiceTestMixin.WAIT_PDF_TASK
-        self.telegram_service.get_user_data.assert_not_called()
-        self.telegram_service.send_file.assert_not_called()
-
-    @pytest.mark.asyncio
-    async def test_process_file_without_back_option(self) -> None:
-        self.sut = MockProcessorWithoutBackOption(
-            self.file_task_service,
-            self.telegram_service,
-            self.language_service,
-        )
-        self.telegram_message.text = self.BACK
-
-        actual = await self.sut.process_file(
-            self.telegram_update, self.telegram_context
-        )
-
-        assert actual == ConversationHandler.END
-        self._assert_process_file_succeed()
 
     @pytest.mark.asyncio
     async def test_process_file_with_callback_query(self) -> None:

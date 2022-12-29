@@ -7,13 +7,11 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import GrayscalePdfData, GrayscalePdfProcessor
-from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
 class TestGrayscalePdfProcessor(
-    FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
     TelegramTestMixin,
@@ -23,12 +21,10 @@ class TestGrayscalePdfProcessor(
     def setup_method(self) -> None:
         super().setup_method()
         self.pdf_service = MagicMock(spec=PdfService)
-        self.file_task_service = self.mock_file_task_service()
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
         self.sut = GrayscalePdfProcessor(
-            self.file_task_service,
             self.pdf_service,
             self.telegram_service,
             self.language_service,
@@ -38,10 +34,6 @@ class TestGrayscalePdfProcessor(
     def test_get_task_type(self) -> None:
         actual = self.sut.task_type
         assert actual == TaskType.grayscale_pdf
-
-    def test_should_process_back_option(self) -> None:
-        actual = self.sut.should_process_back_option
-        assert actual is False
 
     def test_task_data(self) -> None:
         actual = self.sut.task_data

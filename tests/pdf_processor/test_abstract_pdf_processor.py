@@ -6,7 +6,6 @@ from pdf_bot.analytics import TaskType
 from pdf_bot.models import FileData
 from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.pdf_processor import AbstractPdfProcessor
-from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
@@ -27,22 +26,17 @@ class MockProcessor(AbstractPdfProcessor):
         yield "process_result"
 
 
-class TestAbstractTelegramFileProcessor(
-    FileTaskServiceTestMixin,
-    LanguageServiceTestMixin,
-    TelegramServiceTestMixin,
-    TelegramTestMixin,
+class TestAbstractPdfProcessor(
+    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
 ):
     def setup_method(self) -> None:
         super().setup_method()
         self.pdf_service = MagicMock(spec=PdfService)
-        self.file_task_service = self.mock_file_task_service()
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
         self.sut = MockProcessor(
             self.pdf_service,
-            self.file_task_service,
             self.telegram_service,
             self.language_service,
             bypass_init_check=True,

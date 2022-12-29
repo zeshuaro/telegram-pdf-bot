@@ -34,10 +34,6 @@ class DecryptPdfProcessor(AbstractPdfTextInputProcessor):
         return TaskData(_("Decrypt"), self.entry_point_data_type)
 
     @property
-    def should_process_back_option(self) -> bool:
-        return False
-
-    @property
     def invalid_text_input_error(self) -> str:  # pragma: no cover
         return ""
 

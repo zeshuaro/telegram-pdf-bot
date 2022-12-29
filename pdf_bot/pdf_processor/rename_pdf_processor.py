@@ -32,10 +32,6 @@ class RenamePdfProcessor(AbstractPdfTextInputProcessor):
         return TaskData(_("Rename"), self.entry_point_data_type)
 
     @property
-    def should_process_back_option(self) -> bool:
-        return False
-
-    @property
     def invalid_text_input_error(self) -> str:  # pragma: no cover
         return _(
             "File names can't contain any of the following characters, please try"
