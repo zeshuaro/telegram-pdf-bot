@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 12:32+0000\n"
-"PO-Revision-Date: 2022-12-29 12:32\n"
+"POT-Creation-Date: 2022-12-29 13:40+0000\n"
+"PO-Revision-Date: 2022-12-29 13:40\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -31,7 +31,7 @@ msgstr "Cancelar"
 msgid "Done"
 msgstr "Hecho"
 
-#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:41
 msgid "Back"
 msgstr "Volver"
 
@@ -39,97 +39,97 @@ msgstr "Volver"
 msgid "Failed to complete process"
 msgstr "Error al completar el proceso"
 
-#: pdf_bot/command/command_service.py:37
+#: pdf_bot/command/command_service.py:38
 msgid "Welcome to PDF Bot!"
 msgstr "¡Bienvenido a PDF Bot!"
 
-#: pdf_bot/command/command_service.py:38
+#: pdf_bot/command/command_service.py:39
 msgid "Key features:"
 msgstr "Características clave:"
 
-#: pdf_bot/command/command_service.py:39
+#: pdf_bot/command/command_service.py:40
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- Comprimir, combinar, previsualizar, renombrar, dividir y agregar marcas de agua a archivos PDF"
 
-#: pdf_bot/command/command_service.py:43
+#: pdf_bot/command/command_service.py:44
 msgid "- Create PDF files from text messages"
 msgstr "- Crear archivos PDF a partir de mensajes de texto"
 
-#: pdf_bot/command/command_service.py:44
+#: pdf_bot/command/command_service.py:45
 msgid "- Extract images and text from PDF files"
 msgstr "- Extraer imágenes y texto de archivos PDF"
 
-#: pdf_bot/command/command_service.py:45
+#: pdf_bot/command/command_service.py:46
 msgid "- Convert PDF files into images"
 msgstr "- Convertir archivos PDF en imágenes"
 
-#: pdf_bot/command/command_service.py:46
+#: pdf_bot/command/command_service.py:47
 msgid "- Convert webpages and images into PDF files"
 msgstr "- Convertir páginas web e imágenes en archivos PDF"
 
-#: pdf_bot/command/command_service.py:47
+#: pdf_bot/command/command_service.py:48
 msgid "- Beautify handwritten notes images into PDF files"
 msgstr "- Embellecer imágenes de notas manuscritas en archivos PDF"
 
-#: pdf_bot/command/command_service.py:48
+#: pdf_bot/command/command_service.py:49
 msgid "- And more..."
 msgstr "- Y más..."
 
-#: pdf_bot/command/command_service.py:49
+#: pdf_bot/command/command_service.py:50
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Escriba {command} para ver cómo usar PDF Bot"
 
-#: pdf_bot/command/command_service.py:63
+#: pdf_bot/command/command_service.py:64
 msgid "Set Language 🌎"
 msgstr "Definir Idioma 🌎"
 
-#: pdf_bot/command/command_service.py:67
-#: pdf_bot/telegram_internal/telegram_service.py:218
+#: pdf_bot/command/command_service.py:68
+#: pdf_bot/telegram_internal/telegram_service.py:219
 msgid "Join Channel"
 msgstr "Unirse al canal"
 
-#: pdf_bot/command/command_service.py:68 pdf_bot/payment/payment_service.py:94
-#: pdf_bot/telegram_internal/telegram_service.py:219
+#: pdf_bot/command/command_service.py:69 pdf_bot/payment/payment_service.py:61
+#: pdf_bot/telegram_internal/telegram_service.py:220
 msgid "Support PDF Bot"
 msgstr "Apoya a PDF Bot"
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:78
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Puede realizar la mayoría de las tareas enviándome una de las siguientes opciones:"
 
-#: pdf_bot/command/command_service.py:81
+#: pdf_bot/command/command_service.py:82
 msgid "- PDF files"
 msgstr "- Archivos PDF"
 
-#: pdf_bot/command/command_service.py:82
+#: pdf_bot/command/command_service.py:83
 msgid "- Images"
 msgstr "- Imágenes"
 
-#: pdf_bot/command/command_service.py:83
+#: pdf_bot/command/command_service.py:84
 msgid "- Webpage links"
 msgstr "- Enlaces a páginas web"
 
-#: pdf_bot/command/command_service.py:84
+#: pdf_bot/command/command_service.py:85
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "El resto de las tareas se pueden realizar mediante los siguientes comandos:"
 
-#: pdf_bot/command/command_service.py:88
+#: pdf_bot/command/command_service.py:89
 msgid "{command} - compare PDF files"
 msgstr "{command} - comparar archivos PDF"
 
-#: pdf_bot/command/command_service.py:91
+#: pdf_bot/command/command_service.py:92
 msgid "{command} - merge PDF files"
 msgstr "{command} - combinar archivos PDF"
 
-#: pdf_bot/command/command_service.py:92
+#: pdf_bot/command/command_service.py:93
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - convertir y combinar múltiples imágenes en archivos PDF"
 
-#: pdf_bot/command/command_service.py:95
+#: pdf_bot/command/command_service.py:96
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - crear archivos PDF a partir de mensajes de texto"
 
-#: pdf_bot/command/command_service.py:98
+#: pdf_bot/command/command_service.py:99
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - añadir marca de agua a los archivos PDF"
 
@@ -281,45 +281,45 @@ msgstr "Sólo me has enviado un archivo PDF"
 msgid "Merging your PDF files"
 msgstr "Combinando tus archivos PDF"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:20
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/payment/payment_service.py:30
+#: pdf_bot/payment/payment_service.py:24
 msgid "Say Thanks"
 msgstr "Decí gracias"
 
-#: pdf_bot/payment/payment_service.py:31
+#: pdf_bot/payment/payment_service.py:25
 msgid "Coffee"
 msgstr "Café"
 
-#: pdf_bot/payment/payment_service.py:32
+#: pdf_bot/payment/payment_service.py:26
 msgid "Beer"
 msgstr "Cerveza"
 
-#: pdf_bot/payment/payment_service.py:33
+#: pdf_bot/payment/payment_service.py:27
 msgid "Meal"
 msgstr "Comida"
 
-#: pdf_bot/payment/payment_service.py:64
-msgid "Help translate PDF Bot"
-msgstr "Ayuda a traducir la aplicación"
-
-#: pdf_bot/payment/payment_service.py:77
+#: pdf_bot/payment/payment_service.py:44
 msgid "Select how you want to support PDF Bot"
 msgstr "Selecciona cómo quieres apoyar a PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:95
+#: pdf_bot/payment/payment_service.py:62
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Agradece a PDF Bot y ayuda a mantenerlo funcionando"
 
-#: pdf_bot/payment/payment_service.py:114
+#: pdf_bot/payment/payment_service.py:79
 msgid "Something went wrong, try again"
 msgstr "Algo salió mal, inténtalo de nuevo"
 
-#: pdf_bot/payment/payment_service.py:126
+#: pdf_bot/payment/payment_service.py:89
 msgid "Thank you for your support!"
 msgstr "¡Gracias por tu ayuda!"
+
+#: pdf_bot/payment/payment_service.py:111
+msgid "Help translate PDF Bot"
+msgstr "Ayuda a traducir la aplicación"
 
 #: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is not encrypted"
@@ -563,47 +563,47 @@ msgstr "{range} páginas {pages} excepto {page}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  páginas {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:147
-#: pdf_bot/telegram_internal/telegram_service.py:93
-#: pdf_bot/telegram_internal/telegram_service.py:108
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:103
+#: pdf_bot/telegram_internal/telegram_service.py:94
+#: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "Algo salió mal, por favor inténtalo de nuevo"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:158
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:114
 msgid "The button has expired, start over with your file or command"
 msgstr "El botón ha caducado, comience de nuevo con su archivo o comando"
 
-#: pdf_bot/telegram_internal/telegram_service.py:59
+#: pdf_bot/telegram_internal/telegram_service.py:60
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Su archivo es demasiado grande para que lo descargue y procese, inténtelo de nuevo con un archivo diferente\n\n"
 "Tenga en cuenta que este límite es impuesto por Telegram y no hay nada que pueda hacer a menos que Telegram lo cambie"
 
-#: pdf_bot/telegram_internal/telegram_service.py:71
+#: pdf_bot/telegram_internal/telegram_service.py:72
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "El archivo es demasiado grande para que te lo envíe\n\n"
 "Tenga en cuenta que este límite es aplicado por Telegram y no hay nada que pueda hacer a menos que Telegram lo cambie"
 
-#: pdf_bot/telegram_internal/telegram_service.py:146
+#: pdf_bot/telegram_internal/telegram_service.py:147
 msgid "Your file is not an image, please try again"
 msgstr "Su archivo no es una imagen, inténtelo de nuevo"
 
-#: pdf_bot/telegram_internal/telegram_service.py:153
+#: pdf_bot/telegram_internal/telegram_service.py:154
 msgid "No image found in your message"
 msgstr "No se ha encontrado ninguna imagen en el mensaje"
 
-#: pdf_bot/telegram_internal/telegram_service.py:162
+#: pdf_bot/telegram_internal/telegram_service.py:163
 msgid "Your file is not a PDF file, please try again"
 msgstr "Su archivo no es un archivo PDF, inténtelo de nuevo"
 
-#: pdf_bot/telegram_internal/telegram_service.py:192
-#: pdf_bot/telegram_internal/telegram_service.py:195
+#: pdf_bot/telegram_internal/telegram_service.py:193
+#: pdf_bot/telegram_internal/telegram_service.py:196
 msgid "Action cancelled"
 msgstr "Acción cancelada"
 
-#: pdf_bot/telegram_internal/telegram_service.py:265
-#: pdf_bot/telegram_internal/telegram_service.py:273
+#: pdf_bot/telegram_internal/telegram_service.py:266
+#: pdf_bot/telegram_internal/telegram_service.py:274
 msgid "Here is your result file"
 msgstr "Este es tu archivo resultado"
 
