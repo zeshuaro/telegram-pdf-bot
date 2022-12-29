@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-12-29 02:09+0000\n"
-"PO-Revision-Date: 2022-12-29 02:10\n"
+"PO-Revision-Date: 2022-12-29 02:19\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: Uzbek\n"
@@ -338,7 +338,7 @@ msgstr "Bajarmoqchi bo'lgan harakatni tanlang"
 
 #: pdf_bot/file_task/file_task_service.py:55
 msgid "Select the task that you'll like to perform from below or select from the buttons"
-msgstr ""
+msgstr "Pastdan bajarmoqchi bo'lgan vazifani tanlang yoki tugmachalardan tanlang"
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -438,7 +438,7 @@ msgstr "PDF botiga rahmat ayting va uni ishlatishda savom eting"
 
 #: pdf_bot/payment/payment_service.py:114
 msgid "Something went wrong, try again"
-msgstr ""
+msgstr "Biror narsa noto'g'ri bo'ldi, yana urinib ko'ring"
 
 #: pdf_bot/payment/payment_service.py:126
 msgid "Thank you for your support!"
@@ -490,24 +490,25 @@ msgstr "Faylingizni parol bilan himoyalash uchun parolni yuboring"
 
 #: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
 msgid "Extract images"
-msgstr ""
+msgstr "Rasmlarni ajratish"
 
 #: pdf_bot/pdf_processor/extract_pdf_text_processor.py:24
 msgid "Extract text"
-msgstr ""
+msgstr "Matnni ajratish"
 
 #: pdf_bot/pdf_processor/grayscale_pdf_processor.py:24
 msgid "Grayscale"
-msgstr ""
+msgstr "Kulrang"
 
 #: pdf_bot/pdf_processor/pdf_to_image_processor.py:24
 msgid "To images"
-msgstr ""
+msgstr "Rasmlarga"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:42
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
-msgstr ""
+msgstr "Fayl nomlarida quyidagi belgidan hech biri boʻla olmaydi, iltimos qaytadan urinib koʻring:\n"
+"{invalid_chars}"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:48
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -519,7 +520,7 @@ msgstr "PDF-faylingizni soat yo'nalishi bo'yicha aylantirishni xohlaydigan daraj
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:29
 msgid "By factor"
-msgstr ""
+msgstr "Omil bo'yicha"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:30
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:64
@@ -529,12 +530,14 @@ msgstr "O'lchamga"
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:36
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
-msgstr ""
+msgstr "Gorizontal va vertikal eksa uchun taranglik omillarini menga yuboring\n\n"
+"Misol: 2 0.5 - bu gorizontal o'qi ikki barobarga oshiradi va vertikal eksani yarmiga kamaytiradi"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:42
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
-msgstr ""
+msgstr "Menga kengligi va balandligini yuboring\n\n"
+"Misol: 150 200 - bu kengligi 150 ga, balandligi esa 200 ga o'rnatiladi"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:63
 msgid "By scaling factor"
@@ -546,11 +549,11 @@ msgstr "Siz bajarmoqchi bo'lgan o'lchov turini tanlang"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:178
 msgid "The values {values} are invalid, please try again"
-msgstr ""
+msgstr "{values} qiymatlari xato, iltimos qaytadan urinib koʻring"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:39
 msgid "The split range is invalid, please try again"
-msgstr ""
+msgstr "Boʻlinish oraligʻi xato, iltimos qaytadan urinib koʻring"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "Send me the range of pages that you'll like to keep"
@@ -628,7 +631,7 @@ msgstr "Xatolik yuz berdi, qaytadan urining"
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:165
 msgid "The button has expired, start over with your file or command"
-msgstr ""
+msgstr "Tugmaning amal qilish muddati tugadi, fayl yoki buyruq bilan ishga tushiring"
 
 #: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"

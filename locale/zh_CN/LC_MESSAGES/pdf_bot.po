@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2022-12-29 02:09+0000\n"
-"PO-Revision-Date: 2022-12-29 02:10\n"
+"PO-Revision-Date: 2022-12-29 02:19\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -305,11 +305,11 @@ msgstr "正数将减少保证金大小，负数将增加"
 
 #: pdf_bot/feedback/feedback_handler.py:47
 msgid "Send me your feedback in English"
-msgstr ""
+msgstr "用英语向我发送您的反馈"
 
 #: pdf_bot/feedback/feedback_handler.py:71
 msgid "Thank you for your feedback, I've forwarded it to my developer"
-msgstr ""
+msgstr "感谢您的反馈，我已将其转发给我的开发人员"
 
 #: pdf_bot/feedback/feedback_service.py:21
 msgid "The feedback is not in English, try again"
@@ -330,7 +330,7 @@ msgstr "文件大小减少 {percent}，从 {old_size} 减少到 {new_size}"
 #: pdf_bot/file_processor/abstract_file_processor.py:116
 #: pdf_bot/file_processor/abstract_file_processor.py:168
 msgid "Processing your file"
-msgstr ""
+msgstr "处理您的文件"
 
 #: pdf_bot/file_processor/file_task_mixin.py:53
 msgid "Select the task that you'll like to perform"
@@ -338,7 +338,7 @@ msgstr "选择你想要做什么"
 
 #: pdf_bot/file_task/file_task_service.py:55
 msgid "Select the task that you'll like to perform from below or select from the buttons"
-msgstr ""
+msgstr "从下方选择要执行的任务，或从按钮中进行选择"
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -438,7 +438,7 @@ msgstr "跟PDF Bot说谢谢并帮助它继续运行"
 
 #: pdf_bot/payment/payment_service.py:114
 msgid "Something went wrong, try again"
-msgstr ""
+msgstr "出错了，再试一次"
 
 #: pdf_bot/payment/payment_service.py:126
 msgid "Thank you for your support!"
@@ -490,24 +490,25 @@ msgstr "把密码发给我来加密你的PDF档案"
 
 #: pdf_bot/pdf_processor/extract_pdf_image_processor.py:24
 msgid "Extract images"
-msgstr ""
+msgstr "提取图像"
 
 #: pdf_bot/pdf_processor/extract_pdf_text_processor.py:24
 msgid "Extract text"
-msgstr ""
+msgstr "提取文本"
 
 #: pdf_bot/pdf_processor/grayscale_pdf_processor.py:24
 msgid "Grayscale"
-msgstr ""
+msgstr "灰度"
 
 #: pdf_bot/pdf_processor/pdf_to_image_processor.py:24
 msgid "To images"
-msgstr ""
+msgstr "到图像"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:42
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
-msgstr ""
+msgstr "文件名不能包含以下任何字符，请重试：\n"
+"{invalid_chars}"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:48
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -519,7 +520,7 @@ msgstr "选择你想要顺时针旋转你PDF档案的度数"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:29
 msgid "By factor"
-msgstr ""
+msgstr "按因素"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:30
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:64
@@ -529,12 +530,14 @@ msgstr "到尺寸"
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:36
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
-msgstr ""
+msgstr "将水平轴和垂直轴的比例因子发送给我\n\n"
+"示例：2 0.5 - 这将使水平轴加倍，垂直轴减半"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:42
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
-msgstr ""
+msgstr "将宽度和高度发送给我\n\n"
+"示例：150 200 - 这会将宽度设置为 150，将高度设置为 200"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:63
 msgid "By scaling factor"
@@ -546,11 +549,11 @@ msgstr "选择你要怎样缩放"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:178
 msgid "The values {values} are invalid, please try again"
-msgstr ""
+msgstr "{values} 的值无效，请重试"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:39
 msgid "The split range is invalid, please try again"
-msgstr ""
+msgstr "分割范围无效，请重试"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "Send me the range of pages that you'll like to keep"
@@ -628,7 +631,7 @@ msgstr "出问题了，请再试一次"
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:165
 msgid "The button has expired, start over with your file or command"
-msgstr ""
+msgstr "按钮已过期，请使用文件或命令重新开始"
 
 #: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
