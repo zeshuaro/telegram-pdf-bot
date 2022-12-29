@@ -3,7 +3,7 @@ from .abstract_pdf_text_input_processor import (
     AbstractPdfTextInputProcessor,
     TextInputData,
 )
-from .crypto import AbstractCryptoPdfProcessor, DecryptPdfProcessor
+from .decrypt_pdf_processor import DecryptPdfData, DecryptPdfProcessor
 from .encrypt_pdf_processor import EncryptPdfData, EncryptPdfProcessor
 from .extract_pdf_image_processor import ExtractPdfImageData, ExtractPdfImageProcessor
 from .extract_pdf_text_processor import ExtractPdfTextData, ExtractPdfTextProcessor
@@ -27,7 +27,7 @@ __all__ = [
     "AbstractPdfProcessor",
     "AbstractPdfTextInputProcessor",
     "TextInputData",
-    "AbstractCryptoPdfProcessor",
+    "DecryptPdfData",
     "DecryptPdfProcessor",
     "EncryptPdfData",
     "EncryptPdfProcessor",
