@@ -10,6 +10,7 @@ from pdf_bot.containers import Application
 from pdf_bot.log.log_handler import InterceptLoggingHandler
 from pdf_bot.settings import Settings
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
+from pdf_bot.telegram_handler import AbstractTelegramHandler
 
 
 @inject
@@ -62,5 +63,12 @@ if __name__ == "__main__":
     for provider in app.processors.providers.values():  # type: ignore
         if isinstance(provider, Singleton):
             provider()
+
+    # Similarly, initialise and register all the handlers for the bot
+    for provider in app.handlers.providers.values():  # type: ignore
+        if isinstance(provider, Singleton):
+            handler = provider()
+            if isinstance(handler, AbstractTelegramHandler):
+                _telegram_app.add_handlers(handler.handlers)
 
     main(_telegram_app)

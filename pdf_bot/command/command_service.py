@@ -4,8 +4,8 @@ from telegram.error import Forbidden
 from telegram.ext import ContextTypes
 
 from pdf_bot.account.account_service import AccountService
-from pdf_bot.consts import CHANNEL_NAME, PAYMENT, SET_LANG
-from pdf_bot.language import LanguageService
+from pdf_bot.consts import CHANNEL_NAME, PAYMENT
+from pdf_bot.language import LanguageService, SetLanguageData
 
 
 class CommandService:
@@ -58,7 +58,11 @@ class CommandService:
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
         keyboard = [
-            [InlineKeyboardButton(_("Set Language 🌎"), callback_data=SET_LANG)],
+            [
+                InlineKeyboardButton(
+                    _("Set Language 🌎"), callback_data=SetLanguageData()
+                )
+            ],
             [
                 InlineKeyboardButton(_("Join Channel"), f"https://t.me/{CHANNEL_NAME}"),
                 InlineKeyboardButton(_("Support PDF Bot"), callback_data=PAYMENT),
