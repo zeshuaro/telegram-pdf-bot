@@ -19,7 +19,7 @@ from pdf_bot.command.command_service import CommandService
 from pdf_bot.compare import CompareHandlers
 from pdf_bot.consts import LANGUAGES, PAYMENT, SET_LANG
 from pdf_bot.feedback import FeedbackHandler
-from pdf_bot.file import FileHandlers
+from pdf_bot.file_handler import FileHandler
 from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.language import LanguageService
 from pdf_bot.merge import MergeHandlers
@@ -39,7 +39,7 @@ class TelegramDispatcher:
         command_service: CommandService,
         compare_handlers: CompareHandlers,
         feedback_handler: FeedbackHandler,
-        file_handlers: FileHandlers,
+        file_handlers: FileHandler,
         image_handler: BatchImageHandler,
         language_service: LanguageService,
         merge_handlers: MergeHandlers,

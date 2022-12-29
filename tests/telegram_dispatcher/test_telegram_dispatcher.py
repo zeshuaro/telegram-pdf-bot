@@ -7,7 +7,7 @@ from telegram.ext import Application
 from pdf_bot.command.command_service import CommandService
 from pdf_bot.compare import CompareHandlers
 from pdf_bot.feedback import FeedbackHandler
-from pdf_bot.file import FileHandlers
+from pdf_bot.file_handler import FileHandler
 from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.merge import MergeHandlers
 from pdf_bot.payment import PaymentService
@@ -32,7 +32,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.command_service = MagicMock(spec=CommandService)
         self.compare_handlers = MagicMock(spec=CompareHandlers)
         self.feedback_handler = MagicMock(spec=FeedbackHandler)
-        self.file_handlers = MagicMock(spec=FileHandlers)
+        self.file_handlers = MagicMock(spec=FileHandler)
         self.image_handler = MagicMock(spec=BatchImageHandler)
         self.language_service = self.mock_language_service()
         self.merge_handlers = MagicMock(spec=MergeHandlers)
