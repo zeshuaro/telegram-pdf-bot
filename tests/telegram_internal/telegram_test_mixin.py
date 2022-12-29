@@ -6,6 +6,7 @@ from telegram import (
     Chat,
     Document,
     File,
+    InlineKeyboardMarkup,
     Message,
     PhotoSize,
     PreCheckoutQuery,
@@ -31,6 +32,8 @@ class TelegramTestMixin:
 
     FILE_DATA = FileData(TELEGRAM_DOCUMENT_ID, TELEGRAM_DOCUMENT_NAME)
     MESSAGE_DATA = MessageData(TELEGRAM_CHAT_ID, TELEGRAM_MESSAGE_ID)
+
+    BACK_INLINE_MARKUP = MagicMock(spec=InlineKeyboardMarkup)
 
     def setup_method(self) -> None:
         self.telegram_bot = MagicMock(spec=Bot)
