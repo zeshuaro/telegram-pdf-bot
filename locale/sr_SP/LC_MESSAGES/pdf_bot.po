@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 06:33+0000\n"
-"PO-Revision-Date: 2022-12-29 06:34\n"
+"POT-Creation-Date: 2022-12-29 06:52+0000\n"
+"PO-Revision-Date: 2022-12-29 06:52\n"
 "Last-Translator: \n"
 "Language: sr\n"
 "Language-Team: Serbian (Cyrillic)\n"
@@ -75,13 +75,11 @@ msgstr "Скали"
 msgid "Split"
 msgstr "Поделимо"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
-#: pdf_bot/image_processor/beautify_image_processor.py:24
+#: pdf_bot/consts.py:50 pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Улепшавање"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
-#: pdf_bot/image_processor/image_to_pdf_processor.py:24
+#: pdf_bot/consts.py:51 pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "У ПДФ"
 
@@ -121,7 +119,7 @@ msgstr "Текстуална порука"
 msgid "Text File"
 msgstr "Текстуална датотека"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:62 pdf_bot/pdf_processor/compress_pdf_processor.py:24
 msgid "Compress"
 msgstr "Компримовање"
 
@@ -279,17 +277,13 @@ msgstr "Хвала вам на повратним информацијама, п
 msgid "The feedback is not in English, try again"
 msgstr "Повратне информације нису на енглеском, покушајте поново"
 
-#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
+#: pdf_bot/file/file_handlers.py:67 pdf_bot/file/file_handlers.py:93
 msgid "Your file is too big for me to download and process"
 msgstr "Твој фајл је превелик да га преузмем и обрадим"
 
-#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
+#: pdf_bot/file/file_handlers.py:68 pdf_bot/file/file_handlers.py:94
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Имајте науда да је ово ограничење Телеграм Бота и да не могу ништа да урадим ако Телеграм не промени ово ограничење"
-
-#: pdf_bot/file/file_service.py:36
-msgid "File size reduced by {percent}, from {old_size} to {new_size}"
-msgstr "Величина датотеке смањена за {percent}, са {old_size} на {new_size}"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:106
 #: pdf_bot/file_processor/abstract_file_processor.py:172
@@ -299,10 +293,6 @@ msgstr "Обрада датотеке"
 #: pdf_bot/file_processor/file_task_mixin.py:53
 msgid "Select the task that you'll like to perform"
 msgstr "Изаберите задатак који ћете хтети да извршите"
-
-#: pdf_bot/file_task/file_task_service.py:54
-msgid "Select the task that you'll like to perform from below or select from the buttons"
-msgstr "Изаберите задатак који ћете хтети да извршите одоздо или га изаберите са дугмади"
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -443,6 +433,10 @@ msgstr "Ваша ПДФ датотека је неважећа"
 #: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "Ваш ПДФ фајл је шифрован"
+
+#: pdf_bot/pdf_processor/compress_pdf_processor.py:37
+msgid "File size reduced by {percent}, from {old_size} to {new_size}"
+msgstr "Величина датотеке смањена за {percent}, са {old_size} на {new_size}"
 
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:16
 msgid "By percentage"
@@ -1670,5 +1664,11 @@ msgstr "Конвертовање Wеб странице није успело"
 #~ "Positive numbers will decrease the "
 #~ "margin size and negative numbers will"
 #~ " increase it"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Select the task that you'll like "
+#~ "to perform from below or select "
+#~ "from the buttons"
 #~ msgstr ""
 

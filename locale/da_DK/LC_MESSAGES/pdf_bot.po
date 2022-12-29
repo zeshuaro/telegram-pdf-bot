@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 06:33+0000\n"
-"PO-Revision-Date: 2022-12-29 06:34\n"
+"POT-Creation-Date: 2022-12-29 06:52+0000\n"
+"PO-Revision-Date: 2022-12-29 06:52\n"
 "Last-Translator: \n"
 "Language: da\n"
 "Language-Team: Danish\n"
@@ -75,13 +75,11 @@ msgstr "Skala"
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
-#: pdf_bot/image_processor/beautify_image_processor.py:24
+#: pdf_bot/consts.py:50 pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Forskønne"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
-#: pdf_bot/image_processor/image_to_pdf_processor.py:24
+#: pdf_bot/consts.py:51 pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "Til PDF"
 
@@ -121,7 +119,7 @@ msgstr "SMS-besked"
 msgid "Text File"
 msgstr "Tekstfil"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:62 pdf_bot/pdf_processor/compress_pdf_processor.py:24
 msgid "Compress"
 msgstr "Komprimere"
 
@@ -279,17 +277,13 @@ msgstr "Tak for din feedback, jeg har videresendt den til min udvikler"
 msgid "The feedback is not in English, try again"
 msgstr "Tilbagemeldingerne er ikke på engelsk, prøv igen"
 
-#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
+#: pdf_bot/file/file_handlers.py:67 pdf_bot/file/file_handlers.py:93
 msgid "Your file is too big for me to download and process"
 msgstr "Din fil er for stor til, at jeg kan downloade og behandle"
 
-#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
+#: pdf_bot/file/file_handlers.py:68 pdf_bot/file/file_handlers.py:94
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Bemærk, at dette er en Telegram Bot-begrænsning, og der er intet, jeg kan gøre, medmindre Telegram ændrer denne grænse"
-
-#: pdf_bot/file/file_service.py:36
-msgid "File size reduced by {percent}, from {old_size} to {new_size}"
-msgstr "Filstørrelsen reduceres med {percent}fra {old_size} til {new_size}"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:106
 #: pdf_bot/file_processor/abstract_file_processor.py:172
@@ -299,10 +293,6 @@ msgstr "Behandling af din fil"
 #: pdf_bot/file_processor/file_task_mixin.py:53
 msgid "Select the task that you'll like to perform"
 msgstr "Vælg den opgave, du vil udføre"
-
-#: pdf_bot/file_task/file_task_service.py:54
-msgid "Select the task that you'll like to perform from below or select from the buttons"
-msgstr "Vælg den opgave, du vil udføre nedenfra, eller vælg fra knapperne"
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -443,6 +433,10 @@ msgstr "Din PDF fil er ugyldig"
 #: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "Din PDF-fil er krypteret"
+
+#: pdf_bot/pdf_processor/compress_pdf_processor.py:37
+msgid "File size reduced by {percent}, from {old_size} to {new_size}"
+msgstr "Filstørrelsen reduceres med {percent}fra {old_size} til {new_size}"
 
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:16
 msgid "By percentage"
@@ -1670,5 +1664,11 @@ msgstr "Kunne ikke konvertere din webside"
 #~ "Positive numbers will decrease the "
 #~ "margin size and negative numbers will"
 #~ " increase it"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Select the task that you'll like "
+#~ "to perform from below or select "
+#~ "from the buttons"
 #~ msgstr ""
 

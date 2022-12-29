@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 06:33+0000\n"
-"PO-Revision-Date: 2022-12-29 06:34\n"
+"POT-Creation-Date: 2022-12-29 06:52+0000\n"
+"PO-Revision-Date: 2022-12-29 06:52\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -75,13 +75,11 @@ msgstr "परिमाण"
 msgid "Split"
 msgstr "विभाजिन"
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:17
-#: pdf_bot/image_processor/beautify_image_processor.py:24
+#: pdf_bot/consts.py:50 pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "सुशोभित"
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:18
-#: pdf_bot/image_processor/image_to_pdf_processor.py:24
+#: pdf_bot/consts.py:51 pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "पीडीएफ में"
 
@@ -121,7 +119,7 @@ msgstr "टेक्स्ट मैसेज"
 msgid "Text File"
 msgstr "टेक्स्ट फाइल"
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:62 pdf_bot/pdf_processor/compress_pdf_processor.py:24
 msgid "Compress"
 msgstr "संपीड़ित"
 
@@ -279,17 +277,13 @@ msgstr "आपकी प्रतिक्रिया के लिए धन�
 msgid "The feedback is not in English, try again"
 msgstr "प्रतिक्रिया अंग्रेजी में नहीं है, फिर से प्रयास करें"
 
-#: pdf_bot/file/file_handlers.py:74 pdf_bot/file/file_handlers.py:101
+#: pdf_bot/file/file_handlers.py:67 pdf_bot/file/file_handlers.py:93
 msgid "Your file is too big for me to download and process"
 msgstr "आपकी फ़ाइल डाउनलोड करने और प्रक्रिया करने के लिए मेरे लिए बहुत बड़ी है"
 
-#: pdf_bot/file/file_handlers.py:75 pdf_bot/file/file_handlers.py:102
+#: pdf_bot/file/file_handlers.py:68 pdf_bot/file/file_handlers.py:94
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "ध्यान दें कि यह एक टेलीग्राम बॉट सीमा है और मैं ऐसा कुछ नहीं कर सकता जब तक कि टेलीग्राम इस सीमा को नहीं बदलता"
-
-#: pdf_bot/file/file_service.py:36
-msgid "File size reduced by {percent}, from {old_size} to {new_size}"
-msgstr "फाइल का आकार {percent}से घटाकर {old_size} से {new_size}"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:106
 #: pdf_bot/file_processor/abstract_file_processor.py:172
@@ -299,10 +293,6 @@ msgstr "अपनी फ़ाइल संसाधित करना"
 #: pdf_bot/file_processor/file_task_mixin.py:53
 msgid "Select the task that you'll like to perform"
 msgstr "उस कार्य का चयन करें जिसे आप करना चाहते हैं"
-
-#: pdf_bot/file_task/file_task_service.py:54
-msgid "Select the task that you'll like to perform from below or select from the buttons"
-msgstr "उस कार्य का चयन करें जिसे आप नीचे से करना चाहते हैं या बटन से चयन करना चाहते हैं"
 
 #: pdf_bot/image_handler/batch_image_handler.py:59
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
@@ -443,6 +433,10 @@ msgstr "आपकी PDF फ़ाइल अमान्य है"
 #: pdf_bot/pdf/pdf_service.py:377
 msgid "Your PDF file is encrypted"
 msgstr "आपकी PDF फ़ाइल एन्क्रिप्टेड है"
+
+#: pdf_bot/pdf_processor/compress_pdf_processor.py:37
+msgid "File size reduced by {percent}, from {old_size} to {new_size}"
+msgstr "फाइल का आकार {percent}से घटाकर {old_size} से {new_size}"
 
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:16
 msgid "By percentage"
@@ -1670,5 +1664,11 @@ msgstr "आपके वेब पेज को कनवर्ट करने 
 #~ "Positive numbers will decrease the "
 #~ "margin size and negative numbers will"
 #~ " increase it"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Select the task that you'll like "
+#~ "to perform from below or select "
+#~ "from the buttons"
 #~ msgstr ""
 
