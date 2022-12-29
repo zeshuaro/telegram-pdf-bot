@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 07:50+0000\n"
-"PO-Revision-Date: 2022-12-29 07:58\n"
+"POT-Creation-Date: 2022-12-29 12:32+0000\n"
+"PO-Revision-Date: 2022-12-29 12:32\n"
 "Last-Translator: \n"
 "Language: fa\n"
 "Language-Team: Persian\n"
@@ -23,15 +23,15 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/consts.py:12
+#: pdf_bot/consts.py:11
 msgid "Cancel"
 msgstr "لغو"
 
-#: pdf_bot/consts.py:13
+#: pdf_bot/consts.py:12
 msgid "Done"
 msgstr "انجام"
 
-#: pdf_bot/consts.py:14 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "بازگشت"
 
@@ -79,57 +79,57 @@ msgstr "-و موارد دیگر....."
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "کلمه {command}  را برای دیدن نحوه استفاده از ربات پی دی اف ارسال کنید"
 
-#: pdf_bot/command/command_service.py:61
+#: pdf_bot/command/command_service.py:63
 msgid "Set Language 🌎"
 msgstr "تنظیم زبان 🌎"
 
-#: pdf_bot/command/command_service.py:63
+#: pdf_bot/command/command_service.py:67
 #: pdf_bot/telegram_internal/telegram_service.py:218
 msgid "Join Channel"
 msgstr "پیوستن به کانال"
 
-#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
+#: pdf_bot/command/command_service.py:68 pdf_bot/payment/payment_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:219
 msgid "Support PDF Bot"
 msgstr "حمایت از ربات پی دی اف"
 
-#: pdf_bot/command/command_service.py:73
+#: pdf_bot/command/command_service.py:77
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "شما می توانید بیشتر کارها را با ارسال یکی از موارد زیر برای من انجام دهید:"
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:81
 msgid "- PDF files"
 msgstr "- فایل های پی دی اف"
 
-#: pdf_bot/command/command_service.py:78
+#: pdf_bot/command/command_service.py:82
 msgid "- Images"
 msgstr "-تصاویر"
 
-#: pdf_bot/command/command_service.py:79
+#: pdf_bot/command/command_service.py:83
 msgid "- Webpage links"
 msgstr "- پیوندهای صفحه وب"
 
-#: pdf_bot/command/command_service.py:80
+#: pdf_bot/command/command_service.py:84
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "بقیه کارها را می توان با استفاده از دستورات زیر انجام داد:"
 
-#: pdf_bot/command/command_service.py:84
+#: pdf_bot/command/command_service.py:88
 msgid "{command} - compare PDF files"
 msgstr "{command} -- مقایسه فایل های پی دی اف"
 
-#: pdf_bot/command/command_service.py:87
+#: pdf_bot/command/command_service.py:91
 msgid "{command} - merge PDF files"
 msgstr "{command} -- ادغام فایل های پی دی اف"
 
-#: pdf_bot/command/command_service.py:88
+#: pdf_bot/command/command_service.py:92
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} -- تبدیل و ترکیب تصاویر متعدد به فایل های پی دی اف"
 
-#: pdf_bot/command/command_service.py:91
+#: pdf_bot/command/command_service.py:95
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} -- ایجاد فایل های پی دی اف از پیام های متنی"
 
-#: pdf_bot/command/command_service.py:94
+#: pdf_bot/command/command_service.py:98
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} -- اضافه کردن watermark به فایل های پی دی اف"
 
@@ -238,11 +238,11 @@ msgstr "زیبا سازی و تبدیل تصاویر خود را به یک فا�
 msgid "Converting your images into a PDF file"
 msgstr "تبدیل تصاویر خود را به یک فایل پی دی اف"
 
-#: pdf_bot/language/language_service.py:87
+#: pdf_bot/language/language_service.py:79
 msgid "Select your language"
 msgstr "زبان خود را انتخاب کنید"
 
-#: pdf_bot/language/language_service.py:126
+#: pdf_bot/language/language_service.py:114
 msgid "Your language has been set to {language}"
 msgstr "زبان شما تنظیم شده {language}"
 
@@ -564,13 +564,13 @@ msgstr "{range} صفحه {pages} جز {page}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  صفحات {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:147
 #: pdf_bot/telegram_internal/telegram_service.py:93
 #: pdf_bot/telegram_internal/telegram_service.py:108
 msgid "Something went wrong, please try again"
 msgstr "يه مشکلي پيش اومده، لطفا ً دوباره سعي کن"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:165
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:158
 msgid "The button has expired, start over with your file or command"
 msgstr "دکمه منقضی شده است، با فایل یا فرمان خود شروع کنید"
 

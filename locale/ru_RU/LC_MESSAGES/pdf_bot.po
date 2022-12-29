@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 07:50+0000\n"
-"PO-Revision-Date: 2022-12-29 07:58\n"
+"POT-Creation-Date: 2022-12-29 12:32+0000\n"
+"PO-Revision-Date: 2022-12-29 12:32\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -23,15 +23,15 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/consts.py:12
+#: pdf_bot/consts.py:11
 msgid "Cancel"
 msgstr "Отмена"
 
-#: pdf_bot/consts.py:13
+#: pdf_bot/consts.py:12
 msgid "Done"
 msgstr "Готово"
 
-#: pdf_bot/consts.py:14 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "Назад"
 
@@ -79,57 +79,57 @@ msgstr "- И многое другое..."
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Введите {command} , чтобы узнать, как использовать PDF Bot"
 
-#: pdf_bot/command/command_service.py:61
+#: pdf_bot/command/command_service.py:63
 msgid "Set Language 🌎"
 msgstr "Установить язык 🌎"
 
-#: pdf_bot/command/command_service.py:63
+#: pdf_bot/command/command_service.py:67
 #: pdf_bot/telegram_internal/telegram_service.py:218
 msgid "Join Channel"
 msgstr "Присоединиться к каналу"
 
-#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
+#: pdf_bot/command/command_service.py:68 pdf_bot/payment/payment_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:219
 msgid "Support PDF Bot"
 msgstr "Поддержать PDF Bot"
 
-#: pdf_bot/command/command_service.py:73
+#: pdf_bot/command/command_service.py:77
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "Вы можете выполнить большинство задач, отправив мне один из следующих вариантов:"
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:81
 msgid "- PDF files"
 msgstr "- PDF файлы"
 
-#: pdf_bot/command/command_service.py:78
+#: pdf_bot/command/command_service.py:82
 msgid "- Images"
 msgstr "- Изображения"
 
-#: pdf_bot/command/command_service.py:79
+#: pdf_bot/command/command_service.py:83
 msgid "- Webpage links"
 msgstr "- Ссылки на веб-страницы"
 
-#: pdf_bot/command/command_service.py:80
+#: pdf_bot/command/command_service.py:84
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Остальные задачи можно выполнить с помощью следующих команд:"
 
-#: pdf_bot/command/command_service.py:84
+#: pdf_bot/command/command_service.py:88
 msgid "{command} - compare PDF files"
 msgstr "{command} - сравнить PDF файлы"
 
-#: pdf_bot/command/command_service.py:87
+#: pdf_bot/command/command_service.py:91
 msgid "{command} - merge PDF files"
 msgstr "{command} - объединение PDF файлов"
 
-#: pdf_bot/command/command_service.py:88
+#: pdf_bot/command/command_service.py:92
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - конвертируйте и объединяйте несколько изображений в PDF-файлы"
 
-#: pdf_bot/command/command_service.py:91
+#: pdf_bot/command/command_service.py:95
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - создание PDF файлов из текстовых сообщений"
 
-#: pdf_bot/command/command_service.py:94
+#: pdf_bot/command/command_service.py:98
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - добавление водяного знака в PDF-файлы"
 
@@ -237,11 +237,11 @@ msgstr "Украшение и преобразование изображени�
 msgid "Converting your images into a PDF file"
 msgstr "Преобразование изображений в PDF-файл"
 
-#: pdf_bot/language/language_service.py:87
+#: pdf_bot/language/language_service.py:79
 msgid "Select your language"
 msgstr "Выберите свой язык"
 
-#: pdf_bot/language/language_service.py:126
+#: pdf_bot/language/language_service.py:114
 msgid "Your language has been set to {language}"
 msgstr "Ваш язык настроен на {language}"
 
@@ -563,13 +563,13 @@ msgstr "{range} страницы {pages} , кроме {page}"
 msgid "{range}  pages {pages}"
 msgstr "{pages}{range}  страниц"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:147
 #: pdf_bot/telegram_internal/telegram_service.py:93
 #: pdf_bot/telegram_internal/telegram_service.py:108
 msgid "Something went wrong, please try again"
 msgstr "Что-то пошло не так, пожалуйста, попробуйте еще раз"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:165
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:158
 msgid "The button has expired, start over with your file or command"
 msgstr "Срок действия кнопки истек, начните с файла или команды заново"
 

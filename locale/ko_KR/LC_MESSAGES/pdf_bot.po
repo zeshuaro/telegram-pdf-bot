@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 07:50+0000\n"
-"PO-Revision-Date: 2022-12-29 07:58\n"
+"POT-Creation-Date: 2022-12-29 12:32+0000\n"
+"PO-Revision-Date: 2022-12-29 12:32\n"
 "Last-Translator: \n"
 "Language: ko\n"
 "Language-Team: Korean\n"
@@ -23,15 +23,15 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/consts.py:12
+#: pdf_bot/consts.py:11
 msgid "Cancel"
 msgstr "취소"
 
-#: pdf_bot/consts.py:13
+#: pdf_bot/consts.py:12
 msgid "Done"
 msgstr "수행"
 
-#: pdf_bot/consts.py:14 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "뒤로"
 
@@ -79,57 +79,57 @@ msgstr "- 그리고 더 많은 ..."
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "PDF 봇 사용 방법을 보려면 {command} 입력"
 
-#: pdf_bot/command/command_service.py:61
+#: pdf_bot/command/command_service.py:63
 msgid "Set Language 🌎"
 msgstr "언어 설정 🌎"
 
-#: pdf_bot/command/command_service.py:63
+#: pdf_bot/command/command_service.py:67
 #: pdf_bot/telegram_internal/telegram_service.py:218
 msgid "Join Channel"
 msgstr "채널 가입"
 
-#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
+#: pdf_bot/command/command_service.py:68 pdf_bot/payment/payment_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:219
 msgid "Support PDF Bot"
 msgstr "지원 PDF 봇"
 
-#: pdf_bot/command/command_service.py:73
+#: pdf_bot/command/command_service.py:77
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "다음 중 하나를 보내서 대부분의 작업을 수행할 수 있습니다."
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:81
 msgid "- PDF files"
 msgstr "- PDF 파일"
 
-#: pdf_bot/command/command_service.py:78
+#: pdf_bot/command/command_service.py:82
 msgid "- Images"
 msgstr "- 이미지"
 
-#: pdf_bot/command/command_service.py:79
+#: pdf_bot/command/command_service.py:83
 msgid "- Webpage links"
 msgstr "- 웹 페이지 링크"
 
-#: pdf_bot/command/command_service.py:80
+#: pdf_bot/command/command_service.py:84
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "나머지 작업은 다음 명령을 사용하여 수행할 수 있습니다."
 
-#: pdf_bot/command/command_service.py:84
+#: pdf_bot/command/command_service.py:88
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF 파일을 비교"
 
-#: pdf_bot/command/command_service.py:87
+#: pdf_bot/command/command_service.py:91
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF 파일 병합"
 
-#: pdf_bot/command/command_service.py:88
+#: pdf_bot/command/command_service.py:92
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 변환및 PDF 파일로 여러 이미지를 결합"
 
-#: pdf_bot/command/command_service.py:91
+#: pdf_bot/command/command_service.py:95
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - 문자 메시지에서 PDF 파일을 만듭니다."
 
-#: pdf_bot/command/command_service.py:94
+#: pdf_bot/command/command_service.py:98
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF 파일에 워터 마크 추가"
 
@@ -237,11 +237,11 @@ msgstr "이미지를 아름답게 만들고 PDF 파일로 변환"
 msgid "Converting your images into a PDF file"
 msgstr "이미지를 PDF 파일로 변환"
 
-#: pdf_bot/language/language_service.py:87
+#: pdf_bot/language/language_service.py:79
 msgid "Select your language"
 msgstr "언어 선택"
 
-#: pdf_bot/language/language_service.py:126
+#: pdf_bot/language/language_service.py:114
 msgid "Your language has been set to {language}"
 msgstr "언어가 {language}설정되었습니다."
 
@@ -563,13 +563,13 @@ msgstr "{range} 페이지 {pages} {page}제외"
 msgid "{range}  pages {pages}"
 msgstr "{range}  페이지 {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:147
 #: pdf_bot/telegram_internal/telegram_service.py:93
 #: pdf_bot/telegram_internal/telegram_service.py:108
 msgid "Something went wrong, please try again"
 msgstr "뭔가 잘못, 다시 시도하십시오"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:165
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:158
 msgid "The button has expired, start over with your file or command"
 msgstr "버튼이 만료되었습니다. 파일 또는 명령으로 다시 시작"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 07:50+0000\n"
-"PO-Revision-Date: 2022-12-29 07:58\n"
+"POT-Creation-Date: 2022-12-29 12:32+0000\n"
+"PO-Revision-Date: 2022-12-29 12:32\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -23,15 +23,15 @@ msgstr ""
 "X-Crowdin-File: pdf_bot.po\n"
 "X-Crowdin-File-ID: 88\n"
 
-#: pdf_bot/consts.py:12
+#: pdf_bot/consts.py:11
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: pdf_bot/consts.py:13
+#: pdf_bot/consts.py:12
 msgid "Done"
 msgstr "完成です"
 
-#: pdf_bot/consts.py:14 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "戻る"
 
@@ -79,57 +79,57 @@ msgstr "- そしてもっと.."
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "PDF ボットの使用方法を確認するには、「 {command} 」と入力します。"
 
-#: pdf_bot/command/command_service.py:61
+#: pdf_bot/command/command_service.py:63
 msgid "Set Language 🌎"
 msgstr "言語設定 🌎"
 
-#: pdf_bot/command/command_service.py:63
+#: pdf_bot/command/command_service.py:67
 #: pdf_bot/telegram_internal/telegram_service.py:218
 msgid "Join Channel"
 msgstr "チャネルに参加"
 
-#: pdf_bot/command/command_service.py:64 pdf_bot/payment/payment_service.py:94
+#: pdf_bot/command/command_service.py:68 pdf_bot/payment/payment_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:219
 msgid "Support PDF Bot"
 msgstr "PDFボットをサポート"
 
-#: pdf_bot/command/command_service.py:73
+#: pdf_bot/command/command_service.py:77
 msgid "You can perform most of the tasks by sending me one of the followings:"
 msgstr "タスクの大半は、次のいずれかを送信することで実行できます。"
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:81
 msgid "- PDF files"
 msgstr "- PDFファイル"
 
-#: pdf_bot/command/command_service.py:78
+#: pdf_bot/command/command_service.py:82
 msgid "- Images"
 msgstr "- 画像"
 
-#: pdf_bot/command/command_service.py:79
+#: pdf_bot/command/command_service.py:83
 msgid "- Webpage links"
 msgstr "- ウェブページへのリンク"
 
-#: pdf_bot/command/command_service.py:80
+#: pdf_bot/command/command_service.py:84
 msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "残りのタスクは、次のコマンドを使用して実行できます。"
 
-#: pdf_bot/command/command_service.py:84
+#: pdf_bot/command/command_service.py:88
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF ファイルを比較する"
 
-#: pdf_bot/command/command_service.py:87
+#: pdf_bot/command/command_service.py:91
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDFファイルをマージ"
 
-#: pdf_bot/command/command_service.py:88
+#: pdf_bot/command/command_service.py:92
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 複数の画像をPDFファイルに変換して結合する"
 
-#: pdf_bot/command/command_service.py:91
+#: pdf_bot/command/command_service.py:95
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - テキストメッセージからPDFファイルを作成する"
 
-#: pdf_bot/command/command_service.py:94
+#: pdf_bot/command/command_service.py:98
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF ファイルに透かしを追加する"
 
@@ -237,11 +237,11 @@ msgstr "画像を美しくしてPDFファイルに変換する"
 msgid "Converting your images into a PDF file"
 msgstr "画像をPDFファイルに変換する"
 
-#: pdf_bot/language/language_service.py:87
+#: pdf_bot/language/language_service.py:79
 msgid "Select your language"
 msgstr "言語を選択する"
 
-#: pdf_bot/language/language_service.py:126
+#: pdf_bot/language/language_service.py:114
 msgid "Your language has been set to {language}"
 msgstr "言語が {language}に設定されています"
 
@@ -563,13 +563,13 @@ msgstr "{page}を除くページ {pages} を{range} します。"
 msgid "{range}  pages {pages}"
 msgstr "{range}  ページ {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:147
 #: pdf_bot/telegram_internal/telegram_service.py:93
 #: pdf_bot/telegram_internal/telegram_service.py:108
 msgid "Something went wrong, please try again"
 msgstr "何かが間違っていた、もう一度やり直してください"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:165
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:158
 msgid "The button has expired, start over with your file or command"
 msgstr "ボタンの有効期限が切れている場合は、ファイルまたはコマンドで最初からやり直してください"
 
