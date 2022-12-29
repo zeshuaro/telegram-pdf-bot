@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from telegram import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.constants import ParseMode
 from telegram.ext import (
@@ -9,7 +11,7 @@ from telegram.ext import (
 )
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BEAUTIFY, CANCEL, REMOVE_LAST, TEXT_FILTER, TO_PDF
+from pdf_bot.consts import CANCEL, TEXT_FILTER
 from pdf_bot.image import ImageService
 from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData
@@ -19,6 +21,10 @@ from pdf_bot.telegram_internal import TelegramService, TelegramServiceError
 class BatchImageHandler:
     WAIT_IMAGE = 0
     IMAGE_DATA = "image_data"
+
+    _BEAUTIFY = _("Beautify")
+    _TO_PDF = _("To PDF")
+    _REMOVE_LAST = _("Remove last file")
 
     def __init__(
         self,
@@ -92,7 +98,7 @@ class BatchImageHandler:
         message: Message = update.message
         text = message.text
 
-        if text in [_(REMOVE_LAST), _(BEAUTIFY), _(TO_PDF)]:
+        if text in [_(self._REMOVE_LAST), _(self._BEAUTIFY), _(self._TO_PDF)]:
             try:
                 file_data_list = self.telegram_service.get_user_data(
                     context, self.IMAGE_DATA
@@ -101,7 +107,7 @@ class BatchImageHandler:
                 await message.reply_text(_(str(e)))
                 return ConversationHandler.END
 
-            if text == _(REMOVE_LAST):
+            if text == _(self._REMOVE_LAST):
                 return await self._remove_last_image(update, context, file_data_list)
             return await self._preprocess_images(update, context, file_data_list)
         if text == _(CANCEL):
@@ -118,7 +124,7 @@ class BatchImageHandler:
         )
 
         reply_markup = ReplyKeyboardMarkup(
-            [[_(BEAUTIFY), _(TO_PDF)], [_(REMOVE_LAST), _(CANCEL)]],
+            [[_(self._BEAUTIFY), _(self._TO_PDF)], [_(self._REMOVE_LAST), _(CANCEL)]],
             resize_keyboard=True,
             one_time_keyboard=True,
         )
@@ -191,7 +197,7 @@ class BatchImageHandler:
         message: Message = update.message
         is_beautify = False
 
-        if message.text == _(BEAUTIFY):
+        if message.text == _(self._BEAUTIFY):
             is_beautify = True
             text = _("Beautifying and converting your images into a PDF file")
         else:
