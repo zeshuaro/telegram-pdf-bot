@@ -1,11 +1,13 @@
+import logging
+
 import sentry_sdk
 from dependency_injector.providers import Singleton
 from dependency_injector.wiring import Provide, inject
 from loguru import logger
 from telegram.ext import Application as TelegramApp
 
-import pdf_bot.logging as pdf_bot_logging
 from pdf_bot.containers import Application
+from pdf_bot.log.log_handler import InterceptLoggingHandler
 from pdf_bot.settings import Settings
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
 
@@ -20,7 +22,10 @@ def main(
         Application.telegram_bot.dispatcher  # pylint: disable=no-member
     ],
 ) -> None:
-    pdf_bot_logging.setup_logging()
+    logging.basicConfig(
+        handlers=[InterceptLoggingHandler()], level=logging.INFO, force=True
+    )
+
     if settings["sentry_dsn"] is not None:  # type: ignore
         sentry_sdk.init(settings["sentry_dsn"], traces_sample_rate=1.0)  # type: ignore
     else:

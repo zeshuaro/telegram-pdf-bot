@@ -96,6 +96,10 @@ warn_return_any = true
 warn_unreachable = true
 
 [[tool.mypy.overrides]]
+module = ['pdf_bot.log.*']
+ignore_errors = true
+
+[[tool.mypy.overrides]]
 module = [
     'weasyprint.*',
     'langdetect.*',
@@ -110,7 +114,7 @@ ignore_missing_imports = true
 relative_files = true
 branch = true
 source = ["pdf_bot"]
-omit = ["tests", 'pdf_bot/logging.py']
+omit = ["tests/*", 'pdf_bot/log/*']
 
 [tool.coverage.report]
 exclude_lines = [
