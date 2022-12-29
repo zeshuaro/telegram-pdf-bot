@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 01:19+0000\n"
-"PO-Revision-Date: 2022-12-29 01:19\n"
+"POT-Creation-Date: 2022-12-29 01:44+0000\n"
+"PO-Revision-Date: 2022-12-29 01:44\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
@@ -71,7 +71,7 @@ msgstr "Повернути"
 msgid "Scale"
 msgstr "Масштабу"
 
-#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:38
+#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:31
 msgid "Split"
 msgstr "Розділити"
 
@@ -540,77 +540,77 @@ msgstr "Виберіть тип шкали, який потрібно викон
 msgid "The values {values} are invalid, please try again"
 msgstr ""
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:116
+#: pdf_bot/pdf_processor/split_pdf_processor.py:39
+msgid "The split range is invalid, please try again"
+msgstr ""
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Надішліть мені діапазон сторінок, які ви хотіли б зберегти"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:117
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "General usage"
 msgstr "Загальне використання"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:118
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}      all pages"
 msgstr "{range}      всіх сторінок"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:119
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}      page 8 only"
 msgstr "{range}      лише на сторінці 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:120
+#: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    first three pages"
 msgstr "{range}    перші три сторінки"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:121
+#: pdf_bot/pdf_processor/split_pdf_processor.py:68
 msgid "{range}     from page 8 onward"
 msgstr "{range}     зі сторінки 8 і далі"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:122
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range}     last page only"
 msgstr "{range}     лише останню сторінку"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:123
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}    all pages except the last page"
 msgstr "{range}    сторінок, крім останньої"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:126
+#: pdf_bot/pdf_processor/split_pdf_processor.py:73
 msgid "{range}     second last page only"
 msgstr "{range}     лише другу останню сторінку"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:127
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "{range}    last two pages"
 msgstr "{range}    двох останніх сторінках"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:128
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  third and second last pages"
 msgstr "{range}  і другу останні сторінки"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:131
+#: pdf_bot/pdf_processor/split_pdf_processor.py:78
 msgid "Advanced usage"
 msgstr "Розширене використання"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:132
+#: pdf_bot/pdf_processor/split_pdf_processor.py:79
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    сторінок {pages} і до кінця"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:135
+#: pdf_bot/pdf_processor/split_pdf_processor.py:82
 msgid "{range} pages {pages}"
 msgstr "{range} сторінок {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:138
+#: pdf_bot/pdf_processor/split_pdf_processor.py:85
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   всі сторінки у зворотному порядку"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:141
+#: pdf_bot/pdf_processor/split_pdf_processor.py:88
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} сторінок {pages} крім {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:144
+#: pdf_bot/pdf_processor/split_pdf_processor.py:91
 msgid "{range}  pages {pages}"
 msgstr "{range}  сторінок {pages}"
-
-#: pdf_bot/pdf_processor/split_pdf_processor.py:163
-msgid "The range is invalid, please try again"
-msgstr "Неприпустимий діапазон."
 
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:24
 msgid "Send me the password to decrypt your PDF file"
@@ -1637,5 +1637,8 @@ msgstr "Не вдалося перетворити веб-сторінку"
 #~ msgstr ""
 
 #~ msgid "Please try again"
+#~ msgstr ""
+
+#~ msgid "The range is invalid, please try again"
 #~ msgstr ""
 

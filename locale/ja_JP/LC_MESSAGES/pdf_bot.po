@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 01:19+0000\n"
-"PO-Revision-Date: 2022-12-29 01:19\n"
+"POT-Creation-Date: 2022-12-29 01:44+0000\n"
+"PO-Revision-Date: 2022-12-29 01:44\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -71,7 +71,7 @@ msgstr "回転"
 msgid "Scale"
 msgstr "スケール"
 
-#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:38
+#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:31
 msgid "Split"
 msgstr "分割"
 
@@ -540,77 +540,77 @@ msgstr "実行する縮尺タイプを選択します。"
 msgid "The values {values} are invalid, please try again"
 msgstr ""
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:116
+#: pdf_bot/pdf_processor/split_pdf_processor.py:39
+msgid "The split range is invalid, please try again"
+msgstr ""
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "あなたが保持したいページの範囲を私に送ってください"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:117
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "General usage"
 msgstr "一般的な使用法"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:118
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}      all pages"
 msgstr "すべてのページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:119
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}      page 8 only"
 msgstr "{range}      ページ 8 のみ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:120
+#: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    first three pages"
 msgstr "最初の 3 ページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:121
+#: pdf_bot/pdf_processor/split_pdf_processor.py:68
 msgid "{range}     from page 8 onward"
 msgstr "{range}     8 ページ以降"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:122
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range}     last page only"
 msgstr "最後のページのみ{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:123
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}    all pages except the last page"
 msgstr "最後のページを除くすべてのページを {range}    する"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:126
+#: pdf_bot/pdf_processor/split_pdf_processor.py:73
 msgid "{range}     second last page only"
 msgstr "最後のページの2番目のページのみ{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:127
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "{range}    last two pages"
 msgstr "最後の2ページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:128
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  third and second last pages"
 msgstr "最後のページと最後のページの3番目と2番目のページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:131
+#: pdf_bot/pdf_processor/split_pdf_processor.py:78
 msgid "Advanced usage"
 msgstr "高度な使用法"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:132
+#: pdf_bot/pdf_processor/split_pdf_processor.py:79
 msgid "{range}    pages {pages} and to the end"
 msgstr "ページ {pages} をし、最後まで{range}    する"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:135
+#: pdf_bot/pdf_processor/split_pdf_processor.py:82
 msgid "{range} pages {pages}"
 msgstr "{range} ページ {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:138
+#: pdf_bot/pdf_processor/split_pdf_processor.py:85
 msgid "{range}   all pages in reversed order"
 msgstr "すべてのページを逆順に{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:141
+#: pdf_bot/pdf_processor/split_pdf_processor.py:88
 msgid "{range} pages {pages} except {page}"
 msgstr "{page}を除くページ {pages} を{range} します。"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:144
+#: pdf_bot/pdf_processor/split_pdf_processor.py:91
 msgid "{range}  pages {pages}"
 msgstr "{range}  ページ {pages}"
-
-#: pdf_bot/pdf_processor/split_pdf_processor.py:163
-msgid "The range is invalid, please try again"
-msgstr "範囲が無効です。"
 
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:24
 msgid "Send me the password to decrypt your PDF file"
@@ -1637,5 +1637,8 @@ msgstr "Web ページの変換に失敗しました"
 #~ msgstr ""
 
 #~ msgid "Please try again"
+#~ msgstr ""
+
+#~ msgid "The range is invalid, please try again"
 #~ msgstr ""
 

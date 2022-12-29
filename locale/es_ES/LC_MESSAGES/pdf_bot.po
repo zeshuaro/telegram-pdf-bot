@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 01:19+0000\n"
-"PO-Revision-Date: 2022-12-29 01:19\n"
+"POT-Creation-Date: 2022-12-29 01:44+0000\n"
+"PO-Revision-Date: 2022-12-29 01:44\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -71,7 +71,7 @@ msgstr "Rotar"
 msgid "Scale"
 msgstr "Ampliar"
 
-#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:38
+#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:31
 msgid "Split"
 msgstr "Dividir"
 
@@ -540,77 +540,77 @@ msgstr "Seleccione el tipo de escala que le gustaría realizar"
 msgid "The values {values} are invalid, please try again"
 msgstr ""
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:116
+#: pdf_bot/pdf_processor/split_pdf_processor.py:39
+msgid "The split range is invalid, please try again"
+msgstr ""
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Envíame el rango de páginas que te gustaría mantener"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:117
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "General usage"
 msgstr "Uso general"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:118
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}      all pages"
 msgstr "{range}      todas las páginas"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:119
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}      page 8 only"
 msgstr "{range}      página 8 solamente"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:120
+#: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    first three pages"
 msgstr "{range}    tres primeras páginas"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:121
+#: pdf_bot/pdf_processor/split_pdf_processor.py:68
 msgid "{range}     from page 8 onward"
 msgstr "{range}     a partir de la página 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:122
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range}     last page only"
 msgstr "{range}     última página"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:123
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}    all pages except the last page"
 msgstr "{range}    todas las páginas excepto la última página"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:126
+#: pdf_bot/pdf_processor/split_pdf_processor.py:73
 msgid "{range}     second last page only"
 msgstr "{range}     penúltima página"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:127
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "{range}    last two pages"
 msgstr "{range}    dos últimas páginas"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:128
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  third and second last pages"
 msgstr "{range}  tercera y penúltima página"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:131
+#: pdf_bot/pdf_processor/split_pdf_processor.py:78
 msgid "Advanced usage"
 msgstr "Uso avanzado"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:132
+#: pdf_bot/pdf_processor/split_pdf_processor.py:79
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    páginas {pages} y hasta el final"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:135
+#: pdf_bot/pdf_processor/split_pdf_processor.py:82
 msgid "{range} pages {pages}"
 msgstr "{range} páginas {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:138
+#: pdf_bot/pdf_processor/split_pdf_processor.py:85
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   todas las páginas en orden inverso"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:141
+#: pdf_bot/pdf_processor/split_pdf_processor.py:88
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} páginas {pages} excepto {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:144
+#: pdf_bot/pdf_processor/split_pdf_processor.py:91
 msgid "{range}  pages {pages}"
 msgstr "{range}  páginas {pages}"
-
-#: pdf_bot/pdf_processor/split_pdf_processor.py:163
-msgid "The range is invalid, please try again"
-msgstr "El intervalo no es válido, inténtelo de nuevo"
 
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:24
 msgid "Send me the password to decrypt your PDF file"
@@ -1637,5 +1637,8 @@ msgstr "Error al convertir su página web"
 #~ msgstr ""
 
 #~ msgid "Please try again"
+#~ msgstr ""
+
+#~ msgid "The range is invalid, please try again"
 #~ msgstr ""
 

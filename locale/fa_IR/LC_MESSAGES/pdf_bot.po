@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 01:19+0000\n"
-"PO-Revision-Date: 2022-12-29 01:19\n"
+"POT-Creation-Date: 2022-12-29 01:44+0000\n"
+"PO-Revision-Date: 2022-12-29 01:44\n"
 "Last-Translator: \n"
 "Language: fa\n"
 "Language-Team: Persian\n"
@@ -71,7 +71,7 @@ msgstr "چرخش"
 msgid "Scale"
 msgstr "مقیاس"
 
-#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:38
+#: pdf_bot/consts.py:49 pdf_bot/pdf_processor/split_pdf_processor.py:31
 msgid "Split"
 msgstr "تقسیم"
 
@@ -541,77 +541,77 @@ msgstr "نوع مقیاسی را که می خواهید انجام دهد انت
 msgid "The values {values} are invalid, please try again"
 msgstr ""
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:116
+#: pdf_bot/pdf_processor/split_pdf_processor.py:39
+msgid "The split range is invalid, please try again"
+msgstr ""
+
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "دامنه صفحاتی را که دوست دارید نگه دارید برایم بفرستید"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:117
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "General usage"
 msgstr "استفاده عمومی"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:118
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}      all pages"
 msgstr "{range}      تمام صفحات"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:119
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}      page 8 only"
 msgstr "{range}      صفحه 8 تنها"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:120
+#: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    first three pages"
 msgstr "{range}    صفحه اول"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:121
+#: pdf_bot/pdf_processor/split_pdf_processor.py:68
 msgid "{range}     from page 8 onward"
 msgstr "{range}     از صفحه 8 به بعد"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:122
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range}     last page only"
 msgstr "{range}     صفحه آخر فقط"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:123
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}    all pages except the last page"
 msgstr "{range}    تمام صفحات به جز صفحه آخر"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:126
+#: pdf_bot/pdf_processor/split_pdf_processor.py:73
 msgid "{range}     second last page only"
 msgstr "{range}     صفحه آخر فقط"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:127
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "{range}    last two pages"
 msgstr "{range}    دو صفحه آخر"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:128
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  third and second last pages"
 msgstr "{range}  و دوم آخرین صفحات"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:131
+#: pdf_bot/pdf_processor/split_pdf_processor.py:78
 msgid "Advanced usage"
 msgstr "استفاده پیشرفته"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:132
+#: pdf_bot/pdf_processor/split_pdf_processor.py:79
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    صفحات {pages} و تا آخر"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:135
+#: pdf_bot/pdf_processor/split_pdf_processor.py:82
 msgid "{range} pages {pages}"
 msgstr "{range} صفحات {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:138
+#: pdf_bot/pdf_processor/split_pdf_processor.py:85
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   صفحات را به ترتیب معکوس"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:141
+#: pdf_bot/pdf_processor/split_pdf_processor.py:88
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} صفحه {pages} جز {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:144
+#: pdf_bot/pdf_processor/split_pdf_processor.py:91
 msgid "{range}  pages {pages}"
 msgstr "{range}  صفحات {pages}"
-
-#: pdf_bot/pdf_processor/split_pdf_processor.py:163
-msgid "The range is invalid, please try again"
-msgstr "محدوده نامعتبر است، لطفا دوباره امتحان کنید"
 
 #: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:24
 msgid "Send me the password to decrypt your PDF file"
@@ -1638,5 +1638,8 @@ msgstr "موفق به تبدیل صفحه وب شما نشد"
 #~ msgstr ""
 
 #~ msgid "Please try again"
+#~ msgstr ""
+
+#~ msgid "The range is invalid, please try again"
 #~ msgstr ""
 
