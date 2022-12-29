@@ -30,7 +30,7 @@ class WebpageHandler:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
         url = message.text
         user_data = context.user_data
 
