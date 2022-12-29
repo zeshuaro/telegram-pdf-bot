@@ -13,21 +13,13 @@ class FileTaskService:
     KEYBOARD_SIZE = 3
 
     DECRYPT = _("Decrypt")
-    ENCRYPT = _("Encrypt")
     CROP = _("Crop")
     COMPRESS = _("Compress")
 
     BEAUTIFY = _("Beautify")
     TO_PDF = _("To PDF")
 
-    PDF_TASKS = sorted(
-        [
-            DECRYPT,
-            ENCRYPT,
-            CROP,
-            COMPRESS,
-        ]
-    )
+    PDF_TASKS = sorted([DECRYPT, CROP, COMPRESS])
 
     IMAGE_TASKS = sorted([BEAUTIFY, TO_PDF])
 
