@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 01:58+0000\n"
-"PO-Revision-Date: 2022-12-29 01:58\n"
+"POT-Creation-Date: 2022-12-29 02:09+0000\n"
+"PO-Revision-Date: 2022-12-29 02:10\n"
 "Last-Translator: \n"
 "Language: om\n"
 "Language-Team: Oromo\n"
@@ -47,7 +47,7 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: pdf_bot/consts.py:43 pdf_bot/file_task/file_task_service.py:15
+#: pdf_bot/consts.py:43 pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
 msgid "Decrypt"
 msgstr ""
 
@@ -75,12 +75,12 @@ msgstr ""
 msgid "Split"
 msgstr ""
 
-#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:19
+#: pdf_bot/consts.py:50 pdf_bot/file_task/file_task_service.py:18
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr ""
 
-#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:20
+#: pdf_bot/consts.py:51 pdf_bot/file_task/file_task_service.py:19
 #: pdf_bot/image_processor/image_to_pdf_processor.py:28
 msgid "To PDF"
 msgstr ""
@@ -89,7 +89,7 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:16
+#: pdf_bot/consts.py:53 pdf_bot/file_task/file_task_service.py:15
 msgid "Crop"
 msgstr ""
 
@@ -121,7 +121,7 @@ msgstr ""
 msgid "Text File"
 msgstr ""
 
-#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:17
+#: pdf_bot/consts.py:62 pdf_bot/file_task/file_task_service.py:16
 msgid "Compress"
 msgstr ""
 
@@ -315,11 +315,11 @@ msgstr ""
 msgid "The feedback is not in English, try again"
 msgstr ""
 
-#: pdf_bot/file/file_handlers.py:96 pdf_bot/file/file_handlers.py:123
+#: pdf_bot/file/file_handlers.py:90 pdf_bot/file/file_handlers.py:117
 msgid "Your file is too big for me to download and process"
 msgstr ""
 
-#: pdf_bot/file/file_handlers.py:97 pdf_bot/file/file_handlers.py:124
+#: pdf_bot/file/file_handlers.py:91 pdf_bot/file/file_handlers.py:118
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr ""
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Select the task that you'll like to perform"
 msgstr ""
 
-#: pdf_bot/file_task/file_task_service.py:56
+#: pdf_bot/file_task/file_task_service.py:55
 msgid "Select the task that you'll like to perform from below or select from the buttons"
 msgstr ""
 
@@ -480,6 +480,10 @@ msgstr ""
 msgid "Your PDF file is encrypted"
 msgstr ""
 
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:47
+msgid "Send me the password to decrypt your PDF file"
+msgstr ""
+
 #: pdf_bot/pdf_processor/encrypt_pdf_processor.py:42
 msgid "Send me the password to encrypt your PDF file"
 msgstr ""
@@ -614,10 +618,6 @@ msgstr ""
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:91
 msgid "{range}  pages {pages}"
-msgstr ""
-
-#: pdf_bot/pdf_processor/crypto/decrypt_pdf_processor.py:24
-msgid "Send me the password to decrypt your PDF file"
 msgstr ""
 
 #: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:154
