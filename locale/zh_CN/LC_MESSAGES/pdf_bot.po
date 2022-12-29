@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 03:53+0000\n"
-"PO-Revision-Date: 2022-12-29 03:54\n"
+"POT-Creation-Date: 2022-12-29 05:05+0000\n"
+"PO-Revision-Date: 2022-12-29 05:05\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -67,7 +67,7 @@ msgstr "转至图像"
 msgid "Rotate"
 msgstr "旋转"
 
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:74
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:55
 msgid "Scale"
 msgstr "缩放"
 
@@ -518,38 +518,33 @@ msgstr "向我发送你想要用来命名的PDF档案名称"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "选择你想要顺时针旋转你PDF档案的度数"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:28
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:17
 msgid "By factor"
 msgstr "按因素"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:18
 msgid "To dimension"
 msgstr "到尺寸"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:35
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:24
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "将水平轴和垂直轴的比例因子发送给我\n\n"
 "示例：2 0.5 - 这将使水平轴加倍，垂直轴减半"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:41
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "将宽度和高度发送给我\n\n"
 "示例：150 200 - 这会将宽度设置为 150，将高度设置为 200"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:62
-msgid "By scaling factor"
-msgstr "按比例因子"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:59
+msgid "Select the scale type you'll like to perform"
+msgstr ""
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:135
-msgid "Select the scale type that you'll like to perform"
-msgstr "选择你要怎样缩放"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:173
-msgid "The values {values} are invalid, please try again"
-msgstr "{values} 的值无效，请重试"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:67
+msgid "The scale values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:35
 msgid "The split range is invalid, please try again"
@@ -1643,5 +1638,14 @@ msgstr "无法转换您的网页"
 #~ msgstr ""
 
 #~ msgid "The range is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By scaling factor"
+#~ msgstr ""
+
+#~ msgid "Select the scale type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid "The values {values} are invalid, please try again"
 #~ msgstr ""
 

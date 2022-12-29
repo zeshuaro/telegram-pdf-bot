@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 03:53+0000\n"
-"PO-Revision-Date: 2022-12-29 03:53\n"
+"POT-Creation-Date: 2022-12-29 05:05+0000\n"
+"PO-Revision-Date: 2022-12-29 05:05\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -67,7 +67,7 @@ msgstr "Pentru imagini"
 msgid "Rotate"
 msgstr "Roti"
 
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:74
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:55
 msgid "Scale"
 msgstr "Scară"
 
@@ -518,38 +518,33 @@ msgstr "Trimiteți-mi numele de fișier în care doriți să redenumiți fișier
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Selectați gradele pe care doriți să le rotiți fișierul PDF în sensul acelor de ceasornic"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:28
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:17
 msgid "By factor"
 msgstr "După factor"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:18
 msgid "To dimension"
 msgstr "Pentru a dimensiona"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:35
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:24
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "Trimiteți-mi factorii de scalare pentru axele orizontale și verticale\n\n"
 "Exemplu: 2 0,5 - aceasta va dubla axa orizontală și va înjumătăți axa verticală"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:41
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "Trimite-mi lățimea și înălțimea\n\n"
 "Exemplu: 150 200 - acest lucru va seta lățimea la 150 și înălțimea la 200"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:62
-msgid "By scaling factor"
-msgstr "Prin factorul de scalare"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:59
+msgid "Select the scale type you'll like to perform"
+msgstr ""
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:135
-msgid "Select the scale type that you'll like to perform"
-msgstr "Selectați tipul de scală pe care doriți să îl efectuați"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:173
-msgid "The values {values} are invalid, please try again"
-msgstr "Valorile {values} nu sunt valide, încercați din nou"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:67
+msgid "The scale values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:35
 msgid "The split range is invalid, please try again"
@@ -1643,5 +1638,14 @@ msgstr "Nu a reușit să convertească pagina web"
 #~ msgstr ""
 
 #~ msgid "The range is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By scaling factor"
+#~ msgstr ""
+
+#~ msgid "Select the scale type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid "The values {values} are invalid, please try again"
 #~ msgstr ""
 

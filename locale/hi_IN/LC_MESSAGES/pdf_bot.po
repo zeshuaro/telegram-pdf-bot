@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 03:53+0000\n"
-"PO-Revision-Date: 2022-12-29 03:54\n"
+"POT-Creation-Date: 2022-12-29 05:05+0000\n"
+"PO-Revision-Date: 2022-12-29 05:05\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -67,7 +67,7 @@ msgstr "छवियों के लिए"
 msgid "Rotate"
 msgstr "घुमाएँ"
 
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:74
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:55
 msgid "Scale"
 msgstr "परिमाण"
 
@@ -518,38 +518,33 @@ msgstr "मुझे फ़ाइल का नाम भेजें जिस�
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "उन डिग्रियों का चयन करें जिन्हें आप अपनी पीडीएफ फ़ाइल को दक्षिणावर्त में घुमाना चाहते हैं"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:28
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:17
 msgid "By factor"
 msgstr "कारक के आधार पर"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:18
 msgid "To dimension"
 msgstr "आयाम के लिए"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:35
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:24
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "मुझे क्षैतिज और ऊर्ध्वाधर अक्षों के लिए स्केलिंग कारक भेजें\n\n"
 "उदाहरण: 2 0.5 - यह क्षैतिज अक्ष को दोगुना कर देगा और ऊर्ध्वाधर अक्ष को आधा कर देगा"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:41
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "मुझे चौड़ाई और ऊंचाई भेजें उदाहरण\n\n"
 ": 150 200 - यह चौड़ाई को 150 और ऊंचाई को 200 पर सेट करेगा"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:62
-msgid "By scaling factor"
-msgstr "स्केलिंग गुणक द्वारा"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:59
+msgid "Select the scale type you'll like to perform"
+msgstr ""
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:135
-msgid "Select the scale type that you'll like to perform"
-msgstr "उस पैमाने के प्रकार का चयन करें जिसे आप करना चाहते हैं"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:173
-msgid "The values {values} are invalid, please try again"
-msgstr "मान {values} अमान्य हैं, कृपया पुन: प्रयास करें"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:67
+msgid "The scale values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:35
 msgid "The split range is invalid, please try again"
@@ -1643,5 +1638,14 @@ msgstr "आपके वेब पेज को कनवर्ट करने 
 #~ msgstr ""
 
 #~ msgid "The range is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By scaling factor"
+#~ msgstr ""
+
+#~ msgid "Select the scale type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid "The values {values} are invalid, please try again"
 #~ msgstr ""
 

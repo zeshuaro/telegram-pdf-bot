@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-29 03:53+0000\n"
-"PO-Revision-Date: 2022-12-29 03:54\n"
+"POT-Creation-Date: 2022-12-29 05:05+0000\n"
+"PO-Revision-Date: 2022-12-29 05:05\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -67,7 +67,7 @@ msgstr "K obrázkům"
 msgid "Rotate"
 msgstr "Otočit"
 
-#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:74
+#: pdf_bot/consts.py:48 pdf_bot/pdf_processor/scale_pdf_processor.py:55
 msgid "Scale"
 msgstr "Měřítko"
 
@@ -518,38 +518,33 @@ msgstr "Pošlete mi název souboru, do kterého chcete soubor PDF přejmenovat"
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Vyberte stupně, které chcete otočit soubor PDF ve směru hodinových ručiček"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:28
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:17
 msgid "By factor"
 msgstr "Podle faktoru"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:29
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:63
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:18
 msgid "To dimension"
 msgstr "Do dimenze"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:35
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:24
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "Pošlete mi měřítko pro vodorovnou a svislou osu\n\n"
 "Příklad: 2 0,5 - tím se vodorovná osa zdvojnásobí a svislá osa se sníží na polovinu"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:41
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "Pošlete mi šířku a výšku\n\n"
 "Příklad: 150 200 - tím nastavíte šířku na 150 a výšku na 200"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:62
-msgid "By scaling factor"
-msgstr "Podle faktoru měřítka"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:59
+msgid "Select the scale type you'll like to perform"
+msgstr ""
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:135
-msgid "Select the scale type that you'll like to perform"
-msgstr "Vyberte typ měřítka, který chcete provést"
-
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:173
-msgid "The values {values} are invalid, please try again"
-msgstr "Hodnoty, {values} jsou neplatné, zkuste to prosím znovu"
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:67
+msgid "The scale values are invalid, try again"
+msgstr ""
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:35
 msgid "The split range is invalid, please try again"
@@ -1643,5 +1638,14 @@ msgstr "Převod webové stránky se nezdařil"
 #~ msgstr ""
 
 #~ msgid "The range is invalid, please try again"
+#~ msgstr ""
+
+#~ msgid "By scaling factor"
+#~ msgstr ""
+
+#~ msgid "Select the scale type that you'll like to perform"
+#~ msgstr ""
+
+#~ msgid "The values {values} are invalid, please try again"
 #~ msgstr ""
 
