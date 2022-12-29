@@ -14,7 +14,7 @@ from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 class TestWatermarkService(
     LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
 ):
-    FILE_PATH = "file_path"
+
     WAIT_SOURCE_PDF = 0
     WAIT_WATERMARK_PDF = 1
     WATERMARK_KEY = "watermark"

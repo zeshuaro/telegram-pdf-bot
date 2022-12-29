@@ -17,11 +17,10 @@ class TestFileService(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    FILE_PATH = "file_path"
-    COMPRESS_RESULT = CompressResult(2, 1, FILE_PATH)
-
     def setup_method(self) -> None:
         super().setup_method()
+        self.compress_result = CompressResult(2, 1, self.FILE_PATH)
+
         self.pdf_service = MagicMock(spec=PdfService)
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
@@ -35,7 +34,7 @@ class TestFileService(
     @pytest.mark.asyncio
     async def test_compress_pdf(self) -> None:
         self.pdf_service.compress_pdf.return_value.__aenter__.return_value = (
-            self.COMPRESS_RESULT
+            self.compress_result
         )
 
         actual = await self.sut.compress_pdf(

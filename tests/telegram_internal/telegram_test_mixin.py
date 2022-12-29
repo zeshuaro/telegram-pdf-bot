@@ -15,7 +15,7 @@ from telegram import (
 )
 from telegram.ext import ContextTypes
 
-from pdf_bot.models import FileData, MessageData
+from pdf_bot.models import FileData, FileTaskResult, MessageData
 from pdf_bot.pdf_processor.abstract_pdf_text_input_processor import TextInputData
 
 
@@ -30,6 +30,7 @@ class TelegramTestMixin:
     TELEGRAM_DOCUMENT_NAME = "document_name"
     TELEGRAM_PHOTO_SIZE_ID = "photo_size_id"
     TELEGRAM_TEXT = "text"
+    FILE_PATH = "file_path"
 
     FILE_DATA = FileData(TELEGRAM_DOCUMENT_ID, TELEGRAM_DOCUMENT_NAME)
     MESSAGE_DATA = MessageData(TELEGRAM_CHAT_ID, TELEGRAM_MESSAGE_ID)
@@ -38,6 +39,7 @@ class TelegramTestMixin:
         name=TELEGRAM_DOCUMENT_NAME,
         text=TELEGRAM_TEXT,
     )
+    FILE_TASK_RESULT = FileTaskResult(FILE_PATH)
 
     BACK_INLINE_MARKUP = MagicMock(spec=InlineKeyboardMarkup)
 

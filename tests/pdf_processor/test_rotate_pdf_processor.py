@@ -17,7 +17,7 @@ class TestRotatePdfProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    FILE_PATH = "file_path"
+
     WAIT_DEGREE = "wait_degree"
 
     def setup_method(self) -> None:
@@ -87,16 +87,14 @@ class TestRotatePdfProcessor(
             self.FILE_PATH
         )
 
-        async with self.sut.process_file_task(
-            degree_data, self.TELEGRAM_TEXT
-        ) as actual:
-            assert actual == self.FILE_PATH
+        async with self.sut.process_file_task(degree_data) as actual:
+            assert actual == self.FILE_TASK_RESULT
             self.pdf_service.rotate_pdf.assert_called_once_with(degree_data.id, degree)
 
     @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(TypeError):
-            async with self.sut.process_file_task(self.FILE_DATA, self.TELEGRAM_TEXT):
+            async with self.sut.process_file_task(self.FILE_DATA):
                 self.pdf_service.rotate_pdf.assert_not_called()
 
     @pytest.mark.asyncio

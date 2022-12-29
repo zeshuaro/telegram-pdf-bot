@@ -17,8 +17,6 @@ class TestBeautifyImageProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    FILE_PATH = "file_path"
-
     def setup_method(self) -> None:
         super().setup_method()
         self.image_service = MagicMock(spec=ImageService)
@@ -52,10 +50,8 @@ class TestBeautifyImageProcessor(
             self.FILE_PATH
         )
 
-        async with self.sut.process_file_task(
-            self.FILE_DATA, self.TELEGRAM_TEXT
-        ) as actual:
-            assert actual == self.FILE_PATH
+        async with self.sut.process_file_task(self.FILE_DATA) as actual:
+            assert actual == self.FILE_TASK_RESULT
             self.image_service.beautify_and_convert_images_to_pdf.assert_called_once_with(
                 [self.FILE_DATA]
             )

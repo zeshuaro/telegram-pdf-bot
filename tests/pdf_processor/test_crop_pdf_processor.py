@@ -20,7 +20,7 @@ class TestPdfProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    FILE_PATH = "file_path"
+
     CROP_TEXT = "0.1"
     CROP_VALUE = float(CROP_TEXT)
 
@@ -82,9 +82,9 @@ class TestPdfProcessor(
         )
 
         async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-            file_data, self.TELEGRAM_TEXT
+            file_data
         ) as actual:
-            assert actual == self.FILE_PATH
+            assert actual == self.FILE_TASK_RESULT
             self.pdf_service.crop_pdf_by_percentage.assert_called_once_with(
                 file_data.id, self.CROP_VALUE
             )
@@ -102,9 +102,9 @@ class TestPdfProcessor(
         )
 
         async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-            file_data, self.TELEGRAM_TEXT
+            file_data
         ) as actual:
-            assert actual == self.FILE_PATH
+            assert actual == self.FILE_TASK_RESULT
             self.pdf_service.crop_pdf_by_margin_size.assert_called_once_with(
                 file_data.id, self.CROP_VALUE
             )
@@ -120,7 +120,7 @@ class TestPdfProcessor(
 
         with pytest.raises(ValueError):
             async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-                file_data, self.TELEGRAM_TEXT
+                file_data
             ):
                 self.pdf_service.crop_pdf_by_percentage.assert_not_called()
                 self.pdf_service.crop_pdf_by_margin_size.assert_not_called()
@@ -129,7 +129,7 @@ class TestPdfProcessor(
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(TypeError):
             async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-                self.FILE_DATA, self.TELEGRAM_TEXT
+                self.FILE_DATA
             ):
                 self.pdf_service.crop_pdf_by_percentage.assert_not_called()
                 self.pdf_service.crop_pdf_by_margin_size.assert_not_called()

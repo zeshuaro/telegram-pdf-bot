@@ -38,3 +38,9 @@ class MessageData:
     @classmethod
     def from_telegram_message(cls, message: Message) -> "MessageData":
         return cls(message.chat_id, message.id)
+
+
+@dataclass
+class FileTaskResult:
+    path: str
+    message: str | None = None

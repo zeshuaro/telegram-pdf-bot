@@ -15,8 +15,6 @@ class TestRenamePdfProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    FILE_PATH = "file_path"
-
     def setup_method(self) -> None:
         super().setup_method()
 
@@ -59,10 +57,8 @@ class TestRenamePdfProcessor(
             self.FILE_PATH
         )
 
-        async with self.sut.process_file_task(
-            self.TEXT_INPUT_DATA, self.TELEGRAM_TEXT
-        ) as actual:
-            assert actual == self.FILE_PATH
+        async with self.sut.process_file_task(self.TEXT_INPUT_DATA) as actual:
+            assert actual == self.FILE_TASK_RESULT
             self.pdf_service.rename_pdf.assert_called_once_with(
                 self.TEXT_INPUT_DATA.id, self.TEXT_INPUT_DATA.text
             )
@@ -70,5 +66,5 @@ class TestRenamePdfProcessor(
     @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(TypeError):
-            async with self.sut.process_file_task(self.FILE_DATA, self.TELEGRAM_TEXT):
+            async with self.sut.process_file_task(self.FILE_DATA):
                 self.pdf_service.rename_pdf.assert_not_called()

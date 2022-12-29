@@ -13,7 +13,7 @@ from telegram.ext import (
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileTaskProcessor
-from pdf_bot.models import FileData, TaskData
+from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.telegram_internal import BackData
 
 from .abstract_pdf_processor import AbstractPdfProcessor
@@ -61,13 +61,13 @@ class RotatePdfProcessor(AbstractPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(
-        self, file_data: FileData, message_text: str
-    ) -> AsyncGenerator[str, None]:
+        self, file_data: FileData
+    ) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, RotateDegreeData):
             raise TypeError(f"Invalid file data type: {type(file_data)}")
 
         async with self.pdf_service.rotate_pdf(file_data.id, file_data.degree) as path:
-            yield path
+            yield FileTaskResult(path)
 
     async def ask_degree(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE

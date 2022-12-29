@@ -21,7 +21,7 @@ class TestPdfProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    FILE_PATH = "file_path"
+
     SCALE_DATA_TEXT = "0.1 0.2"
     SCALE_DATA = ScaleData(0.1, 0.2)
 
@@ -83,9 +83,9 @@ class TestPdfProcessor(
         )
 
         async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-            file_data, self.TELEGRAM_TEXT
+            file_data
         ) as actual:
-            assert actual == self.FILE_PATH
+            assert actual == self.FILE_TASK_RESULT
             self.pdf_service.scale_pdf_by_factor.assert_called_once_with(
                 file_data.id, self.SCALE_DATA
             )
@@ -103,9 +103,9 @@ class TestPdfProcessor(
         )
 
         async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-            file_data, self.TELEGRAM_TEXT
+            file_data
         ) as actual:
-            assert actual == self.FILE_PATH
+            assert actual == self.FILE_TASK_RESULT
             self.pdf_service.scale_pdf_to_dimension.assert_called_once_with(
                 file_data.id, self.SCALE_DATA
             )
@@ -121,7 +121,7 @@ class TestPdfProcessor(
 
         with pytest.raises(ValueError):
             async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-                file_data, self.TELEGRAM_TEXT
+                file_data
             ):
                 self.pdf_service.scale_pdf_by_factor.assert_not_called()
                 self.pdf_service.scale_pdf_to_dimension.assert_not_called()
@@ -130,7 +130,7 @@ class TestPdfProcessor(
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(TypeError):
             async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-                self.FILE_DATA, self.TELEGRAM_TEXT
+                self.FILE_DATA
             ):
                 self.pdf_service.scale_pdf_by_factor.assert_not_called()
                 self.pdf_service.scale_pdf_to_dimension.assert_not_called()
