@@ -1,16 +1,9 @@
 from unittest.mock import MagicMock
 
 import pytest
-from telegram.ext import (
-    CallbackQueryHandler,
-    CommandHandler,
-    ConversationHandler,
-    MessageHandler,
-)
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.file_processor import AbstractFileTaskProcessor
-from pdf_bot.models import BackData, TaskData
+from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import SplitPdfData, SplitPdfProcessor
 from tests.file_task import FileTaskServiceTestMixin
@@ -25,12 +18,9 @@ class TestSplitPdfProcessor(
     TelegramTestMixin,
 ):
     FILE_PATH = "file_path"
-    WAIT_SPLIT_RANGE = "wait_split_range"
 
     def setup_method(self) -> None:
         super().setup_method()
-        self.telegram_update.callback_query = None
-
         self.pdf_service = MagicMock(spec=PdfService)
         self.file_task_service = self.mock_file_task_service()
         self.language_service = self.mock_language_service()
@@ -48,6 +38,10 @@ class TestSplitPdfProcessor(
         actual = self.sut.task_type
         assert actual == TaskType.split_pdf
 
+    def test_entry_point_data_type(self) -> None:
+        actual = self.sut.entry_point_data_type
+        assert actual == SplitPdfData
+
     def test_should_process_back_option(self) -> None:
         actual = self.sut.should_process_back_option
         assert actual is False
@@ -56,84 +50,28 @@ class TestSplitPdfProcessor(
         actual = self.sut.task_data
         assert actual == TaskData("Split", SplitPdfData)
 
-    def test_handler(self) -> None:
-        actual = self.sut.handler
-
-        assert isinstance(actual, ConversationHandler)
-
-        entry_points = actual.entry_points
-        assert len(entry_points) == 1
-        assert isinstance(entry_points[0], CallbackQueryHandler)
-        assert entry_points[0].pattern == SplitPdfData
-
-        assert self.WAIT_SPLIT_RANGE in actual.states
-        wait_file_name_state = actual.states[self.WAIT_SPLIT_RANGE]
-        assert len(wait_file_name_state) == 2
-
-        assert isinstance(wait_file_name_state[0], MessageHandler)
-        assert isinstance(wait_file_name_state[1], CallbackQueryHandler)
-        assert wait_file_name_state[1].pattern == BackData
-
-        fallbacks = actual.fallbacks
-        assert len(fallbacks) == 1
-        assert isinstance(fallbacks[0], CommandHandler)
-        assert fallbacks[0].commands == {"cancel"}
-
-        map_to_parent = actual.map_to_parent
-        assert map_to_parent is not None
-        assert AbstractFileTaskProcessor.WAIT_FILE_TASK in map_to_parent
-        assert (
-            map_to_parent[AbstractFileTaskProcessor.WAIT_FILE_TASK]
-            == AbstractFileTaskProcessor.WAIT_FILE_TASK
-        )
+    @pytest.mark.parametrize(
+        "is_valid,expected", [(True, TelegramTestMixin.TELEGRAM_TEXT), (False, None)]
+    )
+    def test_get_cleaned_text_input(self, is_valid: bool, expected: str | None) -> None:
+        self.pdf_service.split_range_valid.return_value = is_valid
+        actual = self.sut.get_cleaned_text_input(self.TELEGRAM_TEXT)
+        assert actual == expected
 
     @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
         self.pdf_service.split_pdf.return_value.__aenter__.return_value = self.FILE_PATH
 
         async with self.sut.process_file_task(
-            self.FILE_DATA, self.TELEGRAM_TEXT
+            self.TEXT_INPUT_DATA, self.TELEGRAM_TEXT
         ) as actual:
             assert actual == self.FILE_PATH
             self.pdf_service.split_pdf.assert_called_once_with(
-                self.FILE_DATA.id, self.TELEGRAM_TEXT
+                self.TEXT_INPUT_DATA.id, self.TEXT_INPUT_DATA.text
             )
 
     @pytest.mark.asyncio
-    async def test_ask_split_range(self) -> None:
-        self.telegram_update.callback_query = self.telegram_callback_query
-        self.telegram_callback_query.edit_message_text.return_value = (
-            self.telegram_message
-        )
-
-        actual = await self.sut.ask_split_range(
-            self.telegram_update, self.telegram_context
-        )
-
-        assert actual == self.WAIT_SPLIT_RANGE
-        self.telegram_callback_query.answer.assert_called_once()
-        self.telegram_callback_query.edit_message_text.assert_called_once()
-        self.telegram_service.cache_message_data.assert_called_once_with(
-            self.telegram_context, self.telegram_message
-        )
-
-    @pytest.mark.asyncio
-    async def test_split_pdf(self) -> None:
-        self.pdf_service.split_pdf.return_value.__aenter__.return_value = self.FILE_PATH
-
-        actual = await self.sut.split_pdf(self.telegram_update, self.telegram_context)
-
-        assert actual == ConversationHandler.END
-        self.pdf_service.split_pdf.assert_called_once_with(
-            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_TEXT
-        )
-
-    @pytest.mark.asyncio
-    async def test_split_pdf_invalid_split_range(self) -> None:
-        self.pdf_service.split_range_valid.return_value = False
-
-        actual = await self.sut.split_pdf(self.telegram_update, self.telegram_context)
-
-        assert actual == self.WAIT_SPLIT_RANGE
-        self.telegram_message.reply_text.assert_called_once()
-        self.pdf_service.split_pdf.assert_not_called()
+    async def test_process_file_task_invalid_file_data(self) -> None:
+        with pytest.raises(TypeError):
+            async with self.sut.process_file_task(self.FILE_DATA, self.TELEGRAM_TEXT):
+                self.pdf_service.split_pdf.assert_not_called()

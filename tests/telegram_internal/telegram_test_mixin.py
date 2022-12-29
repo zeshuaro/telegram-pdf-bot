@@ -16,6 +16,7 @@ from telegram import (
 from telegram.ext import ContextTypes
 
 from pdf_bot.models import FileData, MessageData
+from pdf_bot.pdf_processor.abstract_pdf_text_input_processor import TextInputData
 
 
 class TelegramTestMixin:
@@ -32,6 +33,11 @@ class TelegramTestMixin:
 
     FILE_DATA = FileData(TELEGRAM_DOCUMENT_ID, TELEGRAM_DOCUMENT_NAME)
     MESSAGE_DATA = MessageData(TELEGRAM_CHAT_ID, TELEGRAM_MESSAGE_ID)
+    TEXT_INPUT_DATA = TextInputData(
+        id=TELEGRAM_DOCUMENT_ID,
+        name=TELEGRAM_DOCUMENT_NAME,
+        text=TELEGRAM_TEXT,
+    )
 
     BACK_INLINE_MARKUP = MagicMock(spec=InlineKeyboardMarkup)
 
