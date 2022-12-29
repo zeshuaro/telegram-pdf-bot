@@ -24,10 +24,6 @@ class BeautifyImageProcessor(AbstractImageProcessor):
         return TaskData(_("Beautify"), BeautifyImageData)
 
     @property
-    def should_process_back_option(self) -> bool:
-        return False
-
-    @property
     def handler(self) -> BaseHandler | None:
         return CallbackQueryHandler(self.process_file, pattern=BeautifyImageData)
 

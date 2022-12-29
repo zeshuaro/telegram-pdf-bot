@@ -8,13 +8,11 @@ from pdf_bot.file_processor import AbstractFileTaskProcessor
 from pdf_bot.models import BackData, TaskData
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import RotateDegreeData, RotatePdfData, RotatePdfProcessor
-from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
 class TestRotatePdfProcessor(
-    FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
     TelegramTestMixin,
@@ -27,12 +25,10 @@ class TestRotatePdfProcessor(
         self.telegram_update.callback_query = None
 
         self.pdf_service = MagicMock(spec=PdfService)
-        self.file_task_service = self.mock_file_task_service()
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
         self.sut = RotatePdfProcessor(
-            self.file_task_service,
             self.pdf_service,
             self.telegram_service,
             self.language_service,
@@ -42,10 +38,6 @@ class TestRotatePdfProcessor(
     def test_task_type(self) -> None:
         actual = self.sut.task_type
         assert actual == TaskType.rotate_pdf
-
-    def test_should_process_back_option(self) -> None:
-        actual = self.sut.should_process_back_option
-        assert actual is False
 
     def test_task_data(self) -> None:
         actual = self.sut.task_data

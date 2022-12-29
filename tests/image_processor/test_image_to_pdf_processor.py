@@ -8,13 +8,11 @@ from pdf_bot.image import ImageService
 from pdf_bot.image_processor import ImageToPdfProcessor
 from pdf_bot.image_processor.image_to_pdf_processor import ImageToPdfData
 from pdf_bot.models import TaskData
-from tests.file_task import FileTaskServiceTestMixin
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
 class TestImageToPdfProcessorProcessor(
-    FileTaskServiceTestMixin,
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
     TelegramTestMixin,
@@ -24,12 +22,10 @@ class TestImageToPdfProcessorProcessor(
     def setup_method(self) -> None:
         super().setup_method()
         self.image_service = MagicMock(spec=ImageService)
-        self.file_task_service = self.mock_file_task_service()
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
         self.sut = ImageToPdfProcessor(
-            self.file_task_service,
             self.image_service,
             self.telegram_service,
             self.language_service,
@@ -39,10 +35,6 @@ class TestImageToPdfProcessorProcessor(
     def test_task_type(self) -> None:
         actual = self.sut.task_type
         assert actual == TaskType.image_to_pdf
-
-    def test_should_process_back_option(self) -> None:
-        actual = self.sut.should_process_back_option
-        assert actual is False
 
     def test_task_data(self) -> None:
         actual = self.sut.task_data

@@ -1,7 +1,6 @@
 from typing import Type
 
 from pdf_bot.file_processor import AbstractFileProcessor
-from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
 from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService, PdfServiceError
@@ -13,15 +12,12 @@ class AbstractPdfProcessor(AbstractFileProcessor):
 
     def __init__(
         self,
-        file_task_service: FileTaskService,
         pdf_service: PdfService,
         telegram_service: TelegramService,
         language_service: LanguageService,
         bypass_init_check: bool = False,
     ) -> None:
-        super().__init__(
-            file_task_service, telegram_service, language_service, bypass_init_check
-        )
+        super().__init__(telegram_service, language_service, bypass_init_check)
 
         self.pdf_service = pdf_service
         cls_name = self.__class__.__name__

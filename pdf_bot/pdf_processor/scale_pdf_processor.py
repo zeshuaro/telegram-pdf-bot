@@ -75,10 +75,6 @@ class ScalePdfProcessor(AbstractPdfProcessor):
         return TaskData(_("Scale"), ScalePdfData)
 
     @property
-    def should_process_back_option(self) -> bool:
-        return False
-
-    @property
     def handler(self) -> BaseHandler | None:
         return ConversationHandler(
             entry_points=[

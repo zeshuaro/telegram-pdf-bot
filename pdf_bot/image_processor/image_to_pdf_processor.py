@@ -20,10 +20,6 @@ class ImageToPdfProcessor(AbstractImageProcessor):
         return TaskType.image_to_pdf
 
     @property
-    def should_process_back_option(self) -> bool:
-        return False
-
-    @property
     def task_data(self) -> TaskData | None:
         return TaskData(_("To PDF"), ImageToPdfData)
 

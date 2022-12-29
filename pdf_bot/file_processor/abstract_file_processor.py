@@ -9,8 +9,6 @@ from telegram.error import BadRequest
 from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.consts import BACK
-from pdf_bot.file_task import FileTaskService
 from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData, TaskData
 from pdf_bot.telegram_internal import TelegramGetUserDataError, TelegramService
@@ -28,12 +26,10 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
 
     def __init__(
         self,
-        file_task_service: FileTaskService,
         telegram_service: TelegramService,
         language_service: LanguageService,
         bypass_init_check: bool = False,
     ) -> None:
-        self.file_task_service = file_task_service
         self.telegram_service = telegram_service
         self.language_service = language_service
 
@@ -56,11 +52,6 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
     @property
     @abstractmethod
     def task_type(self) -> TaskType:
-        pass
-
-    @property
-    @abstractmethod
-    def should_process_back_option(self) -> bool:
         pass
 
     @property
@@ -103,9 +94,6 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         _ = self.language_service.set_app_language(update, context)
         query: CallbackQuery | None = update.callback_query
         message: Message = update.effective_message  # type: ignore
-
-        if self.should_process_back_option and message.text == _(BACK):
-            return await self.file_task_service.ask_pdf_task(update, context)
 
         if query is not None:
             file_data = query.data
