@@ -13,7 +13,7 @@ from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
-from pdf_bot.file import FileHandlers
+from pdf_bot.file_handler import FileHandler
 from pdf_bot.image import ImageService
 from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.image_processor import (
@@ -281,7 +281,7 @@ class Handlers(containers.DeclarativeContainer):
     processors = providers.DependenciesContainer()
 
     file = providers.Singleton(
-        FileHandlers,
+        FileHandler,
         telegram_service=services.telegram,
         language_service=services.language,
         image_task_processor=processors.image_task,

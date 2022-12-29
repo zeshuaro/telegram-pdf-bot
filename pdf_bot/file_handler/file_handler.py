@@ -9,7 +9,6 @@ from telegram.ext import (
     filters,
 )
 
-from pdf_bot.consts import FILE_DATA
 from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.image_processor import ImageTaskProcessor
 from pdf_bot.language import LanguageService
@@ -18,9 +17,7 @@ from pdf_bot.pdf_processor import PdfTaskProcessor
 from pdf_bot.telegram_internal import TelegramService
 
 
-class FileHandlers:
-    WAIT_FILE_TASK = "wait_file_task"
-
+class FileHandler:
     def __init__(
         self,
         telegram_service: TelegramService,
@@ -36,57 +33,51 @@ class FileHandlers:
     def conversation_handler(self) -> ConversationHandler:
         return ConversationHandler(
             entry_points=[
-                MessageHandler(filters.Document.PDF, self.check_doc),
+                MessageHandler(filters.Document.PDF, self._check_pdf),
                 MessageHandler(
-                    filters.PHOTO | filters.Document.IMAGE, self.check_image
+                    filters.PHOTO | filters.Document.IMAGE, self._check_image
                 ),
             ],
             states={
-                self.WAIT_FILE_TASK: AbstractFileProcessor.get_handlers()
-                + [
-                    CallbackQueryHandler(
-                        self.telegram_service.cancel_conversation,
-                        pattern=r"^cancel$",
-                    )
-                ],
+                AbstractFileProcessor.WAIT_FILE_TASK: AbstractFileProcessor.get_handlers()
             },
             fallbacks=[
-                CommandHandler("cancel", self.telegram_service.cancel_conversation)
+                CallbackQueryHandler(
+                    self.telegram_service.cancel_conversation,
+                    pattern=r"^cancel$",
+                ),
+                CommandHandler("cancel", self.telegram_service.cancel_conversation),
             ],
             allow_reentry=True,
         )
 
-    async def check_doc(
+    async def _check_pdf(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
-        doc = update.effective_message.document  # type: ignore
-        if doc.file_size >= FileSizeLimit.FILESIZE_DOWNLOAD:
-            _ = self.language_service.set_app_language(update, context)
-            await update.effective_message.reply_text(  # type: ignore
-                "{desc_1}\n\n{desc_2}".format(
-                    desc_1=_("Your file is too big for me to download and process"),
-                    desc_2=_(
-                        "Note that this is a Telegram Bot limitation and there's "
-                        "nothing I can do unless Telegram changes this limit"
-                    ),
-                ),
-            )
-
+        file_data = await self._get_file_data(update, context)
+        if file_data is None:
             return ConversationHandler.END
+        self.telegram_service.cache_file_data(context, file_data)
 
-        if not doc.mime_type.endswith("pdf"):
-            return ConversationHandler.END
-
-        context.user_data[FILE_DATA] = FileData.from_telegram_object(doc)  # type: ignore
         return await self.pdf_task_processor.ask_task(update, context)
 
-    async def check_image(
+    async def _check_image(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int | str:
+        file_data = await self._get_file_data(update, context)
+        if file_data is None:
+            return ConversationHandler.END
+        self.telegram_service.cache_file_data(context, file_data)
+
+        return await self.image_task_processor.ask_task(update, context)
+
+    async def _get_file_data(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> FileData | None:
         message: Message = update.effective_message  # type: ignore
         file = message.document or message.photo[-1]
 
-        if file.file_size >= FileSizeLimit.FILESIZE_DOWNLOAD:
+        if file.file_size > FileSizeLimit.FILESIZE_DOWNLOAD:
             _ = self.language_service.set_app_language(update, context)
             await update.effective_message.reply_text(  # type: ignore
                 "{desc_1}\n\n{desc_2}".format(
@@ -97,7 +88,5 @@ class FileHandlers:
                     ),
                 ),
             )
-
-            return ConversationHandler.END
-
-        return await self.image_task_processor.ask_task(update, context)
+            return None
+        return FileData.from_telegram_object(file)
