@@ -16,9 +16,6 @@ BACK = _("Back")
 FILE_DATA = "file_data"
 MESSAGE_DATA = "message_data"
 
-# Payment Constants
-PAYMENT = "payment"
-
 # Datastore constants
 USER = "User"
 LANGUAGE = "language"

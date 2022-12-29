@@ -19,10 +19,11 @@ from telegram.constants import ChatAction, FileSizeLimit, ParseMode
 from telegram.ext import Application, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
-from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, FILE_DATA, MESSAGE_DATA, PAYMENT
+from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, FILE_DATA, MESSAGE_DATA
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageService
 from pdf_bot.models import BackData, FileData, MessageData
+from pdf_bot.payment import SupportData
 
 from .exceptions import (
     TelegramFileMimeTypeError,
@@ -216,7 +217,7 @@ class TelegramService:
         keyboard = [
             [
                 InlineKeyboardButton(_("Join Channel"), f"https://t.me/{CHANNEL_NAME}"),
-                InlineKeyboardButton(_("Support PDF Bot"), callback_data=PAYMENT),
+                InlineKeyboardButton(_("Support PDF Bot"), callback_data=SupportData()),
             ]
         ]
 

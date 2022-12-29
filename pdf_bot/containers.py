@@ -24,7 +24,7 @@ from pdf_bot.image_processor import (
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageHandler, LanguageRepository, LanguageService
 from pdf_bot.merge import MergeHandlers, MergeService
-from pdf_bot.payment import PaymentService
+from pdf_bot.payment import PaymentHandler, PaymentService
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
     CompressPdfProcessor,
@@ -91,6 +91,7 @@ class Repositories(containers.DeclarativeContainer):
 
 
 class Services(containers.DeclarativeContainer):
+    _settings = providers.Configuration(pydantic_settings=[Settings()])
     core = providers.DependenciesContainer()
     repositories = providers.DependenciesContainer()
 
@@ -148,8 +149,7 @@ class Services(containers.DeclarativeContainer):
         language_service=language,
     )
     payment = providers.Singleton(
-        PaymentService,
-        language_service=language,
+        PaymentService, language_service=language, stripe_token=_settings.stripe_token
     )
     text = providers.Singleton(
         TextService,
@@ -282,7 +282,10 @@ class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
     processors = providers.DependenciesContainer()
 
+    # Make sure payment handler comes first as it contains handlers to be priortised
+    payment = providers.Singleton(PaymentHandler, payment_service=services.payment)
     language = providers.Singleton(LanguageHandler, language_service=services.language)
+
     file = providers.Singleton(
         FileHandler,
         telegram_service=services.telegram,
@@ -341,7 +344,6 @@ class TelegramBot(containers.DeclarativeContainer):
         image_handler=handlers.image,
         language_service=services.language,
         merge_handlers=handlers.merge,
-        payment_service=services.payment,
         text_handlers=handlers.text,
         watermark_handlers=handlers.watermark,
         webpage_handler=handlers.webpage,

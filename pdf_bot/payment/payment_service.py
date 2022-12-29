@@ -1,9 +1,6 @@
-import os
 from gettext import gettext as _
 
-from dotenv import load_dotenv
 from telegram import (
-    CallbackQuery,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     LabeledPrice,
@@ -16,9 +13,6 @@ from pdf_bot.language import LanguageService
 
 from .models import PaymentData
 
-load_dotenv()
-STRIPE_TOKEN = os.environ.get("STRIPE_TOKEN")
-
 
 class PaymentService:
     _INVOICE_PAYLOAD = "invoice_payload"
@@ -27,74 +21,47 @@ class PaymentService:
     _KEYBOARD_SIZE = 2
 
     _PAYMENT_DATA_LIST = [
-        PaymentData(_("Say Thanks"), "😁", 1),
-        PaymentData(_("Coffee"), "☕", 3),
-        PaymentData(_("Beer"), "🍺", 5),
-        PaymentData(_("Meal"), "🍲", 10),
+        PaymentData(label=_("Say Thanks"), emoji="😁", value=1),
+        PaymentData(label=_("Coffee"), emoji="☕", value=3),
+        PaymentData(label=_("Beer"), emoji="🍺", value=5),
+        PaymentData(label=_("Meal"), emoji="🍲", value=10),
     ]
 
-    def __init__(self, language_service: LanguageService) -> None:
+    def __init__(self, language_service: LanguageService, stripe_token: str) -> None:
         self.language_service = language_service
+        self.stripe_token = stripe_token
 
     async def send_support_options(
-        self,
-        update: Update,
-        context: ContextTypes.DEFAULT_TYPE,
-        query: CallbackQuery | None = None,
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
+        query = update.callback_query
         if query is not None:
             await query.answer()
 
         _ = self.language_service.set_app_language(update, context)
-        keyboard = [
-            [
-                InlineKeyboardButton(
-                    _(self._PAYMENT_MESSAGE).format(
-                        message=_(data.message), emoji=data.emoji, value=data.value
-                    ),
-                    callback_data=f"payment,{_(data.message)},{data.value}",
-                )
-                for data in self._PAYMENT_DATA_LIST[i : i + self._KEYBOARD_SIZE]
-            ]
-            for i in range(0, len(self._PAYMENT_DATA_LIST), self._KEYBOARD_SIZE)
-        ]
-        keyboard.append(
-            [
-                InlineKeyboardButton(
-                    _("Help translate PDF Bot"), "https://crwd.in/telegram-pdf-bot"
-                )
-            ],
-        )
-        reply_markup = InlineKeyboardMarkup(keyboard)
-
-        if query is None:
-            user_id = update.effective_message.from_user.id  # type: ignore
-        else:
-            user_id = query.from_user.id
-
-        await context.bot.send_message(
-            user_id,
-            _("Select how you want to support PDF Bot"),
-            reply_markup=reply_markup,
+        reply_markup = self._get_support_options_markup(update, context)
+        await update.effective_message.reply_text(  # type: ignore
+            _("Select how you want to support PDF Bot"), reply_markup=reply_markup
         )
 
     async def send_invoice(
-        self,
-        update: Update,
-        context: ContextTypes.DEFAULT_TYPE,
-        query: CallbackQuery,
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
+        query = update.callback_query
         await query.answer()
-        _ = self.language_service.set_app_language(update, context)
-        support_message, price = query.data.split(",")[1:]
-        prices = [LabeledPrice(support_message, int(price) * 100)]
+        data: PaymentData = query.data  # type: ignore
 
-        await context.bot.send_invoice(
-            chat_id=query.message.chat_id,
+        if not isinstance(data, PaymentData):
+            raise TypeError(f"Invalid callback query data: {data}")
+
+        _ = self.language_service.set_app_language(update, context)
+        prices = [LabeledPrice(data.label, data.value * 100)]
+
+        await update.effective_message.reply_invoice(  # type: ignore
             title=_("Support PDF Bot"),
             description=_("Say thanks to PDF Bot and help keep it running"),
             payload=self._INVOICE_PAYLOAD,
-            provider_token=STRIPE_TOKEN,  # type: ignore
+            provider_token=self.stripe_token,
             currency=self._CURRENCY,
             prices=prices,
             max_tip_amount=1000,
@@ -102,9 +69,7 @@ class PaymentService:
         )
 
     async def precheckout_check(
-        self,
-        update: Update,
-        context: ContextTypes.DEFAULT_TYPE,
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
         query = update.pre_checkout_query
@@ -117,11 +82,35 @@ class PaymentService:
             await query.answer(ok=True)
 
     async def successful_payment(
-        self,
-        update: Update,
-        context: ContextTypes.DEFAULT_TYPE,
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
         await update.effective_message.reply_text(  # type: ignore
             _("Thank you for your support!"), reply_markup=ReplyKeyboardRemove()
         )
+
+    def _get_support_options_markup(
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE
+    ) -> InlineKeyboardMarkup:
+        _ = self.language_service.set_app_language(update, context)
+        keyboard = [
+            [
+                InlineKeyboardButton(
+                    _(self._PAYMENT_MESSAGE).format(
+                        message=_(data.label), emoji=data.emoji, value=data.value
+                    ),
+                    callback_data=data,
+                )
+                for data in self._PAYMENT_DATA_LIST[i : i + self._KEYBOARD_SIZE]
+            ]
+            for i in range(0, len(self._PAYMENT_DATA_LIST), self._KEYBOARD_SIZE)
+        ]
+        keyboard.append(
+            [
+                InlineKeyboardButton(
+                    _("Help translate PDF Bot"), "https://crwd.in/telegram-pdf-bot"
+                )
+            ]
+        )
+
+        return InlineKeyboardMarkup(keyboard)

@@ -1,45 +1,44 @@
-import re
-from typing import cast
-
 import pytest
 from telegram import InlineKeyboardMarkup
 
-from pdf_bot.payment import PaymentService
+from pdf_bot.payment import PaymentData, PaymentService
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramTestMixin
 
 
 class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
+    STRIPE_TOKEN = "stripe_token"
     INVOICE_PAYLOAD = "invoice_payload"
-    CURRENCY = "USD"
-    KEYBOARD_SIZE = 2
+    PAYMENT_DATA = PaymentData(label="label", emoji="emoji", value=1)
 
     PAYMENT_AMOUNTS = [1, 3, 5, 10]
 
     def setup_method(self) -> None:
         super().setup_method()
         self.language_service = self.mock_language_service()
-        self.sut = PaymentService(self.language_service)
+        self.sut = PaymentService(self.language_service, self.STRIPE_TOKEN)
 
     @pytest.mark.asyncio
     async def test_send_support_options(self) -> None:
+        self.telegram_update.callback_query = None
+
         await self.sut.send_support_options(self.telegram_update, self.telegram_context)
 
-        args, kwargs = self.telegram_bot.send_message.call_args
-        assert args[0] == self.TELEGRAM_USER_ID
+        self.telegram_callback_query.answer.assert_not_called()
+        _args, kwargs = self.telegram_update.effective_message.reply_text.call_args
 
         reply_markup: InlineKeyboardMarkup | None = kwargs.get("reply_markup")
         assert reply_markup is not None
         self._assert_keyboard_payment_callback_data(reply_markup)
 
     @pytest.mark.asyncio
-    async def test_send_support_options_with_query(self) -> None:
-        await self.sut.send_support_options(
-            self.telegram_update, self.telegram_context, self.telegram_callback_query
-        )
+    async def test_send_support_options_with_callback_query(self) -> None:
+        self.telegram_update.callback_query = self.telegram_callback_query
 
-        args, kwargs = self.telegram_bot.send_message.call_args
-        assert args[0] == self.TELEGRAM_QUERY_USER_ID
+        await self.sut.send_support_options(self.telegram_update, self.telegram_context)
+
+        self.telegram_callback_query.answer.assert_called_once()
+        _args, kwargs = self.telegram_update.effective_message.reply_text.call_args
 
         reply_markup: InlineKeyboardMarkup | None = kwargs.get("reply_markup")
         assert reply_markup is not None
@@ -47,11 +46,16 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_send_invoice(self) -> None:
-        self.telegram_callback_query.data = "payment,message,1"
-        await self.sut.send_invoice(
-            self.telegram_update, self.telegram_context, self.telegram_callback_query
-        )
-        self.telegram_context.bot.send_invoice.assert_called_once()
+        self.telegram_callback_query.data = self.PAYMENT_DATA
+        await self.sut.send_invoice(self.telegram_update, self.telegram_context)
+        self.telegram_update.effective_message.reply_invoice.assert_called_once()
+
+    @pytest.mark.asyncio
+    async def test_send_invoice_invalid_callback_query_data(self) -> None:
+        self.telegram_callback_query.data = None
+        with pytest.raises(TypeError):
+            await self.sut.send_invoice(self.telegram_update, self.telegram_context)
+            self.telegram_update.effective_message.reply_invoice.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_precheckout_check(self) -> None:
@@ -78,14 +82,9 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
         index = 0
         for keyboard_list in reply_markup.inline_keyboard:
             for keyboard in keyboard_list:
-                data: str = cast(str, keyboard.callback_data)
-                assert (
-                    re.match(
-                        f"payment,.*,{self.PAYMENT_AMOUNTS[index]}",
-                        data,
-                    )
-                    is not None
-                )
+                data = keyboard.callback_data
+                assert isinstance(data, PaymentData)
+                assert data.value == self.PAYMENT_AMOUNTS[index]
                 index += 1
             if index >= len(self.PAYMENT_AMOUNTS):
                 break

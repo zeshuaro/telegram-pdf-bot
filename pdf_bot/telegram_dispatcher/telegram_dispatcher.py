@@ -7,23 +7,19 @@ from telegram import MessageEntity, Update
 from telegram.error import BadRequest, Forbidden
 from telegram.ext import (
     Application,
-    CallbackQueryHandler,
     CommandHandler,
     ContextTypes,
     MessageHandler,
-    PreCheckoutQueryHandler,
     filters,
 )
 
 from pdf_bot.command.command_service import CommandService
 from pdf_bot.compare import CompareHandlers
-from pdf_bot.consts import PAYMENT
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.language import LanguageService
 from pdf_bot.merge import MergeHandlers
-from pdf_bot.payment import PaymentService
 from pdf_bot.text import TextHandlers
 from pdf_bot.watermark import WatermarkHandlers
 from pdf_bot.webpage import WebpageHandler
@@ -43,7 +39,6 @@ class TelegramDispatcher:
         image_handler: BatchImageHandler,
         language_service: LanguageService,
         merge_handlers: MergeHandlers,
-        payment_service: PaymentService,
         text_handlers: TextHandlers,
         watermark_handlers: WatermarkHandlers,
         webpage_handler: WebpageHandler,
@@ -55,38 +50,17 @@ class TelegramDispatcher:
         self.image_handler = image_handler
         self.language_service = language_service
         self.merge_handlers = merge_handlers
-        self.payment_service = payment_service
         self.text_handlers = text_handlers
         self.watermark_handlers = watermark_handlers
         self.webpage_handler = webpage_handler
 
     def setup(self, telegram_app: Application) -> None:
         telegram_app.add_handler(
-            CommandHandler(
-                "start",
-                self.payment_service.send_support_options,
-                filters.Regex("support"),
-            )
-        )
-        telegram_app.add_handler(
             CommandHandler("start", self.command_service.send_start_message)
         )
 
         telegram_app.add_handler(
             CommandHandler("help", self.command_service.send_help_message)
-        )
-        telegram_app.add_handler(
-            CommandHandler("support", self.payment_service.send_support_options)
-        )
-
-        # Payment handlers
-        telegram_app.add_handler(
-            PreCheckoutQueryHandler(self.payment_service.precheckout_check)
-        )
-        telegram_app.add_handler(
-            MessageHandler(
-                filters.SUCCESSFUL_PAYMENT, self.payment_service.successful_payment
-            )
         )
 
         # URL handler
@@ -109,9 +83,6 @@ class TelegramDispatcher:
         # Feedback handler
         telegram_app.add_handler(self.feedback_handler.conversation_handler())
 
-        # Callback query handler
-        telegram_app.add_handler(CallbackQueryHandler(self.process_callback_query))
-
         # Admin commands handlers
         ADMIN_TELEGRAM_ID = os.environ.get("ADMIN_TELEGRAM_ID")
         if ADMIN_TELEGRAM_ID is not None:
@@ -125,21 +96,6 @@ class TelegramDispatcher:
 
         # Log all errors
         telegram_app.add_error_handler(self.error_callback)
-
-    async def process_callback_query(
-        self,
-        update: Update,
-        context: ContextTypes.DEFAULT_TYPE,
-    ) -> None:
-        _ = self.language_service.set_app_language(update, context)
-        query = update.callback_query
-        data = query.data
-
-        if isinstance(data, str):
-            if data == PAYMENT:
-                await self.payment_service.send_support_options(update, context, query)
-            elif data.startswith("payment,"):
-                await self.payment_service.send_invoice(update, context, query)
 
     async def error_callback(
         self, update: object, context: ContextTypes.DEFAULT_TYPE

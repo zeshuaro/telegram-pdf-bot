@@ -1,8 +1,11 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 
-@dataclass
-class PaymentData:
-    message: str
+class SupportData:
+    ...
+
+
+class PaymentData(BaseModel):
+    label: str
     emoji: str
     value: int
