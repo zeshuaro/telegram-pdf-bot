@@ -458,3 +458,12 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             self.TELEGRAM_CHAT_ID,
             f"{self.TELEGRAM_TEXT}1: a\n2: File name unavailable\n",
         )
+
+    @pytest.mark.asyncio
+    async def test_send_message(self) -> None:
+        await self.sut.send_message(
+            self.telegram_update, self.telegram_context, self.TELEGRAM_TEXT
+        )
+        self.telegram_bot.send_message.assert_called_once_with(
+            self.TELEGRAM_CHAT_ID, self.TELEGRAM_TEXT
+        )
