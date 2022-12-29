@@ -9,6 +9,12 @@ from .abstract_pdf_text_input_processor import (
     AbstractPdfTextInputProcessor,
     TextInputData,
 )
+from .crop_pdf_processor import (
+    CropOptionAndInputData,
+    CropPdfData,
+    CropPdfProcessor,
+    CropType,
+)
 from .decrypt_pdf_processor import DecryptPdfData, DecryptPdfProcessor
 from .encrypt_pdf_processor import EncryptPdfData, EncryptPdfProcessor
 from .extract_pdf_image_processor import ExtractPdfImageData, ExtractPdfImageProcessor
@@ -36,6 +42,10 @@ __all__ = [
     "SelectOptionData",
     "AbstractPdfTextInputProcessor",
     "TextInputData",
+    "CropOptionAndInputData",
+    "CropPdfData",
+    "CropPdfProcessor",
+    "CropType",
     "DecryptPdfData",
     "DecryptPdfProcessor",
     "EncryptPdfData",

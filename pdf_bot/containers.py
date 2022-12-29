@@ -12,7 +12,6 @@ from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
 from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService
 from pdf_bot.compare import CompareHandlers, CompareService
-from pdf_bot.crop import CropService
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
 from pdf_bot.file import FileHandlers, FileService
 from pdf_bot.file_task import FileTaskService
@@ -29,6 +28,7 @@ from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.payment import PaymentService
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
+    CropPdfProcessor,
     DecryptPdfProcessor,
     EncryptPdfProcessor,
     ExtractPdfImageProcessor,
@@ -143,13 +143,6 @@ class Services(containers.DeclarativeContainer):
         telegram_service=telegram,
         language_service=language,
     )
-    crop = providers.Singleton(
-        CropService,
-        file_task_service=file_task,
-        pdf_service=pdf,
-        telegram_service=telegram,
-        language_service=language,
-    )
     language = providers.Singleton(
         LanguageService, language_repository=repositories.language
     )
@@ -192,6 +185,12 @@ class Processors(containers.DeclarativeContainer):
         language_service=services.language,
     )
 
+    crop = providers.Singleton(
+        CropPdfProcessor,
+        pdf_service=services.pdf,
+        telegram_service=services.telegram,
+        language_service=services.language,
+    )
     decrypt = providers.Singleton(
         DecryptPdfProcessor,
         pdf_service=services.pdf,
@@ -287,7 +286,6 @@ class Handlers(containers.DeclarativeContainer):
         FileHandlers,
         file_task_service=services.file_task,
         file_service=services.file,
-        crop_service=services.crop,
         telegram_service=services.telegram,
         language_service=services.language,
         image_task_processor=processors.image_task,
