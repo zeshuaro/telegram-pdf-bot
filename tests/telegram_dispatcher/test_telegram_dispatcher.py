@@ -10,7 +10,6 @@ from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.merge import MergeHandlers
-from pdf_bot.payment import PaymentService
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
 from pdf_bot.text import TextHandlers
 from pdf_bot.watermark import WatermarkHandlers
@@ -36,7 +35,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.image_handler = MagicMock(spec=BatchImageHandler)
         self.language_service = self.mock_language_service()
         self.merge_handlers = MagicMock(spec=MergeHandlers)
-        self.payment_service = MagicMock(spec=PaymentService)
         self.text_handlers = MagicMock(spec=TextHandlers)
         self.watermark_handlers = MagicMock(spec=WatermarkHandlers)
         self.webpage_handler = MagicMock(spec=WebpageHandler)
@@ -49,7 +47,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
             self.image_handler,
             self.language_service,
             self.merge_handlers,
-            self.payment_service,
             self.text_handlers,
             self.watermark_handlers,
             self.webpage_handler,
@@ -73,7 +70,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
 
         self.sut.setup(self.app)
 
-        assert self.app.add_handler.call_count == 16
+        assert self.app.add_handler.call_count == 11
         self.app.add_error_handler.assert_called_once()
 
     @pytest.mark.asyncio
@@ -82,32 +79,8 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
 
         self.sut.setup(self.app)
 
-        assert self.app.add_handler.call_count == 15
+        assert self.app.add_handler.call_count == 10
         self.app.add_error_handler.assert_called_once()
-
-    @pytest.mark.asyncio
-    async def test_process_callback_query_payment(self) -> None:
-        self.telegram_callback_query.data = self.PAYMENT
-
-        await self.sut.process_callback_query(
-            self.telegram_update, self.telegram_context
-        )
-
-        self.payment_service.send_support_options.assert_called_once_with(
-            self.telegram_update, self.telegram_context, self.telegram_callback_query
-        )
-
-    @pytest.mark.asyncio
-    async def test_process_callback_query_payment_invoice(self) -> None:
-        self.telegram_callback_query.data = self.PAYMENT_INVOICE
-
-        await self.sut.process_callback_query(
-            self.telegram_update, self.telegram_context
-        )
-
-        self.payment_service.send_invoice.assert_called_once_with(
-            self.telegram_update, self.telegram_context, self.telegram_callback_query
-        )
 
     @pytest.mark.asyncio
     async def test_error_callback_known_error(self) -> None:

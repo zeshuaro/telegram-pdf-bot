@@ -4,8 +4,9 @@ from telegram.error import Forbidden
 from telegram.ext import ContextTypes
 
 from pdf_bot.account.account_service import AccountService
-from pdf_bot.consts import CHANNEL_NAME, PAYMENT
+from pdf_bot.consts import CHANNEL_NAME
 from pdf_bot.language import LanguageService, SetLanguageData
+from pdf_bot.payment import SupportData
 
 
 class CommandService:
@@ -65,7 +66,7 @@ class CommandService:
             ],
             [
                 InlineKeyboardButton(_("Join Channel"), f"https://t.me/{CHANNEL_NAME}"),
-                InlineKeyboardButton(_("Support PDF Bot"), callback_data=PAYMENT),
+                InlineKeyboardButton(_("Support PDF Bot"), callback_data=SupportData()),
             ],
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
