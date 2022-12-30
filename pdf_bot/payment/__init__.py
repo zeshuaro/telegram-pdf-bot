@@ -1,5 +1,5 @@
-from .models import PaymentData, SupportData
+from .models import PaymentData
 from .payment_handler import PaymentHandler
 from .payment_service import PaymentService
 
-__all__ = ["PaymentData", "SupportData", "PaymentHandler", "PaymentService"]
+__all__ = ["PaymentData", "PaymentHandler", "PaymentService"]
