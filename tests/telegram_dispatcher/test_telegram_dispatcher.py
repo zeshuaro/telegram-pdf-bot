@@ -4,7 +4,6 @@ import pytest
 from telegram.error import BadRequest, Forbidden
 from telegram.ext import Application
 
-from pdf_bot.compare import CompareHandlers
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.image_handler import BatchImageHandler
@@ -27,7 +26,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
     def setup_method(self) -> None:
         super().setup_method()
         self.app = MagicMock(spec=Application)
-        self.compare_handlers = MagicMock(spec=CompareHandlers)
         self.feedback_handler = MagicMock(spec=FeedbackHandler)
         self.file_handlers = MagicMock(spec=FileHandler)
         self.image_handler = MagicMock(spec=BatchImageHandler)
@@ -38,7 +36,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.webpage_handler = MagicMock(spec=WebpageHandler)
 
         self.sut = TelegramDispatcher(
-            self.compare_handlers,
             self.feedback_handler,
             self.file_handlers,
             self.image_handler,
@@ -61,7 +58,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_setup(self) -> None:
         self.sut.setup(self.app)
 
-        assert self.app.add_handler.call_count == 8
+        assert self.app.add_handler.call_count == 7
         self.app.add_error_handler.assert_called_once()
 
     @pytest.mark.asyncio

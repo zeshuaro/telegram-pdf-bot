@@ -5,7 +5,6 @@ from telegram import MessageEntity, Update
 from telegram.error import BadRequest, Forbidden
 from telegram.ext import Application, ContextTypes, MessageHandler, filters
 
-from pdf_bot.compare import CompareHandlers
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.image_handler import BatchImageHandler
@@ -21,7 +20,6 @@ class TelegramDispatcher:
 
     def __init__(
         self,
-        compare_handlers: CompareHandlers,
         feedback_handler: FeedbackHandler,
         file_handlers: FileHandler,
         image_handler: BatchImageHandler,
@@ -31,7 +29,6 @@ class TelegramDispatcher:
         watermark_handlers: WatermarkHandlers,
         webpage_handler: WebpageHandler,
     ) -> None:
-        self.compare_handlers = compare_handlers
         self.feedback_handler = feedback_handler
         self.file_handlers = file_handlers
         self.image_handler = image_handler
@@ -50,7 +47,6 @@ class TelegramDispatcher:
         )
 
         # PDF commands handlers
-        telegram_app.add_handler(self.compare_handlers.conversation_handler())
         telegram_app.add_handler(self.merge_handlers.conversation_handler())
         telegram_app.add_handler(self.image_handler.conversation_handler())
         telegram_app.add_handler(self.text_handlers.conversation_handler())

@@ -11,7 +11,7 @@ from pdf_bot.account import AccountRepository, AccountService
 from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
 from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService, MyCommandHandler
-from pdf_bot.compare import CompareHandlers, CompareService
+from pdf_bot.compare import CompareHandler, CompareService
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.image import ImageService
@@ -308,7 +308,7 @@ class Handlers(containers.DeclarativeContainer):
     )
 
     compare = providers.Singleton(
-        CompareHandlers,
+        CompareHandler,
         compare_service=services.compare,
         telegram_service=services.telegram,
     )
@@ -350,7 +350,6 @@ class TelegramBot(containers.DeclarativeContainer):
 
     dispatcher = providers.Singleton(
         TelegramDispatcher,
-        compare_handlers=handlers.compare,
         feedback_handler=handlers.feedback,
         file_handlers=handlers.file,
         image_handler=handlers.image,
