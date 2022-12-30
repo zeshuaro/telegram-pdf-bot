@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 06:14+0000\n"
-"PO-Revision-Date: 2022-12-30 06:14\n"
+"POT-Creation-Date: 2022-12-30 07:22+0000\n"
+"PO-Revision-Date: 2022-12-30 07:23\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -84,12 +84,12 @@ msgid "Set Language 🌎"
 msgstr "设置语言 🌎"
 
 #: pdf_bot/command/command_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:223
+#: pdf_bot/telegram_internal/telegram_service.py:232
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: pdf_bot/command/command_service.py:70 pdf_bot/payment/payment_service.py:61
-#: pdf_bot/telegram_internal/telegram_service.py:224
+#: pdf_bot/command/command_service.py:70 pdf_bot/payment/payment_service.py:71
+#: pdf_bot/telegram_internal/telegram_service.py:233
 msgid "Support PDF Bot"
 msgstr "支持 PDF Bot"
 
@@ -184,7 +184,7 @@ msgid "Note that this is a Telegram Bot limitation and there's nothing I can do 
 msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:104
-#: pdf_bot/file_processor/abstract_file_processor.py:171
+#: pdf_bot/file_processor/abstract_file_processor.py:170
 msgid "Processing your file"
 msgstr "处理您的文件"
 
@@ -247,11 +247,11 @@ msgstr "美化图像并将其转换为PDF文件"
 msgid "Converting your images into a PDF file"
 msgstr "将图像转换为 PDF 文件"
 
-#: pdf_bot/language/language_service.py:79
+#: pdf_bot/language/language_service.py:82
 msgid "Select your language"
 msgstr "选择你的语言"
 
-#: pdf_bot/language/language_service.py:114
+#: pdf_bot/language/language_service.py:117
 msgid "Your language has been set to {language}"
 msgstr "您的语言已设置为 {language}"
 
@@ -291,43 +291,43 @@ msgstr "你只寄给我一个 Pdf 文件"
 msgid "Merging your PDF files"
 msgstr "正在合并你的PDF档案"
 
-#: pdf_bot/payment/payment_service.py:20
+#: pdf_bot/payment/payment_service.py:21
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} （${value}）"
 
-#: pdf_bot/payment/payment_service.py:24
+#: pdf_bot/payment/payment_service.py:25
 msgid "Say Thanks"
 msgstr "说声感谢"
 
-#: pdf_bot/payment/payment_service.py:25
+#: pdf_bot/payment/payment_service.py:26
 msgid "Coffee"
 msgstr "咖啡"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:27
 msgid "Beer"
 msgstr "啤酒"
 
-#: pdf_bot/payment/payment_service.py:27
+#: pdf_bot/payment/payment_service.py:28
 msgid "Meal"
 msgstr "餐"
 
-#: pdf_bot/payment/payment_service.py:44
+#: pdf_bot/payment/payment_service.py:54
 msgid "Select how you want to support PDF Bot"
 msgstr "选择你支持PDF Bot的方式"
 
-#: pdf_bot/payment/payment_service.py:62
+#: pdf_bot/payment/payment_service.py:72
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "跟PDF Bot说谢谢并帮助它继续运行"
 
-#: pdf_bot/payment/payment_service.py:79
+#: pdf_bot/payment/payment_service.py:89
 msgid "Something went wrong, try again"
 msgstr "出错了，再试一次"
 
-#: pdf_bot/payment/payment_service.py:89
+#: pdf_bot/payment/payment_service.py:99
 msgid "Thank you for your support!"
 msgstr "感谢你的支持！"
 
-#: pdf_bot/payment/payment_service.py:111
+#: pdf_bot/payment/payment_service.py:121
 msgid "Help translate PDF Bot"
 msgstr "帮助翻译PDF Bot"
 
@@ -585,25 +585,25 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "文件太大，我无法发送给您\n\n"
 "请注意，此限制是由电报强制执行的，除非电报更改它，否则我无能为力"
 
-#: pdf_bot/telegram_internal/telegram_service.py:151
+#: pdf_bot/telegram_internal/telegram_service.py:160
 msgid "Your file is not an image, please try again"
 msgstr "您的文件不是图像，请重试"
 
-#: pdf_bot/telegram_internal/telegram_service.py:158
+#: pdf_bot/telegram_internal/telegram_service.py:167
 msgid "No image found in your message"
 msgstr "在邮件中未找到图像"
 
-#: pdf_bot/telegram_internal/telegram_service.py:167
+#: pdf_bot/telegram_internal/telegram_service.py:176
 msgid "Your file is not a PDF file, please try again"
 msgstr "您的文件不是 PDF 文件，请再试一次"
 
-#: pdf_bot/telegram_internal/telegram_service.py:197
-#: pdf_bot/telegram_internal/telegram_service.py:200
+#: pdf_bot/telegram_internal/telegram_service.py:206
+#: pdf_bot/telegram_internal/telegram_service.py:209
 msgid "Action cancelled"
 msgstr "操作取消"
 
-#: pdf_bot/telegram_internal/telegram_service.py:270
-#: pdf_bot/telegram_internal/telegram_service.py:278
+#: pdf_bot/telegram_internal/telegram_service.py:279
+#: pdf_bot/telegram_internal/telegram_service.py:287
 msgid "Here is your result file"
 msgstr "你的输出档案"
 

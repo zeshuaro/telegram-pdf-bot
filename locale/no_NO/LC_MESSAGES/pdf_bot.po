@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 06:14+0000\n"
-"PO-Revision-Date: 2022-12-30 06:14\n"
+"POT-Creation-Date: 2022-12-30 07:22+0000\n"
+"PO-Revision-Date: 2022-12-30 07:23\n"
 "Last-Translator: \n"
 "Language: no\n"
 "Language-Team: Norwegian\n"
@@ -84,12 +84,12 @@ msgid "Set Language 🌎"
 msgstr "Angi språk 🌎"
 
 #: pdf_bot/command/command_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:223
+#: pdf_bot/telegram_internal/telegram_service.py:232
 msgid "Join Channel"
 msgstr "Bli med i kanal"
 
-#: pdf_bot/command/command_service.py:70 pdf_bot/payment/payment_service.py:61
-#: pdf_bot/telegram_internal/telegram_service.py:224
+#: pdf_bot/command/command_service.py:70 pdf_bot/payment/payment_service.py:71
+#: pdf_bot/telegram_internal/telegram_service.py:233
 msgid "Support PDF Bot"
 msgstr "Støtte PDF Bot"
 
@@ -184,7 +184,7 @@ msgid "Note that this is a Telegram Bot limitation and there's nothing I can do 
 msgstr "Vær oppmerksom på at dette er en Telegram Bot-begrensning, og det er ingenting jeg kan gjøre med mindre Telegram endrer denne grensen"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:104
-#: pdf_bot/file_processor/abstract_file_processor.py:171
+#: pdf_bot/file_processor/abstract_file_processor.py:170
 msgid "Processing your file"
 msgstr "Behandle filen"
 
@@ -247,11 +247,11 @@ msgstr "Beautifying og konvertere bildene dine til en PDF-fil"
 msgid "Converting your images into a PDF file"
 msgstr "Konvertere bilder til en PDF-fil"
 
-#: pdf_bot/language/language_service.py:79
+#: pdf_bot/language/language_service.py:82
 msgid "Select your language"
 msgstr "Velg språk"
 
-#: pdf_bot/language/language_service.py:114
+#: pdf_bot/language/language_service.py:117
 msgid "Your language has been set to {language}"
 msgstr "Språket er satt til {language}"
 
@@ -291,43 +291,43 @@ msgstr "Du har bare sendt meg én PDF-fil"
 msgid "Merging your PDF files"
 msgstr "Slå sammen PDF-filene dine"
 
-#: pdf_bot/payment/payment_service.py:20
+#: pdf_bot/payment/payment_service.py:21
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/payment/payment_service.py:24
+#: pdf_bot/payment/payment_service.py:25
 msgid "Say Thanks"
 msgstr "Si takk"
 
-#: pdf_bot/payment/payment_service.py:25
+#: pdf_bot/payment/payment_service.py:26
 msgid "Coffee"
 msgstr "Kaffe"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:27
 msgid "Beer"
 msgstr "Øl"
 
-#: pdf_bot/payment/payment_service.py:27
+#: pdf_bot/payment/payment_service.py:28
 msgid "Meal"
 msgstr "Måltid"
 
-#: pdf_bot/payment/payment_service.py:44
+#: pdf_bot/payment/payment_service.py:54
 msgid "Select how you want to support PDF Bot"
 msgstr "Velg hvordan du vil støtte PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:62
+#: pdf_bot/payment/payment_service.py:72
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Si takk til PDF Bot og bidra til å holde den i gang"
 
-#: pdf_bot/payment/payment_service.py:79
+#: pdf_bot/payment/payment_service.py:89
 msgid "Something went wrong, try again"
 msgstr "Noe gikk galt, prøv igjen"
 
-#: pdf_bot/payment/payment_service.py:89
+#: pdf_bot/payment/payment_service.py:99
 msgid "Thank you for your support!"
 msgstr "Takk for din støtte!"
 
-#: pdf_bot/payment/payment_service.py:111
+#: pdf_bot/payment/payment_service.py:121
 msgid "Help translate PDF Bot"
 msgstr "Hjelp til å oversette PDF Bot"
 
@@ -585,25 +585,25 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "Filen er for stor til at jeg kan sende den til deg\n\n"
 "Merk at denne grensen håndheves av Telegram, og det er ingenting jeg kan gjøre med mindre Telegram endrer den"
 
-#: pdf_bot/telegram_internal/telegram_service.py:151
+#: pdf_bot/telegram_internal/telegram_service.py:160
 msgid "Your file is not an image, please try again"
 msgstr "Filen er ikke et bilde."
 
-#: pdf_bot/telegram_internal/telegram_service.py:158
+#: pdf_bot/telegram_internal/telegram_service.py:167
 msgid "No image found in your message"
 msgstr "Finner ikke noe bilde i meldingen"
 
-#: pdf_bot/telegram_internal/telegram_service.py:167
+#: pdf_bot/telegram_internal/telegram_service.py:176
 msgid "Your file is not a PDF file, please try again"
 msgstr "Filen er ikke en PDF-fil."
 
-#: pdf_bot/telegram_internal/telegram_service.py:197
-#: pdf_bot/telegram_internal/telegram_service.py:200
+#: pdf_bot/telegram_internal/telegram_service.py:206
+#: pdf_bot/telegram_internal/telegram_service.py:209
 msgid "Action cancelled"
 msgstr "Handling avbrutt"
 
-#: pdf_bot/telegram_internal/telegram_service.py:270
-#: pdf_bot/telegram_internal/telegram_service.py:278
+#: pdf_bot/telegram_internal/telegram_service.py:279
+#: pdf_bot/telegram_internal/telegram_service.py:287
 msgid "Here is your result file"
 msgstr "Her er resultatfilen"
 

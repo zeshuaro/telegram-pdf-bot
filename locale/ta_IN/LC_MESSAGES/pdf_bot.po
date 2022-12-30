@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 06:14+0000\n"
-"PO-Revision-Date: 2022-12-30 06:14\n"
+"POT-Creation-Date: 2022-12-30 07:22+0000\n"
+"PO-Revision-Date: 2022-12-30 07:23\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -84,12 +84,12 @@ msgid "Set Language 🌎"
 msgstr "மொழி 🌎 அமை"
 
 #: pdf_bot/command/command_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:223
+#: pdf_bot/telegram_internal/telegram_service.py:232
 msgid "Join Channel"
 msgstr "சேனலில் சேரவும்"
 
-#: pdf_bot/command/command_service.py:70 pdf_bot/payment/payment_service.py:61
-#: pdf_bot/telegram_internal/telegram_service.py:224
+#: pdf_bot/command/command_service.py:70 pdf_bot/payment/payment_service.py:71
+#: pdf_bot/telegram_internal/telegram_service.py:233
 msgid "Support PDF Bot"
 msgstr "PTM போட் ஆதரவு"
 
@@ -184,7 +184,7 @@ msgid "Note that this is a Telegram Bot limitation and there's nothing I can do 
 msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:104
-#: pdf_bot/file_processor/abstract_file_processor.py:171
+#: pdf_bot/file_processor/abstract_file_processor.py:170
 msgid "Processing your file"
 msgstr "உங்கள் கோப்பை செயலாக்கம்"
 
@@ -247,11 +247,11 @@ msgstr "உங்கள் படங்களை அழகுபடுத்த�
 msgid "Converting your images into a PDF file"
 msgstr "உங்கள் படங்களை PDF கோப்பாக மாற்றுதல்"
 
-#: pdf_bot/language/language_service.py:79
+#: pdf_bot/language/language_service.py:82
 msgid "Select your language"
 msgstr "உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/language/language_service.py:114
+#: pdf_bot/language/language_service.py:117
 msgid "Your language has been set to {language}"
 msgstr "உங்கள் மொழி {language}"
 
@@ -291,43 +291,43 @@ msgstr "நீங்கள் எனக்கு ஒரு PPM கோப்ப�
 msgid "Merging your PDF files"
 msgstr "உங்கள் PPM கோப்புகளை இணைத்தல்"
 
-#: pdf_bot/payment/payment_service.py:20
+#: pdf_bot/payment/payment_service.py:21
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/payment/payment_service.py:24
+#: pdf_bot/payment/payment_service.py:25
 msgid "Say Thanks"
 msgstr "நன்றி சொல்லுங்கள்"
 
-#: pdf_bot/payment/payment_service.py:25
+#: pdf_bot/payment/payment_service.py:26
 msgid "Coffee"
 msgstr "காப்பி"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:27
 msgid "Beer"
 msgstr "வாற்கோதுமைக் கன்"
 
-#: pdf_bot/payment/payment_service.py:27
+#: pdf_bot/payment/payment_service.py:28
 msgid "Meal"
 msgstr "மாவு"
 
-#: pdf_bot/payment/payment_service.py:44
+#: pdf_bot/payment/payment_service.py:54
 msgid "Select how you want to support PDF Bot"
 msgstr "PTM போட் ஐ எவ்வாறு ஆதரிக்க விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/payment/payment_service.py:62
+#: pdf_bot/payment/payment_service.py:72
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PTM பாட் நன்றி சொல்ல மற்றும் அதை இயங்கும் வைக்க உதவ"
 
-#: pdf_bot/payment/payment_service.py:79
+#: pdf_bot/payment/payment_service.py:89
 msgid "Something went wrong, try again"
 msgstr "ஏதோ தவறு நடந்தது, மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/payment/payment_service.py:89
+#: pdf_bot/payment/payment_service.py:99
 msgid "Thank you for your support!"
 msgstr "உங்கள் ஆதரவுக்கு நன்றி!"
 
-#: pdf_bot/payment/payment_service.py:111
+#: pdf_bot/payment/payment_service.py:121
 msgid "Help translate PDF Bot"
 msgstr "PTM போட் மொழிபெயர்க்க உதவுங்கள்"
 
@@ -585,25 +585,25 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "இந்த கோப்பு எனக்கு அனுப்ப முடியாத அளவுக்கு மிகப் பெரியதாக உள்ளது\n\n"
 "இந்த வரம்பு டெலிகிராமால் செயல்படுத்தப்படுகிறது என்பதையும், டெலிகிராம் அதை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதையும் நினைவில் கொள்க"
 
-#: pdf_bot/telegram_internal/telegram_service.py:151
+#: pdf_bot/telegram_internal/telegram_service.py:160
 msgid "Your file is not an image, please try again"
 msgstr "உங்கள் கோப்பு ஒரு பிம்பம் அல்ல, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/telegram_internal/telegram_service.py:158
+#: pdf_bot/telegram_internal/telegram_service.py:167
 msgid "No image found in your message"
 msgstr "உங்கள் செய்தியில் எந்த படமும் காணப்படவில்லை"
 
-#: pdf_bot/telegram_internal/telegram_service.py:167
+#: pdf_bot/telegram_internal/telegram_service.py:176
 msgid "Your file is not a PDF file, please try again"
 msgstr "உங்கள் கோப்பு PPM கோப்பு அல்ல, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/telegram_internal/telegram_service.py:197
-#: pdf_bot/telegram_internal/telegram_service.py:200
+#: pdf_bot/telegram_internal/telegram_service.py:206
+#: pdf_bot/telegram_internal/telegram_service.py:209
 msgid "Action cancelled"
 msgstr "நடவடிக்கை ரத்து"
 
-#: pdf_bot/telegram_internal/telegram_service.py:270
-#: pdf_bot/telegram_internal/telegram_service.py:278
+#: pdf_bot/telegram_internal/telegram_service.py:279
+#: pdf_bot/telegram_internal/telegram_service.py:287
 msgid "Here is your result file"
 msgstr "இங்கே உங்கள் விளைவாக கோப்பு உள்ளது"
 

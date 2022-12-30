@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 06:14+0000\n"
-"PO-Revision-Date: 2022-12-30 06:14\n"
+"POT-Creation-Date: 2022-12-30 07:22+0000\n"
+"PO-Revision-Date: 2022-12-30 07:23\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -84,12 +84,12 @@ msgid "Set Language 🌎"
 msgstr "Setează Limba 🌎"
 
 #: pdf_bot/command/command_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:223
+#: pdf_bot/telegram_internal/telegram_service.py:232
 msgid "Join Channel"
 msgstr "Alăturați-vă canalului"
 
-#: pdf_bot/command/command_service.py:70 pdf_bot/payment/payment_service.py:61
-#: pdf_bot/telegram_internal/telegram_service.py:224
+#: pdf_bot/command/command_service.py:70 pdf_bot/payment/payment_service.py:71
+#: pdf_bot/telegram_internal/telegram_service.py:233
 msgid "Support PDF Bot"
 msgstr "Suport PDF Bot"
 
@@ -184,7 +184,7 @@ msgid "Note that this is a Telegram Bot limitation and there's nothing I can do 
 msgstr "Rețineți că aceasta este o limitare Telegram Bot și nu e nimic nu pot face cu excepția cazului în Telegram modificări această limită"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:104
-#: pdf_bot/file_processor/abstract_file_processor.py:171
+#: pdf_bot/file_processor/abstract_file_processor.py:170
 msgid "Processing your file"
 msgstr "Procesarea fișierului"
 
@@ -247,11 +247,11 @@ msgstr "Înfrumusețarea și conversia imaginilor într-un fișier PDF"
 msgid "Converting your images into a PDF file"
 msgstr "Conversia imaginilor într-un fișier PDF"
 
-#: pdf_bot/language/language_service.py:79
+#: pdf_bot/language/language_service.py:82
 msgid "Select your language"
 msgstr "Selectați limba dvs."
 
-#: pdf_bot/language/language_service.py:114
+#: pdf_bot/language/language_service.py:117
 msgid "Your language has been set to {language}"
 msgstr "Limba ta a fost setată la {language}"
 
@@ -291,43 +291,43 @@ msgstr "Mi-ați trimis un singur fișier PDF"
 msgid "Merging your PDF files"
 msgstr "Îmbinarea fișierelor PDF"
 
-#: pdf_bot/payment/payment_service.py:20
+#: pdf_bot/payment/payment_service.py:21
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/payment/payment_service.py:24
+#: pdf_bot/payment/payment_service.py:25
 msgid "Say Thanks"
 msgstr "Spune Multumesc"
 
-#: pdf_bot/payment/payment_service.py:25
+#: pdf_bot/payment/payment_service.py:26
 msgid "Coffee"
 msgstr "Cafea"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:27
 msgid "Beer"
 msgstr "Bere"
 
-#: pdf_bot/payment/payment_service.py:27
+#: pdf_bot/payment/payment_service.py:28
 msgid "Meal"
 msgstr "Masă"
 
-#: pdf_bot/payment/payment_service.py:44
+#: pdf_bot/payment/payment_service.py:54
 msgid "Select how you want to support PDF Bot"
 msgstr "Selectați modul în care doriți să acceptați PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:62
+#: pdf_bot/payment/payment_service.py:72
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Spune datorită PDF Bot și de a ajuta la menținerea acestuia rulează"
 
-#: pdf_bot/payment/payment_service.py:79
+#: pdf_bot/payment/payment_service.py:89
 msgid "Something went wrong, try again"
 msgstr "Ceva nu a mers bine, încercați din nou"
 
-#: pdf_bot/payment/payment_service.py:89
+#: pdf_bot/payment/payment_service.py:99
 msgid "Thank you for your support!"
 msgstr "Vă mulțumim pentru sprijin!"
 
-#: pdf_bot/payment/payment_service.py:111
+#: pdf_bot/payment/payment_service.py:121
 msgid "Help translate PDF Bot"
 msgstr "Ajutor pentru traducerea PDF Bot"
 
@@ -585,25 +585,25 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "Fișierul este prea mare pentru mine pentru a vă trimite\n\n"
 "Rețineți că această limită este impusă de Telegram și nu pot face nimic dacă Telegram nu o schimbă"
 
-#: pdf_bot/telegram_internal/telegram_service.py:151
+#: pdf_bot/telegram_internal/telegram_service.py:160
 msgid "Your file is not an image, please try again"
 msgstr "Fișierul nu este o imagine, vă rugăm să încercați din nou"
 
-#: pdf_bot/telegram_internal/telegram_service.py:158
+#: pdf_bot/telegram_internal/telegram_service.py:167
 msgid "No image found in your message"
 msgstr "Nicio imagine nu se găsește în mesaj"
 
-#: pdf_bot/telegram_internal/telegram_service.py:167
+#: pdf_bot/telegram_internal/telegram_service.py:176
 msgid "Your file is not a PDF file, please try again"
 msgstr "Fișierul nu este un fișier PDF, încercați din nou"
 
-#: pdf_bot/telegram_internal/telegram_service.py:197
-#: pdf_bot/telegram_internal/telegram_service.py:200
+#: pdf_bot/telegram_internal/telegram_service.py:206
+#: pdf_bot/telegram_internal/telegram_service.py:209
 msgid "Action cancelled"
 msgstr "Acțiune revocată"
 
-#: pdf_bot/telegram_internal/telegram_service.py:270
-#: pdf_bot/telegram_internal/telegram_service.py:278
+#: pdf_bot/telegram_internal/telegram_service.py:279
+#: pdf_bot/telegram_internal/telegram_service.py:287
 msgid "Here is your result file"
 msgstr "Aici este fișierul rezultat"
 
