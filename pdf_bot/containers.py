@@ -48,7 +48,7 @@ from pdf_bot.settings import Settings
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
 from pdf_bot.telegram_internal import TelegramService
 from pdf_bot.text import TextHandler, TextRepository, TextService
-from pdf_bot.watermark import WatermarkHandlers, WatermarkService
+from pdf_bot.watermark import WatermarkHandler, WatermarkService
 from pdf_bot.webpage import WebpageHandler, WebpageService
 
 
@@ -336,7 +336,7 @@ class Handlers(containers.DeclarativeContainer):
         TextHandler, text_service=services.text, telegram_service=services.telegram
     )
     watermark = providers.Singleton(
-        WatermarkHandlers,
+        WatermarkHandler,
         watermark_service=services.watermark,
         telegram_service=services.telegram,
     )
@@ -358,7 +358,6 @@ class TelegramBot(containers.DeclarativeContainer):
         feedback_handler=handlers.feedback,
         file_handlers=handlers.file,
         language_service=services.language,
-        watermark_handlers=handlers.watermark,
         webpage_handler=handlers.webpage,
     )
 

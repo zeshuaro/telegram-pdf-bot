@@ -8,7 +8,6 @@ from telegram.ext import Application, ContextTypes, MessageHandler, filters
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.language import LanguageService
-from pdf_bot.watermark import WatermarkHandlers
 from pdf_bot.webpage import WebpageHandler
 
 
@@ -20,13 +19,11 @@ class TelegramDispatcher:
         feedback_handler: FeedbackHandler,
         file_handlers: FileHandler,
         language_service: LanguageService,
-        watermark_handlers: WatermarkHandlers,
         webpage_handler: WebpageHandler,
     ) -> None:
         self.feedback_handler = feedback_handler
         self.file_handlers = file_handlers
         self.language_service = language_service
-        self.watermark_handlers = watermark_handlers
         self.webpage_handler = webpage_handler
 
     def setup(self, telegram_app: Application) -> None:
@@ -36,9 +33,6 @@ class TelegramDispatcher:
                 filters.Entity(MessageEntity.URL), self.webpage_handler.url_to_pdf
             )
         )
-
-        # PDF commands handlers
-        telegram_app.add_handler(self.watermark_handlers.conversation_handler())
 
         # PDF file handler
         telegram_app.add_handler(self.file_handlers.conversation_handler())

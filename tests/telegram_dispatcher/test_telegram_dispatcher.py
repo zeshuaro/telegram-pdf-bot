@@ -7,7 +7,6 @@ from telegram.ext import Application
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
-from pdf_bot.watermark import WatermarkHandlers
 from pdf_bot.webpage import WebpageHandler
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramTestMixin
@@ -26,14 +25,12 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.feedback_handler = MagicMock(spec=FeedbackHandler)
         self.file_handlers = MagicMock(spec=FileHandler)
         self.language_service = self.mock_language_service()
-        self.watermark_handlers = MagicMock(spec=WatermarkHandlers)
         self.webpage_handler = MagicMock(spec=WebpageHandler)
 
         self.sut = TelegramDispatcher(
             self.feedback_handler,
             self.file_handlers,
             self.language_service,
-            self.watermark_handlers,
             self.webpage_handler,
         )
 
@@ -49,7 +46,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_setup(self) -> None:
         self.sut.setup(self.app)
 
-        assert self.app.add_handler.call_count == 4
+        assert self.app.add_handler.call_count == 3
         self.app.add_error_handler.assert_called_once()
 
     @pytest.mark.asyncio
