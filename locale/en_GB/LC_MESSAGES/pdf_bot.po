@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot VERSION\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 04:55+0000\n"
+"POT-Creation-Date: 2022-12-30 05:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: locale\n"
@@ -573,13 +573,13 @@ msgstr ""
 msgid "{range}  pages {pages}"
 msgstr ""
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:35
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:24
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:113
 msgid "Something went wrong, please try again"
 msgstr ""
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:46
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:35
 msgid "The button has expired, start over with your file or command"
 msgstr ""
 
@@ -660,20 +660,20 @@ msgstr ""
 msgid "Adding the watermark onto your PDF file"
 msgstr ""
 
-#: pdf_bot/webpage/webpage_handler.py:43
-msgid "You've sent me this web page already and I'm still converting it"
+#: pdf_bot/webpage/webpage_service.py:41
+msgid "You've sent me this webpage already and I'm still converting it"
 msgstr ""
 
-#: pdf_bot/webpage/webpage_handler.py:47
-msgid "Converting your web page into a PDF file"
+#: pdf_bot/webpage/webpage_service.py:45
+msgid "Converting your webpage into a PDF file"
 msgstr ""
 
-#: pdf_bot/webpage/webpage_service.py:27
-msgid "Unable to reach your web page"
+#: pdf_bot/webpage/webpage_service.py:78
+msgid "Unable to reach your webpage"
 msgstr ""
 
-#: pdf_bot/webpage/webpage_service.py:38
-msgid "Failed to convert your web page"
+#: pdf_bot/webpage/webpage_service.py:89
+msgid "Failed to convert your webpage"
 msgstr ""
 
 #~ msgid ""
@@ -1681,5 +1681,17 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Black & White"
+#~ msgstr ""
+
+#~ msgid "You've sent me this web page already and I'm still converting it"
+#~ msgstr ""
+
+#~ msgid "Converting your web page into a PDF file"
+#~ msgstr ""
+
+#~ msgid "Unable to reach your web page"
+#~ msgstr ""
+
+#~ msgid "Failed to convert your web page"
 #~ msgstr ""
 
