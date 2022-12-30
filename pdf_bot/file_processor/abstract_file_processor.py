@@ -45,9 +45,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
 
     @classmethod
     def get_handlers(cls) -> list[BaseHandler]:
-        return [
-            x.handler for x in cls._FILE_PROCESSORS.values() if x.handler is not None
-        ]
+        return [x.handler for x in cls._FILE_PROCESSORS.values()]
 
     @property
     @abstractmethod
@@ -151,6 +149,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
 
             if error_handler is not None:
                 return await error_handler(update, context, e, file_data)
+            raise
         return None
 
     async def _process_previous_message(
