@@ -43,7 +43,7 @@ class WatermarkService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             doc = self.telegram_service.check_pdf_document(message)
@@ -65,7 +65,7 @@ class WatermarkService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             doc = self.telegram_service.check_pdf_document(message)

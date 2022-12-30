@@ -62,7 +62,7 @@ class FeedbackHandler:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
         try:
             self.feedback_service.save_feedback(
                 message.chat.id, message.from_user.username, message.text

@@ -56,7 +56,7 @@ class BatchImageService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
 
         try:
             image = self.telegram_service.check_image(message)
@@ -72,7 +72,7 @@ class BatchImageService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text in [_(self._REMOVE_LAST), _(self._BEAUTIFY), _(self._TO_PDF)]:
@@ -171,7 +171,7 @@ class BatchImageService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.message
+        message: Message = update.effective_message  # type: ignore
         is_beautify = False
 
         if message.text == _(self._BEAUTIFY):
