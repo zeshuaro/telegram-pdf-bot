@@ -81,6 +81,43 @@ class MockProcessorWithCustomErrorHandler(MockProcessor):
         return self.CUSTOM_ERROR_STATE
 
 
+class TestAbstractFileProcessorInit(
+    LanguageServiceTestMixin,
+    TelegramServiceTestMixin,
+):
+    def setup_method(self) -> None:
+        super().setup_method()
+        self.language_service = self.mock_language_service()
+        self.telegram_service = self.mock_telegram_service()
+
+        self.file_processors_patcher = patch(
+            "pdf_bot.file_processor.abstract_file_processor.AbstractFileProcessor._FILE_PROCESSORS"
+        )
+        self.file_processors = self.file_processors_patcher.start()
+
+    def teardown_method(self) -> None:
+        self.file_processors_patcher.stop()
+        super().teardown_method()
+
+    def test_init(self) -> None:
+        processors: dict = {}
+        self.file_processors.__contains__.side_effect = processors.__contains__
+
+        proc = MockProcessor(self.telegram_service, self.language_service)
+
+        self.file_processors.__setitem__.assert_called_once_with(
+            proc.__class__.__name__, proc
+        )
+
+    def test_init_already_initialized(self) -> None:
+        processors: dict = {MockProcessor.__name__: MagicMock()}
+        with pytest.raises(ValueError):
+            self.file_processors.__contains__.side_effect = processors.__contains__
+            MockProcessor(self.telegram_service, self.language_service)
+
+        self.file_processors.__setitem__.assert_not_called()
+
+
 class TestAbstractFileProcessor(
     LanguageServiceTestMixin,
     TelegramServiceTestMixin,
