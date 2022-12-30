@@ -32,5 +32,5 @@ class MyLogHandler:
             handlers=[self.intercept_logging_handler], level=logging.INFO, force=True
         )
 
-        weasyprint_logger = logging.getLogger("weasyprint")
-        weasyprint_logger.setLevel(logging.WARNING)
+        font_tools_logger = logging.getLogger("fontTools")
+        font_tools_logger.setLevel(logging.WARNING)
