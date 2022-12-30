@@ -74,7 +74,7 @@ class LanguageService:
         # This method is used by both command and callback query handlers, so we need to
         # check if query is `None` here
         if query is not None:
-            await self._answer_query_and_drop_data(context, query)
+            await query.answer()
 
         _ = self.set_app_language(update, context)
         reply_markup = self._get_languages_markup(update, context)
