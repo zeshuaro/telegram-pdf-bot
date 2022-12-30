@@ -6,7 +6,6 @@ from telegram.ext import Application
 
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
-from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.merge import MergeHandlers
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
 from pdf_bot.text import TextHandlers
@@ -28,7 +27,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.app = MagicMock(spec=Application)
         self.feedback_handler = MagicMock(spec=FeedbackHandler)
         self.file_handlers = MagicMock(spec=FileHandler)
-        self.image_handler = MagicMock(spec=BatchImageHandler)
         self.language_service = self.mock_language_service()
         self.merge_handlers = MagicMock(spec=MergeHandlers)
         self.text_handlers = MagicMock(spec=TextHandlers)
@@ -38,7 +36,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
         self.sut = TelegramDispatcher(
             self.feedback_handler,
             self.file_handlers,
-            self.image_handler,
             self.language_service,
             self.merge_handlers,
             self.text_handlers,
@@ -58,7 +55,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_setup(self) -> None:
         self.sut.setup(self.app)
 
-        assert self.app.add_handler.call_count == 7
+        assert self.app.add_handler.call_count == 6
         self.app.add_error_handler.assert_called_once()
 
     @pytest.mark.asyncio

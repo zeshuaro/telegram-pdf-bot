@@ -7,7 +7,6 @@ from telegram.ext import Application, ContextTypes, MessageHandler, filters
 
 from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
-from pdf_bot.image_handler import BatchImageHandler
 from pdf_bot.language import LanguageService
 from pdf_bot.merge import MergeHandlers
 from pdf_bot.text import TextHandlers
@@ -22,7 +21,6 @@ class TelegramDispatcher:
         self,
         feedback_handler: FeedbackHandler,
         file_handlers: FileHandler,
-        image_handler: BatchImageHandler,
         language_service: LanguageService,
         merge_handlers: MergeHandlers,
         text_handlers: TextHandlers,
@@ -31,7 +29,6 @@ class TelegramDispatcher:
     ) -> None:
         self.feedback_handler = feedback_handler
         self.file_handlers = file_handlers
-        self.image_handler = image_handler
         self.language_service = language_service
         self.merge_handlers = merge_handlers
         self.text_handlers = text_handlers
@@ -48,7 +45,6 @@ class TelegramDispatcher:
 
         # PDF commands handlers
         telegram_app.add_handler(self.merge_handlers.conversation_handler())
-        telegram_app.add_handler(self.image_handler.conversation_handler())
         telegram_app.add_handler(self.text_handlers.conversation_handler())
         telegram_app.add_handler(self.watermark_handlers.conversation_handler())
 
