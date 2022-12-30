@@ -2,6 +2,7 @@ from typing import Any
 from unittest.mock import MagicMock, call, patch
 
 import pytest
+from img2pdf import Rotation
 from ocrmypdf.exceptions import PriorOcrFoundError
 from PyPDF2 import PageObject, PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
@@ -167,7 +168,9 @@ class TestPDFService(
                     grayscale=True,
                     paths_only=True,
                 )
-                img2pdf.convert.assert_called_once_with(image_paths)
+                img2pdf.convert.assert_called_once_with(
+                    image_paths, rotation=Rotation.ifvalid
+                )
                 self.mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
                 file.write.assert_called_once_with(image_bytes)
 

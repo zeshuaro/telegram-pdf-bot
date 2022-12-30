@@ -10,6 +10,7 @@ import img2pdf
 import ocrmypdf
 import pdf2image
 import pdf_diff
+from img2pdf import Rotation
 from ocrmypdf.exceptions import PriorOcrFoundError
 from pdfminer.high_level import extract_text
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
@@ -81,7 +82,7 @@ class PdfService:
                 )
 
                 with open(out_path, "wb") as f:
-                    f.write(img2pdf.convert(images))
+                    f.write(img2pdf.convert(images, rotation=Rotation.ifvalid))
                 yield out_path
 
     @asynccontextmanager
