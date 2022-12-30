@@ -1,3 +1,5 @@
+from typing import Any
+
 import sentry_sdk
 from dependency_injector.providers import Singleton
 from dependency_injector.wiring import Provide, inject
@@ -14,26 +16,30 @@ from pdf_bot.telegram_handler import AbstractTelegramHandler
 @inject
 def main(
     telegram_app: TelegramApp,
-    settings: Settings = Provide[
-        Application.core.settings  # pylint: disable=no-member
-    ],
+    settings: Settings
+    | dict[str, Any] = Provide[Application.core.settings],  # pylint: disable=no-member
     log_handler: MyLogHandler = Provide[
         Application.core.log_handler  # pylint: disable=no-member
     ],
 ) -> None:
     log_handler.setup()
 
-    if settings["sentry_dsn"] is not None:  # type: ignore
-        sentry_sdk.init(settings["sentry_dsn"], traces_sample_rate=0.8)  # type: ignore
+    # There's a bug where configurations are passed as a dict, so we attempt to pass it
+    # here. See https://github.com/ets-labs/python-dependency-injector/issues/593
+    if isinstance(settings, dict):
+        settings = Settings(**settings)
+
+    if settings.sentry_dsn is not None:
+        sentry_sdk.init(settings.sentry_dsn, traces_sample_rate=0.8)
     else:
         logger.warning("SENTRY_DSN not set")
 
-    if settings["app_url"] is not None:  # type: ignore
+    if settings.app_url is not None:
         telegram_app.run_webhook(
             listen="0.0.0.0",
-            port=settings["port"],  # type: ignore
-            url_path=settings["telegram_token"],  # type: ignore
-            webhook_url=f"{settings['app_url']}/{settings['telegram_token']}",  # type: ignore
+            port=settings.port,
+            url_path=settings.telegram_token,
+            webhook_url=f"{settings.app_url}/{settings.telegram_token}",
         )
     else:
         telegram_app.run_polling()
