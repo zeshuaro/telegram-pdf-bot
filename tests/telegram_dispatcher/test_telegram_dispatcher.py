@@ -1,29 +1,18 @@
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 from telegram.error import BadRequest, Forbidden
-from telegram.ext import Application
 
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
-from pdf_bot.webpage import WebpageHandler
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramTestMixin
 
 
 class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
-    SET_LANGUAGE = "set_lang"
-    LANGUAGE = "🇺🇸 English (US)"
-    PAYMENT = "payment"
-    PAYMENT_INVOICE = "payment,"
-    CALLBACK_DATA = "callback_data"
-
     def setup_method(self) -> None:
         super().setup_method()
-        self.app = MagicMock(spec=Application)
         self.language_service = self.mock_language_service()
-        self.webpage_handler = MagicMock(spec=WebpageHandler)
-
-        self.sut = TelegramDispatcher(self.language_service, self.webpage_handler)
+        self.sut = TelegramDispatcher(self.language_service)
 
         self.sentry_sdk_patcher = patch(
             "pdf_bot.telegram_dispatcher.telegram_dispatcher.sentry_sdk"
@@ -32,13 +21,6 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
 
     def teardown_method(self) -> None:
         self.sentry_sdk_patcher.stop()
-
-    @pytest.mark.asyncio
-    async def test_setup(self) -> None:
-        self.sut.setup(self.app)
-
-        assert self.app.add_handler.call_count == 1
-        self.app.add_error_handler.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_error_callback_known_error(self) -> None:

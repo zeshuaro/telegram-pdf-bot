@@ -188,7 +188,12 @@ class Services(containers.DeclarativeContainer):
         telegram_service=telegram,
         language_service=language,
     )
-    webpage = providers.Singleton(WebpageService, io_service=io)
+    webpage = providers.Singleton(
+        WebpageService,
+        io_service=io,
+        telegram_service=telegram,
+        language_service=language,
+    )
 
 
 class Processors(containers.DeclarativeContainer):
@@ -298,7 +303,8 @@ class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
     processors = providers.DependenciesContainer()
 
-    # Make sure payment handler comes first as it contains handlers to be priortised
+    # Make sure payment handler comes first as it contains handlers that need to be
+    # priortised
     payment = providers.Singleton(PaymentHandler, payment_service=services.payment)
     command = providers.Singleton(
         MyCommandHandler,
@@ -306,6 +312,9 @@ class Handlers(containers.DeclarativeContainer):
         admin_telegram_id=_settings.admin_telegram_id,
     )
     language = providers.Singleton(LanguageHandler, language_service=services.language)
+
+    # Make sure webpage handler comes before the file processors to capture the URLs
+    webpage = providers.Singleton(WebpageHandler, webpage_service=services.webpage)
 
     file = providers.Singleton(
         FileHandler, file_service=services.file, telegram_service=services.telegram
@@ -337,23 +346,13 @@ class Handlers(containers.DeclarativeContainer):
         watermark_service=services.watermark,
         telegram_service=services.telegram,
     )
-    webpage = providers.Singleton(
-        WebpageHandler,
-        webpage_service=services.webpage,
-        language_service=services.language,
-        telegram_service=services.telegram,
-    )
 
 
 class TelegramBot(containers.DeclarativeContainer):
-    core = providers.DependenciesContainer()
     services = providers.DependenciesContainer()
-    handlers = providers.DependenciesContainer()
 
     dispatcher = providers.Singleton(
-        TelegramDispatcher,
-        language_service=services.language,
-        webpage_handler=handlers.webpage,
+        TelegramDispatcher, language_service=services.language
     )
 
 
@@ -364,6 +363,4 @@ class Application(containers.DeclarativeContainer):
     services = providers.Container(Services, core=core, repositories=repositories)
     processors = providers.Container(Processors, services=services)
     handlers = providers.Container(Handlers, services=services, processors=processors)
-    telegram_bot = providers.Container(
-        TelegramBot, services=services, handlers=handlers
-    )
+    telegram_bot = providers.Container(TelegramBot, services=services)
