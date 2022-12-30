@@ -13,7 +13,7 @@ from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService, MyCommandHandler
 from pdf_bot.compare import CompareHandler, CompareService
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
-from pdf_bot.file_handler import FileHandler
+from pdf_bot.file import FileHandler, FileService
 from pdf_bot.image import ImageService
 from pdf_bot.image_handler import BatchImageHandler, BatchImageService
 from pdf_bot.image_processor import (
@@ -137,6 +137,16 @@ class Services(containers.DeclarativeContainer):
         PdfService, cli_service=cli, io_service=io, telegram_service=telegram
     )
 
+    _image_task = providers.Singleton(ImageTaskProcessor, language_service=language)
+    _pdf_task = providers.Singleton(PdfTaskProcessor, language_service=language)
+    file = providers.Singleton(
+        FileService,
+        telegram_service=telegram,
+        language_service=language,
+        image_task_processor=_image_task,
+        pdf_task_processor=_pdf_task,
+    )
+
     compare = providers.Singleton(
         CompareService,
         pdf_service=pdf,
@@ -149,15 +159,13 @@ class Services(containers.DeclarativeContainer):
         telegram_service=telegram,
         language_service=language,
     )
-    language = providers.Singleton(
-        LanguageService, language_repository=repositories.language
-    )
     batch_image = providers.Singleton(
         BatchImageService,
         image_service=image,
         telegram_service=telegram,
         language_service=language,
     )
+
     merge = providers.Singleton(
         MergeService,
         pdf_service=pdf,
@@ -185,15 +193,6 @@ class Services(containers.DeclarativeContainer):
 
 class Processors(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
-
-    image_task = providers.Singleton(
-        ImageTaskProcessor,
-        language_service=services.language,
-    )
-    pdf_task = providers.Singleton(
-        PdfTaskProcessor,
-        language_service=services.language,
-    )
 
     compress = providers.Singleton(
         CompressPdfProcessor,
@@ -309,11 +308,7 @@ class Handlers(containers.DeclarativeContainer):
     language = providers.Singleton(LanguageHandler, language_service=services.language)
 
     file = providers.Singleton(
-        FileHandler,
-        telegram_service=services.telegram,
-        language_service=services.language,
-        image_task_processor=processors.image_task,
-        pdf_task_processor=processors.pdf_task,
+        FileHandler, file_service=services.file, telegram_service=services.telegram
     )
 
     compare = providers.Singleton(
@@ -357,7 +352,6 @@ class TelegramBot(containers.DeclarativeContainer):
 
     dispatcher = providers.Singleton(
         TelegramDispatcher,
-        file_handlers=handlers.file,
         language_service=services.language,
         webpage_handler=handlers.webpage,
     )
