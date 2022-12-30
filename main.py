@@ -5,9 +5,9 @@ from loguru import logger
 from telegram.ext import Application as TelegramApp
 
 from pdf_bot.containers import Application
+from pdf_bot.error import ErrorHandler
 from pdf_bot.log import MyLogHandler
 from pdf_bot.settings import Settings
-from pdf_bot.telegram_dispatcher import TelegramDispatcher
 from pdf_bot.telegram_handler import AbstractTelegramHandler
 
 
@@ -20,9 +20,6 @@ def main(
     log_handler: MyLogHandler = Provide[
         Application.core.log_handler  # pylint: disable=no-member
     ],
-    telegram_dispatcher: TelegramDispatcher = Provide[
-        Application.telegram_bot.dispatcher  # pylint: disable=no-member
-    ],
 ) -> None:
     log_handler.setup()
 
@@ -31,7 +28,6 @@ def main(
     else:
         logger.warning("SENTRY_DSN not set")
 
-    telegram_dispatcher.setup(telegram_app)
     if settings["app_url"] is not None:  # type: ignore
         telegram_app.run_webhook(
             listen="0.0.0.0",
@@ -67,5 +63,7 @@ if __name__ == "__main__":
             handler = provider()
             if isinstance(handler, AbstractTelegramHandler):
                 _telegram_app.add_handlers(handler.handlers)
+            elif isinstance(handler, ErrorHandler):
+                _telegram_app.add_error_handler(handler.callback)
 
     main(_telegram_app)
