@@ -1,9 +1,5 @@
-from .text_handlers import TextHandlers
+from .text_handler import TextHandler
 from .text_repository import TextRepository
 from .text_service import TextService
 
-__all__ = [
-    "TextHandlers",
-    "TextService",
-    "TextRepository",
-]
+__all__ = ["TextHandler", "TextService", "TextRepository"]

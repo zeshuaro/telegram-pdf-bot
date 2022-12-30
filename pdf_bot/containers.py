@@ -47,7 +47,7 @@ from pdf_bot.pdf_processor import (
 from pdf_bot.settings import Settings
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
 from pdf_bot.telegram_internal import TelegramService
-from pdf_bot.text import TextHandlers, TextRepository, TextService
+from pdf_bot.text import TextHandler, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandlers, WatermarkService
 from pdf_bot.webpage import WebpageHandler, WebpageService
 
@@ -333,7 +333,7 @@ class Handlers(containers.DeclarativeContainer):
         MergeHandler, merge_service=services.merge, telegram_service=services.telegram
     )
     text = providers.Singleton(
-        TextHandlers, text_service=services.text, telegram_service=services.telegram
+        TextHandler, text_service=services.text, telegram_service=services.telegram
     )
     watermark = providers.Singleton(
         WatermarkHandlers,
@@ -358,7 +358,6 @@ class TelegramBot(containers.DeclarativeContainer):
         feedback_handler=handlers.feedback,
         file_handlers=handlers.file,
         language_service=services.language,
-        text_handlers=handlers.text,
         watermark_handlers=handlers.watermark,
         webpage_handler=handlers.webpage,
     )
