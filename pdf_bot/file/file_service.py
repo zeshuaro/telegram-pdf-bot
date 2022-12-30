@@ -1,15 +1,7 @@
 from telegram import Message, Update
 from telegram.constants import FileSizeLimit
-from telegram.ext import (
-    CallbackQueryHandler,
-    CommandHandler,
-    ContextTypes,
-    ConversationHandler,
-    MessageHandler,
-    filters,
-)
+from telegram.ext import ContextTypes, ConversationHandler
 
-from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.image_processor import ImageTaskProcessor
 from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData
@@ -17,7 +9,7 @@ from pdf_bot.pdf_processor import PdfTaskProcessor
 from pdf_bot.telegram_internal import TelegramService
 
 
-class FileHandler:
+class FileService:
     def __init__(
         self,
         telegram_service: TelegramService,
@@ -30,28 +22,7 @@ class FileHandler:
         self.pdf_task_processor = pdf_task_processor
         self.language_service = language_service
 
-    def conversation_handler(self) -> ConversationHandler:
-        return ConversationHandler(
-            entry_points=[
-                MessageHandler(filters.Document.PDF, self._check_pdf),
-                MessageHandler(
-                    filters.PHOTO | filters.Document.IMAGE, self._check_image
-                ),
-            ],
-            states={
-                AbstractFileProcessor.WAIT_FILE_TASK: AbstractFileProcessor.get_handlers()
-            },
-            fallbacks=[
-                CallbackQueryHandler(
-                    self.telegram_service.cancel_conversation,
-                    pattern=r"^cancel$",
-                ),
-                CommandHandler("cancel", self.telegram_service.cancel_conversation),
-            ],
-            allow_reentry=True,
-        )
-
-    async def _check_pdf(
+    async def check_pdf(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
         file_data = await self._get_file_data(update, context)
@@ -61,7 +32,7 @@ class FileHandler:
 
         return await self.pdf_task_processor.ask_task(update, context)
 
-    async def _check_image(
+    async def check_image(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> int | str:
         file_data = await self._get_file_data(update, context)
