@@ -12,6 +12,7 @@ from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
 from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService, MyCommandHandler
 from pdf_bot.compare import CompareHandler, CompareService
+from pdf_bot.error import ErrorHandler
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
 from pdf_bot.file import FileHandler, FileService
 from pdf_bot.image import ImageService
@@ -45,7 +46,6 @@ from pdf_bot.pdf_processor import (
     SplitPdfProcessor,
 )
 from pdf_bot.settings import Settings
-from pdf_bot.telegram_dispatcher import TelegramDispatcher
 from pdf_bot.telegram_internal import TelegramService
 from pdf_bot.text import TextHandler, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandler, WatermarkService
@@ -303,6 +303,8 @@ class Handlers(containers.DeclarativeContainer):
     services = providers.DependenciesContainer()
     processors = providers.DependenciesContainer()
 
+    error = providers.Singleton(ErrorHandler, language_service=services.language)
+
     # Make sure payment handler comes first as it contains handlers that need to be
     # priortised
     payment = providers.Singleton(PaymentHandler, payment_service=services.payment)
@@ -348,14 +350,6 @@ class Handlers(containers.DeclarativeContainer):
     )
 
 
-class TelegramBot(containers.DeclarativeContainer):
-    services = providers.DependenciesContainer()
-
-    dispatcher = providers.Singleton(
-        TelegramDispatcher, language_service=services.language
-    )
-
-
 class Application(containers.DeclarativeContainer):
     core = providers.Container(Core)
     clients = providers.Container(Clients)
@@ -363,4 +357,3 @@ class Application(containers.DeclarativeContainer):
     services = providers.Container(Services, core=core, repositories=repositories)
     processors = providers.Container(Processors, services=services)
     handlers = providers.Container(Handlers, services=services, processors=processors)
-    telegram_bot = providers.Container(TelegramBot, services=services)
