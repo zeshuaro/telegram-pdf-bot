@@ -37,7 +37,7 @@ class ScaleData:
     x: float
     y: float
 
-    def __str__(self) -> str:
+    def __str__(self) -> str:  # pragma: no cover
         return f"{self.x} {self.y}"
 
     @staticmethod
