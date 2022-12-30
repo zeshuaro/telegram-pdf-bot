@@ -1,4 +1,4 @@
-from .merge_handlers import MergeHandlers
+from .merge_handler import MergeHandler
 from .merge_service import MergeService
 
-__all__ = ["MergeHandlers", "MergeService"]
+__all__ = ["MergeHandler", "MergeService"]

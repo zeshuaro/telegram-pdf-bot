@@ -24,7 +24,7 @@ from pdf_bot.image_processor import (
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageHandler, LanguageRepository, LanguageService
 from pdf_bot.log import InterceptLoggingHandler, MyLogHandler
-from pdf_bot.merge import MergeHandlers, MergeService
+from pdf_bot.merge import MergeHandler, MergeService
 from pdf_bot.payment import PaymentHandler, PaymentService
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
@@ -330,7 +330,7 @@ class Handlers(containers.DeclarativeContainer):
         telegram_service=services.telegram,
     )
     merge = providers.Singleton(
-        MergeHandlers, merge_service=services.merge, telegram_service=services.telegram
+        MergeHandler, merge_service=services.merge, telegram_service=services.telegram
     )
     text = providers.Singleton(
         TextHandlers, text_service=services.text, telegram_service=services.telegram
@@ -358,7 +358,6 @@ class TelegramBot(containers.DeclarativeContainer):
         feedback_handler=handlers.feedback,
         file_handlers=handlers.file,
         language_service=services.language,
-        merge_handlers=handlers.merge,
         text_handlers=handlers.text,
         watermark_handlers=handlers.watermark,
         webpage_handler=handlers.webpage,

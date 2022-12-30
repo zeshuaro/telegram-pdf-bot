@@ -6,7 +6,6 @@ from telegram.ext import (
     filters,
 )
 
-from pdf_bot.compare.compare_service import CompareService
 from pdf_bot.consts import TEXT_FILTER
 from pdf_bot.telegram_handler import AbstractTelegramHandler
 from pdf_bot.telegram_internal import TelegramService
