@@ -1,4 +1,4 @@
-from .command_handler import CommandHandler
+from .command_handler import MyCommandHandler
 from .command_service import CommandService
 
-__all__ = ["CommandHandler", "CommandService"]
+__all__ = ["MyCommandHandler", "CommandService"]

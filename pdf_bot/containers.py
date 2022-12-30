@@ -10,7 +10,7 @@ from telegram.request import HTTPXRequest
 from pdf_bot.account import AccountRepository, AccountService
 from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
 from pdf_bot.cli import CLIService
-from pdf_bot.command import CommandHandler, CommandService
+from pdf_bot.command import CommandService, MyCommandHandler
 from pdf_bot.compare import CompareHandlers, CompareService
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
 from pdf_bot.file_handler import FileHandler
@@ -286,7 +286,7 @@ class Handlers(containers.DeclarativeContainer):
     # Make sure payment handler comes first as it contains handlers to be priortised
     payment = providers.Singleton(PaymentHandler, payment_service=services.payment)
     command = providers.Singleton(
-        CommandHandler,
+        MyCommandHandler,
         command_service=services.command,
         admin_telegram_id=_settings.admin_telegram_id,
     )

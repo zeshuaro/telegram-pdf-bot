@@ -1,14 +1,13 @@
 from unittest.mock import MagicMock
 
 import pytest
-from telegram.ext import CommandHandler as TelegramCommandHandler
-from telegram.ext import filters
+from telegram.ext import CommandHandler, filters
 
-from pdf_bot.command import CommandHandler, CommandService
+from pdf_bot.command import CommandService, MyCommandHandler
 from tests.telegram_internal import TelegramTestMixin
 
 
-class TestLanguageHandler(TelegramTestMixin):
+class TestCommandHandler(TelegramTestMixin):
     START_COMMAND = "start"
     HELP_COMMAND = "help"
     SEND_COMMAND = "send"
@@ -17,7 +16,7 @@ class TestLanguageHandler(TelegramTestMixin):
     def setup_method(self) -> None:
         super().setup_method()
         self.command_service = MagicMock(spec=CommandService)
-        self.sut = CommandHandler(self.command_service, self.ADMIN_TELEGRAM_ID)
+        self.sut = MyCommandHandler(self.command_service, self.ADMIN_TELEGRAM_ID)
 
     @pytest.mark.asyncio
     async def test_handlers(self) -> None:
@@ -25,15 +24,15 @@ class TestLanguageHandler(TelegramTestMixin):
         assert len(actual) == 3
 
         handler_0 = actual[0]
-        assert isinstance(handler_0, TelegramCommandHandler)
+        assert isinstance(handler_0, CommandHandler)
         assert handler_0.commands == {self.START_COMMAND}
 
         handler_1 = actual[1]
-        assert isinstance(handler_1, TelegramCommandHandler)
+        assert isinstance(handler_1, CommandHandler)
         assert handler_1.commands == {self.HELP_COMMAND}
 
         handler_2 = actual[2]
-        assert isinstance(handler_2, TelegramCommandHandler)
+        assert isinstance(handler_2, CommandHandler)
         assert handler_2.commands == {self.SEND_COMMAND}
         assert handler_2.filters.name == filters.User(self.ADMIN_TELEGRAM_ID).name
 
