@@ -4,7 +4,7 @@
 from dependency_injector import containers, providers
 from requests import Session
 from slack_sdk import WebClient
-from telegram.ext import ExtBot
+from telegram.ext import AIORateLimiter, ExtBot
 from telegram.request import HTTPXRequest
 
 from pdf_bot.account import AccountRepository, AccountService
@@ -55,7 +55,7 @@ from pdf_bot.webpage import WebpageHandler, WebpageService
 class Core(containers.DeclarativeContainer):
     settings = providers.Configuration(pydantic_settings=[Settings()])
 
-    _httpx_request = providers.Singleton(
+    _bot_request = providers.Singleton(
         HTTPXRequest,
         connection_pool_size=settings.request_connection_pool_size,
         read_timeout=settings.request_read_timeout,
@@ -63,12 +63,14 @@ class Core(containers.DeclarativeContainer):
         connect_timeout=settings.request_connect_timeout,
         pool_timeout=settings.request_pool_timeout,
     )
+    _bot_rate_limiter = providers.Singleton(AIORateLimiter)
 
     telegram_bot = providers.Singleton(
         ExtBot,
         token=settings.telegram_token,
         arbitrary_callback_data=True,
-        request=_httpx_request,
+        request=_bot_request,
+        rate_limiter=_bot_rate_limiter,
     )
 
     intercept_logging_handler = providers.Singleton(InterceptLoggingHandler)
@@ -81,7 +83,9 @@ class Clients(containers.DeclarativeContainer):
     _settings = providers.Configuration(pydantic_settings=[Settings()])
 
     session = Session()
-    session.hooks = {"response": lambda r, *args, **kwargs: r.raise_for_status()}
+    session.hooks = {
+        "response": lambda r, *args, **kwargs: r.raise_for_status()  # pragma: no cover
+    }
 
     api = providers.Object(session)
     slack = providers.Singleton(WebClient, token=_settings.slack_token)
