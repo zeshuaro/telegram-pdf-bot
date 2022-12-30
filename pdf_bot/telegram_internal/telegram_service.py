@@ -101,6 +101,10 @@ class TelegramService:
         return data
 
     @staticmethod
+    def user_data_contains(context: ContextTypes.DEFAULT_TYPE, key: str) -> bool:
+        return context.user_data is not None and key in context.user_data
+
+    @staticmethod
     def update_user_data(
         context: ContextTypes.DEFAULT_TYPE, key: str, value: Any
     ) -> None:

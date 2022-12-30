@@ -278,6 +278,21 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         with pytest.raises(TelegramGetUserDataError):
             self.sut.get_user_data(self.telegram_context, self.USER_DATA_KEY)
 
+    def test_user_data_contains(self) -> None:
+        self.telegram_context.user_data = {self.USER_DATA_KEY: self.USER_DATA_VALUE}
+        actual = self.sut.user_data_contains(self.telegram_context, self.USER_DATA_KEY)
+        assert actual is True
+
+    def test_user_data_contains_without_key(self) -> None:
+        self.telegram_context.user_data = {self.USER_DATA_KEY: self.USER_DATA_VALUE}
+        actual = self.sut.user_data_contains(self.telegram_context, "unknown_key")
+        assert actual is False
+
+    def test_user_data_contains_without_user_data(self) -> None:
+        self.telegram_context.user_data = None
+        actual = self.sut.user_data_contains(self.telegram_context, "unknown_key")
+        assert actual is False
+
     def test_update_user_data(self) -> None:
         self.telegram_context.user_data = {}
         self.sut.update_user_data(
