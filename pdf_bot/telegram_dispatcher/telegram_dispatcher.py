@@ -1,31 +1,20 @@
 from gettext import gettext as _
 
 import sentry_sdk
-from telegram import MessageEntity, Update
+from telegram import Update
 from telegram.error import BadRequest, Forbidden
-from telegram.ext import Application, ContextTypes, MessageHandler, filters
+from telegram.ext import Application, ContextTypes
 
 from pdf_bot.language import LanguageService
-from pdf_bot.webpage import WebpageHandler
 
 
 class TelegramDispatcher:
     _CALLBACK_DATA = "callback_data"
 
-    def __init__(
-        self, language_service: LanguageService, webpage_handler: WebpageHandler
-    ) -> None:
+    def __init__(self, language_service: LanguageService) -> None:
         self.language_service = language_service
-        self.webpage_handler = webpage_handler
 
     def setup(self, telegram_app: Application) -> None:
-        # URL handler
-        telegram_app.add_handler(
-            MessageHandler(
-                filters.Entity(MessageEntity.URL), self.webpage_handler.url_to_pdf
-            )
-        )
-
         # Log all errors
         telegram_app.add_error_handler(self.error_callback)
 
