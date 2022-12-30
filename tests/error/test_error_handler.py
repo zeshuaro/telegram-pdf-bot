@@ -90,8 +90,17 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.sentry_sdk.capture_exception.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_callback_bad_request_message_not_modified(self) -> None:
-        self.telegram_context.error = BadRequest("Message is not modified")
+    @pytest.mark.parametrize(
+        "message",
+        [
+            "Message is not modified",
+            "Need administrator rights in the channel chat",
+            "Message to delete not found",
+            "Message to edit not found",
+        ],
+    )
+    async def test_callback_bad_request_swallow_error(self, message: str) -> None:
+        self.telegram_context.error = BadRequest(message)
 
         await self.sut.callback(self.telegram_update, self.telegram_context)
 
