@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 02:12+0000\n"
-"PO-Revision-Date: 2022-12-30 02:13\n"
+"POT-Creation-Date: 2022-12-30 04:42+0000\n"
+"PO-Revision-Date: 2022-12-30 04:42\n"
 "Last-Translator: \n"
 "Language: es\n"
 "Language-Team: Spanish\n"
@@ -165,11 +165,11 @@ msgstr "El comentario no está en inglés, inténtalo de nuevo"
 msgid "Thank you for your feedback, I've forwarded it to my developer"
 msgstr "Gracias por sus comentarios, se los he enviado a mi desarrollador"
 
-#: pdf_bot/file_handler/file_handler.py:84
+#: pdf_bot/file/file_service.py:55
 msgid "Your file is too big for me to download and process"
 msgstr "Su archivo es demasiado grande para que yo lo descargue y procese"
 
-#: pdf_bot/file_handler/file_handler.py:85
+#: pdf_bot/file/file_service.py:56
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Tenga en cuenta que esta es una limitación de Telegram Bot y no hay nada que pueda hacer a menos que Telegram cambie este límite"
 
@@ -563,13 +563,13 @@ msgstr "{range} páginas {pages} excepto {page}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  páginas {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:43
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:35
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "Algo salió mal, por favor inténtalo de nuevo"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:54
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:46
 msgid "The button has expired, start over with your file or command"
 msgstr "El botón ha caducado, comience de nuevo con su archivo o comando"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 02:12+0000\n"
-"PO-Revision-Date: 2022-12-30 02:13\n"
+"POT-Creation-Date: 2022-12-30 04:42+0000\n"
+"PO-Revision-Date: 2022-12-30 04:42\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -165,11 +165,11 @@ msgstr "பின்னூட்டம் ஆங்கிலத்தில் �
 msgid "Thank you for your feedback, I've forwarded it to my developer"
 msgstr "உங்கள் கருத்துக்கு நன்றி, நான் அதை என் டெவலப்பருக்கு அனுப்பியுள்ளேன்"
 
-#: pdf_bot/file_handler/file_handler.py:84
+#: pdf_bot/file/file_service.py:55
 msgid "Your file is too big for me to download and process"
 msgstr "பதிவிறக்க மற்றும் செயலாக்க உங்கள் கோப்பு எனக்கு மிகவும் பெரியது"
 
-#: pdf_bot/file_handler/file_handler.py:85
+#: pdf_bot/file/file_service.py:56
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "இது ஒரு தந்தி பாட் வரம்பு மற்றும் தந்தி இந்த வரம்பை மாற்றாவிட்டால் என்னால் எதுவும் செய்ய முடியாது என்பதை நினைவில் கொள்க"
 
@@ -563,13 +563,13 @@ msgstr "{page}தவிர {range} பக்கங்கள் {pages}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  பக்கங்கள் {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:43
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:35
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "ஏதோ தவறு நடந்தது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:54
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:46
 msgid "The button has expired, start over with your file or command"
 msgstr "பொத்தான் காலாவதியாகிவிட்டது, உங்கள் கோப்பு அல்லது கட்டளையுடன் தொடங்கவும்"
 
