@@ -5,7 +5,6 @@ from telegram import MessageEntity, Update
 from telegram.error import BadRequest, Forbidden
 from telegram.ext import Application, ContextTypes, MessageHandler, filters
 
-from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.language import LanguageService
 from pdf_bot.webpage import WebpageHandler
@@ -16,12 +15,10 @@ class TelegramDispatcher:
 
     def __init__(
         self,
-        feedback_handler: FeedbackHandler,
         file_handlers: FileHandler,
         language_service: LanguageService,
         webpage_handler: WebpageHandler,
     ) -> None:
-        self.feedback_handler = feedback_handler
         self.file_handlers = file_handlers
         self.language_service = language_service
         self.webpage_handler = webpage_handler
@@ -36,9 +33,6 @@ class TelegramDispatcher:
 
         # PDF file handler
         telegram_app.add_handler(self.file_handlers.conversation_handler())
-
-        # Feedback handler
-        telegram_app.add_handler(self.feedback_handler.conversation_handler())
 
         # Log all errors
         telegram_app.add_error_handler(self.error_callback)

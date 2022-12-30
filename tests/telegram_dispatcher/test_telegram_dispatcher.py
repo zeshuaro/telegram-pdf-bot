@@ -4,7 +4,6 @@ import pytest
 from telegram.error import BadRequest, Forbidden
 from telegram.ext import Application
 
-from pdf_bot.feedback import FeedbackHandler
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.telegram_dispatcher import TelegramDispatcher
 from pdf_bot.webpage import WebpageHandler
@@ -22,16 +21,12 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
     def setup_method(self) -> None:
         super().setup_method()
         self.app = MagicMock(spec=Application)
-        self.feedback_handler = MagicMock(spec=FeedbackHandler)
         self.file_handlers = MagicMock(spec=FileHandler)
         self.language_service = self.mock_language_service()
         self.webpage_handler = MagicMock(spec=WebpageHandler)
 
         self.sut = TelegramDispatcher(
-            self.feedback_handler,
-            self.file_handlers,
-            self.language_service,
-            self.webpage_handler,
+            self.file_handlers, self.language_service, self.webpage_handler
         )
 
         self.sentry_sdk_patcher = patch(
@@ -46,7 +41,7 @@ class TestTelegramDispatcher(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_setup(self) -> None:
         self.sut.setup(self.app)
 
-        assert self.app.add_handler.call_count == 3
+        assert self.app.add_handler.call_count == 2
         self.app.add_error_handler.assert_called_once()
 
     @pytest.mark.asyncio

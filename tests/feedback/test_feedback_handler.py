@@ -1,84 +1,56 @@
 from unittest.mock import MagicMock
 
 import pytest
-from telegram.ext import ConversationHandler
+from telegram.ext import CommandHandler, ConversationHandler, MessageHandler
 
-from pdf_bot.feedback import (
-    FeedbackHandler,
-    FeedbackInvalidLanguageError,
-    FeedbackService,
-)
-from tests.language import LanguageServiceTestMixin
+from pdf_bot.consts import TEXT_FILTER
+from pdf_bot.feedback import FeedbackHandler, FeedbackService
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestFeedbackHandler(
-    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
-):
+class TestFeedbackHandler(TelegramServiceTestMixin, TelegramTestMixin):
     FEEDBACK_COMMAND = "feedback"
-    WAIT_FEEDBACK = 0
-    FEEDBACK_TEXT = "feedback_text"
-    CANCEL = "Cancel"
+    CANCEL_COMMAND = "cancel"
 
     def setup_method(self) -> None:
         super().setup_method()
         self.feedback_service = MagicMock(spec=FeedbackService)
-        self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
         self.sut = FeedbackHandler(
             self.feedback_service,
-            self.language_service,
             self.telegram_service,
         )
 
     @pytest.mark.asyncio
-    async def test_conversation_handler(self) -> None:
-        actual = self.sut.conversation_handler()
-        assert isinstance(actual, ConversationHandler)
+    async def test_handlers(self) -> None:
+        actual = self.sut.handlers
+        assert len(actual) == 1
 
-    @pytest.mark.asyncio
-    async def test_ask_feedback(self) -> None:
-        actual = await self.sut.ask_feedback(
-            self.telegram_update, self.telegram_context
-        )
+        handler = actual[0]
+        assert isinstance(handler, ConversationHandler)
 
-        assert actual == self.WAIT_FEEDBACK
-        self.telegram_service.reply_with_cancel_markup.assert_called_once()
+        entry_points = handler.entry_points
+        assert len(entry_points) == 1
+        assert isinstance(entry_points[0], CommandHandler)
+        assert entry_points[0].commands == {self.FEEDBACK_COMMAND}
 
-    @pytest.mark.asyncio
-    async def test_check_text_save_feedback(self) -> None:
-        self.telegram_message.text = self.FEEDBACK_TEXT
+        states = handler.states
+        assert FeedbackService.WAIT_FEEDBACK in states
+        wait_feedback = states[FeedbackService.WAIT_FEEDBACK]
+        assert len(wait_feedback) == 1
+        assert isinstance(wait_feedback[0], MessageHandler)
+        assert wait_feedback[0].filters.name == TEXT_FILTER.name
 
-        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
+        fallbacks = handler.fallbacks
+        assert len(fallbacks) == 1
 
-        assert actual == ConversationHandler.END
-        self._assert_save_feedback_and_reply_text()
+        assert isinstance(fallbacks[0], CommandHandler)
+        assert fallbacks[0].commands == {self.CANCEL_COMMAND}
 
-    @pytest.mark.asyncio
-    async def test_check_text_save_feedback_error(self) -> None:
-        self.telegram_message.text = self.FEEDBACK_TEXT
-        self.feedback_service.save_feedback.side_effect = FeedbackInvalidLanguageError()
+        for handler in entry_points + wait_feedback + fallbacks:
+            await handler.callback(self.telegram_update, self.telegram_context)
 
-        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
-
-        assert actual == self.WAIT_FEEDBACK
-        self._assert_save_feedback_and_reply_text()
-
-    @pytest.mark.asyncio
-    async def test_check_text_cancel(self) -> None:
-        self.telegram_message.text = self.CANCEL
-
-        actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
-
-        assert actual == ConversationHandler.END
-        self.telegram_service.cancel_conversation.assert_called_once_with(
-            self.telegram_update, self.telegram_context
-        )
-        self.feedback_service.save_feedback.assert_not_called()
-
-    def _assert_save_feedback_and_reply_text(self) -> None:
-        self.feedback_service.save_feedback.assert_called_once_with(
-            self.TELEGRAM_CHAT_ID, self.TELEGRAM_USERNAME, self.FEEDBACK_TEXT
-        )
-        self.telegram_update.effective_message.reply_text.assert_called_once()
+        self.feedback_service.ask_feedback.assert_called_once()
+        self.feedback_service.check_text.assert_called_once()
+        self.telegram_service.cancel_conversation.assert_called_once()
