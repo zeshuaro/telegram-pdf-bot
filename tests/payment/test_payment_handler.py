@@ -9,7 +9,8 @@ from telegram.ext import (
     filters,
 )
 
-from pdf_bot.payment import PaymentData, PaymentHandler, PaymentService, SupportData
+from pdf_bot.models import SupportData
+from pdf_bot.payment import PaymentData, PaymentHandler, PaymentService
 from tests.telegram_internal import TelegramTestMixin
 
 

@@ -7,6 +7,10 @@ class BackData:
     ...
 
 
+class SupportData:
+    ...
+
+
 @dataclass
 class FileData:
     id: str

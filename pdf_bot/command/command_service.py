@@ -6,7 +6,7 @@ from telegram.ext import ContextTypes
 from pdf_bot.account.account_service import AccountService
 from pdf_bot.consts import CHANNEL_NAME
 from pdf_bot.language import LanguageService, SetLanguageData
-from pdf_bot.payment import SupportData
+from pdf_bot.models import SupportData
 
 
 class CommandService:

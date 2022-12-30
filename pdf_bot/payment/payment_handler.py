@@ -7,9 +7,10 @@ from telegram.ext import (
     filters,
 )
 
+from pdf_bot.models import SupportData
 from pdf_bot.telegram_handler import AbstractTelegramHandler
 
-from .models import PaymentData, SupportData
+from .models import PaymentData
 from .payment_service import PaymentService
 
 
