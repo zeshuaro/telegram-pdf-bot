@@ -15,7 +15,7 @@ from pdf_bot.compare import CompareHandler, CompareService
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
 from pdf_bot.file_handler import FileHandler
 from pdf_bot.image import ImageService
-from pdf_bot.image_handler import BatchImageHandler
+from pdf_bot.image_handler import BatchImageHandler, BatchImageService
 from pdf_bot.image_processor import (
     BeautifyImageProcessor,
     ImageTaskProcessor,
@@ -148,6 +148,12 @@ class Services(containers.DeclarativeContainer):
     )
     language = providers.Singleton(
         LanguageService, language_repository=repositories.language
+    )
+    batch_image = providers.Singleton(
+        BatchImageService,
+        image_service=image,
+        telegram_service=telegram,
+        language_service=language,
     )
     merge = providers.Singleton(
         MergeService,
@@ -320,9 +326,8 @@ class Handlers(containers.DeclarativeContainer):
     )
     image = providers.Singleton(
         BatchImageHandler,
-        image_service=services.image,
+        batch_image_service=services.batch_image,
         telegram_service=services.telegram,
-        language_service=services.language,
     )
     merge = providers.Singleton(
         MergeHandlers, merge_service=services.merge, telegram_service=services.telegram
@@ -352,7 +357,6 @@ class TelegramBot(containers.DeclarativeContainer):
         TelegramDispatcher,
         feedback_handler=handlers.feedback,
         file_handlers=handlers.file,
-        image_handler=handlers.image,
         language_service=services.language,
         merge_handlers=handlers.merge,
         text_handlers=handlers.text,
