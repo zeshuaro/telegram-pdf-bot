@@ -1,24 +1,20 @@
-import os
-
-from dotenv import load_dotenv
 from requests import Session
 
 from pdf_bot.pdf import FontData
 
-load_dotenv()
-GOOGLE_FONTS_TOKEN = os.environ.get("GOOGLE_FONTS_TOKEN")
-
 
 class TextRepository:
-    def __init__(self, api_client: Session) -> None:
+    def __init__(self, api_client: Session, google_fonts_token: str) -> None:
         self.api_client = api_client
+        self.google_fonts_token = google_fonts_token
 
     def get_font(self, font: str) -> FontData | None:
         font_data: FontData | None = None
         font = font.lower()
 
         r = self.api_client.get(
-            f"https://www.googleapis.com/webfonts/v1/webfonts?key={GOOGLE_FONTS_TOKEN}"
+            "https://www.googleapis.com/webfonts/v1/webfonts",
+            params={"key": self.google_fonts_token},
         )
 
         for item in r.json()["items"]:

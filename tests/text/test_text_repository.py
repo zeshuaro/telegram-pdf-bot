@@ -9,6 +9,7 @@ from pdf_bot.text import TextRepository
 class TestTextRepository:
     FONT_FAMILY = "font_family"
     FONT_URL = "font_url"
+    GOOGLE_FONTS_TOKEN = "google_fonts_token"
 
     def setup_method(self) -> None:
         self.response = MagicMock(spec=Response)
@@ -19,7 +20,7 @@ class TestTextRepository:
         self.session = MagicMock(spec=Session)
         self.session.get.return_value = self.response
 
-        self.sut = TextRepository(self.session)
+        self.sut = TextRepository(self.session, self.GOOGLE_FONTS_TOKEN)
 
     def test_get_font(self) -> None:
         actual = self.sut.get_font(self.FONT_FAMILY)
@@ -44,7 +45,7 @@ class TestTextRepository:
         self._assert_api_call()
 
     def _assert_api_call(self) -> None:
-        args = self.session.get.call_args[0]
-        assert args[0].startswith(
-            "https://www.googleapis.com/webfonts/v1/webfonts?key="
+        self.session.get.assert_called_with(
+            "https://www.googleapis.com/webfonts/v1/webfonts",
+            params={"key": self.GOOGLE_FONTS_TOKEN},
         )
