@@ -144,7 +144,10 @@ class Services(containers.DeclarativeContainer):
         language_service=language,
     )
     feedback = providers.Singleton(
-        FeedbackService, feedback_repository=repositories.feedback
+        FeedbackService,
+        feedback_repository=repositories.feedback,
+        telegram_service=telegram,
+        language_service=language,
     )
     language = providers.Singleton(
         LanguageService, language_repository=repositories.language
@@ -321,7 +324,6 @@ class Handlers(containers.DeclarativeContainer):
     feedback = providers.Singleton(
         FeedbackHandler,
         feedback_service=services.feedback,
-        language_service=services.language,
         telegram_service=services.telegram,
     )
     image = providers.Singleton(
@@ -355,7 +357,6 @@ class TelegramBot(containers.DeclarativeContainer):
 
     dispatcher = providers.Singleton(
         TelegramDispatcher,
-        feedback_handler=handlers.feedback,
         file_handlers=handlers.file,
         language_service=services.language,
         webpage_handler=handlers.webpage,
