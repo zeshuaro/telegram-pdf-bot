@@ -43,9 +43,8 @@ class TestPaymentService(
 
         await self.sut.send_support_options(self.telegram_update, self.telegram_context)
 
-        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
-            self.telegram_context, self.telegram_callback_query
-        )
+        self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_context.drop_callback_data.assert_not_called()
         _args, kwargs = self.telegram_update.effective_message.reply_text.call_args
 
         reply_markup: InlineKeyboardMarkup | None = kwargs.get("reply_markup")

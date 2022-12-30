@@ -59,9 +59,7 @@ class TestLanguageService(TelegramTestMixin):
         )
 
         self.telegram_callback_query.answer.assert_called_once()
-        self.telegram_context.drop_callback_data.assert_called_once_with(
-            self.telegram_callback_query
-        )
+        self.telegram_context.drop_callback_data.assert_not_called()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
