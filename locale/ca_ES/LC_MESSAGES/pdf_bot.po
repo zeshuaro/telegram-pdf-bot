@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 01:01+0000\n"
-"PO-Revision-Date: 2022-12-30 01:01\n"
+"POT-Creation-Date: 2022-12-30 01:16+0000\n"
+"PO-Revision-Date: 2022-12-30 01:17\n"
 "Last-Translator: \n"
 "Language: ca\n"
 "Language-Team: Catalan\n"
@@ -182,58 +182,58 @@ msgstr "Tramitació de l'expedient"
 msgid "Select the task that you'll like to perform"
 msgstr "Seleccioneu la tasca que voleu dur a terme"
 
-#: pdf_bot/image_handler/batch_image_handler.py:25
+#: pdf_bot/image_handler/batch_image_service.py:19
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "Millorar"
 
-#: pdf_bot/image_handler/batch_image_handler.py:26
+#: pdf_bot/image_handler/batch_image_service.py:20
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "A un PDF"
 
-#: pdf_bot/image_handler/batch_image_handler.py:27
+#: pdf_bot/image_handler/batch_image_service.py:21
 #: pdf_bot/merge/merge_service.py:18
 msgid "Remove last file"
 msgstr "Suprimeix l'últim fitxer"
 
-#: pdf_bot/image_handler/batch_image_handler.py:65
+#: pdf_bot/image_handler/batch_image_service.py:42
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Envia'm les imatges que t'agradaria embellir o convertir en un arxiu PDF"
 
-#: pdf_bot/image_handler/batch_image_handler.py:69
+#: pdf_bot/image_handler/batch_image_service.py:46
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Tingueu en compte que les imatges s'embelliran i es convertiran en l'ordre que m'envieu"
 
-#: pdf_bot/image_handler/batch_image_handler.py:121
+#: pdf_bot/image_handler/batch_image_service.py:98
 msgid "You've sent me these images so far:"
 msgstr "M'has enviat aquestes imatges fins ara:"
 
-#: pdf_bot/image_handler/batch_image_handler.py:132
+#: pdf_bot/image_handler/batch_image_service.py:109
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Seleccioneu la tasca des de baix si m'heu enviat totes les imatges o seguiu enviant-me les imatges"
 
-#: pdf_bot/image_handler/batch_image_handler.py:152
+#: pdf_bot/image_handler/batch_image_service.py:129
 msgid "You've already removed all the images you've sent me"
 msgstr "Ja has eliminat totes les imatges que m'has enviat"
 
-#: pdf_bot/image_handler/batch_image_handler.py:157
+#: pdf_bot/image_handler/batch_image_service.py:134
 msgid "{file_name} has been removed"
 msgstr "{file_name} s'ha suprimit"
 
-#: pdf_bot/image_handler/batch_image_handler.py:179
+#: pdf_bot/image_handler/batch_image_service.py:156
 msgid "You haven't sent me any images"
 msgstr "No m'has enviat cap imatge"
 
-#: pdf_bot/image_handler/batch_image_handler.py:184
+#: pdf_bot/image_handler/batch_image_service.py:161
 msgid "You've only sent me one image"
 msgstr "Només m'has enviat una imatge"
 
-#: pdf_bot/image_handler/batch_image_handler.py:202
+#: pdf_bot/image_handler/batch_image_service.py:179
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "Embellir i convertir les teves imatges en un arxiu PDF"
 
-#: pdf_bot/image_handler/batch_image_handler.py:204
+#: pdf_bot/image_handler/batch_image_service.py:181
 msgid "Converting your images into a PDF file"
 msgstr "Conversió de les vostres imatges en un fitxer PDF"
 
@@ -563,13 +563,13 @@ msgstr "{range} pàgines {pages} excepte {page}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  pàgines {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:67
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:63
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "Alguna cosa ha fallat, si us plau, torneu-ho a provar."
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:78
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:74
 msgid "The button has expired, start over with your file or command"
 msgstr "El botó ha caducat, torneu a començar amb el vostre fitxer o ordre"
 

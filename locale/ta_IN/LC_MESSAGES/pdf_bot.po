@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 01:01+0000\n"
-"PO-Revision-Date: 2022-12-30 01:01\n"
+"POT-Creation-Date: 2022-12-30 01:16+0000\n"
+"PO-Revision-Date: 2022-12-30 01:17\n"
 "Last-Translator: \n"
 "Language: ta\n"
 "Language-Team: Tamil\n"
@@ -182,58 +182,58 @@ msgstr "உங்கள் கோப்பை செயலாக்கம்"
 msgid "Select the task that you'll like to perform"
 msgstr "நீங்கள் செய்ய விரும்பும் பணியைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/image_handler/batch_image_handler.py:25
+#: pdf_bot/image_handler/batch_image_service.py:19
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "அழகுபடுத்தல்"
 
-#: pdf_bot/image_handler/batch_image_handler.py:26
+#: pdf_bot/image_handler/batch_image_service.py:20
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "PDF க்கு"
 
-#: pdf_bot/image_handler/batch_image_handler.py:27
+#: pdf_bot/image_handler/batch_image_service.py:21
 #: pdf_bot/merge/merge_service.py:18
 msgid "Remove last file"
 msgstr "கடைசி கோப்பை நீக்கு"
 
-#: pdf_bot/image_handler/batch_image_handler.py:65
+#: pdf_bot/image_handler/batch_image_service.py:42
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "நீங்கள் அழகுபடுத்த அல்லது PTM கோப்பு மாற்ற விரும்பும் படங்களை எனக்கு அனுப்பவும்"
 
-#: pdf_bot/image_handler/batch_image_handler.py:69
+#: pdf_bot/image_handler/batch_image_service.py:46
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "நீங்கள் எனக்கு அனுப்பும் வரிசையில் படங்கள் அழகுபடுத்தப்பட்டு மாற்றப்படும் என்பதை நினைவில் கொள்க"
 
-#: pdf_bot/image_handler/batch_image_handler.py:121
+#: pdf_bot/image_handler/batch_image_service.py:98
 msgid "You've sent me these images so far:"
 msgstr "நீங்கள் இதுவரை இந்த படங்களை எனக்கு அனுப்பியுள்ளீர்கள்:"
 
-#: pdf_bot/image_handler/batch_image_handler.py:132
+#: pdf_bot/image_handler/batch_image_service.py:109
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "நீங்கள் எனக்கு அனைத்து படங்களையும் அனுப்பியிருந்தால், அல்லது படங்களை எனக்கு அனுப்பினால் கீழே இருந்து பணியைத் தேர்ந்தெடுக்கவும்"
 
-#: pdf_bot/image_handler/batch_image_handler.py:152
+#: pdf_bot/image_handler/batch_image_service.py:129
 msgid "You've already removed all the images you've sent me"
 msgstr "நீங்கள் எனக்கு அனுப்பிய அனைத்து படங்களையும் ஏற்கனவே நீக்கிவிட்டீர்கள்"
 
-#: pdf_bot/image_handler/batch_image_handler.py:157
+#: pdf_bot/image_handler/batch_image_service.py:134
 msgid "{file_name} has been removed"
 msgstr "{file_name} அகற்றப்பட்டது"
 
-#: pdf_bot/image_handler/batch_image_handler.py:179
+#: pdf_bot/image_handler/batch_image_service.py:156
 msgid "You haven't sent me any images"
 msgstr "நீங்கள் எனக்கு எந்த படங்களையும் அனுப்பவில்லை"
 
-#: pdf_bot/image_handler/batch_image_handler.py:184
+#: pdf_bot/image_handler/batch_image_service.py:161
 msgid "You've only sent me one image"
 msgstr "நீங்கள் எனக்கு ஒரே ஒரு படத்தை மட்டுமே அனுப்பியுள்ளீர்கள்"
 
-#: pdf_bot/image_handler/batch_image_handler.py:202
+#: pdf_bot/image_handler/batch_image_service.py:179
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "உங்கள் படங்களை அழகுபடுத்துதல் மற்றும் PDF கோப்பாக மாற்றுதல்"
 
-#: pdf_bot/image_handler/batch_image_handler.py:204
+#: pdf_bot/image_handler/batch_image_service.py:181
 msgid "Converting your images into a PDF file"
 msgstr "உங்கள் படங்களை PDF கோப்பாக மாற்றுதல்"
 
@@ -563,13 +563,13 @@ msgstr "{page}தவிர {range} பக்கங்கள் {pages}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  பக்கங்கள் {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:67
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:63
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "ஏதோ தவறு நடந்தது, தயவுசெய்து மீண்டும் முயற்சிக்கவும்"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:78
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:74
 msgid "The button has expired, start over with your file or command"
 msgstr "பொத்தான் காலாவதியாகிவிட்டது, உங்கள் கோப்பு அல்லது கட்டளையுடன் தொடங்கவும்"
 

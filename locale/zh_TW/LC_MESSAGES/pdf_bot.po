@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 01:01+0000\n"
-"PO-Revision-Date: 2022-12-30 01:01\n"
+"POT-Creation-Date: 2022-12-30 01:16+0000\n"
+"PO-Revision-Date: 2022-12-30 01:17\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -182,58 +182,58 @@ msgstr "處理您的檔案"
 msgid "Select the task that you'll like to perform"
 msgstr "選擇你想要做什麼"
 
-#: pdf_bot/image_handler/batch_image_handler.py:25
+#: pdf_bot/image_handler/batch_image_service.py:19
 #: pdf_bot/image_processor/beautify_image_processor.py:24
 msgid "Beautify"
 msgstr "美化"
 
-#: pdf_bot/image_handler/batch_image_handler.py:26
+#: pdf_bot/image_handler/batch_image_service.py:20
 #: pdf_bot/image_processor/image_to_pdf_processor.py:24
 msgid "To PDF"
 msgstr "轉換到PDF檔案"
 
-#: pdf_bot/image_handler/batch_image_handler.py:27
+#: pdf_bot/image_handler/batch_image_service.py:21
 #: pdf_bot/merge/merge_service.py:18
 msgid "Remove last file"
 msgstr "刪除最後一個檔"
 
-#: pdf_bot/image_handler/batch_image_handler.py:65
+#: pdf_bot/image_handler/batch_image_service.py:42
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "向我發送您想要美化或轉換為PDF檔的圖像"
 
-#: pdf_bot/image_handler/batch_image_handler.py:69
+#: pdf_bot/image_handler/batch_image_service.py:46
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "請注意，圖像將按照您發送給我的順序進行美化和轉換"
 
-#: pdf_bot/image_handler/batch_image_handler.py:121
+#: pdf_bot/image_handler/batch_image_service.py:98
 msgid "You've sent me these images so far:"
 msgstr "到目前為止，您已經向我發送了這些圖像："
 
-#: pdf_bot/image_handler/batch_image_handler.py:132
+#: pdf_bot/image_handler/batch_image_service.py:109
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "如果您已將所有圖像發送給我，請從下面選擇任務，或者繼續向我發送圖像"
 
-#: pdf_bot/image_handler/batch_image_handler.py:152
+#: pdf_bot/image_handler/batch_image_service.py:129
 msgid "You've already removed all the images you've sent me"
 msgstr "您已經刪除了發送給我的所有影像"
 
-#: pdf_bot/image_handler/batch_image_handler.py:157
+#: pdf_bot/image_handler/batch_image_service.py:134
 msgid "{file_name} has been removed"
 msgstr "{file_name} 已被刪除"
 
-#: pdf_bot/image_handler/batch_image_handler.py:179
+#: pdf_bot/image_handler/batch_image_service.py:156
 msgid "You haven't sent me any images"
 msgstr "你還沒有給我發任何圖片"
 
-#: pdf_bot/image_handler/batch_image_handler.py:184
+#: pdf_bot/image_handler/batch_image_service.py:161
 msgid "You've only sent me one image"
 msgstr "你只給我發了一張圖片"
 
-#: pdf_bot/image_handler/batch_image_handler.py:202
+#: pdf_bot/image_handler/batch_image_service.py:179
 msgid "Beautifying and converting your images into a PDF file"
 msgstr "美化圖像並將其轉換為PDF檔"
 
-#: pdf_bot/image_handler/batch_image_handler.py:204
+#: pdf_bot/image_handler/batch_image_service.py:181
 msgid "Converting your images into a PDF file"
 msgstr "將影像轉換為 PDF 檔"
 
@@ -563,13 +563,13 @@ msgstr "除了 {page}， {pages} 頁{range} 頁"
 msgid "{range}  pages {pages}"
 msgstr "{range}  頁 {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:67
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:63
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "出問題了，請再試一次"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:78
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:74
 msgid "The button has expired, start over with your file or command"
 msgstr "按鈕已過期，請使用檔或命令重新開始"
 
