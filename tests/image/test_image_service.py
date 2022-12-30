@@ -1,6 +1,7 @@
 from unittest.mock import MagicMock, patch
 
 import pytest
+from img2pdf import Rotation
 
 from pdf_bot.cli import CLIService
 from pdf_bot.image import ImageService
@@ -91,7 +92,9 @@ class TestImageService(
                     "Converted"
                 )
                 self.mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
-                img2pdf.convert.assert_called_once_with(file_paths)
+                img2pdf.convert.assert_called_once_with(
+                    file_paths, rotation=Rotation.ifvalid
+                )
                 file.write.assert_called_once_with(image_bytes)
 
     @staticmethod

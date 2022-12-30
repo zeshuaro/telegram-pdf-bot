@@ -4,6 +4,7 @@ from typing import AsyncGenerator
 
 import img2pdf
 import noteshrink
+from img2pdf import Rotation
 
 from pdf_bot.cli import CLIService
 from pdf_bot.io import IOService
@@ -43,7 +44,7 @@ class ImageService:
         async with self.telegram_service.download_files(file_ids) as file_paths:
             with self.io_service.create_temp_pdf_file("Converted") as out_path:
                 with open(out_path, "wb") as f:
-                    f.write(img2pdf.convert(file_paths))
+                    f.write(img2pdf.convert(file_paths, rotation=Rotation.ifvalid))
                 yield out_path
 
     @staticmethod
