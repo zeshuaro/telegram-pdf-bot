@@ -50,7 +50,12 @@ class ErrorHandler:
         err_text = _("Something went wrong, please try again")
         err_msg = error.message.lower()
 
-        if err_msg.startswith("message is not modified"):
+        if (
+            err_msg.startswith("message is not modified")
+            or err_msg.startswith("need administrator rights")
+            or err_msg.startswith("message to delete not found")
+            or err_msg.startswith("message to edit not found")
+        ):
             return
         if err_msg.startswith("query is too old and response timeout expired"):
             err_text = _("The button has expired, start over with your file or command")
