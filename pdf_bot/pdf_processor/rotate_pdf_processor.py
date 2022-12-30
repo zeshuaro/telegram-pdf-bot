@@ -73,7 +73,7 @@ class RotatePdfProcessor(AbstractPdfProcessor):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str:
         query = update.callback_query
-        await query.answer()
+        await self.telegram_service.answer_query_and_drop_data(context, query)
         data = query.data
 
         if not isinstance(data, RotatePdfData):

@@ -260,10 +260,7 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_with_callback_query(self) -> None:
-        file_data = MagicMock(spec=FileData)
-        file_data.id = self.TELEGRAM_DOCUMENT_ID
-        file_data.name = self.TELEGRAM_DOCUMENT_NAME
-        self.telegram_callback_query.data = file_data
+        self.telegram_callback_query.data = self.FILE_DATA
         self.telegram_update.callback_query = self.telegram_callback_query
 
         actual = await self.sut.process_file(
@@ -271,6 +268,9 @@ class TestAbstractFileProcessor(
         )
 
         assert actual == ConversationHandler.END
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,

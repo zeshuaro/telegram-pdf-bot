@@ -227,12 +227,17 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_cancel_conversation_with_callback_query(self) -> None:
+        self.telegram_update.callback_query = self.telegram_callback_query
+
         actual = await self.sut.cancel_conversation(
             self.telegram_update, self.telegram_context
         )
 
         assert actual == ConversationHandler.END
         self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_context.drop_callback_data.assert_called_once_with(
+            self.telegram_callback_query
+        )
         self.telegram_callback_query.edit_message_text.assert_called_once()
         self.telegram_message.reply_text.assert_not_called()
 
@@ -345,6 +350,22 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.user_data = {}
         self.sut.cache_message_data(self.telegram_context, True)
         assert MESSAGE_DATA not in self.telegram_context.user_data
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize("side_effect", [None, KeyError])
+    async def test_answer_query_and_drop_data(
+        self, side_effect: type[Exception] | None
+    ) -> None:
+        self.telegram_context.drop_callback_data.side_effect = side_effect
+
+        await self.sut.answer_query_and_drop_data(
+            self.telegram_context, self.telegram_callback_query
+        )
+
+        self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_context.drop_callback_data.assert_called_once_with(
+            self.telegram_callback_query
+        )
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])

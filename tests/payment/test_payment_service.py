@@ -3,10 +3,12 @@ from telegram import InlineKeyboardMarkup
 
 from pdf_bot.payment import PaymentData, PaymentService
 from tests.language import LanguageServiceTestMixin
-from tests.telegram_internal import TelegramTestMixin
+from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
+class TestPaymentService(
+    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
+):
     STRIPE_TOKEN = "stripe_token"
     INVOICE_PAYLOAD = "invoice_payload"
     PAYMENT_DATA = PaymentData(label="label", emoji="emoji", value=1)
@@ -16,7 +18,11 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
     def setup_method(self) -> None:
         super().setup_method()
         self.language_service = self.mock_language_service()
-        self.sut = PaymentService(self.language_service, self.STRIPE_TOKEN)
+        self.telegram_service = self.mock_telegram_service()
+
+        self.sut = PaymentService(
+            self.language_service, self.telegram_service, self.STRIPE_TOKEN
+        )
 
     @pytest.mark.asyncio
     async def test_send_support_options(self) -> None:
@@ -37,7 +43,9 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
 
         await self.sut.send_support_options(self.telegram_update, self.telegram_context)
 
-        self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
         _args, kwargs = self.telegram_update.effective_message.reply_text.call_args
 
         reply_markup: InlineKeyboardMarkup | None = kwargs.get("reply_markup")
@@ -48,6 +56,10 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_send_invoice(self) -> None:
         self.telegram_callback_query.data = self.PAYMENT_DATA
         await self.sut.send_invoice(self.telegram_update, self.telegram_context)
+
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
         self.telegram_update.effective_message.reply_invoice.assert_called_once()
 
     @pytest.mark.asyncio

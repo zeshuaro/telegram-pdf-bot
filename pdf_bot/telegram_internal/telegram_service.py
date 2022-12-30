@@ -140,6 +140,15 @@ class TelegramService:
         except TelegramUpdateUserDataError:
             pass
 
+    async def answer_query_and_drop_data(
+        self, context: ContextTypes.DEFAULT_TYPE, query: CallbackQuery
+    ) -> None:
+        await query.answer()
+        try:
+            context.drop_callback_data(query)
+        except KeyError:
+            pass
+
     def check_image(self, message: Message) -> Document | PhotoSize:
         img_file: Document | PhotoSize | None = message.document
         if (
@@ -193,7 +202,7 @@ class TelegramService:
         query: CallbackQuery | None = update.callback_query
 
         if query is not None:
-            await query.answer()
+            await self.answer_query_and_drop_data(context, query)
             await query.edit_message_text(_("Action cancelled"))
         else:
             await update.effective_message.reply_text(  # type: ignore

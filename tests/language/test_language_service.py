@@ -43,17 +43,25 @@ class TestLanguageService(TelegramTestMixin):
         )
 
         self.telegram_callback_query.answer.assert_not_called()
+        self.telegram_context.drop_callback_data.assert_not_called()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
-    async def test_send_language_options_with_callback_query(self) -> None:
+    @pytest.mark.parametrize("side_effect", [None, KeyError])
+    async def test_send_language_options_with_callback_query(
+        self, side_effect: type[Exception] | None
+    ) -> None:
         self.telegram_update.callback_query = self.telegram_callback_query
+        self.telegram_context.drop_callback_data.side_effect = side_effect
 
         await self.sut.send_language_options(
             self.telegram_update, self.telegram_context
         )
 
         self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_context.drop_callback_data.assert_called_once_with(
+            self.telegram_callback_query
+        )
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
