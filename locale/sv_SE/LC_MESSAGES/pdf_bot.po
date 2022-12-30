@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 05:42+0000\n"
-"PO-Revision-Date: 2022-12-30 05:42\n"
+"POT-Creation-Date: 2022-12-30 06:14+0000\n"
+"PO-Revision-Date: 2022-12-30 06:14\n"
 "Last-Translator: \n"
 "Language: sv\n"
 "Language-Team: Swedish\n"
@@ -153,6 +153,16 @@ msgstr "Jämföra dina PDF-filer"
 msgid "There are no text differences between your PDF files"
 msgstr "Det finns inga textskillnader mellan dina PDF-filer"
 
+#: pdf_bot/error/error_handler.py:43 pdf_bot/error/error_handler.py:50
+#: pdf_bot/telegram_internal/telegram_service.py:94
+#: pdf_bot/telegram_internal/telegram_service.py:113
+msgid "Something went wrong, please try again"
+msgstr "Något gick fel, försök igen."
+
+#: pdf_bot/error/error_handler.py:56
+msgid "The button has expired, start over with your file or command"
+msgstr "Knappen har gått ut, börja om med din fil eller kommando"
+
 #: pdf_bot/feedback/feedback_service.py:31
 msgid "Send me your feedback in English"
 msgstr "Skicka mig din feedback på engelska"
@@ -173,8 +183,8 @@ msgstr "Din fil är för stor för mig att ladda ner och bearbeta"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Observera att detta är en Telegram Bot-begränsning och det finns inget jag kan göra om inte Telegram ändrar denna gräns"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:106
-#: pdf_bot/file_processor/abstract_file_processor.py:172
+#: pdf_bot/file_processor/abstract_file_processor.py:104
+#: pdf_bot/file_processor/abstract_file_processor.py:171
 msgid "Processing your file"
 msgstr "Bearbeta din fil"
 
@@ -562,16 +572,6 @@ msgstr "{range} sidor {pages} utom {page}"
 #: pdf_bot/pdf_processor/split_pdf_processor.py:87
 msgid "{range}  pages {pages}"
 msgstr "{range}  sidor {pages}"
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:24
-#: pdf_bot/telegram_internal/telegram_service.py:94
-#: pdf_bot/telegram_internal/telegram_service.py:113
-msgid "Something went wrong, please try again"
-msgstr "Något gick fel, försök igen."
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:35
-msgid "The button has expired, start over with your file or command"
-msgstr "Knappen har gått ut, börja om med din fil eller kommando"
 
 #: pdf_bot/telegram_internal/telegram_service.py:60
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"

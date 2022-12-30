@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 05:42+0000\n"
-"PO-Revision-Date: 2022-12-30 05:42\n"
+"POT-Creation-Date: 2022-12-30 06:14+0000\n"
+"PO-Revision-Date: 2022-12-30 06:14\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -153,6 +153,16 @@ msgstr "比較緊你嘅PDF檔案"
 msgid "There are no text differences between your PDF files"
 msgstr "你嘅PDF檔案係文字上冇分別"
 
+#: pdf_bot/error/error_handler.py:43 pdf_bot/error/error_handler.py:50
+#: pdf_bot/telegram_internal/telegram_service.py:94
+#: pdf_bot/telegram_internal/telegram_service.py:113
+msgid "Something went wrong, please try again"
+msgstr "發生咗未知嘅錯誤，唔該試多次"
+
+#: pdf_bot/error/error_handler.py:56
+msgid "The button has expired, start over with your file or command"
+msgstr ""
+
 #: pdf_bot/feedback/feedback_service.py:31
 msgid "Send me your feedback in English"
 msgstr ""
@@ -173,8 +183,8 @@ msgstr "你嘅檔案太大啦，我下載唔到同處理唔到"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "留意番呢個係Telegram Bot嘅限制，呢個限唔係我嘅控制範圍，要等Telegram改呢個限制我先至可以處理你嘅檔案"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:106
-#: pdf_bot/file_processor/abstract_file_processor.py:172
+#: pdf_bot/file_processor/abstract_file_processor.py:104
+#: pdf_bot/file_processor/abstract_file_processor.py:171
 msgid "Processing your file"
 msgstr ""
 
@@ -557,16 +567,6 @@ msgstr "{range} 第{pages}頁除咗第{page}頁"
 #: pdf_bot/pdf_processor/split_pdf_processor.py:87
 msgid "{range}  pages {pages}"
 msgstr "{range}  第{pages}頁"
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:24
-#: pdf_bot/telegram_internal/telegram_service.py:94
-#: pdf_bot/telegram_internal/telegram_service.py:113
-msgid "Something went wrong, please try again"
-msgstr "發生咗未知嘅錯誤，唔該試多次"
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:35
-msgid "The button has expired, start over with your file or command"
-msgstr ""
 
 #: pdf_bot/telegram_internal/telegram_service.py:60
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 05:42+0000\n"
-"PO-Revision-Date: 2022-12-30 05:42\n"
+"POT-Creation-Date: 2022-12-30 06:14+0000\n"
+"PO-Revision-Date: 2022-12-30 06:14\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -153,6 +153,16 @@ msgstr "So sánh các tệp PDF của bạn"
 msgid "There are no text differences between your PDF files"
 msgstr "Không có sự khác biệt văn bản giữa các tệp PDF của bạn"
 
+#: pdf_bot/error/error_handler.py:43 pdf_bot/error/error_handler.py:50
+#: pdf_bot/telegram_internal/telegram_service.py:94
+#: pdf_bot/telegram_internal/telegram_service.py:113
+msgid "Something went wrong, please try again"
+msgstr "Có điều gì đó không ổn, xin hãy thử lại"
+
+#: pdf_bot/error/error_handler.py:56
+msgid "The button has expired, start over with your file or command"
+msgstr "Nút đã hết hạn, hãy bắt đầu lại với tệp hoặc lệnh của bạn"
+
 #: pdf_bot/feedback/feedback_service.py:31
 msgid "Send me your feedback in English"
 msgstr "Gửi cho tôi phản hồi của bạn bằng tiếng Anh"
@@ -173,8 +183,8 @@ msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:106
-#: pdf_bot/file_processor/abstract_file_processor.py:172
+#: pdf_bot/file_processor/abstract_file_processor.py:104
+#: pdf_bot/file_processor/abstract_file_processor.py:171
 msgid "Processing your file"
 msgstr "Xử lý tệp của bạn"
 
@@ -562,16 +572,6 @@ msgstr "{range} trang {pages} ngoại trừ {page}"
 #: pdf_bot/pdf_processor/split_pdf_processor.py:87
 msgid "{range}  pages {pages}"
 msgstr "{range}  trang {pages}"
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:24
-#: pdf_bot/telegram_internal/telegram_service.py:94
-#: pdf_bot/telegram_internal/telegram_service.py:113
-msgid "Something went wrong, please try again"
-msgstr "Có điều gì đó không ổn, xin hãy thử lại"
-
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:35
-msgid "The button has expired, start over with your file or command"
-msgstr "Nút đã hết hạn, hãy bắt đầu lại với tệp hoặc lệnh của bạn"
 
 #: pdf_bot/telegram_internal/telegram_service.py:60
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
