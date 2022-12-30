@@ -154,7 +154,9 @@ class TestAbstractPdfTextInputProcessor(
         )
 
         assert actual == self.WAIT_SELECT_OPTION
-        self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
         self.telegram_callback_query.edit_message_text.assert_called_once_with(
             self.sut.ask_select_option_text, reply_markup=ANY
         )
@@ -171,7 +173,9 @@ class TestAbstractPdfTextInputProcessor(
         )
 
         assert actual == self.WAIT_TEXT_INPUT
-        self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
         self.telegram_callback_query.edit_message_text.assert_called_once_with(
             self.select_option_data.option.ask_value_text,
             reply_markup=ANY,

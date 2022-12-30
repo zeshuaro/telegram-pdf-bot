@@ -107,7 +107,9 @@ class TestRotatePdfProcessor(
         actual = await self.sut.ask_degree(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_DEGREE
-        self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
         self.telegram_callback_query.edit_message_text.assert_called_once()
 
     @pytest.mark.asyncio

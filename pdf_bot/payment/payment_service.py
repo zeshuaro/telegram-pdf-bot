@@ -10,6 +10,7 @@ from telegram import (
 from telegram.ext import ContextTypes
 
 from pdf_bot.language import LanguageService
+from pdf_bot.telegram_internal import TelegramService
 
 from .models import PaymentData
 
@@ -27,16 +28,25 @@ class PaymentService:
         PaymentData(label=_("Meal"), emoji="🍲", value=10),
     ]
 
-    def __init__(self, language_service: LanguageService, stripe_token: str) -> None:
+    def __init__(
+        self,
+        language_service: LanguageService,
+        telegram_service: TelegramService,
+        stripe_token: str,
+    ) -> None:
         self.language_service = language_service
+        self.telegram_service = telegram_service
         self.stripe_token = stripe_token
 
     async def send_support_options(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
         query = update.callback_query
+
+        # This method is used by both command and callback query handlers, so we need to
+        # check if query is `None` here
         if query is not None:
-            await query.answer()
+            await self.telegram_service.answer_query_and_drop_data(context, query)
 
         _ = self.language_service.set_app_language(update, context)
         reply_markup = self._get_support_options_markup(update, context)
@@ -48,7 +58,7 @@ class PaymentService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
         query = update.callback_query
-        await query.answer()
+        await self.telegram_service.answer_query_and_drop_data(context, query)
         data: PaymentData = query.data  # type: ignore
 
         if not isinstance(data, PaymentData):

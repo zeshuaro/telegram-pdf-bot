@@ -100,9 +100,8 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
             if not isinstance(file_data, FileData):
                 raise ValueError(f"Unknown query data type: {type(query.data)}")
 
-            await query.answer()
+            await self.telegram_service.answer_query_and_drop_data(context, query)
             await query.edit_message_text(_("Processing your file"))
-            context.drop_callback_data(query)
         else:
             try:
                 file_data = self.telegram_service.get_file_data(context)  # type: ignore

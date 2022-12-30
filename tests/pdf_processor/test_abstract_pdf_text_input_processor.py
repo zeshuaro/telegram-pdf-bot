@@ -122,7 +122,9 @@ class TestAbstractPdfTextInputProcessor(
         )
 
         assert actual == self.WAIT_TEXT_INPUT
-        self.telegram_callback_query.answer.assert_called_once()
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
         self.telegram_callback_query.edit_message_text.assert_called_once_with(
             self.sut.get_ask_text_input_text(self.language_service.set_app_language()),
             parse_mode=ParseMode.HTML,

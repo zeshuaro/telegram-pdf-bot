@@ -70,8 +70,11 @@ class LanguageService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
         query = update.callback_query
+
+        # This method is used by both command and callback query handlers, so we need to
+        # check if query is `None` here
         if query is not None:
-            await query.answer()
+            await self._answer_query_and_drop_data(context, query)
 
         _ = self.set_app_language(update, context)
         reply_markup = self._get_languages_markup(update, context)
@@ -99,7 +102,7 @@ class LanguageService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
         query = update.callback_query
-        await query.answer()
+        await self._answer_query_and_drop_data(context, query)
         data: LanguageData = query.data  # type: ignore
 
         if not isinstance(data, LanguageData):
@@ -121,6 +124,15 @@ class LanguageService:
         t = gettext.translation("pdf_bot", localedir="locale", languages=[lang])
 
         return t.gettext
+
+    async def _answer_query_and_drop_data(
+        self, context: ContextTypes.DEFAULT_TYPE, query: CallbackQuery
+    ) -> None:
+        await query.answer()
+        try:
+            context.drop_callback_data(query)
+        except KeyError:
+            pass
 
     def _get_languages_markup(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE

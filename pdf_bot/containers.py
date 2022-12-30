@@ -177,7 +177,10 @@ class Services(containers.DeclarativeContainer):
         language_service=language,
     )
     payment = providers.Singleton(
-        PaymentService, language_service=language, stripe_token=_settings.stripe_token
+        PaymentService,
+        language_service=language,
+        telegram_service=telegram,
+        stripe_token=_settings.stripe_token,
     )
     text = providers.Singleton(
         TextService,

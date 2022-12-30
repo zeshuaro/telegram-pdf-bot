@@ -73,7 +73,7 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str:
         query = update.callback_query
-        await query.answer()
+        await self.telegram_service.answer_query_and_drop_data(context, query)
 
         _ = self.language_service.set_app_language(update, context)
         reply_markup = self.telegram_service.get_back_inline_markup(update, context)
