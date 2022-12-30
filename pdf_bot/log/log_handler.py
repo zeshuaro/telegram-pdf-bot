@@ -21,3 +21,16 @@ class InterceptLoggingHandler(logging.Handler):
         logger.opt(depth=depth, exception=record.exc_info).log(
             level, record.getMessage()
         )
+
+
+class MyLogHandler:
+    def __init__(self, intercept_logging_handler: InterceptLoggingHandler) -> None:
+        self.intercept_logging_handler = intercept_logging_handler
+
+    def setup(self) -> None:
+        logging.basicConfig(
+            handlers=[self.intercept_logging_handler], level=logging.INFO, force=True
+        )
+
+        weasyprint_logger = logging.getLogger("weasyprint")
+        weasyprint_logger.setLevel(logging.WARNING)
