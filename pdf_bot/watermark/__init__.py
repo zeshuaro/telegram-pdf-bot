@@ -1,4 +1,4 @@
-from .watermark_handlers import WatermarkHandlers
+from .watermark_handler import WatermarkHandler
 from .watermark_service import WatermarkService
 
-__all__ = ["WatermarkHandlers", "WatermarkService"]
+__all__ = ["WatermarkHandler", "WatermarkService"]
