@@ -23,6 +23,7 @@ from pdf_bot.image_processor import (
 )
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageHandler, LanguageRepository, LanguageService
+from pdf_bot.log import InterceptLoggingHandler, MyLogHandler
 from pdf_bot.merge import MergeHandlers, MergeService
 from pdf_bot.payment import PaymentHandler, PaymentService
 from pdf_bot.pdf import PdfService
@@ -54,7 +55,7 @@ from pdf_bot.webpage import WebpageHandler, WebpageService
 class Core(containers.DeclarativeContainer):
     settings = providers.Configuration(pydantic_settings=[Settings()])
 
-    httpx_request = providers.Singleton(
+    _httpx_request = providers.Singleton(
         HTTPXRequest,
         connection_pool_size=settings.request_connection_pool_size,
         read_timeout=settings.request_read_timeout,
@@ -62,11 +63,17 @@ class Core(containers.DeclarativeContainer):
         connect_timeout=settings.request_connect_timeout,
         pool_timeout=settings.request_pool_timeout,
     )
+
     telegram_bot = providers.Singleton(
         ExtBot,
         token=settings.telegram_token,
         arbitrary_callback_data=True,
-        request=httpx_request,
+        request=_httpx_request,
+    )
+
+    intercept_logging_handler = providers.Singleton(InterceptLoggingHandler)
+    log_handler = providers.Singleton(
+        MyLogHandler, intercept_logging_handler=intercept_logging_handler
     )
 
 
