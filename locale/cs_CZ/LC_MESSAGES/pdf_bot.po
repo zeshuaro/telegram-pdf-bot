@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 07:29+0000\n"
-"PO-Revision-Date: 2022-12-30 08:17\n"
+"POT-Creation-Date: 2022-12-30 11:01+0000\n"
+"PO-Revision-Date: 2022-12-30 11:01\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -31,7 +31,7 @@ msgstr "Zrušit"
 msgid "Done"
 msgstr "Udělal"
 
-#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:41
+#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "Zpět"
 
@@ -84,12 +84,12 @@ msgid "Set Language 🌎"
 msgstr "Nastavit jazyk 🌎"
 
 #: pdf_bot/command/command_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:232
+#: pdf_bot/telegram_internal/telegram_service.py:231
 msgid "Join Channel"
 msgstr "Připojit se k kanálu"
 
 #: pdf_bot/command/command_service.py:70 pdf_bot/payment/payment_service.py:71
-#: pdf_bot/telegram_internal/telegram_service.py:233
+#: pdf_bot/telegram_internal/telegram_service.py:232
 msgid "Support PDF Bot"
 msgstr "Podpora PDF Bot"
 
@@ -154,8 +154,8 @@ msgid "There are no text differences between your PDF files"
 msgstr "Mezi soubory PDF nejsou žádné textové rozdíly"
 
 #: pdf_bot/error/error_handler.py:43 pdf_bot/error/error_handler.py:50
-#: pdf_bot/telegram_internal/telegram_service.py:94
-#: pdf_bot/telegram_internal/telegram_service.py:113
+#: pdf_bot/telegram_internal/telegram_service.py:93
+#: pdf_bot/telegram_internal/telegram_service.py:112
 msgid "Something went wrong, please try again"
 msgstr "Něco se pokazilo, zkuste to prosím znovu."
 
@@ -573,37 +573,37 @@ msgstr "{range} stránky {pages} kromě {page}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  stránky {pages}"
 
-#: pdf_bot/telegram_internal/telegram_service.py:60
+#: pdf_bot/telegram_internal/telegram_service.py:59
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Váš soubor je příliš velký na to, abych si ho mohl stáhnout a zpracovat, zkuste to prosím znovu s jiným souborem\n\n"
 "Všimněte si, že tento limit je vynucen Telegramem a není nic, co bych mohl udělat, pokud to Telegram nezmění"
 
-#: pdf_bot/telegram_internal/telegram_service.py:72
+#: pdf_bot/telegram_internal/telegram_service.py:71
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Soubor je příliš velký na to, abych vám ho poslal\n\n"
 "Všimněte si, že tento limit je vynucen Telegramem a není nic, co bych mohl udělat, pokud to Telegram nezmění"
 
-#: pdf_bot/telegram_internal/telegram_service.py:160
+#: pdf_bot/telegram_internal/telegram_service.py:159
 msgid "Your file is not an image, please try again"
 msgstr "Váš soubor není obrázek, zkuste to prosím znovu"
 
-#: pdf_bot/telegram_internal/telegram_service.py:167
+#: pdf_bot/telegram_internal/telegram_service.py:166
 msgid "No image found in your message"
 msgstr "Ve zprávě nebyl nalezen žádný obrázek"
 
-#: pdf_bot/telegram_internal/telegram_service.py:176
+#: pdf_bot/telegram_internal/telegram_service.py:175
 msgid "Your file is not a PDF file, please try again"
 msgstr "Soubor není souborEM PDF, opakujte akci"
 
-#: pdf_bot/telegram_internal/telegram_service.py:206
-#: pdf_bot/telegram_internal/telegram_service.py:209
+#: pdf_bot/telegram_internal/telegram_service.py:205
+#: pdf_bot/telegram_internal/telegram_service.py:208
 msgid "Action cancelled"
 msgstr "Akce byla zrušena"
 
-#: pdf_bot/telegram_internal/telegram_service.py:279
-#: pdf_bot/telegram_internal/telegram_service.py:287
+#: pdf_bot/telegram_internal/telegram_service.py:278
+#: pdf_bot/telegram_internal/telegram_service.py:286
 msgid "Here is your result file"
 msgstr "Zde je váš výsledný soubor"
 
