@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-30 01:51+0000\n"
-"PO-Revision-Date: 2022-12-30 01:52\n"
+"POT-Creation-Date: 2022-12-30 02:12+0000\n"
+"PO-Revision-Date: 2022-12-30 02:13\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -153,17 +153,17 @@ msgstr "अपनी पीडीएफ फाइलों की तुलन�
 msgid "There are no text differences between your PDF files"
 msgstr "आपकी पीडीएफ फ़ाइलों के बीच कोई पाठ अंतर नहीं है"
 
-#: pdf_bot/feedback/feedback_handler.py:47
+#: pdf_bot/feedback/feedback_service.py:31
 msgid "Send me your feedback in English"
 msgstr "मुझे अंग्रेजी में अपनी प्रतिक्रिया भेजें"
 
-#: pdf_bot/feedback/feedback_handler.py:71
-msgid "Thank you for your feedback, I've forwarded it to my developer"
-msgstr "आपकी प्रतिक्रिया के लिए धन्यवाद, मैंने इसे अपने डेवलपर को अग्रेषित किया है"
-
-#: pdf_bot/feedback/feedback_service.py:21
+#: pdf_bot/feedback/feedback_service.py:53
 msgid "The feedback is not in English, try again"
 msgstr "प्रतिक्रिया अंग्रेजी में नहीं है, फिर से प्रयास करें"
+
+#: pdf_bot/feedback/feedback_service.py:60
+msgid "Thank you for your feedback, I've forwarded it to my developer"
+msgstr "आपकी प्रतिक्रिया के लिए धन्यवाद, मैंने इसे अपने डेवलपर को अग्रेषित किया है"
 
 #: pdf_bot/file_handler/file_handler.py:84
 msgid "Your file is too big for me to download and process"
@@ -563,13 +563,13 @@ msgstr "{page}को छोड़कर {range} पेज {pages}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  पेज {pages}"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:49
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:43
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "कुछ गलत हो गया, कृपया फिर से प्रयास करें"
 
-#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:60
+#: pdf_bot/telegram_dispatcher/telegram_dispatcher.py:54
 msgid "The button has expired, start over with your file or command"
 msgstr "बटन की समय सीमा समाप्त हो गई है, अपनी फ़ाइल या आदेश से प्रारंभ करें"
 
