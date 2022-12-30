@@ -19,18 +19,19 @@ class TestLanguageHandler(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_handlers(self) -> None:
         actual = self.sut.handlers
         assert len(actual) == 3
+        handler_0, handler_1, handler_2 = actual
 
-        assert isinstance(actual[0], CommandHandler)
-        assert actual[0].commands == {self.SET_LANGUAGE_COMMAND}
-        await actual[0].callback(self.telegram_update, self.telegram_context)
+        assert isinstance(handler_0, CommandHandler)
+        assert handler_0.commands == {self.SET_LANGUAGE_COMMAND}
 
-        assert isinstance(actual[1], CallbackQueryHandler)
-        assert actual[1].pattern == SetLanguageData
-        await actual[1].callback(self.telegram_update, self.telegram_context)
+        assert isinstance(handler_1, CallbackQueryHandler)
+        assert handler_1.pattern == SetLanguageData
 
-        assert isinstance(actual[2], CallbackQueryHandler)
-        assert actual[2].pattern == LanguageData
-        await actual[2].callback(self.telegram_update, self.telegram_context)
+        assert isinstance(handler_2, CallbackQueryHandler)
+        assert handler_2.pattern == LanguageData
+
+        for handler in actual:
+            await handler.callback(self.telegram_update, self.telegram_context)
 
         assert self.language_service.send_language_options.call_count == 2
         self.language_service.update_user_language.assert_called_once_with(
