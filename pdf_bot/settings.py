@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     telegram_token: str = Field(..., env="telegram_token")
     slack_token: str = Field(..., env="slack_token")
     stripe_token: str = Field(..., env="stripe_token")
+    gcp_service_account: dict = Field(..., env="gcp_service_account")
 
     admin_telegram_id: int = Field(..., env="admin_telegram_id")
 

@@ -3,7 +3,7 @@
 
 from dependency_injector import containers, providers
 from requests import Session
-from slack_sdk import WebClient
+from slack_sdk import WebClient as SlackClient
 from telegram.ext import AIORateLimiter, ExtBot
 from telegram.request import HTTPXRequest
 
@@ -12,6 +12,7 @@ from pdf_bot.analytics import AnalyticsRepository, AnalyticsService
 from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService, MyCommandHandler
 from pdf_bot.compare import CompareHandler, CompareService
+from pdf_bot.datastore import MyDatastoreClient
 from pdf_bot.error import ErrorHandler
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
 from pdf_bot.file import FileHandler, FileService
@@ -82,22 +83,25 @@ class Core(containers.DeclarativeContainer):
 class Clients(containers.DeclarativeContainer):
     _settings = providers.Configuration(pydantic_settings=[Settings()])
 
-    session = Session()
-    session.hooks = {
+    _session = Session()
+    _session.hooks = {
         "response": lambda r, *args, **kwargs: r.raise_for_status()  # pragma: no cover
     }
 
-    api = providers.Object(session)
-    slack = providers.Singleton(WebClient, token=_settings.slack_token)
+    api = providers.Object(_session)
+    datastore = providers.Singleton(MyDatastoreClient, _settings.gcp_service_account)
+    slack = providers.Singleton(SlackClient, token=_settings.slack_token)
 
 
 class Repositories(containers.DeclarativeContainer):
     clients = providers.DependenciesContainer()
 
-    account = providers.Singleton(AccountRepository)
+    account = providers.Singleton(AccountRepository, datastore_client=clients.datastore)
     analytics = providers.Singleton(AnalyticsRepository, api_client=clients.api)
     feedback = providers.Singleton(FeedbackRepository, slack_client=clients.slack)
-    language = providers.Singleton(LanguageRepository)
+    language = providers.Singleton(
+        LanguageRepository, datastore_client=clients.datastore
+    )
     text = providers.Singleton(TextRepository, api_client=clients.api)
 
 
