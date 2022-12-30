@@ -194,15 +194,14 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_generic_error_not_registered(self) -> None:
-        with patch.object(self.sut, "process_file_task", side_effect=GenericError):
-            actual = await self.sut.process_file(
-                self.telegram_update, self.telegram_context
-            )
+        with patch.object(
+            self.sut, "process_file_task", side_effect=GenericError
+        ), pytest.raises(GenericError):
+            await self.sut.process_file(self.telegram_update, self.telegram_context)
 
-            assert actual == ConversationHandler.END
-            self._assert_get_file_and_messsage_data()
-            self.telegram_update.effective_message.reply_text.assert_not_called()
-            self.telegram_service.send_file.assert_not_called()
+        self._assert_get_file_and_messsage_data()
+        self.telegram_update.effective_message.reply_text.assert_not_called()
+        self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_process_file_error(self) -> None:
@@ -237,12 +236,13 @@ class TestAbstractFileProcessor(
             self.telegram_service, self.language_service, bypass_init_check=True
         )
 
-        with patch.object(sut, "process_file_task", side_effect=UnknownError):
-            actual = await sut.process_file(self.telegram_update, self.telegram_context)
+        with patch.object(
+            sut, "process_file_task", side_effect=UnknownError
+        ), pytest.raises(UnknownError):
+            await sut.process_file(self.telegram_update, self.telegram_context)
 
-            assert actual == ConversationHandler.END
-            self._assert_get_file_and_messsage_data()
-            self.telegram_service.send_file.assert_not_called()
+        self._assert_get_file_and_messsage_data()
+        self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_process_file_invalid_file_data(self) -> None:
