@@ -94,15 +94,22 @@ class Clients(containers.DeclarativeContainer):
 
 
 class Repositories(containers.DeclarativeContainer):
+    _settings = providers.Configuration(pydantic_settings=[Settings()])
     clients = providers.DependenciesContainer()
 
     account = providers.Singleton(AccountRepository, datastore_client=clients.datastore)
-    analytics = providers.Singleton(AnalyticsRepository, api_client=clients.api)
+    analytics = providers.Singleton(
+        AnalyticsRepository, api_client=clients.api, settings=_settings
+    )
     feedback = providers.Singleton(FeedbackRepository, slack_client=clients.slack)
     language = providers.Singleton(
         LanguageRepository, datastore_client=clients.datastore
     )
-    text = providers.Singleton(TextRepository, api_client=clients.api)
+    text = providers.Singleton(
+        TextRepository,
+        api_client=clients.api,
+        google_fonts_token=_settings.google_fonts_token,
+    )
 
 
 class Services(containers.DeclarativeContainer):
