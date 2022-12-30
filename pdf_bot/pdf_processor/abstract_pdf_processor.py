@@ -28,9 +28,7 @@ class AbstractPdfProcessor(AbstractFileProcessor):
 
     @classmethod
     def get_task_data_list(cls) -> list[TaskData]:
-        return [
-            x.task_data for x in cls._PDF_PROCESSORS.values() if x.task_data is not None
-        ]
+        return [x.task_data for x in cls._PDF_PROCESSORS.values()]
 
     @property
     def generic_error_types(self) -> set[Type[Exception]]:
