@@ -29,9 +29,7 @@ class TestTextRepository:
         self._assert_api_call()
 
     def test_get_font_no_regular_font(self) -> None:
-        self.response.json.return_value = {
-            "items": [{"family": self.FONT_FAMILY, "files": {}}]
-        }
+        self.response.json.return_value = {"items": [{"family": self.FONT_FAMILY, "files": {}}]}
 
         actual = self.sut.get_font(self.FONT_FAMILY)
 

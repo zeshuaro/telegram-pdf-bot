@@ -54,9 +54,7 @@ class PaymentService:
             _("Select how you want to support PDF Bot"), reply_markup=reply_markup
         )
 
-    async def send_invoice(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> None:
+    async def send_invoice(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         query = update.callback_query
         await self.telegram_service.answer_query_and_drop_data(context, query)
         data: PaymentData = query.data  # type: ignore
@@ -78,22 +76,16 @@ class PaymentService:
             suggested_tip_amounts=[100, 300, 500, 1000],
         )
 
-    async def precheckout_check(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> None:
+    async def precheckout_check(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
         query = update.pre_checkout_query
 
         if query.invoice_payload != self._INVOICE_PAYLOAD:
-            await query.answer(
-                ok=False, error_message=_("Something went wrong, try again")
-            )
+            await query.answer(ok=False, error_message=_("Something went wrong, try again"))
         else:
             await query.answer(ok=True)
 
-    async def successful_payment(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> None:
+    async def successful_payment(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
         await update.effective_message.reply_text(  # type: ignore
             _("Thank you for your support!"), reply_markup=ReplyKeyboardRemove()
@@ -116,11 +108,7 @@ class PaymentService:
             for i in range(0, len(self._PAYMENT_DATA_LIST), self._KEYBOARD_SIZE)
         ]
         keyboard.append(
-            [
-                InlineKeyboardButton(
-                    _("Help translate PDF Bot"), "https://crwd.in/telegram-pdf-bot"
-                )
-            ]
+            [InlineKeyboardButton(_("Help translate PDF Bot"), "https://crwd.in/telegram-pdf-bot")]
         )
 
         return InlineKeyboardMarkup(keyboard)

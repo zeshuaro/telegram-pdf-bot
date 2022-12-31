@@ -27,9 +27,7 @@ class TestPdfProcessor(
 
     def setup_method(self) -> None:
         super().setup_method()
-        self.scale_pdf_data = ScalePdfData(
-            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME
-        )
+        self.scale_pdf_data = ScalePdfData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
 
         self.pdf_service = MagicMock(spec=PdfService)
         self.language_service = self.mock_language_service()
@@ -78,9 +76,7 @@ class TestPdfProcessor(
             option=ScaleType.by_factor,
             text=self.SCALE_DATA,
         )
-        self.pdf_service.scale_pdf_by_factor.return_value.__aenter__.return_value = (
-            self.FILE_PATH
-        )
+        self.pdf_service.scale_pdf_by_factor.return_value.__aenter__.return_value = self.FILE_PATH
 
         async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
             file_data

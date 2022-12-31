@@ -27,9 +27,7 @@ class MergeService:
         self.telegram_service = telegram_service
         self.language_service = language_service
 
-    async def ask_first_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def ask_first_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         context.user_data[self._MERGE_PDF_DATA] = []  # type: ignore
         _ = self.language_service.set_app_language(update, context)
         await self.telegram_service.reply_with_cancel_markup(
@@ -37,17 +35,13 @@ class MergeService:
             context,
             "{desc_1}\n\n{desc_2}".format(
                 desc_1=_("Send me the PDF files that you'll like to merge"),
-                desc_2=_(
-                    "Note that the files will be merged in the order that you send me"
-                ),
+                desc_2=_("Note that the files will be merged in the order that you send me"),
             ),
         )
 
         return self.WAIT_MERGE_PDF
 
-    async def check_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def check_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
 
@@ -61,18 +55,14 @@ class MergeService:
         context.user_data[self._MERGE_PDF_DATA].append(file_data)  # type: ignore
         return await self._ask_next_pdf(update, context)
 
-    async def check_text(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text in [_(self._REMOVE_LAST), _(DONE)]:
             try:
-                file_data_list = self.telegram_service.get_user_data(
-                    context, self._MERGE_PDF_DATA
-                )
+                file_data_list = self.telegram_service.get_user_data(context, self._MERGE_PDF_DATA)
             except TelegramServiceError as e:
                 await message.reply_text(_(str(e)))
                 return ConversationHandler.END
@@ -84,9 +74,7 @@ class MergeService:
             return await self.telegram_service.cancel_conversation(update, context)
         return self.WAIT_MERGE_PDF
 
-    async def _ask_next_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def _ask_next_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         text = "{desc}\n".format(desc=_("You've sent me these PDF files so far:"))
         await self.telegram_service.send_file_names(
@@ -171,9 +159,7 @@ class MergeService:
 
         try:
             async with self.pdf_service.merge_pdfs(file_data_list) as out_path:
-                await self.telegram_service.send_file(
-                    update, context, out_path, TaskType.merge_pdf
-                )
+                await self.telegram_service.send_file(update, context, out_path, TaskType.merge_pdf)
         except PdfServiceError as e:
             await update.effective_message.reply_text(_(str(e)))  # type: ignore
 

@@ -77,9 +77,7 @@ class ScalePdfProcessor(AbstractPdfSelectAndTextProcessor):
             return None
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, ScaleOptionAndInputData):
             raise TypeError(f"Invalid file data type: {type(file_data)}")
 

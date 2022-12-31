@@ -40,10 +40,7 @@ class TestFileHandler(TelegramServiceTestMixin, TelegramTestMixin):
         assert entry_points[0].filters == filters.Document.PDF
 
         assert isinstance(entry_points[1], MessageHandler)
-        assert (
-            entry_points[1].filters.name
-            == (filters.PHOTO | filters.Document.IMAGE).name
-        )
+        assert entry_points[1].filters.name == (filters.PHOTO | filters.Document.IMAGE).name
 
         assert AbstractFileProcessor.WAIT_FILE_TASK in handler.states
 

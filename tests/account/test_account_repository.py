@@ -33,9 +33,7 @@ class TestAccountRepository:
 
         self.sut.upsert_user(self.USER_ID, self.LANGUAGE_CODE)
 
-        self.user_entity.__setitem__.assert_called_once_with(
-            LANGUAGE, self.LANGUAGE_CODE
-        )
+        self.user_entity.__setitem__.assert_called_once_with(LANGUAGE, self.LANGUAGE_CODE)
         self.datastore_client.put.assert_called_with(self.user_entity)
 
     def test_upsert_user_language_exists(self) -> None:

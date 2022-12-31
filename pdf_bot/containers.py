@@ -98,13 +98,9 @@ class Repositories(containers.DeclarativeContainer):
     clients = providers.DependenciesContainer()
 
     account = providers.Singleton(AccountRepository, datastore_client=clients.datastore)
-    analytics = providers.Singleton(
-        AnalyticsRepository, api_client=clients.api, settings=_settings
-    )
+    analytics = providers.Singleton(AnalyticsRepository, api_client=clients.api, settings=_settings)
     feedback = providers.Singleton(FeedbackRepository, slack_client=clients.slack)
-    language = providers.Singleton(
-        LanguageRepository, datastore_client=clients.datastore
-    )
+    language = providers.Singleton(LanguageRepository, datastore_client=clients.datastore)
     text = providers.Singleton(
         TextRepository,
         api_client=clients.api,
@@ -120,9 +116,7 @@ class Services(containers.DeclarativeContainer):
     cli = providers.Singleton(CLIService)
     io = providers.Singleton(IOService)
 
-    language = providers.Singleton(
-        LanguageService, language_repository=repositories.language
-    )
+    language = providers.Singleton(LanguageService, language_repository=repositories.language)
 
     account = providers.Singleton(
         AccountService,
@@ -149,9 +143,7 @@ class Services(containers.DeclarativeContainer):
     image = providers.Singleton(
         ImageService, cli_service=cli, io_service=io, telegram_service=telegram
     )
-    pdf = providers.Singleton(
-        PdfService, cli_service=cli, io_service=io, telegram_service=telegram
-    )
+    pdf = providers.Singleton(PdfService, cli_service=cli, io_service=io, telegram_service=telegram)
 
     _image_task = providers.Singleton(ImageTaskProcessor, language_service=language)
     _pdf_task = providers.Singleton(PdfTaskProcessor, language_service=language)

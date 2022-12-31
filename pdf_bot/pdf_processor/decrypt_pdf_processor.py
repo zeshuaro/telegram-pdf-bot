@@ -37,9 +37,7 @@ class DecryptPdfProcessor(AbstractPdfTextInputProcessor):
     def invalid_text_input_error(self) -> str:  # pragma: no cover
         return ""
 
-    def get_ask_text_input_text(
-        self, _: Callable[[str], str]
-    ) -> str:  # pragma: no cover
+    def get_ask_text_input_text(self, _: Callable[[str], str]) -> str:  # pragma: no cover
         return _("Send me the password to decrypt your PDF file")
 
     def get_cleaned_text_input(self, text: str) -> str:
@@ -50,9 +48,7 @@ class DecryptPdfProcessor(AbstractPdfTextInputProcessor):
         return {PdfIncorrectPasswordError: self._handle_incorrect_password}
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, TextInputData):
             raise TypeError(f"Invalid file data: {type(file_data)}")
 

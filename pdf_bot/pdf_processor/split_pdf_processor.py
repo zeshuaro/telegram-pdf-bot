@@ -34,9 +34,7 @@ class SplitPdfProcessor(AbstractPdfTextInputProcessor):
     def invalid_text_input_error(self) -> str:  # pragma: no cover
         return _("The split range is invalid, please try again")
 
-    def get_ask_text_input_text(
-        self, _: Callable[[str], str]
-    ) -> str:  # pragma: no cover
+    def get_ask_text_input_text(self, _: Callable[[str], str]) -> str:  # pragma: no cover
         return (
             "{intro}\n\n"
             "<b>{general}</b>\n"
@@ -63,30 +61,20 @@ class SplitPdfProcessor(AbstractPdfTextInputProcessor):
             first_three=_("{range}    first three pages").format(range="0:3"),
             from_eight=_("{range}     from page 8 onward").format(range="7:"),
             last_only=_("{range}     last page only").format(range="-1"),
-            all_except_last=_("{range}    all pages except the last page").format(
-                range=":-1"
-            ),
+            all_except_last=_("{range}    all pages except the last page").format(range=":-1"),
             second_last=_("{range}     second last page only").format(range="-2"),
             last_two=_("{range}    last two pages").format(range="-2:"),
-            third_second=_("{range}  third and second last pages").format(
-                range="-3:-1"
-            ),
+            third_second=_("{range}  third and second last pages").format(range="-3:-1"),
             advanced=_("Advanced usage"),
             pages_to_end=_("{range}    pages {pages} and to the end").format(
                 range="::2", pages="0 2 4 ..."
             ),
-            odd_pages=_("{range} pages {pages}").format(
-                range="1:10:2", pages="1 3 5 7 9"
-            ),
-            all_reversed=_("{range}   all pages in reversed order").format(
-                range="::-1"
-            ),
+            odd_pages=_("{range} pages {pages}").format(range="1:10:2", pages="1 3 5 7 9"),
+            all_reversed=_("{range}   all pages in reversed order").format(range="::-1"),
             pages_except=_("{range} pages {pages} except {page}").format(
                 range="3:0:-1", pages="3 2 1", page="0"
             ),
-            pages_reverse_from=_("{range}  pages {pages}").format(
-                range="2::-1", pages="2 1 0"
-            ),
+            pages_reverse_from=_("{range}  pages {pages}").format(range="2::-1", pages="2 1 0"),
         )
 
     def get_cleaned_text_input(self, text: str) -> str | None:
@@ -95,9 +83,7 @@ class SplitPdfProcessor(AbstractPdfTextInputProcessor):
         return text
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, TextInputData):
             raise TypeError(f"Invalid file data: {type(file_data)}")
 

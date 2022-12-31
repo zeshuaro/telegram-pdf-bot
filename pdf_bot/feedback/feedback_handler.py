@@ -28,17 +28,13 @@ class FeedbackHandler(AbstractTelegramHandler):
         return [
             ConversationHandler(
                 entry_points=[
-                    CommandHandler(
-                        self._FEEDBACK_COMMAND, self.feedback_service.ask_feedback
-                    )
+                    CommandHandler(self._FEEDBACK_COMMAND, self.feedback_service.ask_feedback)
                 ],
                 states={
                     FeedbackService.WAIT_FEEDBACK: [
                         MessageHandler(TEXT_FILTER, self.feedback_service.check_text)
                     ]
                 },
-                fallbacks=[
-                    CommandHandler("cancel", self.telegram_service.cancel_conversation)
-                ],
+                fallbacks=[CommandHandler("cancel", self.telegram_service.cancel_conversation)],
             )
         ]

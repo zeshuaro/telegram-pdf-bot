@@ -13,9 +13,7 @@ class ErrorHandler:
     def __init__(self, language_service: LanguageService) -> None:
         self.language_service = language_service
 
-    async def callback(
-        self, update: object, context: ContextTypes.DEFAULT_TYPE
-    ) -> None:
+    async def callback(self, update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
         if context.error is None:
             return
 
@@ -29,9 +27,7 @@ class ErrorHandler:
 
         await self._handle_error(update, context)
 
-    async def _handle_error(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> None:
+    async def _handle_error(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         try:
             raise context.error  # type: ignore
         except Forbidden:
@@ -39,9 +35,7 @@ class ErrorHandler:
         except BadRequest as e:
             await self._handle_bad_request(update, context, e)
         except Exception as e:  # pylint: disable=broad-except
-            await self._send_message(
-                update, context, _("Something went wrong, please try again")
-            )
+            await self._send_message(update, context, _("Something went wrong, please try again"))
             sentry_sdk.capture_exception(e)
 
     async def _handle_bad_request(

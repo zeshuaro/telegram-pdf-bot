@@ -38,9 +38,7 @@ class RenamePdfProcessor(AbstractPdfTextInputProcessor):
             " again:\n{invalid_chars}".format(invalid_chars=self.INVALID_CHARACTERS)
         )
 
-    def get_ask_text_input_text(
-        self, _: Callable[[str], str]
-    ) -> str:  # pragma: no cover
+    def get_ask_text_input_text(self, _: Callable[[str], str]) -> str:  # pragma: no cover
         return _("Send me the file name that you'll like to rename your PDF file into")
 
     def get_cleaned_text_input(self, text: str) -> str | None:
@@ -50,9 +48,7 @@ class RenamePdfProcessor(AbstractPdfTextInputProcessor):
         return f"{cleaned_text}.pdf"
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, TextInputData):
             raise TypeError(f"Invalid file data: {type(file_data)}")
 

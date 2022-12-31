@@ -27,9 +27,7 @@ class MockProcessor(AbstractImageProcessor):
         return MagicMock(spec=BaseHandler)
 
     @asynccontextmanager
-    async def process_file_task(
-        self, _file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, _file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         yield MagicMock(spec=FileTaskResult)
 
 
@@ -60,21 +58,15 @@ class TestAbstractImageProcessor(LanguageServiceTestMixin, TelegramServiceTestMi
         processors: dict = {}
         self.image_processors.__contains__.side_effect = processors.__contains__
 
-        proc = MockProcessor(
-            self.image_service, self.telegram_service, self.language_service
-        )
+        proc = MockProcessor(self.image_service, self.telegram_service, self.language_service)
 
-        self.image_processors.__setitem__.assert_called_once_with(
-            proc.__class__.__name__, proc
-        )
+        self.image_processors.__setitem__.assert_called_once_with(proc.__class__.__name__, proc)
 
     def test_init_already_initialized(self) -> None:
         processors: dict = {MockProcessor.__name__: MagicMock()}
         with pytest.raises(ValueError):
             self.image_processors.__contains__.side_effect = processors.__contains__
-            MockProcessor(
-                self.image_service, self.telegram_service, self.language_service
-            )
+            MockProcessor(self.image_service, self.telegram_service, self.language_service)
 
         self.image_processors.__setitem__.assert_not_called()
 

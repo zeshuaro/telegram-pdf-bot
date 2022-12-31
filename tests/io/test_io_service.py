@@ -54,9 +54,7 @@ class TestIOService:
         ],
     )
     @pytest.mark.asyncio
-    async def test_create_temp_file(
-        self, prefix: str | None, suffix: str | None
-    ) -> None:
+    async def test_create_temp_file(self, prefix: str | None, suffix: str | None) -> None:
         with self.sut.create_temp_file(prefix, suffix) as actual:
             assert actual == self.FILE_NAME
 

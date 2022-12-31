@@ -50,9 +50,7 @@ class RotatePdfProcessor(AbstractPdfProcessor):
                     CallbackQueryHandler(self.ask_task, pattern=BackData),
                 ]
             },
-            fallbacks=[
-                CommandHandler("cancel", self.telegram_service.cancel_conversation)
-            ],
+            fallbacks=[CommandHandler("cancel", self.telegram_service.cancel_conversation)],
             map_to_parent={
                 # Return to wait file task state
                 AbstractFileTaskProcessor.WAIT_FILE_TASK: AbstractFileTaskProcessor.WAIT_FILE_TASK,
@@ -60,18 +58,14 @@ class RotatePdfProcessor(AbstractPdfProcessor):
         )
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, RotateDegreeData):
             raise TypeError(f"Invalid file data type: {type(file_data)}")
 
         async with self.pdf_service.rotate_pdf(file_data.id, file_data.degree) as path:
             yield FileTaskResult(path)
 
-    async def ask_degree(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> str:
+    async def ask_degree(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
         query = update.callback_query
         await self.telegram_service.answer_query_and_drop_data(context, query)
         data = query.data
@@ -82,10 +76,7 @@ class RotatePdfProcessor(AbstractPdfProcessor):
         reply_markup = self._get_ask_degree_reply_markup(update, context, data)
         _ = self.language_service.set_app_language(update, context)
         await query.edit_message_text(
-            _(
-                "Select the degrees that you'll like to rotate your PDF file in"
-                " clockwise"
-            ),
+            _("Select the degrees that you'll like to rotate your PDF file in clockwise"),
             reply_markup=reply_markup,
         )
 

@@ -82,9 +82,7 @@ class LanguageService:
             _("Select your language"), reply_markup=reply_markup
         )
 
-    def get_user_language(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> str:
+    def get_user_language(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
         user_data = context.user_data
         if user_data is not None:
             lang: str | None = user_data.get(self._LANGUAGE_CODE)

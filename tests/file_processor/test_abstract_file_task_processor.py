@@ -32,9 +32,7 @@ class TestAbstractFileTaskProcessor(LanguageServiceTestMixin, TelegramTestMixin)
         with patch.object(
             self.sut, "ask_task_helper", return_value=self.WAIT_FILE_TASK
         ) as ask_task_helper:
-            actual = await self.sut.ask_task(
-                self.telegram_update, self.telegram_context
-            )
+            actual = await self.sut.ask_task(self.telegram_update, self.telegram_context)
 
             assert actual == self.WAIT_FILE_TASK
             ask_task_helper.assert_called_once_with(

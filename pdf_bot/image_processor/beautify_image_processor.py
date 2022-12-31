@@ -28,10 +28,6 @@ class BeautifyImageProcessor(AbstractImageProcessor):
         return CallbackQueryHandler(self.process_file, pattern=BeautifyImageData)
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
-        async with self.image_service.beautify_and_convert_images_to_pdf(
-            [file_data]
-        ) as path:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
+        async with self.image_service.beautify_and_convert_images_to_pdf([file_data]) as path:
             yield FileTaskResult(path)

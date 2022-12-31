@@ -6,9 +6,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestPaymentService(
-    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
-):
+class TestPaymentService(LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin):
     STRIPE_TOKEN = "stripe_token"
     INVOICE_PAYLOAD = "invoice_payload"
     PAYMENT_DATA = PaymentData(label="label", emoji="emoji", value=1)
@@ -20,9 +18,7 @@ class TestPaymentService(
         self.language_service = self.mock_language_service()
         self.telegram_service = self.mock_telegram_service()
 
-        self.sut = PaymentService(
-            self.language_service, self.telegram_service, self.STRIPE_TOKEN
-        )
+        self.sut = PaymentService(self.language_service, self.telegram_service, self.STRIPE_TOKEN)
 
     @pytest.mark.asyncio
     async def test_send_support_options(self) -> None:
@@ -87,9 +83,7 @@ class TestPaymentService(
         await self.sut.successful_payment(self.telegram_update, self.telegram_context)
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    def _assert_keyboard_payment_callback_data(
-        self, reply_markup: InlineKeyboardMarkup
-    ) -> None:
+    def _assert_keyboard_payment_callback_data(self, reply_markup: InlineKeyboardMarkup) -> None:
         index = 0
         for keyboard_list in reply_markup.inline_keyboard:
             for keyboard in keyboard_list:

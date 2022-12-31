@@ -15,9 +15,7 @@ class CLIService:
         )
         self._run_command(command)
 
-    def crop_pdf_by_percentage(
-        self, input_path: str, output_path: str, percentage: float
-    ) -> None:
+    def crop_pdf_by_percentage(self, input_path: str, output_path: str, percentage: float) -> None:
         self._crop_pdf(input_path, output_path, percentage=percentage)
 
     def crop_pdf_by_margin_size(

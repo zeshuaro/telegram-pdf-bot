@@ -18,9 +18,7 @@ def main(
     telegram_app: TelegramApp,
     settings: Settings
     | dict[str, Any] = Provide[Application.core.settings],  # pylint: disable=no-member
-    log_handler: MyLogHandler = Provide[
-        Application.core.log_handler  # pylint: disable=no-member
-    ],
+    log_handler: MyLogHandler = Provide[Application.core.log_handler],  # pylint: disable=no-member
 ) -> None:
     log_handler.setup()
 
@@ -50,10 +48,7 @@ if __name__ == "__main__":
     app.wire(modules=[__name__])
 
     _telegram_app = (
-        TelegramApp.builder()
-        .bot(app.core.telegram_bot())
-        .concurrent_updates(True)
-        .build()
+        TelegramApp.builder().bot(app.core.telegram_bot()).concurrent_updates(True).build()
     )
 
     # Dependency injectior only initialises the classes if they are referenced. Since

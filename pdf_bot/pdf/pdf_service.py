@@ -86,14 +86,10 @@ class PdfService:
                 yield out_path
 
     @asynccontextmanager
-    async def compare_pdfs(
-        self, file_id_a: str, file_id_b: str
-    ) -> AsyncGenerator[str, None]:
+    async def compare_pdfs(self, file_id_a: str, file_id_b: str) -> AsyncGenerator[str, None]:
         async with self.telegram_service.download_pdf_file(
             file_id_a
-        ) as file_name_a, self.telegram_service.download_pdf_file(
-            file_id_b
-        ) as file_name_b:
+        ) as file_name_a, self.telegram_service.download_pdf_file(file_id_b) as file_name_b:
             with self.io_service.create_temp_png_file("Differences") as out_path:
                 pdf_diff.main(files=[file_name_a, file_name_b], out_file=out_path)
                 yield out_path
@@ -118,9 +114,7 @@ class PdfService:
     async def create_pdf_from_text(
         self, text: str, font_data: FontData | None
     ) -> AsyncGenerator[str, None]:
-        html = HTML(
-            string="<p>{content}</p>".format(content=text.replace("\n", "<br/>"))
-        )
+        html = HTML(string="<p>{content}</p>".format(content=text.replace("\n", "<br/>")))
         font_config = FontConfiguration()
         stylesheets: list[CSS] | None = None
 
@@ -159,24 +153,18 @@ class PdfService:
     ) -> AsyncGenerator[str, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("Cropped") as out_path:
-                self.cli_service.crop_pdf_by_margin_size(
-                    file_path, out_path, margin_size
-                )
+                self.cli_service.crop_pdf_by_margin_size(file_path, out_path, margin_size)
                 yield out_path
 
     @asynccontextmanager
-    async def decrypt_pdf(
-        self, file_id: str, password: str
-    ) -> AsyncGenerator[str, None]:
+    async def decrypt_pdf(self, file_id: str, password: str) -> AsyncGenerator[str, None]:
         reader = await self._open_pdf(file_id, allow_encrypted=True)
         if not reader.is_encrypted:
             raise PdfDecryptError(_("Your PDF file is not encrypted"))
 
         try:
             if reader.decrypt(password) == 0:
-                raise PdfIncorrectPasswordError(
-                    _("Incorrect password, please try again")
-                )
+                raise PdfIncorrectPasswordError(_("Incorrect password, please try again"))
         except NotImplementedError as e:
             raise PdfDecryptError(
                 _("Your PDF file is encrypted with a method that I can't decrypt")
@@ -192,9 +180,7 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def encrypt_pdf(
-        self, file_id: str, password: str
-    ) -> AsyncGenerator[str, None]:
+    async def encrypt_pdf(self, file_id: str, password: str) -> AsyncGenerator[str, None]:
         reader = await self._open_pdf(file_id)
         writer = PdfFileWriter()
 
@@ -235,9 +221,7 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def merge_pdfs(
-        self, file_data_list: list[FileData]
-    ) -> AsyncGenerator[str, None]:
+    async def merge_pdfs(self, file_data_list: list[FileData]) -> AsyncGenerator[str, None]:
         file_ids = self._get_file_ids(file_data_list)
         merger = PdfFileMerger()
 
@@ -266,9 +250,7 @@ class PdfService:
                     ocrmypdf.ocr(file_path, out_path, progress_bar=False)
                     yield out_path
                 except PriorOcrFoundError as e:
-                    raise PdfOcrError(
-                        _("Your PDF file already has a text layer")
-                    ) from e
+                    raise PdfOcrError(_("Your PDF file already has a text layer")) from e
 
     @asynccontextmanager
     async def preview_pdf(self, file_id: str) -> AsyncGenerator[str, None]:
@@ -290,9 +272,7 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def rename_pdf(
-        self, file_id: str, file_name: str
-    ) -> AsyncGenerator[str, None]:
+    async def rename_pdf(self, file_id: str, file_name: str) -> AsyncGenerator[str, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_directory() as dir_name:
                 out_path = os.path.join(dir_name, file_name)
@@ -349,9 +329,7 @@ class PdfService:
         return PageRange.valid(split_range)
 
     @asynccontextmanager
-    async def split_pdf(
-        self, file_id: str, split_range: str
-    ) -> AsyncGenerator[str, None]:
+    async def split_pdf(self, file_id: str, split_range: str) -> AsyncGenerator[str, None]:
         reader = await self._open_pdf(file_id)
         merger = PdfFileMerger()
         merger.append(reader, pages=PageRange(split_range))
@@ -365,9 +343,7 @@ class PdfService:
     def _get_file_ids(file_data_list: list[FileData]) -> list[str]:
         return [x.id for x in file_data_list]
 
-    async def _open_pdf(
-        self, file_id: str, allow_encrypted: bool = False
-    ) -> PdfFileReader:
+    async def _open_pdf(self, file_id: str, allow_encrypted: bool = False) -> PdfFileReader:
         async with self.telegram_service.download_pdf_file(file_id) as file_name:
             try:
                 pdf_reader = PdfFileReader(file_name)

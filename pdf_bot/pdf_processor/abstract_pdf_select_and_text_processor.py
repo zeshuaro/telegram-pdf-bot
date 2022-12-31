@@ -73,15 +73,11 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
     def handler(self) -> ConversationHandler:
         return ConversationHandler(
             entry_points=[
-                CallbackQueryHandler(
-                    self._ask_select_option, pattern=self.entry_point_data_type
-                )
+                CallbackQueryHandler(self._ask_select_option, pattern=self.entry_point_data_type)
             ],
             states={
                 self.WAIT_SELECT_OPTION: [
-                    CallbackQueryHandler(
-                        self._ask_text_input, pattern=SelectOptionData
-                    ),
+                    CallbackQueryHandler(self._ask_text_input, pattern=SelectOptionData),
                     CallbackQueryHandler(self.ask_task, pattern=BackData),
                 ],
                 self.WAIT_TEXT_INPUT: [
@@ -91,18 +87,14 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
                     ),
                 ],
             },
-            fallbacks=[
-                CommandHandler("cancel", self.telegram_service.cancel_conversation)
-            ],
+            fallbacks=[CommandHandler("cancel", self.telegram_service.cancel_conversation)],
             map_to_parent={
                 # Return to wait file task state
                 AbstractFileTaskProcessor.WAIT_FILE_TASK: AbstractFileTaskProcessor.WAIT_FILE_TASK,
             },
         )
 
-    async def _ask_select_option(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> str:
+    async def _ask_select_option(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
         query = update.callback_query
         await self.telegram_service.answer_query_and_drop_data(context, query)
         data: FileData = query.data  # type: ignore
@@ -111,9 +103,7 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
         _ = self.language_service.set_app_language(update, context)
 
         reply_markup = self._get_ask_select_option_markup(update, context, data)
-        await query.edit_message_text(
-            _(self.ask_select_option_text), reply_markup=reply_markup
-        )
+        await query.edit_message_text(_(self.ask_select_option_text), reply_markup=reply_markup)
 
         return self.WAIT_SELECT_OPTION
 
@@ -141,9 +131,7 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
 
         return InlineKeyboardMarkup(keyboard)
 
-    async def _ask_text_input(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> str:
+    async def _ask_text_input(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
         query = update.callback_query
         await self.telegram_service.answer_query_and_drop_data(context, query)
         data = query.data
@@ -173,9 +161,7 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
             [
                 InlineKeyboardButton(
                     _(BACK),
-                    callback_data=self.entry_point_data_type(
-                        query_data.id, query_data.name
-                    ),
+                    callback_data=self.entry_point_data_type(query_data.id, query_data.name),
                 )
             ]
         ]

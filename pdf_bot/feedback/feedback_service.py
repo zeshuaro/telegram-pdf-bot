@@ -23,9 +23,7 @@ class FeedbackService:
         self.language_service = language_service
         self.telegram_service = telegram_service
 
-    async def ask_feedback(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def ask_feedback(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         await self.telegram_service.reply_with_cancel_markup(
             update, context, _("Send me your feedback in English")
@@ -33,18 +31,14 @@ class FeedbackService:
 
         return self.WAIT_FEEDBACK
 
-    async def check_text(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         if update.effective_message.text == _(CANCEL):  # type: ignore
             return await self.telegram_service.cancel_conversation(update, context)
 
         return await self._save_feedback(update, context)
 
-    async def _save_feedback(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def _save_feedback(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
 

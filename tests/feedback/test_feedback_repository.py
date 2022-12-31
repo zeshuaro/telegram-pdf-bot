@@ -30,9 +30,7 @@ class TestFeedbackRepository(TelegramTestMixin):
             capture_exception.assert_called_once_with(error)
 
     def _save_feedback_and_assert_slack_client(self) -> None:
-        self.sut.save_feedback(
-            self.TELEGRAM_CHAT_ID, self.TELEGRAM_USERNAME, self.TELEGRAM_TEXT
-        )
+        self.sut.save_feedback(self.TELEGRAM_CHAT_ID, self.TELEGRAM_USERNAME, self.TELEGRAM_TEXT)
         self.slack_client.chat_postMessage.assert_called_once_with(
             channel=self.SLACK_CHANNEL,
             text=(

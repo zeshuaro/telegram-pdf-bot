@@ -27,9 +27,7 @@ class WatermarkHandler(AbstractTelegramHandler):
         return [
             ConversationHandler(
                 entry_points=[
-                    CommandHandler(
-                        self._WATERMARK_COMMAND, self.watermark_service.ask_source_pdf
-                    )
+                    CommandHandler(self._WATERMARK_COMMAND, self.watermark_service.ask_source_pdf)
                 ],
                 states={
                     WatermarkService.WAIT_SOURCE_PDF: [

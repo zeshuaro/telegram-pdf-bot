@@ -28,9 +28,7 @@ class WebpageService:
         self.language_service = language_service
         self.telegram_service = telegram_service
 
-    async def url_to_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> None:
+    async def url_to_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
         url = message.text
@@ -53,9 +51,7 @@ class WebpageService:
         except TelegramUpdateUserDataError:
             pass
 
-    def _clear_url_cache(
-        self, context: ContextTypes.DEFAULT_TYPE, url_hash: str
-    ) -> None:
+    def _clear_url_cache(self, context: ContextTypes.DEFAULT_TYPE, url_hash: str) -> None:
         try:
             self.telegram_service.get_user_data(context, url_hash)
         except TelegramGetUserDataError:

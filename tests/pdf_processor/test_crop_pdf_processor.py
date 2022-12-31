@@ -26,9 +26,7 @@ class TestPdfProcessor(
 
     def setup_method(self) -> None:
         super().setup_method()
-        self.crop_pdf_data = CropPdfData(
-            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME
-        )
+        self.crop_pdf_data = CropPdfData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
 
         self.pdf_service = MagicMock(spec=PdfService)
         self.language_service = self.mock_language_service()

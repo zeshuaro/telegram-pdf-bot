@@ -15,9 +15,7 @@ from .file_service import FileService
 
 
 class FileHandler(AbstractTelegramHandler):
-    def __init__(
-        self, file_service: FileService, telegram_service: TelegramService
-    ) -> None:
+    def __init__(self, file_service: FileService, telegram_service: TelegramService) -> None:
         self.file_service = file_service
         self.telegram_service = telegram_service
 
@@ -32,9 +30,7 @@ class FileHandler(AbstractTelegramHandler):
                         self.file_service.check_image,
                     ),
                 ],
-                states={
-                    AbstractFileProcessor.WAIT_FILE_TASK: AbstractFileProcessor.get_handlers()
-                },
+                states={AbstractFileProcessor.WAIT_FILE_TASK: AbstractFileProcessor.get_handlers()},
                 fallbacks=[
                     CallbackQueryHandler(
                         self.telegram_service.cancel_conversation,

@@ -28,15 +28,11 @@ class CompressPdfProcessor(AbstractPdfProcessor):
         return CallbackQueryHandler(self.process_file, pattern=CompressPdfData)
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         async with self.pdf_service.compress_pdf(file_data.id) as result:
             yield FileTaskResult(
                 result.out_path,
-                _(
-                    "File size reduced by {percent}, from {old_size} to {new_size}"
-                ).format(
+                _("File size reduced by {percent}, from {old_size} to {new_size}").format(
                     percent=f"{result.reduced_percentage:.0%}",
                     old_size=result.readable_old_size,
                     new_size=result.readable_new_size,
