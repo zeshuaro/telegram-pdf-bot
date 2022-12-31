@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-31 07:03+0000\n"
-"PO-Revision-Date: 2022-12-31 07:03\n"
+"POT-Creation-Date: 2022-12-31 07:19+0000\n"
+"PO-Revision-Date: 2022-12-31 07:20\n"
 "Last-Translator: \n"
 "Language: sv\n"
 "Language-Team: Swedish\n"
@@ -407,19 +407,19 @@ msgstr "Välj den beskärningstyp du vill utföra"
 msgid "The crop values are invalid, try again"
 msgstr "Beskärningsvärdena är ogiltiga, försök igen"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:31
 msgid "Decrypt"
 msgstr "Dekryptera"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:41
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:38
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Skicka mig lösenordet för att dekryptera din PDF-fil"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:26
 msgid "Encrypt"
 msgstr "Kryptera"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:36
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:33
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Skicka mig lösenordet för att kryptera din PDF-fil"
 
@@ -443,25 +443,25 @@ msgstr "Till bilder"
 msgid "Preview"
 msgstr "Förhandsgranska"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:32
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:29
 msgid "Rename"
 msgstr "Byt namn"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "Filnamn får inte innehålla något av följande tecken, försök igen:\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:42
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Skicka mig filnamnet som du kommer att vilja byta namn på din PDF-fil i"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:41
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:36
 msgid "Rotate"
 msgstr "Rotera"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:79
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:74
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Välj de grader som du ska vilja rotera din PDF-fil i medsols"
 
@@ -497,79 +497,79 @@ msgstr "Välj den skalningstyp du vill utföra"
 msgid "The scale values are invalid, try again"
 msgstr "Skalvärdena är ogiltiga, försök igen"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:31
+#: pdf_bot/pdf_processor/split_pdf_processor.py:28
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:35
+#: pdf_bot/pdf_processor/split_pdf_processor.py:32
 msgid "The split range is invalid, please try again"
 msgstr "Delningsintervallet är ogiltigt, försök igen"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#: pdf_bot/pdf_processor/split_pdf_processor.py:54
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Skicka mig det sidintervall som du kommer att vilja behålla"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#: pdf_bot/pdf_processor/split_pdf_processor.py:55
 msgid "General usage"
 msgstr "Allmän användning"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#: pdf_bot/pdf_processor/split_pdf_processor.py:56
 msgid "{range}      all pages"
 msgstr "{range}      alla sidor"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#: pdf_bot/pdf_processor/split_pdf_processor.py:57
 msgid "{range}      page 8 only"
 msgstr "{range}      sidan 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}    first three pages"
 msgstr "{range}    tre första sidorna"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}     from page 8 onward"
 msgstr "{range}     från sidan 8 och framåt"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     last page only"
 msgstr "{range}     enda sista sidan"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}    all pages except the last page"
 msgstr "{range}    alla sidor utom sista sidan"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}     second last page only"
 msgstr "{range}     näst sista sidan"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}    last two pages"
 msgstr "{range}    två sista sidorna"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}  third and second last pages"
 msgstr "{range}  tredje och andra sista sidorna"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:68
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "Advanced usage"
 msgstr "Avancerad användning"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    sidor {pages} och till slutet"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range} pages {pages}"
 msgstr "{range} sidor {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   alla sidor i omvänd ordning"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} sidor {pages} utom {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "{range}  pages {pages}"
 msgstr "{range}  sidor {pages}"
 

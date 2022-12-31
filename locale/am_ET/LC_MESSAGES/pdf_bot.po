@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-31 07:03+0000\n"
-"PO-Revision-Date: 2022-12-31 07:03\n"
+"POT-Creation-Date: 2022-12-31 07:19+0000\n"
+"PO-Revision-Date: 2022-12-31 07:20\n"
 "Last-Translator: \n"
 "Language: am\n"
 "Language-Team: Amharic\n"
@@ -407,19 +407,19 @@ msgstr "የምትፈልገውን የሰብል ዓይነት ምረጥ"
 msgid "The crop values are invalid, try again"
 msgstr "የሰብል እሴት ዋጋ ቢስ ነው, እንደገና ይሞክሩ"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:31
 msgid "Decrypt"
 msgstr "ዲክሪፕት"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:41
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:38
 msgid "Send me the password to decrypt your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን ዲክሪፕት ለማድረግ የይለፍ ቃሉን ይላኩልኝ"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:26
 msgid "Encrypt"
 msgstr "ኢንክሪፕት"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:36
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:33
 msgid "Send me the password to encrypt your PDF file"
 msgstr "የፒዲኤፍ ፋይልዎን ለማመስጠር የይለፍ ቃሉን ይላኩልኝ"
 
@@ -443,25 +443,25 @@ msgstr "ወደ ምስሎች"
 msgid "Preview"
 msgstr "ቅድመ-እይታ"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:32
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:29
 msgid "Rename"
 msgstr "ዳግም ሰይም"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "የፋይል ስሞች ከሚከተሉት ፊደሎች መካከል አንዳቸውንም ሊይዙ አይችሉም, እባክዎ እንደገና ይሞክሩ\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:42
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "የፒ.ዲ.ኤፍ. ፋይልዎን እንደገና ለመሰየም የሚፈልጉትን የፋይል ስም ይላኩልኝ"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:41
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:36
 msgid "Rotate"
 msgstr "አዙር"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:79
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:74
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "ፒዲኤፍ ፋይልዎን አቅጣጫ ለማሽከርከር የሚፈልጉትን ዲግሪዎች ይምረጡ"
 
@@ -497,79 +497,79 @@ msgstr "ማድረግ የምትወዱትን ዓይነት ይምረጡ"
 msgid "The scale values are invalid, try again"
 msgstr "የስፋት እሴቶች ዋጋ ቢስ ናቸው, እንደገና ይሞክሩ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:31
+#: pdf_bot/pdf_processor/split_pdf_processor.py:28
 msgid "Split"
 msgstr "ተከፈለ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:35
+#: pdf_bot/pdf_processor/split_pdf_processor.py:32
 msgid "The split range is invalid, please try again"
 msgstr "የተከፈለበት ክልል ተቀባይነት የለውም, እባክዎ እንደገና ይሞክሩ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#: pdf_bot/pdf_processor/split_pdf_processor.py:54
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "ለማቆየት የሚፈልጓቸውን የገጾች ብዛት ላክልኝ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#: pdf_bot/pdf_processor/split_pdf_processor.py:55
 msgid "General usage"
 msgstr "አጠቃላይ አጠቃቀም"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#: pdf_bot/pdf_processor/split_pdf_processor.py:56
 msgid "{range}      all pages"
 msgstr "{range}      ሁሉም ገጾች"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#: pdf_bot/pdf_processor/split_pdf_processor.py:57
 msgid "{range}      page 8 only"
 msgstr "{range}      ገጽ 8 ብቻ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}    first three pages"
 msgstr "{range}    የመጀመሪያዎቹ ሦስት ገጾች"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}     from page 8 onward"
 msgstr "{range}     ከገጽ 8 ጀምሮ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     last page only"
 msgstr "{range}     የመጨረሻው ገጽ ብቻ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}    all pages except the last page"
 msgstr "{range}    ሁሉም ገጾች ከመጨረሻው ገጽ በስተቀር"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}     second last page only"
 msgstr "{range}     ሰከንድ የመጨረሻ ገጽ ብቻ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}    last two pages"
 msgstr "{range}    የመጨረሻዎቹ ሁለት ገጾች"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}  third and second last pages"
 msgstr "{range}  ሦስተኛ እና ሁለተኛ የመጨረሻ ገጾች"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:68
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "Advanced usage"
 msgstr "የላቀ አጠቃቀም"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    ገጾች {pages} እና እስከ መጨረሻው"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range} pages {pages}"
 msgstr "{range} ገጾች {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   ሁሉም ገጾች በተገላቢጦሽ ቅደም ተከተል"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} ገጾች {pages} ከ {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "{range}  pages {pages}"
 msgstr "{range}  ገጾች {pages}"
 

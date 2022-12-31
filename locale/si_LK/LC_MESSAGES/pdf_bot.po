@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-31 07:03+0000\n"
-"PO-Revision-Date: 2022-12-31 07:03\n"
+"POT-Creation-Date: 2022-12-31 07:19+0000\n"
+"PO-Revision-Date: 2022-12-31 07:20\n"
 "Last-Translator: \n"
 "Language: si\n"
 "Language-Team: Sinhala\n"
@@ -405,19 +405,19 @@ msgstr ""
 msgid "The crop values are invalid, try again"
 msgstr ""
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:31
 msgid "Decrypt"
 msgstr "විකේතනය"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:41
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:38
 msgid "Send me the password to decrypt your PDF file"
 msgstr "ඔබගේ PDF ගොනුව විකේතනය කිරීමට අවශ්‍ය මුරපදය මට එවන්න"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:26
 msgid "Encrypt"
 msgstr "ආකේතනය"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:36
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:33
 msgid "Send me the password to encrypt your PDF file"
 msgstr "ඔබගේ PDF ගොනුව ආකේතනය කිරීමට මුරපදය එවන්න"
 
@@ -441,24 +441,24 @@ msgstr ""
 msgid "Preview"
 msgstr "පෙරදසුන"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:32
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:29
 msgid "Rename"
 msgstr "නම වෙනස් කරන්න"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr ""
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:42
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "ඔබගේ PDF ගොනුවේ නාමය වෙනස් කිරීමට ඔබ කැමති ගොනු නාමය මට එවන්න"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:41
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:36
 msgid "Rotate"
 msgstr "කරකවන්න"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:79
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:74
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "ඔබේ PDF ගොනුව දක්ෂිණාවර්තව භ්‍රමණය කිරීමට ඔබ කැමති අංශක ප්‍රමාණය තෝරන්න"
 
@@ -492,79 +492,79 @@ msgstr ""
 msgid "The scale values are invalid, try again"
 msgstr ""
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:31
+#: pdf_bot/pdf_processor/split_pdf_processor.py:28
 msgid "Split"
 msgstr "කොටස් කරන්න"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:35
+#: pdf_bot/pdf_processor/split_pdf_processor.py:32
 msgid "The split range is invalid, please try again"
 msgstr ""
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#: pdf_bot/pdf_processor/split_pdf_processor.py:54
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "ඔබ තබා ගැනීමට කැමති පිටු පරාසය මට එවන්න"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#: pdf_bot/pdf_processor/split_pdf_processor.py:55
 msgid "General usage"
 msgstr "සාමාන්‍ය භාවිතය"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#: pdf_bot/pdf_processor/split_pdf_processor.py:56
 msgid "{range}      all pages"
 msgstr "{range}      සියලුම පිටු"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#: pdf_bot/pdf_processor/split_pdf_processor.py:57
 msgid "{range}      page 8 only"
 msgstr "{range}      පිටුව 8 පමණි"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}    first three pages"
 msgstr "{range}    පළමු පිටු තුන"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}     from page 8 onward"
 msgstr "8 වන පිටුවේ සිට {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     last page only"
 msgstr "{range}     අවසාන පිටුව පමණි"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}    all pages except the last page"
 msgstr "{range}    අවසාන පිටුව හැර අනෙකුත් සියලුම පිටු"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}     second last page only"
 msgstr "{range}     අවසාන පිටුව පමණි"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}    last two pages"
 msgstr "{range}    අවසාන පිටු දෙක"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}  third and second last pages"
 msgstr "{range}  තුන්වන සහ දෙවන අවසන් පිටු"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:68
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "Advanced usage"
 msgstr "උසස් භාවිතය"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    පිටු {pages} සහ අවසානය දක්වා"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range} pages {pages}"
 msgstr "{range} පිටු {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}   all pages in reversed order"
 msgstr "පිටු සියළු පිටු {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} පිටු {pages} හැර {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "{range}  pages {pages}"
 msgstr "{range}  පිටු {pages}"
 

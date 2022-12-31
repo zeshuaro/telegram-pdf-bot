@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-31 07:03+0000\n"
-"PO-Revision-Date: 2022-12-31 07:03\n"
+"POT-Creation-Date: 2022-12-31 07:19+0000\n"
+"PO-Revision-Date: 2022-12-31 07:20\n"
 "Last-Translator: \n"
 "Language: pl\n"
 "Language-Team: Polish\n"
@@ -407,19 +407,19 @@ msgstr "Wybierz typ kadrowania, który chcesz wykonać"
 msgid "The crop values are invalid, try again"
 msgstr "Wartości kadrowania są nieprawidłowe, spróbuj ponownie"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:34
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:31
 msgid "Decrypt"
 msgstr "Odszyfrować"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:41
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:38
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Wyślij mi hasło do odszyfrowania pliku PDF"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:29
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:26
 msgid "Encrypt"
 msgstr "Szyfrowania"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:36
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:33
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Wyślij mi hasło do zaszyfrowania pliku PDF"
 
@@ -443,25 +443,25 @@ msgstr "Do obrazów"
 msgid "Preview"
 msgstr "Podgląd"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:32
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:29
 msgid "Rename"
 msgstr "Zmienić nazwę"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:38
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "Nazwy plików nie mogą zawierać żadnego z następujących znaków, spróbuj ponownie:\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:42
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Wyślij mi nazwę pliku, którą chcesz zmienić nazwę pliku PDF na"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:41
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:36
 msgid "Rotate"
 msgstr "Obracać"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:79
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:74
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Wybierz stopnie, które chcesz obrócić plik PDF zgodnie z ruchem wskazówek zegara"
 
@@ -497,79 +497,79 @@ msgstr "Wybierz typ skali, którą chcesz wykonać"
 msgid "The scale values are invalid, try again"
 msgstr "Wartości skali są nieprawidłowe, spróbuj ponownie"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:31
+#: pdf_bot/pdf_processor/split_pdf_processor.py:28
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:35
+#: pdf_bot/pdf_processor/split_pdf_processor.py:32
 msgid "The split range is invalid, please try again"
 msgstr "Zakres podziału jest nieprawidłowy, spróbuj ponownie"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#: pdf_bot/pdf_processor/split_pdf_processor.py:54
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Wyślij mi zakres stron, które chcesz zachować"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#: pdf_bot/pdf_processor/split_pdf_processor.py:55
 msgid "General usage"
 msgstr "Ogólne użycie"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#: pdf_bot/pdf_processor/split_pdf_processor.py:56
 msgid "{range}      all pages"
 msgstr "{range}      wszystkie strony"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#: pdf_bot/pdf_processor/split_pdf_processor.py:57
 msgid "{range}      page 8 only"
 msgstr "{range}      tylko strona 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}    first three pages"
 msgstr "{range}    pierwsze trzy strony"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}     from page 8 onward"
 msgstr "{range}     od strony 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     last page only"
 msgstr "{range}     tylko ostatnia strona"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}    all pages except the last page"
 msgstr "{range}    wszystkie strony z wyjątkiem ostatniej strony"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}     second last page only"
 msgstr "{range}     przedostatnia strona"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}    last two pages"
 msgstr "{range}    dwie ostatnie strony"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}  third and second last pages"
 msgstr "{range}  trzecia i przedostatnia strona"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:68
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "Advanced usage"
 msgstr "Zaawansowane użytkowanie"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    stron {pages} i do końca"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#: pdf_bot/pdf_processor/split_pdf_processor.py:69
 msgid "{range} pages {pages}"
 msgstr "{pages}stron {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:73
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   wszystkich stron w odwróconej kolejności"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} strony {pages} z wyjątkiem {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:77
+#: pdf_bot/pdf_processor/split_pdf_processor.py:74
 msgid "{range}  pages {pages}"
 msgstr "{pages}stron {range}"
 
