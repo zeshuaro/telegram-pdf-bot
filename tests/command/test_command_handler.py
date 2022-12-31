@@ -22,16 +22,14 @@ class TestCommandHandler(TelegramTestMixin):
     async def test_handlers(self) -> None:
         actual = self.sut.handlers
         assert len(actual) == 3
+        handler_0, handler_1, handler_2 = actual
 
-        handler_0 = actual[0]
         assert isinstance(handler_0, CommandHandler)
         assert handler_0.commands == {self.START_COMMAND}
 
-        handler_1 = actual[1]
         assert isinstance(handler_1, CommandHandler)
         assert handler_1.commands == {self.HELP_COMMAND}
 
-        handler_2 = actual[2]
         assert isinstance(handler_2, CommandHandler)
         assert handler_2.commands == {self.SEND_COMMAND}
         assert handler_2.filters.name == filters.User(self.ADMIN_TELEGRAM_ID).name
