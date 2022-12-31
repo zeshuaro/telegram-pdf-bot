@@ -2,7 +2,7 @@ import os
 import shutil
 from abc import ABC, abstractmethod
 from contextlib import asynccontextmanager
-from typing import Any, AsyncGenerator, Callable, Coroutine, Type
+from typing import Any, AsyncGenerator, Callable, Coroutine
 
 from telegram import CallbackQuery, Message, Update
 from telegram.error import BadRequest
@@ -68,13 +68,13 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         yield FileTaskResult("")
 
     @property
-    def generic_error_types(self) -> set[Type[Exception]]:
+    def generic_error_types(self) -> set[type[Exception]]:
         return set()
 
     @property
     def custom_error_handlers(
         self,
-    ) -> dict[Type[Exception], ErrorHandlerType]:
+    ) -> dict[type[Exception], ErrorHandlerType]:
         return {}
 
     async def ask_task(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
@@ -161,8 +161,8 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
 
     def _get_error_handlers(
         self,
-    ) -> dict[Type[Exception], ErrorHandlerType]:
-        handlers: dict[Type[Exception], ErrorHandlerType] = {
+    ) -> dict[type[Exception], ErrorHandlerType]:
+        handlers: dict[type[Exception], ErrorHandlerType] = {
             x: self._handle_generic_error for x in self.generic_error_types
         }
         handlers.update(self.custom_error_handlers)

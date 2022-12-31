@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import AsyncGenerator, Callable, Type
+from typing import AsyncGenerator, Callable
 
 from telegram import Update
 from telegram.ext import ContextTypes
@@ -44,7 +44,7 @@ class DecryptPdfProcessor(AbstractPdfTextInputProcessor):
         return text
 
     @property
-    def custom_error_handlers(self) -> dict[Type[Exception], ErrorHandlerType]:
+    def custom_error_handlers(self) -> dict[type[Exception], ErrorHandlerType]:
         return {PdfIncorrectPasswordError: self._handle_incorrect_password}
 
     @asynccontextmanager

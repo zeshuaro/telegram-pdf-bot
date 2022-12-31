@@ -1,4 +1,3 @@
-from typing import Type
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -13,7 +12,7 @@ class MockProcessor(AbstractFileTaskProcessor):
     TASK_DATA_LIST = [TaskData("a", FileData), TaskData("b", FileData)]
 
     @property
-    def processor_type(self) -> Type[AbstractFileProcessor]:
+    def processor_type(self) -> type[AbstractFileProcessor]:
         mock_type = MagicMock(spec=AbstractFileProcessor)
         mock_type.get_task_data_list.return_value = self.TASK_DATA_LIST
         return mock_type

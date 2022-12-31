@@ -1,5 +1,3 @@
-from typing import Type
-
 from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.language import LanguageService
 from pdf_bot.models import TaskData
@@ -31,5 +29,5 @@ class AbstractPdfProcessor(AbstractFileProcessor):
         return [x.task_data for x in cls._PDF_PROCESSORS.values()]
 
     @property
-    def generic_error_types(self) -> set[Type[Exception]]:
+    def generic_error_types(self) -> set[type[Exception]]:
         return {PdfServiceError}
