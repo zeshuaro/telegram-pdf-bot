@@ -13,7 +13,7 @@ from pdf_bot.cli import CLIService
 from pdf_bot.command import CommandService, MyCommandHandler
 from pdf_bot.compare import CompareHandler, CompareService
 from pdf_bot.datastore import MyDatastoreClient
-from pdf_bot.error import ErrorHandler
+from pdf_bot.error import ErrorCallbackQueryHandler, ErrorHandler, ErrorService
 from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackService
 from pdf_bot.file import FileHandler, FileService
 from pdf_bot.image import ImageService
@@ -137,6 +137,7 @@ class Services(containers.DeclarativeContainer):
     command = providers.Singleton(
         CommandService, account_service=account, language_service=language
     )
+    error = providers.Singleton(ErrorService, language_service=language)
     telegram = providers.Singleton(
         TelegramService,
         io_service=io,
@@ -319,7 +320,6 @@ class Processors(containers.DeclarativeContainer):
 class Handlers(containers.DeclarativeContainer):
     _settings = providers.Configuration(pydantic_settings=[Settings()])
     services = providers.DependenciesContainer()
-    processors = providers.DependenciesContainer()
 
     error = providers.Singleton(ErrorHandler, language_service=services.language)
 
@@ -367,6 +367,11 @@ class Handlers(containers.DeclarativeContainer):
         telegram_service=services.telegram,
     )
 
+    # This is the catch all callback query handler so make sure it comes last
+    error_callback_query = providers.Singleton(
+        ErrorCallbackQueryHandler, error_service=services.error
+    )
+
 
 class Application(containers.DeclarativeContainer):
     core = providers.Container(Core)
@@ -374,4 +379,4 @@ class Application(containers.DeclarativeContainer):
     repositories = providers.Container(Repositories, clients=clients)
     services = providers.Container(Services, core=core, repositories=repositories)
     processors = providers.Container(Processors, services=services)
-    handlers = providers.Container(Handlers, services=services, processors=processors)
+    handlers = providers.Container(Handlers, services=services)
