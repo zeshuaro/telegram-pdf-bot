@@ -7,7 +7,7 @@ class LanguageRepository:
     EN_GB_CODE = "en_GB"
     EN_CODE = "en"
 
-    def __init__(self, datastore_client: Client):
+    def __init__(self, datastore_client: Client) -> None:
         self.datastore_client = datastore_client
 
     def get_language(self, user_id: int) -> str:

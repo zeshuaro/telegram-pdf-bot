@@ -20,7 +20,7 @@ class ErrorHandler:
         if not isinstance(update, Update):
             try:
                 raise context.error
-            except Exception as e:  # pylint: disable=broad-except
+            except Exception as e:  # noqa: BlindExcept
                 logger.exception("Something went wrong without an Update instance")
                 sentry_sdk.capture_exception(e)
             return
@@ -34,7 +34,7 @@ class ErrorHandler:
             pass
         except BadRequest as e:
             await self._handle_bad_request(update, context, e)
-        except Exception as e:  # pylint: disable=broad-except
+        except Exception as e:  # noqa: BlindExcept
             await self._send_message(update, context, _("Something went wrong, please try again"))
             sentry_sdk.capture_exception(e)
 
@@ -73,5 +73,5 @@ class ErrorHandler:
         try:
             _ = self.language_service.set_app_language(update, context)
             await context.bot.send_message(chat_id, _(text))
-        except Exception:  # pylint: disable=broad-except
+        except Exception:  # noqa: BlindExcept
             pass

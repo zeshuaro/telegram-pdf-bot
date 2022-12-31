@@ -4,7 +4,7 @@ from pdf_bot.consts import LANGUAGE, USER
 
 
 class AccountRepository:
-    def __init__(self, datastore_client: Client):
+    def __init__(self, datastore_client: Client) -> None:
         self.datastore_client = datastore_client
 
     def get_user(self, user_id: int) -> Entity | None:

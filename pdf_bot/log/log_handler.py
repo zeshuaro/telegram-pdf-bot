@@ -6,7 +6,7 @@ from sentry_sdk.integrations.logging import ignore_logger
 
 
 class InterceptLoggingHandler(logging.Handler):
-    def emit(self, record):
+    def emit(self, record: logging.LogRecord) -> None:
         # Get corresponding Loguru level if it exists.
         try:
             level = logger.level(record.levelname).name
