@@ -12,9 +12,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestBatchImageService(
-    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
-):
+class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin):
     WAIT_IMAGE = 0
     IMAGE_DATA = "image_data"
 
@@ -40,9 +38,7 @@ class TestBatchImageService(
 
     @pytest.mark.asyncio
     async def test_ask_first_image(self) -> None:
-        actual = await self.sut.ask_first_image(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.ask_first_image(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
         self._assert_ask_first_image()
@@ -56,9 +52,7 @@ class TestBatchImageService(
         assert actual == self.WAIT_IMAGE
 
         file_data = self.file_data_list.append.call_args.args[0]
-        assert file_data == FileData(
-            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME
-        )
+        assert file_data == FileData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
 
         self.telegram_service.send_file_names.assert_called_once()
         self.telegram_update.effective_message.reply_text.assert_called_once()
@@ -164,9 +158,7 @@ class TestBatchImageService(
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.IMAGE_DATA
         )
-        self.image_service.convert_images_to_pdf.assert_called_once_with(
-            self.file_data_list
-        )
+        self.image_service.convert_images_to_pdf.assert_called_once_with(self.file_data_list)
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
@@ -240,7 +232,5 @@ class TestBatchImageService(
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     def _assert_ask_first_image(self) -> None:
-        self.telegram_context.user_data.__setitem__.assert_called_with(
-            self.IMAGE_DATA, []
-        )
+        self.telegram_context.user_data.__setitem__.assert_called_with(self.IMAGE_DATA, [])
         self.telegram_service.reply_with_cancel_markup.assert_called_once()

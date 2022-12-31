@@ -41,9 +41,7 @@ class TestMergeService(
 
     @pytest.mark.asyncio
     async def test_ask_first_pdf(self) -> None:
-        actual = await self.sut.ask_first_pdf(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.ask_first_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_MERGE_PDF
         self._assert_ask_first_pdf()
@@ -57,9 +55,7 @@ class TestMergeService(
         assert actual == self.WAIT_MERGE_PDF
 
         file_data = self.file_data_list.append.call_args.args[0]
-        assert file_data == FileData(
-            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME
-        )
+        assert file_data == FileData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
 
         self.telegram_service.send_file_names.assert_called_once()
         self.telegram_update.effective_message.reply_text.assert_called_once()
@@ -130,9 +126,7 @@ class TestMergeService(
         self.telegram_message.text = self.DONE
         self.file_data_list.__len__.return_value = 2
         self.telegram_service.get_user_data.return_value = self.file_data_list
-        self.pdf_service.merge_pdfs.return_value.__aenter__.return_value = (
-            self.FILE_PATH
-        )
+        self.pdf_service.merge_pdfs.return_value.__aenter__.return_value = self.FILE_PATH
 
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
@@ -228,7 +222,5 @@ class TestMergeService(
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     def _assert_ask_first_pdf(self) -> None:
-        self.telegram_context.user_data.__setitem__.assert_called_with(
-            self.MERGE_PDF_DATA, []
-        )
+        self.telegram_context.user_data.__setitem__.assert_called_with(self.MERGE_PDF_DATA, [])
         self.telegram_service.reply_with_cancel_markup.assert_called_once()

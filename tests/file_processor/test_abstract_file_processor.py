@@ -50,9 +50,7 @@ class MockProcessor(AbstractFileProcessor):
         return MagicMock(spec=BaseHandler)
 
     @asynccontextmanager
-    async def process_file_task(
-        self, _file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, _file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         yield self.FILE_TASK_RESULT
 
 
@@ -105,9 +103,7 @@ class TestAbstractFileProcessorInit(
 
         proc = MockProcessor(self.telegram_service, self.language_service)
 
-        self.file_processors.__setitem__.assert_called_once_with(
-            proc.__class__.__name__, proc
-        )
+        self.file_processors.__setitem__.assert_called_once_with(proc.__class__.__name__, proc)
 
     def test_init_already_initialized(self) -> None:
         processors: dict = {MockProcessor.__name__: MagicMock()}
@@ -146,9 +142,7 @@ class TestAbstractFileProcessor(
         with patch.object(
             self.sut, "ask_task_helper", return_value=self.WAIT_FILE_TASK
         ) as ask_task_helper:
-            actual = await self.sut.ask_task(
-                self.telegram_update, self.telegram_context
-            )
+            actual = await self.sut.ask_task(self.telegram_update, self.telegram_context)
 
             assert actual == self.WAIT_FILE_TASK
             self.telegram_callback_query.delete_message.assert_called_once()
@@ -166,9 +160,7 @@ class TestAbstractFileProcessor(
         with patch.object(
             self.sut, "ask_task_helper", return_value=self.WAIT_FILE_TASK
         ) as ask_task_helper:
-            actual = await self.sut.ask_task(
-                self.telegram_update, self.telegram_context
-            )
+            actual = await self.sut.ask_task(self.telegram_update, self.telegram_context)
 
             assert actual == self.WAIT_FILE_TASK
             self.telegram_callback_query.delete_message.assert_not_called()
@@ -181,9 +173,7 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file(self) -> None:
-        actual = await self.sut.process_file(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self._assert_process_file_succeed()
@@ -198,9 +188,7 @@ class TestAbstractFileProcessor(
                 MockProcessor.FILE_TASK_RESULT.path, self.TELEGRAM_TEXT
             )
 
-            actual = await self.sut.process_file(
-                self.telegram_update, self.telegram_context
-            )
+            actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
             assert actual == ConversationHandler.END
             self._assert_process_file_succeed()
@@ -210,30 +198,24 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_dir_output(self) -> None:
-        with patch(
-            "pdf_bot.file_processor.abstract_file_processor.os"
-        ) as mock_os, patch(
+        with patch("pdf_bot.file_processor.abstract_file_processor.os") as mock_os, patch(
             "pdf_bot.file_processor.abstract_file_processor.shutil"
         ) as mock_shutil:
             mock_os.path.is_dir.return_value = True
 
-            actual = await self.sut.process_file(
-                self.telegram_update, self.telegram_context
-            )
+            actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
             assert actual == ConversationHandler.END
-            self._assert_process_file_succeed(
-                f"{MockProcessor.FILE_TASK_RESULT.path}.zip"
-            )
+            self._assert_process_file_succeed(f"{MockProcessor.FILE_TASK_RESULT.path}.zip")
             mock_shutil.make_archive(
                 MockProcessor.PROCESS_RESULT, "zip", MockProcessor.PROCESS_RESULT
             )
 
     @pytest.mark.asyncio
     async def test_process_file_generic_error_not_registered(self) -> None:
-        with patch.object(
-            self.sut, "process_file_task", side_effect=GenericError
-        ), pytest.raises(GenericError):
+        with patch.object(self.sut, "process_file_task", side_effect=GenericError), pytest.raises(
+            GenericError
+        ):
             await self.sut.process_file(self.telegram_update, self.telegram_context)
 
         self._assert_get_file_and_messsage_data()
@@ -273,9 +255,9 @@ class TestAbstractFileProcessor(
             self.telegram_service, self.language_service, bypass_init_check=True
         )
 
-        with patch.object(
-            sut, "process_file_task", side_effect=UnknownError
-        ), pytest.raises(UnknownError):
+        with patch.object(sut, "process_file_task", side_effect=UnknownError), pytest.raises(
+            UnknownError
+        ):
             await sut.process_file(self.telegram_update, self.telegram_context)
 
         self._assert_get_file_and_messsage_data()
@@ -285,14 +267,10 @@ class TestAbstractFileProcessor(
     async def test_process_file_invalid_file_data(self) -> None:
         self.telegram_service.get_file_data.side_effect = TelegramGetUserDataError()
 
-        actual = await self.sut.process_file(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
-        self.telegram_service.get_file_data.assert_called_once_with(
-            self.telegram_context
-        )
+        self.telegram_service.get_file_data.assert_called_once_with(self.telegram_context)
         self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio
@@ -300,9 +278,7 @@ class TestAbstractFileProcessor(
         self.telegram_callback_query.data = self.FILE_DATA
         self.telegram_update.callback_query = self.telegram_callback_query
 
-        actual = await self.sut.process_file(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
@@ -326,14 +302,10 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("error", [TelegramGetUserDataError, BadRequest("Error")])
-    async def test_process_file_process_previous_message_error(
-        self, error: Exception
-    ) -> None:
+    async def test_process_file_process_previous_message_error(self, error: Exception) -> None:
         self.telegram_service.get_message_data.side_effect = error
 
-        actual = await self.sut.process_file(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self._assert_process_file_succeed()
@@ -351,9 +323,5 @@ class TestAbstractFileProcessor(
         )
 
     def _assert_get_file_and_messsage_data(self) -> None:
-        self.telegram_service.get_file_data.assert_called_once_with(
-            self.telegram_context
-        )
-        self.telegram_service.get_message_data.assert_called_once_with(
-            self.telegram_context
-        )
+        self.telegram_service.get_file_data.assert_called_once_with(self.telegram_context)
+        self.telegram_service.get_message_data.assert_called_once_with(self.telegram_context)

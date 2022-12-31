@@ -25,12 +25,8 @@ class TestLanguageService(TelegramTestMixin):
         self.gettext_patcher.stop()
         super().teardown_method()
 
-    @pytest.mark.parametrize(
-        "value,expected", [("es", "es_ES"), ("clearly_invalid", None)]
-    )
-    def test_get_language_code_from_short_code(
-        self, value: str, expected: str | None
-    ) -> None:
+    @pytest.mark.parametrize("value,expected", [("es", "es_ES"), ("clearly_invalid", None)])
+    def test_get_language_code_from_short_code(self, value: str, expected: str | None) -> None:
         actual = self.sut.get_language_code_from_short_code(value)
         assert actual == expected
 
@@ -38,9 +34,7 @@ class TestLanguageService(TelegramTestMixin):
     async def test_send_language_options(self) -> None:
         self.telegram_update.callback_query = None
 
-        await self.sut.send_language_options(
-            self.telegram_update, self.telegram_context
-        )
+        await self.sut.send_language_options(self.telegram_update, self.telegram_context)
 
         self.telegram_callback_query.answer.assert_not_called()
         self.telegram_context.drop_callback_data.assert_not_called()
@@ -50,9 +44,7 @@ class TestLanguageService(TelegramTestMixin):
     async def test_send_language_options_with_callback_query(self) -> None:
         self.telegram_update.callback_query = self.telegram_callback_query
 
-        await self.sut.send_language_options(
-            self.telegram_update, self.telegram_context
-        )
+        await self.sut.send_language_options(self.telegram_update, self.telegram_context)
 
         self.telegram_callback_query.answer.assert_called_once()
         self.telegram_context.drop_callback_data.assert_not_called()
@@ -101,9 +93,7 @@ class TestLanguageService(TelegramTestMixin):
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("side_effect", [None, KeyError])
-    async def test_update_user_language(
-        self, side_effect: type[Exception] | None
-    ) -> None:
+    async def test_update_user_language(self, side_effect: type[Exception] | None) -> None:
         self.telegram_callback_query.data = self.LANGUAGE_DATA
         self.telegram_context.drop_callback_data.side_effect = side_effect
 
@@ -137,9 +127,7 @@ class TestLanguageService(TelegramTestMixin):
         self.telegram_callback_query.data = None
 
         with pytest.raises(TypeError):
-            await self.sut.update_user_language(
-                self.telegram_update, self.telegram_context
-            )
+            await self.sut.update_user_language(self.telegram_update, self.telegram_context)
 
             self.language_repository.upsert_language.assert_not_called()
             self.telegram_user_data.__setitem__.assert_not_called()

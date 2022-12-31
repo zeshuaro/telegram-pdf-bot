@@ -50,9 +50,7 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
     def handler(self) -> ConversationHandler:
         return ConversationHandler(
             entry_points=[
-                CallbackQueryHandler(
-                    self._ask_text_input, pattern=self.entry_point_data_type
-                )
+                CallbackQueryHandler(self._ask_text_input, pattern=self.entry_point_data_type)
             ],
             states={
                 self.WAIT_TEXT_INPUT: [
@@ -60,18 +58,14 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
                     CallbackQueryHandler(self.ask_task, pattern=BackData),
                 ]
             },
-            fallbacks=[
-                CommandHandler("cancel", self.telegram_service.cancel_conversation)
-            ],
+            fallbacks=[CommandHandler("cancel", self.telegram_service.cancel_conversation)],
             map_to_parent={
                 # Return to wait file task state
                 AbstractFileTaskProcessor.WAIT_FILE_TASK: AbstractFileTaskProcessor.WAIT_FILE_TASK,
             },
         )
 
-    async def _ask_text_input(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> str:
+    async def _ask_text_input(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
         query = update.callback_query
         await self.telegram_service.answer_query_and_drop_data(context, query)
 
@@ -98,9 +92,7 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
             return self.WAIT_TEXT_INPUT
 
         file_data = self.telegram_service.get_file_data(context)
-        text_input_data = TextInputData(
-            id=file_data.id, name=file_data.name, text=cleaned_text
-        )
+        text_input_data = TextInputData(id=file_data.id, name=file_data.name, text=cleaned_text)
         self.telegram_service.cache_file_data(context, text_input_data)
 
         return await self.process_file(update, context)

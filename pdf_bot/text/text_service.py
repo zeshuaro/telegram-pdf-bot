@@ -31,9 +31,7 @@ class TextService:
         self.telegram_service = telegram_service
         self.language_service = language_service
 
-    async def ask_pdf_text(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def ask_pdf_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         await self.telegram_service.reply_with_cancel_markup(
             update,
@@ -42,9 +40,7 @@ class TextService:
         )
         return self.WAIT_TEXT
 
-    async def ask_pdf_font(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def ask_pdf_font(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
         text = message.text
@@ -73,9 +69,7 @@ class TextService:
 
         return self.WAIT_FONT
 
-    async def check_text(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         message: Message = update.effective_message  # type: ignore
         await message.reply_chat_action(ChatAction.TYPING)
 
@@ -110,12 +104,8 @@ class TextService:
             await message.reply_text(_(str(e)))
             return ConversationHandler.END
 
-        await message.reply_text(
-            _("Creating your PDF file"), reply_markup=ReplyKeyboardRemove()
-        )
+        await message.reply_text(_("Creating your PDF file"), reply_markup=ReplyKeyboardRemove())
         async with self.pdf_service.create_pdf_from_text(text, font_data) as out_path:
-            await self.telegram_service.send_file(
-                update, context, out_path, TaskType.text_to_pdf
-            )
+            await self.telegram_service.send_file(update, context, out_path, TaskType.text_to_pdf)
 
         return ConversationHandler.END

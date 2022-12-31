@@ -47,9 +47,7 @@ class MockProcessor(AbstractPdfTextInputProcessor):
         return self.FILE_NAME
 
     @asynccontextmanager
-    async def process_file_task(
-        self, _file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, _file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         yield self.FILE_TASK_RESULT
 
 
@@ -113,13 +111,9 @@ class TestAbstractPdfTextInputProcessor(
 
     @pytest.mark.asyncio
     async def test_ask_text_input(self) -> None:
-        self.telegram_callback_query.edit_message_text.return_value = (
-            self.telegram_message
-        )
+        self.telegram_callback_query.edit_message_text.return_value = self.telegram_message
 
-        actual = await self.sut._ask_text_input(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut._ask_text_input(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_TEXT_INPUT
         self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
@@ -143,9 +137,7 @@ class TestAbstractPdfTextInputProcessor(
         )
         self.telegram_service.get_file_data.side_effect = get_file_data
 
-        actual = await self.sut._process_text_input(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut._process_text_input(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         assert self.telegram_service.get_file_data.call_count == 2
@@ -156,9 +148,7 @@ class TestAbstractPdfTextInputProcessor(
     @pytest.mark.asyncio
     async def test_process_text_input_invalid_input(self) -> None:
         with patch.object(self.sut, "get_cleaned_text_input", return_value=None):
-            actual = await self.sut._process_text_input(
-                self.telegram_update, self.telegram_context
-            )
+            actual = await self.sut._process_text_input(self.telegram_update, self.telegram_context)
 
             assert actual == self.WAIT_TEXT_INPUT
             self.telegram_service.get_file_data.assert_not_called()

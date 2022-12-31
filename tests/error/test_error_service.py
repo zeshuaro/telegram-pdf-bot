@@ -15,9 +15,7 @@ class TestErrorService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_process_unknown_callback_query(self) -> None:
-        await self.sut.process_unknown_callback_query(
-            self.telegram_update, self.telegram_context
-        )
+        await self.sut.process_unknown_callback_query(self.telegram_update, self.telegram_context)
 
         self.telegram_callback_query.answer.assert_called_once()
         self.telegram_callback_query.edit_message_text.assert_called_once()
@@ -27,9 +25,7 @@ class TestErrorService(LanguageServiceTestMixin, TelegramTestMixin):
     @pytest.mark.asyncio
     async def test_process_unknown_callback_query_edit_bad_request(self) -> None:
         self.telegram_callback_query.edit_message_text.side_effect = BadRequest("Error")
-        await self.sut.process_unknown_callback_query(
-            self.telegram_update, self.telegram_context
-        )
+        await self.sut.process_unknown_callback_query(self.telegram_update, self.telegram_context)
         self._assert_edit_delete_reply_text()
 
     @pytest.mark.asyncio
@@ -38,9 +34,7 @@ class TestErrorService(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_callback_query.edit_message_text.side_effect = err
         self.telegram_callback_query.delete_message.side_effect = err
 
-        await self.sut.process_unknown_callback_query(
-            self.telegram_update, self.telegram_context
-        )
+        await self.sut.process_unknown_callback_query(self.telegram_update, self.telegram_context)
 
         self._assert_edit_delete_reply_text()
 

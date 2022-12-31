@@ -53,9 +53,7 @@ class TestRenamePdfProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
-        self.pdf_service.rename_pdf.return_value.__aenter__.return_value = (
-            self.FILE_PATH
-        )
+        self.pdf_service.rename_pdf.return_value.__aenter__.return_value = self.FILE_PATH
 
         async with self.sut.process_file_task(self.TEXT_INPUT_DATA) as actual:
             assert actual == self.FILE_TASK_RESULT

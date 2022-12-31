@@ -109,9 +109,7 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_callback_bad_request_query_outdated(self) -> None:
-        self.telegram_context.error = BadRequest(
-            "Query is too old and response timeout expired"
-        )
+        self.telegram_context.error = BadRequest("Query is too old and response timeout expired")
 
         await self.sut.callback(self.telegram_update, self.telegram_context)
 

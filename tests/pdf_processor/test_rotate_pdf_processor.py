@@ -83,9 +83,7 @@ class TestRotatePdfProcessor(
             name=self.TELEGRAM_DOCUMENT_NAME,
             degree=degree,
         )
-        self.pdf_service.rotate_pdf.return_value.__aenter__.return_value = (
-            self.FILE_PATH
-        )
+        self.pdf_service.rotate_pdf.return_value.__aenter__.return_value = self.FILE_PATH
 
         async with self.sut.process_file_task(degree_data) as actual:
             assert actual == self.FILE_TASK_RESULT

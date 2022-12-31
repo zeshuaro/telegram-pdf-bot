@@ -52,6 +52,4 @@ class TestImageToPdfProcessorProcessor(
 
         async with self.sut.process_file_task(self.FILE_DATA) as actual:
             assert actual == self.FILE_TASK_RESULT
-            self.image_service.convert_images_to_pdf.assert_called_once_with(
-                [self.FILE_DATA]
-            )
+            self.image_service.convert_images_to_pdf.assert_called_once_with([self.FILE_DATA])

@@ -28,8 +28,6 @@ class ImageToPdfProcessor(AbstractImageProcessor):
         return CallbackQueryHandler(self.process_file, pattern=ImageToPdfData)
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         async with self.image_service.convert_images_to_pdf([file_data]) as path:
             yield FileTaskResult(path)

@@ -16,9 +16,7 @@ from .compare_service import CompareService
 class CompareHandler(AbstractTelegramHandler):
     _COMPARE_COMMAND = "compare"
 
-    def __init__(
-        self, compare_service: CompareService, telegram_service: TelegramService
-    ) -> None:
+    def __init__(self, compare_service: CompareService, telegram_service: TelegramService) -> None:
         self.compare_service = compare_service
         self.telegram_service = telegram_service
 
@@ -27,20 +25,14 @@ class CompareHandler(AbstractTelegramHandler):
         return [
             ConversationHandler(
                 entry_points=[
-                    CommandHandler(
-                        self._COMPARE_COMMAND, self.compare_service.ask_first_pdf
-                    )
+                    CommandHandler(self._COMPARE_COMMAND, self.compare_service.ask_first_pdf)
                 ],
                 states={
                     CompareService.WAIT_FIRST_PDF: [
-                        MessageHandler(
-                            filters.Document.PDF, self.compare_service.check_first_pdf
-                        )
+                        MessageHandler(filters.Document.PDF, self.compare_service.check_first_pdf)
                     ],
                     CompareService.WAIT_SECOND_PDF: [
-                        MessageHandler(
-                            filters.Document.PDF, self.compare_service.compare_pdfs
-                        )
+                        MessageHandler(filters.Document.PDF, self.compare_service.compare_pdfs)
                     ],
                 },
                 fallbacks=[

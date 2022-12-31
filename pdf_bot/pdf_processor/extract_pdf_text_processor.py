@@ -28,8 +28,6 @@ class ExtractPdfTextProcessor(AbstractPdfProcessor):
         return CallbackQueryHandler(self.process_file, pattern=ExtractPdfTextData)
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         async with self.pdf_service.extract_text_from_pdf(file_data.id) as path:
             yield FileTaskResult(path)

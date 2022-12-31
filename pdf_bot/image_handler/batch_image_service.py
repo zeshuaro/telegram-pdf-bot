@@ -30,9 +30,7 @@ class BatchImageService:
         self.telegram_service = telegram_service
         self.language_service = language_service
 
-    async def ask_first_image(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def ask_first_image(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         context.user_data[self.IMAGE_DATA] = []  # type: ignore
         _ = self.language_service.set_app_language(update, context)
         await self.telegram_service.reply_with_cancel_markup(
@@ -40,8 +38,7 @@ class BatchImageService:
             context,
             "{desc_1}\n\n{desc_2}".format(
                 desc_1=_(
-                    "Send me the images that you'll like to beautify or convert into a"
-                    " PDF file"
+                    "Send me the images that you'll like to beautify or convert into a PDF file"
                 ),
                 desc_2=_(
                     "Note that the images will be beautified and converted in the order"
@@ -52,9 +49,7 @@ class BatchImageService:
 
         return self.WAIT_IMAGE
 
-    async def check_image(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def check_image(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
 
@@ -68,18 +63,14 @@ class BatchImageService:
         context.user_data[self.IMAGE_DATA].append(file_data)  # type: ignore
         return await self._ask_next_image(update, context)
 
-    async def check_text(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
         text = message.text
 
         if text in [_(self._REMOVE_LAST), _(self._BEAUTIFY), _(self._TO_PDF)]:
             try:
-                file_data_list = self.telegram_service.get_user_data(
-                    context, self.IMAGE_DATA
-                )
+                file_data_list = self.telegram_service.get_user_data(context, self.IMAGE_DATA)
             except TelegramServiceError as e:
                 await message.reply_text(_(str(e)))
                 return ConversationHandler.END
@@ -91,9 +82,7 @@ class BatchImageService:
             return await self.telegram_service.cancel_conversation(update, context)
         return self.WAIT_IMAGE
 
-    async def _ask_next_image(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def _ask_next_image(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         text = "{desc}\n".format(desc=_("You've sent me these images so far:"))
         await self.telegram_service.send_file_names(
@@ -131,9 +120,7 @@ class BatchImageService:
             return await self.ask_first_image(update, context)
 
         await update.effective_message.reply_text(  # type: ignore
-            _("{file_name} has been removed").format(
-                file_name=f"<b>{file_data.name}</b>"
-            ),
+            _("{file_name} has been removed").format(file_name=f"<b>{file_data.name}</b>"),
             parse_mode=ParseMode.HTML,
         )
 
@@ -189,9 +176,7 @@ class BatchImageService:
                     update, context, out_path, TaskType.beautify_image
                 )
         else:
-            async with self.image_service.convert_images_to_pdf(
-                file_data_list
-            ) as out_path:
+            async with self.image_service.convert_images_to_pdf(file_data_list) as out_path:
                 await self.telegram_service.send_file(
                     update, context, out_path, TaskType.image_to_pdf
                 )

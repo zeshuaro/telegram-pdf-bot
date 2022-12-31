@@ -6,9 +6,7 @@ from pdf_bot.settings import Settings
 
 
 class AnalyticsRepository:
-    def __init__(
-        self, api_client: Session, settings: Settings | dict[str, Any]
-    ) -> None:
+    def __init__(self, api_client: Session, settings: Settings | dict[str, Any]) -> None:
         self.api_client = api_client
 
         # There's a bug where configurations are passed as a dict, so we attempt to pass

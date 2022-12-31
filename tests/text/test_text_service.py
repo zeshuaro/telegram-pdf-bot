@@ -12,9 +12,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestTextService(
-    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
-):
+class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin):
     WAIT_TEXT = 0
     WAIT_FONT = 1
 
@@ -45,17 +43,13 @@ class TestTextService(
 
     @pytest.mark.asyncio
     async def test_ask_pdf_text(self) -> None:
-        actual = await self.sut.ask_pdf_text(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.ask_pdf_text(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_TEXT
         self.telegram_service.reply_with_cancel_markup.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_ask_pdf_font(self) -> None:
-        actual = await self.sut.ask_pdf_font(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.ask_pdf_font(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_FONT
         self.telegram_context.user_data.__setitem__.assert_called_once_with(
@@ -67,9 +61,7 @@ class TestTextService(
     async def test_ask_pdf_font_cancel_option(self) -> None:
         self.telegram_message.text = "Cancel"
 
-        actual = await self.sut.ask_pdf_font(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.ask_pdf_font(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.telegram_context.user_data.__setitem__.assert_not_called()
@@ -77,9 +69,7 @@ class TestTextService(
 
     @pytest.mark.asyncio
     async def test_check_text(self) -> None:
-        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = (
-            self.FILE_PATH
-        )
+        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = self.FILE_PATH
 
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
@@ -88,9 +78,7 @@ class TestTextService(
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.TEXT_KEY
         )
-        self.pdf_service.create_pdf_from_text.assert_called_once_with(
-            self.PDF_TEXT, self.font_data
-        )
+        self.pdf_service.create_pdf_from_text.assert_called_once_with(self.PDF_TEXT, self.font_data)
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
@@ -127,9 +115,7 @@ class TestTextService(
     @pytest.mark.asyncio
     async def test_check_text_skip_option(self) -> None:
         self.telegram_message.text = self.SKIP
-        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = (
-            self.FILE_PATH
-        )
+        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = self.FILE_PATH
 
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
@@ -138,9 +124,7 @@ class TestTextService(
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.TEXT_KEY
         )
-        self.pdf_service.create_pdf_from_text.assert_called_once_with(
-            self.PDF_TEXT, None
-        )
+        self.pdf_service.create_pdf_from_text.assert_called_once_with(self.PDF_TEXT, None)
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,

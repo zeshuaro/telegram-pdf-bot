@@ -17,9 +17,7 @@ class MyCommandHandler(AbstractTelegramHandler):
     @property
     def handlers(self) -> list[BaseHandler]:
         return [
-            CommandHandler(
-                self._START_COMMAND, self.command_service.send_start_message
-            ),
+            CommandHandler(self._START_COMMAND, self.command_service.send_start_message),
             CommandHandler(self._HELP_COMMAND, self.command_service.send_help_message),
             CommandHandler(
                 self._SEND_COMMAND,

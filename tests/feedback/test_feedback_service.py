@@ -8,9 +8,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestFeedbackService(
-    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
-):
+class TestFeedbackService(LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin):
     WAIT_FEEDBACK = 0
     VALID_LANGUAGE_CODE = "en"
     CANCEL = "Cancel"
@@ -37,9 +35,7 @@ class TestFeedbackService(
 
     @pytest.mark.asyncio
     async def test_ask_feedback(self) -> None:
-        actual = await self.sut.ask_feedback(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.ask_feedback(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_FEEDBACK
         self.telegram_service.reply_with_cancel_markup.assert_called_once()

@@ -22,9 +22,7 @@ class FileService:
         self.pdf_task_processor = pdf_task_processor
         self.language_service = language_service
 
-    async def check_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> str | int:
+    async def check_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str | int:
         file_data = await self._get_file_data(update, context)
         if file_data is None:
             return ConversationHandler.END
@@ -32,9 +30,7 @@ class FileService:
 
         return await self.pdf_task_processor.ask_task(update, context)
 
-    async def check_image(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int | str:
+    async def check_image(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int | str:
         file_data = await self._get_file_data(update, context)
         if file_data is None:
             return ConversationHandler.END

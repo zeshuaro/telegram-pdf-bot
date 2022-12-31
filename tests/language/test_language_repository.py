@@ -64,9 +64,7 @@ class TestLanguageRepository:
         self.user_entity.__setitem__.assert_called_with(LANGUAGE, self.LANGUAGE_CODE)
         self.db_client.put.assert_called_once_with(self.user_entity)
 
-    def _mock_user_entity_dict(
-        self, user_entity_dict: dict[str, Any] | None = None
-    ) -> None:
+    def _mock_user_entity_dict(self, user_entity_dict: dict[str, Any] | None = None) -> None:
         if user_entity_dict is None:
             user_entity_dict = self.USER_ENTITY_DICT
         self.user_entity.__getitem__.side_effect = user_entity_dict.__getitem__

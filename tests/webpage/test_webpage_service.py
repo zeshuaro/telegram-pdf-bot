@@ -18,9 +18,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestWebpageService(
-    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
-):
+class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin):
     URL = "https://example.com"
     HOSTNAME = "example.com"
     URL_HASH = hashlib.sha256(URL.encode("utf-8")).hexdigest()
@@ -30,17 +28,13 @@ class TestWebpageService(
         self.telegram_message.text = self.URL
 
         self.io_service = MagicMock(spec=IOService)
-        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = (
-            self.FILE_PATH
-        )
+        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = self.FILE_PATH
 
         self.telegram_service = self.mock_telegram_service()
         self.telegram_service.user_data_contains.return_value = False
 
         self.language_service = self.mock_language_service()
-        self.sut = WebpageService(
-            self.io_service, self.language_service, self.telegram_service
-        )
+        self.sut = WebpageService(self.io_service, self.language_service, self.telegram_service)
 
         self.html = MagicMock(spec=HTML)
         self.html_cls_patcher = patch(

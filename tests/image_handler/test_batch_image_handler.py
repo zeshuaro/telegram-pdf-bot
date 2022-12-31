@@ -38,9 +38,7 @@ class TestCompareHandlers(TelegramServiceTestMixin):
         assert len(wait_image) == 2
 
         assert isinstance(wait_image[0], MessageHandler)
-        assert (
-            wait_image[0].filters.name == (filters.Document.IMAGE | filters.PHOTO).name
-        )
+        assert wait_image[0].filters.name == (filters.Document.IMAGE | filters.PHOTO).name
 
         assert isinstance(wait_image[1], MessageHandler)
         assert wait_image[1].filters.name == TEXT_FILTER.name

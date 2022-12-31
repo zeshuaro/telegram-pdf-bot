@@ -104,22 +104,16 @@ class TelegramService:
         return context.user_data is not None and key in context.user_data
 
     @staticmethod
-    def update_user_data(
-        context: ContextTypes.DEFAULT_TYPE, key: str, value: Any
-    ) -> None:
+    def update_user_data(context: ContextTypes.DEFAULT_TYPE, key: str, value: Any) -> None:
         if context.user_data is None:
-            raise TelegramUpdateUserDataError(
-                _("Something went wrong, please try again")
-            )
+            raise TelegramUpdateUserDataError(_("Something went wrong, please try again"))
         context.user_data[key] = value
 
     def get_file_data(self, context: ContextTypes.DEFAULT_TYPE) -> FileData:
         data: FileData = self.get_user_data(context, FILE_DATA)
         return data
 
-    def cache_file_data(
-        self, context: ContextTypes.DEFAULT_TYPE, file_data: FileData
-    ) -> None:
+    def cache_file_data(self, context: ContextTypes.DEFAULT_TYPE, file_data: FileData) -> None:
         self.update_user_data(context, FILE_DATA, file_data)
 
     def get_message_data(self, context: ContextTypes.DEFAULT_TYPE) -> MessageData:
@@ -133,9 +127,7 @@ class TelegramService:
             return
 
         try:
-            self.update_user_data(
-                context, MESSAGE_DATA, MessageData.from_telegram_message(message)
-            )
+            self.update_user_data(context, MESSAGE_DATA, MessageData.from_telegram_message(message))
         except TelegramUpdateUserDataError:
             pass
 
@@ -155,9 +147,7 @@ class TelegramService:
             and isinstance(img_file, Document)
             and not img_file.mime_type.startswith(self.IMAGE_MIME_TYPE_PREFIX)
         ):
-            raise TelegramFileMimeTypeError(
-                _("Your file is not an image, please try again")
-            )
+            raise TelegramFileMimeTypeError(_("Your file is not an image, please try again"))
 
         if img_file is None:
             if message.photo:
@@ -171,9 +161,7 @@ class TelegramService:
     def check_pdf_document(self, message: Message) -> Document:
         doc = message.document
         if not doc.mime_type.endswith(self.PDF_MIME_TYPE_SUFFIX):
-            raise TelegramFileMimeTypeError(
-                _("Your file is not a PDF file, please try again")
-            )
+            raise TelegramFileMimeTypeError(_("Your file is not a PDF file, please try again"))
         self.check_file_size(doc)
         return doc
 
@@ -185,18 +173,14 @@ class TelegramService:
             yield path
 
     @asynccontextmanager
-    async def download_files(
-        self, file_ids: List[str]
-    ) -> AsyncGenerator[list[str], None]:
+    async def download_files(self, file_ids: List[str]) -> AsyncGenerator[list[str], None]:
         with self.io_service.create_temp_files(len(file_ids)) as out_paths:
             for i, file_id in enumerate(file_ids):
                 file = await self.bot.get_file(file_id)
                 await file.download_to_drive(custom_path=out_paths[i])
             yield out_paths
 
-    async def cancel_conversation(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def cancel_conversation(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         query: CallbackQuery | None = update.callback_query
 

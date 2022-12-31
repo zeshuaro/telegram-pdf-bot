@@ -29,17 +29,9 @@ class PaymentHandler(AbstractTelegramHandler):
                 self.payment_service.send_support_options,
                 filters.Regex("support"),
             ),
-            CommandHandler(
-                self._SUPPORT_COMMAND, self.payment_service.send_support_options
-            ),
-            CallbackQueryHandler(
-                self.payment_service.send_support_options, pattern=SupportData
-            ),
-            CallbackQueryHandler(
-                self.payment_service.send_invoice, pattern=PaymentData
-            ),
+            CommandHandler(self._SUPPORT_COMMAND, self.payment_service.send_support_options),
+            CallbackQueryHandler(self.payment_service.send_support_options, pattern=SupportData),
+            CallbackQueryHandler(self.payment_service.send_invoice, pattern=PaymentData),
             PreCheckoutQueryHandler(self.payment_service.precheckout_check),
-            MessageHandler(
-                filters.SUCCESSFUL_PAYMENT, self.payment_service.successful_payment
-            ),
+            MessageHandler(filters.SUCCESSFUL_PAYMENT, self.payment_service.successful_payment),
         ]

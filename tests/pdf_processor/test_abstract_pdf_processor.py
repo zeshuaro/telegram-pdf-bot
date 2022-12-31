@@ -27,9 +27,7 @@ class MockProcessor(AbstractPdfProcessor):
         return MagicMock(spec=BaseHandler)
 
     @asynccontextmanager
-    async def process_file_task(
-        self, _file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, _file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         yield MagicMock(spec=FileTaskResult)
 
 
@@ -59,21 +57,15 @@ class TestAbstractPdfProcessor(LanguageServiceTestMixin, TelegramServiceTestMixi
         processors: dict = {}
         self.pdf_processors.__contains__.side_effect = processors.__contains__
 
-        proc = MockProcessor(
-            self.pdf_service, self.telegram_service, self.language_service
-        )
+        proc = MockProcessor(self.pdf_service, self.telegram_service, self.language_service)
 
-        self.pdf_processors.__setitem__.assert_called_once_with(
-            proc.__class__.__name__, proc
-        )
+        self.pdf_processors.__setitem__.assert_called_once_with(proc.__class__.__name__, proc)
 
     def test_init_already_initialized(self) -> None:
         processors: dict = {MockProcessor.__name__: MagicMock()}
         with pytest.raises(ValueError):
             self.pdf_processors.__contains__.side_effect = processors.__contains__
-            MockProcessor(
-                self.pdf_service, self.telegram_service, self.language_service
-            )
+            MockProcessor(self.pdf_service, self.telegram_service, self.language_service)
 
         self.pdf_processors.__setitem__.assert_not_called()
 

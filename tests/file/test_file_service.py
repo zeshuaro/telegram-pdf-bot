@@ -10,9 +10,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestFileService(
-    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
-):
+class TestFileService(LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin):
     STATE = "state"
 
     def setup_method(self) -> None:

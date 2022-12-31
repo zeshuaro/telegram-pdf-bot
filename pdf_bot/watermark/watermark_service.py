@@ -28,9 +28,7 @@ class WatermarkService:
         self.telegram_service = telegram_service
         self.language_service = language_service
 
-    async def ask_source_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def ask_source_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         await self.telegram_service.reply_with_cancel_markup(
             update,
@@ -39,9 +37,7 @@ class WatermarkService:
         )
         return self.WAIT_SOURCE_PDF
 
-    async def check_source_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def check_source_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
 
@@ -55,23 +51,17 @@ class WatermarkService:
         reply_markup = ReplyKeyboardMarkup(
             [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
-        await message.reply_text(
-            _("Send me the watermark PDF file"), reply_markup=reply_markup
-        )
+        await message.reply_text(_("Send me the watermark PDF file"), reply_markup=reply_markup)
 
         return self.WAIT_WATERMARK_PDF
 
-    async def add_watermark_to_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def add_watermark_to_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
 
         try:
             doc = self.telegram_service.check_pdf_document(message)
-            src_file_id = self.telegram_service.get_user_data(
-                context, self.WATERMARK_KEY
-            )
+            src_file_id = self.telegram_service.get_user_data(context, self.WATERMARK_KEY)
         except TelegramServiceError as e:
             await message.reply_text(_(str(e)))
             if isinstance(e, TelegramGetUserDataError):
@@ -84,9 +74,7 @@ class WatermarkService:
         )
 
         try:
-            async with self.pdf_service.add_watermark_to_pdf(
-                src_file_id, doc.file_id
-            ) as out_path:
+            async with self.pdf_service.add_watermark_to_pdf(src_file_id, doc.file_id) as out_path:
                 await self.telegram_service.send_file(
                     update, context, out_path, TaskType.watermark_pdf
                 )
@@ -95,9 +83,7 @@ class WatermarkService:
 
         return ConversationHandler.END
 
-    async def check_text(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int | None:
+    async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int | None:
         _ = self.language_service.set_app_language(update, context)
         text = update.effective_message.text  # type: ignore
 

@@ -28,9 +28,7 @@ class CompareService:
         self.telegram_service = telegram_service
         self.language_service = language_service
 
-    async def ask_first_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def ask_first_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         reply_markup = ReplyKeyboardMarkup(
             [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
@@ -45,9 +43,7 @@ class CompareService:
 
         return self.WAIT_FIRST_PDF
 
-    async def check_first_pdf(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def check_first_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
 
@@ -68,9 +64,7 @@ class CompareService:
 
         return self.WAIT_SECOND_PDF
 
-    async def compare_pdfs(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int:
+    async def compare_pdfs(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
 
@@ -83,9 +77,7 @@ class CompareService:
                 return ConversationHandler.END
             return self.WAIT_SECOND_PDF
 
-        await message.reply_text(
-            _("Comparing your PDF files"), reply_markup=ReplyKeyboardRemove()
-        )
+        await message.reply_text(_("Comparing your PDF files"), reply_markup=ReplyKeyboardRemove())
 
         try:
             async with self.pdf_service.compare_pdfs(file_id, doc.file_id) as out_path:
@@ -93,15 +85,11 @@ class CompareService:
                     update, context, out_path, TaskType.compare_pdf
                 )
         except NoDifferenceError:
-            await message.reply_text(
-                _("There are no text differences between your PDF files")
-            )
+            await message.reply_text(_("There are no text differences between your PDF files"))
 
         return ConversationHandler.END
 
-    async def check_text(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> int | None:
+    async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int | None:
         _ = self.language_service.set_app_language(update, context)
         text = update.effective_message.text  # type: ignore
 

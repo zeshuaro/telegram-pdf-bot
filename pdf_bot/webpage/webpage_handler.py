@@ -12,8 +12,4 @@ class WebpageHandler(AbstractTelegramHandler):
 
     @property
     def handlers(self) -> list[BaseHandler]:
-        return [
-            MessageHandler(
-                filters.Entity(MessageEntity.URL), self.webpage_service.url_to_pdf
-            )
-        ]
+        return [MessageHandler(filters.Entity(MessageEntity.URL), self.webpage_service.url_to_pdf)]

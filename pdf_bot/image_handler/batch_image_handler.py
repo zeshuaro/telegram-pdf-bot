@@ -27,9 +27,7 @@ class BatchImageHandler(AbstractTelegramHandler):
         return [
             ConversationHandler(
                 entry_points=[
-                    CommandHandler(
-                        self._IMAGE_COMMAND, self.batch_image_service.ask_first_image
-                    )
+                    CommandHandler(self._IMAGE_COMMAND, self.batch_image_service.ask_first_image)
                 ],
                 states={
                     BatchImageService.WAIT_IMAGE: [
@@ -37,14 +35,10 @@ class BatchImageHandler(AbstractTelegramHandler):
                             filters.Document.IMAGE | filters.PHOTO,
                             self.batch_image_service.check_image,
                         ),
-                        MessageHandler(
-                            TEXT_FILTER, self.batch_image_service.check_text
-                        ),
+                        MessageHandler(TEXT_FILTER, self.batch_image_service.check_text),
                     ]
                 },
-                fallbacks=[
-                    CommandHandler("cancel", self.telegram_service.cancel_conversation)
-                ],
+                fallbacks=[CommandHandler("cancel", self.telegram_service.cancel_conversation)],
                 allow_reentry=True,
             )
         ]

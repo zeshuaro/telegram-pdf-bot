@@ -63,6 +63,4 @@ class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_called_once_with(
             self.TELEGRAM_USER_ID, self.TELEGRAM_TEXT
         )
-        self.telegram_update.effective_message.reply_text.assert_called_once_with(
-            message
-        )
+        self.telegram_update.effective_message.reply_text.assert_called_once_with(message)

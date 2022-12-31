@@ -20,9 +20,7 @@ class TestCLIService:
             "1".encode("utf-8"),
         )
 
-        self.popen_patcher = patch(
-            "pdf_bot.cli.cli_service.Popen", return_value=self.process
-        )
+        self.popen_patcher = patch("pdf_bot.cli.cli_service.Popen", return_value=self.process)
         self.popen = self.popen_patcher.start()
 
         self.sut = CLIService()
@@ -56,18 +54,14 @@ class TestCLIService:
         self.process.returncode = 1
 
         with pytest.raises(CLIServiceError):
-            self.sut.crop_pdf_by_percentage(
-                self.INPUT_PATH, self.OUTPUT_PATH, self.PERCENT
-            )
+            self.sut.crop_pdf_by_percentage(self.INPUT_PATH, self.OUTPUT_PATH, self.PERCENT)
 
         self._assert_crop_pdf_percentage_command()
 
     @pytest.mark.asyncio
     async def test_crop_pdf_by_margin_size(self) -> None:
         self.process.returncode = 0
-        self.sut.crop_pdf_by_margin_size(
-            self.INPUT_PATH, self.OUTPUT_PATH, self.MARGIN_SIZE
-        )
+        self.sut.crop_pdf_by_margin_size(self.INPUT_PATH, self.OUTPUT_PATH, self.MARGIN_SIZE)
         self._assert_crop_pdf_margin_size_command()
 
     @pytest.mark.asyncio
@@ -75,9 +69,7 @@ class TestCLIService:
         self.process.returncode = 1
 
         with pytest.raises(CLIServiceError):
-            self.sut.crop_pdf_by_margin_size(
-                self.INPUT_PATH, self.OUTPUT_PATH, self.MARGIN_SIZE
-            )
+            self.sut.crop_pdf_by_margin_size(self.INPUT_PATH, self.OUTPUT_PATH, self.MARGIN_SIZE)
 
         self._assert_crop_pdf_margin_size_command()
 
@@ -107,15 +99,13 @@ class TestCLIService:
     def _assert_crop_pdf_percentage_command(self) -> None:
         args = self.popen.call_args.args[0]
         assert args == shlex.split(
-            f'pdfcropmargins -o "{self.OUTPUT_PATH}" "{self.INPUT_PATH}" '
-            f"-p {self.PERCENT}"
+            f'pdfcropmargins -o "{self.OUTPUT_PATH}" "{self.INPUT_PATH}" ' f"-p {self.PERCENT}"
         )
 
     def _assert_crop_pdf_margin_size_command(self) -> None:
         args = self.popen.call_args.args[0]
         assert args == shlex.split(
-            f'pdfcropmargins -o "{self.OUTPUT_PATH}" "{self.INPUT_PATH}" '
-            f"-a {self.MARGIN_SIZE}"
+            f'pdfcropmargins -o "{self.OUTPUT_PATH}" "{self.INPUT_PATH}" ' f"-a {self.MARGIN_SIZE}"
         )
 
     def _assert_get_pdf_images_command(self) -> None:

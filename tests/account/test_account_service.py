@@ -16,18 +16,14 @@ class TestAccountService(LanguageServiceTestMixin):
 
         self.account_repository = MagicMock(spec=AccountRepository)
         self.language_service = self.mock_language_service()
-        self.language_service.get_language_code_from_short_code.return_value = (
-            self.LANGUAGE_CODE
-        )
+        self.language_service.get_language_code_from_short_code.return_value = self.LANGUAGE_CODE
 
         self.service = AccountService(self.account_repository, self.language_service)
 
     def test_create_user(self) -> None:
         self.user.language_code = None
         self.service.create_user(self.user)
-        self.account_repository.upsert_user.assert_called_with(
-            self.USER_ID, self.LANGUAGE_CODE
-        )
+        self.account_repository.upsert_user.assert_called_with(self.USER_ID, self.LANGUAGE_CODE)
 
     def test_create_user_with_language_code(self) -> None:
         user_code = "user_code"
@@ -44,6 +40,4 @@ class TestAccountService(LanguageServiceTestMixin):
 
         self.service.create_user(self.user)
 
-        self.account_repository.upsert_user.assert_called_with(
-            self.USER_ID, self.LANGUAGE_CODE
-        )
+        self.account_repository.upsert_user.assert_called_with(self.USER_ID, self.LANGUAGE_CODE)

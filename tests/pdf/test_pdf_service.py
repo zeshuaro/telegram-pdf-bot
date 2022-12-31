@@ -49,18 +49,10 @@ class TestPDFService(
         self.cli_service = MagicMock(spec=CLIService)
 
         self.io_service = MagicMock(spec=IOService)
-        self.io_service.create_temp_directory.return_value.__enter__.return_value = (
-            self.DIR_NAME
-        )
-        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = (
-            self.OUTPUT_PATH
-        )
-        self.io_service.create_temp_png_file.return_value.__enter__.return_value = (
-            self.OUTPUT_PATH
-        )
-        self.io_service.create_temp_txt_file.return_value.__enter__.return_value = (
-            self.OUTPUT_PATH
-        )
+        self.io_service.create_temp_directory.return_value.__enter__.return_value = self.DIR_NAME
+        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = self.OUTPUT_PATH
+        self.io_service.create_temp_png_file.return_value.__enter__.return_value = self.OUTPUT_PATH
+        self.io_service.create_temp_txt_file.return_value.__enter__.return_value = self.OUTPUT_PATH
 
         self.telegram_service = self.mock_telegram_service()
         self.telegram_service.download_pdf_file.return_value.__aenter__.return_value = (
@@ -100,9 +92,7 @@ class TestPDFService(
         wmk_page = MagicMock(spec=PageObject)
         wmk_reader.pages = [wmk_page]
 
-        def pdf_file_reader_side_effect(
-            file_id: str, *_args: Any, **_kwargs: Any
-        ) -> PdfFileReader:
+        def pdf_file_reader_side_effect(file_id: str, *_args: Any, **_kwargs: Any) -> PdfFileReader:
             if file_id == src_file_id:
                 return src_reader
             return wmk_reader
@@ -128,9 +118,7 @@ class TestPDFService(
 
                 writer.add_page.assert_has_calls(add_page_calls)
                 writer.write.assert_called_once()
-                self.io_service.create_temp_pdf_file.assert_called_once_with(
-                    "File_with_watermark"
-                )
+                self.io_service.create_temp_pdf_file.assert_called_once_with("File_with_watermark")
 
     @pytest.mark.asyncio
     async def test_add_watermark_to_pdf_read_error(self) -> None:
@@ -168,9 +156,7 @@ class TestPDFService(
                     grayscale=True,
                     paths_only=True,
                 )
-                img2pdf.convert.assert_called_once_with(
-                    image_paths, rotation=Rotation.ifvalid
-                )
+                img2pdf.convert.assert_called_once_with(image_paths, rotation=Rotation.ifvalid)
                 self.mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
                 file.write.assert_called_once_with(image_bytes)
 
@@ -181,9 +167,7 @@ class TestPDFService(
             async with self.sut.compare_pdfs(*file_ids) as actual:
                 assert actual == self.OUTPUT_PATH
                 calls = [call(x) for x in file_ids]
-                self.telegram_service.download_pdf_file.assert_has_calls(
-                    calls, any_order=True
-                )
+                self.telegram_service.download_pdf_file.assert_has_calls(calls, any_order=True)
                 pdf_diff.main.assert_called_once_with(
                     files=[self.DOWNLOAD_PATH, self.DOWNLOAD_PATH],
                     out_file=self.OUTPUT_PATH,
@@ -202,9 +186,7 @@ class TestPDFService(
         with patch("pdf_bot.pdf.pdf_service.os") as mock_os:
             mock_os.path.getsize.side_effect = getsize_side_effect
             async with self.sut.compress_pdf(self.TELEGRAM_FILE_ID) as compress_result:
-                assert compress_result == CompressResult(
-                    old_size, new_size, self.OUTPUT_PATH
-                )
+                assert compress_result == CompressResult(old_size, new_size, self.OUTPUT_PATH)
                 self.cli_service.compress_pdf.assert_called_once_with(
                     self.DOWNLOAD_PATH, self.OUTPUT_PATH
                 )
@@ -218,9 +200,7 @@ class TestPDFService(
                 self.telegram_service.download_pdf_file.assert_called_once_with(
                     self.TELEGRAM_FILE_ID
                 )
-                self.io_service.create_temp_directory.assert_called_once_with(
-                    "PDF_images"
-                )
+                self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
                 pdf2image.convert_from_path.assert_called_once_with(
                     self.DOWNLOAD_PATH, output_folder=self.DIR_NAME, fmt="png"
                 )
@@ -239,16 +219,12 @@ class TestPDFService(
 
         with patch("pdf_bot.pdf.pdf_service.HTML") as html_cls, patch(
             "pdf_bot.pdf.pdf_service.CSS"
-        ) as css_cls, patch(
-            "pdf_bot.pdf.pdf_service.FontConfiguration"
-        ) as font_config_cls:
+        ) as css_cls, patch("pdf_bot.pdf.pdf_service.FontConfiguration") as font_config_cls:
             html_cls.return_value = html
             css_cls.return_value = css
             font_config_cls.return_value = font_config
 
-            async with self.sut.create_pdf_from_text(
-                self.TELEGRAM_TEXT, font_data
-            ) as actual:
+            async with self.sut.create_pdf_from_text(self.TELEGRAM_TEXT, font_data) as actual:
                 assert actual == self.OUTPUT_PATH
                 html.write_pdf.assert_called_once()
                 self.io_service.create_temp_pdf_file.assert_called_once_with("Text")
@@ -275,9 +251,7 @@ class TestPDFService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_percentage(self) -> None:
         percent = 0.1
-        async with self.sut.crop_pdf_by_percentage(
-            self.TELEGRAM_FILE_ID, percent
-        ) as actual:
+        async with self.sut.crop_pdf_by_percentage(self.TELEGRAM_FILE_ID, percent) as actual:
             assert actual == self.OUTPUT_PATH
             self.cli_service.crop_pdf_by_percentage.assert_called_once_with(
                 self.DOWNLOAD_PATH, self.OUTPUT_PATH, percent
@@ -287,9 +261,7 @@ class TestPDFService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_margin_size(self) -> None:
         margin_size = 10
-        async with self.sut.crop_pdf_by_margin_size(
-            self.TELEGRAM_FILE_ID, margin_size
-        ) as actual:
+        async with self.sut.crop_pdf_by_margin_size(self.TELEGRAM_FILE_ID, margin_size) as actual:
             assert actual == self.OUTPUT_PATH
             self.cli_service.crop_pdf_by_margin_size.assert_called_once_with(
                 self.DOWNLOAD_PATH, self.OUTPUT_PATH, margin_size
@@ -312,9 +284,7 @@ class TestPDFService(
             reader_cls.return_value = reader
             writer_cls.return_value = writer
 
-            async with self.sut.decrypt_pdf(
-                self.TELEGRAM_FILE_ID, self.PASSWORD
-            ) as actual:
+            async with self.sut.decrypt_pdf(self.TELEGRAM_FILE_ID, self.PASSWORD) as actual:
                 assert actual == self.OUTPUT_PATH
                 self._assert_telegram_and_io_services("Decrypted")
                 reader.decrypt.assert_called_once_with(self.PASSWORD)
@@ -377,9 +347,7 @@ class TestPDFService(
             reader_cls.return_value = reader
             writer_cls.return_value = writer
 
-            async with self.sut.encrypt_pdf(
-                self.TELEGRAM_FILE_ID, self.PASSWORD
-            ) as actual:
+            async with self.sut.encrypt_pdf(self.TELEGRAM_FILE_ID, self.PASSWORD) as actual:
                 assert actual == self.OUTPUT_PATH
                 self._assert_telegram_and_io_services("Encrypted")
                 writer.encrypt.assert_called_once_with(self.PASSWORD)
@@ -430,9 +398,7 @@ class TestPDFService(
     async def test_extract_pdf_images(self) -> None:
         async with self.sut.extract_pdf_images(self.TELEGRAM_FILE_ID) as actual:
             assert actual == self.DIR_NAME
-            self.telegram_service.download_pdf_file.assert_called_once_with(
-                self.TELEGRAM_FILE_ID
-            )
+            self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
             self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
             self.cli_service.extract_pdf_images.assert_called_once_with(
                 self.DOWNLOAD_PATH, self.DIR_NAME
@@ -448,9 +414,7 @@ class TestPDFService(
                 self.telegram_service.download_pdf_file.assert_called_once_with(
                     self.TELEGRAM_FILE_ID
                 )
-                self.io_service.create_temp_directory.assert_called_once_with(
-                    "PDF_images"
-                )
+                self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
                 self.cli_service.extract_pdf_images.assert_called_once_with(
                     self.DOWNLOAD_PATH, self.DIR_NAME
                 )
@@ -465,9 +429,7 @@ class TestPDFService(
                 self.telegram_service.download_pdf_file.assert_called_once_with(
                     self.TELEGRAM_FILE_ID
                 )
-                self.io_service.create_temp_directory.assert_called_once_with(
-                    "PDF_images"
-                )
+                self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
                 self.cli_service.extract_pdf_images.assert_called_once_with(
                     self.DOWNLOAD_PATH, self.DIR_NAME
                 )
@@ -478,9 +440,7 @@ class TestPDFService(
     async def test_merge_pdfs(self, num_files: int) -> None:
         file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
         merger = MagicMock(spec=PdfFileMerger)
-        self.telegram_service.download_files.return_value.__aenter__.return_value = (
-            file_paths
-        )
+        self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
 
         with patch("pdf_bot.pdf.pdf_service.PdfFileMerger") as merger_cls:
             merger_cls.return_value = merger
@@ -488,9 +448,7 @@ class TestPDFService(
                 self.telegram_service.download_files.assert_called_once_with(file_ids)
                 calls = [call(x) for x in file_paths]
                 merger.append.assert_has_calls(calls)
-                self.io_service.create_temp_pdf_file.assert_called_once_with(
-                    "Merged_files"
-                )
+                self.io_service.create_temp_pdf_file.assert_called_once_with("Merged_files")
                 merger.write.assert_called_once()
 
     @pytest.mark.asyncio
@@ -499,17 +457,13 @@ class TestPDFService(
         file_data_list, file_ids, file_paths = self._get_file_data_list(2)
         merger = MagicMock(spec=PdfFileMerger)
         merger.append.side_effect = exception
-        self.telegram_service.download_files.return_value.__aenter__.return_value = (
-            file_paths
-        )
+        self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
 
         with patch("pdf_bot.pdf.pdf_service.PdfFileMerger") as merger_cls:
             merger_cls.return_value = merger
             with pytest.raises(PdfReadError):
                 async with self.sut.merge_pdfs(file_data_list):
-                    self.telegram_service.download_files.assert_called_once_with(
-                        file_ids
-                    )
+                    self.telegram_service.download_files.assert_called_once_with(file_ids)
                     self.io_service.create_temp_pdf_file.assert_not_called()
                     merger.write.assert_not_called()
 
@@ -547,12 +501,8 @@ class TestPDFService(
 
         image = MagicMock()
 
-        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = (
-            pdf_path
-        )
-        self.io_service.create_temp_png_file.return_value.__enter__.return_value = (
-            out_path
-        )
+        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = pdf_path
+        self.io_service.create_temp_png_file.return_value.__enter__.return_value = out_path
 
         with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls, patch(
             "pdf_bot.pdf.pdf_service.PdfFileWriter"
@@ -583,9 +533,7 @@ class TestPDFService(
                 )
                 self.io_service.create_temp_directory.assert_called_once()
                 self.mock_os.path.join.assert_called_once_with(self.DIR_NAME, file_name)
-                shutil.copy.assert_called_once_with(
-                    self.DOWNLOAD_PATH, self.OUTPUT_PATH
-                )
+                shutil.copy.assert_called_once_with(self.DOWNLOAD_PATH, self.OUTPUT_PATH)
 
     @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
     @pytest.mark.asyncio
@@ -635,9 +583,7 @@ class TestPDFService(
             reader_cls.return_value = reader
             writer_cls.return_value = writer
 
-            async with self.sut.scale_pdf_by_factor(
-                self.TELEGRAM_FILE_ID, scale_data
-            ) as actual:
+            async with self.sut.scale_pdf_by_factor(self.TELEGRAM_FILE_ID, scale_data) as actual:
                 assert actual == self.OUTPUT_PATH
                 self._assert_telegram_and_io_services("Scaled")
 
@@ -665,9 +611,7 @@ class TestPDFService(
             reader_cls.return_value = reader
             writer_cls.return_value = writer
 
-            async with self.sut.scale_pdf_to_dimension(
-                self.TELEGRAM_FILE_ID, scale_data
-            ) as actual:
+            async with self.sut.scale_pdf_to_dimension(self.TELEGRAM_FILE_ID, scale_data) as actual:
                 assert actual == self.OUTPUT_PATH
                 self._assert_telegram_and_io_services("Scaled")
 
@@ -720,9 +664,7 @@ class TestPDFService(
             async with self.sut.split_pdf(self.TELEGRAM_FILE_ID, split_range) as actual:
                 assert actual == self.OUTPUT_PATH
                 self._assert_telegram_and_io_services("Split")
-                merger.append.assert_called_once_with(
-                    reader, pages=PageRange(split_range)
-                )
+                merger.append.assert_called_once_with(reader, pages=PageRange(split_range))
 
     @staticmethod
     def _async_context_manager_side_effect_echo(
@@ -753,16 +695,10 @@ class TestPDFService(
         return file_data_list, file_ids, file_paths
 
     def _assert_telegram_and_io_services(self, temp_pdf_file_prefix: str) -> None:
-        self.telegram_service.download_pdf_file.assert_called_once_with(
-            self.TELEGRAM_FILE_ID
-        )
-        self.io_service.create_temp_pdf_file.assert_called_once_with(
-            temp_pdf_file_prefix
-        )
+        self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
+        self.io_service.create_temp_pdf_file.assert_called_once_with(temp_pdf_file_prefix)
 
     def _assert_decrypt_failure(self, reader: MagicMock) -> None:
-        self.telegram_service.download_pdf_file.assert_called_once_with(
-            self.TELEGRAM_FILE_ID
-        )
+        self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
         reader.decrypt.assert_called_once_with(self.PASSWORD)
         self.io_service.create_temp_pdf_file.assert_not_called()

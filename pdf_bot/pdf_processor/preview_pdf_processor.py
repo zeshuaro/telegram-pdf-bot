@@ -28,8 +28,6 @@ class PreviewPdfProcessor(AbstractPdfProcessor):
         return CallbackQueryHandler(self.process_file, pattern=PreviewPdfData)
 
     @asynccontextmanager
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         async with self.pdf_service.preview_pdf(file_data.id) as path:
             yield FileTaskResult(path)

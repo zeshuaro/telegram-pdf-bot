@@ -64,9 +64,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
 
     @asynccontextmanager
     @abstractmethod
-    async def process_file_task(
-        self, file_data: FileData
-    ) -> AsyncGenerator[FileTaskResult, None]:
+    async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         yield FileTaskResult("")
 
     @property
@@ -88,9 +86,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
             self.language_service, update, context, self.get_task_data_list()
         )
 
-    async def process_file(
-        self, update: Update, context: ContextTypes.DEFAULT_TYPE
-    ) -> str | int:
+    async def process_file(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str | int:
         _ = self.language_service.set_app_language(update, context)
         query: CallbackQuery | None = update.callback_query
         message: Message = update.effective_message  # type: ignore
@@ -125,9 +121,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         try:
             async with self.process_file_task(file_data) as result:
                 if result.message is not None:
-                    await self.telegram_service.send_message(
-                        update, context, result.message
-                    )
+                    await self.telegram_service.send_message(update, context, result.message)
 
                 out_path = final_path = result.path
                 final_path = out_path
@@ -136,9 +130,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
                     shutil.make_archive(out_path, "zip", out_path)
                     final_path = f"{out_path}.zip"
 
-                await self.telegram_service.send_file(
-                    update, context, final_path, self.task_type
-                )
+                await self.telegram_service.send_file(update, context, final_path, self.task_type)
         except Exception as e:  # pylint: disable=broad-except
             handlers = self._get_error_handlers()
             error_handler: ErrorHandlerType | None = None
@@ -157,9 +149,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         message_data = None
         try:
             message_data = self.telegram_service.get_message_data(context)
-            await context.bot.delete_message(
-                message_data.chat_id, message_data.message_id
-            )
+            await context.bot.delete_message(message_data.chat_id, message_data.message_id)
         except (TelegramGetUserDataError, BadRequest):
             pass
 

@@ -163,17 +163,13 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_download_pdf_file(self) -> None:
-        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = (
-            self.FILE_PATH
-        )
+        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = self.FILE_PATH
         self.telegram_bot.get_file.return_value = self.telegram_file
 
         async with self.sut.download_pdf_file(self.TELEGRAM_FILE_ID) as actual:
             assert actual == self.FILE_PATH
             self.telegram_bot.get_file.assert_called_with(self.TELEGRAM_FILE_ID)
-            self.telegram_file.download_to_drive.assert_called_once_with(
-                custom_path=self.FILE_PATH
-            )
+            self.telegram_file.download_to_drive.assert_called_once_with(custom_path=self.FILE_PATH)
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("num_files", [1, 2, 5])
@@ -196,9 +192,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             file = MagicMock(spec=File)
             files[file_id] = FileAndPath(file, file_path)
 
-        self.io_service.create_temp_files.return_value.__enter__.return_value = (
-            file_paths
-        )
+        self.io_service.create_temp_files.return_value.__enter__.return_value = file_paths
         self.telegram_bot.get_file.side_effect = lambda file_id: files[file_id].file
 
         async with self.sut.download_files(file_ids) as actual:
@@ -216,9 +210,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_cancel_conversation(self) -> None:
         self.telegram_update.callback_query = None
 
-        actual = await self.sut.cancel_conversation(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.cancel_conversation(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.telegram_message.reply_text.assert_called_once()
@@ -229,9 +221,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_cancel_conversation_with_callback_query(self) -> None:
         self.telegram_update.callback_query = self.telegram_callback_query
 
-        actual = await self.sut.cancel_conversation(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.cancel_conversation(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.telegram_callback_query.answer.assert_called_once()
@@ -250,9 +240,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_get_back_inline_markup(self) -> None:
-        actual = self.sut.get_back_inline_markup(
-            self.telegram_update, self.telegram_context
-        )
+        actual = self.sut.get_back_inline_markup(self.telegram_update, self.telegram_context)
 
         assert len(actual.inline_keyboard) == 1
         assert len(actual.inline_keyboard[0]) == 1
@@ -263,9 +251,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_get_support_markup(self) -> None:
-        actual = self.sut.get_support_markup(
-            self.telegram_update, self.telegram_context
-        )
+        actual = self.sut.get_support_markup(self.telegram_update, self.telegram_context)
         assert isinstance(actual, InlineKeyboardMarkup)
 
     def test_get_user_data(self) -> None:
@@ -300,12 +286,8 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     def test_update_user_data(self) -> None:
         self.telegram_context.user_data = {}
-        self.sut.update_user_data(
-            self.telegram_context, self.USER_DATA_KEY, self.USER_DATA_VALUE
-        )
-        assert (
-            self.telegram_context.user_data[self.USER_DATA_KEY] == self.USER_DATA_VALUE
-        )
+        self.sut.update_user_data(self.telegram_context, self.USER_DATA_KEY, self.USER_DATA_VALUE)
+        assert self.telegram_context.user_data[self.USER_DATA_KEY] == self.USER_DATA_VALUE
 
     def test_update_user_data_error(self) -> None:
         self.telegram_context.user_data = None
@@ -338,9 +320,9 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     def test_cache_message_data(self) -> None:
         self.telegram_context.user_data = {}
         self.sut.cache_message_data(self.telegram_context, self.telegram_message)
-        assert self.telegram_context.user_data[
-            MESSAGE_DATA
-        ] == MessageData.from_telegram_message(self.telegram_message)
+        assert self.telegram_context.user_data[MESSAGE_DATA] == MessageData.from_telegram_message(
+            self.telegram_message
+        )
 
     def test_cache_message_data_error(self) -> None:
         self.telegram_context.user_data = None
@@ -353,9 +335,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("side_effect", [None, KeyError])
-    async def test_answer_query_and_drop_data(
-        self, side_effect: type[Exception] | None
-    ) -> None:
+    async def test_answer_query_and_drop_data(self, side_effect: type[Exception] | None) -> None:
         self.telegram_context.drop_callback_data.side_effect = side_effect
 
         await self.sut.answer_query_and_drop_data(
@@ -370,9 +350,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     @pytest.mark.asyncio
     @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])
     async def test_reply_with_back_markup(self, parse_mode: ParseMode | None) -> None:
-        markup = ReplyKeyboardMarkup(
-            [[self.BACK]], one_time_keyboard=True, resize_keyboard=True
-        )
+        markup = ReplyKeyboardMarkup([[self.BACK]], one_time_keyboard=True, resize_keyboard=True)
         await self.sut.reply_with_back_markup(
             self.telegram_update, self.telegram_context, self.TELEGRAM_TEXT, parse_mode
         )
@@ -383,9 +361,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     @pytest.mark.asyncio
     @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])
     async def test_reply_with_cancel_markup(self, parse_mode: ParseMode | None) -> None:
-        markup = ReplyKeyboardMarkup(
-            [[self.CANCEL]], one_time_keyboard=True, resize_keyboard=True
-        )
+        markup = ReplyKeyboardMarkup([[self.CANCEL]], one_time_keyboard=True, resize_keyboard=True)
         await self.sut.reply_with_cancel_markup(
             self.telegram_update, self.telegram_context, self.TELEGRAM_TEXT, parse_mode
         )
@@ -486,9 +462,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_send_file_names(self) -> None:
         file_data_list = [FileData("a", "a"), FileData("b")]
 
-        await self.sut.send_file_names(
-            self.TELEGRAM_CHAT_ID, self.TELEGRAM_TEXT, file_data_list
-        )
+        await self.sut.send_file_names(self.TELEGRAM_CHAT_ID, self.TELEGRAM_TEXT, file_data_list)
 
         self.telegram_bot.send_message.assert_called_once_with(
             self.TELEGRAM_CHAT_ID,
@@ -497,9 +471,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_send_message(self) -> None:
-        await self.sut.send_message(
-            self.telegram_update, self.telegram_context, self.TELEGRAM_TEXT
-        )
+        await self.sut.send_message(self.telegram_update, self.telegram_context, self.TELEGRAM_TEXT)
         self.telegram_bot.send_message.assert_called_once_with(
             self.TELEGRAM_CHAT_ID, self.TELEGRAM_TEXT
         )

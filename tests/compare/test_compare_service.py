@@ -13,9 +13,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestCompareService(
-    LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin
-):
+class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin):
 
     COMPARE_ID = "compare_id"
     WAIT_FIRST_PDF = 0
@@ -28,23 +26,17 @@ class TestCompareService(
         self.telegram_service = self.mock_telegram_service()
         self.telegram_service.get_user_data.side_effect = None
 
-        self.sut = CompareService(
-            self.pdf_service, self.telegram_service, self.language_service
-        )
+        self.sut = CompareService(self.pdf_service, self.telegram_service, self.language_service)
 
     @pytest.mark.asyncio
     async def test_ask_first_pdf(self) -> None:
-        actual = await self.sut.ask_first_pdf(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.ask_first_pdf(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_FIRST_PDF
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_check_first_pdf(self) -> None:
-        actual = await self.sut.check_first_pdf(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_SECOND_PDF
         self.telegram_context.user_data.__setitem__.assert_called_with(
             self.COMPARE_ID, self.TELEGRAM_DOCUMENT_ID
@@ -54,9 +46,7 @@ class TestCompareService(
     async def test_check_first_pdf_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
-        actual = await self.sut.check_first_pdf(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_FIRST_PDF
         self.telegram_context.user_data.__setitem__.assert_not_called()
@@ -64,13 +54,9 @@ class TestCompareService(
     @pytest.mark.asyncio
     async def test_compare_pdfs(self) -> None:
         self.telegram_service.get_user_data.return_value = self.TELEGRAM_DOCUMENT_ID
-        self.pdf_service.compare_pdfs.return_value.__aenter__.return_value = (
-            self.FILE_PATH
-        )
+        self.pdf_service.compare_pdfs.return_value.__aenter__.return_value = self.FILE_PATH
 
-        actual = await self.sut.compare_pdfs(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.pdf_service.compare_pdfs.assert_called_with(
@@ -86,13 +72,9 @@ class TestCompareService(
     @pytest.mark.asyncio
     async def test_compare_pdfs_no_differences(self) -> None:
         self.telegram_service.get_user_data.return_value = self.TELEGRAM_DOCUMENT_ID
-        self.pdf_service.compare_pdfs.return_value.__aenter__.side_effect = (
-            NoDifferenceError()
-        )
+        self.pdf_service.compare_pdfs.return_value.__aenter__.side_effect = NoDifferenceError()
 
-        actual = await self.sut.compare_pdfs(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.pdf_service.compare_pdfs.assert_called_with(
@@ -104,9 +86,7 @@ class TestCompareService(
     async def test_compare_pdfs_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
 
-        actual = await self.sut.compare_pdfs(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self.pdf_service.compare_pdfs.assert_not_called()
@@ -116,9 +96,7 @@ class TestCompareService(
     async def test_compare_pdfs_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
-        actual = await self.sut.compare_pdfs(
-            self.telegram_update, self.telegram_context
-        )
+        actual = await self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_SECOND_PDF
         self.pdf_service.compare_pdfs.assert_not_called()

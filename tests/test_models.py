@@ -13,9 +13,7 @@ class UnknownTelegramObject:
 class TestFileData(TelegramTestMixin):
     def test_from_telegram_document(self) -> None:
         actual = FileData.from_telegram_object(self.telegram_document)
-        assert actual == FileData(
-            self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME
-        )
+        assert actual == FileData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
 
     def test_from_telegram_photo_size(self) -> None:
         actual = FileData.from_telegram_object(self.telegram_photo_size)
@@ -36,6 +34,4 @@ class TestTaskData(TelegramTestMixin):
         actual = sut.get_file_data(self.telegram_document)
 
         assert actual == expected
-        mock_data_type.from_telegram_object.assert_called_once_with(
-            self.telegram_document
-        )
+        mock_data_type.from_telegram_object.assert_called_once_with(self.telegram_document)

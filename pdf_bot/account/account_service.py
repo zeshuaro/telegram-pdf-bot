@@ -18,9 +18,7 @@ class AccountService:
         lang_code = self._LANGUAGE_CODE
 
         if user_lang_code is not None and user_lang_code != "en":
-            code = self.language_service.get_language_code_from_short_code(
-                user_lang_code
-            )
+            code = self.language_service.get_language_code_from_short_code(user_lang_code)
             if code is not None:
                 lang_code = code
 
