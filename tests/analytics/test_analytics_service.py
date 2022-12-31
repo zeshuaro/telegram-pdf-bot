@@ -3,12 +3,7 @@ from uuid import UUID
 
 from requests import HTTPError
 
-from pdf_bot.analytics import (
-    AnalyticsRepository,
-    AnalyticsService,
-    EventAction,
-    TaskType,
-)
+from pdf_bot.analytics import AnalyticsRepository, AnalyticsService, EventAction, TaskType
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramTestMixin
 

@@ -1,10 +1,4 @@
-from telegram.ext import (
-    BaseHandler,
-    CommandHandler,
-    ConversationHandler,
-    MessageHandler,
-    filters,
-)
+from telegram.ext import BaseHandler, CommandHandler, ConversationHandler, MessageHandler, filters
 
 from pdf_bot.consts import TEXT_FILTER
 from pdf_bot.telegram_handler import AbstractTelegramHandler

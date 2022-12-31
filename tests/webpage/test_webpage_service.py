@@ -8,10 +8,7 @@ from weasyprint.urls import URLFetchingError
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.io import IOService
-from pdf_bot.telegram_internal import (
-    TelegramGetUserDataError,
-    TelegramUpdateUserDataError,
-)
+from pdf_bot.telegram_internal import TelegramGetUserDataError, TelegramUpdateUserDataError
 from pdf_bot.webpage import WebpageService
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
