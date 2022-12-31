@@ -21,4 +21,8 @@ class ErrorService:
         try:
             await query.edit_message_text(err_text)
         except BadRequest:
+            try:
+                await query.delete_message()
+            except BadRequest:
+                pass
             await update.effective_message.reply_text(err_text)  # type: ignore
