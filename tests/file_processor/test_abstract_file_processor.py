@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from typing import AsyncGenerator, Type
+from typing import AsyncGenerator
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -56,7 +56,7 @@ class MockProcessor(AbstractFileProcessor):
 
 class MockProcessorWithGenericError(MockProcessor):
     @property
-    def generic_error_types(self) -> set[Type[Exception]]:
+    def generic_error_types(self) -> set[type[Exception]]:
         return {GenericError}
 
 
@@ -66,7 +66,7 @@ class MockProcessorWithCustomErrorHandler(MockProcessor):
     @property
     def custom_error_handlers(
         self,
-    ) -> dict[Type[Exception], ErrorHandlerType]:
+    ) -> dict[type[Exception], ErrorHandlerType]:
         return {CustomError: self._handle_custom_error}
 
     async def _handle_custom_error(

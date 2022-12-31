@@ -57,6 +57,19 @@ multi_line_output = 3
 
 [tool.ruff]
 line-length = 100
+select = ["F", "E", "W", "C90", "D", "UP"]
+ignore = [
+    # D10* rules are all related to missing docstring
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D106",
+    "D107",
+    "D213", # MultiLineSummarySecondLine
+]
 
 [tool.mypy]
 warn_unused_configs = true

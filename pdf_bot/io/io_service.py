@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 from tempfile import NamedTemporaryFile, TemporaryDirectory
-from typing import Generator, List
+from typing import Generator
 
 
 class IOService:
@@ -32,7 +32,7 @@ class IOService:
 
     @staticmethod
     @contextmanager
-    def create_temp_files(num_files: int) -> Generator[List[str], None, None]:
+    def create_temp_files(num_files: int) -> Generator[list[str], None, None]:
         try:
             tempfiles = [NamedTemporaryFile() for _ in range(num_files)]
             yield [x.name for x in tempfiles]

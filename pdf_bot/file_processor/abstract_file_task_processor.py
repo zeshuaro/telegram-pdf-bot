@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import Type
 
 from telegram import Update
 from telegram.ext import CallbackContext
@@ -16,7 +15,7 @@ class AbstractFileTaskProcessor(FileTaskMixin, ABC):
 
     @property
     @abstractmethod
-    def processor_type(self) -> Type[AbstractFileProcessor]:
+    def processor_type(self) -> type[AbstractFileProcessor]:
         pass
 
     async def ask_task(self, update: Update, context: CallbackContext) -> str:

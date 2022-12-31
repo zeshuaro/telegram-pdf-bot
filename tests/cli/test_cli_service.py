@@ -16,8 +16,8 @@ class TestCLIService:
     def setup_method(self) -> None:
         self.process = MagicMock(spec=Popen)
         self.process.communicate.return_value = (
-            "0".encode("utf-8"),
-            "1".encode("utf-8"),
+            b"0",
+            b"1",
         )
 
         self.popen_patcher = patch("pdf_bot.cli.cli_service.Popen", return_value=self.process)

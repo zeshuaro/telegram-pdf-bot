@@ -1,5 +1,3 @@
-from typing import Type
-
 from pdf_bot.file_processor import AbstractFileTaskProcessor
 
 from .abstract_pdf_processor import AbstractPdfProcessor
@@ -7,5 +5,5 @@ from .abstract_pdf_processor import AbstractPdfProcessor
 
 class PdfTaskProcessor(AbstractFileTaskProcessor):
     @property
-    def processor_type(self) -> Type[AbstractPdfProcessor]:
+    def processor_type(self) -> type[AbstractPdfProcessor]:
         return AbstractPdfProcessor

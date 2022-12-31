@@ -1,5 +1,4 @@
 import hashlib
-from typing import Type
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -101,7 +100,7 @@ class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         ],
     )
     @pytest.mark.asyncio
-    async def test_url_to_pdf_error(self, error: Type[Exception]) -> None:
+    async def test_url_to_pdf_error(self, error: type[Exception]) -> None:
         self.html.write_pdf.side_effect = error
 
         await self.sut.url_to_pdf(self.telegram_update, self.telegram_context)

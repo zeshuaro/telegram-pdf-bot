@@ -1,7 +1,7 @@
 import os
 from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import Any, AsyncGenerator, Coroutine, List
+from typing import Any, AsyncGenerator, Coroutine
 
 from telegram import (
     Bot,
@@ -77,17 +77,19 @@ class TelegramService:
 
     @staticmethod
     def get_user_data(context: ContextTypes.DEFAULT_TYPE, key: str) -> Any:
-        """Get and pop value from user data by the provided key
+        """Get and pop value from user data by the provided key.
 
         Args:
             context (CallbackContext): the Telegram callback context
             key (str): the key for the value in user data
 
-        Raises:
+        Raises
+        ------
             TelegramUserDataError: if user_data does not exist or the key does not exist
                 in user data
 
-        Returns:
+        Returns
+        -------
             Any: the value for the key
         """
         err = TelegramGetUserDataError(_("Something went wrong, please try again"))
@@ -173,7 +175,7 @@ class TelegramService:
             yield path
 
     @asynccontextmanager
-    async def download_files(self, file_ids: List[str]) -> AsyncGenerator[list[str], None]:
+    async def download_files(self, file_ids: list[str]) -> AsyncGenerator[list[str], None]:
         with self.io_service.create_temp_files(len(file_ids)) as out_paths:
             for i, file_id in enumerate(file_ids):
                 file = await self.bot.get_file(file_id)
@@ -274,7 +276,7 @@ class TelegramService:
         self.analytics_service.send_event(update, context, task, EventAction.complete)
 
     async def send_file_names(
-        self, chat_id: int, text: str, file_data_list: List[FileData]
+        self, chat_id: int, text: str, file_data_list: list[FileData]
     ) -> None:
         for i, file_data in enumerate(file_data_list):
             file_name = file_data.name
