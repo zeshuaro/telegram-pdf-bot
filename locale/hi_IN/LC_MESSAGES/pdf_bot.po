@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-31 08:53+0000\n"
-"PO-Revision-Date: 2022-12-31 08:53\n"
+"POT-Creation-Date: 2022-12-31 13:01+0000\n"
+"PO-Revision-Date: 2022-12-31 13:01\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -34,6 +34,10 @@ msgstr "पूर्ण"
 #: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "वापस"
+
+#: pdf_bot/consts.py:23
+msgid "Something went wrong, start over with your file or command"
+msgstr ""
 
 #: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
@@ -188,7 +192,7 @@ msgstr "ध्यान दें कि यह एक टेलीग्रा�
 msgid "Processing your file"
 msgstr "अपनी फ़ाइल संसाधित करना"
 
-#: pdf_bot/file_processor/file_task_mixin.py:53
+#: pdf_bot/file_processor/file_task_mixin.py:67
 msgid "Select the task that you'll like to perform"
 msgstr "उस कार्य का चयन करें जिसे आप करना चाहते हैं"
 
