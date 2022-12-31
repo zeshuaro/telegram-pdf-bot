@@ -31,6 +31,6 @@ class TelegramServiceTestMixin(TelegramTestMixin):
             nonlocal index
             data = file_data_args[index]
             index += 1
-            return data
+            return data  # noqa: UnnecessaryAssign
 
         return get_file_data

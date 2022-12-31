@@ -81,7 +81,7 @@ class Clients(containers.DeclarativeContainer):
 
     _session = Session()
     _session.hooks = {
-        "response": lambda r, *args, **kwargs: r.raise_for_status()  # pragma: no cover
+        "response": lambda r, *_args, **_kwargs: r.raise_for_status()  # pragma: no cover
     }
 
     api = providers.Object(_session)

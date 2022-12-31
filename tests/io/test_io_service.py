@@ -81,7 +81,7 @@ class TestIOService:
             nonlocal index
             file = files[index]
             index += 1
-            return file
+            return file  # noqa: UnnecessaryAssign
 
         with patch("pdf_bot.io.io_service.NamedTemporaryFile") as tf:
             tf.side_effect = create_tmp_file
@@ -117,9 +117,6 @@ class TestIOService:
         self.tf.close.assert_called_once()
 
     def _get_expected_prefix(self, prefix: str | None) -> str | None:
-        expected_prefix: str | None
         if prefix is not None and not prefix.endswith("_"):
-            expected_prefix = f"{prefix}_"
-        else:
-            expected_prefix = prefix
-        return expected_prefix
+            return f"{prefix}_"
+        return prefix

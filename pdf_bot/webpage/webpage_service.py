@@ -38,7 +38,7 @@ class WebpageService:
             await message.reply_text(
                 _("You've sent me this webpage already and I'm still converting it")
             )
-            return None
+            return
 
         await message.reply_text(_("Converting your webpage into a PDF file"))
         self._cache_url(context, url_hash)
