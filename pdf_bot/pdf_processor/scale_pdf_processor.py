@@ -19,7 +19,7 @@ class ScaleType(SelectOption):
 
     @property
     def ask_value_text(self) -> str:  # pragma: no cover
-        match self:
+        match self:  # noqa: SyntaxError
             case ScaleType.by_factor:
                 return _(
                     "Send me the scaling factors for the horizontal and vertical"

@@ -7,7 +7,6 @@ from telegram.ext import (
 )
 
 from pdf_bot.consts import TEXT_FILTER
-from pdf_bot.merge.merge_service import MergeService
 from pdf_bot.telegram_handler import AbstractTelegramHandler
 from pdf_bot.telegram_internal import TelegramService
 

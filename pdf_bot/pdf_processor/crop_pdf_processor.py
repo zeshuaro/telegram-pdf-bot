@@ -18,7 +18,7 @@ class CropType(SelectOption):
 
     @property
     def ask_value_text(self) -> str:  # pragma: no cover
-        match self:
+        match self:  # noqa: SyntaxError
             case CropType.by_percentage:
                 return _(
                     "Send me a number between 0 and 100\n\nThis is the percentage of"
