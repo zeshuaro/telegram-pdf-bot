@@ -1068,24 +1068,6 @@ files = [
 ]
 
 [[package]]
-name = "isort"
-version = "5.11.4"
-description = "A Python utility / library to sort Python imports."
-category = "dev"
-optional = false
-python-versions = ">=3.7.0"
-files = [
-    {file = "isort-5.11.4-py3-none-any.whl", hash = "sha256:c033fd0edb91000a7f09527fe5c75321878f98322a77ddcc81adbd83724afb7b"},
-    {file = "isort-5.11.4.tar.gz", hash = "sha256:6db30c5ded9815d813932c04c2f85a360bcdd35fed496f4d8f35495ef0a261b6"},
-]
-
-[package.extras]
-colors = ["colorama (>=0.4.3,<0.5.0)"]
-pipfile-deprecated-finder = ["pipreqs", "requirementslib"]
-plugins = ["setuptools"]
-requirements-deprecated-finder = ["pip-api", "pipreqs"]
-
-[[package]]
 name = "langdetect"
 version = "1.0.9"
 description = "Language detection library ported from Google's language-detection."
@@ -2689,4 +2671,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "cbd3181736a79777905c1ea69fef90679786d48289463f933717f88fd1ab438e"
+content-hash = "647837ccba6fe9ee7be05c4ebf0ea897b8ee682557c2688b1b51769e2717233c"

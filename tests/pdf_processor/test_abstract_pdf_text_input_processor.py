@@ -4,12 +4,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 from telegram.constants import ParseMode
-from telegram.ext import (
-    CallbackQueryHandler,
-    CommandHandler,
-    ConversationHandler,
-    MessageHandler,
-)
+from telegram.ext import CallbackQueryHandler, CommandHandler, ConversationHandler, MessageHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileTaskProcessor

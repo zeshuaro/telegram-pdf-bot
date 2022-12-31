@@ -4,12 +4,7 @@ from gettext import gettext as _
 from typing import AsyncGenerator
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import (
-    CallbackQueryHandler,
-    CommandHandler,
-    ContextTypes,
-    ConversationHandler,
-)
+from telegram.ext import CallbackQueryHandler, CommandHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileTaskProcessor

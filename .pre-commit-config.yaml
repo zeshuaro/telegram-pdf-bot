@@ -16,12 +16,6 @@ repos:
         args: [--check, --diff]
         language: system
         types: [python]
-      - id: isort
-        name: isort
-        entry: isort
-        args: [--check, --diff]
-        language: system
-        types: [python]
       - id: ruff
         name: ruff
         entry: ruff

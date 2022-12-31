@@ -5,12 +5,7 @@ import pytest
 from pdf_bot.analytics import TaskType
 from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService
-from pdf_bot.pdf_processor import (
-    CropOptionAndInputData,
-    CropPdfData,
-    CropPdfProcessor,
-    CropType,
-)
+from pdf_bot.pdf_processor import CropOptionAndInputData, CropPdfData, CropPdfProcessor, CropType
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 

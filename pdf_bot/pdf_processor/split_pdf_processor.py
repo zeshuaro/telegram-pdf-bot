@@ -5,10 +5,7 @@ from typing import AsyncGenerator, Callable
 from pdf_bot.analytics import TaskType
 from pdf_bot.models import FileData, FileTaskResult, TaskData
 
-from .abstract_pdf_text_input_processor import (
-    AbstractPdfTextInputProcessor,
-    TextInputData,
-)
+from .abstract_pdf_text_input_processor import AbstractPdfTextInputProcessor, TextInputData
 
 
 class SplitPdfData(FileData):

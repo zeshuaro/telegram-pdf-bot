@@ -18,11 +18,7 @@ from pdf_bot.feedback import FeedbackHandler, FeedbackRepository, FeedbackServic
 from pdf_bot.file import FileHandler, FileService
 from pdf_bot.image import ImageService
 from pdf_bot.image_handler import BatchImageHandler, BatchImageService
-from pdf_bot.image_processor import (
-    BeautifyImageProcessor,
-    ImageTaskProcessor,
-    ImageToPdfProcessor,
-)
+from pdf_bot.image_processor import BeautifyImageProcessor, ImageTaskProcessor, ImageToPdfProcessor
 from pdf_bot.io import IOService
 from pdf_bot.language import LanguageHandler, LanguageRepository, LanguageService
 from pdf_bot.log import InterceptLoggingHandler, MyLogHandler

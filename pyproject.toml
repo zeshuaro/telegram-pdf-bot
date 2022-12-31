@@ -35,7 +35,6 @@ pydantic = { extras = ["dotenv"], version = "==1.10.4" }
 
 [tool.poetry.group.dev.dependencies]
 black = "22.12.0"
-isort = "5.11.4"
 pytest = "7.2.0"
 pytest-cov = "4.0.0"
 pre-commit = "==2.21.0"
@@ -62,6 +61,7 @@ select = [
     "E",
     "W",
     "C90",
+    "I",
     "D",
     "UP",
     "N",

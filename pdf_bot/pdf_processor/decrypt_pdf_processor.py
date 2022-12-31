@@ -10,10 +10,7 @@ from pdf_bot.file_processor import ErrorHandlerType
 from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.pdf import PdfIncorrectPasswordError
 
-from .abstract_pdf_text_input_processor import (
-    AbstractPdfTextInputProcessor,
-    TextInputData,
-)
+from .abstract_pdf_text_input_processor import AbstractPdfTextInputProcessor, TextInputData
 
 
 class DecryptPdfData(FileData):
