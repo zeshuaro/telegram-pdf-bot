@@ -57,22 +57,22 @@ multi_line_output = 3
 [tool.ruff]
 line-length = 100
 select = [
-    "F",
-    "E",
-    "W",
-    "C90",
-    "I",
-    "D",
-    "UP",
-    "N",
-    "YTT",
-    "ANN",
-    "S",
-    "BLE",
-    "B",
-    "A",
-    "C4",
-    "T10",
+    "F",   # Pyflakes - https://pypi.org/project/pyflakes/
+    "E",   # pycodestyle - https://pypi.org/project/pycodestyle/
+    "W",   # pycodestyle
+    "C90", # mccabe - https://pypi.org/project/mccabe/
+    "I",   # isort - https://pypi.org/project/isort/
+    "D",   # pydocstyle - https://pypi.org/project/pydocstyle/
+    "UP",  # pyupgrade - https://pypi.org/project/pyupgrade/
+    "N",   # pep8-naming - https://pypi.org/project/pep8-naming/
+    "YTT", # flake8-2020 - https://pypi.org/project/flake8-2020/
+    "ANN", # flake8-annotations - https://pypi.org/project/flake8-annotations/
+    "S",   # flake8-bandit - https://pypi.org/project/flake8-bandit/
+    "BLE", # flake8-blind-except - https://pypi.org/project/flake8-blind-except/
+    "B",   # flake8-bugbear - https://pypi.org/project/flake8-bugbear/
+    "A",   # flake8-builtins - https://pypi.org/project/flake8-builtins/
+    "C4",  # flake8-comprehensions - https://pypi.org/project/flake8-comprehensions/
+    "T10", # flake8-debugger - https://pypi.org/project/flake8-debugger/
 ]
 ignore = [
     # D10* rules are all related to missing docstring
