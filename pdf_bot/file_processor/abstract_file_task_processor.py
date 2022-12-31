@@ -18,7 +18,7 @@ class AbstractFileTaskProcessor(FileTaskMixin, ABC):
     def processor_type(self) -> type[AbstractFileProcessor]:
         pass
 
-    async def ask_task(self, update: Update, context: CallbackContext) -> str | int:
+    async def ask_task(self, update: Update, context: CallbackContext) -> str:
         return await self.ask_task_helper(
             self.language_service,
             update,

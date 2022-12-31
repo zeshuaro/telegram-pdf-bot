@@ -77,7 +77,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
     ) -> dict[type[Exception], ErrorHandlerType]:
         return {}
 
-    async def ask_task(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str | int:
+    async def ask_task(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
         query = update.callback_query
         if query is not None:
             await query.delete_message()
