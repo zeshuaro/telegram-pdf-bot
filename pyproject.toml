@@ -57,7 +57,23 @@ multi_line_output = 3
 
 [tool.ruff]
 line-length = 100
-select = ["F", "E", "W", "C90", "D", "UP", "N", "YTT", "ANN", "S", "BLE", "B"]
+select = [
+    "F",
+    "E",
+    "W",
+    "C90",
+    "D",
+    "UP",
+    "N",
+    "YTT",
+    "ANN",
+    "S",
+    "BLE",
+    "B",
+    "A",
+    "C4",
+    "T10",
+]
 ignore = [
     # D10* rules are all related to missing docstring
     "D100",
@@ -68,10 +84,23 @@ ignore = [
     "D105",
     "D106",
     "D107",
-    "D213",   # MultiLineSummarySecondLine
     "ANN101", # MissingTypeSelf
     "ANN102", # MissingTypeCls
     "ANN401", # DynamicallyTypedExpression,
+]
+extend-ignore = [
+    # D* are rules for Google docstring convention
+    "D203",
+    "D204",
+    "D213",
+    "D215",
+    "D400",
+    "D404",
+    "D406",
+    "D407",
+    "D408",
+    "D409",
+    "D413",
 ]
 
 [tool.ruff.per-file-ignores]

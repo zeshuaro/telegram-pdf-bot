@@ -83,13 +83,11 @@ class TelegramService:
             context (CallbackContext): the Telegram callback context
             key (str): the key for the value in user data
 
-        Raises
-        ------
+        Raises:
             TelegramUserDataError: if user_data does not exist or the key does not exist
                 in user data
 
-        Returns
-        -------
+        Returns:
             Any: the value for the key
         """
         err = TelegramGetUserDataError(_("Something went wrong, please try again"))
