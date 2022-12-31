@@ -82,6 +82,11 @@ select = [
     "ARG", # flake8-unused-arguments - https://pypi.org/project/flake8-unused-arguments/
     "DTZ", # flake8-datetimez - https://pypi.org/project/flake8-datetimez/
     "ERA", # eradicate - https://pypi.org/project/eradicate/
+    "PLC", # Pylint - https://pypi.org/project/pylint/
+    "PLE", # Pylint
+    "PLR", # Pylint
+    "PLW", # Pylint
+    "RUF", # Ruff-specific rules
 ]
 ignore = [
     # D10* rules are all related to missing docstring
@@ -115,6 +120,9 @@ extend-ignore = [
 [tool.ruff.per-file-ignores]
 "main.py" = [
     "S104", # HardcodedBindAllInterfaces
+]
+"pdf_bot/language/language_service.py" = [
+    "RUF001", # AmbiguousUnicodeCharacterString
 ]
 "tests/**/*.py" = [
     "S101", # AssertUsed
