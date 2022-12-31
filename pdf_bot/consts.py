@@ -19,3 +19,5 @@ MESSAGE_DATA = "message_data"
 # Datastore constants
 USER = "User"
 LANGUAGE = "language"
+
+GENERIC_ERROR = _("Something went wrong, start over with your file or command")

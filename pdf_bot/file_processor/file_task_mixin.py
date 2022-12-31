@@ -1,7 +1,16 @@
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
-from telegram.ext import ContextTypes
+from typing import cast
 
-from pdf_bot.consts import CANCEL, FILE_DATA
+from telegram import (
+    Document,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+    PhotoSize,
+    Update,
+)
+from telegram.ext import ContextTypes, ConversationHandler
+
+from pdf_bot.consts import CANCEL, FILE_DATA, GENERIC_ERROR
 from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData, TaskData
 
@@ -16,9 +25,9 @@ class FileTaskMixin:
         update: Update,
         context: ContextTypes.DEFAULT_TYPE,
         tasks: list[TaskData],
-    ) -> str:
+    ) -> str | int:
         _ = language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
         file_data: FileData | None = None
 
         # Try to retrieve the file data cached in user data first
@@ -27,8 +36,13 @@ class FileTaskMixin:
 
         # If we can't retrieve the file data, then we get the document/photo attached to
         # the message
-        if file_data is None:
-            file = message.document or message.photo[-1]
+        msg_doc: Document | None = msg.document
+        msg_photo: tuple[PhotoSize, ...] | None = msg.photo
+        if file_data is None and msg_doc is None and msg_photo is None:
+            await msg.reply_text(_(GENERIC_ERROR))
+            return ConversationHandler.END
+
+        file = msg_doc or msg_photo[-1]  # type: ignore[index]
 
         def get_callback_data(data_type: type[FileData]) -> FileData:
             if file_data is not None:
@@ -49,7 +63,7 @@ class FileTaskMixin:
         keyboard.append([InlineKeyboardButton(_(CANCEL), callback_data="cancel")])
 
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await message.reply_text(
+        await msg.reply_text(
             _("Select the task that you'll like to perform"), reply_markup=reply_markup
         )
 
