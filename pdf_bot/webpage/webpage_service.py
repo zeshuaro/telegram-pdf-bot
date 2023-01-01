@@ -81,6 +81,7 @@ class WebpageService:
                 OverflowError,
                 RuntimeError,
                 ValueError,
+                TypeError,
             ):
                 err_text = _("Failed to convert your webpage")
 
