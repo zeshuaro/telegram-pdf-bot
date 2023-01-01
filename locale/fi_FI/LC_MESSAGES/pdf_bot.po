@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2022-12-31 13:29+0000\n"
-"PO-Revision-Date: 2022-12-31 13:30\n"
+"POT-Creation-Date: 2023-01-01 01:32+0000\n"
+"PO-Revision-Date: 2023-01-01 01:32\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -34,6 +34,10 @@ msgstr "Tehnyt"
 #: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
 msgid "Back"
 msgstr "Bck"
+
+#: pdf_bot/consts.py:23
+msgid "Something went wrong, start over with your file or command"
+msgstr ""
 
 #: pdf_bot/cli/cli_service.py:55
 msgid "Failed to complete process"
@@ -188,7 +192,7 @@ msgstr "Huomaa, että tämä on Telegram Bot -rajoitus, enkä voi tehdä mitää
 msgid "Processing your file"
 msgstr "Tiedoston käsittely"
 
-#: pdf_bot/file_processor/file_task_mixin.py:53
+#: pdf_bot/file_processor/file_task_mixin.py:66
 msgid "Select the task that you'll like to perform"
 msgstr "Valitse tehtävä, jonka haluat suorittaa"
 
