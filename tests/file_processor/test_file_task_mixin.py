@@ -1,6 +1,8 @@
 import pytest
 from telegram import InlineKeyboardMarkup
+from telegram.ext import ConversationHandler
 
+from pdf_bot.consts import GENERIC_ERROR
 from pdf_bot.file_processor import FileTaskMixin
 from pdf_bot.models import FileData, TaskData
 from tests.language import LanguageServiceTestMixin
@@ -41,6 +43,22 @@ class TestFileTaskMixin(LanguageServiceTestMixin, TelegramTestMixin):
 
         assert actual == self.WAIT_FILE_TASK
         self._assert_inline_keyboard()
+
+    @pytest.mark.asyncio
+    async def test_ask_task_helper_without_file_data_and_file(self) -> None:
+        self.telegram_context.user_data = (
+            self.telegram_message.document
+        ) = self.telegram_message.photo = None
+
+        actual = await self.sut.ask_task_helper(
+            self.language_service,
+            self.telegram_update,
+            self.telegram_context,
+            self.TASK_DATA_LIST,
+        )
+
+        assert actual == ConversationHandler.END
+        self.telegram_update.effective_message.reply_text.assert_called_once_with(GENERIC_ERROR)
 
     def _assert_inline_keyboard(self) -> None:
         tasks = self.TASK_DATA_LIST

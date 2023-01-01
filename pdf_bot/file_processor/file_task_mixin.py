@@ -1,7 +1,14 @@
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
-from telegram.ext import ContextTypes
+from telegram import (
+    Document,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+    PhotoSize,
+    Update,
+)
+from telegram.ext import ContextTypes, ConversationHandler
 
-from pdf_bot.consts import CANCEL, FILE_DATA
+from pdf_bot.consts import CANCEL, FILE_DATA, GENERIC_ERROR
 from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData, TaskData
 
@@ -16,7 +23,7 @@ class FileTaskMixin:
         update: Update,
         context: ContextTypes.DEFAULT_TYPE,
         tasks: list[TaskData],
-    ) -> str:
+    ) -> str | int:
         _ = language_service.set_app_language(update, context)
         message: Message = update.effective_message  # type: ignore
         file_data: FileData | None = None
@@ -28,6 +35,12 @@ class FileTaskMixin:
         # If we can't retrieve the file data, then we get the document/photo attached to
         # the message
         if file_data is None:
+            msg_doc: Document | None = message.document
+            msg_photo: tuple[PhotoSize, ...] | None = message.photo
+            if msg_doc is None and msg_photo is None:
+                await message.reply_text(_(GENERIC_ERROR))
+                return ConversationHandler.END
+
             file = message.document or message.photo[-1]
 
         def get_callback_data(data_type: type[FileData]) -> FileData:
