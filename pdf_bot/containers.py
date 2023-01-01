@@ -324,10 +324,6 @@ class Handlers(containers.DeclarativeContainer):
     # Make sure webpage handler comes before the file processors to capture the URLs
     webpage = providers.Singleton(WebpageHandler, webpage_service=services.webpage)
 
-    file = providers.Singleton(
-        FileHandler, file_service=services.file, telegram_service=services.telegram
-    )
-
     compare = providers.Singleton(
         CompareHandler,
         compare_service=services.compare,
@@ -353,6 +349,12 @@ class Handlers(containers.DeclarativeContainer):
         WatermarkHandler,
         watermark_service=services.watermark,
         telegram_service=services.telegram,
+    )
+
+    # Make sure the file handler comes after the other file related file handlers
+    # so that it doesn't take over when those handlers are expecting a file
+    file = providers.Singleton(
+        FileHandler, file_service=services.file, telegram_service=services.telegram
     )
 
     # This is the catch all callback query handler so make sure it comes last
