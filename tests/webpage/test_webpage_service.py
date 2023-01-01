@@ -94,6 +94,7 @@ class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
             OverflowError,
             RuntimeError,
             ValueError,
+            TypeError,
         ],
     )
     @pytest.mark.asyncio
