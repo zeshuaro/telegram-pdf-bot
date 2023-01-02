@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, call, patch
 
 import pytest
 from img2pdf import Rotation
-from ocrmypdf.exceptions import PriorOcrFoundError
+from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError
 from PyPDF2 import PageObject, PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
 from PyPDF2.pagerange import PageRange
@@ -17,7 +17,6 @@ from pdf_bot.pdf import (
     CompressResult,
     FontData,
     PdfDecryptError,
-    PdfOcrError,
     PdfReadError,
     PdfService,
     ScaleByData,
@@ -60,10 +59,12 @@ class TestPDFService(
         )
 
         self.open_patcher = patch("builtins.open")
-        self.mock_open = self.open_patcher.start()
-
         self.os_patcher = patch("pdf_bot.pdf.pdf_service.os")
+        self.ocrmypdf_patcher = patch("pdf_bot.pdf.pdf_service.ocrmypdf")
+
+        self.mock_open = self.open_patcher.start()
         self.mock_os = self.os_patcher.start()
+        self.ocrmypdf = self.ocrmypdf_patcher.start()
 
         self.sut = PdfService(
             self.cli_service,
@@ -74,6 +75,7 @@ class TestPDFService(
     def teardown_method(self) -> None:
         self.open_patcher.stop()
         self.os_patcher.stop()
+        self.ocrmypdf_patcher.stop()
         super().teardown_method()
 
     @pytest.mark.asyncio
@@ -475,24 +477,26 @@ class TestPDFService(
 
     @pytest.mark.asyncio
     async def test_ocr_pdf(self) -> None:
-        with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf:
-            async with self.sut.ocr_pdf(self.TELEGRAM_FILE_ID) as actual:
-                assert actual == self.OUTPUT_PATH
-                self._assert_telegram_and_io_services("OCR")
-                ocrmypdf.ocr.assert_called_once_with(
-                    self.DOWNLOAD_PATH, self.OUTPUT_PATH, progress_bar=False
-                )
+        async with self.sut.ocr_pdf(self.TELEGRAM_FILE_ID) as actual:
+            assert actual == self.OUTPUT_PATH
+            self._assert_telegram_and_io_services("OCR")
+            self.ocrmypdf.ocr.assert_called_once_with(
+                self.DOWNLOAD_PATH, self.OUTPUT_PATH, progress_bar=False
+            )
 
     @pytest.mark.asyncio
-    async def test_ocr_pdf_prior_ocr_found(self) -> None:
-        with patch("pdf_bot.pdf.pdf_service.ocrmypdf") as ocrmypdf:
-            ocrmypdf.ocr.side_effect = PriorOcrFoundError()
-            with pytest.raises(PdfOcrError):
-                async with self.sut.ocr_pdf(self.TELEGRAM_FILE_ID):
-                    self._assert_telegram_and_io_services("OCR")
-                    ocrmypdf.ocr.assert_called_once_with(
-                        self.DOWNLOAD_PATH, self.OUTPUT_PATH, progress_bar=False
-                    )
+    @pytest.mark.parametrize("error", [PriorOcrFoundError, EncryptedPdfError])
+    async def test_ocr_pdf_error(self, error: type[Exception]) -> None:
+        self.ocrmypdf.ocr.side_effect = error
+
+        with pytest.raises(PdfServiceError):
+            async with self.sut.ocr_pdf(self.TELEGRAM_FILE_ID):
+                pass
+
+        self._assert_telegram_and_io_services("OCR")
+        self.ocrmypdf.ocr.assert_called_once_with(
+            self.DOWNLOAD_PATH, self.OUTPUT_PATH, progress_bar=False
+        )
 
     @pytest.mark.asyncio
     async def test_preview_pdf(self) -> None:
