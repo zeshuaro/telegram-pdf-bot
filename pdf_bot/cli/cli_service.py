@@ -15,30 +15,8 @@ class CLIService:
         )
         self._run_command(command)
 
-    def crop_pdf_by_percentage(self, input_path: str, output_path: str, percentage: float) -> None:
-        self._crop_pdf(input_path, output_path, percentage=percentage)
-
-    def crop_pdf_by_margin_size(
-        self, input_path: str, output_path: str, margin_size: float
-    ) -> None:
-        self._crop_pdf(input_path, output_path, margin_size=margin_size)
-
     def extract_pdf_images(self, input_path: str, output_path: str) -> None:
         command = f'pdfimages -png "{input_path}" "{output_path}/images"'
-        self._run_command(command)
-
-    def _crop_pdf(
-        self,
-        input_path: str,
-        output_path: str,
-        percentage: float | None = None,
-        margin_size: float | None = None,
-    ) -> None:
-        command = f'pdfcropmargins -o "{output_path}" "{input_path}"'
-        if percentage is not None:
-            command += f" -p {percentage}"
-        else:
-            command += f" -a {margin_size}"
         self._run_command(command)
 
     @staticmethod

@@ -12,6 +12,7 @@ import pdf2image
 import pdf_diff
 from img2pdf import Rotation
 from ocrmypdf.exceptions import PriorOcrFoundError
+from pdfCropMargins import crop
 from pdfminer.high_level import extract_text
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
@@ -144,7 +145,7 @@ class PdfService:
     ) -> AsyncGenerator[str, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("Cropped") as out_path:
-                self.cli_service.crop_pdf_by_percentage(file_path, out_path, percentage)
+                crop(["-p", str(percentage), "-o", out_path, file_path])
                 yield out_path
 
     @asynccontextmanager
@@ -153,7 +154,7 @@ class PdfService:
     ) -> AsyncGenerator[str, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("Cropped") as out_path:
-                self.cli_service.crop_pdf_by_margin_size(file_path, out_path, margin_size)
+                crop(["-a", str(margin_size), "-o", out_path, file_path])
                 yield out_path
 
     @asynccontextmanager
