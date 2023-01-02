@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-02 10:39+0000\n"
-"PO-Revision-Date: 2023-01-02 10:39\n"
+"POT-Creation-Date: 2023-01-02 11:34+0000\n"
+"PO-Revision-Date: 2023-01-02 11:34\n"
 "Last-Translator: \n"
 "Language: it\n"
 "Language-Team: Italian\n"
@@ -335,41 +335,41 @@ msgstr "Grazie per il tuo supporto!"
 msgid "Help translate PDF Bot"
 msgstr "Aiuta a tradurre PDF Bot"
 
-#: pdf_bot/pdf/pdf_service.py:164
+#: pdf_bot/pdf/pdf_service.py:163
 msgid "Your PDF file is not encrypted"
 msgstr "Il file PDF non è cifrato"
 
-#: pdf_bot/pdf/pdf_service.py:168
+#: pdf_bot/pdf/pdf_service.py:167
 msgid "Incorrect password, please try again"
 msgstr "Password errata, riprova"
 
-#: pdf_bot/pdf/pdf_service.py:171
+#: pdf_bot/pdf/pdf_service.py:170
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Il file PDF è crittografato con un metodo che non è possibile decrittografare"
 
-#: pdf_bot/pdf/pdf_service.py:207
+#: pdf_bot/pdf/pdf_service.py:206
 msgid "No images found in your PDF file"
 msgstr "Nessuna immagine trovata nel file PDF"
 
-#: pdf_bot/pdf/pdf_service.py:216
+#: pdf_bot/pdf/pdf_service.py:215
 msgid "No text found in your PDF file"
 msgstr "Nessun testo trovato nel file PDF"
 
-#: pdf_bot/pdf/pdf_service.py:237
+#: pdf_bot/pdf/pdf_service.py:236
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Non ho potuto unire i tuoi file PDF perché questo file non è valido: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:254
+#: pdf_bot/pdf/pdf_service.py:253
 msgid "Your PDF file already has a text layer"
 msgstr "Il file PDF ha già un livello di testo"
 
-#: pdf_bot/pdf/pdf_service.py:352
-msgid "Your PDF file is invalid"
-msgstr "Il file PDF non è valido"
+#: pdf_bot/pdf/pdf_service.py:256 pdf_bot/pdf/pdf_service.py:358
+msgid "Your PDF file is encrypted, decrypt it first then try again"
+msgstr ""
 
 #: pdf_bot/pdf/pdf_service.py:355
-msgid "Your PDF file is encrypted"
-msgstr "Il tuo file PDF è crittografato"
+msgid "Your PDF file is invalid"
+msgstr "Il file PDF non è valido"
 
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:24
 msgid "Compress"
@@ -1683,5 +1683,8 @@ msgstr "Impossibile convertire la pagina web"
 #~ msgstr ""
 
 #~ msgid "Something went wrong, start over with your file or command"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is encrypted"
 #~ msgstr ""
 

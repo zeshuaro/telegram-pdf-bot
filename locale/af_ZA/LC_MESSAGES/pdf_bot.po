@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-02 10:39+0000\n"
-"PO-Revision-Date: 2023-01-02 10:39\n"
+"POT-Creation-Date: 2023-01-02 11:34+0000\n"
+"PO-Revision-Date: 2023-01-02 11:34\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -335,41 +335,41 @@ msgstr "Dankie vir jou ondersteuning!"
 msgid "Help translate PDF Bot"
 msgstr "Help vertaal PDF Bot"
 
-#: pdf_bot/pdf/pdf_service.py:164
+#: pdf_bot/pdf/pdf_service.py:163
 msgid "Your PDF file is not encrypted"
 msgstr "Jou PDF-lêer is nie geënkripteer nie"
 
-#: pdf_bot/pdf/pdf_service.py:168
+#: pdf_bot/pdf/pdf_service.py:167
 msgid "Incorrect password, please try again"
 msgstr "Verkeerde wagwoord, probeer asseblief weer"
 
-#: pdf_bot/pdf/pdf_service.py:171
+#: pdf_bot/pdf/pdf_service.py:170
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Jou PDF-lêer is geënkripteer met 'n metode wat ek nie kan dekripteer nie"
 
-#: pdf_bot/pdf/pdf_service.py:207
+#: pdf_bot/pdf/pdf_service.py:206
 msgid "No images found in your PDF file"
 msgstr "Geen beelde wat in jou PDF-lêer gevind word nie"
 
-#: pdf_bot/pdf/pdf_service.py:216
+#: pdf_bot/pdf/pdf_service.py:215
 msgid "No text found in your PDF file"
 msgstr "Geen teks in jou PDF-lêer gevind nie"
 
-#: pdf_bot/pdf/pdf_service.py:237
+#: pdf_bot/pdf/pdf_service.py:236
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Ek kon nie jou PDF-lêers saamsmelt nie, aangesien hierdie lêer ongeldig is: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:254
+#: pdf_bot/pdf/pdf_service.py:253
 msgid "Your PDF file already has a text layer"
 msgstr "U PDF-lêer het reeds 'n tekslaag"
 
-#: pdf_bot/pdf/pdf_service.py:352
-msgid "Your PDF file is invalid"
-msgstr "Jou PDF-lêer is ongeldig"
+#: pdf_bot/pdf/pdf_service.py:256 pdf_bot/pdf/pdf_service.py:358
+msgid "Your PDF file is encrypted, decrypt it first then try again"
+msgstr ""
 
 #: pdf_bot/pdf/pdf_service.py:355
-msgid "Your PDF file is encrypted"
-msgstr "Jou PDF-lêer is geënkripteer"
+msgid "Your PDF file is invalid"
+msgstr "Jou PDF-lêer is ongeldig"
 
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:24
 msgid "Compress"
@@ -1683,5 +1683,8 @@ msgstr "Kon nie u webblad omskakel nie"
 #~ msgstr ""
 
 #~ msgid "Something went wrong, start over with your file or command"
+#~ msgstr ""
+
+#~ msgid "Your PDF file is encrypted"
 #~ msgstr ""
 
