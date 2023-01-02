@@ -11,7 +11,7 @@ import ocrmypdf
 import pdf2image
 import pdf_diff
 from img2pdf import Rotation
-from ocrmypdf.exceptions import PriorOcrFoundError
+from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError
 from pdfCropMargins import crop
 from pdfminer.high_level import extract_text
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
@@ -29,7 +29,6 @@ from pdf_bot.pdf.exceptions import (
     PdfIncorrectPasswordError,
     PdfNoImagesError,
     PdfNoTextError,
-    PdfOcrError,
     PdfReadError,
     PdfServiceError,
 )
@@ -251,7 +250,11 @@ class PdfService:
                     ocrmypdf.ocr(file_path, out_path, progress_bar=False)
                     yield out_path
                 except PriorOcrFoundError as e:
-                    raise PdfOcrError(_("Your PDF file already has a text layer")) from e
+                    raise PdfServiceError(_("Your PDF file already has a text layer")) from e
+                except EncryptedPdfError as e:
+                    raise PdfServiceError(
+                        _("Your PDF file is encrypted, decrypt it first then try again")
+                    ) from e
 
     @asynccontextmanager
     async def preview_pdf(self, file_id: str) -> AsyncGenerator[str, None]:
@@ -352,5 +355,5 @@ class PdfService:
                 raise PdfReadError(_("Your PDF file is invalid")) from e
 
         if pdf_reader.is_encrypted and not allow_encrypted:
-            raise PdfEncryptError(_("Your PDF file is encrypted"))
+            raise PdfEncryptError(_("Your PDF file is encrypted, decrypt it first then try again"))
         return pdf_reader
