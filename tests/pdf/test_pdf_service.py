@@ -251,22 +251,28 @@ class TestPDFService(
     @pytest.mark.asyncio
     async def test_crop_pdf_by_percentage(self) -> None:
         percent = 0.1
-        async with self.sut.crop_pdf_by_percentage(self.TELEGRAM_FILE_ID, percent) as actual:
-            assert actual == self.OUTPUT_PATH
-            self.cli_service.crop_pdf_by_percentage.assert_called_once_with(
-                self.DOWNLOAD_PATH, self.OUTPUT_PATH, percent
-            )
-            self._assert_telegram_and_io_services("Cropped")
+
+        with patch("pdf_bot.pdf.pdf_service.crop") as crop:
+            async with self.sut.crop_pdf_by_percentage(self.TELEGRAM_FILE_ID, percent) as actual:
+                assert actual == self.OUTPUT_PATH
+                crop.assert_called_once_with(
+                    ["-p", str(percent), "-o", self.OUTPUT_PATH, self.DOWNLOAD_PATH]
+                )
+                self._assert_telegram_and_io_services("Cropped")
 
     @pytest.mark.asyncio
     async def test_crop_pdf_by_margin_size(self) -> None:
         margin_size = 10
-        async with self.sut.crop_pdf_by_margin_size(self.TELEGRAM_FILE_ID, margin_size) as actual:
-            assert actual == self.OUTPUT_PATH
-            self.cli_service.crop_pdf_by_margin_size.assert_called_once_with(
-                self.DOWNLOAD_PATH, self.OUTPUT_PATH, margin_size
-            )
-            self._assert_telegram_and_io_services("Cropped")
+
+        with patch("pdf_bot.pdf.pdf_service.crop") as crop:
+            async with self.sut.crop_pdf_by_margin_size(
+                self.TELEGRAM_FILE_ID, margin_size
+            ) as actual:
+                assert actual == self.OUTPUT_PATH
+                crop.assert_called_once_with(
+                    ["-a", str(margin_size), "-o", self.OUTPUT_PATH, self.DOWNLOAD_PATH]
+                )
+                self._assert_telegram_and_io_services("Cropped")
 
     @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
     @pytest.mark.asyncio
