@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-03 01:35+0000\n"
-"PO-Revision-Date: 2023-01-03 01:35\n"
+"POT-Creation-Date: 2023-01-03 05:45+0000\n"
+"PO-Revision-Date: 2023-01-03 05:45\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -335,39 +335,39 @@ msgstr "Dankie vir jou ondersteuning!"
 msgid "Help translate PDF Bot"
 msgstr "Help vertaal PDF Bot"
 
-#: pdf_bot/pdf/pdf_service.py:163
-msgid "Your PDF file is not encrypted"
-msgstr "Jou PDF-lêer is nie geënkripteer nie"
-
-#: pdf_bot/pdf/pdf_service.py:167
-msgid "Incorrect password, please try again"
-msgstr "Verkeerde wagwoord, probeer asseblief weer"
-
-#: pdf_bot/pdf/pdf_service.py:170
-msgid "Your PDF file is encrypted with a method that I can't decrypt"
-msgstr "Jou PDF-lêer is geënkripteer met 'n metode wat ek nie kan dekripteer nie"
-
-#: pdf_bot/pdf/pdf_service.py:206
-msgid "No images found in your PDF file"
-msgstr "Geen beelde wat in jou PDF-lêer gevind word nie"
-
-#: pdf_bot/pdf/pdf_service.py:215
-msgid "No text found in your PDF file"
-msgstr "Geen teks in jou PDF-lêer gevind nie"
-
-#: pdf_bot/pdf/pdf_service.py:236
-msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr "Ek kon nie jou PDF-lêers saamsmelt nie, aangesien hierdie lêer ongeldig is: {file_name}"
-
-#: pdf_bot/pdf/pdf_service.py:253
-msgid "Your PDF file already has a text layer"
-msgstr "U PDF-lêer het reeds 'n tekslaag"
-
-#: pdf_bot/pdf/pdf_service.py:256 pdf_bot/pdf/pdf_service.py:358
+#: pdf_bot/pdf/exceptions.py:29
 msgid "Your PDF file is encrypted, decrypt it first then try again"
 msgstr "Jou PDF-lêer is geïnkripteer, dekripteer dit eers en probeer dan weer"
 
-#: pdf_bot/pdf/pdf_service.py:355
+#: pdf_bot/pdf/pdf_service.py:164
+msgid "Your PDF file is not encrypted"
+msgstr "Jou PDF-lêer is nie geënkripteer nie"
+
+#: pdf_bot/pdf/pdf_service.py:168
+msgid "Incorrect password, please try again"
+msgstr "Verkeerde wagwoord, probeer asseblief weer"
+
+#: pdf_bot/pdf/pdf_service.py:171
+msgid "Your PDF file is encrypted with a method that I can't decrypt"
+msgstr "Jou PDF-lêer is geënkripteer met 'n metode wat ek nie kan dekripteer nie"
+
+#: pdf_bot/pdf/pdf_service.py:207
+msgid "No images found in your PDF file"
+msgstr "Geen beelde wat in jou PDF-lêer gevind word nie"
+
+#: pdf_bot/pdf/pdf_service.py:219
+msgid "No text found in your PDF file"
+msgstr "Geen teks in jou PDF-lêer gevind nie"
+
+#: pdf_bot/pdf/pdf_service.py:240
+msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
+msgstr "Ek kon nie jou PDF-lêers saamsmelt nie, aangesien hierdie lêer ongeldig is: {file_name}"
+
+#: pdf_bot/pdf/pdf_service.py:257
+msgid "Your PDF file already has a text layer"
+msgstr "U PDF-lêer het reeds 'n tekslaag"
+
+#: pdf_bot/pdf/pdf_service.py:357
 msgid "Your PDF file is invalid"
 msgstr "Jou PDF-lêer is ongeldig"
 

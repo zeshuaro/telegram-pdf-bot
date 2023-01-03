@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-03 01:35+0000\n"
-"PO-Revision-Date: 2023-01-03 01:35\n"
+"POT-Creation-Date: 2023-01-03 05:45+0000\n"
+"PO-Revision-Date: 2023-01-03 05:45\n"
 "Last-Translator: \n"
 "Language: hi\n"
 "Language-Team: Hindi\n"
@@ -335,39 +335,39 @@ msgstr "आपके समर्थन के लिए धन्यवाद!"
 msgid "Help translate PDF Bot"
 msgstr "पीडीएफ बॉट का अनुवाद करने में मदद करें"
 
-#: pdf_bot/pdf/pdf_service.py:163
-msgid "Your PDF file is not encrypted"
-msgstr "आपकी पीडीएफ फाइल एन्क्रिप्टेड नहीं है"
-
-#: pdf_bot/pdf/pdf_service.py:167
-msgid "Incorrect password, please try again"
-msgstr "गलत पासवर्ड, कृपया पुन: प्रयास करें"
-
-#: pdf_bot/pdf/pdf_service.py:170
-msgid "Your PDF file is encrypted with a method that I can't decrypt"
-msgstr "आपकी पीडीएफ फ़ाइल एक विधि के साथ एन्क्रिप्टेड है जिसे मैं डिक्रिप्ट नहीं कर सकता"
-
-#: pdf_bot/pdf/pdf_service.py:206
-msgid "No images found in your PDF file"
-msgstr "आपकी PDF फाइल में कोई चित्र नहीं मिला"
-
-#: pdf_bot/pdf/pdf_service.py:215
-msgid "No text found in your PDF file"
-msgstr "आपकी PDF फ़ाइल में कोई पाठ नहीं मिला"
-
-#: pdf_bot/pdf/pdf_service.py:236
-msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr "मैं आपकी पीडीएफ फाइलों को मर्ज नहीं कर सका क्योंकि यह फ़ाइल अमान्य है: {file_name}"
-
-#: pdf_bot/pdf/pdf_service.py:253
-msgid "Your PDF file already has a text layer"
-msgstr "आपकी पीडीएफ फ़ाइल में पहले से ही एक टेक्स्ट लेयर है"
-
-#: pdf_bot/pdf/pdf_service.py:256 pdf_bot/pdf/pdf_service.py:358
+#: pdf_bot/pdf/exceptions.py:29
 msgid "Your PDF file is encrypted, decrypt it first then try again"
 msgstr "आपकी PDF फ़ाइल एन्क्रिप्ट की गई है, इसे पहले डिक्रिप्ट करें फिर पुन: प्रयास करें"
 
-#: pdf_bot/pdf/pdf_service.py:355
+#: pdf_bot/pdf/pdf_service.py:164
+msgid "Your PDF file is not encrypted"
+msgstr "आपकी पीडीएफ फाइल एन्क्रिप्टेड नहीं है"
+
+#: pdf_bot/pdf/pdf_service.py:168
+msgid "Incorrect password, please try again"
+msgstr "गलत पासवर्ड, कृपया पुन: प्रयास करें"
+
+#: pdf_bot/pdf/pdf_service.py:171
+msgid "Your PDF file is encrypted with a method that I can't decrypt"
+msgstr "आपकी पीडीएफ फ़ाइल एक विधि के साथ एन्क्रिप्टेड है जिसे मैं डिक्रिप्ट नहीं कर सकता"
+
+#: pdf_bot/pdf/pdf_service.py:207
+msgid "No images found in your PDF file"
+msgstr "आपकी PDF फाइल में कोई चित्र नहीं मिला"
+
+#: pdf_bot/pdf/pdf_service.py:219
+msgid "No text found in your PDF file"
+msgstr "आपकी PDF फ़ाइल में कोई पाठ नहीं मिला"
+
+#: pdf_bot/pdf/pdf_service.py:240
+msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
+msgstr "मैं आपकी पीडीएफ फाइलों को मर्ज नहीं कर सका क्योंकि यह फ़ाइल अमान्य है: {file_name}"
+
+#: pdf_bot/pdf/pdf_service.py:257
+msgid "Your PDF file already has a text layer"
+msgstr "आपकी पीडीएफ फ़ाइल में पहले से ही एक टेक्स्ट लेयर है"
+
+#: pdf_bot/pdf/pdf_service.py:357
 msgid "Your PDF file is invalid"
 msgstr "आपकी PDF फ़ाइल अमान्य है"
 

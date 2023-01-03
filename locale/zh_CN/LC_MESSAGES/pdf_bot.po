@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-03 01:35+0000\n"
-"PO-Revision-Date: 2023-01-03 01:35\n"
+"POT-Creation-Date: 2023-01-03 05:45+0000\n"
+"PO-Revision-Date: 2023-01-03 05:45\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -335,39 +335,39 @@ msgstr "感谢你的支持！"
 msgid "Help translate PDF Bot"
 msgstr "帮助翻译PDF Bot"
 
-#: pdf_bot/pdf/pdf_service.py:163
-msgid "Your PDF file is not encrypted"
-msgstr "你的PDF档案并没有加密"
-
-#: pdf_bot/pdf/pdf_service.py:167
-msgid "Incorrect password, please try again"
-msgstr "密码不正确，请重试"
-
-#: pdf_bot/pdf/pdf_service.py:170
-msgid "Your PDF file is encrypted with a method that I can't decrypt"
-msgstr "您的 PDF 文件使用一种无法解密的方法进行加密"
-
-#: pdf_bot/pdf/pdf_service.py:206
-msgid "No images found in your PDF file"
-msgstr "在 PDF 文件中找不到图像"
-
-#: pdf_bot/pdf/pdf_service.py:215
-msgid "No text found in your PDF file"
-msgstr "在 PDF 文件中找不到任何文本"
-
-#: pdf_bot/pdf/pdf_service.py:236
-msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr "我不能合并您的 PDF 文件，因为此文件无效： {file_name}"
-
-#: pdf_bot/pdf/pdf_service.py:253
-msgid "Your PDF file already has a text layer"
-msgstr "你的PDF档案已经有一层文字"
-
-#: pdf_bot/pdf/pdf_service.py:256 pdf_bot/pdf/pdf_service.py:358
+#: pdf_bot/pdf/exceptions.py:29
 msgid "Your PDF file is encrypted, decrypt it first then try again"
 msgstr "您的 PDF 文件已加密，请先解密，然后重试"
 
-#: pdf_bot/pdf/pdf_service.py:355
+#: pdf_bot/pdf/pdf_service.py:164
+msgid "Your PDF file is not encrypted"
+msgstr "你的PDF档案并没有加密"
+
+#: pdf_bot/pdf/pdf_service.py:168
+msgid "Incorrect password, please try again"
+msgstr "密码不正确，请重试"
+
+#: pdf_bot/pdf/pdf_service.py:171
+msgid "Your PDF file is encrypted with a method that I can't decrypt"
+msgstr "您的 PDF 文件使用一种无法解密的方法进行加密"
+
+#: pdf_bot/pdf/pdf_service.py:207
+msgid "No images found in your PDF file"
+msgstr "在 PDF 文件中找不到图像"
+
+#: pdf_bot/pdf/pdf_service.py:219
+msgid "No text found in your PDF file"
+msgstr "在 PDF 文件中找不到任何文本"
+
+#: pdf_bot/pdf/pdf_service.py:240
+msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
+msgstr "我不能合并您的 PDF 文件，因为此文件无效： {file_name}"
+
+#: pdf_bot/pdf/pdf_service.py:257
+msgid "Your PDF file already has a text layer"
+msgstr "你的PDF档案已经有一层文字"
+
+#: pdf_bot/pdf/pdf_service.py:357
 msgid "Your PDF file is invalid"
 msgstr "您的 PDF 文件无效"
 
