@@ -35,6 +35,7 @@ class MyLogHandler:
         )
 
         logging.getLogger(self._FONT_TOOLS).setLevel(logging.WARNING)
-
         logging.getLogger(self._WEASYPRINT).setLevel(logging.ERROR)
+
+        ignore_logger(self._FONT_TOOLS)
         ignore_logger(self._WEASYPRINT)
