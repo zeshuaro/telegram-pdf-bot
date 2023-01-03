@@ -4,6 +4,7 @@ from unittest.mock import MagicMock, call, patch
 import pytest
 from img2pdf import Rotation
 from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError
+from pdfminer.pdfdocument import PDFPasswordIncorrect
 from PyPDF2 import PageObject, PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
 from PyPDF2.pagerange import PageRange
@@ -23,7 +24,7 @@ from pdf_bot.pdf import (
     ScaleToData,
 )
 from pdf_bot.pdf.exceptions import (
-    PdfEncryptError,
+    PdfEncryptedError,
     PdfIncorrectPasswordError,
     PdfNoImagesError,
     PdfNoTextError,
@@ -61,10 +62,14 @@ class TestPDFService(
         self.open_patcher = patch("builtins.open")
         self.os_patcher = patch("pdf_bot.pdf.pdf_service.os")
         self.ocrmypdf_patcher = patch("pdf_bot.pdf.pdf_service.ocrmypdf")
+        self.extract_text_patcher = patch("pdf_bot.pdf.pdf_service.extract_text")
+        self.textwrap_patcher = patch("pdf_bot.pdf.pdf_service.textwrap")
 
         self.mock_open = self.open_patcher.start()
         self.mock_os = self.os_patcher.start()
         self.ocrmypdf = self.ocrmypdf_patcher.start()
+        self.extract_text = self.extract_text_patcher.start()
+        self.textwrap_patcher.start()
 
         self.sut = PdfService(
             self.cli_service,
@@ -76,6 +81,8 @@ class TestPDFService(
         self.open_patcher.stop()
         self.os_patcher.stop()
         self.ocrmypdf_patcher.stop()
+        self.extract_text_patcher.stop()
+        self.textwrap_patcher.stop()
         super().teardown_method()
 
     @pytest.mark.asyncio
@@ -370,7 +377,7 @@ class TestPDFService(
 
         with patch("pdf_bot.pdf.pdf_service.PdfFileReader") as reader_cls:
             reader_cls.return_value = reader
-            with pytest.raises(PdfEncryptError):
+            with pytest.raises(PdfEncryptedError):
                 async with self.sut.encrypt_pdf(self.TELEGRAM_FILE_ID, self.PASSWORD):
                     self.telegram_service.download_pdf_file.assert_called_once_with(
                         self.TELEGRAM_FILE_ID
@@ -378,29 +385,36 @@ class TestPDFService(
                     self.io_service.create_temp_pdf_file.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_extract_text_from_pdf(self) -> None:
-        with patch("pdf_bot.pdf.pdf_service.extract_text") as extract_text, patch(
-            "pdf_bot.pdf.pdf_service.textwrap"
-        ):
-            async with self.sut.extract_text_from_pdf(self.TELEGRAM_FILE_ID) as actual:
-                assert actual == self.OUTPUT_PATH
-                self.telegram_service.download_pdf_file.assert_called_once_with(
-                    self.TELEGRAM_FILE_ID
-                )
-                self.io_service.create_temp_txt_file.assert_called_once_with("PDF_text")
-                extract_text.assert_called_once_with(self.DOWNLOAD_PATH)
+    async def test_extract_pdf_text(self) -> None:
+        async with self.sut.extract_pdf_text(self.TELEGRAM_FILE_ID) as actual:
+            assert actual == self.OUTPUT_PATH
+            self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
+            self.io_service.create_temp_txt_file.assert_called_once_with("PDF_text")
+            self.extract_text.assert_called_once_with(self.DOWNLOAD_PATH)
 
     @pytest.mark.asyncio
-    async def test_extract_text_from_pdf_no_text(self) -> None:
-        with patch("pdf_bot.pdf.pdf_service.extract_text") as extract_text:
-            extract_text.return_value = ""
-            with pytest.raises(PdfNoTextError):
-                async with self.sut.extract_text_from_pdf(self.TELEGRAM_FILE_ID):
-                    self.telegram_service.download_pdf_file.assert_called_once_with(
-                        self.TELEGRAM_FILE_ID
-                    )
-                    self.io_service.create_temp_txt_file.assert_not_called()
-                    extract_text.assert_called_once_with(self.DOWNLOAD_PATH)
+    async def test_extract_pdf_text_error(self) -> None:
+        self.extract_text.side_effect = PDFPasswordIncorrect
+
+        with pytest.raises(PdfEncryptedError):
+            async with self.sut.extract_pdf_text(self.TELEGRAM_FILE_ID):
+                pass
+
+        self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
+        self.io_service.create_temp_txt_file.assert_not_called()
+        self.extract_text.assert_called_once_with(self.DOWNLOAD_PATH)
+
+    @pytest.mark.asyncio
+    async def test_extract_pdf_text_no_text(self) -> None:
+        self.extract_text.return_value = ""
+
+        with pytest.raises(PdfNoTextError):
+            async with self.sut.extract_pdf_text(self.TELEGRAM_FILE_ID):
+                pass
+
+        self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
+        self.io_service.create_temp_txt_file.assert_not_called()
+        self.extract_text.assert_called_once_with(self.DOWNLOAD_PATH)
 
     @pytest.mark.asyncio
     async def test_extract_pdf_images(self) -> None:
@@ -485,11 +499,14 @@ class TestPDFService(
             )
 
     @pytest.mark.asyncio
-    @pytest.mark.parametrize("error", [PriorOcrFoundError, EncryptedPdfError])
-    async def test_ocr_pdf_error(self, error: type[Exception]) -> None:
+    @pytest.mark.parametrize(
+        "error,expected",
+        [(PriorOcrFoundError, PdfServiceError), (EncryptedPdfError, PdfEncryptedError)],
+    )
+    async def test_ocr_pdf_error(self, error: type[Exception], expected: type[Exception]) -> None:
         self.ocrmypdf.ocr.side_effect = error
 
-        with pytest.raises(PdfServiceError):
+        with pytest.raises(expected):
             async with self.sut.ocr_pdf(self.TELEGRAM_FILE_ID):
                 pass
 

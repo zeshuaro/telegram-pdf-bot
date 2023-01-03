@@ -14,6 +14,7 @@ from img2pdf import Rotation
 from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError
 from pdfCropMargins import crop
 from pdfminer.high_level import extract_text
+from pdfminer.pdfdocument import PDFPasswordIncorrect
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
 from PyPDF2.pagerange import PageRange
@@ -25,7 +26,7 @@ from pdf_bot.io import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf.exceptions import (
     PdfDecryptError,
-    PdfEncryptError,
+    PdfEncryptedError,
     PdfIncorrectPasswordError,
     PdfNoImagesError,
     PdfNoTextError,
@@ -207,9 +208,12 @@ class PdfService:
                 yield out_dir
 
     @asynccontextmanager
-    async def extract_text_from_pdf(self, file_id: str) -> AsyncGenerator[str, None]:
+    async def extract_pdf_text(self, file_id: str) -> AsyncGenerator[str, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
-            text = extract_text(file_path)
+            try:
+                text = extract_text(file_path)
+            except PDFPasswordIncorrect as e:
+                raise PdfEncryptedError() from e
 
         if not text:
             raise PdfNoTextError(_("No text found in your PDF file"))
@@ -252,9 +256,7 @@ class PdfService:
                 except PriorOcrFoundError as e:
                     raise PdfServiceError(_("Your PDF file already has a text layer")) from e
                 except EncryptedPdfError as e:
-                    raise PdfServiceError(
-                        _("Your PDF file is encrypted, decrypt it first then try again")
-                    ) from e
+                    raise PdfEncryptedError() from e
 
     @asynccontextmanager
     async def preview_pdf(self, file_id: str) -> AsyncGenerator[str, None]:
@@ -355,5 +357,5 @@ class PdfService:
                 raise PdfReadError(_("Your PDF file is invalid")) from e
 
         if pdf_reader.is_encrypted and not allow_encrypted:
-            raise PdfEncryptError(_("Your PDF file is encrypted, decrypt it first then try again"))
+            raise PdfEncryptedError()
         return pdf_reader
