@@ -53,6 +53,7 @@ class LanguageService:
             LanguageData(label="🇮🇳 தமிழ்", long_code="ta_IN"),
             LanguageData(label="🇪🇹 አማርኛ", long_code="am_ET"),
             LanguageData(label="🇰🇬 Кыргызча", long_code="ky_KG"),
+            LanguageData(label="🇮🇷 فارسی", long_code="fa_IR"),
         ],
         key=lambda x: x.long_code,
     )
