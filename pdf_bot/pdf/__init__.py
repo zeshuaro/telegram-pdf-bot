@@ -1,6 +1,6 @@
 from .exceptions import (
     PdfDecryptError,
-    PdfEncryptError,
+    PdfEncryptedError,
     PdfIncorrectPasswordError,
     PdfNoTextError,
     PdfReadError,
@@ -12,9 +12,9 @@ from .pdf_service import PdfService
 __all__ = [
     "PdfService",
     "PdfDecryptError",
+    "PdfEncryptedError",
     "PdfIncorrectPasswordError",
     "PdfServiceError",
-    "PdfEncryptError",
     "PdfReadError",
     "PdfServiceError",
     "CompressResult",

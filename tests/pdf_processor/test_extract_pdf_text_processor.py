@@ -45,8 +45,8 @@ class TestExtractPDFTextProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
-        self.pdf_service.extract_text_from_pdf.return_value.__aenter__.return_value = self.FILE_PATH
+        self.pdf_service.extract_pdf_text.return_value.__aenter__.return_value = self.FILE_PATH
 
         async with self.sut.process_file_task(self.FILE_DATA) as actual:
             assert actual == self.FILE_TASK_RESULT
-            self.pdf_service.extract_text_from_pdf.assert_called_once_with(self.FILE_DATA.id)
+            self.pdf_service.extract_pdf_text.assert_called_once_with(self.FILE_DATA.id)

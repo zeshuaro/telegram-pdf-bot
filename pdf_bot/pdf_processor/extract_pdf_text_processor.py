@@ -29,5 +29,5 @@ class ExtractPdfTextProcessor(AbstractPdfProcessor):
 
     @asynccontextmanager
     async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
-        async with self.pdf_service.extract_text_from_pdf(file_data.id) as path:
+        async with self.pdf_service.extract_pdf_text(file_data.id) as path:
             yield FileTaskResult(path)
