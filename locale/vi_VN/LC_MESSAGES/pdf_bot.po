@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-03 05:45+0000\n"
-"PO-Revision-Date: 2023-01-03 05:45\n"
+"POT-Creation-Date: 2023-01-05 10:39+0000\n"
+"PO-Revision-Date: 2023-01-05 10:40\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -88,12 +88,12 @@ msgid "Set Language 🌎"
 msgstr "Đặt Ngôn ngữ 🌎"
 
 #: pdf_bot/command/command_service.py:56
-#: pdf_bot/telegram_internal/telegram_service.py:215
+#: pdf_bot/telegram_internal/telegram_service.py:211
 msgid "Join Channel"
 msgstr "Tham gia Kênh"
 
 #: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:216
+#: pdf_bot/telegram_internal/telegram_service.py:212
 msgid "Support PDF Bot"
 msgstr "Hỗ trợ PDF Bot"
 
@@ -157,13 +157,13 @@ msgstr "So sánh các tệp PDF của bạn"
 msgid "There are no text differences between your PDF files"
 msgstr "Không có sự khác biệt văn bản giữa các tệp PDF của bạn"
 
-#: pdf_bot/error/error_handler.py:38 pdf_bot/error/error_handler.py:44
+#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
 #: pdf_bot/telegram_internal/telegram_service.py:93
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "Có điều gì đó không ổn, xin hãy thử lại"
 
-#: pdf_bot/error/error_handler.py:55 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "Nút đã hết hạn, hãy bắt đầu lại với tệp hoặc lệnh của bạn"
 
@@ -188,7 +188,7 @@ msgid "Note that this is a Telegram Bot limitation and there's nothing I can do 
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:160
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "Xử lý tệp của bạn"
 
@@ -251,11 +251,11 @@ msgstr "Làm đẹp và chuyển đổi hình ảnh của bạn thành tệp PDF
 msgid "Converting your images into a PDF file"
 msgstr "Chuyển đổi hình ảnh của bạn thành tệp PDF"
 
-#: pdf_bot/language/language_service.py:83
+#: pdf_bot/language/language_service.py:84
 msgid "Select your language"
 msgstr "Chọn ngôn ngữ của bạn"
 
-#: pdf_bot/language/language_service.py:116
+#: pdf_bot/language/language_service.py:117
 msgid "Your language has been set to {language}"
 msgstr "Ngôn ngữ của bạn đã được thiết lập để {language}"
 
@@ -589,25 +589,25 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "Tệp quá lớn để tôi có thể gửi cho bạn\n\n"
 "Lưu ý rằng giới hạn này được thực thi bởi Telegram và tôi không thể làm gì trừ khi Telegram thay đổi nó"
 
-#: pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/telegram_internal/telegram_service.py:146
 msgid "Your file is not an image, please try again"
 msgstr "Tệp của bạn không phải là hình ảnh, vui lòng thử lại"
 
-#: pdf_bot/telegram_internal/telegram_service.py:156
+#: pdf_bot/telegram_internal/telegram_service.py:152
 msgid "No image found in your message"
 msgstr "Không tìm thấy hình ảnh trong thư của bạn"
 
-#: pdf_bot/telegram_internal/telegram_service.py:164
+#: pdf_bot/telegram_internal/telegram_service.py:160
 msgid "Your file is not a PDF file, please try again"
 msgstr "Tệp của bạn không phải là tệp PDF, vui lòng thử lại"
 
-#: pdf_bot/telegram_internal/telegram_service.py:189
-#: pdf_bot/telegram_internal/telegram_service.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:185
+#: pdf_bot/telegram_internal/telegram_service.py:188
 msgid "Action cancelled"
 msgstr "Hành động bị hủy bỏ"
 
-#: pdf_bot/telegram_internal/telegram_service.py:262
-#: pdf_bot/telegram_internal/telegram_service.py:270
+#: pdf_bot/telegram_internal/telegram_service.py:258
+#: pdf_bot/telegram_internal/telegram_service.py:266
 msgid "Here is your result file"
 msgstr "Đây là tệp kết quả của bạn"
 
@@ -647,19 +647,19 @@ msgstr "Gửi cho tôi tệp PDF hình mờ"
 msgid "Adding the watermark onto your PDF file"
 msgstr "Thêm hình nền mờ vào tệp PDF của bạn"
 
-#: pdf_bot/webpage/webpage_service.py:39
+#: pdf_bot/webpage/webpage_service.py:40
 msgid "You've sent me this webpage already and I'm still converting it"
 msgstr "Bạn đã gửi cho tôi trang web này rồi và tôi vẫn đang chuyển đổi nó"
 
-#: pdf_bot/webpage/webpage_service.py:43
+#: pdf_bot/webpage/webpage_service.py:44
 msgid "Converting your webpage into a PDF file"
 msgstr "Chuyển đổi trang web của bạn thành tệp PDF"
 
-#: pdf_bot/webpage/webpage_service.py:74
+#: pdf_bot/webpage/webpage_service.py:71
 msgid "Unable to reach your webpage"
 msgstr "Không thể truy cập trang web của bạn"
 
-#: pdf_bot/webpage/webpage_service.py:86
+#: pdf_bot/webpage/webpage_service.py:83
 msgid "Failed to convert your webpage"
 msgstr "Không thể chuyển đổi trang web của bạn"
 

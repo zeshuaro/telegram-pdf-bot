@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-03 05:45+0000\n"
-"PO-Revision-Date: 2023-01-03 05:45\n"
+"POT-Creation-Date: 2023-01-05 10:39+0000\n"
+"PO-Revision-Date: 2023-01-05 10:40\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
@@ -88,12 +88,12 @@ msgid "Set Language 🌎"
 msgstr "Aseta Kieli 🌎"
 
 #: pdf_bot/command/command_service.py:56
-#: pdf_bot/telegram_internal/telegram_service.py:215
+#: pdf_bot/telegram_internal/telegram_service.py:211
 msgid "Join Channel"
 msgstr "Liity kanavaan"
 
 #: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:216
+#: pdf_bot/telegram_internal/telegram_service.py:212
 msgid "Support PDF Bot"
 msgstr "Tuki PDF Bot"
 
@@ -157,13 +157,13 @@ msgstr "PDF-tiedostojen vertailu"
 msgid "There are no text differences between your PDF files"
 msgstr "PDF-tiedostojen välillä ei ole tekstieroja"
 
-#: pdf_bot/error/error_handler.py:38 pdf_bot/error/error_handler.py:44
+#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
 #: pdf_bot/telegram_internal/telegram_service.py:93
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "Jokin meni vikaan."
 
-#: pdf_bot/error/error_handler.py:55 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "Painike on vanhentunut, aloita alusta tiedostollasi tai komennollasi"
 
@@ -188,7 +188,7 @@ msgid "Note that this is a Telegram Bot limitation and there's nothing I can do 
 msgstr "Huomaa, että tämä on Telegram Bot -rajoitus, enkä voi tehdä mitään, ellei Telegram muuta tätä rajaa"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:160
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "Tiedoston käsittely"
 
@@ -251,11 +251,11 @@ msgstr "Kuvien kaunistaminen ja muuntaminen PDF-tiedostoksi"
 msgid "Converting your images into a PDF file"
 msgstr "Kuvien muuntaminen PDF-tiedostoksi"
 
-#: pdf_bot/language/language_service.py:83
+#: pdf_bot/language/language_service.py:84
 msgid "Select your language"
 msgstr "Valitse kieli"
 
-#: pdf_bot/language/language_service.py:116
+#: pdf_bot/language/language_service.py:117
 msgid "Your language has been set to {language}"
 msgstr "Kielesi on määritetty {language}"
 
@@ -589,25 +589,25 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "Tiedosto on liian suuri, jotta voisin lähettää sen sinulle\n\n"
 "Huomaa, että Telegram valvoo tätä rajoitusta, enkä voi tehdä mitään, ellei Telegram muuta sitä"
 
-#: pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/telegram_internal/telegram_service.py:146
 msgid "Your file is not an image, please try again"
 msgstr "Tiedostosi ei ole kuva, yritä uudelleen"
 
-#: pdf_bot/telegram_internal/telegram_service.py:156
+#: pdf_bot/telegram_internal/telegram_service.py:152
 msgid "No image found in your message"
 msgstr "Viestistä ei löytynyt kuvaa"
 
-#: pdf_bot/telegram_internal/telegram_service.py:164
+#: pdf_bot/telegram_internal/telegram_service.py:160
 msgid "Your file is not a PDF file, please try again"
 msgstr "Tiedostosi ei ole PDF-tiedosto, yritä uudelleen"
 
-#: pdf_bot/telegram_internal/telegram_service.py:189
-#: pdf_bot/telegram_internal/telegram_service.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:185
+#: pdf_bot/telegram_internal/telegram_service.py:188
 msgid "Action cancelled"
 msgstr "Toiminto peruutettu"
 
-#: pdf_bot/telegram_internal/telegram_service.py:262
-#: pdf_bot/telegram_internal/telegram_service.py:270
+#: pdf_bot/telegram_internal/telegram_service.py:258
+#: pdf_bot/telegram_internal/telegram_service.py:266
 msgid "Here is your result file"
 msgstr "Tässä on tulostiedostosi"
 
@@ -647,19 +647,19 @@ msgstr "Lähetä minulle vesileiman PDF-tiedosto"
 msgid "Adding the watermark onto your PDF file"
 msgstr "Vesileiman lisääminen PDF-tiedostoon"
 
-#: pdf_bot/webpage/webpage_service.py:39
+#: pdf_bot/webpage/webpage_service.py:40
 msgid "You've sent me this webpage already and I'm still converting it"
 msgstr "Olet jo lähettänyt minulle tämän verkkosivun ja muutan sitä edelleen"
 
-#: pdf_bot/webpage/webpage_service.py:43
+#: pdf_bot/webpage/webpage_service.py:44
 msgid "Converting your webpage into a PDF file"
 msgstr "Verkkosivun muuntaminen PDF-tiedostoksi"
 
-#: pdf_bot/webpage/webpage_service.py:74
+#: pdf_bot/webpage/webpage_service.py:71
 msgid "Unable to reach your webpage"
 msgstr "Verkkosivulle ei pääse"
 
-#: pdf_bot/webpage/webpage_service.py:86
+#: pdf_bot/webpage/webpage_service.py:83
 msgid "Failed to convert your webpage"
 msgstr "Verkkosivun muuntaminen epäonnistui"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-03 05:45+0000\n"
-"PO-Revision-Date: 2023-01-03 05:45\n"
+"POT-Creation-Date: 2023-01-05 10:39+0000\n"
+"PO-Revision-Date: 2023-01-05 10:40\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: Czech\n"
@@ -88,12 +88,12 @@ msgid "Set Language 🌎"
 msgstr "Nastavit jazyk 🌎"
 
 #: pdf_bot/command/command_service.py:56
-#: pdf_bot/telegram_internal/telegram_service.py:215
+#: pdf_bot/telegram_internal/telegram_service.py:211
 msgid "Join Channel"
 msgstr "Připojit se k kanálu"
 
 #: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:216
+#: pdf_bot/telegram_internal/telegram_service.py:212
 msgid "Support PDF Bot"
 msgstr "Podpora PDF Bot"
 
@@ -157,13 +157,13 @@ msgstr "Porovnání souborů PDF"
 msgid "There are no text differences between your PDF files"
 msgstr "Mezi soubory PDF nejsou žádné textové rozdíly"
 
-#: pdf_bot/error/error_handler.py:38 pdf_bot/error/error_handler.py:44
+#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
 #: pdf_bot/telegram_internal/telegram_service.py:93
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "Něco se pokazilo, zkuste to prosím znovu."
 
-#: pdf_bot/error/error_handler.py:55 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "Platnost tlačítka vypršela, začněte znovu se souborem nebo příkazem"
 
@@ -188,7 +188,7 @@ msgid "Note that this is a Telegram Bot limitation and there's nothing I can do 
 msgstr "Všimněte si, že se jedná o omezení Telegram Bot a není nic, co bych mohl udělat, pokud Telegram nezmění tento limit"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:160
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "Zpracování souboru"
 
@@ -251,11 +251,11 @@ msgstr "Zkrášlení a převod obrázků do souboru PDF"
 msgid "Converting your images into a PDF file"
 msgstr "Převod obrázků do souboru PDF"
 
-#: pdf_bot/language/language_service.py:83
+#: pdf_bot/language/language_service.py:84
 msgid "Select your language"
 msgstr "Vyberte si jazyk"
 
-#: pdf_bot/language/language_service.py:116
+#: pdf_bot/language/language_service.py:117
 msgid "Your language has been set to {language}"
 msgstr "Váš jazyk byl nastaven na {language}"
 
@@ -589,25 +589,25 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "Soubor je příliš velký na to, abych vám ho poslal\n\n"
 "Všimněte si, že tento limit je vynucen Telegramem a není nic, co bych mohl udělat, pokud to Telegram nezmění"
 
-#: pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/telegram_internal/telegram_service.py:146
 msgid "Your file is not an image, please try again"
 msgstr "Váš soubor není obrázek, zkuste to prosím znovu"
 
-#: pdf_bot/telegram_internal/telegram_service.py:156
+#: pdf_bot/telegram_internal/telegram_service.py:152
 msgid "No image found in your message"
 msgstr "Ve zprávě nebyl nalezen žádný obrázek"
 
-#: pdf_bot/telegram_internal/telegram_service.py:164
+#: pdf_bot/telegram_internal/telegram_service.py:160
 msgid "Your file is not a PDF file, please try again"
 msgstr "Soubor není souborEM PDF, opakujte akci"
 
-#: pdf_bot/telegram_internal/telegram_service.py:189
-#: pdf_bot/telegram_internal/telegram_service.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:185
+#: pdf_bot/telegram_internal/telegram_service.py:188
 msgid "Action cancelled"
 msgstr "Akce byla zrušena"
 
-#: pdf_bot/telegram_internal/telegram_service.py:262
-#: pdf_bot/telegram_internal/telegram_service.py:270
+#: pdf_bot/telegram_internal/telegram_service.py:258
+#: pdf_bot/telegram_internal/telegram_service.py:266
 msgid "Here is your result file"
 msgstr "Zde je váš výsledný soubor"
 
@@ -647,19 +647,19 @@ msgstr "Pošlete mi soubor PDF s vodoznakem"
 msgid "Adding the watermark onto your PDF file"
 msgstr "Přidání vodoznaku do souboru PDF"
 
-#: pdf_bot/webpage/webpage_service.py:39
+#: pdf_bot/webpage/webpage_service.py:40
 msgid "You've sent me this webpage already and I'm still converting it"
 msgstr "Tuto webovou stránku jste mi již poslali a stále ji konvertuji"
 
-#: pdf_bot/webpage/webpage_service.py:43
+#: pdf_bot/webpage/webpage_service.py:44
 msgid "Converting your webpage into a PDF file"
 msgstr "Převod webové stránky do souboru PDF"
 
-#: pdf_bot/webpage/webpage_service.py:74
+#: pdf_bot/webpage/webpage_service.py:71
 msgid "Unable to reach your webpage"
 msgstr "Nelze se dostat na webovou stránku"
 
-#: pdf_bot/webpage/webpage_service.py:86
+#: pdf_bot/webpage/webpage_service.py:83
 msgid "Failed to convert your webpage"
 msgstr "Nepodařilo se převést webovou stránku"
 

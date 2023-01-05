@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-03 05:45+0000\n"
-"PO-Revision-Date: 2023-01-03 05:45\n"
+"POT-Creation-Date: 2023-01-05 10:39+0000\n"
+"PO-Revision-Date: 2023-01-05 10:40\n"
 "Last-Translator: \n"
 "Language: id\n"
 "Language-Team: Indonesian\n"
@@ -88,12 +88,12 @@ msgid "Set Language 🌎"
 msgstr "Atur Pengaturan 🌎"
 
 #: pdf_bot/command/command_service.py:56
-#: pdf_bot/telegram_internal/telegram_service.py:215
+#: pdf_bot/telegram_internal/telegram_service.py:211
 msgid "Join Channel"
 msgstr "Gabung Kanal"
 
 #: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:216
+#: pdf_bot/telegram_internal/telegram_service.py:212
 msgid "Support PDF Bot"
 msgstr "Dukung PDF Bot"
 
@@ -157,13 +157,13 @@ msgstr "Membandingkan file PDF Anda"
 msgid "There are no text differences between your PDF files"
 msgstr "Tidak ada perbedaan teks antara file PDF Anda"
 
-#: pdf_bot/error/error_handler.py:38 pdf_bot/error/error_handler.py:44
+#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
 #: pdf_bot/telegram_internal/telegram_service.py:93
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "Ada yang tidak beres, silakan coba lagi"
 
-#: pdf_bot/error/error_handler.py:55 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "Tombol telah kedaluwarsa, mulai dari awal dengan file atau perintah Anda"
 
@@ -188,7 +188,7 @@ msgid "Note that this is a Telegram Bot limitation and there's nothing I can do 
 msgstr "Perhatikan bahwa ini adalah batasan Telegram Bot dan tidak ada yang bisa saya lakukan kecuali Telegram mengubah batas ini."
 
 #: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:160
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "Memproses file Anda"
 
@@ -251,11 +251,11 @@ msgstr "Mempercantik dan mengonversi gambar Anda menjadi file PDF"
 msgid "Converting your images into a PDF file"
 msgstr "Mengonversi gambar Anda menjadi file PDF"
 
-#: pdf_bot/language/language_service.py:83
+#: pdf_bot/language/language_service.py:84
 msgid "Select your language"
 msgstr "Pilih bahasa Anda"
 
-#: pdf_bot/language/language_service.py:116
+#: pdf_bot/language/language_service.py:117
 msgid "Your language has been set to {language}"
 msgstr "Bahasa Anda telah diatur untuk {language}"
 
@@ -589,25 +589,25 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "Filenya terlalu besar untuk saya kirimkan kepada Anda\n\n"
 "Perhatikan bahwa batas ini diberlakukan oleh Telegram dan tidak ada yang dapat saya lakukan kecuali Telegram mengubahnya"
 
-#: pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/telegram_internal/telegram_service.py:146
 msgid "Your file is not an image, please try again"
 msgstr "File Anda bukan gambar, silakan coba lagi"
 
-#: pdf_bot/telegram_internal/telegram_service.py:156
+#: pdf_bot/telegram_internal/telegram_service.py:152
 msgid "No image found in your message"
 msgstr "Tidak ada gambar yang ditemukan dalam pesan Anda"
 
-#: pdf_bot/telegram_internal/telegram_service.py:164
+#: pdf_bot/telegram_internal/telegram_service.py:160
 msgid "Your file is not a PDF file, please try again"
 msgstr "File Anda bukan file PDF, silakan coba lagi"
 
-#: pdf_bot/telegram_internal/telegram_service.py:189
-#: pdf_bot/telegram_internal/telegram_service.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:185
+#: pdf_bot/telegram_internal/telegram_service.py:188
 msgid "Action cancelled"
 msgstr "Aksi dibatalkan"
 
-#: pdf_bot/telegram_internal/telegram_service.py:262
-#: pdf_bot/telegram_internal/telegram_service.py:270
+#: pdf_bot/telegram_internal/telegram_service.py:258
+#: pdf_bot/telegram_internal/telegram_service.py:266
 msgid "Here is your result file"
 msgstr "Berikut adalah file hasil Anda"
 
@@ -647,19 +647,19 @@ msgstr "Kirimi saya file PDF cap air"
 msgid "Adding the watermark onto your PDF file"
 msgstr "Menambahkan cap air ke file PDF Anda"
 
-#: pdf_bot/webpage/webpage_service.py:39
+#: pdf_bot/webpage/webpage_service.py:40
 msgid "You've sent me this webpage already and I'm still converting it"
 msgstr "Anda telah mengirimi saya halaman web ini dan saya masih mengonversinya"
 
-#: pdf_bot/webpage/webpage_service.py:43
+#: pdf_bot/webpage/webpage_service.py:44
 msgid "Converting your webpage into a PDF file"
 msgstr "Mengonversi halaman web Anda menjadi file PDF"
 
-#: pdf_bot/webpage/webpage_service.py:74
+#: pdf_bot/webpage/webpage_service.py:71
 msgid "Unable to reach your webpage"
 msgstr "Tidak dapat menjangkau halaman web Anda"
 
-#: pdf_bot/webpage/webpage_service.py:86
+#: pdf_bot/webpage/webpage_service.py:83
 msgid "Failed to convert your webpage"
 msgstr "Gagal mengonversi halaman web Anda"
 

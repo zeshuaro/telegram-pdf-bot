@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-03 05:45+0000\n"
-"PO-Revision-Date: 2023-01-03 05:45\n"
+"POT-Creation-Date: 2023-01-05 10:39+0000\n"
+"PO-Revision-Date: 2023-01-05 10:40\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -88,12 +88,12 @@ msgid "Set Language 🌎"
 msgstr "言語設定 🌎"
 
 #: pdf_bot/command/command_service.py:56
-#: pdf_bot/telegram_internal/telegram_service.py:215
+#: pdf_bot/telegram_internal/telegram_service.py:211
 msgid "Join Channel"
 msgstr "チャネルに参加"
 
 #: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:216
+#: pdf_bot/telegram_internal/telegram_service.py:212
 msgid "Support PDF Bot"
 msgstr "PDFボットをサポート"
 
@@ -157,13 +157,13 @@ msgstr "PDF ファイルの比較"
 msgid "There are no text differences between your PDF files"
 msgstr "PDF ファイル間にテキストの違いはありません"
 
-#: pdf_bot/error/error_handler.py:38 pdf_bot/error/error_handler.py:44
+#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
 #: pdf_bot/telegram_internal/telegram_service.py:93
 #: pdf_bot/telegram_internal/telegram_service.py:109
 msgid "Something went wrong, please try again"
 msgstr "何かが間違っていた、もう一度やり直してください"
 
-#: pdf_bot/error/error_handler.py:55 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "ボタンの有効期限が切れている場合は、ファイルまたはコマンドで最初からやり直してください"
 
@@ -188,7 +188,7 @@ msgid "Note that this is a Telegram Bot limitation and there's nothing I can do 
 msgstr "これは電報ボットの制限であり、テレグラムがこの制限を変更しない限り、私は何もできませんのでご注意ください"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:160
+#: pdf_bot/file_processor/abstract_file_processor.py:158
 msgid "Processing your file"
 msgstr "ファイルの処理"
 
@@ -251,11 +251,11 @@ msgstr "画像を美しくしてPDFファイルに変換する"
 msgid "Converting your images into a PDF file"
 msgstr "画像をPDFファイルに変換する"
 
-#: pdf_bot/language/language_service.py:83
+#: pdf_bot/language/language_service.py:84
 msgid "Select your language"
 msgstr "言語を選択する"
 
-#: pdf_bot/language/language_service.py:116
+#: pdf_bot/language/language_service.py:117
 msgid "Your language has been set to {language}"
 msgstr "言語が {language}に設定されています"
 
@@ -589,25 +589,25 @@ msgid "The file is too large for me to send to you\n\n"
 msgstr "ファイルが大きすぎて送信できません\n\n"
 "この制限はTelegramによって強制されており、Telegramが変更しない限り私にできることは何もないことに注意してください"
 
-#: pdf_bot/telegram_internal/telegram_service.py:150
+#: pdf_bot/telegram_internal/telegram_service.py:146
 msgid "Your file is not an image, please try again"
 msgstr "ファイルが画像ではありません。もう一度やり直してください"
 
-#: pdf_bot/telegram_internal/telegram_service.py:156
+#: pdf_bot/telegram_internal/telegram_service.py:152
 msgid "No image found in your message"
 msgstr "メッセージに画像が見つかりません"
 
-#: pdf_bot/telegram_internal/telegram_service.py:164
+#: pdf_bot/telegram_internal/telegram_service.py:160
 msgid "Your file is not a PDF file, please try again"
 msgstr "ファイルが PDF ファイルではありません。"
 
-#: pdf_bot/telegram_internal/telegram_service.py:189
-#: pdf_bot/telegram_internal/telegram_service.py:192
+#: pdf_bot/telegram_internal/telegram_service.py:185
+#: pdf_bot/telegram_internal/telegram_service.py:188
 msgid "Action cancelled"
 msgstr "アクションがキャンセルされました"
 
-#: pdf_bot/telegram_internal/telegram_service.py:262
-#: pdf_bot/telegram_internal/telegram_service.py:270
+#: pdf_bot/telegram_internal/telegram_service.py:258
+#: pdf_bot/telegram_internal/telegram_service.py:266
 msgid "Here is your result file"
 msgstr "ここにあなたの結果ファイルがあります"
 
@@ -647,19 +647,19 @@ msgstr "透かしPDFファイルを送ってください"
 msgid "Adding the watermark onto your PDF file"
 msgstr "PDF ファイルにウォーターマークを追加する"
 
-#: pdf_bot/webpage/webpage_service.py:39
+#: pdf_bot/webpage/webpage_service.py:40
 msgid "You've sent me this webpage already and I'm still converting it"
 msgstr "あなたはすでに私にこのウェブページを送ってきました、そして私はまだそれを変換しています"
 
-#: pdf_bot/webpage/webpage_service.py:43
+#: pdf_bot/webpage/webpage_service.py:44
 msgid "Converting your webpage into a PDF file"
 msgstr "ウェブページをPDFファイルに変換する"
 
-#: pdf_bot/webpage/webpage_service.py:74
+#: pdf_bot/webpage/webpage_service.py:71
 msgid "Unable to reach your webpage"
 msgstr "ウェブページにアクセスできない"
 
-#: pdf_bot/webpage/webpage_service.py:86
+#: pdf_bot/webpage/webpage_service.py:83
 msgid "Failed to convert your webpage"
 msgstr "ウェブページの変換に失敗しました"
 
