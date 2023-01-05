@@ -1,5 +1,5 @@
 import os
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager, suppress
 from gettext import gettext as _
 from typing import Any, AsyncGenerator, Coroutine
 
@@ -126,19 +126,15 @@ class TelegramService:
         if not isinstance(message, Message):
             return
 
-        try:
+        with suppress(TelegramUpdateUserDataError):
             self.update_user_data(context, MESSAGE_DATA, MessageData.from_telegram_message(message))
-        except TelegramUpdateUserDataError:
-            pass
 
     async def answer_query_and_drop_data(
         self, context: ContextTypes.DEFAULT_TYPE, query: CallbackQuery
     ) -> None:
         await query.answer()
-        try:
+        with suppress(KeyError):
             context.drop_callback_data(query)
-        except KeyError:
-            pass
 
     def check_image(self, message: Message) -> Document | PhotoSize:
         img_file: Document | PhotoSize | None = message.document

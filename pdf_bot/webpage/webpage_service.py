@@ -1,4 +1,5 @@
 import hashlib
+from contextlib import suppress
 from urllib.parse import urlparse
 
 from telegram import Message, Update
@@ -46,16 +47,12 @@ class WebpageService:
         self._clear_url_cache(context, url_hash)
 
     def _cache_url(self, context: ContextTypes.DEFAULT_TYPE, url_hash: str) -> None:
-        try:
+        with suppress(TelegramUpdateUserDataError):
             self.telegram_service.update_user_data(context, url_hash, None)
-        except TelegramUpdateUserDataError:
-            pass
 
     def _clear_url_cache(self, context: ContextTypes.DEFAULT_TYPE, url_hash: str) -> None:
-        try:
+        with suppress(TelegramGetUserDataError):
             self.telegram_service.get_user_data(context, url_hash)
-        except TelegramGetUserDataError:
-            pass
 
     async def _url_to_pdf(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE, url: str
