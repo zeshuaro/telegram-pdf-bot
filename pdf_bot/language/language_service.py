@@ -1,4 +1,5 @@
 import gettext
+from contextlib import suppress
 from typing import Callable
 
 from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Update
@@ -128,10 +129,8 @@ class LanguageService:
         self, context: ContextTypes.DEFAULT_TYPE, query: CallbackQuery
     ) -> None:
         await query.answer()
-        try:
+        with suppress(KeyError):
             context.drop_callback_data(query)
-        except KeyError:
-            pass
 
     def _get_languages_markup(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE

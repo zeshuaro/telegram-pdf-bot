@@ -1,3 +1,4 @@
+from contextlib import suppress
 from gettext import gettext as _
 
 import sentry_sdk
@@ -70,8 +71,6 @@ class ErrorHandler:
         if chat_id is None:
             return
 
-        try:
+        with suppress(Exception):
             _ = self.language_service.set_app_language(update, context)
             await context.bot.send_message(chat_id, _(text))
-        except Exception:  # noqa: BlindExcept
-            pass

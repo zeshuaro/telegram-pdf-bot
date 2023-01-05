@@ -1,7 +1,7 @@
 import os
 import shutil
 from abc import ABC, abstractmethod
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager, suppress
 from typing import Any, AsyncGenerator, Callable, Coroutine
 
 from telegram import CallbackQuery, Message, Update
@@ -147,11 +147,9 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
         message_data = None
-        try:
+        with suppress(TelegramGetUserDataError, BadRequest):
             message_data = self.telegram_service.get_message_data(context)
             await context.bot.delete_message(message_data.chat_id, message_data.message_id)
-        except (TelegramGetUserDataError, BadRequest):
-            pass
 
         if message_data is None:
             return
