@@ -1,29 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    ":automergeMinor",
-    ":pinAllExceptPeerDependencies"
-  ],
-  "labels": ["dependencies"],
-  "lockFileMaintenance": { "enabled": true },
-  "semanticCommits": "enabled",
-  "schedule": ["after 6pm every weekday", "every weekend"],
-  "automergeSchedule": ["after 6pm every weekday", "every weekend"],
-  "timezone": "Australia/Sydney",
-  "packageRules": [
-    {
-      "groupName": "Python",
-      "matchFiles": [".python-version", "Dockerfile"],
-      "matchPackageNames": ["python"],
-      "semanticCommitScope": "python",
-      "automerge": false,
-      "separateMinorPatch": true
-    },
-    {
-      "groupName": "GitHub Actions Dependencies",
-      "matchPaths": [".github/workflows/*.yml"],
-      "addLabels": ["ci"]
-    }
+    "github>zeshuaro/renovate-configs",
+    "github>zeshuaro/renovate-configs:python"
   ]
 }
