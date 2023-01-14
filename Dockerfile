@@ -3,7 +3,7 @@ FROM --platform=linux/amd64 python:3.11.1-slim AS build
 ARG COMMIT_HASH
 
 WORKDIR /build
-RUN apt-get update && apt-get install -y --no-install-recommends git
+RUN apt-get update && apt-get install -y --no-install-recommends g++ gcc git python3-dev
 
 RUN pip install -U pip && pip install poetry
 COPY pyproject.toml poetry.lock ./
