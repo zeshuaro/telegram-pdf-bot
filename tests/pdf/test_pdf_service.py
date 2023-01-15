@@ -137,9 +137,10 @@ class TestPDFService(
                 async with self.sut.add_watermark_to_pdf(
                     self.TELEGRAM_FILE_ID, self.TELEGRAM_FILE_ID
                 ):
-                    self.telegram_service.download_pdf_file.assert_called_once_with(
-                        self.TELEGRAM_FILE_ID
-                    )
+                    pass
+
+        calls = [call(self.TELEGRAM_FILE_ID) for _ in range(2)]
+        self.telegram_service.download_pdf_file.assert_has_calls(calls, any_order=True)
 
     @pytest.mark.asyncio
     async def test_grayscale_pdf(self) -> None:
@@ -316,11 +317,11 @@ class TestPDFService(
             reader_cls.return_value = reader
             with pytest.raises(PdfDecryptError):
                 async with self.sut.decrypt_pdf(self.TELEGRAM_FILE_ID, self.PASSWORD):
-                    self.telegram_service.download_pdf_file.assert_called_once_with(
-                        self.TELEGRAM_FILE_ID
-                    )
-                    reader.decrypt.assert_not_called()
-                    self.io_service.create_temp_pdf_file.assert_not_called()
+                    pass
+
+        self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
+        reader.decrypt.assert_not_called()
+        self.io_service.create_temp_pdf_file.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_decrypt_pdf_incorrect_password(self) -> None:
@@ -332,7 +333,8 @@ class TestPDFService(
             reader_cls.return_value = reader
             with pytest.raises(PdfIncorrectPasswordError):
                 async with self.sut.decrypt_pdf(self.TELEGRAM_FILE_ID, self.PASSWORD):
-                    self._assert_decrypt_failure(reader)
+                    pass
+        self._assert_decrypt_failure(reader)
 
     @pytest.mark.asyncio
     async def test_decrypt_pdf_invalid_encryption_method(self) -> None:
@@ -344,7 +346,8 @@ class TestPDFService(
             reader_cls.return_value = reader
             with pytest.raises(PdfDecryptError):
                 async with self.sut.decrypt_pdf(self.TELEGRAM_FILE_ID, self.PASSWORD):
-                    self._assert_decrypt_failure(reader)
+                    pass
+        self._assert_decrypt_failure(reader)
 
     @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
     @pytest.mark.asyncio
@@ -379,10 +382,10 @@ class TestPDFService(
             reader_cls.return_value = reader
             with pytest.raises(PdfEncryptedError):
                 async with self.sut.encrypt_pdf(self.TELEGRAM_FILE_ID, self.PASSWORD):
-                    self.telegram_service.download_pdf_file.assert_called_once_with(
-                        self.TELEGRAM_FILE_ID
-                    )
-                    self.io_service.create_temp_pdf_file.assert_not_called()
+                    pass
+
+            self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
+            self.io_service.create_temp_pdf_file.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_extract_pdf_text(self) -> None:
@@ -433,14 +436,14 @@ class TestPDFService(
 
         with pytest.raises(PdfNoImagesError):
             async with self.sut.extract_pdf_images(self.TELEGRAM_FILE_ID):
-                self.telegram_service.download_pdf_file.assert_called_once_with(
-                    self.TELEGRAM_FILE_ID
-                )
-                self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
-                self.cli_service.extract_pdf_images.assert_called_once_with(
-                    self.DOWNLOAD_PATH, self.DIR_NAME
-                )
-                self.mock_os.listdir.assert_called_once_with(self.DIR_NAME)
+                pass
+
+        self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
+        self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
+        self.cli_service.extract_pdf_images.assert_called_once_with(
+            self.DOWNLOAD_PATH, self.DIR_NAME
+        )
+        self.mock_os.listdir.assert_called_once_with(self.DIR_NAME)
 
     @pytest.mark.asyncio
     async def test_extract_pdf_images_cli_error(self) -> None:
@@ -448,14 +451,14 @@ class TestPDFService(
 
         with pytest.raises(PdfServiceError):
             async with self.sut.extract_pdf_images(self.TELEGRAM_FILE_ID):
-                self.telegram_service.download_pdf_file.assert_called_once_with(
-                    self.TELEGRAM_FILE_ID
-                )
-                self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
-                self.cli_service.extract_pdf_images.assert_called_once_with(
-                    self.DOWNLOAD_PATH, self.DIR_NAME
-                )
-                self.mock_os.listdir.assert_not_called()
+                pass
+
+        self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
+        self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
+        self.cli_service.extract_pdf_images.assert_called_once_with(
+            self.DOWNLOAD_PATH, self.DIR_NAME
+        )
+        self.mock_os.listdir.assert_not_called()
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
@@ -485,9 +488,11 @@ class TestPDFService(
             merger_cls.return_value = merger
             with pytest.raises(PdfReadError):
                 async with self.sut.merge_pdfs(file_data_list):
-                    self.telegram_service.download_files.assert_called_once_with(file_ids)
-                    self.io_service.create_temp_pdf_file.assert_not_called()
-                    merger.write.assert_not_called()
+                    pass
+
+        self.telegram_service.download_files.assert_called_once_with(file_ids)
+        self.io_service.create_temp_pdf_file.assert_not_called()
+        merger.write.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_ocr_pdf(self) -> None:
@@ -500,7 +505,7 @@ class TestPDFService(
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
-        "error,expected",
+        ("error", "expected"),
         [(PriorOcrFoundError, PdfServiceError), (EncryptedPdfError, PdfEncryptedError)],
     )
     async def test_ocr_pdf_error(self, error: type[Exception], expected: type[Exception]) -> None:

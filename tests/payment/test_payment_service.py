@@ -62,7 +62,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         self.telegram_callback_query.data = None
         with pytest.raises(TypeError):
             await self.sut.send_invoice(self.telegram_update, self.telegram_context)
-            self.telegram_update.effective_message.reply_invoice.assert_not_called()
+        self.telegram_update.effective_message.reply_invoice.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_precheckout_check(self) -> None:

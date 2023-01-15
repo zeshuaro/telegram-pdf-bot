@@ -41,7 +41,7 @@ class TestSplitPdfProcessor(
         assert actual == TaskData("Split", SplitPdfData)
 
     @pytest.mark.parametrize(
-        "is_valid,expected", [(True, TelegramTestMixin.TELEGRAM_TEXT), (False, None)]
+        ("is_valid", "expected"), [(True, TelegramTestMixin.TELEGRAM_TEXT), (False, None)]
     )
     def test_get_cleaned_text_input(self, is_valid: bool, expected: str | None) -> None:
         self.pdf_service.split_range_valid.return_value = is_valid
@@ -62,4 +62,5 @@ class TestSplitPdfProcessor(
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(TypeError):
             async with self.sut.process_file_task(self.FILE_DATA):
-                self.pdf_service.split_pdf.assert_not_called()
+                pass
+        self.pdf_service.split_pdf.assert_not_called()

@@ -93,7 +93,8 @@ class TestRotatePdfProcessor(
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(TypeError):
             async with self.sut.process_file_task(self.FILE_DATA):
-                self.pdf_service.rotate_pdf.assert_not_called()
+                pass
+        self.pdf_service.rotate_pdf.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_ask_degree(self) -> None:
@@ -116,5 +117,7 @@ class TestRotatePdfProcessor(
 
         with pytest.raises(TypeError):
             await self.sut.ask_degree(self.telegram_update, self.telegram_context)
-            self.telegram_callback_query.answer.assert_called_once()
-            self.telegram_callback_query.edit_message_text.assert_not_called()
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
+        self.telegram_callback_query.edit_message_text.assert_not_called()

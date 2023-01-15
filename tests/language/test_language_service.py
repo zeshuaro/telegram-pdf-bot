@@ -25,7 +25,7 @@ class TestLanguageService(TelegramTestMixin):
         self.gettext_patcher.stop()
         super().teardown_method()
 
-    @pytest.mark.parametrize("value,expected", [("es", "es_ES"), ("clearly_invalid", None)])
+    @pytest.mark.parametrize(("value", "expected"), [("es", "es_ES"), ("clearly_invalid", None)])
     def test_get_language_code_from_short_code(self, value: str, expected: str | None) -> None:
         actual = self.sut.get_language_code_from_short_code(value)
         assert actual == expected
@@ -129,5 +129,5 @@ class TestLanguageService(TelegramTestMixin):
         with pytest.raises(TypeError):
             await self.sut.update_user_language(self.telegram_update, self.telegram_context)
 
-            self.language_repository.upsert_language.assert_not_called()
-            self.telegram_user_data.__setitem__.assert_not_called()
+        self.language_repository.upsert_language.assert_not_called()
+        self.telegram_user_data.__setitem__.assert_not_called()

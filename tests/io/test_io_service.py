@@ -43,7 +43,7 @@ class TestIOService:
             td.cleanup.assert_called_once()
 
     @pytest.mark.parametrize(
-        "prefix,suffix",
+        ("prefix", "suffix"),
         [
             (None, None),
             (FILE_PREFIX, None),

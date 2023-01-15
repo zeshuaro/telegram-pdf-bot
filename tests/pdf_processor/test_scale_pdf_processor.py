@@ -116,17 +116,17 @@ class TestPdfProcessor(
         )
 
         with pytest.raises(ValueError):
-            async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-                file_data
-            ):
-                self.pdf_service.scale_pdf_by_factor.assert_not_called()
-                self.pdf_service.scale_pdf_to_dimension.assert_not_called()
+            async with self.sut.process_file_task(file_data):
+                pass
+
+        self.pdf_service.scale_pdf_by_factor.assert_not_called()
+        self.pdf_service.scale_pdf_to_dimension.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(TypeError):
-            async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-                self.FILE_DATA
-            ):
-                self.pdf_service.scale_pdf_by_factor.assert_not_called()
-                self.pdf_service.scale_pdf_to_dimension.assert_not_called()
+            async with self.sut.process_file_task(self.FILE_DATA):
+                pass
+
+        self.pdf_service.scale_pdf_by_factor.assert_not_called()
+        self.pdf_service.scale_pdf_to_dimension.assert_not_called()

@@ -75,6 +75,7 @@ select = [
     "T10", # flake8-debugger - https://pypi.org/project/flake8-debugger/
     "ISC", # flake8-implicit-str-concat - https://pypi.org/project/flake8-implicit-str-concat/
     "T20", # flake8-print - https://pypi.org/project/flake8-print/
+    "PT",  # flake8-pytest-style - https://pypi.org/project/flake8-pytest-style/
     "Q",   # flake8-quotes - https://pypi.org/project/flake8-quotes/
     "RET", # flake8-return - https://pypi.org/project/flake8-return/
     "SIM", # flake8-simplify - https://pypi.org/project/flake8-simplify/
@@ -101,6 +102,8 @@ ignore = [
     "ANN101", # MissingTypeSelf
     "ANN102", # MissingTypeCls
     "ANN401", # DynamicallyTypedExpression,
+    "PT011",  # RaisesTooBroad
+    "PT023",  # IncorrectMarkParenthesesStyle
 ]
 extend-ignore = [
     # D* are rules for Google docstring convention
