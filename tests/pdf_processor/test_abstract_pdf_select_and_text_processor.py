@@ -178,9 +178,11 @@ class TestAbstractPdfTextInputProcessor(
         with pytest.raises(TypeError):
             await self.sut._ask_text_input(self.telegram_update, self.telegram_context)
 
-            self.telegram_callback_query.answer.assert_called_once()
-            self.telegram_callback_query.edit_message_text.assert_not_called()
-            self.telegram_service.cache_message_data.assert_not_called()
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
+        self.telegram_callback_query.edit_message_text.assert_not_called()
+        self.telegram_service.cache_message_data.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_process_text_input(self) -> None:
@@ -214,5 +216,5 @@ class TestAbstractPdfTextInputProcessor(
 
         with pytest.raises(TypeError):
             await self.sut._process_text_input(self.telegram_update, self.telegram_context)
-            self.telegram_service.get_file_data.assert_called_once_with(self.telegram_context)
-            self.telegram_service.cache_file_data.assert_not_called()
+        self.telegram_service.get_file_data.assert_called_once_with(self.telegram_context)
+        self.telegram_service.cache_file_data.assert_not_called()

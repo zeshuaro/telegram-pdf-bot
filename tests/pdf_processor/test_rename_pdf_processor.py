@@ -65,4 +65,5 @@ class TestRenamePdfProcessor(
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(TypeError):
             async with self.sut.process_file_task(self.FILE_DATA):
-                self.pdf_service.rename_pdf.assert_not_called()
+                pass
+        self.pdf_service.rename_pdf.assert_not_called()

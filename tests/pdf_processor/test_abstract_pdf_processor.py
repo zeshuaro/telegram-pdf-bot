@@ -63,8 +63,9 @@ class TestAbstractPdfProcessor(LanguageServiceTestMixin, TelegramServiceTestMixi
 
     def test_init_already_initialized(self) -> None:
         processors: dict = {MockProcessor.__name__: MagicMock()}
+        self.pdf_processors.__contains__.side_effect = processors.__contains__
+
         with pytest.raises(ValueError):
-            self.pdf_processors.__contains__.side_effect = processors.__contains__
             MockProcessor(self.pdf_service, self.telegram_service, self.language_service)
 
         self.pdf_processors.__setitem__.assert_not_called()

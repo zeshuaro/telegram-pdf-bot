@@ -107,8 +107,9 @@ class TestAbstractFileProcessorInit(
 
     def test_init_already_initialized(self) -> None:
         processors: dict = {MockProcessor.__name__: MagicMock()}
+        self.file_processors.__contains__.side_effect = processors.__contains__
+
         with pytest.raises(ValueError):
-            self.file_processors.__contains__.side_effect = processors.__contains__
             MockProcessor(self.telegram_service, self.language_service)
 
         self.file_processors.__setitem__.assert_not_called()
@@ -298,7 +299,8 @@ class TestAbstractFileProcessor(
 
         with pytest.raises(ValueError):
             await self.sut.process_file(self.telegram_update, self.telegram_context)
-            self.telegram_service.send_file.assert_not_called()
+
+        self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("error", [TelegramGetUserDataError, BadRequest("Error")])
