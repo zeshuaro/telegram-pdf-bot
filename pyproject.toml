@@ -56,39 +56,7 @@ multi_line_output = 3
 
 [tool.ruff]
 line-length = 100
-select = [
-    "F",   # Pyflakes - https://pypi.org/project/pyflakes/
-    "E",   # pycodestyle - https://pypi.org/project/pycodestyle/
-    "W",   # pycodestyle
-    "C90", # mccabe - https://pypi.org/project/mccabe/
-    "I",   # isort - https://pypi.org/project/isort/
-    "D",   # pydocstyle - https://pypi.org/project/pydocstyle/
-    "UP",  # pyupgrade - https://pypi.org/project/pyupgrade/
-    "N",   # pep8-naming - https://pypi.org/project/pep8-naming/
-    "YTT", # flake8-2020 - https://pypi.org/project/flake8-2020/
-    "ANN", # flake8-annotations - https://pypi.org/project/flake8-annotations/
-    "S",   # flake8-bandit - https://pypi.org/project/flake8-bandit/
-    "BLE", # flake8-blind-except - https://pypi.org/project/flake8-blind-except/
-    "B",   # flake8-bugbear - https://pypi.org/project/flake8-bugbear/
-    "A",   # flake8-builtins - https://pypi.org/project/flake8-builtins/
-    "C4",  # flake8-comprehensions - https://pypi.org/project/flake8-comprehensions/
-    "T10", # flake8-debugger - https://pypi.org/project/flake8-debugger/
-    "ISC", # flake8-implicit-str-concat - https://pypi.org/project/flake8-implicit-str-concat/
-    "T20", # flake8-print - https://pypi.org/project/flake8-print/
-    "PT",  # flake8-pytest-style - https://pypi.org/project/flake8-pytest-style/
-    "Q",   # flake8-quotes - https://pypi.org/project/flake8-quotes/
-    "RET", # flake8-return - https://pypi.org/project/flake8-return/
-    "SIM", # flake8-simplify - https://pypi.org/project/flake8-simplify/
-    "TID", # flake8-tidy-imports - https://pypi.org/project/flake8-tidy-imports/
-    "ARG", # flake8-unused-arguments - https://pypi.org/project/flake8-unused-arguments/
-    "DTZ", # flake8-datetimez - https://pypi.org/project/flake8-datetimez/
-    "ERA", # eradicate - https://pypi.org/project/eradicate/
-    "PLC", # Pylint - https://pypi.org/project/pylint/
-    "PLE", # Pylint
-    "PLR", # Pylint
-    "PLW", # Pylint
-    "RUF", # Ruff-specific rules
-]
+select = ["ALL"]
 ignore = [
     # D10* rules are all related to missing docstring
     "D100",
@@ -102,8 +70,12 @@ ignore = [
     "ANN101", # MissingTypeSelf
     "ANN102", # MissingTypeCls
     "ANN401", # DynamicallyTypedExpression,
+    "FBT",    # flake8-boolean-trap
+    "EM",     # flake8-errmsg
     "PT011",  # RaisesTooBroad
     "PT023",  # IncorrectMarkParenthesesStyle
+    "PD",     # pandas-vet
+    "PGH",    # pygrep-hooks
 ]
 extend-ignore = [
     # D* are rules for Google docstring convention
