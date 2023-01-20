@@ -254,7 +254,7 @@ class TelegramService:
             await self.bot.send_chat_action(chat_id, ChatAction.UPLOAD_PHOTO)
             await self.bot.send_photo(
                 chat_id,
-                open(file_path, "rb"),
+                open(file_path, "rb"),  # noqa: SIM115
                 caption=_("Here is your result file"),
                 reply_markup=reply_markup,
             )
@@ -262,7 +262,7 @@ class TelegramService:
             await self.bot.send_chat_action(chat_id, ChatAction.UPLOAD_DOCUMENT)
             await self.bot.send_document(
                 chat_id,
-                document=open(file_path, "rb"),
+                document=open(file_path, "rb"),  # noqa: SIM115
                 caption=_("Here is your result file"),
                 reply_markup=reply_markup,
             )
