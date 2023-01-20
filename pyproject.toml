@@ -58,6 +58,18 @@ multi_line_output = 3
 line-length = 100
 select = ["ALL"]
 ignore = [
+    "ANN101",  # MissingTypeSelf
+    "ANN102",  # MissingTypeCls
+    "ANN401",  # DynamicallyTypedExpression
+    "COM812",  # trailing-comma-missing
+    "EM",      # flake8-errmsg
+    "FBT",     # flake8-boolean-trap
+    "PD",      # pandas-vet
+    "PGH",     # pygrep-hooks
+    "PLR2004", # magic-value-comparison
+    "PT011",   # RaisesTooBroad
+    "PT023",   # IncorrectMarkParenthesesStyle
+
     # D10* rules are all related to missing docstring
     "D100",
     "D101",
@@ -67,15 +79,6 @@ ignore = [
     "D105",
     "D106",
     "D107",
-    "ANN101", # MissingTypeSelf
-    "ANN102", # MissingTypeCls
-    "ANN401", # DynamicallyTypedExpression,
-    "FBT",    # flake8-boolean-trap
-    "EM",     # flake8-errmsg
-    "PT011",  # RaisesTooBroad
-    "PT023",  # IncorrectMarkParenthesesStyle
-    "PD",     # pandas-vet
-    "PGH",    # pygrep-hooks
 ]
 extend-ignore = [
     # D* are rules for Google docstring convention
@@ -94,7 +97,8 @@ extend-ignore = [
 
 [tool.ruff.per-file-ignores]
 "main.py" = [
-    "S104", # HardcodedBindAllInterfaces
+    "INP001", # implicit-namespace-package
+    "S104",   # HardcodedBindAllInterfaces
 ]
 "pdf_bot/language/language_service.py" = [
     "RUF001", # AmbiguousUnicodeCharacterString
