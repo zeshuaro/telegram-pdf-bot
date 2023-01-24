@@ -1,3 +1,4 @@
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -16,9 +17,9 @@ class TestImageService(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    DOWNLOAD_PATH = "download_path"
-    DIR_NAME = "dir_name"
-    OUTPUT_PATH = "output_path"
+    DOWNLOAD_PATH = Path("download_path")
+    DIR_NAME = Path("dir_name")
+    OUTPUT_PATH = Path("output_path")
     PASSWORD = "password"
 
     def setup_method(self) -> None:
@@ -69,6 +70,8 @@ class TestImageService(
         image_bytes = "image_bytes"
         file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
         file = MagicMock()
+
+        file_path_strs = [str(x) for x in file_paths]
         self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
 
         with patch("pdf_bot.image.image_service.img2pdf") as img2pdf:
@@ -80,13 +83,13 @@ class TestImageService(
                 self.telegram_service.download_files.assert_called_once_with(file_ids)
                 self.io_service.create_temp_pdf_file.assert_called_once_with("Converted")
                 self.mock_open.assert_called_once_with(self.OUTPUT_PATH, "wb")
-                img2pdf.convert.assert_called_once_with(file_paths, rotation=Rotation.ifvalid)
+                img2pdf.convert.assert_called_once_with(file_path_strs, rotation=Rotation.ifvalid)
                 file.write.assert_called_once_with(image_bytes)
 
     @staticmethod
     def _get_file_data_list(
         num_files: int,
-    ) -> tuple[list[FileData], list[str], list[str]]:
+    ) -> tuple[list[FileData], list[str], list[Path]]:
         file_data_list = []
         file_ids = []
         file_paths = []
@@ -95,6 +98,6 @@ class TestImageService(
             file_data = FileData(f"id_{i}", f"name_{i}")
             file_data_list.append(file_data)
             file_ids.append(file_data.id)
-            file_paths.append(f"path_{i}")
+            file_paths.append(Path("path_{i}"))
 
         return file_data_list, file_ids, file_paths
