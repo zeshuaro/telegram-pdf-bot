@@ -1,5 +1,6 @@
 import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import AsyncGenerator
 
 import img2pdf
@@ -26,7 +27,7 @@ class ImageService:
     @asynccontextmanager
     async def beautify_and_convert_images_to_pdf(
         self, file_data_list: list[FileData]
-    ) -> AsyncGenerator[str, None]:
+    ) -> AsyncGenerator[Path, None]:
         file_ids = self._get_file_ids(file_data_list)
         async with self.telegram_service.download_files(file_ids) as file_paths:
             with self.io_service.create_temp_pdf_file("Beautified") as out_path:
@@ -39,7 +40,7 @@ class ImageService:
     @asynccontextmanager
     async def convert_images_to_pdf(
         self, file_data_list: list[FileData]
-    ) -> AsyncGenerator[str, None]:
+    ) -> AsyncGenerator[Path, None]:
         file_ids = self._get_file_ids(file_data_list)
         async with self.telegram_service.download_files(file_ids) as file_paths:
             with self.io_service.create_temp_pdf_file("Converted") as out_path:

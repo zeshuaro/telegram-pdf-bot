@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from pathlib import Path
 
 from telegram import Document, Message, PhotoSize
 
@@ -46,5 +47,5 @@ class MessageData:
 
 @dataclass
 class FileTaskResult:
-    path: str
+    path: Path
     message: str | None = None

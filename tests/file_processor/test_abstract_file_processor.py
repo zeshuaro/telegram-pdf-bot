@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import AsyncGenerator
 from unittest.mock import MagicMock, patch
 
@@ -31,7 +32,7 @@ class MockProcessor(AbstractFileProcessor):
     PROCESS_RESULT = "process_result"
     TASK_TYPE = TaskType.decrypt_pdf
     TASK_DATA_LIST = [TaskData("a", FileData), TaskData("b", FileData)]
-    FILE_TASK_RESULT = FileTaskResult("path")
+    FILE_TASK_RESULT = FileTaskResult(Path("path"))
 
     @classmethod
     def get_task_data_list(cls) -> list[TaskData]:
@@ -207,7 +208,9 @@ class TestAbstractFileProcessor(
             actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
             assert actual == ConversationHandler.END
-            self._assert_process_file_succeed(f"{MockProcessor.FILE_TASK_RESULT.path}.zip")
+            self._assert_process_file_succeed(
+                MockProcessor.FILE_TASK_RESULT.path.with_suffix(".zip")
+            )
             mock_shutil.make_archive(
                 MockProcessor.PROCESS_RESULT, "zip", MockProcessor.PROCESS_RESULT
             )
@@ -314,7 +317,7 @@ class TestAbstractFileProcessor(
         self.telegram_context.bot.delete_message.assert_not_called()
 
     def _assert_process_file_succeed(
-        self, out_path: str = MockProcessor.FILE_TASK_RESULT.path
+        self, out_path: Path = MockProcessor.FILE_TASK_RESULT.path
     ) -> None:
         self._assert_get_file_and_messsage_data()
         self.telegram_service.send_file.assert_called_once_with(

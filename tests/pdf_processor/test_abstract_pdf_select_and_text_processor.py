@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import AsyncGenerator
 from unittest.mock import ANY, MagicMock, patch
 
@@ -30,7 +31,7 @@ class OptionType(SelectOption):
 
 class MockProcessor(AbstractPdfSelectAndTextProcessor):
     CLEANED_TEXT = "cleaned_text"
-    FILE_TASK_RESULT = FileTaskResult("path")
+    FILE_TASK_RESULT = FileTaskResult(Path("path"))
 
     @property
     def entry_point_data_type(self) -> type[FileData]:

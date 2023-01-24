@@ -371,7 +371,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_send_file_document(self) -> None:
-        file_path = f"{self.FILE_PATH}.pdf"
+        file_path = self.FILE_PATH.with_suffix(".pdf")
         self.telegram_update.callback_query = None
 
         await self.sut.send_file(
@@ -394,7 +394,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_send_file_image(self) -> None:
-        file_path = f"{self.FILE_PATH}.png"
+        file_path = self.FILE_PATH.with_suffix(".png")
         self.telegram_update.callback_query = None
 
         await self.sut.send_file(
@@ -418,7 +418,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     @pytest.mark.asyncio
     async def test_send_file_document_with_query(self) -> None:
         chat_id = 10
-        file_path = f"{self.FILE_PATH}.pdf"
+        file_path = self.FILE_PATH.with_suffix(".pdf")
         message = MagicMock(spec=Message)
         message.chat_id = chat_id
         self.telegram_callback_query.message = message

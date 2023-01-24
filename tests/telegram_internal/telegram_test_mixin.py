@@ -1,3 +1,4 @@
+from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock
 
 from telegram import (
@@ -30,7 +31,7 @@ class TelegramTestMixin:
     TELEGRAM_DOCUMENT_NAME = "document_name"
     TELEGRAM_PHOTO_SIZE_ID = "photo_size_id"
     TELEGRAM_TEXT = "text"
-    FILE_PATH = "file_path"
+    FILE_PATH = Path("file_path")
 
     FILE_DATA = FileData(TELEGRAM_DOCUMENT_ID, TELEGRAM_DOCUMENT_NAME)
     MESSAGE_DATA = MessageData(TELEGRAM_CHAT_ID, TELEGRAM_MESSAGE_ID)

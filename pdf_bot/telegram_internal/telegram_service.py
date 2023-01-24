@@ -1,6 +1,7 @@
 import os
 from contextlib import asynccontextmanager, suppress
 from gettext import gettext as _
+from pathlib import Path
 from typing import Any, AsyncGenerator, Coroutine
 
 from telegram import (
@@ -65,7 +66,7 @@ class TelegramService:
             )
 
     @staticmethod
-    def check_file_upload_size(path: str) -> None:
+    def check_file_upload_size(path: Path) -> None:
         if os.path.getsize(path) > FileSizeLimit.FILESIZE_UPLOAD:
             raise TelegramFileTooLargeError(
                 _(
@@ -162,14 +163,14 @@ class TelegramService:
         return doc
 
     @asynccontextmanager
-    async def download_pdf_file(self, file_id: str) -> AsyncGenerator[str, None]:
+    async def download_pdf_file(self, file_id: str) -> AsyncGenerator[Path, None]:
         with self.io_service.create_temp_pdf_file() as path:
             file = await self.bot.get_file(file_id)
             await file.download_to_drive(custom_path=path)
             yield path
 
     @asynccontextmanager
-    async def download_files(self, file_ids: list[str]) -> AsyncGenerator[list[str], None]:
+    async def download_files(self, file_ids: list[str]) -> AsyncGenerator[list[Path], None]:
         with self.io_service.create_temp_files(len(file_ids)) as out_paths:
             for i, file_id in enumerate(file_ids):
                 file = await self.bot.get_file(file_id)
@@ -237,7 +238,7 @@ class TelegramService:
         self,
         update: Update,
         context: ContextTypes.DEFAULT_TYPE,
-        file_path: str,
+        file_path: Path,
         task: TaskType,
     ) -> None:
         _ = self.language_service.set_app_language(update, context)
@@ -250,7 +251,7 @@ class TelegramService:
             return
 
         reply_markup = self.get_support_markup(update, context)
-        if file_path.endswith(self.PNG_SUFFIX):
+        if file_path.suffix == self.PNG_SUFFIX:
             await self.bot.send_chat_action(chat_id, ChatAction.UPLOAD_PHOTO)
             await self.bot.send_photo(
                 chat_id,
