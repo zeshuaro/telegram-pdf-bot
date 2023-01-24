@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-05 10:39+0000\n"
-"PO-Revision-Date: 2023-01-05 10:40\n"
+"POT-Creation-Date: 2023-01-24 12:42+0000\n"
+"PO-Revision-Date: 2023-01-24 12:42\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -31,7 +31,7 @@ msgstr "Hủy bỏ"
 msgid "Done"
 msgstr "Thực hiện"
 
-#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:41
 msgid "Back"
 msgstr "Trở lại"
 
@@ -39,7 +39,7 @@ msgstr "Trở lại"
 msgid "Something went wrong, start over with your file or command"
 msgstr "Đã xảy ra lỗi, hãy bắt đầu lại với tệp hoặc lệnh của bạn"
 
-#: pdf_bot/cli/cli_service.py:33
+#: pdf_bot/cli/cli_service.py:34
 msgid "Failed to complete process"
 msgstr "Không hoàn thành quá trình"
 
@@ -88,12 +88,12 @@ msgid "Set Language 🌎"
 msgstr "Đặt Ngôn ngữ 🌎"
 
 #: pdf_bot/command/command_service.py:56
-#: pdf_bot/telegram_internal/telegram_service.py:211
+#: pdf_bot/telegram_internal/telegram_service.py:212
 msgid "Join Channel"
 msgstr "Tham gia Kênh"
 
 #: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:212
+#: pdf_bot/telegram_internal/telegram_service.py:213
 msgid "Support PDF Bot"
 msgstr "Hỗ trợ PDF Bot"
 
@@ -158,8 +158,8 @@ msgid "There are no text differences between your PDF files"
 msgstr "Không có sự khác biệt văn bản giữa các tệp PDF của bạn"
 
 #: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
-#: pdf_bot/telegram_internal/telegram_service.py:93
-#: pdf_bot/telegram_internal/telegram_service.py:109
+#: pdf_bot/telegram_internal/telegram_service.py:94
+#: pdf_bot/telegram_internal/telegram_service.py:110
 msgid "Something went wrong, please try again"
 msgstr "Có điều gì đó không ổn, xin hãy thử lại"
 
@@ -187,8 +187,8 @@ msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:158
+#: pdf_bot/file_processor/abstract_file_processor.py:101
+#: pdf_bot/file_processor/abstract_file_processor.py:159
 msgid "Processing your file"
 msgstr "Xử lý tệp của bạn"
 
@@ -339,35 +339,35 @@ msgstr "Trợ giúp dịch PDF Bot"
 msgid "Your PDF file is encrypted, decrypt it first then try again"
 msgstr "Tệp PDF của bạn đã được mã hóa, hãy giải mã tệp trước rồi thử lại"
 
-#: pdf_bot/pdf/pdf_service.py:164
+#: pdf_bot/pdf/pdf_service.py:165
 msgid "Your PDF file is not encrypted"
 msgstr "Tệp PDF của bạn không được mã hóa"
 
-#: pdf_bot/pdf/pdf_service.py:168
+#: pdf_bot/pdf/pdf_service.py:169
 msgid "Incorrect password, please try again"
 msgstr "Mật khẩu không chính xác, vui lòng thử lại"
 
-#: pdf_bot/pdf/pdf_service.py:171
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Tệp PDF của bạn được mã hóa bằng một phương pháp mà tôi không thể giải mã"
 
-#: pdf_bot/pdf/pdf_service.py:207
+#: pdf_bot/pdf/pdf_service.py:208
 msgid "No images found in your PDF file"
 msgstr "Không tìm thấy hình ảnh nào trong tệp PDF của bạn"
 
-#: pdf_bot/pdf/pdf_service.py:219
+#: pdf_bot/pdf/pdf_service.py:220
 msgid "No text found in your PDF file"
 msgstr "Không tìm thấy văn bản trong tệp PDF của bạn"
 
-#: pdf_bot/pdf/pdf_service.py:240
+#: pdf_bot/pdf/pdf_service.py:241
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Tôi không thể hợp nhất các tệp PDF của bạn vì tệp này không hợp lệ: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:257
+#: pdf_bot/pdf/pdf_service.py:258
 msgid "Your PDF file already has a text layer"
 msgstr "Tệp PDF của bạn đã có một lớp văn bản"
 
-#: pdf_bot/pdf/pdf_service.py:357
+#: pdf_bot/pdf/pdf_service.py:358
 msgid "Your PDF file is invalid"
 msgstr "Tệp PDF của bạn không hợp lệ"
 
@@ -577,37 +577,37 @@ msgstr "{range} trang {pages} ngoại trừ {page}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  trang {pages}"
 
-#: pdf_bot/telegram_internal/telegram_service.py:59
+#: pdf_bot/telegram_internal/telegram_service.py:60
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử lý, vui lòng thử lại với một tệp khác\n\n"
 "Lưu ý rằng giới hạn này được thực thi bởi Telegram và tôi không thể làm gì trừ khi Telegram thay đổi nó"
 
-#: pdf_bot/telegram_internal/telegram_service.py:71
+#: pdf_bot/telegram_internal/telegram_service.py:72
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Tệp quá lớn để tôi có thể gửi cho bạn\n\n"
 "Lưu ý rằng giới hạn này được thực thi bởi Telegram và tôi không thể làm gì trừ khi Telegram thay đổi nó"
 
-#: pdf_bot/telegram_internal/telegram_service.py:146
+#: pdf_bot/telegram_internal/telegram_service.py:147
 msgid "Your file is not an image, please try again"
 msgstr "Tệp của bạn không phải là hình ảnh, vui lòng thử lại"
 
-#: pdf_bot/telegram_internal/telegram_service.py:152
+#: pdf_bot/telegram_internal/telegram_service.py:153
 msgid "No image found in your message"
 msgstr "Không tìm thấy hình ảnh trong thư của bạn"
 
-#: pdf_bot/telegram_internal/telegram_service.py:160
+#: pdf_bot/telegram_internal/telegram_service.py:161
 msgid "Your file is not a PDF file, please try again"
 msgstr "Tệp của bạn không phải là tệp PDF, vui lòng thử lại"
 
-#: pdf_bot/telegram_internal/telegram_service.py:185
-#: pdf_bot/telegram_internal/telegram_service.py:188
+#: pdf_bot/telegram_internal/telegram_service.py:186
+#: pdf_bot/telegram_internal/telegram_service.py:189
 msgid "Action cancelled"
 msgstr "Hành động bị hủy bỏ"
 
-#: pdf_bot/telegram_internal/telegram_service.py:258
-#: pdf_bot/telegram_internal/telegram_service.py:266
+#: pdf_bot/telegram_internal/telegram_service.py:259
+#: pdf_bot/telegram_internal/telegram_service.py:267
 msgid "Here is your result file"
 msgstr "Đây là tệp kết quả của bạn"
 

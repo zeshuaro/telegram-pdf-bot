@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-05 10:39+0000\n"
-"PO-Revision-Date: 2023-01-05 10:40\n"
+"POT-Creation-Date: 2023-01-24 12:42+0000\n"
+"PO-Revision-Date: 2023-01-24 12:42\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: Dutch\n"
@@ -31,7 +31,7 @@ msgstr "Annuleren"
 msgid "Done"
 msgstr "Gereed"
 
-#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:41
 msgid "Back"
 msgstr "Vorige"
 
@@ -39,7 +39,7 @@ msgstr "Vorige"
 msgid "Something went wrong, start over with your file or command"
 msgstr "Er is iets misgegaan, begin opnieuw met je bestand of commando"
 
-#: pdf_bot/cli/cli_service.py:33
+#: pdf_bot/cli/cli_service.py:34
 msgid "Failed to complete process"
 msgstr "Kan het proces niet voltooien"
 
@@ -88,12 +88,12 @@ msgid "Set Language 🌎"
 msgstr "Taal instellen 🌎"
 
 #: pdf_bot/command/command_service.py:56
-#: pdf_bot/telegram_internal/telegram_service.py:211
+#: pdf_bot/telegram_internal/telegram_service.py:212
 msgid "Join Channel"
 msgstr "Abonneer op het kanaal"
 
 #: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:212
+#: pdf_bot/telegram_internal/telegram_service.py:213
 msgid "Support PDF Bot"
 msgstr "PDF Bot ondersteunen"
 
@@ -158,8 +158,8 @@ msgid "There are no text differences between your PDF files"
 msgstr "Er zijn geen tekstverschillen tussen uw PDF-bestanden"
 
 #: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
-#: pdf_bot/telegram_internal/telegram_service.py:93
-#: pdf_bot/telegram_internal/telegram_service.py:109
+#: pdf_bot/telegram_internal/telegram_service.py:94
+#: pdf_bot/telegram_internal/telegram_service.py:110
 msgid "Something went wrong, please try again"
 msgstr "Er is iets misgegaan, probeer het opnieuw."
 
@@ -187,8 +187,8 @@ msgstr "Uw bestand is te groot voor mij om te downloaden en te verwerken"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Merk op dat dit een Telegram Bot-beperking is en dat ik niets kan doen tenzij Telegram deze limiet wijzigt"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:158
+#: pdf_bot/file_processor/abstract_file_processor.py:101
+#: pdf_bot/file_processor/abstract_file_processor.py:159
 msgid "Processing your file"
 msgstr "Verwerking van uw dossier"
 
@@ -339,35 +339,35 @@ msgstr "Help mee met het vertalen van PDF Bot"
 msgid "Your PDF file is encrypted, decrypt it first then try again"
 msgstr "Uw PDF-bestand is gecodeerd, decoderen eerst en opnieuw proberen"
 
-#: pdf_bot/pdf/pdf_service.py:164
+#: pdf_bot/pdf/pdf_service.py:165
 msgid "Your PDF file is not encrypted"
 msgstr "Uw PDF bestand is niet versleuteld"
 
-#: pdf_bot/pdf/pdf_service.py:168
+#: pdf_bot/pdf/pdf_service.py:169
 msgid "Incorrect password, please try again"
 msgstr "Onjuist wachtwoord, probeer het opnieuw"
 
-#: pdf_bot/pdf/pdf_service.py:171
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Uw PDF-bestand is versleuteld met een methode die ik niet kan decoderen"
 
-#: pdf_bot/pdf/pdf_service.py:207
+#: pdf_bot/pdf/pdf_service.py:208
 msgid "No images found in your PDF file"
 msgstr "Geen afbeeldingen gevonden in uw PDF-bestand"
 
-#: pdf_bot/pdf/pdf_service.py:219
+#: pdf_bot/pdf/pdf_service.py:220
 msgid "No text found in your PDF file"
 msgstr "Geen tekst gevonden in uw PDF-bestand"
 
-#: pdf_bot/pdf/pdf_service.py:240
+#: pdf_bot/pdf/pdf_service.py:241
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Ik kon uw PDF-bestanden niet samenvoegen omdat dit bestand ongeldig is: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:257
+#: pdf_bot/pdf/pdf_service.py:258
 msgid "Your PDF file already has a text layer"
 msgstr "Uw PDF-bestand heeft al een tekstlaag"
 
-#: pdf_bot/pdf/pdf_service.py:357
+#: pdf_bot/pdf/pdf_service.py:358
 msgid "Your PDF file is invalid"
 msgstr "Uw PDF-bestand is ongeldig"
 
@@ -577,37 +577,37 @@ msgstr "{range} pagina's {pages} behalve {page}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  pagina's {pages}"
 
-#: pdf_bot/telegram_internal/telegram_service.py:59
+#: pdf_bot/telegram_internal/telegram_service.py:60
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Je bestand is te groot voor mij om te downloaden en te verwerken, probeer het opnieuw met een ander bestand\n\n"
 "Merk op dat deze limiet wordt afgedwongen door Telegram en dat ik niets kan doen tenzij Telegram het wijzigt"
 
-#: pdf_bot/telegram_internal/telegram_service.py:71
+#: pdf_bot/telegram_internal/telegram_service.py:72
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Het bestand is te groot voor mij om naar u te sturen\n\n"
 "Merk op dat deze limiet wordt afgedwongen door Telegram en dat ik niets kan doen tenzij Telegram het wijzigt"
 
-#: pdf_bot/telegram_internal/telegram_service.py:146
+#: pdf_bot/telegram_internal/telegram_service.py:147
 msgid "Your file is not an image, please try again"
 msgstr "Uw bestand is geen afbeelding, probeer het opnieuw"
 
-#: pdf_bot/telegram_internal/telegram_service.py:152
+#: pdf_bot/telegram_internal/telegram_service.py:153
 msgid "No image found in your message"
 msgstr "Geen afbeelding gevonden in uw bericht"
 
-#: pdf_bot/telegram_internal/telegram_service.py:160
+#: pdf_bot/telegram_internal/telegram_service.py:161
 msgid "Your file is not a PDF file, please try again"
 msgstr "Uw bestand is geen PDF-bestand, probeer het opnieuw"
 
-#: pdf_bot/telegram_internal/telegram_service.py:185
-#: pdf_bot/telegram_internal/telegram_service.py:188
+#: pdf_bot/telegram_internal/telegram_service.py:186
+#: pdf_bot/telegram_internal/telegram_service.py:189
 msgid "Action cancelled"
 msgstr "Actie geannuleerd"
 
-#: pdf_bot/telegram_internal/telegram_service.py:258
-#: pdf_bot/telegram_internal/telegram_service.py:266
+#: pdf_bot/telegram_internal/telegram_service.py:259
+#: pdf_bot/telegram_internal/telegram_service.py:267
 msgid "Here is your result file"
 msgstr "Hier is het bestand"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-05 10:39+0000\n"
-"PO-Revision-Date: 2023-01-05 10:40\n"
+"POT-Creation-Date: 2023-01-24 12:42+0000\n"
+"PO-Revision-Date: 2023-01-24 12:42\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -31,7 +31,7 @@ msgstr "Mégse gombra"
 msgid "Done"
 msgstr "Megtett"
 
-#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:40
+#: pdf_bot/consts.py:13 pdf_bot/telegram_internal/telegram_service.py:41
 msgid "Back"
 msgstr "Vissza"
 
@@ -39,7 +39,7 @@ msgstr "Vissza"
 msgid "Something went wrong, start over with your file or command"
 msgstr "Hiba történt, kezdje elölről a fájlt vagy a parancsot"
 
-#: pdf_bot/cli/cli_service.py:33
+#: pdf_bot/cli/cli_service.py:34
 msgid "Failed to complete process"
 msgstr "Nem sikerült befejezni a folyamatot"
 
@@ -88,12 +88,12 @@ msgid "Set Language 🌎"
 msgstr "Nyelv beállítása 🌎"
 
 #: pdf_bot/command/command_service.py:56
-#: pdf_bot/telegram_internal/telegram_service.py:211
+#: pdf_bot/telegram_internal/telegram_service.py:212
 msgid "Join Channel"
 msgstr "Csatlakozás a csatornához"
 
 #: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
-#: pdf_bot/telegram_internal/telegram_service.py:212
+#: pdf_bot/telegram_internal/telegram_service.py:213
 msgid "Support PDF Bot"
 msgstr "Támogatás PDF Bot"
 
@@ -158,8 +158,8 @@ msgid "There are no text differences between your PDF files"
 msgstr "A PDF-fájlok között nincsenek szöveges különbségek"
 
 #: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
-#: pdf_bot/telegram_internal/telegram_service.py:93
-#: pdf_bot/telegram_internal/telegram_service.py:109
+#: pdf_bot/telegram_internal/telegram_service.py:94
+#: pdf_bot/telegram_internal/telegram_service.py:110
 msgid "Something went wrong, please try again"
 msgstr "Valami elromlott, kérem, próbálkozzon újra."
 
@@ -187,8 +187,8 @@ msgstr "A fájl túl nagy nekem, hogy töltse le és feldolgozza"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Ne feledje, hogy ez egy Telegram Bot korlátozás, és semmit sem tehetek, ha a Telegram nem változtatja meg ezt a korlátot"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:158
+#: pdf_bot/file_processor/abstract_file_processor.py:101
+#: pdf_bot/file_processor/abstract_file_processor.py:159
 msgid "Processing your file"
 msgstr "A fájl feldolgozása"
 
@@ -339,35 +339,35 @@ msgstr "Segítség a PDF Bot fordításában"
 msgid "Your PDF file is encrypted, decrypt it first then try again"
 msgstr "A PDF-fájl titkosítva van, először fejtse vissza, majd próbálja újra"
 
-#: pdf_bot/pdf/pdf_service.py:164
+#: pdf_bot/pdf/pdf_service.py:165
 msgid "Your PDF file is not encrypted"
 msgstr "A PDF-fájl nincs titkosítva"
 
-#: pdf_bot/pdf/pdf_service.py:168
+#: pdf_bot/pdf/pdf_service.py:169
 msgid "Incorrect password, please try again"
 msgstr "Helytelen jelszó, próbálkozzon újra"
 
-#: pdf_bot/pdf/pdf_service.py:171
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "A PDF-fájl titkosítva van egy olyan módszerrel, amelyet nem tudok visszafejteni"
 
-#: pdf_bot/pdf/pdf_service.py:207
+#: pdf_bot/pdf/pdf_service.py:208
 msgid "No images found in your PDF file"
 msgstr "Nem található kép a PDF-fájlban"
 
-#: pdf_bot/pdf/pdf_service.py:219
+#: pdf_bot/pdf/pdf_service.py:220
 msgid "No text found in your PDF file"
 msgstr "A PDF-fájlban nem található szöveg"
 
-#: pdf_bot/pdf/pdf_service.py:240
+#: pdf_bot/pdf/pdf_service.py:241
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Nem tudtam egyesíteni a PDF-fájlokat, mivel ez a fájl érvénytelen: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:257
+#: pdf_bot/pdf/pdf_service.py:258
 msgid "Your PDF file already has a text layer"
 msgstr "A PDF-fájlnak már van szövegrétege"
 
-#: pdf_bot/pdf/pdf_service.py:357
+#: pdf_bot/pdf/pdf_service.py:358
 msgid "Your PDF file is invalid"
 msgstr "A PDF-fájl érvénytelen"
 
@@ -577,37 +577,37 @@ msgstr "{range} oldalak {pages} , kivéve {page}"
 msgid "{range}  pages {pages}"
 msgstr "{range}  oldalak {pages}"
 
-#: pdf_bot/telegram_internal/telegram_service.py:59
+#: pdf_bot/telegram_internal/telegram_service.py:60
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "A fájl túl nagy ahhoz, hogy letöltsem és feldolgozzam, próbálkozzon újra egy másik fájllal\n\n"
 "Vegye figyelembe, hogy ezt a korlátot a Telegram érvényesíti, és semmit sem tehetek, hacsak a Telegram nem változtatja meg"
 
-#: pdf_bot/telegram_internal/telegram_service.py:71
+#: pdf_bot/telegram_internal/telegram_service.py:72
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "A fájl túl nagy ahhoz, hogy elküldjem Önnek\n\n"
 "Vegye figyelembe, hogy ezt a korlátot a Telegram érvényesíti, és semmit sem tehetek, hacsak a Telegram nem változtatja meg"
 
-#: pdf_bot/telegram_internal/telegram_service.py:146
+#: pdf_bot/telegram_internal/telegram_service.py:147
 msgid "Your file is not an image, please try again"
 msgstr "A fájl nem kép, kérjük, próbálja újra"
 
-#: pdf_bot/telegram_internal/telegram_service.py:152
+#: pdf_bot/telegram_internal/telegram_service.py:153
 msgid "No image found in your message"
 msgstr "Nem található kép az üzenetben"
 
-#: pdf_bot/telegram_internal/telegram_service.py:160
+#: pdf_bot/telegram_internal/telegram_service.py:161
 msgid "Your file is not a PDF file, please try again"
 msgstr "A fájl nem PDF-fájl, próbálkozzon újra"
 
-#: pdf_bot/telegram_internal/telegram_service.py:185
-#: pdf_bot/telegram_internal/telegram_service.py:188
+#: pdf_bot/telegram_internal/telegram_service.py:186
+#: pdf_bot/telegram_internal/telegram_service.py:189
 msgid "Action cancelled"
 msgstr "Művelet megszakítva"
 
-#: pdf_bot/telegram_internal/telegram_service.py:258
-#: pdf_bot/telegram_internal/telegram_service.py:266
+#: pdf_bot/telegram_internal/telegram_service.py:259
+#: pdf_bot/telegram_internal/telegram_service.py:267
 msgid "Here is your result file"
 msgstr "Itt van az eredményfájl"
 
