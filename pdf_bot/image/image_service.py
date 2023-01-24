@@ -43,9 +43,10 @@ class ImageService:
     ) -> AsyncGenerator[Path, None]:
         file_ids = self._get_file_ids(file_data_list)
         async with self.telegram_service.download_files(file_ids) as file_paths:
+            file_path_strs = [str(x) for x in file_paths]
             with self.io_service.create_temp_pdf_file("Converted") as out_path:
                 with open(out_path, "wb") as f:
-                    f.write(img2pdf.convert(file_paths, rotation=Rotation.ifvalid))
+                    f.write(img2pdf.convert(file_path_strs, rotation=Rotation.ifvalid))
                 yield out_path
 
     @staticmethod
