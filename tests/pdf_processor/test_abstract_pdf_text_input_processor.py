@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import AsyncGenerator, Callable
 from unittest.mock import MagicMock, patch
 
@@ -17,7 +18,7 @@ from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 class MockProcessor(AbstractPdfTextInputProcessor):
     FILE_NAME = "file_name"
-    FILE_TASK_RESULT = FileTaskResult("path")
+    FILE_TASK_RESULT = FileTaskResult(Path("path"))
 
     @property
     def entry_point_data_type(self) -> type[FileData]:

@@ -1,4 +1,5 @@
 import shlex
+from pathlib import Path
 from subprocess import Popen
 from unittest.mock import MagicMock, patch
 
@@ -8,8 +9,8 @@ from pdf_bot.cli import CLIService, CLIServiceError
 
 
 class TestCLIService:
-    INPUT_PATH = "input_path"
-    OUTPUT_PATH = "output_path"
+    INPUT_PATH = Path("input_path")
+    OUTPUT_PATH = Path("output_path")
     PERCENT = 0.1
     MARGIN_SIZE = 10
 

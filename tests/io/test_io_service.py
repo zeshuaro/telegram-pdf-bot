@@ -1,3 +1,4 @@
+from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import MagicMock, patch
 
@@ -7,8 +8,8 @@ from pdf_bot.io import IOService
 
 
 class TestIOService:
-    DIR_NAME = "dir_name"
-    FILE_NAME = "file_name"
+    DIR_NAME = Path("dir_name")
+    FILE_NAME = Path("file_name")
     FILE_PREFIX = "file_prefix"
     FILE_PREFIX_UNDERSCORE = f"{FILE_PREFIX}_"
     FILE_SUFFIX = "file_suffix"
@@ -65,7 +66,7 @@ class TestIOService:
     @pytest.mark.asyncio
     async def test_create_temp_files(self, num_files: int) -> None:
         files = []
-        names = []
+        paths = []
 
         for i in range(num_files):
             name = f"{self.FILE_NAME}_{i}"
@@ -73,7 +74,7 @@ class TestIOService:
             file.name = name
 
             files.append(file)
-            names.append(name)
+            paths.append(Path(name))
 
         index = 0
 
@@ -86,7 +87,7 @@ class TestIOService:
         with patch("pdf_bot.io.io_service.NamedTemporaryFile") as tf:
             tf.side_effect = create_tmp_file
             with self.sut.create_temp_files(num_files) as actual:
-                assert actual == names
+                assert actual == paths
 
             for file in files:
                 file.close.assert_called_once()

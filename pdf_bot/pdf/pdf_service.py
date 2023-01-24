@@ -4,6 +4,7 @@ import shutil
 import textwrap
 from contextlib import asynccontextmanager
 from gettext import gettext as _
+from pathlib import Path
 from typing import AsyncGenerator
 
 import img2pdf
@@ -51,7 +52,7 @@ class PdfService:
     @asynccontextmanager
     async def add_watermark_to_pdf(
         self, source_file_id: str, watermark_file_id: str
-    ) -> AsyncGenerator[str, None]:
+    ) -> AsyncGenerator[Path, None]:
         src_reader, wmk_reader = await asyncio.gather(
             self._open_pdf(source_file_id), self._open_pdf(watermark_file_id)
         )
@@ -68,7 +69,7 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def grayscale_pdf(self, file_id: str) -> AsyncGenerator[str, None]:
+    async def grayscale_pdf(self, file_id: str) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with (
                 self.io_service.create_temp_directory() as dir_name,
@@ -87,7 +88,7 @@ class PdfService:
                 yield out_path
 
     @asynccontextmanager
-    async def compare_pdfs(self, file_id_a: str, file_id_b: str) -> AsyncGenerator[str, None]:
+    async def compare_pdfs(self, file_id_a: str, file_id_b: str) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(
             file_id_a
         ) as file_name_a, self.telegram_service.download_pdf_file(file_id_b) as file_name_b:
@@ -105,7 +106,7 @@ class PdfService:
                 yield CompressResult(old_size, new_size, out_path)
 
     @asynccontextmanager
-    async def convert_pdf_to_images(self, file_id: str) -> AsyncGenerator[str, None]:
+    async def convert_pdf_to_images(self, file_id: str) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_directory("PDF_images") as out_dir:
                 pdf2image.convert_from_path(file_path, output_folder=out_dir, fmt="png")
@@ -114,7 +115,7 @@ class PdfService:
     @asynccontextmanager
     async def create_pdf_from_text(
         self, text: str, font_data: FontData | None
-    ) -> AsyncGenerator[str, None]:
+    ) -> AsyncGenerator[Path, None]:
         html = HTML(string="<p>{content}</p>".format(content=text.replace("\n", "<br/>")))
         font_config = FontConfiguration()
         stylesheets: list[CSS] | None = None
@@ -142,7 +143,7 @@ class PdfService:
     @asynccontextmanager
     async def crop_pdf_by_percentage(
         self, file_id: str, percentage: float
-    ) -> AsyncGenerator[str, None]:
+    ) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("Cropped") as out_path:
                 crop(["-p", str(percentage), "-o", out_path, file_path])
@@ -151,14 +152,14 @@ class PdfService:
     @asynccontextmanager
     async def crop_pdf_by_margin_size(
         self, file_id: str, margin_size: float
-    ) -> AsyncGenerator[str, None]:
+    ) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("Cropped") as out_path:
                 crop(["-a", str(margin_size), "-o", out_path, file_path])
                 yield out_path
 
     @asynccontextmanager
-    async def decrypt_pdf(self, file_id: str, password: str) -> AsyncGenerator[str, None]:
+    async def decrypt_pdf(self, file_id: str, password: str) -> AsyncGenerator[Path, None]:
         reader = await self._open_pdf(file_id, allow_encrypted=True)
         if not reader.is_encrypted:
             raise PdfDecryptError(_("Your PDF file is not encrypted"))
@@ -181,7 +182,7 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def encrypt_pdf(self, file_id: str, password: str) -> AsyncGenerator[str, None]:
+    async def encrypt_pdf(self, file_id: str, password: str) -> AsyncGenerator[Path, None]:
         reader = await self._open_pdf(file_id)
         writer = PdfFileWriter()
 
@@ -195,7 +196,7 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def extract_pdf_images(self, file_id: str) -> AsyncGenerator[str, None]:
+    async def extract_pdf_images(self, file_id: str) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_directory("PDF_images") as out_dir:
                 try:
@@ -208,7 +209,7 @@ class PdfService:
                 yield out_dir
 
     @asynccontextmanager
-    async def extract_pdf_text(self, file_id: str) -> AsyncGenerator[str, None]:
+    async def extract_pdf_text(self, file_id: str) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             try:
                 text = extract_text(file_path)
@@ -225,7 +226,7 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def merge_pdfs(self, file_data_list: list[FileData]) -> AsyncGenerator[str, None]:
+    async def merge_pdfs(self, file_data_list: list[FileData]) -> AsyncGenerator[Path, None]:
         file_ids = self._get_file_ids(file_data_list)
         merger = PdfFileMerger()
 
@@ -247,7 +248,7 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def ocr_pdf(self, file_id: str) -> AsyncGenerator[str, None]:
+    async def ocr_pdf(self, file_id: str) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("OCR") as out_path:
                 try:
@@ -259,7 +260,7 @@ class PdfService:
                     raise PdfEncryptedError() from e
 
     @asynccontextmanager
-    async def preview_pdf(self, file_id: str) -> AsyncGenerator[str, None]:
+    async def preview_pdf(self, file_id: str) -> AsyncGenerator[Path, None]:
         with (
             self.io_service.create_temp_pdf_file() as pdf_path,
             self.io_service.create_temp_png_file("Preview") as out_path,
@@ -278,15 +279,15 @@ class PdfService:
             yield out_path
 
     @asynccontextmanager
-    async def rename_pdf(self, file_id: str, file_name: str) -> AsyncGenerator[str, None]:
+    async def rename_pdf(self, file_id: str, file_name: str) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_directory() as dir_name:
-                out_path = os.path.join(dir_name, file_name)
+                out_path = dir_name / file_name
                 shutil.copy(file_path, out_path)
                 yield out_path
 
     @asynccontextmanager
-    async def rotate_pdf(self, file_id: str, degree: int) -> AsyncGenerator[str, None]:
+    async def rotate_pdf(self, file_id: str, degree: int) -> AsyncGenerator[Path, None]:
         reader = await self._open_pdf(file_id)
         writer = PdfFileWriter()
 
@@ -301,7 +302,7 @@ class PdfService:
     @asynccontextmanager
     async def scale_pdf_by_factor(
         self, file_id: str, scale_data: ScaleData
-    ) -> AsyncGenerator[str, None]:
+    ) -> AsyncGenerator[Path, None]:
         reader = await self._open_pdf(file_id)
         writer = PdfFileWriter()
 
@@ -317,7 +318,7 @@ class PdfService:
     @asynccontextmanager
     async def scale_pdf_to_dimension(
         self, file_id: str, scale_data: ScaleData
-    ) -> AsyncGenerator[str, None]:
+    ) -> AsyncGenerator[Path, None]:
         reader = await self._open_pdf(file_id)
         writer = PdfFileWriter()
 
@@ -335,7 +336,7 @@ class PdfService:
         return PageRange.valid(split_range)
 
     @asynccontextmanager
-    async def split_pdf(self, file_id: str, split_range: str) -> AsyncGenerator[str, None]:
+    async def split_pdf(self, file_id: str, split_range: str) -> AsyncGenerator[Path, None]:
         reader = await self._open_pdf(file_id)
         merger = PdfFileMerger()
         merger.append(reader, pages=PageRange(split_range))

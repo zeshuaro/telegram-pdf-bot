@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from pathlib import Path
 
 import humanize
 
@@ -7,7 +8,7 @@ import humanize
 class CompressResult:
     old_size: int
     new_size: int
-    out_path: str
+    out_path: Path
 
     @property
     def reduced_percentage(self) -> float:

@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Any
 from unittest.mock import MagicMock, call, patch
 
@@ -39,9 +40,9 @@ class TestPDFService(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-    DOWNLOAD_PATH = "download_path"
-    DIR_NAME = "dir_name"
-    OUTPUT_PATH = "output_path"
+    DOWNLOAD_PATH = Path("download_path")
+    DIR_NAME = Path("dir_name")
+    OUTPUT_PATH = Path("output_path")
     PASSWORD = "password"
 
     def setup_method(self) -> None:
@@ -555,17 +556,16 @@ class TestPDFService(
     @pytest.mark.asyncio
     async def test_rename_pdf(self) -> None:
         file_name = "file_name"
-        self.mock_os.path.join.return_value = self.OUTPUT_PATH
+        expected = self.DIR_NAME / file_name
 
         with patch("pdf_bot.pdf.pdf_service.shutil") as shutil:
             async with self.sut.rename_pdf(self.TELEGRAM_FILE_ID, file_name) as actual:
-                assert actual == self.OUTPUT_PATH
+                assert actual == expected
                 self.telegram_service.download_pdf_file.assert_called_once_with(
                     self.TELEGRAM_FILE_ID
                 )
                 self.io_service.create_temp_directory.assert_called_once()
-                self.mock_os.path.join.assert_called_once_with(self.DIR_NAME, file_name)
-                shutil.copy.assert_called_once_with(self.DOWNLOAD_PATH, self.OUTPUT_PATH)
+                shutil.copy.assert_called_once_with(self.DOWNLOAD_PATH, expected)
 
     @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
     @pytest.mark.asyncio

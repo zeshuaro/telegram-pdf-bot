@@ -2,6 +2,7 @@ import os
 import shutil
 from abc import ABC, abstractmethod
 from contextlib import asynccontextmanager, suppress
+from pathlib import Path
 from typing import Any, AsyncGenerator, Callable, Coroutine
 
 from telegram import CallbackQuery, Message, Update
@@ -65,7 +66,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
     @asynccontextmanager
     @abstractmethod
     async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
-        yield FileTaskResult("")
+        yield FileTaskResult(Path("."))
 
     @property
     def generic_error_types(self) -> set[type[Exception]]:
@@ -127,8 +128,8 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
                 final_path = out_path
 
                 if os.path.isdir(out_path):
-                    shutil.make_archive(out_path, "zip", out_path)
-                    final_path = f"{out_path}.zip"
+                    shutil.make_archive(str(out_path), "zip", out_path)
+                    final_path = out_path.with_suffix(".zip")
 
                 await self.telegram_service.send_file(update, context, final_path, self.task_type)
         except Exception as e:  # pylint: disable=broad-except

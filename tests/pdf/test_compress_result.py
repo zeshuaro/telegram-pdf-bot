@@ -1,10 +1,11 @@
+from pathlib import Path
 from unittest.mock import patch
 
 from pdf_bot.pdf import CompressResult
 
 
 class TestCompressResult:
-    SUT = CompressResult(29, 10, "out_path")
+    SUT = CompressResult(29, 10, Path("out_path"))
 
     def test_reduced_percentage(self) -> None:
         actual = self.SUT.reduced_percentage
