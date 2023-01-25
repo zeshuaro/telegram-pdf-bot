@@ -69,6 +69,10 @@ ignore = [
     "PLR2004", # magic-value-comparison
     "PT011",   # RaisesTooBroad
     "PT023",   # IncorrectMarkParenthesesStyle
+    "PTH112",  # pathlib-is-dir
+    "PTH122",  # pathlib-splitext
+    "PTH123",  # pathlib-open
+
 
     # D10* rules are all related to missing docstring
     "D100",
