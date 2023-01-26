@@ -11,12 +11,9 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
-class TestImageService(
-    LanguageServiceTestMixin,
-    TelegramServiceTestMixin,
-    TelegramTestMixin,
-):
+class TestImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, TelegramTestMixin):
     PASSWORD = "password"
+    FILE_PATH_STEM = "file_path_stem"
 
     def setup_method(self) -> None:
         super().setup_method()
@@ -42,23 +39,19 @@ class TestImageService(
     @pytest.mark.asyncio
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
     async def test_beautify_and_convert_images_to_pdf(self, num_files: int) -> None:
+        self.file_path.stem = self.FILE_PATH_STEM
         file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
         self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
 
-        with patch("pdf_bot.image.image_service.os") as mock_os, patch(
-            "pdf_bot.image.image_service.noteshrink"
-        ) as noteshrink:
-            basename = "basename"
-            mock_os.path.splitext.return_value = (basename,)
+        with patch("pdf_bot.image.image_service.noteshrink") as noteshrink:
 
             async with self.sut.beautify_and_convert_images_to_pdf(file_data_list) as actual:
                 assert actual == self.file_path
                 self.telegram_service.download_files.assert_called_once_with(file_ids)
                 self.io_service.create_temp_pdf_file.assert_called_once_with("Beautified")
-                mock_os.path.splitext.assert_called_once_with(self.file_path)
                 noteshrink.notescan_main.assert_called_once_with(
                     file_paths,
-                    basename=f"{basename}_page",
+                    basename=f"{self.FILE_PATH_STEM}_page",
                     pdfname=self.file_path,
                 )
 
