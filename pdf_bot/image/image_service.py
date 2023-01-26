@@ -43,7 +43,7 @@ class ImageService:
         async with self.telegram_service.download_files(file_ids) as file_paths:
             file_path_strs = [str(x) for x in file_paths]
             with self.io_service.create_temp_pdf_file("Converted") as out_path:
-                with open(out_path, "wb") as f:
+                with out_path.open("wb") as f:
                     f.write(img2pdf.convert(file_path_strs, rotation=Rotation.ifvalid))
                 yield out_path
 

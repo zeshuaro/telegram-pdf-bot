@@ -29,13 +29,6 @@ class TestImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Teleg
             self.telegram_service,
         )
 
-        self.open_patcher = patch("builtins.open")
-        self.mock_open = self.open_patcher.start()
-
-    def teardown_method(self) -> None:
-        self.open_patcher.stop()
-        super().teardown_method()
-
     @pytest.mark.asyncio
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
     async def test_beautify_and_convert_images_to_pdf(self, num_files: int) -> None:
@@ -60,22 +53,23 @@ class TestImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Teleg
     async def test_convert_images_to_pdf(self, num_files: int) -> None:
         image_bytes = "image_bytes"
         file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
-        file = MagicMock()
+        buffered_writer = self.mock_path_open(self.file_path)
 
         file_path_strs = [str(x) for x in file_paths]
         self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
 
         with patch("pdf_bot.image.image_service.img2pdf") as img2pdf:
-            self.mock_open.return_value.__enter__.return_value = file
             img2pdf.convert.return_value = image_bytes
 
             async with self.sut.convert_images_to_pdf(file_data_list) as actual:
                 assert actual == self.file_path
+
                 self.telegram_service.download_files.assert_called_once_with(file_ids)
                 self.io_service.create_temp_pdf_file.assert_called_once_with("Converted")
-                self.mock_open.assert_called_once_with(self.file_path, "wb")
+
+                self.file_path.open.assert_called_once_with("wb")
                 img2pdf.convert.assert_called_once_with(file_path_strs, rotation=Rotation.ifvalid)
-                file.write.assert_called_once_with(image_bytes)
+                buffered_writer.write.assert_called_once_with(image_bytes)
 
     def _get_file_data_list(
         self, num_files: int

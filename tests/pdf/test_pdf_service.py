@@ -58,20 +58,17 @@ class TestPDFService(
             self.telegram_service,
         )
 
-        self.open_patcher = patch("builtins.open")
         self.os_patcher = patch("pdf_bot.pdf.pdf_service.os")
         self.ocrmypdf_patcher = patch("pdf_bot.pdf.pdf_service.ocrmypdf")
         self.extract_text_patcher = patch("pdf_bot.pdf.pdf_service.extract_text")
         self.textwrap_patcher = patch("pdf_bot.pdf.pdf_service.textwrap")
 
-        self.mock_open = self.open_patcher.start()
         self.mock_os = self.os_patcher.start()
         self.ocrmypdf = self.ocrmypdf_patcher.start()
         self.extract_text = self.extract_text_patcher.start()
         self.textwrap_patcher.start()
 
     def teardown_method(self) -> None:
-        self.open_patcher.stop()
         self.os_patcher.stop()
         self.ocrmypdf_patcher.stop()
         self.extract_text_patcher.stop()
@@ -138,13 +135,12 @@ class TestPDFService(
     @pytest.mark.asyncio
     async def test_grayscale_pdf(self) -> None:
         image_paths = "image_paths"
-        file = MagicMock()
         image_bytes = "image_bytes"
+        buffered_writer = self.mock_path_open(self.file_path)
 
         with patch("pdf_bot.pdf.pdf_service.pdf2image") as pdf2image, patch(
             "pdf_bot.pdf.pdf_service.img2pdf"
         ) as img2pdf:
-            self.mock_open.return_value.__enter__.return_value = file
             pdf2image.convert_from_path.return_value = image_paths
             img2pdf.convert.return_value = image_bytes
 
@@ -160,8 +156,8 @@ class TestPDFService(
                     paths_only=True,
                 )
                 img2pdf.convert.assert_called_once_with(image_paths, rotation=Rotation.ifvalid)
-                self.mock_open.assert_called_once_with(self.file_path, "wb")
-                file.write.assert_called_once_with(image_bytes)
+                self.file_path.open.assert_called_once_with("wb")
+                buffered_writer.write.assert_called_once_with(image_bytes)
 
     @pytest.mark.asyncio
     async def test_compare_pdfs(self) -> None:
@@ -466,7 +462,7 @@ class TestPDFService(
                 self.telegram_service.download_files.assert_called_once_with(file_ids)
                 calls = [call(x) for x in file_paths]
                 merger.append.assert_has_calls(calls)
-                self.io_service.create_temp_pdf_file.assert_called_once_with("Merged_files")
+                self.io_service.create_temp_pdf_file.assert_called_once_with("Merged")
                 merger.write.assert_called_once()
 
     @pytest.mark.asyncio
