@@ -1,4 +1,3 @@
-import os
 import shutil
 from abc import ABC, abstractmethod
 from contextlib import asynccontextmanager, suppress
@@ -127,7 +126,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
                 out_path = final_path = result.path
                 final_path = out_path
 
-                if os.path.isdir(out_path):
+                if out_path.is_dir():
                     shutil.make_archive(str(out_path), "zip", out_path)
                     final_path = out_path.with_suffix(".zip")
 
