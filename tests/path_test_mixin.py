@@ -1,16 +1,14 @@
-from contextlib import contextmanager
 from pathlib import Path
-from typing import Generator
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 
 class PathTestMixin:
     def mock_file_path(self) -> MagicMock:
-        return MagicMock(spec=Path)
+        path = MagicMock(spec=Path)
+        path.is_dir.return_value = False
+        return path
 
-    @contextmanager
-    def mock_dir_path(self) -> Generator[MagicMock, None, None]:
-        path = self.mock_file_path()
-        with patch.object(Path, "is_dir") as is_dir:
-            is_dir.return_value = True
-            yield path
+    def mock_dir_path(self) -> MagicMock:
+        path = MagicMock(spec=Path)
+        path.is_dir.return_value = True
+        return path
