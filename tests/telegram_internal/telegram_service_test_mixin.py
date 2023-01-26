@@ -19,6 +19,7 @@ class TelegramServiceTestMixin(TelegramTestMixin):
         service.get_file_data.return_value = self.FILE_DATA
         service.get_message_data.return_value = self.MESSAGE_DATA
         service.get_back_inline_markup.return_value = self.BACK_INLINE_MARKUP
+        service.download_pdf_file.return_value.__aenter__.return_value = self.download_path
 
         return service
 

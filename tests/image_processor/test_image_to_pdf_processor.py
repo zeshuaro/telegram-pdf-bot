@@ -47,9 +47,9 @@ class TestImageToPdfProcessorProcessor(
     @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
         self.image_service.convert_images_to_pdf.return_value.__aenter__.return_value = (
-            self.FILE_PATH
+            self.file_path
         )
 
         async with self.sut.process_file_task(self.FILE_DATA) as actual:
-            assert actual == self.FILE_TASK_RESULT
+            assert actual == self.file_task_result
             self.image_service.convert_images_to_pdf.assert_called_once_with([self.FILE_DATA])

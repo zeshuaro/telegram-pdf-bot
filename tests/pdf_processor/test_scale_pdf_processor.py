@@ -76,12 +76,12 @@ class TestPdfProcessor(
             option=ScaleType.by_factor,
             text=self.SCALE_DATA,
         )
-        self.pdf_service.scale_pdf_by_factor.return_value.__aenter__.return_value = self.FILE_PATH
+        self.pdf_service.scale_pdf_by_factor.return_value.__aenter__.return_value = self.file_path
 
         async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
             file_data
         ) as actual:
-            assert actual == self.FILE_TASK_RESULT
+            assert actual == self.file_task_result
             self.pdf_service.scale_pdf_by_factor.assert_called_once_with(
                 file_data.id, self.SCALE_DATA
             )
@@ -95,13 +95,13 @@ class TestPdfProcessor(
             text=self.SCALE_DATA,
         )
         self.pdf_service.scale_pdf_to_dimension.return_value.__aenter__.return_value = (
-            self.FILE_PATH
+            self.file_path
         )
 
         async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
             file_data
         ) as actual:
-            assert actual == self.FILE_TASK_RESULT
+            assert actual == self.file_task_result
             self.pdf_service.scale_pdf_to_dimension.assert_called_once_with(
                 file_data.id, self.SCALE_DATA
             )

@@ -126,7 +126,7 @@ class TestMergeService(
         self.telegram_message.text = self.DONE
         self.file_data_list.__len__.return_value = 2
         self.telegram_service.get_user_data.return_value = self.file_data_list
-        self.pdf_service.merge_pdfs.return_value.__aenter__.return_value = self.FILE_PATH
+        self.pdf_service.merge_pdfs.return_value.__aenter__.return_value = self.file_path
 
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
@@ -138,7 +138,7 @@ class TestMergeService(
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            self.FILE_PATH,
+            self.file_path,
             TaskType.merge_pdf,
         )
 

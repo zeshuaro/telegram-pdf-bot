@@ -8,8 +8,8 @@ from pdf_bot.io import IOService
 
 
 class TestIOService:
-    DIR_NAME = Path("dir_name")
-    FILE_NAME = Path("file_name")
+    FILE_NAME = "file_name"
+    FILE_PATH = Path(FILE_NAME)
     FILE_PREFIX = "file_prefix"
     FILE_PREFIX_UNDERSCORE = f"{FILE_PREFIX}_"
     FILE_SUFFIX = "file_suffix"
@@ -31,13 +31,15 @@ class TestIOService:
     @pytest.mark.parametrize("prefix", [None, FILE_PREFIX, FILE_PREFIX_UNDERSCORE])
     @pytest.mark.asyncio
     async def test_create_temp_directory(self, prefix: str | None) -> None:
+        dir_name = "dir_name"
         td = MagicMock(spec=TemporaryDirectory)
+
         with patch("pdf_bot.io.io_service.TemporaryDirectory") as td_cls:
             td_cls.return_value = td
-            td.name = self.DIR_NAME
+            td.name = dir_name
 
             with self.sut.create_temp_directory(prefix) as actual:
-                assert actual == self.DIR_NAME
+                assert actual == Path(dir_name)
 
             expected_prefix = self._get_expected_prefix(prefix)
             td_cls.assert_called_once_with(prefix=expected_prefix)
@@ -57,7 +59,7 @@ class TestIOService:
     @pytest.mark.asyncio
     async def test_create_temp_file(self, prefix: str | None, suffix: str | None) -> None:
         with self.sut.create_temp_file(prefix, suffix) as actual:
-            assert actual == self.FILE_NAME
+            assert actual == self.FILE_PATH
 
         expected_prefix = self._get_expected_prefix(prefix)
         self._assert_temp_file(expected_prefix, suffix)
@@ -96,7 +98,7 @@ class TestIOService:
     @pytest.mark.asyncio
     async def test_create_temp_pdf_file(self, prefix: str | None) -> None:
         with self.sut.create_temp_pdf_file(prefix) as actual:
-            assert actual == self.FILE_NAME
+            assert actual == self.FILE_PATH
 
         expected_prefix = self._get_expected_prefix(prefix)
         self._assert_temp_file(expected_prefix, ".pdf")
@@ -104,13 +106,13 @@ class TestIOService:
     @pytest.mark.asyncio
     async def test_create_temp_png_file(self) -> None:
         with self.sut.create_temp_png_file(self.FILE_PREFIX_UNDERSCORE) as actual:
-            assert actual == self.FILE_NAME
+            assert actual == self.FILE_PATH
         self._assert_temp_file(self.FILE_PREFIX_UNDERSCORE, ".png")
 
     @pytest.mark.asyncio
     async def test_create_temp_txt_file(self) -> None:
         with self.sut.create_temp_txt_file(self.FILE_PREFIX_UNDERSCORE) as actual:
-            assert actual == self.FILE_NAME
+            assert actual == self.FILE_PATH
         self._assert_temp_file(self.FILE_PREFIX_UNDERSCORE, ".txt")
 
     def _assert_temp_file(self, prefix: str | None, suffix: str | None) -> None:

@@ -69,7 +69,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
 
     @pytest.mark.asyncio
     async def test_check_text(self) -> None:
-        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = self.FILE_PATH
+        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = self.file_path
 
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
@@ -82,7 +82,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            self.FILE_PATH,
+            self.file_path,
             TaskType.text_to_pdf,
         )
 
@@ -115,7 +115,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
     @pytest.mark.asyncio
     async def test_check_text_skip_option(self) -> None:
         self.telegram_message.text = self.SKIP
-        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = self.FILE_PATH
+        self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = self.file_path
 
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
@@ -128,7 +128,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            self.FILE_PATH,
+            self.file_path,
             TaskType.text_to_pdf,
         )
 

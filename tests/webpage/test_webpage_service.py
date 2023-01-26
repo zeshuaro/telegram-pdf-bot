@@ -24,7 +24,7 @@ class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         self.telegram_message.text = self.URL
 
         self.io_service = MagicMock(spec=IOService)
-        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = self.FILE_PATH
+        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = self.file_path
 
         self.telegram_service = self.mock_telegram_service()
         self.telegram_service.user_data_contains.return_value = False
@@ -115,7 +115,7 @@ class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
             self.telegram_context, self.URL_HASH, None
         )
         self.io_service.create_temp_pdf_file.assert_called_once_with(self.HOSTNAME)
-        self.html.write_pdf.assert_called_once_with(self.FILE_PATH)
+        self.html.write_pdf.assert_called_once_with(self.file_path)
 
         self.telegram_service.get_user_data.assert_called_once_with(
             self.telegram_context, self.URL_HASH
@@ -125,6 +125,6 @@ class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            self.FILE_PATH,
+            self.file_path,
             TaskType.url_to_pdf,
         )

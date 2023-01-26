@@ -54,7 +54,7 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
     @pytest.mark.asyncio
     async def test_compare_pdfs(self) -> None:
         self.telegram_service.get_user_data.return_value = self.TELEGRAM_DOCUMENT_ID
-        self.pdf_service.compare_pdfs.return_value.__aenter__.return_value = self.FILE_PATH
+        self.pdf_service.compare_pdfs.return_value.__aenter__.return_value = self.file_path
 
         actual = await self.sut.compare_pdfs(self.telegram_update, self.telegram_context)
 
@@ -65,7 +65,7 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            self.FILE_PATH,
+            self.file_path,
             TaskType.compare_pdf,
         )
 

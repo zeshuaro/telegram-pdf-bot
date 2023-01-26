@@ -83,10 +83,10 @@ class TestRotatePdfProcessor(
             name=self.TELEGRAM_DOCUMENT_NAME,
             degree=degree,
         )
-        self.pdf_service.rotate_pdf.return_value.__aenter__.return_value = self.FILE_PATH
+        self.pdf_service.rotate_pdf.return_value.__aenter__.return_value = self.file_path
 
         async with self.sut.process_file_task(degree_data) as actual:
-            assert actual == self.FILE_TASK_RESULT
+            assert actual == self.file_task_result
             self.pdf_service.rotate_pdf.assert_called_once_with(degree_data.id, degree)
 
     @pytest.mark.asyncio
