@@ -1,4 +1,3 @@
-import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import AsyncGenerator
@@ -31,9 +30,8 @@ class ImageService:
         file_ids = self._get_file_ids(file_data_list)
         async with self.telegram_service.download_files(file_ids) as file_paths:
             with self.io_service.create_temp_pdf_file("Beautified") as out_path:
-                out_path_base = os.path.splitext(out_path)[0]
                 noteshrink.notescan_main(
-                    file_paths, basename=f"{out_path_base}_page", pdfname=out_path
+                    file_paths, basename=f"{out_path.stem}_page", pdfname=out_path
                 )
                 yield out_path
 
