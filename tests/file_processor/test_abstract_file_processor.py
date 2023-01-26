@@ -193,10 +193,7 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_with_result_message(self) -> None:
-        with patch.object(
-            self.sut,
-            "process_file_task",
-        ) as process_file_task:
+        with patch.object(self.sut, "process_file_task") as process_file_task:
             result = FileTaskResult(self.sut.path, self.TELEGRAM_TEXT)
             process_file_task.return_value.__aenter__.return_value = result
 
@@ -210,18 +207,21 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_dir_output(self) -> None:
-        with patch("pdf_bot.file_processor.abstract_file_processor.os") as mock_os, patch(
+        with patch.object(self.sut, "process_file_task") as process_file_task, patch(
             "pdf_bot.file_processor.abstract_file_processor.shutil"
         ) as mock_shutil:
-            mock_os.path.isdir.return_value = True
-            path = self.mock_file_path()
-            self.sut.path.with_suffix.return_value = path
+            path_with_suffix = self.mock_file_path()
+            dir_path = self.mock_dir_path()
+            dir_path.with_suffix.return_value = path_with_suffix
+
+            result = FileTaskResult(dir_path, self.TELEGRAM_TEXT)
+            process_file_task.return_value.__aenter__.return_value = result
 
             actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
             assert actual == ConversationHandler.END
-            self._assert_process_file_succeed(path)
-            self.sut.path.with_suffix.assert_called_once_with(".zip")
+            self._assert_process_file_succeed(path_with_suffix)
+            dir_path.with_suffix.assert_called_once_with(".zip")
             mock_shutil.make_archive(
                 MockProcessor.PROCESS_RESULT, "zip", MockProcessor.PROCESS_RESULT
             )
