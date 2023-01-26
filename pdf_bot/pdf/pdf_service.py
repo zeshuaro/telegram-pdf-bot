@@ -2,10 +2,10 @@ import asyncio
 import os
 import shutil
 import textwrap
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager, contextmanager
 from gettext import gettext as _
 from pathlib import Path
-from typing import AsyncGenerator
+from typing import AsyncGenerator, Generator
 
 import img2pdf
 import ocrmypdf
@@ -63,9 +63,7 @@ class PdfService:
             page.merge_page(wmk_page)
             writer.add_page(page)
 
-        with self.io_service.create_temp_pdf_file("File_with_watermark") as out_path:
-            with open(out_path, "wb") as f:
-                writer.write(f)
+        with self._write_pdf(writer, "File_with_watermark") as out_path:
             yield out_path
 
     @asynccontextmanager
@@ -83,7 +81,7 @@ class PdfService:
                     paths_only=True,
                 )
 
-                with open(out_path, "wb") as f:
+                with out_path.open("wb") as f:
                     f.write(img2pdf.convert(images, rotation=Rotation.ifvalid))
                 yield out_path
 
@@ -176,9 +174,7 @@ class PdfService:
         for page in reader.pages:
             writer.add_page(page)
 
-        with self.io_service.create_temp_pdf_file("Decrypted") as out_path:
-            with open(out_path, "wb") as f:
-                writer.write(f)
+        with self._write_pdf(writer, "Decrypted") as out_path:
             yield out_path
 
     @asynccontextmanager
@@ -190,9 +186,7 @@ class PdfService:
             writer.add_page(page)
         writer.encrypt(password)
 
-        with self.io_service.create_temp_pdf_file("Encrypted") as out_path:
-            with open(out_path, "wb") as f:
-                writer.write(f)
+        with self._write_pdf(writer, "Encrypted") as out_path:
             yield out_path
 
     @asynccontextmanager
@@ -221,7 +215,7 @@ class PdfService:
 
         wrapped_text = textwrap.wrap(text)
         with self.io_service.create_temp_txt_file("PDF_text") as out_path:
-            with open(out_path, "w") as f:
+            with out_path.open("w") as f:
                 f.write("\n".join(wrapped_text))
             yield out_path
 
@@ -242,9 +236,7 @@ class PdfService:
                         )
                     ) from e
 
-        with self.io_service.create_temp_pdf_file("Merged_files") as out_path:
-            with open(out_path, "wb") as f:
-                merger.write(f)
+        with self._write_pdf(merger, "Merged") as out_path:
             yield out_path
 
     @asynccontextmanager
@@ -268,10 +260,7 @@ class PdfService:
             reader = await self._open_pdf(file_id)
             writer = PdfFileWriter()
             writer.add_page(reader.pages[0])
-
-            # Write cover preview PDF file
-            with open(pdf_path, "wb") as f:
-                writer.write(f)
+            writer.write(pdf_path)
 
             # Convert cover preview to image
             imgs = pdf2image.convert_from_path(pdf_path, fmt="png")
@@ -294,9 +283,7 @@ class PdfService:
         for page in reader.pages:
             writer.add_page(page.rotate_clockwise(degree))
 
-        with self.io_service.create_temp_pdf_file("Rotated") as out_path:
-            with open(out_path, "wb") as f:
-                writer.write(f)
+        with self._write_pdf(writer, "Rotated") as out_path:
             yield out_path
 
     @asynccontextmanager
@@ -310,9 +297,7 @@ class PdfService:
             page.scale(scale_data.x, scale_data.y)
             writer.add_page(page)
 
-        with self.io_service.create_temp_pdf_file("Scaled") as out_path:
-            with open(out_path, "wb") as f:
-                writer.write(f)
+        with self._write_pdf(writer, "Scaled") as out_path:
             yield out_path
 
     @asynccontextmanager
@@ -326,9 +311,7 @@ class PdfService:
             page.scale_to(scale_data.x, scale_data.y)
             writer.add_page(page)
 
-        with self.io_service.create_temp_pdf_file("Scaled") as out_path:
-            with open(out_path, "wb") as f:
-                writer.write(f)
+        with self._write_pdf(writer, "Scaled") as out_path:
             yield out_path
 
     @staticmethod
@@ -341,9 +324,7 @@ class PdfService:
         merger = PdfFileMerger()
         merger.append(reader, pages=PageRange(split_range))
 
-        with self.io_service.create_temp_pdf_file("Split") as out_path:
-            with open(out_path, "wb") as f:
-                merger.write(f)
+        with self._write_pdf(merger, "Split") as out_path:
             yield out_path
 
     @staticmethod
@@ -360,3 +341,11 @@ class PdfService:
         if pdf_reader.is_encrypted and not allow_encrypted:
             raise PdfEncryptedError()
         return pdf_reader
+
+    @contextmanager
+    def _write_pdf(
+        self, writer: PdfFileWriter | PdfFileMerger, file_prefix: str
+    ) -> Generator[Path, None, None]:
+        with self.io_service.create_temp_pdf_file(file_prefix) as out_path:
+            writer.write(out_path)
+            yield out_path
