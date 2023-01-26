@@ -46,10 +46,10 @@ class TestCompressPdfProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
-        result = CompressResult(2, 1, self.FILE_PATH)
+        result = CompressResult(2, 1, self.file_path)
         self.pdf_service.compress_pdf.return_value.__aenter__.return_value = result
 
         async with self.sut.process_file_task(self.FILE_DATA) as actual:
-            assert actual.path == self.FILE_PATH
+            assert actual.path == self.file_path
             assert actual.message is not None
             self.pdf_service.compress_pdf.assert_called_once_with(self.FILE_DATA.id)

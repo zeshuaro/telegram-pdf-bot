@@ -64,7 +64,7 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
 
     @pytest.mark.asyncio
     async def test_add_watermark_to_pdf(self) -> None:
-        self.pdf_service.add_watermark_to_pdf.return_value.__aenter__.return_value = self.FILE_PATH
+        self.pdf_service.add_watermark_to_pdf.return_value.__aenter__.return_value = self.file_path
 
         actual = await self.sut.add_watermark_to_pdf(self.telegram_update, self.telegram_context)
 
@@ -79,7 +79,7 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            self.FILE_PATH,
+            self.file_path,
             TaskType.watermark_pdf,
         )
 

@@ -10,9 +10,11 @@ from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
+from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData, FileTaskResult, TaskData
-from pdf_bot.telegram_internal import TelegramGetUserDataError
+from pdf_bot.telegram_internal import TelegramGetUserDataError, TelegramService
 from tests.language import LanguageServiceTestMixin
+from tests.path_test_mixin import PathTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
@@ -28,11 +30,20 @@ class UnknownError(Exception):
     pass
 
 
-class MockProcessor(AbstractFileProcessor):
+class MockProcessor(PathTestMixin, AbstractFileProcessor):
     PROCESS_RESULT = "process_result"
     TASK_TYPE = TaskType.decrypt_pdf
     TASK_DATA_LIST = [TaskData("a", FileData), TaskData("b", FileData)]
-    FILE_TASK_RESULT = FileTaskResult(Path("path"))
+
+    def __init__(
+        self,
+        telegram_service: TelegramService,
+        language_service: LanguageService,
+        bypass_init_check: bool = False,
+    ) -> None:
+        super().__init__(telegram_service, language_service, bypass_init_check)
+        self.path = self.mock_file_path()
+        self.file_task_result = FileTaskResult(self.path)
 
     @classmethod
     def get_task_data_list(cls) -> list[TaskData]:
@@ -52,7 +63,7 @@ class MockProcessor(AbstractFileProcessor):
 
     @asynccontextmanager
     async def process_file_task(self, _file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
-        yield self.FILE_TASK_RESULT
+        yield self.file_task_result
 
 
 class MockProcessorWithGenericError(MockProcessor):
@@ -186,9 +197,8 @@ class TestAbstractFileProcessor(
             self.sut,
             "process_file_task",
         ) as process_file_task:
-            process_file_task.return_value.__aenter__.return_value = FileTaskResult(
-                MockProcessor.FILE_TASK_RESULT.path, self.TELEGRAM_TEXT
-            )
+            result = FileTaskResult(self.sut.path, self.TELEGRAM_TEXT)
+            process_file_task.return_value.__aenter__.return_value = result
 
             actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
@@ -203,14 +213,15 @@ class TestAbstractFileProcessor(
         with patch("pdf_bot.file_processor.abstract_file_processor.os") as mock_os, patch(
             "pdf_bot.file_processor.abstract_file_processor.shutil"
         ) as mock_shutil:
-            mock_os.path.is_dir.return_value = True
+            mock_os.path.isdir.return_value = True
+            path = self.mock_file_path()
+            self.sut.path.with_suffix.return_value = path
 
             actual = await self.sut.process_file(self.telegram_update, self.telegram_context)
 
             assert actual == ConversationHandler.END
-            self._assert_process_file_succeed(
-                MockProcessor.FILE_TASK_RESULT.path.with_suffix(".zip")
-            )
+            self._assert_process_file_succeed(path)
+            self.sut.path.with_suffix.assert_called_once_with(".zip")
             mock_shutil.make_archive(
                 MockProcessor.PROCESS_RESULT, "zip", MockProcessor.PROCESS_RESULT
             )
@@ -291,7 +302,7 @@ class TestAbstractFileProcessor(
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            MockProcessor.FILE_TASK_RESULT.path,
+            self.sut.path,
             MockProcessor.TASK_TYPE,
         )
 
@@ -316,14 +327,15 @@ class TestAbstractFileProcessor(
         self._assert_process_file_succeed()
         self.telegram_context.bot.delete_message.assert_not_called()
 
-    def _assert_process_file_succeed(
-        self, out_path: Path = MockProcessor.FILE_TASK_RESULT.path
-    ) -> None:
+    def _assert_process_file_succeed(self, path: Path | None = None) -> None:
+        if path is None:
+            path = self.sut.path
+
         self._assert_get_file_and_messsage_data()
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            out_path,
+            path,
             MockProcessor.TASK_TYPE,
         )
 

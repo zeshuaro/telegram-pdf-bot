@@ -124,7 +124,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.file_data_list.__len__.return_value = 2
         self.telegram_service.get_user_data.return_value = self.file_data_list
         self.image_service.beautify_and_convert_images_to_pdf.return_value.__aenter__.return_value = (  # noqa: LineTooLong
-            self.FILE_PATH
+            self.file_path
         )
 
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
@@ -139,7 +139,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            self.FILE_PATH,
+            self.file_path,
             TaskType.beautify_image,
         )
 
@@ -149,7 +149,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.file_data_list.__len__.return_value = 2
         self.telegram_service.get_user_data.return_value = self.file_data_list
         self.image_service.convert_images_to_pdf.return_value.__aenter__.return_value = (
-            self.FILE_PATH
+            self.file_path
         )
 
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
@@ -162,7 +162,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
-            self.FILE_PATH,
+            self.file_path,
             TaskType.image_to_pdf,
         )
 

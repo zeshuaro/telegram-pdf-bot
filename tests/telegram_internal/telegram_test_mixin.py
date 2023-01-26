@@ -1,4 +1,3 @@
-from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock
 
 from telegram import (
@@ -18,9 +17,10 @@ from telegram.ext import ContextTypes
 
 from pdf_bot.models import FileData, FileTaskResult, MessageData
 from pdf_bot.pdf_processor.abstract_pdf_text_input_processor import TextInputData
+from tests.path_test_mixin import PathTestMixin
 
 
-class TelegramTestMixin:
+class TelegramTestMixin(PathTestMixin):
     TELEGRAM_USER_ID = 0
     TELEGRAM_QUERY_USER_ID = 1
     TELEGRAM_CHAT_ID = 2
@@ -31,7 +31,6 @@ class TelegramTestMixin:
     TELEGRAM_DOCUMENT_NAME = "document_name"
     TELEGRAM_PHOTO_SIZE_ID = "photo_size_id"
     TELEGRAM_TEXT = "text"
-    FILE_PATH = Path("file_path")
 
     FILE_DATA = FileData(TELEGRAM_DOCUMENT_ID, TELEGRAM_DOCUMENT_NAME)
     MESSAGE_DATA = MessageData(TELEGRAM_CHAT_ID, TELEGRAM_MESSAGE_ID)
@@ -40,11 +39,15 @@ class TelegramTestMixin:
         name=TELEGRAM_DOCUMENT_NAME,
         text=TELEGRAM_TEXT,
     )
-    FILE_TASK_RESULT = FileTaskResult(FILE_PATH)
 
     BACK_INLINE_MARKUP = MagicMock(spec=InlineKeyboardMarkup)
 
     def setup_method(self) -> None:
+        self.dir_path = self.mock_dir_path()
+        self.download_path = self.mock_file_path()
+        self.file_path = self.mock_file_path()
+        self.file_task_result = FileTaskResult(self.file_path)
+
         self.telegram_bot = MagicMock(spec=Bot)
 
         self.telegram_user = MagicMock(spec=User)

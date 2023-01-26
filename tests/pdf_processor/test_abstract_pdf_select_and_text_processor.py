@@ -1,5 +1,4 @@
 from contextlib import asynccontextmanager
-from pathlib import Path
 from typing import AsyncGenerator
 from unittest.mock import ANY, MagicMock, patch
 
@@ -8,6 +7,7 @@ from telegram.ext import CallbackQueryHandler, CommandHandler, ConversationHandl
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.file_processor import AbstractFileTaskProcessor
+from pdf_bot.language import LanguageService
 from pdf_bot.models import BackData, FileData, FileTaskResult, TaskData
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import (
@@ -16,7 +16,9 @@ from pdf_bot.pdf_processor import (
     SelectOption,
     SelectOptionData,
 )
+from pdf_bot.telegram_internal import TelegramService
 from tests.language import LanguageServiceTestMixin
+from tests.path_test_mixin import PathTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
 
 
@@ -29,9 +31,19 @@ class OptionType(SelectOption):
         return f"ask_value_text_{self.value}"
 
 
-class MockProcessor(AbstractPdfSelectAndTextProcessor):
+class MockProcessor(PathTestMixin, AbstractPdfSelectAndTextProcessor):
     CLEANED_TEXT = "cleaned_text"
-    FILE_TASK_RESULT = FileTaskResult(Path("path"))
+
+    def __init__(
+        self,
+        pdf_service: PdfService,
+        telegram_service: TelegramService,
+        language_service: LanguageService,
+        bypass_init_check: bool = False,
+    ) -> None:
+        super().__init__(pdf_service, telegram_service, language_service, bypass_init_check)
+        path = self.mock_file_path()
+        self.file_task_result = FileTaskResult(path)
 
     @property
     def entry_point_data_type(self) -> type[FileData]:
@@ -62,7 +74,7 @@ class MockProcessor(AbstractPdfSelectAndTextProcessor):
 
     @asynccontextmanager
     async def process_file_task(self, _file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
-        yield self.FILE_TASK_RESULT
+        yield self.file_task_result
 
 
 class TestAbstractPdfTextInputProcessor(

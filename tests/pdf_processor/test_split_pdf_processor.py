@@ -50,10 +50,10 @@ class TestSplitPdfProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
-        self.pdf_service.split_pdf.return_value.__aenter__.return_value = self.FILE_PATH
+        self.pdf_service.split_pdf.return_value.__aenter__.return_value = self.file_path
 
         async with self.sut.process_file_task(self.TEXT_INPUT_DATA) as actual:
-            assert actual == self.FILE_TASK_RESULT
+            assert actual == self.file_task_result
             self.pdf_service.split_pdf.assert_called_once_with(
                 self.TEXT_INPUT_DATA.id, self.TEXT_INPUT_DATA.text
             )

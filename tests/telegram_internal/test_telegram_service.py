@@ -71,14 +71,14 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_check_file_upload_size(self) -> None:
         with patch("pdf_bot.telegram_internal.telegram_service.os") as os:
             os.path.getsize.return_value = FileSizeLimit.FILESIZE_UPLOAD
-            self.sut.check_file_upload_size(self.FILE_PATH)
+            self.sut.check_file_upload_size(self.file_path)
 
     @pytest.mark.asyncio
     async def test_check_file_upload_size_too_large(self) -> None:
         with patch("pdf_bot.telegram_internal.telegram_service.os") as os:
             os.path.getsize.return_value = FileSizeLimit.FILESIZE_UPLOAD + 1
             with pytest.raises(TelegramFileTooLargeError):
-                self.sut.check_file_upload_size(self.FILE_PATH)
+                self.sut.check_file_upload_size(self.file_path)
 
     @pytest.mark.asyncio
     async def test_check_image_document(self) -> None:
@@ -163,13 +163,13 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_download_pdf_file(self) -> None:
-        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = self.FILE_PATH
+        self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = self.file_path
         self.telegram_bot.get_file.return_value = self.telegram_file
 
         async with self.sut.download_pdf_file(self.TELEGRAM_FILE_ID) as actual:
-            assert actual == self.FILE_PATH
+            assert actual == self.file_path
             self.telegram_bot.get_file.assert_called_with(self.TELEGRAM_FILE_ID)
-            self.telegram_file.download_to_drive.assert_called_once_with(custom_path=self.FILE_PATH)
+            self.telegram_file.download_to_drive.assert_called_once_with(custom_path=self.file_path)
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("num_files", [1, 2, 5])
@@ -371,7 +371,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_send_file_document(self) -> None:
-        file_path = self.FILE_PATH.with_suffix(".pdf")
+        file_path = self.file_path.with_suffix(".pdf")
         self.telegram_update.callback_query = None
 
         await self.sut.send_file(
@@ -394,13 +394,13 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio
     async def test_send_file_image(self) -> None:
-        file_path = self.FILE_PATH.with_suffix(".png")
+        self.file_path.suffix = ".png"
         self.telegram_update.callback_query = None
 
         await self.sut.send_file(
             self.telegram_update,
             self.telegram_context,
-            file_path,
+            self.file_path,
             TaskType.merge_pdf,
         )
 
@@ -418,7 +418,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     @pytest.mark.asyncio
     async def test_send_file_document_with_query(self) -> None:
         chat_id = 10
-        file_path = self.FILE_PATH.with_suffix(".pdf")
+        file_path = self.file_path.with_suffix(".pdf")
         message = MagicMock(spec=Message)
         message.chat_id = chat_id
         self.telegram_callback_query.message = message
@@ -449,7 +449,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         await self.sut.send_file(
             self.telegram_update,
             self.telegram_context,
-            self.FILE_PATH,
+            self.file_path,
             TaskType.merge_pdf,
         )
 
