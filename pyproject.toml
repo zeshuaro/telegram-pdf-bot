@@ -63,6 +63,7 @@ ignore = [
     "ANN401",  # DynamicallyTypedExpression
     "COM812",  # trailing-comma-missing
     "EM",      # flake8-errmsg
+    "EXE002",  # shebang-missing-executable-file
     "FBT",     # flake8-boolean-trap
     "PD",      # pandas-vet
     "PGH",     # pygrep-hooks
@@ -72,7 +73,10 @@ ignore = [
     "PTH112",  # pathlib-is-dir
     "PTH122",  # pathlib-splitext
     "PTH123",  # pathlib-open
-
+    "TCH001",  # typing-only-first-party-import
+    "TCH002",  # typing-only-third-party-import
+    "TCH003",  # typing-only-standard-library-import
+    "TRY301",  # raise-within-try
 
     # D10* rules are all related to missing docstring
     "D100",
