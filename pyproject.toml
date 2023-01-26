@@ -41,7 +41,7 @@ pre-commit = "==3.0.0"
 mypy = "0.991"
 types-requests = "2.28.11.8"
 pytest-asyncio = "0.20.3"
-ruff = "==0.0.231"
+ruff = "==0.0.235"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -63,6 +63,7 @@ ignore = [
     "ANN401",  # DynamicallyTypedExpression
     "COM812",  # trailing-comma-missing
     "EM",      # flake8-errmsg
+    "EXE002",  # shebang-missing-executable-file
     "FBT",     # flake8-boolean-trap
     "PD",      # pandas-vet
     "PGH",     # pygrep-hooks
@@ -72,7 +73,10 @@ ignore = [
     "PTH112",  # pathlib-is-dir
     "PTH122",  # pathlib-splitext
     "PTH123",  # pathlib-open
-
+    "TCH001",  # typing-only-first-party-import
+    "TCH002",  # typing-only-third-party-import
+    "TCH003",  # typing-only-standard-library-import
+    "TRY301",  # raise-within-try
 
     # D10* rules are all related to missing docstring
     "D100",
