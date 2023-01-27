@@ -19,18 +19,15 @@ class ErrorHandler:
             return
 
         if not isinstance(update, Update):
-            try:
-                raise context.error
-            except Exception as e:
-                logger.exception("Something went wrong without an Update instance")
-                sentry_sdk.capture_exception(e)
+            logger.exception("Something went wrong without an Update instance", context.error)
+            sentry_sdk.capture_exception(context.error)
             return
 
         await self._handle_error(update, context)
 
     async def _handle_error(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         try:
-            raise context.error  # type: ignore
+            raise context.error  # type: ignore # noqa: raise-within-try
         except Forbidden:
             pass
         except BadRequest as e:

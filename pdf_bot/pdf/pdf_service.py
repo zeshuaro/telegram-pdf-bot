@@ -16,7 +16,7 @@ from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError
 from pdfCropMargins import crop
 from pdfminer.high_level import extract_text
 from pdfminer.pdfdocument import PDFPasswordIncorrect
-from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
+from PyPDF2 import PasswordType, PdfFileMerger, PdfFileReader, PdfFileWriter
 from PyPDF2.errors import PdfReadError as PyPdfReadError
 from PyPDF2.pagerange import PageRange
 from weasyprint import CSS, HTML
@@ -163,8 +163,10 @@ class PdfService:
             raise PdfDecryptError(_("Your PDF file is not encrypted"))
 
         try:
-            if reader.decrypt(password) == 0:
-                raise PdfIncorrectPasswordError(_("Incorrect password, please try again"))
+            if reader.decrypt(password) == PasswordType.NOT_DECRYPTED:
+                raise PdfIncorrectPasswordError(  # noqa: raise-within-try
+                    _("Incorrect password, please try again")
+                )
         except NotImplementedError as e:
             raise PdfDecryptError(
                 _("Your PDF file is encrypted with a method that I can't decrypt")
