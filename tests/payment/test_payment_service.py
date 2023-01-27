@@ -1,6 +1,7 @@
 import pytest
 from telegram import InlineKeyboardMarkup
 
+from pdf_bot.errors import CallbackQueryDataTypeError
 from pdf_bot.payment import PaymentData, PaymentService
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin
@@ -60,7 +61,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
     @pytest.mark.asyncio
     async def test_send_invoice_invalid_callback_query_data(self) -> None:
         self.telegram_callback_query.data = None
-        with pytest.raises(TypeError):
+        with pytest.raises(CallbackQueryDataTypeError):
             await self.sut.send_invoice(self.telegram_update, self.telegram_context)
         self.telegram_update.effective_message.reply_invoice.assert_not_called()
 

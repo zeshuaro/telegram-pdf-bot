@@ -1,7 +1,5 @@
 from unittest.mock import MagicMock
 
-import pytest
-
 from pdf_bot.models import FileData, TaskData
 from tests.telegram_internal import TelegramTestMixin
 
@@ -18,10 +16,6 @@ class TestFileData(TelegramTestMixin):
     def test_from_telegram_photo_size(self) -> None:
         actual = FileData.from_telegram_object(self.telegram_photo_size)
         assert actual == FileData(self.TELEGRAM_PHOTO_SIZE_ID)
-
-    def test_from_unknown_telegram_object(self) -> None:
-        with pytest.raises(ValueError):
-            FileData.from_telegram_object(UnknownTelegramObject())  # type: ignore
 
 
 class TestTaskData(TelegramTestMixin):

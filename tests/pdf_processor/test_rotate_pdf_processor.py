@@ -4,6 +4,7 @@ import pytest
 from telegram.ext import CallbackQueryHandler, CommandHandler, ConversationHandler
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import CallbackQueryDataTypeError, FileDataTypeError
 from pdf_bot.file_processor import AbstractFileTaskProcessor
 from pdf_bot.models import BackData, TaskData
 from pdf_bot.pdf import PdfService
@@ -91,7 +92,7 @@ class TestRotatePdfProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
-        with pytest.raises(TypeError):
+        with pytest.raises(FileDataTypeError):
             async with self.sut.process_file_task(self.FILE_DATA):
                 pass
         self.pdf_service.rotate_pdf.assert_not_called()
@@ -115,7 +116,7 @@ class TestRotatePdfProcessor(
     async def test_ask_degree_invalid_callback_query_data(self) -> None:
         self.telegram_update.callback_query = self.telegram_callback_query
 
-        with pytest.raises(TypeError):
+        with pytest.raises(CallbackQueryDataTypeError):
             await self.sut.ask_degree(self.telegram_update, self.telegram_context)
         self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
             self.telegram_context, self.telegram_callback_query

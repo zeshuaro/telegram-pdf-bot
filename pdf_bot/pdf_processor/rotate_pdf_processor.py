@@ -7,6 +7,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackQueryHandler, CommandHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import CallbackQueryDataTypeError, FileDataTypeError
 from pdf_bot.file_processor import AbstractFileTaskProcessor
 from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.telegram_internal import BackData
@@ -55,7 +56,7 @@ class RotatePdfProcessor(AbstractPdfProcessor):
     @asynccontextmanager
     async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, RotateDegreeData):
-            raise TypeError(f"Invalid file data type: {type(file_data)}")
+            raise FileDataTypeError(file_data)
 
         async with self.pdf_service.rotate_pdf(file_data.id, file_data.degree) as path:
             yield FileTaskResult(path)
@@ -66,7 +67,7 @@ class RotatePdfProcessor(AbstractPdfProcessor):
         data = query.data
 
         if not isinstance(data, RotatePdfData):
-            raise TypeError(f"Invalid callback query data type: {type(data)}")
+            raise CallbackQueryDataTypeError(data)
 
         reply_markup = self._get_ask_degree_reply_markup(update, context, data)
         _ = self.language_service.set_app_language(update, context)

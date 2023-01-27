@@ -3,6 +3,7 @@ from gettext import gettext as _
 from typing import AsyncGenerator, Callable
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import FileDataTypeError
 from pdf_bot.models import FileData, FileTaskResult, TaskData
 
 from .abstract_pdf_text_input_processor import AbstractPdfTextInputProcessor, TextInputData
@@ -38,7 +39,7 @@ class EncryptPdfProcessor(AbstractPdfTextInputProcessor):
     @asynccontextmanager
     async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, TextInputData):
-            raise TypeError(f"Invalid file data: {type(file_data)}")
+            raise FileDataTypeError(file_data)
 
         async with self.pdf_service.encrypt_pdf(file_data.id, file_data.text) as path:
             yield FileTaskResult(path)

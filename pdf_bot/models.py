@@ -21,9 +21,7 @@ class FileData:
     def from_telegram_object(cls, obj: Document | PhotoSize) -> "FileData":
         if isinstance(obj, Document):
             return cls(obj.file_id, obj.file_name)
-        if isinstance(obj, PhotoSize):
-            return cls(obj.file_id)
-        raise ValueError(f"Unknown Telegram object type: {type(obj)}")
+        return cls(obj.file_id)
 
 
 @dataclass

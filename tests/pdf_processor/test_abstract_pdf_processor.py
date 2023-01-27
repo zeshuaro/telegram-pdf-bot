@@ -6,6 +6,7 @@ import pytest
 from telegram.ext import BaseHandler
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.file_processor.errors import DuplicateClassError
 from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.pdf import PdfService, PdfServiceError
 from pdf_bot.pdf_processor import AbstractPdfProcessor
@@ -65,7 +66,7 @@ class TestAbstractPdfProcessor(LanguageServiceTestMixin, TelegramServiceTestMixi
         processors: dict = {MockProcessor.__name__: MagicMock()}
         self.pdf_processors.__contains__.side_effect = processors.__contains__
 
-        with pytest.raises(ValueError):
+        with pytest.raises(DuplicateClassError):
             MockProcessor(self.pdf_service, self.telegram_service, self.language_service)
 
         self.pdf_processors.__setitem__.assert_not_called()

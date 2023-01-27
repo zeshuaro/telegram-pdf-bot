@@ -13,6 +13,7 @@ from telegram.ext import (
 )
 
 from pdf_bot.consts import BACK, TEXT_FILTER
+from pdf_bot.errors import CallbackQueryDataTypeError, FileDataTypeError
 from pdf_bot.file_processor import AbstractFileTaskProcessor
 from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import BackData
@@ -137,7 +138,7 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
         data = query.data
 
         if not isinstance(data, SelectOptionData):
-            raise TypeError(f"Invalid callback query data type: {type(data)}")
+            raise CallbackQueryDataTypeError(data)
 
         self.telegram_service.cache_file_data(context, data)
         _ = self.language_service.set_app_language(update, context)
@@ -180,7 +181,7 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
 
         file_data = self.telegram_service.get_file_data(context)
         if not isinstance(file_data, SelectOptionData):
-            raise TypeError(f"Invalid callback query data: {file_data}")
+            raise FileDataTypeError(file_data)
 
         option_input_data = self.option_and_input_data_type(
             id=file_data.id,

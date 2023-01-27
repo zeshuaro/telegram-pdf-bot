@@ -1,4 +1,5 @@
 from pdf_bot.file_processor import AbstractFileProcessor
+from pdf_bot.file_processor.errors import DuplicateClassError
 from pdf_bot.language import LanguageService
 from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService, PdfServiceError
@@ -21,7 +22,7 @@ class AbstractPdfProcessor(AbstractFileProcessor):
         cls_name = self.__class__.__name__
 
         if not bypass_init_check and cls_name in self._PDF_PROCESSORS:
-            raise ValueError(f"Class has already been initialised: {cls_name}")
+            raise DuplicateClassError(cls_name)
         self._PDF_PROCESSORS[cls_name] = self
 
     @classmethod

@@ -5,6 +5,8 @@ from typing import Callable
 from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ContextTypes
 
+from pdf_bot.errors import CallbackQueryDataTypeError
+
 from .language_repository import LanguageRepository
 from .models import LanguageData
 
@@ -106,7 +108,7 @@ class LanguageService:
         data: LanguageData = query.data  # type: ignore
 
         if not isinstance(data, LanguageData):
-            raise TypeError(f"Invalid callback query data: {data}")
+            raise CallbackQueryDataTypeError(data)
 
         self.language_repository.upsert_language(query.from_user.id, data.long_code)
         if context.user_data is not None:
