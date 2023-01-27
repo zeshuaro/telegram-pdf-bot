@@ -41,6 +41,7 @@ apt-get install poppler-utils libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgd
 ```
 
 macOS
+
 ```sh
 brew install libxml2 libxslt poppler cairo pango gdk-pixbuf libffi
 ```
@@ -74,5 +75,5 @@ cp .env.example .env
 You can then start the bot with the following command:
 
 ```bash
-python main.py
+python -m pdf_bot
 ```
