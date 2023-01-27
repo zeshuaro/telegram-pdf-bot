@@ -27,8 +27,9 @@ class CLIService:
 
         if proc.returncode != 0:
             logger.error(
-                f"Command:\n{command}\n\n"
-                f'Stdout:\n{out.decode("utf-8")}\n\n'
-                f'Stderr:\n{err.decode("utf-8")}'
+                "Command:\n{command}\n\nStdout:\n{stdout}\n\nStderr:\n{stderr}",
+                command=command,
+                stdout=out.decode("utf-8"),
+                stderr=err.decode("utf-8"),
             )
             raise CLINonZeroExitStatusError(_("Failed to complete process"))
