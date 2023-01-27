@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-26 11:23+0000\n"
-"PO-Revision-Date: 2023-01-26 11:23\n"
+"POT-Creation-Date: 2023-01-27 11:19+0000\n"
+"PO-Revision-Date: 2023-01-27 11:20\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -92,7 +92,7 @@ msgstr "設定語言 🌎"
 msgid "Join Channel"
 msgstr "加入頻道"
 
-#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
+#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:70
 #: pdf_bot/telegram_internal/telegram_service.py:213
 msgid "Support PDF Bot"
 msgstr "支持PDF Bot"
@@ -187,8 +187,8 @@ msgstr "您的檔太大，我無法下載和處理"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "請注意，這是一個電報機器人的限制，我什麼也做不了，除非電報改變這個限制"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:158
+#: pdf_bot/file_processor/abstract_file_processor.py:102
+#: pdf_bot/file_processor/abstract_file_processor.py:160
 msgid "Processing your file"
 msgstr "處理您的檔案"
 
@@ -251,11 +251,11 @@ msgstr "美化圖像並將其轉換為PDF檔"
 msgid "Converting your images into a PDF file"
 msgstr "將影像轉換為 PDF 檔"
 
-#: pdf_bot/language/language_service.py:84
+#: pdf_bot/language/language_service.py:86
 msgid "Select your language"
 msgstr "選擇你的語言"
 
-#: pdf_bot/language/language_service.py:117
+#: pdf_bot/language/language_service.py:119
 msgid "Your language has been set to {language}"
 msgstr "您的語言已設定為 {language}"
 
@@ -295,43 +295,43 @@ msgstr "你只寄給我一個 Pdf 檔"
 msgid "Merging your PDF files"
 msgstr "正在合併你的PDF檔案"
 
-#: pdf_bot/payment/payment_service.py:21
+#: pdf_bot/payment/payment_service.py:22
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} （${value}）"
 
-#: pdf_bot/payment/payment_service.py:25
+#: pdf_bot/payment/payment_service.py:26
 msgid "Say Thanks"
 msgstr "說謝謝"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:27
 msgid "Coffee"
 msgstr "咖啡"
 
-#: pdf_bot/payment/payment_service.py:27
+#: pdf_bot/payment/payment_service.py:28
 msgid "Beer"
 msgstr "啤酒"
 
-#: pdf_bot/payment/payment_service.py:28
+#: pdf_bot/payment/payment_service.py:29
 msgid "Meal"
 msgstr "餐"
 
-#: pdf_bot/payment/payment_service.py:54
+#: pdf_bot/payment/payment_service.py:55
 msgid "Select how you want to support PDF Bot"
 msgstr "選擇你支持PDF Bot的方式"
 
-#: pdf_bot/payment/payment_service.py:70
+#: pdf_bot/payment/payment_service.py:71
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "跟PDF Bot說謝謝並幫助它繼續運行"
 
-#: pdf_bot/payment/payment_service.py:84
+#: pdf_bot/payment/payment_service.py:85
 msgid "Something went wrong, try again"
 msgstr "出錯了，再試一次"
 
-#: pdf_bot/payment/payment_service.py:91
+#: pdf_bot/payment/payment_service.py:92
 msgid "Thank you for your support!"
 msgstr "感謝你的支持！"
 
-#: pdf_bot/payment/payment_service.py:111
+#: pdf_bot/payment/payment_service.py:112
 msgid "Help translate PDF Bot"
 msgstr "幫助翻譯PDF Bot"
 
@@ -411,19 +411,19 @@ msgstr "選擇您要執行的裁剪類型"
 msgid "The crop values are invalid, try again"
 msgstr "裁剪值無效，請重試"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:31
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:32
 msgid "Decrypt"
 msgstr "解密"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:38
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:39
 msgid "Send me the password to decrypt your PDF file"
 msgstr "把密碼發給我來解密你的PDF檔案"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:26
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:27
 msgid "Encrypt"
 msgstr "加密"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:33
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:34
 msgid "Send me the password to encrypt your PDF file"
 msgstr "把密碼發給我來加密你的PDF檔案"
 
@@ -447,25 +447,25 @@ msgstr "到圖像"
 msgid "Preview"
 msgstr "預覽"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:29
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:30
 msgid "Rename"
 msgstr "重新命名"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:36
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "檔案名不能包含以下任何字元，請重試：\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "向我發送你想要用來命名的PDF檔案名稱"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:36
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:37
 msgid "Rotate"
 msgstr "旋轉"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:74
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:75
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "選擇你想要順時針旋轉你PDF檔案的度數"
 
@@ -501,79 +501,79 @@ msgstr "選擇您要執行的秤類型"
 msgid "The scale values are invalid, try again"
 msgstr "比例值無效，請重試"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:28
+#: pdf_bot/pdf_processor/split_pdf_processor.py:29
 msgid "Split"
 msgstr "分割"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:32
+#: pdf_bot/pdf_processor/split_pdf_processor.py:33
 msgid "The split range is invalid, please try again"
 msgstr "分割範圍無效，請重試"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:54
+#: pdf_bot/pdf_processor/split_pdf_processor.py:55
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "向我發送你想要保留的頁面範圍"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:55
+#: pdf_bot/pdf_processor/split_pdf_processor.py:56
 msgid "General usage"
 msgstr "基本用法"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:56
+#: pdf_bot/pdf_processor/split_pdf_processor.py:57
 msgid "{range}      all pages"
 msgstr "{range}      所有頁面"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}      page 8 only"
 msgstr "僅限 {range}      頁 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}    first three pages"
 msgstr "前三頁{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     from page 8 onward"
 msgstr "{range}     從第8頁開始"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}     last page only"
 msgstr "僅 {range}     最後一頁"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}    all pages except the last page"
 msgstr "除最後一頁外，所有頁面都{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}     second last page only"
 msgstr "僅 {range}     最後一頁的第二頁"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}    last two pages"
 msgstr "最後兩頁{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}  third and second last pages"
 msgstr "{range}  第三頁和第二頁"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "Advanced usage"
 msgstr "進階用法"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    頁 {pages} ，並到最後"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range} pages {pages}"
 msgstr "{range} 頁 {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   所有頁面的倒序"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#: pdf_bot/pdf_processor/split_pdf_processor.py:72
 msgid "{range} pages {pages} except {page}"
 msgstr "除了 {page}， {pages} 頁{range} 頁"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  pages {pages}"
 msgstr "{range}  頁 {pages}"
 

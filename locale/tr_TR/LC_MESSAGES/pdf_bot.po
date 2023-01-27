@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-26 11:23+0000\n"
-"PO-Revision-Date: 2023-01-26 11:23\n"
+"POT-Creation-Date: 2023-01-27 11:19+0000\n"
+"PO-Revision-Date: 2023-01-27 11:20\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -92,7 +92,7 @@ msgstr "Dili ayarla 🌎"
 msgid "Join Channel"
 msgstr "Kanala Katıl"
 
-#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
+#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:70
 #: pdf_bot/telegram_internal/telegram_service.py:213
 msgid "Support PDF Bot"
 msgstr "PDF Bot'u Destekle"
@@ -187,8 +187,8 @@ msgstr "Dosyanız benim indirip işleyemeyeceğim kadar büyük"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Bunun bir Telegram Bot sınırlaması olduğunu ve Telegram bu sınırı değiştirmediği sürece yapabileceğim hiçbir şey olmadığını unutmayın"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:158
+#: pdf_bot/file_processor/abstract_file_processor.py:102
+#: pdf_bot/file_processor/abstract_file_processor.py:160
 msgid "Processing your file"
 msgstr "Dosyanızı işleme"
 
@@ -251,11 +251,11 @@ msgstr "Görüntülerinizi güzelleştirme ve PDF dosyasına dönüştürme"
 msgid "Converting your images into a PDF file"
 msgstr "Görüntülerinizi PDF dosyasına dönüştürme"
 
-#: pdf_bot/language/language_service.py:84
+#: pdf_bot/language/language_service.py:86
 msgid "Select your language"
 msgstr "Dilinizi seçin"
 
-#: pdf_bot/language/language_service.py:117
+#: pdf_bot/language/language_service.py:119
 msgid "Your language has been set to {language}"
 msgstr "Diliniz {language} olarak ayarlandı"
 
@@ -295,43 +295,43 @@ msgstr "Bana sadece bir PDF dosyası gönderdin"
 msgid "Merging your PDF files"
 msgstr "PDF dosyalarınızı birleştirme"
 
-#: pdf_bot/payment/payment_service.py:21
+#: pdf_bot/payment/payment_service.py:22
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/payment/payment_service.py:25
+#: pdf_bot/payment/payment_service.py:26
 msgid "Say Thanks"
 msgstr "Teşekkür et"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:27
 msgid "Coffee"
 msgstr "Kahve"
 
-#: pdf_bot/payment/payment_service.py:27
+#: pdf_bot/payment/payment_service.py:28
 msgid "Beer"
 msgstr "Bira"
 
-#: pdf_bot/payment/payment_service.py:28
+#: pdf_bot/payment/payment_service.py:29
 msgid "Meal"
 msgstr "Öğün"
 
-#: pdf_bot/payment/payment_service.py:54
+#: pdf_bot/payment/payment_service.py:55
 msgid "Select how you want to support PDF Bot"
 msgstr "PDF Botu nasıl destekleyeceğinizi seçin"
 
-#: pdf_bot/payment/payment_service.py:70
+#: pdf_bot/payment/payment_service.py:71
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PDF Bot'a yardım edin ve çalışmasında yardımcı olun"
 
-#: pdf_bot/payment/payment_service.py:84
+#: pdf_bot/payment/payment_service.py:85
 msgid "Something went wrong, try again"
 msgstr "Bir sorun oluştu, tekrar deneyin"
 
-#: pdf_bot/payment/payment_service.py:91
+#: pdf_bot/payment/payment_service.py:92
 msgid "Thank you for your support!"
 msgstr "Desteğin için teşekkür ederiz!"
 
-#: pdf_bot/payment/payment_service.py:111
+#: pdf_bot/payment/payment_service.py:112
 msgid "Help translate PDF Bot"
 msgstr "Uygulamayı çevirmeye yardım edin"
 
@@ -411,19 +411,19 @@ msgstr "Gerçekleştirmek istediğiniz kırpma türünü seçin"
 msgid "The crop values are invalid, try again"
 msgstr "Kırpma değerleri geçersiz, yeniden deneyin"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:31
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:32
 msgid "Decrypt"
 msgstr "Şifreyi çöz"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:38
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:39
 msgid "Send me the password to decrypt your PDF file"
 msgstr "PDF dosyanızın şifresini çözmek için bana şifreyi gönderin"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:26
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:27
 msgid "Encrypt"
 msgstr "Şifrele"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:33
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:34
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDF'i şifrelemek için bana şifreyi yolla"
 
@@ -447,25 +447,25 @@ msgstr "Resimlere git"
 msgid "Preview"
 msgstr "Önizleme"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:29
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:30
 msgid "Rename"
 msgstr "Yeniden Adlandır"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:36
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "Dosya adları aşağıdaki karakterlerden hiçbirini içeremez, lütfen yeniden deneyin:\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "PDF dosyanızı yeniden adlandırmak istediğiniz dosya adını bana gönderin"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:36
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:37
 msgid "Rotate"
 msgstr "Döndür"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:74
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:75
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Select the degrees that you'll like to rotate your PDF file in clockwise"
 
@@ -501,79 +501,79 @@ msgstr "Gerçekleştirmek istediğiniz ölçek türünü seçin"
 msgid "The scale values are invalid, try again"
 msgstr "Ölçek değerleri geçersiz, yeniden deneyin"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:28
+#: pdf_bot/pdf_processor/split_pdf_processor.py:29
 msgid "Split"
 msgstr "Böl"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:32
+#: pdf_bot/pdf_processor/split_pdf_processor.py:33
 msgid "The split range is invalid, please try again"
 msgstr "Bölme aralığı geçersiz, lütfen tekrar deneyin"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:54
+#: pdf_bot/pdf_processor/split_pdf_processor.py:55
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Bana saklamak istediğiniz sayfaların aralığını gönderin"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:55
+#: pdf_bot/pdf_processor/split_pdf_processor.py:56
 msgid "General usage"
 msgstr "Genel kullanım"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:56
+#: pdf_bot/pdf_processor/split_pdf_processor.py:57
 msgid "{range}      all pages"
 msgstr "Tüm sayfaları {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}      page 8 only"
 msgstr "Yalnızca sayfa 8'i {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}    first three pages"
 msgstr "{range}    ilk üç sayfa"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     from page 8 onward"
 msgstr "Sayfa 8'den itibaren {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}     last page only"
 msgstr "Yalnızca son sayfayı {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}    all pages except the last page"
 msgstr "Son sayfa dışındaki tüm sayfaları {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}     second last page only"
 msgstr "yalnızca ikinci son sayfayı {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}    last two pages"
 msgstr "son iki sayfayı {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}  third and second last pages"
 msgstr "üçüncü ve ikinci son sayfaları {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "Advanced usage"
 msgstr "Gelişmiş kullanım"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    pages {pages} and to the end"
 msgstr "sayfaları {pages} ve sonuna kadar {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range} pages {pages}"
 msgstr "{range} sayfa {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range}   all pages in reversed order"
 msgstr "Tüm sayfaları ters sırada {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#: pdf_bot/pdf_processor/split_pdf_processor.py:72
 msgid "{range} pages {pages} except {page}"
 msgstr "{page}dışında {range} sayfa {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  pages {pages}"
 msgstr "{range}  sayfa {pages}"
 

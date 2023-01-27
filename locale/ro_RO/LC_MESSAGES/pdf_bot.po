@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-26 11:23+0000\n"
-"PO-Revision-Date: 2023-01-26 11:23\n"
+"POT-Creation-Date: 2023-01-27 11:19+0000\n"
+"PO-Revision-Date: 2023-01-27 11:20\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -92,7 +92,7 @@ msgstr "Setează Limba 🌎"
 msgid "Join Channel"
 msgstr "Alăturați-vă canalului"
 
-#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
+#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:70
 #: pdf_bot/telegram_internal/telegram_service.py:213
 msgid "Support PDF Bot"
 msgstr "Suport PDF Bot"
@@ -187,8 +187,8 @@ msgstr "Fișierul este prea mare pentru mine pentru a descărca și procesa"
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Rețineți că aceasta este o limitare Telegram Bot și nu e nimic nu pot face cu excepția cazului în Telegram modificări această limită"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:158
+#: pdf_bot/file_processor/abstract_file_processor.py:102
+#: pdf_bot/file_processor/abstract_file_processor.py:160
 msgid "Processing your file"
 msgstr "Procesarea fișierului"
 
@@ -251,11 +251,11 @@ msgstr "Înfrumusețarea și conversia imaginilor într-un fișier PDF"
 msgid "Converting your images into a PDF file"
 msgstr "Conversia imaginilor într-un fișier PDF"
 
-#: pdf_bot/language/language_service.py:84
+#: pdf_bot/language/language_service.py:86
 msgid "Select your language"
 msgstr "Selectați limba dvs."
 
-#: pdf_bot/language/language_service.py:117
+#: pdf_bot/language/language_service.py:119
 msgid "Your language has been set to {language}"
 msgstr "Limba ta a fost setată la {language}"
 
@@ -295,43 +295,43 @@ msgstr "Mi-ați trimis un singur fișier PDF"
 msgid "Merging your PDF files"
 msgstr "Îmbinarea fișierelor PDF"
 
-#: pdf_bot/payment/payment_service.py:21
+#: pdf_bot/payment/payment_service.py:22
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/payment/payment_service.py:25
+#: pdf_bot/payment/payment_service.py:26
 msgid "Say Thanks"
 msgstr "Spune Multumesc"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:27
 msgid "Coffee"
 msgstr "Cafea"
 
-#: pdf_bot/payment/payment_service.py:27
+#: pdf_bot/payment/payment_service.py:28
 msgid "Beer"
 msgstr "Bere"
 
-#: pdf_bot/payment/payment_service.py:28
+#: pdf_bot/payment/payment_service.py:29
 msgid "Meal"
 msgstr "Masă"
 
-#: pdf_bot/payment/payment_service.py:54
+#: pdf_bot/payment/payment_service.py:55
 msgid "Select how you want to support PDF Bot"
 msgstr "Selectați modul în care doriți să acceptați PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:70
+#: pdf_bot/payment/payment_service.py:71
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Spune datorită PDF Bot și de a ajuta la menținerea acestuia rulează"
 
-#: pdf_bot/payment/payment_service.py:84
+#: pdf_bot/payment/payment_service.py:85
 msgid "Something went wrong, try again"
 msgstr "Ceva nu a mers bine, încercați din nou"
 
-#: pdf_bot/payment/payment_service.py:91
+#: pdf_bot/payment/payment_service.py:92
 msgid "Thank you for your support!"
 msgstr "Vă mulțumim pentru sprijin!"
 
-#: pdf_bot/payment/payment_service.py:111
+#: pdf_bot/payment/payment_service.py:112
 msgid "Help translate PDF Bot"
 msgstr "Ajutor pentru traducerea PDF Bot"
 
@@ -411,19 +411,19 @@ msgstr "Selectați tipul de trunchiere pe care doriți să-l efectuați"
 msgid "The crop values are invalid, try again"
 msgstr "Valorile de trunchiere nu sunt valide, încercați din nou"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:31
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:32
 msgid "Decrypt"
 msgstr "Decripta"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:38
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:39
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Trimite-mi parola pentru a decripta fișierul PDF"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:26
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:27
 msgid "Encrypt"
 msgstr "Cripta"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:33
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:34
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Trimite-mi parola pentru criptarea fișierului PDF"
 
@@ -447,25 +447,25 @@ msgstr "Pentru imagini"
 msgid "Preview"
 msgstr "Previzualizare"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:29
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:30
 msgid "Rename"
 msgstr "Redenumiţi"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:36
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "Numele fișierelor nu pot conține niciunul dintre următoarele caractere, încercați din nou:\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Trimiteți-mi numele de fișier în care doriți să redenumiți fișierul PDF"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:36
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:37
 msgid "Rotate"
 msgstr "Roti"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:74
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:75
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Selectați gradele pe care doriți să le rotiți fișierul PDF în sensul acelor de ceasornic"
 
@@ -501,79 +501,79 @@ msgstr "Selectați tipul de scală pe care doriți să-l efectuați"
 msgid "The scale values are invalid, try again"
 msgstr "Valorile scalei nu sunt valide, încercați din nou"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:28
+#: pdf_bot/pdf_processor/split_pdf_processor.py:29
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:32
+#: pdf_bot/pdf_processor/split_pdf_processor.py:33
 msgid "The split range is invalid, please try again"
 msgstr "Intervalul divizat nu este valid, vă rugăm să încercați din nou"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:54
+#: pdf_bot/pdf_processor/split_pdf_processor.py:55
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Trimite-mi gama de pagini pe care vei dori să le păstrezi"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:55
+#: pdf_bot/pdf_processor/split_pdf_processor.py:56
 msgid "General usage"
 msgstr "Utilizare generală"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:56
+#: pdf_bot/pdf_processor/split_pdf_processor.py:57
 msgid "{range}      all pages"
 msgstr "{range}      toate paginile"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}      page 8 only"
 msgstr "{range}      pagina 8 numai"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}    first three pages"
 msgstr "{range}    primele trei pagini"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     from page 8 onward"
 msgstr "{range}     începând cu pagina 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}     last page only"
 msgstr "{range}     doar ultima pagină"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}    all pages except the last page"
 msgstr "{range}    toate paginile, cu excepția ultimei pagini"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}     second last page only"
 msgstr "{range}     a doua pagină doar"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}    last two pages"
 msgstr "{range}    ultimele două pagini"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}  third and second last pages"
 msgstr "{range}  treia și a doua pagină"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "Advanced usage"
 msgstr "Utilizare complexă"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    pagini {pages} și până la sfârșit"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range} pages {pages}"
 msgstr "{pages}pagini {range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   toate paginile în ordine inversă"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#: pdf_bot/pdf_processor/split_pdf_processor.py:72
 msgid "{range} pages {pages} except {page}"
 msgstr "{pages} pagini {range} , cu excepția {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  pages {pages}"
 msgstr "{pages}pagini {range}"
 

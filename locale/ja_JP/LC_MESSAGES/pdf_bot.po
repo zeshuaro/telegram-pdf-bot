@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-26 11:23+0000\n"
-"PO-Revision-Date: 2023-01-26 11:23\n"
+"POT-Creation-Date: 2023-01-27 11:19+0000\n"
+"PO-Revision-Date: 2023-01-27 11:20\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -92,7 +92,7 @@ msgstr "言語設定 🌎"
 msgid "Join Channel"
 msgstr "チャネルに参加"
 
-#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
+#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:70
 #: pdf_bot/telegram_internal/telegram_service.py:213
 msgid "Support PDF Bot"
 msgstr "PDFボットをサポート"
@@ -187,8 +187,8 @@ msgstr "ファイルが大きすぎてダウンロードして処理できませ
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "これは電報ボットの制限であり、テレグラムがこの制限を変更しない限り、私は何もできませんのでご注意ください"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:158
+#: pdf_bot/file_processor/abstract_file_processor.py:102
+#: pdf_bot/file_processor/abstract_file_processor.py:160
 msgid "Processing your file"
 msgstr "ファイルの処理"
 
@@ -251,11 +251,11 @@ msgstr "画像を美しくしてPDFファイルに変換する"
 msgid "Converting your images into a PDF file"
 msgstr "画像をPDFファイルに変換する"
 
-#: pdf_bot/language/language_service.py:84
+#: pdf_bot/language/language_service.py:86
 msgid "Select your language"
 msgstr "言語を選択する"
 
-#: pdf_bot/language/language_service.py:117
+#: pdf_bot/language/language_service.py:119
 msgid "Your language has been set to {language}"
 msgstr "言語が {language}に設定されています"
 
@@ -295,43 +295,43 @@ msgstr "PDFファイルを1つしか送っていない"
 msgid "Merging your PDF files"
 msgstr "PDF ファイルのマージ"
 
-#: pdf_bot/payment/payment_service.py:21
+#: pdf_bot/payment/payment_service.py:22
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/payment/payment_service.py:25
+#: pdf_bot/payment/payment_service.py:26
 msgid "Say Thanks"
 msgstr "感謝を言う"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:27
 msgid "Coffee"
 msgstr "コーヒー"
 
-#: pdf_bot/payment/payment_service.py:27
+#: pdf_bot/payment/payment_service.py:28
 msgid "Beer"
 msgstr "ビール"
 
-#: pdf_bot/payment/payment_service.py:28
+#: pdf_bot/payment/payment_service.py:29
 msgid "Meal"
 msgstr "食事"
 
-#: pdf_bot/payment/payment_service.py:54
+#: pdf_bot/payment/payment_service.py:55
 msgid "Select how you want to support PDF Bot"
 msgstr "PDFボットのサポート方法を選択する"
 
-#: pdf_bot/payment/payment_service.py:70
+#: pdf_bot/payment/payment_service.py:71
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "PDFボットに感謝し、それを実行し続けるのに役立ちます"
 
-#: pdf_bot/payment/payment_service.py:84
+#: pdf_bot/payment/payment_service.py:85
 msgid "Something went wrong, try again"
 msgstr "問題が発生しました。もう一度やり直してください"
 
-#: pdf_bot/payment/payment_service.py:91
+#: pdf_bot/payment/payment_service.py:92
 msgid "Thank you for your support!"
 msgstr "ご支援ありがとうございます!"
 
-#: pdf_bot/payment/payment_service.py:111
+#: pdf_bot/payment/payment_service.py:112
 msgid "Help translate PDF Bot"
 msgstr "PDFボットの翻訳を支援"
 
@@ -411,19 +411,19 @@ msgstr "実行する作物の種類を選択します"
 msgid "The crop values are invalid, try again"
 msgstr "トリミング値が無効です。もう一度やり直してください"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:31
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:32
 msgid "Decrypt"
 msgstr "復 号 化"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:38
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:39
 msgid "Send me the password to decrypt your PDF file"
 msgstr "PDFファイルの暗号化を解除するためのパスワードを送信する"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:26
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:27
 msgid "Encrypt"
 msgstr "暗号化"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:33
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:34
 msgid "Send me the password to encrypt your PDF file"
 msgstr "PDFファイルを暗号化するためのパスワードを送信する"
 
@@ -447,25 +447,25 @@ msgstr "画像へ"
 msgid "Preview"
 msgstr "プレビュー"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:29
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:30
 msgid "Rename"
 msgstr "変更"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:36
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "ファイル名に次の文字を含めることはできません。もう一度やり直してください:\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "PDFファイルの名前を変更したいファイル名を私に送ってください"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:36
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:37
 msgid "Rotate"
 msgstr "回転"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:74
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:75
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "PDF ファイルを時計回りに回転する度を選択します。"
 
@@ -501,79 +501,79 @@ msgstr "実行するスケールタイプを選択します"
 msgid "The scale values are invalid, try again"
 msgstr "スケール値が無効です。もう一度やり直してください"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:28
+#: pdf_bot/pdf_processor/split_pdf_processor.py:29
 msgid "Split"
 msgstr "分割"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:32
+#: pdf_bot/pdf_processor/split_pdf_processor.py:33
 msgid "The split range is invalid, please try again"
 msgstr "分割範囲が無効です。もう一度やり直してください"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:54
+#: pdf_bot/pdf_processor/split_pdf_processor.py:55
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "あなたが保持したいページの範囲を私に送ってください"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:55
+#: pdf_bot/pdf_processor/split_pdf_processor.py:56
 msgid "General usage"
 msgstr "一般的な使用法"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:56
+#: pdf_bot/pdf_processor/split_pdf_processor.py:57
 msgid "{range}      all pages"
 msgstr "すべてのページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}      page 8 only"
 msgstr "{range}      ページ 8 のみ"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}    first three pages"
 msgstr "最初の 3 ページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     from page 8 onward"
 msgstr "{range}     8 ページ以降"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}     last page only"
 msgstr "最後のページのみ{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}    all pages except the last page"
 msgstr "最後のページを除くすべてのページを {range}    する"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}     second last page only"
 msgstr "最後のページの2番目のページのみ{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}    last two pages"
 msgstr "最後の2ページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}  third and second last pages"
 msgstr "最後のページと最後のページの3番目と2番目のページを{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "Advanced usage"
 msgstr "高度な使用法"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    pages {pages} and to the end"
 msgstr "ページ {pages} をし、最後まで{range}    する"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range} pages {pages}"
 msgstr "{range} ページ {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range}   all pages in reversed order"
 msgstr "すべてのページを逆順に{range}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#: pdf_bot/pdf_processor/split_pdf_processor.py:72
 msgid "{range} pages {pages} except {page}"
 msgstr "{page}を除くページ {pages} を{range} します。"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  pages {pages}"
 msgstr "{range}  ページ {pages}"
 

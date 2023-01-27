@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-26 11:23+0000\n"
-"PO-Revision-Date: 2023-01-26 11:23\n"
+"POT-Creation-Date: 2023-01-27 11:19+0000\n"
+"PO-Revision-Date: 2023-01-27 11:20\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -92,7 +92,7 @@ msgstr "Đặt Ngôn ngữ 🌎"
 msgid "Join Channel"
 msgstr "Tham gia Kênh"
 
-#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:69
+#: pdf_bot/command/command_service.py:57 pdf_bot/payment/payment_service.py:70
 #: pdf_bot/telegram_internal/telegram_service.py:213
 msgid "Support PDF Bot"
 msgstr "Hỗ trợ PDF Bot"
@@ -187,8 +187,8 @@ msgstr "Tệp của bạn quá lớn để tôi có thể tải xuống và xử
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Lưu ý rằng đây là giới hạn của Telegram Bot và tôi không thể làm gì trừ khi Telegram thay đổi giới hạn này"
 
-#: pdf_bot/file_processor/abstract_file_processor.py:100
-#: pdf_bot/file_processor/abstract_file_processor.py:158
+#: pdf_bot/file_processor/abstract_file_processor.py:102
+#: pdf_bot/file_processor/abstract_file_processor.py:160
 msgid "Processing your file"
 msgstr "Xử lý tệp của bạn"
 
@@ -251,11 +251,11 @@ msgstr "Làm đẹp và chuyển đổi hình ảnh của bạn thành tệp PDF
 msgid "Converting your images into a PDF file"
 msgstr "Chuyển đổi hình ảnh của bạn thành tệp PDF"
 
-#: pdf_bot/language/language_service.py:84
+#: pdf_bot/language/language_service.py:86
 msgid "Select your language"
 msgstr "Chọn ngôn ngữ của bạn"
 
-#: pdf_bot/language/language_service.py:117
+#: pdf_bot/language/language_service.py:119
 msgid "Your language has been set to {language}"
 msgstr "Ngôn ngữ của bạn đã được thiết lập để {language}"
 
@@ -295,43 +295,43 @@ msgstr "Bạn chỉ gửi cho tôi một tệp PDF"
 msgid "Merging your PDF files"
 msgstr "Hợp nhất các tệp PDF của bạn"
 
-#: pdf_bot/payment/payment_service.py:21
+#: pdf_bot/payment/payment_service.py:22
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
-#: pdf_bot/payment/payment_service.py:25
+#: pdf_bot/payment/payment_service.py:26
 msgid "Say Thanks"
 msgstr "Nói lời cảm ơn"
 
-#: pdf_bot/payment/payment_service.py:26
+#: pdf_bot/payment/payment_service.py:27
 msgid "Coffee"
 msgstr "Cà phê"
 
-#: pdf_bot/payment/payment_service.py:27
+#: pdf_bot/payment/payment_service.py:28
 msgid "Beer"
 msgstr "Bia"
 
-#: pdf_bot/payment/payment_service.py:28
+#: pdf_bot/payment/payment_service.py:29
 msgid "Meal"
 msgstr "Bữa ăn"
 
-#: pdf_bot/payment/payment_service.py:54
+#: pdf_bot/payment/payment_service.py:55
 msgid "Select how you want to support PDF Bot"
 msgstr "Chọn cách bạn muốn hỗ trợ PDF Bot"
 
-#: pdf_bot/payment/payment_service.py:70
+#: pdf_bot/payment/payment_service.py:71
 msgid "Say thanks to PDF Bot and help keep it running"
 msgstr "Nói lời cảm ơn đến PDF Bot và giúp giữ cho nó chạy"
 
-#: pdf_bot/payment/payment_service.py:84
+#: pdf_bot/payment/payment_service.py:85
 msgid "Something went wrong, try again"
 msgstr "Đã xảy ra lỗi, hãy thử lại"
 
-#: pdf_bot/payment/payment_service.py:91
+#: pdf_bot/payment/payment_service.py:92
 msgid "Thank you for your support!"
 msgstr "Cảm ơn bạn đã hỗ trợ của bạn!"
 
-#: pdf_bot/payment/payment_service.py:111
+#: pdf_bot/payment/payment_service.py:112
 msgid "Help translate PDF Bot"
 msgstr "Trợ giúp dịch PDF Bot"
 
@@ -411,19 +411,19 @@ msgstr "Chọn kiểu cắt bạn muốn thực hiện"
 msgid "The crop values are invalid, try again"
 msgstr "Các giá trị cắt không hợp lệ, hãy thử lại"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:31
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:32
 msgid "Decrypt"
 msgstr "Decrypt"
 
-#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:38
+#: pdf_bot/pdf_processor/decrypt_pdf_processor.py:39
 msgid "Send me the password to decrypt your PDF file"
 msgstr "Gửi cho tôi mật khẩu để giải mã tệp PDF của bạn"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:26
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:27
 msgid "Encrypt"
 msgstr "Mã hóa"
 
-#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:33
+#: pdf_bot/pdf_processor/encrypt_pdf_processor.py:34
 msgid "Send me the password to encrypt your PDF file"
 msgstr "Gửi cho tôi mật khẩu để mã hóa tệp PDF của bạn"
 
@@ -447,25 +447,25 @@ msgstr "Đến hình ảnh"
 msgid "Preview"
 msgstr "Download"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:29
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:30
 msgid "Rename"
 msgstr "Rename"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:36
 msgid "File names can't contain any of the following characters, please try again:\n"
 "{invalid_chars}"
 msgstr "Tên tệp không được chứa bất kỳ ký tự nào sau đây, vui lòng thử lại:\n"
 "{invalid_chars}"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:39
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Gửi cho tôi tên tệp mà bạn muốn đổi tên tệp PDF của mình thành"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:36
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:37
 msgid "Rotate"
 msgstr "Xoay"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:74
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:75
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Chọn độ bạn muốn xoay tệp PDF theo chiều kim đồng hồ"
 
@@ -501,79 +501,79 @@ msgstr "Chọn loại tỷ lệ bạn muốn thực hiện"
 msgid "The scale values are invalid, try again"
 msgstr "Các giá trị thang đo không hợp lệ, hãy thử lại"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:28
+#: pdf_bot/pdf_processor/split_pdf_processor.py:29
 msgid "Split"
 msgstr "Split"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:32
+#: pdf_bot/pdf_processor/split_pdf_processor.py:33
 msgid "The split range is invalid, please try again"
 msgstr "Phạm vi phân tách không hợp lệ, vui lòng thử lại"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:54
+#: pdf_bot/pdf_processor/split_pdf_processor.py:55
 msgid "Send me the range of pages that you'll like to keep"
 msgstr "Gửi cho tôi một loạt các trang mà bạn muốn giữ lại"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:55
+#: pdf_bot/pdf_processor/split_pdf_processor.py:56
 msgid "General usage"
 msgstr "Sử dụng chung"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:56
+#: pdf_bot/pdf_processor/split_pdf_processor.py:57
 msgid "{range}      all pages"
 msgstr "{range}      tất cả các trang"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}      page 8 only"
 msgstr "Chỉ {range}      trang 8"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}    first three pages"
 msgstr "{range}    3 trang đầu tiên"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     from page 8 onward"
 msgstr "{range}     từ trang 8 trở đi"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}     last page only"
 msgstr "chỉ {range}     trang cuối cùng"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}    all pages except the last page"
 msgstr "{range}    tất cả các trang ngoại trừ trang cuối cùng"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}     second last page only"
 msgstr "chỉ {range}     trang cuối cùng thứ hai"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}    last two pages"
 msgstr "{range}    hai trang cuối cùng"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}  third and second last pages"
 msgstr "{range}  trang cuối cùng thứ ba và thứ hai"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "Advanced usage"
 msgstr "Sử dụng nâng cao"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:66
+#: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    trang {pages} và đến cuối cùng"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:69
+#: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range} pages {pages}"
 msgstr "{range} trang {pages}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   tất cả các trang theo thứ tự đảo ngược"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#: pdf_bot/pdf_processor/split_pdf_processor.py:72
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} trang {pages} ngoại trừ {page}"
 
-#: pdf_bot/pdf_processor/split_pdf_processor.py:74
+#: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  pages {pages}"
 msgstr "{range}  trang {pages}"
 
