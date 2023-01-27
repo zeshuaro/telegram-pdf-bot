@@ -41,7 +41,7 @@ pre-commit = "==3.0.1"
 mypy = "0.991"
 types-requests = "2.28.11.8"
 pytest-asyncio = "0.20.3"
-ruff = "==0.0.235"
+ruff = "==0.0.236"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -95,10 +95,12 @@ extend-ignore = [
     # To be addressed
     "EM",     # flake8-errmsg
     "EXE002", # shebang-missing-executable-file
+    "G004",   # logging-f-string
     "PGH",    # pygrep-hooks
     "TCH001", # typing-only-first-party-import
     "TCH002", # typing-only-third-party-import
     "TCH003", # typing-only-standard-library-import
+    "TRY003", # raise-vanilla-args
     "TRY301", # raise-within-try
 ]
 

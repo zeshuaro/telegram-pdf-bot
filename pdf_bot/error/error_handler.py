@@ -21,7 +21,7 @@ class ErrorHandler:
         if not isinstance(update, Update):
             try:
                 raise context.error
-            except Exception as e:  # noqa: BlindExcept
+            except Exception as e:
                 logger.exception("Something went wrong without an Update instance")
                 sentry_sdk.capture_exception(e)
             return
