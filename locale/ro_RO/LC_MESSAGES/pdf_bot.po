@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-27 11:30+0000\n"
-"PO-Revision-Date: 2023-01-27 11:30\n"
+"POT-Creation-Date: 2023-01-27 11:40+0000\n"
+"PO-Revision-Date: 2023-01-27 11:40\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -157,13 +157,13 @@ msgstr "Compararea fișierelor PDF"
 msgid "There are no text differences between your PDF files"
 msgstr "Nu există diferențe de text între fișierele PDF"
 
-#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
+#: pdf_bot/error/error_handler.py:36 pdf_bot/error/error_handler.py:42
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:110
 msgid "Something went wrong, please try again"
 msgstr "Ceva nu a mers bine, vă rugăm să încercați din nou"
 
-#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:53 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "Butonul a expirat, începeți cu fișierul sau comanda"
 
@@ -343,31 +343,31 @@ msgstr "Fișierul PDF este criptat, decriptați-l mai întâi, apoi încercați 
 msgid "Your PDF file is not encrypted"
 msgstr "Fișierul PDF nu este criptat"
 
-#: pdf_bot/pdf/pdf_service.py:167
+#: pdf_bot/pdf/pdf_service.py:168
 msgid "Incorrect password, please try again"
 msgstr "Parolă incorectă, vă rugăm să încercați din nou"
 
-#: pdf_bot/pdf/pdf_service.py:170
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Fișierul PDF este criptat cu o metodă pe care nu o pot decripta"
 
-#: pdf_bot/pdf/pdf_service.py:202
+#: pdf_bot/pdf/pdf_service.py:204
 msgid "No images found in your PDF file"
 msgstr "Nu se găsesc imagini în fișierul PDF"
 
-#: pdf_bot/pdf/pdf_service.py:214
+#: pdf_bot/pdf/pdf_service.py:216
 msgid "No text found in your PDF file"
 msgstr "Nu s-a găsit text în fișierul PDF"
 
-#: pdf_bot/pdf/pdf_service.py:235
+#: pdf_bot/pdf/pdf_service.py:237
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Nu am putut îmbina fișierele PDF, deoarece acest fișier nu este valid: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:250
+#: pdf_bot/pdf/pdf_service.py:252
 msgid "Your PDF file already has a text layer"
 msgstr "Fișierul PDF are deja un strat text"
 
-#: pdf_bot/pdf/pdf_service.py:339
+#: pdf_bot/pdf/pdf_service.py:341
 msgid "Your PDF file is invalid"
 msgstr "Fișierul PDF nu este valid"
 

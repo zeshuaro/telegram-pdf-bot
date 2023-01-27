@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-27 11:30+0000\n"
-"PO-Revision-Date: 2023-01-27 11:31\n"
+"POT-Creation-Date: 2023-01-27 11:40+0000\n"
+"PO-Revision-Date: 2023-01-27 11:40\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: Japanese\n"
@@ -157,13 +157,13 @@ msgstr "PDF ファイルの比較"
 msgid "There are no text differences between your PDF files"
 msgstr "PDF ファイル間にテキストの違いはありません"
 
-#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
+#: pdf_bot/error/error_handler.py:36 pdf_bot/error/error_handler.py:42
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:110
 msgid "Something went wrong, please try again"
 msgstr "何かが間違っていた、もう一度やり直してください"
 
-#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:53 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "ボタンの有効期限が切れている場合は、ファイルまたはコマンドで最初からやり直してください"
 
@@ -343,31 +343,31 @@ msgstr "PDFファイルは暗号化されていますので、最初に復号化
 msgid "Your PDF file is not encrypted"
 msgstr "PDF ファイルが暗号化されていない"
 
-#: pdf_bot/pdf/pdf_service.py:167
+#: pdf_bot/pdf/pdf_service.py:168
 msgid "Incorrect password, please try again"
 msgstr "パスワードが正しくありません。もう一度やり直してください"
 
-#: pdf_bot/pdf/pdf_service.py:170
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "PDFファイルが暗号化されていない方法で暗号化されています"
 
-#: pdf_bot/pdf/pdf_service.py:202
+#: pdf_bot/pdf/pdf_service.py:204
 msgid "No images found in your PDF file"
 msgstr "PDFファイルに画像が見つかりません"
 
-#: pdf_bot/pdf/pdf_service.py:214
+#: pdf_bot/pdf/pdf_service.py:216
 msgid "No text found in your PDF file"
 msgstr "PDF ファイルにテキストが見つかりません"
 
-#: pdf_bot/pdf/pdf_service.py:235
+#: pdf_bot/pdf/pdf_service.py:237
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "このファイルは無効であるため、PDFファイルをマージできませんでした: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:250
+#: pdf_bot/pdf/pdf_service.py:252
 msgid "Your PDF file already has a text layer"
 msgstr "PDF ファイルにテキストレイヤーが既に存在する"
 
-#: pdf_bot/pdf/pdf_service.py:339
+#: pdf_bot/pdf/pdf_service.py:341
 msgid "Your PDF file is invalid"
 msgstr "PDF ファイルが無効です"
 

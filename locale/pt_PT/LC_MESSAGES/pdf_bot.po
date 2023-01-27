@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-27 11:30+0000\n"
-"PO-Revision-Date: 2023-01-27 11:31\n"
+"POT-Creation-Date: 2023-01-27 11:40+0000\n"
+"PO-Revision-Date: 2023-01-27 11:40\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: Portuguese\n"
@@ -157,13 +157,13 @@ msgstr "Comparando seus arquivos PDF"
 msgid "There are no text differences between your PDF files"
 msgstr "Não há diferenças de texto entre seus arquivos PDF"
 
-#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
+#: pdf_bot/error/error_handler.py:36 pdf_bot/error/error_handler.py:42
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:110
 msgid "Something went wrong, please try again"
 msgstr "Algo deu errado, por favor, tente de novo."
 
-#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:53 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "O botão expirou, comece de novo com seu arquivo ou comando"
 
@@ -343,31 +343,31 @@ msgstr "Seu arquivo PDF está criptografado, descriptografe-o primeiro e tente n
 msgid "Your PDF file is not encrypted"
 msgstr "Seu arquivo PDF não está criptografado"
 
-#: pdf_bot/pdf/pdf_service.py:167
+#: pdf_bot/pdf/pdf_service.py:168
 msgid "Incorrect password, please try again"
 msgstr "Senha incorreta, por favor, tente novamente"
 
-#: pdf_bot/pdf/pdf_service.py:170
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Seu arquivo PDF é criptografado com um método que não posso descriptografar"
 
-#: pdf_bot/pdf/pdf_service.py:202
+#: pdf_bot/pdf/pdf_service.py:204
 msgid "No images found in your PDF file"
 msgstr "Nenhuma imagem encontrada em seu arquivo PDF"
 
-#: pdf_bot/pdf/pdf_service.py:214
+#: pdf_bot/pdf/pdf_service.py:216
 msgid "No text found in your PDF file"
 msgstr "Nenhum texto encontrado em seu arquivo PDF"
 
-#: pdf_bot/pdf/pdf_service.py:235
+#: pdf_bot/pdf/pdf_service.py:237
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Eu não poderia mesclar seus arquivos PDF, pois este arquivo é inválido: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:250
+#: pdf_bot/pdf/pdf_service.py:252
 msgid "Your PDF file already has a text layer"
 msgstr "Seu arquivo PDF já tem uma camada de texto"
 
-#: pdf_bot/pdf/pdf_service.py:339
+#: pdf_bot/pdf/pdf_service.py:341
 msgid "Your PDF file is invalid"
 msgstr "Seu arquivo PDF é inválido"
 

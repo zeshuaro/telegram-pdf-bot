@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-27 11:30+0000\n"
-"PO-Revision-Date: 2023-01-27 11:31\n"
+"POT-Creation-Date: 2023-01-27 11:40+0000\n"
+"PO-Revision-Date: 2023-01-27 11:40\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: Russian\n"
@@ -157,13 +157,13 @@ msgstr "Сравнение ваших PDF-файлов"
 msgid "There are no text differences between your PDF files"
 msgstr "Нет различий в тексте между файлами PDF"
 
-#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
+#: pdf_bot/error/error_handler.py:36 pdf_bot/error/error_handler.py:42
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:110
 msgid "Something went wrong, please try again"
 msgstr "Что-то пошло не так, пожалуйста, попробуйте еще раз"
 
-#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:53 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "Срок действия кнопки истек, начните с файла или команды заново"
 
@@ -343,31 +343,31 @@ msgstr "Ваш PDF-файл зашифрован, сначала расшифр�
 msgid "Your PDF file is not encrypted"
 msgstr "Ваш PDF-файл не зашифрован"
 
-#: pdf_bot/pdf/pdf_service.py:167
+#: pdf_bot/pdf/pdf_service.py:168
 msgid "Incorrect password, please try again"
 msgstr "Неправильный пароль, пожалуйста, повторите попытку"
 
-#: pdf_bot/pdf/pdf_service.py:170
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Ваш PDF-файл зашифрован с помощью метода, который я не могу расшифровать"
 
-#: pdf_bot/pdf/pdf_service.py:202
+#: pdf_bot/pdf/pdf_service.py:204
 msgid "No images found in your PDF file"
 msgstr "В PDF-файле не найдено изображений"
 
-#: pdf_bot/pdf/pdf_service.py:214
+#: pdf_bot/pdf/pdf_service.py:216
 msgid "No text found in your PDF file"
 msgstr "В PDF-файле не найдено текста"
 
-#: pdf_bot/pdf/pdf_service.py:235
+#: pdf_bot/pdf/pdf_service.py:237
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "Не удалось объединить PDF-файлы, так как этот файл недействителен: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:250
+#: pdf_bot/pdf/pdf_service.py:252
 msgid "Your PDF file already has a text layer"
 msgstr "Ваш PDF-файл уже имеет текстовый слой"
 
-#: pdf_bot/pdf/pdf_service.py:339
+#: pdf_bot/pdf/pdf_service.py:341
 msgid "Your PDF file is invalid"
 msgstr "Ваш PDF-файл недействителен"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-01-27 11:30+0000\n"
-"PO-Revision-Date: 2023-01-27 11:31\n"
+"POT-Creation-Date: 2023-01-27 11:40+0000\n"
+"PO-Revision-Date: 2023-01-27 11:40\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: Arabic\n"
@@ -157,13 +157,13 @@ msgstr "جاري المقارنة بين الملفين"
 msgid "There are no text differences between your PDF files"
 msgstr "لا توجد اختلافات نصية بين ملفات PDF"
 
-#: pdf_bot/error/error_handler.py:39 pdf_bot/error/error_handler.py:45
+#: pdf_bot/error/error_handler.py:36 pdf_bot/error/error_handler.py:42
 #: pdf_bot/telegram_internal/telegram_service.py:94
 #: pdf_bot/telegram_internal/telegram_service.py:110
 msgid "Something went wrong, please try again"
 msgstr "حدث خطأ ما، يرجى المحاولة مرة أخرى"
 
-#: pdf_bot/error/error_handler.py:56 pdf_bot/error/error_service.py:17
+#: pdf_bot/error/error_handler.py:53 pdf_bot/error/error_service.py:17
 msgid "The button has expired, start over with your file or command"
 msgstr "انتهت صلاحية الزر ، ابدأ من جديد بملفك أو أمرك"
 
@@ -343,31 +343,31 @@ msgstr "ملف PDF الخاص بك مشفر ، قم بفك تشفيره أولا
 msgid "Your PDF file is not encrypted"
 msgstr "ان ملفك غير مشفر"
 
-#: pdf_bot/pdf/pdf_service.py:167
+#: pdf_bot/pdf/pdf_service.py:168
 msgid "Incorrect password, please try again"
 msgstr "كلمة مرور غير صحيحة، يرجى المحاولة مرة أخرى"
 
-#: pdf_bot/pdf/pdf_service.py:170
+#: pdf_bot/pdf/pdf_service.py:172
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "ملف PDF مشفر بطريقة لا أستطيع فك تشفيرها"
 
-#: pdf_bot/pdf/pdf_service.py:202
+#: pdf_bot/pdf/pdf_service.py:204
 msgid "No images found in your PDF file"
 msgstr "لم يتم العثور على صور في ملف PDF الخاص بك"
 
-#: pdf_bot/pdf/pdf_service.py:214
+#: pdf_bot/pdf/pdf_service.py:216
 msgid "No text found in your PDF file"
 msgstr "لم يتم العثور على نص في ملف PDF الخاص بك"
 
-#: pdf_bot/pdf/pdf_service.py:235
+#: pdf_bot/pdf/pdf_service.py:237
 msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
 msgstr "لم أتمكن من دمج ملفات PDF لأن هذا الملف غير صالح: {file_name}"
 
-#: pdf_bot/pdf/pdf_service.py:250
+#: pdf_bot/pdf/pdf_service.py:252
 msgid "Your PDF file already has a text layer"
 msgstr "ملفك بالفعل لديه طبقة نص"
 
-#: pdf_bot/pdf/pdf_service.py:339
+#: pdf_bot/pdf/pdf_service.py:341
 msgid "Your PDF file is invalid"
 msgstr "ملف PDF غير صالح"
 
