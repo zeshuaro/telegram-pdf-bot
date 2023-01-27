@@ -34,6 +34,5 @@ ENV PATH="/build/.venv/bin:${PATH}"
 
 COPY --from=build /build/locale /app/locale/
 COPY pdf_bot pdf_bot/
-COPY main.py .
 
-CMD ["python", "main.py"]
+CMD ["python", "-m", "pdf_bot"]
