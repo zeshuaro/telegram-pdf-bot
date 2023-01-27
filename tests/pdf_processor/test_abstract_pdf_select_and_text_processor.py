@@ -6,6 +6,7 @@ import pytest
 from telegram.ext import CallbackQueryHandler, CommandHandler, ConversationHandler, MessageHandler
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import CallbackQueryDataTypeError, FileDataTypeError
 from pdf_bot.file_processor import AbstractFileTaskProcessor
 from pdf_bot.language import LanguageService
 from pdf_bot.models import BackData, FileData, FileTaskResult, TaskData
@@ -188,7 +189,7 @@ class TestAbstractPdfTextInputProcessor(
     async def test_ask_text_input_invalid_callback_query_data(self) -> None:
         self.telegram_callback_query.data = self.FILE_DATA
 
-        with pytest.raises(TypeError):
+        with pytest.raises(CallbackQueryDataTypeError):
             await self.sut._ask_text_input(self.telegram_update, self.telegram_context)
 
         self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
@@ -227,7 +228,7 @@ class TestAbstractPdfTextInputProcessor(
     async def test_process_text_input_invalid_file_data(self) -> None:
         self.telegram_service.get_file_data.return_value = self.FILE_DATA
 
-        with pytest.raises(TypeError):
+        with pytest.raises(FileDataTypeError):
             await self.sut._process_text_input(self.telegram_update, self.telegram_context)
         self.telegram_service.get_file_data.assert_called_once_with(self.telegram_context)
         self.telegram_service.cache_file_data.assert_not_called()

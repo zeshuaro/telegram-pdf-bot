@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import FileDataTypeError
 from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import EncryptPdfData, EncryptPdfProcessor
@@ -56,7 +57,7 @@ class TestEncryptPdfProcessor(
 
     @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
-        with pytest.raises(TypeError):
+        with pytest.raises(FileDataTypeError):
             async with self.sut.process_file_task(self.FILE_DATA):
                 pass
         self.pdf_service.encrypt_pdf.assert_not_called()

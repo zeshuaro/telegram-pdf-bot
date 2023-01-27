@@ -9,6 +9,7 @@ from telegram import (
 )
 from telegram.ext import ContextTypes
 
+from pdf_bot.errors import CallbackQueryDataTypeError
 from pdf_bot.language import LanguageService
 from pdf_bot.telegram_internal import TelegramService
 
@@ -60,7 +61,7 @@ class PaymentService:
         data: PaymentData = query.data  # type: ignore
 
         if not isinstance(data, PaymentData):
-            raise TypeError(f"Invalid callback query data: {data}")
+            raise CallbackQueryDataTypeError(data)
 
         _ = self.language_service.set_app_language(update, context)
         prices = [LabeledPrice(data.label, data.value * 100)]

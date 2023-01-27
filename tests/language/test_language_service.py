@@ -2,6 +2,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
+from pdf_bot.errors import CallbackQueryDataTypeError
 from pdf_bot.language import LanguageData, LanguageRepository, LanguageService
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
@@ -126,7 +127,7 @@ class TestLanguageService(TelegramTestMixin):
     async def test_update_user_language_invalid_callback_query_data(self) -> None:
         self.telegram_callback_query.data = None
 
-        with pytest.raises(TypeError):
+        with pytest.raises(CallbackQueryDataTypeError):
             await self.sut.update_user_language(self.telegram_update, self.telegram_context)
 
         self.language_repository.upsert_language.assert_not_called()

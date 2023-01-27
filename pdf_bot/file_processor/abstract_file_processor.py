@@ -9,6 +9,8 @@ from telegram.error import BadRequest
 from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import CallbackQueryDataTypeError
+from pdf_bot.file_processor.errors import DuplicateClassError
 from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.telegram_internal import TelegramGetUserDataError, TelegramService
@@ -35,7 +37,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
 
         cls_name = self.__class__.__name__
         if not bypass_init_check and cls_name in self._FILE_PROCESSORS:
-            raise ValueError(f"Class has already been initialised: {cls_name}")
+            raise DuplicateClassError(cls_name)
         self._FILE_PROCESSORS[cls_name] = self
 
     @classmethod
@@ -94,7 +96,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         if query is not None:
             file_data = query.data
             if not isinstance(file_data, FileData):
-                raise ValueError(f"Unknown query data type: {type(query.data)}")
+                raise CallbackQueryDataTypeError(file_data)
 
             await self.telegram_service.answer_query_and_drop_data(context, query)
             await query.edit_message_text(_("Processing your file"))

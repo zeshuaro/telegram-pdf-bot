@@ -9,7 +9,9 @@ from telegram.error import BadRequest
 from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import CallbackQueryDataTypeError
 from pdf_bot.file_processor import AbstractFileProcessor, ErrorHandlerType
+from pdf_bot.file_processor.errors import DuplicateClassError
 from pdf_bot.language import LanguageService
 from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.telegram_internal import TelegramGetUserDataError, TelegramService
@@ -121,7 +123,7 @@ class TestAbstractFileProcessorInit(
         processors: dict = {MockProcessor.__name__: MagicMock()}
         self.file_processors.__contains__.side_effect = processors.__contains__
 
-        with pytest.raises(ValueError):
+        with pytest.raises(DuplicateClassError):
             MockProcessor(self.telegram_service, self.language_service)
 
         self.file_processors.__setitem__.assert_not_called()
@@ -311,7 +313,7 @@ class TestAbstractFileProcessor(
         self.telegram_callback_query.data = None
         self.telegram_update.callback_query = self.telegram_callback_query
 
-        with pytest.raises(ValueError):
+        with pytest.raises(CallbackQueryDataTypeError):
             await self.sut.process_file(self.telegram_update, self.telegram_context)
 
         self.telegram_service.send_file.assert_not_called()
