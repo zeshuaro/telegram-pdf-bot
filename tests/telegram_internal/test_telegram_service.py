@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, call, patch
 import pytest
 from telegram import File, InlineKeyboardMarkup, Message, ReplyKeyboardMarkup
 from telegram.constants import ChatAction, FileSizeLimit, ParseMode
-from telegram.ext import ConversationHandler
+from telegram.ext import Application, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
 from pdf_bot.consts import FILE_DATA, MESSAGE_DATA
@@ -22,7 +22,7 @@ from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
 
-class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
+class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
     IMG_MIME_TYPE = "image"
     PDF_MIME_TYPE = "pdf"
 
@@ -55,6 +55,13 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
         self.os_patcher.stop()
         self.open_patcher.stop()
         super().teardown_method()
+
+    @pytest.mark.asyncio
+    async def test_init_with_telegram_app(self) -> None:
+        app = MagicMock(spec=Application)
+        app.bot = self.telegram_bot
+        self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD
+        self.sut.check_file_size(self.telegram_document)
 
     @pytest.mark.asyncio
     async def test_check_file_size(self) -> None:
@@ -176,7 +183,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
     async def test_download_files(self, num_files: int) -> None:
         @dataclass
         class FileAndPath:
-            file: File
+            file: MagicMock
             path: str
 
         file_ids: list[str] = []
@@ -202,7 +209,7 @@ class TestTelegramRService(LanguageServiceTestMixin, TelegramTestMixin):
             self.telegram_bot.get_file.assert_has_calls(get_file_calls)
 
             for file_and_path in files.values():
-                file_and_path.file.download_to_drive.assert_called_once_with(  # type: ignore
+                file_and_path.file.download_to_drive.assert_called_once_with(
                     custom_path=file_and_path.path
                 )
 

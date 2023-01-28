@@ -1,6 +1,3 @@
-# pylint: disable=no-member
-
-
 from unittest.mock import MagicMock
 
 from dependency_injector.providers import Container, Singleton
@@ -21,7 +18,7 @@ class TestContainer:
             self._test_providers(app.handlers)
 
     def _test_providers(self, container: Container) -> None:
-        for provider in container.providers.values():  # type: ignore
+        for provider in container.providers.values():  # type: ignore[attr-defined]
             if isinstance(provider, Singleton):
                 provided = provider()
                 assert isinstance(provided, provider.cls)

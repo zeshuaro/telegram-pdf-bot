@@ -16,9 +16,8 @@ from pdf_bot.telegram_handler import AbstractTelegramHandler
 @inject
 def main(
     telegram_app: TelegramApp,
-    settings: Settings
-    | dict[str, Any] = Provide[Application.core.settings],  # pylint: disable=no-member
-    log_handler: MyLogHandler = Provide[Application.core.log_handler],  # pylint: disable=no-member
+    settings: Settings | dict[str, Any] = Provide[Application.core.settings],
+    log_handler: MyLogHandler = Provide[Application.core.log_handler],
 ) -> None:
     log_handler.setup()
 
@@ -54,12 +53,12 @@ if __name__ == "__main__":
     # Dependency injectior only initialises the classes if they are referenced. Since
     # the processors are not referenced anywhere, we need to explicitly initialise them
     # so that they're registered under AbstractFileProcessor
-    for provider in app.processors.providers.values():  # type: ignore
+    for provider in app.processors.providers.values():  # type: ignore[attr-defined]
         if isinstance(provider, Singleton):
             provider()
 
     # Similarly, initialise and register all the handlers for the bot
-    for provider in app.handlers.providers.values():  # type: ignore
+    for provider in app.handlers.providers.values():  # type: ignore[attr-defined]
         if isinstance(provider, Singleton):
             handler = provider()
             if isinstance(handler, AbstractTelegramHandler):

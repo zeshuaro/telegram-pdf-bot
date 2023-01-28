@@ -1,3 +1,5 @@
+from typing import cast
+
 from telegram import (
     Document,
     InlineKeyboardButton,
@@ -25,7 +27,7 @@ class FileTaskMixin:
         tasks: list[TaskData],
     ) -> str | int:
         _ = language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
         file_data: FileData | None = None
 
         # Try to retrieve the file data cached in user data first
@@ -35,13 +37,13 @@ class FileTaskMixin:
         # If we can't retrieve the file data, then we get the document/photo attached to
         # the message
         if file_data is None:
-            msg_doc: Document | None = message.document
-            msg_photo: tuple[PhotoSize, ...] | None = message.photo
+            msg_doc: Document | None = msg.document
+            msg_photo: tuple[PhotoSize, ...] | None = msg.photo
             if msg_doc is None and msg_photo is None:
-                await message.reply_text(_(GENERIC_ERROR))
+                await msg.reply_text(_(GENERIC_ERROR))
                 return ConversationHandler.END
 
-            file = message.document or message.photo[-1]
+            file = msg.document or msg.photo[-1]
 
         def get_callback_data(data_type: type[FileData]) -> FileData:
             if file_data is not None:
@@ -62,7 +64,7 @@ class FileTaskMixin:
         keyboard.append([InlineKeyboardButton(_(CANCEL), callback_data="cancel")])
 
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await message.reply_text(
+        await msg.reply_text(
             _("Select the task that you'll like to perform"), reply_markup=reply_markup
         )
 

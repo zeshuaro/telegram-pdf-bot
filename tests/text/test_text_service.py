@@ -52,8 +52,8 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
         actual = await self.sut.ask_pdf_font(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_FONT
-        self.telegram_context.user_data.__setitem__.assert_called_once_with(
-            self.TEXT_KEY, self.TELEGRAM_TEXT
+        self.telegram_service.update_user_data.assert_called_once_with(
+            self.telegram_context, self.TEXT_KEY, self.TELEGRAM_TEXT
         )
         self.telegram_update.effective_message.reply_text.assert_called_once()
 

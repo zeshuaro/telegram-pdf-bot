@@ -74,9 +74,7 @@ class TestPdfProcessor(
             self.file_path
         )
 
-        async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-            file_data
-        ) as actual:
+        async with self.sut.process_file_task(file_data) as actual:
             assert actual == self.file_task_result
             self.pdf_service.crop_pdf_by_percentage.assert_called_once_with(
                 file_data.id, self.CROP_VALUE
@@ -94,9 +92,7 @@ class TestPdfProcessor(
             self.file_path
         )
 
-        async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-            file_data
-        ) as actual:
+        async with self.sut.process_file_task(file_data) as actual:
             assert actual == self.file_task_result
             self.pdf_service.crop_pdf_by_margin_size.assert_called_once_with(
                 file_data.id, self.CROP_VALUE
@@ -107,7 +103,7 @@ class TestPdfProcessor(
         file_data = CropOptionAndInputData(
             id=self.TELEGRAM_DOCUMENT_ID,
             name=self.TELEGRAM_DOCUMENT_NAME,
-            option=None,  # type: ignore
+            option=None,  # type: ignore[arg-type]
             text=self.CROP_VALUE,
         )
 

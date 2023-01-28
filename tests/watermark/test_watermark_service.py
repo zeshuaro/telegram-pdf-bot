@@ -46,8 +46,8 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
 
         assert actual == self.WAIT_WATERMARK_PDF
         self.telegram_service.check_pdf_document.assert_called_once_with(self.telegram_message)
-        self.telegram_context.user_data.__setitem__.assert_called_once_with(
-            self.WATERMARK_KEY, self.TELEGRAM_DOCUMENT_ID
+        self.telegram_service.update_user_data.assert_called_once_with(
+            self.telegram_context, self.WATERMARK_KEY, self.TELEGRAM_DOCUMENT_ID
         )
         self.telegram_update.effective_message.reply_text.assert_called_once()
 

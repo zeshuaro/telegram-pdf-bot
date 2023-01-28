@@ -1,3 +1,5 @@
+from typing import cast
+
 from langdetect import detect
 from telegram import Message, Update
 from telegram.ext import ContextTypes, ConversationHandler
@@ -33,25 +35,23 @@ class FeedbackService:
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        if update.effective_message.text == _(CANCEL):  # type: ignore
+        msg = cast(Message, update.effective_message)
+
+        if msg.text == _(CANCEL):
             return await self.telegram_service.cancel_conversation(update, context)
 
         return await self._save_feedback(update, context)
 
     async def _save_feedback(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
 
-        feedback_lang = detect(message.text)
+        feedback_lang = detect(msg.text)
         if feedback_lang.lower() != self._VALID_LANGUAGE_CODE:
-            await message.reply_text(_("The feedback is not in English, try again"))
+            await msg.reply_text(_("The feedback is not in English, try again"))
             return self.WAIT_FEEDBACK
 
-        self.feedback_repository.save_feedback(
-            message.chat.id, message.from_user.username, message.text
-        )
-        await message.reply_text(
-            _("Thank you for your feedback, I've forwarded it to my developer")
-        )
+        self.feedback_repository.save_feedback(msg.chat.id, msg.from_user.username, msg.text)
+        await msg.reply_text(_("Thank you for your feedback, I've forwarded it to my developer"))
 
         return ConversationHandler.END

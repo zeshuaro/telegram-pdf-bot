@@ -1,3 +1,5 @@
+from typing import cast
+
 from pdf_diff import NoDifferenceError
 from telegram import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import ContextTypes, ConversationHandler
@@ -30,10 +32,11 @@ class CompareService:
 
     async def ask_first_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
+        msg = cast(Message, update.effective_message)
         reply_markup = ReplyKeyboardMarkup(
             [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
-        await update.effective_message.reply_text(  # type: ignore
+        await msg.reply_text(
             "{desc_1}\n\n{desc_2}".format(
                 desc_1=_("Send me one of the PDF files that you'll like to compare"),
                 desc_2=_("Note that I can only look for text differences"),
@@ -45,19 +48,19 @@ class CompareService:
 
     async def check_first_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
 
         try:
-            doc = self.telegram_service.check_pdf_document(message)
+            doc = self.telegram_service.check_pdf_document(msg)
         except TelegramServiceError as e:
-            await message.reply_text(_(str(e)))
+            await msg.reply_text(_(str(e)))
             return self.WAIT_FIRST_PDF
 
-        context.user_data[self._COMPARE_ID] = doc.file_id  # type: ignore
+        self.telegram_service.update_user_data(context, self._COMPARE_ID, doc.file_id)
         reply_markup = ReplyKeyboardMarkup(
             [[_(BACK), _(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
-        await message.reply_text(
+        await msg.reply_text(
             _("Send me the other PDF file that you'll like to compare"),
             reply_markup=reply_markup,
         )
@@ -66,18 +69,18 @@ class CompareService:
 
     async def compare_pdfs(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
 
         try:
-            doc = self.telegram_service.check_pdf_document(message)
+            doc = self.telegram_service.check_pdf_document(msg)
             file_id = self.telegram_service.get_user_data(context, self._COMPARE_ID)
         except TelegramServiceError as e:
-            await message.reply_text(_(str(e)))
+            await msg.reply_text(_(str(e)))
             if isinstance(e, TelegramGetUserDataError):
                 return ConversationHandler.END
             return self.WAIT_SECOND_PDF
 
-        await message.reply_text(_("Comparing your PDF files"), reply_markup=ReplyKeyboardRemove())
+        await msg.reply_text(_("Comparing your PDF files"), reply_markup=ReplyKeyboardRemove())
 
         try:
             async with self.pdf_service.compare_pdfs(file_id, doc.file_id) as out_path:
@@ -85,13 +88,14 @@ class CompareService:
                     update, context, out_path, TaskType.compare_pdf
                 )
         except NoDifferenceError:
-            await message.reply_text(_("There are no text differences between your PDF files"))
+            await msg.reply_text(_("There are no text differences between your PDF files"))
 
         return ConversationHandler.END
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int | None:
         _ = self.language_service.set_app_language(update, context)
-        text = update.effective_message.text  # type: ignore
+        msg = cast(Message, update.effective_message)
+        text = msg.text
 
         if text == _(BACK):
             return await self.ask_first_pdf(update, context)

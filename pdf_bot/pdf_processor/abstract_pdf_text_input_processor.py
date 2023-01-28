@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from dataclasses import dataclass
-from typing import Callable
+from typing import Callable, cast
 
 from telegram import Message, Update
 from telegram.constants import ParseMode
@@ -83,12 +83,12 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
     async def _process_text_input(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
-        message: Message = update.effective_message  # type: ignore
-        cleaned_text = self.get_cleaned_text_input(message.text)
+        msg = cast(Message, update.effective_message)
+        cleaned_text = self.get_cleaned_text_input(msg.text)
 
         if cleaned_text is None:
             _ = self.language_service.set_app_language(update, context)
-            await message.reply_text(_(self.invalid_text_input_error))
+            await msg.reply_text(_(self.invalid_text_input_error))
             return self.WAIT_TEXT_INPUT
 
         file_data = self.telegram_service.get_file_data(context)

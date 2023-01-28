@@ -78,9 +78,7 @@ class TestPdfProcessor(
         )
         self.pdf_service.scale_pdf_by_factor.return_value.__aenter__.return_value = self.file_path
 
-        async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-            file_data
-        ) as actual:
+        async with self.sut.process_file_task(file_data) as actual:
             assert actual == self.file_task_result
             self.pdf_service.scale_pdf_by_factor.assert_called_once_with(
                 file_data.id, self.SCALE_DATA
@@ -98,9 +96,7 @@ class TestPdfProcessor(
             self.file_path
         )
 
-        async with self.sut.process_file_task(  # pylint: disable=not-async-context-manager
-            file_data
-        ) as actual:
+        async with self.sut.process_file_task(file_data) as actual:
             assert actual == self.file_task_result
             self.pdf_service.scale_pdf_to_dimension.assert_called_once_with(
                 file_data.id, self.SCALE_DATA
@@ -111,7 +107,7 @@ class TestPdfProcessor(
         file_data = ScaleOptionAndInputData(
             id=self.TELEGRAM_DOCUMENT_ID,
             name=self.TELEGRAM_DOCUMENT_NAME,
-            option=None,  # type: ignore
+            option=None,  # type: ignore[arg-type]
             text=self.SCALE_DATA,
         )
 

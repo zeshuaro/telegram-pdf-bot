@@ -97,8 +97,8 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         )
         self.file_data_list.pop.assert_called_once()
         assert self.telegram_update.effective_message.reply_text.call_count == 2
-        self.telegram_context.user_data.__setitem__.assert_called_with(
-            self.IMAGE_DATA, self.file_data_list
+        self.telegram_service.update_user_data.assert_called_once_with(
+            self.telegram_context, self.IMAGE_DATA, self.file_data_list
         )
         self.telegram_service.send_file_names.assert_called_once()
 
@@ -232,5 +232,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     def _assert_ask_first_image(self) -> None:
-        self.telegram_context.user_data.__setitem__.assert_called_with(self.IMAGE_DATA, [])
+        self.telegram_service.update_user_data.assert_called_once_with(
+            self.telegram_context, self.IMAGE_DATA, []
+        )
         self.telegram_service.reply_with_cancel_markup.assert_called_once()

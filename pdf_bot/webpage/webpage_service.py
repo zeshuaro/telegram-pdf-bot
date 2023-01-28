@@ -1,5 +1,6 @@
 import hashlib
 from contextlib import suppress
+from typing import cast
 from urllib.parse import urlparse
 
 from telegram import Message, Update
@@ -31,17 +32,17 @@ class WebpageService:
 
     async def url_to_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
-        url = message.text
+        msg = cast(Message, update.effective_message)
+        url = msg.text
         url_hash = hashlib.sha256(url.encode("utf-8")).hexdigest()
 
         if self.telegram_service.user_data_contains(context, url_hash):
-            await message.reply_text(
+            await msg.reply_text(
                 _("You've sent me this webpage already and I'm still converting it")
             )
             return
 
-        await message.reply_text(_("Converting your webpage into a PDF file"))
+        await msg.reply_text(_("Converting your webpage into a PDF file"))
         self._cache_url(context, url_hash)
         await self._url_to_pdf(update, context, url)
         self._clear_url_cache(context, url_hash)
@@ -83,4 +84,5 @@ class WebpageService:
                 err_text = _("Failed to convert your webpage")
 
         if err_text is not None:
-            await update.effective_message.reply_text(err_text)  # type: ignore
+            msg = cast(Message, update.effective_message)
+            await msg.reply_text(err_text)

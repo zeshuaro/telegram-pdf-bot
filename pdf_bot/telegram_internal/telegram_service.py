@@ -2,7 +2,7 @@ import os
 from contextlib import asynccontextmanager, suppress
 from gettext import gettext as _
 from pathlib import Path
-from typing import Any, AsyncGenerator, Coroutine
+from typing import Any, AsyncGenerator, Coroutine, cast
 
 from telegram import (
     Bot,
@@ -17,7 +17,7 @@ from telegram import (
     Update,
 )
 from telegram.constants import ChatAction, FileSizeLimit, ParseMode
-from telegram.ext import Application, ContextTypes, ConversationHandler
+from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
 from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, FILE_DATA, MESSAGE_DATA
@@ -45,13 +45,12 @@ class TelegramService:
         io_service: IOService,
         language_service: LanguageService,
         analytics_service: AnalyticsService,
-        telegram_app: Application | None = None,
-        bot: Bot | None = None,
+        bot: Bot,
     ) -> None:
         self.io_service = io_service
         self.language_service = language_service
         self.analytics_service = analytics_service
-        self.bot = bot or telegram_app.bot  # type: ignore
+        self.bot = bot
 
     @staticmethod
     def check_file_size(file: Document | PhotoSize) -> None:
@@ -185,9 +184,8 @@ class TelegramService:
             await self.answer_query_and_drop_data(context, query)
             await query.edit_message_text(_("Action cancelled"))
         else:
-            await update.effective_message.reply_text(  # type: ignore
-                _("Action cancelled"), reply_markup=ReplyKeyboardRemove()
-            )
+            msg = cast(Message, update.effective_message)
+            await msg.reply_text(_("Action cancelled"), reply_markup=ReplyKeyboardRemove())
 
         return ConversationHandler.END
 
@@ -292,7 +290,8 @@ class TelegramService:
         query: CallbackQuery | None = update.callback_query
         if query is not None:
             return query.message.chat_id
-        return update.effective_message.chat_id  # type: ignore
+        msg = cast(Message, update.effective_message)
+        return msg.chat_id
 
     def _reply_with_markup(
         self,
@@ -303,9 +302,9 @@ class TelegramService:
         parse_mode: ParseMode | None = None,
     ) -> Coroutine[Any, Any, Message]:
         _ = self.language_service.set_app_language(update, context)
+        msg = cast(Message, update.effective_message)
         markup = ReplyKeyboardMarkup(
             [[_(markup_text)]], one_time_keyboard=True, resize_keyboard=True
         )
-        return update.effective_message.reply_text(  # type: ignore
-            _(text), reply_markup=markup, parse_mode=parse_mode
-        )
+
+        return msg.reply_text(_(text), reply_markup=markup, parse_mode=parse_mode)

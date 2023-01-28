@@ -2,7 +2,7 @@ import shutil
 from abc import ABC, abstractmethod
 from contextlib import asynccontextmanager, suppress
 from pathlib import Path
-from typing import Any, AsyncGenerator, Callable, Coroutine
+from typing import Any, AsyncGenerator, Callable, Coroutine, cast
 
 from telegram import CallbackQuery, Message, Update
 from telegram.error import BadRequest
@@ -91,7 +91,8 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
     async def process_file(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str | int:
         _ = self.language_service.set_app_language(update, context)
         query: CallbackQuery | None = update.callback_query
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
+        file_data: str | FileData
 
         if query is not None:
             file_data = query.data
@@ -102,16 +103,16 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
             await query.edit_message_text(_("Processing your file"))
         else:
             try:
-                file_data = self.telegram_service.get_file_data(context)  # type: ignore
+                file_data = self.telegram_service.get_file_data(context)
             except TelegramGetUserDataError as e:
-                await message.reply_text(_(str(e)))
+                await msg.reply_text(_(str(e)))
                 return ConversationHandler.END
 
         # Delete the previous message and send processing message for processors with
         # nested conversation
         await self._process_previous_message(update, context)
 
-        state = await self._process_file_task(update, context, file_data)  # type: ignore
+        state = await self._process_file_task(update, context, file_data)
         if state is not None:
             return state
 
@@ -133,7 +134,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
                     final_path = out_path.with_suffix(".zip")
 
                 await self.telegram_service.send_file(update, context, final_path, self.task_type)
-        except Exception as e:  # pylint: disable=broad-except
+        except Exception as e:
             handlers = self._get_error_handlers()
             error_handler: ErrorHandlerType | None = None
             for error_type, handler in handlers.items():
@@ -176,5 +177,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         _file_data: FileData,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        await update.effective_message.reply_text(_(str(exception)))  # type: ignore
+        msg = cast(Message, update.effective_message)
+        await msg.reply_text(_(str(exception)))
+
         return ConversationHandler.END

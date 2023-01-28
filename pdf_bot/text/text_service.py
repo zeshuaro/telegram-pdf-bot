@@ -1,4 +1,5 @@
 from gettext import gettext as _
+from typing import cast
 
 from telegram import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.constants import ChatAction, ParseMode
@@ -42,17 +43,17 @@ class TextService:
 
     async def ask_pdf_font(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
-        text = message.text
+        msg = cast(Message, update.effective_message)
+        text = msg.text
 
         if text == _(CANCEL):
             return await self.telegram_service.cancel_conversation(update, context)
 
-        context.user_data[self.TEXT_KEY] = text  # type: ignore
+        self.telegram_service.update_user_data(context, self.TEXT_KEY, text)
         reply_markup = ReplyKeyboardMarkup(
             [[_(self.SKIP)]], resize_keyboard=True, one_time_keyboard=True
         )
-        await message.reply_text(
+        await msg.reply_text(
             "{desc_1}\n\n{desc_2}".format(
                 desc_1=_(
                     "Send me the font that you'll like to use for the PDF file "
@@ -70,11 +71,11 @@ class TextService:
         return self.WAIT_FONT
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-        message: Message = update.effective_message  # type: ignore
-        await message.reply_chat_action(ChatAction.TYPING)
+        msg = cast(Message, update.effective_message)
+        await msg.reply_chat_action(ChatAction.TYPING)
 
         _ = self.language_service.set_app_language(update, context)
-        text = message.text
+        text = msg.text
 
         if text == _(CANCEL):
             return await self.telegram_service.cancel_conversation(update, context)
@@ -86,7 +87,7 @@ class TextService:
         if font_data is not None:
             return await self._text_to_pdf(update, context, font_data)
 
-        await message.reply_text(_("Unknown font, please try again"))
+        await msg.reply_text(_("Unknown font, please try again"))
         return self.WAIT_FONT
 
     async def _text_to_pdf(
@@ -96,15 +97,15 @@ class TextService:
         font_data: FontData | None = None,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
 
         try:
             text = self.telegram_service.get_user_data(context, self.TEXT_KEY)
         except TelegramServiceError as e:
-            await message.reply_text(_(str(e)))
+            await msg.reply_text(_(str(e)))
             return ConversationHandler.END
 
-        await message.reply_text(_("Creating your PDF file"), reply_markup=ReplyKeyboardRemove())
+        await msg.reply_text(_("Creating your PDF file"), reply_markup=ReplyKeyboardRemove())
         async with self.pdf_service.create_pdf_from_text(text, font_data) as out_path:
             await self.telegram_service.send_file(update, context, out_path, TaskType.text_to_pdf)
 

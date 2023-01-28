@@ -156,6 +156,7 @@ class TestAbstractPdfTextInputProcessor(
 
     @pytest.mark.asyncio
     async def test_ask_select_option(self) -> None:
+        self.telegram_callback_query.data = self.FILE_DATA
         actual = await self.sut._ask_select_option(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_SELECT_OPTION
@@ -165,6 +166,18 @@ class TestAbstractPdfTextInputProcessor(
         self.telegram_callback_query.edit_message_text.assert_called_once_with(
             self.sut.ask_select_option_text, reply_markup=ANY
         )
+
+    @pytest.mark.asyncio
+    async def test_ask_select_option_invalid_callback_query_data(self) -> None:
+        self.telegram_callback_query.data = None
+
+        with pytest.raises(CallbackQueryDataTypeError):
+            await self.sut._ask_select_option(self.telegram_update, self.telegram_context)
+
+        self.telegram_service.answer_query_and_drop_data.assert_called_once_with(
+            self.telegram_context, self.telegram_callback_query
+        )
+        self.telegram_callback_query.edit_message_text.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_ask_text_input(self) -> None:

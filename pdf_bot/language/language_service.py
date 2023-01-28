@@ -1,11 +1,11 @@
 import gettext
 from contextlib import suppress
-from typing import Callable
+from typing import Callable, cast
 
-from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
 from telegram.ext import ContextTypes
 
-from pdf_bot.errors import CallbackQueryDataTypeError
+from pdf_bot.errors import CallbackQueryDataTypeError, UserIdError
 
 from .language_repository import LanguageRepository
 from .models import LanguageData
@@ -82,9 +82,8 @@ class LanguageService:
 
         _ = self.set_app_language(update, context)
         reply_markup = self._get_languages_markup(update, context)
-        await update.effective_message.reply_text(  # type: ignore
-            _("Select your language"), reply_markup=reply_markup
-        )
+        msg = cast(Message, update.effective_message)
+        await msg.reply_text(_("Select your language"), reply_markup=reply_markup)
 
     def get_user_language(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
         user_data = context.user_data
@@ -105,7 +104,7 @@ class LanguageService:
     ) -> None:
         query = update.callback_query
         await self._answer_query_and_drop_data(context, query)
-        data: LanguageData = query.data  # type: ignore
+        data: str | LanguageData = query.data
 
         if not isinstance(data, LanguageData):
             raise CallbackQueryDataTypeError(data)
@@ -154,6 +153,9 @@ class LanguageService:
     def _get_user_id(self, update: Update) -> int:
         query: CallbackQuery | None = update.callback_query
         if query is None:
-            sender = update.effective_message.from_user or update.effective_chat  # type: ignore
-            return sender.id  # type: ignore
+            if update.effective_message is not None:
+                return update.effective_message.from_user.id
+            if update.effective_chat is not None:
+                return update.effective_chat.id
+            raise UserIdError()
         return query.from_user.id
