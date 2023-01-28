@@ -1,9 +1,12 @@
 from gettext import gettext as _
+from typing import cast
 
 from telegram import (
+    CallbackQuery,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     LabeledPrice,
+    Message,
     ReplyKeyboardRemove,
     Update,
 )
@@ -42,7 +45,7 @@ class PaymentService:
     async def send_support_options(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
-        query = update.callback_query
+        query: CallbackQuery | None = update.callback_query
 
         # This method is used by both command and callback query handlers, so we need to
         # check if query is `None` here
@@ -50,23 +53,23 @@ class PaymentService:
             await query.answer()
 
         _ = self.language_service.set_app_language(update, context)
+        msg = cast(Message, update.effective_message)
         reply_markup = self._get_support_options_markup(update, context)
-        await update.effective_message.reply_text(  # type: ignore
-            _("Select how you want to support PDF Bot"), reply_markup=reply_markup
-        )
+        await msg.reply_text(_("Select how you want to support PDF Bot"), reply_markup=reply_markup)
 
     async def send_invoice(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         query = update.callback_query
         await self.telegram_service.answer_query_and_drop_data(context, query)
-        data: PaymentData = query.data  # type: ignore
+        data: str | PaymentData = query.data
 
         if not isinstance(data, PaymentData):
             raise CallbackQueryDataTypeError(data)
 
         _ = self.language_service.set_app_language(update, context)
+        msg = cast(Message, update.effective_message)
         prices = [LabeledPrice(data.label, data.value * 100)]
 
-        await update.effective_message.reply_invoice(  # type: ignore
+        await msg.reply_invoice(
             title=_("Support PDF Bot"),
             description=_("Say thanks to PDF Bot and help keep it running"),
             payload=self._INVOICE_PAYLOAD,
@@ -88,9 +91,8 @@ class PaymentService:
 
     async def successful_payment(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
-        await update.effective_message.reply_text(  # type: ignore
-            _("Thank you for your support!"), reply_markup=ReplyKeyboardRemove()
-        )
+        msg = cast(Message, update.effective_message)
+        await msg.reply_text(_("Thank you for your support!"), reply_markup=ReplyKeyboardRemove())
 
     def _get_support_options_markup(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE

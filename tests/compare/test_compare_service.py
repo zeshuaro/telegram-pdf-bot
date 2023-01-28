@@ -38,8 +38,8 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
     async def test_check_first_pdf(self) -> None:
         actual = await self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_SECOND_PDF
-        self.telegram_context.user_data.__setitem__.assert_called_with(
-            self.COMPARE_ID, self.TELEGRAM_DOCUMENT_ID
+        self.telegram_service.update_user_data.assert_called_once_with(
+            self.telegram_context, self.COMPARE_ID, self.TELEGRAM_DOCUMENT_ID
         )
 
     @pytest.mark.asyncio

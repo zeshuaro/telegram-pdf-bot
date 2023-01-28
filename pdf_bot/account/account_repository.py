@@ -9,7 +9,9 @@ class AccountRepository:
 
     def get_user(self, user_id: int) -> Entity | None:
         key = self.datastore_client.key(USER, user_id)
-        return self.datastore_client.get(key)  # type: ignore
+        entity: Entity | None = self.datastore_client.get(key)
+
+        return entity
 
     def upsert_user(self, user_id: int, language_code: str) -> None:
         with self.datastore_client.transaction():

@@ -1,8 +1,8 @@
 from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import AsyncGenerator, Callable
+from typing import AsyncGenerator, Callable, cast
 
-from telegram import Update
+from telegram import Message, Update
 from telegram.ext import ContextTypes
 
 from pdf_bot.analytics import TaskType
@@ -61,6 +61,8 @@ class DecryptPdfProcessor(AbstractPdfTextInputProcessor):
         file_data: FileData,
     ) -> str:
         _ = self.language_service.set_app_language(update, context)
-        await update.effective_message.reply_text(_(str(exception)))  # type: ignore
+        msg = cast(Message, update.effective_message)
+        await msg.reply_text(_(str(exception)))
         self.telegram_service.cache_file_data(context, file_data)
+
         return self.WAIT_TEXT_INPUT

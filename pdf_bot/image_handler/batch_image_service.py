@@ -1,4 +1,5 @@
 from gettext import gettext as _
+from typing import cast
 
 from telegram import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.constants import ParseMode
@@ -31,7 +32,7 @@ class BatchImageService:
         self.language_service = language_service
 
     async def ask_first_image(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-        context.user_data[self.IMAGE_DATA] = []  # type: ignore
+        self.telegram_service.update_user_data(context, self.IMAGE_DATA, [])
         _ = self.language_service.set_app_language(update, context)
         await self.telegram_service.reply_with_cancel_markup(
             update,
@@ -51,28 +52,28 @@ class BatchImageService:
 
     async def check_image(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
 
         try:
-            image = self.telegram_service.check_image(message)
+            image = self.telegram_service.check_image(msg)
         except TelegramServiceError as e:
-            await message.reply_text(_(str(e)))
+            await msg.reply_text(_(str(e)))
             return self.WAIT_IMAGE
 
         file_data = FileData.from_telegram_object(image)
-        context.user_data[self.IMAGE_DATA].append(file_data)  # type: ignore
+        context.user_data[self.IMAGE_DATA].append(file_data)  # type: ignore[index]
         return await self._ask_next_image(update, context)
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
-        text = message.text
+        msg = cast(Message, update.effective_message)
+        text = msg.text
 
         if text in [_(self._REMOVE_LAST), _(self._BEAUTIFY), _(self._TO_PDF)]:
             try:
                 file_data_list = self.telegram_service.get_user_data(context, self.IMAGE_DATA)
             except TelegramServiceError as e:
-                await message.reply_text(_(str(e)))
+                await msg.reply_text(_(str(e)))
                 return ConversationHandler.END
 
             if text == _(self._REMOVE_LAST):
@@ -84,9 +85,12 @@ class BatchImageService:
 
     async def _ask_next_image(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
+        msg = cast(Message, update.effective_message)
         text = "{desc}\n".format(desc=_("You've sent me these images so far:"))
         await self.telegram_service.send_file_names(
-            update.effective_chat.id, text, context.user_data[self.IMAGE_DATA]  # type: ignore
+            msg.chat_id,
+            text,
+            context.user_data[self.IMAGE_DATA],  # type: ignore[index]
         )
 
         reply_markup = ReplyKeyboardMarkup(
@@ -94,7 +98,7 @@ class BatchImageService:
             resize_keyboard=True,
             one_time_keyboard=True,
         )
-        await update.effective_message.reply_text(  # type: ignore
+        await msg.reply_text(
             _(
                 "Select the task from below if you've sent me all the images, or keep"
                 " sending me the images"
@@ -111,21 +115,21 @@ class BatchImageService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
+        msg = cast(Message, update.effective_message)
+
         try:
             file_data = file_data_list.pop()
         except IndexError:
-            await update.effective_message.reply_text(  # type: ignore
-                _("You've already removed all the images you've sent me")
-            )
+            await msg.reply_text(_("You've already removed all the images you've sent me"))
             return await self.ask_first_image(update, context)
 
-        await update.effective_message.reply_text(  # type: ignore
+        await msg.reply_text(
             _("{file_name} has been removed").format(file_name=f"<b>{file_data.name}</b>"),
             parse_mode=ParseMode.HTML,
         )
 
         if file_data_list:
-            context.user_data[self.IMAGE_DATA] = file_data_list  # type: ignore
+            self.telegram_service.update_user_data(context, self.IMAGE_DATA, file_data_list)
             return await self._ask_next_image(update, context)
         return await self.ask_first_image(update, context)
 
@@ -136,18 +140,15 @@ class BatchImageService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
+        msg = cast(Message, update.effective_message)
         num_files = len(file_data_list)
 
         if num_files == 0:
-            await update.effective_message.reply_text(  # type: ignore
-                _("You haven't sent me any images")
-            )
+            await msg.reply_text(_("You haven't sent me any images"))
             return await self.ask_first_image(update, context)
         if num_files == 1:
-            await update.effective_message.reply_text(  # type: ignore
-                _("You've only sent me one image")
-            )
-            context.user_data[self.IMAGE_DATA] = file_data_list  # type: ignore
+            await msg.reply_text(_("You've only sent me one image"))
+            self.telegram_service.update_user_data(context, self.IMAGE_DATA, file_data_list)
             return await self._ask_next_image(update, context)
         return await self._process_images(update, context, file_data_list)
 
@@ -158,15 +159,15 @@ class BatchImageService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
         is_beautify = False
 
-        if message.text == _(self._BEAUTIFY):
+        if msg.text == _(self._BEAUTIFY):
             is_beautify = True
             text = _("Beautifying and converting your images into a PDF file")
         else:
             text = _("Converting your images into a PDF file")
-        await message.reply_text(text, reply_markup=ReplyKeyboardRemove())
+        await msg.reply_text(text, reply_markup=ReplyKeyboardRemove())
 
         if is_beautify:
             async with self.image_service.beautify_and_convert_images_to_pdf(

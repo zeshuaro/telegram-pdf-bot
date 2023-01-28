@@ -1,6 +1,3 @@
-# pylint: disable=no-member
-
-
 from dependency_injector import containers, providers
 from requests import Session
 from slack_sdk import WebClient as SlackClient

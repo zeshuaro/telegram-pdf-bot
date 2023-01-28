@@ -1,3 +1,5 @@
+from typing import cast
+
 from telegram import Message, Update
 from telegram.constants import FileSizeLimit
 from telegram.ext import ContextTypes, ConversationHandler
@@ -41,12 +43,12 @@ class FileService:
     async def _get_file_data(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> FileData | None:
-        message: Message = update.effective_message  # type: ignore
-        file = message.document or message.photo[-1]
+        msg = cast(Message, update.effective_message)
+        file = msg.document or msg.photo[-1]
 
         if file.file_size > FileSizeLimit.FILESIZE_DOWNLOAD:
             _ = self.language_service.set_app_language(update, context)
-            await update.effective_message.reply_text(  # type: ignore
+            await msg.reply_text(
                 "{desc_1}\n\n{desc_2}".format(
                     desc_1=_("Your file is too big for me to download and process"),
                     desc_2=_(

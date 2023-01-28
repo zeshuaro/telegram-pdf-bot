@@ -13,3 +13,7 @@ class CallbackQueryDataTypeError(Exception):
     def __init__(self, data: Any, *args: object) -> None:
         msg = f"Invalid callback query data type: {type(data)}"
         super().__init__(msg, *args)
+
+
+class UserIdError(Exception):
+    ...

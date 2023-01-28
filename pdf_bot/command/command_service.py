@@ -1,3 +1,5 @@
+from typing import cast
+
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
 from telegram.constants import ChatAction, ParseMode
 from telegram.error import Forbidden
@@ -15,14 +17,14 @@ class CommandService:
         self.language_service = language_service
 
     async def send_start_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        message: Message = update.effective_message  # type: ignore
-        await message.reply_chat_action(ChatAction.TYPING)
+        msg = cast(Message, update.effective_message)
+        await msg.reply_chat_action(ChatAction.TYPING)
 
         # Create the user entity in Datastore
-        self.account_service.create_user(message.from_user)
+        self.account_service.create_user(msg.from_user)
 
         _ = self.language_service.set_app_language(update, context)
-        await message.reply_text(
+        await msg.reply_text(
             "{welcome}\n\n<b>{key_features}</b>\n"
             "{features_summary}\n"
             "{pdf_from_text}\n"
@@ -50,6 +52,7 @@ class CommandService:
 
     async def send_help_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
+        msg = cast(Message, update.effective_message)
         keyboard = [
             [InlineKeyboardButton(_("Set Language 🌎"), callback_data=SetLanguageData())],
             [
@@ -59,7 +62,7 @@ class CommandService:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
-        await update.effective_message.reply_text(  # type: ignore
+        await msg.reply_text(
             "{desc_1}\n{pdf_files}\n{images}\n{webpage_links}\n\n{desc_2}\n"
             "{compare_desc}\n{merge_desc}\n{image_desc}\n{text_desc}\n"
             "{watermark_desc}".format(
@@ -86,7 +89,7 @@ class CommandService:
     async def send_message_to_user(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
-        message: Message = update.effective_message  # type: ignore
+        msg = cast(Message, update.effective_message)
         args = context.args
 
         if args is not None:
@@ -95,8 +98,8 @@ class CommandService:
 
             try:
                 await context.bot.send_message(user_id, text)
-                await message.reply_text("Message sent")
+                await msg.reply_text("Message sent")
             except Forbidden:
-                await message.reply_text("Bot is blocked by the user")
+                await msg.reply_text("Bot is blocked by the user")
         else:
-            await message.reply_text(f"Invalid arguments: {args}")
+            await msg.reply_text(f"Invalid arguments: {args}")

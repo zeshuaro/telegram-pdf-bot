@@ -2,7 +2,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from pdf_bot.errors import CallbackQueryDataTypeError
+from pdf_bot.errors import CallbackQueryDataTypeError, UserIdError
 from pdf_bot.language import LanguageData, LanguageRepository, LanguageService
 from tests.telegram_internal.telegram_test_mixin import TelegramTestMixin
 
@@ -58,6 +58,7 @@ class TestLanguageService(TelegramTestMixin):
         actual = self.sut.get_user_language(self.telegram_update, self.telegram_context)
 
         assert actual == self.EN_CODE
+        self.language_repository.get_language.assert_called_once_with(self.TELEGRAM_QUERY_USER_ID)
         self.telegram_user_data.__setitem__.assert_called_once_with(
             self.sut._LANGUAGE_CODE, self.EN_CODE
         )
@@ -88,9 +89,38 @@ class TestLanguageService(TelegramTestMixin):
         actual = self.sut.get_user_language(self.telegram_update, self.telegram_context)
 
         assert actual == self.EN_CODE
+        self.language_repository.get_language.assert_called_once_with(self.TELEGRAM_USER_ID)
         self.telegram_user_data.__setitem__.assert_called_once_with(
             self.sut._LANGUAGE_CODE, self.EN_CODE
         )
+
+    @pytest.mark.asyncio
+    async def test_get_user_language_with_chat_id(self) -> None:
+        self.telegram_user_data.get.return_value = None
+        self.telegram_update.callback_query = None
+        self.telegram_update.effective_message = None
+        self.telegram_update.effective_chat = self.telegram_chat
+
+        actual = self.sut.get_user_language(self.telegram_update, self.telegram_context)
+
+        assert actual == self.EN_CODE
+        self.language_repository.get_language.assert_called_once_with(self.TELEGRAM_CHAT_ID)
+        self.telegram_user_data.__setitem__.assert_called_once_with(
+            self.sut._LANGUAGE_CODE, self.EN_CODE
+        )
+
+    @pytest.mark.asyncio
+    async def test_get_user_language_without_message_and_chat(self) -> None:
+        self.telegram_user_data.get.return_value = None
+        self.telegram_update.callback_query = None
+        self.telegram_update.effective_message = None
+        self.telegram_update.effective_chat = None
+
+        with pytest.raises(UserIdError):
+            self.sut.get_user_language(self.telegram_update, self.telegram_context)
+
+        self.language_repository.get_language.assert_not_called()
+        self.telegram_user_data.__setitem__.assert_not_called()
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("side_effect", [None, KeyError])
