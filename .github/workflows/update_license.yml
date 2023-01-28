@@ -1,0 +1,25 @@
+name: Update license
+
+on:
+  schedule:
+    - cron: "0 3 1 1 *" # 03:00 AM on January 1
+  workflow_dispatch:
+
+jobs:
+  update-license:
+    name: Update license year
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Update license year 🪪
+        uses: FantasticFiasco/action-update-license-year@v2.3.0
+        with:
+          token: ${{ secrets.PAT }}
+          commitTitle: "docs(license): update copyright year to {{ currentYear }}"
+          prTitle: "docs(license): update copyright year to {{ currentYear }}"
+          labels: documentation
