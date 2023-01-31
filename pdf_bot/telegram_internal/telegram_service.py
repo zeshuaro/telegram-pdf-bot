@@ -4,6 +4,7 @@ from gettext import gettext as _
 from pathlib import Path
 from typing import Any, AsyncGenerator, Coroutine, cast
 
+from pydantic import BaseModel
 from telegram import (
     Bot,
     CallbackQuery,
@@ -32,6 +33,12 @@ from .exceptions import (
     TelegramImageNotFoundError,
     TelegramUpdateUserDataError,
 )
+
+
+class _ReplyData(BaseModel):
+    text: str
+    markup_button_text: str
+    parse_mode: ParseMode | None = None
 
 
 class TelegramService:
@@ -221,7 +228,8 @@ class TelegramService:
         text: str,
         parse_mode: ParseMode | None = None,
     ) -> Coroutine[Any, Any, Message]:
-        return self._reply_with_markup(update, context, text, BACK, parse_mode)
+        data = _ReplyData(text=text, markup_button_text=BACK, parse_mode=parse_mode)
+        return self._reply_with_markup(update, context, data)
 
     def reply_with_cancel_markup(
         self,
@@ -230,7 +238,8 @@ class TelegramService:
         text: str,
         parse_mode: ParseMode | None = None,
     ) -> Coroutine[Any, Any, Message]:
-        return self._reply_with_markup(update, context, text, CANCEL, parse_mode)
+        data = _ReplyData(text=text, markup_button_text=CANCEL, parse_mode=parse_mode)
+        return self._reply_with_markup(update, context, data)
 
     async def send_file(
         self,
@@ -294,17 +303,14 @@ class TelegramService:
         return msg.chat_id
 
     def _reply_with_markup(
-        self,
-        update: Update,
-        context: ContextTypes.DEFAULT_TYPE,
-        text: str,
-        markup_text: str,
-        parse_mode: ParseMode | None = None,
+        self, update: Update, context: ContextTypes.DEFAULT_TYPE, reply_data: _ReplyData
     ) -> Coroutine[Any, Any, Message]:
         _ = self.language_service.set_app_language(update, context)
         msg = cast(Message, update.effective_message)
         markup = ReplyKeyboardMarkup(
-            [[_(markup_text)]], one_time_keyboard=True, resize_keyboard=True
+            [[_(reply_data.markup_button_text)]], one_time_keyboard=True, resize_keyboard=True
         )
 
-        return msg.reply_text(_(text), reply_markup=markup, parse_mode=parse_mode)
+        return msg.reply_text(
+            _(reply_data.text), reply_markup=markup, parse_mode=reply_data.parse_mode
+        )
