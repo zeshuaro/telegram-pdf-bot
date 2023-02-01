@@ -21,7 +21,6 @@ class TestPdfProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-
     SCALE_DATA_TEXT = "0.1 0.2"
     SCALE_DATA = ScaleData(0.1, 0.2)
 

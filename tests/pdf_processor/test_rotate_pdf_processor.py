@@ -18,7 +18,6 @@ class TestRotatePdfProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-
     WAIT_DEGREE = "wait_degree"
 
     def setup_method(self) -> None:

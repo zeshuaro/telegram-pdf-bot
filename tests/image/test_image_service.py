@@ -37,7 +37,6 @@ class TestImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Teleg
         self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
 
         with patch("pdf_bot.image.image_service.noteshrink") as noteshrink:
-
             async with self.sut.beautify_and_convert_images_to_pdf(file_data_list) as actual:
                 assert actual == self.file_path
                 self.telegram_service.download_files.assert_called_once_with(file_ids)

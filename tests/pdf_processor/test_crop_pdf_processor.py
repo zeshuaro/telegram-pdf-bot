@@ -15,7 +15,6 @@ class TestPdfProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-
     CROP_TEXT = "0.1"
     CROP_VALUE = float(CROP_TEXT)
 
