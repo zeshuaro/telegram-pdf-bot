@@ -16,7 +16,6 @@ class TestDecryptPdfProcessor(
     TelegramServiceTestMixin,
     TelegramTestMixin,
 ):
-
     WAIT_TEXT_INPUT = "wait_text_input"
 
     def setup_method(self) -> None:
