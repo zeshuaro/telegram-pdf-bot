@@ -2,10 +2,10 @@ import asyncio
 import os
 import shutil
 import textwrap
+from collections.abc import AsyncGenerator, Generator
 from contextlib import asynccontextmanager, contextmanager
 from gettext import gettext as _
 from pathlib import Path
-from typing import AsyncGenerator, Generator
 
 import img2pdf
 import ocrmypdf
@@ -210,7 +210,7 @@ class PdfService:
             try:
                 text = extract_text(file_path)
             except PDFPasswordIncorrect as e:
-                raise PdfEncryptedError() from e
+                raise PdfEncryptedError from e
 
         if not text:
             raise PdfNoTextError(_("No text found in your PDF file"))
@@ -251,7 +251,7 @@ class PdfService:
                 except PriorOcrFoundError as e:
                     raise PdfServiceError(_("Your PDF file already has a text layer")) from e
                 except EncryptedPdfError as e:
-                    raise PdfEncryptedError() from e
+                    raise PdfEncryptedError from e
 
     @asynccontextmanager
     async def preview_pdf(self, file_id: str) -> AsyncGenerator[Path, None]:
@@ -341,7 +341,7 @@ class PdfService:
                 raise PdfReadError(_("Your PDF file is invalid")) from e
 
         if pdf_reader.is_encrypted and not allow_encrypted:
-            raise PdfEncryptedError()
+            raise PdfEncryptedError
         return pdf_reader
 
     @contextmanager

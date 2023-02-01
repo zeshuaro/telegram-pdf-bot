@@ -1,6 +1,7 @@
+from collections.abc import AsyncGenerator, Callable
 from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import AsyncGenerator, Callable, cast
+from typing import cast
 
 from telegram import Message, Update
 from telegram.ext import ContextTypes
