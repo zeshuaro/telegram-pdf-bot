@@ -1,8 +1,9 @@
 import shutil
 from abc import ABC, abstractmethod
+from collections.abc import AsyncGenerator, Callable, Coroutine
 from contextlib import asynccontextmanager, suppress
 from pathlib import Path
-from typing import Any, AsyncGenerator, Callable, Coroutine, cast
+from typing import Any, cast
 
 from telegram import CallbackQuery, Message, Update
 from telegram.error import BadRequest

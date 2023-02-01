@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 from unittest.mock import AsyncMock
 
 from telegram.ext import ContextTypes, ConversationHandler

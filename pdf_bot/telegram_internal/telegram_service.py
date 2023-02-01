@@ -1,8 +1,9 @@
 import os
+from collections.abc import AsyncGenerator, Coroutine
 from contextlib import asynccontextmanager, suppress
 from gettext import gettext as _
 from pathlib import Path
-from typing import Any, AsyncGenerator, Coroutine, cast
+from typing import Any, cast
 
 from pydantic import BaseModel
 from telegram import (

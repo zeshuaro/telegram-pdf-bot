@@ -1,6 +1,6 @@
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import AsyncGenerator
 
 from telegram.ext import CallbackQueryHandler
 

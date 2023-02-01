@@ -1,5 +1,5 @@
+from collections.abc import AsyncGenerator, Callable
 from contextlib import asynccontextmanager
-from typing import AsyncGenerator, Callable
 from unittest.mock import MagicMock, patch
 
 import pytest

@@ -1,6 +1,7 @@
 from abc import abstractmethod
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable, cast
+from typing import cast
 
 from telegram import Message, Update
 from telegram.constants import ParseMode

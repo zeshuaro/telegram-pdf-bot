@@ -1,6 +1,7 @@
 import gettext
+from collections.abc import Callable
 from contextlib import suppress
-from typing import Callable, cast
+from typing import cast
 
 from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
 from telegram.ext import ContextTypes
@@ -157,5 +158,5 @@ class LanguageService:
                 return update.effective_message.from_user.id
             if update.effective_chat is not None:
                 return update.effective_chat.id
-            raise UserIdError()
+            raise UserIdError
         return query.from_user.id

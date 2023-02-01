@@ -1,6 +1,6 @@
+from collections.abc import AsyncGenerator, Callable
 from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import AsyncGenerator, Callable
 
 from pdf_bot.analytics import TaskType
 from pdf_bot.errors import FileDataTypeError
