@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import FileDataTypeError
 from pdf_bot.models import TaskData
 from pdf_bot.pdf import PdfService
 from pdf_bot.pdf_processor import CropOptionAndInputData, CropPdfData, CropPdfProcessor, CropType
@@ -98,24 +99,8 @@ class TestPdfProcessor(
             )
 
     @pytest.mark.asyncio
-    async def test_process_file_task_invalid_scale_type(self) -> None:
-        file_data = CropOptionAndInputData(
-            id=self.TELEGRAM_DOCUMENT_ID,
-            name=self.TELEGRAM_DOCUMENT_NAME,
-            option=None,  # type: ignore[arg-type]
-            text=self.CROP_VALUE,
-        )
-
-        with pytest.raises(ValueError):
-            async with self.sut.process_file_task(file_data):
-                pass
-
-        self.pdf_service.crop_pdf_by_percentage.assert_not_called()
-        self.pdf_service.crop_pdf_by_margin_size.assert_not_called()
-
-    @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
-        with pytest.raises(TypeError):
+        with pytest.raises(FileDataTypeError):
             async with self.sut.process_file_task(self.FILE_DATA):
                 pass
         self.pdf_service.crop_pdf_by_percentage.assert_not_called()

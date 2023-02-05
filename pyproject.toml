@@ -41,7 +41,7 @@ pre-commit = "==3.0.4"
 mypy = "0.991"
 types-requests = "2.28.11.8"
 pytest-asyncio = "0.20.3"
-ruff = "==0.0.240"
+ruff = "==0.0.241"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -102,6 +102,10 @@ ignore = [
 "pdf_bot/language/language_service.py" = [
     "RUF001", # AmbiguousUnicodeCharacterString
 ]
+"tests/pdf_processor/test_abstract_pdf_select_and_text_processor.py" = [
+    "SLF001",
+]
+"tests/pdf_processor/test_abstract_pdf_text_input_processor.py" = ["SLF001"]
 "tests/**/*.py" = [
     "S101", # AssertUsed
     "S105", # HardcodedPasswordString
