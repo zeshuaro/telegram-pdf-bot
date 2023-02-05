@@ -60,7 +60,7 @@ class TestLanguageService(TelegramTestMixin):
         assert actual == self.EN_CODE
         self.language_repository.get_language.assert_called_once_with(self.TELEGRAM_QUERY_USER_ID)
         self.telegram_user_data.__setitem__.assert_called_once_with(
-            self.sut._LANGUAGE_CODE, self.EN_CODE
+            self.LANGUAGE_CODE, self.EN_CODE
         )
 
     @pytest.mark.asyncio
@@ -91,7 +91,7 @@ class TestLanguageService(TelegramTestMixin):
         assert actual == self.EN_CODE
         self.language_repository.get_language.assert_called_once_with(self.TELEGRAM_USER_ID)
         self.telegram_user_data.__setitem__.assert_called_once_with(
-            self.sut._LANGUAGE_CODE, self.EN_CODE
+            self.LANGUAGE_CODE, self.EN_CODE
         )
 
     @pytest.mark.asyncio
@@ -106,7 +106,7 @@ class TestLanguageService(TelegramTestMixin):
         assert actual == self.EN_CODE
         self.language_repository.get_language.assert_called_once_with(self.TELEGRAM_CHAT_ID)
         self.telegram_user_data.__setitem__.assert_called_once_with(
-            self.sut._LANGUAGE_CODE, self.EN_CODE
+            self.LANGUAGE_CODE, self.EN_CODE
         )
 
     @pytest.mark.asyncio

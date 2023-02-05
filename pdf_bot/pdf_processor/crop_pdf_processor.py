@@ -1,8 +1,9 @@
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import AsyncGenerator
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import FileDataTypeError
 from pdf_bot.models import FileData, FileTaskResult, TaskData
 
 from .abstract_pdf_select_and_text_processor import (
@@ -17,20 +18,19 @@ class CropType(SelectOption):
     by_margin_size = _("To margin size")
 
     @property
-    def ask_value_text(self) -> str:  # pragma: no cover
-        match self:  # noqa: SyntaxError
-            case CropType.by_percentage:
-                return _(
-                    "Send me a number between 0 and 100\n\nThis is the percentage of"
-                    " margin space to retain between the content in your PDF file and"
-                    " the page"
-                )
-            case CropType.by_margin_size:
-                return _(
-                    "Send me a number that you'll like to adjust the margin"
-                    " size\n\nPositive numbers will decrease the margin size and"
-                    " negative numbers will increase it"
-                )
+    def ask_value_text(self) -> str:  # type: ignore[return] # pragma: no cover
+        if self == CropType.by_percentage:
+            return _(
+                "Send me a number between 0 and 100\n\nThis is the percentage of"
+                " margin space to retain between the content in your PDF file and"
+                " the page"
+            )
+        if self == CropType.by_margin_size:  # noqa: implicit-return
+            return _(
+                "Send me a number that you'll like to adjust the margin"
+                " size\n\nPositive numbers will decrease the margin size and"
+                " negative numbers will increase it"
+            )
 
 
 class CropPdfData(FileData):
@@ -79,18 +79,15 @@ class CropPdfProcessor(AbstractPdfSelectAndTextProcessor):
     @asynccontextmanager
     async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, CropOptionAndInputData):
-            raise TypeError(f"Invalid file data type: {type(file_data)}")
+            raise FileDataTypeError(file_data)
 
-        match file_data.option:
-            case CropType.by_percentage:
-                async with self.pdf_service.crop_pdf_by_percentage(
-                    file_data.id, file_data.text
-                ) as path:
-                    yield FileTaskResult(path)
-            case CropType.by_margin_size:
-                async with self.pdf_service.crop_pdf_by_margin_size(
-                    file_data.id, file_data.text
-                ) as path:
-                    yield FileTaskResult(path)
-            case _:
-                raise ValueError(f"Invalid file data option: {file_data.option}")
+        if file_data.option == CropType.by_percentage:
+            async with self.pdf_service.crop_pdf_by_percentage(
+                file_data.id, file_data.text
+            ) as path:
+                yield FileTaskResult(path)
+        if file_data.option == CropType.by_margin_size:
+            async with self.pdf_service.crop_pdf_by_margin_size(
+                file_data.id, file_data.text
+            ) as path:
+                yield FileTaskResult(path)

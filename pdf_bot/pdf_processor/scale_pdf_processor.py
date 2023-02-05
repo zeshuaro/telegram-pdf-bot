@@ -1,8 +1,9 @@
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from gettext import gettext as _
-from typing import AsyncGenerator
 
 from pdf_bot.analytics import TaskType
+from pdf_bot.errors import FileDataTypeError
 from pdf_bot.models import FileData, FileTaskResult, TaskData
 from pdf_bot.pdf import ScaleData
 
@@ -18,19 +19,18 @@ class ScaleType(SelectOption):
     to_dimension = _("To dimension")
 
     @property
-    def ask_value_text(self) -> str:  # pragma: no cover
-        match self:  # noqa: SyntaxError
-            case ScaleType.by_factor:
-                return _(
-                    "Send me the scaling factors for the horizontal and vertical"
-                    " axes\n\nExample: 2 0.5 - this will double the horizontal axis and"
-                    " halve the vertical axis"
-                )
-            case ScaleType.to_dimension:
-                return _(
-                    "Send me the width and height\n\nExample: 150 200 - this will set"
-                    " the width to 150 and height to 200"
-                )
+    def ask_value_text(self) -> str:  # type: ignore[return] # pragma: no cover
+        if self == ScaleType.by_factor:
+            return _(
+                "Send me the scaling factors for the horizontal and vertical"
+                " axes\n\nExample: 2 0.5 - this will double the horizontal axis and"
+                " halve the vertical axis"
+            )
+        if self == ScaleType.to_dimension:  # noqa: implicit-return
+            return _(
+                "Send me the width and height\n\nExample: 150 200 - this will set"
+                " the width to 150 and height to 200"
+            )
 
 
 class ScalePdfData(FileData):
@@ -79,18 +79,13 @@ class ScalePdfProcessor(AbstractPdfSelectAndTextProcessor):
     @asynccontextmanager
     async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
         if not isinstance(file_data, ScaleOptionAndInputData):
-            raise TypeError(f"Invalid file data type: {type(file_data)}")
+            raise FileDataTypeError(file_data)
 
-        match file_data.option:
-            case ScaleType.by_factor:
-                async with self.pdf_service.scale_pdf_by_factor(
-                    file_data.id, file_data.text
-                ) as path:
-                    yield FileTaskResult(path)
-            case ScaleType.to_dimension:
-                async with self.pdf_service.scale_pdf_to_dimension(
-                    file_data.id, file_data.text
-                ) as path:
-                    yield FileTaskResult(path)
-            case _:
-                raise ValueError(f"Invalid file data option: {file_data.option}")
+        if file_data.option == ScaleType.by_factor:
+            async with self.pdf_service.scale_pdf_by_factor(file_data.id, file_data.text) as path:
+                yield FileTaskResult(path)
+        if file_data.option == ScaleType.to_dimension:
+            async with self.pdf_service.scale_pdf_to_dimension(
+                file_data.id, file_data.text
+            ) as path:
+                yield FileTaskResult(path)

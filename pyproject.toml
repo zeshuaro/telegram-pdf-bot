@@ -102,6 +102,10 @@ ignore = [
 "pdf_bot/language/language_service.py" = [
     "RUF001", # AmbiguousUnicodeCharacterString
 ]
+"tests/pdf_processor/test_abstract_pdf_select_and_text_processor.py" = [
+    "SLF001",
+]
+"tests/pdf_processor/test_abstract_pdf_text_input_processor.py" = ["SLF001"]
 "tests/**/*.py" = [
     "S101", # AssertUsed
     "S105", # HardcodedPasswordString
