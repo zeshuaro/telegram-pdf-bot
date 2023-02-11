@@ -7,6 +7,7 @@ from telegram import (
     InlineKeyboardMarkup,
     LabeledPrice,
     Message,
+    PreCheckoutQuery,
     ReplyKeyboardRemove,
     Update,
 )
@@ -58,9 +59,9 @@ class PaymentService:
         await msg.reply_text(_("Select how you want to support PDF Bot"), reply_markup=reply_markup)
 
     async def send_invoice(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        query = update.callback_query
+        query: CallbackQuery = cast(CallbackQuery, update.callback_query)
         await self.telegram_service.answer_query_and_drop_data(context, query)
-        data: str | PaymentData = query.data
+        data: str | PaymentData | None = query.data
 
         if not isinstance(data, PaymentData):
             raise CallbackQueryDataTypeError(data)
@@ -82,7 +83,7 @@ class PaymentService:
 
     async def precheckout_check(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
-        query = update.pre_checkout_query
+        query = cast(PreCheckoutQuery, update.pre_checkout_query)
 
         if query.invoice_payload != self._INVOICE_PAYLOAD:
             await query.answer(ok=False, error_message=_("Something went wrong, try again"))

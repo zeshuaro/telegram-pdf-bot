@@ -1,6 +1,6 @@
 from typing import cast
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update, User
 from telegram.constants import ChatAction, ParseMode
 from telegram.error import Forbidden
 from telegram.ext import ContextTypes
@@ -18,10 +18,11 @@ class CommandService:
 
     async def send_start_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         msg = cast(Message, update.effective_message)
+        msg_user = cast(User, msg.from_user)
         await msg.reply_chat_action(ChatAction.TYPING)
 
         # Create the user entity in Datastore
-        self.account_service.create_user(msg.from_user)
+        self.account_service.create_user(msg_user)
 
         _ = self.language_service.set_app_language(update, context)
         await msg.reply_text(

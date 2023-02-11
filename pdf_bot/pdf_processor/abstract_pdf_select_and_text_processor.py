@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, cast
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
+from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
 from telegram.ext import (
     CallbackQueryHandler,
     CommandHandler,
@@ -96,9 +96,9 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
         )
 
     async def _ask_select_option(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-        query = update.callback_query
+        query = cast(CallbackQuery, update.callback_query)
         await self.telegram_service.answer_query_and_drop_data(context, query)
-        data = query.data
+        data: str | FileData | None = query.data
 
         if not isinstance(data, FileData):
             raise CallbackQueryDataTypeError(data)
@@ -136,9 +136,9 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
         return InlineKeyboardMarkup(keyboard)
 
     async def _ask_text_input(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-        query = update.callback_query
+        query = cast(CallbackQuery, update.callback_query)
         await self.telegram_service.answer_query_and_drop_data(context, query)
-        data = query.data
+        data: str | SelectOptionData | None = query.data
 
         if not isinstance(data, SelectOptionData):
             raise CallbackQueryDataTypeError(data)
@@ -175,7 +175,8 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
         msg = cast(Message, update.effective_message)
-        cleaned_text = self.get_cleaned_text_input(msg.text)
+        msg_text = cast(str, msg.text)
+        cleaned_text = self.get_cleaned_text_input(msg_text)
 
         if cleaned_text is None:
             _ = self.language_service.set_app_language(update, context)

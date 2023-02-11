@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager, suppress
 from pathlib import Path
 from typing import Any, cast
 
-from telegram import CallbackQuery, Message, Update
+from telegram import Message, Update
 from telegram.error import BadRequest
 from telegram.ext import BaseHandler, ContextTypes, ConversationHandler
 
@@ -91,15 +91,16 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
 
     async def process_file(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        query: CallbackQuery | None = update.callback_query
+        query = update.callback_query
         msg = cast(Message, update.effective_message)
         file_data: str | FileData
 
         if query is not None:
-            file_data = query.data
-            if not isinstance(file_data, FileData):
-                raise CallbackQueryDataTypeError(file_data)
+            data: str | FileData | None = query.data
+            if not isinstance(data, FileData):
+                raise CallbackQueryDataTypeError(data)
 
+            file_data = data
             await self.telegram_service.answer_query_and_drop_data(context, query)
             await query.edit_message_text(_("Processing your file"))
         else:
