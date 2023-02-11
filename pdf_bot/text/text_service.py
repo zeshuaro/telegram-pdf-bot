@@ -75,15 +75,15 @@ class TextService:
         await msg.reply_chat_action(ChatAction.TYPING)
 
         _ = self.language_service.set_app_language(update, context)
-        text = msg.text
+        msg_text = cast(str, msg.text)
 
-        if text == _(CANCEL):
+        if msg_text == _(CANCEL):
             return await self.telegram_service.cancel_conversation(update, context)
 
-        if text == _(self.SKIP):
+        if msg_text == _(self.SKIP):
             return await self._text_to_pdf(update, context)
 
-        font_data = self.text_repository.get_font(text)
+        font_data = self.text_repository.get_font(msg_text)
         if font_data is not None:
             return await self._text_to_pdf(update, context, font_data)
 

@@ -62,7 +62,8 @@ class TelegramService:
 
     @staticmethod
     def check_file_size(file: Document | PhotoSize) -> None:
-        if file.file_size > FileSizeLimit.FILESIZE_DOWNLOAD:
+        file_size = file.file_size
+        if file_size is not None and file_size > FileSizeLimit.FILESIZE_DOWNLOAD:
             raise TelegramFileTooLargeError(
                 _(
                     "Your file is too large for me to download and process, "
@@ -149,6 +150,7 @@ class TelegramService:
         if (
             img_file is not None
             and isinstance(img_file, Document)
+            and img_file.mime_type is not None
             and not img_file.mime_type.startswith(self.IMAGE_MIME_TYPE_PREFIX)
         ):
             raise TelegramFileMimeTypeError(_("Your file is not an image, please try again"))
@@ -163,8 +165,10 @@ class TelegramService:
         return img_file
 
     def check_pdf_document(self, message: Message) -> Document:
-        doc = message.document
-        if not doc.mime_type.endswith(self.PDF_MIME_TYPE_SUFFIX):
+        doc = cast(Document, message.document)
+        doc_mime_type = doc.mime_type
+
+        if doc_mime_type is not None and not doc_mime_type.endswith(self.PDF_MIME_TYPE_SUFFIX):
             raise TelegramFileMimeTypeError(_("Your file is not a PDF file, please try again"))
         self.check_file_size(doc)
         return doc
@@ -297,10 +301,14 @@ class TelegramService:
 
     @staticmethod
     def _get_chat_id(update: Update) -> int:
-        query: CallbackQuery | None = update.callback_query
-        if query is not None:
-            return query.message.chat_id
-        msg = cast(Message, update.effective_message)
+        query = update.callback_query
+        msg: Message
+
+        if query is None:
+            msg = cast(Message, update.effective_message)
+        else:
+            msg = cast(Message, query.message)
+
         return msg.chat_id
 
     def _reply_with_markup(

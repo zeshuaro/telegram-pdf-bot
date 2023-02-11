@@ -1,7 +1,7 @@
 from typing import cast
 
 from langdetect import detect
-from telegram import Message, Update
+from telegram import Message, Update, User
 from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.consts import CANCEL
@@ -45,13 +45,16 @@ class FeedbackService:
     async def _save_feedback(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
         msg = cast(Message, update.effective_message)
+        msg_user = cast(User, msg.from_user)
+        msg_username = cast(str, msg_user.username)
+        msg_text = cast(str, msg.text)
 
         feedback_lang = detect(msg.text)
         if feedback_lang.lower() != self._VALID_LANGUAGE_CODE:
             await msg.reply_text(_("The feedback is not in English, try again"))
             return self.WAIT_FEEDBACK
 
-        self.feedback_repository.save_feedback(msg.chat.id, msg.from_user.username, msg.text)
+        self.feedback_repository.save_feedback(msg.chat.id, msg_username, msg_text)
         await msg.reply_text(_("Thank you for your feedback, I've forwarded it to my developer"))
 
         return ConversationHandler.END

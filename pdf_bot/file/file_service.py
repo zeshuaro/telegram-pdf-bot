@@ -45,8 +45,9 @@ class FileService:
     ) -> FileData | None:
         msg = cast(Message, update.effective_message)
         file = msg.document or msg.photo[-1]
+        file_size = file.file_size
 
-        if file.file_size > FileSizeLimit.FILESIZE_DOWNLOAD:
+        if file_size is not None and file_size > FileSizeLimit.FILESIZE_DOWNLOAD:
             _ = self.language_service.set_app_language(update, context)
             await msg.reply_text(
                 "{desc_1}\n\n{desc_2}".format(

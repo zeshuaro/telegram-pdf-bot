@@ -33,7 +33,7 @@ class WebpageService:
     async def url_to_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
         msg = cast(Message, update.effective_message)
-        url = msg.text
+        url = cast(str, msg.text)
         url_hash = hashlib.sha256(url.encode("utf-8")).hexdigest()
 
         if self.telegram_service.user_data_contains(context, url_hash):

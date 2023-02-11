@@ -3,7 +3,14 @@ from collections.abc import Callable
 from contextlib import suppress
 from typing import cast
 
-from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message, Update
+from telegram import (
+    CallbackQuery,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+    Update,
+    User,
+)
 from telegram.ext import ContextTypes
 
 from pdf_bot.errors import CallbackQueryDataTypeError, UserIdError
@@ -103,9 +110,9 @@ class LanguageService:
     async def update_user_language(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
-        query = update.callback_query
+        query = cast(CallbackQuery, update.callback_query)
         await self._answer_query_and_drop_data(context, query)
-        data: str | LanguageData = query.data
+        data: str | LanguageData | None = query.data
 
         if not isinstance(data, LanguageData):
             raise CallbackQueryDataTypeError(data)
@@ -155,7 +162,8 @@ class LanguageService:
         query: CallbackQuery | None = update.callback_query
         if query is None:
             if update.effective_message is not None:
-                return update.effective_message.from_user.id
+                msg_user = cast(User, update.effective_message.from_user)
+                return msg_user.id
             if update.effective_chat is not None:
                 return update.effective_chat.id
             raise UserIdError

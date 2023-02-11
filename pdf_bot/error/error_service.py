@@ -1,6 +1,6 @@
 from typing import cast
 
-from telegram import Message, Update
+from telegram import CallbackQuery, Message, Update
 from telegram.ext import ContextTypes
 
 from pdf_bot.language import LanguageService
@@ -16,7 +16,7 @@ class ErrorService:
         _ = self.language_service.set_app_language(update, context)
         text = _("The button has expired, start over with your file or command")
 
-        query = update.callback_query
+        query = cast(CallbackQuery, update.callback_query)
         await query.answer(text)
 
         message = cast(Message, update.effective_message)

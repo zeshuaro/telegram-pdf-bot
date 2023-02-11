@@ -3,7 +3,7 @@ from uuid import UUID
 
 from loguru import logger
 from requests.exceptions import HTTPError
-from telegram import Message, Update
+from telegram import Message, Update, User
 from telegram.ext import ContextTypes
 
 from pdf_bot.language import LanguageService
@@ -30,8 +30,10 @@ class AnalyticsService:
     ) -> None:
         lang = self.language_service.get_user_language(update, context)
         msg = cast(Message, update.effective_message)
+        msg_user = cast(User, msg.from_user)
+
         event = {
-            "client_id": str(UUID(int=msg.from_user.id)),
+            "client_id": str(UUID(int=msg_user.id)),
             "user_properties": {"bot_language": {"value": lang}},
             "events": [
                 {

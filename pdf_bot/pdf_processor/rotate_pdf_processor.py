@@ -2,8 +2,9 @@ from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from gettext import gettext as _
+from typing import cast
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackQueryHandler, CommandHandler, ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import TaskType
@@ -62,9 +63,9 @@ class RotatePdfProcessor(AbstractPdfProcessor):
             yield FileTaskResult(path)
 
     async def ask_degree(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-        query = update.callback_query
+        query = cast(CallbackQuery, update.callback_query)
         await self.telegram_service.answer_query_and_drop_data(context, query)
-        data = query.data
+        data: str | RotatePdfData | None = query.data
 
         if not isinstance(data, RotatePdfData):
             raise CallbackQueryDataTypeError(data)
