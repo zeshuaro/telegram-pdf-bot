@@ -1,0 +1,23 @@
+name: Check pyenv
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  check-python:
+    name: Check Python version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Check Python version on pyenv 🧪
+        run: |-
+          unset PYENV_ROOT
+          curl https://pyenv.run | bash
+          export PATH="$HOME/.pyenv/bin:$PATH"
+          pyenv install
