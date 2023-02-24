@@ -4,5 +4,13 @@
     "github>zeshuaro/renovate-configs",
     "github>zeshuaro/renovate-configs:app",
     "github>zeshuaro/renovate-configs:python"
+  ],
+  "packageRules": [
+    {
+      "groupName": "Pikepdf",
+      "matchPaths": ["pyproject.toml"],
+      "matchPackageNames": ["pikepdf"],
+      "automerge": false
+    }
   ]
 }
