@@ -19,7 +19,9 @@ class ErrorHandler:
             return
 
         if not isinstance(update, Update):
-            logger.exception("Something went wrong without an Update instance", context.error)
+            logger.exception(
+                "Something went wrong without an Update instance", exc_info=context.error
+            )
             sentry_sdk.capture_exception(context.error)
             return
 
