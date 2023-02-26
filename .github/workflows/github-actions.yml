@@ -13,7 +13,11 @@ concurrency:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest-xlarge, ubuntu-latest]
 
     steps:
       - name: Checkout 🛎️
@@ -24,6 +28,10 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version-file: ".python-version"
+
+      - name: Install MacOS dependencies 📦
+        if: runner.os == 'macOS'
+        run: brew install pango
 
       - name: Install Poetry 📦
         uses: snok/install-poetry@v1.3.4
@@ -39,17 +47,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-
 
-      - name: Install dependencies ⚙️
+      - name: Install dependencies 📦
         run: poetry install --no-interaction
 
       - name: Run Tests 🧪
         run: |
-          source .venv/bin/activate
+          source $VENV
           pybabel compile -D pdf_bot -d locale
           pytest --cov --cov-report=xml
 
       - name: Run SonarCloud scan ☁️
         uses: sonarsource/sonarcloud-github-action@v2.0.2
+        if: runner.os == 'Linux'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -87,7 +96,7 @@ jobs:
 
       - name: Run linting 🧪
         run: |
-          source .venv/bin/activate
+          source $VENV
           pre-commit run --all-files
 
   check-docker-image:
@@ -163,7 +172,7 @@ jobs:
 
       - name: Update localization source file 📄
         run: |
-          source .venv/bin/activate
+          source $VENV
           pybabel extract pdf_bot/ -o locale/pdf_bot.pot
           pybabel update -l locale -i locale/pdf_bot.pot -o locale/en_GB/LC_MESSAGES/pdf_bot.po
           echo NUM_DIFFS=$(git diff --shortstat | egrep -o '[0-9]+ i' | egrep -o '[0-9]+') >> $GITHUB_ENV
