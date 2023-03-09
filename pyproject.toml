@@ -126,6 +126,8 @@ warn_no_return = true
 warn_return_any = true
 warn_unreachable = true
 
+plugins = ['pydantic.mypy']
+
 [[tool.mypy.overrides]]
 module = ['pdf_bot.log.*']
 ignore_errors = true
