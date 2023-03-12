@@ -1582,20 +1582,20 @@ pillow = "*"
 
 [[package]]
 name = "pdfcropmargins"
-version = "1.1.16"
+version = "1.1.17"
 description = "A command-line program to crop the margins of PDF files, with many options."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "pdfCropMargins-1.1.16-py2.py3-none-any.whl", hash = "sha256:40ba1aecb3542ff53768e0373cd90dcaaf2422673fc2aab4ab2aa4006777fe64"},
+    {file = "pdfCropMargins-1.1.17-py2.py3-none-any.whl", hash = "sha256:b45bcb8ee82059ee3eac39b64c21408753ea87cf195c524cb115ec0ca8cf457f"},
 ]
 
 [package.dependencies]
 pillow = ">=9.3.0"
 PyMuPDF = ">=1.19.6"
 PyPDF2 = ">=2.11.0,<3.0.0"
-PySimpleGUI = ">=4.40.0"
+PySimpleGUI = ">=4.6.0"
 wheel = "*"
 
 [[package]]
@@ -2864,4 +2864,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "1d25842ea7e6c5136d9b0e311486b8c00a0db7f5837421381292f4b05e29d7c7"
+content-hash = "302b3291c5cf787498ac95d53fc418910646b2c7366460f83814f25698f9305a"
