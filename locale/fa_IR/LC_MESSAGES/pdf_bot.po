@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-03-01 08:54+0000\n"
-"PO-Revision-Date: 2023-03-01 08:54\n"
+"POT-Creation-Date: 2023-03-31 07:02+0000\n"
+"PO-Revision-Date: 2023-03-31 07:03\n"
 "Last-Translator: \n"
 "Language: fa\n"
 "Language-Team: Persian\n"
@@ -360,15 +360,16 @@ msgstr "هیچ عکسی در فایل PDF شما یافت نمی شود"
 msgid "No text found in your PDF file"
 msgstr "هیچ متنی در فایل پی دی اف شما یافت نمی شود"
 
-#: pdf_bot/pdf/pdf_service.py:237
-msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr "من نمی توانستم فایل های PDF شما را ادغام کنم چرا که این فایل نامعتبر است: {file_name}"
+#: pdf_bot/pdf/pdf_service.py:235
+#, python-format
+msgid "I couldn't merge your PDF files as this file is invalid: %s"
+msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:252
+#: pdf_bot/pdf/pdf_service.py:250
 msgid "Your PDF file already has a text layer"
 msgstr "فایل PDF شما در حال حاضر دارای یک لایه متن"
 
-#: pdf_bot/pdf/pdf_service.py:341
+#: pdf_bot/pdf/pdf_service.py:339
 msgid "Your PDF file is invalid"
 msgstr "پرونده PDF شما نامعتبر است"
 
@@ -452,11 +453,11 @@ msgstr "پیشنمایش"
 msgid "Rename"
 msgstr "نام"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:36
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
+#, python-format
 msgid "File names can't contain any of the following characters, please try again:\n"
-"{invalid_chars}"
-msgstr "نام پرونده ها نمی توانند شامل هیچ یک از کاراکترهای زیر باشند، لطفاً دوباره امتحان کنید:\n"
-"{invalid_chars}"
+"%s"
+msgstr ""
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -1687,5 +1688,15 @@ msgstr "موفق به تبدیل صفحه وب شما نشد"
 #~ msgstr ""
 
 #~ msgid "Your PDF file is encrypted"
+#~ msgstr ""
+
+#~ msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "File names can't contain any of "
+#~ "the following characters, please try "
+#~ "again:\n"
+#~ "{invalid_chars}"
 #~ msgstr ""
 

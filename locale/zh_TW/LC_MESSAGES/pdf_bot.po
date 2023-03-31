@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2023-03-01 08:54+0000\n"
-"PO-Revision-Date: 2023-03-01 08:54\n"
+"POT-Creation-Date: 2023-03-31 07:02+0000\n"
+"PO-Revision-Date: 2023-03-31 07:03\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional\n"
@@ -359,15 +359,16 @@ msgstr "在 PDF 檔中找不到影像"
 msgid "No text found in your PDF file"
 msgstr "在 PDF 檔中找不到任何文字"
 
-#: pdf_bot/pdf/pdf_service.py:237
-msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
-msgstr "我不能合併您的 PDF 檔，因為此文件無效： {file_name}"
+#: pdf_bot/pdf/pdf_service.py:235
+#, python-format
+msgid "I couldn't merge your PDF files as this file is invalid: %s"
+msgstr ""
 
-#: pdf_bot/pdf/pdf_service.py:252
+#: pdf_bot/pdf/pdf_service.py:250
 msgid "Your PDF file already has a text layer"
 msgstr "你的PDF檔案已經有一層文字"
 
-#: pdf_bot/pdf/pdf_service.py:341
+#: pdf_bot/pdf/pdf_service.py:339
 msgid "Your PDF file is invalid"
 msgstr "您的 PDF 檔無效"
 
@@ -451,11 +452,11 @@ msgstr "預覽"
 msgid "Rename"
 msgstr "重新命名"
 
-#: pdf_bot/pdf_processor/rename_pdf_processor.py:36
+#: pdf_bot/pdf_processor/rename_pdf_processor.py:35
+#, python-format
 msgid "File names can't contain any of the following characters, please try again:\n"
-"{invalid_chars}"
-msgstr "檔案名不能包含以下任何字元，請重試：\n"
-"{invalid_chars}"
+"%s"
+msgstr ""
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -1686,5 +1687,15 @@ msgstr "無法轉換您的網頁"
 #~ msgstr ""
 
 #~ msgid "Your PDF file is encrypted"
+#~ msgstr ""
+
+#~ msgid "I couldn't merge your PDF files as this file is invalid: {file_name}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "File names can't contain any of "
+#~ "the following characters, please try "
+#~ "again:\n"
+#~ "{invalid_chars}"
 #~ msgstr ""
 
