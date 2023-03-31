@@ -31,9 +31,9 @@ class RenamePdfProcessor(AbstractPdfTextInputProcessor):
 
     @property
     def invalid_text_input_error(self) -> str:  # pragma: no cover
-        return _(
-            "File names can't contain any of the following characters, please try"
-            " again:\n{invalid_chars}".format(invalid_chars=self.INVALID_CHARACTERS)
+        return (
+            _("File names can't contain any of the following characters, please try again:\n%s")
+            % self.INVALID_CHARACTERS
         )
 
     def get_ask_text_input_text(self, _: Callable[[str], str]) -> str:  # pragma: no cover

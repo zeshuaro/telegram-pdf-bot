@@ -232,10 +232,8 @@ class PdfService:
                     merger.append(file_path)
                 except (PyPdfReadError, ValueError) as e:
                     raise PdfReadError(
-                        _(
-                            "I couldn't merge your PDF files as this file is invalid: "
-                            "{file_name}".format(file_name=file_data_list[i].name)
-                        )
+                        _("I couldn't merge your PDF files as this file is invalid: %s")
+                        % file_data_list[i].name
                     ) from e
 
         with self._write_pdf(merger, "Merged") as out_path:
