@@ -86,6 +86,19 @@ jobs:
           source .venv/bin/activate
           pre-commit run --all-files
 
+  check-docker-image:
+    name: Check Docker image
+    runs-on: ubuntu-latest
+    if: ${{ github.ref != 'refs/heads/master' }}
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Build Docker image 🏗
+        run: |-
+          docker build .
+
   snyk-scan:
     name: Snyk scan
     runs-on: ubuntu-latest
