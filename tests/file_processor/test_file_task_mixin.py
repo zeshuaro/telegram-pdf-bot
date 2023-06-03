@@ -1,5 +1,6 @@
+from typing import TYPE_CHECKING
+
 import pytest
-from telegram import InlineKeyboardMarkup
 from telegram.ext import ConversationHandler
 
 from pdf_bot.consts import GENERIC_ERROR
@@ -7,6 +8,9 @@ from pdf_bot.file_processor import FileTaskMixin
 from pdf_bot.models import FileData, TaskData
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramTestMixin
+
+if TYPE_CHECKING:
+    from telegram import InlineKeyboardMarkup
 
 
 class TestFileTaskMixin(LanguageServiceTestMixin, TelegramTestMixin):
@@ -18,7 +22,7 @@ class TestFileTaskMixin(LanguageServiceTestMixin, TelegramTestMixin):
         self.language_service = self.mock_language_service()
         self.sut = FileTaskMixin()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_task_helper(self) -> None:
         actual = await self.sut.ask_task_helper(
             self.language_service,
@@ -30,7 +34,7 @@ class TestFileTaskMixin(LanguageServiceTestMixin, TelegramTestMixin):
         assert actual == self.WAIT_FILE_TASK
         self._assert_inline_keyboard()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_task_helper_without_user_data(self) -> None:
         self.telegram_context.user_data = None
 
@@ -44,7 +48,7 @@ class TestFileTaskMixin(LanguageServiceTestMixin, TelegramTestMixin):
         assert actual == self.WAIT_FILE_TASK
         self._assert_inline_keyboard()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_task_helper_without_file_data_and_file(self) -> None:
         self.telegram_context.user_data = (
             self.telegram_message.document

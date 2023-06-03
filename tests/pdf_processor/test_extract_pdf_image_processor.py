@@ -43,7 +43,7 @@ class TestExtractPdfImageProcessor(
         assert isinstance(actual, CallbackQueryHandler)
         assert actual.pattern == ExtractPdfImageData
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_file_task(self) -> None:
         self.pdf_service.extract_pdf_images.return_value.__aenter__.return_value = self.file_path
 

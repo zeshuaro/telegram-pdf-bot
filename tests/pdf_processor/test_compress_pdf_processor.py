@@ -44,7 +44,7 @@ class TestCompressPdfProcessor(
         assert isinstance(actual, CallbackQueryHandler)
         assert actual.pattern == CompressPdfData
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_file_task(self) -> None:
         result = CompressResult(2, 1, self.file_path)
         self.pdf_service.compress_pdf.return_value.__aenter__.return_value = result

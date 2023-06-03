@@ -21,7 +21,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
 
         self.sut = PaymentService(self.language_service, self.telegram_service, self.STRIPE_TOKEN)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_support_options(self) -> None:
         self.telegram_update.callback_query = None
 
@@ -34,7 +34,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         assert reply_markup is not None
         self._assert_keyboard_payment_callback_data(reply_markup)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_support_options_with_callback_query(self) -> None:
         self.telegram_update.callback_query = self.telegram_callback_query
 
@@ -48,7 +48,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         assert reply_markup is not None
         self._assert_keyboard_payment_callback_data(reply_markup)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_invoice(self) -> None:
         self.telegram_callback_query.data = self.PAYMENT_DATA
         await self.sut.send_invoice(self.telegram_update, self.telegram_context)
@@ -58,20 +58,20 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         )
         self.telegram_update.effective_message.reply_invoice.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_invoice_invalid_callback_query_data(self) -> None:
         self.telegram_callback_query.data = None
         with pytest.raises(CallbackQueryDataTypeError):
             await self.sut.send_invoice(self.telegram_update, self.telegram_context)
         self.telegram_update.effective_message.reply_invoice.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_precheckout_check(self) -> None:
         self.telegram_pre_checkout_query.invoice_payload = self.INVOICE_PAYLOAD
         await self.sut.precheckout_check(self.telegram_update, self.telegram_context)
         self.telegram_pre_checkout_query.answer.assert_called_once_with(ok=True)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_precheckout_check_invalid_payload(self) -> None:
         self.telegram_pre_checkout_query.invoice_payload = "clearly_invalid_payload"
         await self.sut.precheckout_check(self.telegram_update, self.telegram_context)
@@ -79,7 +79,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
             ok=False, error_message="Something went wrong, try again"
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_successful_payment(self) -> None:
         await self.sut.successful_payment(self.telegram_update, self.telegram_context)
         self.telegram_update.effective_message.reply_text.assert_called_once()

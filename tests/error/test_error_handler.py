@@ -20,12 +20,12 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
     def teardown_method(self) -> None:
         self.sentry_sdk_patcher.stop()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_callback_known_error(self) -> None:
         self.telegram_context.error = Forbidden("Error")
         await self.sut.callback(self.telegram_update, self.telegram_context)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_callback_unknown_error(self) -> None:
         error = RuntimeError()
         self.telegram_context.error = error
@@ -35,7 +35,7 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_called_once()
         self.sentry_sdk.capture_exception.assert_called_once_with(error)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_callback_unknown_error_and_send_message_error(self) -> None:
         error = RuntimeError()
         self.telegram_context.error = error
@@ -46,7 +46,7 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_called_once()
         self.sentry_sdk.capture_exception.assert_called_once_with(error)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_callback_unknown_error_and_without_chat_id(self) -> None:
         error = RuntimeError()
         self.telegram_context.error = error
@@ -58,7 +58,7 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_not_called()
         self.sentry_sdk.capture_exception.assert_called_once_with(error)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_callback_unknown_error_and_effective_chat(self) -> None:
         error = RuntimeError()
         self.telegram_context.error = error
@@ -70,7 +70,7 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_called_once()
         self.sentry_sdk.capture_exception.assert_called_once_with(error)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_callback_unknown_error_and_not_update(self) -> None:
         error = RuntimeError()
         self.telegram_context.error = error
@@ -80,7 +80,7 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_not_called()
         self.sentry_sdk.capture_exception.assert_called_once_with(error)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_callback_without_error(self) -> None:
         self.telegram_context.error = None
 
@@ -89,7 +89,7 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_not_called()
         self.sentry_sdk.capture_exception.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     @pytest.mark.parametrize(
         "message",
         [
@@ -107,7 +107,7 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_not_called()
         self.sentry_sdk.capture_exception.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_callback_bad_request_query_outdated(self) -> None:
         self.telegram_context.error = BadRequest("Query is too old and response timeout expired")
 
@@ -116,7 +116,7 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_context.bot.send_message.assert_called_once()
         self.sentry_sdk.capture_exception.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_callback_unknown_bad_request(self) -> None:
         error = BadRequest("Unknown bad request")
         self.telegram_context.error = error

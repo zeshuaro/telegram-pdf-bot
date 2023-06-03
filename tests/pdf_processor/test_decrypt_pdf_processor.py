@@ -47,7 +47,7 @@ class TestDecryptPdfProcessor(
         actual = self.sut.get_cleaned_text_input(self.TELEGRAM_TEXT)
         assert actual == self.TELEGRAM_TEXT
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_get_custom_error_handlers(self) -> None:
         file_data = FileData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
         handlers = self.sut.custom_error_handlers
@@ -63,7 +63,7 @@ class TestDecryptPdfProcessor(
         self.telegram_message.reply_text.assert_called_once()
         self.telegram_service.cache_file_data.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_file_task(self) -> None:
         self.pdf_service.decrypt_pdf.return_value.__aenter__.return_value = self.file_path
 
@@ -73,7 +73,7 @@ class TestDecryptPdfProcessor(
                 self.TEXT_INPUT_DATA.id, self.TEXT_INPUT_DATA.text
             )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(FileDataTypeError):
             async with self.sut.process_file_task(self.FILE_DATA):

@@ -30,13 +30,13 @@ class TestCLIService(PathTestMixin):
     def teardown_method(self) -> None:
         self.popen_patcher.stop()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_compress_pdf(self) -> None:
         self.process.returncode = 0
         self.sut.compress_pdf(self.input_path, self.output_path)
         self._assert_compress_command()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_compress_pdf_error(self) -> None:
         self.process.returncode = 1
 
@@ -45,13 +45,13 @@ class TestCLIService(PathTestMixin):
 
         self._assert_compress_command()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_extract_pdf_images(self) -> None:
         self.process.returncode = 0
         self.sut.extract_pdf_images(self.input_path, self.output_path)
         self._assert_get_pdf_images_command()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_extract_pdf_images_error(self) -> None:
         self.process.returncode = 1
 

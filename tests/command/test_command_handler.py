@@ -18,7 +18,7 @@ class TestCommandHandler(TelegramTestMixin):
         self.command_service = MagicMock(spec=CommandService)
         self.sut = MyCommandHandler(self.command_service, self.ADMIN_TELEGRAM_ID)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_handlers(self) -> None:
         actual = self.sut.handlers
         assert len(actual) == 3

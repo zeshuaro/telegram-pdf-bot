@@ -29,7 +29,7 @@ class TestImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Teleg
             self.telegram_service,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
     async def test_beautify_and_convert_images_to_pdf(self, num_files: int) -> None:
         self.file_path.stem = self.FILE_PATH_STEM
@@ -47,7 +47,7 @@ class TestImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Teleg
                     pdfname=self.file_path,
                 )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
     async def test_convert_images_to_pdf(self, num_files: int) -> None:
         image_bytes = "image_bytes"
