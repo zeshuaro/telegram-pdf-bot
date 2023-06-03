@@ -33,21 +33,21 @@ class TestFeedbackService(LanguageServiceTestMixin, TelegramServiceTestMixin, Te
         self.detect_patcher.stop()
         super().teardown_method()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_feedback(self) -> None:
         actual = await self.sut.ask_feedback(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_FEEDBACK
         self.telegram_service.reply_with_cancel_markup.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_save_feedback(self) -> None:
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
 
         assert actual == ConversationHandler.END
         self._assert_save_feedback_and_reply_text()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_save_feedback_invalid_language(self) -> None:
         self.detect.return_value = "clearly_invalid_language"
 
@@ -57,7 +57,7 @@ class TestFeedbackService(LanguageServiceTestMixin, TelegramServiceTestMixin, Te
         self.feedback_repository.save_feedback.assert_not_called()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_cancel(self) -> None:
         self.telegram_message.text = self.CANCEL
 

@@ -49,7 +49,7 @@ class TestSplitPdfProcessor(
         actual = self.sut.get_cleaned_text_input(self.TELEGRAM_TEXT)
         assert actual == expected
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_file_task(self) -> None:
         self.pdf_service.split_pdf.return_value.__aenter__.return_value = self.file_path
 
@@ -59,7 +59,7 @@ class TestSplitPdfProcessor(
                 self.TEXT_INPUT_DATA.id, self.TEXT_INPUT_DATA.text
             )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(FileDataTypeError):
             async with self.sut.process_file_task(self.FILE_DATA):

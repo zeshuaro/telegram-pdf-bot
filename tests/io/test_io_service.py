@@ -29,7 +29,7 @@ class TestIOService:
         self.tf_cls_patcher.stop()
 
     @pytest.mark.parametrize("prefix", [None, FILE_PREFIX, FILE_PREFIX_UNDERSCORE])
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_create_temp_directory(self, prefix: str | None) -> None:
         dir_name = "dir_name"
         td = MagicMock(spec=TemporaryDirectory)
@@ -56,7 +56,7 @@ class TestIOService:
             (FILE_PREFIX_UNDERSCORE, FILE_SUFFIX),
         ],
     )
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_create_temp_file(self, prefix: str | None, suffix: str | None) -> None:
         with self.sut.create_temp_file(prefix, suffix) as actual:
             assert actual == self.FILE_PATH
@@ -65,7 +65,7 @@ class TestIOService:
         self._assert_temp_file(expected_prefix, suffix)
 
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_create_temp_files(self, num_files: int) -> None:
         files = []
         paths = []
@@ -95,7 +95,7 @@ class TestIOService:
                 file.close.assert_called_once()
 
     @pytest.mark.parametrize("prefix", [None, FILE_PREFIX, FILE_PREFIX_UNDERSCORE])
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_create_temp_pdf_file(self, prefix: str | None) -> None:
         with self.sut.create_temp_pdf_file(prefix) as actual:
             assert actual == self.FILE_PATH
@@ -103,13 +103,13 @@ class TestIOService:
         expected_prefix = self._get_expected_prefix(prefix)
         self._assert_temp_file(expected_prefix, ".pdf")
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_create_temp_png_file(self) -> None:
         with self.sut.create_temp_png_file(self.FILE_PREFIX_UNDERSCORE) as actual:
             assert actual == self.FILE_PATH
         self._assert_temp_file(self.FILE_PREFIX_UNDERSCORE, ".png")
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_create_temp_txt_file(self) -> None:
         with self.sut.create_temp_txt_file(self.FILE_PREFIX_UNDERSCORE) as actual:
             assert actual == self.FILE_PATH

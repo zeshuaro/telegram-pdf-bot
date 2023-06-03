@@ -154,7 +154,7 @@ class TestAbstractPdfTextInputProcessor(
             == AbstractFileTaskProcessor.WAIT_FILE_TASK
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_select_option(self) -> None:
         self.telegram_callback_query.data = self.FILE_DATA
         actual = await self.sut._ask_select_option(self.telegram_update, self.telegram_context)
@@ -167,7 +167,7 @@ class TestAbstractPdfTextInputProcessor(
             self.sut.ask_select_option_text, reply_markup=ANY
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_select_option_invalid_callback_query_data(self) -> None:
         self.telegram_callback_query.data = None
 
@@ -179,7 +179,7 @@ class TestAbstractPdfTextInputProcessor(
         )
         self.telegram_callback_query.edit_message_text.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_text_input(self) -> None:
         self.telegram_callback_query.data = self.select_option_data
         self.telegram_callback_query.edit_message_text.return_value = self.telegram_message
@@ -198,7 +198,7 @@ class TestAbstractPdfTextInputProcessor(
             self.telegram_context, self.telegram_message
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_text_input_invalid_callback_query_data(self) -> None:
         self.telegram_callback_query.data = self.FILE_DATA
 
@@ -211,7 +211,7 @@ class TestAbstractPdfTextInputProcessor(
         self.telegram_callback_query.edit_message_text.assert_not_called()
         self.telegram_service.cache_message_data.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_text_input(self) -> None:
         self.telegram_update.callback_query = None
 
@@ -228,7 +228,7 @@ class TestAbstractPdfTextInputProcessor(
             self.telegram_context, self.option_input_data
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_text_input_invalid_input(self) -> None:
         with patch.object(self.sut, "get_cleaned_text_input", return_value=None):
             actual = await self.sut._process_text_input(self.telegram_update, self.telegram_context)
@@ -237,7 +237,7 @@ class TestAbstractPdfTextInputProcessor(
             self.telegram_service.get_file_data.assert_not_called()
             self.telegram_service.cache_file_data.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_text_input_invalid_file_data(self) -> None:
         self.telegram_service.get_file_data.return_value = self.FILE_DATA
 

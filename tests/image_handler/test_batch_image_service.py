@@ -36,14 +36,14 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
             self.language_service,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_first_image(self) -> None:
         actual = await self.sut.ask_first_image(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
         self._assert_ask_first_image()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_image(self) -> None:
         self.telegram_context.user_data.__getitem__.return_value = self.file_data_list
 
@@ -57,7 +57,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_service.send_file_names.assert_called_once()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_image_invlid_image(self) -> None:
         self.telegram_service.check_image.side_effect = TelegramServiceError()
 
@@ -68,7 +68,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_service.send_file_names.assert_not_called()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_remove_last(self) -> None:
         self.telegram_message.text = self.REMOVE_LAST_FILE
         self.telegram_service.get_user_data.return_value = self.file_data_list
@@ -83,7 +83,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_update.effective_message.reply_text.assert_called_once()
         self._assert_ask_first_image()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_remove_last_with_existing_file(self) -> None:
         self.telegram_message.text = self.REMOVE_LAST_FILE
         self.file_data_list.__len__.return_value = 1
@@ -102,7 +102,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         )
         self.telegram_service.send_file_names.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_remove_last_remove_error(self) -> None:
         self.telegram_message.text = self.REMOVE_LAST_FILE
         self.file_data_list.pop.side_effect = IndexError()
@@ -118,7 +118,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_update.effective_message.reply_text.assert_called_once()
         self._assert_ask_first_image()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_beautify(self) -> None:
         self.telegram_message.text = self.BEAUTIFY
         self.file_data_list.__len__.return_value = 2
@@ -143,7 +143,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
             TaskType.beautify_image,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_to_pdf(self) -> None:
         self.telegram_message.text = self.TO_PDF
         self.file_data_list.__len__.return_value = 2
@@ -166,7 +166,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
             TaskType.image_to_pdf,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_process_with_one_file_only(self) -> None:
         self.telegram_message.text = self.BEAUTIFY
         self.file_data_list.__len__.return_value = 1
@@ -182,7 +182,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.image_service.convert_images_to_pdf.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_process_without_files(self) -> None:
         self.telegram_message.text = self.BEAUTIFY
         self.file_data_list.__len__.return_value = 0
@@ -199,7 +199,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_service.send_file.assert_not_called()
         self._assert_ask_first_image()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_cancel(self) -> None:
         self.telegram_message.text = self.CANCEL
         self.telegram_service.cancel_conversation.return_value = ConversationHandler.END
@@ -211,14 +211,14 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
             self.telegram_update, self.telegram_context
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_unknown_text(self) -> None:
         self.telegram_message.text = "clearly_unknown"
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_IMAGE
 
     @pytest.mark.parametrize("text", [REMOVE_LAST_FILE, BEAUTIFY])
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_telegram_service_error(self, text: str) -> None:
         self.telegram_message.text = text
         self.telegram_service.get_user_data.side_effect = TelegramServiceError()

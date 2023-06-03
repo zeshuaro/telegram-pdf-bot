@@ -12,7 +12,7 @@ class TestErrorService(LanguageServiceTestMixin, TelegramTestMixin):
 
         self.sut = ErrorService(self.language_service)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_process_unknown_callback_query(self) -> None:
         await self.sut.process_unknown_callback_query(self.telegram_update, self.telegram_context)
 

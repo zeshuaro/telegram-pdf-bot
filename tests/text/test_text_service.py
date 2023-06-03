@@ -41,13 +41,13 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
             self.language_service,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_pdf_text(self) -> None:
         actual = await self.sut.ask_pdf_text(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_TEXT
         self.telegram_service.reply_with_cancel_markup.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_pdf_font(self) -> None:
         actual = await self.sut.ask_pdf_font(self.telegram_update, self.telegram_context)
 
@@ -57,7 +57,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
         )
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_ask_pdf_font_cancel_option(self) -> None:
         self.telegram_message.text = "Cancel"
 
@@ -67,7 +67,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
         self.telegram_context.user_data.__setitem__.assert_not_called()
         self.telegram_service.cancel_conversation.assert_called_once()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text(self) -> None:
         self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = self.file_path
 
@@ -86,7 +86,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
             TaskType.text_to_pdf,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramServiceError()
 
@@ -100,7 +100,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
         self.pdf_service.create_pdf_from_text.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_unknown_font(self) -> None:
         self.text_repository.get_font.return_value = None
 
@@ -112,7 +112,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
         self.pdf_service.create_pdf_from_text.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_skip_option(self) -> None:
         self.telegram_message.text = self.SKIP
         self.pdf_service.create_pdf_from_text.return_value.__aenter__.return_value = self.file_path
@@ -132,7 +132,7 @@ class TestTextService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
             TaskType.text_to_pdf,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_text_cancel_option(self) -> None:
         self.telegram_message.text = "Cancel"
 

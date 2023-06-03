@@ -56,38 +56,38 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         self.open_patcher.stop()
         super().teardown_method()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_init_with_telegram_app(self) -> None:
         app = MagicMock(spec=Application)
         app.bot = self.telegram_bot
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD
         self.sut.check_file_size(self.telegram_document)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_file_size(self) -> None:
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD
         self.sut.check_file_size(self.telegram_document)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_file_size_too_large(self) -> None:
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD + 1
         with pytest.raises(TelegramFileTooLargeError):
             self.sut.check_file_size(self.telegram_document)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_file_upload_size(self) -> None:
         with patch("pdf_bot.telegram_internal.telegram_service.os") as os:
             os.path.getsize.return_value = FileSizeLimit.FILESIZE_UPLOAD
             self.sut.check_file_upload_size(self.file_path)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_file_upload_size_too_large(self) -> None:
         with patch("pdf_bot.telegram_internal.telegram_service.os") as os:
             os.path.getsize.return_value = FileSizeLimit.FILESIZE_UPLOAD + 1
             with pytest.raises(TelegramFileTooLargeError):
                 self.sut.check_file_upload_size(self.file_path)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_image_document(self) -> None:
         self.telegram_document.mime_type = self.IMG_MIME_TYPE
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD
@@ -97,7 +97,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
 
         assert actual == self.telegram_document
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_image_document_invalid_mime_type(self) -> None:
         self.telegram_document.mime_type = "clearly_invalid"
         self.telegram_message.document = self.telegram_document
@@ -105,7 +105,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         with pytest.raises(TelegramFileMimeTypeError):
             self.sut.check_image(self.telegram_message)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_image_document_too_large(self) -> None:
         self.telegram_document.mime_type = self.IMG_MIME_TYPE
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD + 1
@@ -114,7 +114,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         with pytest.raises(TelegramFileTooLargeError):
             self.sut.check_image(self.telegram_message)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_image(self) -> None:
         self.telegram_photo_size.file_size = FileSizeLimit.FILESIZE_DOWNLOAD
         self.telegram_message.document = None
@@ -124,7 +124,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
 
         assert actual == self.telegram_photo_size
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_image_not_found(self) -> None:
         self.telegram_message.document = None
         self.telegram_message.photo = []
@@ -132,7 +132,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         with pytest.raises(TelegramImageNotFoundError):
             self.sut.check_image(self.telegram_message)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_image_too_large(self) -> None:
         self.telegram_photo_size.file_size = FileSizeLimit.FILESIZE_DOWNLOAD + 1
         self.telegram_message.document = None
@@ -141,7 +141,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         with pytest.raises(TelegramFileTooLargeError):
             self.sut.check_image(self.telegram_message)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_pdf_document(self) -> None:
         self.telegram_document.mime_type = self.PDF_MIME_TYPE
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD
@@ -151,7 +151,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
 
         assert actual == self.telegram_document
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_pdf_document_invalid_mime_type(self) -> None:
         self.telegram_document.mime_type = "clearly_invalid"
         self.telegram_message.document = self.telegram_document
@@ -159,7 +159,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         with pytest.raises(TelegramFileMimeTypeError):
             self.sut.check_pdf_document(self.telegram_message)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_check_pdf_document_too_large(self) -> None:
         self.telegram_document.mime_type = self.PDF_MIME_TYPE
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD + 1
@@ -168,7 +168,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         with pytest.raises(TelegramFileTooLargeError):
             self.sut.check_pdf_document(self.telegram_message)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_download_pdf_file(self) -> None:
         self.io_service.create_temp_pdf_file.return_value.__enter__.return_value = self.file_path
         self.telegram_bot.get_file.return_value = self.telegram_file
@@ -178,7 +178,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
             self.telegram_bot.get_file.assert_called_with(self.TELEGRAM_FILE_ID)
             self.telegram_file.download_to_drive.assert_called_once_with(custom_path=self.file_path)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     @pytest.mark.parametrize("num_files", [1, 2, 5])
     async def test_download_files(self, num_files: int) -> None:
         @dataclass
@@ -213,7 +213,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
                     custom_path=file_and_path.path
                 )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_cancel_conversation(self) -> None:
         self.telegram_update.callback_query = None
 
@@ -224,7 +224,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_callback_query.answer.assert_not_called()
         self.telegram_callback_query.edit_message_text.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_cancel_conversation_with_callback_query(self) -> None:
         self.telegram_update.callback_query = self.telegram_callback_query
 
@@ -238,14 +238,14 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_callback_query.edit_message_text.assert_called_once()
         self.telegram_message.reply_text.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_get_back_button(self) -> None:
         actual = self.sut.get_back_button(self.telegram_update, self.telegram_context)
 
         assert actual.text == self.BACK
         assert isinstance(actual.callback_data, BackData)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_get_back_inline_markup(self) -> None:
         actual = self.sut.get_back_inline_markup(self.telegram_update, self.telegram_context)
 
@@ -256,7 +256,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         assert button.text == self.BACK
         assert isinstance(button.callback_data, BackData)
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_get_support_markup(self) -> None:
         actual = self.sut.get_support_markup(self.telegram_update, self.telegram_context)
         assert isinstance(actual, InlineKeyboardMarkup)
@@ -340,7 +340,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         self.sut.cache_message_data(self.telegram_context, True)
         assert MESSAGE_DATA not in self.telegram_context.user_data
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     @pytest.mark.parametrize("side_effect", [None, KeyError])
     async def test_answer_query_and_drop_data(self, side_effect: type[Exception] | None) -> None:
         self.telegram_context.drop_callback_data.side_effect = side_effect
@@ -354,7 +354,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
             self.telegram_callback_query
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])
     async def test_reply_with_back_markup(self, parse_mode: ParseMode | None) -> None:
         markup = ReplyKeyboardMarkup([[self.BACK]], one_time_keyboard=True, resize_keyboard=True)
@@ -365,7 +365,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
             self.TELEGRAM_TEXT, reply_markup=markup, parse_mode=parse_mode
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     @pytest.mark.parametrize("parse_mode", [None, ParseMode.HTML])
     async def test_reply_with_cancel_markup(self, parse_mode: ParseMode | None) -> None:
         markup = ReplyKeyboardMarkup([[self.CANCEL]], one_time_keyboard=True, resize_keyboard=True)
@@ -376,7 +376,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
             self.TELEGRAM_TEXT, reply_markup=markup, parse_mode=parse_mode
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_file_document(self) -> None:
         file_path = self.file_path.with_suffix(".pdf")
         self.telegram_update.callback_query = None
@@ -399,7 +399,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
             EventAction.complete,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_file_image(self) -> None:
         self.file_path.suffix = ".png"
         self.telegram_update.callback_query = None
@@ -422,7 +422,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
             EventAction.complete,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_file_document_with_query(self) -> None:
         chat_id = 10
         file_path = self.file_path.with_suffix(".pdf")
@@ -449,7 +449,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
             EventAction.complete,
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_file_too_large(self) -> None:
         self.os.path.getsize.return_value = FileSizeLimit.FILESIZE_UPLOAD + 1
 
@@ -465,7 +465,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
         self.telegram_bot.send_photo.assert_not_called()
         self.analytics_service.send_event.assert_not_called()
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_file_names(self) -> None:
         file_data_list = [FileData("a", "a"), FileData("b")]
 
@@ -476,7 +476,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
             f"{self.TELEGRAM_TEXT}1: a\n2: File name unavailable\n",
         )
 
-    @pytest.mark.asyncio
+    @pytest.mark.asyncio()
     async def test_send_message(self) -> None:
         await self.sut.send_message(self.telegram_update, self.telegram_context, self.TELEGRAM_TEXT)
         self.telegram_bot.send_message.assert_called_once_with(
