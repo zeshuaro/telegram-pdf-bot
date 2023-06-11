@@ -1520,19 +1520,18 @@ pillow = "*"
 
 [[package]]
 name = "pdfcropmargins"
-version = "1.2.0"
+version = "2.0.0"
 description = "A command-line program to crop the margins of PDF files, with many options."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "pdfCropMargins-1.2.0-py2.py3-none-any.whl", hash = "sha256:e1dbfeb316f6407081cbf6a2edd45feded5ad16bc7a087c97fe4448511e15236"},
+    {file = "pdfCropMargins-2.0.0-py2.py3-none-any.whl", hash = "sha256:369f55f0a44cb5fdbe7e543043751d6f7bb71a814fa30afb66af9ff3ab186183"},
 ]
 
 [package.dependencies]
 pillow = ">=9.3.0"
 PyMuPDF = ">=1.19.6"
-PyPDF2 = ">=2.11.0,<3.0.0"
 PySimpleGUI = ">=4.19.0.6"
 wheel = "*"
 
@@ -1990,25 +1989,6 @@ python-versions = ">=3.6"
 files = [
     {file = "pypdf-3.9.1-py3-none-any.whl", hash = "sha256:5f4abdb4691a8d7631e7f2db09f66cfe3a388a072882d8375c6b1bdc28027c0a"},
     {file = "pypdf-3.9.1.tar.gz", hash = "sha256:c2b7fcfe25fbd04e8da600cb2700267ecee7e8781dc798cce3a4f567143a4df1"},
-]
-
-[package.extras]
-crypto = ["PyCryptodome"]
-dev = ["black", "flit", "pip-tools", "pre-commit (<2.18.0)", "pytest-cov", "wheel"]
-docs = ["myst_parser", "sphinx", "sphinx_rtd_theme"]
-full = ["Pillow", "PyCryptodome"]
-image = ["Pillow"]
-
-[[package]]
-name = "pypdf2"
-version = "2.12.1"
-description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "PyPDF2-2.12.1.tar.gz", hash = "sha256:e03ef18abcc75da741a0acc1a7749253496887be38cd9887bcce1cee393da45e"},
-    {file = "pypdf2-2.12.1-py3-none-any.whl", hash = "sha256:41ff16ee122bad9790d57a4235281a838002d7f1cc8d631d91b6f65d709bd825"},
 ]
 
 [package.extras]
@@ -2732,4 +2712,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "bc0f1d828571ea6b4a2e646b1ceea54a61ecac83fa8c59a1c7f7e6d890f9cf87"
+content-hash = "f5326ea9ca03a6bc45a9903b9415b42e5f9d585a0036c62e4872bf1ce876d481"
