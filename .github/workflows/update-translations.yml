@@ -16,7 +16,7 @@ jobs:
           token: ${{ secrets.PAT }}
 
       - name: Download translations 🌐
-        uses: crowdin/github-action@v1.9.0
+        uses: crowdin/github-action@v1.10.0
         with:
           upload_sources: false
           upload_translations: false
