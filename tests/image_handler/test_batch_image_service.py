@@ -123,7 +123,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_message.text = self.BEAUTIFY
         self.file_data_list.__len__.return_value = 2
         self.telegram_service.get_user_data.return_value = self.file_data_list
-        self.image_service.beautify_and_convert_images_to_pdf.return_value.__aenter__.return_value = (  # noqa: LineTooLong
+        self.image_service.beautify_and_convert_images_to_pdf.return_value.__aenter__.return_value = (  # noqa: E501
             self.file_path
         )
 

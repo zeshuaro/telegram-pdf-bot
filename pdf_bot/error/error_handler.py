@@ -29,12 +29,12 @@ class ErrorHandler:
 
     async def _handle_error(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         try:
-            raise context.error  # type: ignore # noqa: raise-within-try
+            raise context.error  # type: ignore[misc] # noqa: TRY301
         except Forbidden:
             pass
         except BadRequest as e:
             await self._handle_bad_request(update, context, e)
-        except Exception as e:  # noqa: BlindExcept
+        except Exception as e:  # noqa: BLE001
             await self._send_message(update, context, _("Something went wrong, please try again"))
             sentry_sdk.capture_exception(e)
 

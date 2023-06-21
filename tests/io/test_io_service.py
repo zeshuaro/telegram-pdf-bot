@@ -84,7 +84,7 @@ class TestIOService:
             nonlocal index
             file = files[index]
             index += 1
-            return file  # noqa: UnnecessaryAssign
+            return file
 
         with patch("pdf_bot.io.io_service.NamedTemporaryFile") as tf:
             tf.side_effect = create_tmp_file

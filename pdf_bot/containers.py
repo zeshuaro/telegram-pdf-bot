@@ -77,7 +77,7 @@ class Clients(containers.DeclarativeContainer):
     _settings = providers.Configuration(pydantic_settings=[Settings()])
 
     _session = Session()
-    _session.hooks = {
+    _session.hooks = {  # noqa: RUF012
         "response": lambda r, *_args, **_kwargs: r.raise_for_status()  # pragma: no cover
     }
 

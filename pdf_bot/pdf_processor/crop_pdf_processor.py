@@ -25,7 +25,7 @@ class CropType(SelectOption):
                 " margin space to retain between the content in your PDF file and"
                 " the page"
             )
-        if self == CropType.by_margin_size:  # noqa: implicit-return
+        if self == CropType.by_margin_size:  # noqa: RET503
             return _(
                 "Send me a number that you'll like to adjust the margin"
                 " size\n\nPositive numbers will decrease the margin size and"

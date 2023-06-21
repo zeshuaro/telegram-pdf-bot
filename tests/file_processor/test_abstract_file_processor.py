@@ -1,4 +1,4 @@
-from collections.abc import AsyncGenerator
+from collections.abc import AsyncGenerator, Sequence
 from contextlib import asynccontextmanager
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -35,7 +35,7 @@ class UnknownError(Exception):
 class MockProcessor(PathTestMixin, AbstractFileProcessor):
     PROCESS_RESULT = "process_result"
     TASK_TYPE = TaskType.decrypt_pdf
-    TASK_DATA_LIST = [TaskData("a", FileData), TaskData("b", FileData)]
+    TASK_DATA_LIST = (TaskData("a", FileData), TaskData("b", FileData))
 
     def __init__(
         self,
@@ -48,7 +48,7 @@ class MockProcessor(PathTestMixin, AbstractFileProcessor):
         self.file_task_result = FileTaskResult(self.path)
 
     @classmethod
-    def get_task_data_list(cls) -> list[TaskData]:
+    def get_task_data_list(cls) -> Sequence[TaskData]:
         return cls.TASK_DATA_LIST
 
     @property

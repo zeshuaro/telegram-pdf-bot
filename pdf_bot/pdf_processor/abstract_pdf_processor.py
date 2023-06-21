@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.file_processor.errors import DuplicateClassError
 from pdf_bot.language import LanguageService
@@ -7,7 +9,7 @@ from pdf_bot.telegram_internal import TelegramService
 
 
 class AbstractPdfProcessor(AbstractFileProcessor):
-    _PDF_PROCESSORS: dict[str, "AbstractPdfProcessor"] = {}
+    _PDF_PROCESSORS: ClassVar[dict[str, "AbstractPdfProcessor"]] = {}
 
     def __init__(
         self,

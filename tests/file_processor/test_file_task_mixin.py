@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 class TestFileTaskMixin(LanguageServiceTestMixin, TelegramTestMixin):
     WAIT_FILE_TASK = "wait_file_task"
-    TASK_DATA_LIST = [TaskData("a", FileData), TaskData("b", FileData)]
+    TASK_DATA_LIST = (TaskData("a", FileData), TaskData("b", FileData))
 
     def setup_method(self) -> None:
         super().setup_method()

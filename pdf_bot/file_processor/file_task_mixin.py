@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from typing import cast
 
 from telegram import (
@@ -24,7 +25,7 @@ class FileTaskMixin:
         language_service: LanguageService,
         update: Update,
         context: ContextTypes.DEFAULT_TYPE,
-        tasks: list[TaskData],
+        tasks: Sequence[TaskData],
     ) -> str | int:
         _ = language_service.set_app_language(update, context)
         msg = cast(Message, update.effective_message)

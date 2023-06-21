@@ -27,7 +27,7 @@ class RotateDegreeData(RotatePdfData):
 
 class RotatePdfProcessor(AbstractPdfProcessor):
     _WAIT_DEGREE = "wait_degree"
-    _DEGREES = [90, 180, 270]
+    _DEGREES = (90, 180, 270)
 
     @property
     def task_type(self) -> TaskType:
