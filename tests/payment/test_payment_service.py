@@ -12,7 +12,7 @@ class TestPaymentService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
     INVOICE_PAYLOAD = "invoice_payload"
     PAYMENT_DATA = PaymentData(label="label", emoji="emoji", value=1)
 
-    PAYMENT_AMOUNTS = [1, 3, 5, 10]
+    PAYMENT_AMOUNTS = (1, 3, 5, 10)
 
     def setup_method(self) -> None:
         super().setup_method()

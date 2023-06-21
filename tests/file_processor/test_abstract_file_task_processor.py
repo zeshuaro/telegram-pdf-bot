@@ -9,7 +9,7 @@ from tests.telegram_internal import TelegramTestMixin
 
 
 class MockProcessor(AbstractFileTaskProcessor):
-    TASK_DATA_LIST = [TaskData("a", FileData), TaskData("b", FileData)]
+    TASK_DATA_LIST = (TaskData("a", FileData), TaskData("b", FileData))
 
     @property
     def processor_type(self) -> type[AbstractFileProcessor]:

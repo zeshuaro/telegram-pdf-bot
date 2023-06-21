@@ -33,7 +33,7 @@ def main(
 
     if settings.app_url is not None:
         telegram_app.run_webhook(
-            listen="0.0.0.0",  # noqa: hardcoded-bind-all-interfaces
+            listen="0.0.0.0",  # noqa: S104
             port=settings.port,
             url_path=settings.telegram_token,
             webhook_url=f"{settings.app_url}/{settings.telegram_token}",

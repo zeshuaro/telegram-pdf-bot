@@ -26,7 +26,7 @@ class ScaleType(SelectOption):
                 " axes\n\nExample: 2 0.5 - this will double the horizontal axis and"
                 " halve the vertical axis"
             )
-        if self == ScaleType.to_dimension:  # noqa: implicit-return
+        if self == ScaleType.to_dimension:  # noqa: RET503
             return _(
                 "Send me the width and height\n\nExample: 150 200 - this will set"
                 " the width to 150 and height to 200"

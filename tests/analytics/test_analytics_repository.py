@@ -1,3 +1,4 @@
+from typing import ClassVar
 from unittest.mock import MagicMock
 
 from requests import Session
@@ -7,7 +8,7 @@ from pdf_bot.settings import Settings
 
 
 class TestAnalyticsRepository:
-    EVENT = {"analytics": "event"}
+    EVENT: ClassVar[dict[str, str]] = {"analytics": "event"}
 
     def setup_method(self) -> None:
         self.session = MagicMock(spec=Session)

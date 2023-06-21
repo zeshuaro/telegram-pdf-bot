@@ -26,12 +26,12 @@ class PaymentService:
     _PAYMENT_MESSAGE = _("{message} {emoji} (${value})")
     _KEYBOARD_SIZE = 2
 
-    _PAYMENT_DATA_LIST = [
+    _PAYMENT_DATA_LIST = (
         PaymentData(label=_("Say Thanks"), emoji="😁", value=1),
         PaymentData(label=_("Coffee"), emoji="☕", value=3),
         PaymentData(label=_("Beer"), emoji="🍺", value=5),
         PaymentData(label=_("Meal"), emoji="🍲", value=10),
-    ]
+    )
 
     def __init__(
         self,

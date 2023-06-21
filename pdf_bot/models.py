@@ -14,7 +14,7 @@ class SupportData:
 
 @dataclass
 class FileData:
-    id: str  # noqa: builtin-attribute-shadowing
+    id: str  # noqa: A003
     name: str | None = None
 
     @classmethod

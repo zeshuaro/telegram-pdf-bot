@@ -1,9 +1,9 @@
 import shutil
 from abc import ABC, abstractmethod
-from collections.abc import AsyncGenerator, Callable, Coroutine
+from collections.abc import AsyncGenerator, Callable, Coroutine, Sequence
 from contextlib import asynccontextmanager, suppress
 from pathlib import Path
-from typing import Any, cast
+from typing import Any, ClassVar, cast
 
 from telegram import Message, Update
 from telegram.error import BadRequest
@@ -25,7 +25,7 @@ ErrorHandlerType = Callable[
 
 
 class AbstractFileProcessor(FileTaskMixin, ABC):
-    _FILE_PROCESSORS: dict[str, "AbstractFileProcessor"] = {}
+    _FILE_PROCESSORS: ClassVar[dict[str, "AbstractFileProcessor"]] = {}
 
     def __init__(
         self,
@@ -43,7 +43,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
 
     @classmethod
     @abstractmethod
-    def get_task_data_list(cls) -> list[TaskData]:
+    def get_task_data_list(cls) -> Sequence[TaskData]:
         pass
 
     @classmethod

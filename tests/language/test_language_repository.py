@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, ClassVar
 from unittest.mock import MagicMock, patch
 
 from google.cloud.datastore import Client, Entity
@@ -10,7 +10,7 @@ from pdf_bot.language import LanguageRepository
 class TestLanguageRepository:
     USER_ID = 0
     LANGUAGE_CODE = "lang_code"
-    USER_ENTITY_DICT = {LANGUAGE: LANGUAGE_CODE}
+    USER_ENTITY_DICT: ClassVar[dict[str, str]] = {LANGUAGE: LANGUAGE_CODE}
 
     def setup_method(self) -> None:
         self.user_entity = MagicMock(spec=Entity)

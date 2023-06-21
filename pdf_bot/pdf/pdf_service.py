@@ -164,7 +164,7 @@ class PdfService:
 
         try:
             if reader.decrypt(password) == PasswordType.NOT_DECRYPTED:
-                raise PdfIncorrectPasswordError(  # noqa: raise-within-try
+                raise PdfIncorrectPasswordError(  # noqa: TRY301
                     _("Incorrect password, please try again")
                 )
         except NotImplementedError as e:

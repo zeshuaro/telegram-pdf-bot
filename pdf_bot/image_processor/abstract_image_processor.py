@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from pdf_bot.file_processor import AbstractFileProcessor
 from pdf_bot.file_processor.errors import DuplicateClassError
 from pdf_bot.image import ImageService
@@ -7,7 +9,7 @@ from pdf_bot.telegram_internal import TelegramService
 
 
 class AbstractImageProcessor(AbstractFileProcessor):
-    _IMAGE_PROCESSORS: dict[str, "AbstractImageProcessor"] = {}
+    _IMAGE_PROCESSORS: ClassVar[dict[str, "AbstractImageProcessor"]] = {}
 
     def __init__(
         self,
