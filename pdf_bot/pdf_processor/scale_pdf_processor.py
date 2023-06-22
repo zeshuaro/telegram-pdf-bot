@@ -19,7 +19,7 @@ class ScaleType(SelectOption):
     to_dimension = _("To dimension")
 
     @property
-    def ask_value_text(self) -> str:  # type: ignore[return] # pragma: no cover
+    def ask_value_text(self) -> str:  # pragma: no cover
         if self == ScaleType.by_factor:
             return _(
                 "Send me the scaling factors for the horizontal and vertical"
