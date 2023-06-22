@@ -18,7 +18,7 @@ class CropType(SelectOption):
     by_margin_size = _("To margin size")
 
     @property
-    def ask_value_text(self) -> str:  # type: ignore[return] # pragma: no cover
+    def ask_value_text(self) -> str:  # pragma: no cover
         if self == CropType.by_percentage:
             return _(
                 "Send me a number between 0 and 100\n\nThis is the percentage of"
