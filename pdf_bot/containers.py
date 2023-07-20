@@ -1,4 +1,6 @@
+import pydantic
 from dependency_injector import containers, providers
+from pydantic_settings import BaseSettings
 from requests import Session
 from slack_sdk import WebClient as SlackClient
 from telegram.ext import AIORateLimiter, ExtBot
@@ -44,6 +46,8 @@ from pdf_bot.telegram_internal import TelegramService
 from pdf_bot.text import TextHandler, TextRepository, TextService
 from pdf_bot.watermark import WatermarkHandler, WatermarkService
 from pdf_bot.webpage import WebpageHandler, WebpageService
+
+pydantic.BaseSettings = BaseSettings
 
 
 class Core(containers.DeclarativeContainer):

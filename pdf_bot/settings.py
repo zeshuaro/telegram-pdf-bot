@@ -1,10 +1,13 @@
-from pydantic import BaseSettings, Field
+from pathlib import Path
+
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    class Config:
-        env_file = ".env.test", ".env"
-        env_file_encoding = "utf-8"
+    model_config = SettingsConfigDict(
+        extra="ignore", env_file=[Path(".env.test"), Path(".env")], env_file_encoding="utf-8"
+    )
 
     telegram_token: str = Field(..., env="telegram_token")
     slack_token: str = Field(..., env="slack_token")
@@ -25,4 +28,4 @@ class Settings(BaseSettings):
     request_connect_timeout: int = 45
     request_pool_timeout: int = 45
 
-    sentry_dsn: str | None = Field(env="sentry_dsn")
+    sentry_dsn: str | None = Field(default=None, env="sentry_dsn")
