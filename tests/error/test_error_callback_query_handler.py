@@ -23,4 +23,4 @@ class TestErrorCallbackQueryHandler(TelegramServiceTestMixin):
         assert isinstance(handler, CallbackQueryHandler)
 
         await handler.callback(self.telegram_update, self.telegram_context)
-        self.error_service.process_unknown_callback_query.process_unknown_callback_query()
+        self.error_service.process_unknown_callback_query.assert_called_once()
