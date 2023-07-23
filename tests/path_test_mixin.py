@@ -1,4 +1,5 @@
 from io import BufferedWriter
+from os import stat_result
 from pathlib import Path
 from unittest.mock import MagicMock
 
@@ -21,3 +22,9 @@ class PathTestMixin:
         writer = MagicMock(spec=BufferedWriter)
         path.open.return_value.__enter__.return_value = writer
         return writer
+
+    @staticmethod
+    def mock_path_stat(path: MagicMock) -> MagicMock:
+        stat = MagicMock(spec=stat_result)
+        path.stat.return_value = stat
+        return stat
