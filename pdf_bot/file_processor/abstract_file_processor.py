@@ -68,7 +68,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
     @asynccontextmanager
     @abstractmethod
     async def process_file_task(self, file_data: FileData) -> AsyncGenerator[FileTaskResult, None]:
-        yield FileTaskResult(Path("."))
+        yield FileTaskResult(Path())
 
     @property
     def generic_error_types(self) -> set[type[Exception]]:

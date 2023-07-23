@@ -180,19 +180,18 @@ class TestPDFService(
         old_size = 20
         new_size = 10
 
-        def getsize_side_effect(path: str, *_args: Any, **_kwargs: Any) -> int:
-            if path == self.download_path:
-                return old_size
-            return new_size
+        download_stat = self.mock_path_stat(self.download_path)
+        download_stat.st_size = old_size
 
-        with patch("pdf_bot.pdf.pdf_service.os") as mock_os:
-            mock_os.path.getsize.side_effect = getsize_side_effect
-            async with self.sut.compress_pdf(self.TELEGRAM_FILE_ID) as compress_result:
-                assert compress_result == CompressResult(old_size, new_size, self.file_path)
-                self.cli_service.compress_pdf.assert_called_once_with(
-                    self.download_path, self.file_path
-                )
-                self._assert_telegram_and_io_services("Compressed")
+        file_stat = self.mock_path_stat(self.file_path)
+        file_stat.st_size = new_size
+
+        async with self.sut.compress_pdf(self.TELEGRAM_FILE_ID) as compress_result:
+            assert compress_result == CompressResult(old_size, new_size, self.file_path)
+            self.cli_service.compress_pdf.assert_called_once_with(
+                self.download_path, self.file_path
+            )
+            self._assert_telegram_and_io_services("Compressed")
 
     @pytest.mark.asyncio()
     async def test_convert_to_images(self) -> None:

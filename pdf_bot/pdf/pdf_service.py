@@ -99,8 +99,8 @@ class PdfService:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("Compressed") as out_path:
                 self.cli_service.compress_pdf(file_path, out_path)
-                old_size = os.path.getsize(file_path)
-                new_size = os.path.getsize(out_path)
+                old_size = file_path.stat().st_size
+                new_size = out_path.stat().st_size
                 yield CompressResult(old_size, new_size, out_path)
 
     @asynccontextmanager

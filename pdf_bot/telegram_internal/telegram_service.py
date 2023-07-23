@@ -1,4 +1,3 @@
-import os
 from collections.abc import AsyncGenerator, Coroutine
 from contextlib import asynccontextmanager, suppress
 from gettext import gettext as _
@@ -75,7 +74,7 @@ class TelegramService:
 
     @staticmethod
     def check_file_upload_size(path: Path) -> None:
-        if os.path.getsize(path) > FileSizeLimit.FILESIZE_UPLOAD:
+        if path.stat().st_size > FileSizeLimit.FILESIZE_UPLOAD:
             raise TelegramFileTooLargeError(
                 _(
                     "The file is too large for me to send to you\n\n"
