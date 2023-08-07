@@ -1,9 +1,0 @@
-name: Close stale
-
-on:
-  schedule:
-    - cron: "0 0 * * *"
-
-jobs:
-  stale:
-    uses: zeshuaro/github-actions-workflows/.github/workflows/close-stale.yml@9e2c06558435e12cf64e73dd210306b4883aafdd
