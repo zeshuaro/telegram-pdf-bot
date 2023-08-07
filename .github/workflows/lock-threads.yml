@@ -1,0 +1,10 @@
+name: Lock threads
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  lock:
+    uses: zeshuaro/github-actions-workflows/.github/workflows/lock-threads.yml@8e0899c51a110616ace8e3c7f4e8bb09d3d7d9df
