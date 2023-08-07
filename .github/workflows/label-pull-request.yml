@@ -5,17 +5,6 @@ on:
     types:
       - opened
 
-permissions:
-  contents: read
-  pull-requests: write
-
 jobs:
   label:
-    name: Label
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Label pull request 🏷️
-        uses: TimonVS/pr-labeler-action@v4.1.1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+    uses: zeshuaro/github-actions-workflows/.github/workflows/label-pull-request.yml@138991e799dccae72b1b675048aa6ebdb5483479
