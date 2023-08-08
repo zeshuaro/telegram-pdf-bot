@@ -1,13 +1,9 @@
-name: Scheduled jobs
+name: Scheduled actions
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 8 * * *"
 
 jobs:
-  stale:
-    name: Close stale
-    uses: zeshuaro/github-actions-workflows/.github/workflows/close-stale.yml@de1d095ed7299374421389eae787b7720efea5c6
-  lock:
-    name: Lock threads
-    uses: zeshuaro/github-actions-workflows/.github/workflows/lock-threads.yml@de1d095ed7299374421389eae787b7720efea5c6
+  scheduled:
+    uses: zeshuaro/github-actions-workflows/.github/workflows/scheduled.yml@9970f6cf32b604e2b63c62f6f4296677f0ec6f22
