@@ -2037,18 +2037,18 @@ files = [
 
 [[package]]
 name = "pypdf"
-version = "3.15.1"
+version = "3.15.2"
 description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "pypdf-3.15.1-py3-none-any.whl", hash = "sha256:99b337af7da8046d1e2e94354846e8c56753e1cdc817ac0fbe770c1e2281902b"},
-    {file = "pypdf-3.15.1.tar.gz", hash = "sha256:d0dfaf4f10dfb06ac39e1d6a9cbffd63e77621d1e89c0ef08f346fd902df7b4b"},
+    {file = "pypdf-3.15.2-py3-none-any.whl", hash = "sha256:f6e598292be34187287a609c72815c1502b3dc2c997b374ba0870ce79d2e975a"},
+    {file = "pypdf-3.15.2.tar.gz", hash = "sha256:cdf7d75ebb8901f3352cf9488c5f662c6de9c52e432c429d15cada67ba372fce"},
 ]
 
 [package.extras]
 crypto = ["PyCryptodome", "cryptography"]
-dev = ["black", "flit", "pip-tools", "pre-commit (<2.18.0)", "pytest-cov", "pytest-socket", "wheel"]
+dev = ["black", "flit", "pip-tools", "pre-commit (<2.18.0)", "pytest-cov", "pytest-socket", "pytest-timeout", "wheel"]
 docs = ["myst_parser", "sphinx", "sphinx_rtd_theme"]
 full = ["Pillow (>=8.0.0)", "PyCryptodome", "cryptography"]
 image = ["Pillow (>=8.0.0)"]
@@ -2732,4 +2732,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.12"
-content-hash = "b0e0a350613626b37c99564f330a74f0741d42d660317e26ba379d928ee4c4d1"
+content-hash = "6996859555ec88cf643feb2baa037f41935696172a3ca8a525a91a4c2a57ab4c"
