@@ -112,6 +112,17 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
+      - name: Set pyenv path 🗂️
+        run: echo "pyenv_path=$HOME/.pyenv" >> "$GITHUB_ENV"
+
+      - name: Cache pyenv 💾
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.pyenv_path }}
+          key: ${{ runner.os }}-pyenv-${{ hashFiles('.python-version') }}
+          restore-keys: |
+            ${{ runner.os }}-pyenv-
+
       - name: Check Python version in pyenv 🐍
         run: |
           curl https://pyenv.run | bash
