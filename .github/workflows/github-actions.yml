@@ -103,6 +103,23 @@ jobs:
         run: |-
           docker build .
 
+  check-pyenv:
+    name: Check pyenv
+    runs-on: ubuntu-latest
+    if: ${{ github.ref != 'refs/heads/master' }}
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Check Python version in pyenv 🐍
+        run: |
+          curl https://pyenv.run | bash
+          export PYENV_ROOT="$HOME/.pyenv"
+          command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+          eval "$(pyenv init -)"
+          pyenv install
+
   build-deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
