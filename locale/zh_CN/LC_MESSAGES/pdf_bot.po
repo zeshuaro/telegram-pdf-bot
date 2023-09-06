@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2023-07-23 11:31+0000\n"
-"PO-Revision-Date: 2023-07-23 11:31\n"
+"PO-Revision-Date: 2023-09-06 08:16\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
@@ -57,7 +57,7 @@ msgstr "- 压缩、合并、预览、重新命名、拆分并添加水印到 PDF
 
 #: pdf_bot/command/command_service.py:43
 msgid "- Create PDF files from text messages"
-msgstr "- 从短信创建 PDF 文件"
+msgstr "- 从文本消息创建 PDF 文件"
 
 #: pdf_bot/command/command_service.py:44
 msgid "- Extract images and text from PDF files"
@@ -81,7 +81,7 @@ msgstr "- 还有更多..."
 
 #: pdf_bot/command/command_service.py:49
 msgid "Type {command} to see how to use PDF Bot"
-msgstr "类型 {command} ，查看如何使用 PDF 机器人"
+msgstr "输入 {command}，查看如何使用 PDF 机器人"
 
 #: pdf_bot/command/command_service.py:58
 msgid "Set Language 🌎"
@@ -99,7 +99,7 @@ msgstr "支持 PDF Bot"
 
 #: pdf_bot/command/command_service.py:70
 msgid "You can perform most of the tasks by sending me one of the followings:"
-msgstr "您可以通过向我发送以下以下一项来执行大部分任务："
+msgstr "您可以通过向我发送如下内容来执行大部分任务："
 
 #: pdf_bot/command/command_service.py:71
 msgid "- PDF files"
@@ -127,11 +127,11 @@ msgstr "{command} - 合并 PDF 文件"
 
 #: pdf_bot/command/command_service.py:77
 msgid "{command} - convert and combine multiple images into PDF files"
-msgstr "{command} - 将多个图像转换并合并为PDF文件"
+msgstr "{command} - 将多个图像转换合并为PDF文件"
 
 #: pdf_bot/command/command_service.py:80
 msgid "{command} - create PDF files from text messages"
-msgstr "{command} - 从短信创建 PDF 文件"
+msgstr "{command} - 从文本消息创建 PDF 文件"
 
 #: pdf_bot/command/command_service.py:83
 msgid "{command} - add watermark to PDF files"
@@ -139,7 +139,7 @@ msgstr "{command} - 在 PDF 文件中添加水印"
 
 #: pdf_bot/compare/compare_service.py:41
 msgid "Send me one of the PDF files that you'll like to compare"
-msgstr "向我发送您要比较的 PDF 文件之一"
+msgstr "向我发送您想要比较的 PDF 文件"
 
 #: pdf_bot/compare/compare_service.py:42
 msgid "Note that I can only look for text differences"
@@ -169,7 +169,7 @@ msgstr "按钮已过期，请使用文件或命令重新开始"
 
 #: pdf_bot/feedback/feedback_service.py:31
 msgid "Send me your feedback in English"
-msgstr "用英语向我发送您的反馈"
+msgstr "用英语向我反馈"
 
 #: pdf_bot/feedback/feedback_service.py:54
 msgid "The feedback is not in English, try again"
@@ -185,12 +185,12 @@ msgstr "您的文件太大，我无法下载和处理"
 
 #: pdf_bot/file/file_service.py:55
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
-msgstr "请注意，这是一个电报机器人的限制，我什么也做不了，除非电报改变这个限制"
+msgstr "请注意，这是 Telegram 机器人的限制，除非电报对此进行更改，否则我无能为力"
 
 #: pdf_bot/file_processor/abstract_file_processor.py:105
 #: pdf_bot/file_processor/abstract_file_processor.py:163
 msgid "Processing your file"
-msgstr "处理您的文件"
+msgstr "正在处理您的文件"
 
 #: pdf_bot/file_processor/file_task_mixin.py:69
 msgid "Select the task that you'll like to perform"
@@ -229,7 +229,7 @@ msgstr "如果您已将所有图像发送给我，请从下面选择任务，或
 
 #: pdf_bot/image_handler/batch_image_service.py:123
 msgid "You've already removed all the images you've sent me"
-msgstr "您已经删除了发送给我的所有图像"
+msgstr "您已经删除了所有发送给我的图像"
 
 #: pdf_bot/image_handler/batch_image_service.py:127
 msgid "{file_name} has been removed"
@@ -237,11 +237,11 @@ msgstr "{file_name} 已被删除"
 
 #: pdf_bot/image_handler/batch_image_service.py:147
 msgid "You haven't sent me any images"
-msgstr "你还没有给我发任何图片"
+msgstr "您还没有给我发任何图片"
 
 #: pdf_bot/image_handler/batch_image_service.py:150
 msgid "You've only sent me one image"
-msgstr "你只给我发了一张图片"
+msgstr "您只给我发了一张图片"
 
 #: pdf_bot/image_handler/batch_image_service.py:167
 msgid "Beautifying and converting your images into a PDF file"
@@ -273,15 +273,15 @@ msgstr "到目前为止，您已经向我发送了这些PDF文件："
 
 #: pdf_bot/merge/merge_service.py:92
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
-msgstr "按 {done} ，如果您已将您希望合并的所有 PDF 文件发送给我，或继续将 PDF 文件发送给我"
+msgstr "如果您已将您希望合并的所有 PDF 文件发送给我，请点击 {done}，或者继续向我发送 PDF 文件"
 
 #: pdf_bot/merge/merge_service.py:114
 msgid "You've already removed all the PDF files you've sent me"
-msgstr "您已经删除了发送给我的所有PDF文件"
+msgstr "您已经删除了所有发送给我的 PDF 文件"
 
 #: pdf_bot/merge/merge_service.py:118
 msgid "{file_name} has been removed for merging"
-msgstr "合并 {file_name} 已被移除"
+msgstr "用于合并的 {file_name} 已被移除"
 
 #: pdf_bot/merge/merge_service.py:140
 msgid "You haven't sent me any PDF files"
@@ -289,7 +289,7 @@ msgstr "你还没有向我发送任何PDF档案"
 
 #: pdf_bot/merge/merge_service.py:143
 msgid "You've only sent me one PDF file"
-msgstr "你只寄给我一个 Pdf 文件"
+msgstr "你只给我发了一个 PDF 文件"
 
 #: pdf_bot/merge/merge_service.py:156
 msgid "Merging your PDF files"
@@ -297,7 +297,7 @@ msgstr "正在合并你的PDF档案"
 
 #: pdf_bot/payment/payment_service.py:26
 msgid "{message} {emoji} (${value})"
-msgstr "{message} {emoji} （${value}）"
+msgstr "{message} {emoji}（${value}）"
 
 #: pdf_bot/payment/payment_service.py:30
 msgid "Say Thanks"
@@ -313,7 +313,7 @@ msgstr "啤酒"
 
 #: pdf_bot/payment/payment_service.py:33
 msgid "Meal"
-msgstr "餐"
+msgstr "套餐"
 
 #: pdf_bot/payment/payment_service.py:59
 msgid "Select how you want to support PDF Bot"
@@ -349,7 +349,7 @@ msgstr "密码不正确，请重试"
 
 #: pdf_bot/pdf/pdf_service.py:170
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
-msgstr "您的 PDF 文件使用一种无法解密的方法进行加密"
+msgstr "您的 PDF 文件使用了一种我无法解密的加密方法"
 
 #: pdf_bot/pdf/pdf_service.py:202
 msgid "No images found in your PDF file"
@@ -357,12 +357,12 @@ msgstr "在 PDF 文件中找不到图像"
 
 #: pdf_bot/pdf/pdf_service.py:214
 msgid "No text found in your PDF file"
-msgstr "在 PDF 文件中找不到任何文本"
+msgstr "在 PDF 文件中找不到文本"
 
 #: pdf_bot/pdf/pdf_service.py:233
 #, python-format
 msgid "I couldn't merge your PDF files as this file is invalid: %s"
-msgstr ""
+msgstr "无法合并您的 PDF 文件，因为此文件无效：%s"
 
 #: pdf_bot/pdf/pdf_service.py:248
 msgid "Your PDF file already has a text layer"
@@ -370,7 +370,7 @@ msgstr "你的PDF档案已经有一层文字"
 
 #: pdf_bot/pdf/pdf_service.py:337
 msgid "Your PDF file is invalid"
-msgstr "您的 PDF 文件无效"
+msgstr "PDF 文件无效"
 
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:24
 msgid "Compress"
@@ -378,26 +378,26 @@ msgstr "压缩"
 
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:35
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
-msgstr "文件大小减少 {percent}，从 {old_size} 减少到 {new_size}"
+msgstr "文件大小减少了 {percent}，从 {old_size} 减少到了 {new_size}"
 
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:17
 msgid "By percentage"
-msgstr "按百分比"
+msgstr "按百分比剪裁"
 
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:18
 msgid "To margin size"
-msgstr "到边距大小"
+msgstr "按边距大小"
 
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:23
 msgid "Send me a number between 0 and 100\n\n"
 "This is the percentage of margin space to retain between the content in your PDF file and the page"
-msgstr "给我发一个介于 0 到 100\n\n"
-"之间的数字 这是 PDF 文件中的内容与页面之间要保留的边距空间百分比"
+msgstr "给我发一个介于 0 到 100 的数字\n\n"
+"这是 PDF 文件中的内容与页面之间要保留的边距空间百分比"
 
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:29
 msgid "Send me a number that you'll like to adjust the margin size\n\n"
 "Positive numbers will decrease the margin size and negative numbers will increase it"
-msgstr "向我发送一个您想调整边距大小的数字\n\n"
+msgstr "向我发送一个用于调整边距大小的数字\n\n"
 "正数将减小边距大小，负数将增加边距大小"
 
 #: pdf_bot/pdf_processor/crop_pdf_processor.py:55
@@ -456,7 +456,7 @@ msgstr "重新命名"
 #, python-format
 msgid "File names can't contain any of the following characters, please try again:\n"
 "%s"
-msgstr ""
+msgstr "请重试，文件名不能包含以下字符：%s"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
@@ -472,11 +472,11 @@ msgstr "选择你想要顺时针旋转你PDF档案的度数"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:18
 msgid "By factor"
-msgstr "按因素"
+msgstr "按比例因子"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:19
 msgid "To dimension"
-msgstr "到尺寸"
+msgstr "按尺寸"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:24
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
@@ -496,7 +496,7 @@ msgstr "缩放"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:59
 msgid "Select the scale type you'll like to perform"
-msgstr "选择您要执行的秤类型"
+msgstr "选择你要的缩放类型"
 
 #: pdf_bot/pdf_processor/scale_pdf_processor.py:67
 msgid "The scale values are invalid, try again"
@@ -524,11 +524,11 @@ msgstr "{range}      所有页面"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:58
 msgid "{range}      page 8 only"
-msgstr "仅限 {range}      页 8"
+msgstr "{range}      仅第 8 页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:59
 msgid "{range}    first three pages"
-msgstr "前三页{range}"
+msgstr "{range}    前三页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:60
 msgid "{range}     from page 8 onward"
@@ -536,23 +536,23 @@ msgstr "{range}     从第 8 页开始"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:61
 msgid "{range}     last page only"
-msgstr "仅 {range}     最后一页"
+msgstr "{range}     仅最后一页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:62
 msgid "{range}    all pages except the last page"
-msgstr "除最后一页外，所有页面都{range}"
+msgstr "{range}    除最后一页之外的所有页面"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
 msgid "{range}     second last page only"
-msgstr "仅 {range}     最后一页的第二页"
+msgstr "{range}     仅倒数第二页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:64
 msgid "{range}    last two pages"
-msgstr "最后两页{range}"
+msgstr "{range}    最后两页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:65
 msgid "{range}  third and second last pages"
-msgstr "{range}  第三页和第二页"
+msgstr "{range}  倒数第二三页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:66
 msgid "Advanced usage"
@@ -560,35 +560,35 @@ msgstr "进阶用法"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:67
 msgid "{range}    pages {pages} and to the end"
-msgstr "{range}    页 {pages} ，并到最后"
+msgstr "{range}    {pages} 页到最后"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:70
 msgid "{range} pages {pages}"
-msgstr "{range} 页 {pages}"
+msgstr "{range} 共 {pages} 页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:71
 msgid "{range}   all pages in reversed order"
-msgstr "{range}   所有页面的倒序"
+msgstr "{range}   倒序排列所有页面"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:72
 msgid "{range} pages {pages} except {page}"
-msgstr "除了 {page}， {pages} 页{range} 页"
+msgstr "{range} 除第 {page} 页外共 {pages} 页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:75
 msgid "{range}  pages {pages}"
-msgstr "{range}  页 {pages}"
+msgstr "{range}  共 {pages} 页"
 
 #: pdf_bot/telegram_internal/telegram_service.py:67
 msgid "Your file is too large for me to download and process, please try again with a differnt file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "您的文件太大，我无法下载和处理，请使用其他文件重试\n\n"
-"请注意，此限制由 Telegram 强制执行，除非 Telegram 更改它，否则我无能为力"
+"请注意，此限制由 Telegram 强制执行，除非 Telegram 对此进行改动，否则我无能为力"
 
 #: pdf_bot/telegram_internal/telegram_service.py:79
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
-msgstr "文件太大，我无法发送给您\n\n"
-"请注意，此限制是由电报强制执行的，除非电报更改它，否则我无能为力"
+msgstr "文件太大，我无法发送\n\n"
+"请注意，此限制是由 Telegram 强制执行的，除非电报更改它，否则我无能为力"
 
 #: pdf_bot/telegram_internal/telegram_service.py:155
 msgid "Your file is not an image, please try again"
@@ -596,7 +596,7 @@ msgstr "您的文件不是图像，请重试"
 
 #: pdf_bot/telegram_internal/telegram_service.py:161
 msgid "No image found in your message"
-msgstr "在邮件中未找到图像"
+msgstr "未在您的消息中找到图片"
 
 #: pdf_bot/telegram_internal/telegram_service.py:171
 msgid "Your file is not a PDF file, please try again"
