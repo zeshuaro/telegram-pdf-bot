@@ -28,7 +28,9 @@ class TestAnalyticsService(LanguageServiceTestMixin, TelegramTestMixin):
         self._test_and_assert_send_event()
 
     def test_send_event_error(self) -> None:
-        self.analytics_repository.send_event.side_effect = HTTPError()
+        self.analytics_repository.send_event.side_effect = HTTPError(
+            request=MagicMock(), response=MagicMock()
+        )
 
         with patch("pdf_bot.analytics.analytics_service.logger") as logger:
             self._test_and_assert_send_event()
