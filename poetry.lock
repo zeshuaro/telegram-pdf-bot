@@ -1405,33 +1405,32 @@ files = [
 
 [[package]]
 name = "ocrmypdf"
-version = "14.4.0"
+version = "15.0.1"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "ocrmypdf-14.4.0-py38-none-any.whl", hash = "sha256:5969a22de0272e5a633f57f55a1756644bd82b4cd8226c62f9213e1cb1ee3191"},
-    {file = "ocrmypdf-14.4.0.tar.gz", hash = "sha256:bd6fcc813cc9766768058687cf94efe3403993244b19c51771617403858c692d"},
+    {file = "ocrmypdf-15.0.1-py39-none-any.whl", hash = "sha256:5ad4694b7f8c9b59b8938a46f1ed6ac881cbcbd12b0c4d0b1a9f9afcea34fec7"},
+    {file = "ocrmypdf-15.0.1.tar.gz", hash = "sha256:391dcfd3a6d102c05a5f0632a0e9333bf4647a90c90a265dda49fe44fa78d2e2"},
 ]
 
 [package.dependencies]
 deprecation = ">=2.1.0"
-img2pdf = ">=0.3.0"
+img2pdf = ">=0.4.4"
 packaging = ">=20"
-"pdfminer.six" = ">=20201018"
-pikepdf = ">=5.0.1"
-Pillow = ">=8.2.0"
+"pdfminer.six" = ">=20220319"
+pikepdf = ">=8"
+Pillow = ">=9.0.1"
 pluggy = ">=0.13.0"
-reportlab = ">=3.5.66"
+reportlab = ">=3.6.8"
 rich = ">=13"
-tqdm = ">=4"
 
 [package.extras]
 docs = ["sphinx", "sphinx-issues", "sphinx-rtd-theme"]
 extended-test = ["PyMuPDF (==1.19.1)"]
-test = ["coverage[toml] (>=5)", "hypothesis (>=6.0.0)", "pytest (>=6.0.0)", "pytest-cov (>=2.11.1)", "pytest-xdist (>=2.2.0)", "python-xmp-toolkit (==2.0.1)", "types-Pillow", "types-humanfriendly"]
+test = ["coverage[toml] (>=6.2)", "hypothesis (>=6.36.0)", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-xdist (>=2.5.0)", "python-xmp-toolkit (==2.0.1)", "types-Pillow", "types-humanfriendly"]
 watcher = ["watchdog (>=1.0.2)"]
-webservice = ["Flask (>=1)"]
+webservice = ["Flask (>=2.0.1)"]
 
 [[package]]
 name = "packaging"
@@ -2523,26 +2522,6 @@ files = [
 ]
 
 [[package]]
-name = "tqdm"
-version = "4.66.1"
-description = "Fast, Extensible Progress Meter"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "tqdm-4.66.1-py3-none-any.whl", hash = "sha256:d302b3c5b53d47bce91fea46679d9c3c6508cf6332229aa1e7d8653723793386"},
-    {file = "tqdm-4.66.1.tar.gz", hash = "sha256:d88e651f9db8d8551a62556d3cff9e3034274ca5d66e93197cf2490e2dcb69c7"},
-]
-
-[package.dependencies]
-colorama = {version = "*", markers = "platform_system == \"Windows\""}
-
-[package.extras]
-dev = ["pytest (>=6)", "pytest-cov", "pytest-timeout", "pytest-xdist"]
-notebook = ["ipywidgets (>=6)"]
-slack = ["slack-sdk"]
-telegram = ["requests"]
-
-[[package]]
 name = "types-requests"
 version = "2.31.0.6"
 description = "Typing stubs for requests"
@@ -2754,4 +2733,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "==3.11.5"
-content-hash = "de6c056f2415735cdfe4a1d3ce59ac174379d5b227ad0584c7fdc44b2030b9c7"
+content-hash = "c8c1a153e423097fa608bf3a347efb735d7603eb5bd95981a90a87fba450ee1d"
