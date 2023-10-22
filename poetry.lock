@@ -1423,13 +1423,13 @@ files = [
 
 [[package]]
 name = "ocrmypdf"
-version = "15.2.0"
+version = "15.3.0"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "ocrmypdf-15.2.0-py39-none-any.whl", hash = "sha256:adc7b58ce795297af0f2bf90218c83651d46cd6eab1f113ff31248951d649432"},
-    {file = "ocrmypdf-15.2.0.tar.gz", hash = "sha256:4f618e555e607b4dccd45bcf3943d5a526f357002367d5c34b524853922a5bdf"},
+    {file = "ocrmypdf-15.3.0-py39-none-any.whl", hash = "sha256:6e43ccbc6c78f40160ce4cafd7bedf5f2a97aa63a6a70260da6c616c33b28b63"},
+    {file = "ocrmypdf-15.3.0.tar.gz", hash = "sha256:70be7e01ea8ff33037230a8dfc189185e12258b692a7013d10d2a42ed85ba0d0"},
 ]
 
 [package.dependencies]
@@ -1447,7 +1447,7 @@ rich = ">=13"
 docs = ["sphinx", "sphinx-issues", "sphinx-rtd-theme"]
 extended-test = ["PyMuPDF (==1.19.1)"]
 test = ["coverage[toml] (>=6.2)", "hypothesis (>=6.36.0)", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-xdist (>=2.5.0)", "python-xmp-toolkit (==2.0.1)", "types-Pillow", "types-humanfriendly"]
-watcher = ["watchdog (>=1.0.2)"]
+watcher = ["python-dotenv", "typer[all]", "watchdog (>=1.0.2)"]
 webservice = ["Flask (>=2.0.1)"]
 
 [[package]]
@@ -2744,4 +2744,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "==3.11.6"
-content-hash = "98577df07cf77d6dcde8a5925ec44ed20cda9318ec68ee9183046191203aa784"
+content-hash = "87feca764421bba35927db222d5fa1b3242d743306a4b5919b626d813cf8f072"
