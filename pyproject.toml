@@ -35,7 +35,6 @@ pikepdf = "8.7.0"
 pydantic-settings = "2.0.3"
 
 [tool.poetry.group.dev.dependencies]
-black = "23.11.0"
 pytest = "7.4.3"
 pytest-cov = "4.1.0"
 pre-commit = "==3.5.0"
@@ -48,9 +47,6 @@ ruff = "==0.1.5"
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.black]
-line-length = 100
-
 [tool.ruff]
 line-length = 100
 target-version = "py311"
@@ -61,6 +57,7 @@ ignore = [
     "ANN401", # DynamicallyTypedExpression
     "COM812", # trailing-comma-missing
     "FBT",    # flake8-boolean-trap
+    "ISC001", # flake8-implicit-str-concat (conflicts with formatter)
     "PD",     # pandas-vet
     "S603",   # subprocess-without-shell-equals-true
 
