@@ -80,7 +80,9 @@ class MergeService:
         msg = cast(Message, update.effective_message)
         text = "{desc}\n".format(desc=_("You've sent me these PDF files so far:"))
         await self.telegram_service.send_file_names(
-            msg.chat_id, text, context.user_data[self._MERGE_PDF_DATA]  # type: ignore[index]
+            msg.chat_id,
+            text,
+            context.user_data[self._MERGE_PDF_DATA],  # type: ignore[index]
         )
 
         reply_markup = ReplyKeyboardMarkup(

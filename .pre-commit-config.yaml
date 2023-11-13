@@ -12,15 +12,20 @@ repos:
 
   - repo: local
     hooks:
-      - id: black
-        name: black
-        entry: black
-        args: [--check, --diff]
+      - id: ruff-lint
+        name: ruff lint
+        entry: ruff
+        args:
+          - check
         language: system
         types: [python]
-      - id: ruff
-        name: ruff
+      - id: ruff-format
+        name: ruff format
         entry: ruff
+        args:
+          - format
+          - --check
+          - --diff
         language: system
         types: [python]
       - id: mypy

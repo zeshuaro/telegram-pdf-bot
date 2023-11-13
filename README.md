@@ -5,7 +5,7 @@
 [![GitHub Actions](https://github.com/zeshuaro/telegram-pdf-bot/actions/workflows/github-actions.yml/badge.svg)](https://github.com/zeshuaro/telegram-pdf-bot/actions/workflows/github-actions.yml)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=telegram-pdf-bot&metric=coverage)](https://sonarcloud.io/summary/new_code?id=telegram-pdf-bot)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=telegram-pdf-bot&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=telegram-pdf-bot)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Crowdin](https://badges.crowdin.net/telegram-pdf-bot/localized.svg)](https://crowdin.com/project/telegram-pdf-bot)
 [![Telegram Channel](https://img.shields.io/badge/Telegram-Channel-blue.svg)](https://t.me/pdf2botdev)
 [![Mentioned in Awesome Telegram](https://awesome.re/mentioned-badge.svg)](https://github.com/ebertti/awesome-telegram)
