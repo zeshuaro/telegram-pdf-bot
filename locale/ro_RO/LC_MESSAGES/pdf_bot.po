@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
 "POT-Creation-Date: 2023-11-13 12:31+0000\n"
-"PO-Revision-Date: 2023-11-13 12:31\n"
+"PO-Revision-Date: 2023-11-15 08:16\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: Romanian\n"
@@ -362,7 +362,7 @@ msgstr "Nu s-a găsit text în fișierul PDF"
 #: pdf_bot/pdf/pdf_service.py:233
 #, python-format
 msgid "I couldn't merge your PDF files as this file is invalid: %s"
-msgstr ""
+msgstr "Nu am putut îmbina fișierele PDF, deoarece acest fișier nu este valid: %s"
 
 #: pdf_bot/pdf/pdf_service.py:248
 msgid "Your PDF file already has a text layer"
@@ -456,7 +456,8 @@ msgstr "Redenumiţi"
 #, python-format
 msgid "File names can't contain any of the following characters, please try again:\n"
 "%s"
-msgstr ""
+msgstr "Numele fișierelor nu pot conține niciunul dintre următoarele caractere, încercați din nou:\n"
+"%s"
 
 #: pdf_bot/pdf_processor/rename_pdf_processor.py:40
 msgid "Send me the file name that you'll like to rename your PDF file into"
