@@ -45,14 +45,21 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
 
     @pytest.mark.asyncio()
     async def test_check_image(self) -> None:
-        self.telegram_context.user_data.__getitem__.return_value = self.file_data_list
+        self.telegram_service.get_user_data.return_value = self.file_data_list
 
         actual = await self.sut.check_image(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_IMAGE
 
-        file_data = self.file_data_list.append.call_args.args[0]
-        assert file_data == FileData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
+        self.telegram_service.get_user_data.assert_called_once_with(
+            self.telegram_context, self.IMAGE_DATA
+        )
+        self.file_data_list.append.assert_called_once_with(
+            FileData(self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME)
+        )
+        self.telegram_service.update_user_data.assert_called_once_with(
+            self.telegram_context, self.IMAGE_DATA, self.file_data_list
+        )
 
         self.telegram_service.send_file_names.assert_called_once()
         self.telegram_update.effective_message.reply_text.assert_called_once()
@@ -65,6 +72,23 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
 
         assert actual == self.WAIT_IMAGE
         self.telegram_context.user_data.__getitem__.assert_not_called()
+        self.telegram_service.send_file_names.assert_not_called()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+
+    @pytest.mark.asyncio()
+    async def test_check_image_user_data_error(self) -> None:
+        self.telegram_service.get_user_data.side_effect = TelegramServiceError()
+
+        actual = await self.sut.check_image(self.telegram_update, self.telegram_context)
+
+        assert actual == ConversationHandler.END
+
+        self.telegram_service.get_user_data.assert_called_once_with(
+            self.telegram_context, self.IMAGE_DATA
+        )
+        self.file_data_list.append.assert_not_called()
+        self.telegram_service.update_user_data.assert_not_called()
+
         self.telegram_service.send_file_names.assert_not_called()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
