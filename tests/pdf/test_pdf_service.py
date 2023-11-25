@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, call, patch
 
 import pytest
 from img2pdf import Rotation
-from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError
+from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError, TaggedPDFError
 from pdfminer.pdfdocument import PDFPasswordIncorrect
 from pypdf import PageObject, PdfFileMerger, PdfFileReader, PdfFileWriter
 from pypdf.errors import PdfReadError as PyPdfReadError
@@ -485,7 +485,11 @@ class TestPDFService(
     @pytest.mark.asyncio()
     @pytest.mark.parametrize(
         ("error", "expected"),
-        [(PriorOcrFoundError, PdfServiceError), (EncryptedPdfError, PdfEncryptedError)],
+        [
+            (PriorOcrFoundError, PdfServiceError),
+            (TaggedPDFError, PdfServiceError),
+            (EncryptedPdfError, PdfEncryptedError),
+        ],
     )
     async def test_ocr_pdf_error(self, error: type[Exception], expected: type[Exception]) -> None:
         self.ocrmypdf.ocr.side_effect = error
