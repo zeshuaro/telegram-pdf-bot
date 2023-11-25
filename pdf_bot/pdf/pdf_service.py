@@ -12,7 +12,7 @@ import ocrmypdf
 import pdf2image
 import pdf_diff
 from img2pdf import Rotation
-from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError
+from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError, TaggedPDFError
 from pdfCropMargins import crop
 from pdfminer.high_level import extract_text
 from pdfminer.pdfdocument import PDFPasswordIncorrect
@@ -244,7 +244,7 @@ class PdfService:
                 try:
                     ocrmypdf.ocr(file_path, out_path, progress_bar=False)
                     yield out_path
-                except PriorOcrFoundError as e:
+                except (PriorOcrFoundError, TaggedPDFError) as e:
                     raise PdfServiceError(_("Your PDF file already has a text layer")) from e
                 except EncryptedPdfError as e:
                     raise PdfEncryptedError from e
