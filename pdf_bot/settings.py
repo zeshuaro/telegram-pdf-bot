@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     ga_api_secret: str = Field(...)
     ga_measurement_id: str = Field(...)
     gcp_service_account: dict = Field(...)
+    sentry_dsn: str | None = Field(default=None)
 
     admin_telegram_id: int = Field(...)
 
@@ -28,4 +29,4 @@ class Settings(BaseSettings):
     request_connect_timeout: int = 45
     request_pool_timeout: int = 45
 
-    sentry_dsn: str | None = Field(default=None)
+    telegram_max_retries: int = 2

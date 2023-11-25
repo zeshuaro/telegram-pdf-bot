@@ -61,7 +61,9 @@ class Core(containers.DeclarativeContainer):
         connect_timeout=settings.request_connect_timeout,
         pool_timeout=settings.request_pool_timeout,
     )
-    _bot_rate_limiter = providers.Singleton(AIORateLimiter)
+    _bot_rate_limiter = providers.Singleton(
+        AIORateLimiter, max_retries=settings.telegram_max_retries
+    )
 
     telegram_bot = providers.Singleton(
         ExtBot,
