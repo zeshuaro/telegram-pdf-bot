@@ -144,7 +144,7 @@ class PdfService:
     ) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("Cropped") as out_path:
-                crop(["-p", str(percentage), "-o", out_path, file_path])
+                crop(["-p", str(percentage), "-o", str(out_path), str(file_path)])
                 yield out_path
 
     @asynccontextmanager
@@ -153,7 +153,7 @@ class PdfService:
     ) -> AsyncGenerator[Path, None]:
         async with self.telegram_service.download_pdf_file(file_id) as file_path:
             with self.io_service.create_temp_pdf_file("Cropped") as out_path:
-                crop(["-a", str(margin_size), "-o", out_path, file_path])
+                crop(["-a", str(margin_size), "-o", str(out_path), str(file_path)])
                 yield out_path
 
     @asynccontextmanager
