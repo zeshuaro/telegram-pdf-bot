@@ -257,7 +257,7 @@ class TestPDFService(
             async with self.sut.crop_pdf_by_percentage(self.TELEGRAM_FILE_ID, percent) as actual:
                 assert actual == self.file_path
                 crop.assert_called_once_with(
-                    ["-p", str(percent), "-o", self.file_path, self.download_path]
+                    ["-p", str(percent), "-o", str(self.file_path), str(self.download_path)]
                 )
                 self._assert_telegram_and_io_services("Cropped")
 
@@ -271,7 +271,7 @@ class TestPDFService(
             ) as actual:
                 assert actual == self.file_path
                 crop.assert_called_once_with(
-                    ["-a", str(margin_size), "-o", self.file_path, self.download_path]
+                    ["-a", str(margin_size), "-o", str(self.file_path), str(self.download_path)]
                 )
                 self._assert_telegram_and_io_services("Cropped")
 
