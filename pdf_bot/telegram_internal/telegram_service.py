@@ -66,7 +66,7 @@ class TelegramService:
             raise TelegramFileTooLargeError(
                 _(
                     "Your file is too large for me to download and process, "
-                    "please try again with a differnt file\n\n"
+                    "please try again with a different file\n\n"
                     "Note that this limit is enforced by Telegram and there's "
                     "nothing I can do unless Telegram changes it"
                 )

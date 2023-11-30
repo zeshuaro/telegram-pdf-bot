@@ -20,7 +20,7 @@ class LanguageRepository:
 
         lang = user[LANGUAGE]
 
-        # This check is for backwards compitability
+        # This check is for backwards compatibility
         if lang == self.EN_CODE:
             return self.EN_GB_CODE
         return lang

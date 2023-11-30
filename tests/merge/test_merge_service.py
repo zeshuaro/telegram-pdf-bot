@@ -61,7 +61,7 @@ class TestMergeService(
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio()
-    async def test_check_pdf_invlid_pdf(self) -> None:
+    async def test_check_pdf_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
         actual = await self.sut.check_pdf(self.telegram_update, self.telegram_context)

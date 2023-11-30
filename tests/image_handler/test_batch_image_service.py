@@ -65,7 +65,7 @@ class TestBatchImageService(LanguageServiceTestMixin, TelegramServiceTestMixin, 
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
     @pytest.mark.asyncio()
-    async def test_check_image_invlid_image(self) -> None:
+    async def test_check_image_invalid_image(self) -> None:
         self.telegram_service.check_image.side_effect = TelegramServiceError()
 
         actual = await self.sut.check_image(self.telegram_update, self.telegram_context)

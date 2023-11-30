@@ -235,7 +235,7 @@ class TestAbstractFileProcessor(
         ):
             await self.sut.process_file(self.telegram_update, self.telegram_context)
 
-        self._assert_get_file_and_messsage_data()
+        self._assert_get_file_and_message_data()
         self.telegram_update.effective_message.reply_text.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
@@ -249,7 +249,7 @@ class TestAbstractFileProcessor(
             actual = await sut.process_file(self.telegram_update, self.telegram_context)
 
             assert actual == ConversationHandler.END
-            self._assert_get_file_and_messsage_data()
+            self._assert_get_file_and_message_data()
             self.telegram_message.reply_text.assert_called_once()
             self.telegram_service.send_file.assert_not_called()
 
@@ -263,7 +263,7 @@ class TestAbstractFileProcessor(
             actual = await sut.process_file(self.telegram_update, self.telegram_context)
 
             assert actual == MockProcessorWithCustomErrorHandler.CUSTOM_ERROR_STATE
-            self._assert_get_file_and_messsage_data()
+            self._assert_get_file_and_message_data()
             self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio()
@@ -277,7 +277,7 @@ class TestAbstractFileProcessor(
         ):
             await sut.process_file(self.telegram_update, self.telegram_context)
 
-        self._assert_get_file_and_messsage_data()
+        self._assert_get_file_and_message_data()
         self.telegram_service.send_file.assert_not_called()
 
     @pytest.mark.asyncio()
@@ -333,7 +333,7 @@ class TestAbstractFileProcessor(
         if path is None:
             path = self.sut.path
 
-        self._assert_get_file_and_messsage_data()
+        self._assert_get_file_and_message_data()
         self.telegram_service.send_file.assert_called_once_with(
             self.telegram_update,
             self.telegram_context,
@@ -341,6 +341,6 @@ class TestAbstractFileProcessor(
             MockProcessor.TASK_TYPE,
         )
 
-    def _assert_get_file_and_messsage_data(self) -> None:
+    def _assert_get_file_and_message_data(self) -> None:
         self.telegram_service.get_file_data.assert_called_once_with(self.telegram_context)
         self.telegram_service.get_message_data.assert_called_once_with(self.telegram_context)
