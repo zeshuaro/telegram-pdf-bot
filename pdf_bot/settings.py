@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     app_url: str | None = Field(default=None)
     port: int = Field(default=8443)
 
-    request_connection_pool_size: int = 8
+    request_connection_pool_size: int = 12
     request_read_timeout: int = 45
     request_write_timeout: int = 45
     request_connect_timeout: int = 45
