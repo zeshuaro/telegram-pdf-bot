@@ -10,11 +10,6 @@ repos:
         exclude: ^locale/
       - id: trailing-whitespace
 
-  - repo: https://github.com/crate-ci/typos
-    rev: v1.16.23
-    hooks:
-      - id: typos
-
   - repo: local
     hooks:
       - id: ruff-lint
