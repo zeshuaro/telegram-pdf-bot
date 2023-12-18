@@ -285,17 +285,6 @@ files = [
 ]
 
 [[package]]
-name = "chardet"
-version = "5.2.0"
-description = "Universal encoding detector for Python 3"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "chardet-5.2.0-py3-none-any.whl", hash = "sha256:e1cf59446890a00105fe7b7912492ea04b6e6f06d4b742b2c788469e34c82970"},
-    {file = "chardet-5.2.0.tar.gz", hash = "sha256:1b3b6ff479a8c414bc3fa2c0852995695c4a026dcd6d0633b2dd092ca39c1cf7"},
-]
-
-[[package]]
 name = "charset-normalizer"
 version = "3.3.2"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
@@ -1403,13 +1392,13 @@ files = [
 
 [[package]]
 name = "ocrmypdf"
-version = "15.4.4"
+version = "16.0.0"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 files = [
-    {file = "ocrmypdf-15.4.4-py39-none-any.whl", hash = "sha256:13fd388035b5f4bb673bff570cfc2cf72e51168646d5401de9e48ca355917c6d"},
-    {file = "ocrmypdf-15.4.4.tar.gz", hash = "sha256:4696c81cc5b5d64f31ccfe685d10baeb69b42bb0974acddf292d8cf9d97605c3"},
+    {file = "ocrmypdf-16.0.0-py310-none-any.whl", hash = "sha256:cc32103336820e147b23f12b80823300f51434ce9cb6b2abaa990007e843590f"},
+    {file = "ocrmypdf-16.0.0.tar.gz", hash = "sha256:7f893d9a79498119ba5ee80f983e1cdfb786de9bbc91dadbaee3b8e081413ef1"},
 ]
 
 [package.dependencies]
@@ -1417,16 +1406,15 @@ deprecation = ">=2.1.0"
 img2pdf = ">=0.4.4"
 packaging = ">=20"
 "pdfminer.six" = ">=20220319"
-pikepdf = ">=8.7.1"
+pikepdf = ">=8.8.0"
 Pillow = ">=10.0.1"
 pluggy = ">=0.13.0"
-reportlab = ">=3.6.8"
 rich = ">=13"
 
 [package.extras]
 docs = ["sphinx", "sphinx-issues", "sphinx-rtd-theme"]
 extended-test = ["PyMuPDF (>=1.19.1)"]
-test = ["coverage[toml] (>=6.2)", "hypothesis (>=6.36.0)", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-xdist (>=2.5.0)", "python-xmp-toolkit (==2.0.1)", "types-Pillow", "types-humanfriendly"]
+test = ["coverage[toml] (>=6.2)", "hypothesis (>=6.36.0)", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-xdist (>=2.5.0)", "python-xmp-toolkit (==2.0.1)", "reportlab (>=3.6.8)", "types-Pillow", "types-humanfriendly"]
 watcher = ["python-dotenv", "typer[all]", "watchdog (>=1.0.2)"]
 webservice = ["Flask (>=2.0.1)"]
 
@@ -2234,26 +2222,6 @@ files = [
 ]
 
 [[package]]
-name = "reportlab"
-version = "4.0.8"
-description = "The Reportlab Toolkit"
-optional = false
-python-versions = ">=3.7,<4"
-files = [
-    {file = "reportlab-4.0.8-py3-none-any.whl", hash = "sha256:d00693de8ab8761b122e409de883ba976c24839f93867090c0d40b5d5906e847"},
-    {file = "reportlab-4.0.8.tar.gz", hash = "sha256:169945817a1a7759fb7b7dae528c2f8064fc21d16338d9b572ebdcb756740853"},
-]
-
-[package.dependencies]
-chardet = "*"
-pillow = ">=9.0.0"
-
-[package.extras]
-accel = ["rl-accel (>=0.9.0,<1.1)"]
-pycairo = ["freetype-py (>=2.3.0,<2.4)", "rlPyCairo (>=0.2.0,<1)"]
-renderpm = ["rl-renderPM (>=4.0.3,<4.1)"]
-
-[[package]]
 name = "requests"
 version = "2.31.0"
 description = "Python HTTP for Humans."
@@ -2790,4 +2758,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "==3.11.7"
-content-hash = "36a185778f05485684fd0104e00faac12494da6612fe9d5ab5b1567c6ecdb331"
+content-hash = "c699a2339fa146384e34eeb48b8513ba2d3d2b5b290bea7b7e0f2ee33e3cbe6d"
