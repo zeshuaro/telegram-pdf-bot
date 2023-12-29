@@ -27,7 +27,12 @@ def main(
         settings = Settings(**settings)
 
     if settings.sentry_dsn is not None:
-        sentry_sdk.init(settings.sentry_dsn, traces_sample_rate=0.8, profiles_sample_rate=0.8)
+        sentry_sdk.init(
+            settings.sentry_dsn,
+            traces_sample_rate=0.8,
+            profiles_sample_rate=0.8,
+            debug=settings.debug,
+        )
     else:
         logger.warning("SENTRY_DSN not set")
 
