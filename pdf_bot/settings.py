@@ -17,7 +17,6 @@ class Settings(BaseSettings):
     ga_measurement_id: str = Field(...)
     gcp_service_account: dict = Field(...)
     sentry_dsn: str | None = Field(default=None)
-    debug: bool = Field(default=False)
 
     admin_telegram_id: int = Field(...)
 
