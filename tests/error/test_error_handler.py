@@ -108,8 +108,11 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.sentry_sdk.capture_exception.assert_not_called()
 
     @pytest.mark.asyncio()
-    async def test_callback_bad_request_query_outdated(self) -> None:
-        self.telegram_context.error = BadRequest("Query is too old and response timeout expired")
+    @pytest.mark.parametrize(
+        "message", ["Query is too old and response timeout expired", "File must be non-empty"]
+    )
+    async def test_callback_bad_request_swallow_and_reply_error(self, message: str) -> None:
+        self.telegram_context.error = BadRequest(message)
 
         await self.sut.callback(self.telegram_update, self.telegram_context)
 
