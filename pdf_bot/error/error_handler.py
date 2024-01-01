@@ -53,9 +53,10 @@ class ErrorHandler:
             )
         ):
             return
+
         if err_msg.startswith("query is too old and response timeout expired"):
             err_text = _("The button has expired, start over with your file or command")
-        else:
+        elif not err_msg.startswith("file must be non-empty"):
             sentry_sdk.capture_exception(error)
 
         await self._send_message(update, context, err_text)
