@@ -131,12 +131,19 @@ jobs:
       DOCKER_IMAGE: registry.digitalocean.com/${{ secrets.DIGITALOCEAN_REGISTRY }}/${{ secrets.DIGITALOCEAN_APP_NAME }}:${{ github.sha }}
 
     steps:
+      - name: Create GitHub App token 🔑
+        id: create-app-token
+        uses: tibdex/github-app-token@v2.1.0
+        with:
+          app_id: ${{ secrets.GH_APP_ID }}
+          private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
       - name: Checkout 🛎️
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: master
-          token: ${{ secrets.PAT }}
+          token: ${{ steps.create-app-token.outputs.token }}
 
       - name: Setup Python 🐍
         id: setup-python
@@ -162,6 +169,7 @@ jobs:
         run: poetry install --no-interaction --no-root
 
       - name: Update localization source file 📄
+        id: update-i18n-source
         run: |
           source .venv/bin/activate
           pybabel extract pdf_bot/ -o locale/pdf_bot.pot
@@ -169,7 +177,7 @@ jobs:
           echo NUM_DIFFS=$(git diff --shortstat | egrep -o '[0-9]+ i' | egrep -o '[0-9]+') >> $GITHUB_ENV
 
       - name: Commit changes 🆕
-        if: env.NUM_DIFFS > 1
+        if: ${{ steps.update-i18n-source.outputs.NUM_DIFFS }} > 1
         uses: stefanzweifel/git-auto-commit-action@v5.0.0
         with:
           commit_message: "ci: update localization source file [skip ci]"
@@ -177,7 +185,7 @@ jobs:
           push_options: --force
 
       - name: Upload sources and download translations 🌐
-        if: env.NUM_DIFFS > 1
+        if: ${{ steps.update-i18n-source.outputs.NUM_DIFFS }} > 1
         uses: crowdin/github-action@v1.16.0
         with:
           upload_sources: true
@@ -190,7 +198,7 @@ jobs:
           source: locale/en_GB/LC_MESSAGES/pdf_bot.po
           translation: /locale/%locale_with_underscore%/LC_MESSAGES/pdf_bot.po
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ steps.create-app-token.outputs.token }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
