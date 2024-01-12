@@ -14,7 +14,7 @@ class SupportData:
 
 @dataclass
 class FileData:
-    id: str  # noqa: A003
+    id: str
     name: str | None = None
 
     @classmethod
