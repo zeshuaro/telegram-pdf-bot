@@ -177,14 +177,14 @@ jobs:
           echo "NUM_DIFFS=$(git diff --shortstat | egrep -o '[0-9]+ i' | egrep -o '[0-9]+')" >> "$GITHUB_OUTPUT"
 
       - name: Commit changes 🆕
-        if: ${{ steps.update-i18n-source.outputs.NUM_DIFFS }} > 1
+        if: ${{ steps.update-i18n-source.outputs.NUM_DIFFS > 1 }}
         uses: stefanzweifel/git-auto-commit-action@v5.0.0
         with:
           commit_message: "ci: update localization source file [skip ci]"
           file_pattern: locale/en_GB/LC_MESSAGES/pdf_bot.po
 
       - name: Upload sources and download translations 🌐
-        if: ${{ steps.update-i18n-source.outputs.NUM_DIFFS }} > 1
+        if: ${{ steps.update-i18n-source.outputs.NUM_DIFFS > 1 }}
         uses: crowdin/github-action@v1.16.0
         with:
           upload_sources: true
