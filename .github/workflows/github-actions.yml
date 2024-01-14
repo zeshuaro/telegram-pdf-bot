@@ -48,11 +48,8 @@ jobs:
           pybabel compile -D pdf_bot -d locale
           pytest --cov --cov-report=xml
 
-      - name: Run SonarCloud scan ☁️
-        uses: sonarsource/sonarcloud-github-action@v2.1.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Upload coverage report 📡
+        uses: codecov/codecov-action@v3.1.4
 
   lint:
     name: Lint
