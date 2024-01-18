@@ -32,7 +32,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: Cache virtual environment 💾
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .venv
           key: ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
@@ -72,7 +72,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: Cache virtual environment 💾
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .venv
           key: ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
@@ -155,7 +155,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: Cache virtual environment 💾
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .venv
           key: ${{ runner.os }}-venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
