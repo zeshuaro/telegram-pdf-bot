@@ -5,7 +5,7 @@ import pytest
 from img2pdf import Rotation
 from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError, TaggedPDFError
 from pdfminer.pdfdocument import PDFPasswordIncorrect
-from pypdf import PageObject, PdfFileMerger, PdfFileReader, PdfFileWriter
+from pypdf import PageObject, PdfMerger, PdfReader, PdfWriter
 from pypdf.errors import PdfReadError as PyPdfReadError
 from pypdf.pagerange import PageRange
 from weasyprint import CSS, HTML
@@ -89,9 +89,9 @@ class TestPDFService(
         src_file_id = "src_file_id"
         wmk_file_id = "wmk_file_id"
 
-        src_reader = MagicMock(spec=PdfFileReader)
-        wmk_reader = MagicMock(spec=PdfFileReader)
-        writer = MagicMock(spec=PdfFileWriter)
+        src_reader = MagicMock(spec=PdfReader)
+        wmk_reader = MagicMock(spec=PdfReader)
+        writer = MagicMock(spec=PdfWriter)
         src_reader.is_encrypted = wmk_reader.is_encrypted = False
 
         src_pages = [MagicMock(spec=PageObject) for _ in range(2)]
@@ -100,7 +100,7 @@ class TestPDFService(
         wmk_page = MagicMock(spec=PageObject)
         wmk_reader.pages = [wmk_page]
 
-        def pdf_file_reader_side_effect(file_id: str, *_args: Any, **_kwargs: Any) -> PdfFileReader:
+        def pdf_file_reader_side_effect(file_id: str, *_args: Any, **_kwargs: Any) -> PdfReader:
             if file_id == src_file_id:
                 return src_reader
             return wmk_reader
@@ -278,8 +278,8 @@ class TestPDFService(
     @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
     @pytest.mark.asyncio()
     async def test_decrypt_pdf(self, num_pages: int) -> None:
-        reader = MagicMock(spec=PdfFileReader)
-        writer = MagicMock(spec=PdfFileWriter)
+        reader = MagicMock(spec=PdfReader)
+        writer = MagicMock(spec=PdfWriter)
         reader.is_encrypted = True
 
         pages = [MagicMock() for _ in range(num_pages)]
@@ -298,7 +298,7 @@ class TestPDFService(
 
     @pytest.mark.asyncio()
     async def test_decrypt_pdf_not_encrypted(self) -> None:
-        reader = MagicMock(spec=PdfFileReader)
+        reader = MagicMock(spec=PdfReader)
         reader.is_encrypted = False
         self.pdf_reader_cls.return_value = reader
 
@@ -312,7 +312,7 @@ class TestPDFService(
 
     @pytest.mark.asyncio()
     async def test_decrypt_pdf_incorrect_password(self) -> None:
-        reader = MagicMock(spec=PdfFileReader)
+        reader = MagicMock(spec=PdfReader)
         reader.is_encrypted = True
         reader.decrypt.return_value = 0
         self.pdf_reader_cls.return_value = reader
@@ -324,7 +324,7 @@ class TestPDFService(
 
     @pytest.mark.asyncio()
     async def test_decrypt_pdf_invalid_encryption_method(self) -> None:
-        reader = MagicMock(spec=PdfFileReader)
+        reader = MagicMock(spec=PdfReader)
         reader.is_encrypted = True
         reader.decrypt.side_effect = NotImplementedError()
         self.pdf_reader_cls.return_value = reader
@@ -337,8 +337,8 @@ class TestPDFService(
     @pytest.mark.parametrize("num_pages", [0, 1, 2, 5])
     @pytest.mark.asyncio()
     async def test_encrypt_pdf(self, num_pages: int) -> None:
-        reader = MagicMock(spec=PdfFileReader)
-        writer = MagicMock(spec=PdfFileWriter)
+        reader = MagicMock(spec=PdfReader)
+        writer = MagicMock(spec=PdfWriter)
         reader.is_encrypted = False
 
         pages = [MagicMock() for _ in range(num_pages)]
@@ -357,7 +357,7 @@ class TestPDFService(
 
     @pytest.mark.asyncio()
     async def test_encrypt_pdf_already_encrypted(self) -> None:
-        reader = MagicMock(spec=PdfFileReader)
+        reader = MagicMock(spec=PdfReader)
         reader.is_encrypted = True
         self.pdf_reader_cls.return_value = reader
 
@@ -445,7 +445,7 @@ class TestPDFService(
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
     async def test_merge_pdfs(self, num_files: int) -> None:
         file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
-        merger = MagicMock(spec=PdfFileMerger)
+        merger = MagicMock(spec=PdfMerger)
         self.pdf_merger_cls.return_value = merger
         self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
 
@@ -460,7 +460,7 @@ class TestPDFService(
     @pytest.mark.parametrize("exception", [PyPdfReadError(), ValueError()])
     async def test_merge_pdfs_read_error(self, exception: Exception) -> None:
         file_data_list, file_ids, file_paths = self._get_file_data_list(2)
-        merger = MagicMock(spec=PdfFileMerger)
+        merger = MagicMock(spec=PdfMerger)
         merger.append.side_effect = exception
         self.pdf_merger_cls.return_value = merger
         self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
@@ -508,8 +508,8 @@ class TestPDFService(
         pdf_path = "pdf_path"
         out_path = "out_path"
 
-        reader = MagicMock(spec=PdfFileReader)
-        writer = MagicMock(spec=PdfFileWriter)
+        reader = MagicMock(spec=PdfReader)
+        writer = MagicMock(spec=PdfWriter)
         page = MagicMock(spec=PageObject)
         reader.is_encrypted = False
         reader.pages = [page]
@@ -551,8 +551,8 @@ class TestPDFService(
     @pytest.mark.asyncio()
     async def test_rotate_pdf(self, num_pages: int) -> None:
         degree = 90
-        reader = MagicMock(spec=PdfFileReader)
-        writer = MagicMock(spec=PdfFileWriter)
+        reader = MagicMock(spec=PdfReader)
+        writer = MagicMock(spec=PdfWriter)
         reader.is_encrypted = False
 
         pages = [MagicMock(spec=PageObject) for _ in range(num_pages)]
@@ -579,8 +579,8 @@ class TestPDFService(
     async def test_scale_pdf_by_factor(self, num_pages: int) -> None:
         scale_data = ScaleByData(1, 2)
 
-        reader = MagicMock(spec=PdfFileReader)
-        writer = MagicMock(spec=PdfFileWriter)
+        reader = MagicMock(spec=PdfReader)
+        writer = MagicMock(spec=PdfWriter)
         reader.is_encrypted = False
 
         pages = [MagicMock() for _ in range(num_pages)]
@@ -604,8 +604,8 @@ class TestPDFService(
     async def test_scale_pdf_to_dimension(self, num_pages: int) -> None:
         scale_data = ScaleToData(1, 2)
 
-        reader = MagicMock(spec=PdfFileReader)
-        writer = MagicMock(spec=PdfFileWriter)
+        reader = MagicMock(spec=PdfReader)
+        writer = MagicMock(spec=PdfWriter)
         reader.is_encrypted = False
 
         pages = [MagicMock() for _ in range(num_pages)]
@@ -654,8 +654,8 @@ class TestPDFService(
     @pytest.mark.asyncio()
     async def test_split_pdf(self) -> None:
         split_range = "7:"
-        reader = MagicMock(spec=PdfFileReader)
-        merger = MagicMock(spec=PdfFileMerger)
+        reader = MagicMock(spec=PdfReader)
+        merger = MagicMock(spec=PdfMerger)
         reader.is_encrypted = False
 
         self.pdf_reader_cls.return_value = reader
