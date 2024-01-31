@@ -49,7 +49,7 @@ jobs:
           pytest --cov --cov-report=xml
 
       - name: Upload coverage report 📡
-        uses: codecov/codecov-action@v3.1.5
+        uses: codecov/codecov-action@v3.1.6
 
   lint:
     name: Lint
@@ -182,7 +182,7 @@ jobs:
 
       - name: Upload sources and download translations 🌐
         if: ${{ steps.update-i18n-source.outputs.NUM_DIFFS > 1 }}
-        uses: crowdin/github-action@v1.16.1
+        uses: crowdin/github-action@v1.17.0
         with:
           upload_sources: true
           upload_translations: false
