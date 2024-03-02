@@ -141,9 +141,10 @@ class TestPDFService(
         image_bytes = "image_bytes"
         buffered_writer = self.mock_path_open(self.file_path)
 
-        with patch("pdf_bot.pdf.pdf_service.pdf2image") as pdf2image, patch(
-            "pdf_bot.pdf.pdf_service.img2pdf"
-        ) as img2pdf:
+        with (
+            patch("pdf_bot.pdf.pdf_service.pdf2image") as pdf2image,
+            patch("pdf_bot.pdf.pdf_service.img2pdf") as img2pdf,
+        ):
             pdf2image.convert_from_path.return_value = image_paths
             img2pdf.convert.return_value = image_bytes
 
@@ -218,9 +219,11 @@ class TestPDFService(
             font_data = FontData("family", "url")
             stylesheets = [css]
 
-        with patch("pdf_bot.pdf.pdf_service.HTML") as html_cls, patch(
-            "pdf_bot.pdf.pdf_service.CSS"
-        ) as css_cls, patch("pdf_bot.pdf.pdf_service.FontConfiguration") as font_config_cls:
+        with (
+            patch("pdf_bot.pdf.pdf_service.HTML") as html_cls,
+            patch("pdf_bot.pdf.pdf_service.CSS") as css_cls,
+            patch("pdf_bot.pdf.pdf_service.FontConfiguration") as font_config_cls,
+        ):
             html_cls.return_value = html
             css_cls.return_value = css
             font_config_cls.return_value = font_config

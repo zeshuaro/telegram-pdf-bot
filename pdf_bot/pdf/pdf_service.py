@@ -87,9 +87,10 @@ class PdfService:
 
     @asynccontextmanager
     async def compare_pdfs(self, file_id_a: str, file_id_b: str) -> AsyncGenerator[Path, None]:
-        async with self.telegram_service.download_pdf_file(
-            file_id_a
-        ) as file_name_a, self.telegram_service.download_pdf_file(file_id_b) as file_name_b:
+        async with (
+            self.telegram_service.download_pdf_file(file_id_a) as file_name_a,
+            self.telegram_service.download_pdf_file(file_id_b) as file_name_b,
+        ):
             with self.io_service.create_temp_png_file("Differences") as out_path:
                 pdf_diff.main(files=[file_name_a, file_name_b], out_file=out_path)
                 yield out_path
