@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-01-01 01:34+0000\n"
-"PO-Revision-Date: 2024-01-01 01:34\n"
+"POT-Creation-Date: 2024-03-02 00:42+0000\n"
+"PO-Revision-Date: 2024-03-02 00:42\n"
 "Last-Translator: \n"
 "Language: vi\n"
 "Language-Team: Vietnamese\n"
@@ -339,36 +339,36 @@ msgstr "Trợ giúp dịch PDF Bot"
 msgid "Your PDF file is encrypted, decrypt it first then try again"
 msgstr "Tệp PDF của bạn đã được mã hóa, hãy giải mã tệp trước rồi thử lại"
 
-#: pdf_bot/pdf/pdf_service.py:163
+#: pdf_bot/pdf/pdf_service.py:164
 msgid "Your PDF file is not encrypted"
 msgstr "Tệp PDF của bạn không được mã hóa"
 
-#: pdf_bot/pdf/pdf_service.py:167
+#: pdf_bot/pdf/pdf_service.py:168
 msgid "Incorrect password, please try again"
 msgstr "Mật khẩu không chính xác, vui lòng thử lại"
 
-#: pdf_bot/pdf/pdf_service.py:170
+#: pdf_bot/pdf/pdf_service.py:171
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "Tệp PDF của bạn được mã hóa bằng một phương pháp mà tôi không thể giải mã"
 
-#: pdf_bot/pdf/pdf_service.py:202
+#: pdf_bot/pdf/pdf_service.py:203
 msgid "No images found in your PDF file"
 msgstr "Không tìm thấy hình ảnh nào trong tệp PDF của bạn"
 
-#: pdf_bot/pdf/pdf_service.py:214
+#: pdf_bot/pdf/pdf_service.py:215
 msgid "No text found in your PDF file"
 msgstr "Không tìm thấy văn bản trong tệp PDF của bạn"
 
-#: pdf_bot/pdf/pdf_service.py:233
+#: pdf_bot/pdf/pdf_service.py:234
 #, python-format
 msgid "I couldn't merge your PDF files as this file is invalid: %s"
 msgstr "Tôi không thể hợp nhất các tệp PDF của bạn vì tệp này không hợp lệ: %s"
 
-#: pdf_bot/pdf/pdf_service.py:248
+#: pdf_bot/pdf/pdf_service.py:249
 msgid "Your PDF file already has a text layer"
 msgstr "Tệp PDF của bạn đã có một lớp văn bản"
 
-#: pdf_bot/pdf/pdf_service.py:337
+#: pdf_bot/pdf/pdf_service.py:338
 msgid "Your PDF file is invalid"
 msgstr "Tệp PDF của bạn không hợp lệ"
 
@@ -400,15 +400,15 @@ msgid "Send me a number that you'll like to adjust the margin size\n\n"
 msgstr "Gửi cho tôi một số mà bạn muốn điều chỉnh kích cỡ lề\n\n"
 "Số dương sẽ làm giảm kích thước lề và số âm sẽ làm tăng kích thước lề"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:55
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:54
 msgid "Crop"
 msgstr "Cây trồng"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:59
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:58
 msgid "Select the crop type you'll like to perform"
 msgstr "Chọn kiểu cắt bạn muốn thực hiện"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:67
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:66
 msgid "The crop values are invalid, try again"
 msgstr "Các giá trị cắt không hợp lệ, hãy thử lại"
 
@@ -463,11 +463,11 @@ msgstr "Tên tệp không được chứa bất kỳ ký tự nào sau đây, vu
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Gửi cho tôi tên tệp mà bạn muốn đổi tên tệp PDF của mình thành"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:38
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:37
 msgid "Rotate"
 msgstr "Xoay"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:76
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:75
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Chọn độ bạn muốn xoay tệp PDF theo chiều kim đồng hồ"
 
@@ -491,15 +491,15 @@ msgid "Send me the width and height\n\n"
 msgstr "Gửi cho tôi chiều rộng và chiều cao\n\n"
 "Ví dụ: 150 200 - điều này sẽ đặt chiều rộng thành 150 và chiều cao là 200"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:55
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:54
 msgid "Scale"
 msgstr "Quy mô"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:59
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:58
 msgid "Select the scale type you'll like to perform"
 msgstr "Chọn loại tỷ lệ bạn muốn thực hiện"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:67
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:66
 msgid "The scale values are invalid, try again"
 msgstr "Các giá trị thang đo không hợp lệ, hãy thử lại"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-01-01 01:34+0000\n"
-"PO-Revision-Date: 2024-01-01 01:34\n"
+"POT-Creation-Date: 2024-03-02 00:42+0000\n"
+"PO-Revision-Date: 2024-03-02 00:42\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: Hungarian\n"
@@ -339,36 +339,36 @@ msgstr "Segítség a PDF Bot fordításában"
 msgid "Your PDF file is encrypted, decrypt it first then try again"
 msgstr "A PDF-fájl titkosítva van, először fejtse vissza, majd próbálja újra"
 
-#: pdf_bot/pdf/pdf_service.py:163
+#: pdf_bot/pdf/pdf_service.py:164
 msgid "Your PDF file is not encrypted"
 msgstr "A PDF-fájl nincs titkosítva"
 
-#: pdf_bot/pdf/pdf_service.py:167
+#: pdf_bot/pdf/pdf_service.py:168
 msgid "Incorrect password, please try again"
 msgstr "Helytelen jelszó, próbálkozzon újra"
 
-#: pdf_bot/pdf/pdf_service.py:170
+#: pdf_bot/pdf/pdf_service.py:171
 msgid "Your PDF file is encrypted with a method that I can't decrypt"
 msgstr "A PDF-fájl titkosítva van egy olyan módszerrel, amelyet nem tudok visszafejteni"
 
-#: pdf_bot/pdf/pdf_service.py:202
+#: pdf_bot/pdf/pdf_service.py:203
 msgid "No images found in your PDF file"
 msgstr "Nem található kép a PDF-fájlban"
 
-#: pdf_bot/pdf/pdf_service.py:214
+#: pdf_bot/pdf/pdf_service.py:215
 msgid "No text found in your PDF file"
 msgstr "A PDF-fájlban nem található szöveg"
 
-#: pdf_bot/pdf/pdf_service.py:233
+#: pdf_bot/pdf/pdf_service.py:234
 #, python-format
 msgid "I couldn't merge your PDF files as this file is invalid: %s"
 msgstr "Nem sikerült egyesíteni a PDF-fájlokat, mert ez a fájl érvénytelen: %s"
 
-#: pdf_bot/pdf/pdf_service.py:248
+#: pdf_bot/pdf/pdf_service.py:249
 msgid "Your PDF file already has a text layer"
 msgstr "A PDF-fájlnak már van szövegrétege"
 
-#: pdf_bot/pdf/pdf_service.py:337
+#: pdf_bot/pdf/pdf_service.py:338
 msgid "Your PDF file is invalid"
 msgstr "A PDF-fájl érvénytelen"
 
@@ -400,15 +400,15 @@ msgid "Send me a number that you'll like to adjust the margin size\n\n"
 msgstr "Küldjön nekem egy számot, amelyet módosítani szeretne a margó méretéhez\n\n"
 "A pozitív számok csökkentik a margó méretét, a negatív számok pedig növelik azt"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:55
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:54
 msgid "Crop"
 msgstr "Termés"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:59
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:58
 msgid "Select the crop type you'll like to perform"
 msgstr "Válassza ki a végrehajtani kívánt vágási típust"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:67
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:66
 msgid "The crop values are invalid, try again"
 msgstr "A vágási értékek érvénytelenek, próbálkozzon újra"
 
@@ -463,11 +463,11 @@ msgstr "A fájlnevek nem tartalmazhatják a következő karaktereket, próbálko
 msgid "Send me the file name that you'll like to rename your PDF file into"
 msgstr "Küldje el nekem azt a fájlnevet, amelyre át szeretné nevezni a PDF-fájlt"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:38
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:37
 msgid "Rotate"
 msgstr "Forgatni"
 
-#: pdf_bot/pdf_processor/rotate_pdf_processor.py:76
+#: pdf_bot/pdf_processor/rotate_pdf_processor.py:75
 msgid "Select the degrees that you'll like to rotate your PDF file in clockwise"
 msgstr "Válassza ki, hogy milyen mértékben szeretné elforgatni a PDF-fájlt az óramutató járásával megegyező irányban"
 
@@ -491,15 +491,15 @@ msgid "Send me the width and height\n\n"
 msgstr "Küldje el nekem a szélességet és a magasságot\n\n"
 "Példa: 150 200 - ez a szélességet 150-re, a magasságot pedig 200-ra állítja"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:55
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:54
 msgid "Scale"
 msgstr "Skála"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:59
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:58
 msgid "Select the scale type you'll like to perform"
 msgstr "Válassza ki a végrehajtani kívánt méretezési típust"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:67
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:66
 msgid "The scale values are invalid, try again"
 msgstr "A skálaértékek érvénytelenek, próbálkozzon újra"
 
