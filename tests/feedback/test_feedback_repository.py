@@ -21,9 +21,10 @@ class TestFeedbackRepository(TelegramTestMixin):
         error = SlackApiError("Error", "Response")
         self.slack_client.chat_postMessage.side_effect = error
 
-        with patch("pdf_bot.feedback.feedback_repository.logger") as logger, patch(
-            "pdf_bot.feedback.feedback_repository.capture_exception"
-        ) as capture_exception:
+        with (
+            patch("pdf_bot.feedback.feedback_repository.logger") as logger,
+            patch("pdf_bot.feedback.feedback_repository.capture_exception") as capture_exception,
+        ):
             self._save_feedback_and_assert_slack_client()
 
             logger.exception.assert_called_once_with("Failed to send feedback to Slack")

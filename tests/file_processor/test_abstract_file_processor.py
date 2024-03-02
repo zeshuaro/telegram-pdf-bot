@@ -209,9 +209,10 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio()
     async def test_process_file_dir_output(self) -> None:
-        with patch.object(self.sut, "process_file_task") as process_file_task, patch(
-            "pdf_bot.file_processor.abstract_file_processor.shutil"
-        ) as mock_shutil:
+        with (
+            patch.object(self.sut, "process_file_task") as process_file_task,
+            patch("pdf_bot.file_processor.abstract_file_processor.shutil") as mock_shutil,
+        ):
             path_with_suffix = self.mock_file_path()
             dir_path = self.mock_dir_path()
             dir_path.with_suffix.return_value = path_with_suffix
@@ -230,8 +231,9 @@ class TestAbstractFileProcessor(
 
     @pytest.mark.asyncio()
     async def test_process_file_generic_error_not_registered(self) -> None:
-        with patch.object(self.sut, "process_file_task", side_effect=GenericError), pytest.raises(
-            GenericError
+        with (
+            patch.object(self.sut, "process_file_task", side_effect=GenericError),
+            pytest.raises(GenericError),
         ):
             await self.sut.process_file(self.telegram_update, self.telegram_context)
 
@@ -272,8 +274,9 @@ class TestAbstractFileProcessor(
             self.telegram_service, self.language_service, bypass_init_check=True
         )
 
-        with patch.object(sut, "process_file_task", side_effect=UnknownError), pytest.raises(
-            UnknownError
+        with (
+            patch.object(sut, "process_file_task", side_effect=UnknownError),
+            pytest.raises(UnknownError),
         ):
             await sut.process_file(self.telegram_update, self.telegram_context)
 

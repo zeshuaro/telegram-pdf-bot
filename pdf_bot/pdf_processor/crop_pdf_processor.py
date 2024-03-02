@@ -33,8 +33,7 @@ class CropType(SelectOption):
             )
 
 
-class CropPdfData(FileData):
-    ...
+class CropPdfData(FileData): ...
 
 
 class CropOptionAndInputData(OptionAndInputData):

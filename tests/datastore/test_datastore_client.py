@@ -10,9 +10,10 @@ class TestMyDatastoreClient:
         service_account = {"service": "account"}
         creds = MagicMock(spec=Credentials)
 
-        with patch("pdf_bot.datastore.datastore_client.Credentials") as creds_cls, patch(
-            "pdf_bot.datastore.datastore_client.Client.__init__"
-        ) as client_init:
+        with (
+            patch("pdf_bot.datastore.datastore_client.Credentials") as creds_cls,
+            patch("pdf_bot.datastore.datastore_client.Client.__init__") as client_init,
+        ):
             creds_cls.from_service_account_info.return_value = creds
 
             MyDatastoreClient(service_account)
