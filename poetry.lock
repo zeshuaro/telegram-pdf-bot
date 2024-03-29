@@ -1397,18 +1397,18 @@ pillow = "*"
 
 [[package]]
 name = "pdfcropmargins"
-version = "2.0.3"
+version = "2.1.0"
 description = "A command-line program to crop the margins of PDF files, with many options."
 optional = false
 python-versions = "*"
 files = [
-    {file = "pdfCropMargins-2.0.3-py2.py3-none-any.whl", hash = "sha256:4aca57022f84a49e366ef7e5ed836f43ac09f28854f4649274e1bb258dcb2ce2"},
+    {file = "pdfCropMargins-2.1.0-py2.py3-none-any.whl", hash = "sha256:e1805bd6038f96488853f41cddac91e9688c1d96485d85ca144f3cf47d7e912e"},
 ]
 
 [package.dependencies]
 pillow = ">=9.3.0"
 PyMuPDF = ">=1.19.6"
-PySimpleGUI = ">=4.19.0.6"
+PySimpleGUI = ">=4.19.0.6,<=4.60.5"
 wheel = "*"
 
 [[package]]
@@ -1986,17 +1986,14 @@ test = ["flake8", "isort", "pytest"]
 
 [[package]]
 name = "pysimplegui"
-version = "5.0.3"
-description = "Python GUIs for Humans! PySimpleGUI is the top-rated Python application development environment. Launched in 2018 and actively developed, maintained, and supported in 2024. Transforms tkinter, Qt, WxPython, and Remi into a simple, intuitive, and fun experience for both hobbyists and expert users."
+version = "4.60.5"
+description = "Python GUIs for Humans. Launched in 2018. It's 2022 & PySimpleGUI is an ACTIVE & supported project. Super-simple to create custom GUI's. 325+ Demo programs & Cookbook for rapid start. Extensive documentation. Main docs at www.PySimpleGUI.org. Fun & your success are the focus. Examples using Machine Learning (GUI, OpenCV Integration), Rainmeter Style Desktop Widgets, Matplotlib + Pyplot, PIL support, add GUI to command line scripts, PDF & Image Viewers. Great for beginners & advanced GUI programmers."
 optional = false
-python-versions = ">=3.6"
+python-versions = "*"
 files = [
-    {file = "PySimpleGUI-5.0.3-py3-none-any.whl", hash = "sha256:c9d9501ca751a562f02575d075012796a99aba32a50eef78657d470c6d06514a"},
-    {file = "PySimpleGUI-5.0.3.tar.gz", hash = "sha256:6e78cf5463157e66bfb67f280a0e852cc2355bef6bb4730a35d6ab6cd83ad463"},
+    {file = "PySimpleGUI-4.60.5-py3-none-any.whl", hash = "sha256:004f33311ee685a5287fad54f500f7290b40d7c806044e478b1384f85dedce64"},
+    {file = "PySimpleGUI-4.60.5.tar.gz", hash = "sha256:31014d1cc5eef1373d7e93564ff2604662645cc774a939b1f01aa253e7f9d78b"},
 ]
-
-[package.dependencies]
-rsa = "*"
 
 [[package]]
 name = "pytest"
@@ -2695,4 +2692,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "==3.12.2"
-content-hash = "8db54a9ed5115a873ed82dc3af5a49895664c3cadc29f9c69a142d97ca4b80ed"
+content-hash = "db5013cef89d2f961973b154b0c7c186639d5e089626cac1dc70a9c1857a9b13"
