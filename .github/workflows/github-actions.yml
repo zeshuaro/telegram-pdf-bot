@@ -184,7 +184,7 @@ jobs:
 
       - name: Upload sources and download translations 🌐
         if: ${{ steps.update-i18n-source.outputs.NUM_DIFFS > 1 }}
-        uses: crowdin/github-action@v1.20.1
+        uses: crowdin/github-action@v1.20.2
         with:
           upload_sources: true
           upload_translations: false
