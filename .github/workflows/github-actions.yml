@@ -131,18 +131,19 @@ jobs:
 
     steps:
       - name: Create GitHub App token 🔑
-        id: create-app-token
-        uses: tibdex/github-app-token@v2.1.0
+        id: app-token
+        uses: actions/create-github-app-token@v1
         with:
-          app_id: ${{ secrets.GH_APP_ID }}
-          private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
       - name: Checkout 🛎️
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: master
-          token: ${{ steps.create-app-token.outputs.token }}
+          token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: false
 
       - name: Setup Python 🐍
         id: setup-python
@@ -196,7 +197,7 @@ jobs:
           source: locale/en_GB/LC_MESSAGES/pdf_bot.po
           translation: /locale/%locale_with_underscore%/LC_MESSAGES/pdf_bot.po
         env:
-          GITHUB_TOKEN: ${{ steps.create-app-token.outputs.token }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
