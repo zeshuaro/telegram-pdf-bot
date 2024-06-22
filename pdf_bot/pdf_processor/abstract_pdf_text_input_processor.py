@@ -17,6 +17,7 @@ from pdf_bot.consts import TEXT_FILTER
 from pdf_bot.file_processor import AbstractFileTaskProcessor
 from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import BackData
+from pdf_bot.telegram_internal.exceptions import TelegramServiceError
 
 from .abstract_pdf_processor import AbstractPdfProcessor
 
@@ -84,16 +85,21 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
     async def _process_text_input(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
+        _ = self.language_service.set_app_language(update, context)
         msg = cast(Message, update.effective_message)
         msg_text = cast(str, msg.text)
         cleaned_text = self.get_cleaned_text_input(msg_text)
 
         if cleaned_text is None:
-            _ = self.language_service.set_app_language(update, context)
             await msg.reply_text(_(self.invalid_text_input_error))
             return self.WAIT_TEXT_INPUT
 
-        file_data = self.telegram_service.get_file_data(context)
+        try:
+            file_data = self.telegram_service.get_file_data(context)
+        except TelegramServiceError as e:
+            await msg.reply_text(_(str(e)))
+            return ConversationHandler.END
+
         text_input_data = TextInputData(id=file_data.id, name=file_data.name, text=cleaned_text)
         self.telegram_service.cache_file_data(context, text_input_data)
 
