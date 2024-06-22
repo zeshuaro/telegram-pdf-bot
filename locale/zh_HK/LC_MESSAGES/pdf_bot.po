@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-06-22 05:41+0000\n"
-"PO-Revision-Date: 2024-06-22 05:42\n"
+"POT-Creation-Date: 2024-06-22 06:11+0000\n"
+"PO-Revision-Date: 2024-06-22 06:11\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Traditional, Hong Kong\n"
@@ -167,6 +167,10 @@ msgstr "發生咗未知嘅錯誤，唔該試多次"
 msgid "The button has expired, start over with your file or command"
 msgstr ""
 
+#: pdf_bot/error/error_handler.py:60
+msgid "The resulted image is invalid, try again"
+msgstr ""
+
 #: pdf_bot/feedback/feedback_service.py:31
 msgid "Send me your feedback in English"
 msgstr ""
@@ -267,31 +271,31 @@ msgstr "Send你想合併嘅PDF檔案畀我"
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "留意返，我會根據你send畀我嘅順序嚟合併你啲檔案"
 
-#: pdf_bot/merge/merge_service.py:81
+#: pdf_bot/merge/merge_service.py:85
 msgid "You've sent me these PDF files so far:"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:94
+#: pdf_bot/merge/merge_service.py:98
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "如果你已經send晒你想合併嘅PDF檔案畀我就噤{done}，唔係嘅話就繼續send啲檔案畀我"
 
-#: pdf_bot/merge/merge_service.py:116
+#: pdf_bot/merge/merge_service.py:120
 msgid "You've already removed all the PDF files you've sent me"
 msgstr ""
 
-#: pdf_bot/merge/merge_service.py:120
+#: pdf_bot/merge/merge_service.py:124
 msgid "{file_name} has been removed for merging"
 msgstr "Del咗{file_name}，呢個檔案唔會攞嚟合併"
 
-#: pdf_bot/merge/merge_service.py:142
+#: pdf_bot/merge/merge_service.py:146
 msgid "You haven't sent me any PDF files"
 msgstr "你都未send PDF檔案畀我"
 
-#: pdf_bot/merge/merge_service.py:145
+#: pdf_bot/merge/merge_service.py:149
 msgid "You've only sent me one PDF file"
 msgstr "你淨係send咗一個PDF檔案畀我咋"
 
-#: pdf_bot/merge/merge_service.py:158
+#: pdf_bot/merge/merge_service.py:162
 msgid "Merging your PDF files"
 msgstr "合併緊你嘅PDF檔案"
 

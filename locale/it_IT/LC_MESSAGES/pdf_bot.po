@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-06-22 05:41+0000\n"
-"PO-Revision-Date: 2024-06-22 05:42\n"
+"POT-Creation-Date: 2024-06-22 06:11+0000\n"
+"PO-Revision-Date: 2024-06-22 06:11\n"
 "Last-Translator: \n"
 "Language: it\n"
 "Language-Team: Italian\n"
@@ -167,6 +167,10 @@ msgstr "Qualcosa è andato storto, riprova"
 msgid "The button has expired, start over with your file or command"
 msgstr "Il pulsante è scaduto, ricomincia con il file o il comando"
 
+#: pdf_bot/error/error_handler.py:60
+msgid "The resulted image is invalid, try again"
+msgstr ""
+
 #: pdf_bot/feedback/feedback_service.py:31
 msgid "Send me your feedback in English"
 msgstr "Inviami il tuo feedback in inglese"
@@ -267,31 +271,31 @@ msgstr "Inviami i file PDF che ti piacerà unire"
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Si noti che i file verranno uniti nell'ordine in cui mi invii"
 
-#: pdf_bot/merge/merge_service.py:81
+#: pdf_bot/merge/merge_service.py:85
 msgid "You've sent me these PDF files so far:"
 msgstr "Finora mi hai inviato questi file PDF:"
 
-#: pdf_bot/merge/merge_service.py:94
+#: pdf_bot/merge/merge_service.py:98
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Premi {done} se mi hai inviato tutti i file PDF che ti piacerà unire o continua a inviarmi i file PDF"
 
-#: pdf_bot/merge/merge_service.py:116
+#: pdf_bot/merge/merge_service.py:120
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Hai già rimosso tutti i file PDF che mi hai inviato"
 
-#: pdf_bot/merge/merge_service.py:120
+#: pdf_bot/merge/merge_service.py:124
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} stato rimosso per l'unione"
 
-#: pdf_bot/merge/merge_service.py:142
+#: pdf_bot/merge/merge_service.py:146
 msgid "You haven't sent me any PDF files"
 msgstr "Non mi hai inviato alcun file PDF"
 
-#: pdf_bot/merge/merge_service.py:145
+#: pdf_bot/merge/merge_service.py:149
 msgid "You've only sent me one PDF file"
 msgstr "Mi hai inviato solo un file PDF"
 
-#: pdf_bot/merge/merge_service.py:158
+#: pdf_bot/merge/merge_service.py:162
 msgid "Merging your PDF files"
 msgstr "Sto unendo i tuoi PDF"
 

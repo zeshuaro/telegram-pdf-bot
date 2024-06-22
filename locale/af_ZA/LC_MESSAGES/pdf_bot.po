@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-06-22 05:41+0000\n"
-"PO-Revision-Date: 2024-06-22 05:42\n"
+"POT-Creation-Date: 2024-06-22 06:11+0000\n"
+"PO-Revision-Date: 2024-06-22 06:11\n"
 "Last-Translator: \n"
 "Language: af\n"
 "Language-Team: Afrikaans\n"
@@ -167,6 +167,10 @@ msgstr "Iets het verkeerd gegaan, probeer asseblief weer."
 msgid "The button has expired, start over with your file or command"
 msgstr "Die knoppie het verval, begin met u lêer of opdrag"
 
+#: pdf_bot/error/error_handler.py:60
+msgid "The resulted image is invalid, try again"
+msgstr ""
+
 #: pdf_bot/feedback/feedback_service.py:31
 msgid "Send me your feedback in English"
 msgstr "Stuur vir my jou terugvoer in Engels"
@@ -267,31 +271,31 @@ msgstr "Stuur vir my die PDF-lêers wat jy graag wil saamsmelt"
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Let daarop dat die lêers saamgesmelt sal word in die volgorde wat jy my stuur"
 
-#: pdf_bot/merge/merge_service.py:81
+#: pdf_bot/merge/merge_service.py:85
 msgid "You've sent me these PDF files so far:"
 msgstr "U het tot dusver vir my hierdie PDF-lêers gestuur:"
 
-#: pdf_bot/merge/merge_service.py:94
+#: pdf_bot/merge/merge_service.py:98
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Druk {done} as jy vir my al die PDF-lêers gestuur het wat jy graag wil saamsmelt of aanhou om vir my die PDF-lêers te stuur"
 
-#: pdf_bot/merge/merge_service.py:116
+#: pdf_bot/merge/merge_service.py:120
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "U het reeds al die PDF-lêers verwyder wat u vir my gestuur het"
 
-#: pdf_bot/merge/merge_service.py:120
+#: pdf_bot/merge/merge_service.py:124
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} is verwyder vir samesmelting"
 
-#: pdf_bot/merge/merge_service.py:142
+#: pdf_bot/merge/merge_service.py:146
 msgid "You haven't sent me any PDF files"
 msgstr "Jy het nie vir my enige PDF-lêers gestuur nie"
 
-#: pdf_bot/merge/merge_service.py:145
+#: pdf_bot/merge/merge_service.py:149
 msgid "You've only sent me one PDF file"
 msgstr "Jy het net vir my een PDF-lêer gestuur"
 
-#: pdf_bot/merge/merge_service.py:158
+#: pdf_bot/merge/merge_service.py:162
 msgid "Merging your PDF files"
 msgstr "Voeg jou PDF-lêers saam"
 

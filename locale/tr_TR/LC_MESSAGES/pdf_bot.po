@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-06-22 05:41+0000\n"
-"PO-Revision-Date: 2024-06-22 05:42\n"
+"POT-Creation-Date: 2024-06-22 06:11+0000\n"
+"PO-Revision-Date: 2024-06-22 06:11\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: Turkish\n"
@@ -167,6 +167,10 @@ msgstr "Bir şeyler ters gitti, lütfen tekrar deneyin"
 msgid "The button has expired, start over with your file or command"
 msgstr "Düğmenin süresi doldu, dosyanızla veya komutunuzla baştan başlayın"
 
+#: pdf_bot/error/error_handler.py:60
+msgid "The resulted image is invalid, try again"
+msgstr ""
+
 #: pdf_bot/feedback/feedback_service.py:31
 msgid "Send me your feedback in English"
 msgstr "Geri bildiriminizi bana İngilizce olarak gönderin"
@@ -267,31 +271,31 @@ msgstr "Birleştirmeyi istediğiniz PDF dosyalarını bana gönderin"
 msgid "Note that the files will be merged in the order that you send me"
 msgstr "Dosyaların bana gönderdiğiniz sırada birleştirileceğini unutmayın"
 
-#: pdf_bot/merge/merge_service.py:81
+#: pdf_bot/merge/merge_service.py:85
 msgid "You've sent me these PDF files so far:"
 msgstr "Şimdiye kadar bana şu PDF dosyalarını gönderdiniz:"
 
-#: pdf_bot/merge/merge_service.py:94
+#: pdf_bot/merge/merge_service.py:98
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Bana birleştirmek istediğiniz tüm PDF dosyalarını gönderdiyseniz veya PDF dosyalarını göndermeye devam ettiyseniz {done} basın"
 
-#: pdf_bot/merge/merge_service.py:116
+#: pdf_bot/merge/merge_service.py:120
 msgid "You've already removed all the PDF files you've sent me"
 msgstr "Bana gönderdiğiniz tüm PDF dosyalarını zaten kaldırdınız"
 
-#: pdf_bot/merge/merge_service.py:120
+#: pdf_bot/merge/merge_service.py:124
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} birleştirmek için kaldırıldı"
 
-#: pdf_bot/merge/merge_service.py:142
+#: pdf_bot/merge/merge_service.py:146
 msgid "You haven't sent me any PDF files"
 msgstr "Bana hiç PDF dosyası göndermedin"
 
-#: pdf_bot/merge/merge_service.py:145
+#: pdf_bot/merge/merge_service.py:149
 msgid "You've only sent me one PDF file"
 msgstr "Bana sadece bir PDF dosyası gönderdin"
 
-#: pdf_bot/merge/merge_service.py:158
+#: pdf_bot/merge/merge_service.py:162
 msgid "Merging your PDF files"
 msgstr "PDF dosyalarınızı birleştirme"
 
