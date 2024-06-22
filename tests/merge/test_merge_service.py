@@ -48,7 +48,7 @@ class TestMergeService(
 
     @pytest.mark.asyncio()
     async def test_check_pdf(self) -> None:
-        self.telegram_context.user_data.__getitem__.return_value = self.file_data_list
+        self.telegram_service.get_user_data.return_value = self.file_data_list
 
         actual = await self.sut.check_pdf(self.telegram_update, self.telegram_context)
 
@@ -68,6 +68,23 @@ class TestMergeService(
 
         assert actual == self.WAIT_MERGE_PDF
         self.telegram_context.user_data.__getitem__.assert_not_called()
+        self.telegram_service.send_file_names.assert_not_called()
+        self.telegram_update.effective_message.reply_text.assert_called_once()
+
+    @pytest.mark.asyncio()
+    async def test_check_pdf_user_data_error(self) -> None:
+        self.telegram_service.get_user_data.side_effect = TelegramServiceError()
+
+        actual = await self.sut.check_pdf(self.telegram_update, self.telegram_context)
+
+        assert actual == ConversationHandler.END
+
+        self.telegram_service.get_user_data.assert_called_once_with(
+            self.telegram_context, self.MERGE_PDF_DATA
+        )
+        self.file_data_list.append.assert_not_called()
+        self.telegram_service.update_user_data.assert_not_called()
+
         self.telegram_service.send_file_names.assert_not_called()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
