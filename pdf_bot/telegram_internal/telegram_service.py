@@ -17,7 +17,7 @@ from telegram import (
     ReplyKeyboardRemove,
     Update,
 )
-from telegram.constants import ChatAction, FileSizeLimit, ParseMode
+from telegram.constants import ChatAction, FileSizeLimit, MessageLimit, ParseMode
 from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
@@ -46,6 +46,7 @@ class TelegramService:
     PDF_MIME_TYPE_SUFFIX = "pdf"
     PNG_SUFFIX = ".png"
     BACK = _("Back")
+    MESSAGE_TRUNCATED = "\n..."
 
     def __init__(
         self,
@@ -284,12 +285,20 @@ class TelegramService:
     async def send_file_names(
         self, chat_id: int, text: str, file_data_list: list[FileData]
     ) -> None:
+        msg_text = text
         for i, file_data in enumerate(file_data_list):
             file_name = file_data.name
             if file_name is None:
                 file_name = "File name unavailable"
-            text += f"{i + 1}: {file_name}\n"
-        await self.bot.send_message(chat_id, text)
+            msg_text += f"{i + 1}: {file_name}\n"
+
+        if len(msg_text) > MessageLimit.MAX_TEXT_LENGTH:
+            msg_text = (
+                msg_text[: MessageLimit.MAX_TEXT_LENGTH - len(self.MESSAGE_TRUNCATED)]
+                + self.MESSAGE_TRUNCATED
+            )
+
+        await self.bot.send_message(chat_id, msg_text)
 
     async def send_message(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE, text: str
