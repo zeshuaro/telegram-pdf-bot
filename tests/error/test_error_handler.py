@@ -109,7 +109,12 @@ class TestErrorHandler(LanguageServiceTestMixin, TelegramTestMixin):
 
     @pytest.mark.asyncio()
     @pytest.mark.parametrize(
-        "message", ["Query is too old and response timeout expired", "File must be non-empty"]
+        "message",
+        [
+            "Query is too old and response timeout expired",
+            "File must be non-empty",
+            "photo_invalid_dimensions",
+        ],
     )
     async def test_callback_bad_request_swallow_and_reply_error(self, message: str) -> None:
         self.telegram_context.error = BadRequest(message)
