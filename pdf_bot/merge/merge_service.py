@@ -1,7 +1,7 @@
 from gettext import gettext as _
 from typing import cast
 
-from telegram import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram import Document, Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.constants import ParseMode
 from telegram.ext import ContextTypes, ConversationHandler
 
@@ -52,8 +52,12 @@ class MergeService:
             await msg.reply_text(_(str(e)))
             return self.WAIT_MERGE_PDF
 
-        file_data = FileData.from_telegram_object(doc)
-        context.user_data[self._MERGE_PDF_DATA].append(file_data)  # type: ignore[index]
+        try:
+            self._append_file_data(context, doc)
+        except TelegramServiceError as e:
+            await msg.reply_text(_(str(e)))
+            return ConversationHandler.END
+
         return await self._ask_next_pdf(update, context)
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -164,3 +168,11 @@ class MergeService:
             await msg.reply_text(_(str(e)))
 
         return ConversationHandler.END
+
+    def _append_file_data(self, context: ContextTypes.DEFAULT_TYPE, document: Document) -> None:
+        file_data_list: list[FileData] = self.telegram_service.get_user_data(
+            context, self._MERGE_PDF_DATA
+        )
+        file_data = FileData.from_telegram_object(document)
+        file_data_list.append(file_data)
+        self.telegram_service.update_user_data(context, self._MERGE_PDF_DATA, file_data_list)
