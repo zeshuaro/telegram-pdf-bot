@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, call, patch
 
 import pytest
 from telegram import File, InlineKeyboardMarkup, Message, ReplyKeyboardMarkup
-from telegram.constants import ChatAction, FileSizeLimit, ParseMode
+from telegram.constants import ChatAction, FileSizeLimit, MessageLimit, ParseMode
 from telegram.ext import Application, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
@@ -30,6 +30,7 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
     USER_DATA_VALUE = "user_data_value"
     BACK = "Back"
     CANCEL = "Cancel"
+    MESSAGE_TRUNCATED = "\n..."
 
     def setup_method(self) -> None:
         super().setup_method()
@@ -478,6 +479,18 @@ class TestTelegramService(LanguageServiceTestMixin, TelegramTestMixin):
             self.TELEGRAM_CHAT_ID,
             f"{self.TELEGRAM_TEXT}1: a\n2: File name unavailable\n",
         )
+
+    @pytest.mark.asyncio()
+    async def test_send_file_names_truncate(self) -> None:
+        file_data_list = [FileData(str(x), str(x)) for x in range(MessageLimit.MAX_TEXT_LENGTH + 1)]
+
+        await self.sut.send_file_names(self.TELEGRAM_CHAT_ID, self.TELEGRAM_TEXT, file_data_list)
+
+        args = self.telegram_bot.send_message.call_args[0]
+        text = args[1]
+
+        assert len(text) == MessageLimit.MAX_TEXT_LENGTH
+        assert text.endswith(self.MESSAGE_TRUNCATED)
 
     @pytest.mark.asyncio()
     async def test_send_message(self) -> None:
