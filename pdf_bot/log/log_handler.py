@@ -23,8 +23,8 @@ class InterceptLoggingHandler(logging.Handler):
 
 
 class MyLogHandler:
-    _WEASYPRINT = "weasyprint"
     _FONT_TOOLS = "fontTools"
+    _WEASYPRINT_LOGGERS = ("weasyprint.pdf.anchors", "weasyprint.images")
 
     def __init__(self, intercept_logging_handler: InterceptLoggingHandler) -> None:
         self.intercept_logging_handler = intercept_logging_handler
@@ -35,7 +35,8 @@ class MyLogHandler:
         )
 
         logging.getLogger(self._FONT_TOOLS).setLevel(logging.WARNING)
-        logging.getLogger(self._WEASYPRINT).setLevel(logging.ERROR)
-
         ignore_logger(self._FONT_TOOLS)
-        ignore_logger(self._WEASYPRINT)
+
+        for logger_name in self._WEASYPRINT_LOGGERS:
+            logging.getLogger(logger_name).setLevel(logging.ERROR)
+            ignore_logger(logger_name)
