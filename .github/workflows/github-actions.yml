@@ -143,7 +143,6 @@ jobs:
           fetch-depth: 0
           ref: master
           token: ${{ steps.app-token.outputs.token }}
-          persist-credentials: false
 
       - name: Setup Python 🐍
         id: setup-python
