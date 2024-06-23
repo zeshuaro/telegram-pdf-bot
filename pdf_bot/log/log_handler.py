@@ -24,7 +24,7 @@ class InterceptLoggingHandler(logging.Handler):
 
 class MyLogHandler:
     _FONT_TOOLS = "fontTools"
-    _WEASYPRINT_LOGGERS = ("weasyprint.pdf.anchors", "weasyprint.images")
+    _WEASYPRINT_LOGGERS = ("weasyprint", "weasyprint.pdf.anchors", "weasyprint.images")
 
     def __init__(self, intercept_logging_handler: InterceptLoggingHandler) -> None:
         self.intercept_logging_handler = intercept_logging_handler
