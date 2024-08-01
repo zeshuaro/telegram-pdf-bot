@@ -26,7 +26,7 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Install Poetry 📦
-        uses: snok/install-poetry@v1.3.4
+        uses: snok/install-poetry@v1.4.0
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
@@ -68,7 +68,7 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Install Poetry 📦
-        uses: snok/install-poetry@v1.3.4
+        uses: snok/install-poetry@v1.4.0
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
@@ -151,7 +151,7 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Install Poetry 📦
-        uses: snok/install-poetry@v1.3.4
+        uses: snok/install-poetry@v1.4.0
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
