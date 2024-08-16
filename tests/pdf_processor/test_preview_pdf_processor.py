@@ -43,7 +43,7 @@ class TestPreviewPdfProcessor(
         assert isinstance(actual, CallbackQueryHandler)
         assert actual.pattern == PreviewPdfData
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
         self.pdf_service.preview_pdf.return_value.__aenter__.return_value = self.file_path
 

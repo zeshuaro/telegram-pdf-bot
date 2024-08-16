@@ -43,7 +43,7 @@ class TestPdfToImageProcessor(
         assert isinstance(actual, CallbackQueryHandler)
         assert actual.pattern == PdfToImageData
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
         self.pdf_service.convert_pdf_to_images.return_value.__aenter__.return_value = self.file_path
 

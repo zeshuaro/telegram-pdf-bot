@@ -32,14 +32,14 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
             self.language_service,
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_ask_source_pdf(self) -> None:
         actual = await self.sut.ask_source_pdf(self.telegram_update, self.telegram_context)
 
         assert actual == self.WAIT_SOURCE_PDF
         self.telegram_service.reply_with_cancel_markup.assert_called_once()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_source_pdf(self) -> None:
         actual = await self.sut.check_source_pdf(self.telegram_update, self.telegram_context)
 
@@ -50,7 +50,7 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
         )
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_source_pdf_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
@@ -61,7 +61,7 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
         self.telegram_context.user_data.__setitem__.assert_not_called()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_add_watermark_to_pdf(self) -> None:
         self.pdf_service.add_watermark_to_pdf.return_value.__aenter__.return_value = self.file_path
 
@@ -82,7 +82,7 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
             TaskType.watermark_pdf,
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_add_watermark_to_pdf_service_error(self) -> None:
         self.pdf_service.add_watermark_to_pdf.side_effect = PdfServiceError()
 
@@ -98,7 +98,7 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
         )
         self.telegram_service.send_file.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_add_watermark_to_pdf_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
 
@@ -112,7 +112,7 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
         self.pdf_service.add_watermark_to_pdf.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_add_watermark_to_pdf_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
@@ -124,13 +124,13 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
         self.pdf_service.add_watermark_to_pdf.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_text_back_option(self) -> None:
         self.telegram_message.text = "Back"
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_SOURCE_PDF
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_text_cancel_option(self) -> None:
         self.telegram_message.text = "Cancel"
 
@@ -139,7 +139,7 @@ class TestWatermarkService(LanguageServiceTestMixin, TelegramServiceTestMixin, T
         assert actual == ConversationHandler.END
         self.telegram_service.cancel_conversation.assert_called_once()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_text_unknown_text(self) -> None:
         self.telegram_message.text = "clearly_unknown"
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)

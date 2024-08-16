@@ -31,7 +31,7 @@ class TestLanguageService(TelegramTestMixin):
         actual = self.sut.get_language_code_from_short_code(value)
         assert actual == expected
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_send_language_options(self) -> None:
         self.telegram_update.callback_query = None
 
@@ -41,7 +41,7 @@ class TestLanguageService(TelegramTestMixin):
         self.telegram_context.drop_callback_data.assert_not_called()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_send_language_options_with_callback_query(self) -> None:
         self.telegram_update.callback_query = self.telegram_callback_query
 
@@ -51,7 +51,7 @@ class TestLanguageService(TelegramTestMixin):
         self.telegram_context.drop_callback_data.assert_not_called()
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_get_user_language(self) -> None:
         self.telegram_user_data.get.return_value = None
 
@@ -63,7 +63,7 @@ class TestLanguageService(TelegramTestMixin):
             self.LANGUAGE_CODE, self.EN_CODE
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_get_user_language_cached(self) -> None:
         self.telegram_user_data.get.return_value = self.EN_CODE
 
@@ -72,7 +72,7 @@ class TestLanguageService(TelegramTestMixin):
         assert actual == self.EN_CODE
         self.telegram_user_data.__setitem__.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_get_user_language_without_user_data(self) -> None:
         self.telegram_context.user_data = None
 
@@ -81,7 +81,7 @@ class TestLanguageService(TelegramTestMixin):
         assert actual == self.EN_CODE
         self.telegram_user_data.__setitem__.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_get_user_language_without_callback_query(self) -> None:
         self.telegram_user_data.get.return_value = None
         self.telegram_update.callback_query = None
@@ -94,7 +94,7 @@ class TestLanguageService(TelegramTestMixin):
             self.LANGUAGE_CODE, self.EN_CODE
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_get_user_language_with_chat_id(self) -> None:
         self.telegram_user_data.get.return_value = None
         self.telegram_update.callback_query = None
@@ -109,7 +109,7 @@ class TestLanguageService(TelegramTestMixin):
             self.LANGUAGE_CODE, self.EN_CODE
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_get_user_language_without_message_and_chat(self) -> None:
         self.telegram_user_data.get.return_value = None
         self.telegram_update.callback_query = None
@@ -122,7 +122,7 @@ class TestLanguageService(TelegramTestMixin):
         self.language_repository.get_language.assert_not_called()
         self.telegram_user_data.__setitem__.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     @pytest.mark.parametrize("side_effect", [None, KeyError])
     async def test_update_user_language(self, side_effect: type[Exception] | None) -> None:
         self.telegram_callback_query.data = self.LANGUAGE_DATA
@@ -141,7 +141,7 @@ class TestLanguageService(TelegramTestMixin):
             self.LANGUAGE_CODE, self.EN_CODE
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_update_user_language_without_user_data(self) -> None:
         self.telegram_callback_query.data = self.LANGUAGE_DATA
         self.telegram_context.user_data = None
@@ -153,7 +153,7 @@ class TestLanguageService(TelegramTestMixin):
         )
         self.telegram_user_data.__setitem__.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_update_user_language_invalid_callback_query_data(self) -> None:
         self.telegram_callback_query.data = None
 

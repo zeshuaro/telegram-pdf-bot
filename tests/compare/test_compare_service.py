@@ -27,13 +27,13 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
 
         self.sut = CompareService(self.pdf_service, self.telegram_service, self.language_service)
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_ask_first_pdf(self) -> None:
         actual = await self.sut.ask_first_pdf(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_FIRST_PDF
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_first_pdf(self) -> None:
         actual = await self.sut.check_first_pdf(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_SECOND_PDF
@@ -41,7 +41,7 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
             self.telegram_context, self.COMPARE_ID, self.TELEGRAM_DOCUMENT_ID
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_first_pdf_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
@@ -50,7 +50,7 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         assert actual == self.WAIT_FIRST_PDF
         self.telegram_context.user_data.__setitem__.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_compare_pdfs(self) -> None:
         self.telegram_service.get_user_data.return_value = self.TELEGRAM_DOCUMENT_ID
         self.pdf_service.compare_pdfs.return_value.__aenter__.return_value = self.file_path
@@ -68,7 +68,7 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
             TaskType.compare_pdf,
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_compare_pdfs_no_differences(self) -> None:
         self.telegram_service.get_user_data.return_value = self.TELEGRAM_DOCUMENT_ID
         self.pdf_service.compare_pdfs.return_value.__aenter__.side_effect = NoDifferenceError()
@@ -81,7 +81,7 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         )
         self.telegram_service.send_file.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_compare_pdfs_invalid_user_data(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError()
 
@@ -91,7 +91,7 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         self.pdf_service.compare_pdfs.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_compare_pdfs_invalid_pdf(self) -> None:
         self.telegram_service.check_pdf_document.side_effect = TelegramServiceError()
 
@@ -101,13 +101,13 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         self.pdf_service.compare_pdfs.assert_not_called()
         self.telegram_service.send_file.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_text_back(self) -> None:
         self.telegram_message.text = BACK
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)
         assert actual == self.WAIT_FIRST_PDF
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_text_cancel(self) -> None:
         self.telegram_service.cancel_conversation.return_value = ConversationHandler.END
         self.telegram_message.text = CANCEL
@@ -116,7 +116,7 @@ class TestCompareService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
 
         assert actual == ConversationHandler.END
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_text_unknown(self) -> None:
         self.telegram_message.text = "clearly_unknown"
         actual = await self.sut.check_text(self.telegram_update, self.telegram_context)

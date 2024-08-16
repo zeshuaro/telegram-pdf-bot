@@ -41,14 +41,14 @@ class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
     def teardown_method(self) -> None:
         self.html_cls_patcher.stop()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_url_to_pdf(self) -> None:
         await self.sut.url_to_pdf(self.telegram_update, self.telegram_context)
 
         self._assert_url_to_pdf_calls()
         self._assert_url_to_pdf_send_file()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_url_to_pdf_clear_cache_error(self) -> None:
         self.telegram_service.get_user_data.side_effect = TelegramGetUserDataError
 
@@ -57,7 +57,7 @@ class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         self._assert_url_to_pdf_calls()
         self._assert_url_to_pdf_send_file()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_url_to_pdf_cache_error(self) -> None:
         self.telegram_service.update_user_data.side_effect = TelegramUpdateUserDataError
 
@@ -66,7 +66,7 @@ class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
         self._assert_url_to_pdf_calls()
         self._assert_url_to_pdf_send_file()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_url_to_pdf_in_progress(self) -> None:
         self.telegram_service.user_data_contains.return_value = True
 
@@ -97,7 +97,7 @@ class TestWebpageService(LanguageServiceTestMixin, TelegramServiceTestMixin, Tel
             TypeError,
         ],
     )
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_url_to_pdf_error(self, error: type[Exception]) -> None:
         self.html.write_pdf.side_effect = error
 

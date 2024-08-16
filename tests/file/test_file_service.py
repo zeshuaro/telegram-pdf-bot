@@ -27,7 +27,7 @@ class TestFileService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
             self.pdf_task_processor,
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_pdf(self) -> None:
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD
         self.pdf_task_processor.ask_task.return_value = self.STATE
@@ -39,7 +39,7 @@ class TestFileService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
             self.telegram_update, self.telegram_context
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_pdf_too_big(self) -> None:
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD + 1
 
@@ -48,7 +48,7 @@ class TestFileService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
         assert actual == ConversationHandler.END
         self.pdf_task_processor.ask_task.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_image(self) -> None:
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD
         self.image_task_processor.ask_task.return_value = self.STATE
@@ -60,7 +60,7 @@ class TestFileService(LanguageServiceTestMixin, TelegramServiceTestMixin, Telegr
             self.telegram_update, self.telegram_context
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_check_image_too_big(self) -> None:
         self.telegram_document.file_size = FileSizeLimit.FILESIZE_DOWNLOAD + 1
 
