@@ -15,7 +15,7 @@ class TestLanguageHandler(LanguageServiceTestMixin, TelegramTestMixin):
         self.language_service = self.mock_language_service()
         self.sut = LanguageHandler(self.language_service)
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_handlers(self) -> None:
         actual = self.sut.handlers
         assert len(actual) == 3

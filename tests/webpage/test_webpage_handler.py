@@ -14,7 +14,7 @@ class TestWebpageHandler(TelegramTestMixin):
         self.webpage_service = MagicMock(spec=WebpageService)
         self.sut = WebpageHandler(self.webpage_service)
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_handlers(self) -> None:
         actual = self.sut.handlers
         assert len(actual) == 1

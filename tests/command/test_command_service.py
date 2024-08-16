@@ -18,7 +18,7 @@ class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
 
         self.sut = CommandService(self.account_service, self.language_service)
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_send_start_message(self) -> None:
         await self.sut.send_start_message(self.telegram_update, self.telegram_context)
 
@@ -27,18 +27,18 @@ class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
             ANY, parse_mode=ParseMode.HTML
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_send_help_message(self) -> None:
         await self.sut.send_help_message(self.telegram_update, self.telegram_context)
         self.telegram_update.effective_message.reply_text.assert_called_once()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_send_message_to_user(self) -> None:
         self.telegram_context.args = [self.TELEGRAM_USER_ID, self.TELEGRAM_TEXT]
         await self.sut.send_message_to_user(self.telegram_update, self.telegram_context)
         self._assert_send_message_to_user("Message sent")
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_send_message_to_user_unauthorized(self) -> None:
         self.telegram_context.args = [self.TELEGRAM_USER_ID, self.TELEGRAM_TEXT]
         self.telegram_bot.send_message.side_effect = Forbidden("Error")
@@ -47,7 +47,7 @@ class TestCommandService(LanguageServiceTestMixin, TelegramTestMixin):
 
         self._assert_send_message_to_user("Bot is blocked by the user")
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_send_message_to_user_invalid_args(self) -> None:
         args = None
         self.telegram_context.args = args

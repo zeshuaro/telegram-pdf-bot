@@ -14,7 +14,7 @@ class TestErrorCallbackQueryHandler(TelegramServiceTestMixin):
 
         self.sut = ErrorCallbackQueryHandler(self.error_service)
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_handlers(self) -> None:
         actual = self.sut.handlers
         assert len(actual) == 1

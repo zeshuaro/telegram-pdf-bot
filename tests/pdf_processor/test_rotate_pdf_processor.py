@@ -75,7 +75,7 @@ class TestRotatePdfProcessor(
             == AbstractFileTaskProcessor.WAIT_FILE_TASK
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
         degree = 90
         degree_data = RotateDegreeData(
@@ -89,14 +89,14 @@ class TestRotatePdfProcessor(
             assert actual == self.file_task_result
             self.pdf_service.rotate_pdf.assert_called_once_with(degree_data.id, degree)
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(FileDataTypeError):
             async with self.sut.process_file_task(self.FILE_DATA):
                 pass
         self.pdf_service.rotate_pdf.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_ask_degree(self) -> None:
         self.telegram_callback_query.data = RotatePdfData(
             self.TELEGRAM_DOCUMENT_ID, self.TELEGRAM_DOCUMENT_NAME
@@ -111,7 +111,7 @@ class TestRotatePdfProcessor(
         )
         self.telegram_callback_query.edit_message_text.assert_called_once()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_ask_degree_invalid_callback_query_data(self) -> None:
         self.telegram_update.callback_query = self.telegram_callback_query
 

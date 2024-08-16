@@ -26,7 +26,7 @@ class TestAbstractFileTaskProcessor(LanguageServiceTestMixin, TelegramTestMixin)
         self.language_service = self.mock_language_service()
         self.sut = MockProcessor(self.language_service)
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_ask_task(self) -> None:
         with patch.object(
             self.sut, "ask_task_helper", return_value=self.WAIT_FILE_TASK

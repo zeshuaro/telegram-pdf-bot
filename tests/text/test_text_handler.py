@@ -19,7 +19,7 @@ class TestTextHandler(TelegramServiceTestMixin):
 
         self.sut = TextHandler(self.text_service, self.telegram_service)
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_conversation_handler(self) -> None:
         actual = self.sut.handlers
         assert len(actual) == 1

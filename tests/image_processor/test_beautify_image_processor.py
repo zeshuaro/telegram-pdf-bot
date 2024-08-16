@@ -44,7 +44,7 @@ class TestBeautifyImageProcessor(
         assert isinstance(actual, CallbackQueryHandler)
         assert actual.pattern == BeautifyImageData
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
         self.image_service.beautify_and_convert_images_to_pdf.return_value.__aenter__.return_value = (  # noqa: E501
             self.file_path

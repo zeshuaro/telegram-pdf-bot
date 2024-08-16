@@ -23,7 +23,7 @@ class TestLanguageHandler(TelegramTestMixin):
         self.payment_service = MagicMock(spec=PaymentService)
         self.sut = PaymentHandler(self.payment_service)
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_handlers(self) -> None:
         actual = self.sut.handlers
         assert len(actual) == 6

@@ -68,7 +68,7 @@ class TestPdfProcessor(
         actual = self.sut.get_cleaned_text_input("clearly_invalid")
         assert actual is None
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task_scale_by_factor(self) -> None:
         file_data = ScaleOptionAndInputData(
             id=self.TELEGRAM_DOCUMENT_ID,
@@ -84,7 +84,7 @@ class TestPdfProcessor(
                 file_data.id, self.SCALE_DATA
             )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task_scale_to_dimension(self) -> None:
         file_data = ScaleOptionAndInputData(
             id=self.TELEGRAM_DOCUMENT_ID,
@@ -102,7 +102,7 @@ class TestPdfProcessor(
                 file_data.id, self.SCALE_DATA
             )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(FileDataTypeError):
             async with self.sut.process_file_task(self.FILE_DATA):

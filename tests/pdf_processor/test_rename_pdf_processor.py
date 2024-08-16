@@ -52,7 +52,7 @@ class TestRenamePdfProcessor(
         actual = self.sut.get_cleaned_text_input(text)
         assert actual is None
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task(self) -> None:
         self.pdf_service.rename_pdf.return_value.__aenter__.return_value = self.file_path
 
@@ -62,7 +62,7 @@ class TestRenamePdfProcessor(
                 self.TEXT_INPUT_DATA.id, self.TEXT_INPUT_DATA.text
             )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_file_task_invalid_file_data(self) -> None:
         with pytest.raises(FileDataTypeError):
             async with self.sut.process_file_task(self.FILE_DATA):

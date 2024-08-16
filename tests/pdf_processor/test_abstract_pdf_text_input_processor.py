@@ -118,7 +118,7 @@ class TestAbstractPdfTextInputProcessor(
             == AbstractFileTaskProcessor.WAIT_FILE_TASK
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_ask_text_input(self) -> None:
         self.telegram_callback_query.edit_message_text.return_value = self.telegram_message
 
@@ -137,7 +137,7 @@ class TestAbstractPdfTextInputProcessor(
             self.telegram_context, self.telegram_message
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_text_input(self) -> None:
         self.telegram_update.callback_query = None
 
@@ -154,7 +154,7 @@ class TestAbstractPdfTextInputProcessor(
             self.telegram_context, self.text_input_data
         )
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_text_input_invalid_input(self) -> None:
         with patch.object(self.sut, "get_cleaned_text_input", return_value=None):
             actual = await self.sut._process_text_input(self.telegram_update, self.telegram_context)
@@ -163,7 +163,7 @@ class TestAbstractPdfTextInputProcessor(
             self.telegram_service.get_file_data.assert_not_called()
             self.telegram_service.cache_file_data.assert_not_called()
 
-    @pytest.mark.asyncio()
+    @pytest.mark.asyncio
     async def test_process_text_input_get_file_data_error(self) -> None:
         self.telegram_service.get_file_data.side_effect = TelegramGetUserDataError()
 
