@@ -214,17 +214,9 @@ jobs:
           docker push ${{ env.DOCKER_IMAGE }}
 
       - name: Deploy 🚀
-        uses: digitalocean/app_action@v1.1.7
+        uses: digitalocean/app_action@v2.0.1
+        env:
+          REPOSITORY: ${{ secrets.DIGITALOCEAN_APP_NAME }}
+          REPOSITORY_TAG: ${{ github.sha }}
         with:
-          app_name: ${{ secrets.DIGITALOCEAN_APP_NAME }}
           token: ${{ secrets.DIGITALOCEAN_TOKEN }}
-          images: '[
-            {
-            "name": "${{ secrets.DIGITALOCEAN_APP_NAME }}",
-            "image": {
-            "registry_type": "DOCR",
-            "repository": "${{ secrets.DIGITALOCEAN_APP_NAME }}",
-            "tag": "${{ github.sha }}"
-            }
-            }
-            ]'
