@@ -216,7 +216,7 @@ jobs:
       - name: Deploy 🚀
         uses: digitalocean/app_action/deploy@v2.0.2
         env:
-          REPOSITORY: ${{ secrets.DIGITALOCEAN_APP_NAME }}
-          REPOSITORY_TAG: ${{ github.sha }}
+          IMAGE_TAG_TELEGRAM_PDF_BOT: ${{ github.sha }}
         with:
           token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+          app_name: ${{ secrets.DIGITALOCEAN_APP_NAME }}
