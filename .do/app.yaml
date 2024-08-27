@@ -36,3 +36,6 @@ services:
       - key: APP_URL
         value: ${DIGITALOCEAN_APP_URL}
         type: GENERAL
+      - key: PORT
+        value: ${DIGITALOCEAN_APP_PORT}
+        type: GENERAL
