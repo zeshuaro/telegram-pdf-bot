@@ -5,3 +5,37 @@ services:
       registry_type: DOCR
       repository: ${REPOSITORY}
       tag: ${REPOSITORY_TAG}
+    envs:
+      - key: TELEGRAM_TOKEN
+        value: ${TELEGRAM_TOKEN}
+        type: SECRET
+      - key: SLACK_TOKEN
+        value: ${SLACK_TOKEN}
+        type: SECRET
+      - key: STRIPE_TOKEN
+        value: ${STRIPE_TOKEN}
+        type: SECRET
+      - key: GOOGLE_FONTS_TOKEN
+        value: ${GOOGLE_FONTS_TOKEN}
+        type: SECRET
+      - key: GA_API_SECRET
+        value: ${GA_API_SECRET}
+        type: SECRET
+      - key: GA_MEASUREMENT_ID
+        value: ${GA_MEASUREMENT_ID}
+        type: SECRET
+      - key: GCP_SERVICE_ACCOUNT
+        value: ${GCP_SERVICE_ACCOUNT}
+        type: SECRET
+      - key: SENTRY_DSN
+        value: ${SENTRY_DSN}
+        type: SECRET
+      - key: ADMIN_TELEGRAM_ID
+        value: ${ADMIN_TELEGRAM_ID}
+        type: GENERAL
+      - key: APP_URL
+        value: ${DIGITALOCEAN_APP_URL}
+        type: GENERAL
+      - key: PORT
+        value: ${DIGITALOCEAN_APP_PORT}
+        type: GENERAL
