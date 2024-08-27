@@ -218,5 +218,16 @@ jobs:
         env:
           REPOSITORY: ${{ secrets.DIGITALOCEAN_APP_NAME }}
           REPOSITORY_TAG: ${{ github.sha }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          STRIPE_TOKEN: ${{ secrets.STRIPE_TOKEN }}
+          GOOGLE_FONTS_TOKEN: ${{ secrets.GOOGLE_FONTS_TOKEN }}
+          GA_API_SECRET: ${{ secrets.GA_API_SECRET }}
+          GA_MEASUREMENT_ID: ${{ secrets.GA_MEASUREMENT_ID }}
+          GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          ADMIN_TELEGRAM_ID: ${{ secrets.ADMIN_TELEGRAM_ID }}
+          APP_KEY: ${{ secrets.DIGITALOCEAN_APP_URL }}
+          PORT: ${{ secrets.DIGITALOCEAN_APP_PORT }}
         with:
           token: ${{ secrets.DIGITALOCEAN_TOKEN }}
