@@ -214,7 +214,7 @@ jobs:
           docker push ${{ env.DOCKER_IMAGE }}
 
       - name: Deploy 🚀
-        uses: digitalocean/app_action@v2.0.2
+        uses: digitalocean/app_action/deploy@v2.0.2
         env:
           REPOSITORY: ${{ secrets.DIGITALOCEAN_APP_NAME }}
           REPOSITORY_TAG: ${{ github.sha }}
