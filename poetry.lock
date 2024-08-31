@@ -1421,32 +1421,32 @@ files = [
 
 [[package]]
 name = "ocrmypdf"
-version = "16.4.3"
+version = "16.5.0"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "ocrmypdf-16.4.3-py310-none-any.whl", hash = "sha256:dac502faeeefbb46be440c7f2e7941d25fd438443c087feda74528be72727a8e"},
-    {file = "ocrmypdf-16.4.3.tar.gz", hash = "sha256:16116ca548bfb0c6f6e7c675e289449584a5024760f3ca0c7ecaa7685f5109ba"},
+    {file = "ocrmypdf-16.5.0-py3-none-any.whl", hash = "sha256:9222b1b0818b65c891559b84efab2e84434c71149b3aaaa6dc654457e0b66b14"},
+    {file = "ocrmypdf-16.5.0.tar.gz", hash = "sha256:cd96bddfb3a986be7bf7857757919332e1db5dab780eb7b321fdea38f60127ac"},
 ]
 
 [package.dependencies]
 deprecation = ">=2.1.0"
 img2pdf = ">=0.5"
 packaging = ">=20"
-"pdfminer.six" = ">=20220319"
+pdfminer-six = ">=20220319"
 pi-heif = "*"
 pikepdf = ">=8.10.1"
-Pillow = ">=10.0.1"
+pillow = ">=10.0.1"
 pluggy = ">=1"
 rich = ">=13"
 
 [package.extras]
 docs = ["sphinx", "sphinx-issues", "sphinx-rtd-theme"]
-extended-test = ["PyMuPDF (>=1.19.1)"]
-test = ["coverage[toml] (>=6.2)", "hypothesis (>=6.36.0)", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-xdist (>=2.5.0)", "python-xmp-toolkit (==2.0.1)", "reportlab (>=3.6.8)", "types-Pillow", "types-humanfriendly"]
+extended-test = ["pymupdf (>=1.19.1)"]
+test = ["coverage[toml] (>=6.2)", "hypothesis (>=6.36.0)", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-xdist (>=2.5.0)", "python-xmp-toolkit (==2.0.1)", "reportlab (>=3.6.8)", "types-humanfriendly", "types-pillow"]
 watcher = ["python-dotenv", "typer-slim[standard]", "watchdog (>=1.0.2)"]
-webservice = ["Flask (>=2.0.1)"]
+webservice = ["flask (>=2.0.1)"]
 
 [[package]]
 name = "packaging"
@@ -2885,4 +2885,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "==3.12.5"
-content-hash = "b44c29bf8ca70b76ee5af02b8a91f67ea25c31a0125157c3df25f3cea2dd2b86"
+content-hash = "20fbd149e39a1a3ee3f78b3274067cde0654dc883015ff649448a7e4ac55244f"
