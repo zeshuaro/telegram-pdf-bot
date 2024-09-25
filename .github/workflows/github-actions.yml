@@ -214,7 +214,7 @@ jobs:
           docker push ${{ env.DOCKER_IMAGE }}
 
       - name: Deploy 🚀
-        uses: digitalocean/app_action/deploy@v2.0.3
+        uses: digitalocean/app_action/deploy@v2.0.4
         env:
           IMAGE_TAG_TELEGRAM_PDF_BOT: ${{ github.sha }}
         with:
