@@ -5,7 +5,7 @@ import pytest
 from img2pdf import Rotation
 from ocrmypdf.exceptions import EncryptedPdfError, PriorOcrFoundError, TaggedPDFError
 from pdfminer.pdfdocument import PDFPasswordIncorrect
-from pypdf import PageObject, PdfMerger, PdfReader, PdfWriter
+from pypdf import PageObject, PdfReader, PdfWriter
 from pypdf.errors import PdfReadError as PyPdfReadError
 from pypdf.pagerange import PageRange
 from weasyprint import CSS, HTML
@@ -64,7 +64,6 @@ class TestPDFService(
         self.textwrap_patcher = patch("pdf_bot.pdf.pdf_service.textwrap")
         self.pdf_reader_patcher = patch("pdf_bot.pdf.pdf_service.PdfReader")
         self.pdf_writer_patcher = patch("pdf_bot.pdf.pdf_service.PdfWriter")
-        self.pdf_merger_patcher = patch("pdf_bot.pdf.pdf_service.PdfMerger")
 
         self.mock_os = self.os_patcher.start()
         self.ocrmypdf = self.ocrmypdf_patcher.start()
@@ -72,7 +71,6 @@ class TestPDFService(
         self.textwrap_patcher.start()
         self.pdf_reader_cls = self.pdf_reader_patcher.start()
         self.pdf_writer_cls = self.pdf_writer_patcher.start()
-        self.pdf_merger_cls = self.pdf_merger_patcher.start()
 
     def teardown_method(self) -> None:
         self.os_patcher.stop()
@@ -81,7 +79,6 @@ class TestPDFService(
         self.textwrap_patcher.stop()
         self.pdf_reader_patcher.stop()
         self.pdf_writer_patcher.stop()
-        self.pdf_merger_patcher.stop()
         super().teardown_method()
 
     @pytest.mark.asyncio
@@ -448,24 +445,24 @@ class TestPDFService(
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])
     async def test_merge_pdfs(self, num_files: int) -> None:
         file_data_list, file_ids, file_paths = self._get_file_data_list(num_files)
-        merger = MagicMock(spec=PdfMerger)
-        self.pdf_merger_cls.return_value = merger
+        writer = MagicMock(spec=PdfWriter)
+        self.pdf_writer_cls.return_value = writer
         self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
 
         async with self.sut.merge_pdfs(file_data_list):
             self.telegram_service.download_files.assert_called_once_with(file_ids)
             calls = [call(x) for x in file_paths]
-            merger.append.assert_has_calls(calls)
+            writer.append.assert_has_calls(calls)
             self.io_service.create_temp_pdf_file.assert_called_once_with("Merged")
-            merger.write.assert_called_once()
+            writer.write.assert_called_once()
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("exception", [PyPdfReadError(), ValueError()])
     async def test_merge_pdfs_read_error(self, exception: Exception) -> None:
         file_data_list, file_ids, file_paths = self._get_file_data_list(2)
-        merger = MagicMock(spec=PdfMerger)
-        merger.append.side_effect = exception
-        self.pdf_merger_cls.return_value = merger
+        writer = MagicMock(spec=PdfWriter)
+        writer.append.side_effect = exception
+        self.pdf_writer_cls.return_value = writer
         self.telegram_service.download_files.return_value.__aenter__.return_value = file_paths
 
         with pytest.raises(PdfReadError):
@@ -474,7 +471,7 @@ class TestPDFService(
 
         self.telegram_service.download_files.assert_called_once_with(file_ids)
         self.io_service.create_temp_pdf_file.assert_not_called()
-        merger.write.assert_not_called()
+        writer.write.assert_not_called()
 
     @pytest.mark.asyncio
     async def test_ocr_pdf(self) -> None:
@@ -658,16 +655,16 @@ class TestPDFService(
     async def test_split_pdf(self) -> None:
         split_range = "7:"
         reader = MagicMock(spec=PdfReader)
-        merger = MagicMock(spec=PdfMerger)
+        writer = MagicMock(spec=PdfWriter)
         reader.is_encrypted = False
 
         self.pdf_reader_cls.return_value = reader
-        self.pdf_merger_cls.return_value = merger
+        self.pdf_writer_cls.return_value = writer
 
         async with self.sut.split_pdf(self.TELEGRAM_FILE_ID, split_range) as actual:
             assert actual == self.file_path
             self._assert_telegram_and_io_services("Split")
-            merger.append.assert_called_once_with(reader, pages=PageRange(split_range))
+            writer.append.assert_called_once_with(reader, pages=PageRange(split_range))
 
     @staticmethod
     def _async_context_manager_side_effect_echo(
