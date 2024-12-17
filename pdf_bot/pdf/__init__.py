@@ -10,17 +10,17 @@ from .models import CompressResult, FontData, ScaleByData, ScaleData, ScaleToDat
 from .pdf_service import PdfService
 
 __all__ = [
-    "PdfService",
+    "CompressResult",
+    "FontData",
     "PdfDecryptError",
     "PdfEncryptedError",
     "PdfIncorrectPasswordError",
-    "PdfServiceError",
-    "PdfReadError",
-    "PdfServiceError",
-    "CompressResult",
-    "FontData",
-    "ScaleData",
-    "ScaleByData",
-    "ScaleToData",
     "PdfNoTextError",
+    "PdfReadError",
+    "PdfService",
+    "PdfServiceError",
+    "PdfServiceError",
+    "ScaleByData",
+    "ScaleData",
+    "ScaleToData",
 ]

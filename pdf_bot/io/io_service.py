@@ -26,7 +26,7 @@ class IOService:
             prefix += "_"
 
         try:
-            tf = NamedTemporaryFile(prefix=prefix, suffix=suffix)
+            tf = NamedTemporaryFile(prefix=prefix, suffix=suffix)  # noqa: SIM115
             yield Path(tf.name)
         finally:
             tf.close()
@@ -35,7 +35,7 @@ class IOService:
     @contextmanager
     def create_temp_files(num_files: int) -> Generator[list[Path], None, None]:
         try:
-            tempfiles = [NamedTemporaryFile() for _ in range(num_files)]
+            tempfiles = [NamedTemporaryFile() for _ in range(num_files)]  # noqa: SIM115
             yield [Path(x.name) for x in tempfiles]
         finally:
             for tf in tempfiles:

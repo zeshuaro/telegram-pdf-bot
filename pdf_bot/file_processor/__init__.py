@@ -4,7 +4,7 @@ from .file_task_mixin import FileTaskMixin
 
 __all__ = [
     "AbstractFileProcessor",
-    "ErrorHandlerType",
     "AbstractFileTaskProcessor",
+    "ErrorHandlerType",
     "FileTaskMixin",
 ]

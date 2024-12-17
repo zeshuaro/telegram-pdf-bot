@@ -54,8 +54,6 @@ target-version = "py311"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-    "ANN101", # MissingTypeSelf
-    "ANN102", # MissingTypeCls
     "ANN401", # DynamicallyTypedExpression
     "COM812", # trailing-comma-missing
     "FBT",    # flake8-boolean-trap
