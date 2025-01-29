@@ -8,9 +8,15 @@
   "packageRules": [
     {
       "groupName": "Pikepdf",
-      "matchPaths": ["pyproject.toml"],
-      "matchPackageNames": ["pikepdf"],
-      "matchUpdateTypes": ["major"],
+      "matchFileNames": [
+        "pyproject.toml"
+      ],
+      "matchPackageNames": [
+        "pikepdf"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "automerge": false
     }
   ]
