@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-08-14 20:31+0000\n"
-"PO-Revision-Date: 2024-08-14 20:31\n"
+"POT-Creation-Date: 2025-02-01 20:45+0000\n"
+"PO-Revision-Date: 2025-02-01 20:45\n"
 "Last-Translator: \n"
 "Language: uk\n"
 "Language-Team: Ukrainian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
@@ -51,7 +51,7 @@ msgstr "Ласкаво просимо на PDF Бот!"
 msgid "Key features:"
 msgstr "Ключові особливості:"
 
-#: pdf_bot/command/command_service.py:40
+#: pdf_bot/command/command_service.py:41
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- Стискання, об'єднання, попередній перегляд, перейменування, розділення та додавання водяного знака до PDF-файлів"
 
@@ -80,6 +80,7 @@ msgid "- And more..."
 msgstr "- І багато іншого..."
 
 #: pdf_bot/command/command_service.py:49
+#, python-brace-format
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Введіть {command} , щоб дізнатися, як використовувати PDF-бот"
 
@@ -118,22 +119,27 @@ msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Решту завдань можна виконати за допомогою таких команд:"
 
 #: pdf_bot/command/command_service.py:75
+#, python-brace-format
 msgid "{command} - compare PDF files"
 msgstr "{command} - порівняння PDF-файлів"
 
 #: pdf_bot/command/command_service.py:76
+#, python-brace-format
 msgid "{command} - merge PDF files"
 msgstr "{command} - об'єднати PDF-файли"
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:78
+#, python-brace-format
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - конвертувати та об'єднувати кілька зображень у ФАЙЛИ PDF"
 
 #: pdf_bot/command/command_service.py:80
+#, python-brace-format
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - створення PDF-файлів з текстових повідомлень"
 
 #: pdf_bot/command/command_service.py:83
+#, python-brace-format
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - додати водяний знак до PDF-файлів"
 
@@ -187,7 +193,7 @@ msgstr "Дякуємо за ваш відгук, я переслав його с
 msgid "Your file is too big for me to download and process"
 msgstr "Ваш файл занадто великий для мене, щоб завантажити і обробити"
 
-#: pdf_bot/file/file_service.py:55
+#: pdf_bot/file/file_service.py:56
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Зверніть увагу, що це обмеження Telegram Bot, і я нічого не можу зробити, якщо Telegram не змінить це обмеження"
 
@@ -215,11 +221,11 @@ msgstr "У форматі PDF"
 msgid "Remove last file"
 msgstr "Видалення останнього файлу"
 
-#: pdf_bot/image_handler/batch_image_service.py:41
+#: pdf_bot/image_handler/batch_image_service.py:42
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Надішліть мені зображення, які ви хотіли б прикрасити або перетворити в PDF-файл"
 
-#: pdf_bot/image_handler/batch_image_service.py:44
+#: pdf_bot/image_handler/batch_image_service.py:45
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Зверніть увагу, що зображення будуть прикрашені і перетворені в тому порядку, в якому ви надішлете мені"
 
@@ -227,7 +233,7 @@ msgstr "Зверніть увагу, що зображення будуть пр
 msgid "You've sent me these images so far:"
 msgstr "Ви надіслали мені ці зображення:"
 
-#: pdf_bot/image_handler/batch_image_service.py:106
+#: pdf_bot/image_handler/batch_image_service.py:107
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Виберіть завдання знизу, якщо ви надіслали мені всі зображення, або продовжуйте надсилати мені зображення"
 
@@ -236,6 +242,7 @@ msgid "You've already removed all the images you've sent me"
 msgstr "Ви вже видалили всі надіслані мені зображення"
 
 #: pdf_bot/image_handler/batch_image_service.py:131
+#, python-brace-format
 msgid "{file_name} has been removed"
 msgstr "{file_name} видалено"
 
@@ -260,6 +267,7 @@ msgid "Select your language"
 msgstr "Виберіть мову"
 
 #: pdf_bot/language/language_service.py:119
+#, python-brace-format
 msgid "Your language has been set to {language}"
 msgstr "Для вашої мови встановлено значення {language}"
 
@@ -275,7 +283,8 @@ msgstr "Зауважте, що файли буде об'єднано в тому
 msgid "You've sent me these PDF files so far:"
 msgstr "Ви надіслали мені ці PDF-файли до цих пір:"
 
-#: pdf_bot/merge/merge_service.py:98
+#: pdf_bot/merge/merge_service.py:99
+#, python-brace-format
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Натисніть {done} , якщо ви надіслали мені всі PDF-файли, які ви хочете об'єднати, або продовжуйте надсилати мені PDF-файли"
 
@@ -284,6 +293,7 @@ msgid "You've already removed all the PDF files you've sent me"
 msgstr "Ви вже видалили всі PDF-файли, які ви мені надіслали"
 
 #: pdf_bot/merge/merge_service.py:124
+#, python-brace-format
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} видалено для об'єднання"
 
@@ -300,6 +310,7 @@ msgid "Merging your PDF files"
 msgstr "Об'єміщення PDF-файлів"
 
 #: pdf_bot/payment/payment_service.py:26
+#, python-brace-format
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -381,6 +392,7 @@ msgid "Compress"
 msgstr "Стиснути"
 
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:35
+#, python-brace-format
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Розмір файлу зменшено {percent}, з {old_size} до {new_size}"
 
@@ -392,13 +404,13 @@ msgstr "У відсотках"
 msgid "To margin size"
 msgstr "До розміру поля"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:24
 msgid "Send me a number between 0 and 100\n\n"
 "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Надішліть мені число від 0 до 100\n\n"
 "Це відсоток місця між полем, який потрібно зберегти між вмістом у файлі PDF та сторінкою"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:30
 msgid "Send me a number that you'll like to adjust the margin size\n\n"
 "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Надішліть мені число, яке вам сподобається налаштувати розмір поля\n\n"
@@ -483,13 +495,13 @@ msgstr "За фактором"
 msgid "To dimension"
 msgstr "До розмірності"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:24
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:25
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "Надішліть мені коефіцієнти масштабування для горизонтальної та вертикальної осей\n\n"
 "Приклад: 2 0,5 - це подвоїть горизонтальну вісь і вдвічі зменшить вертикальну вісь"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:31
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "Надішліть мені ширину і висоту\n\n"
@@ -524,38 +536,47 @@ msgid "General usage"
 msgstr "Загальне використання"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#, python-brace-format
 msgid "{range}      all pages"
 msgstr "{range}      всіх сторінок"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#, python-brace-format
 msgid "{range}      page 8 only"
 msgstr "{range}      лише на сторінці 8"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#, python-brace-format
 msgid "{range}    first three pages"
 msgstr "{range}    перші три сторінки"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#, python-brace-format
 msgid "{range}     from page 8 onward"
 msgstr "{range}     зі сторінки 8 і далі"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#, python-brace-format
 msgid "{range}     last page only"
 msgstr "{range}     лише останню сторінку"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#, python-brace-format
 msgid "{range}    all pages except the last page"
 msgstr "{range}    сторінок, крім останньої"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#, python-brace-format
 msgid "{range}     second last page only"
 msgstr "{range}     лише другу останню сторінку"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#, python-brace-format
 msgid "{range}    last two pages"
 msgstr "{range}    двох останніх сторінках"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#, python-brace-format
 msgid "{range}  third and second last pages"
 msgstr "{range}  і другу останні сторінки"
 
@@ -564,32 +585,37 @@ msgid "Advanced usage"
 msgstr "Розширене використання"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#, python-brace-format
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    сторінок {pages} і до кінця"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#, python-brace-format
 msgid "{range} pages {pages}"
 msgstr "{range} сторінок {pages}"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#, python-brace-format
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   всі сторінки у зворотному порядку"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#, python-brace-format
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} сторінок {pages} крім {page}"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#, python-brace-format
 msgid "{range}  pages {pages}"
 msgstr "{range}  сторінок {pages}"
 
-#: pdf_bot/telegram_internal/telegram_service.py:68
+#: pdf_bot/telegram_internal/telegram_service.py:69
 msgid "Your file is too large for me to download and process, please try again with a different file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Ваш файл завеликий для завантаження та обробки, будь ласка, спробуйте ще раз з іншим файлом\n\n"
 "Зверніть увагу, що це обмеження застосовується Telegram, і я нічого не можу зробити, якщо Telegram не змінить його"
 
-#: pdf_bot/telegram_internal/telegram_service.py:80
+#: pdf_bot/telegram_internal/telegram_service.py:81
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Файл занадто великий, щоб я міг надіслати вам\n\n"
@@ -625,11 +651,13 @@ msgstr "Пропустити"
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Надішліть мені текст, який ви хотіли б записати у файл PDF"
 
-#: pdf_bot/text/text_service.py:58
+#: pdf_bot/text/text_service.py:59
+#, python-brace-format
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "Надішліть мені шрифт, який ви хочете використовувати для PDF-файлу, або натисніть {skip} , щоб використовувати шрифт за замовчуванням"
 
 #: pdf_bot/text/text_service.py:62
+#, python-brace-format
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "Список підтримуваних шрифтів: {fonts}"
 

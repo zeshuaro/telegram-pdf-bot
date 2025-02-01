@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-08-14 20:31+0000\n"
-"PO-Revision-Date: 2024-08-14 20:31\n"
+"POT-Creation-Date: 2025-02-01 20:45+0000\n"
+"PO-Revision-Date: 2025-02-01 20:45\n"
 "Last-Translator: \n"
 "Language: ca\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
@@ -51,7 +51,7 @@ msgstr "Benvinguts al PDF Bot!"
 msgid "Key features:"
 msgstr "Característiques clau:"
 
-#: pdf_bot/command/command_service.py:40
+#: pdf_bot/command/command_service.py:41
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- Comprimir, combinar, previsualitzar, canviar el nom, dividir i afegir marca d'aigua als fitxers PDF"
 
@@ -80,6 +80,7 @@ msgid "- And more..."
 msgstr "- I més..."
 
 #: pdf_bot/command/command_service.py:49
+#, python-brace-format
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Tipus {command} per veure com utilitzar PDF Bot"
 
@@ -118,22 +119,27 @@ msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "La resta de tasques es poden dur a terme mitjançant les ordres següents:"
 
 #: pdf_bot/command/command_service.py:75
+#, python-brace-format
 msgid "{command} - compare PDF files"
 msgstr "{command} - compareu els fitxers PDF"
 
 #: pdf_bot/command/command_service.py:76
+#, python-brace-format
 msgid "{command} - merge PDF files"
 msgstr "{command} : combina fitxers PDF"
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:78
+#, python-brace-format
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} : converteix i combina diverses imatges en fitxers PDF"
 
 #: pdf_bot/command/command_service.py:80
+#, python-brace-format
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} : creeu fitxers PDF a partir de missatges de text"
 
 #: pdf_bot/command/command_service.py:83
+#, python-brace-format
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - afegiu la marca d'aigua als fitxers PDF"
 
@@ -187,7 +193,7 @@ msgstr "Gràcies pels teus comentaris, els he reenviat al meu desenvolupador"
 msgid "Your file is too big for me to download and process"
 msgstr "El teu arxiu és massa gran per a mi per descarregar-lo i processar-lo"
 
-#: pdf_bot/file/file_service.py:55
+#: pdf_bot/file/file_service.py:56
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Tingueu en compte que això és una limitació de Telegram Bot i no hi ha res que pugui fer a menys que Telegram canviï aquest límit"
 
@@ -215,11 +221,11 @@ msgstr "A un PDF"
 msgid "Remove last file"
 msgstr "Suprimeix l'últim fitxer"
 
-#: pdf_bot/image_handler/batch_image_service.py:41
+#: pdf_bot/image_handler/batch_image_service.py:42
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Envia'm les imatges que t'agradaria embellir o convertir en un arxiu PDF"
 
-#: pdf_bot/image_handler/batch_image_service.py:44
+#: pdf_bot/image_handler/batch_image_service.py:45
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Tingueu en compte que les imatges s'embelliran i es convertiran en l'ordre que m'envieu"
 
@@ -227,7 +233,7 @@ msgstr "Tingueu en compte que les imatges s'embelliran i es convertiran en l'ord
 msgid "You've sent me these images so far:"
 msgstr "M'has enviat aquestes imatges fins ara:"
 
-#: pdf_bot/image_handler/batch_image_service.py:106
+#: pdf_bot/image_handler/batch_image_service.py:107
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Seleccioneu la tasca des de baix si m'heu enviat totes les imatges o seguiu enviant-me les imatges"
 
@@ -236,6 +242,7 @@ msgid "You've already removed all the images you've sent me"
 msgstr "Ja has eliminat totes les imatges que m'has enviat"
 
 #: pdf_bot/image_handler/batch_image_service.py:131
+#, python-brace-format
 msgid "{file_name} has been removed"
 msgstr "{file_name} s'ha suprimit"
 
@@ -260,6 +267,7 @@ msgid "Select your language"
 msgstr "Selecciona l'idioma"
 
 #: pdf_bot/language/language_service.py:119
+#, python-brace-format
 msgid "Your language has been set to {language}"
 msgstr "La teva llengua està preparada per {language}"
 
@@ -275,7 +283,8 @@ msgstr "Tingueu en compte que els fitxers es combinaran en l'ordre que m'envieu"
 msgid "You've sent me these PDF files so far:"
 msgstr "M'has enviat aquests arxius PDF fins ara:"
 
-#: pdf_bot/merge/merge_service.py:98
+#: pdf_bot/merge/merge_service.py:99
+#, python-brace-format
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Premeu {done} si m'heu enviat tots els fitxers PDF que voleu combinar o continueu enviant-me els fitxers PDF"
 
@@ -284,6 +293,7 @@ msgid "You've already removed all the PDF files you've sent me"
 msgstr "Ja has suprimit tots els arxius PDF que m'has enviat"
 
 #: pdf_bot/merge/merge_service.py:124
+#, python-brace-format
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} s'ha suprimit per combinar"
 
@@ -300,6 +310,7 @@ msgid "Merging your PDF files"
 msgstr "Unint els teus arxius PDF"
 
 #: pdf_bot/payment/payment_service.py:26
+#, python-brace-format
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -381,6 +392,7 @@ msgid "Compress"
 msgstr "Comprimir"
 
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:35
+#, python-brace-format
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Mida del fitxer reduïda en {percent}, de {old_size} a {new_size}"
 
@@ -392,13 +404,13 @@ msgstr "Per percentatge"
 msgid "To margin size"
 msgstr "A la mida del marge"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:24
 msgid "Send me a number between 0 and 100\n\n"
 "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Envia'm un número entre 0 i 100\n\n"
 "Aquest és el percentatge d'espai de marge a retenir entre el contingut del teu arxiu PDF i la pàgina"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:30
 msgid "Send me a number that you'll like to adjust the margin size\n\n"
 "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Envieu-me un número que voldreu ajustar la mida del marge\n\n"
@@ -483,13 +495,13 @@ msgstr "Per factors"
 msgid "To dimension"
 msgstr "A la dimensió"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:24
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:25
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "Envieu-me els factors d'escala dels eixos horitzontals i verticals\n\n"
 "Exemple: 2 0,5: això duplicarà l'eix horitzontal i reduirà a la meitat l'eix vertical"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:31
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "Envieu-me l'amplada i l'alçada\n\n"
@@ -524,38 +536,47 @@ msgid "General usage"
 msgstr "Ús general"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#, python-brace-format
 msgid "{range}      all pages"
 msgstr "{range}      totes les pàgines"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#, python-brace-format
 msgid "{range}      page 8 only"
 msgstr "només {range}      pàgina 8"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#, python-brace-format
 msgid "{range}    first three pages"
 msgstr "{range}    tres primeres pàgines"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#, python-brace-format
 msgid "{range}     from page 8 onward"
 msgstr "{range}     des de la pàgina 8 en endavant"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#, python-brace-format
 msgid "{range}     last page only"
 msgstr "només {range}     'última pàgina"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#, python-brace-format
 msgid "{range}    all pages except the last page"
 msgstr "{range}    totes les pàgines excepte l'última"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#, python-brace-format
 msgid "{range}     second last page only"
 msgstr "només {range}     segona pàgina"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#, python-brace-format
 msgid "{range}    last two pages"
 msgstr "{range}    dues últimes pàgines"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#, python-brace-format
 msgid "{range}  third and second last pages"
 msgstr "{range}  tercera i segona pàgines"
 
@@ -564,32 +585,37 @@ msgid "Advanced usage"
 msgstr "Ús avançat"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#, python-brace-format
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    pàgines {pages} i fins al final"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#, python-brace-format
 msgid "{range} pages {pages}"
 msgstr "{range} pàgines {pages}"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#, python-brace-format
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   totes les pàgines en ordre invertit"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#, python-brace-format
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} pàgines {pages} excepte {page}"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#, python-brace-format
 msgid "{range}  pages {pages}"
 msgstr "{range}  pàgines {pages}"
 
-#: pdf_bot/telegram_internal/telegram_service.py:68
+#: pdf_bot/telegram_internal/telegram_service.py:69
 msgid "Your file is too large for me to download and process, please try again with a different file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "El vostre fitxer és massa gran per baixar-lo i processar-lo, torneu-ho a provar amb un fitxer diferent\n\n"
 "Tingueu en compte que Telegram aplica aquest límit i no puc fer res tret que Telegram el canviï"
 
-#: pdf_bot/telegram_internal/telegram_service.py:80
+#: pdf_bot/telegram_internal/telegram_service.py:81
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "El fitxer és massa gran per enviar-vos\n\n"
@@ -625,11 +651,13 @@ msgstr "Saltar"
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Enviï'm el text que li agradarà escriure al seu arxiu pdf"
 
-#: pdf_bot/text/text_service.py:58
+#: pdf_bot/text/text_service.py:59
+#, python-brace-format
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "Envia'm el tipus de lletra que t'agradarà utilitzar per al fitxer PDF o prem {skip} per utilitzar el tipus de lletra per defecte"
 
 #: pdf_bot/text/text_service.py:62
+#, python-brace-format
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "Vegeu aquí la llista de tipus de lletra compatibles: {fonts}"
 

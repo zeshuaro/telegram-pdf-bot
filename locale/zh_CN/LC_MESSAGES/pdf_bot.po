@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-08-14 20:31+0000\n"
-"PO-Revision-Date: 2024-08-14 20:31\n"
+"POT-Creation-Date: 2025-02-01 20:45+0000\n"
+"PO-Revision-Date: 2025-02-01 20:45\n"
 "Last-Translator: \n"
 "Language: zh\n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
@@ -51,7 +51,7 @@ msgstr "欢迎来到 PDF 机器人！"
 msgid "Key features:"
 msgstr "主要功能："
 
-#: pdf_bot/command/command_service.py:40
+#: pdf_bot/command/command_service.py:41
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- 压缩、合并、预览、重新命名、拆分并添加水印到 PDF 文件"
 
@@ -80,6 +80,7 @@ msgid "- And more..."
 msgstr "- 还有更多..."
 
 #: pdf_bot/command/command_service.py:49
+#, python-brace-format
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "输入 {command}，查看如何使用 PDF 机器人"
 
@@ -118,22 +119,27 @@ msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "其余任务可使用以下命令执行："
 
 #: pdf_bot/command/command_service.py:75
+#, python-brace-format
 msgid "{command} - compare PDF files"
 msgstr "{command} - 比较 PDF 文件"
 
 #: pdf_bot/command/command_service.py:76
+#, python-brace-format
 msgid "{command} - merge PDF files"
 msgstr "{command} - 合并 PDF 文件"
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:78
+#, python-brace-format
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - 将多个图像转换合并为PDF文件"
 
 #: pdf_bot/command/command_service.py:80
+#, python-brace-format
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - 从文本消息创建 PDF 文件"
 
 #: pdf_bot/command/command_service.py:83
+#, python-brace-format
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - 在 PDF 文件中添加水印"
 
@@ -187,7 +193,7 @@ msgstr "感谢您的反馈，我已将其转发给我的开发人员"
 msgid "Your file is too big for me to download and process"
 msgstr "您的文件太大，我无法下载和处理"
 
-#: pdf_bot/file/file_service.py:55
+#: pdf_bot/file/file_service.py:56
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "请注意，这是 Telegram 机器人的限制，除非电报对此进行更改，否则我无能为力"
 
@@ -215,11 +221,11 @@ msgstr "转换到PDF档案"
 msgid "Remove last file"
 msgstr "移除最后一个文件"
 
-#: pdf_bot/image_handler/batch_image_service.py:41
+#: pdf_bot/image_handler/batch_image_service.py:42
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "向我发送您想要美化或转换为PDF文件的图像"
 
-#: pdf_bot/image_handler/batch_image_service.py:44
+#: pdf_bot/image_handler/batch_image_service.py:45
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "请注意，图像将按照您发送给我的顺序进行美化和转换"
 
@@ -227,7 +233,7 @@ msgstr "请注意，图像将按照您发送给我的顺序进行美化和转换
 msgid "You've sent me these images so far:"
 msgstr "到目前为止，您已经向我发送了这些图像："
 
-#: pdf_bot/image_handler/batch_image_service.py:106
+#: pdf_bot/image_handler/batch_image_service.py:107
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "如果您已将所有图像发送给我，请从下面选择任务，或者继续向我发送图像"
 
@@ -236,6 +242,7 @@ msgid "You've already removed all the images you've sent me"
 msgstr "您已经删除了所有发送给我的图像"
 
 #: pdf_bot/image_handler/batch_image_service.py:131
+#, python-brace-format
 msgid "{file_name} has been removed"
 msgstr "{file_name} 已被删除"
 
@@ -260,6 +267,7 @@ msgid "Select your language"
 msgstr "选择你的语言"
 
 #: pdf_bot/language/language_service.py:119
+#, python-brace-format
 msgid "Your language has been set to {language}"
 msgstr "您的语言已设置为 {language}"
 
@@ -275,7 +283,8 @@ msgstr "请注意，文件将按照您发送给我的顺序合并"
 msgid "You've sent me these PDF files so far:"
 msgstr "到目前为止，您已经向我发送了这些PDF文件："
 
-#: pdf_bot/merge/merge_service.py:98
+#: pdf_bot/merge/merge_service.py:99
+#, python-brace-format
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "如果您已将您希望合并的所有 PDF 文件发送给我，请点击 {done}，或者继续向我发送 PDF 文件"
 
@@ -284,6 +293,7 @@ msgid "You've already removed all the PDF files you've sent me"
 msgstr "您已经删除了所有发送给我的 PDF 文件"
 
 #: pdf_bot/merge/merge_service.py:124
+#, python-brace-format
 msgid "{file_name} has been removed for merging"
 msgstr "用于合并的 {file_name} 已被移除"
 
@@ -300,6 +310,7 @@ msgid "Merging your PDF files"
 msgstr "正在合并你的PDF档案"
 
 #: pdf_bot/payment/payment_service.py:26
+#, python-brace-format
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji}（${value}）"
 
@@ -381,6 +392,7 @@ msgid "Compress"
 msgstr "压缩"
 
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:35
+#, python-brace-format
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "文件大小减少了 {percent}，从 {old_size} 减少到了 {new_size}"
 
@@ -392,13 +404,13 @@ msgstr "按百分比剪裁"
 msgid "To margin size"
 msgstr "按边距大小"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:24
 msgid "Send me a number between 0 and 100\n\n"
 "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "给我发一个介于 0 到 100 的数字\n\n"
 "这是 PDF 文件中的内容与页面之间要保留的边距空间百分比"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:30
 msgid "Send me a number that you'll like to adjust the margin size\n\n"
 "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "向我发送一个用于调整边距大小的数字\n\n"
@@ -482,13 +494,13 @@ msgstr "按比例因子"
 msgid "To dimension"
 msgstr "按尺寸"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:24
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:25
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "将水平轴和垂直轴的比例因子发送给我\n\n"
 "示例：2 0.5 - 这将使水平轴加倍，垂直轴减半"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:31
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "将宽度和高度发送给我\n\n"
@@ -523,38 +535,47 @@ msgid "General usage"
 msgstr "基本用法"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#, python-brace-format
 msgid "{range}      all pages"
 msgstr "{range}      所有页面"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#, python-brace-format
 msgid "{range}      page 8 only"
 msgstr "{range}      仅第 8 页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#, python-brace-format
 msgid "{range}    first three pages"
 msgstr "{range}    前三页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#, python-brace-format
 msgid "{range}     from page 8 onward"
 msgstr "{range}     从第 8 页开始"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#, python-brace-format
 msgid "{range}     last page only"
 msgstr "{range}     仅最后一页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#, python-brace-format
 msgid "{range}    all pages except the last page"
 msgstr "{range}    除最后一页之外的所有页面"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#, python-brace-format
 msgid "{range}     second last page only"
 msgstr "{range}     仅倒数第二页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#, python-brace-format
 msgid "{range}    last two pages"
 msgstr "{range}    最后两页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#, python-brace-format
 msgid "{range}  third and second last pages"
 msgstr "{range}  倒数第二三页"
 
@@ -563,32 +584,37 @@ msgid "Advanced usage"
 msgstr "进阶用法"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#, python-brace-format
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    {pages} 页到最后"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#, python-brace-format
 msgid "{range} pages {pages}"
 msgstr "{range} 共 {pages} 页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#, python-brace-format
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   倒序排列所有页面"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#, python-brace-format
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} 除第 {page} 页外共 {pages} 页"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#, python-brace-format
 msgid "{range}  pages {pages}"
 msgstr "{range}  共 {pages} 页"
 
-#: pdf_bot/telegram_internal/telegram_service.py:68
+#: pdf_bot/telegram_internal/telegram_service.py:69
 msgid "Your file is too large for me to download and process, please try again with a different file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "您的文件太大，我无法下载和处理，请使用其他文件重试\n\n"
 "请注意，此限制是由 Telegram 强制执行的，除非 Telegram 更改它，否则我无能为力"
 
-#: pdf_bot/telegram_internal/telegram_service.py:80
+#: pdf_bot/telegram_internal/telegram_service.py:81
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "文件太大，我无法发送\n\n"
@@ -624,11 +650,13 @@ msgstr "跳"
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "向我发送你想写在PDF档案的文字"
 
-#: pdf_bot/text/text_service.py:58
+#: pdf_bot/text/text_service.py:59
+#, python-brace-format
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "将您希望用于 PDF 文件的字体发送给我，或按 {skip} 使用默认字体"
 
 #: pdf_bot/text/text_service.py:62
+#, python-brace-format
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "请参阅此处查看支持字体列表： {fonts}"
 

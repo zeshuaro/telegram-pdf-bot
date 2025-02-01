@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-08-14 20:31+0000\n"
-"PO-Revision-Date: 2024-12-17 13:24\n"
+"POT-Creation-Date: 2025-02-01 20:45+0000\n"
+"PO-Revision-Date: 2025-02-01 20:45\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: Uzbek\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
@@ -51,7 +51,7 @@ msgstr "PDF Bot -ga xush kelibsiz!"
 msgid "Key features:"
 msgstr "Asosiy xususiyatlar:"
 
-#: pdf_bot/command/command_service.py:40
+#: pdf_bot/command/command_service.py:41
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- PDF -fayllarga suv belgisini siqish, birlashtirish, oldindan ko'rish, nomini o'zgartirish, ajratish va qo'shish"
 
@@ -80,6 +80,7 @@ msgid "- And more..."
 msgstr "- Va yana ..."
 
 #: pdf_bot/command/command_service.py:49
+#, python-brace-format
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "PDF Botdan qanday foydalanishni ko'rish uchun {command} bering"
 
@@ -118,22 +119,27 @@ msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Qolgan vazifalarni quyidagi buyruqlar yordamida bajarish mumkin:"
 
 #: pdf_bot/command/command_service.py:75
+#, python-brace-format
 msgid "{command} - compare PDF files"
 msgstr "{command} - PDF -fayllarni solishtiring"
 
 #: pdf_bot/command/command_service.py:76
+#, python-brace-format
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF -fayllarni birlashtirish"
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:78
+#, python-brace-format
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - bir nechta tasvirlarni PDF-fayllarga aylantiring va birlashtiring"
 
 #: pdf_bot/command/command_service.py:80
+#, python-brace-format
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - matnli xabarlardan PDF -fayllarni yaratish"
 
 #: pdf_bot/command/command_service.py:83
+#, python-brace-format
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - PDF -fayllarga suv belgisini qo'shing"
 
@@ -187,7 +193,7 @@ msgstr "Fikr-mulohazangiz uchun rahmat, men uni ishlab chiqaruvchimga etkazdim"
 msgid "Your file is too big for me to download and process"
 msgstr "Faylingiz yuklab olish va qayta ishlashim uchun juda katta"
 
-#: pdf_bot/file/file_service.py:55
+#: pdf_bot/file/file_service.py:56
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "E'tibor bering, bu Telegram Bot cheklovidir va agar Telegram bu chegarani o'zgartirmasa, men hech narsa qila olmayman"
 
@@ -215,11 +221,11 @@ msgstr "PDF ga"
 msgid "Remove last file"
 msgstr "Oxirgi faylni olib tashlash"
 
-#: pdf_bot/image_handler/batch_image_service.py:41
+#: pdf_bot/image_handler/batch_image_service.py:42
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "PDFga aylantirmoqchi bo'lgan rasmlarni menga yuboring"
 
-#: pdf_bot/image_handler/batch_image_service.py:44
+#: pdf_bot/image_handler/batch_image_service.py:45
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "E'tibor bering, rasmlar siz menga yuborgan tartibda o'zgartiriladi"
 
@@ -227,7 +233,7 @@ msgstr "E'tibor bering, rasmlar siz menga yuborgan tartibda o'zgartiriladi"
 msgid "You've sent me these images so far:"
 msgstr "Shu paytgacha menga bu rasmlarni jo'natdingiz:"
 
-#: pdf_bot/image_handler/batch_image_service.py:106
+#: pdf_bot/image_handler/batch_image_service.py:107
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Agar menga barcha rasmlarni yuborgan bo'lsangiz yoki tasvirlarni yuborishda davom etsangiz, pastdan vazifani tanlang"
 
@@ -236,6 +242,7 @@ msgid "You've already removed all the images you've sent me"
 msgstr "Siz menga yuborgan barcha rasmlarni allaqachon olib tashlagansiz"
 
 #: pdf_bot/image_handler/batch_image_service.py:131
+#, python-brace-format
 msgid "{file_name} has been removed"
 msgstr "{file_name} olib tashlandi"
 
@@ -260,6 +267,7 @@ msgid "Select your language"
 msgstr "Tilingizni tanlang"
 
 #: pdf_bot/language/language_service.py:119
+#, python-brace-format
 msgid "Your language has been set to {language}"
 msgstr "Sizning tilingiz {language}"
 
@@ -275,7 +283,8 @@ msgstr "E'tibor bering, fayllar siz yuborgan tartibda birlashtiriladi"
 msgid "You've sent me these PDF files so far:"
 msgstr "Siz menga shu paytgacha ushbu PDF fayllarni jo'natdingiz:"
 
-#: pdf_bot/merge/merge_service.py:98
+#: pdf_bot/merge/merge_service.py:99
+#, python-brace-format
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Agar siz menga PDF -fayllarni birlashtirmoqchi bo'lgan yoki menga yuborishni davom ettiradigan barcha PDF -fayllarni yuborgan bo'lsangiz, {done} -ni bosing"
 
@@ -284,6 +293,7 @@ msgid "You've already removed all the PDF files you've sent me"
 msgstr "Siz allaqachon meni yuborgan barcha PDF fayllarni olib tashladingiz"
 
 #: pdf_bot/merge/merge_service.py:124
+#, python-brace-format
 msgid "{file_name} has been removed for merging"
 msgstr "Birlashtirish uchun {file_name}"
 
@@ -300,6 +310,7 @@ msgid "Merging your PDF files"
 msgstr "PDF fayllarni birlashtirish"
 
 #: pdf_bot/payment/payment_service.py:26
+#, python-brace-format
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -381,6 +392,7 @@ msgid "Compress"
 msgstr "Hajmini kamaytirish"
 
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:35
+#, python-brace-format
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Fayl hajmi {percent}, {old_size} dan {new_size}"
 
@@ -392,13 +404,13 @@ msgstr "Foiz boʻyicha"
 msgid "To margin size"
 msgstr "Boʻsh joy"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:24
 msgid "Send me a number between 0 and 100\n\n"
 "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Menga 0 dan 100 gacha bo'lgan raqamni yuboring\n\n"
 "Bu sizning PDF faylingizdagi kontent va sahifa o'rtasida saqlash uchun bo'sh joyning foizi"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:30
 msgid "Send me a number that you'll like to adjust the margin size\n\n"
 "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Menga marjinal o'lchamni sozlashni xohlaydigan raqamni yuboring\n\n"
@@ -483,13 +495,13 @@ msgstr "Omil bo'yicha"
 msgid "To dimension"
 msgstr "O'lchamga"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:24
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:25
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "Gorizontal va vertikal eksa uchun taranglik omillarini menga yuboring\n\n"
 "Misol: 2 0.5 - bu gorizontal o'qi ikki barobarga oshiradi va vertikal eksani yarmiga kamaytiradi"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:31
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "Menga kengligi va balandligini yuboring\n\n"
@@ -524,38 +536,47 @@ msgid "General usage"
 msgstr "Umumiy foydalanish"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#, python-brace-format
 msgid "{range}      all pages"
 msgstr "{range}      barcha sahifalar"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#, python-brace-format
 msgid "{range}      page 8 only"
 msgstr "{range}      sahifa faqat 8"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#, python-brace-format
 msgid "{range}    first three pages"
 msgstr "{range}    birinchi uchta sahifa"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#, python-brace-format
 msgid "{range}     from page 8 onward"
 msgstr "{range}     8 -sahifadan boshlab"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#, python-brace-format
 msgid "{range}     last page only"
 msgstr "Faqat oxirgi sahifa {range}"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#, python-brace-format
 msgid "{range}    all pages except the last page"
 msgstr "{range}    oxirgi sahifadan tashqari barcha sahifalar"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#, python-brace-format
 msgid "{range}     second last page only"
 msgstr "{range}     soniya oxirgi sahifa"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#, python-brace-format
 msgid "{range}    last two pages"
 msgstr "{range}    oxirgi ikkita sahifa"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#, python-brace-format
 msgid "{range}  third and second last pages"
 msgstr "{range}  uchinchi va ikkinchi oxirgi sahifalar"
 
@@ -564,32 +585,37 @@ msgid "Advanced usage"
 msgstr "Kengaytirilgan foydalanish"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#, python-brace-format
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    sahifa {pages} va oxirigacha"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#, python-brace-format
 msgid "{range} pages {pages}"
 msgstr "{range} sahifalar {pages}"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#, python-brace-format
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   barcha sahifalar teskari tartibda"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#, python-brace-format
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} sahifalar {pages} tashqari {page}"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#, python-brace-format
 msgid "{range}  pages {pages}"
 msgstr "{range}  sahifalar {pages}"
 
-#: pdf_bot/telegram_internal/telegram_service.py:68
+#: pdf_bot/telegram_internal/telegram_service.py:69
 msgid "Your file is too large for me to download and process, please try again with a different file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Sizning faylingiz yuklab olish va qayta ishlash uchun juda katta, iltimos boshqa fayl bilan qayta urinib ko'ring\n\n"
 "E'tibor bering, bu limit Telegram orqali amalga oshiriladi va Telegram uni o'zgartirmasa men hech narsa qila olmayman"
 
-#: pdf_bot/telegram_internal/telegram_service.py:80
+#: pdf_bot/telegram_internal/telegram_service.py:81
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Fayl sizga jo'natish uchun juda katta\n\n"
@@ -625,11 +651,13 @@ msgstr "Oʻtish"
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "PDF-faylingizga yozmoqchi bo'lgan matnni menga yuboring"
 
-#: pdf_bot/text/text_service.py:58
+#: pdf_bot/text/text_service.py:59
+#, python-brace-format
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "Menga PDF -fayl uchun kerakli shriftni yuboring yoki standart shriftdan foydalanish uchun {skip}"
 
 #: pdf_bot/text/text_service.py:62
+#, python-brace-format
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "Qo'llab -quvvatlanadigan shriftlar ro'yxati uchun bu erga qarang: {fonts}"
 

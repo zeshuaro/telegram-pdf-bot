@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: telegram-pdf-bot\n"
 "Report-Msgid-Bugs-To: zeshuaro@gmail.com\n"
-"POT-Creation-Date: 2024-08-14 20:31+0000\n"
-"PO-Revision-Date: 2024-08-14 20:31\n"
+"POT-Creation-Date: 2025-02-01 20:45+0000\n"
+"PO-Revision-Date: 2025-02-01 20:45\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: Finnish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: telegram-pdf-bot\n"
 "X-Crowdin-Project-ID: 370289\n"
@@ -51,7 +51,7 @@ msgstr "Tervetuloa PDF-bottiin!"
 msgid "Key features:"
 msgstr "Tärkeimmät ominaisuudet:"
 
-#: pdf_bot/command/command_service.py:40
+#: pdf_bot/command/command_service.py:41
 msgid "- Compress, merge, preview, rename, split and add watermark to PDF files"
 msgstr "- Pakkaa, yhdistä, esikatsele, nimeä uudelleen, jaa ja lisää vesileima PDF-tiedostoihin"
 
@@ -80,6 +80,7 @@ msgid "- And more..."
 msgstr "- Ja lisää..."
 
 #: pdf_bot/command/command_service.py:49
+#, python-brace-format
 msgid "Type {command} to see how to use PDF Bot"
 msgstr "Kirjoita {command} nähdäksesi kuinka PDF Botia käytetään"
 
@@ -118,22 +119,27 @@ msgid "The rest of the tasks can be performed by using the following commands:"
 msgstr "Loput tehtävät voidaan suorittaa seuraavilla komennoilla:"
 
 #: pdf_bot/command/command_service.py:75
+#, python-brace-format
 msgid "{command} - compare PDF files"
 msgstr "{command} - vertaa PDF-tiedostoja"
 
 #: pdf_bot/command/command_service.py:76
+#, python-brace-format
 msgid "{command} - merge PDF files"
 msgstr "{command} - PDF-tiedostojen yhdistäminen"
 
-#: pdf_bot/command/command_service.py:77
+#: pdf_bot/command/command_service.py:78
+#, python-brace-format
 msgid "{command} - convert and combine multiple images into PDF files"
 msgstr "{command} - muuntaa ja yhdistää useita kuvia PDF-tiedostoiksi"
 
 #: pdf_bot/command/command_service.py:80
+#, python-brace-format
 msgid "{command} - create PDF files from text messages"
 msgstr "{command} - pdf-tiedostojen luominen tekstiviesteistä"
 
 #: pdf_bot/command/command_service.py:83
+#, python-brace-format
 msgid "{command} - add watermark to PDF files"
 msgstr "{command} - lisää vesileima PDF-tiedostoihin"
 
@@ -187,7 +193,7 @@ msgstr "Kiitos palautteestasi, olen välittänyt sen kehittäjälleni"
 msgid "Your file is too big for me to download and process"
 msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi"
 
-#: pdf_bot/file/file_service.py:55
+#: pdf_bot/file/file_service.py:56
 msgid "Note that this is a Telegram Bot limitation and there's nothing I can do unless Telegram changes this limit"
 msgstr "Huomaa, että tämä on Telegram Bot -rajoitus, enkä voi tehdä mitään, ellei Telegram muuta tätä rajaa"
 
@@ -215,11 +221,11 @@ msgstr "PDF-tiedostoon"
 msgid "Remove last file"
 msgstr "Poista viimeinen tiedosto"
 
-#: pdf_bot/image_handler/batch_image_service.py:41
+#: pdf_bot/image_handler/batch_image_service.py:42
 msgid "Send me the images that you'll like to beautify or convert into a PDF file"
 msgstr "Lähetä minulle kuvat, jotka haluat kaunistaa tai muuntaa PDF-tiedostoksi"
 
-#: pdf_bot/image_handler/batch_image_service.py:44
+#: pdf_bot/image_handler/batch_image_service.py:45
 msgid "Note that the images will be beautified and converted in the order that you send me"
 msgstr "Huomaa, että kuvat kaunistavat ja muunnetaan siinä järjestyksessä, jonka lähetät minulle"
 
@@ -227,7 +233,7 @@ msgstr "Huomaa, että kuvat kaunistavat ja muunnetaan siinä järjestyksessä, j
 msgid "You've sent me these images so far:"
 msgstr "Olet lähettänyt minulle nämä kuvat tähän mennessä:"
 
-#: pdf_bot/image_handler/batch_image_service.py:106
+#: pdf_bot/image_handler/batch_image_service.py:107
 msgid "Select the task from below if you've sent me all the images, or keep sending me the images"
 msgstr "Valitse tehtävä alapuolelta, jos olet lähettänyt minulle kaikki kuvat, tai jatka kuvien lähettämistä minulle"
 
@@ -236,6 +242,7 @@ msgid "You've already removed all the images you've sent me"
 msgstr "Olet jo poistanut kaikki minulle lähettämäsi kuvat"
 
 #: pdf_bot/image_handler/batch_image_service.py:131
+#, python-brace-format
 msgid "{file_name} has been removed"
 msgstr "{file_name} on poistettu"
 
@@ -260,6 +267,7 @@ msgid "Select your language"
 msgstr "Valitse kieli"
 
 #: pdf_bot/language/language_service.py:119
+#, python-brace-format
 msgid "Your language has been set to {language}"
 msgstr "Kielesi on määritetty {language}"
 
@@ -275,7 +283,8 @@ msgstr "Huomaa, että tiedostot yhdistetään lähettämissäsi järjestyksessä
 msgid "You've sent me these PDF files so far:"
 msgstr "Olet lähettänyt minulle nämä PDF-tiedostot tähän mennessä:"
 
-#: pdf_bot/merge/merge_service.py:98
+#: pdf_bot/merge/merge_service.py:99
+#, python-brace-format
 msgid "Press {done} if you've sent me all the PDF files that you'll like to merge or keep sending me the PDF files"
 msgstr "Paina {done} jos olet lähettänyt minulle kaikki PDF-tiedostot, jotka haluat yhdistää, tai jatka PDF-tiedostojen lähettämistä"
 
@@ -284,6 +293,7 @@ msgid "You've already removed all the PDF files you've sent me"
 msgstr "Olet jo poistanut kaikki lähettämäsi PDF-tiedostot"
 
 #: pdf_bot/merge/merge_service.py:124
+#, python-brace-format
 msgid "{file_name} has been removed for merging"
 msgstr "{file_name} on poistettu yhdistämistä"
 
@@ -300,6 +310,7 @@ msgid "Merging your PDF files"
 msgstr "PDF-tiedostojen yhdistäminen"
 
 #: pdf_bot/payment/payment_service.py:26
+#, python-brace-format
 msgid "{message} {emoji} (${value})"
 msgstr "{message} {emoji} (${value})"
 
@@ -381,6 +392,7 @@ msgid "Compress"
 msgstr "Pakata"
 
 #: pdf_bot/pdf_processor/compress_pdf_processor.py:35
+#, python-brace-format
 msgid "File size reduced by {percent}, from {old_size} to {new_size}"
 msgstr "Tiedoston kokoa pienennetty {percent}, {old_size} {new_size}"
 
@@ -392,13 +404,13 @@ msgstr "Prosentteina"
 msgid "To margin size"
 msgstr "Marginaalin kokoon"
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:23
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:24
 msgid "Send me a number between 0 and 100\n\n"
 "This is the percentage of margin space to retain between the content in your PDF file and the page"
 msgstr "Lähetä minulle numero väliltä 0-100\n\n"
 "Tämä on PDF-tiedoston sisällön ja sivun välillä säilytettävän marginaalitilan prosenttiosuus."
 
-#: pdf_bot/pdf_processor/crop_pdf_processor.py:29
+#: pdf_bot/pdf_processor/crop_pdf_processor.py:30
 msgid "Send me a number that you'll like to adjust the margin size\n\n"
 "Positive numbers will decrease the margin size and negative numbers will increase it"
 msgstr "Lähetä minulle numero, jonka marginaalin kokoa haluat muuttaa\n\n"
@@ -483,13 +495,13 @@ msgstr "Tekijän mukaan"
 msgid "To dimension"
 msgstr "Dimensioon"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:24
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:25
 msgid "Send me the scaling factors for the horizontal and vertical axes\n\n"
 "Example: 2 0.5 - this will double the horizontal axis and halve the vertical axis"
 msgstr "Lähetä minulle vaaka- ja pystyakselien skaalauskertoimet\n\n"
 "Esimerkki: 2 0,5 - tämä kaksinkertaistaa vaaka-akselin ja puolittaa pystyakselin"
 
-#: pdf_bot/pdf_processor/scale_pdf_processor.py:30
+#: pdf_bot/pdf_processor/scale_pdf_processor.py:31
 msgid "Send me the width and height\n\n"
 "Example: 150 200 - this will set the width to 150 and height to 200"
 msgstr "Lähetä minulle leveys ja korkeus\n\n"
@@ -524,38 +536,47 @@ msgid "General usage"
 msgstr "Yleinen käyttö"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:57
+#, python-brace-format
 msgid "{range}      all pages"
 msgstr "{range}      kaikki sivut"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:58
+#, python-brace-format
 msgid "{range}      page 8 only"
 msgstr "{range}      vain sivu 8"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:59
+#, python-brace-format
 msgid "{range}    first three pages"
 msgstr "{range}    kolme ensimmäistä sivua"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:60
+#, python-brace-format
 msgid "{range}     from page 8 onward"
 msgstr "{range}     sivulta 8 eteenpäin"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:61
+#, python-brace-format
 msgid "{range}     last page only"
 msgstr "{range}     viimeinen sivu"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:62
+#, python-brace-format
 msgid "{range}    all pages except the last page"
 msgstr "{range}    sivut viimeistä sivua lukuun ottamatta"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:63
+#, python-brace-format
 msgid "{range}     second last page only"
 msgstr "{range}     toiseksi viimeinen sivu"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:64
+#, python-brace-format
 msgid "{range}    last two pages"
 msgstr "{range}    kaksi viimeistä sivua"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:65
+#, python-brace-format
 msgid "{range}  third and second last pages"
 msgstr "{range}  ja toiseksi viimeiset sivut"
 
@@ -564,32 +585,37 @@ msgid "Advanced usage"
 msgstr "Käytön lisäasetukset"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:67
+#, python-brace-format
 msgid "{range}    pages {pages} and to the end"
 msgstr "{range}    sivut {pages} loppuun asti"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:70
+#, python-brace-format
 msgid "{range} pages {pages}"
 msgstr "{range} sivut {pages}"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:71
+#, python-brace-format
 msgid "{range}   all pages in reversed order"
 msgstr "{range}   kaikki sivut käänteisessä järjestyksessä"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:72
+#, python-brace-format
 msgid "{range} pages {pages} except {page}"
 msgstr "{range} sivut {pages} paitsi {page}"
 
 #: pdf_bot/pdf_processor/split_pdf_processor.py:75
+#, python-brace-format
 msgid "{range}  pages {pages}"
 msgstr "{range}  sivut {pages}"
 
-#: pdf_bot/telegram_internal/telegram_service.py:68
+#: pdf_bot/telegram_internal/telegram_service.py:69
 msgid "Your file is too large for me to download and process, please try again with a different file\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Tiedostosi on liian suuri ladattavaksi ja käsiteltäväksi, yritä uudelleen toisella tiedostolla\n\n"
 "Huomaa, että Telegram valvoo tätä rajaa, enkä voi tehdä mitään, ellei Telegram muuta sitä"
 
-#: pdf_bot/telegram_internal/telegram_service.py:80
+#: pdf_bot/telegram_internal/telegram_service.py:81
 msgid "The file is too large for me to send to you\n\n"
 "Note that this limit is enforced by Telegram and there's nothing I can do unless Telegram changes it"
 msgstr "Tiedosto on liian suuri, jotta voisin lähettää sen sinulle\n\n"
@@ -625,11 +651,13 @@ msgstr "Hyppiä"
 msgid "Send me the text that you'll like to write into your PDF file"
 msgstr "Lähetä teksti, jonka haluat kirjoittaa PDF-tiedostoon"
 
-#: pdf_bot/text/text_service.py:58
+#: pdf_bot/text/text_service.py:59
+#, python-brace-format
 msgid "Send me the font that you'll like to use for the PDF file or press {skip} to use the default font"
 msgstr "Lähetä pdf-tiedostossa käytettävä fontti tai käytä oletusfonttia painamalla {skip} -näppäintä"
 
 #: pdf_bot/text/text_service.py:62
+#, python-brace-format
 msgid "See here for the list of supported fonts: {fonts}"
 msgstr "Katso täältä luettelo tuetuista fonteista: {fonts}"
 
