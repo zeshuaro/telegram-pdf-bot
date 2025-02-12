@@ -5,7 +5,7 @@ from img2pdf import Rotation
 
 from pdf_bot.cli import CLIService
 from pdf_bot.image import ImageService
-from pdf_bot.io.io_service import IOService
+from pdf_bot.io_internal.io_service import IOService
 from pdf_bot.models import FileData
 from tests.language import LanguageServiceTestMixin
 from tests.telegram_internal import TelegramServiceTestMixin, TelegramTestMixin

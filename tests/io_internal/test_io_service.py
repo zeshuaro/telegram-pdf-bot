@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from pdf_bot.io import IOService
+from pdf_bot.io_internal import IOService
 
 
 class TestIOService:
@@ -19,7 +19,7 @@ class TestIOService:
         self.tf.name = self.FILE_NAME
 
         self.tf_cls_patcher = patch(
-            "pdf_bot.io.io_service.NamedTemporaryFile", return_value=self.tf
+            "pdf_bot.io_internal.io_service.NamedTemporaryFile", return_value=self.tf
         )
         self.tf_cls = self.tf_cls_patcher.start()
 
@@ -34,7 +34,7 @@ class TestIOService:
         dir_name = "dir_name"
         td = MagicMock(spec=TemporaryDirectory)
 
-        with patch("pdf_bot.io.io_service.TemporaryDirectory") as td_cls:
+        with patch("pdf_bot.io_internal.io_service.TemporaryDirectory") as td_cls:
             td_cls.return_value = td
             td.name = dir_name
 
@@ -86,7 +86,7 @@ class TestIOService:
             index += 1
             return file
 
-        with patch("pdf_bot.io.io_service.NamedTemporaryFile") as tf:
+        with patch("pdf_bot.io_internal.io_service.NamedTemporaryFile") as tf:
             tf.side_effect = create_tmp_file
             with self.sut.create_temp_files(num_files) as actual:
                 assert actual == paths

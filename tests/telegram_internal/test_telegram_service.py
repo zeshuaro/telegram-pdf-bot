@@ -8,7 +8,7 @@ from telegram.ext import Application, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
 from pdf_bot.consts import FILE_DATA, MESSAGE_DATA
-from pdf_bot.io import IOService
+from pdf_bot.io_internal import IOService
 from pdf_bot.models import BackData, FileData, MessageData
 from pdf_bot.telegram_internal import (
     TelegramFileMimeTypeError,

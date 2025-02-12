@@ -22,7 +22,7 @@ from telegram.ext import ContextTypes, ConversationHandler
 
 from pdf_bot.analytics import AnalyticsService, EventAction, TaskType
 from pdf_bot.consts import BACK, CANCEL, CHANNEL_NAME, FILE_DATA, MESSAGE_DATA
-from pdf_bot.io import IOService
+from pdf_bot.io_internal import IOService
 from pdf_bot.language import LanguageService
 from pdf_bot.models import BackData, FileData, MessageData, SupportData
 
