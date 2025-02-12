@@ -12,7 +12,7 @@ from weasyprint import CSS, HTML
 from weasyprint.text.fonts import FontConfiguration
 
 from pdf_bot.cli import CLIService, CLIServiceError
-from pdf_bot.io.io_service import IOService
+from pdf_bot.io_internal.io_service import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf import (
     CompressResult,

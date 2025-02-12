@@ -7,7 +7,7 @@ import noteshrink
 from img2pdf import Rotation
 
 from pdf_bot.cli import CLIService
-from pdf_bot.io import IOService
+from pdf_bot.io_internal import IOService
 from pdf_bot.models import FileData
 from pdf_bot.telegram_internal import TelegramService
 

@@ -23,7 +23,7 @@ from weasyprint import CSS, HTML
 from weasyprint.text.fonts import FontConfiguration
 
 from pdf_bot.cli import CLIService, CLIServiceError
-from pdf_bot.io import IOService
+from pdf_bot.io_internal import IOService
 from pdf_bot.models import FileData
 from pdf_bot.pdf.exceptions import (
     PdfDecryptError,

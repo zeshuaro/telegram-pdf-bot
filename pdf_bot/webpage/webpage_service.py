@@ -10,7 +10,7 @@ from weasyprint.css.utils import InvalidValues
 from weasyprint.urls import URLFetchingError
 
 from pdf_bot.analytics import TaskType
-from pdf_bot.io import IOService
+from pdf_bot.io_internal import IOService
 from pdf_bot.language import LanguageService
 from pdf_bot.telegram_internal import (
     TelegramGetUserDataError,
