@@ -1544,13 +1544,13 @@ files = [
 
 [[package]]
 name = "ocrmypdf"
-version = "16.9.0"
+version = "16.10.0"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "ocrmypdf-16.9.0-py3-none-any.whl", hash = "sha256:33fec95450727b0d9482ee3851e45dd0219ff8d52a14fd45a8d3d0c71875584e"},
-    {file = "ocrmypdf-16.9.0.tar.gz", hash = "sha256:d000a2294cd1478d4bbfe15df5172327f77f4139bb5307404bc53be9bd81f039"},
+    {file = "ocrmypdf-16.10.0-py3-none-any.whl", hash = "sha256:5093b9b058e7278b17c0b0978eb5175063b7a5511e3b9068257ece063d91ce8f"},
+    {file = "ocrmypdf-16.10.0.tar.gz", hash = "sha256:d5b907a7b92951f1f3617f0f5ca002d866143d94fd168546a70e51756bf6412e"},
 ]
 
 [package.dependencies]
@@ -1569,7 +1569,7 @@ docs = ["sphinx", "sphinx-issues", "sphinx-rtd-theme"]
 extended-test = ["pymupdf (>=1.19.1)"]
 test = ["coverage[toml] (>=6.2)", "hypothesis (>=6.36.0)", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-xdist (>=2.5.0)", "python-xmp-toolkit (==2.0.1)", "reportlab (>=3.6.8)", "types-humanfriendly", "types-pillow"]
 watcher = ["python-dotenv", "typer-slim[standard]", "watchdog (>=1.0.2)"]
-webservice = ["port-for (>=0.7.4)", "streamlit (>=1.41.0)"]
+webservice = ["streamlit (>=1.41.0)"]
 
 [[package]]
 name = "packaging"
@@ -3008,4 +3008,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "==3.13.2"
-content-hash = "3e845c934c1796047e4f4ca856646746c5c2fa6255c0bef427f6087c219ffc97"
+content-hash = "fd093509b4835be3cb1d91bea76e820682c4d67826675ff71652844793e258db"
