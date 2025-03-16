@@ -17,8 +17,8 @@ class CommandService:
         self.language_service = language_service
 
     async def send_start_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        msg = cast(Message, update.effective_message)
-        msg_user = cast(User, msg.from_user)
+        msg = cast("Message", update.effective_message)
+        msg_user = cast("User", msg.from_user)
         await msg.reply_chat_action(ChatAction.TYPING)
 
         # Create the user entity in Datastore
@@ -53,7 +53,7 @@ class CommandService:
 
     async def send_help_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         keyboard = [
             [InlineKeyboardButton(_("Set Language 🌎"), callback_data=SetLanguageData())],
             [
@@ -90,7 +90,7 @@ class CommandService:
     async def send_message_to_user(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         args = context.args
 
         if args is not None:

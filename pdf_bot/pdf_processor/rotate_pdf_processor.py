@@ -62,7 +62,7 @@ class RotatePdfProcessor(AbstractPdfProcessor):
             yield FileTaskResult(path)
 
     async def ask_degree(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-        query = cast(CallbackQuery, update.callback_query)
+        query = cast("CallbackQuery", update.callback_query)
         await self.telegram_service.answer_query_and_drop_data(context, query)
         data: str | RotatePdfData | None = query.data
 

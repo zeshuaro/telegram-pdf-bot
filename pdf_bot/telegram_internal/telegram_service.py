@@ -165,7 +165,7 @@ class TelegramService:
         return img_file
 
     def check_pdf_document(self, message: Message) -> Document:
-        doc = cast(Document, message.document)
+        doc = cast("Document", message.document)
         doc_mime_type = doc.mime_type
 
         if doc_mime_type is not None and not doc_mime_type.endswith(self.PDF_MIME_TYPE_SUFFIX):
@@ -196,7 +196,7 @@ class TelegramService:
             await self.answer_query_and_drop_data(context, query)
             await query.edit_message_text(_("Action cancelled"))
         else:
-            msg = cast(Message, update.effective_message)
+            msg = cast("Message", update.effective_message)
             await msg.reply_text(_("Action cancelled"), reply_markup=ReplyKeyboardRemove())
 
         return ConversationHandler.END
@@ -313,9 +313,9 @@ class TelegramService:
         msg: Message
 
         if query is None:
-            msg = cast(Message, update.effective_message)
+            msg = cast("Message", update.effective_message)
         else:
-            msg = cast(Message, query.message)
+            msg = cast("Message", query.message)
 
         return msg.chat_id
 
@@ -323,7 +323,7 @@ class TelegramService:
         self, update: Update, context: ContextTypes.DEFAULT_TYPE, reply_data: _ReplyData
     ) -> Coroutine[Any, Any, Message]:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         markup = ReplyKeyboardMarkup(
             [[_(reply_data.markup_button_text)]], one_time_keyboard=True, resize_keyboard=True
         )

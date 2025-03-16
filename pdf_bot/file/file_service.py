@@ -43,7 +43,7 @@ class FileService:
     async def _get_file_data(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> FileData | None:
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         file = msg.document or msg.photo[-1]
         file_size = file.file_size
 

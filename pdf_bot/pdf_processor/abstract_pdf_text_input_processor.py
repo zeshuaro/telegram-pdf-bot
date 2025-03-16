@@ -68,7 +68,7 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
         )
 
     async def _ask_text_input(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-        query = cast(CallbackQuery, update.callback_query)
+        query = cast("CallbackQuery", update.callback_query)
         await self.telegram_service.answer_query_and_drop_data(context, query)
 
         _ = self.language_service.set_app_language(update, context)
@@ -86,8 +86,8 @@ class AbstractPdfTextInputProcessor(AbstractPdfProcessor):
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
-        msg_text = cast(str, msg.text)
+        msg = cast("Message", update.effective_message)
+        msg_text = cast("str", msg.text)
         cleaned_text = self.get_cleaned_text_input(msg_text)
 
         if cleaned_text is None:

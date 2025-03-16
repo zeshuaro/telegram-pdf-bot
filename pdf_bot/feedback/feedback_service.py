@@ -35,7 +35,7 @@ class FeedbackService:
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
 
         if msg.text == _(CANCEL):
             return await self.telegram_service.cancel_conversation(update, context)
@@ -44,10 +44,10 @@ class FeedbackService:
 
     async def _save_feedback(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
-        msg_user = cast(User, msg.from_user)
-        msg_username = cast(str, msg_user.username)
-        msg_text = cast(str, msg.text)
+        msg = cast("Message", update.effective_message)
+        msg_user = cast("User", msg.from_user)
+        msg_username = cast("str", msg_user.username)
+        msg_text = cast("str", msg.text)
 
         feedback_lang = detect(msg.text)
         if feedback_lang.lower() != self._VALID_LANGUAGE_CODE:

@@ -1,5 +1,4 @@
 import asyncio
-import os
 import shutil
 import textwrap
 from collections.abc import AsyncGenerator, Generator
@@ -199,7 +198,7 @@ class PdfService:
                 except CLIServiceError as e:
                     raise PdfServiceError(e) from e
 
-                if not os.listdir(out_dir):
+                if not any(out_dir.iterdir()):
                     raise PdfNoImagesError(_("No images found in your PDF file"))
                 yield out_dir
 

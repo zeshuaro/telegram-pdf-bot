@@ -28,7 +28,7 @@ class FileTaskMixin:
         tasks: Sequence[TaskData],
     ) -> str | int:
         _ = language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         file_data: FileData | None = None
 
         # Try to retrieve the file data cached in user data first

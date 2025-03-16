@@ -52,7 +52,7 @@ class BatchImageService:
 
     async def check_image(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
 
         try:
             image = self.telegram_service.check_image(msg)
@@ -70,7 +70,7 @@ class BatchImageService:
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         text = msg.text
 
         if text in [_(self._REMOVE_LAST), _(self._BEAUTIFY), _(self._TO_PDF)]:
@@ -89,7 +89,7 @@ class BatchImageService:
 
     async def _ask_next_image(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         text = "{desc}\n".format(desc=_("You've sent me these images so far:"))
         await self.telegram_service.send_file_names(
             msg.chat_id,
@@ -119,7 +119,7 @@ class BatchImageService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
 
         try:
             file_data = file_data_list.pop()
@@ -144,7 +144,7 @@ class BatchImageService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         num_files = len(file_data_list)
 
         if num_files == 0:
@@ -163,7 +163,7 @@ class BatchImageService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         is_beautify = False
 
         if msg.text == _(self._BEAUTIFY):

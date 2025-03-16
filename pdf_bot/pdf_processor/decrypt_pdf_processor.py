@@ -62,7 +62,7 @@ class DecryptPdfProcessor(AbstractPdfTextInputProcessor):
         file_data: FileData,
     ) -> str:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         await msg.reply_text(_(str(exception)))
         self.telegram_service.cache_file_data(context, file_data)
 

@@ -43,7 +43,7 @@ class TextService:
 
     async def ask_pdf_font(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         text = msg.text
 
         if text == _(CANCEL):
@@ -71,11 +71,11 @@ class TextService:
         return self.WAIT_FONT
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         await msg.reply_chat_action(ChatAction.TYPING)
 
         _ = self.language_service.set_app_language(update, context)
-        msg_text = cast(str, msg.text)
+        msg_text = cast("str", msg.text)
 
         if msg_text == _(CANCEL):
             return await self.telegram_service.cancel_conversation(update, context)
@@ -97,7 +97,7 @@ class TextService:
         font_data: FontData | None = None,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
 
         try:
             text = self.telegram_service.get_user_data(context, self.TEXT_KEY)

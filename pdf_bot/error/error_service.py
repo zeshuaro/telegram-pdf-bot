@@ -16,8 +16,8 @@ class ErrorService:
         _ = self.language_service.set_app_language(update, context)
         text = _("The button has expired, start over with your file or command")
 
-        query = cast(CallbackQuery, update.callback_query)
+        query = cast("CallbackQuery", update.callback_query)
         await query.answer(text)
 
-        message = cast(Message, update.effective_message)
+        message = cast("Message", update.effective_message)
         await message.reply_text(text)

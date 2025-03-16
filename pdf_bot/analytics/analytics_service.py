@@ -29,8 +29,8 @@ class AnalyticsService:
         action: EventAction,
     ) -> None:
         lang = self.language_service.get_user_language(update, context)
-        msg = cast(Message, update.effective_message)
-        msg_user = cast(User, msg.from_user)
+        msg = cast("Message", update.effective_message)
+        msg_user = cast("User", msg.from_user)
 
         event = {
             "client_id": str(UUID(int=msg_user.id)),
