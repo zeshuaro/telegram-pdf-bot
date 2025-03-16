@@ -58,14 +58,12 @@ class TestPDFService(
             self.telegram_service,
         )
 
-        self.os_patcher = patch("pdf_bot.pdf.pdf_service.os")
         self.ocrmypdf_patcher = patch("pdf_bot.pdf.pdf_service.ocrmypdf")
         self.extract_text_patcher = patch("pdf_bot.pdf.pdf_service.extract_text")
         self.textwrap_patcher = patch("pdf_bot.pdf.pdf_service.textwrap")
         self.pdf_reader_patcher = patch("pdf_bot.pdf.pdf_service.PdfReader")
         self.pdf_writer_patcher = patch("pdf_bot.pdf.pdf_service.PdfWriter")
 
-        self.mock_os = self.os_patcher.start()
         self.ocrmypdf = self.ocrmypdf_patcher.start()
         self.extract_text = self.extract_text_patcher.start()
         self.textwrap_patcher.start()
@@ -73,7 +71,6 @@ class TestPDFService(
         self.pdf_writer_cls = self.pdf_writer_patcher.start()
 
     def teardown_method(self) -> None:
-        self.os_patcher.stop()
         self.ocrmypdf_patcher.stop()
         self.extract_text_patcher.stop()
         self.textwrap_patcher.stop()
@@ -402,18 +399,21 @@ class TestPDFService(
 
     @pytest.mark.asyncio
     async def test_extract_pdf_images(self) -> None:
+        self.dir_path.iterdir.return_value = [self.file_path]
+
         async with self.sut.extract_pdf_images(self.TELEGRAM_FILE_ID) as actual:
             assert actual == self.dir_path
-            self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
-            self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
-            self.cli_service.extract_pdf_images.assert_called_once_with(
-                self.download_path, self.dir_path
-            )
-            self.mock_os.listdir.assert_called_once_with(self.dir_path)
+
+        self.telegram_service.download_pdf_file.assert_called_once_with(self.TELEGRAM_FILE_ID)
+        self.io_service.create_temp_directory.assert_called_once_with("PDF_images")
+        self.cli_service.extract_pdf_images.assert_called_once_with(
+            self.download_path, self.dir_path
+        )
+        self.dir_path.iterdir.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_extract_pdf_images_no_images(self) -> None:
-        self.mock_os.listdir.return_value = []
+        self.dir_path.iterdir.return_value = []
 
         with pytest.raises(PdfNoImagesError):
             async with self.sut.extract_pdf_images(self.TELEGRAM_FILE_ID):
@@ -424,7 +424,7 @@ class TestPDFService(
         self.cli_service.extract_pdf_images.assert_called_once_with(
             self.download_path, self.dir_path
         )
-        self.mock_os.listdir.assert_called_once_with(self.dir_path)
+        self.dir_path.iterdir.assert_called_once()
 
     @pytest.mark.asyncio
     async def test_extract_pdf_images_cli_error(self) -> None:
@@ -439,7 +439,7 @@ class TestPDFService(
         self.cli_service.extract_pdf_images.assert_called_once_with(
             self.download_path, self.dir_path
         )
-        self.mock_os.listdir.assert_not_called()
+        self.dir_path.iterdir.assert_not_called()
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize("num_files", [0, 1, 2, 5])

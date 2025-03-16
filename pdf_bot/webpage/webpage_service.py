@@ -32,8 +32,8 @@ class WebpageService:
 
     async def url_to_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
-        url = cast(str, msg.text)
+        msg = cast("Message", update.effective_message)
+        url = cast("str", msg.text)
         url_hash = hashlib.sha256(url.encode("utf-8")).hexdigest()
 
         if self.telegram_service.user_data_contains(context, url_hash):
@@ -84,5 +84,5 @@ class WebpageService:
                 err_text = _("Failed to convert your webpage")
 
         if err_text is not None:
-            msg = cast(Message, update.effective_message)
+            msg = cast("Message", update.effective_message)
             await msg.reply_text(err_text)

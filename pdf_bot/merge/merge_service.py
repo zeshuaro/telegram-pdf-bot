@@ -44,7 +44,7 @@ class MergeService:
 
     async def check_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
 
         try:
             doc = self.telegram_service.check_pdf_document(msg)
@@ -62,7 +62,7 @@ class MergeService:
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         text = msg.text
 
         if text in [_(self._REMOVE_LAST), _(DONE)]:
@@ -81,7 +81,7 @@ class MergeService:
 
     async def _ask_next_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         text = "{desc}\n".format(desc=_("You've sent me these PDF files so far:"))
         await self.telegram_service.send_file_names(
             msg.chat_id,
@@ -112,7 +112,7 @@ class MergeService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
 
         try:
             file_data = file_data_list.pop()
@@ -139,7 +139,7 @@ class MergeService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         num_files = len(file_data_list)
 
         if num_files == 0:
@@ -158,7 +158,7 @@ class MergeService:
         file_data_list: list[FileData],
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         await msg.reply_text(_("Merging your PDF files"), reply_markup=ReplyKeyboardRemove())
 
         try:

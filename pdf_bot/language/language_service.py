@@ -83,7 +83,7 @@ class LanguageService:
 
         _ = self.set_app_language(update, context)
         reply_markup = self._get_languages_markup(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         await msg.reply_text(_("Select your language"), reply_markup=reply_markup)
 
     def get_user_language(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
@@ -103,7 +103,7 @@ class LanguageService:
     async def update_user_language(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> None:
-        query = cast(CallbackQuery, update.callback_query)
+        query = cast("CallbackQuery", update.callback_query)
         await self._answer_query_and_drop_data(context, query)
         data: str | LanguageData | None = query.data
 

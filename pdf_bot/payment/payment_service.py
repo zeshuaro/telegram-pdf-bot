@@ -54,12 +54,12 @@ class PaymentService:
             await query.answer()
 
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         reply_markup = self._get_support_options_markup(update, context)
         await msg.reply_text(_("Select how you want to support PDF Bot"), reply_markup=reply_markup)
 
     async def send_invoice(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        query: CallbackQuery = cast(CallbackQuery, update.callback_query)
+        query: CallbackQuery = cast("CallbackQuery", update.callback_query)
         await self.telegram_service.answer_query_and_drop_data(context, query)
         data: str | PaymentData | None = query.data
 
@@ -67,7 +67,7 @@ class PaymentService:
             raise CallbackQueryDataTypeError(data)
 
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         prices = [LabeledPrice(data.label, data.value * 100)]
 
         await msg.reply_invoice(
@@ -83,7 +83,7 @@ class PaymentService:
 
     async def precheckout_check(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
-        query = cast(PreCheckoutQuery, update.pre_checkout_query)
+        query = cast("PreCheckoutQuery", update.pre_checkout_query)
 
         if query.invoice_payload != self._INVOICE_PAYLOAD:
             await query.answer(ok=False, error_message=_("Something went wrong, try again"))
@@ -92,7 +92,7 @@ class PaymentService:
 
     async def successful_payment(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         await msg.reply_text(_("Thank you for your support!"), reply_markup=ReplyKeyboardRemove())
 
     def _get_support_options_markup(

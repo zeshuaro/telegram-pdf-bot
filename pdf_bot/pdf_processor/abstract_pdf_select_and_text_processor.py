@@ -96,7 +96,7 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
         )
 
     async def _ask_select_option(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-        query = cast(CallbackQuery, update.callback_query)
+        query = cast("CallbackQuery", update.callback_query)
         await self.telegram_service.answer_query_and_drop_data(context, query)
         data: str | FileData | None = query.data
 
@@ -136,7 +136,7 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
         return InlineKeyboardMarkup(keyboard)
 
     async def _ask_text_input(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-        query = cast(CallbackQuery, update.callback_query)
+        query = cast("CallbackQuery", update.callback_query)
         await self.telegram_service.answer_query_and_drop_data(context, query)
         data: str | SelectOptionData | None = query.data
 
@@ -174,8 +174,8 @@ class AbstractPdfSelectAndTextProcessor(AbstractPdfProcessor):
     async def _process_text_input(
         self, update: Update, context: ContextTypes.DEFAULT_TYPE
     ) -> str | int:
-        msg = cast(Message, update.effective_message)
-        msg_text = cast(str, msg.text)
+        msg = cast("Message", update.effective_message)
+        msg_text = cast("str", msg.text)
         cleaned_text = self.get_cleaned_text_input(msg_text)
 
         if cleaned_text is None:

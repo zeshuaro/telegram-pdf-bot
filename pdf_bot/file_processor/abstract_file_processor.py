@@ -92,7 +92,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
     async def process_file(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str | int:
         _ = self.language_service.set_app_language(update, context)
         query = update.callback_query
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         file_data: str | FileData
 
         if query is not None:
@@ -165,9 +165,9 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
     def _get_error_handlers(
         self,
     ) -> dict[type[Exception], ErrorHandlerType]:
-        handlers: dict[type[Exception], ErrorHandlerType] = {
-            x: self._handle_generic_error for x in self.generic_error_types
-        }
+        handlers: dict[type[Exception], ErrorHandlerType] = dict.fromkeys(
+            self.generic_error_types, self._handle_generic_error
+        )
         handlers.update(self.custom_error_handlers)
         return handlers
 
@@ -179,7 +179,7 @@ class AbstractFileProcessor(FileTaskMixin, ABC):
         _file_data: FileData,
     ) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         await msg.reply_text(_(str(exception)))
 
         return ConversationHandler.END

@@ -32,7 +32,7 @@ class CompareService:
 
     async def ask_first_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         reply_markup = ReplyKeyboardMarkup(
             [[_(CANCEL)]], resize_keyboard=True, one_time_keyboard=True
         )
@@ -48,7 +48,7 @@ class CompareService:
 
     async def check_first_pdf(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
 
         try:
             doc = self.telegram_service.check_pdf_document(msg)
@@ -69,7 +69,7 @@ class CompareService:
 
     async def compare_pdfs(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
 
         try:
             doc = self.telegram_service.check_pdf_document(msg)
@@ -94,7 +94,7 @@ class CompareService:
 
     async def check_text(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> int | None:
         _ = self.language_service.set_app_language(update, context)
-        msg = cast(Message, update.effective_message)
+        msg = cast("Message", update.effective_message)
         text = msg.text
 
         if text == _(BACK):
