@@ -49,7 +49,7 @@ jobs:
           pytest --cov --cov-report=xml
 
       - name: Upload coverage report 📡
-        uses: codecov/codecov-action@v5.4.0
+        uses: codecov/codecov-action@v5.4.2
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
