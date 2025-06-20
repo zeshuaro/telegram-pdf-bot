@@ -19,18 +19,19 @@ class CropType(SelectOption):
 
     @property
     def ask_value_text(self) -> str:  # pragma: no cover
-        if self == CropType.by_percentage:
-            return _(
-                "Send me a number between 0 and 100\n\nThis is the percentage of"
-                " margin space to retain between the content in your PDF file and"
-                " the page"
-            )
-        if self == CropType.by_margin_size:  # noqa: RET503
-            return _(
-                "Send me a number that you'll like to adjust the margin"
-                " size\n\nPositive numbers will decrease the margin size and"
-                " negative numbers will increase it"
-            )
+        match self:
+            case CropType.by_percentage:
+                return _(
+                    "Send me a number between 0 and 100\n\nThis is the percentage of"
+                    " margin space to retain between the content in your PDF file and"
+                    " the page"
+                )
+            case CropType.by_margin_size:
+                return _(
+                    "Send me a number that you'll like to adjust the margin"
+                    " size\n\nPositive numbers will decrease the margin size and"
+                    " negative numbers will increase it"
+                )
 
 
 class CropPdfData(FileData): ...
