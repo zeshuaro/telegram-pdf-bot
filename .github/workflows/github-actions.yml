@@ -21,7 +21,7 @@ jobs:
 
       - name: Setup Python 🐍
         id: setup-python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: ".python-version"
 
@@ -63,7 +63,7 @@ jobs:
 
       - name: Setup Python 🐍
         id: setup-python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: ".python-version"
 
@@ -146,7 +146,7 @@ jobs:
 
       - name: Setup Python 🐍
         id: setup-python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: ".python-version"
 
