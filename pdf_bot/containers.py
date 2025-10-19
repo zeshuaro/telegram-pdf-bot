@@ -311,7 +311,7 @@ class Handlers(containers.DeclarativeContainer):
     error = providers.Singleton(ErrorHandler, language_service=services.language)
 
     # Make sure payment handler comes first as it contains handlers that need to be
-    # priortised
+    # prioritised
     payment = providers.Singleton(PaymentHandler, payment_service=services.payment)
     command = providers.Singleton(
         MyCommandHandler,
