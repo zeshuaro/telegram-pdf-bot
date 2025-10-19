@@ -16,7 +16,8 @@ from pdf_bot.telegram_internal import BackData
 from .abstract_pdf_processor import AbstractPdfProcessor
 
 
-class RotatePdfData(FileData): ...
+class RotatePdfData(FileData):
+    pass
 
 
 @dataclass(kw_only=True)

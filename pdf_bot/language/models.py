@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 
 
-class SetLanguageData: ...
+class SetLanguageData:
+    pass
 
 
 class LanguageData(BaseModel):

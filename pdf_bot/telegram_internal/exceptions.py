@@ -1,16 +1,22 @@
-class TelegramServiceError(Exception): ...
+class TelegramServiceError(Exception):
+    pass
 
 
-class TelegramFileMimeTypeError(TelegramServiceError): ...
+class TelegramFileMimeTypeError(TelegramServiceError):
+    pass
 
 
-class TelegramFileTooLargeError(TelegramServiceError): ...
+class TelegramFileTooLargeError(TelegramServiceError):
+    pass
 
 
-class TelegramGetUserDataError(TelegramServiceError): ...
+class TelegramGetUserDataError(TelegramServiceError):
+    pass
 
 
-class TelegramUpdateUserDataError(TelegramServiceError): ...
+class TelegramUpdateUserDataError(TelegramServiceError):
+    pass
 
 
-class TelegramImageNotFoundError(TelegramServiceError): ...
+class TelegramImageNotFoundError(TelegramServiceError):
+    pass

@@ -34,7 +34,8 @@ class ScaleType(SelectOption):
                 )
 
 
-class ScalePdfData(FileData): ...
+class ScalePdfData(FileData):
+    pass
 
 
 class ScaleOptionAndInputData(OptionAndInputData):
