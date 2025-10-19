@@ -4,10 +4,12 @@ from pathlib import Path
 from telegram import Document, Message, PhotoSize
 
 
-class BackData: ...
+class BackData:
+    pass
 
 
-class SupportData: ...
+class SupportData:
+    pass
 
 
 @dataclass

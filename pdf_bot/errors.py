@@ -15,4 +15,5 @@ class CallbackQueryDataTypeError(Exception):
         super().__init__(msg, *args)
 
 
-class UserIdError(Exception): ...
+class UserIdError(Exception):
+    pass
