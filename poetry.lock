@@ -1186,20 +1186,18 @@ all = ["flake8 (>=7.1.1)", "mypy (>=1.11.2)", "pytest (>=8.3.2)", "ruff (>=0.6.2
 
 [[package]]
 name = "img2pdf"
-version = "0.6.1"
-description = "Convert images to PDF via direct JPEG inclusion."
+version = "0.6.3"
+description = "Lossless conversion of raster images to PDF."
 optional = false
-python-versions = "*"
+python-versions = ">=3.5"
 files = [
-    {file = "img2pdf-0.6.1.tar.gz", hash = "sha256:306e279eb832bc159d7d6294b697a9fbd11b4be1f799b14b3b2174fb506af289"},
+    {file = "img2pdf-0.6.3-py3-none-any.whl", hash = "sha256:44d12d235752edd17c43c04ff39952cdc5dd4c6aba90569c4902bd445085266b"},
+    {file = "img2pdf-0.6.3.tar.gz", hash = "sha256:219518020f5bd242bdc46493941ea3f756f664c2e86f2454721e74353f58cd95"},
 ]
 
 [package.dependencies]
 pikepdf = "*"
 Pillow = "*"
-
-[package.extras]
-gui = ["tkinter"]
 
 [[package]]
 name = "iniconfig"
@@ -3247,4 +3245,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "==3.14.0"
-content-hash = "f40e105009c885ded87dbcfc70346824d2ca25143312bc0d62c95536fe622a57"
+content-hash = "13481e938c40ea6d8193f5de269893e79442d3c14cbdde0027e01547f91a5840"
