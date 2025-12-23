@@ -1842,54 +1842,47 @@ tests-min = ["defusedxml", "packaging", "pytest"]
 
 [[package]]
 name = "pikepdf"
-version = "9.11.0"
+version = "10.1.0"
 description = "Read and write PDFs with Python, powered by qpdf"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 files = [
-    {file = "pikepdf-9.11.0-cp310-cp310-macosx_13_0_x86_64.whl", hash = "sha256:8ac1adbb2e32a1cefb9fc51f1e892de1ce0af506f040593384b3af973a46089b"},
-    {file = "pikepdf-9.11.0-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:f53ccda7be5aa7457a1b32b635a1e289dcdccb607b4fa7198a2c70e163fc0b8b"},
-    {file = "pikepdf-9.11.0-cp310-cp310-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:491345765d819a9d9d4676bd55ccff15a043db794104325a181e1870ec511855"},
-    {file = "pikepdf-9.11.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:501dd145a3e89ee25c612ae88530813f2612fe24abb178f2907d3cf7997a0719"},
-    {file = "pikepdf-9.11.0-cp310-cp310-musllinux_1_2_aarch64.whl", hash = "sha256:ab2980881f8a8e500a1ce27e16a69907a87fe0875894ed5269586012794d6bd6"},
-    {file = "pikepdf-9.11.0-cp310-cp310-musllinux_1_2_x86_64.whl", hash = "sha256:eb5c579c1da45aa771d379eacf213daceb789055e11f851f662d17eafd56868e"},
-    {file = "pikepdf-9.11.0-cp310-cp310-win_amd64.whl", hash = "sha256:7c62035466b0c5eabb1812f3ce5925312e2bb9e343a7e900a00c409e1ba89318"},
-    {file = "pikepdf-9.11.0-cp311-cp311-macosx_13_0_x86_64.whl", hash = "sha256:f501ff4c065246d4cf72d8bb50e248189b8d0cfcbf3c6388580658d011d41123"},
-    {file = "pikepdf-9.11.0-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:adb2910ca1ced9c8cd1952fec6788c1e87ac39cd1b7e0c51e466ee8a4b7974c6"},
-    {file = "pikepdf-9.11.0-cp311-cp311-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:3958ea903993f8d97714d460a74f63e1f01da2a67c8a24362b7d2c3f8ee49e41"},
-    {file = "pikepdf-9.11.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:f642be1eaf3ab6f2c8d9a5c8d90c83dbfcb556624e426574b8fb15578dad11cf"},
-    {file = "pikepdf-9.11.0-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:3ec710fde0543a73221d1553671559b4cb1fe4f883bff6ff4094d23a7c6e0a65"},
-    {file = "pikepdf-9.11.0-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:ec2147018edf5a5c7ab981a5fb3b060e5af1366c4d6aa085f2dcf881fdb4ee7e"},
-    {file = "pikepdf-9.11.0-cp311-cp311-win_amd64.whl", hash = "sha256:c185367dea47e483808e070da41ef24d8a73d85c0d65383dc6c8c3dd268e4604"},
-    {file = "pikepdf-9.11.0-cp312-cp312-macosx_13_0_x86_64.whl", hash = "sha256:bd9ab8286316f758a107bfa7496c2fcada9f687467e4c68b3bfd6f3167a86d54"},
-    {file = "pikepdf-9.11.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:a0cc52f3161b1245d810c16bb8e244a1b53bad9a47cd004ea1dd7b291a4f3db7"},
-    {file = "pikepdf-9.11.0-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:c2a5a618e35e98fd9872bbbab4f183d7fd574a8e141c92cb01f7147323289413"},
-    {file = "pikepdf-9.11.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:aa87a2c31143037b78a397a0242879c11c0131e5660acbc20e2a6d6b193d48b0"},
-    {file = "pikepdf-9.11.0-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:70e008bc3da40b5a0b7007702291cd529a8917c6862e4d3db1eab986beae95ed"},
-    {file = "pikepdf-9.11.0-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:56e3aca58aeeef52fca3dd9555eb735f2cc37166ff658a3837b5f73d59627b4f"},
-    {file = "pikepdf-9.11.0-cp312-cp312-win_amd64.whl", hash = "sha256:bee4c3b685c36d833145130adc2348f1fc88fae52c07307157d36fb1a1376ab3"},
-    {file = "pikepdf-9.11.0-cp313-cp313-macosx_13_0_x86_64.whl", hash = "sha256:4216120eec527596b23ab280f4eb4f029a150ec5f1227a2988e87b91ca51cfd7"},
-    {file = "pikepdf-9.11.0-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:2a7b3ca12af17e165c10bc500dbacefefbe78108cf8bc1db860f70fda0c399b2"},
-    {file = "pikepdf-9.11.0-cp313-cp313-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:dbb550492e82e79056793d191838676dd01af849a27e5da7905797dac3d88a0b"},
-    {file = "pikepdf-9.11.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:f0b8280279d2229854df7f3c579d06926902d8b70649eb64ad9589f17e0bd352"},
-    {file = "pikepdf-9.11.0-cp313-cp313-musllinux_1_2_aarch64.whl", hash = "sha256:8569c338365c0f5187e250e7668477de222a784f1fa1d17574e99588d65defe0"},
-    {file = "pikepdf-9.11.0-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:bbc42f95714d09ad4c5345b010126d25639abe402643737d2b74c41167f932c0"},
-    {file = "pikepdf-9.11.0-cp313-cp313-win_amd64.whl", hash = "sha256:325055c2e27239e5d9ae3479e4ec2ce45f9f5fb80732be87e726ff5453e96fc1"},
-    {file = "pikepdf-9.11.0-cp314-cp314-macosx_13_0_x86_64.whl", hash = "sha256:b366aefe9a30caababfbdc9f4647c8d0b7e92cfe34b6399399b78d4b96db9004"},
-    {file = "pikepdf-9.11.0-cp314-cp314-macosx_14_0_arm64.whl", hash = "sha256:3aed8fa4dabbf8ac1d9f5b8c15fa0881040f21ae58b4436c7f51f43c2375fc77"},
-    {file = "pikepdf-9.11.0-cp314-cp314-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:a09b060e52449080a87720d6af00f551f879e55c6d8e8884526e5434843fc15e"},
-    {file = "pikepdf-9.11.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:f42e5a69c32718b25da863ff3d408aa8bde677e19dbf8b05e6a12244f99c65f3"},
-    {file = "pikepdf-9.11.0-cp314-cp314-musllinux_1_2_aarch64.whl", hash = "sha256:82f628fcfd98f27b0feac273aa2e088e47bc6e2b22d73c6251449b6bc901244a"},
-    {file = "pikepdf-9.11.0-cp314-cp314-musllinux_1_2_x86_64.whl", hash = "sha256:c84358dce401f5bbb0725d38567fbd218de4e1efedd139b9626a8f9e3dc2cd66"},
-    {file = "pikepdf-9.11.0-cp314-cp314-win_amd64.whl", hash = "sha256:94161a46a88fc7e1615985ba6839e0aadd801a61c105783b86ac3284279fdc83"},
-    {file = "pikepdf-9.11.0-cp39-cp39-macosx_13_0_x86_64.whl", hash = "sha256:b84a541122f2116c0d779cd164fcb231db355afa5d40019310e41b04c4dc56eb"},
-    {file = "pikepdf-9.11.0-cp39-cp39-macosx_14_0_arm64.whl", hash = "sha256:0960e95f51190678db8ff8633ad70ec1f0283ebea1bfda45de110e1b0d7169dd"},
-    {file = "pikepdf-9.11.0-cp39-cp39-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:a6da908566a3127cd0145d0b8adbdfe4a11a25309e5015eb07e95d51cc34e360"},
-    {file = "pikepdf-9.11.0-cp39-cp39-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:f96fdf96dc866599d66817924e065f338809fd7514227b4d6153f7f1d7917ba0"},
-    {file = "pikepdf-9.11.0-cp39-cp39-musllinux_1_2_aarch64.whl", hash = "sha256:c8fe99e0221913ef8c26688f8d24b213962b727365b274748627c10c763d608d"},
-    {file = "pikepdf-9.11.0-cp39-cp39-musllinux_1_2_x86_64.whl", hash = "sha256:251b433d0a6ab83b4bb82f913b10e0dc779833d3bc048dcc741a1988c1a951b9"},
-    {file = "pikepdf-9.11.0-cp39-cp39-win_amd64.whl", hash = "sha256:3174d9815bfdc3a0438b59c8a5bd7b0f27e13dbd3976cf85994f97d0cec9ad3f"},
-    {file = "pikepdf-9.11.0.tar.gz", hash = "sha256:5ad6bffba08849c21eee273ba0b6fcd4b6a9cff81bcbca6988f87a765ba62163"},
+    {file = "pikepdf-10.1.0-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:0b597110dc6b3b5aab9a012824809aaf651a797c9d6ea67b5b940edba868fcc9"},
+    {file = "pikepdf-10.1.0-cp310-cp310-macosx_15_0_x86_64.whl", hash = "sha256:1c9902196ae610e5caf0caad0fae543e34cedeab27d282704b78c4bf2cb6fa36"},
+    {file = "pikepdf-10.1.0-cp310-cp310-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:52e914fef4dd399e35aba70a1f29c540d9d2b5681c3ad4c561fec7343d1e7210"},
+    {file = "pikepdf-10.1.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:47f95fc2f035aac312efcfe9b01df3608f22eda0aa0137f727ab50ae13669aaa"},
+    {file = "pikepdf-10.1.0-cp310-cp310-musllinux_1_2_aarch64.whl", hash = "sha256:19e4f03baded0ddf1ea52a1d04d36d48855178b35a3906e05e039ca5924caf77"},
+    {file = "pikepdf-10.1.0-cp310-cp310-musllinux_1_2_x86_64.whl", hash = "sha256:4d65c80533340a4519fe0abada1b7783045d66a90da32c093fc12eb880e105dc"},
+    {file = "pikepdf-10.1.0-cp310-cp310-win_amd64.whl", hash = "sha256:e29641e6f5851e2c16b22aea35e1a48145425e1e7ebe3b929bec5aed59f27724"},
+    {file = "pikepdf-10.1.0-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:9aaed19308c8634cc823906535f6cccab858f9b7d2aa79787d3ba292c2f9de4a"},
+    {file = "pikepdf-10.1.0-cp311-cp311-macosx_15_0_x86_64.whl", hash = "sha256:100bee0084ac2ac337aff4c3ccd7b9b77089110e71f8754c84bc2a09710c5703"},
+    {file = "pikepdf-10.1.0-cp311-cp311-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:61c34b7f74814d08a893f5a8e46765ef356ec577616a2184fa61bd81b02edd32"},
+    {file = "pikepdf-10.1.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:193208ca0976ff685a7d938126da9fc82f541fff60b678fb386cfaab59c5337a"},
+    {file = "pikepdf-10.1.0-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:ec4bd9565c3234094922eb52904a9abc331d02e2cc1714e0f10dc585e42d051b"},
+    {file = "pikepdf-10.1.0-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:b05b96921593fb5afe9c63b9aadb7276e2f8e2e31b87018e63e5e63d09c1c621"},
+    {file = "pikepdf-10.1.0-cp311-cp311-win_amd64.whl", hash = "sha256:c364f884043f37c7b82bec054b347bcce8c2a13896da8660118073b3c66c283e"},
+    {file = "pikepdf-10.1.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:bb25856d00a6c5c683bf6141b19f90da4e0f0c188d74628444a9cf2dc8d26aa8"},
+    {file = "pikepdf-10.1.0-cp312-cp312-macosx_15_0_x86_64.whl", hash = "sha256:8418fa899908c2bbbe6b1ddd8b3a9d473b209edc613da58134818fd404879612"},
+    {file = "pikepdf-10.1.0-cp312-cp312-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:28678d69b36cc4a48da87a8c78e0518111ca4896137a72044c2a250ac056bdbf"},
+    {file = "pikepdf-10.1.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:dea4722744b48555f711b4baa67228ecc3f3f105ef57d08a3f7e5fd0d9205922"},
+    {file = "pikepdf-10.1.0-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:924b40b119d3e6327d46f27ed53f81a1c6141da919b54009e9e1f73b59a2b38b"},
+    {file = "pikepdf-10.1.0-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:e5a879dc394f6d16168092069e8134b8ee9a641e8ce9761e8ab56e2e940a8f8c"},
+    {file = "pikepdf-10.1.0-cp312-cp312-win_amd64.whl", hash = "sha256:d245291b2f6f1ba7d0d6a075020214b7314d9b61540b93fe9665ac319a444981"},
+    {file = "pikepdf-10.1.0-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:fbe1150b7352310fa27df7c9cda249337aa19555d24278e98de12bcc4c27d4c4"},
+    {file = "pikepdf-10.1.0-cp313-cp313-macosx_15_0_x86_64.whl", hash = "sha256:ce40db97ad1588d48d325d3071cdddcd4a649a8bf33c8c8ad250daf0f109b7c1"},
+    {file = "pikepdf-10.1.0-cp313-cp313-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:77abbbe605c03a4d0642f3619a1bd3f4af454fa0cee8e5ead00fa549ed345dc3"},
+    {file = "pikepdf-10.1.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:51b9ddda70bb2a419a9357b6e4cd7660c922ff60a6830d740e6e3a7610168c08"},
+    {file = "pikepdf-10.1.0-cp313-cp313-musllinux_1_2_aarch64.whl", hash = "sha256:4d9c43b16184d8549103ad89586d71deaa9087eb01c081c194f90af4a738d5e7"},
+    {file = "pikepdf-10.1.0-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:755a1255bf8d02133f4301c0a3bcc6fdb0c8e8107419878708ff86714a2e5bb8"},
+    {file = "pikepdf-10.1.0-cp313-cp313-win_amd64.whl", hash = "sha256:c8944c9a4a464b74d05c8c59275f15cc98a2875620110ca009d4486bb8dcb3f7"},
+    {file = "pikepdf-10.1.0-cp314-cp314-macosx_14_0_arm64.whl", hash = "sha256:ead7190138e1777cc5888fc368b40723c205a7aa6be368c00f4db4838547e7f1"},
+    {file = "pikepdf-10.1.0-cp314-cp314-macosx_15_0_x86_64.whl", hash = "sha256:0c3c45f0c4b2a4192a9bc5fc93b7f56c98ad4c43f578600299f754fe969300e0"},
+    {file = "pikepdf-10.1.0-cp314-cp314-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:19a0b104434968c196d208ed9a44f04ac9ed698639024f6015fbb5a06cdde062"},
+    {file = "pikepdf-10.1.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:c76e467c890abada305dcad6e5d0f44171b732a3147e4253aa1f1f28e9d52aa5"},
+    {file = "pikepdf-10.1.0-cp314-cp314-musllinux_1_2_aarch64.whl", hash = "sha256:86b6c77ba5986ced1cc0a37660a636fc49a68803152f07409d08e6d4be6a1b5a"},
+    {file = "pikepdf-10.1.0-cp314-cp314-musllinux_1_2_x86_64.whl", hash = "sha256:879036cfd45bbdcf78926cf4ffc68ff59999af19620415f2e6da51724b100fbc"},
+    {file = "pikepdf-10.1.0-cp314-cp314-win_amd64.whl", hash = "sha256:00116796a007f27dffab3372bd61529201ce2da6965f420ed15610bb65065236"},
+    {file = "pikepdf-10.1.0.tar.gz", hash = "sha256:d75778283c354580a462d31bd4334f6ba92225e41ccd8bb949ec6e98a23d4eb2"},
 ]
 
 [package.dependencies]
@@ -1902,7 +1895,7 @@ Pillow = ">=10.0.1"
 dev = ["mypy", "pre-commit", "typer"]
 docs = ["myst-parser (>=3.0.1)", "sphinx (>=3)", "sphinx-autoapi", "sphinx-design", "sphinx-issues", "sphinx-rtd-theme", "tomli"]
 mypy = ["lxml-stubs", "types-Pillow", "types-requests", "types-setuptools"]
-test = ["attrs (>=20.2.0)", "coverage[toml]", "hypothesis (>=6.36)", "numpy (>=1.21.0)", "psutil (>=5.9)", "pybind11", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-timeout (>=2.1.0)", "pytest-xdist (>=2.5.0)", "python-dateutil (>=2.8.1)", "python-xmp-toolkit (>=2.0.1)", "tomli"]
+test = ["attrs (>=20.2.0)", "coverage[toml]", "hypothesis (>=6.36)", "numpy (>=1.21.0)", "psutil (>=5.9)", "pybind11", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-timeout (>=2.1.0)", "pytest-xdist (>=2.5.0)", "python-dateutil (>=2.8.1)", "python-xmp-toolkit (>=2.0.1,<2.1.0)", "tomli"]
 
 [[package]]
 name = "pillow"
@@ -3211,4 +3204,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "==3.14.2"
-content-hash = "d1b0ab8610c9f5029aee3194e9fedc280d1b84880f2eaf77eb1071debad4e9db"
+content-hash = "f51c1ec67a141eb8a70121c513f0ea0613bd41d0e2683d2e5d00376dc01e539b"
