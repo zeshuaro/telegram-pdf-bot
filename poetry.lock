@@ -1753,13 +1753,13 @@ wheel = "*"
 
 [[package]]
 name = "pdfminer-six"
-version = "20251107"
+version = "20251229"
 description = "PDF parser and analyzer"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 files = [
-    {file = "pdfminer_six-20251107-py3-none-any.whl", hash = "sha256:c09df33e4cbe6b26b2a79248a4ffcccafaa5c5d39c9fff0e6e81567f165b5401"},
-    {file = "pdfminer_six-20251107.tar.gz", hash = "sha256:5fb0c553799c591777f22c0c72b77fc2522d7d10c70654e25f4c5f1fd996e008"},
+    {file = "pdfminer_six-20251229-py3-none-any.whl", hash = "sha256:3d1856f8d013ad733dc4e55c8c68553eaf5e17ced3d3e2122a2f59a2a3e9c675"},
+    {file = "pdfminer_six-20251229.tar.gz", hash = "sha256:60c6d8745de92e02a06cff7edc82125aed70b88f139cde72c3a22a45d044c6c6"},
 ]
 
 [package.dependencies]
@@ -1767,8 +1767,6 @@ charset-normalizer = ">=2.0.0"
 cryptography = ">=36.0.0"
 
 [package.extras]
-dev = ["atheris", "black", "mypy (==0.931)", "nox", "pytest"]
-docs = ["sphinx", "sphinx-argparse"]
 image = ["Pillow"]
 
 [[package]]
@@ -3211,4 +3209,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "==3.14.2"
-content-hash = "5ba566586d3c601dc8d3f3a7ff14c619ddac91e5205d27597d23ac139805915d"
+content-hash = "05624a7f8afa2d79f31db7900e93833b0321135c4e1620911e6f2c0ba9f653fe"
