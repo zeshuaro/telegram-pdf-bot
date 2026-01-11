@@ -4,20 +4,5 @@
     "github>zeshuaro/renovate-configs",
     "github>zeshuaro/renovate-configs:app",
     "github>zeshuaro/renovate-configs:python"
-  ],
-  "packageRules": [
-    {
-      "groupName": "Pikepdf",
-      "matchFileNames": [
-        "pyproject.toml"
-      ],
-      "matchPackageNames": [
-        "pikepdf"
-      ],
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "automerge": false
-    }
   ]
 }
