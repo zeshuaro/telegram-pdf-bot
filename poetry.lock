@@ -2594,19 +2594,20 @@ cli = ["click (>=5.0)"]
 
 [[package]]
 name = "python-telegram-bot"
-version = "22.5"
+version = "22.6"
 description = "We have made you a wrapper you can't refuse"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "python_telegram_bot-22.5-py3-none-any.whl", hash = "sha256:4b7cd365344a7dce54312cc4520d7fa898b44d1a0e5f8c74b5bd9b540d035d16"},
-    {file = "python_telegram_bot-22.5.tar.gz", hash = "sha256:82d4efd891d04132f308f0369f5b5929e0b96957901f58bcef43911c5f6f92f8"},
+    {file = "python_telegram_bot-22.6-py3-none-any.whl", hash = "sha256:e598fe171c3dde2dfd0f001619ee9110eece66761a677b34719fb18934935ce0"},
+    {file = "python_telegram_bot-22.6.tar.gz", hash = "sha256:50ae8cc10f8dff01445628687951020721f37956966b92a91df4c1bf2d113742"},
 ]
 
 [package.dependencies]
 aiolimiter = {version = ">=1.1,<1.3", optional = true, markers = "extra == \"rate-limiter\""}
 cachetools = {version = ">=5.3.3,<6.3.0", optional = true, markers = "extra == \"callback-data\""}
+httpcore = {version = ">=1.0.9", markers = "python_version >= \"3.14\""}
 httpx = ">=0.27,<0.29"
 tornado = {version = ">=6.5,<7.0", optional = true, markers = "extra == \"webhooks\""}
 
@@ -3316,4 +3317,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.1"
 python-versions = "==3.14.2"
-content-hash = "77cbc981c9e549a835a6dfa9d01418702628f97c7fcdb5c0bf900fd124f81565"
+content-hash = "94890fa5c7172334c5de1fbf5eb30a4c581a0dadf07daf361d8e310b5bb70b40"
