@@ -659,6 +659,18 @@ doc = ["furo", "sphinx"]
 test = ["pytest", "ruff"]
 
 [[package]]
+name = "defusedxml"
+version = "0.7.1"
+description = "XML bomb protection for Python stdlib modules"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+groups = ["main"]
+files = [
+    {file = "defusedxml-0.7.1-py2.py3-none-any.whl", hash = "sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61"},
+    {file = "defusedxml-0.7.1.tar.gz", hash = "sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69"},
+]
+
+[[package]]
 name = "dependency-injector"
 version = "4.48.3"
 description = "Dependency injection framework for Python"
@@ -854,6 +866,23 @@ symfont = ["sympy"]
 type1 = ["xattr ; sys_platform == \"darwin\""]
 unicode = ["unicodedata2 (>=17.0.0) ; python_version <= \"3.14\""]
 woff = ["brotli (>=1.0.1) ; platform_python_implementation == \"CPython\"", "brotlicffi (>=0.8.0) ; platform_python_implementation != \"CPython\"", "zopfli (>=0.1.4)"]
+
+[[package]]
+name = "fpdf2"
+version = "2.8.5"
+description = "Simple & fast PDF generation for Python"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "fpdf2-2.8.5-py3-none-any.whl", hash = "sha256:2356b94e2a5fcbd1fe53ac5cbb83494e9003308860ab180050255ba50961d913"},
+    {file = "fpdf2-2.8.5.tar.gz", hash = "sha256:af4491ef2e0a5fe476f9d61362925658949c995f7e804438c0e81008f1550247"},
+]
+
+[package.dependencies]
+defusedxml = "*"
+fonttools = ">=4.34.0"
+Pillow = ">=8.3.2,<9.2.dev0 || >=9.3.dev0"
 
 [[package]]
 name = "google-api-core"
@@ -1699,18 +1728,19 @@ files = [
 
 [[package]]
 name = "ocrmypdf"
-version = "16.13.0"
+version = "17.1.0"
 description = "OCRmyPDF adds an OCR text layer to scanned PDF files, allowing them to be searched"
 optional = false
-python-versions = ">=3.10"
+python-versions = ">=3.11"
 groups = ["main"]
 files = [
-    {file = "ocrmypdf-16.13.0-py3-none-any.whl", hash = "sha256:fad8a6f7cc52cdc6225095c401a1766c778c47efe9f1e854ae4dc64a550a3d37"},
-    {file = "ocrmypdf-16.13.0.tar.gz", hash = "sha256:29d37e915234ce717374863a9cc5dd32d29e063dfe60c51380dda71254c88248"},
+    {file = "ocrmypdf-17.1.0-py3-none-any.whl", hash = "sha256:69ad7b4bc348aec14e8e6de9cf910a13ceef618519d2fc6c11b8c6c98756a148"},
+    {file = "ocrmypdf-17.1.0.tar.gz", hash = "sha256:de28346e5007366c4a4d3aa0d40224300e6c81d9d360f07dcae208ac980be79f"},
 ]
 
 [package.dependencies]
 deprecation = ">=2.1.0"
+fpdf2 = ">=2.8.0"
 img2pdf = ">=0.5"
 packaging = ">=20"
 pdfminer-six = ">=20220319"
@@ -1718,13 +1748,13 @@ pi-heif = "*"
 pikepdf = ">=10"
 pillow = ">=10.0.1"
 pluggy = ">=1"
+pydantic = ">=2.12.5"
+pypdfium2 = ">=5.0.0"
 rich = ">=13"
+uharfbuzz = ">=0.53.2"
 
 [package.extras]
-docs = ["myst-parser (>=4.0.1)", "sphinx", "sphinx-issues", "sphinx-rtd-theme"]
-extended-test = ["pymupdf (>=1.19.1)"]
-test = ["coverage[toml] (>=6.2)", "hypothesis (>=6.36.0)", "pytest (>=6.2.5)", "pytest-cov (>=3.0.0)", "pytest-xdist (>=2.5.0)", "python-xmp-toolkit (==2.0.1)", "reportlab (>=3.6.8)", "types-humanfriendly", "types-pillow"]
-watcher = ["python-dotenv", "typer-slim[standard]", "watchdog (>=1.0.2)"]
+watcher = ["cyclopts (>=3)", "python-dotenv", "watchdog (>=1.0.2)"]
 webservice = ["streamlit (>=1.41.0)"]
 
 [[package]]
@@ -2485,6 +2515,38 @@ full = ["Pillow (>=8.0.0)", "cryptography"]
 image = ["Pillow (>=8.0.0)"]
 
 [[package]]
+name = "pypdfium2"
+version = "5.3.0"
+description = "Python bindings to PDFium"
+optional = false
+python-versions = ">=3.6"
+groups = ["main"]
+files = [
+    {file = "pypdfium2-5.3.0-py3-none-android_23_arm64_v8a.whl", hash = "sha256:885df6c78d41600cb086dc0c76b912d165b5bd6931ca08138329ea5a991b3540"},
+    {file = "pypdfium2-5.3.0-py3-none-android_23_armeabi_v7a.whl", hash = "sha256:6e53dee6b333ee77582499eff800300fb5aa0c7eb8f52f95ccb5ca35ebc86d48"},
+    {file = "pypdfium2-5.3.0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:ce4466bdd62119fe25a5f74d107acc9db8652062bf217057630c6ff0bb419523"},
+    {file = "pypdfium2-5.3.0-py3-none-macosx_11_0_x86_64.whl", hash = "sha256:cc2647fd03db42b8a56a8835e8bc7899e604e2042cd6fedeea53483185612907"},
+    {file = "pypdfium2-5.3.0-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:35e205f537ddb4069e4b4e22af7ffe84fcf2d686c3fee5e5349f73268a0ef1ca"},
+    {file = "pypdfium2-5.3.0-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:b5795298f44050797ac030994fc2525ea35d2d714efe70058e0ee22e5f613f27"},
+    {file = "pypdfium2-5.3.0-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:b7cd43dfceb77137e69e74c933d41506da1dddaff70f3a794fb0ad0d73e90d75"},
+    {file = "pypdfium2-5.3.0-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:d5956867558fd3a793e58691cf169718864610becb765bfe74dd83f05cbf1ae3"},
+    {file = "pypdfium2-5.3.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b3ff1071e9a782625822658dfe6e29e3a644a66960f8713bb17819f5a0ac5987"},
+    {file = "pypdfium2-5.3.0-py3-none-manylinux_2_27_s390x.manylinux_2_28_s390x.whl", hash = "sha256:f319c46ead49d289ab8c1ed2ea63c91e684f35bdc4cf4dc52191c441182ac481"},
+    {file = "pypdfium2-5.3.0-py3-none-manylinux_2_38_riscv64.manylinux_2_39_riscv64.whl", hash = "sha256:6dc67a186da0962294321cace6ccc0a4d212dbc5e9522c640d35725a812324b8"},
+    {file = "pypdfium2-5.3.0-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:0ad0afd3d2b5b54d86287266fd6ae3fef0e0a1a3df9d2c4984b3e3f8f70e6330"},
+    {file = "pypdfium2-5.3.0-py3-none-musllinux_1_2_armv7l.whl", hash = "sha256:1afe35230dc3951b3e79b934c0c35a2e79e2372d06503fce6cf1926d2a816f47"},
+    {file = "pypdfium2-5.3.0-py3-none-musllinux_1_2_i686.whl", hash = "sha256:00385793030cadce08469085cd21b168fd8ff981b009685fef3103bdc5fc4686"},
+    {file = "pypdfium2-5.3.0-py3-none-musllinux_1_2_ppc64le.whl", hash = "sha256:d911e82676398949697fef80b7f412078df14d725a91c10e383b727051530285"},
+    {file = "pypdfium2-5.3.0-py3-none-musllinux_1_2_riscv64.whl", hash = "sha256:ca1dc625ed347fac3d9002a3ed33d521d5803409bd572e7b3f823c12ab2ef58f"},
+    {file = "pypdfium2-5.3.0-py3-none-musllinux_1_2_s390x.whl", hash = "sha256:ea4f9db2d3575f22cd41f4c7a855240ded842f135e59a961b5b1351a65ce2b6e"},
+    {file = "pypdfium2-5.3.0-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:0ea24409613df350223c6afc50911c99dca0d43ddaf2616c5a1ebdffa3e1bcb5"},
+    {file = "pypdfium2-5.3.0-py3-none-win32.whl", hash = "sha256:5bf695d603f9eb8fdd7c1786add5cf420d57fbc81df142ed63c029ce29614df9"},
+    {file = "pypdfium2-5.3.0-py3-none-win_amd64.whl", hash = "sha256:8365af22a39d4373c265f8e90e561cd64d4ddeaf5e6a66546a8caed216ab9574"},
+    {file = "pypdfium2-5.3.0-py3-none-win_arm64.whl", hash = "sha256:0b2c6bf825e084d91d34456be54921da31e9199d9530b05435d69d1a80501a12"},
+    {file = "pypdfium2-5.3.0.tar.gz", hash = "sha256:2873ffc95fcb01f329257ebc64a5fdce44b36447b6b171fe62f7db5dc3269885"},
+]
+
+[[package]]
 name = "pyphen"
 version = "0.17.2"
 description = "Pure Python module to hyphenate text"
@@ -3045,6 +3107,29 @@ files = [
 typing-extensions = ">=4.12.0"
 
 [[package]]
+name = "uharfbuzz"
+version = "0.53.3"
+description = "Streamlined Cython bindings for the harfbuzz shaping engine"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "uharfbuzz-0.53.3-cp310-abi3-macosx_10_9_universal2.whl", hash = "sha256:d977e41a501d9e8af3f2c329d75031037ee79634bc29ca3872e9115c44e67d25"},
+    {file = "uharfbuzz-0.53.3-cp310-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:21d512c94aa992691aaf5b433deaca7e51f4ea54c68b99f535974073364f806f"},
+    {file = "uharfbuzz-0.53.3-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:dca9a2e071c0c59ba8f382356f31a2518ac3dc7cc77e4f3519defc454c5b9a97"},
+    {file = "uharfbuzz-0.53.3-cp310-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:1191a74ddcf18ec721161b6b33a8ab31b0c6a2b15c6724a9b663127bf7f07d2e"},
+    {file = "uharfbuzz-0.53.3-cp310-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:35ec3b600b3f63e7659792f9bd43e1ffb389d3d2aac8285f269d11efbe04787d"},
+    {file = "uharfbuzz-0.53.3-cp310-abi3-win32.whl", hash = "sha256:d861b0f7bdd247ec6f478ef5d20e7a2db0f01c57d8dd154cc66ad0ce2de6543f"},
+    {file = "uharfbuzz-0.53.3-cp310-abi3-win_amd64.whl", hash = "sha256:03aa2082a8f2840dabd9338dabea444cbd7ba249f1b64dae1a7c9378727c10f6"},
+    {file = "uharfbuzz-0.53.3-pp311-pypy311_pp73-macosx_10_15_x86_64.whl", hash = "sha256:6f0ad2812303d2c7ccff596fd6c9d5629874f3a83f30255e11639c9b7ba4e89d"},
+    {file = "uharfbuzz-0.53.3-pp311-pypy311_pp73-macosx_11_0_arm64.whl", hash = "sha256:757d9ed1841912e8f229319f335cf7dd25a2fd377e444bda9deb720617192e12"},
+    {file = "uharfbuzz-0.53.3-pp311-pypy311_pp73-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:5d3a0b824811bd1be129356818e6cdbf0e4b056bb60aa9a5eb270bff9d21f24c"},
+    {file = "uharfbuzz-0.53.3-pp311-pypy311_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:9211d798b2921a99b8c34e810676137f66372d3b5447765b72d969bdfa6abe6a"},
+    {file = "uharfbuzz-0.53.3-pp311-pypy311_pp73-win_amd64.whl", hash = "sha256:063e9608999024e8c30f7e092aa92c83d28bf02c0d090c89f0de77854445d323"},
+    {file = "uharfbuzz-0.53.3.tar.gz", hash = "sha256:9a87175c14d1361322ce2a3504e63c6b66062934a5edf47266aed5b33416806c"},
+]
+
+[[package]]
 name = "urllib3"
 version = "2.6.3"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -3270,4 +3355,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.1"
 python-versions = "==3.14.3"
-content-hash = "bf05bf159f10c2f88ee567d0e491d0722c9e87d7d644e0044eb2d6db7ab85f9c"
+content-hash = "1e800cc4b093acd8de8296f0cfa2830f4e1a3e0710253e242bd2dbb46f8dac53"
