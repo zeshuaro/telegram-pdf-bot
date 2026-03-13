@@ -24,7 +24,7 @@ jobs:
           persist-credentials: false
 
       - name: Download translations 🌐
-        uses: crowdin/github-action@v2.15.0
+        uses: crowdin/github-action@v2.15.2
         with:
           upload_sources: false
           upload_translations: false
