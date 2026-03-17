@@ -199,14 +199,14 @@ cffi = {version = ">=1.17.0", markers = "python_version >= \"3.13\""}
 
 [[package]]
 name = "cachetools"
-version = "6.2.6"
+version = "7.0.5"
 description = "Extensible memoizing collections and decorators"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "cachetools-6.2.6-py3-none-any.whl", hash = "sha256:8c9717235b3c651603fff0076db52d6acbfd1b338b8ed50256092f7ce9c85bda"},
-    {file = "cachetools-6.2.6.tar.gz", hash = "sha256:16c33e1f276b9a9c0b49ab5782d901e3ad3de0dd6da9bf9bcd29ac5672f2f9e6"},
+    {file = "cachetools-7.0.5-py3-none-any.whl", hash = "sha256:46bc8ebefbe485407621d0a4264b23c080cedd913921bad7ac3ed2f26c183114"},
+    {file = "cachetools-7.0.5.tar.gz", hash = "sha256:0cd042c24377200c1dcd225f8b7b12b0ca53cc2c961b43757e774ebe190fd990"},
 ]
 
 [[package]]
@@ -2631,27 +2631,27 @@ cli = ["click (>=5.0)"]
 
 [[package]]
 name = "python-telegram-bot"
-version = "22.6"
+version = "22.7"
 description = "We have made you a wrapper you can't refuse"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "python_telegram_bot-22.6-py3-none-any.whl", hash = "sha256:e598fe171c3dde2dfd0f001619ee9110eece66761a677b34719fb18934935ce0"},
-    {file = "python_telegram_bot-22.6.tar.gz", hash = "sha256:50ae8cc10f8dff01445628687951020721f37956966b92a91df4c1bf2d113742"},
+    {file = "python_telegram_bot-22.7-py3-none-any.whl", hash = "sha256:d72eed532cf763758cd9331b57a6d790aff0bb4d37d8f4e92149436fe21c6475"},
+    {file = "python_telegram_bot-22.7.tar.gz", hash = "sha256:784b59ea3852fe4616ad63b4a0264c755637f5d725e87755ecdee28300febf61"},
 ]
 
 [package.dependencies]
 aiolimiter = {version = ">=1.1,<1.3", optional = true, markers = "extra == \"rate-limiter\""}
-cachetools = {version = ">=5.3.3,<6.3.0", optional = true, markers = "extra == \"callback-data\""}
+cachetools = {version = ">=7.0.0,<8.0.0", optional = true, markers = "extra == \"callback-data\""}
 httpcore = {version = ">=1.0.9", markers = "python_version >= \"3.14\""}
 httpx = ">=0.27,<0.29"
 tornado = {version = ">=6.5,<7.0", optional = true, markers = "extra == \"webhooks\""}
 
 [package.extras]
-all = ["aiolimiter (>=1.1,<1.3)", "apscheduler (>=3.10.4,<3.12.0)", "cachetools (>=5.3.3,<6.3.0)", "cffi (>=1.17.0rc1) ; python_version > \"3.12\"", "cryptography (>=39.0.1)", "httpx[http2]", "httpx[socks]", "tornado (>=6.5,<7.0)"]
-callback-data = ["cachetools (>=5.3.3,<6.3.0)"]
-ext = ["aiolimiter (>=1.1,<1.3)", "apscheduler (>=3.10.4,<3.12.0)", "cachetools (>=5.3.3,<6.3.0)", "tornado (>=6.5,<7.0)"]
+all = ["aiolimiter (>=1.1,<1.3)", "apscheduler (>=3.10.4,<3.12.0)", "cachetools (>=7.0.0,<8.0.0)", "cffi (>=1.17.0rc1) ; python_version > \"3.12\"", "cryptography (>=39.0.1)", "httpx[http2]", "httpx[socks]", "tornado (>=6.5,<7.0)"]
+callback-data = ["cachetools (>=7.0.0,<8.0.0)"]
+ext = ["aiolimiter (>=1.1,<1.3)", "apscheduler (>=3.10.4,<3.12.0)", "cachetools (>=7.0.0,<8.0.0)", "tornado (>=6.5,<7.0)"]
 http2 = ["httpx[http2]"]
 job-queue = ["apscheduler (>=3.10.4,<3.12.0)"]
 passport = ["cffi (>=1.17.0rc1) ; python_version > \"3.12\"", "cryptography (>=39.0.1)"]
@@ -3336,4 +3336,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.1"
 python-versions = "==3.14.3"
-content-hash = "de87e64cafe2b4375d3a5ca10edfc9d53b3905405c69d3089b3ec8ecc6ccc86e"
+content-hash = "9ca8ecd944c328cc1795ce0b07a6f2266c7fad2f2202d483addc590ee7d7d2c2"
