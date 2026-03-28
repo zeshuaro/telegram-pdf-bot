@@ -3222,29 +3222,29 @@ python-discovery = ">=1"
 
 [[package]]
 name = "weasyprint"
-version = "66.0"
+version = "68.1"
 description = "The Awesome Document Factory"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "weasyprint-66.0-py3-none-any.whl", hash = "sha256:82b0783b726fcd318e2c977dcdddca76515b30044bc7a830cc4fbe717582a6d0"},
-    {file = "weasyprint-66.0.tar.gz", hash = "sha256:da71dc87dc129ac9cffdc65e5477e90365ab9dbae45c744014ec1d06303dde40"},
+    {file = "weasyprint-68.1-py3-none-any.whl", hash = "sha256:4dc3ba63c68bbbce3e9617cb2226251c372f5ee90a8a484503b1c099da9cf5be"},
+    {file = "weasyprint-68.1.tar.gz", hash = "sha256:d3b752049b453a5c95edb27ce78d69e9319af5a34f257fa0f4c738c701b4184e"},
 ]
 
 [package.dependencies]
 cffi = ">=0.6"
 cssselect2 = ">=0.8.0"
-fonttools = {version = ">=4.0.0", extras = ["woff"]}
+fonttools = {version = ">=4.59.2", extras = ["woff"]}
 Pillow = ">=9.1.0"
 pydyf = ">=0.11.0"
 Pyphen = ">=0.9.1"
-tinycss2 = ">=1.4.0"
+tinycss2 = ">=1.5.0"
 tinyhtml5 = ">=2.0.0b1"
 
 [package.extras]
 doc = ["furo", "sphinx"]
-test = ["pytest", "ruff"]
+test = ["Pillow (>=12.1.0)", "pytest", "ruff"]
 
 [[package]]
 name = "webencodings"
@@ -3423,4 +3423,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.1"
 python-versions = "==3.14.3"
-content-hash = "bbee45bfed57fea997acf4c46598af57d7142e2dfb6d16a07c6683eb859f16d3"
+content-hash = "a9496789686821f26cd5f668468786e520c50119a469de18e77ebbd3ce83dbf7"
