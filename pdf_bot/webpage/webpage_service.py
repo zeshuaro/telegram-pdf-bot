@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 from telegram import Message, Update
 from telegram.ext import ContextTypes
 from weasyprint import HTML
-from weasyprint.css.utils import InvalidValues
+from weasyprint.css.tokens import InvalidValues
 from weasyprint.urls import URLFetchingError
 
 from pdf_bot.analytics import TaskType
