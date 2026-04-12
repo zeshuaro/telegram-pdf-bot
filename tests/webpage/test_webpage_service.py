@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 from weasyprint import HTML
-from weasyprint.css.utils import InvalidValues
+from weasyprint.css.tokens import InvalidValues
 from weasyprint.urls import URLFetchingError
 
 from pdf_bot.analytics import TaskType
