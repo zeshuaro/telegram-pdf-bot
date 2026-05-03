@@ -199,14 +199,14 @@ cffi = {version = ">=1.17.0", markers = "python_version >= \"3.13\""}
 
 [[package]]
 name = "cachetools"
-version = "7.0.6"
+version = "7.1.0"
 description = "Extensible memoizing collections and decorators"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "cachetools-7.0.6-py3-none-any.whl", hash = "sha256:4e94956cfdd3086f12042cdd29318f5ced3893014f7d0d059bf3ead3f85b7f8b"},
-    {file = "cachetools-7.0.6.tar.gz", hash = "sha256:e5d524d36d65703a87243a26ff08ad84f73352adbeafb1cde81e207b456aaf24"},
+    {file = "cachetools-7.1.0-py3-none-any.whl", hash = "sha256:05afd1d309309e7c8971db462b4cf516d93fa8c9aea1b906e26e61b4399d0d82"},
+    {file = "cachetools-7.1.0.tar.gz", hash = "sha256:ea5406e92956f9006b121f8032177c6b02cc5f9a488d1e53b2e4d9cb5aae15c6"},
 ]
 
 [[package]]
@@ -940,14 +940,14 @@ grpc = ["grpcio (>=1.33.2,<2.0.0)", "grpcio (>=1.49.1,<2.0.0) ; python_version >
 
 [[package]]
 name = "google-auth"
-version = "2.49.2"
+version = "2.50.0"
 description = "Google Authentication Library"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "google_auth-2.49.2-py3-none-any.whl", hash = "sha256:c2720924dfc82dedb962c9f52cabb2ab16714fd0a6a707e40561d217574ed6d5"},
-    {file = "google_auth-2.49.2.tar.gz", hash = "sha256:c1ae38500e73065dcae57355adb6278cf8b5c8e391994ae9cbadbcb9631ab409"},
+    {file = "google_auth-2.50.0-py3-none-any.whl", hash = "sha256:04382175e28b94f49694977f0a792688b59a668def1499e9d8de996dc9ce5b15"},
+    {file = "google_auth-2.50.0.tar.gz", hash = "sha256:f35eafb191195328e8ce10a7883970877e7aeb49c2bfaa54aa0e394316d353d0"},
 ]
 
 [package.dependencies]
@@ -1803,14 +1803,14 @@ files = [
 
 [[package]]
 name = "pathspec"
-version = "1.1.0"
+version = "1.1.1"
 description = "Utility library for gitignore style pattern matching of file paths."
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "pathspec-1.1.0-py3-none-any.whl", hash = "sha256:574b128f7456bd899045ccd142dd446af7e6cfd0072d63ad73fbc55fbb4aaa42"},
-    {file = "pathspec-1.1.0.tar.gz", hash = "sha256:f5d7c555da02fd8dde3e4a2354b6aba817a89112fa8f333f7917a2a4834dd080"},
+    {file = "pathspec-1.1.1-py3-none-any.whl", hash = "sha256:a00ce642f577bf7f473932318056212bc4f8bfdf53128c78bbd5af0b9b20b189"},
+    {file = "pathspec-1.1.1.tar.gz", hash = "sha256:17db5ecd524104a120e173814c90367a96a98d07c45b2e10c2f3919fff91bf5a"},
 ]
 
 [package.extras]
@@ -3145,25 +3145,25 @@ typing-extensions = ">=4.12.0"
 
 [[package]]
 name = "uharfbuzz"
-version = "0.53.7"
+version = "0.54.1"
 description = "Streamlined Cython bindings for the harfbuzz shaping engine"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "uharfbuzz-0.53.7-cp310-abi3-macosx_10_9_universal2.whl", hash = "sha256:e277c71d989f3828bd640ade178f5632b76c11aa3e06de049f01b86cd972f05f"},
-    {file = "uharfbuzz-0.53.7-cp310-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:74be5dd76b3161b8dfa1faaff2267582dd3c912e5f91ad66826d827d4db3b582"},
-    {file = "uharfbuzz-0.53.7-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:806c0ad7ff4fa3547bba3935e151235e31a170ce2aa3ba50cd65ac783eba1f3e"},
-    {file = "uharfbuzz-0.53.7-cp310-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:685148d4f20bafa76e99ef2b9a712a110efba4eb375188fab2be44e96bfa8cf4"},
-    {file = "uharfbuzz-0.53.7-cp310-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:5a9849d84a2c9909c82255b63964fa4bef08f64df26da895d0410dd4c6dc62b1"},
-    {file = "uharfbuzz-0.53.7-cp310-abi3-win32.whl", hash = "sha256:264bc22ee6b7e74cebdc8f60be668aa38af8444f2261971bb4972e19896c8ece"},
-    {file = "uharfbuzz-0.53.7-cp310-abi3-win_amd64.whl", hash = "sha256:e425caf07655d25248c251198af81430726fc7644e94a46cbd90537f5ee74c37"},
-    {file = "uharfbuzz-0.53.7-pp311-pypy311_pp73-macosx_10_15_x86_64.whl", hash = "sha256:ce68e0cf5dc9d62f924b51e3a426c68ec09a8f6a9aabb0d81f5c7b6da46771d8"},
-    {file = "uharfbuzz-0.53.7-pp311-pypy311_pp73-macosx_11_0_arm64.whl", hash = "sha256:49682dcea4d0bf5adff0141e24f1f09a84dc7a9d2e63a373928452b2d5106ca5"},
-    {file = "uharfbuzz-0.53.7-pp311-pypy311_pp73-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:91acf0335695e68ed9b11ba193cb045ef0c1045002670bfb2c78a6a7b1da8c7e"},
-    {file = "uharfbuzz-0.53.7-pp311-pypy311_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:1dcc20c952fb1ea5a662f9471b1d0f1d9fe1d9ffc185e6931d3a484032c76173"},
-    {file = "uharfbuzz-0.53.7-pp311-pypy311_pp73-win_amd64.whl", hash = "sha256:5f5ff5084c58da43998ea274261653dd70b6f92980207df4f97ec026ad9e50a5"},
-    {file = "uharfbuzz-0.53.7.tar.gz", hash = "sha256:c13cfe32accd4dc5b7e5d1c3c7bd5f04ba77be186ffd249ab1ba82a0b25b70bc"},
+    {file = "uharfbuzz-0.54.1-cp310-abi3-macosx_10_9_universal2.whl", hash = "sha256:ddc0ef83d51985c63f50f11781ca2f36c0bc8b9f9d6bd6bb00f4860ae0814700"},
+    {file = "uharfbuzz-0.54.1-cp310-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:d3fee855690c6059fb9b5fc64a3ea0e367b5f71095b2e62e18ce144e9e782b47"},
+    {file = "uharfbuzz-0.54.1-cp310-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:1059de9a7764611c214bff4fd0ed81526dbde024b11dc697dfca0bc590ebaf15"},
+    {file = "uharfbuzz-0.54.1-cp310-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:bca97e4a5b288297473128869cbd1bb0f6e4619caa8a248f66986da3e21c1773"},
+    {file = "uharfbuzz-0.54.1-cp310-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:fe6b06bfc6f223cbee6a42018ede4161e0c1020f2b8e22b245530b77bcbd9cd7"},
+    {file = "uharfbuzz-0.54.1-cp310-abi3-win32.whl", hash = "sha256:9d859baa4df2bba238458c47d5dd58a66b16d135777457d05d4f447e15670d70"},
+    {file = "uharfbuzz-0.54.1-cp310-abi3-win_amd64.whl", hash = "sha256:94dc73f45d8943ddeaae3336cd40c0f398397ca915db1fc96dd5566107dbb6f2"},
+    {file = "uharfbuzz-0.54.1-pp311-pypy311_pp73-macosx_10_15_x86_64.whl", hash = "sha256:9c44559b52899dbbf3db3d49ac0372db78255ae5b2cbc2b1d2eb50fdb197f28c"},
+    {file = "uharfbuzz-0.54.1-pp311-pypy311_pp73-macosx_11_0_arm64.whl", hash = "sha256:8c81285dabaa2150a34f18062cdb13eb443a8db0a1e59b261be8644fd1732301"},
+    {file = "uharfbuzz-0.54.1-pp311-pypy311_pp73-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:55342a09f8a0bfbf570e4765cd3b02b1a999822127f891d944cbb0c26dc2090a"},
+    {file = "uharfbuzz-0.54.1-pp311-pypy311_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:918ebca8fecc89d0e9f9df71e9e5ef5cede5f2bc571a9e82a3e932f4189ac432"},
+    {file = "uharfbuzz-0.54.1-pp311-pypy311_pp73-win_amd64.whl", hash = "sha256:5863c255a380e860cbc2a35d6ac8a26b518de42210f6186010e6277afdf4b5ce"},
+    {file = "uharfbuzz-0.54.1.tar.gz", hash = "sha256:ded760c284c686f1f17f5c4bf44527857ef488b7f0aebceae4c1ef1903ddddb3"},
 ]
 
 [[package]]
@@ -3186,14 +3186,14 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 
 [[package]]
 name = "virtualenv"
-version = "21.2.4"
+version = "21.3.0"
 description = "Virtual Python Environment builder"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
 files = [
-    {file = "virtualenv-21.2.4-py3-none-any.whl", hash = "sha256:29d21e941795206138d0f22f4e45ff7050e5da6c6472299fb7103318763861ac"},
-    {file = "virtualenv-21.2.4.tar.gz", hash = "sha256:b294ef68192638004d72524ce7ef303e9d0cf5a44c95ce2e54a7500a6381cada"},
+    {file = "virtualenv-21.3.0-py3-none-any.whl", hash = "sha256:4d28ee41f6d9ec8f1f00cd472b9ffbcedda1b3d3b9a575b5c94a2d004fd51bd7"},
+    {file = "virtualenv-21.3.0.tar.gz", hash = "sha256:733750db978ec95c2d8eb4feadaa57091002bce404cb39ba69899cf7bd28944e"},
 ]
 
 [package.dependencies]
