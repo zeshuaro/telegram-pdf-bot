@@ -951,23 +951,23 @@ grpc = ["grpcio (>=1.47.0,<2.0.0) ; python_version < \"3.14\"", "grpcio (>=1.75.
 
 [[package]]
 name = "google-cloud-datastore"
-version = "2.25.0"
+version = "2.26.0"
 description = "Google Cloud Datastore API client library"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "google_cloud_datastore-2.25.0-py3-none-any.whl", hash = "sha256:e47e25933bcfad7118335015b0de2f2b2b5444e81f6f029a62040f568f4f52eb"},
-    {file = "google_cloud_datastore-2.25.0.tar.gz", hash = "sha256:dd646a3d8f99c2750bb5f6e0f18ece7bed95fd76e02dacaddbfa35a2b22328ff"},
+    {file = "google_cloud_datastore-2.26.0-py3-none-any.whl", hash = "sha256:1bde5694308468da5c932153a6b0331d5b54e1c21de366b6a75ddb0000fd5f4b"},
+    {file = "google_cloud_datastore-2.26.0.tar.gz", hash = "sha256:1ac4882f033fcb90bd75d1171b46400ecd5def23768598843d9c041e0c0b4a6a"},
 ]
 
 [package.dependencies]
-google-api-core = {version = ">=2.17.1,<3.0.0", extras = ["grpc"]}
+google-api-core = {version = ">=2.24.2,<3.0.0", extras = ["grpc"]}
 google-auth = ">=2.14.1,<2.24.0 || >2.24.0,<2.25.0 || >2.25.0,<3.0.0"
 google-cloud-core = ">=2.0.0,<3.0.0"
 grpcio = {version = ">=1.75.1,<2.0.0", markers = "python_version >= \"3.14\""}
-proto-plus = {version = ">=1.25.0,<2.0.0", markers = "python_version >= \"3.13\""}
-protobuf = ">=4.25.8,<8.0.0"
+proto-plus = ">=1.26.1,<2.0.0"
+protobuf = ">=6.33.5,<8.0.0"
 
 [[package]]
 name = "googleapis-common-protos"
@@ -3233,4 +3233,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.1"
 python-versions = "==3.14.6"
-content-hash = "5fb44fda7ea5c8ac08b0f4f7a240b2ff25b113e05d4078d85f1c978222c4116e"
+content-hash = "3747635e6196b1bbf4f268bd3ad7ea8acff3888c7c689fc9fa4090a0bb9572ce"
