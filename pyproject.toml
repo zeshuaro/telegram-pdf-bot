@@ -40,7 +40,7 @@ pre-commit = "==4.6.1"
 mypy = "1.19.1"
 types-requests = "2.33.0.20260712"
 pytest-asyncio = "1.4.0"
-ruff = "==0.15.22"
+ruff = "==0.16.0"
 
 [build-system]
 requires = ["poetry-core==2.4.1"]
@@ -55,6 +55,7 @@ select = ["ALL"]
 ignore = [
     "ANN401", # DynamicallyTypedExpression
     "COM812", # trailing-comma-missing
+    "CPY001", # missing-copyright-notice
     "FBT",    # flake8-boolean-trap
     "ISC001", # flake8-implicit-str-concat (conflicts with formatter)
     "PD",     # pandas-vet
