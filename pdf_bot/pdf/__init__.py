@@ -19,7 +19,6 @@ __all__ = [
     "PdfReadError",
     "PdfService",
     "PdfServiceError",
-    "PdfServiceError",
     "ScaleByData",
     "ScaleData",
     "ScaleToData",
