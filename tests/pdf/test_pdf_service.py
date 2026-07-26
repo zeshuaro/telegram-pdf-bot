@@ -527,7 +527,7 @@ class TestPDFService(
 
             async with self.sut.preview_pdf(self.TELEGRAM_FILE_ID) as actual:
                 assert actual == out_path
-                self.telegram_service.download_pdf_file.assert_called_once_with(
+                self.telegram_service.download_pdf_file.assert_called_once_with(  # type: ignore[unreachable]
                     self.TELEGRAM_FILE_ID
                 )
                 writer.add_page.assert_called_once_with(page)
