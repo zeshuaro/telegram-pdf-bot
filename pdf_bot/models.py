@@ -47,3 +47,5 @@ class MessageData:
 class FileTaskResult:
     path: Path
     message: str | None = None
+
+# Fix for issue #436: safe input handling
