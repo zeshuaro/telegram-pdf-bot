@@ -1048,6 +1048,7 @@ python-versions = ">=3.10"
 groups = ["main"]
 files = [
     {file = "google_cloud_datastore-2.26.1-py3-none-any.whl", hash = "sha256:a17c21ac0a8dc634625eb2c61b1997ccf86c05b3b79f2ea047d538b6cb82f6f5"},
+    {file = "google_cloud_datastore-2.26.1.tar.gz", hash = "sha256:57a1c2b27f67b3a5f09ad5e015c8ea4b343d4d980a859a0dd9a661dd79e003f8"},
 ]
 
 [package.dependencies]
@@ -2651,14 +2652,14 @@ files = [
 
 [[package]]
 name = "pypdf"
-version = "6.16.1"
+version = "6.16.2"
 description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "pypdf-6.16.1-py3-none-any.whl", hash = "sha256:63fec31c4092ae50b6729beedcb469055b60d20c834bde1c402df241f371f644"},
-    {file = "pypdf-6.16.1.tar.gz", hash = "sha256:c4d1b43ddae921387321cf63936cd16a7743b91d2da92f165c149a195c972ba9"},
+    {file = "pypdf-6.16.2-py3-none-any.whl", hash = "sha256:c8b09a59399062fb45a1b8156c18a787a10a3dae03ac9674397a226712c94604"},
+    {file = "pypdf-6.16.2.tar.gz", hash = "sha256:595647f6191de6f402cfde1d0c455d6cbccbd509aac32b34783009c032de5d6e"},
 ]
 
 [package.extras]
@@ -3425,4 +3426,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.1"
 python-versions = "==3.14.7"
-content-hash = "a17fc21490e9c2aa60db2210baaee0a1e410186a51177eac6705a20f7988b007"
+content-hash = "daae18069384a0f4d0cf10e91006efa44da0c4d1d0a88e7c5f97b7833f5b5967"
