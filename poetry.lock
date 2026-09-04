@@ -3150,18 +3150,18 @@ files = [
 
 [[package]]
 name = "slack-sdk"
-version = "3.44.0"
+version = "3.44.1"
 description = "The Slack API Platform SDK for Python"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "slack_sdk-3.44.0-py2.py3-none-any.whl", hash = "sha256:3d0b5997acafacece907299fb387852233c3c0635762de1c2343ad6ebff2f911"},
-    {file = "slack_sdk-3.44.0.tar.gz", hash = "sha256:e872acaf4e76ef22e9544af390b6e3896ce7198ad6bb26b3ce2630f3422f2ca3"},
+    {file = "slack_sdk-3.44.1-py2.py3-none-any.whl", hash = "sha256:d6f20a0fbe3fecf9cac955c99d686301b48a645b7045472c3a0cdd186d7c42b2"},
+    {file = "slack_sdk-3.44.1.tar.gz", hash = "sha256:ca19505423789fa2a3189ff486f989f02e49289f008d0a5813df7255b3fb93ea"},
 ]
 
 [package.extras]
-optional = ["SQLAlchemy (>=2.0.51,<3)", "aiodns (>1.0,<3.3) ; python_version < \"3.9\"", "aiodns (>1.0,<4) ; python_version == \"3.9\"", "aiodns (>=4.0.4) ; python_version >= \"3.10\"", "aiohttp (>=3.13.5,<3.14) ; python_version == \"3.9\"", "aiohttp (>=3.14.3,<4) ; python_version >= \"3.10\"", "aiohttp (>=3.7.3,<3.11) ; python_version == \"3.8\"", "aiohttp (>=3.7.3,<3.9) ; python_version == \"3.7\"", "boto3 (<=2)", "websocket-client (>=1,<2)", "websockets (>=16.1.1,<17) ; python_version >= \"3.10\"", "websockets (>=9.1,<12) ; python_version == \"3.7\"", "websockets (>=9.1,<14) ; python_version == \"3.8\"", "websockets (>=9.1,<16) ; python_version == \"3.9\""]
+optional = ["SQLAlchemy (>=2.0.52,<3)", "aiodns (>1.0,<3.3) ; python_version < \"3.9\"", "aiodns (>1.0,<4) ; python_version == \"3.9\"", "aiodns (>=4.0.4) ; python_version >= \"3.10\"", "aiohttp (>=3.13.5,<3.14) ; python_version == \"3.9\"", "aiohttp (>=3.14.3,<4) ; python_version >= \"3.10\"", "aiohttp (>=3.7.3,<3.11) ; python_version == \"3.8\"", "aiohttp (>=3.7.3,<3.9) ; python_version == \"3.7\"", "boto3 (<=2)", "websocket-client (>=1,<1.6.2) ; python_version == \"3.7\"", "websocket-client (>=1,<1.9.0) ; python_version == \"3.8\"", "websocket-client (>=1,<1.9.1) ; python_version == \"3.9\"", "websocket-client (>=1.9.1,<2) ; python_version >= \"3.10\"", "websockets (>=16.1.1,<17) ; python_version >= \"3.10\"", "websockets (>=9.1,<12) ; python_version == \"3.7\"", "websockets (>=9.1,<14) ; python_version == \"3.8\"", "websockets (>=9.1,<16) ; python_version == \"3.9\""]
 
 [[package]]
 name = "tinycss2"
@@ -3426,4 +3426,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.1"
 python-versions = "==3.14.7"
-content-hash = "7ba486c62d40f78e92bc409f93afe73a80a2761a7fbf7629d9d8592d2d10d5d4"
+content-hash = "eead2761f290ef22bff1b09c3f7d1d61c0250c914abb0266bc3e900a7d5d79b0"
